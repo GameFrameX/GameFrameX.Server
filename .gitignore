@@ -1,0 +1,7 @@
+﻿
+.idea
+database
+bin
+**/obj
+**/bin
+.DS_Store
