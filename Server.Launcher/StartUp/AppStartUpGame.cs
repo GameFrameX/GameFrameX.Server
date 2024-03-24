@@ -10,32 +10,24 @@
         {
             try
             {
-                LogHelper.Info($"开始启动服务器{ServerType}");
+                LogHelper.Info($"开始启动服务器{Setting.ServerType}");
                 var hotfixPath = Directory.GetCurrentDirectory() + "/hotfix";
                 if (!Directory.Exists(hotfixPath))
                 {
                     Directory.CreateDirectory(hotfixPath);
                 }
-
-
-                var flag = LoggerHandler.Start();
-                if (!flag)
-                {
-                    return; //启动服务器失败
-                }
-
+                
                 LogHelper.Info($"Load Config Start...");
                 ConfigManager.Instance.LoadConfig();
-
                 LogHelper.Info($"Load Config End...");
 
                 LogHelper.Info($"launch db service start...");
                 ActorLimit.Init(ActorLimit.RuleType.None);
                 LogHelper.Info($"launch db service end...");
 
-                LogHelper.Info($"regist comps start...");
+                LogHelper.Info($"register comps start...");
                 await ComponentRegister.Init(typeof(AppsHandler).Assembly);
-                LogHelper.Info($"regist comps end...");
+                LogHelper.Info($"register comps end...");
 
                 LogHelper.Info($"load hotfix module start");
                 await HotfixMgr.LoadHotfixModule();
@@ -45,7 +37,6 @@
                 LogHelper.Info("***进入游戏主循环***");
                 GlobalSettings.LaunchTime = DateTime.Now;
                 GlobalSettings.IsAppRunning = true;
-                TimeSpan delay = TimeSpan.FromSeconds(1);
                 await AppExitToken;
             }
             catch (Exception e)
