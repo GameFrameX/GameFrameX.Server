@@ -1,8 +1,10 @@
 ﻿using System.Reflection;
+using CommandLine;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Server.EntryUtility;
 using Server.Extension;
+using Server.Launcher.Common.Options;
 using Server.Proto;
 
 namespace Server.Launcher
@@ -14,6 +16,7 @@ namespace Server.Launcher
         static async Task Main(string[] args)
         {
             Console.WriteLine("启动参数：" + string.Join(" ", args));
+            var launcherOptions = Parser.Default.ParseArguments<LauncherOptions>(args)?.Value;
 
             Console.WriteLine("当前环境变量START---------------------");
             var environmentVariables = Environment.GetEnvironmentVariables();
@@ -25,10 +28,14 @@ namespace Server.Launcher
             Console.WriteLine("当前环境变量END---------------------");
             Console.WriteLine();
             Console.WriteLine();
-            var serverType = Environment.GetEnvironmentVariable("ServerType");
-            if (serverType != null)
+            string serverType = launcherOptions?.ServerType;
+            if (serverType.IsNullOrEmpty())
             {
-                Console.WriteLine("启动的服务器类型 ServerType: " + serverType);
+                serverType = Environment.GetEnvironmentVariable("ServerType");
+                if (serverType != null)
+                {
+                    Console.WriteLine("启动的服务器类型 ServerType: " + serverType);
+                }
             }
 
             LoggerHandler.Start();
