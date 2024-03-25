@@ -44,7 +44,7 @@ namespace Server.Extension
         /// </summary>
         /// <param name="str">要检查的字符串。</param>
         /// <returns>如果字符串为 null 或空，则为 true；否则为 false。</returns>
-        public static bool IsNullOrEmpty(this string str)
+        public static bool IsNullOrEmpty(this string? str)
         {
             return string.IsNullOrEmpty(str);
         }
