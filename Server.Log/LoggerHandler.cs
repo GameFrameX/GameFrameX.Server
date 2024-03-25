@@ -9,7 +9,7 @@ public static class LoggerHandler
         try
         {
             var logPath = @".\logs\log.txt"; // 日志文件存储的路径
-            LogHelper.Info("init Log config...");
+            Console.WriteLine("init Log config...");
             Serilog.Log.Logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()
                 .MinimumLevel.Debug()
