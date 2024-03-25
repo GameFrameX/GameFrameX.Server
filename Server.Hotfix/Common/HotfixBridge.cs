@@ -8,7 +8,7 @@ namespace Server.Hotfix.Common
     {
         public ServerType BridgeType => ServerType.Game;
 
-        public async Task<bool> OnLoadSuccess(bool reload)
+        public async Task<bool> OnLoadSuccess(BaseSetting setting, bool reload)
         {
             if (reload)
             {
@@ -27,15 +27,14 @@ namespace Server.Hotfix.Common
                 // Log.Debug("MsgID:" + messageId);
                 return ProtoMessageIdHandler.GetReqTypeById(messageId);
             });
-            var appSetting = GlobalSettings.GetSetting<AppSetting>(ServerType.Game);
             var webSocketMessageHelper = new WebSocketMessageHelper(HotfixMgr.GetTcpHandler, HotfixMgr.GetMsgTypeById, HotfixMgr.GetMsgIdByType);
-            await WebSocketServer.Start(appSetting.WsPort, appSetting.WssPort, appSetting.WssCertFilePath, appSetting, webSocketMessageHelper, new WebSocketChannelHandler());
+            await WebSocketServer.Start(setting.WsPort, setting.WssPort, setting.WssCertFilePath, setting, webSocketMessageHelper, new WebSocketChannelHandler());
             LogHelper.Info("WebSocket 服务启动完成...");
 
             // var tcpSocketMessageHelper = new TcpSocketMessageHelper(HotfixMgr.GetTcpHandler, HotfixMgr.GetMsgTypeById, HotfixMgr.GetMsgIdByType);
             // await TcpServer.Start(appSetting.TcpPort, appSetting, tcpSocketMessageHelper, builder => { builder.UseConnectionHandler<AppTcpConnectionHandler>(); });
             LogHelper.Info("tcp 服务启动完成...");
-            await HttpServer.Start(appSetting.HttpPort, appSetting.HttpsPort, HotfixMgr.GetHttpHandler);
+            await HttpServer.Start(setting.HttpPort, setting.HttpsPort, HotfixMgr.GetHttpHandler);
             LogHelper.Info("load config data");
 
             GlobalTimer.Start();

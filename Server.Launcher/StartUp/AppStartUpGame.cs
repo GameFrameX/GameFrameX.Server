@@ -3,7 +3,7 @@
     /// <summary>
     /// 游戏服务器
     /// </summary>
-    // [StartUpTag(ServerType.All)]
+    [StartUpTag(ServerType.Game)]
     internal sealed class AppStartUpGame : AppStartUpBase
     {
         public override async Task EnterAsync()
@@ -16,7 +16,7 @@
                 {
                     Directory.CreateDirectory(hotfixPath);
                 }
-                
+
                 LogHelper.Info($"Load Config Start...");
                 ConfigManager.Instance.LoadConfig();
                 LogHelper.Info($"Load Config End...");
@@ -30,7 +30,7 @@
                 LogHelper.Info($"register comps end...");
 
                 LogHelper.Info($"load hotfix module start");
-                await HotfixMgr.LoadHotfixModule();
+                await HotfixMgr.LoadHotfixModule(Setting);
                 LogHelper.Info($"load hotfix module end");
 
                 LogHelper.Info("进入游戏主循环...");
@@ -48,6 +48,25 @@
             LogHelper.Info($"退出服务器开始");
             await HotfixMgr.Stop();
             LogHelper.Info($"退出服务器成功");
+        }
+
+        protected override void Init()
+        {
+            if (Setting == null)
+            {
+                Setting = new AppSetting
+                {
+                    ServerId = 1501,
+                    ServerType = ServerType.Game,
+                    TcpPort = 38008,
+                    HttpPort = 20001,
+                    WsPort = 25001,
+                    //
+                    HttpCode = "inner_httpcode"
+                };
+            }
+
+            base.Init();
         }
     }
 }

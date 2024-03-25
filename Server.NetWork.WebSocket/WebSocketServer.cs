@@ -19,9 +19,9 @@ namespace Server.NetWork.WebSocket
     {
         private static WebApplication? App { get; set; }
         public static IMessageHelper? MessageHelper { get; private set; }
-        public static AppSetting AppSetting { get; private set; }
+        public static BaseSetting AppSetting { get; private set; }
 
-        public static Task Start(int wsPort, int wssPort, string wssCertFilePath, AppSetting appSetting, IMessageHelper messageHelper, WebSocketConnectionHandler handler)
+        public static Task Start(int wsPort, int wssPort, string wssCertFilePath, BaseSetting appSetting, IMessageHelper messageHelper, WebSocketConnectionHandler handler)
         {
             Guard.NotNull(messageHelper, nameof(messageHelper));
             Guard.NotNull(handler, nameof(handler));

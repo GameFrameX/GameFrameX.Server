@@ -6,6 +6,7 @@ using Server.Core.Events;
 using Server.Core.Hotfix.Agent;
 using Server.Core.Net.BaseHandler;
 using Server.NetWork.HTTP;
+using Server.Setting;
 
 namespace Server.Core.Hotfix
 {
@@ -15,14 +16,20 @@ namespace Server.Core.Hotfix
 
         private static volatile HotfixModule module = null;
 
+        private static BaseSetting _baseSetting;
         public static Assembly HotfixAssembly => module?.HotfixAssembly;
 
         private static readonly ConcurrentDictionary<int, HotfixModule> oldModuleMap = new();
 
         public static DateTime ReloadTime { get; private set; }
 
-        public static async Task<bool> LoadHotfixModule(string dllVersion = "")
+        public static async Task<bool> LoadHotfixModule(BaseSetting setting, string dllVersion = "")
         {
+            if (setting != null)
+            {
+                _baseSetting = setting;
+            }
+
             var dllPath = Path.Combine(Environment.CurrentDirectory, string.IsNullOrEmpty(dllVersion) ? "hotfix/Server.Hotfix.dll" : $"{dllVersion}/Server.Hotfix.dll");
             var hotfixModule = new HotfixModule(dllPath);
             bool reload = module != null;
@@ -33,15 +40,10 @@ namespace Server.Core.Hotfix
                 return false;
             }
 
-            return await Load(hotfixModule, reload);
+            return await Load(hotfixModule, _baseSetting, reload);
         }
 
-        public static Task<bool> LoadSelfModule()
-        {
-            return Load(new HotfixModule(), false);
-        }
-
-        private static async Task<bool> Load(HotfixModule newModule, bool reload)
+        private static async Task<bool> Load(HotfixModule newModule, BaseSetting setting, bool reload)
         {
             ReloadTime = DateTime.Now;
             if (reload)
@@ -61,7 +63,7 @@ namespace Server.Core.Hotfix
 
             module = newModule;
             if (module.HotfixBridge != null)
-                return await module.HotfixBridge.OnLoadSuccess(reload);
+                return await module.HotfixBridge.OnLoadSuccess(setting, reload);
             return true;
         }
 

@@ -8,7 +8,7 @@ namespace Server.Core.Hotfix
     {
         ServerType BridgeType { get; }
 
-        Task<bool> OnLoadSuccess(bool reload);
+        Task<bool> OnLoadSuccess(BaseSetting setting, bool reload);
 
         Task Stop();
     }
