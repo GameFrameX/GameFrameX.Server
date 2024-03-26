@@ -67,6 +67,15 @@ public abstract class AppStartUpBase : IAppStartUp
     {
     }
 
+    /// <summary>
+    /// 配置启动
+    /// </summary>
+    /// <param name="options"></param>
+    protected virtual void ConfigureSuperSocket(ServerOptions options)
+    {
+        options.AddListener(new ListenOptions { Ip = IPAddress.Any.ToString(), Port = Setting.TcpPort });
+    }
+
     public abstract Task EnterAsync();
 
     public virtual async Task Stop(string message = "")

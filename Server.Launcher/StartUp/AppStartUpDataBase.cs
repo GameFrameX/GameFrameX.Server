@@ -75,16 +75,6 @@ namespace Server.Launcher.StartUp
             // };
             // await session.SendAsync((IPackageEncoder<IMessage>)messageEncoderHandler, response);
         }
-
-        /// <summary>
-        /// 配置启动
-        /// </summary>
-        /// <param name="options"></param>
-        private void ConfigureSuperSocket(ServerOptions options)
-        {
-            options.AddListener(new ListenOptions { Ip = IPAddress.Any.ToString(), Port = Setting.TcpPort });
-        }
-
         public override async Task Stop(string message = "")
         {
             LogHelper.Info($"退出服务器开始");

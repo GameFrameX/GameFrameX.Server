@@ -209,15 +209,6 @@ namespace Server.Launcher.StartUp
             await ValueTask.CompletedTask;
         }
 
-        /// <summary>
-        /// 配置启动
-        /// </summary>
-        /// <param name="options"></param>
-        private void ConfigureSuperSocket(ServerOptions options)
-        {
-            options.AddListener(new ListenOptions { Ip = IPAddress.Any.ToString(), Port = Setting.TcpPort });
-        }
-
         #endregion
 
         public override async Task Stop(string message = "")

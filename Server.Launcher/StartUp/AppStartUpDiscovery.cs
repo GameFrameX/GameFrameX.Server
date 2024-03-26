@@ -109,11 +109,6 @@ internal sealed class AppStartUpDiscovery : AppStartUpBase
         LogHelper.Info($"{ServerType} Server Done!");
     }
 
-    private void ConfigureSuperSocket(ServerOptions options)
-    {
-        options.AddListener(new ListenOptions { Ip = IPAddress.Any.ToString(), Port = Setting.TcpPort });
-    }
-
     protected override void Init()
     {
         if (Setting == null)

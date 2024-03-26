@@ -101,11 +101,6 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         return ValueTask.CompletedTask;
     }
 
-    private void ConfigureSuperSocket(ServerOptions options)
-    {
-        options.AddListener(new ListenOptions { Ip = IPAddress.Any.ToString(), Port = Setting.TcpPort });
-    }
-
     #endregion
 
     #region Client

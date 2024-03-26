@@ -212,11 +212,6 @@ internal sealed class AppStartUpRouter : AppStartUpBase
         return ValueTask.CompletedTask;
     }
 
-    private void ConfigureSuperSocket(ServerOptions options)
-    {
-        options.AddListener(new ListenOptions { Ip = IPAddress.Any.ToString(), Port = Setting.TcpPort });
-    }
-
     public override async Task Stop(string message = "")
     {
         HeartBeatTimer.Close();
