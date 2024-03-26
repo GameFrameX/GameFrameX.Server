@@ -13,9 +13,26 @@ public static class GlobalSettings
     public static bool IsDebug { get; set; }
     public static int ServerId { get; set; }
 
+    /// <summary>
+    /// 加载启动配置
+    /// </summary>
+    /// <param name="path">配置文件路径</param>
+    /// <typeparam name="T"></typeparam>
+    /// <exception cref="InvalidOperationException"></exception>
+    /// <exception cref="Exception"></exception>
     public static void Load<T>(string path) where T : BaseSetting
     {
         Settings.Clear();
+
+        if (!File.Exists(path))
+        {
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.Write("配置文件不存在。可能会导致启动失败==>>>" + path);
+            Console.ResetColor();
+            Console.WriteLine();
+            return;
+        }
+
         var configJson = File.ReadAllText(path);
         var settings = JsonConvert.DeserializeObject<List<T>>(configJson) ?? throw new InvalidOperationException();
 
