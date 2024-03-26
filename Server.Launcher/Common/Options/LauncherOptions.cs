@@ -2,7 +2,7 @@
 
 namespace Server.Launcher.Common.Options;
 
-public class LauncherOptions
+public sealed class LauncherOptions
 {
     [Option('s', "ServerType", HelpText = "Enter the type of server to start")]
     public string ServerType { get; set; }
