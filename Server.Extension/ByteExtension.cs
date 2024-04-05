@@ -11,6 +11,22 @@ namespace Server.Extension
             return b.ToString("X2");
         }
 
+        /// <summary>
+        /// 将字节数组转换为字符串
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public static string ToArrayString(this byte[] bytes)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (byte b in bytes)
+            {
+                stringBuilder.Append(b + " ");
+            }
+
+            return stringBuilder.ToString();
+        }
+
         public static string ToHex(this byte[] bytes)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -18,6 +34,7 @@ namespace Server.Extension
             {
                 stringBuilder.Append(b.ToString("X2"));
             }
+
             return stringBuilder.ToString();
         }
 
@@ -28,6 +45,7 @@ namespace Server.Extension
             {
                 stringBuilder.Append(b.ToString(format));
             }
+
             return stringBuilder.ToString();
         }
 
@@ -38,6 +56,7 @@ namespace Server.Extension
             {
                 stringBuilder.Append(bytes[i].ToString("X2"));
             }
+
             return stringBuilder.ToString();
         }
 
@@ -125,6 +144,7 @@ namespace Server.Extension
         public const int LongSize = sizeof(long);
 
         #region WriteSpan
+
         public static void Write(this Span<byte> buffer, int value, ref int offset)
         {
             if (offset + IntSize > buffer.Length)
@@ -149,13 +169,13 @@ namespace Server.Extension
         }
 
 
-       
         public static ArraySegment<byte> GetArray(this ReadOnlyMemory<byte> memory)
         {
             if (!MemoryMarshal.TryGetArray(memory, out var result))
             {
                 throw new InvalidOperationException("Buffer backed by array was expected");
             }
+
             return result;
         }
 
@@ -167,7 +187,7 @@ namespace Server.Extension
             target.Write(package.Length, ref offset);
             target.Write(package, ref offset);
             writer.Write(target);
-            //_ = writer.FlushAsync(token); 
+            //_ = writer.FlushAsync(token);
         }
 
         public static void Write(this MemoryStream stream, TempNetPackage package)
@@ -177,8 +197,9 @@ namespace Server.Extension
             target.Write(package.Length, ref offset);
             target.Write(package, ref offset);
             stream.Write(target);
-            //_ = writer.FlushAsync(token); 
+            //_ = writer.FlushAsync(token);
         }*/
+
         #endregion
     }
 }
