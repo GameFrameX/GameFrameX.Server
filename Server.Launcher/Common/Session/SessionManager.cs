@@ -2,7 +2,6 @@
 using Server.Core.Actors;
 using Server.Core.Events;
 using Server.Launcher.Common.Event;
-using Server.NetWork;
 using Server.Proto.Proto;
 using Server.Setting;
 

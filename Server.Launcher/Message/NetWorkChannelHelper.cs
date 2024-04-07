@@ -1,6 +1,4 @@
-﻿using Server.NetWork;
-
-namespace Server.Launcher.Message;
+﻿namespace Server.Launcher.Message;
 
 public class NetWorkChannelHelper : INetWorkChannelHelper
 {

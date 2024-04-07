@@ -1,5 +1,4 @@
-﻿using Server.NetWork;
-using Server.NetWork.Messages;
+﻿using Server.NetWork.Messages;
 
 namespace Server.Launcher.Common.Session
 {
