@@ -8,16 +8,19 @@ namespace Server.Hotfix.Server.Heart.Handler;
 /// 心跳消息处理器
 /// </summary>
 [MessageMapping(typeof(ReqHeartBeat))]
-internal class ReqHeartBeatHandler : GlobalComponentHandler<HeartBeatComponentAgent>
+internal sealed class ReqHeartBeatHandler : GlobalComponentHandler<HeartBeatComponentAgent>
 {
+    readonly RespHeartBeat resp = new RespHeartBeat
+    {
+        Timestamp = TimeHelper.UnixTimeSeconds()
+    };
+
     protected override async Task ActionAsync()
     {
         ReqHeartBeat req = this.Message as ReqHeartBeat;
-        RespHeartBeat resp = new RespHeartBeat
-        {
-            Timestamp = TimeHelper.UnixTimeMilliseconds()
-        };
-        Channel.Write(resp);
-        await Task.CompletedTask;
+        LogHelper.Info("收到心跳请求:" + req.Timestamp);
+        Channel.UpdateReceiveMessageTime();
+        resp.Timestamp = TimeHelper.UnixTimeSeconds();
+        await Channel.WriteAsync(resp);
     }
 }
