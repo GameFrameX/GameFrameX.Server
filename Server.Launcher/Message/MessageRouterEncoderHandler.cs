@@ -1,7 +1,6 @@
 using System.Buffers;
 using System.Text;
 using Server.Extension;
-using Server.NetWork;
 using Server.NetWork.Messages;
 using Server.Proto;
 using Server.Serialize.Serialize;
@@ -17,7 +16,7 @@ class MessageRouterEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMes
         var bytes = SerializerHelper.Serialize(message);
 
         // len +timestamp + msgId + bytes.length
-        int len = 4 + 8 + 4 + bytes.Length;
+        int len = 4 + 8 + 4 + 4 + bytes.Length;
         var span = ArrayPool<byte>.Shared.Rent(len);
         int offset = 0;
         span.WriteInt(len, ref offset);
