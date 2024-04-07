@@ -1,7 +1,5 @@
-﻿using System.Text;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Server.Extension;
 using Server.Launcher.PipelineFilter;
 using Server.NetWork.TCPSocket;
 using SuperSocket.Channel;
@@ -119,11 +117,12 @@ internal sealed class AppStartUpRouter : AppStartUpBase
 
     private async Task StartServer()
     {
-        webSocketServer = WebSocketHostBuilder.Create().UseWebSocketMessageHandler(WebSocketMessageHandler).ConfigureAppConfiguration((ConfigureWebServer)).Build();
+        webSocketServer = WebSocketHostBuilder.Create()
+            .UseWebSocketMessageHandler(WebSocketMessageHandler)
+            .ConfigureAppConfiguration((ConfigureWebServer)).Build();
         await webSocketServer.StartAsync();
         server = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
             .ConfigureSuperSocket(ConfigureSuperSocket)
-            .UseSessionFactory<GameSessionFactory>()
             .UseClearIdleSession()
             .UsePackageDecoder<MessageRouterDecoderHandler>()
             // .UsePackageEncoder<MessageEncoderHandler>()
@@ -146,38 +145,62 @@ internal sealed class AppStartUpRouter : AppStartUpBase
             { { "serverOptions:name", "TestServer" }, { "serverOptions:listeners:0:ip", "Any" }, { "serverOptions:listeners:0:port", Setting.WsPort.ToString() } });
     }
 
+    /// <summary>
+    /// 处理收到的WS消息
+    /// </summary>
+    /// <param name="session"></param>
+    /// <param name="message"></param>
     private async ValueTask WebSocketMessageHandler(WebSocketSession session, WebSocketPackage message)
     {
         if (message.OpCode != OpCode.Binary)
         {
             await session.CloseAsync(CloseReason.ProtocolError);
+            return;
         }
 
-        //
         var bytes = message.Data;
         var buffer = bytes.ToArray();
-
-        StringBuilder stringBuilder = new StringBuilder();
-        foreach (var b in buffer)
-        {
-            stringBuilder.Append(b + " ");
-        }
-
-        LogHelper.Info("收到消息字节：" + stringBuilder);
-        // var messageObject = messageEncoderHandler.Handler(bytes);
-        // if (messageObject is MessageObject msg)
-        // {
-        //     var messageId = msg.MessageId;
-        //     if (Setting.IsDebug && Setting.IsDebugReceive)
-        //     {
-        //         LogHelper.Debug($"---收到消息ID:[{messageId}] ==>消息类型:{msg.GetType()} 消息内容:{messageObject}");
-        //     }
-        // }
-
-        await ValueTask.CompletedTask;
+        var messageObject = messageRouterDecoderHandler.Handler(buffer);
+        await MessagePackageHandler(session, messageObject);
     }
 
-    readonly MessageRouterEncoderHandler messageEncoderHandler = new MessageRouterEncoderHandler();
+    /// <summary>
+    /// 处理收到的消息结果
+    /// </summary>
+    /// <param name="session"></param>
+    /// <param name="messageObject"></param>
+    private async ValueTask MessagePackageHandler(IAppSession session, IMessage messageObject)
+    {
+        if (messageObject is MessageObject message)
+        {
+            var messageId = message.MessageId;
+            if (Setting.IsDebug && Setting.IsDebugReceive)
+            {
+                LogHelper.Debug($"---收到消息ID:[{messageId}] ==>消息类型:{message.GetType()} 消息内容:{messageObject}");
+            }
+
+            var handler = HotfixMgr.GetTcpHandler(message.MessageId);
+            if (handler == null)
+            {
+                LogHelper.Error($"找不到[{message.MessageId}][{messageObject.GetType()}]对应的handler");
+                return;
+            }
+
+            // RespHeartBeat resp = new RespHeartBeat
+            // {
+            //     Timestamp = TimeHelper.UnixTimeMilliseconds()
+            // };
+            // var messageData = messageEncoderHandler.Handler(resp);
+            // await session.SendAsync(messageData);
+            handler.Message = message;
+            handler.Channel = new DefaultNetChannel(session, messageEncoderHandler); // session;
+            await handler.Init();
+            await handler.InnerAction();
+        }
+    }
+
+    private MessageRouterDecoderHandler messageRouterDecoderHandler = new MessageRouterDecoderHandler();
+    static readonly MessageRouterEncoderHandler messageEncoderHandler = new MessageRouterEncoderHandler();
 
     private async ValueTask ClientPackageHandler(IAppSession session, IMessage messageObject)
     {
@@ -195,7 +218,8 @@ internal sealed class AppStartUpRouter : AppStartUpBase
         {
             Timestamp = TimeHelper.UnixTimeSeconds()
         };
-        await session.SendAsync(messageEncoderHandler, response);
+        var messageData = messageEncoderHandler.Handler(response);
+        await session.SendAsync(messageData);
     }
 
 
