@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>10</LangVersion>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <ApplicationIcon />
+        <StartupObject />
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <OutputPath>..\bin\app_debug</OutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <OutputPath>..\bin\app</OutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Update="Configs\app_log.config">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Configs\app_config.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\GameFrameX.Apps\GameFrameX.Apps.csproj" />
+        <ProjectReference Include="..\GameFrameX.Cache.Memory\GameFrameX.Cache.Memory.csproj" />
+        <ProjectReference Include="..\GameFrameX.Cache\GameFrameX.Cache.csproj" />
+        <ProjectReference Include="..\GameFrameX.Config\GameFrameX.Config.csproj" />
+        <ProjectReference Include="..\GameFrameX.Core\GameFrameX.Core.csproj" />
+        <ProjectReference Include="..\GameFrameX.DBServer\GameFrameX.DBServer.csproj" />
+        <ProjectReference Include="..\GameFrameX.EntryUtility\GameFrameX.EntryUtility.csproj" />
+        <ProjectReference Include="..\GameFrameX.Log\GameFrameX.Log.csproj" />
+        <ProjectReference Include="..\GameFrameX.Proto\GameFrameX.Proto.csproj" />
+        <ProjectReference Include="..\GameFrameX.Serialize\GameFrameX.Serialize.csproj" />
+        <ProjectReference Include="..\GameFrameX.ServerManager\GameFrameX.ServerManager.csproj" />
+        <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="CommandLineParser" Version="2.9.1" />
+      <PackageReference Include="SuperSocket" Version="2.0.0-beta.18" />
+      <PackageReference Include="SuperSocket.Client" Version="2.0.0-beta.18" />
+      <PackageReference Include="SuperSocket.ClientEngine.Core" Version="0.10.0" />
+      <PackageReference Include="SuperSocket.WebSocket" Version="2.0.0-beta.18" />
+      <PackageReference Include="SuperSocket.WebSocket.Server" Version="2.0.0-beta.18" />
+    </ItemGroup>
+
+
+</Project>

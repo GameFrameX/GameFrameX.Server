@@ -3,33 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server.Launcher", "Server.Launcher\Server.Launcher.csproj", "{835335CB-D99B-4CB9-99D3-A7883306E723}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameFrameX.Launcher", "GameFrameX.Launcher\GameFrameX.Launcher.csproj", "{835335CB-D99B-4CB9-99D3-A7883306E723}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server.Core", "Server.Core\Server.Core.csproj", "{E3C7010E-B262-473C-9EC1-69396C5D85A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameFrameX.Core", "GameFrameX.Core\GameFrameX.Core.csproj", "{E3C7010E-B262-473C-9EC1-69396C5D85A7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server.Hotfix", "Server.Hotfix\Server.Hotfix.csproj", "{E47F7B43-E435-4B9E-AD10-1FE0D19F45CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameFrameX.Hotfix", "GameFrameX.Hotfix\GameFrameX.Hotfix.csproj", "{E47F7B43-E435-4B9E-AD10-1FE0D19F45CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Config", "Server.Config\Server.Config.csproj", "{08B73D90-AB00-4B9D-AE3C-AB19E6D594F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Config", "GameFrameX.Config\GameFrameX.Config.csproj", "{08B73D90-AB00-4B9D-AE3C-AB19E6D594F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.DBServer", "Server.DBServer\Server.DBServer.csproj", "{CA28CC8F-B0CB-4343-8097-959625C98E9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer", "GameFrameX.DBServer\GameFrameX.DBServer.csproj", "{CA28CC8F-B0CB-4343-8097-959625C98E9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Extension", "Server.Extension\Server.Extension.csproj", "{5184AC05-37C8-4E14-B27E-2C6F26E0CA64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Extension", "GameFrameX.Extension\GameFrameX.Extension.csproj", "{5184AC05-37C8-4E14-B27E-2C6F26E0CA64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Utility", "Server.Utility\Server.Utility.csproj", "{4ACAEF41-C6E5-49FB-A5DB-8F5FF924E5EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Utility", "GameFrameX.Utility\GameFrameX.Utility.csproj", "{4ACAEF41-C6E5-49FB-A5DB-8F5FF924E5EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Proto", "Server.Proto\Server.Proto.csproj", "{12AA7D1B-E3EB-4DC4-BEAA-0C7BC5047B0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Proto", "GameFrameX.Proto\GameFrameX.Proto.csproj", "{12AA7D1B-E3EB-4DC4-BEAA-0C7BC5047B0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Log", "Server.Log\Server.Log.csproj", "{F6900217-2499-4857-967E-220E53DFAD10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Log", "GameFrameX.Log\GameFrameX.Log.csproj", "{F6900217-2499-4857-967E-220E53DFAD10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Setting", "Server.Setting\Server.Setting.csproj", "{766F2A06-FFF5-44B4-89D2-99A566293B86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Setting", "GameFrameX.Setting\GameFrameX.Setting.csproj", "{766F2A06-FFF5-44B4-89D2-99A566293B86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Serialize", "Server.Serialize\Server.Serialize.csproj", "{551705D2-C054-4B86-807D-5F0EF6EF6579}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Serialize", "GameFrameX.Serialize\GameFrameX.Serialize.csproj", "{551705D2-C054-4B86-807D-5F0EF6EF6579}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Apps", "Server.Apps\Server.Apps.csproj", "{EAA64025-FD7E-4E0F-92D1-AEBAC1A552BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Apps", "GameFrameX.Apps\GameFrameX.Apps.csproj", "{EAA64025-FD7E-4E0F-92D1-AEBAC1A552BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.NetWork", "Server.NetWork\Server.NetWork.csproj", "{D37EF2BA-A3A3-4D5F-897B-508735FF3E7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.NetWork", "GameFrameX.NetWork\GameFrameX.NetWork.csproj", "{D37EF2BA-A3A3-4D5F-897B-508735FF3E7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.NetWork.HTTP", "Server.NetWork.HTTP\Server.NetWork.HTTP.csproj", "{145DF707-F163-42DB-860D-9885259CC1AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.NetWork.HTTP", "GameFrameX.NetWork.HTTP\GameFrameX.NetWork.HTTP.csproj", "{145DF707-F163-42DB-860D-9885259CC1AF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5CA0010A-CD54-4964-98E9-BFEC341309B4}"
 	ProjectSection(SolutionItems) = preProject
@@ -37,21 +37,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Dockerfile = Dockerfile
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.DBServer.NoSql", "Server.DBServer.NoSql\Server.DBServer.NoSql.csproj", "{B01BFC0B-9BF4-498D-893F-84B4684978A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer.NoSql", "GameFrameX.DBServer.NoSql\GameFrameX.DBServer.NoSql.csproj", "{B01BFC0B-9BF4-498D-893F-84B4684978A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.DBServer.NoSql.Redis", "Server.DBServer.NoSql.Redis\Server.DBServer.NoSql.Redis.csproj", "{3DAFFFD6-21DF-4A82-822A-91E5E0AEC997}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer.NoSql.Redis", "GameFrameX.DBServer.NoSql.Redis\GameFrameX.DBServer.NoSql.Redis.csproj", "{3DAFFFD6-21DF-4A82-822A-91E5E0AEC997}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Tests", "Server.Tests\Server.Tests.csproj", "{762F0E9F-813B-40BD-B488-A7A6919A534E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Tests", "GameFrameX.Tests\GameFrameX.Tests.csproj", "{762F0E9F-813B-40BD-B488-A7A6919A534E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.ProtoBuf.Net", "Server.ProtoBuf.Net\Server.ProtoBuf.Net.csproj", "{E487194B-7F38-43B2-8942-E55AD479F5DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.ProtoBuf.Net", "GameFrameX.ProtoBuf.Net\GameFrameX.ProtoBuf.Net.csproj", "{E487194B-7F38-43B2-8942-E55AD479F5DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.EntryUtility", "Server.EntryUtility\Server.EntryUtility.csproj", "{C1AF76BF-A50D-4B00-801C-306E3A06C0A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.EntryUtility", "GameFrameX.EntryUtility\GameFrameX.EntryUtility.csproj", "{C1AF76BF-A50D-4B00-801C-306E3A06C0A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.ServerManager", "Server.ServerManager\Server.ServerManager.csproj", "{0C904924-63CD-4154-B776-DD0C4ED7F158}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.ServerManager", "GameFrameX.ServerManager\GameFrameX.ServerManager.csproj", "{0C904924-63CD-4154-B776-DD0C4ED7F158}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Cache", "Server.Cache\Server.Cache.csproj", "{4222D174-D8B5-45C5-B17D-E01D644FE003}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Cache", "GameFrameX.Cache\GameFrameX.Cache.csproj", "{4222D174-D8B5-45C5-B17D-E01D644FE003}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server.Cache.Memory", "Server.Cache.Memory\Server.Cache.Memory.csproj", "{55189891-1A7A-4909-AB12-3EF761E66C66}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Cache.Memory", "GameFrameX.Cache.Memory\GameFrameX.Cache.Memory.csproj", "{55189891-1A7A-4909-AB12-3EF761E66C66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MongoDB.Bson" Version="2.24.0" />
+        <PackageReference Include="MongoDB.Driver" Version="2.24.0" />
+        <PackageReference Include="MongoDB.Driver.Core" Version="2.24.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="Standart.Hash.xxHash" Version="4.0.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\GameFrameX.Serialize\GameFrameX.Serialize.csproj" />
+        <ProjectReference Include="..\GameFrameX.Setting\GameFrameX.Setting.csproj" />
+        <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
+    </ItemGroup>
+
+</Project>

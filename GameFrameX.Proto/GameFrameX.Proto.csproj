@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\GameFrameX.Core\GameFrameX.Core.csproj" />
+        <ProjectReference Include="..\GameFrameX.Extension\GameFrameX.Extension.csproj" />
+        <ProjectReference Include="..\GameFrameX.ProtoBuf.Net\GameFrameX.ProtoBuf.Net.csproj" />
+        <ProjectReference Include="..\GameFrameX.Serialize\GameFrameX.Serialize.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\GameFrameX.Core\GameFrameX.Core.csproj" />
+      <ProjectReference Include="..\GameFrameX.DBServer\GameFrameX.DBServer.csproj" />
+      <ProjectReference Include="..\GameFrameX.Proto\GameFrameX.Proto.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Account\" />
+      <Folder Include="Player\" />
+      <Folder Include="Server\" />
+    </ItemGroup>
+
+</Project>
