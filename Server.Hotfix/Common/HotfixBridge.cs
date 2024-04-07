@@ -1,6 +1,5 @@
 ﻿using Server.Launcher.Common.Session;
 using Server.NetWork.HTTP;
-using Server.NetWork.WebSocket;
 
 namespace Server.Hotfix.Common
 {
@@ -27,8 +26,8 @@ namespace Server.Hotfix.Common
                 // Log.Debug("MsgID:" + messageId);
                 return ProtoMessageIdHandler.GetReqTypeById(messageId);
             });
-            var webSocketMessageHelper = new WebSocketMessageHelper(HotfixMgr.GetTcpHandler, HotfixMgr.GetMsgTypeById, HotfixMgr.GetMsgIdByType);
-            await WebSocketServer.Start(setting.WsPort, setting.WssPort, setting.WssCertFilePath, setting, webSocketMessageHelper, new WebSocketChannelHandler());
+            // var webSocketMessageHelper = new WebSocketMessageHelper(HotfixMgr.GetTcpHandler, HotfixMgr.GetMsgTypeById, HotfixMgr.GetMsgIdByType);
+            // await WebSocketServer.Start(setting.WsPort, setting.WssPort, setting.WssCertFilePath, setting, webSocketMessageHelper, new WebSocketChannelHandler());
             LogHelper.Info("WebSocket 服务启动完成...");
 
             // var tcpSocketMessageHelper = new TcpSocketMessageHelper(HotfixMgr.GetTcpHandler, HotfixMgr.GetMsgTypeById, HotfixMgr.GetMsgIdByType);
@@ -52,7 +51,7 @@ namespace Server.Hotfix.Common
             await ActorManager.AllFinish();
             // 关闭网络服务
             // await TcpServer.Stop();
-            await WebSocketServer.Stop();
+            // await WebSocketServer.Stop();
             await HttpServer.Stop();
             // 存储所有数据
             await GlobalTimer.Stop();
