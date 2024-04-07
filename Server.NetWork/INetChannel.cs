@@ -51,4 +51,10 @@ public interface INetChannel
     /// <param name="key"></param>
     /// <param name="value"></param>
     void SetData(string key, object value);
+
+    /// <summary>
+    /// 更新接收消息时间
+    /// </summary>
+    /// <param name="offsetTicks"></param>
+    void UpdateReceiveMessageTime(long offsetTicks = 0);
 }
