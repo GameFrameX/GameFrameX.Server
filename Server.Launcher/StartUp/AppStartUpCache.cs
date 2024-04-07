@@ -175,7 +175,6 @@ namespace Server.Launcher.StartUp
         {
             server = SuperSocketHostBuilder.Create<ICacheState, CacheStatePipelineFilter>()
                 .ConfigureSuperSocket(ConfigureSuperSocket)
-                .UseSessionFactory<GameSessionFactory>()
                 .UseClearIdleSession()
                 .UsePackageHandler(CacheServerPackageHandler)
                 .UseInProcSessionContainer()

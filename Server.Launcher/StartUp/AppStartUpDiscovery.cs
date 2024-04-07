@@ -41,7 +41,6 @@ internal sealed class AppStartUpDiscovery : AppStartUpBase
 
             server = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
                 .ConfigureSuperSocket(ConfigureSuperSocket)
-                .UseSessionFactory<GameSessionFactory>()
                 .UseClearIdleSession()
                 .UsePackageDecoder<MessageActorDiscoveryDecoderHandler>()
                 .UsePackageEncoder<MessageActorDiscoveryEncoderHandler>()

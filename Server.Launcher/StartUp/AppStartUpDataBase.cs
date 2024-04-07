@@ -38,7 +38,6 @@ namespace Server.Launcher.StartUp
         {
             server = SuperSocketHostBuilder.Create<ICacheState>()
                 .ConfigureSuperSocket(ConfigureSuperSocket)
-                .UseSessionFactory<GameSessionFactory>()
                 .UseClearIdleSession() // 清除空闲连接
                 .UsePipelineFilter<CacheStatePipelineFilter>()
                 .UsePackageDecoder<MessageActorDataBaseDecoderHandler>()
