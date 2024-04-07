@@ -13,7 +13,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Server.Log\Server.Log.csproj" />
-      <ProjectReference Include="..\Server.NetWork.UDPSocket\Server.NetWork.UDPSocket.csproj" />
       <ProjectReference Include="..\Server.NetWork\Server.NetWork.csproj" />
     </ItemGroup>
 
