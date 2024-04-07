@@ -10,4 +10,8 @@
       <ProjectReference Include="..\Server.Serialize\Server.Serialize.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="SuperSocket.Primitives" Version="2.0.0-beta.18" />
+    </ItemGroup>
+
 </Project>

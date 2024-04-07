@@ -1,26 +1,47 @@
 ﻿using System.Collections.Concurrent;
 using Server.NetWork.Messages;
+using Server.Utility;
+using SuperSocket;
 
 namespace Server.NetWork
 {
-    public abstract class BaseNetChannel : INetChannel
+    public class BaseNetChannel : INetChannel
     {
-        public long NetId { get; set; } = 0;
-        public int TargetServerId { get; set; }
+        protected readonly CancellationTokenSource CloseSrc = new CancellationTokenSource();
 
-        public BaseNetChannel()
+        // public long NetId { get; set; } = 0;
+        // public int TargetServerId { get; set; }
+        public IAppSession AppSession { get; }
+        public virtual string RemoteAddress { get; } = "";
+
+        private readonly IMessageEncoderHandler messageEncoder;
+
+        public BaseNetChannel(IAppSession session, IMessageEncoderHandler messageEncoder)
         {
+            AppSession = session;
+            this.messageEncoder = messageEncoder;
+            RemoteAddress = session.RemoteEndPoint.ToString();
         }
 
-        public BaseNetChannel(IMessageHelper messageHelper)
+        public virtual async void Write(IMessage messageObject)
         {
-            MessageHelper = messageHelper;
+            await WriteAsync(messageObject);
         }
 
-        protected readonly CancellationTokenSource CloseSrc = new();
-
-        public virtual void Write(IMessage msg)
+        /// <summary>
+        /// 将消息对象异步写入网络通道。
+        /// </summary>
+        /// <param name="messageObject">消息对象。</param>
+        /// <param name="uniId">唯一ID。</param>
+        /// <param name="code">状态码。</param>
+        /// <param name="desc">描述。</param>
+        public virtual async Task WriteAsync(IMessage messageObject, int uniId = 0, int code = 0, string desc = "")
         {
+            Guard.NotNull(messageObject, nameof(messageObject));
+
+            var messageData = messageEncoder.Handler(messageObject);
+
+            await AppSession.SendAsync(messageData);
         }
 
         public virtual void Close()
@@ -33,20 +54,13 @@ namespace Server.NetWork
             return CloseSrc.IsCancellationRequested;
         }
 
-        public IMessageHelper MessageHelper { get; }
-        public virtual string RemoteAddress { get; set; } = "";
+        #region Data
 
-        public virtual Task StartAsync()
-        {
-            return Task.CompletedTask;
-        }
-
-
-        readonly ConcurrentDictionary<string, object> datas = new();
+        private readonly ConcurrentDictionary<string, object> userDataKv = new ConcurrentDictionary<string, object>();
 
         public T GetData<T>(string key)
         {
-            if (datas.TryGetValue(key, out var v))
+            if (userDataKv.TryGetValue(key, out var v))
             {
                 return (T)v;
             }
@@ -56,15 +70,19 @@ namespace Server.NetWork
 
         public void RemoveData(string key)
         {
-            datas.Remove(key, out _);
+            userDataKv.Remove(key, out _);
         }
 
-        public void SetData(string key, object v)
+        public void SetData(string key, object value)
         {
-            datas[key] = v;
+            userDataKv[key] = value;
         }
 
-        protected long LastReceiveMessageTime;
+        #endregion
+
+        #region MessageTime
+
+        private long lastReceiveMessageTime;
 
         /// <summary>
         /// 更新接收消息的时间
@@ -72,7 +90,7 @@ namespace Server.NetWork
         /// <param name="offsetTicks"></param>
         public void UpdateReceiveMessageTime(long offsetTicks = 0)
         {
-            LastReceiveMessageTime = DateTime.UtcNow.Ticks + offsetTicks;
+            lastReceiveMessageTime = DateTime.UtcNow.Ticks + offsetTicks;
         }
 
         /// <summary>
@@ -82,16 +100,9 @@ namespace Server.NetWork
         /// <returns></returns>
         public long GetLastMessageTimeSecond(in DateTime utcTime)
         {
-            return (utcTime.Ticks - LastReceiveMessageTime) / 10000_000;
+            return (utcTime.Ticks - lastReceiveMessageTime) / 10000_000;
         }
 
-        /// <summary>
-        /// 将消息对象异步写入网络通道。
-        /// </summary>
-        /// <param name="msg">消息对象。</param>
-        /// <param name="uniId">唯一ID。</param>
-        /// <param name="code">状态码。</param>
-        /// <param name="desc">描述。</param>
-        public abstract void WriteAsync(IMessage msg, int uniId, int code, string desc = "");
+        #endregion
     }
 }
