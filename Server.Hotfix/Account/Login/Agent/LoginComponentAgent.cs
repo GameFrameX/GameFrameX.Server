@@ -2,6 +2,7 @@
 using Server.Apps.Account.Login.Entity;
 using Server.Launcher.Common;
 using Server.Core.Net;
+using Server.Extension;
 using Server.Hotfix.Common;
 using Server.NetWork;
 
@@ -11,9 +12,13 @@ namespace Server.Hotfix.Account.Login.Agent
     {
         public async Task OnLogin(INetChannel channel, ReqLogin reqLogin)
         {
-            if (string.IsNullOrEmpty(reqLogin.UserName))
+            if (reqLogin.UserName.IsNullOrEmpty() || reqLogin.Password.IsNullOrEmpty())
             {
-                channel.WriteAsync(null, reqLogin.UniId, (int)OperationStatusCode.AccountCannotBeNull);
+                RespErrorCode respErrorCode = new RespErrorCode
+                {
+                    ErrCode = (int)ResultCode.Failed
+                };
+                await channel.WriteAsync(respErrorCode, reqLogin.UniId, (int)OperationStatusCode.AccountCannotBeNull);
                 return;
             }
 
