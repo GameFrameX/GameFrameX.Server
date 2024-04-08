@@ -49,7 +49,7 @@ namespace GameFrameX.Serialize.Serialize
         /// <returns></returns>
         public static object Deserialize(byte[] data, Type type)
         {
-            using (var memoryStream = manager.GetStream())
+            using (var memoryStream = manager.GetStream(data))
             {
                 return ProtoBuf.Serializer.Deserialize(type, memoryStream);
             }
