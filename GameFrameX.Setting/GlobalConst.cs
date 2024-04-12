@@ -28,7 +28,7 @@ public static class GlobalConst
     /// <summary>
     /// 最大服务器ID
     /// </summary>
-    public const int MaxServerId = 9999;
+    public const int MaxServerId = 99999;
 
     /// <summary>
     /// 最大Actor增量
