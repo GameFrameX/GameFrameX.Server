@@ -119,6 +119,7 @@ namespace GameFrameX.Launcher
                 }
             }
 
+            LogHelper.Info($"----------------------------启动服务器结束啦------------------------------");
 
             ConsoleLogo();
 
