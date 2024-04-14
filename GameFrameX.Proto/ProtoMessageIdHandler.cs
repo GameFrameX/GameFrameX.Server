@@ -194,8 +194,8 @@ namespace GameFrameX.Proto
                 }
             }
 
-            LogHelper.Debug(stringBuilder.ToString());
-            LogHelper.Info(" 注册消息ID类型: 结束");
+            // LogHelper.Debug(stringBuilder.ToString());
+            // LogHelper.Info(" 注册消息ID类型: 结束");
         }
     }
 }
