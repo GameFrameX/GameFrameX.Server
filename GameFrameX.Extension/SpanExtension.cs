@@ -331,7 +331,7 @@ namespace GameFrameX.Extension
             }
         }
 
-        public static unsafe void WriteBytes(this byte[] value, byte[] buffer, ref int offset)
+        public static unsafe void WriteBytes(this byte[] buffer, byte[] value, ref int offset)
         {
             if (value == null)
             {
