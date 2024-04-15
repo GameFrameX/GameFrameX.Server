@@ -1,5 +1,4 @@
 using GameFrameX.NetWork.Messages;
-using SuperSocket;
 
 namespace GameFrameX.NetWork;
 
@@ -8,7 +7,7 @@ public interface INetChannel
     /// <summary>
     /// 应用会话
     /// </summary>
-    IAppSession AppSession { get; }
+    IGameSession AppSession { get; }
 
     /// <summary>
     /// 远程地址
