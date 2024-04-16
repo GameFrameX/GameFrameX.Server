@@ -2,13 +2,12 @@ using GameFrameX.Extension;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Serialize.Serialize;
-using SuperSocket.ProtoBase;
 
 namespace GameFrameX.Launcher.Message;
 
-class MessageRouterDecoderHandler : IMessageDecoderHandler, IPackageDecoder<IMessage>
+public class MessageRouterDecoderHandler : IMessageDecoderHandler
 {
-    public IMessage Handler(Span<byte> data)
+    public IMessage Handler(byte[] data)
     {
         try
         {
@@ -25,25 +24,14 @@ class MessageRouterDecoderHandler : IMessageDecoderHandler, IPackageDecoder<IMes
                 messageObject.MessageId = messageId;
                 return messageObject;
             }
-            else
-            {
-                LogHelper.Fatal("未知消息类型");
-                return null;
-            }
+
+            LogHelper.Fatal("未知消息类型");
+            return null;
         }
         catch (Exception e)
         {
             LogHelper.Fatal(e);
             return null;
         }
-    }
-
-
-    public IMessage Decode(ref ReadOnlySequence<byte> buffer, object context)
-    {
-        var data = buffer.ToArray();
-        LogHelper.Info(data.ToArrayString());
-        var messageObject = Handler(data);
-        return messageObject;
     }
 }
