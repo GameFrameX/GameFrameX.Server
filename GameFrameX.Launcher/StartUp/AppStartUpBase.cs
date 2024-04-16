@@ -5,7 +5,11 @@ namespace GameFrameX.Launcher.StartUp;
 
 public abstract class AppStartUpBase : IAppStartUp
 {
+    /// <summary>
+    /// 服务器类型
+    /// </summary>
     public ServerType ServerType { get; private set; }
+
     public AppSetting Setting { get; protected set; }
 
     /// <summary>
