@@ -84,6 +84,7 @@ public abstract class AppStartUpBase : IAppStartUp
 
     public virtual async Task Stop(string message = "")
     {
+        LogHelper.Error(message);
         AppExitSource.TrySetResult(message);
         await Task.CompletedTask;
     }
