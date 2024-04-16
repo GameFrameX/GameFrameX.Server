@@ -1,11 +1,11 @@
-﻿using GameFrameX.Launcher.PipelineFilter;
+﻿/*using GameFrameX.Launcher.PipelineFilter;
 using GameFrameX.Apps.Server.Heart.Entity;
 using GameFrameX.Cache;
 using GameFrameX.Cache.Memory;
 using GameFrameX.DBServer.State;
 using GameFrameX.Setting;
 using GameFrameX.Utility;
-using ErrorEventArgs = SuperSocket.ClientEngine.ErrorEventArgs;
+
 using Timer = System.Timers.Timer;
 
 namespace GameFrameX.Launcher.StartUp
@@ -248,4 +248,4 @@ namespace GameFrameX.Launcher.StartUp
             base.Init();
         }
     }
-}
+}*/

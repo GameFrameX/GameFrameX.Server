@@ -1,4 +1,4 @@
-﻿using GameFrameX.Launcher.PipelineFilter;
+﻿/*using GameFrameX.Launcher.PipelineFilter;
 using GameFrameX.Apps.Server.Heart.Entity;
 using GameFrameX.DBServer.State;
 using GameFrameX.Setting;
@@ -100,4 +100,4 @@ namespace GameFrameX.Launcher.StartUp
             base.Init();
         }
     }
-}
+}*/
