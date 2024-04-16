@@ -1,9 +1,12 @@
-﻿using GameFrameX.Launcher.PipelineFilter;
-using GameFrameX.Utility;
-using TouchSocket.Core;
-using TouchSocket.Http;
-using TouchSocket.Sockets;
-using ResultCode = TouchSocket.Core.ResultCode;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using SuperSocket.Connection;
+using SuperSocket.Server;
+using SuperSocket.Server.Abstractions;
+using SuperSocket.Server.Abstractions.Session;
+using SuperSocket.Server.Host;
+using SuperSocket.WebSocket;
+using SuperSocket.WebSocket.Server;
 
 
 /// <summary>
@@ -15,17 +18,17 @@ internal sealed class AppStartUpRouter : AppStartUpBase
     /// <summary>
     /// 链接到网关的客户端
     /// </summary>
-    private TcpClient tcpClient;
+    // private TcpClient tcpClient;
 
     /// <summary>
     /// 服务器。对外提供服务
     /// </summary>
-    private TcpService tcpService;
+    private IServer tcpService;
 
     /// <summary>
     /// WS服务器
     /// </summary>
-    private HttpService webSocketServer;
+    private IHost webSocketServer;
 
     public override async Task EnterAsync()
     {
@@ -58,14 +61,14 @@ internal sealed class AppStartUpRouter : AppStartUpBase
 
     private void ConnectToGateWay()
     {
-        var result = tcpClient.TryConnect();
+        /*var result = tcpClient.TryConnect();
         if (result.ResultCode != ResultCode.Success)
         {
             // 开始重连
             ReconnectionTimer.Start();
             LogHelper.Info(result.ToString());
             return;
-        }
+        }*/
 
         LogHelper.Info("链接到网关服务器成功!");
         ReconnectionTimer.Stop();
@@ -74,7 +77,7 @@ internal sealed class AppStartUpRouter : AppStartUpBase
 
     private void StartClient()
     {
-        tcpClient = new TcpClient();
+        /*tcpClient = new TcpClient();
         tcpClient.Connected = ClientOnConnected; //成功连接到服务器
         tcpClient.Disconnected = ClientOnClosed; //从服务器断开连接，当连接不成功时不会触发。
         tcpClient.Received = (client, e) =>
@@ -93,10 +96,10 @@ internal sealed class AppStartUpRouter : AppStartUpBase
         //载入配置
         tcpClient.Setup(clientConfig);
         LogHelper.Info("开始链接到网关服务器 ...");
-        ConnectToGateWay();
+        ConnectToGateWay();*/
     }
 
-    private Task ClientOnClosed(ITcpClientBase client, DisconnectEventArgs disconnectEventArgs)
+    /*private Task ClientOnClosed(ITcpClientBase client, DisconnectEventArgs disconnectEventArgs)
     {
         LogHelper.Info("和网关服务器链接链接断开!");
         // 和网关服务器链接断开，开启重连
@@ -112,39 +115,110 @@ internal sealed class AppStartUpRouter : AppStartUpBase
         // 开启和网关服务器的心跳
         HeartBeatTimer.Start();
         return EasyTask.CompletedTask;
-    }
+    }*/
 
 
     private async Task StartServer()
     {
-        webSocketServer = new HttpService();
-        var webSocketServerConfig = new TouchSocketConfig()
-            .SetListenIPHosts(Setting.WsPort)
-            .ConfigureContainer(a => a.AddConsoleLogger())
-            .ConfigurePlugins(m =>
-            {
-                m.UseWebSocket();
-                m.Add<RouterWebSocketMessagePlugin>().Map();
-            });
-        await webSocketServer.SetupAsync(webSocketServerConfig);
+        webSocketServer = WebSocketHostBuilder.Create()
+            .UseWebSocketMessageHandler(WebSocketMessageHandler)
+            .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)(ConfigureWebServer)).Build();
         await webSocketServer.StartAsync();
+        tcpService = SuperSocketHostBuilder.Create<IMessage>()
+            .ConfigureSuperSocket(ConfigureSuperSocket)
+            .UseClearIdleSession()
+            // .UsePackageDecoder<MessageRouterDecoderHandler>()
+            // .UsePackageEncoder<MessageEncoderHandler>()
+            .UseSessionHandler(OnConnected, OnDisconnected)
+            // .UsePackageHandler(ClientPackageHandler, ClientErrorHandler)
+            .UseInProcSessionContainer()
+            .BuildAsServer();
 
-        tcpService = new TcpService();
+        await tcpService.StartAsync();
+    }
 
-        var tcpServiceConfig = new TouchSocketConfig()
-            .SetListenIPHosts(Setting.TcpPort)
-            .ConfigureContainer(a => a.AddConsoleLogger())
-            .ConfigurePlugins(m => { m.Add<RouterSocketMessagePlugin>(); });
+    private ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
+    {
+        LogHelper.Info("有外部客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
+        return ValueTask.CompletedTask;
+    }
 
-        await tcpService.SetupAsync(tcpServiceConfig);
-        await tcpService.StartAsync(); //启动
+    private ValueTask OnConnected(IAppSession appSession)
+    {
+        LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
+        // var gameSession = new GameSession(socketClient.IP, socketClient);
+        // socketClient.SetGameSession(gameSession);
+        // var netChannel = new DefaultNetChannel(gameSession, messageEncoderHandler);
+        // GameClientSessionManager.SetSession(socketClient.IP, netChannel); //移除
+
+        return ValueTask.CompletedTask;
+    }
+
+    /// <summary>
+    /// 处理收到的WS消息
+    /// </summary>
+    /// <param name="session"></param>
+    /// <param name="message"></param>
+    private async ValueTask WebSocketMessageHandler(WebSocketSession session, WebSocketPackage message)
+    {
+        if (message.OpCode != OpCode.Binary)
+        {
+            await session.CloseAsync(CloseReason.ProtocolError);
+            return;
+        }
+
+        var bytes = message.Data;
+        var buffer = bytes.ToArray();
+        // var messageObject = messageRouterDecoderHandler.Handler(buffer);
+        // await MessagePackageHandler(session, messageObject);
+    }
+
+    /// <summary>
+    /// 处理收到的消息结果
+    /// </summary>
+    /// <param name="session"></param>
+    /// <param name="messageObject"></param>
+    private async ValueTask MessagePackageHandler(IAppSession session, IMessage messageObject)
+    {
+        if (messageObject is MessageObject message)
+        {
+            var messageId = message.MessageId;
+            if (Setting.IsDebug && Setting.IsDebugReceive)
+            {
+                LogHelper.Debug($"---收到消息ID:[{messageId}] ==>消息类型:{message.GetType()} 消息内容:{messageObject}");
+            }
+
+            var handler = HotfixMgr.GetTcpHandler(message.MessageId);
+            if (handler == null)
+            {
+                LogHelper.Error($"找不到[{message.MessageId}][{messageObject.GetType()}]对应的handler");
+                return;
+            }
+
+            // RespHeartBeat resp = new RespHeartBeat
+            // {
+            //     Timestamp = TimeHelper.UnixTimeMilliseconds()
+            // };
+            // var messageData = messageEncoderHandler.Handler(resp);
+            // await session.SendAsync(messageData);
+            handler.Message = message;
+            // handler.Channel = new DefaultNetChannel(session, messageEncoderHandler); // session;
+            await handler.Init();
+            await handler.InnerAction();
+        }
+    }
+
+    private void ConfigureWebServer(HostBuilderContext context, IConfigurationBuilder builder)
+    {
+        builder.AddInMemoryCollection(new Dictionary<string, string>()
+            { { "serverOptions:name", "TestServer" }, { "serverOptions:listeners:0:ip", "Any" }, { "serverOptions:listeners:0:port", Setting.WsPort.ToString() } });
     }
 
     public override async Task Stop(string message = "")
     {
         HeartBeatTimer.Close();
         ReconnectionTimer.Close();
-        tcpClient.Close();
+        // tcpClient.Close();
         await webSocketServer.StopAsync();
         await tcpService.StopAsync();
         await base.Stop(message);
