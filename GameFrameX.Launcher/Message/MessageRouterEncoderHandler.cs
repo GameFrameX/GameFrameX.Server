@@ -22,23 +22,8 @@ class MessageRouterEncoderHandler : IMessageEncoderHandler
         var messageType = message.GetType();
         var msgId = ProtoMessageIdHandler.GetRespMessageIdByType(messageType);
         span.WriteInt(msgId, ref offset);
-        // span.WriteInt(bytes.Length, ref offset);
-        span.WriteBytesWithoutLength(bytes, ref offset);
+        span.WriteBytes(bytes, ref offset);
+        ArrayPool<byte>.Shared.Return(span);
         return span;
-    }
-
-    public int Encode(IBufferWriter<byte> writer, IMessage messageObject)
-    {
-        var bytes = Handler(messageObject);
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < bytes.Length; i++)
-        {
-            stringBuilder.Append(bytes[i] + " ");
-        }
-
-        LogHelper.Debug($"---发送消息 ==>消息类型:{messageObject.GetType()} 消息内容:{messageObject} \n 字节码: {stringBuilder}");
-        writer.Write(bytes);
-        ArrayPool<byte>.Shared.Return(bytes);
-        return bytes.Length;
     }
 }
