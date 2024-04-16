@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>SuperSocket protocol decoding library.</Description>
+    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks />
+  </PropertyGroup>
+</Project>

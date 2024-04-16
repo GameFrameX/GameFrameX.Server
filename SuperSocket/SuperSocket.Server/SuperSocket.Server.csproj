@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <DebugType>portable</DebugType>
+    <AssemblyName>SuperSocket.Server</AssemblyName>
+    <PackageId>SuperSocket.Server</PackageId>
+    <Description>SuperSocket server hosting library.</Description>
+    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../SuperSocket.Server.Abstractions/SuperSocket.Server.Abstractions.csproj" />
+    <ProjectReference Include="../SuperSocket.ProtoBase/SuperSocket.ProtoBase.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="$(MSExtensionsVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="$(MSExtensionsVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="$(MSExtensionsVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="$(MSExtensionsVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="$(MSExtensionsVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="$(MSExtensionsVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="$(MSExtensionsVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="$(MSExtensionsVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="$(MSExtensionsVersion)" />
+  </ItemGroup>
+
+</Project>
