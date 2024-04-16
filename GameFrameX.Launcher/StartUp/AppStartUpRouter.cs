@@ -32,27 +32,12 @@ internal sealed class AppStartUpRouter : AppStartUpBase
     {
         try
         {
-            LogHelper.Info($"开始启动服务器{ServerType}");
-
-
             await StartServer();
-
             LogHelper.Info($"启动服务器 {ServerType} 端口: {Setting.TcpPort} 结束!");
             StartClient();
-            TimeSpan delay = TimeSpan.FromSeconds(5);
-            await Task.Delay(delay);
-            if (client.IsConnected)
-            {
-                HeartBeatTimer.Start();
-            }
-
             await AppExitToken;
             LogHelper.Info("全部断开...");
-            HeartBeatTimer.Close();
-            ReconnectionTimer.Close();
-            await webSocketServer.StopAsync();
-            await server.StopAsync();
-            client.Close();
+            await Stop();
             LogHelper.Info("Done!");
         }
         catch (Exception e)
@@ -243,9 +228,9 @@ internal sealed class AppStartUpRouter : AppStartUpBase
     {
         HeartBeatTimer.Close();
         ReconnectionTimer.Close();
+        tcpClient.Close();
         await webSocketServer.StopAsync();
-        await server.StopAsync();
-        client.Close();
+        await tcpService.StopAsync();
         await base.Stop(message);
     }
 
