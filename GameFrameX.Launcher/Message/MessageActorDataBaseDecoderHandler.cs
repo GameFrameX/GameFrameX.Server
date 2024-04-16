@@ -1,4 +1,4 @@
-using GameFrameX.DBServer.State;
+/*using GameFrameX.DBServer.State;
 using GameFrameX.Extension;
 using GameFrameX.Serialize.Serialize;
 using SuperSocket.ProtoBase;
@@ -23,4 +23,4 @@ internal class MessageActorDataBaseDecoderHandler : IPackageDecoder<ICacheState>
         var messageObject = Handler(data);
         return messageObject;
     }
-}
+}*/

@@ -3,11 +3,10 @@ using GameFrameX.NetWork;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Serialize.Serialize;
 using GameFrameX.Utility;
-using SuperSocket.ProtoBase;
 
 namespace GameFrameX.Launcher.Message;
 
-class MessageActorGatewayEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMessage>
+class MessageActorGatewayEncoderHandler : IMessageEncoderHandler
 {
     public byte[] Handler(IMessage message)
     {

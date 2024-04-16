@@ -1,4 +1,4 @@
-using GameFrameX.Extension;
+/*using GameFrameX.Extension;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Serialize.Serialize;
@@ -36,4 +36,4 @@ class MessageActorGatewayDecoderHandler : IMessageDecoderHandler, IPackageDecode
         var messageObject = Handler(data);
         return messageObject;
     }
-}
+}*/
