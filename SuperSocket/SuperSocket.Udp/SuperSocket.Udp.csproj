@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Description>SuperSocket UDP support library</Description>
     <TargetFramework>net8.0</TargetFramework>
-    <TargetFrameworks />
+
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../SuperSocket.Primitives/SuperSocket.Primitives.csproj" />    

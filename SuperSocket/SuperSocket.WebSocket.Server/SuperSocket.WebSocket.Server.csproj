@@ -2,12 +2,14 @@
   <PropertyGroup>
     <Description>SuperSocket WebSocket server.</Description>
     <TargetFramework>net8.0</TargetFramework>
-    <TargetFrameworks />
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../SuperSocket.WebSocket/SuperSocket.WebSocket.csproj" />
     <ProjectReference Include="../SuperSocket.Primitives/SuperSocket.Primitives.csproj" />
     <ProjectReference Include="../SuperSocket.Server/SuperSocket.Server.csproj" />
     <ProjectReference Include="../SuperSocket.Command/SuperSocket.Command.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
   </ItemGroup>
 </Project>
