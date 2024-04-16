@@ -1,4 +1,3 @@
-using GameFrameX.Setting;
 using Timer = System.Timers.Timer;
 
 namespace GameFrameX.Launcher.StartUp;
