@@ -1,9 +1,11 @@
-﻿using GameFrameX.Launcher.PipelineFilter;
+﻿using GameFrameX.Launcher;
+using GameFrameX.Launcher.PipelineFilter;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Utility;
-using SuperSocket.Channel;
-using ErrorEventArgs = SuperSocket.ClientEngine.ErrorEventArgs;
+using TouchSocket.Core;
+using TouchSocket.Sockets;
+
 
 /// <summary>
 /// 网关服务器
@@ -11,9 +13,10 @@ using ErrorEventArgs = SuperSocket.ClientEngine.ErrorEventArgs;
 [StartUpTag(ServerType.Gateway)]
 internal sealed class AppStartUpGateway : AppStartUpBase
 {
-    private AsyncTcpSession client;
+    // private AsyncTcpSession client;
     IMessageEncoderHandler messageEncoderHandler = new MessageActorGatewayEncoderHandler();
-    IMessageDecoderHandler messageDecoderHandler = new MessageActorGatewayDecoderHandler();
+
+    // IMessageDecoderHandler messageDecoderHandler = new MessageActorGatewayDecoderHandler();
     ReqActorHeartBeat reqHeartBeat = new ReqActorHeartBeat();
 
     public override async Task EnterAsync()
@@ -22,11 +25,11 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         {
             LogHelper.Info($"启动服务器{Setting.ServerType} 开始! address: {Setting.LocalIp}  port: {Setting.TcpPort}");
             await StartServer();
-            client = new AsyncTcpSession();
-            client.Connected += ClientOnConnected;
-            client.Closed += ClientOnClosed;
-            client.DataReceived += ClientOnDataReceived;
-            client.Error += ClientOnError;
+            // client = new AsyncTcpSession();
+            // client.Connected += ClientOnConnected;
+            // client.Closed += ClientOnClosed;
+            // client.DataReceived += ClientOnDataReceived;
+            // client.Error += ClientOnError;
 
             LogHelper.Info("开始链接到中心服务器 ...");
             ConnectToDiscovery();
@@ -49,57 +52,59 @@ internal sealed class AppStartUpGateway : AppStartUpBase
 
     #region Server
 
-    IServer server;
+    private TcpService tcpService;
 
     private async Task StartServer()
     {
-        server = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
-            .ConfigureSuperSocket(ConfigureSuperSocket)
-            .UseClearIdleSession()
-            .UsePackageDecoder<MessageActorDiscoveryDecoderHandler>()
-            .UsePackageEncoder<MessageActorDiscoveryEncoderHandler>()
-            .UseSessionHandler(OnConnected, OnDisconnected)
-            .UsePackageHandler(PackageHandler)
-            .UseInProcSessionContainer()
-            .BuildAsServer();
+        tcpService = new TcpService();
+        var tcpServiceConfig = new TouchSocketConfig()
+            .SetListenIPHosts(Setting.TcpPort)
+            .ConfigureContainer(a => a.AddConsoleLogger())
+            .ConfigurePlugins(m => { m.Add<RouterSocketMessagePlugin>(); });
 
-        await server.StartAsync();
+        tcpService.Connected = ServerOnNewSessionConnected; //有客户端连接
+        tcpService.Disconnected = ServerOnSessionClosed; //有客户端断开连接
+        await tcpService.SetupAsync(tcpServiceConfig);
+        await tcpService.StartAsync(); //启动
     }
 
 
     // readonly MessageActorDiscoveryEncoderHandler messageEncoderHandler = new MessageActorDiscoveryEncoderHandler();
 
-    private async ValueTask PackageHandler(IAppSession session, IMessage messageObject)
-    {
-        if (messageObject is MessageObject msg)
-        {
-            var messageId = msg.MessageId;
-            if (Setting.IsDebug && Setting.IsDebugReceive)
-            {
-                LogHelper.Debug($"---收到消息ID:[{messageId}] ==>消息类型:{msg.GetType()} 消息内容:{messageObject}");
-            }
-        }
+    // private async ValueTask PackageHandler(IAppSession session, IMessage messageObject)
+    // {
+    //     if (messageObject is MessageObject msg)
+    //     {
+    //         var messageId = msg.MessageId;
+    //         if (Setting.IsDebug && Setting.IsDebugReceive)
+    //         {
+    //             LogHelper.Debug($"---收到消息ID:[{messageId}] ==>消息类型:{msg.GetType()} 消息内容:{messageObject}");
+    //         }
+    //     }
+    //
+    //     // 发送
+    //     var response = new RespActorHeartBeat()
+    //     {
+    //         Timestamp = TimeHelper.UnixTimeSeconds()
+    //     };
+    //     // await session.SendAsync(messageEncoderHandler, response);
+    // }
 
-        // 发送
-        var response = new RespActorHeartBeat()
-        {
-            Timestamp = TimeHelper.UnixTimeSeconds()
-        };
-        // await session.SendAsync(messageEncoderHandler, response);
+    private Task ServerOnNewSessionConnected(SocketClient socketClient, ConnectedEventArgs connectedEventArgs)
+    {
+        LogHelper.Info("有路由客户端网络连接成功！。链接信息：SessionID:" + socketClient.Id + " RemoteEndPoint:" + socketClient.Id);
+        var gameSession = new GameSession(socketClient.IP, socketClient);
+        var netChannel = new DefaultNetChannel(gameSession, messageEncoderHandler);
+        GameClientSessionManager.SetSession(socketClient.IP, netChannel); //移除
+        return Task.CompletedTask;
     }
 
 
-    private ValueTask OnConnected(IAppSession appSession)
+    private Task ServerOnSessionClosed(SocketClient socketClient, DisconnectEventArgs disconnectEventArgs)
     {
-        LogHelper.Info("有路由客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-        // NamingServiceManager.Instance.Add();
-        return ValueTask.CompletedTask;
-    }
-
-    private ValueTask OnDisconnected(object sender, CloseEventArgs args)
-    {
-        LogHelper.Info("有路由客户端网络断开连接成功！。断开信息：" + args.Reason);
-        return ValueTask.CompletedTask;
+        LogHelper.Info("有外部客户端网络断开连接成功！。断开信息：" + socketClient.Id + "  " + disconnectEventArgs.Message);
+        GameClientSessionManager.RemoveSession(socketClient.IP); //移除
+        return Task.CompletedTask;
     }
 
     #endregion
@@ -109,7 +114,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
     protected override void HeartBeatTimerOnElapsed(object sender, ElapsedEventArgs e)
     {
         //心跳包
-        if (client.IsConnected)
+        // if (client.IsConnected)
         {
             reqHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
             reqHeartBeat.UniqueId = UtilityIdGenerator.GetNextUniqueId();
@@ -124,20 +129,20 @@ internal sealed class AppStartUpGateway : AppStartUpBase
 
     private void ConnectToDiscovery()
     {
-        client.Connect(new DnsEndPoint(Setting.CenterUrl, Setting.GrpcPort));
+        // client.Connect(new DnsEndPoint(Setting.CenterUrl, Setting.GrpcPort));
     }
 
-    private void ClientOnDataReceived(object sender, DataEventArgs e)
-    {
-        Span<byte> span = e.Data;
-
-        var message = span.Slice(e.Offset, e.Length);
-        var package = messageDecoderHandler.Handler(message);
-        if (Setting.IsDebug && Setting.IsDebugReceive)
-        {
-            LogHelper.Debug($"---收到消息 ==>消息类型:{package.GetType()} 消息内容:{package}");
-        }
-    }
+    // private void ClientOnDataReceived(object sender, DataEventArgs e)
+    // {
+    //     Span<byte> span = e.Data;
+    //
+    //     var message = span.Slice(e.Offset, e.Length);
+    //     var package = messageDecoderHandler.Handler(message);
+    //     if (Setting.IsDebug && Setting.IsDebugReceive)
+    //     {
+    //         LogHelper.Debug($"---收到消息 ==>消息类型:{package.GetType()} 消息内容:{package}");
+    //     }
+    // }
 
     private void ClientOnConnected(object sender, EventArgs e)
     {
@@ -170,8 +175,8 @@ internal sealed class AppStartUpGateway : AppStartUpBase
             LogHelper.Debug($"---发送消息ID:[{ProtoMessageIdHandler.GetReqMessageIdByType(message.GetType())}] ==>消息类型:{message.GetType()} 消息内容:{message}");
         }
 
-        client.TrySend(span);
-        ArrayPool<byte>.Shared.Return(span);
+        // client.TrySend(span);
+        System.Buffers.ArrayPool<byte>.Shared.Return(span);
     }
 
     #endregion
