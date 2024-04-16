@@ -1,10 +1,10 @@
 ﻿using GameFrameX.Launcher;
-using GameFrameX.Launcher.PipelineFilter;
 using GameFrameX.NetWork;
-using GameFrameX.NetWork.Messages;
-using GameFrameX.Utility;
-using TouchSocket.Core;
-using TouchSocket.Sockets;
+using SuperSocket.Connection;
+using SuperSocket.Server;
+using SuperSocket.Server.Abstractions;
+using SuperSocket.Server.Abstractions.Session;
+using SuperSocket.Server.Host;
 
 
 /// <summary>
@@ -13,6 +13,8 @@ using TouchSocket.Sockets;
 [StartUpTag(ServerType.Gateway)]
 internal sealed class AppStartUpGateway : AppStartUpBase
 {
+    private IServer tcpService;
+
     // private AsyncTcpSession client;
     IMessageEncoderHandler messageEncoderHandler = new MessageActorGatewayEncoderHandler();
 
@@ -38,34 +40,56 @@ internal sealed class AppStartUpGateway : AppStartUpBase
             await Task.Delay(delay);
 
             await AppExitToken;
+            await Stop("用户退出");
             Console.Write("全部断开...");
             LogHelper.Info("Done!");
         }
         catch (Exception e)
         {
+            LogHelper.Fatal(e);
             await Stop(e.Message);
             AppExitSource.TrySetException(e);
-            LogHelper.Info(e);
         }
     }
 
+    public override async Task Stop(string message = "")
+    {
+        LogHelper.Info($"服务器{Setting.ServerType} 停止! address: {Setting.LocalIp}  port: {Setting.TcpPort}");
+        await tcpService.StopAsync();
+        await base.Stop(message);
+    }
 
     #region Server
 
-    private TcpService tcpService;
-
     private async Task StartServer()
     {
-        tcpService = new TcpService();
-        var tcpServiceConfig = new TouchSocketConfig()
-            .SetListenIPHosts(Setting.TcpPort)
-            .ConfigureContainer(a => a.AddConsoleLogger())
-            .ConfigurePlugins(m => { m.Add<RouterSocketMessagePlugin>(); });
+        tcpService = SuperSocketHostBuilder.Create<IMessage>()
+            .ConfigureSuperSocket(ConfigureSuperSocket)
+            .UseClearIdleSession()
+            // .UsePackageDecoder<MessageActorDiscoveryDecoderHandler>()
+            // .UsePackageEncoder<MessageActorDiscoveryEncoderHandler>()
+            .UseSessionHandler(OnConnected, OnDisconnected)
+            // .UsePackageHandler(PackageHandler)
+            .UseInProcSessionContainer()
+            .BuildAsServer();
 
-        tcpService.Connected = ServerOnNewSessionConnected; //有客户端连接
-        tcpService.Disconnected = ServerOnSessionClosed; //有客户端断开连接
-        await tcpService.SetupAsync(tcpServiceConfig);
-        await tcpService.StartAsync(); //启动
+        await tcpService.StartAsync();
+    }
+
+    private ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
+    {
+        LogHelper.Info("有路由客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
+        GameClientSessionManager.RemoveSession(appSession.SessionID); //移除
+        return ValueTask.CompletedTask;
+    }
+
+    private ValueTask OnConnected(IAppSession appSession)
+    {
+        LogHelper.Info("有路由客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
+        // var gameSession = new GameSession(socketClient.IP, socketClient);
+        var netChannel = new DefaultNetChannel(appSession, messageEncoderHandler);
+        GameClientSessionManager.SetSession(appSession.SessionID, netChannel); //移除
+        return ValueTask.CompletedTask;
     }
 
 
@@ -89,23 +113,6 @@ internal sealed class AppStartUpGateway : AppStartUpBase
     //     };
     //     // await session.SendAsync(messageEncoderHandler, response);
     // }
-
-    private Task ServerOnNewSessionConnected(SocketClient socketClient, ConnectedEventArgs connectedEventArgs)
-    {
-        LogHelper.Info("有路由客户端网络连接成功！。链接信息：SessionID:" + socketClient.Id + " RemoteEndPoint:" + socketClient.Id);
-        var gameSession = new GameSession(socketClient.IP, socketClient);
-        var netChannel = new DefaultNetChannel(gameSession, messageEncoderHandler);
-        GameClientSessionManager.SetSession(socketClient.IP, netChannel); //移除
-        return Task.CompletedTask;
-    }
-
-
-    private Task ServerOnSessionClosed(SocketClient socketClient, DisconnectEventArgs disconnectEventArgs)
-    {
-        LogHelper.Info("有外部客户端网络断开连接成功！。断开信息：" + socketClient.Id + "  " + disconnectEventArgs.Message);
-        GameClientSessionManager.RemoveSession(socketClient.IP); //移除
-        return Task.CompletedTask;
-    }
 
     #endregion
 
