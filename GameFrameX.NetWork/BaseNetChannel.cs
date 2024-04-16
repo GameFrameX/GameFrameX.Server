@@ -1,6 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Utility;
+using SuperSocket.Server.Abstractions.Session;
 
 namespace GameFrameX.NetWork
 {
@@ -10,16 +11,16 @@ namespace GameFrameX.NetWork
 
         // public long NetId { get; set; } = 0;
         // public int TargetServerId { get; set; }
-        public IGameSession AppSession { get; }
+        public IAppSession AppSession { get; }
         public virtual string RemoteAddress { get; } = "";
 
         private readonly IMessageEncoderHandler messageEncoder;
 
-        public BaseNetChannel(IGameSession session, IMessageEncoderHandler messageEncoder)
+        public BaseNetChannel(IAppSession session, IMessageEncoderHandler messageEncoder)
         {
             AppSession = session;
             this.messageEncoder = messageEncoder;
-            RemoteAddress = session.RemoteEndPoint;
+            RemoteAddress = session.RemoteEndPoint.ToString();
         }
 
         public virtual async void Write(IMessage messageObject)

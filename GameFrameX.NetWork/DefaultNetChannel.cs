@@ -1,8 +1,10 @@
-﻿namespace GameFrameX.NetWork;
+﻿using SuperSocket.Server.Abstractions.Session;
+
+namespace GameFrameX.NetWork;
 
 public class DefaultNetChannel : BaseNetChannel
 {
-    public DefaultNetChannel(IGameSession session, IMessageEncoderHandler messageEncoder) : base(session, messageEncoder)
+    public DefaultNetChannel(IAppSession session, IMessageEncoderHandler messageEncoder) : base(session, messageEncoder)
     {
     }
 }
