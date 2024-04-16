@@ -11,7 +11,7 @@ public abstract class AppStartUpBase : IAppStartUp
     /// <summary>
     /// 重连间隔时间。单位毫秒
     /// </summary>
-    protected virtual int ReconnectInterval { get; set; } = 5000;
+    protected virtual int ReconnectInterval { get; } = 5000;
 
     /// <summary>
     /// 心跳间隔时间。单位毫秒
