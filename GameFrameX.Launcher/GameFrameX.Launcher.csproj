@@ -44,12 +44,16 @@
         <ProjectReference Include="..\GameFrameX.Serialize\GameFrameX.Serialize.csproj" />
         <ProjectReference Include="..\GameFrameX.ServerManager\GameFrameX.ServerManager.csproj" />
         <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
+        <ProjectReference Include="..\SuperSocket\SuperSocket.Server\SuperSocket.Server.csproj" />
+        <ProjectReference Include="..\SuperSocket\SuperSocket.WebSocket.Server\SuperSocket.WebSocket.Server.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="CommandLineParser" Version="2.9.1" />
-      <PackageReference Include="TouchSocket" Version="2.0.2" />
-      <PackageReference Include="TouchSocket.Http" Version="2.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Extension\" />
     </ItemGroup>
 
 

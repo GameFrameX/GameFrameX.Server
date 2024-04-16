@@ -19,3 +19,6 @@ global using GameFrameX.Launcher.Message;
 global using GameFrameX.Launcher.StartUp;
 global using GameFrameX.Proto;
 global using GameFrameX.Proto.Proto;
+global using CloseReason = SuperSocket.WebSocket.CloseReason;
+global using GameFrameX.NetWork.Messages;
+global using GameFrameX.Utility;
