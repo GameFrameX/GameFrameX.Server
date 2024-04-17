@@ -28,11 +28,11 @@ namespace GameFrameX.NetWork.Messages
         /// 消息的唯一ID
         /// </summary>
         [ProtoMember(999)]
-        public long UniqueId { get; set; }
+        public string UniqueId { get; set; }
 
         public MessageObject()
         {
-            UniqueId = UtilityIdGenerator.GetNextUniqueId();
+            UniqueId = UtilityIdGenerator.GetUniqueIdString();
         }
     }
 }
