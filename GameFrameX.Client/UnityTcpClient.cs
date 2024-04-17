@@ -87,7 +87,8 @@ public static class UnityTcpClient
         int offset = 0;
         buffer.WriteInt(bytes.Length, ref offset);
         buffer.WriteLong(TimeHelper.UnixTimeSeconds(), ref offset);
-        buffer.WriteInt(1, ref offset);
+        var messageId = ProtoMessageIdHandler.GetReqMessageIdByType(req.GetType());
+        buffer.WriteInt(messageId, ref offset);
         buffer.WriteBytes(bytes, ref offset);
         System.Buffers.ArrayPool<byte>.Shared.Return(buffer);
         return buffer;
