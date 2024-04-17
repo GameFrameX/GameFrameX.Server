@@ -2,10 +2,11 @@ using GameFrameX.Extension;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Serialize.Serialize;
+using SuperSocket.ProtoBase;
 
 namespace GameFrameX.Launcher.Message;
 
-public class MessageRouterDecoderHandler : IMessageDecoderHandler
+public class MessageRouterDecoderHandler : IMessageDecoderHandler, IPackageDecoder<IMessage>
 {
     public IMessage Handler(byte[] data)
     {
@@ -33,5 +34,10 @@ public class MessageRouterDecoderHandler : IMessageDecoderHandler
             LogHelper.Fatal(e);
             return null;
         }
+    }
+
+    public IMessage Decode(ref ReadOnlySequence<byte> buffer, object context)
+    {
+        return Handler(buffer.ToArray());
     }
 }

@@ -1,11 +1,14 @@
-﻿/*using GameFrameX.Launcher.PipelineFilter;
-using GameFrameX.Apps.Server.Heart.Entity;
+﻿using GameFrameX.Apps.Server.Heart.Entity;
 using GameFrameX.Cache;
 using GameFrameX.Cache.Memory;
 using GameFrameX.DBServer.State;
-using GameFrameX.Setting;
-using GameFrameX.Utility;
-
+using GameFrameX.Launcher.PipelineFilter;
+using SuperSocket.ClientEngine;
+using SuperSocket.Server;
+using SuperSocket.Server.Abstractions;
+using SuperSocket.Server.Abstractions.Session;
+using SuperSocket.Server.Host;
+using ErrorEventArgs = SuperSocket.ClientEngine.ErrorEventArgs;
 using Timer = System.Timers.Timer;
 
 namespace GameFrameX.Launcher.StartUp
@@ -78,12 +81,11 @@ namespace GameFrameX.Launcher.StartUp
             databaseClient.Connect(new DnsEndPoint(Setting.DBUrl, Setting.DbPort));
         }
 
-        private void DataBaseDatabaseClientOnError(object sender, ErrorEventArgs e)
+        private void DataBaseDatabaseClientOnError(object sender, SuperSocket.ClientEngine.ErrorEventArgs errorEventArgs)
         {
             LogHelper.Error("和DB服务器链接链接失败!.下一次重连时间:" + DateTime.Now.AddMilliseconds(ReconnectionTimer.Interval));
             // 和网关服务器链接失败，开启重连
             ReconnectionTimer.Start();
-            ConnectToDataBase();
         }
 
         private void DataBaseDatabaseClientOnDataReceived(object sender, DataEventArgs e)
@@ -96,7 +98,6 @@ namespace GameFrameX.Launcher.StartUp
             LogHelper.Info("和DB服务器链接链接断开!");
             // 和网关服务器链接断开，开启重连
             ReconnectionTimer.Start();
-            ConnectToDataBase();
         }
 
         private void DataBaseDatabaseClientOnConnected(object sender, EventArgs e)
@@ -248,4 +249,4 @@ namespace GameFrameX.Launcher.StartUp
             base.Init();
         }
     }
-}*/
+}

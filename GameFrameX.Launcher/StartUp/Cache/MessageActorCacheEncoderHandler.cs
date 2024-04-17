@@ -1,15 +1,11 @@
-/*using System.Buffers;
 using GameFrameX.Extension;
 using GameFrameX.NetWork;
-using GameFrameX.NetWork.Messages;
-using GameFrameX.Proto;
 using GameFrameX.Serialize.Serialize;
-using GameFrameX.Utility;
 using SuperSocket.ProtoBase;
 
 namespace GameFrameX.Launcher.Message;
 
-class MessageActorEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMessage>
+class MessageActorCacheEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMessage>
 {
     public byte[] Handler(IMessage message)
     {
@@ -37,4 +33,4 @@ class MessageActorEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMess
         ArrayPool<byte>.Shared.Return(bytes);
         return bytes.Length;
     }
-}*/
+}

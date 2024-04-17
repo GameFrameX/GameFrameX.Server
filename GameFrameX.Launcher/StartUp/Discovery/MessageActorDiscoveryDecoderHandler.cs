@@ -1,4 +1,4 @@
-/*using GameFrameX.Extension;
+using GameFrameX.Extension;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Serialize.Serialize;
 using SuperSocket.ProtoBase;
@@ -35,4 +35,4 @@ class MessageActorDiscoveryDecoderHandler :  IPackageDecoder<IMessage>
         var messageObject = Handler(data);
         return messageObject;
     }
-}*/
+}

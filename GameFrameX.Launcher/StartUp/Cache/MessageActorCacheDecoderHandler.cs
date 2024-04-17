@@ -1,16 +1,13 @@
-/*using System.Buffers;
 using GameFrameX.Extension;
 using GameFrameX.NetWork;
-using GameFrameX.NetWork.Messages;
-using GameFrameX.Proto;
 using GameFrameX.Serialize.Serialize;
 using SuperSocket.ProtoBase;
 
 namespace GameFrameX.Launcher.Message;
 
-class MessageActorDecoderHandler : IMessageDecoderHandler, IPackageDecoder<IMessage>
+class MessageActorCacheDecoderHandler : IMessageDecoderHandler, IPackageDecoder<IMessage>
 {
-    public IMessage Handler(Span<byte> data)
+    public IMessage Handler(byte[] data)
     {
         int readOffset = 0;
         var length = data.ReadInt(ref readOffset);
@@ -38,4 +35,4 @@ class MessageActorDecoderHandler : IMessageDecoderHandler, IPackageDecoder<IMess
         var messageObject = Handler(data);
         return messageObject;
     }
-}*/
+}

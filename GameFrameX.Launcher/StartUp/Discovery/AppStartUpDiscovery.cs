@@ -1,8 +1,11 @@
-/*using GameFrameX.Launcher.PipelineFilter;
-using GameFrameX.NetWork.Messages;
+using GameFrameX.Launcher.PipelineFilter;
 using GameFrameX.ServerManager;
-using SuperSocket.SocketBase;
-using IAppSession = SuperSocket.IAppSession;
+using SuperSocket.Connection;
+using SuperSocket.Server;
+using SuperSocket.Server.Abstractions;
+using SuperSocket.Server.Abstractions.Session;
+using SuperSocket.Server.Host;
+
 
 namespace GameFrameX.Launcher.StartUp;
 
@@ -12,7 +15,7 @@ namespace GameFrameX.Launcher.StartUp;
 [StartUpTag(ServerType.Discovery, 0)]
 internal sealed class AppStartUpDiscovery : AppStartUpBase
 {
-    private AppServer server;
+    private IServer server;
 
     // readonly IMessageDecoderHandler messageDecoderHandler = new MessageActorDiscoveryDecoderHandler();
     readonly MessageActorDiscoveryEncoderHandler messageEncoderHandler = new MessageActorDiscoveryEncoderHandler();
@@ -38,20 +41,9 @@ internal sealed class AppStartUpDiscovery : AppStartUpBase
                 {
                     port = ports[0];
                 }
-            }#1#
-            server = new AppServer();
+            }*/
 
-            // server = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
-            //     .ConfigureSuperSocket(ConfigureSuperSocket)
-            //     .UseClearIdleSession()
-            //     .UsePackageDecoder<MessageActorDiscoveryDecoderHandler>()
-            //     .UsePackageEncoder<MessageActorDiscoveryEncoderHandler>()
-            //     .UseSessionHandler(OnConnected, OnDisconnected)
-            //     .UsePackageHandler(PackageHandler)
-            //     .UseInProcSessionContainer()
-            //     .BuildAsServer();
-
-            server.Start();
+            StartServer();
 
             LogHelper.Info($"启动服务器 {ServerType} 端口: {Setting.TcpPort} 结束!");
 
@@ -65,8 +57,23 @@ internal sealed class AppStartUpDiscovery : AppStartUpBase
 
         // Stop the server
         LogHelper.Info($"退出服务器开始");
-        server.Stop();
+        await Stop();
         LogHelper.Info($"退出服务器成功");
+    }
+
+    private async void StartServer()
+    {
+        server = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
+            .ConfigureSuperSocket(ConfigureSuperSocket)
+            .UseClearIdleSession()
+            .UsePackageDecoder<MessageActorDiscoveryDecoderHandler>()
+            .UsePackageEncoder<MessageActorDiscoveryEncoderHandler>()
+            .UseSessionHandler(OnConnected, OnDisconnected)
+            .UsePackageHandler(PackageHandler)
+            .UseInProcSessionContainer()
+            .BuildAsServer();
+
+        await server.StartAsync();
     }
 
 
@@ -82,11 +89,11 @@ internal sealed class AppStartUpDiscovery : AppStartUpBase
         }
 
         // 发送
-        // var response = new RespActorHeartBeat()
-        // {
-        //     Timestamp = TimeHelper.UnixTimeSeconds()
-        // };
-        // await session.SendAsync(messageEncoderHandler, response);
+        var response = new RespActorHeartBeat()
+        {
+            Timestamp = TimeHelper.UnixTimeSeconds()
+        };
+        await session.SendAsync(messageEncoderHandler, response);
     }
 
 
@@ -106,7 +113,7 @@ internal sealed class AppStartUpDiscovery : AppStartUpBase
     public override async Task Stop(string message = "")
     {
         LogHelper.Info($"{ServerType} Server stopping...");
-        server.Stop();
+        await server.StopAsync();
         LogHelper.Info($"{ServerType} Server Done!");
     }
 
@@ -124,4 +131,4 @@ internal sealed class AppStartUpDiscovery : AppStartUpBase
 
         base.Init();
     }
-}*/
+}

@@ -1,4 +1,5 @@
 ﻿using GameFrameX.Launcher;
+using GameFrameX.Launcher.PipelineFilter;
 using GameFrameX.NetWork;
 using SuperSocket.Connection;
 using SuperSocket.Server;
@@ -63,7 +64,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
 
     private async Task StartServer()
     {
-        tcpService = SuperSocketHostBuilder.Create<IMessage>()
+        tcpService = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
             .ConfigureSuperSocket(ConfigureSuperSocket)
             .UseClearIdleSession()
             // .UsePackageDecoder<MessageActorDiscoveryDecoderHandler>()
