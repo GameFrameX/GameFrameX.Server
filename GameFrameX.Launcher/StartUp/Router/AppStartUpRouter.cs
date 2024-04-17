@@ -109,7 +109,6 @@ internal sealed class AppStartUpRouter : AppStartUpBase
         LogHelper.Info("和网关服务器链接链接断开!");
         // 和网关服务器链接断开，开启重连
         ReconnectionTimer.Start();
-        ConnectToGateWay();
     }
 
     private async Task StartServer()
