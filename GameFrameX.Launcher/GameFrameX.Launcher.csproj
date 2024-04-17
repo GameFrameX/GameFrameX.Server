@@ -44,6 +44,8 @@
         <ProjectReference Include="..\GameFrameX.Serialize\GameFrameX.Serialize.csproj" />
         <ProjectReference Include="..\GameFrameX.ServerManager\GameFrameX.ServerManager.csproj" />
         <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
+        <ProjectReference Include="..\SuperSocket\SuperSocket.ClientEngine\SuperSocket.ClientEngine.csproj" />
+        <ProjectReference Include="..\SuperSocket\SuperSocket.Client\SuperSocket.Client.csproj" />
         <ProjectReference Include="..\SuperSocket\SuperSocket.Server\SuperSocket.Server.csproj" />
         <ProjectReference Include="..\SuperSocket\SuperSocket.WebSocket.Server\SuperSocket.WebSocket.Server.csproj" />
     </ItemGroup>
