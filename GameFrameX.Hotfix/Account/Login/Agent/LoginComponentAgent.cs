@@ -37,7 +37,7 @@ namespace GameFrameX.Hotfix.Account.Login.Agent
                 RoleName = Utility.Random.GetRandom(1, 100).ToString(),
                 VipLevel = Utility.Random.GetRandom(1, 100),
             };
-            channel.WriteAsync(respLogin, reqLogin.UniId);
+            await channel.WriteAsync(respLogin, reqLogin.UniId);
             //查询角色账号，这里设定每个服务器只能有一个角色
             /*var roleId = GetRoleIdOfPlayer(reqLogin.UserName, reqLogin.Password, reqLogin.SdkType);
             var isNewRole = roleId <= 0;
