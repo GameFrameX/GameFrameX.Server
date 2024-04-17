@@ -523,6 +523,19 @@ namespace GameFrameX.Extension
             }
         }
 
+        public static unsafe byte[] ReadBytes(this byte[] buffer, int offset, int len)
+        {
+            if (len <= 0 || offset > buffer.Length + len * ByteSize)
+            {
+                return Array.Empty<byte>();
+            }
+
+            var data = new byte[len];
+            System.Array.Copy(buffer, offset, data, 0, len);
+            offset += len;
+            return data;
+        }
+
         public static unsafe byte[] ReadBytes(this byte[] buffer, ref int offset)
         {
             var len = ReadInt(buffer, ref offset);
