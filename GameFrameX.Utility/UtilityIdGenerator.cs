@@ -19,4 +19,9 @@ public static class UtilityIdGenerator
         // 原子性地递增值
         return Interlocked.Increment(ref _counter);
     }
+
+    public static string GetUniqueIdString()
+    {
+        return Guid.NewGuid().ToString();
+    }
 }
