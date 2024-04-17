@@ -1,5 +1,5 @@
 namespace GameFrameX.NetWork.Messages;
 
-public interface IResponseMessage:IMessage
+public interface IResponseMessage : IMessage
 {
 }
