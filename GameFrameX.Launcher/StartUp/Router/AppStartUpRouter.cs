@@ -185,7 +185,7 @@ internal sealed class AppStartUpRouter : AppStartUpBase
             var messageId = message.MessageId;
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
-                LogHelper.Debug($"---收到消息ID:[{messageId}] ==>消息类型:{message.GetType()} 消息内容:{messageObject}");
+                LogHelper.Debug($"---收到消息:[{messageId},{message.GetType().Name}] 消息内容:[{messageObject}]");
             }
 
             var handler = HotfixMgr.GetTcpHandler(message.MessageId);

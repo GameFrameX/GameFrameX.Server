@@ -24,7 +24,7 @@ class MessageRouterEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMes
         span.WriteInt(msgId, ref offset);
         span.WriteBytes(bytes, ref offset);
         ArrayPool<byte>.Shared.Return(span);
-        LogHelper.Debug($"---发送消息ID:{msgId} ==>消息类型:{message.GetType()} 消息内容:{message}");
+        LogHelper.Debug($"---发送消息:[{msgId},{message.GetType().Name}] 消息内容:[{message}]");
         return span;
     }
 
