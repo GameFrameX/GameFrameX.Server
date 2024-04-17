@@ -1,6 +1,9 @@
-﻿using GameFrameX.Launcher;
+﻿using GameFrameX.Extension;
+using GameFrameX.Launcher;
 using GameFrameX.Launcher.PipelineFilter;
+using GameFrameX.Launcher.StartUp.Gateway;
 using GameFrameX.NetWork;
+using SuperSocket.ClientEngine;
 using SuperSocket.Connection;
 using SuperSocket.Server;
 using SuperSocket.Server.Abstractions;
@@ -16,10 +19,10 @@ internal sealed class AppStartUpGateway : AppStartUpBase
 {
     private IServer tcpService;
 
-    // private AsyncTcpSession client;
+    private AsyncTcpSession client;
     IMessageEncoderHandler messageEncoderHandler = new MessageActorGatewayEncoderHandler();
 
-    // IMessageDecoderHandler messageDecoderHandler = new MessageActorGatewayDecoderHandler();
+    IMessageDecoderHandler messageDecoderHandler = new MessageActorGatewayDecoderHandler();
     ReqActorHeartBeat reqHeartBeat = new ReqActorHeartBeat();
 
     public override async Task EnterAsync()
@@ -28,15 +31,9 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         {
             LogHelper.Info($"启动服务器{Setting.ServerType} 开始! address: {Setting.LocalIp}  port: {Setting.TcpPort}");
             await StartServer();
-            // client = new AsyncTcpSession();
-            // client.Connected += ClientOnConnected;
-            // client.Closed += ClientOnClosed;
-            // client.DataReceived += ClientOnDataReceived;
-            // client.Error += ClientOnError;
 
-            LogHelper.Info("开始链接到中心服务器 ...");
-            ConnectToDiscovery();
-            LogHelper.Info("链接完成!");
+            StartClient();
+
             TimeSpan delay = TimeSpan.FromSeconds(5);
             await Task.Delay(delay);
 
@@ -53,9 +50,20 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         }
     }
 
+    private void StartClient()
+    {
+        client = new AsyncTcpSession();
+        client.Connected += ClientOnConnected;
+        client.Closed += ClientOnClosed;
+        client.DataReceived += ClientOnDataReceived;
+        client.Error += ClientOnError;
+        ConnectToDiscovery();
+    }
+
     public override async Task Stop(string message = "")
     {
         LogHelper.Info($"服务器{Setting.ServerType} 停止! address: {Setting.LocalIp}  port: {Setting.TcpPort}");
+        client.Close();
         await tcpService.StopAsync();
         await base.Stop(message);
     }
@@ -122,12 +130,12 @@ internal sealed class AppStartUpGateway : AppStartUpBase
     protected override void HeartBeatTimerOnElapsed(object sender, ElapsedEventArgs e)
     {
         //心跳包
-        // if (client.IsConnected)
+        /*if (client.IsConnected)
         {
             reqHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
             reqHeartBeat.UniqueId = UtilityIdGenerator.GetNextUniqueId();
-            // SendMessage(reqHeartBeat);
-        }
+            SendMessage(reqHeartBeat);
+        }*/
     }
 
     protected override void ReconnectionTimerOnElapsed(object sender, ElapsedEventArgs e)
@@ -137,42 +145,38 @@ internal sealed class AppStartUpGateway : AppStartUpBase
 
     private void ConnectToDiscovery()
     {
-        // client.Connect(new DnsEndPoint(Setting.CenterUrl, Setting.GrpcPort));
+        client.Connect(new DnsEndPoint(Setting.CenterUrl, Setting.GrpcPort));
     }
 
-    // private void ClientOnDataReceived(object sender, DataEventArgs e)
-    // {
-    //     Span<byte> span = e.Data;
-    //
-    //     var message = span.Slice(e.Offset, e.Length);
-    //     var package = messageDecoderHandler.Handler(message);
-    //     if (Setting.IsDebug && Setting.IsDebugReceive)
-    //     {
-    //         LogHelper.Debug($"---收到消息 ==>消息类型:{package.GetType()} 消息内容:{package}");
-    //     }
-    // }
+    private void ClientOnDataReceived(object sender, DataEventArgs e)
+    {
+        var messageObject = (MessageObject)messageDecoderHandler.Handler(e.Data.ReadBytes(e.Offset, e.Length));
+        if (Setting.IsDebug && Setting.IsDebugReceive)
+        {
+            LogHelper.Debug($"---收到消息 ==>消息类型:{messageObject.GetType()} 消息内容:{messageObject}");
+        }
+    }
 
     private void ClientOnConnected(object sender, EventArgs e)
     {
+        LogHelper.Info("和中心服务器链接成功, 开始心跳");
         HeartBeatTimer.Start();
         ReconnectionTimer.Stop();
     }
 
     private void ClientOnClosed(object sender, EventArgs eventArgs)
     {
-        LogHelper.Info("网络连接断开");
+        LogHelper.Info("和中心服务器网络连接断开, 开始重连：断开信息:" + eventArgs);
         HeartBeatTimer.Stop();
         ReconnectionTimer.Start();
-        ConnectToDiscovery();
     }
 
-    private void ClientOnError(object sender, ErrorEventArgs e)
+    private void ClientOnError(object sender, SuperSocket.ClientEngine.ErrorEventArgs errorEventArgs)
     {
-        LogHelper.Info("链接到中心服务器失败");
+        LogHelper.Info("和中心服务器连接错误, 开始重连:错误信息：" + errorEventArgs.Exception);
         // 开启重连
         HeartBeatTimer.Stop();
         ReconnectionTimer.Start();
-        ConnectToDiscovery();
     }
 
     private void SendMessage(IMessage message)
@@ -183,8 +187,8 @@ internal sealed class AppStartUpGateway : AppStartUpBase
             LogHelper.Debug($"---发送消息ID:[{ProtoMessageIdHandler.GetReqMessageIdByType(message.GetType())}] ==>消息类型:{message.GetType()} 消息内容:{message}");
         }
 
-        // client.TrySend(span);
-        System.Buffers.ArrayPool<byte>.Shared.Return(span);
+        client.TrySend(span);
+        ArrayPool<byte>.Shared.Return(span);
     }
 
     #endregion
