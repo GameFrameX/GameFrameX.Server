@@ -23,6 +23,9 @@
 
                 LogHelper.Info($"launch db service start...");
                 ActorLimit.Init(ActorLimit.RuleType.None);
+                MongoDbServiceConnection mongoDbServiceConnection = new MongoDbServiceConnection();
+                GameDb.Init(mongoDbServiceConnection);
+                GameDb.Open(Setting.DataBaseUrl, Setting.DataBaseName);
                 LogHelper.Info($"launch db service end...");
 
                 LogHelper.Info($"register comps start...");
@@ -62,7 +65,9 @@
                     HttpPort = 20001,
                     WsPort = 25001,
                     //
-                    HttpCode = "inner_httpcode"
+                    HttpCode = "inner_httpcode",
+                    DataBaseUrl = "mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority",
+                    DataBaseName = "gameframex"
                 };
             }
 
