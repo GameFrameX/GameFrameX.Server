@@ -6,8 +6,7 @@ using SuperSocket.Server.Abstractions;
 using SuperSocket.Server.Abstractions.Session;
 using SuperSocket.Server.Host;
 
-
-namespace GameFrameX.Launcher.StartUp;
+namespace GameFrameX.Launcher.StartUp.Discovery;
 
 /// <summary>
 /// 发现服务器
