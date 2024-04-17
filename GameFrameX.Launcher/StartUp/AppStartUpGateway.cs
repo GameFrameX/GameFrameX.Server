@@ -124,7 +124,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         // if (client.IsConnected)
         {
             reqHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
-            reqHeartBeat.UniqueId = UtilityIdGenerator.GetNextUniqueId();
+            reqHeartBeat.UniqueId = UtilityIdGenerator.GetUniqueIdString();
             // SendMessage(reqHeartBeat);
         }
     }
