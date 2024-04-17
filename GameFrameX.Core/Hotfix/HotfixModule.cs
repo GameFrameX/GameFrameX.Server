@@ -41,6 +41,8 @@ namespace GameFrameX.Core.Hotfix
         /// </summary>
         readonly Dictionary<int, Type> tcpHandlerMap = new Dictionary<int, Type>(512);
 
+        private readonly Dictionary<Type, Type> rpcHandlerMap = new Dictionary<Type, Type>();
+
         /// <summary>
         /// actorType -> evtId -> listeners
         /// </summary>
@@ -154,6 +156,8 @@ namespace GameFrameX.Core.Hotfix
                         }
                     }
                 }
+
+                AddRpcHandler(type);
             }
         }
 
@@ -183,6 +187,26 @@ namespace GameFrameX.Core.Hotfix
             {
                 throw new Exception($"http handler cmd重复注册，cmd:{attr.OriginalCmd}");
             }
+
+            return true;
+        }
+
+        private bool AddRpcHandler(Type type)
+        {
+            var attribute = (MessageRpcMappingAttribute)type.GetCustomAttribute(typeof(MessageRpcMappingAttribute), true);
+            if (attribute == null)
+            {
+                return false;
+            }
+
+            bool isHas = rpcHandlerMap.TryGetValue(attribute.RequestMessage.GetType(), out var requestHandler);
+            if (isHas && requestHandler?.GetType() == attribute.ResponseMessage.GetType())
+            {
+                LogHelper.Error($"重复注册消息rpc handler:[{attribute.RequestMessage}] msg:[{attribute.ResponseMessage}]");
+                return false;
+            }
+
+            rpcHandlerMap.Add(attribute.RequestMessage.GetType(), attribute.ResponseMessage.GetType());
 
             return true;
         }
