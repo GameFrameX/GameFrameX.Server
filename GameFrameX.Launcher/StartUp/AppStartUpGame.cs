@@ -23,8 +23,8 @@
 
                 LogHelper.Info($"launch db service start...");
                 ActorLimit.Init(ActorLimit.RuleType.None);
-                MongoDbServiceConnection mongoDbServiceConnection = new MongoDbServiceConnection();
-                GameDb.Init(mongoDbServiceConnection);
+                MongoDbService mongoDbService = new MongoDbService();
+                GameDb.Init(mongoDbService);
                 GameDb.Open(Setting.DataBaseUrl, Setting.DataBaseName);
                 LogHelper.Info($"launch db service end...");
 
