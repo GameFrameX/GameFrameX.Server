@@ -41,7 +41,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer.NoSql",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer.NoSql.Redis", "GameFrameX.DBServer.NoSql.Redis\GameFrameX.DBServer.NoSql.Redis.csproj", "{3DAFFFD6-21DF-4A82-822A-91E5E0AEC997}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Tests", "GameFrameX.Tests\GameFrameX.Tests.csproj", "{762F0E9F-813B-40BD-B488-A7A6919A534E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Tests", "Tests\GameFrameX.Tests\GameFrameX.Tests.csproj", "{762F0E9F-813B-40BD-B488-A7A6919A534E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.ProtoBuf.Net", "GameFrameX.ProtoBuf.Net\GameFrameX.ProtoBuf.Net.csproj", "{E487194B-7F38-43B2-8942-E55AD479F5DE}"
 EndProject
@@ -84,6 +84,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.WebSocket.Server", "SuperSocket\SuperSocket.WebSocket.Server\SuperSocket.WebSocket.Server.csproj", "{D896E331-0A71-4B64-911D-93A32EB83745}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.ClientEngine", "SuperSocket\SuperSocket.ClientEngine\SuperSocket.ClientEngine.csproj", "{A79DAB6E-5B28-4F1F-A2DB-53393D007816}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B2F95E64-146A-4FDE-BB8D-DE49972FA4B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -261,5 +263,6 @@ Global
 		{2601FAC4-A4FD-4E39-978E-8CE0114C012D} = {CCB3528E-2239-4C9D-800C-BEF363C58E0A}
 		{D896E331-0A71-4B64-911D-93A32EB83745} = {CCB3528E-2239-4C9D-800C-BEF363C58E0A}
 		{A79DAB6E-5B28-4F1F-A2DB-53393D007816} = {CCB3528E-2239-4C9D-800C-BEF363C58E0A}
+		{762F0E9F-813B-40BD-B488-A7A6919A534E} = {B2F95E64-146A-4FDE-BB8D-DE49972FA4B0}
 	EndGlobalSection
 EndGlobal
