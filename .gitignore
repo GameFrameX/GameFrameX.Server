@@ -1,6 +1,6 @@
 ﻿
 .idea
-database
+/database
 bin
 **/obj
 **/bin
