@@ -26,6 +26,23 @@ class MessageActorGatewayEncoderHandler : IMessageEncoderHandler
         return span;
     }
 
+    public byte[] RpcReplyHandler(long msgUniqueId, IMessage message)
+    {
+        var bytes = SerializerHelper.Serialize(message);
+
+        // len +UniqueId + msgId + bytes.length
+        int len = 4 + 8 + 4  + bytes.Length;
+        var span = ArrayPool<byte>.Shared.Rent(len);
+        int offset = 0;
+        span.WriteInt(len, ref offset);
+        span.WriteLong(msgUniqueId, ref offset);
+        var messageType = message.GetType();
+        var msgId = ProtoMessageIdHandler.GetResponseActorMessageIdByType(messageType);
+        span.WriteInt(msgId, ref offset);
+        span.WriteBytes(bytes, ref offset);
+        return span;
+    }
+
     public int Encode(IBufferWriter<byte> writer, IMessage messageObject)
     {
         var bytes = Handler(messageObject);

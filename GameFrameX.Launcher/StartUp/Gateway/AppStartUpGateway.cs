@@ -3,6 +3,7 @@ using GameFrameX.Launcher;
 using GameFrameX.Launcher.PipelineFilter;
 using GameFrameX.Launcher.StartUp.Gateway;
 using GameFrameX.NetWork;
+using SuperSocket;
 using SuperSocket.ClientEngine;
 using SuperSocket.Connection;
 using SuperSocket.Server;
@@ -20,10 +21,11 @@ internal sealed class AppStartUpGateway : AppStartUpBase
     private IServer tcpService;
 
     private AsyncTcpSession client;
-    IMessageEncoderHandler messageEncoderHandler = new MessageActorGatewayEncoderHandler();
+    MessageActorGatewayEncoderHandler messageEncoderHandler = new MessageActorGatewayEncoderHandler();
 
-    IMessageDecoderHandler messageDecoderHandler = new MessageActorGatewayDecoderHandler();
+    MessageActorGatewayDecoderHandler messageDecoderHandler = new MessageActorGatewayDecoderHandler();
     ReqActorHeartBeat reqHeartBeat = new ReqActorHeartBeat();
+    RpcSession rpcSession = new RpcSession();
 
     public override async Task EnterAsync()
     {
@@ -75,14 +77,19 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         tcpService = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
             .ConfigureSuperSocket(ConfigureSuperSocket)
             .UseClearIdleSession()
-            // .UsePackageDecoder<MessageActorDiscoveryDecoderHandler>()
+            .UsePackageDecoder<MessageActorGatewayDecoderHandler>()
             // .UsePackageEncoder<MessageActorDiscoveryEncoderHandler>()
             .UseSessionHandler(OnConnected, OnDisconnected)
-            // .UsePackageHandler(PackageHandler)
+            .UsePackageHandler(PackageHandler, ClientErrorHandler)
             .UseInProcSessionContainer()
             .BuildAsServer();
 
         await tcpService.StartAsync();
+    }
+
+    private ValueTask<bool> ClientErrorHandler(IAppSession appSession, PackageHandlingException<IMessage> exception)
+    {
+        return ValueTask.FromResult(true);
     }
 
     private ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
@@ -96,7 +103,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
     {
         LogHelper.Info("有路由客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
         // var gameSession = new GameSession(socketClient.IP, socketClient);
-        var netChannel = new DefaultNetChannel(appSession, messageEncoderHandler);
+        var netChannel = new DefaultNetChannel(appSession, messageEncoderHandler, rpcSession);
         GameClientSessionManager.SetSession(appSession.SessionID, netChannel); //移除
         return ValueTask.CompletedTask;
     }
@@ -104,24 +111,26 @@ internal sealed class AppStartUpGateway : AppStartUpBase
 
     // readonly MessageActorDiscoveryEncoderHandler messageEncoderHandler = new MessageActorDiscoveryEncoderHandler();
 
-    // private async ValueTask PackageHandler(IAppSession session, IMessage messageObject)
-    // {
-    //     if (messageObject is MessageObject msg)
-    //     {
-    //         var messageId = msg.MessageId;
-    //         if (Setting.IsDebug && Setting.IsDebugReceive)
-    //         {
-    //             LogHelper.Debug($"---收到消息ID:[{messageId}] ==>消息类型:{msg.GetType()} 消息内容:{messageObject}");
-    //         }
-    //     }
-    //
-    //     // 发送
-    //     var response = new RespActorHeartBeat()
-    //     {
-    //         Timestamp = TimeHelper.UnixTimeSeconds()
-    //     };
-    //     // await session.SendAsync(messageEncoderHandler, response);
-    // }
+    private async ValueTask PackageHandler(IAppSession session, IMessage messageObject)
+    {
+        if (messageObject is MessageActorObject msg)
+        {
+            var messageId = msg.MessageId;
+            if (Setting.IsDebug && Setting.IsDebugReceive)
+            {
+                LogHelper.Debug($"---收到消息ID:[{messageId}] ==>消息类型:{msg.GetType()} 消息内容:{messageObject}");
+            }
+            // 发送
+            var response = new RespActorHeartBeat()
+            {
+                Timestamp = TimeHelper.UnixTimeSeconds()
+            };
+            var result = messageEncoderHandler.RpcReplyHandler(msg.UniqueId,response);
+            await session.SendAsync(result);
+        }
+
+       
+    }
 
     #endregion
 

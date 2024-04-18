@@ -1,4 +1,5 @@
-﻿using GameFrameX.Launcher;
+﻿using GameFrameX.Extension;
+using GameFrameX.Launcher;
 using GameFrameX.Launcher.PipelineFilter;
 using GameFrameX.NetWork;
 using Microsoft.Extensions.Configuration;
@@ -37,6 +38,8 @@ internal sealed class AppStartUpRouter : AppStartUpBase
     /// </summary>
     private IHost webSocketServer;
 
+    RpcSession rpcSession = new RpcSession();
+
     public override async Task EnterAsync()
     {
         try
@@ -44,6 +47,7 @@ internal sealed class AppStartUpRouter : AppStartUpBase
             await StartServer();
             LogHelper.Info($"启动服务器 {ServerType} 端口: {Setting.TcpPort} 结束!");
             StartClient();
+            _ = Task.Run(RpcHandler);
             await AppExitToken;
             LogHelper.Info("全部断开...");
             await Stop();
@@ -53,6 +57,33 @@ internal sealed class AppStartUpRouter : AppStartUpBase
         {
             await Stop(e.Message);
         }
+    }
+
+    private void RpcHandler()
+    {
+        while (true)
+        {
+            var message = rpcSession.Handler();
+            if (message == null)
+            {
+                Thread.Sleep(1);
+                continue;
+            }
+
+            SendMessage(message.UniqueId, message.RequestMessage);
+        }
+    }
+
+    private void SendMessage(long messageUniqueId, IMessage message)
+    {
+        var span = messageEncoderHandler.RpcHandler(messageUniqueId, message);
+        if (Setting.IsDebug && Setting.IsDebugSend)
+        {
+            LogHelper.Debug($"---发送消息ID:[{ProtoMessageIdHandler.GetRequestActorMessageIdByType(message.GetType())}] ==>消息类型:{message.GetType().Name} 消息内容:{message}");
+        }
+
+        tcpClient.TrySend(span);
+        ArrayPool<byte>.Shared.Return(span);
     }
 
     /// <summary>
@@ -101,7 +132,10 @@ internal sealed class AppStartUpRouter : AppStartUpBase
 
     private void ClientOnDataReceived(object o, DataEventArgs dataEventArgs)
     {
-        LogHelper.Info($"收到网关服务器消息：{dataEventArgs.Data}");
+        var messageData = dataEventArgs.Data.ReadBytes(dataEventArgs.Offset, dataEventArgs.Length);
+        var messageObject = (IActorResponseMessage)messageRouterDecoderHandler.RpcHandler(messageData);
+        rpcSession.Reply(messageObject);
+        LogHelper.Info($"收到网关服务器消息：{dataEventArgs.Data}: {messageObject}");
     }
 
     private void ClientOnClosed(object sender, EventArgs eventArgs)
@@ -145,7 +179,7 @@ internal sealed class AppStartUpRouter : AppStartUpBase
     private ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-        var netChannel = new DefaultNetChannel(appSession, messageEncoderHandler);
+        var netChannel = new DefaultNetChannel(appSession, messageEncoderHandler, rpcSession);
         GameClientSessionManager.SetSession(appSession.SessionID, netChannel); //移除
 
         return ValueTask.CompletedTask;
