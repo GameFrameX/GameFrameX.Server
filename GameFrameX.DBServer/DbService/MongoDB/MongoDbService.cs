@@ -10,7 +10,7 @@ namespace GameFrameX.DBServer.DbService.MongoDB
     /// <summary>
     /// MongoDB服务连接类，实现了 <see cref="IGameDbService"/> 接口。
     /// </summary>
-    public class MongoDbServiceConnection : IGameDbService
+    public class MongoDbService : IGameDbService
     {
         /// <summary>
         /// 获取或设置MongoDB客户端。
