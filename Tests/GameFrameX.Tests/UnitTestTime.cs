@@ -1,6 +1,4 @@
-using System;
 using GameFrameX.Utility;
-using NUnit.Framework;
 
 namespace GameFrameX.Tests;
 
