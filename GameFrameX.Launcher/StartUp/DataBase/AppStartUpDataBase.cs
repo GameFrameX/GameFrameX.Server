@@ -1,15 +1,18 @@
-﻿/*using GameFrameX.Launcher.PipelineFilter;
-using GameFrameX.Apps.Server.Heart.Entity;
+﻿using GameFrameX.Apps.Server.Heart.Entity;
 using GameFrameX.DBServer.State;
-using GameFrameX.Setting;
+using GameFrameX.Launcher.PipelineFilter;
+using SuperSocket.Server;
+using SuperSocket.Server.Abstractions;
+using SuperSocket.Server.Abstractions.Session;
+using SuperSocket.Server.Host;
 
-namespace GameFrameX.Launcher.StartUp
+namespace GameFrameX.Launcher.StartUp.DataBase
 {
     /// <summary>
     /// 游戏数据库
     /// </summary>
     [StartUpTag(ServerType.DataBase, 50)]
-    internal sealed class DataBase : AppStartUpBase
+    internal sealed class AppStartUpDataBase : AppStartUpBase
     {
         private IServer server;
         private IGameDbService dbService;
@@ -74,6 +77,7 @@ namespace GameFrameX.Launcher.StartUp
             // };
             // await session.SendAsync((IPackageEncoder<IMessage>)messageEncoderHandler, response);
         }
+
         public override async Task Stop(string message = "")
         {
             LogHelper.Info($"退出服务器开始");
@@ -100,4 +104,4 @@ namespace GameFrameX.Launcher.StartUp
             base.Init();
         }
     }
-}*/
+}
