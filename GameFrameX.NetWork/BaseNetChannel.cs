@@ -12,14 +12,16 @@ namespace GameFrameX.NetWork
         // public long NetId { get; set; } = 0;
         // public int TargetServerId { get; set; }
         public IAppSession AppSession { get; }
+        public IRpcSession RpcSession { get; }
         public virtual string RemoteAddress { get; } = "";
 
         private readonly IMessageEncoderHandler messageEncoder;
 
-        public BaseNetChannel(IAppSession session, IMessageEncoderHandler messageEncoder)
+        public BaseNetChannel(IAppSession session, IMessageEncoderHandler messageEncoder, IRpcSession rpcSession)
         {
             AppSession = session;
             this.messageEncoder = messageEncoder;
+            RpcSession = rpcSession;
             RemoteAddress = session.RemoteEndPoint.ToString();
         }
 

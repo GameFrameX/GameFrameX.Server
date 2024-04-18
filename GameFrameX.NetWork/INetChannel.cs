@@ -12,6 +12,11 @@ public interface INetChannel
     IAppSession AppSession { get; }
 
     /// <summary>
+    /// RPC 会话
+    /// </summary>
+    IRpcSession RpcSession { get; }
+
+    /// <summary>
     /// 远程地址
     /// </summary>
     string RemoteAddress { get; }
