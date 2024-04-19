@@ -48,4 +48,9 @@ public sealed class RpcSession : IRpcSession
         var defaultMessageActorObject = RpcData.Create(message);
         waitingObjects.Enqueue(defaultMessageActorObject);
     }
+
+    public void Add(RpcData rpcData)
+    {
+        waitingObjects.Enqueue(rpcData);
+    }
 }
