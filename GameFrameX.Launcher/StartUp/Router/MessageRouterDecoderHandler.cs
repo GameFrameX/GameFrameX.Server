@@ -14,7 +14,7 @@ public class MessageRouterDecoderHandler : IMessageDecoderHandler, IPackageDecod
         {
             int readOffset = 0;
             var length = data.ReadInt(ref readOffset);
-            var timestamp = data.ReadLong(ref readOffset);
+            var magic = data.ReadInt(ref readOffset);
             var messageId = data.ReadInt(ref readOffset);
             // var messageUniqueData = data.ReadBytes(ref readOffset);
             var messageData = data.ReadBytes(ref readOffset);
@@ -23,6 +23,7 @@ public class MessageRouterDecoderHandler : IMessageDecoderHandler, IPackageDecod
             {
                 var messageObject = (MessageObject)SerializerHelper.Deserialize(messageData, messageType);
                 messageObject.MessageId = messageId;
+                messageObject.UniqueId = magic;
                 return messageObject;
             }
 
