@@ -6,6 +6,14 @@ public static class GameClientSessionManager
 {
     static readonly ConcurrentDictionary<string, INetChannel> Sessions = new ConcurrentDictionary<string, INetChannel>();
 
+    /// <summary>
+    /// 当前连接数量
+    /// </summary>
+    public static int Count
+    {
+        get { return Sessions.Count; }
+    }
+
     public static INetChannel GetSession(string id)
     {
         Sessions.TryGetValue(id, out var session);
