@@ -186,5 +186,10 @@ public abstract class BaseSetting
     /// </summary>
     public int SDKType { get; set; }
 
+    /// <summary>
+    /// 最大客户端数量
+    /// </summary>
+    public int MaxClientCount { get; set; } = 3000;
+
     #endregion
 }
