@@ -266,6 +266,8 @@ internal sealed class AppStartUpRouter : AppStartUpBase
                 // 网关配置
                 GrpcPort = 22000,
                 CenterUrl = "127.0.0.1",
+                // 最大连接数
+                MaxClientCount = 3000,
             };
             if (PlatformRuntimeHelper.IsLinux)
             {
