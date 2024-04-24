@@ -1,6 +1,7 @@
 ﻿using GameFrameX.Extension;
 using GameFrameX.Launcher;
 using GameFrameX.Launcher.PipelineFilter;
+using GameFrameX.Launcher.StartUp.Router;
 using GameFrameX.NetWork;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -149,6 +150,7 @@ internal sealed class AppStartUpRouter : AppStartUpBase
     {
         webSocketServer = WebSocketHostBuilder.Create()
             .UseWebSocketMessageHandler(WebSocketMessageHandler)
+            .UseSessionHandler(OnConnected, OnDisconnected)
             .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)(ConfigureWebServer)).Build();
         await webSocketServer.StartAsync();
         tcpService = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
@@ -179,7 +181,7 @@ internal sealed class AppStartUpRouter : AppStartUpBase
     private ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-        var netChannel = new DefaultNetChannel(appSession, messageEncoderHandler, rpcSession);
+        var netChannel = new DefaultNetChannel(appSession, messageEncoderHandler, rpcSession, appSession is WebSocketSession);
         GameClientSessionManager.SetSession(appSession.SessionID, netChannel); //移除
 
         return ValueTask.CompletedTask;
