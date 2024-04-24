@@ -289,7 +289,7 @@ namespace SuperSocket.Connection
                 }
             }
 
-            reader.Complete();
+            await reader.CompleteAsync();
             WriteEOFPackage();
         }
 
