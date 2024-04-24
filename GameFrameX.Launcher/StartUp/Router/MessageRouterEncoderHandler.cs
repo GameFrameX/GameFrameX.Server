@@ -1,24 +1,27 @@
-using System.Text;
 using GameFrameX.Extension;
 using GameFrameX.NetWork;
-using GameFrameX.NetWork.Messages;
 using GameFrameX.Serialize.Serialize;
-using GameFrameX.Utility;
 using SuperSocket.ProtoBase;
 
-namespace GameFrameX.Launcher.Message;
+namespace GameFrameX.Launcher.StartUp.Router;
 
 class MessageRouterEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMessage>
 {
+    /// <summary>
+    /// 和客户端之间的消息 数据长度(4)+消息唯一ID(4)+消息ID(4)+消息内容
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
     public byte[] Handler(IMessage message)
     {
+        var messageObject = message as MessageObject;
         var bytes = SerializerHelper.Serialize(message);
-        // len +timestamp + msgId + bytes.length
-        int len = 4 + 8 + 4 + bytes.Length;
+        // len +uniqueId + msgId + bytes.length
+        int len = 4 + 4 + 4 + bytes.Length;
         var span = ArrayPool<byte>.Shared.Rent(len);
         int offset = 0;
         span.WriteInt(len, ref offset);
-        span.WriteLong(TimeHelper.UnixTimeSeconds(), ref offset);
+        span.WriteInt((int)messageObject.UniqueId, ref offset);
         var messageType = message.GetType();
         var msgId = ProtoMessageIdHandler.GetRespMessageIdByType(messageType);
         span.WriteInt(msgId, ref offset);
@@ -28,6 +31,12 @@ class MessageRouterEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMes
         return span;
     }
 
+    /// <summary>
+    /// 和服务器之间的消息 数据长度(4)+消息唯一ID(8)+消息ID(4)+消息内容
+    /// </summary>
+    /// <param name="messageUniqueId"></param>
+    /// <param name="message"></param>
+    /// <returns></returns>
     public byte[] RpcHandler(long messageUniqueId, IMessage message)
     {
         var bytes = SerializerHelper.Serialize(message);
