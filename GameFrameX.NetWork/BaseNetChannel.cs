@@ -2,6 +2,7 @@
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Utility;
 using SuperSocket.Server.Abstractions.Session;
+using SuperSocket.WebSocket.Server;
 
 namespace GameFrameX.NetWork
 {
@@ -16,10 +17,12 @@ namespace GameFrameX.NetWork
         public virtual string RemoteAddress { get; } = "";
 
         private readonly IMessageEncoderHandler messageEncoder;
+        public bool IsWebSocket { get; }
 
-        public BaseNetChannel(IAppSession session, IMessageEncoderHandler messageEncoder, IRpcSession rpcSession)
+        public BaseNetChannel(IAppSession session, IMessageEncoderHandler messageEncoder, IRpcSession rpcSession, bool isWebSocket)
         {
             AppSession = session;
+            IsWebSocket = isWebSocket;
             this.messageEncoder = messageEncoder;
             RpcSession = rpcSession;
             RemoteAddress = session.RemoteEndPoint.ToString();
@@ -43,7 +46,15 @@ namespace GameFrameX.NetWork
 
             var messageData = messageEncoder.Handler(messageObject);
 
-            await AppSession.SendAsync(messageData);
+            if (IsWebSocket)
+            {
+                var webSocketSession = (WebSocketSession)AppSession;
+                await webSocketSession.SendAsync(messageData);
+            }
+            else
+            {
+                await AppSession.SendAsync(messageData);
+            }
         }
 
         public virtual void Close()

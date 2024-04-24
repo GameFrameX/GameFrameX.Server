@@ -9,6 +9,7 @@
     <ItemGroup>
       <ProjectReference Include="..\GameFrameX.Serialize\GameFrameX.Serialize.csproj" />
       <ProjectReference Include="..\SuperSocket\SuperSocket.Server.Abstractions\SuperSocket.Server.Abstractions.csproj" />
+      <ProjectReference Include="..\SuperSocket\SuperSocket.WebSocket.Server\SuperSocket.WebSocket.Server.csproj" />
     </ItemGroup>
 
 </Project>
