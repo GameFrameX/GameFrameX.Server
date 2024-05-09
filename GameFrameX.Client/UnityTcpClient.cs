@@ -36,6 +36,7 @@ public static class UnityTcpClient
                 // }
             }
 
+            Console.WriteLine("--------------------------------");
             for (int i = 0; i < 10; i++)
             {
                 var buffer = GetBuffer();
@@ -81,21 +82,22 @@ public static class UnityTcpClient
 
     private static byte[] GetBuffer()
     {
-        ReqLogin req = new ReqLogin()
+        count++;
+        ReqHeartBeat req = new ReqHeartBeat
         {
-            Password = "123456",
-            UserName = "admin",
+            Timestamp = TimeHelper.UnixTimeSeconds(),
+            UniqueId = count
         };
-
         var bytes = SerializerHelper.Serialize(req);
-        var buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(bytes.Length + 20);
+        var buffer = new byte[bytes.Length + 20];
         int offset = 0;
         buffer.WriteInt(bytes.Length, ref offset);
-        buffer.WriteInt(count++, ref offset);
+        buffer.WriteInt((int)req.UniqueId, ref offset);
         var messageId = ProtoMessageIdHandler.GetReqMessageIdByType(req.GetType());
         buffer.WriteInt(messageId, ref offset);
         buffer.WriteBytes(bytes, ref offset);
-        System.Buffers.ArrayPool<byte>.Shared.Return(buffer);
+        Console.WriteLine($"客户端接发送信息：{req}");
+        // System.Buffers.ArrayPool<byte>.Shared.Return(buffer);
         return buffer;
     }
 }
