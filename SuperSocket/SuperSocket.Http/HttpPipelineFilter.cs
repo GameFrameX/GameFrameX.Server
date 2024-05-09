@@ -11,13 +11,13 @@ namespace SuperSocket.Http
     public class HttpPipelineFilter : IPipelineFilter<HttpRequest>
     {
         private static ReadOnlySpan<byte> _CRLF => new byte[] { (byte)'\r', (byte)'\n' };
-        
+
         private static readonly char _TAB = '\t';
 
         private static readonly char _COLON = ':';
 
         private static readonly ReadOnlyMemory<byte> _headerTerminator = new byte[] { (byte)'\r', (byte)'\n', (byte)'\r', (byte)'\n' };
-        
+
         public IPackageDecoder<HttpRequest> Decoder { get; set; }
 
         public IPipelineFilter<HttpRequest> NextFilter { get; internal set; }
@@ -36,7 +36,7 @@ namespace SuperSocket.Http
                     return null;
 
                 reader.Advance(terminatorSpan.Length);
-                
+
                 var request = ParseHttpHeaderItems(pack);
 
                 var contentLength = request.Items?["content-length"];
@@ -48,7 +48,7 @@ namespace SuperSocket.Http
 
                 if (bodyLength == 0)
                     return request;
-                    
+
                 _bodyLength = bodyLength;
                 _currentRequest = request;
 
@@ -79,7 +79,7 @@ namespace SuperSocket.Http
 
             var prevKey = string.Empty;
             var line = string.Empty;
-            
+
             while (!string.IsNullOrEmpty(line = reader.ReadLine()))
             {
                 if (line.StartsWith(_TAB) && !string.IsNullOrEmpty(prevKey))

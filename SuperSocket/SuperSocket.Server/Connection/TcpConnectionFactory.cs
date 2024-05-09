@@ -21,7 +21,6 @@ namespace SuperSocket.Server.Connection
             IConnectionStreamInitializersFactory connectionStreamInitializersFactory)
             : base(listenOptions, connectionOptions, socketOptionsSetter, connectionStreamInitializersFactory)
         {
-            
         }
 
         public override async Task<IConnection> CreateConnection(object connection, CancellationToken cancellationToken)

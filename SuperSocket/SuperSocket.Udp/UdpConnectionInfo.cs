@@ -9,7 +9,7 @@ namespace SuperSocket.Udp
     {
         public Socket Socket { get; set; }
 
-        public ConnectionOptions ConnectionOptions{ get; set; }
+        public ConnectionOptions ConnectionOptions { get; set; }
 
         public string SessionIdentifier { get; set; }
 

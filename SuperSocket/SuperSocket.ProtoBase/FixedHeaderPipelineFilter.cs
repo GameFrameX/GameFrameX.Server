@@ -21,14 +21,14 @@ namespace SuperSocket.ProtoBase
             if (!_foundHeader)
             {
                 if (reader.Length < _headerSize)
-                    return null;                
-                
+                    return null;
+
                 var header = reader.Sequence.Slice(0, _headerSize);
                 var bodyLength = GetBodyLengthFromHeader(ref header);
-                
+
                 if (bodyLength < 0)
                     throw new ProtocolException("Failed to get body length from the package header.");
-                
+
                 if (bodyLength == 0)
                 {
                     try
@@ -38,9 +38,9 @@ namespace SuperSocket.ProtoBase
                     finally
                     {
                         reader.Advance(_headerSize);
-                    }                    
+                    }
                 }
-                
+
                 _foundHeader = true;
                 _totalSize = _headerSize + bodyLength;
             }
@@ -59,15 +59,15 @@ namespace SuperSocket.ProtoBase
             finally
             {
                 reader.Advance(totalSize);
-            } 
+            }
         }
-        
+
         protected abstract int GetBodyLengthFromHeader(ref ReadOnlySequence<byte> buffer);
 
         public override void Reset()
         {
             base.Reset();
-            
+
             _foundHeader = false;
             _totalSize = 0;
         }

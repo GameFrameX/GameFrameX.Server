@@ -73,7 +73,7 @@ namespace SuperSocket.WebSocket.FramePartReader
                     {
                         package.Data = data.CopySequence();
                     }
-                    
+
                     return true;
                 }
                 else

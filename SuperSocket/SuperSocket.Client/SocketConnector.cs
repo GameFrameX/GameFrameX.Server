@@ -13,7 +13,6 @@ namespace SuperSocket.Client
         public SocketConnector()
             : base()
         {
-
         }
 
         public SocketConnector(IPEndPoint localEndPoint)
@@ -70,7 +69,7 @@ namespace SuperSocket.Client
             {
                 Result = true,
                 Socket = socket
-            };            
+            };
         }
     }
 }

@@ -5,7 +5,6 @@ using System.IO;
 using System.Net.Sockets;
 using System.Net;
 using System.Threading;
-using SuperSocket.ProtoBase;
 
 namespace SuperSocket.Connection
 {
@@ -16,7 +15,6 @@ namespace SuperSocket.Connection
         public StreamPipeConnection(Stream stream, EndPoint remoteEndPoint, ConnectionOptions options)
             : this(stream, remoteEndPoint, null, options)
         {
-            
         }
 
         public StreamPipeConnection(Stream stream, EndPoint remoteEndPoint, EndPoint localEndPoint, ConnectionOptions options)
@@ -44,7 +42,7 @@ namespace SuperSocket.Connection
             return await _stream.ReadAsync(memory, cancellationToken).ConfigureAwait(false);
         }
 
-        protected override async ValueTask<int> SendOverIOAsync(ReadOnlySequence<byte> buffer, CancellationToken cancellationToken)
+        protected override async ValueTask<int> SendOverIoAsync(ReadOnlySequence<byte> buffer, CancellationToken cancellationToken)
         {
             var total = 0;
 

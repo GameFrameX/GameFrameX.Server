@@ -7,13 +7,11 @@ namespace SuperSocket.ProtoBase
         public ProtocolException(string message, Exception exception)
             : base(message, exception)
         {
-
         }
 
         public ProtocolException(string message)
             : base(message)
         {
-
         }
     }
 }

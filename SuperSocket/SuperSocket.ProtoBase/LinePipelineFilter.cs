@@ -10,7 +10,6 @@ namespace SuperSocket.ProtoBase
         public LinePipelineFilter()
             : this(Encoding.UTF8)
         {
-
         }
 
         public LinePipelineFilter(Encoding encoding)

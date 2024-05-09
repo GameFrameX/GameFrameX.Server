@@ -22,7 +22,7 @@ namespace SuperSocket.Server.Connection
             {
                 listenOptions.CertificateOptions.EnsureCertificate();
             }
-            
+
             authOptions.ServerCertificate = listenOptions.CertificateOptions.Certificate;
             authOptions.ClientCertificateRequired = listenOptions.CertificateOptions.ClientCertificateRequired;
 

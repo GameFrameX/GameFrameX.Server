@@ -10,7 +10,6 @@ namespace SuperSocket.Client
     {
         public ConnectState()
         {
-
         }
 
         private ConnectState(bool cancelled)
@@ -37,7 +36,7 @@ namespace SuperSocket.Client
 
             if (stream != null)
             {
-                return new StreamPipeConnection(stream , socket.RemoteEndPoint, socket.LocalEndPoint, connectionOptions);
+                return new StreamPipeConnection(stream, socket.RemoteEndPoint, socket.LocalEndPoint, connectionOptions);
             }
             else
             {

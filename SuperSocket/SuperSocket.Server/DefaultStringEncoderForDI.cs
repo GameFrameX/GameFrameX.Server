@@ -12,7 +12,6 @@ namespace SuperSocket
         public DefaultStringEncoderForDI(IOptions<ServerOptions> serverOptions)
             : base(serverOptions.Value?.DefaultTextEncoding ?? new UTF8Encoding(false))
         {
-
         }
     }
 }

@@ -25,7 +25,7 @@ namespace SuperSocket.Udp
             _udpSessionIdentifierProvider = udpSessionIdentifierProvider;
             _sessionContainer = sessionContainer;
         }
-        
+
         public IConnectionListener CreateConnectionListener(ListenOptions options, ConnectionOptions connectionOptions, ILoggerFactory loggerFactory)
         {
             connectionOptions.Logger = loggerFactory.CreateLogger(nameof(IConnection));

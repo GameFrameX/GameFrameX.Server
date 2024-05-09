@@ -37,13 +37,13 @@ namespace SuperSocket.Server.Connection
             {
                 var listenEndpoint = options.ToEndPoint();
                 var listenSocket = _listenSocket = new Socket(listenEndpoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-                
+
                 listenSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
                 listenSocket.LingerState = new LingerOption(false, 0);
 
                 if (options.NoDelay)
                     listenSocket.NoDelay = true;
-                
+
                 listenSocket.Bind(listenEndpoint);
                 listenSocket.Listen(options.BackLog);
 
@@ -74,7 +74,7 @@ namespace SuperSocket.Server.Connection
                 {
                     if (e is ObjectDisposedException || e is NullReferenceException)
                         break;
-                    
+
                     if (e is SocketException se)
                     {
                         var errorCode = se.ErrorCode;
@@ -85,7 +85,7 @@ namespace SuperSocket.Server.Connection
                             break;
                         }
                     }
-                    
+
                     _logger.LogError(e, $"Listener[{this.ToString()}] failed to do AcceptAsync");
                     continue;
                 }
@@ -114,7 +114,7 @@ namespace SuperSocket.Server.Connection
             {
                 _logger.LogError(e, $"Failed to create channel for {socket.RemoteEndPoint}.");
                 return;
-            }            
+            }
 
             await handler.Invoke(this.Options, connection);
         }
@@ -130,7 +130,7 @@ namespace SuperSocket.Server.Connection
 
             _cancellationTokenSource.Cancel();
             listenSocket.Close();
-            
+
             return _stopTaskCompletionSource.Task;
         }
 

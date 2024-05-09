@@ -17,7 +17,6 @@ namespace SuperSocket.Command
         public CommandMetadata(string name)
             : this(name, name)
         {
-            
         }
     }
 }

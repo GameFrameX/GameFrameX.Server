@@ -5,7 +5,6 @@ using SuperSocket.WebSocket.Extensions;
 
 namespace SuperSocket.WebSocket.Server.Extensions
 {
-
     public interface IWebSocketExtensionFactory
     {
         string Name { get; }

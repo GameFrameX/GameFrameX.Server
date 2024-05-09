@@ -46,7 +46,6 @@ namespace SuperSocket.ProtoBase
 
         protected virtual void OnPartReaderSwitched(IPackagePartReader<TPackageInfo> currentPartReader, IPackagePartReader<TPackageInfo> nextPartReader)
         {
-
         }
 
         public virtual void Reset()

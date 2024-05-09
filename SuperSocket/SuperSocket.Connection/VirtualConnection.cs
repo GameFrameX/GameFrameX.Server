@@ -13,7 +13,6 @@ namespace SuperSocket.Connection
         public VirtualConnection(ConnectionOptions options)
             : base(options)
         {
- 
         }
 
         internal override Task FillPipeAsync(PipeWriter writer, ISupplyController supplyController, CancellationToken cancellationToken)

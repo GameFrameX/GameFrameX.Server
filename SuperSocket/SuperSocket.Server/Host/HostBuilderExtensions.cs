@@ -39,14 +39,11 @@ namespace SuperSocket.Server.Host
             return (new SuperSocketHostBuilder<TReceivePackage>(hostBuilder))
                 .UsePipelineFilter<TPipelineFilter>();
         }
- 
+
         public static ISuperSocketHostBuilder<TReceivePackage> UsePipelineFilterFactory<TReceivePackage>(this ISuperSocketHostBuilder<TReceivePackage> hostBuilder, Func<object, IPipelineFilter<TReceivePackage>> filterFactory)
         {
             hostBuilder.ConfigureServices(
-                (hostCtx, services) =>
-                {
-                    services.AddSingleton<Func<object, IPipelineFilter<TReceivePackage>>>(filterFactory);
-                }
+                (hostCtx, services) => { services.AddSingleton<Func<object, IPipelineFilter<TReceivePackage>>>(filterFactory); }
             );
 
             return hostBuilder.UsePipelineFilterFactory<DelegatePipelineFilterFactory<TReceivePackage>>();
@@ -69,15 +66,12 @@ namespace SuperSocket.Server.Host
                     });
                 }
             );
-        }        
+        }
 
         public static ISuperSocketHostBuilder<TReceivePackage> ConfigureSuperSocket<TReceivePackage>(this ISuperSocketHostBuilder<TReceivePackage> hostBuilder, Action<ServerOptions> configurator)
         {
             return hostBuilder.ConfigureServices(
-                (hostCtx, services) =>
-                {
-                    services.Configure<ServerOptions>(configurator);
-                }
+                (hostCtx, services) => { services.Configure<ServerOptions>(configurator); }
             );
         }
 
@@ -85,10 +79,7 @@ namespace SuperSocket.Server.Host
             where TReceivePackage : class
         {
             return hostBuilder.ConfigureServices(
-                (hostCtx, services) =>
-                {
-                    services.AddSingleton<SocketOptionsSetter>(new SocketOptionsSetter(socketOptionsSetter));
-                }
+                (hostCtx, services) => { services.AddSingleton<SocketOptionsSetter>(new SocketOptionsSetter(socketOptionsSetter)); }
             );
         }
 
@@ -106,15 +97,13 @@ namespace SuperSocket.Server.Host
         public static ISuperSocketHostBuilder<TReceivePackage> ConfigureErrorHandler<TReceivePackage>(this ISuperSocketHostBuilder<TReceivePackage> hostBuilder, Func<IAppSession, PackageHandlingException<TReceivePackage>, ValueTask<bool>> errorHandler)
         {
             return hostBuilder.ConfigureServices(
-                (hostCtx, services) =>
-                {
-                    services.AddSingleton<Func<IAppSession, PackageHandlingException<TReceivePackage>, ValueTask<bool>>>(errorHandler);
-                }
+                (hostCtx, services) => { services.AddSingleton<Func<IAppSession, PackageHandlingException<TReceivePackage>, ValueTask<bool>>>(errorHandler); }
             );
         }
 
         // move to extensions
-        public static ISuperSocketHostBuilder<TReceivePackage> UsePackageHandler<TReceivePackage>(this ISuperSocketHostBuilder<TReceivePackage> hostBuilder, Func<IAppSession, TReceivePackage, ValueTask> packageHandler, Func<IAppSession, PackageHandlingException<TReceivePackage>, ValueTask<bool>> errorHandler = null)
+        public static ISuperSocketHostBuilder<TReceivePackage> UsePackageHandler<TReceivePackage>(this ISuperSocketHostBuilder<TReceivePackage> hostBuilder, Func<IAppSession, TReceivePackage, ValueTask> packageHandler,
+            Func<IAppSession, PackageHandlingException<TReceivePackage>, ValueTask<bool>> errorHandler = null)
         {
             return hostBuilder.ConfigureServices(
                 (hostCtx, services) =>
@@ -140,10 +129,7 @@ namespace SuperSocket.Server.Host
 
         public static ISuperSocketHostBuilder UseGZip(this ISuperSocketHostBuilder hostBuilder)
         {
-            return hostBuilder.ConfigureServices((hostCtx, services) =>
-            {
-                services.AddSingleton<IConnectionStreamInitializersFactory>(new DefaultConnectionStreamInitializersFactory(CompressionLevel.Optimal));
-            }) as ISuperSocketHostBuilder;
+            return hostBuilder.ConfigureServices((hostCtx, services) => { services.AddSingleton<IConnectionStreamInitializersFactory>(new DefaultConnectionStreamInitializersFactory(CompressionLevel.Optimal)); }) as ISuperSocketHostBuilder;
         }
     }
 }

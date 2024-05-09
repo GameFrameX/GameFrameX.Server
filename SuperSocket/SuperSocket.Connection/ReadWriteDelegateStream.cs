@@ -11,12 +11,14 @@ namespace SuperSocket.Connection
         public Stream BaseStream { get; }
         Stream readStream = null;
         Stream writeStream = null;
+
         public ReadWriteDelegateStream(Stream stream, Stream readStream, Stream writeStream)
         {
             this.readStream = readStream;
             this.writeStream = writeStream;
             this.BaseStream = stream;
         }
+
         public override bool CanRead => true;
 
         public override bool CanSeek => false;
@@ -25,7 +27,11 @@ namespace SuperSocket.Connection
 
         public override long Length => throw new NotSupportedException();
 
-        public override long Position { get => throw new NotSupportedException(); set => throw new NotSupportedException(); }
+        public override long Position
+        {
+            get => throw new NotSupportedException();
+            set => throw new NotSupportedException();
+        }
 
         public override void Flush()
         {
@@ -34,7 +40,7 @@ namespace SuperSocket.Connection
 
         public override int Read(byte[] buffer, int offset, int count)
         {
-            return Read(buffer, offset, count);    
+            return Read(buffer, offset, count);
         }
 
         public override long Seek(long offset, SeekOrigin origin)
@@ -45,25 +51,28 @@ namespace SuperSocket.Connection
         public override void SetLength(long value)
         {
             throw new NotSupportedException();
-
         }
 
         public override void Write(byte[] buffer, int offset, int count)
         {
             writeStream.Write(buffer, offset, count);
         }
+
         public override void Write(ReadOnlySpan<byte> buffer)
         {
             writeStream.Write(buffer);
         }
+
         public override int Read(Span<byte> buffer)
         {
             return readStream.Read(buffer);
         }
+
         public override IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
         {
             return readStream.BeginRead(buffer, offset, count, callback, state);
         }
+
         public override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
         {
             return writeStream.BeginWrite(buffer, offset, count, callback, state);
@@ -138,8 +147,16 @@ namespace SuperSocket.Connection
 
         public override bool CanTimeout => BaseStream.CanTimeout;
 
-        public override int ReadTimeout { get => BaseStream.ReadTimeout; set => BaseStream.ReadTimeout = value; }
-        public override int WriteTimeout { get => BaseStream.WriteTimeout; set => BaseStream.WriteTimeout = value; }
-    }
+        public override int ReadTimeout
+        {
+            get => BaseStream.ReadTimeout;
+            set => BaseStream.ReadTimeout = value;
+        }
 
+        public override int WriteTimeout
+        {
+            get => BaseStream.WriteTimeout;
+            set => BaseStream.WriteTimeout = value;
+        }
+    }
 }

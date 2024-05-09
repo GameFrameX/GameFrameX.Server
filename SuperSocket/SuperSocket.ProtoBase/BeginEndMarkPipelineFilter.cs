@@ -11,13 +11,13 @@ namespace SuperSocket.ProtoBase
         private readonly ReadOnlyMemory<byte> _endMark;
 
         private bool _foundBeginMark;
-        
+
         protected BeginEndMarkPipelineFilter(ReadOnlyMemory<byte> beginMark, ReadOnlyMemory<byte> endMark)
         {
             _beginMark = beginMark;
             _endMark = endMark;
         }
-        
+
         public override TPackageInfo Filter(ref SequenceReader<byte> reader)
         {
             if (!_foundBeginMark)
@@ -32,7 +32,7 @@ namespace SuperSocket.ProtoBase
                 _foundBeginMark = true;
             }
 
-            var endMark =  _endMark.Span;
+            var endMark = _endMark.Span;
 
             if (!reader.TryReadTo(out ReadOnlySequence<byte> pack, endMark, advancePastDelimiter: false))
             {
@@ -45,7 +45,7 @@ namespace SuperSocket.ProtoBase
 
         public override void Reset()
         {
-            base.Reset();            
+            base.Reset();
             _foundBeginMark = false;
         }
     }

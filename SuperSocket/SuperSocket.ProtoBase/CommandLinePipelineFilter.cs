@@ -7,7 +7,6 @@ namespace SuperSocket.ProtoBase
         public CommandLinePipelineFilter()
             : base(new[] { (byte)'\r', (byte)'\n' })
         {
-
         }
     }
 }

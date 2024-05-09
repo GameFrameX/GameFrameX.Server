@@ -32,7 +32,7 @@ namespace SuperSocket.Connection
         {
             get { return InputReader; }
         }
-        
+
         IPipelineFilter IPipeConnection.PipelineFilter
         {
             get { return _pipelineFilter; }
@@ -64,7 +64,7 @@ namespace SuperSocket.Connection
             LastActiveTime = DateTimeOffset.Now;
         }
 
-        public async override IAsyncEnumerable<TPackageInfo> RunAsync<TPackageInfo>(IPipelineFilter<TPackageInfo> pipelineFilter)
+        public override async IAsyncEnumerable<TPackageInfo> RunAsync<TPackageInfo>(IPipelineFilter<TPackageInfo> pipelineFilter)
         {
             var packagePipe = !Options.ReadAsDemand
                 ? new DefaultObjectPipe<TPackageInfo>()
@@ -72,7 +72,7 @@ namespace SuperSocket.Connection
 
             _packagePipe = packagePipe;
             _pipelineFilter = pipelineFilter;
-            
+
             _pipeTask = StartTask(packagePipe);
 
             _ = HandleClosing();
@@ -118,7 +118,7 @@ namespace SuperSocket.Connection
                     {
                         if (!IsIgnorableException(exc))
                             OnError("Unhandled exception in the method PipeChannel.Close.", exc);
-                    }                    
+                    }
                 }
             }
         }
@@ -172,7 +172,7 @@ namespace SuperSocket.Connection
             finally
             {
                 SendLock.Release();
-            }            
+            }
         }
 
         private void WriteBuffer(PipeWriter writer, ReadOnlyMemory<byte> buffer)
@@ -195,7 +195,7 @@ namespace SuperSocket.Connection
             }
         }
 
-        public override async ValueTask SendAsync(Action<PipeWriter> write, CancellationToken cancellationToken)
+        public override async ValueTask SendAsync(Action<PipeWriter> write, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -236,7 +236,7 @@ namespace SuperSocket.Connection
                 {
                     if (!IsIgnorableException(e) && !(e is OperationCanceledException))
                         OnError("Failed to read from the pipe", e);
-                    
+
                     break;
                 }
 
@@ -267,7 +267,7 @@ namespace SuperSocket.Connection
                         {
                             completed = true;
                             break;
-                        }                        
+                        }
                     }
 
                     if (completed)
@@ -290,12 +290,12 @@ namespace SuperSocket.Connection
             }
 
             await reader.CompleteAsync();
-            WriteEOFPackage();
+            WriteEofPackage();
         }
 
-        protected void WriteEOFPackage()
+        protected void WriteEofPackage()
         {
-            _packagePipe.WirteEOF();
+            _packagePipe.WriteEOF();
         }
 
         private bool ReaderBuffer<TPackageInfo>(ref ReadOnlySequence<byte> buffer, IPipelineFilter<TPackageInfo> pipelineFilter, IObjectPipe<TPackageInfo> packagePipe, out SequencePosition consumed, out SequencePosition examined, out IPipelineFilter<TPackageInfo> currentPipelineFilter)
@@ -344,7 +344,7 @@ namespace SuperSocket.Connection
                     Close();
                     return false;
                 }
-                
+
                 if (packageInfo == null)
                 {
                     // the current pipeline filter needs more data to process
@@ -370,12 +370,12 @@ namespace SuperSocket.Connection
                     examined = consumed = buffer.End;
                     return true;
                 }
-                
+
                 if (bytesConsumed > 0)
                     seqReader = new SequenceReader<byte>(seqReader.Sequence.Slice(bytesConsumed));
             }
         }
-    
+
         public override async ValueTask DetachAsync()
         {
             _isDetaching = true;

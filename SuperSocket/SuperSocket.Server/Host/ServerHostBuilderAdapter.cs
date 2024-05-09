@@ -15,7 +15,7 @@ namespace SuperSocket.Server.Host
         private IHostBuilder _hostBuilder;
 
         private IServiceCollection _currentServices = new ServiceCollection();
-        
+
         private IServiceProvider _serviceProvider;
 
         private IServiceProvider _hostServiceProvider;
@@ -80,7 +80,7 @@ namespace SuperSocket.Server.Host
             {
                 if (sd.ServiceType == typeof(IHostedService))
                     continue;
-                
+
                 CopyGlobalServiceDescriptor(hostServices, services, sd);
             }
         }
@@ -113,14 +113,11 @@ namespace SuperSocket.Server.Host
         {
             _hostServiceProvider = hostServiceProvider;
         }
-   
+
         protected void RegisterHostedService<THostedService>()
             where THostedService : class, IHostedService
         {
-            base.HostBuilder.ConfigureServices((context, services) =>
-            {
-                RegisterHostedService<THostedService>(services);
-            });
+            base.HostBuilder.ConfigureServices((context, services) => { RegisterHostedService<THostedService>(services); });
         }
 
         protected override void RegisterHostedService<THostedService>(IServiceCollection servicesInHost)
@@ -163,7 +160,7 @@ namespace SuperSocket.Server.Host
             {
                 var containerBuilder = factory.CreateBuilder(services);
                 ConfigureContainerBuilder(context, containerBuilder);
-                return factory.CreateServiceProvider(containerBuilder);                
+                return factory.CreateServiceProvider(containerBuilder);
             };
             return this;
         }
@@ -175,7 +172,7 @@ namespace SuperSocket.Server.Host
                 var serviceProviderFactory = factory(context);
                 var containerBuilder = serviceProviderFactory.CreateBuilder(services);
                 ConfigureContainerBuilder(context, containerBuilder);
-                return serviceProviderFactory.CreateServiceProvider(containerBuilder);                
+                return serviceProviderFactory.CreateServiceProvider(containerBuilder);
             };
             return this;
         }

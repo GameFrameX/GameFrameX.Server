@@ -8,12 +8,10 @@ namespace SuperSocket
     {
         public static void DoNotAwait(this Task task)
         {
-            
         }
 
         public static void DoNotAwait(this ValueTask task)
         {
-
         }
 
 #if NETSTANDARD2_1

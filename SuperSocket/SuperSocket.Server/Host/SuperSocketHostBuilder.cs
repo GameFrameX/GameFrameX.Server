@@ -26,27 +26,21 @@ namespace SuperSocket.Server.Host
         public SuperSocketHostBuilder(IHostBuilder hostBuilder)
             : base(hostBuilder)
         {
-
         }
 
         public SuperSocketHostBuilder()
             : this(args: null)
         {
-
         }
 
         public SuperSocketHostBuilder(string[] args)
             : base(args)
         {
-
         }
 
         private void ConfigureHostBuilder()
         {
-            HostBuilder.ConfigureServices((ctx, services) =>
-            {
-                RegisterBasicServices(ctx, services, services);
-            }).ConfigureServices((ctx, services) =>
+            HostBuilder.ConfigureServices((ctx, services) => { RegisterBasicServices(ctx, services, services); }).ConfigureServices((ctx, services) =>
             {
                 foreach (var action in ConfigureServicesActions)
                 {
@@ -57,10 +51,7 @@ namespace SuperSocket.Server.Host
                 {
                     action(ctx, services);
                 }
-            }).ConfigureServices((ctx, services) =>
-            {
-                RegisterDefaultServices(ctx, services, services);
-            });
+            }).ConfigureServices((ctx, services) => { RegisterDefaultServices(ctx, services, services); });
         }
 
         void IMinimalApiHostBuilder.ConfigureHostBuilder()
@@ -91,10 +82,7 @@ namespace SuperSocket.Server.Host
 
             if (serverOptionReader == null)
             {
-                serverOptionReader = (ctx, config) =>
-                {
-                    return config;
-                };
+                serverOptionReader = (ctx, config) => { return config; };
             }
 
             services.AddOptions();
@@ -113,10 +101,10 @@ namespace SuperSocket.Server.Host
                 services.TryAdd(ServiceDescriptor.Singleton<IPackageDecoder<StringPackageInfo>, DefaultStringPackageDecoder>());
             }
 
-            services.TryAdd(ServiceDescriptor.Singleton<IPackageEncoder<string>, DefaultStringEncoderForDI>());            
+            services.TryAdd(ServiceDescriptor.Singleton<IPackageEncoder<string>, DefaultStringEncoderForDI>());
             services.TryAdd(ServiceDescriptor.Singleton<ISessionFactory, DefaultSessionFactory>());
             services.TryAdd(ServiceDescriptor.Singleton<IConnectionListenerFactory, TcpConnectionListenerFactory>());
-            services.TryAdd(ServiceDescriptor.Singleton<SocketOptionsSetter>(new SocketOptionsSetter(socket => {})));
+            services.TryAdd(ServiceDescriptor.Singleton<SocketOptionsSetter>(new SocketOptionsSetter(socket => { })));
             services.TryAdd(ServiceDescriptor.Singleton<IConnectionFactoryBuilder, ConnectionFactoryBuilder>());
             services.TryAdd(ServiceDescriptor.Singleton<IConnectionStreamInitializersFactory, DefaultConnectionStreamInitializersFactory>());
 
@@ -130,7 +118,7 @@ namespace SuperSocket.Server.Host
         protected virtual bool CheckIfExistHostedService(IServiceCollection services)
         {
             return services.Any(s => s.ServiceType == typeof(IHostedService)
-                && typeof(SuperSocketService<TReceivePackage>).IsAssignableFrom(GetImplementationType(s)));
+                                     && typeof(SuperSocketService<TReceivePackage>).IsAssignableFrom(GetImplementationType(s)));
         }
 
         private Type GetImplementationType(ServiceDescriptor serviceDescriptor)
@@ -212,10 +200,7 @@ namespace SuperSocket.Server.Host
             where TSessionFactory : class, ISessionFactory
         {
             return this.ConfigureServices(
-                (hostCtx, services) =>
-                {
-                    services.AddSingleton<ISessionFactory, TSessionFactory>();
-                }
+                (hostCtx, services) => { services.AddSingleton<ISessionFactory, TSessionFactory>(); }
             );
         }
 
@@ -227,10 +212,7 @@ namespace SuperSocket.Server.Host
                 throw new ArgumentException($"The type parameter should be subclass of {nameof(SuperSocketService<TReceivePackage>)}", nameof(THostedService));
             }
 
-            return this.ConfigureServices((ctx, services) =>
-            {
-                RegisterHostedService<THostedService>(services);
-            });
+            return this.ConfigureServices((ctx, services) => { RegisterHostedService<THostedService>(services); });
         }
 
 
@@ -238,10 +220,7 @@ namespace SuperSocket.Server.Host
             where TPackageDecoder : class, IPackageDecoder<TReceivePackage>
         {
             return this.ConfigureServices(
-                (hostCtx, services) =>
-                {
-                    services.AddSingleton<IPackageDecoder<TReceivePackage>, TPackageDecoder>();
-                }
+                (hostCtx, services) => { services.AddSingleton<IPackageDecoder<TReceivePackage>, TPackageDecoder>(); }
             );
         }
 
@@ -249,41 +228,29 @@ namespace SuperSocket.Server.Host
             where TPackageEncoder : class, IPackageEncoder<TReceivePackage>
         {
             return this.ConfigureServices(
-                (hostCtx, services) =>
-                {
-                    services.AddSingleton<IPackageEncoder<TReceivePackage>, TPackageEncoder>();
-                }
+                (hostCtx, services) => { services.AddSingleton<IPackageEncoder<TReceivePackage>, TPackageEncoder>(); }
             );
         }
-        
+
         public virtual ISuperSocketHostBuilder<TReceivePackage> UseMiddleware<TMiddleware>()
             where TMiddleware : class, IMiddleware
         {
-            return this.ConfigureServices((ctx, services) =>
-            {
-                services.TryAddEnumerable(ServiceDescriptor.Singleton<IMiddleware, TMiddleware>());
-            });
+            return this.ConfigureServices((ctx, services) => { services.TryAddEnumerable(ServiceDescriptor.Singleton<IMiddleware, TMiddleware>()); });
         }
 
         public ISuperSocketHostBuilder<TReceivePackage> UsePackageHandlingScheduler<TPackageHandlingScheduler>()
             where TPackageHandlingScheduler : class, IPackageHandlingScheduler<TReceivePackage>
         {
             return this.ConfigureServices(
-                (hostCtx, services) =>
-                {
-                    services.AddSingleton<IPackageHandlingScheduler<TReceivePackage>, TPackageHandlingScheduler>();
-                }
+                (hostCtx, services) => { services.AddSingleton<IPackageHandlingScheduler<TReceivePackage>, TPackageHandlingScheduler>(); }
             );
         }
 
         public ISuperSocketHostBuilder<TReceivePackage> UsePackageHandlingContextAccessor()
         {
             return this.ConfigureServices(
-                 (hostCtx, services) =>
-                 {
-                     services.AddSingleton<IPackageHandlingContextAccessor<TReceivePackage>, PackageHandlingContextAccessor<TReceivePackage>>();
-                 }
-             );
+                (hostCtx, services) => { services.AddSingleton<IPackageHandlingContextAccessor<TReceivePackage>, PackageHandlingContextAccessor<TReceivePackage>>(); }
+            );
         }
 
         public ISuperSocketHostBuilder<TReceivePackage> UseGZip()

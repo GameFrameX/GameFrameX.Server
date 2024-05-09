@@ -1,4 +1,3 @@
-
 using System.Threading.Tasks;
 using SuperSocket.Server.Abstractions.Session;
 
@@ -10,14 +9,12 @@ namespace SuperSocket.Server.Abstractions.Middleware
 
         public virtual void Start(IServer server)
         {
-
         }
 
         public virtual void Shutdown(IServer server)
         {
-            
         }
-        
+
         public virtual ValueTask<bool> RegisterSession(IAppSession session)
         {
             return new ValueTask<bool>(true);

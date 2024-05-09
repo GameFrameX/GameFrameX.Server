@@ -19,7 +19,6 @@ namespace SuperSocket.Client.Proxy
         public HttpConnector(EndPoint proxyEndPoint)
             : base(proxyEndPoint)
         {
-
         }
 
         public HttpConnector(EndPoint proxyEndPoint, string username, string password)
@@ -70,7 +69,7 @@ namespace SuperSocket.Client.Proxy
                     writer.Write("\r\n", encoding);
                 }
             });
-            
+
             var p = await packStream.ReceiveAsync();
 
             if (!HandleResponse(p, out string errorMessage))

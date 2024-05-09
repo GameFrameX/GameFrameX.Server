@@ -11,7 +11,6 @@ namespace SuperSocket.Command
 
         public CommandAttribute()
         {
-
         }
 
         public CommandAttribute(string name)

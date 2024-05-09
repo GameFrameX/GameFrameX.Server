@@ -21,7 +21,7 @@ namespace SuperSocket.Server.Abstractions
         public CertificateOptions CertificateOptions { get; set; }
 
         public TimeSpan ConnectionAcceptTimeOut { get; set; } = TimeSpan.FromSeconds(5);
-                
+
         public IPEndPoint ToEndPoint()
         {
             var ip = this.Ip;

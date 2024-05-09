@@ -15,7 +15,7 @@ namespace SuperSocket.WebSocket.Server
         public SubProtocolHandlerBase(string name)
         {
             Name = name;
-        }        
+        }
 
         public abstract ValueTask Handle(IAppSession session, WebSocketPackage package, CancellationToken cancellationToken);
     }

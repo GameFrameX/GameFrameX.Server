@@ -6,11 +6,9 @@ namespace SuperSocket.ProtoBase
 {
     public class TerminatorTextPipelineFilter : TerminatorPipelineFilter<TextPackageInfo>
     {
-
         public TerminatorTextPipelineFilter(ReadOnlyMemory<byte> terminator)
             : base(terminator)
         {
-
         }
 
         protected override TextPackageInfo DecodePackage(ref ReadOnlySequence<byte> buffer)

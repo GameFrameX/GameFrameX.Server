@@ -61,7 +61,7 @@ namespace SuperSocket.Connection
                 }
             }
 
-            output.Complete();
+            await output.CompleteAsync();
         }
 
         protected abstract ValueTask<int> FillPipeWithDataAsync(Memory<byte> memory, CancellationToken cancellationToken);
@@ -72,10 +72,7 @@ namespace SuperSocket.Connection
 
             if (supplyController != null)
             {
-                cancellationToken.Register(() =>
-                {
-                    supplyController.SupplyEnd();
-                });
+                cancellationToken.Register(supplyController.SupplyEnd);
             }
 
             while (!cancellationToken.IsCancellationRequested)
@@ -123,7 +120,8 @@ namespace SuperSocket.Connection
                         if (!CloseReason.HasValue)
                         {
                             CloseReason = cancellationToken.IsCancellationRequested
-                                ? Connection.CloseReason.LocalClosing : Connection.CloseReason.SocketError;
+                                ? Connection.CloseReason.LocalClosing
+                                : Connection.CloseReason.SocketError;
                         }
                     }
                     else if (!CloseReason.HasValue)
@@ -135,7 +133,7 @@ namespace SuperSocket.Connection
                 }
 
                 // Make the data available to the PipeReader
-                var result = await writer.FlushAsync().ConfigureAwait(false);
+                var result = await writer.FlushAsync(cancellationToken).ConfigureAwait(false);
 
                 if (result.IsCompleted)
                 {
@@ -162,7 +160,8 @@ namespace SuperSocket.Connection
             {
                 try
                 {
-                    await SendOverIOAsync(buffer, CancellationToken.None).ConfigureAwait(false); ;
+                    await SendOverIoAsync(buffer, CancellationToken.None).ConfigureAwait(false);
+                    ;
                     UpdateLastActiveTime();
                 }
                 catch (Exception e)
@@ -181,9 +180,9 @@ namespace SuperSocket.Connection
             return completed;
         }
 
-        protected abstract ValueTask<int> SendOverIOAsync(ReadOnlySequence<byte> buffer, CancellationToken cancellationToken);
+        protected abstract ValueTask<int> SendOverIoAsync(ReadOnlySequence<byte> buffer, CancellationToken cancellationToken);
 
-        protected internal ArraySegment<T> GetArrayByMemory<T>(ReadOnlyMemory<T> memory)
+        protected ArraySegment<T> GetArrayByMemory<T>(ReadOnlyMemory<T> memory)
         {
             if (!MemoryMarshal.TryGetArray(memory, out var result))
             {
@@ -192,6 +191,7 @@ namespace SuperSocket.Connection
 
             return result;
         }
+
         protected override bool IsIgnorableException(Exception e)
         {
             if (base.IsIgnorableException(e))

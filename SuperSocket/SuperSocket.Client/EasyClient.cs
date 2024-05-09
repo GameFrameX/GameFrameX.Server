@@ -26,11 +26,10 @@ namespace SuperSocket.Client
         {
             _packageEncoder = packageEncoder;
         }
-        
+
         public EasyClient(IPipelineFilter<TPackage> pipelineFilter, IPackageEncoder<TSendPackage> packageEncoder, ILogger logger = null)
             : this(pipelineFilter, packageEncoder, new ConnectionOptions { Logger = logger })
         {
-
         }
 
         public EasyClient(IPipelineFilter<TPackage> pipelineFilter, IPackageEncoder<TSendPackage> packageEncoder, ConnectionOptions options)
@@ -73,19 +72,16 @@ namespace SuperSocket.Client
 
         protected EasyClient()
         {
-
         }
 
         public EasyClient(IPipelineFilter<TReceivePackage> pipelineFilter)
             : this(pipelineFilter, NullLogger.Instance)
         {
-            
         }
 
         public EasyClient(IPipelineFilter<TReceivePackage> pipelineFilter, ILogger logger)
             : this(pipelineFilter, new ConnectionOptions { Logger = logger })
         {
-
         }
 
         public EasyClient(IPipelineFilter<TReceivePackage> pipelineFilter, ConnectionOptions options)
@@ -124,7 +120,7 @@ namespace SuperSocket.Client
             {
                 connectors.Add(new GZipConnector(CompressionLevel));
             }
-            
+
             return BuildConnectors(connectors);
         }
 
@@ -141,7 +137,7 @@ namespace SuperSocket.Client
 
                 prevConnector = connector as ConnectorBase;
             }
-            
+
             return connectors.First();
         }
 
@@ -159,7 +155,7 @@ namespace SuperSocket.Client
             {
                 OnError($"The connection to {remoteEndPoint} was cancelled.", state.Exception);
                 return false;
-            }                
+            }
 
             if (!state.Result)
             {
@@ -177,7 +173,7 @@ namespace SuperSocket.Client
         }
 
         public void AsUdp(IPEndPoint remoteEndPoint, ArrayPool<byte> bufferPool = null, int bufferSize = 4096)
-        { 
+        {
             var localEndPoint = LocalEndPoint;
 
             if (localEndPoint == null)
@@ -186,7 +182,7 @@ namespace SuperSocket.Client
             }
 
             var socket = new Socket(remoteEndPoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
-            
+
             // bind the local endpoint
             socket.Bind(localEndPoint);
 

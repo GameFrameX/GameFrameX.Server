@@ -22,16 +22,15 @@ namespace SuperSocket.Server
 
         public AppSession()
         {
-            
         }
 
         void IAppSession.Initialize(IServerInfo server, IConnection connection)
         {
             if (connection is IConnectionWithSessionIdentifier connectionWithSessionIdentifier)
                 SessionID = connectionWithSessionIdentifier.SessionIdentifier;
-            else                
+            else
                 SessionID = Guid.NewGuid().ToString();
-            
+
             Server = server;
             StartTime = DateTimeOffset.Now;
             _connection = connection;
@@ -71,7 +70,7 @@ namespace SuperSocket.Server
         public event AsyncEventHandler Connected;
 
         public event AsyncEventHandler<CloseEventArgs> Closed;
-        
+
         private Dictionary<object, object> _items;
 
         public object this[object name]
@@ -84,7 +83,7 @@ namespace SuperSocket.Server
                     return null;
 
                 object value;
-                
+
                 if (items.TryGetValue(name, out value))
                     return value;
 
@@ -121,7 +120,7 @@ namespace SuperSocket.Server
             if (closeEventHandler == null)
                 return;
 
-             await closeEventHandler.Invoke(this, e);
+            await closeEventHandler.Invoke(this, e);
         }
 
 
@@ -134,7 +133,7 @@ namespace SuperSocket.Server
         {
             State = SessionState.Connected;
 
-            await OnSessionConnectedAsync();            
+            await OnSessionConnectedAsync();
 
             var connectedEventHandler = Connected;
 
@@ -170,7 +169,6 @@ namespace SuperSocket.Server
 
         protected virtual void Reset()
         {
-
         }
 
         private void ClearEvent<TEventHandler>(ref TEventHandler sessionEvent)
@@ -196,7 +194,7 @@ namespace SuperSocket.Server
 
             if (connection == null)
                 return;
-            
+
             try
             {
                 await connection.CloseAsync(reason);
@@ -215,10 +213,7 @@ namespace SuperSocket.Server
 
         void ILogger.Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
-            GetLogger().Log<TState>(logLevel, eventId, state, exception, (s, e) =>
-            {
-                return $"Session[{this.SessionID}]: {formatter(s, e)}";
-            });
+            GetLogger().Log<TState>(logLevel, eventId, state, exception, (s, e) => { return $"Session[{this.SessionID}]: {formatter(s, e)}"; });
         }
 
         bool ILogger.IsEnabled(LogLevel logLevel)

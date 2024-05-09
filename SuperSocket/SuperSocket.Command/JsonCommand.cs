@@ -8,7 +8,6 @@ namespace SuperSocket.Command
 {
     public abstract class JsonCommand<TJsonObject> : JsonCommand<IAppSession, TJsonObject>
     {
-
     }
 
     public abstract class JsonCommand<TAppSession, TJsonObject> : ICommand<TAppSession, IStringPackage>
@@ -26,7 +25,7 @@ namespace SuperSocket.Command
 
         public virtual void Execute(TAppSession session, IStringPackage package)
         {
-            var content = package.Body;            
+            var content = package.Body;
             ExecuteJson(session, string.IsNullOrEmpty(content) ? default(TJsonObject) : Deserialize(content));
         }
 
@@ -40,7 +39,6 @@ namespace SuperSocket.Command
 
     public abstract class JsonAsyncCommand<TJsonObject> : JsonAsyncCommand<IAppSession, TJsonObject>
     {
-
     }
 
     public abstract class JsonAsyncCommand<TAppSession, TJsonObject> : IAsyncCommand<TAppSession, IStringPackage>

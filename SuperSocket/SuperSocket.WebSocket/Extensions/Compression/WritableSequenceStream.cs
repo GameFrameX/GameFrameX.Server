@@ -14,12 +14,19 @@ namespace SuperSocket.WebSocket.Extensions.Compression
 
         public override bool CanWrite => true;
 
-        public override long Length { get => throw new NotSupportedException(); }
+        public override long Length
+        {
+            get => throw new NotSupportedException();
+        }
 
-        public override long Position { get => throw new NotSupportedException(); set => throw new NotSupportedException(); }
+        public override long Position
+        {
+            get => throw new NotSupportedException();
+            set => throw new NotSupportedException();
+        }
 
         private SequenceSegment _head;
-        
+
         private SequenceSegment _tail;
 
         private static readonly ArrayPool<byte> _arrayPool = ArrayPool<byte>.Shared;

@@ -94,7 +94,7 @@ namespace SuperSocket.Server
             InitializeMiddlewares();
 
             var packageHandler = serviceProvider.GetService<IPackageHandler<TReceivePackageInfo>>()
-                ?? _middlewares.OfType<IPackageHandler<TReceivePackageInfo>>().FirstOrDefault();
+                                 ?? _middlewares.OfType<IPackageHandler<TReceivePackageInfo>>().FirstOrDefault();
 
             if (packageHandler == null)
             {
@@ -103,10 +103,10 @@ namespace SuperSocket.Server
             else
             {
                 var errorHandler = serviceProvider.GetService<Func<IAppSession, PackageHandlingException<TReceivePackageInfo>, ValueTask<bool>>>()
-                    ?? OnSessionErrorAsync;
+                                   ?? OnSessionErrorAsync;
 
                 _packageHandlingScheduler = serviceProvider.GetService<IPackageHandlingScheduler<TReceivePackageInfo>>()
-                    ?? new SerialPackageHandlingScheduler<TReceivePackageInfo>();
+                                            ?? new SerialPackageHandlingScheduler<TReceivePackageInfo>();
                 _packageHandlingScheduler.Initialize(packageHandler, errorHandler);
             }
         }
@@ -310,11 +310,11 @@ namespace SuperSocket.Server
             if (closedHandler != null)
                 return closedHandler.Invoke(session, e);
 
-            #if NETSTANDARD2_1
+#if NETSTANDARD2_1
                 return GetCompletedTask();
-            #else
-                return ValueTask.CompletedTask;
-            #endif
+#else
+            return ValueTask.CompletedTask;
+#endif
         }
 
         protected virtual async ValueTask FireSessionConnectedEvent(AppSession session)
@@ -346,7 +346,7 @@ namespace SuperSocket.Server
                 if (!handshakeSession.Handshaked)
                     return;
             }
-            
+
             await UnRegisterSessionFromMiddlewares(session);
 
             _logger.LogInformation($"The session disconnected: {session.SessionID} ({reason})");
@@ -397,7 +397,7 @@ namespace SuperSocket.Server
 
                 await foreach (var p in packageStream)
                 {
-                    if(_packageHandlingContextAccessor != null)
+                    if (_packageHandlingContextAccessor != null)
                     {
                         _packageHandlingContextAccessor.PackageHandlingContext = new PackageHandlingContext<IAppSession, TReceivePackageInfo>(session, p);
                     }
@@ -463,20 +463,20 @@ namespace SuperSocket.Server
 
         protected virtual ValueTask OnStartedAsync()
         {
-            #if NETSTANDARD2_1
+#if NETSTANDARD2_1
                 return GetCompletedTask();
-            #else
-                return ValueTask.CompletedTask;
-            #endif
+#else
+            return ValueTask.CompletedTask;
+#endif
         }
 
         protected virtual ValueTask OnStopAsync()
         {
-            #if NETSTANDARD2_1
+#if NETSTANDARD2_1
                 return GetCompletedTask();
-            #else
-                return ValueTask.CompletedTask;
-            #endif
+#else
+            return ValueTask.CompletedTask;
+#endif
         }
 
         private async Task StopListener(IConnectionListener listener)
@@ -525,6 +525,7 @@ namespace SuperSocket.Server
         }
 
         #region IDisposable Support
+
         private bool disposedValue = false; // To detect redundant calls
 
         ValueTask IAsyncDisposable.DisposeAsync() => DisposeAsync(true);

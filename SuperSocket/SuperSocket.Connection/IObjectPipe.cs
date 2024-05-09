@@ -5,7 +5,7 @@ namespace SuperSocket.Connection
 {
     public interface IObjectPipe
     {
-        void WirteEOF();
+        void WriteEOF();
     }
 
     public interface IObjectPipe<T> : IObjectPipe

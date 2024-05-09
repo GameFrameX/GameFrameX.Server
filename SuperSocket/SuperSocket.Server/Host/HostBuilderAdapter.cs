@@ -18,13 +18,11 @@ namespace SuperSocket.Server.Host
         public HostBuilderAdapter()
             : this(args: null)
         {
-            
         }
 
         public HostBuilderAdapter(string[] args)
             : this(GenericHost.CreateDefaultBuilder(args))
         {
-            
         }
 
         public HostBuilderAdapter(IHostBuilder hostBuilder)

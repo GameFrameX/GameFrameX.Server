@@ -16,25 +16,25 @@ namespace SuperSocket.Server
         public static ISuperSocketHostBuilder UseUdp(this ISuperSocketHostBuilder hostBuilder)
         {
             return (hostBuilder.ConfigureServices((context, services) =>
-            {
-                services.AddSingleton<IConnectionListenerFactory, UdpConnectionListenerFactory>();
-                services.AddSingleton<IConnectionFactoryBuilder, UdpConnectionFactoryBuilder>();
-            }) as ISuperSocketHostBuilder)
-            .ConfigureSupplementServices((context, services) =>
-            {
-                if (!services.Any(s => s.ServiceType == typeof(IUdpSessionIdentifierProvider)))
                 {
-                    services.AddSingleton<IUdpSessionIdentifierProvider, IPAddressUdpSessionIdentifierProvider>();
-                }
+                    services.AddSingleton<IConnectionListenerFactory, UdpConnectionListenerFactory>();
+                    services.AddSingleton<IConnectionFactoryBuilder, UdpConnectionFactoryBuilder>();
+                }) as ISuperSocketHostBuilder)
+                .ConfigureSupplementServices((context, services) =>
+                {
+                    if (!services.Any(s => s.ServiceType == typeof(IUdpSessionIdentifierProvider)))
+                    {
+                        services.AddSingleton<IUdpSessionIdentifierProvider, IPAddressUdpSessionIdentifierProvider>();
+                    }
 
-                if (!services.Any(s => s.ServiceType == typeof(IAsyncSessionContainer)))
-                {
-                    services.TryAddEnumerable(ServiceDescriptor.Singleton<IMiddleware, InProcSessionContainerMiddleware>(s => s.GetRequiredService<InProcSessionContainerMiddleware>()));
-                    services.AddSingleton<InProcSessionContainerMiddleware>();
-                    services.AddSingleton<ISessionContainer>((s) => s.GetRequiredService<InProcSessionContainerMiddleware>());
-                    services.AddSingleton<IAsyncSessionContainer>((s) => s.GetRequiredService<ISessionContainer>().ToAsyncSessionContainer());
-                }
-            });
+                    if (!services.Any(s => s.ServiceType == typeof(IAsyncSessionContainer)))
+                    {
+                        services.TryAddEnumerable(ServiceDescriptor.Singleton<IMiddleware, InProcSessionContainerMiddleware>(s => s.GetRequiredService<InProcSessionContainerMiddleware>()));
+                        services.AddSingleton<InProcSessionContainerMiddleware>();
+                        services.AddSingleton<ISessionContainer>((s) => s.GetRequiredService<InProcSessionContainerMiddleware>());
+                        services.AddSingleton<IAsyncSessionContainer>((s) => s.GetRequiredService<ISessionContainer>().ToAsyncSessionContainer());
+                    }
+                });
         }
 
         public static ISuperSocketHostBuilder<TReceivePackage> UseUdp<TReceivePackage>(this ISuperSocketHostBuilder<TReceivePackage> hostBuilder)

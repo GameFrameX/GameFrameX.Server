@@ -1,4 +1,3 @@
-
 using System.Threading.Tasks;
 using SuperSocket.Server.Abstractions.Session;
 

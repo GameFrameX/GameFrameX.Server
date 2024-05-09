@@ -8,7 +8,6 @@ namespace SuperSocket.ProtoBase
         public DefaultPipelineFilterFactory(IServiceProvider serviceProvider)
             : base(serviceProvider)
         {
-
         }
 
         protected override IPipelineFilter<TPackageInfo> CreateCore(object client)

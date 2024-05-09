@@ -11,7 +11,6 @@ using SuperSocket.ProtoBase;
 
 namespace SuperSocket.Client.Proxy
 {
-
     public abstract class ProxyConnectorBase : ConnectorBase
     {
         private EndPoint _proxyEndPoint;
@@ -29,11 +28,11 @@ namespace SuperSocket.Client.Proxy
             var proxyEndPoint = _proxyEndPoint;
 
             ConnectState result;
-            
+
             try
             {
                 result = await socketConnector.ConnectAsync(proxyEndPoint, null, cancellationToken);
-                
+
                 if (!result.Result)
                     return result;
             }

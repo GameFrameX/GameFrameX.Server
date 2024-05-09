@@ -19,7 +19,6 @@ namespace SuperSocket.Connection
         public RelayPipeConnection(ConnectionOptions options, Pipe pipeIn, Pipe pipeOut)
             : base(RebuildOptionsWithPipes(options, pipeIn, pipeOut))
         {
-
         }
 
         protected override void Close()
@@ -28,7 +27,7 @@ namespace SuperSocket.Connection
             Output.Writer.Complete();
         }
 
-        protected override async ValueTask<int> SendOverIOAsync(ReadOnlySequence<byte> buffer, CancellationToken cancellationToken)
+        protected override async ValueTask<int> SendOverIoAsync(ReadOnlySequence<byte> buffer, CancellationToken cancellationToken)
         {
             var writer = OutputWriter;
             var total = 0;

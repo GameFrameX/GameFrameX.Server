@@ -12,7 +12,6 @@ namespace SuperSocket.Command
 
     public interface ICommand<TPackageInfo> : ICommand<IAppSession, TPackageInfo>
     {
-
     }
 
     public interface ICommand<TAppSession, TPackageInfo> : ICommand
@@ -23,7 +22,6 @@ namespace SuperSocket.Command
 
     public interface IAsyncCommand<TPackageInfo> : IAsyncCommand<IAppSession, TPackageInfo>
     {
-
     }
 
     public interface IAsyncCommand<TAppSession, TPackageInfo> : ICommand

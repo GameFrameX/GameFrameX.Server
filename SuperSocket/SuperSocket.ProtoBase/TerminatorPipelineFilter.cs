@@ -12,10 +12,10 @@ namespace SuperSocket.ProtoBase
         {
             _terminator = terminator;
         }
-        
+
         public override TPackageInfo Filter(ref SequenceReader<byte> reader)
         {
-            var terminator =  _terminator;
+            var terminator = _terminator;
             var terminatorSpan = terminator.Span;
 
             if (!reader.TryReadTo(out ReadOnlySequence<byte> pack, terminatorSpan, advancePastDelimiter: false))

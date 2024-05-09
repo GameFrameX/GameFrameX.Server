@@ -18,7 +18,6 @@ namespace SuperSocket.Server.Connection
         public DefaultConnectionStreamInitializersFactory()
             : this(CompressionLevel.NoCompression)
         {
-
         }
 
         public DefaultConnectionStreamInitializersFactory(CompressionLevel compressionLevel)

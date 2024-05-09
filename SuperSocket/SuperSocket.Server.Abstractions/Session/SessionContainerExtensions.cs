@@ -50,21 +50,21 @@ namespace SuperSocket.Server.Abstractions.Session
                 .OfType<ISessionContainer>()
                 .FirstOrDefault();
 
-            return sessionContainer?.ToAsyncSessionContainer(); 
+            return sessionContainer?.ToAsyncSessionContainer();
         }
 
         public static ISessionContainer GetSessionContainer(this IServerInfo server)
         {
-            #pragma warning disable CS0618
+#pragma warning disable CS0618
             return server.ServiceProvider.GetSessionContainer();
-            #pragma warning restore CS0618
+#pragma warning restore CS0618
         }
 
         public static IAsyncSessionContainer GetAsyncSessionContainer(this IServerInfo server)
         {
-            #pragma warning disable CS0618
+#pragma warning disable CS0618
             return server.ServiceProvider.GetAsyncSessionContainer();
-            #pragma warning restore CS0618
+#pragma warning restore CS0618
         }
     }
 }

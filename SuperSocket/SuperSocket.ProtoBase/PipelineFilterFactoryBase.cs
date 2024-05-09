@@ -5,7 +5,7 @@ namespace SuperSocket.ProtoBase
     public abstract class PipelineFilterFactoryBase<TPackageInfo> : IPipelineFilterFactory<TPackageInfo>, IPipelineFilterFactory
     {
         protected IPackageDecoder<TPackageInfo> PackageDecoder { get; private set; }
-        
+
         public PipelineFilterFactoryBase(IServiceProvider serviceProvider)
         {
             PackageDecoder = serviceProvider.GetService(typeof(IPackageDecoder<TPackageInfo>)) as IPackageDecoder<TPackageInfo>;

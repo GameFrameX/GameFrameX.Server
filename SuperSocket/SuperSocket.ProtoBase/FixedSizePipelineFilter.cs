@@ -11,7 +11,7 @@ namespace SuperSocket.ProtoBase
         {
             _size = size;
         }
-        
+
         public override TPackageInfo Filter(ref SequenceReader<byte> reader)
         {
             if (reader.Length < _size)

@@ -10,7 +10,6 @@ namespace SuperSocket.Client
 
         public ConnectorBase()
         {
-
         }
 
         protected abstract ValueTask<ConnectState> ConnectAsync(EndPoint remoteEndPoint, ConnectState state, CancellationToken cancellationToken);
@@ -25,7 +24,7 @@ namespace SuperSocket.Client
             var nextConnector = NextConnector;
 
             if (!result.Result || nextConnector == null)
-                return result;            
+                return result;
 
             return await nextConnector.ConnectAsync(remoteEndPoint, result, cancellationToken);
         }

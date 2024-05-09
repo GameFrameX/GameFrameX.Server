@@ -1,5 +1,4 @@
-﻿
-using System.IO.Pipelines;
+﻿using System.IO.Pipelines;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using System.Collections.Specialized;
@@ -10,7 +9,7 @@ namespace SuperSocket.Connection
     {
         // 1M by default
         public int MaxPackageLength { get; set; } = 1024 * 1024;
-        
+
         // 4k by default
         public int ReceiveBufferSize { get; set; } = 1024 * 4;
 
@@ -19,7 +18,7 @@ namespace SuperSocket.Connection
 
         // trigger the read only when the stream is being consumed
         public bool ReadAsDemand { get; set; }
-        
+
         /// <summary>
         /// in milliseconds
         /// </summary>

@@ -24,7 +24,7 @@ namespace SuperSocket.WebSocket.Server
         private ConcurrentQueue<WebSocketSession> _openHandshakePendingQueue = new ConcurrentQueue<WebSocketSession>();
 
         private ConcurrentQueue<WebSocketSession> _closeHandshakePendingQueue = new ConcurrentQueue<WebSocketSession>();
-        
+
         private Timer _checkingTimer;
 
         private readonly HandshakeOptions _options;
@@ -35,12 +35,12 @@ namespace SuperSocket.WebSocket.Server
 
         public int OpenHandshakePendingQueueLength
         {
-            get { return _openHandshakePendingQueue.Count;  }
+            get { return _openHandshakePendingQueue.Count; }
         }
 
         public int CloseHandshakePendingQueueLength
         {
-            get { return _closeHandshakePendingQueue.Count;  }
+            get { return _closeHandshakePendingQueue.Count; }
         }
 
         public WebSocketServerMiddleware(IOptions<HandshakeOptions> handshakeOptions)
@@ -50,7 +50,7 @@ namespace SuperSocket.WebSocket.Server
             if (options == null)
                 options = new HandshakeOptions();
 
-            _options = options;        
+            _options = options;
         }
 
         public override void Start(IServer server)

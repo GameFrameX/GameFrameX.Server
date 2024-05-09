@@ -20,19 +20,16 @@ namespace SuperSocket.Server.Host
         private MultipleServerHostBuilder()
             : this(args: null)
         {
-
         }
 
         private MultipleServerHostBuilder(string[] args)
             : base(args)
         {
-
         }
 
         internal MultipleServerHostBuilder(IHostBuilder hostBuilder)
             : base(hostBuilder)
         {
-
         }
 
         protected virtual void ConfigureServers(HostBuilderContext context, IServiceCollection hostServices)
@@ -51,7 +48,7 @@ namespace SuperSocket.Server.Host
             var services = host.Services;
 
             AdaptMultipleServerHost(services);
-            
+
             return host;
         }
 
@@ -76,7 +73,7 @@ namespace SuperSocket.Server.Host
         private ServerHostBuilderAdapter<TReceivePackage> CreateServerHostBuilder<TReceivePackage>(Action<SuperSocketHostBuilder<TReceivePackage>> hostBuilderDelegate)
             where TReceivePackage : class
         {
-            var hostBuilder = new ServerHostBuilderAdapter<TReceivePackage>(this);            
+            var hostBuilder = new ServerHostBuilderAdapter<TReceivePackage>(this);
             hostBuilderDelegate(hostBuilder);
             return hostBuilder;
         }
@@ -92,7 +89,7 @@ namespace SuperSocket.Server.Host
         public MultipleServerHostBuilder AddServer<TReceivePackage, TPipelineFilter>(Action<ISuperSocketHostBuilder<TReceivePackage>> hostBuilderDelegate)
             where TReceivePackage : class
             where TPipelineFilter : IPipelineFilter<TReceivePackage>, new()
-        {            
+        {
             var hostBuilder = CreateServerHostBuilder<TReceivePackage>(hostBuilderDelegate);
             _hostBuilderAdapters.Add(hostBuilder);
             hostBuilder.UsePipelineFilter<TPipelineFilter>();
@@ -100,7 +97,7 @@ namespace SuperSocket.Server.Host
         }
 
         public MultipleServerHostBuilder AddServer(IServerHostBuilderAdapter hostBuilderAdapter)
-        {            
+        {
             _hostBuilderAdapters.Add(hostBuilderAdapter);
             return this;
         }

@@ -21,7 +21,6 @@ namespace SuperSocket.ProtoBase
         public SequenceSegment(byte[] pooledBuffer, int length)
             : this(pooledBuffer, length, true)
         {
-
         }
 
         public SequenceSegment(ReadOnlyMemory<byte> memory)

@@ -18,10 +18,7 @@ namespace SuperSocket.WebSocket.Server
         {
             this.UsePipelineFilter<WebSocketPipelineFilter>();
             this.UseWebSocketMiddleware();
-            this.ConfigureServices((ctx, services) =>
-            {
-                services.AddSingleton<IPackageHandler<WebSocketPackage>, WebSocketPackageHandler>();
-            });
+            this.ConfigureServices((ctx, services) => { services.AddSingleton<IPackageHandler<WebSocketPackage>, WebSocketPackageHandler>(); });
             this.ConfigureSupplementServices(WebSocketHostBuilder.ValidateHostBuilder);
         }
 
@@ -40,13 +37,11 @@ namespace SuperSocket.WebSocket.Server
         internal WebSocketHostBuilder()
             : this(args: null)
         {
-
         }
 
         internal WebSocketHostBuilder(IHostBuilder hostBuilder)
             : base(hostBuilder)
         {
-            
         }
 
         internal WebSocketHostBuilder(string[] args)
@@ -54,12 +49,12 @@ namespace SuperSocket.WebSocket.Server
         {
             this.ConfigureSupplementServices(WebSocketHostBuilder.ValidateHostBuilder);
         }
-        
+
         protected override void RegisterDefaultServices(HostBuilderContext builderContext, IServiceCollection servicesInHost, IServiceCollection services)
         {
             services.TryAddSingleton<ISessionFactory, GenericSessionFactory<WebSocketSession>>();
             base.RegisterDefaultServices(builderContext, servicesInHost, services);
-        }        
+        }
 
         public static WebSocketHostBuilder Create()
         {
@@ -75,10 +70,7 @@ namespace SuperSocket.WebSocket.Server
         {
             return hostBuilder.UsePipelineFilter<WebSocketPipelineFilter>()
                 .UseWebSocketMiddleware()
-                .ConfigureServices((ctx, services) =>
-                {
-                    services.AddSingleton<IPackageHandler<WebSocketPackage>, WebSocketPackageHandler>();
-                }) as WebSocketHostBuilder;
+                .ConfigureServices((ctx, services) => { services.AddSingleton<IPackageHandler<WebSocketPackage>, WebSocketPackageHandler>(); }) as WebSocketHostBuilder;
         }
 
         public static WebSocketHostBuilder Create(IHostBuilder hostBuilder)
@@ -88,7 +80,6 @@ namespace SuperSocket.WebSocket.Server
 
         internal static void ValidateHostBuilder(HostBuilderContext builderCtx, IServiceCollection services)
         {
-            
         }
     }
 }

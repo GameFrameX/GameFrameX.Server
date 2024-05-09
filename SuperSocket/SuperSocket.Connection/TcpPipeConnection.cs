@@ -4,17 +4,15 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Buffers;
 using System.Collections.Generic;
-using SuperSocket.ProtoBase;
 
 namespace SuperSocket.Connection
 {
     public class TcpPipeConnection : PipeConnection
     {
-
         private Socket _socket;
 
         private List<ArraySegment<byte>> _segmentsForSend;
-        
+
         public TcpPipeConnection(Socket socket, ConnectionOptions options)
             : base(options)
         {
@@ -41,7 +39,7 @@ namespace SuperSocket.Connection
                 .ConfigureAwait(false);
         }
 
-        protected override async ValueTask<int> SendOverIOAsync(ReadOnlySequence<byte> buffer, CancellationToken cancellationToken)
+        protected override async ValueTask<int> SendOverIoAsync(ReadOnlySequence<byte> buffer, CancellationToken cancellationToken)
         {
             if (buffer.IsSingleSegment)
             {
@@ -49,7 +47,7 @@ namespace SuperSocket.Connection
                     .SendAsync(GetArrayByMemory(buffer.First), SocketFlags.None, cancellationToken)
                     .ConfigureAwait(false);
             }
-            
+
             if (_segmentsForSend == null)
             {
                 _segmentsForSend = new List<ArraySegment<byte>>();
@@ -68,7 +66,7 @@ namespace SuperSocket.Connection
             }
 
             cancellationToken.ThrowIfCancellationRequested();
-            
+
             return await _socket
                 .SendAsync(_segmentsForSend, SocketFlags.None)
                 .ConfigureAwait(false);

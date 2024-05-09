@@ -23,7 +23,7 @@ namespace SuperSocket.Server.Abstractions.Session
                 if (!handshakeSession.Handshaked)
                     return new ValueTask<bool>(true);
             }
-            
+
             _sessions.TryAdd(session.SessionID, session);
             return new ValueTask<bool>(true);
         }
@@ -56,7 +56,7 @@ namespace SuperSocket.Server.Abstractions.Session
                 if (s.State != SessionState.Connected)
                     continue;
 
-                if(criteria == null || criteria(s))
+                if (criteria == null || criteria(s))
                     yield return s;
             }
         }
@@ -71,7 +71,7 @@ namespace SuperSocket.Server.Abstractions.Session
                 {
                     if (s.State != SessionState.Connected)
                         continue;
-                        
+
                     if (criteria == null || criteria(s))
                         yield return s;
                 }

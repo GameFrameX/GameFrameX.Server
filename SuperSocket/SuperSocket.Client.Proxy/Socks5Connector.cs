@@ -27,7 +27,6 @@ namespace SuperSocket.Client.Proxy
         public Socks5Connector(EndPoint proxyEndPoint)
             : base(proxyEndPoint)
         {
-
         }
 
         public Socks5Connector(EndPoint proxyEndPoint, string username, string password)
@@ -58,7 +57,7 @@ namespace SuperSocket.Client.Proxy
                 };
             }
 
-            if (response.Status == 0x02)// need pass auth
+            if (response.Status == 0x02) // need pass auth
             {
                 var passAuthenRequest = GetPassAuthenBytes();
 
@@ -159,7 +158,7 @@ namespace SuperSocket.Client.Proxy
                             break;
                     }
 
-                    errorMessage = $"failed to connect to proxy ,  { errorMessage }";
+                    errorMessage = $"failed to connect to proxy ,  {errorMessage}";
                     return false;
                 }
             }
@@ -206,7 +205,7 @@ namespace SuperSocket.Client.Proxy
             if (targetEndPoint is IPEndPoint)
             {
                 var endPoint = targetEndPoint as IPEndPoint;
-                port = endPoint.Port;                
+                port = endPoint.Port;
 
                 if (endPoint.AddressFamily == AddressFamily.InterNetwork)
                 {
@@ -289,7 +288,6 @@ namespace SuperSocket.Client.Proxy
             public Socks5AuthPipelineFilter()
                 : base(2)
             {
-
             }
 
             protected override Socks5Pack DecodePackage(ref ReadOnlySequence<byte> buffer)
@@ -316,7 +314,6 @@ namespace SuperSocket.Client.Proxy
             public Socks5AddressPipelineFilter()
                 : base(5)
             {
-
             }
 
             protected override int GetBodyLengthFromHeader(ref ReadOnlySequence<byte> buffer)

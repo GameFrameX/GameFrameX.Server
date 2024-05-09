@@ -37,7 +37,7 @@ namespace SuperSocket.Client
 
             if (socket == null)
                 throw new Exception("Socket from previous connector is null.");
-            
+
             try
             {
                 var stream = new SslStream(new NetworkStream(socket, true), false);

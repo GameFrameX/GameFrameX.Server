@@ -2,7 +2,7 @@
 
 namespace SuperSocket.Server
 {
-    public interface IPackageHandlingContextAccessor<TPackageInfo> 
+    public interface IPackageHandlingContextAccessor<TPackageInfo>
     {
         PackageHandlingContext<IAppSession, TPackageInfo> PackageHandlingContext { get; set; }
     }

@@ -12,7 +12,6 @@ namespace SuperSocket
         public DefaultStringEncoder()
             : this(new UTF8Encoding(false))
         {
-
         }
 
         public DefaultStringEncoder(Encoding encoding)

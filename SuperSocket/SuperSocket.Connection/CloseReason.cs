@@ -2,6 +2,9 @@ using System;
 
 namespace SuperSocket.Connection
 {
+    /// <summary>
+    /// 关闭原因
+    /// </summary>
     public enum CloseReason
     {
         /// <summary>

@@ -27,7 +27,7 @@ namespace SuperSocket
         /// <value>
         /// The name of the store.
         /// </value>
-        public string StoreName { get; set; } = "My";//The X.509 certificate store for personal certificates.
+        public string StoreName { get; set; } = "My"; //The X.509 certificate store for personal certificates.
 
         /// <summary>
         /// Gets the thumbprint.
@@ -41,7 +41,7 @@ namespace SuperSocket
         /// <value>
         /// The store location.
         /// </value>
-        public StoreLocation StoreLocation { get; set; } = StoreLocation.CurrentUser;//The X.509 certificate store used by the current user.
+        public StoreLocation StoreLocation { get; set; } = StoreLocation.CurrentUser; //The X.509 certificate store used by the current user.
 
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace SuperSocket
         {
             // The certificate is there already
             if (Certificate != null)
-                return;            
+                return;
 
             // load certificate from pfx file
             if (!string.IsNullOrEmpty(FilePath))

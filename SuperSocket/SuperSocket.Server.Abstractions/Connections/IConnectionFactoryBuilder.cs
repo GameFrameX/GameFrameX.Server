@@ -1,4 +1,3 @@
-
 using SuperSocket.Connection;
 
 namespace SuperSocket.Server.Abstractions.Connections

@@ -19,7 +19,7 @@ namespace SuperSocket.Server.Connection
                 stream,
                 new GZipStream(stream, CompressionMode.Decompress),
                 new GZipStream(stream, CompressionLevel));
-                
+
             return Task.FromResult<Stream>(connectionStream);
         }
 

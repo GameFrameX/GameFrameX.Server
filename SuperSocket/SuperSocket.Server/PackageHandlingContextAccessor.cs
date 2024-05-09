@@ -16,10 +16,7 @@ namespace SuperSocket.Server
         /// <inheritdoc/>
         PackageHandlingContext<IAppSession, TPackageInfo> IPackageHandlingContextAccessor<TPackageInfo>.PackageHandlingContext
         {
-            get
-            {
-                return AppSessionCurrent.Value?.Context;
-            }
+            get { return AppSessionCurrent.Value?.Context; }
             set
             {
                 var holder = AppSessionCurrent.Value;
@@ -40,6 +37,4 @@ namespace SuperSocket.Server
             public PackageHandlingContext<IAppSession, TPackageInfo> Context { get; set; }
         }
     }
-
-
 }

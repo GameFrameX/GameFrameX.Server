@@ -24,7 +24,7 @@ namespace SuperSocket.Server
         public ClearIdleSessionMiddleware(IServiceProvider serviceProvider, IOptions<ServerOptions> serverOptions, ILoggerFactory loggerFactory)
         {
             _sessionContainer = serviceProvider.GetService<ISessionContainer>();
-            
+
             if (_sessionContainer == null)
                 throw new Exception($"{nameof(ClearIdleSessionMiddleware)} needs a middleware of {nameof(ISessionContainer)}");
 
@@ -57,7 +57,7 @@ namespace SuperSocket.Server
                         catch (Exception exc)
                         {
                             _logger.LogError(exc, $"Error happened when close the session {s.SessionID} for inactive for a while.");
-                        }                        
+                        }
                     }
                 }
             }

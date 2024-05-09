@@ -33,7 +33,7 @@ namespace SuperSocket.Connection
             }
         }
 
-        private const int _segmentSize =  5;
+        private const int _segmentSize = 5;
         private BufferSegment _first;
         private BufferSegment _current;
         private object _syncRoot = new object();
@@ -74,7 +74,7 @@ namespace SuperSocket.Connection
                 if (_waiting)
                 {
                     _waiting = false;
-                    _taskSourceCore.SetResult(target);                    
+                    _taskSourceCore.SetResult(target);
                     return _length;
                 }
 
@@ -89,10 +89,10 @@ namespace SuperSocket.Connection
                 current.Write(target);
                 _length++;
                 return _length;
-            }            
+            }
         }
 
-        public void WirteEOF()
+        public void WriteEOF()
         {
             Write(default);
         }
@@ -144,14 +144,14 @@ namespace SuperSocket.Connection
                         _taskSourceCore.Reset();
                         _lastReadIsWait = false;
                     }
-                    
+
                     _length--;
 
                     if (_length == 0)
                         OnWaitTaskStart();
 
                     return new ValueTask<T>(value);
-                }                    
+                }
 
                 _waiting = true;
                 _lastReadIsWait = true;
@@ -160,12 +160,11 @@ namespace SuperSocket.Connection
                 OnWaitTaskStart();
 
                 return new ValueTask<T>(this, _taskSourceCore.Version);
-            }            
+            }
         }
 
         protected virtual void OnWaitTaskStart()
         {
-
         }
 
         T IValueTaskSource<T>.GetResult(short token)
@@ -184,6 +183,7 @@ namespace SuperSocket.Connection
         }
 
         #region IDisposable Support
+
         private bool disposedValue = false; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
@@ -270,7 +270,7 @@ namespace SuperSocket.Connection
                     _currentTaskVersion = -1;
                     return;
                 }
-                
+
                 _taskSourceCore.SetResult(result);
                 _currentTaskVersion = 0;
             }

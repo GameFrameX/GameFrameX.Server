@@ -30,7 +30,7 @@ namespace SuperSocket.WebSocket.Server
 
         public event EventHandler CloseHandshakeStarted;
 
-        internal CloseStatus CloseStatus { get; set; }        
+        internal CloseStatus CloseStatus { get; set; }
 
         internal IPackageEncoder<WebSocketPackage> MessageEncoder { get; set; }
 
@@ -75,8 +75,8 @@ namespace SuperSocket.WebSocket.Server
 
             var buffer = new byte[textEncodedLen + 2];
 
-            buffer[0] = (byte) (closeReasonCode / 256);
-            buffer[1] = (byte) (closeReasonCode % 256);
+            buffer[0] = (byte)(closeReasonCode / 256);
+            buffer[1] = (byte)(closeReasonCode % 256);
 
             var length = 2;
 
@@ -127,7 +127,6 @@ namespace SuperSocket.WebSocket.Server
             }
             catch
             {
-
             }
         }
     }
