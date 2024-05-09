@@ -19,9 +19,10 @@ internal sealed class ReqHeartBeatHandler : GlobalComponentHandler<HeartBeatComp
     protected override async Task ActionAsync()
     {
         ReqHeartBeat req = this.Message as ReqHeartBeat;
-        LogHelper.Info("收到心跳请求:" + req.Timestamp);
+        // LogHelper.Info("收到心跳请求:" + req.Timestamp);
         Channel.UpdateReceiveMessageTime();
         resp.Timestamp = TimeHelper.UnixTimeSeconds();
+        resp.UniqueId = req.UniqueId;
         await Channel.WriteAsync(resp);
     }
 }
