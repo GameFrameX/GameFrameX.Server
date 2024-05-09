@@ -4,7 +4,7 @@ namespace GameFrameX.Launcher.PipelineFilter;
 
 public class MessageObjectPipelineFilter : PipelineFilterBase<IMessage>
 {
-    const int HeaderSize = 4 + 4 + 4 + 4;
+    const int HeaderSize = 4 + 8 + 4 + 4;
 
     public override IMessage Filter(ref SequenceReader<byte> reader)
     {
@@ -18,7 +18,15 @@ public class MessageObjectPipelineFilter : PipelineFilterBase<IMessage>
 
         int totalLength = length + HeaderSize;
         var readBuffer = pack.Slice(pack.Start, totalLength);
-        reader.Advance(totalLength);
+        if (reader.Remaining < totalLength)
+        {
+            reader.AdvanceToEnd();
+        }
+        else
+        {
+            reader.Advance(totalLength);
+        }
+
         return this.Decoder.Decode(ref readBuffer, this.Context);
     }
 }

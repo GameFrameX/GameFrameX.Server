@@ -92,7 +92,7 @@ public static class UnityTcpClient
         var buffer = new byte[bytes.Length + 20];
         int offset = 0;
         buffer.WriteInt(bytes.Length, ref offset);
-        buffer.WriteInt((int)req.UniqueId, ref offset);
+        buffer.WriteLong(req.UniqueId, ref offset);
         var messageId = ProtoMessageIdHandler.GetReqMessageIdByType(req.GetType());
         buffer.WriteInt(messageId, ref offset);
         buffer.WriteBytes(bytes, ref offset);
