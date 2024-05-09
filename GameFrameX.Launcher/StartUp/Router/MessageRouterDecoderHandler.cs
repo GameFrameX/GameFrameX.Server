@@ -21,7 +21,7 @@ public class MessageRouterDecoderHandler : IMessageDecoderHandler, IPackageDecod
         {
             int readOffset = 0;
             var length = data.ReadInt(ref readOffset);
-            var uniqueId = data.ReadInt(ref readOffset);
+            var uniqueId = data.ReadLong(ref readOffset);
             var messageId = data.ReadInt(ref readOffset);
             var messageData = data.ReadBytes(ref readOffset);
             var messageType = ProtoMessageIdHandler.GetReqTypeById(messageId);
