@@ -1,23 +1,24 @@
-﻿using GameFrameX.NetWork.Messages;
-using SuperSocket.ProtoBase;
+﻿using SuperSocket.ProtoBase;
 
 namespace GameFrameX.Launcher.PipelineFilter;
 
-public class MessageObjectPipelineFilter : IPipelineFilter<IMessage>
+public class MessageObjectPipelineFilter : PipelineFilterBase<IMessage>
 {
-    public void Reset()
+    const int HeaderSize = 4 + 4 + 4 + 4;
+
+    public override IMessage Filter(ref SequenceReader<byte> reader)
     {
+        var pack = reader.Sequence;
+        reader.TryReadBigEndian(out int length);
+        if (length <= 0)
+        {
+            reader.AdvanceToEnd();
+            return null;
+        }
+
+        int totalLength = length + HeaderSize;
+        var readBuffer = pack.Slice(pack.Start, totalLength);
+        reader.Advance(totalLength);
+        return this.Decoder.Decode(ref readBuffer, this.Context);
     }
-
-    public object? Context { get; set; }
-
-    public IMessage Filter(ref SequenceReader<byte> reader)
-    {
-        ReadOnlySequence<byte> buffer = reader.Sequence;
-        reader.Advance(buffer.Length);
-        return this.Decoder.Decode(ref buffer, this.Context);
-    }
-
-    public IPackageDecoder<IMessage> Decoder { get; set; }
-    public IPipelineFilter<IMessage> NextFilter { get; }
 }
