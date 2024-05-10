@@ -24,7 +24,8 @@ public class MessageObjectPipelineFilter : PipelineFilterBase<IMessage>
         }
         else
         {
-            reader.Advance(totalLength);
+            // 前面读了一个长度，所以要减回去
+            reader.Advance(totalLength - 4);
         }
 
         return this.Decoder.Decode(ref readBuffer, this.Context);
