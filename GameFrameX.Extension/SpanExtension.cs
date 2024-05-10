@@ -358,9 +358,9 @@ namespace GameFrameX.Extension
                 return;
             }
 
-            if (offset + value.Length + IntSize > buffer.Length)
+            if (offset + value.Length > buffer.Length)
             {
-                throw new ArgumentException($"xbuffer write out of index {offset + value.Length + IntSize}, {buffer.Length}");
+                throw new ArgumentException($"buffer write out of index {offset + value.Length + IntSize}, {buffer.Length}");
             }
 
             fixed (byte* ptr = buffer, valPtr = value)
