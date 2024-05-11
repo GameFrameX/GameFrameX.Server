@@ -230,7 +230,7 @@ namespace GameFrameX.Core.Actors
                 foreach (var actor in ActorMap.Values)
                 {
                     //如果定时回存的过程中关服了，直接终止定时回存，因为关服时会调用SaveAll以保证数据回存
-                    if (!GlobalTimer.working)
+                    if (!GlobalTimer.IsWorking)
                         return;
                     if (count < ONCE_SAVE_COUNT)
                     {

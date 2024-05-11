@@ -64,7 +64,7 @@ namespace GameFrameX.Core.Comps
                 foreach (var func in saveFuncs)
                 {
                     await func(false, false);
-                    if (!GlobalTimer.working)
+                    if (!GlobalTimer.IsWorking)
                         return;
                 }
             }
