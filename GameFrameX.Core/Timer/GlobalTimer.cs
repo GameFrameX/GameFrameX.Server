@@ -23,9 +23,10 @@ namespace GameFrameX.Core.Timer
         /// </summary>
         public static void Start()
         {
+            LogHelper.Info("初始化全局定时开始...");
             working = true;
             LoopTask = Task.Run(Loop);
-            LogHelper.Info($"初始化全局定时完成");
+            LogHelper.Info("初始化全局定时完成...");
         }
 
         /// <summary>
