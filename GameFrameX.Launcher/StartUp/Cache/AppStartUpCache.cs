@@ -3,15 +3,9 @@ using GameFrameX.Cache;
 using GameFrameX.Cache.Memory;
 using GameFrameX.DBServer.State;
 using GameFrameX.Launcher.PipelineFilter;
-using SuperSocket.ClientEngine;
-using SuperSocket.Server;
-using SuperSocket.Server.Abstractions;
-using SuperSocket.Server.Abstractions.Session;
-using SuperSocket.Server.Host;
-using ErrorEventArgs = SuperSocket.ClientEngine.ErrorEventArgs;
 using Timer = System.Timers.Timer;
 
-namespace GameFrameX.Launcher.StartUp
+namespace GameFrameX.Launcher.StartUp.Cache
 {
     /// <summary>
     /// 游戏数据缓存

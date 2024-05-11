@@ -5,16 +5,6 @@ using GameFrameX.Launcher.StartUp.Router;
 using GameFrameX.NetWork;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using SuperSocket;
-using SuperSocket.ClientEngine;
-using SuperSocket.Connection;
-using SuperSocket.Server;
-using SuperSocket.Server.Abstractions;
-using SuperSocket.Server.Abstractions.Session;
-using SuperSocket.Server.Host;
-using SuperSocket.WebSocket;
-using SuperSocket.WebSocket.Server;
-using ErrorEventArgs = SuperSocket.ClientEngine.ErrorEventArgs;
 
 
 /// <summary>
