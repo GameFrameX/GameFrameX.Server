@@ -20,11 +20,11 @@
                 LogHelper.Info($"Load Config Start...");
                 ConfigManager.Instance.LoadConfig();
                 LogHelper.Info($"Load Config End...");
-                
+
                 LogHelper.Info($"actor limit logic start...");
                 ActorLimit.Init(ActorLimit.RuleType.None);
                 LogHelper.Info($"actor limit logic end...");
-                
+
                 LogHelper.Info($"launch db service start...");
                 MongoDbService mongoDbService = new MongoDbService();
                 GameDb.Init(mongoDbService);
@@ -64,9 +64,9 @@
                 {
                     ServerId = 1501,
                     ServerType = ServerType.Game,
-                    TcpPort = 38008,
+                    TcpPort = 21000,
                     HttpPort = 20001,
-                    WsPort = 25001,
+                    WsPort = 21100,
                     //
                     HttpCode = "inner_httpcode",
                     DataBaseUrl = "mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority",
