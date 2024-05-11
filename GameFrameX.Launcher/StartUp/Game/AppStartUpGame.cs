@@ -1,4 +1,4 @@
-﻿namespace GameFrameX.Launcher.StartUp
+﻿namespace GameFrameX.Launcher.StartUp.Game
 {
     /// <summary>
     /// 游戏服务器
@@ -20,9 +20,12 @@
                 LogHelper.Info($"Load Config Start...");
                 ConfigManager.Instance.LoadConfig();
                 LogHelper.Info($"Load Config End...");
-
-                LogHelper.Info($"launch db service start...");
+                
+                LogHelper.Info($"actor limit logic start...");
                 ActorLimit.Init(ActorLimit.RuleType.None);
+                LogHelper.Info($"actor limit logic end...");
+                
+                LogHelper.Info($"launch db service start...");
                 MongoDbService mongoDbService = new MongoDbService();
                 GameDb.Init(mongoDbService);
                 GameDb.Open(Setting.DataBaseUrl, Setting.DataBaseName);
