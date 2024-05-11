@@ -16,9 +16,9 @@ namespace GameFrameX.Hotfix.Player.Role.Bag.Agent
             }
         }
 
-        private ResBagInfo BuildInfoMsg()
+        private RespBagInfo BuildInfoMsg()
         {
-            var res = new ResBagInfo();
+            var res = new RespBagInfo();
             foreach (var kv in State.ItemMap)
                 res.ItemDic[kv.Key] = kv.Value;
             return res;
@@ -43,7 +43,7 @@ namespace GameFrameX.Hotfix.Player.Role.Bag.Agent
             //合成成功后分发一个获得宠物的事件(在PetCompAgent中监听此事件)
             this.Dispatch(EventId.GotNewPet, new OneParam<int>(1000));
 
-            var res = new ResComposePet();
+            var res = new RespComposePet();
             res.PetId = 1000;
             await this.NotifyClient(res, reqMsg.UniId);
         }
