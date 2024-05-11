@@ -11,12 +11,12 @@ namespace GameFrameX.Core.Timer
         /// <summary>
         /// 循环任务
         /// </summary>
-        private static Task LoopTask;
+        private static Task _loopTask;
 
         /// <summary>
         /// 是否正在工作
         /// </summary>
-        public static volatile bool working = false;
+        public static volatile bool IsWorking = false;
 
         /// <summary>
         /// 开始全局定时
@@ -24,8 +24,8 @@ namespace GameFrameX.Core.Timer
         public static void Start()
         {
             LogHelper.Info("初始化全局定时开始...");
-            working = true;
-            LoopTask = Task.Run(Loop);
+            IsWorking = true;
+            _loopTask = Task.Run(Loop);
             LogHelper.Info("初始化全局定时完成...");
         }
 
@@ -36,23 +36,23 @@ namespace GameFrameX.Core.Timer
         {
             var nextSaveTime = NextSaveTime();
             var saveInterval = TimeSpan.FromMilliseconds(GlobalConst.SaveIntervalInMilliSeconds);
-            var ONCE_DELAY = TimeSpan.FromMilliseconds(200);
+            var onceDelay = TimeSpan.FromMilliseconds(200);
 
-            while (working)
+            while (IsWorking)
             {
                 LogHelper.Info($"下次定时回存时间 {nextSaveTime}");
 
-                while (DateTime.Now < nextSaveTime && working)
+                while (DateTime.Now < nextSaveTime && IsWorking)
                 {
-                    await Task.Delay(ONCE_DELAY);
+                    await Task.Delay(onceDelay);
                 }
 
-                if (!working)
+                if (!IsWorking)
                     break;
 
                 var startTime = DateTime.Now;
 
-                // await GameDb.TimerSave();
+                await GameDb.TimerSave();
 
                 var cost = (DateTime.Now - startTime).TotalMilliseconds;
                 LogHelper.Info($"定时回存完成 耗时: {cost:f4}ms");
@@ -101,11 +101,12 @@ namespace GameFrameX.Core.Timer
         /// </summary>
         public static async Task Stop()
         {
-            working = false;
-            await LoopTask;
-            // await GameDb.SaveAll();
-            // GameDb.Close();
-            LogHelper.Info($"停止全局定时完成");
+            LogHelper.Info($"停止全局定时开始...");
+            IsWorking = false;
+            await _loopTask;
+            await GameDb.SaveAll();
+            GameDb.Close();
+            LogHelper.Info($"停止全局定时完成...");
         }
     }
 }
