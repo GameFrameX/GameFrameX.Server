@@ -109,31 +109,6 @@ namespace GameFrameX.Core.Hotfix
             return _module.GetHttpHandler(cmd);
         }
 
-        static Func<Type, int> _msgGetterByGetId;
-
-        public static void SetMsgGetterByGetId(Func<Type, int> msgGetter)
-        {
-            _msgGetterByGetId = msgGetter;
-        }
-
-        public static int GetMsgIdByType(Type type)
-        {
-            return _msgGetterByGetId(type);
-        }
-
-        static Func<int, Type> _msgGetterByGetType;
-
-        public static void SetMsgGetter(Func<int, Type> msgGetter)
-        {
-            _msgGetterByGetType = msgGetter;
-        }
-
-
-        public static Type GetMsgTypeById(int msgId)
-        {
-            return _msgGetterByGetType(msgId);
-        }
-
         public static List<IEventListener> FindListeners(ActorType actorType, int evtId)
         {
             return _module.FindListeners(actorType, evtId) ?? EMPTY_LISTENER_LIST;

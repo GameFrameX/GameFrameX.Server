@@ -16,16 +16,6 @@ namespace GameFrameX.Hotfix.Common
             }
 
             LogHelper.Info("load config data");
-            HotfixManager.SetMsgGetterByGetId((type) =>
-            {
-                // Log.Debug("MsgType:" + type);
-                return ProtoMessageIdHandler.GetRespMessageIdByType(type);
-            });
-            HotfixManager.SetMsgGetter((messageId) =>
-            {
-                // Log.Debug("MsgID:" + messageId);
-                return ProtoMessageIdHandler.GetReqTypeById(messageId);
-            });
             // var webSocketMessageHelper = new WebSocketMessageHelper(HotfixMgr.GetTcpHandler, HotfixMgr.GetMsgTypeById, HotfixMgr.GetMsgIdByType);
             // await WebSocketServer.Start(setting.WsPort, setting.WssPort, setting.WssCertFilePath, setting, webSocketMessageHelper, new WebSocketChannelHandler());
             LogHelper.Info("WebSocket 服务启动完成...");
