@@ -36,7 +36,7 @@ public class MessageGameEncoderHandler : IMessageEncoderHandler, IPackageEncoder
     {
         var bytes = Handler(pack);
         writer.Write(bytes);
-        ArrayPool<byte>.Shared.Return(bytes);
+        // ArrayPool<byte>.Shared.Return(bytes);
         return bytes.Length;
     }
 }
