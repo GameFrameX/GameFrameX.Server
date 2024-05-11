@@ -54,7 +54,7 @@ namespace GameFrameX.Proto.Proto
 	/// 请求登录返回
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(301)]
+	[MessageTypeHandler(300)]
 	public partial class RespLogin : MessageObject, IResponseMessage
 	{
 		/// <summary>
@@ -75,7 +75,7 @@ namespace GameFrameX.Proto.Proto
 	/// 客户端每次请求都会回复错误码
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(302)]
+	[MessageTypeHandler(301)]
 	public partial class RespErrorCode : MessageObject, IResponseMessage
 	{
 		/// <summary>
@@ -96,7 +96,7 @@ namespace GameFrameX.Proto.Proto
 	/// 
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(303)]
+	[MessageTypeHandler(302)]
 	public partial class RespPrompt : MessageObject, IResponseMessage
 	{
 		/// <summary>

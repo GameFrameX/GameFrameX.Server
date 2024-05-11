@@ -30,7 +30,7 @@ namespace GameFrameX.Proto.Proto
 	/// 
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(1702)]
+	[MessageTypeHandler(1701)]
 	public partial class S2C_GetShopItemList : MessageObject, IResponseMessage
 	{
 		/// <summary>
@@ -93,7 +93,7 @@ namespace GameFrameX.Proto.Proto
 	/// 获取限购列表
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(1703)]
+	[MessageTypeHandler(1702)]
 	public partial class C2S_GetLimitList : MessageObject, IRequestMessage
 	{
 		/// <summary>
@@ -126,7 +126,7 @@ namespace GameFrameX.Proto.Proto
 	/// 存储数据
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(1704)]
+	[MessageTypeHandler(1702)]
 	public partial class S2C_GetLimitList : MessageObject, IResponseMessage
 	{
 		/// <summary>
@@ -189,7 +189,7 @@ namespace GameFrameX.Proto.Proto
 	/// 获取商品列表
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(1705)]
+	[MessageTypeHandler(1703)]
 	public partial class C2S_GetShopPaymentList : MessageObject, IRequestMessage
 	{
 		/// <summary>
@@ -204,7 +204,7 @@ namespace GameFrameX.Proto.Proto
 	/// 
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(1706)]
+	[MessageTypeHandler(1703)]
 	public partial class S2C_GetShopPaymentList : MessageObject, IResponseMessage
 	{
 		/// <summary>
@@ -243,7 +243,7 @@ namespace GameFrameX.Proto.Proto
 	/// 获取限购列表
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(1707)]
+	[MessageTypeHandler(1704)]
 	public partial class C2S_GetPaymentList : MessageObject, IRequestMessage
 	{
 		/// <summary>
@@ -270,7 +270,7 @@ namespace GameFrameX.Proto.Proto
 	/// 存储数据
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(1708)]
+	[MessageTypeHandler(1704)]
 	public partial class S2C_GetPaymentList : MessageObject, IResponseMessage
 	{
 		/// <summary>

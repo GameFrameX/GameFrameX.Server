@@ -24,7 +24,7 @@ namespace GameFrameX.Proto.Proto
 	/// 返回心跳
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(2)]
+	[MessageTypeHandler(1)]
 	public partial class RespHeartBeat : MessageObject, IResponseMessage
 	{
 		/// <summary>
