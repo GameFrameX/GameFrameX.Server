@@ -8,17 +8,18 @@ namespace GameFrameX.Launcher.StartUp
     /// </summary>
     public static class AppEnter
     {
-
         private static volatile bool _exitCalled = false;
         private static volatile Task _gameLoopTask = null;
         private static volatile Task _shutDownTask = null;
+        private static volatile IAppStartUp _appStartUp;
 
-        public static async Task Entry(Func<Task> entry )
+        public static async Task Entry(IAppStartUp appStartUp)
         {
             try
             {
+                _appStartUp = appStartUp;
                 AppExitHandler.Init(HandleExit);
-                _gameLoopTask = entry();
+                _gameLoopTask = appStartUp.EnterAsync();
                 await _gameLoopTask;
                 if (_shutDownTask != null)
                 {
@@ -43,7 +44,7 @@ namespace GameFrameX.Launcher.StartUp
             }
         }
 
-        private static void HandleExit()
+        private static void HandleExit(string message)
         {
             if (_exitCalled)
             {
@@ -55,8 +56,9 @@ namespace GameFrameX.Launcher.StartUp
             _shutDownTask = Task.Run(() =>
             {
                 GlobalSettings.IsAppRunning = false;
-                _gameLoopTask?.Wait();
+                _appStartUp.Stop(message);
                 LogHelper.Info($"退出程序");
+                _gameLoopTask?.Wait();
                 Process.GetCurrentProcess().Kill();
             });
             _shutDownTask.Wait();

@@ -144,7 +144,7 @@ namespace GameFrameX.Launcher
                 {
                     // LogHelper.Info($"启动服务器类型：{keyValuePair.Value.ServerType},配置信息：{JsonConvert.SerializeObject(appSetting)}");
                     LogHelper.Info($"----------------------------START-----{serverType}------------------------------");
-                    var task = AppEnter.Entry(startUp.EnterAsync);
+                    var task = AppEnter.Entry(startUp);
                     LogHelper.Info($"-----------------------------END------{serverType}------------------------------");
                     return task;
                 }
