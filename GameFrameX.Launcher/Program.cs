@@ -39,18 +39,7 @@ namespace GameFrameX.Launcher
             }
 
             LoggerHandler.Start();
-            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-
-                NullValueHandling = NullValueHandling.Ignore, // 忽略 null 值
-                // Formatting = Formatting.Indented, // 生成格式化的 JSON
-                MissingMemberHandling = MissingMemberHandling.Ignore, // 忽略缺失的成员
-                Converters = new List<JsonConverter>
-                {
-                    new StringEnumConverter() // 将枚举转换为字符串
-                }
-            };
+            JsonSetting();
             GlobalSettings.Load<AppSetting>($"Configs/app_config.json");
             CacheStateTypeManager.Init();
             ProtoMessageIdHandler.Init();
@@ -124,6 +113,25 @@ namespace GameFrameX.Launcher
             ConsoleLogo();
 
             await Task.WhenAll(tasks);
+        }
+
+        /// <summary>
+        /// Json 配置
+        /// </summary>
+        private static void JsonSetting()
+        {
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+
+                NullValueHandling = NullValueHandling.Ignore, // 忽略 null 值
+                // Formatting = Formatting.Indented, // 生成格式化的 JSON
+                MissingMemberHandling = MissingMemberHandling.Ignore, // 忽略缺失的成员
+                Converters = new List<JsonConverter>
+                {
+                    new StringEnumConverter() // 将枚举转换为字符串
+                }
+            };
         }
 
 
