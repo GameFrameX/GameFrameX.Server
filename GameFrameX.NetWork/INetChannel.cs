@@ -24,7 +24,7 @@ public interface INetChannel
     /// <summary>
     /// 写入消息
     /// </summary>
-    /// <param name="messageObject"></param>
+    /// <param name="messageObject">消息对象</param>
     void Write(IMessage messageObject);
 
     /// <summary>
