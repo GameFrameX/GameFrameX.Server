@@ -10,14 +10,14 @@ using GameFrameX.Setting;
 
 namespace GameFrameX.Core.Hotfix
 {
-    public static class HotfixMgr
+    public static class HotfixManager
     {
         internal static volatile bool DoingHotfix = false;
 
-        private static volatile HotfixModule module = null;
+        private static volatile HotfixModule _module = null;
 
         private static BaseSetting _baseSetting;
-        public static Assembly HotfixAssembly => module?.HotfixAssembly;
+        public static Assembly HotfixAssembly => _module?.HotfixAssembly;
 
         private static readonly ConcurrentDictionary<int, HotfixModule> oldModuleMap = new();
 
@@ -32,7 +32,7 @@ namespace GameFrameX.Core.Hotfix
 
             var dllPath = Path.Combine(Environment.CurrentDirectory, string.IsNullOrEmpty(dllVersion) ? "hotfix/GameFrameX.Hotfix.dll" : $"{dllVersion}/GameFrameX.Hotfix.dll");
             var hotfixModule = new HotfixModule(dllPath);
-            bool reload = module != null;
+            bool reload = _module != null;
             // 起服时失败会有异常抛出
             var success = hotfixModule.Init(reload);
             if (!success)
@@ -48,7 +48,7 @@ namespace GameFrameX.Core.Hotfix
             ReloadTime = DateTime.Now;
             if (reload)
             {
-                var oldModule = module;
+                var oldModule = _module;
                 DoingHotfix = true;
                 int oldModuleHash = oldModule.GetHashCode();
                 oldModuleMap.TryAdd(oldModuleHash, oldModule);
@@ -61,25 +61,25 @@ namespace GameFrameX.Core.Hotfix
                 });
             }
 
-            module = newModule;
-            if (module.HotfixBridge != null)
-                return await module.HotfixBridge.OnLoadSuccess(setting, reload);
+            _module = newModule;
+            if (_module.HotfixBridge != null)
+                return await _module.HotfixBridge.OnLoadSuccess(setting, reload);
             return true;
         }
 
         public static Task Stop()
         {
-            return module?.HotfixBridge?.Stop() ?? Task.CompletedTask;
+            return _module?.HotfixBridge?.Stop() ?? Task.CompletedTask;
         }
 
         internal static Type GetAgentType(Type compType)
         {
-            return module.GetAgentType(compType);
+            return _module.GetAgentType(compType);
         }
 
         internal static Type GetCompType(Type agentType)
         {
-            return module.GetCompType(agentType);
+            return _module.GetCompType(agentType);
         }
 
         public static T GetAgent<T>(BaseComponent component, Type refAssemblyType) where T : IComponentAgent
@@ -96,17 +96,17 @@ namespace GameFrameX.Core.Hotfix
                 }
             }
 
-            return module.GetAgent<T>(component);
+            return _module.GetAgent<T>(component);
         }
 
         public static BaseMessageHandler GetTcpHandler(int msgId)
         {
-            return module.GetTcpHandler(msgId);
+            return _module.GetTcpHandler(msgId);
         }
 
         public static BaseHttpHandler GetHttpHandler(string cmd)
         {
-            return module.GetHttpHandler(cmd);
+            return _module.GetHttpHandler(cmd);
         }
 
         static Func<Type, int> _msgGetterByGetId;
@@ -136,7 +136,7 @@ namespace GameFrameX.Core.Hotfix
 
         public static List<IEventListener> FindListeners(ActorType actorType, int evtId)
         {
-            return module.FindListeners(actorType, evtId) ?? EMPTY_LISTENER_LIST;
+            return _module.FindListeners(actorType, evtId) ?? EMPTY_LISTENER_LIST;
         }
 
         private static readonly List<IEventListener> EMPTY_LISTENER_LIST = new();
@@ -160,7 +160,7 @@ namespace GameFrameX.Core.Hotfix
                 }
             }
 
-            return module.GetInstance<T>(typeName);
+            return _module.GetInstance<T>(typeName);
         }
     }
 }

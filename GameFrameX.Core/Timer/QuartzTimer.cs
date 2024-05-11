@@ -360,7 +360,7 @@ namespace GameFrameX.Core.Timer
                 try
                 {
                     var param = context.JobDetail.JobDataMap.Get(PARAM_KEY) as Param;
-                    var handler = HotfixMgr.GetInstance<ITimerHandler>(handlerType);
+                    var handler = HotfixManager.GetInstance<ITimerHandler>(handlerType);
                     if (handler != null)
                     {
                         var actorId = context.JobDetail.JobDataMap.GetLong(ACTOR_ID_KEY);
@@ -388,7 +388,7 @@ namespace GameFrameX.Core.Timer
         {
             var handlerType = typeof(T);
             StatisticsTool.Count(handlerType.FullName);
-            if (handlerType.Assembly != HotfixMgr.HotfixAssembly)
+            if (handlerType.Assembly != HotfixManager.HotfixAssembly)
             {
                 throw new Exception("定时器代码需要在热更项目里");
             }

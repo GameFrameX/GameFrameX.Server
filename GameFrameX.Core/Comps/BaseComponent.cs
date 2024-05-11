@@ -21,12 +21,12 @@ namespace GameFrameX.Core.Comps
         {
             lock (cacheAgentLock)
             {
-                if (cacheAgent != null && !HotfixMgr.DoingHotfix)
+                if (cacheAgent != null && !HotfixManager.DoingHotfix)
                 {
                     return cacheAgent;
                 }
 
-                var agent = HotfixMgr.GetAgent<IComponentAgent>(this, refAssemblyType);
+                var agent = HotfixManager.GetAgent<IComponentAgent>(this, refAssemblyType);
                 cacheAgent = agent;
                 return agent;
             }

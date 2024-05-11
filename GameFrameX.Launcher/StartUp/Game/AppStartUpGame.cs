@@ -36,7 +36,7 @@
                 LogHelper.Info($"register comps end...");
 
                 LogHelper.Info($"load hotfix module start");
-                await HotfixMgr.LoadHotfixModule(Setting);
+                await HotfixManager.LoadHotfixModule(Setting);
                 LogHelper.Info($"load hotfix module end");
 
                 LogHelper.Info("进入游戏主循环...");
@@ -52,7 +52,7 @@
             }
 
             LogHelper.Info($"退出服务器开始");
-            await HotfixMgr.Stop();
+            await HotfixManager.Stop();
             LogHelper.Info($"退出服务器成功");
         }
 

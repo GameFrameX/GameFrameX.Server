@@ -20,7 +20,7 @@ public class HttpReloadHandler : BaseHttpHandler
     {
         if (parameters.TryGetValue("version", out var version))
         {
-            await HotfixMgr.LoadHotfixModule(null, version);
+            await HotfixManager.LoadHotfixModule(null, version);
             return Task.FromResult(HttpResult.CreateOk()).Result;
         }
 

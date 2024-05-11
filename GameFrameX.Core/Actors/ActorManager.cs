@@ -69,7 +69,7 @@ namespace GameFrameX.Core.Actors
         /// <returns></returns>
         public static Task<T> GetComponentAgent<T>() where T : IComponentAgent
         {
-            var compType = HotfixMgr.GetCompType(typeof(T));
+            var compType = HotfixManager.GetCompType(typeof(T));
             var actorType = ComponentRegister.GetActorType(compType);
             var actorId = IdGenerator.GetActorID(actorType);
             return GetComponentAgent<T>(actorId);
@@ -384,7 +384,7 @@ namespace GameFrameX.Core.Actors
         public static void ActorForEach<T>(Func<T, Task> func) where T : IComponentAgent
         {
             var agentType = typeof(T);
-            var compType = HotfixMgr.GetCompType(agentType);
+            var compType = HotfixManager.GetCompType(agentType);
             var actorType = ComponentRegister.GetActorType(compType);
             foreach (var actor in ActorMap.Values)
             {
@@ -407,7 +407,7 @@ namespace GameFrameX.Core.Actors
         public static void ActorForEach<T>(Action<T> action) where T : IComponentAgent
         {
             var agentType = typeof(T);
-            var compType = HotfixMgr.GetCompType(agentType);
+            var compType = HotfixManager.GetCompType(agentType);
             var actorType = ComponentRegister.GetActorType(compType);
             foreach (var actor in ActorMap.Values)
             {

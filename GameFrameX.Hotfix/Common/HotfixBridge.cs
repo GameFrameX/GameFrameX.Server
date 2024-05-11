@@ -16,12 +16,12 @@ namespace GameFrameX.Hotfix.Common
             }
 
             LogHelper.Info("load config data");
-            HotfixMgr.SetMsgGetterByGetId((type) =>
+            HotfixManager.SetMsgGetterByGetId((type) =>
             {
                 // Log.Debug("MsgType:" + type);
                 return ProtoMessageIdHandler.GetRespMessageIdByType(type);
             });
-            HotfixMgr.SetMsgGetter((messageId) =>
+            HotfixManager.SetMsgGetter((messageId) =>
             {
                 // Log.Debug("MsgID:" + messageId);
                 return ProtoMessageIdHandler.GetReqTypeById(messageId);
@@ -33,7 +33,7 @@ namespace GameFrameX.Hotfix.Common
             // var tcpSocketMessageHelper = new TcpSocketMessageHelper(HotfixMgr.GetTcpHandler, HotfixMgr.GetMsgTypeById, HotfixMgr.GetMsgIdByType);
             // await TcpServer.Start(appSetting.TcpPort, appSetting, tcpSocketMessageHelper, builder => { builder.UseConnectionHandler<AppTcpConnectionHandler>(); });
             LogHelper.Info("tcp 服务启动完成...");
-            await HttpServer.Start(setting.HttpPort, setting.HttpsPort, HotfixMgr.GetHttpHandler);
+            await HttpServer.Start(setting.HttpPort, setting.HttpsPort, HotfixManager.GetHttpHandler);
             LogHelper.Info("load config data");
 
             GlobalTimer.Start();

@@ -211,7 +211,7 @@ internal sealed class AppStartUpRouter : AppStartUpBase
                 LogHelper.Debug($"---收到消息:[{messageId},{message.GetType().Name}] 消息内容:[{messageObject}]");
             }
 
-            var handler = HotfixMgr.GetTcpHandler(message.MessageId);
+            var handler = HotfixManager.GetTcpHandler(message.MessageId);
             if (handler == null)
             {
                 LogHelper.Error($"找不到[{message.MessageId}][{messageObject.GetType()}]对应的handler");

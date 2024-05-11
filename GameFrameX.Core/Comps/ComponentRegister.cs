@@ -95,7 +95,7 @@ namespace GameFrameX.Core.Comps
                 {
                     foreach (var compType in value)
                     {
-                        var agentType = HotfixMgr.GetAgentType(compType);
+                        var agentType = HotfixManager.GetAgentType(compType);
                         if (agentType == null)
                         {
                             LogHelper.Info($"{compType}未实现agent");
@@ -156,7 +156,7 @@ namespace GameFrameX.Core.Comps
             {
                 if (predict == null || predict(compType))
                 {
-                    var agentType = HotfixMgr.GetAgentType(compType);
+                    var agentType = HotfixManager.GetAgentType(compType);
                     try
                     {
                         await actor.GetComponentAgent(agentType);

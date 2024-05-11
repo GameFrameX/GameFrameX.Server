@@ -21,7 +21,7 @@ namespace GameFrameX.Core.Events
                 actor.Tell(async () =>
                 {
                     // 事件需要在本actor内执行，不可多线程执行，所以不能使用Task.WhenAll来处理
-                    var listeners = HotfixMgr.FindListeners(actor.Type, evtId);
+                    var listeners = HotfixManager.FindListeners(actor.Type, evtId);
                     if (listeners.IsNullOrEmpty())
                     {
                         // Log.Warn($"事件：{(EventID)evtId} 没有找到任何监听者");
