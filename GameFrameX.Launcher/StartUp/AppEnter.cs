@@ -1,10 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Text;
-using GameFrameX.Log;
-using GameFrameX.Setting;
-using GameFrameX.Utility;
 
-namespace GameFrameX.EntryUtility
+namespace GameFrameX.Launcher.StartUp
 {
     /// <summary>
     /// App入口
@@ -13,8 +10,8 @@ namespace GameFrameX.EntryUtility
     {
 
         private static volatile bool _exitCalled = false;
-        private static volatile Task? _gameLoopTask = null;
-        private static volatile Task? _shutDownTask = null;
+        private static volatile Task _gameLoopTask = null;
+        private static volatile Task _shutDownTask = null;
 
         public static async Task Entry(Func<Task> entry )
         {

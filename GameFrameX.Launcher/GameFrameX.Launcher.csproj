@@ -38,7 +38,6 @@
         <ProjectReference Include="..\GameFrameX.Config\GameFrameX.Config.csproj" />
         <ProjectReference Include="..\GameFrameX.Core\GameFrameX.Core.csproj" />
         <ProjectReference Include="..\GameFrameX.DBServer\GameFrameX.DBServer.csproj" />
-        <ProjectReference Include="..\GameFrameX.EntryUtility\GameFrameX.EntryUtility.csproj" />
         <ProjectReference Include="..\GameFrameX.Log\GameFrameX.Log.csproj" />
         <ProjectReference Include="..\GameFrameX.Proto\GameFrameX.Proto.csproj" />
         <ProjectReference Include="..\GameFrameX.Serialize\GameFrameX.Serialize.csproj" />

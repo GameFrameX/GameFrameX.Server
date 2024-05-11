@@ -3,7 +3,6 @@ using CommandLine;
 using GameFrameX.Launcher.Common.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using GameFrameX.EntryUtility;
 using GameFrameX.Extension;
 using GameFrameX.Setting;
 
