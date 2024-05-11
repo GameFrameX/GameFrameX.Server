@@ -6,7 +6,7 @@ using GameFrameX.Proto.BuiltIn;
 /// <summary>
 /// 网关服务器
 /// </summary>
-[StartUpTag(ServerType.Gateway)]
+// [StartUpTag(ServerType.Gateway)]
 internal sealed class AppStartUpGateway : AppStartUpBase
 {
     private IServer tcpService;

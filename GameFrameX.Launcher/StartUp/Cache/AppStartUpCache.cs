@@ -10,7 +10,7 @@ namespace GameFrameX.Launcher.StartUp.Cache
     /// <summary>
     /// 游戏数据缓存
     /// </summary>
-    [StartUpTag(ServerType.Cache)]
+    // [StartUpTag(ServerType.Cache)]
     internal sealed class AppStartUpCache : AppStartUpBase
     {
         private IServer server;

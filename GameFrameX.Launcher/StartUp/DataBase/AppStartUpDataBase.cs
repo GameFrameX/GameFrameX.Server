@@ -7,7 +7,7 @@ namespace GameFrameX.Launcher.StartUp.DataBase
     /// <summary>
     /// 游戏数据库
     /// </summary>
-    [StartUpTag(ServerType.DataBase, 50)]
+    // [StartUpTag(ServerType.DataBase, 50)]
     internal sealed class AppStartUpDataBase : AppStartUpBase
     {
         private IServer server;

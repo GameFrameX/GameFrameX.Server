@@ -1,8 +1,5 @@
-﻿using GameFrameX.Extension;
-using GameFrameX.Launcher;
-using GameFrameX.Launcher.PipelineFilter;
+﻿using GameFrameX.Launcher.PipelineFilter;
 using GameFrameX.Launcher.StartUp.Router;
-using GameFrameX.NetWork;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
@@ -10,7 +7,7 @@ using Microsoft.Extensions.Hosting;
 /// <summary>
 /// 路由服务器.最后启动。
 /// </summary>
-[StartUpTag(ServerType.Router, int.MaxValue)]
+// [StartUpTag(ServerType.Router, int.MaxValue)]
 internal sealed class AppStartUpRouter : AppStartUpBase
 {
     /// <summary>

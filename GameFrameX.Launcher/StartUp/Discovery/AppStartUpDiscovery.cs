@@ -7,7 +7,7 @@ namespace GameFrameX.Launcher.StartUp.Discovery;
 /// <summary>
 /// 发现服务器
 /// </summary>
-[StartUpTag(ServerType.Discovery, 0)]
+// [StartUpTag(ServerType.Discovery, 0)]
 internal sealed class AppStartUpDiscovery : AppStartUpBase
 {
     private IServer server;
