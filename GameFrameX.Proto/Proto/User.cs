@@ -191,6 +191,12 @@ namespace GameFrameX.Proto.Proto
 		[ProtoMember(5)]
 		public uint Avatar { get; set; }
 
+		/// <summary>
+		/// 角色当前经验
+		/// </summary>
+		[ProtoMember(6)]
+		public ulong CurrentExp { get; set; }
+
 	}
 
 	/// <summary>
@@ -222,28 +228,16 @@ namespace GameFrameX.Proto.Proto
 		public int Code { get; set; }
 
 		/// <summary>
-		/// 账号名
-		/// </summary>
-		[ProtoMember(2)]
-		public string RoleName { get; set; }
-
-		/// <summary>
-		/// 账号ID
-		/// </summary>
-		[ProtoMember(3)]
-		public long Id { get; set; }
-
-		/// <summary>
-		/// 账号等级
-		/// </summary>
-		[ProtoMember(4)]
-		public uint Level { get; set; }
-
-		/// <summary>
 		/// 创建时间
 		/// </summary>
-		[ProtoMember(5)]
+		[ProtoMember(2)]
 		public long CreateTime { get; set; }
+
+		/// <summary>
+		/// 角色信息
+		/// </summary>
+		[ProtoMember(3)]
+		public PlayerInfo PlayerInfo { get; set; }
 
 	}
 

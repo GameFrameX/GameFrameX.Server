@@ -6,12 +6,33 @@ using GameFrameX.NetWork.Messages;
 namespace GameFrameX.Proto.Proto
 {
 	/// <summary>
+	/// 
+	/// </summary>
+	public enum BagType
+	{
+		/// <summary>
+		/// 默认
+		/// </summary>
+		Default = 0, 
+		/// <summary>
+		/// 宠物
+		/// </summary>
+		Pet = 1, 
+	}
+
+	/// <summary>
 	/// 请求背包数据
 	/// </summary>
 	[ProtoContract]
 	[MessageTypeHandler(100)]
 	public partial class ReqBagInfo : MessageObject, IRequestMessage
 	{
+		/// <summary>
+		/// 背包类型
+		/// </summary>
+		[ProtoMember(1)]
+		public BagType BagType { get; set; }
+
 	}
 
 	/// <summary>
