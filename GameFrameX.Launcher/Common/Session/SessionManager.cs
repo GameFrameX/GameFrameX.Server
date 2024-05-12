@@ -84,7 +84,7 @@ namespace GameFrameX.Launcher.Common.Session
         /// </summary>
         /// <param name="sessionId"></param>
         /// <returns></returns>
-        public static BaseNetChannel GetChannel(long sessionId)
+        public static INetChannel GetChannel(long sessionId)
         {
             sessionMap.TryGetValue(sessionId, out var session);
             return session?.Channel;
