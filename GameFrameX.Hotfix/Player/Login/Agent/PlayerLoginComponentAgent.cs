@@ -35,9 +35,14 @@ namespace GameFrameX.Hotfix.Player.Login.Agent
                 UniqueId = reqLogin.UniqueId,
                 Code = playerState.State,
                 CreateTime = playerState.CreateTime,
-                Level = playerState.Level,
-                Id = playerState.Id,
-                RoleName = playerState.Name,
+                PlayerInfo = new PlayerInfo
+                {
+                    Id = playerState.Id,
+                    Name = playerState.Name,
+                    Level = playerState.Level,
+                    State = playerState.State,
+                    Avatar = playerState.Avatar
+                }
             };
             await channel.WriteAsync(respPlayerLogin, reqLogin.UniId);
 
