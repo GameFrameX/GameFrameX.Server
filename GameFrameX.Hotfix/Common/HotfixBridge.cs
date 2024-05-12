@@ -66,7 +66,7 @@ namespace GameFrameX.Hotfix.Common
             tcpService = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
                 .ConfigureSuperSocket(ConfigureSuperSocket)
                 .UseClearIdleSession()
-                .UsePackageDecoder<MessageRouterDecoderHandler>()
+                .UsePackageDecoder<MessageGameDecoderHandler>()
                 .UseSessionHandler(OnConnected, OnDisconnected)
                 .UsePackageHandler(MessagePackageHandler, ClientErrorHandler)
                 .UseInProcSessionContainer()
