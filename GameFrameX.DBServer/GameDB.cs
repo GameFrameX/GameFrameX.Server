@@ -75,7 +75,7 @@ namespace GameFrameX.DBServer
         /// <typeparam name="TState">文档的类型</typeparam>
         /// <param name="filter">过滤器表达式</param>
         /// <returns>表示异步操作的任务。任务结果包含文档</returns>
-        public static Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new()
+        public static Task<TState?> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new()
         {
             return _dbServiceImpler.FindAsync<TState>(filter);
         }
