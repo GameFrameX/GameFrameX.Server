@@ -1,6 +1,8 @@
 ﻿using GameFrameX.Hotfix.Common;
 using GameFrameX.Apps.Account.Login.Component;
 using GameFrameX.Apps.Account.Login.Entity;
+using GameFrameX.Hotfix.Server.Server.Agent;
+using GameFrameX.Launcher.Common.Session;
 using GameFrameX.NetWork;
 
 namespace GameFrameX.Hotfix.Account.Login.Agent
@@ -19,6 +21,7 @@ namespace GameFrameX.Hotfix.Account.Login.Agent
                 return;
             }
 
+
             var loginCompAgent = await ActorManager.GetComponentAgent<LoginComponentAgent>();
             var loginState = await loginCompAgent.Comp.OnLogin(reqLogin);
             if (loginState == null)
@@ -26,6 +29,14 @@ namespace GameFrameX.Hotfix.Account.Login.Agent
                 var accountId = IdGenerator.GetActorID(ActorType.Account);
                 loginState = await loginCompAgent.Comp.Register(accountId, reqLogin);
             }
+
+            //添加到session
+            var session = new Session(loginState.Id, loginState.Id)
+            {
+                Channel = channel,
+                Sign = loginState.Id.ToString()
+            };
+            SessionManager.Add(session);
 
             RespLogin respLogin = new RespLogin
             {
