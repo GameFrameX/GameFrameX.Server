@@ -8,6 +8,26 @@ namespace GameFrameX.Hotfix.Player.Login.Agent
 {
     public class PlayerLoginComponentAgent : StateComponentAgent<PlayerComponent, PlayerState>
     {
+        
+        [Event(EventId.SessionRemove)]
+        private class EL : EventListener<PlayerLoginComponentAgent>
+        {
+            protected override Task HandleEvent(PlayerLoginComponentAgent agent, Event evt)
+            {
+                return agent.OnLogout();
+            }
+        }
+        public async Task OnLogout()
+        {
+            //移除在线玩家
+            var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
+            await serverComp.RemoveOnlineRole(ActorId);
+            //下线后会被自动回收
+            SetAutoRecycle(true);
+            QuartzTimer.UnSchedule(ScheduleIdSet);
+        }
+
+
         /// <summary>
         /// 使用角色ID登录
         /// </summary>
