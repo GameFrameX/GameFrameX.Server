@@ -88,7 +88,7 @@ namespace GameFrameX.Hotfix.Player.Role.Role.Agent
             var channel = SessionManager.GetChannel(ActorId);
             if (channel != null && !channel.IsClose())
             {
-                channel.WriteAsync(msg, uniId, code);
+                channel.WriteAsync(msg, uniId, (int)code);
             }
         }
     }
