@@ -6,7 +6,7 @@ namespace GameFrameX.Apps.Account.Login.Component
     [ComponentType(ActorType.Account)]
     public sealed class LoginComponent : StateComponent<LoginState>
     {
-        public async Task<LoginState> OnLogin(ReqLogin reqLogin)
+        public async Task<LoginState?> OnLogin(ReqLogin reqLogin)
         {
             return await GameDb.FindAsync<LoginState>(m => m.UserName == reqLogin.UserName && m.Password == reqLogin.Password);
         }
