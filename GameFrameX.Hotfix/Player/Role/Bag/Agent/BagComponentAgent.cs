@@ -27,6 +27,7 @@ namespace GameFrameX.Hotfix.Player.Role.Bag.Agent
         public async Task GetBagInfo(ReqBagInfo reqMsg)
         {
             var ret = BuildInfoMsg();
+            ret.UniqueId = reqMsg.UniqueId;
             await this.NotifyClient(ret, reqMsg.UniId);
         }
 
