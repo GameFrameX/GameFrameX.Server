@@ -42,14 +42,10 @@ namespace GameFrameX.Hotfix.Account.Login.Agent
             {
                 UniqueId = reqLogin.UniqueId,
                 Code = loginState.State,
-                UserInfo = new UserInfo
-                {
-                    CreateTime = loginState.CreateTime,
-                    Level = Utility.Random.GetRandom(1, 100),
-                    RoleId = loginState.Id,
-                    RoleName = Utility.Random.GetRandom(1, 100).ToString(),
-                    VipLevel = Utility.Random.GetRandom(1, 100),
-                }
+                CreateTime = loginState.CreateTime,
+                Level = (uint)Utility.Random.GetRandom(1, 100),
+                Id = loginState.Id,
+                RoleName = Utility.Random.GetRandom(1, 100).ToString(),
             };
             await channel.WriteAsync(respLogin, reqLogin.UniId);
 
