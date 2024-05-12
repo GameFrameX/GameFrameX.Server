@@ -62,7 +62,8 @@ namespace GameFrameX.Hotfix.Player.Login.Agent
                     Id = playerState.Id,
                     Name = playerState.Name,
                     Level = playerState.Level,
-                    State = playerState.State
+                    State = playerState.State,
+                    Avatar = playerState.Avatar
                 }
             };
             await channel.WriteAsync(respPlayerCreate, reqPlayerCreate.UniId);
@@ -93,6 +94,7 @@ namespace GameFrameX.Hotfix.Player.Login.Agent
                     };
                     playerInfo.Level = playerState.Level;
                     playerInfo.State = playerState.State;
+                    playerInfo.Avatar = playerState.Avatar;
                     respPlayerList.PlayerList.Add(playerInfo);
                 }
             }

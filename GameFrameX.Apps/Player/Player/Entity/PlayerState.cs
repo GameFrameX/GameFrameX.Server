@@ -27,6 +27,11 @@ public class PlayerState : CacheState
     public int Gender { get; set; }
 
     /// <summary>
+    /// 头像
+    /// </summary>
+    public uint Avatar { get; set; }
+
+    /// <summary>
     /// 玩家状态
     /// </summary>
     public int State { get; set; }

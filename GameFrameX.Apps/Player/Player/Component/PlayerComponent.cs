@@ -2,6 +2,7 @@
 using GameFrameX.DBServer;
 using GameFrameX.Setting;
 using GameFrameX.Utility;
+using Random = GameFrameX.Utility.Random;
 
 namespace GameFrameX.Apps.Player.Player.Component
 {
@@ -21,7 +22,8 @@ namespace GameFrameX.Apps.Player.Player.Component
                 AccountId = reqPlayerCreate.Id,
                 Name = reqPlayerCreate.Name,
                 Level = 0,
-                State = 0
+                State = 0,
+                Avatar = (uint)Random.GetRandom(1, 50),
             };
             await GameDb.SaveOneAsync<PlayerState>(playerState);
             return playerState;
