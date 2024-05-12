@@ -38,6 +38,11 @@ public interface INetChannel
     Task WriteAsync(IMessage msg, int uniId = 0, int code = 0, string desc = "");
 
     /// <summary>
+    /// 关闭网络
+    /// </summary>
+    void Close();
+
+    /// <summary>
     /// 获取用户数据对象
     /// </summary>
     /// <param name="key"></param>
@@ -63,4 +68,10 @@ public interface INetChannel
     /// </summary>
     /// <param name="offsetTicks"></param>
     void UpdateReceiveMessageTime(long offsetTicks = 0);
+
+    /// <summary>
+    /// 是否已经关闭
+    /// </summary>
+    /// <returns></returns>
+    bool IsClose();
 }
