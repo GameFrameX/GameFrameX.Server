@@ -9,14 +9,13 @@ public class MessageObjectPipelineFilter : PipelineFilterBase<IMessage>
     public override IMessage Filter(ref SequenceReader<byte> reader)
     {
         var pack = reader.Sequence;
-        reader.TryReadBigEndian(out int length);
-        if (length <= 0)
+        reader.TryReadBigEndian(out int totalLength);
+        if (totalLength <= 0)
         {
             reader.AdvanceToEnd();
             return null;
         }
 
-        int totalLength = length + HeaderSize;
         var readBuffer = pack.Slice(pack.Start, totalLength);
         if (reader.Remaining < totalLength)
         {
