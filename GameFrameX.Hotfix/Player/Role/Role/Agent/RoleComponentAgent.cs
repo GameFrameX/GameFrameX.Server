@@ -2,12 +2,13 @@
 using GameFrameX.Hotfix.Player.Role.Bag.Agent;
 using GameFrameX.Hotfix.Server.Server.Agent;
 using GameFrameX.Apps.Player.Player.Component;
+using GameFrameX.Apps.Player.Player.Entity;
 using GameFrameX.Launcher.Common.Session;
 using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.Hotfix.Player.Role.Role.Agent
 {
-    public static class RoleCompAgentExtension
+    /*public static class RoleCompAgentExtension
     {
         public static async Task NotifyClient(this IComponentAgent agent, MessageObject msg, int uniId = 0, OperationStatusCode code = OperationStatusCode.Success)
         {
@@ -21,8 +22,9 @@ namespace GameFrameX.Hotfix.Player.Role.Role.Agent
                 LogHelper.Warn($"{agent.OwnerType}未注册RoleComp组件");
             }
         }
-    }
+    }*/
 
+    /*
     public class RoleComponentAgent : StateComponentAgent<PlayerComponent, PlayerState>, ICrossDay
     {
         [Event(EventId.SessionRemove)]
@@ -41,8 +43,7 @@ namespace GameFrameX.Hotfix.Player.Role.Role.Agent
             {
                 State.CreateTime = TimeHelper.UnixTimeSeconds();
                 State.Level = 1;
-                State.VipLevel = 1;
-                State.RoleName = new System.Random().Next(1000, 10000).ToString(); //随机给一个
+                State.Name = reqLogin.UserName;
                 //激活背包组件
                 await GetComponentAgent<BagComponentAgent>();
             }
@@ -66,14 +67,10 @@ namespace GameFrameX.Hotfix.Player.Role.Role.Agent
             var res = new RespLogin()
             {
                 Code = 0,
-                UserInfo = new UserInfo()
-                {
-                    CreateTime = State.CreateTime,
-                    Level = State.Level,
-                    RoleId = State.RoleId,
-                    RoleName = State.RoleName,
-                    VipLevel = State.VipLevel
-                }
+                CreateTime = State.CreateTime,
+                Level = State.Level,
+                Id = State.RoleId,
+                RoleName = State.Name,
             };
             return res;
         }
@@ -91,5 +88,5 @@ namespace GameFrameX.Hotfix.Player.Role.Role.Agent
                 channel.WriteAsync(msg, uniId, (int)code);
             }
         }
-    }
+    }*/
 }

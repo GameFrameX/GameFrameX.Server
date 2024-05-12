@@ -59,6 +59,7 @@ namespace GameFrameX.Hotfix.Server.Server.Agent
             return ValueTask.CompletedTask;
         }
 
+        /*
         public static async Task OnlineRoleForeach(Action<RoleComponentAgent> func)
         {
             var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
@@ -71,6 +72,7 @@ namespace GameFrameX.Hotfix.Server.Server.Agent
                 }
             });
         }
+        */
 
         private Task TestDelayTimer()
         {
