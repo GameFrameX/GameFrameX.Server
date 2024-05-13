@@ -51,7 +51,7 @@ namespace GameFrameX.Hotfix.Account.Login.Agent
 
             //加入在线玩家
             var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
-            await serverComp.AddOnlineRole(ActorId);
+            await serverComp.AddOnlineRole(loginState.Id);
 
             //查询角色账号，这里设定每个服务器只能有一个角色
             /*var roleId = GetRoleIdOfPlayer(reqLogin.UserName, reqLogin.Password, reqLogin.SdkType);
