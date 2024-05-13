@@ -5,7 +5,7 @@ using GameFrameX.NetWork.Messages;
 namespace GameFrameX.Hotfix.Player.Login.Handler
 {
     [MessageMapping(typeof(ReqPlayerLogin))]
-    internal class ReqPlayerLoginHandler : GlobalComponentHandler<PlayerLoginComponentAgent>
+    internal class ReqPlayerLoginHandler : GlobalComponentHandler<PlayerComponentAgent>
     {
         protected override async Task ActionAsync()
         {

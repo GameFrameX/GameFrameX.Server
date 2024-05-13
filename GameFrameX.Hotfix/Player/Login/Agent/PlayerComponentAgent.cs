@@ -6,13 +6,13 @@ using GameFrameX.NetWork;
 
 namespace GameFrameX.Hotfix.Player.Login.Agent
 {
-    public class PlayerLoginComponentAgent : StateComponentAgent<PlayerComponent, PlayerState>
+    public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerState>
     {
         
         [Event(EventId.SessionRemove)]
-        private class EL : EventListener<PlayerLoginComponentAgent>
+        private class EL : EventListener<PlayerComponentAgent>
         {
-            protected override Task HandleEvent(PlayerLoginComponentAgent agent, Event evt)
+            protected override Task HandleEvent(PlayerComponentAgent agent, Event evt)
             {
                 return agent.OnLogout();
             }
