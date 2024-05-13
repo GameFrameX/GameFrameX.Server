@@ -1,5 +1,4 @@
 ﻿using System.Text.Json;
-using cfg;
 using GameFrameX.Config.Core;
 using GameFrameX.Log;
 
@@ -20,7 +19,7 @@ public class ConfigComponent
     public async void LoadConfig()
     {
         LogHelper.Info($"Load Config Start...");
-        Tables = new cfg.Tables();
+        Tables = new Tables();
         Tables.Init(Instance);
         await Tables.LoadAsync(Loader);
         LogHelper.Info($"Load Config End...");
