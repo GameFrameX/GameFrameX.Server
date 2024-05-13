@@ -2,6 +2,7 @@
 using GameFrameX.Apps.Server.Server.Component;
 using GameFrameX.Apps.Server.Server.Entity;
 using GameFrameX.Core.Timer.Handler;
+using GameFrameX.Hotfix.Player.Login.Agent;
 
 namespace GameFrameX.Hotfix.Server.Server.Agent
 {
@@ -45,34 +46,34 @@ namespace GameFrameX.Hotfix.Server.Server.Agent
 
         [Service]
         [Discard]
-        public virtual ValueTask AddOnlineRole(long actorId)
+        public virtual ValueTask AddOnlineRole(long roleId)
         {
-            Comp.OnlineSet.Add(actorId);
+            Comp.OnlineSet.Add(roleId);
             return ValueTask.CompletedTask;
         }
 
         [Service]
         [Discard]
-        public virtual ValueTask RemoveOnlineRole(long actorId)
+        public virtual ValueTask RemoveOnlineRole(long roleId)
         {
-            Comp.OnlineSet.Remove(actorId);
+            Comp.OnlineSet.Remove(roleId);
             return ValueTask.CompletedTask;
         }
 
-        /*
-        public static async Task OnlineRoleForeach(Action<RoleComponentAgent> func)
+
+        public static async Task OnlineRoleForeach(Action<PlayerComponentAgent> func)
         {
             var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
             serverComp.Tell(async () =>
             {
                 foreach (var roleId in serverComp.Comp.OnlineSet)
                 {
-                    var roleComp = await ActorManager.GetComponentAgent<RoleComponentAgent>(roleId);
+                    var roleComp = await ActorManager.GetComponentAgent<PlayerComponentAgent>(roleId);
                     roleComp.Tell(() => func(roleComp));
                 }
             });
         }
-        */
+
 
         private Task TestDelayTimer()
         {
