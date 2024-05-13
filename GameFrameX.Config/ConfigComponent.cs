@@ -14,12 +14,12 @@ public class ConfigComponent
         m_ConfigManager = new ConfigManager();
     }
 
-    public Tables Tables { get; private set; }
+    public TablesComponent Tables { get; private set; }
 
     public async void LoadConfig()
     {
         LogHelper.Info($"Load Config Start...");
-        Tables = new Tables();
+        Tables = new TablesComponent();
         Tables.Init(Instance);
         await Tables.LoadAsync(Loader);
         LogHelper.Info($"Load Config End...");
