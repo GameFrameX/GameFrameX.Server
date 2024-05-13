@@ -17,10 +17,8 @@
                     Directory.CreateDirectory(hotfixPath);
                 }
 
-                LogHelper.Info($"Load Config Start...");
-                ConfigManager.Instance.LoadConfig();
-                LogHelper.Info($"Load Config End...");
-
+                ConfigComponent.Instance.LoadConfig();
+                
                 LogHelper.Info($"actor limit logic start...");
                 ActorLimit.Init(ActorLimit.RuleType.None);
                 LogHelper.Info($"actor limit logic end...");
