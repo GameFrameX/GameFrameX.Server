@@ -1,4 +1,7 @@
-﻿namespace SuperSocket.Kestrel;
+﻿using System.IO;
+using System.Net.Sockets;
+
+namespace SuperSocket.Kestrel;
 
 using System;
 using System.IO.Pipelines;
@@ -55,7 +58,7 @@ public class KestrelPipeConnection : PipeConnectionBase
         }
     }
 
-    public override async ValueTask SendAsync(Action<PipeWriter> write, CancellationToken cancellationToken)
+    public override async ValueTask SendAsync(Action<PipeWriter> write, CancellationToken cancellationToken = default)
     {
         await base.SendAsync(write, cancellationToken);
         UpdateLastActiveTime();
@@ -71,5 +74,25 @@ public class KestrelPipeConnection : PipeConnectionBase
     {
         await base.SendAsync(packageEncoder, package, cancellationToken);
         UpdateLastActiveTime();
+    }
+
+    protected override bool IsIgnorableException(Exception e)
+    {
+        if (e is IOException { InnerException: not null } ioException)
+        {
+            return IsIgnorableException(ioException.InnerException);
+        }
+
+        if (e is SocketException se)
+        {
+            return se.IsIgnorableSocketException();
+        }
+
+        return base.IsIgnorableException(e);
+    }
+
+    private void OnConnectionClosed()
+    {
+        Cancel();
     }
 }
