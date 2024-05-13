@@ -71,4 +71,9 @@ public static class LogHelper
     {
         Serilog.Log.Information(msg.Message);
     }
+
+    public static void Info(object message)
+    {
+        Serilog.Log.Information(message.ToString());
+    }
 }
