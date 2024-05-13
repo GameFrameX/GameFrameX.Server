@@ -10,43 +10,49 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public partial class TbExcelFromJsonMultiRow
-{
-    private readonly System.Collections.Generic.Dictionary<int, test.ExcelFromJsonMultiRow> _dataMap;
-    private readonly System.Collections.Generic.List<test.ExcelFromJsonMultiRow> _dataList;
+    public partial class TbExcelFromJsonMultiRow : BaseDataTable<test.ExcelFromJsonMultiRow>
+    {
+        //private readonly System.Collections.Generic.Dictionary<int, test.ExcelFromJsonMultiRow> _dataMap;
+        //private readonly System.Collections.Generic.List<test.ExcelFromJsonMultiRow> _dataList;
     
-    public TbExcelFromJsonMultiRow(JsonElement _buf)
-    {
-        _dataMap = new System.Collections.Generic.Dictionary<int, test.ExcelFromJsonMultiRow>();
-        _dataList = new System.Collections.Generic.List<test.ExcelFromJsonMultiRow>();
-        
-        foreach(JsonElement _ele in _buf.EnumerateArray())
+        //public System.Collections.Generic.Dictionary<int, test.ExcelFromJsonMultiRow> DataMap => _dataMap;
+        //public System.Collections.Generic.List<test.ExcelFromJsonMultiRow> DataList => _dataList;
+        //public test.ExcelFromJsonMultiRow GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
+        //public test.ExcelFromJsonMultiRow Get(int key) => _dataMap[key];
+        //public test.ExcelFromJsonMultiRow this[int key] => _dataMap[key];
+    
+        public override async System.Threading.Tasks.Task LoadAsync()
         {
-            test.ExcelFromJsonMultiRow _v;
-            _v = test.ExcelFromJsonMultiRow.DeserializeExcelFromJsonMultiRow(_ele);
-            _dataList.Add(_v);
-            _dataMap.Add(_v.Id, _v);
+            var jsonElement = await _loadFunc();
+            DataList.Clear();
+            LongDataMaps.Clear();
+            StringDataMaps.Clear();
+            foreach(var element in jsonElement.EnumerateArray())
+            {
+                test.ExcelFromJsonMultiRow _v;
+                _v = test.ExcelFromJsonMultiRow.DeserializeExcelFromJsonMultiRow(element);
+                DataList.Add(_v);
+                LongDataMaps.Add(_v.Id, _v);
+                StringDataMaps.Add(_v.Id.ToString(), _v);
+            }
+            PostInit();
+        }
+
+        public void ResolveRef(TablesComponent tables)
+        {
+            foreach(var element in DataList)
+            {
+                element.ResolveRef(tables);
+            }
+        }
+    
+    
+        partial void PostInit();
+
+        public TbExcelFromJsonMultiRow(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        {
         }
     }
-
-    public System.Collections.Generic.Dictionary<int, test.ExcelFromJsonMultiRow> DataMap => _dataMap;
-    public System.Collections.Generic.List<test.ExcelFromJsonMultiRow> DataList => _dataList;
-
-    public test.ExcelFromJsonMultiRow GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
-    public test.ExcelFromJsonMultiRow Get(int key) => _dataMap[key];
-    public test.ExcelFromJsonMultiRow this[int key] => _dataMap[key];
-
-    public void ResolveRef(Tables tables)
-    {
-        foreach(var _v in _dataList)
-        {
-            _v.ResolveRef(tables);
-        }
-    }
-
-}
-
 }

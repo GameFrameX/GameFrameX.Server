@@ -10,64 +10,78 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.common
+namespace GameFrameX.Config.common
 {
-public sealed partial class GlobalConfig : GameFrameX.Config.Core.BeanBase
-{
-    public GlobalConfig(JsonElement _buf) 
+    public sealed partial class GlobalConfig : BeanBase
     {
-        X1 = _buf.GetProperty("x1").GetInt32();
-        X2 = _buf.GetProperty("x2").GetInt32();
-        X3 = _buf.GetProperty("x3").GetInt32();
-        X4 = _buf.GetProperty("x4").GetInt32();
-        X5 = _buf.GetProperty("x5").GetInt32();
-        X6 = _buf.GetProperty("x6").GetInt32();
-        { var __json0 = _buf.GetProperty("x7"); X7 = new System.Collections.Generic.List<int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { int __v0;  __v0 = __e0.GetInt32();  X7.Add(__v0); }   }
+        /*
+        public GlobalConfig(int X1, int X2, int X3, int X4, int X5, int X6, System.Collections.Generic.List<int> X7) 
+        {
+            this.X1 = X1;
+            this.X2 = X2;
+            this.X3 = X3;
+            this.X4 = X4;
+            this.X5 = X5;
+            this.X6 = X6;
+            this.X7 = X7;
+            PostInit();
+        }        
+        */
+
+        public GlobalConfig(JsonElement _buf) 
+        {
+            X1 = _buf.GetProperty("x1").GetInt32();
+            X2 = _buf.GetProperty("x2").GetInt32();
+            X3 = _buf.GetProperty("x3").GetInt32();
+            X4 = _buf.GetProperty("x4").GetInt32();
+            X5 = _buf.GetProperty("x5").GetInt32();
+            X6 = _buf.GetProperty("x6").GetInt32();
+            { var __json0 = _buf.GetProperty("x7"); X7 = new System.Collections.Generic.List<int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { int __v0;  __v0 = __e0.GetInt32();  X7.Add(__v0); }   }
+        }
+    
+        public static GlobalConfig DeserializeGlobalConfig(JsonElement _buf)
+        {
+            return new common.GlobalConfig(_buf);
+        }
+
+        /// <summary>
+        /// 背包容量
+        /// </summary>
+        public int X1 { private set; get; }
+        public int X2 { private set; get; }
+        public int X3 { private set; get; }
+        public int X4 { private set; get; }
+        public int X5 { private set; get; }
+        public int X6 { private set; get; }
+        public System.Collections.Generic.List<int> X7 { private set; get; }
+
+        private const int __ID__ = -848234488;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+            
+            
+            
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "x1:" + X1 + ","
+            + "x2:" + X2 + ","
+            + "x3:" + X3 + ","
+            + "x4:" + X4 + ","
+            + "x5:" + X5 + ","
+            + "x6:" + X6 + ","
+            + "x7:" + StringUtil.CollectionToString(X7) + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static GlobalConfig DeserializeGlobalConfig(JsonElement _buf)
-    {
-        return new common.GlobalConfig(_buf);
-    }
-
-    /// <summary>
-    /// 背包容量
-    /// </summary>
-    public readonly int X1;
-    public readonly int X2;
-    public readonly int X3;
-    public readonly int X4;
-    public readonly int X5;
-    public readonly int X6;
-    public readonly System.Collections.Generic.List<int> X7;
-   
-    public const int __ID__ = -848234488;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-        
-        
-        
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "x1:" + X1 + ","
-        + "x2:" + X2 + ","
-        + "x3:" + X3 + ","
-        + "x4:" + X4 + ","
-        + "x5:" + X5 + ","
-        + "x6:" + X6 + ","
-        + "x7:" + StringUtil.CollectionToString(X7) + ","
-        + "}";
-    }
-}
-
 }

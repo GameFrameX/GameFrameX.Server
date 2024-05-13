@@ -10,69 +10,85 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class MultiRowRecord : GameFrameX.Config.Core.BeanBase
-{
-    public MultiRowRecord(JsonElement _buf) 
+    public sealed partial class MultiRowRecord : BeanBase
     {
-        Id = _buf.GetProperty("id").GetInt32();
-        Name = _buf.GetProperty("name").GetString();
-        { var __json0 = _buf.GetProperty("one_rows"); OneRows = new System.Collections.Generic.List<test.MultiRowType1>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { test.MultiRowType1 __v0;  __v0 = test.MultiRowType1.DeserializeMultiRowType1(__e0);  OneRows.Add(__v0); }   }
-        { var __json0 = _buf.GetProperty("multi_rows1"); MultiRows1 = new System.Collections.Generic.List<test.MultiRowType1>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { test.MultiRowType1 __v0;  __v0 = test.MultiRowType1.DeserializeMultiRowType1(__e0);  MultiRows1.Add(__v0); }   }
-        { var __json0 = _buf.GetProperty("multi_rows2"); int _n0 = __json0.GetArrayLength(); MultiRows2 = new test.MultiRowType1[_n0]; int __index0=0; foreach(JsonElement __e0 in __json0.EnumerateArray()) { test.MultiRowType1 __v0;  __v0 = test.MultiRowType1.DeserializeMultiRowType1(__e0);  MultiRows2[__index0++] = __v0; }   }
-        { var __json0 = _buf.GetProperty("multi_rows4"); MultiRows4 = new System.Collections.Generic.Dictionary<int, test.MultiRowType2>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { int _k0;  _k0 = __e0[0].GetInt32(); test.MultiRowType2 _v0;  _v0 = test.MultiRowType2.DeserializeMultiRowType2(__e0[1]);  MultiRows4.Add(_k0, _v0); }   }
-        { var __json0 = _buf.GetProperty("multi_rows5"); MultiRows5 = new System.Collections.Generic.List<test.MultiRowType3>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { test.MultiRowType3 __v0;  __v0 = test.MultiRowType3.DeserializeMultiRowType3(__e0);  MultiRows5.Add(__v0); }   }
-        { var __json0 = _buf.GetProperty("multi_rows6"); MultiRows6 = new System.Collections.Generic.Dictionary<int, test.MultiRowType2>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { int _k0;  _k0 = __e0[0].GetInt32(); test.MultiRowType2 _v0;  _v0 = test.MultiRowType2.DeserializeMultiRowType2(__e0[1]);  MultiRows6.Add(_k0, _v0); }   }
-        { var __json0 = _buf.GetProperty("multi_rows7"); MultiRows7 = new System.Collections.Generic.Dictionary<int, int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { int _k0;  _k0 = __e0[0].GetInt32(); int _v0;  _v0 = __e0[1].GetInt32();  MultiRows7.Add(_k0, _v0); }   }
+        /*
+        public MultiRowRecord(int Id, string Name, System.Collections.Generic.List<test.MultiRowType1> OneRows, System.Collections.Generic.List<test.MultiRowType1> MultiRows1, test.MultiRowType1[] MultiRows2, System.Collections.Generic.Dictionary<int, test.MultiRowType2> MultiRows4, System.Collections.Generic.List<test.MultiRowType3> MultiRows5, System.Collections.Generic.Dictionary<int, test.MultiRowType2> MultiRows6, System.Collections.Generic.Dictionary<int, int> MultiRows7) 
+        {
+            this.Id = Id;
+            this.Name = Name;
+            this.OneRows = OneRows;
+            this.MultiRows1 = MultiRows1;
+            this.MultiRows2 = MultiRows2;
+            this.MultiRows4 = MultiRows4;
+            this.MultiRows5 = MultiRows5;
+            this.MultiRows6 = MultiRows6;
+            this.MultiRows7 = MultiRows7;
+            PostInit();
+        }        
+        */
+
+        public MultiRowRecord(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetInt32();
+            Name = _buf.GetProperty("name").GetString();
+            { var __json0 = _buf.GetProperty("one_rows"); OneRows = new System.Collections.Generic.List<test.MultiRowType1>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { test.MultiRowType1 __v0;  __v0 = test.MultiRowType1.DeserializeMultiRowType1(__e0);  OneRows.Add(__v0); }   }
+            { var __json0 = _buf.GetProperty("multi_rows1"); MultiRows1 = new System.Collections.Generic.List<test.MultiRowType1>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { test.MultiRowType1 __v0;  __v0 = test.MultiRowType1.DeserializeMultiRowType1(__e0);  MultiRows1.Add(__v0); }   }
+            { var __json0 = _buf.GetProperty("multi_rows2"); int _n0 = __json0.GetArrayLength(); MultiRows2 = new test.MultiRowType1[_n0]; int __index0=0; foreach(JsonElement __e0 in __json0.EnumerateArray()) { test.MultiRowType1 __v0;  __v0 = test.MultiRowType1.DeserializeMultiRowType1(__e0);  MultiRows2[__index0++] = __v0; }   }
+            { var __json0 = _buf.GetProperty("multi_rows4"); MultiRows4 = new System.Collections.Generic.Dictionary<int, test.MultiRowType2>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { int _k0;  _k0 = __e0[0].GetInt32(); test.MultiRowType2 _v0;  _v0 = test.MultiRowType2.DeserializeMultiRowType2(__e0[1]);  MultiRows4.Add(_k0, _v0); }   }
+            { var __json0 = _buf.GetProperty("multi_rows5"); MultiRows5 = new System.Collections.Generic.List<test.MultiRowType3>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { test.MultiRowType3 __v0;  __v0 = test.MultiRowType3.DeserializeMultiRowType3(__e0);  MultiRows5.Add(__v0); }   }
+            { var __json0 = _buf.GetProperty("multi_rows6"); MultiRows6 = new System.Collections.Generic.Dictionary<int, test.MultiRowType2>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { int _k0;  _k0 = __e0[0].GetInt32(); test.MultiRowType2 _v0;  _v0 = test.MultiRowType2.DeserializeMultiRowType2(__e0[1]);  MultiRows6.Add(_k0, _v0); }   }
+            { var __json0 = _buf.GetProperty("multi_rows7"); MultiRows7 = new System.Collections.Generic.Dictionary<int, int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { int _k0;  _k0 = __e0[0].GetInt32(); int _v0;  _v0 = __e0[1].GetInt32();  MultiRows7.Add(_k0, _v0); }   }
+        }
+    
+        public static MultiRowRecord DeserializeMultiRowRecord(JsonElement _buf)
+        {
+            return new test.MultiRowRecord(_buf);
+        }
+
+        public int Id { private set; get; }
+        public string Name { private set; get; }
+        public System.Collections.Generic.List<test.MultiRowType1> OneRows { private set; get; }
+        public System.Collections.Generic.List<test.MultiRowType1> MultiRows1 { private set; get; }
+        public test.MultiRowType1[] MultiRows2 { private set; get; }
+        public System.Collections.Generic.Dictionary<int, test.MultiRowType2> MultiRows4 { private set; get; }
+        public System.Collections.Generic.List<test.MultiRowType3> MultiRows5 { private set; get; }
+        public System.Collections.Generic.Dictionary<int, test.MultiRowType2> MultiRows6 { private set; get; }
+        public System.Collections.Generic.Dictionary<int, int> MultiRows7 { private set; get; }
+
+        private const int __ID__ = -501249394;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+            foreach (var _e in OneRows) { _e?.ResolveRef(tables); }
+            foreach (var _e in MultiRows1) { _e?.ResolveRef(tables); }
+            foreach (var _e in MultiRows2) { _e?.ResolveRef(tables); }
+            foreach (var _e in MultiRows4.Values) { _e?.ResolveRef(tables); }
+            foreach (var _e in MultiRows5) { _e?.ResolveRef(tables); }
+            foreach (var _e in MultiRows6.Values) { _e?.ResolveRef(tables); }
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "name:" + Name + ","
+            + "oneRows:" + StringUtil.CollectionToString(OneRows) + ","
+            + "multiRows1:" + StringUtil.CollectionToString(MultiRows1) + ","
+            + "multiRows2:" + StringUtil.CollectionToString(MultiRows2) + ","
+            + "multiRows4:" + StringUtil.CollectionToString(MultiRows4) + ","
+            + "multiRows5:" + StringUtil.CollectionToString(MultiRows5) + ","
+            + "multiRows6:" + StringUtil.CollectionToString(MultiRows6) + ","
+            + "multiRows7:" + StringUtil.CollectionToString(MultiRows7) + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static MultiRowRecord DeserializeMultiRowRecord(JsonElement _buf)
-    {
-        return new test.MultiRowRecord(_buf);
-    }
-
-    public readonly int Id;
-    public readonly string Name;
-    public readonly System.Collections.Generic.List<test.MultiRowType1> OneRows;
-    public readonly System.Collections.Generic.List<test.MultiRowType1> MultiRows1;
-    public readonly test.MultiRowType1[] MultiRows2;
-    public readonly System.Collections.Generic.Dictionary<int, test.MultiRowType2> MultiRows4;
-    public readonly System.Collections.Generic.List<test.MultiRowType3> MultiRows5;
-    public readonly System.Collections.Generic.Dictionary<int, test.MultiRowType2> MultiRows6;
-    public readonly System.Collections.Generic.Dictionary<int, int> MultiRows7;
-   
-    public const int __ID__ = -501249394;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-        foreach (var _e in OneRows) { _e?.ResolveRef(tables); }
-        foreach (var _e in MultiRows1) { _e?.ResolveRef(tables); }
-        foreach (var _e in MultiRows2) { _e?.ResolveRef(tables); }
-        foreach (var _e in MultiRows4.Values) { _e?.ResolveRef(tables); }
-        foreach (var _e in MultiRows5) { _e?.ResolveRef(tables); }
-        foreach (var _e in MultiRows6.Values) { _e?.ResolveRef(tables); }
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "name:" + Name + ","
-        + "oneRows:" + StringUtil.CollectionToString(OneRows) + ","
-        + "multiRows1:" + StringUtil.CollectionToString(MultiRows1) + ","
-        + "multiRows2:" + StringUtil.CollectionToString(MultiRows2) + ","
-        + "multiRows4:" + StringUtil.CollectionToString(MultiRows4) + ","
-        + "multiRows5:" + StringUtil.CollectionToString(MultiRows5) + ","
-        + "multiRows6:" + StringUtil.CollectionToString(MultiRows6) + ","
-        + "multiRows7:" + StringUtil.CollectionToString(MultiRows7) + ","
-        + "}";
-    }
-}
-
 }

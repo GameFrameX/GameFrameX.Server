@@ -10,50 +10,58 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public abstract partial class Task : ai.FlowNode
-{
-    public Task(JsonElement _buf)  : base(_buf) 
+    public abstract partial class Task : ai.FlowNode
     {
-        IgnoreRestartSelf = _buf.GetProperty("ignore_restart_self").GetBoolean();
-    }
-
-    public static Task DeserializeTask(JsonElement _buf)
-    {
-        switch (_buf.GetProperty("$type").GetString())
+        /*
+        public Task(int Id, string NodeName, System.Collections.Generic.List<ai.Decorator> Decorators, System.Collections.Generic.List<ai.Service> Services, bool IgnoreRestartSelf)  : base(Id, NodeName, Decorators, Services) 
         {
-            case "UeWait": return new ai.UeWait(_buf);
-            case "UeWaitBlackboardTime": return new ai.UeWaitBlackboardTime(_buf);
-            case "MoveToTarget": return new ai.MoveToTarget(_buf);
-            case "ChooseSkill": return new ai.ChooseSkill(_buf);
-            case "MoveToRandomLocation": return new ai.MoveToRandomLocation(_buf);
-            case "MoveToLocation": return new ai.MoveToLocation(_buf);
-            case "DebugPrint": return new ai.DebugPrint(_buf);
-            default: throw new SerializationException();
+            this.IgnoreRestartSelf = IgnoreRestartSelf;
+            PostInit();
+        }        
+        */
+
+        public Task(JsonElement _buf)  : base(_buf) 
+        {
+            IgnoreRestartSelf = _buf.GetProperty("ignore_restart_self").GetBoolean();
         }
+    
+        public static Task DeserializeTask(JsonElement _buf)
+        {
+            switch (_buf.GetProperty("$type").GetString())
+            {
+                case "UeWait": return new ai.UeWait(_buf);
+                case "UeWaitBlackboardTime": return new ai.UeWaitBlackboardTime(_buf);
+                case "MoveToTarget": return new ai.MoveToTarget(_buf);
+                case "ChooseSkill": return new ai.ChooseSkill(_buf);
+                case "MoveToRandomLocation": return new ai.MoveToRandomLocation(_buf);
+                case "MoveToLocation": return new ai.MoveToLocation(_buf);
+                case "DebugPrint": return new ai.DebugPrint(_buf);
+                default: throw new SerializationException();
+            }
+        }
+
+        public bool IgnoreRestartSelf { private set; get; }
+
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
+            + "services:" + StringUtil.CollectionToString(Services) + ","
+            + "ignoreRestartSelf:" + IgnoreRestartSelf + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public readonly bool IgnoreRestartSelf;
-   
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
-        + "services:" + StringUtil.CollectionToString(Services) + ","
-        + "ignoreRestartSelf:" + IgnoreRestartSelf + ","
-        + "}";
-    }
-}
-
 }

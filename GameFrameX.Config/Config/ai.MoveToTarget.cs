@@ -10,47 +10,56 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class MoveToTarget : ai.Task
-{
-    public MoveToTarget(JsonElement _buf)  : base(_buf) 
+    public sealed partial class MoveToTarget : ai.Task
     {
-        TargetActorKey = _buf.GetProperty("target_actor_key").GetString();
-        AcceptableRadius = _buf.GetProperty("acceptable_radius").GetSingle();
+        /*
+        public MoveToTarget(int Id, string NodeName, System.Collections.Generic.List<ai.Decorator> Decorators, System.Collections.Generic.List<ai.Service> Services, bool IgnoreRestartSelf, string TargetActorKey, float AcceptableRadius)  : base(Id, NodeName, Decorators, Services, IgnoreRestartSelf) 
+        {
+            this.TargetActorKey = TargetActorKey;
+            this.AcceptableRadius = AcceptableRadius;
+            PostInit();
+        }        
+        */
+
+        public MoveToTarget(JsonElement _buf)  : base(_buf) 
+        {
+            TargetActorKey = _buf.GetProperty("target_actor_key").GetString();
+            AcceptableRadius = _buf.GetProperty("acceptable_radius").GetSingle();
+        }
+    
+        public static MoveToTarget DeserializeMoveToTarget(JsonElement _buf)
+        {
+            return new ai.MoveToTarget(_buf);
+        }
+
+        public string TargetActorKey { private set; get; }
+        public float AcceptableRadius { private set; get; }
+
+        private const int __ID__ = 514987779;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
+            + "services:" + StringUtil.CollectionToString(Services) + ","
+            + "ignoreRestartSelf:" + IgnoreRestartSelf + ","
+            + "targetActorKey:" + TargetActorKey + ","
+            + "acceptableRadius:" + AcceptableRadius + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static MoveToTarget DeserializeMoveToTarget(JsonElement _buf)
-    {
-        return new ai.MoveToTarget(_buf);
-    }
-
-    public readonly string TargetActorKey;
-    public readonly float AcceptableRadius;
-   
-    public const int __ID__ = 514987779;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
-        + "services:" + StringUtil.CollectionToString(Services) + ","
-        + "ignoreRestartSelf:" + IgnoreRestartSelf + ","
-        + "targetActorKey:" + TargetActorKey + ","
-        + "acceptableRadius:" + AcceptableRadius + ","
-        + "}";
-    }
-}
-
 }

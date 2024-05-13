@@ -10,36 +10,43 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public abstract partial class Shape : GameFrameX.Config.Core.BeanBase
-{
-    public Shape(JsonElement _buf) 
+    public abstract partial class Shape : BeanBase
     {
-    }
-
-    public static Shape DeserializeShape(JsonElement _buf)
-    {
-        switch (_buf.GetProperty("$type").GetString())
+        /*
+        public Shape() 
         {
-            case "Circle": return new test.Circle(_buf);
-            case "test2.Rectangle": return new test2.Rectangle(_buf);
-            default: throw new SerializationException();
+            PostInit();
+        }        
+        */
+
+        public Shape(JsonElement _buf) 
+        {
         }
+    
+        public static Shape DeserializeShape(JsonElement _buf)
+        {
+            switch (_buf.GetProperty("$type").GetString())
+            {
+                case "Circle": return new test.Circle(_buf);
+                case "test2.Rectangle": return new test2.Rectangle(_buf);
+                default: throw new SerializationException();
+            }
+        }
+
+
+
+        public virtual void ResolveRef(TablesComponent tables)
+        {
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-   
-
-    public virtual void ResolveRef(Tables tables)
-    {
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "}";
-    }
-}
-
 }

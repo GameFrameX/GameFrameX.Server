@@ -10,29 +10,35 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public partial class TbCompositeJsonTable3
-{
-
-     private readonly test.CompositeJsonTable3 _data;
-
-    public TbCompositeJsonTable3(JsonElement _buf)
+    public partial class TbCompositeJsonTable3 : BaseDataTable<test.CompositeJsonTable3>
     {
-        int n = _buf.GetArrayLength();
-        if (n != 1) throw new SerializationException("table mode=one, but size != 1");
-        _data = test.CompositeJsonTable3.DeserializeCompositeJsonTable3(_buf[0]);
-    }
-
-
-     public int A => _data.A;
-     public int B => _data.B;
     
-    public void ResolveRef(Tables tables)
-    {
-        _data.ResolveRef(tables);
-    }
-}
+        private test.CompositeJsonTable3 _data;
+        public test.CompositeJsonTable3 Data => _data;
 
+        public int A => _data.A;
+        public int B => _data.B;
+    
+        public override async Task LoadAsync()
+        {
+            var jsonElement = await _loadFunc();
+
+            int n = jsonElement.GetArrayLength();
+            if (n != 1) throw new SerializationException("table mode=one, but size != 1");
+            _data = test.CompositeJsonTable3.DeserializeCompositeJsonTable3(jsonElement[0]);
+        }
+
+        public void ResolveRef(TablesComponent tables)
+        {
+            _data.ResolveRef(tables);
+        }
+    
+        partial void PostInit();
+
+        public TbCompositeJsonTable3(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        {
+        }
+    }
 }

@@ -10,40 +10,48 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class ChooseTarget : ai.Service
-{
-    public ChooseTarget(JsonElement _buf)  : base(_buf) 
+    public sealed partial class ChooseTarget : ai.Service
     {
-        ResultTargetKey = _buf.GetProperty("result_target_key").GetString();
+        /*
+        public ChooseTarget(int Id, string NodeName, string ResultTargetKey)  : base(Id, NodeName) 
+        {
+            this.ResultTargetKey = ResultTargetKey;
+            PostInit();
+        }        
+        */
+
+        public ChooseTarget(JsonElement _buf)  : base(_buf) 
+        {
+            ResultTargetKey = _buf.GetProperty("result_target_key").GetString();
+        }
+    
+        public static ChooseTarget DeserializeChooseTarget(JsonElement _buf)
+        {
+            return new ai.ChooseTarget(_buf);
+        }
+
+        public string ResultTargetKey { private set; get; }
+
+        private const int __ID__ = 1601247918;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "resultTargetKey:" + ResultTargetKey + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static ChooseTarget DeserializeChooseTarget(JsonElement _buf)
-    {
-        return new ai.ChooseTarget(_buf);
-    }
-
-    public readonly string ResultTargetKey;
-   
-    public const int __ID__ = 1601247918;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "resultTargetKey:" + ResultTargetKey + ","
-        + "}";
-    }
-}
-
 }

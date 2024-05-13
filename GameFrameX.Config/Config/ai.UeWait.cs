@@ -10,47 +10,56 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class UeWait : ai.Task
-{
-    public UeWait(JsonElement _buf)  : base(_buf) 
+    public sealed partial class UeWait : ai.Task
     {
-        WaitTime = _buf.GetProperty("wait_time").GetSingle();
-        RandomDeviation = _buf.GetProperty("random_deviation").GetSingle();
+        /*
+        public UeWait(int Id, string NodeName, System.Collections.Generic.List<ai.Decorator> Decorators, System.Collections.Generic.List<ai.Service> Services, bool IgnoreRestartSelf, float WaitTime, float RandomDeviation)  : base(Id, NodeName, Decorators, Services, IgnoreRestartSelf) 
+        {
+            this.WaitTime = WaitTime;
+            this.RandomDeviation = RandomDeviation;
+            PostInit();
+        }        
+        */
+
+        public UeWait(JsonElement _buf)  : base(_buf) 
+        {
+            WaitTime = _buf.GetProperty("wait_time").GetSingle();
+            RandomDeviation = _buf.GetProperty("random_deviation").GetSingle();
+        }
+    
+        public static UeWait DeserializeUeWait(JsonElement _buf)
+        {
+            return new ai.UeWait(_buf);
+        }
+
+        public float WaitTime { private set; get; }
+        public float RandomDeviation { private set; get; }
+
+        private const int __ID__ = -512994101;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
+            + "services:" + StringUtil.CollectionToString(Services) + ","
+            + "ignoreRestartSelf:" + IgnoreRestartSelf + ","
+            + "waitTime:" + WaitTime + ","
+            + "randomDeviation:" + RandomDeviation + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static UeWait DeserializeUeWait(JsonElement _buf)
-    {
-        return new ai.UeWait(_buf);
-    }
-
-    public readonly float WaitTime;
-    public readonly float RandomDeviation;
-   
-    public const int __ID__ = -512994101;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
-        + "services:" + StringUtil.CollectionToString(Services) + ","
-        + "ignoreRestartSelf:" + IgnoreRestartSelf + ","
-        + "waitTime:" + WaitTime + ","
-        + "randomDeviation:" + RandomDeviation + ","
-        + "}";
-    }
-}
-
 }

@@ -10,43 +10,50 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public partial class TbMultiUnionIndexList
-{
-    private readonly System.Collections.Generic.List<test.MultiUnionIndexList> _dataList;
-
-    private System.Collections.Generic.Dictionary<(int, long, string), test.MultiUnionIndexList> _dataMapUnion;
-
-    public TbMultiUnionIndexList(JsonElement _buf)
+    public partial class TbMultiUnionIndexList : BaseDataTable<test.MultiUnionIndexList>
     {
-        _dataList = new System.Collections.Generic.List<test.MultiUnionIndexList>();
-        
-        foreach(JsonElement _ele in _buf.EnumerateArray())
-        {
-            test.MultiUnionIndexList _v;
-            _v = test.MultiUnionIndexList.DeserializeMultiUnionIndexList(_ele);
-            _dataList.Add(_v);
-        }
-        _dataMapUnion = new System.Collections.Generic.Dictionary<(int, long, string), test.MultiUnionIndexList>();
-        foreach(var _v in _dataList)
-        {
-            _dataMapUnion.Add((_v.Id1, _v.Id2, _v.Id3), _v);
-        }
-    }
-
-    public System.Collections.Generic.List<test.MultiUnionIndexList> DataList => _dataList;
-
-    public test.MultiUnionIndexList Get(int id1, long id2, string id3) => _dataMapUnion.TryGetValue((id1, id2, id3), out test.MultiUnionIndexList __v) ? __v : null;
+        //private readonly System.Collections.Generic.List<test.MultiUnionIndexList> _dataList;
+        private System.Collections.Generic.Dictionary<(int, long, string), test.MultiUnionIndexList> _dataMapUnion;
     
-    public void ResolveRef(Tables tables)
-    {
-        foreach(var _v in _dataList)
+        //public System.Collections.Generic.List<test.MultiUnionIndexList> DataList => _dataList;
+        public test.MultiUnionIndexList Get(int id1, long id2, string id3) => _dataMapUnion.TryGetValue((id1, id2, id3), out test.MultiUnionIndexList __v) ? __v : null;
+    
+
+        public override async System.Threading.Tasks.Task LoadAsync()
         {
-            _v.ResolveRef(tables);
+            var jsonElement = await _loadFunc();
+            DataList.Clear();
+            LongDataMaps.Clear();
+            StringDataMaps.Clear();
+            foreach(var element in jsonElement.EnumerateArray())
+            {
+                test.MultiUnionIndexList _v;
+                _v = test.MultiUnionIndexList.DeserializeMultiUnionIndexList(element);
+                DataList.Add(_v);
+            }
+            _dataMapUnion = new System.Collections.Generic.Dictionary<(int, long, string), test.MultiUnionIndexList>();
+            _dataMapUnion.Clear();
+            foreach(var element in DataList)
+            {
+                _dataMapUnion.Add((element.Id1, element.Id2, element.Id3), element);
+            }
+            PostInit();
+        }
+
+        public void ResolveRef(TablesComponent tables)
+        {
+            foreach(var element in DataList)
+            {
+                element.ResolveRef(tables);
+            }
+        }
+    
+        partial void PostInit();
+
+        public TbMultiUnionIndexList(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        {
         }
     }
-}
-
 }

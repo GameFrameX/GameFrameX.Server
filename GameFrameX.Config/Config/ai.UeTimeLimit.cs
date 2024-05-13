@@ -10,41 +10,49 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class UeTimeLimit : ai.Decorator
-{
-    public UeTimeLimit(JsonElement _buf)  : base(_buf) 
+    public sealed partial class UeTimeLimit : ai.Decorator
     {
-        LimitTime = _buf.GetProperty("limit_time").GetSingle();
+        /*
+        public UeTimeLimit(int Id, string NodeName, ai.EFlowAbortMode FlowAbortMode, float LimitTime)  : base(Id, NodeName, FlowAbortMode) 
+        {
+            this.LimitTime = LimitTime;
+            PostInit();
+        }        
+        */
+
+        public UeTimeLimit(JsonElement _buf)  : base(_buf) 
+        {
+            LimitTime = _buf.GetProperty("limit_time").GetSingle();
+        }
+    
+        public static UeTimeLimit DeserializeUeTimeLimit(JsonElement _buf)
+        {
+            return new ai.UeTimeLimit(_buf);
+        }
+
+        public float LimitTime { private set; get; }
+
+        private const int __ID__ = 338469720;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "flowAbortMode:" + FlowAbortMode + ","
+            + "limitTime:" + LimitTime + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static UeTimeLimit DeserializeUeTimeLimit(JsonElement _buf)
-    {
-        return new ai.UeTimeLimit(_buf);
-    }
-
-    public readonly float LimitTime;
-   
-    public const int __ID__ = 338469720;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "flowAbortMode:" + FlowAbortMode + ","
-        + "limitTime:" + LimitTime + ","
-        + "}";
-    }
-}
-
 }

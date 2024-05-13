@@ -10,45 +10,55 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class CompactString : GameFrameX.Config.Core.BeanBase
-{
-    public CompactString(JsonElement _buf) 
+    public sealed partial class CompactString : BeanBase
     {
-        Id = _buf.GetProperty("id").GetInt32();
-        S2 = _buf.GetProperty("s2").GetString();
-        S3 = _buf.GetProperty("s3").GetString();
+        /*
+        public CompactString(int Id, string S2, string S3) 
+        {
+            this.Id = Id;
+            this.S2 = S2;
+            this.S3 = S3;
+            PostInit();
+        }        
+        */
+
+        public CompactString(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetInt32();
+            S2 = _buf.GetProperty("s2").GetString();
+            S3 = _buf.GetProperty("s3").GetString();
+        }
+    
+        public static CompactString DeserializeCompactString(JsonElement _buf)
+        {
+            return new test.CompactString(_buf);
+        }
+
+        public int Id { private set; get; }
+        public string S2 { private set; get; }
+        public string S3 { private set; get; }
+
+        private const int __ID__ = 1968089240;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "s2:" + S2 + ","
+            + "s3:" + S3 + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static CompactString DeserializeCompactString(JsonElement _buf)
-    {
-        return new test.CompactString(_buf);
-    }
-
-    public readonly int Id;
-    public readonly string S2;
-    public readonly string S3;
-   
-    public const int __ID__ = 1968089240;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "s2:" + S2 + ","
-        + "s3:" + S3 + ","
-        + "}";
-    }
-}
-
 }

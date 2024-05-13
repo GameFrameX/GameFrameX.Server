@@ -10,41 +10,50 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class Path : GameFrameX.Config.Core.BeanBase
-{
-    public Path(JsonElement _buf) 
+    public sealed partial class Path : BeanBase
     {
-        Id = _buf.GetProperty("id").GetInt32();
-        Res = _buf.GetProperty("res").GetString();
+        /*
+        public Path(int Id, string Res) 
+        {
+            this.Id = Id;
+            this.Res = Res;
+            PostInit();
+        }        
+        */
+
+        public Path(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetInt32();
+            Res = _buf.GetProperty("res").GetString();
+        }
+    
+        public static Path DeserializePath(JsonElement _buf)
+        {
+            return new test.Path(_buf);
+        }
+
+        public int Id { private set; get; }
+        public string Res { private set; get; }
+
+        private const int __ID__ = -1226450911;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "res:" + Res + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static Path DeserializePath(JsonElement _buf)
-    {
-        return new test.Path(_buf);
-    }
-
-    public readonly int Id;
-    public readonly string Res;
-   
-    public const int __ID__ = -1226450911;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "res:" + Res + ","
-        + "}";
-    }
-}
-
 }

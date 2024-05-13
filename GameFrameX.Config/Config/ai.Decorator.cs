@@ -10,48 +10,56 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public abstract partial class Decorator : ai.Node
-{
-    public Decorator(JsonElement _buf)  : base(_buf) 
+    public abstract partial class Decorator : ai.Node
     {
-        FlowAbortMode = (ai.EFlowAbortMode)_buf.GetProperty("flow_abort_mode").GetInt32();
-    }
-
-    public static Decorator DeserializeDecorator(JsonElement _buf)
-    {
-        switch (_buf.GetProperty("$type").GetString())
+        /*
+        public Decorator(int Id, string NodeName, ai.EFlowAbortMode FlowAbortMode)  : base(Id, NodeName) 
         {
-            case "UeLoop": return new ai.UeLoop(_buf);
-            case "UeCooldown": return new ai.UeCooldown(_buf);
-            case "UeTimeLimit": return new ai.UeTimeLimit(_buf);
-            case "UeBlackboard": return new ai.UeBlackboard(_buf);
-            case "UeForceSuccess": return new ai.UeForceSuccess(_buf);
-            case "IsAtLocation": return new ai.IsAtLocation(_buf);
-            case "DistanceLessThan": return new ai.DistanceLessThan(_buf);
-            default: throw new SerializationException();
+            this.FlowAbortMode = FlowAbortMode;
+            PostInit();
+        }        
+        */
+
+        public Decorator(JsonElement _buf)  : base(_buf) 
+        {
+            FlowAbortMode = (ai.EFlowAbortMode)_buf.GetProperty("flow_abort_mode").GetInt32();
         }
+    
+        public static Decorator DeserializeDecorator(JsonElement _buf)
+        {
+            switch (_buf.GetProperty("$type").GetString())
+            {
+                case "UeLoop": return new ai.UeLoop(_buf);
+                case "UeCooldown": return new ai.UeCooldown(_buf);
+                case "UeTimeLimit": return new ai.UeTimeLimit(_buf);
+                case "UeBlackboard": return new ai.UeBlackboard(_buf);
+                case "UeForceSuccess": return new ai.UeForceSuccess(_buf);
+                case "IsAtLocation": return new ai.IsAtLocation(_buf);
+                case "DistanceLessThan": return new ai.DistanceLessThan(_buf);
+                default: throw new SerializationException();
+            }
+        }
+
+        public ai.EFlowAbortMode FlowAbortMode { private set; get; }
+
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "flowAbortMode:" + FlowAbortMode + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public readonly ai.EFlowAbortMode FlowAbortMode;
-   
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "flowAbortMode:" + FlowAbortMode + ","
-        + "}";
-    }
-}
-
 }

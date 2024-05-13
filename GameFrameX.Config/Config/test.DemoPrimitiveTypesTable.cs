@@ -10,85 +10,105 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class DemoPrimitiveTypesTable : GameFrameX.Config.Core.BeanBase
-{
-    public DemoPrimitiveTypesTable(JsonElement _buf) 
+    public sealed partial class DemoPrimitiveTypesTable : BeanBase
     {
-        X1 = _buf.GetProperty("x1").GetBoolean();
-        X2 = _buf.GetProperty("x2").GetByte();
-        X3 = _buf.GetProperty("x3").GetInt16();
-        X4 = _buf.GetProperty("x4").GetInt32();
-        X5 = _buf.GetProperty("x5").GetInt64();
-        X6 = _buf.GetProperty("x6").GetSingle();
-        X7 = _buf.GetProperty("x7").GetDouble();
-        S1 = _buf.GetProperty("s1").GetString();
-        S2 = _buf.GetProperty("s2").GetString();
-        V2 = ExternalTypeUtil.NewVector2(vec2.Deserializevec2(_buf.GetProperty("v2")));
-        V3 = ExternalTypeUtil.NewVector3(vec3.Deserializevec3(_buf.GetProperty("v3")));
-        V4 = ExternalTypeUtil.NewVector4(vec4.Deserializevec4(_buf.GetProperty("v4")));
-        T1 = _buf.GetProperty("t1").GetInt64();
+        /*
+        public DemoPrimitiveTypesTable(bool X1, byte X2, short X3, int X4, long X5, float X6, double X7, string S1, string S2, System.Numerics.Vector2 V2, System.Numerics.Vector3 V3, System.Numerics.Vector4 V4, long T1) 
+        {
+            this.X1 = X1;
+            this.X2 = X2;
+            this.X3 = X3;
+            this.X4 = X4;
+            this.X5 = X5;
+            this.X6 = X6;
+            this.X7 = X7;
+            this.S1 = S1;
+            this.S2 = S2;
+            this.V2 = V2;
+            this.V3 = V3;
+            this.V4 = V4;
+            this.T1 = T1;
+            PostInit();
+        }        
+        */
+
+        public DemoPrimitiveTypesTable(JsonElement _buf) 
+        {
+            X1 = _buf.GetProperty("x1").GetBoolean();
+            X2 = _buf.GetProperty("x2").GetByte();
+            X3 = _buf.GetProperty("x3").GetInt16();
+            X4 = _buf.GetProperty("x4").GetInt32();
+            X5 = _buf.GetProperty("x5").GetInt64();
+            X6 = _buf.GetProperty("x6").GetSingle();
+            X7 = _buf.GetProperty("x7").GetDouble();
+            S1 = _buf.GetProperty("s1").GetString();
+            S2 = _buf.GetProperty("s2").GetString();
+            V2 = ExternalTypeUtil.NewVector2(vec2.Deserializevec2(_buf.GetProperty("v2")));
+            V3 = ExternalTypeUtil.NewVector3(vec3.Deserializevec3(_buf.GetProperty("v3")));
+            V4 = ExternalTypeUtil.NewVector4(vec4.Deserializevec4(_buf.GetProperty("v4")));
+            T1 = _buf.GetProperty("t1").GetInt64();
+        }
+    
+        public static DemoPrimitiveTypesTable DeserializeDemoPrimitiveTypesTable(JsonElement _buf)
+        {
+            return new test.DemoPrimitiveTypesTable(_buf);
+        }
+
+        public bool X1 { private set; get; }
+        public byte X2 { private set; get; }
+        public short X3 { private set; get; }
+        public int X4 { private set; get; }
+        public long X5 { private set; get; }
+        public float X6 { private set; get; }
+        public double X7 { private set; get; }
+        public string S1 { private set; get; }
+        public string S2 { private set; get; }
+        public System.Numerics.Vector2 V2 { private set; get; }
+        public System.Numerics.Vector3 V3 { private set; get; }
+        public System.Numerics.Vector4 V4 { private set; get; }
+        public long T1 { private set; get; }
+
+        private const int __ID__ = -370934083;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "x1:" + X1 + ","
+            + "x2:" + X2 + ","
+            + "x3:" + X3 + ","
+            + "x4:" + X4 + ","
+            + "x5:" + X5 + ","
+            + "x6:" + X6 + ","
+            + "x7:" + X7 + ","
+            + "s1:" + S1 + ","
+            + "s2:" + S2 + ","
+            + "v2:" + V2 + ","
+            + "v3:" + V3 + ","
+            + "v4:" + V4 + ","
+            + "t1:" + T1 + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static DemoPrimitiveTypesTable DeserializeDemoPrimitiveTypesTable(JsonElement _buf)
-    {
-        return new test.DemoPrimitiveTypesTable(_buf);
-    }
-
-    public readonly bool X1;
-    public readonly byte X2;
-    public readonly short X3;
-    public readonly int X4;
-    public readonly long X5;
-    public readonly float X6;
-    public readonly double X7;
-    public readonly string S1;
-    public readonly string S2;
-    public readonly System.Numerics.Vector2 V2;
-    public readonly System.Numerics.Vector3 V3;
-    public readonly System.Numerics.Vector4 V4;
-    public readonly long T1;
-   
-    public const int __ID__ = -370934083;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "x1:" + X1 + ","
-        + "x2:" + X2 + ","
-        + "x3:" + X3 + ","
-        + "x4:" + X4 + ","
-        + "x5:" + X5 + ","
-        + "x6:" + X6 + ","
-        + "x7:" + X7 + ","
-        + "s1:" + S1 + ","
-        + "s2:" + S2 + ","
-        + "v2:" + V2 + ","
-        + "v3:" + V3 + ","
-        + "v4:" + V4 + ","
-        + "t1:" + T1 + ","
-        + "}";
-    }
-}
-
 }

@@ -10,41 +10,50 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.l10n
+namespace GameFrameX.Config.l10n
 {
-public sealed partial class PatchDemo : GameFrameX.Config.Core.BeanBase
-{
-    public PatchDemo(JsonElement _buf) 
+    public sealed partial class PatchDemo : BeanBase
     {
-        Id = _buf.GetProperty("id").GetInt32();
-        Value = _buf.GetProperty("value").GetInt32();
+        /*
+        public PatchDemo(int Id, int Value) 
+        {
+            this.Id = Id;
+            this.Value = Value;
+            PostInit();
+        }        
+        */
+
+        public PatchDemo(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetInt32();
+            Value = _buf.GetProperty("value").GetInt32();
+        }
+    
+        public static PatchDemo DeserializePatchDemo(JsonElement _buf)
+        {
+            return new l10n.PatchDemo(_buf);
+        }
+
+        public int Id { private set; get; }
+        public int Value { private set; get; }
+
+        private const int __ID__ = -1707294656;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "value:" + Value + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static PatchDemo DeserializePatchDemo(JsonElement _buf)
-    {
-        return new l10n.PatchDemo(_buf);
-    }
-
-    public readonly int Id;
-    public readonly int Value;
-   
-    public const int __ID__ = -1707294656;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "value:" + Value + ","
-        + "}";
-    }
-}
-
 }

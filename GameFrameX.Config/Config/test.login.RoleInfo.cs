@@ -10,40 +10,48 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test.login
+namespace GameFrameX.Config.test.login
 {
-public sealed partial class RoleInfo : test.DemoD3
-{
-    public RoleInfo(JsonElement _buf)  : base(_buf) 
+    public sealed partial class RoleInfo : test.DemoD3
     {
-        RoleId = _buf.GetProperty("role_id").GetInt64();
+        /*
+        public RoleInfo(int X1, int X3, long RoleId)  : base(X1, X3) 
+        {
+            this.RoleId = RoleId;
+            PostInit();
+        }        
+        */
+
+        public RoleInfo(JsonElement _buf)  : base(_buf) 
+        {
+            RoleId = _buf.GetProperty("role_id").GetInt64();
+        }
+    
+        public static RoleInfo DeserializeRoleInfo(JsonElement _buf)
+        {
+            return new test.login.RoleInfo(_buf);
+        }
+
+        public long RoleId { private set; get; }
+
+        private const int __ID__ = -989153243;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "x1:" + X1 + ","
+            + "x3:" + X3 + ","
+            + "roleId:" + RoleId + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static RoleInfo DeserializeRoleInfo(JsonElement _buf)
-    {
-        return new test.login.RoleInfo(_buf);
-    }
-
-    public readonly long RoleId;
-   
-    public const int __ID__ = -989153243;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "x1:" + X1 + ","
-        + "x3:" + X3 + ","
-        + "roleId:" + RoleId + ","
-        + "}";
-    }
-}
-
 }

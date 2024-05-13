@@ -10,49 +10,59 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class UeLoop : ai.Decorator
-{
-    public UeLoop(JsonElement _buf)  : base(_buf) 
+    public sealed partial class UeLoop : ai.Decorator
     {
-        NumLoops = _buf.GetProperty("num_loops").GetInt32();
-        InfiniteLoop = _buf.GetProperty("infinite_loop").GetBoolean();
-        InfiniteLoopTimeoutTime = _buf.GetProperty("infinite_loop_timeout_time").GetSingle();
+        /*
+        public UeLoop(int Id, string NodeName, ai.EFlowAbortMode FlowAbortMode, int NumLoops, bool InfiniteLoop, float InfiniteLoopTimeoutTime)  : base(Id, NodeName, FlowAbortMode) 
+        {
+            this.NumLoops = NumLoops;
+            this.InfiniteLoop = InfiniteLoop;
+            this.InfiniteLoopTimeoutTime = InfiniteLoopTimeoutTime;
+            PostInit();
+        }        
+        */
+
+        public UeLoop(JsonElement _buf)  : base(_buf) 
+        {
+            NumLoops = _buf.GetProperty("num_loops").GetInt32();
+            InfiniteLoop = _buf.GetProperty("infinite_loop").GetBoolean();
+            InfiniteLoopTimeoutTime = _buf.GetProperty("infinite_loop_timeout_time").GetSingle();
+        }
+    
+        public static UeLoop DeserializeUeLoop(JsonElement _buf)
+        {
+            return new ai.UeLoop(_buf);
+        }
+
+        public int NumLoops { private set; get; }
+        public bool InfiniteLoop { private set; get; }
+        public float InfiniteLoopTimeoutTime { private set; get; }
+
+        private const int __ID__ = -513308166;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "flowAbortMode:" + FlowAbortMode + ","
+            + "numLoops:" + NumLoops + ","
+            + "infiniteLoop:" + InfiniteLoop + ","
+            + "infiniteLoopTimeoutTime:" + InfiniteLoopTimeoutTime + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static UeLoop DeserializeUeLoop(JsonElement _buf)
-    {
-        return new ai.UeLoop(_buf);
-    }
-
-    public readonly int NumLoops;
-    public readonly bool InfiniteLoop;
-    public readonly float InfiniteLoopTimeoutTime;
-   
-    public const int __ID__ = -513308166;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "flowAbortMode:" + FlowAbortMode + ","
-        + "numLoops:" + NumLoops + ","
-        + "infiniteLoop:" + InfiniteLoop + ","
-        + "infiniteLoopTimeoutTime:" + InfiniteLoopTimeoutTime + ","
-        + "}";
-    }
-}
-
 }

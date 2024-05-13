@@ -10,55 +10,64 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public abstract partial class FlowNode : ai.Node
-{
-    public FlowNode(JsonElement _buf)  : base(_buf) 
+    public abstract partial class FlowNode : ai.Node
     {
-        { var __json0 = _buf.GetProperty("decorators"); Decorators = new System.Collections.Generic.List<ai.Decorator>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { ai.Decorator __v0;  __v0 = ai.Decorator.DeserializeDecorator(__e0);  Decorators.Add(__v0); }   }
-        { var __json0 = _buf.GetProperty("services"); Services = new System.Collections.Generic.List<ai.Service>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { ai.Service __v0;  __v0 = ai.Service.DeserializeService(__e0);  Services.Add(__v0); }   }
-    }
-
-    public static FlowNode DeserializeFlowNode(JsonElement _buf)
-    {
-        switch (_buf.GetProperty("$type").GetString())
+        /*
+        public FlowNode(int Id, string NodeName, System.Collections.Generic.List<ai.Decorator> Decorators, System.Collections.Generic.List<ai.Service> Services)  : base(Id, NodeName) 
         {
-            case "Sequence": return new ai.Sequence(_buf);
-            case "Selector": return new ai.Selector(_buf);
-            case "SimpleParallel": return new ai.SimpleParallel(_buf);
-            case "UeWait": return new ai.UeWait(_buf);
-            case "UeWaitBlackboardTime": return new ai.UeWaitBlackboardTime(_buf);
-            case "MoveToTarget": return new ai.MoveToTarget(_buf);
-            case "ChooseSkill": return new ai.ChooseSkill(_buf);
-            case "MoveToRandomLocation": return new ai.MoveToRandomLocation(_buf);
-            case "MoveToLocation": return new ai.MoveToLocation(_buf);
-            case "DebugPrint": return new ai.DebugPrint(_buf);
-            default: throw new SerializationException();
+            this.Decorators = Decorators;
+            this.Services = Services;
+            PostInit();
+        }        
+        */
+
+        public FlowNode(JsonElement _buf)  : base(_buf) 
+        {
+            { var __json0 = _buf.GetProperty("decorators"); Decorators = new System.Collections.Generic.List<ai.Decorator>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { ai.Decorator __v0;  __v0 = ai.Decorator.DeserializeDecorator(__e0);  Decorators.Add(__v0); }   }
+            { var __json0 = _buf.GetProperty("services"); Services = new System.Collections.Generic.List<ai.Service>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { ai.Service __v0;  __v0 = ai.Service.DeserializeService(__e0);  Services.Add(__v0); }   }
         }
+    
+        public static FlowNode DeserializeFlowNode(JsonElement _buf)
+        {
+            switch (_buf.GetProperty("$type").GetString())
+            {
+                case "Sequence": return new ai.Sequence(_buf);
+                case "Selector": return new ai.Selector(_buf);
+                case "SimpleParallel": return new ai.SimpleParallel(_buf);
+                case "UeWait": return new ai.UeWait(_buf);
+                case "UeWaitBlackboardTime": return new ai.UeWaitBlackboardTime(_buf);
+                case "MoveToTarget": return new ai.MoveToTarget(_buf);
+                case "ChooseSkill": return new ai.ChooseSkill(_buf);
+                case "MoveToRandomLocation": return new ai.MoveToRandomLocation(_buf);
+                case "MoveToLocation": return new ai.MoveToLocation(_buf);
+                case "DebugPrint": return new ai.DebugPrint(_buf);
+                default: throw new SerializationException();
+            }
+        }
+
+        public System.Collections.Generic.List<ai.Decorator> Decorators { private set; get; }
+        public System.Collections.Generic.List<ai.Service> Services { private set; get; }
+
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            foreach (var _e in Decorators) { _e?.ResolveRef(tables); }
+            foreach (var _e in Services) { _e?.ResolveRef(tables); }
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
+            + "services:" + StringUtil.CollectionToString(Services) + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public readonly System.Collections.Generic.List<ai.Decorator> Decorators;
-    public readonly System.Collections.Generic.List<ai.Service> Services;
-   
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        foreach (var _e in Decorators) { _e?.ResolveRef(tables); }
-        foreach (var _e in Services) { _e?.ResolveRef(tables); }
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
-        + "services:" + StringUtil.CollectionToString(Services) + ","
-        + "}";
-    }
-}
-
 }

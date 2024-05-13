@@ -10,37 +10,44 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public abstract partial class KeyQueryOperator : GameFrameX.Config.Core.BeanBase
-{
-    public KeyQueryOperator(JsonElement _buf) 
+    public abstract partial class KeyQueryOperator : BeanBase
     {
-    }
-
-    public static KeyQueryOperator DeserializeKeyQueryOperator(JsonElement _buf)
-    {
-        switch (_buf.GetProperty("$type").GetString())
+        /*
+        public KeyQueryOperator() 
         {
-            case "IsSet": return new ai.IsSet(_buf);
-            case "IsNotSet": return new ai.IsNotSet(_buf);
-            case "BinaryOperator": return new ai.BinaryOperator(_buf);
-            default: throw new SerializationException();
+            PostInit();
+        }        
+        */
+
+        public KeyQueryOperator(JsonElement _buf) 
+        {
         }
+    
+        public static KeyQueryOperator DeserializeKeyQueryOperator(JsonElement _buf)
+        {
+            switch (_buf.GetProperty("$type").GetString())
+            {
+                case "IsSet2": return new ai.IsSet2(_buf);
+                case "IsNotSet": return new ai.IsNotSet(_buf);
+                case "BinaryOperator": return new ai.BinaryOperator(_buf);
+                default: throw new SerializationException();
+            }
+        }
+
+
+
+        public virtual void ResolveRef(TablesComponent tables)
+        {
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-   
-
-    public virtual void ResolveRef(Tables tables)
-    {
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "}";
-    }
-}
-
 }

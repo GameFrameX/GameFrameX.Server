@@ -10,42 +10,51 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class BinaryOperator : ai.KeyQueryOperator
-{
-    public BinaryOperator(JsonElement _buf)  : base(_buf) 
+    public sealed partial class BinaryOperator : ai.KeyQueryOperator
     {
-        Oper = (ai.EOperator)_buf.GetProperty("oper").GetInt32();
-        Data = ai.KeyData.DeserializeKeyData(_buf.GetProperty("data"));
+        /*
+        public BinaryOperator(ai.EOperator Oper, ai.KeyData Data)  : base() 
+        {
+            this.Oper = Oper;
+            this.Data = Data;
+            PostInit();
+        }        
+        */
+
+        public BinaryOperator(JsonElement _buf)  : base(_buf) 
+        {
+            Oper = (ai.EOperator)_buf.GetProperty("oper").GetInt32();
+            Data = ai.KeyData.DeserializeKeyData(_buf.GetProperty("data"));
+        }
+    
+        public static BinaryOperator DeserializeBinaryOperator(JsonElement _buf)
+        {
+            return new ai.BinaryOperator(_buf);
+        }
+
+        public ai.EOperator Oper { private set; get; }
+        public ai.KeyData Data { private set; get; }
+
+        private const int __ID__ = -979891605;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+            Data?.ResolveRef(tables);
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "oper:" + Oper + ","
+            + "data:" + Data + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static BinaryOperator DeserializeBinaryOperator(JsonElement _buf)
-    {
-        return new ai.BinaryOperator(_buf);
-    }
-
-    public readonly ai.EOperator Oper;
-    public readonly ai.KeyData Data;
-   
-    public const int __ID__ = -979891605;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-        Data?.ResolveRef(tables);
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "oper:" + Oper + ","
-        + "data:" + Data + ","
-        + "}";
-    }
-}
-
 }

@@ -10,43 +10,49 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public partial class TbFullTypes
-{
-    private readonly System.Collections.Generic.Dictionary<int, test.DemoType2> _dataMap;
-    private readonly System.Collections.Generic.List<test.DemoType2> _dataList;
+    public partial class TbFullTypes : BaseDataTable<test.DemoType2>
+    {
+        //private readonly System.Collections.Generic.Dictionary<int, test.DemoType2> _dataMap;
+        //private readonly System.Collections.Generic.List<test.DemoType2> _dataList;
     
-    public TbFullTypes(JsonElement _buf)
-    {
-        _dataMap = new System.Collections.Generic.Dictionary<int, test.DemoType2>();
-        _dataList = new System.Collections.Generic.List<test.DemoType2>();
-        
-        foreach(JsonElement _ele in _buf.EnumerateArray())
+        //public System.Collections.Generic.Dictionary<int, test.DemoType2> DataMap => _dataMap;
+        //public System.Collections.Generic.List<test.DemoType2> DataList => _dataList;
+        //public test.DemoType2 GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
+        //public test.DemoType2 Get(int key) => _dataMap[key];
+        //public test.DemoType2 this[int key] => _dataMap[key];
+    
+        public override async System.Threading.Tasks.Task LoadAsync()
         {
-            test.DemoType2 _v;
-            _v = test.DemoType2.DeserializeDemoType2(_ele);
-            _dataList.Add(_v);
-            _dataMap.Add(_v.X4, _v);
+            var jsonElement = await _loadFunc();
+            DataList.Clear();
+            LongDataMaps.Clear();
+            StringDataMaps.Clear();
+            foreach(var element in jsonElement.EnumerateArray())
+            {
+                test.DemoType2 _v;
+                _v = test.DemoType2.DeserializeDemoType2(element);
+                DataList.Add(_v);
+                LongDataMaps.Add(_v.X4, _v);
+                StringDataMaps.Add(_v.X4.ToString(), _v);
+            }
+            PostInit();
+        }
+
+        public void ResolveRef(TablesComponent tables)
+        {
+            foreach(var element in DataList)
+            {
+                element.ResolveRef(tables);
+            }
+        }
+    
+    
+        partial void PostInit();
+
+        public TbFullTypes(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        {
         }
     }
-
-    public System.Collections.Generic.Dictionary<int, test.DemoType2> DataMap => _dataMap;
-    public System.Collections.Generic.List<test.DemoType2> DataList => _dataList;
-
-    public test.DemoType2 GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
-    public test.DemoType2 Get(int key) => _dataMap[key];
-    public test.DemoType2 this[int key] => _dataMap[key];
-
-    public void ResolveRef(Tables tables)
-    {
-        foreach(var _v in _dataList)
-        {
-            _v.ResolveRef(tables);
-        }
-    }
-
-}
-
 }

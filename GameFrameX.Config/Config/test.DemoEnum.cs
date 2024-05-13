@@ -9,7 +9,7 @@
 
 
 
-namespace cfg.test
+namespace GameFrameX.Config.test
 { 
     public enum DemoEnum
     {

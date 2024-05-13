@@ -10,41 +10,50 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class NotIndexList : GameFrameX.Config.Core.BeanBase
-{
-    public NotIndexList(JsonElement _buf) 
+    public sealed partial class NotIndexList : BeanBase
     {
-        X = _buf.GetProperty("x").GetInt32();
-        Y = _buf.GetProperty("y").GetInt32();
+        /*
+        public NotIndexList(int X, int Y) 
+        {
+            this.X = X;
+            this.Y = Y;
+            PostInit();
+        }        
+        */
+
+        public NotIndexList(JsonElement _buf) 
+        {
+            X = _buf.GetProperty("x").GetInt32();
+            Y = _buf.GetProperty("y").GetInt32();
+        }
+    
+        public static NotIndexList DeserializeNotIndexList(JsonElement _buf)
+        {
+            return new test.NotIndexList(_buf);
+        }
+
+        public int X { private set; get; }
+        public int Y { private set; get; }
+
+        private const int __ID__ = -50446599;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "x:" + X + ","
+            + "y:" + Y + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static NotIndexList DeserializeNotIndexList(JsonElement _buf)
-    {
-        return new test.NotIndexList(_buf);
-    }
-
-    public readonly int X;
-    public readonly int Y;
-   
-    public const int __ID__ = -50446599;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "x:" + X + ","
-        + "y:" + Y + ","
-        + "}";
-    }
-}
-
 }

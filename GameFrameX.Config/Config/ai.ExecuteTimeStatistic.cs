@@ -10,36 +10,43 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class ExecuteTimeStatistic : ai.Service
-{
-    public ExecuteTimeStatistic(JsonElement _buf)  : base(_buf) 
+    public sealed partial class ExecuteTimeStatistic : ai.Service
     {
+        /*
+        public ExecuteTimeStatistic(int Id, string NodeName)  : base(Id, NodeName) 
+        {
+            PostInit();
+        }        
+        */
+
+        public ExecuteTimeStatistic(JsonElement _buf)  : base(_buf) 
+        {
+        }
+    
+        public static ExecuteTimeStatistic DeserializeExecuteTimeStatistic(JsonElement _buf)
+        {
+            return new ai.ExecuteTimeStatistic(_buf);
+        }
+
+
+        private const int __ID__ = 990693812;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static ExecuteTimeStatistic DeserializeExecuteTimeStatistic(JsonElement _buf)
-    {
-        return new ai.ExecuteTimeStatistic(_buf);
-    }
-
-   
-    public const int __ID__ = 990693812;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "}";
-    }
-}
-
 }

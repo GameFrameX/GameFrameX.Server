@@ -10,51 +10,60 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public partial class TbMultiIndexList
-{
-    private readonly System.Collections.Generic.List<test.MultiIndexList> _dataList;
-
-    private System.Collections.Generic.Dictionary<int, test.MultiIndexList> _dataMap_id1;
-    private System.Collections.Generic.Dictionary<long, test.MultiIndexList> _dataMap_id2;
-    private System.Collections.Generic.Dictionary<string, test.MultiIndexList> _dataMap_id3;
-
-    public TbMultiIndexList(JsonElement _buf)
+    public partial class TbMultiIndexList : BaseDataTable<test.MultiIndexList>
     {
-        _dataList = new System.Collections.Generic.List<test.MultiIndexList>();
-        
-        foreach(JsonElement _ele in _buf.EnumerateArray())
-        {
-            test.MultiIndexList _v;
-            _v = test.MultiIndexList.DeserializeMultiIndexList(_ele);
-            _dataList.Add(_v);
-        }
-        _dataMap_id1 = new System.Collections.Generic.Dictionary<int, test.MultiIndexList>();
-        _dataMap_id2 = new System.Collections.Generic.Dictionary<long, test.MultiIndexList>();
-        _dataMap_id3 = new System.Collections.Generic.Dictionary<string, test.MultiIndexList>();
-    foreach(var _v in _dataList)
-    {
-        _dataMap_id1.Add(_v.Id1, _v);
-        _dataMap_id2.Add(_v.Id2, _v);
-        _dataMap_id3.Add(_v.Id3, _v);
-    }
-    }
-
-    public System.Collections.Generic.List<test.MultiIndexList> DataList => _dataList;
-
-    public test.MultiIndexList GetById1(int key) => _dataMap_id1.TryGetValue(key, out test.MultiIndexList __v) ? __v : null;
-    public test.MultiIndexList GetById2(long key) => _dataMap_id2.TryGetValue(key, out test.MultiIndexList __v) ? __v : null;
-    public test.MultiIndexList GetById3(string key) => _dataMap_id3.TryGetValue(key, out test.MultiIndexList __v) ? __v : null;
+        //private readonly System.Collections.Generic.List<test.MultiIndexList> _dataList;
+        private System.Collections.Generic.Dictionary<int, test.MultiIndexList> _dataMap_id1;
+        private System.Collections.Generic.Dictionary<long, test.MultiIndexList> _dataMap_id2;
+        private System.Collections.Generic.Dictionary<string, test.MultiIndexList> _dataMap_id3;
     
-    public void ResolveRef(Tables tables)
-    {
-        foreach(var _v in _dataList)
+        //public System.Collections.Generic.List<test.MultiIndexList> DataList => _dataList;
+        public test.MultiIndexList GetById1(int key) => _dataMap_id1.TryGetValue(key, out test.MultiIndexList __v) ? __v : null;
+        public test.MultiIndexList GetById2(long key) => _dataMap_id2.TryGetValue(key, out test.MultiIndexList __v) ? __v : null;
+        public test.MultiIndexList GetById3(string key) => _dataMap_id3.TryGetValue(key, out test.MultiIndexList __v) ? __v : null;
+    
+
+        public override async System.Threading.Tasks.Task LoadAsync()
         {
-            _v.ResolveRef(tables);
+            var jsonElement = await _loadFunc();
+            DataList.Clear();
+            LongDataMaps.Clear();
+            StringDataMaps.Clear();
+            foreach(var element in jsonElement.EnumerateArray())
+            {
+                test.MultiIndexList _v;
+                _v = test.MultiIndexList.DeserializeMultiIndexList(element);
+                DataList.Add(_v);
+            }
+            _dataMap_id1 = new System.Collections.Generic.Dictionary<int, test.MultiIndexList>();
+            _dataMap_id2 = new System.Collections.Generic.Dictionary<long, test.MultiIndexList>();
+            _dataMap_id3 = new System.Collections.Generic.Dictionary<string, test.MultiIndexList>();
+            _dataMap_id1.Clear();
+            _dataMap_id2.Clear();
+            _dataMap_id3.Clear();
+            foreach(var element in DataList)
+            {
+                _dataMap_id1.Add(element.Id1, element);
+                _dataMap_id2.Add(element.Id2, element);
+                _dataMap_id3.Add(element.Id3, element);
+            }
+            PostInit();
+        }
+
+        public void ResolveRef(TablesComponent tables)
+        {
+            foreach(var element in DataList)
+            {
+                element.ResolveRef(tables);
+            }
+        }
+    
+        partial void PostInit();
+
+        public TbMultiIndexList(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        {
         }
     }
-}
-
 }

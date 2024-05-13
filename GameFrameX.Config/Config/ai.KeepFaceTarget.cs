@@ -10,40 +10,48 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class KeepFaceTarget : ai.Service
-{
-    public KeepFaceTarget(JsonElement _buf)  : base(_buf) 
+    public sealed partial class KeepFaceTarget : ai.Service
     {
-        TargetActorKey = _buf.GetProperty("target_actor_key").GetString();
+        /*
+        public KeepFaceTarget(int Id, string NodeName, string TargetActorKey)  : base(Id, NodeName) 
+        {
+            this.TargetActorKey = TargetActorKey;
+            PostInit();
+        }        
+        */
+
+        public KeepFaceTarget(JsonElement _buf)  : base(_buf) 
+        {
+            TargetActorKey = _buf.GetProperty("target_actor_key").GetString();
+        }
+    
+        public static KeepFaceTarget DeserializeKeepFaceTarget(JsonElement _buf)
+        {
+            return new ai.KeepFaceTarget(_buf);
+        }
+
+        public string TargetActorKey { private set; get; }
+
+        private const int __ID__ = 1195270745;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "targetActorKey:" + TargetActorKey + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static KeepFaceTarget DeserializeKeepFaceTarget(JsonElement _buf)
-    {
-        return new ai.KeepFaceTarget(_buf);
-    }
-
-    public readonly string TargetActorKey;
-   
-    public const int __ID__ = 1195270745;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "targetActorKey:" + TargetActorKey + ","
-        + "}";
-    }
-}
-
 }

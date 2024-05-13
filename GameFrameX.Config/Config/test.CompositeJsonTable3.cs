@@ -10,41 +10,50 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class CompositeJsonTable3 : GameFrameX.Config.Core.BeanBase
-{
-    public CompositeJsonTable3(JsonElement _buf) 
+    public sealed partial class CompositeJsonTable3 : BeanBase
     {
-        A = _buf.GetProperty("a").GetInt32();
-        B = _buf.GetProperty("b").GetInt32();
+        /*
+        public CompositeJsonTable3(int A, int B) 
+        {
+            this.A = A;
+            this.B = B;
+            PostInit();
+        }        
+        */
+
+        public CompositeJsonTable3(JsonElement _buf) 
+        {
+            A = _buf.GetProperty("a").GetInt32();
+            B = _buf.GetProperty("b").GetInt32();
+        }
+    
+        public static CompositeJsonTable3 DeserializeCompositeJsonTable3(JsonElement _buf)
+        {
+            return new test.CompositeJsonTable3(_buf);
+        }
+
+        public int A { private set; get; }
+        public int B { private set; get; }
+
+        private const int __ID__ = 1566207896;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "a:" + A + ","
+            + "b:" + B + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static CompositeJsonTable3 DeserializeCompositeJsonTable3(JsonElement _buf)
-    {
-        return new test.CompositeJsonTable3(_buf);
-    }
-
-    public readonly int A;
-    public readonly int B;
-   
-    public const int __ID__ = 1566207896;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "a:" + A + ","
-        + "b:" + B + ","
-        + "}";
-    }
-}
-
 }

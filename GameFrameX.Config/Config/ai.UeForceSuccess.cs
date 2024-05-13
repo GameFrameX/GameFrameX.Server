@@ -10,37 +10,44 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class UeForceSuccess : ai.Decorator
-{
-    public UeForceSuccess(JsonElement _buf)  : base(_buf) 
+    public sealed partial class UeForceSuccess : ai.Decorator
     {
+        /*
+        public UeForceSuccess(int Id, string NodeName, ai.EFlowAbortMode FlowAbortMode)  : base(Id, NodeName, FlowAbortMode) 
+        {
+            PostInit();
+        }        
+        */
+
+        public UeForceSuccess(JsonElement _buf)  : base(_buf) 
+        {
+        }
+    
+        public static UeForceSuccess DeserializeUeForceSuccess(JsonElement _buf)
+        {
+            return new ai.UeForceSuccess(_buf);
+        }
+
+
+        private const int __ID__ = 195054574;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "flowAbortMode:" + FlowAbortMode + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static UeForceSuccess DeserializeUeForceSuccess(JsonElement _buf)
-    {
-        return new ai.UeForceSuccess(_buf);
-    }
-
-   
-    public const int __ID__ = 195054574;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "flowAbortMode:" + FlowAbortMode + ","
-        + "}";
-    }
-}
-
 }

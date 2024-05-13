@@ -10,40 +10,48 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class GetOwnerPlayer : ai.Service
-{
-    public GetOwnerPlayer(JsonElement _buf)  : base(_buf) 
+    public sealed partial class GetOwnerPlayer : ai.Service
     {
-        PlayerActorKey = _buf.GetProperty("player_actor_key").GetString();
+        /*
+        public GetOwnerPlayer(int Id, string NodeName, string PlayerActorKey)  : base(Id, NodeName) 
+        {
+            this.PlayerActorKey = PlayerActorKey;
+            PostInit();
+        }        
+        */
+
+        public GetOwnerPlayer(JsonElement _buf)  : base(_buf) 
+        {
+            PlayerActorKey = _buf.GetProperty("player_actor_key").GetString();
+        }
+    
+        public static GetOwnerPlayer DeserializeGetOwnerPlayer(JsonElement _buf)
+        {
+            return new ai.GetOwnerPlayer(_buf);
+        }
+
+        public string PlayerActorKey { private set; get; }
+
+        private const int __ID__ = -999247644;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "playerActorKey:" + PlayerActorKey + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static GetOwnerPlayer DeserializeGetOwnerPlayer(JsonElement _buf)
-    {
-        return new ai.GetOwnerPlayer(_buf);
-    }
-
-    public readonly string PlayerActorKey;
-   
-    public const int __ID__ = -999247644;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "playerActorKey:" + PlayerActorKey + ","
-        + "}";
-    }
-}
-
 }

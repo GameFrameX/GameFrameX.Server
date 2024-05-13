@@ -10,39 +10,48 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg
+namespace GameFrameX.Config
 {
-public partial struct vec2
-{
-    public vec2(JsonElement _buf) 
+    public partial struct vec2
     {
-        X = _buf.GetProperty("x").GetSingle();
-        Y = _buf.GetProperty("y").GetSingle();
+        /*
+        public vec2(float X, float Y) 
+        {
+            this.X = X;
+            this.Y = Y;
+            PostInit();
+        }        
+        */
+
+        public vec2(JsonElement _buf) 
+        {
+            X = _buf.GetProperty("x").GetSingle();
+            Y = _buf.GetProperty("y").GetSingle();
+        }
+    
+        public static vec2 Deserializevec2(JsonElement _buf)
+        {
+            return new vec2(_buf);
+        }
+
+        public float X { private set; get; }
+        public float Y { private set; get; }
+
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "x:" + X + ","
+            + "y:" + Y + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static vec2 Deserializevec2(JsonElement _buf)
-    {
-        return new vec2(_buf);
-    }
-
-    public readonly float X;
-    public readonly float Y;
-   
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "x:" + X + ","
-        + "y:" + Y + ","
-        + "}";
-    }
-}
-
 }

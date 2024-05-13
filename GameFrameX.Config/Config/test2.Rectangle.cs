@@ -10,51 +10,60 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test2
+namespace GameFrameX.Config.test2
 {
-/// <summary>
-/// 矩形
-/// </summary>
-public sealed partial class Rectangle : test.Shape
-{
-    public Rectangle(JsonElement _buf)  : base(_buf) 
-    {
-        Width = _buf.GetProperty("width").GetSingle();
-        Height = _buf.GetProperty("height").GetSingle();
-    }
-
-    public static Rectangle DeserializeRectangle(JsonElement _buf)
-    {
-        return new test2.Rectangle(_buf);
-    }
-
     /// <summary>
-    /// 宽度
+    /// 矩形
     /// </summary>
-    public readonly float Width;
-    /// <summary>
-    /// 高度
-    /// </summary>
-    public readonly float Height;
-   
-    public const int __ID__ = 694982337;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
+    public sealed partial class Rectangle : test.Shape
     {
-        base.ResolveRef(tables);
-        
-        
-    }
+        /*
+        public Rectangle(float Width, float Height)  : base() 
+        {
+            this.Width = Width;
+            this.Height = Height;
+            PostInit();
+        }        
+        */
 
-    public override string ToString()
-    {
-        return "{ "
-        + "width:" + Width + ","
-        + "height:" + Height + ","
-        + "}";
-    }
-}
+        public Rectangle(JsonElement _buf)  : base(_buf) 
+        {
+            Width = _buf.GetProperty("width").GetSingle();
+            Height = _buf.GetProperty("height").GetSingle();
+        }
+    
+        public static Rectangle DeserializeRectangle(JsonElement _buf)
+        {
+            return new test2.Rectangle(_buf);
+        }
 
+        /// <summary>
+        /// 宽度
+        /// </summary>
+        public float Width { private set; get; }
+        /// <summary>
+        /// 高度
+        /// </summary>
+        public float Height { private set; get; }
+
+        private const int __ID__ = 694982337;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "width:" + Width + ","
+            + "height:" + Height + ","
+            + "}";
+        }
+
+        partial void PostInit();
+    }
 }

@@ -10,41 +10,50 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class TestGlobal : GameFrameX.Config.Core.BeanBase
-{
-    public TestGlobal(JsonElement _buf) 
+    public sealed partial class TestGlobal : BeanBase
     {
-        UnlockEquip = _buf.GetProperty("unlock_equip").GetInt32();
-        UnlockHero = _buf.GetProperty("unlock_hero").GetInt32();
+        /*
+        public TestGlobal(int UnlockEquip, int UnlockHero) 
+        {
+            this.UnlockEquip = UnlockEquip;
+            this.UnlockHero = UnlockHero;
+            PostInit();
+        }        
+        */
+
+        public TestGlobal(JsonElement _buf) 
+        {
+            UnlockEquip = _buf.GetProperty("unlock_equip").GetInt32();
+            UnlockHero = _buf.GetProperty("unlock_hero").GetInt32();
+        }
+    
+        public static TestGlobal DeserializeTestGlobal(JsonElement _buf)
+        {
+            return new test.TestGlobal(_buf);
+        }
+
+        public int UnlockEquip { private set; get; }
+        public int UnlockHero { private set; get; }
+
+        private const int __ID__ = -12548655;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "unlockEquip:" + UnlockEquip + ","
+            + "unlockHero:" + UnlockHero + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static TestGlobal DeserializeTestGlobal(JsonElement _buf)
-    {
-        return new test.TestGlobal(_buf);
-    }
-
-    public readonly int UnlockEquip;
-    public readonly int UnlockHero;
-   
-    public const int __ID__ = -12548655;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "unlockEquip:" + UnlockEquip + ","
-        + "unlockHero:" + UnlockHero + ","
-        + "}";
-    }
-}
-
 }

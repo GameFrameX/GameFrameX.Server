@@ -10,53 +10,65 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class TestRow : GameFrameX.Config.Core.BeanBase
-{
-    public TestRow(JsonElement _buf) 
+    public sealed partial class TestRow : BeanBase
     {
-        X = _buf.GetProperty("x").GetInt32();
-        Y = _buf.GetProperty("y").GetBoolean();
-        Z = _buf.GetProperty("z").GetString();
-        A = test.Test3.DeserializeTest3(_buf.GetProperty("a"));
-        { var __json0 = _buf.GetProperty("b"); B = new System.Collections.Generic.List<int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { int __v0;  __v0 = __e0.GetInt32();  B.Add(__v0); }   }
+        /*
+        public TestRow(int X, bool Y, string Z, test.Test3 A, System.Collections.Generic.List<int> B) 
+        {
+            this.X = X;
+            this.Y = Y;
+            this.Z = Z;
+            this.A = A;
+            this.B = B;
+            PostInit();
+        }        
+        */
+
+        public TestRow(JsonElement _buf) 
+        {
+            X = _buf.GetProperty("x").GetInt32();
+            Y = _buf.GetProperty("y").GetBoolean();
+            Z = _buf.GetProperty("z").GetString();
+            A = test.Test3.DeserializeTest3(_buf.GetProperty("a"));
+            { var __json0 = _buf.GetProperty("b"); B = new System.Collections.Generic.List<int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { int __v0;  __v0 = __e0.GetInt32();  B.Add(__v0); }   }
+        }
+    
+        public static TestRow DeserializeTestRow(JsonElement _buf)
+        {
+            return new test.TestRow(_buf);
+        }
+
+        public int X { private set; get; }
+        public bool Y { private set; get; }
+        public string Z { private set; get; }
+        public test.Test3 A { private set; get; }
+        public System.Collections.Generic.List<int> B { private set; get; }
+
+        private const int __ID__ = -543222164;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+            
+            A?.ResolveRef(tables);
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "x:" + X + ","
+            + "y:" + Y + ","
+            + "z:" + Z + ","
+            + "a:" + A + ","
+            + "b:" + StringUtil.CollectionToString(B) + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static TestRow DeserializeTestRow(JsonElement _buf)
-    {
-        return new test.TestRow(_buf);
-    }
-
-    public readonly int X;
-    public readonly bool Y;
-    public readonly string Z;
-    public readonly test.Test3 A;
-    public readonly System.Collections.Generic.List<int> B;
-   
-    public const int __ID__ = -543222164;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-        
-        A?.ResolveRef(tables);
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "x:" + X + ","
-        + "y:" + Y + ","
-        + "z:" + Z + ","
-        + "a:" + A + ","
-        + "b:" + StringUtil.CollectionToString(B) + ","
-        + "}";
-    }
-}
-
 }

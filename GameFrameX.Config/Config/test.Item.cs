@@ -10,45 +10,54 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class Item : test.ItemBase
-{
-    public Item(JsonElement _buf)  : base(_buf) 
+    public sealed partial class Item : test.ItemBase
     {
-        Num = _buf.GetProperty("num").GetInt32();
-        Price = _buf.GetProperty("price").GetInt32();
+        /*
+        public Item(int Id, string Name, string Desc, int Num, int Price)  : base(Id, Name, Desc) 
+        {
+            this.Num = Num;
+            this.Price = Price;
+            PostInit();
+        }        
+        */
+
+        public Item(JsonElement _buf)  : base(_buf) 
+        {
+            Num = _buf.GetProperty("num").GetInt32();
+            Price = _buf.GetProperty("price").GetInt32();
+        }
+    
+        public static Item DeserializeItem(JsonElement _buf)
+        {
+            return new test.Item(_buf);
+        }
+
+        public int Num { private set; get; }
+        public int Price { private set; get; }
+
+        private const int __ID__ = -1226641649;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "name:" + Name + ","
+            + "desc:" + Desc + ","
+            + "num:" + Num + ","
+            + "price:" + Price + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static Item DeserializeItem(JsonElement _buf)
-    {
-        return new test.Item(_buf);
-    }
-
-    public readonly int Num;
-    public readonly int Price;
-   
-    public const int __ID__ = -1226641649;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "name:" + Name + ","
-        + "desc:" + Desc + ","
-        + "num:" + Num + ","
-        + "price:" + Price + ","
-        + "}";
-    }
-}
-
 }

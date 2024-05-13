@@ -10,53 +10,65 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class MultiUnionIndexList : GameFrameX.Config.Core.BeanBase
-{
-    public MultiUnionIndexList(JsonElement _buf) 
+    public sealed partial class MultiUnionIndexList : BeanBase
     {
-        Id1 = _buf.GetProperty("id1").GetInt32();
-        Id2 = _buf.GetProperty("id2").GetInt64();
-        Id3 = _buf.GetProperty("id3").GetString();
-        Num = _buf.GetProperty("num").GetInt32();
-        Desc = _buf.GetProperty("desc").GetString();
+        /*
+        public MultiUnionIndexList(int Id1, long Id2, string Id3, int Num, string Desc) 
+        {
+            this.Id1 = Id1;
+            this.Id2 = Id2;
+            this.Id3 = Id3;
+            this.Num = Num;
+            this.Desc = Desc;
+            PostInit();
+        }        
+        */
+
+        public MultiUnionIndexList(JsonElement _buf) 
+        {
+            Id1 = _buf.GetProperty("id1").GetInt32();
+            Id2 = _buf.GetProperty("id2").GetInt64();
+            Id3 = _buf.GetProperty("id3").GetString();
+            Num = _buf.GetProperty("num").GetInt32();
+            Desc = _buf.GetProperty("desc").GetString();
+        }
+    
+        public static MultiUnionIndexList DeserializeMultiUnionIndexList(JsonElement _buf)
+        {
+            return new test.MultiUnionIndexList(_buf);
+        }
+
+        public int Id1 { private set; get; }
+        public long Id2 { private set; get; }
+        public string Id3 { private set; get; }
+        public int Num { private set; get; }
+        public string Desc { private set; get; }
+
+        private const int __ID__ = 1966847134;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+            
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id1:" + Id1 + ","
+            + "id2:" + Id2 + ","
+            + "id3:" + Id3 + ","
+            + "num:" + Num + ","
+            + "desc:" + Desc + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static MultiUnionIndexList DeserializeMultiUnionIndexList(JsonElement _buf)
-    {
-        return new test.MultiUnionIndexList(_buf);
-    }
-
-    public readonly int Id1;
-    public readonly long Id2;
-    public readonly string Id3;
-    public readonly int Num;
-    public readonly string Desc;
-   
-    public const int __ID__ = 1966847134;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-        
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id1:" + Id1 + ","
-        + "id2:" + Id2 + ","
-        + "id3:" + Id3 + ","
-        + "num:" + Num + ","
-        + "desc:" + Desc + ","
-        + "}";
-    }
-}
-
 }

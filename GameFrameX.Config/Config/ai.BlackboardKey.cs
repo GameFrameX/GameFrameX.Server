@@ -10,53 +10,65 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class BlackboardKey : GameFrameX.Config.Core.BeanBase
-{
-    public BlackboardKey(JsonElement _buf) 
+    public sealed partial class BlackboardKey : BeanBase
     {
-        Name = _buf.GetProperty("name").GetString();
-        Desc = _buf.GetProperty("desc").GetString();
-        IsStatic = _buf.GetProperty("is_static").GetBoolean();
-        Type = (ai.EKeyType)_buf.GetProperty("type").GetInt32();
-        TypeClassName = _buf.GetProperty("type_class_name").GetString();
+        /*
+        public BlackboardKey(string Name, string Desc, bool IsStatic, ai.EKeyType Type, string TypeClassName) 
+        {
+            this.Name = Name;
+            this.Desc = Desc;
+            this.IsStatic = IsStatic;
+            this.Type = Type;
+            this.TypeClassName = TypeClassName;
+            PostInit();
+        }        
+        */
+
+        public BlackboardKey(JsonElement _buf) 
+        {
+            Name = _buf.GetProperty("name").GetString();
+            Desc = _buf.GetProperty("desc").GetString();
+            IsStatic = _buf.GetProperty("is_static").GetBoolean();
+            Type = (ai.EKeyType)_buf.GetProperty("type").GetInt32();
+            TypeClassName = _buf.GetProperty("type_class_name").GetString();
+        }
+    
+        public static BlackboardKey DeserializeBlackboardKey(JsonElement _buf)
+        {
+            return new ai.BlackboardKey(_buf);
+        }
+
+        public string Name { private set; get; }
+        public string Desc { private set; get; }
+        public bool IsStatic { private set; get; }
+        public ai.EKeyType Type { private set; get; }
+        public string TypeClassName { private set; get; }
+
+        private const int __ID__ = -511559886;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+            
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "name:" + Name + ","
+            + "desc:" + Desc + ","
+            + "isStatic:" + IsStatic + ","
+            + "type:" + Type + ","
+            + "typeClassName:" + TypeClassName + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static BlackboardKey DeserializeBlackboardKey(JsonElement _buf)
-    {
-        return new ai.BlackboardKey(_buf);
-    }
-
-    public readonly string Name;
-    public readonly string Desc;
-    public readonly bool IsStatic;
-    public readonly ai.EKeyType Type;
-    public readonly string TypeClassName;
-   
-    public const int __ID__ = -511559886;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-        
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "name:" + Name + ","
-        + "desc:" + Desc + ","
-        + "isStatic:" + IsStatic + ","
-        + "type:" + Type + ","
-        + "typeClassName:" + TypeClassName + ","
-        + "}";
-    }
-}
-
 }

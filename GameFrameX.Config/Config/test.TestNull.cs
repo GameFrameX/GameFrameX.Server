@@ -10,61 +10,75 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class TestNull : GameFrameX.Config.Core.BeanBase
-{
-    public TestNull(JsonElement _buf) 
+    public sealed partial class TestNull : BeanBase
     {
-        Id = _buf.GetProperty("id").GetInt32();
-        {if (_buf.TryGetProperty("x1", out var _j) && _j.ValueKind != JsonValueKind.Null) { X1 = _j.GetInt32(); } else { X1 = null; } }
-        {if (_buf.TryGetProperty("x2", out var _j) && _j.ValueKind != JsonValueKind.Null) { X2 = (test.DemoEnum?)_j.GetInt32(); } else { X2 = null; } }
-        {if (_buf.TryGetProperty("x3", out var _j) && _j.ValueKind != JsonValueKind.Null) { X3 = test.DemoType1.DeserializeDemoType1(_j); } else { X3 = null; } }
-        {if (_buf.TryGetProperty("x4", out var _j) && _j.ValueKind != JsonValueKind.Null) { X4 = test.DemoDynamic.DeserializeDemoDynamic(_j); } else { X4 = null; } }
-        {if (_buf.TryGetProperty("s1", out var _j) && _j.ValueKind != JsonValueKind.Null) { S1 = _j.GetString(); } else { S1 = null; } }
-        {if (_buf.TryGetProperty("s2", out var _j) && _j.ValueKind != JsonValueKind.Null) { S2 = _j.GetString(); } else { S2 = null; } }
+        /*
+        public TestNull(int Id, int? X1, test.DemoEnum? X2, test.DemoType1 X3, test.DemoDynamic X4, string S1, string S2) 
+        {
+            this.Id = Id;
+            this.X1 = X1;
+            this.X2 = X2;
+            this.X3 = X3;
+            this.X4 = X4;
+            this.S1 = S1;
+            this.S2 = S2;
+            PostInit();
+        }        
+        */
+
+        public TestNull(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetInt32();
+            {if (_buf.TryGetProperty("x1", out var _j) && _j.ValueKind != JsonValueKind.Null) { X1 = _j.GetInt32(); } else { X1 = null; } }
+            {if (_buf.TryGetProperty("x2", out var _j) && _j.ValueKind != JsonValueKind.Null) { X2 = (test.DemoEnum?)_j.GetInt32(); } else { X2 = null; } }
+            {if (_buf.TryGetProperty("x3", out var _j) && _j.ValueKind != JsonValueKind.Null) { X3 = test.DemoType1.DeserializeDemoType1(_j); } else { X3 = null; } }
+            {if (_buf.TryGetProperty("x4", out var _j) && _j.ValueKind != JsonValueKind.Null) { X4 = test.DemoDynamic.DeserializeDemoDynamic(_j); } else { X4 = null; } }
+            {if (_buf.TryGetProperty("s1", out var _j) && _j.ValueKind != JsonValueKind.Null) { S1 = _j.GetString(); } else { S1 = null; } }
+            {if (_buf.TryGetProperty("s2", out var _j) && _j.ValueKind != JsonValueKind.Null) { S2 = _j.GetString(); } else { S2 = null; } }
+        }
+    
+        public static TestNull DeserializeTestNull(JsonElement _buf)
+        {
+            return new test.TestNull(_buf);
+        }
+
+        public int Id { private set; get; }
+        public int? X1 { private set; get; }
+        public test.DemoEnum? X2 { private set; get; }
+        public test.DemoType1 X3 { private set; get; }
+        public test.DemoDynamic X4 { private set; get; }
+        public string S1 { private set; get; }
+        public string S2 { private set; get; }
+
+        private const int __ID__ = 339868469;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+            
+            X3?.ResolveRef(tables);
+            X4?.ResolveRef(tables);
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "x1:" + X1 + ","
+            + "x2:" + X2 + ","
+            + "x3:" + X3 + ","
+            + "x4:" + X4 + ","
+            + "s1:" + S1 + ","
+            + "s2:" + S2 + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static TestNull DeserializeTestNull(JsonElement _buf)
-    {
-        return new test.TestNull(_buf);
-    }
-
-    public readonly int Id;
-    public readonly int? X1;
-    public readonly test.DemoEnum? X2;
-    public readonly test.DemoType1 X3;
-    public readonly test.DemoDynamic X4;
-    public readonly string S1;
-    public readonly string S2;
-   
-    public const int __ID__ = 339868469;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-        
-        X3?.ResolveRef(tables);
-        X4?.ResolveRef(tables);
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "x1:" + X1 + ","
-        + "x2:" + X2 + ","
-        + "x3:" + X3 + ","
-        + "x4:" + X4 + ","
-        + "s1:" + S1 + ","
-        + "s2:" + S2 + ","
-        + "}";
-    }
-}
-
 }

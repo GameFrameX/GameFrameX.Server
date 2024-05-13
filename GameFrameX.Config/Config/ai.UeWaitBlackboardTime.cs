@@ -10,43 +10,51 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class UeWaitBlackboardTime : ai.Task
-{
-    public UeWaitBlackboardTime(JsonElement _buf)  : base(_buf) 
+    public sealed partial class UeWaitBlackboardTime : ai.Task
     {
-        BlackboardKey = _buf.GetProperty("blackboard_key").GetString();
+        /*
+        public UeWaitBlackboardTime(int Id, string NodeName, System.Collections.Generic.List<ai.Decorator> Decorators, System.Collections.Generic.List<ai.Service> Services, bool IgnoreRestartSelf, string BlackboardKey)  : base(Id, NodeName, Decorators, Services, IgnoreRestartSelf) 
+        {
+            this.BlackboardKey = BlackboardKey;
+            PostInit();
+        }        
+        */
+
+        public UeWaitBlackboardTime(JsonElement _buf)  : base(_buf) 
+        {
+            BlackboardKey = _buf.GetProperty("blackboard_key").GetString();
+        }
+    
+        public static UeWaitBlackboardTime DeserializeUeWaitBlackboardTime(JsonElement _buf)
+        {
+            return new ai.UeWaitBlackboardTime(_buf);
+        }
+
+        public string BlackboardKey { private set; get; }
+
+        private const int __ID__ = 1215378271;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
+            + "services:" + StringUtil.CollectionToString(Services) + ","
+            + "ignoreRestartSelf:" + IgnoreRestartSelf + ","
+            + "blackboardKey:" + BlackboardKey + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static UeWaitBlackboardTime DeserializeUeWaitBlackboardTime(JsonElement _buf)
-    {
-        return new ai.UeWaitBlackboardTime(_buf);
-    }
-
-    public readonly string BlackboardKey;
-   
-    public const int __ID__ = 1215378271;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
-        + "services:" + StringUtil.CollectionToString(Services) + ","
-        + "ignoreRestartSelf:" + IgnoreRestartSelf + ","
-        + "blackboardKey:" + BlackboardKey + ","
-        + "}";
-    }
-}
-
 }

@@ -9,7 +9,7 @@
 
 
 
-namespace cfg.test
+namespace GameFrameX.Config.test
 { 
     [System.Flags]
     public enum DemoFlag

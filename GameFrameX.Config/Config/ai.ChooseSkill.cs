@@ -10,47 +10,56 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class ChooseSkill : ai.Task
-{
-    public ChooseSkill(JsonElement _buf)  : base(_buf) 
+    public sealed partial class ChooseSkill : ai.Task
     {
-        TargetActorKey = _buf.GetProperty("target_actor_key").GetString();
-        ResultSkillIdKey = _buf.GetProperty("result_skill_id_key").GetString();
+        /*
+        public ChooseSkill(int Id, string NodeName, System.Collections.Generic.List<ai.Decorator> Decorators, System.Collections.Generic.List<ai.Service> Services, bool IgnoreRestartSelf, string TargetActorKey, string ResultSkillIdKey)  : base(Id, NodeName, Decorators, Services, IgnoreRestartSelf) 
+        {
+            this.TargetActorKey = TargetActorKey;
+            this.ResultSkillIdKey = ResultSkillIdKey;
+            PostInit();
+        }        
+        */
+
+        public ChooseSkill(JsonElement _buf)  : base(_buf) 
+        {
+            TargetActorKey = _buf.GetProperty("target_actor_key").GetString();
+            ResultSkillIdKey = _buf.GetProperty("result_skill_id_key").GetString();
+        }
+    
+        public static ChooseSkill DeserializeChooseSkill(JsonElement _buf)
+        {
+            return new ai.ChooseSkill(_buf);
+        }
+
+        public string TargetActorKey { private set; get; }
+        public string ResultSkillIdKey { private set; get; }
+
+        private const int __ID__ = -918812268;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
+            + "services:" + StringUtil.CollectionToString(Services) + ","
+            + "ignoreRestartSelf:" + IgnoreRestartSelf + ","
+            + "targetActorKey:" + TargetActorKey + ","
+            + "resultSkillIdKey:" + ResultSkillIdKey + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static ChooseSkill DeserializeChooseSkill(JsonElement _buf)
-    {
-        return new ai.ChooseSkill(_buf);
-    }
-
-    public readonly string TargetActorKey;
-    public readonly string ResultSkillIdKey;
-   
-    public const int __ID__ = -918812268;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
-        + "services:" + StringUtil.CollectionToString(Services) + ","
-        + "ignoreRestartSelf:" + IgnoreRestartSelf + ","
-        + "targetActorKey:" + TargetActorKey + ","
-        + "resultSkillIdKey:" + ResultSkillIdKey + ","
-        + "}";
-    }
-}
-
 }

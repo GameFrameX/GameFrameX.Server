@@ -10,45 +10,55 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class Foo : GameFrameX.Config.Core.BeanBase
-{
-    public Foo(JsonElement _buf) 
+    public sealed partial class Foo : BeanBase
     {
-        Y1 = _buf.GetProperty("y1").GetInt32();
-        Y2 = _buf.GetProperty("y2").GetInt32();
-        Y3 = _buf.GetProperty("y3").GetInt32();
+        /*
+        public Foo(int Y1, int Y2, int Y3) 
+        {
+            this.Y1 = Y1;
+            this.Y2 = Y2;
+            this.Y3 = Y3;
+            PostInit();
+        }        
+        */
+
+        public Foo(JsonElement _buf) 
+        {
+            Y1 = _buf.GetProperty("y1").GetInt32();
+            Y2 = _buf.GetProperty("y2").GetInt32();
+            Y3 = _buf.GetProperty("y3").GetInt32();
+        }
+    
+        public static Foo DeserializeFoo(JsonElement _buf)
+        {
+            return new test.Foo(_buf);
+        }
+
+        public int Y1 { private set; get; }
+        public int Y2 { private set; get; }
+        public int Y3 { private set; get; }
+
+        private const int __ID__ = -1147950774;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "y1:" + Y1 + ","
+            + "y2:" + Y2 + ","
+            + "y3:" + Y3 + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static Foo DeserializeFoo(JsonElement _buf)
-    {
-        return new test.Foo(_buf);
-    }
-
-    public readonly int Y1;
-    public readonly int Y2;
-    public readonly int Y3;
-   
-    public const int __ID__ = -1147950774;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "y1:" + Y1 + ","
-        + "y2:" + Y2 + ","
-        + "y3:" + Y3 + ","
-        + "}";
-    }
-}
-
 }

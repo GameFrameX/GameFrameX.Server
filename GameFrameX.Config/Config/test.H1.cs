@@ -10,41 +10,50 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class H1 : GameFrameX.Config.Core.BeanBase
-{
-    public H1(JsonElement _buf) 
+    public sealed partial class H1 : BeanBase
     {
-        Y2 = test.H2.DeserializeH2(_buf.GetProperty("y2"));
-        Y3 = _buf.GetProperty("y3").GetInt32();
+        /*
+        public H1(test.H2 Y2, int Y3) 
+        {
+            this.Y2 = Y2;
+            this.Y3 = Y3;
+            PostInit();
+        }        
+        */
+
+        public H1(JsonElement _buf) 
+        {
+            Y2 = test.H2.DeserializeH2(_buf.GetProperty("y2"));
+            Y3 = _buf.GetProperty("y3").GetInt32();
+        }
+    
+        public static H1 DeserializeH1(JsonElement _buf)
+        {
+            return new test.H1(_buf);
+        }
+
+        public test.H2 Y2 { private set; get; }
+        public int Y3 { private set; get; }
+
+        private const int __ID__ = -1422503995;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            Y2?.ResolveRef(tables);
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "y2:" + Y2 + ","
+            + "y3:" + Y3 + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static H1 DeserializeH1(JsonElement _buf)
-    {
-        return new test.H1(_buf);
-    }
-
-    public readonly test.H2 Y2;
-    public readonly int Y3;
-   
-    public const int __ID__ = -1422503995;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        Y2?.ResolveRef(tables);
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "y2:" + Y2 + ","
-        + "y3:" + Y3 + ","
-        + "}";
-    }
-}
-
 }

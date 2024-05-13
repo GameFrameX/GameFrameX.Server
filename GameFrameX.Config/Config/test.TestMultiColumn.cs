@@ -10,49 +10,60 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class TestMultiColumn : GameFrameX.Config.Core.BeanBase
-{
-    public TestMultiColumn(JsonElement _buf) 
+    public sealed partial class TestMultiColumn : BeanBase
     {
-        Id = _buf.GetProperty("id").GetInt32();
-        A = test.Foo.DeserializeFoo(_buf.GetProperty("a"));
-        B = test.Foo.DeserializeFoo(_buf.GetProperty("b"));
-        C = test.Foo.DeserializeFoo(_buf.GetProperty("c"));
+        /*
+        public TestMultiColumn(int Id, test.Foo A, test.Foo B, test.Foo C) 
+        {
+            this.Id = Id;
+            this.A = A;
+            this.B = B;
+            this.C = C;
+            PostInit();
+        }        
+        */
+
+        public TestMultiColumn(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetInt32();
+            A = test.Foo.DeserializeFoo(_buf.GetProperty("a"));
+            B = test.Foo.DeserializeFoo(_buf.GetProperty("b"));
+            C = test.Foo.DeserializeFoo(_buf.GetProperty("c"));
+        }
+    
+        public static TestMultiColumn DeserializeTestMultiColumn(JsonElement _buf)
+        {
+            return new test.TestMultiColumn(_buf);
+        }
+
+        public int Id { private set; get; }
+        public test.Foo A { private set; get; }
+        public test.Foo B { private set; get; }
+        public test.Foo C { private set; get; }
+
+        private const int __ID__ = -294473599;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            A?.ResolveRef(tables);
+            B?.ResolveRef(tables);
+            C?.ResolveRef(tables);
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "a:" + A + ","
+            + "b:" + B + ","
+            + "c:" + C + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static TestMultiColumn DeserializeTestMultiColumn(JsonElement _buf)
-    {
-        return new test.TestMultiColumn(_buf);
-    }
-
-    public readonly int Id;
-    public readonly test.Foo A;
-    public readonly test.Foo B;
-    public readonly test.Foo C;
-   
-    public const int __ID__ = -294473599;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        A?.ResolveRef(tables);
-        B?.ResolveRef(tables);
-        C?.ResolveRef(tables);
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "a:" + A + ","
-        + "b:" + B + ","
-        + "c:" + C + ","
-        + "}";
-    }
-}
-
 }

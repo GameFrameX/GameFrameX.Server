@@ -9,7 +9,7 @@
 
 
 
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 { 
     public enum EFlowAbortMode
     {

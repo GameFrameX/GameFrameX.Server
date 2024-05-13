@@ -10,51 +10,63 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class DemoGroup : GameFrameX.Config.Core.BeanBase
-{
-    public DemoGroup(JsonElement _buf) 
+    public sealed partial class DemoGroup : BeanBase
     {
-        Id = _buf.GetProperty("id").GetInt32();
-        X2 = _buf.GetProperty("x2").GetInt32();
-        X2_Ref = null;
-        X4 = _buf.GetProperty("x4").GetInt32();
-        X5 = test.InnerGroup.DeserializeInnerGroup(_buf.GetProperty("x5"));
+        /*
+        public DemoGroup(int Id, int X2, int X4, test.InnerGroup X5) 
+        {
+            this.Id = Id;
+            this.X2 = X2;
+            this.X2_Ref = null;
+            this.X4 = X4;
+            this.X5 = X5;
+            PostInit();
+        }        
+        */
+
+        public DemoGroup(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetInt32();
+            X2 = _buf.GetProperty("x2").GetInt32();
+            X2_Ref = null;
+            X4 = _buf.GetProperty("x4").GetInt32();
+            X5 = test.InnerGroup.DeserializeInnerGroup(_buf.GetProperty("x5"));
+        }
+    
+        public static DemoGroup DeserializeDemoGroup(JsonElement _buf)
+        {
+            return new test.DemoGroup(_buf);
+        }
+
+        public int Id { private set; get; }
+        public int X2 { private set; get; }
+        public test.DemoGroup X2_Ref { private set; get; }
+        public int X4 { private set; get; }
+        public test.InnerGroup X5 { private set; get; }
+
+        private const int __ID__ = -379263008;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            X2_Ref = tables.TbDemoGroupS.Get(X2);
+            
+            X5?.ResolveRef(tables);
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "x2:" + X2 + ","
+            + "x4:" + X4 + ","
+            + "x5:" + X5 + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static DemoGroup DeserializeDemoGroup(JsonElement _buf)
-    {
-        return new test.DemoGroup(_buf);
-    }
-
-    public readonly int Id;
-    public readonly int X2;
-    public test.DemoGroup X2_Ref;
-    public readonly int X4;
-    public readonly test.InnerGroup X5;
-   
-    public const int __ID__ = -379263008;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        X2_Ref = tables.TbDemoGroupS.GetOrDefault(X2);
-        
-        X5?.ResolveRef(tables);
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "x2:" + X2 + ","
-        + "x4:" + X4 + ","
-        + "x5:" + X5 + ","
-        + "}";
-    }
-}
-
 }

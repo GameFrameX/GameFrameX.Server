@@ -10,43 +10,51 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class MoveToLocation : ai.Task
-{
-    public MoveToLocation(JsonElement _buf)  : base(_buf) 
+    public sealed partial class MoveToLocation : ai.Task
     {
-        AcceptableRadius = _buf.GetProperty("acceptable_radius").GetSingle();
+        /*
+        public MoveToLocation(int Id, string NodeName, System.Collections.Generic.List<ai.Decorator> Decorators, System.Collections.Generic.List<ai.Service> Services, bool IgnoreRestartSelf, float AcceptableRadius)  : base(Id, NodeName, Decorators, Services, IgnoreRestartSelf) 
+        {
+            this.AcceptableRadius = AcceptableRadius;
+            PostInit();
+        }        
+        */
+
+        public MoveToLocation(JsonElement _buf)  : base(_buf) 
+        {
+            AcceptableRadius = _buf.GetProperty("acceptable_radius").GetSingle();
+        }
+    
+        public static MoveToLocation DeserializeMoveToLocation(JsonElement _buf)
+        {
+            return new ai.MoveToLocation(_buf);
+        }
+
+        public float AcceptableRadius { private set; get; }
+
+        private const int __ID__ = -969953113;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
+            + "services:" + StringUtil.CollectionToString(Services) + ","
+            + "ignoreRestartSelf:" + IgnoreRestartSelf + ","
+            + "acceptableRadius:" + AcceptableRadius + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static MoveToLocation DeserializeMoveToLocation(JsonElement _buf)
-    {
-        return new ai.MoveToLocation(_buf);
-    }
-
-    public readonly float AcceptableRadius;
-   
-    public const int __ID__ = -969953113;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
-        + "services:" + StringUtil.CollectionToString(Services) + ","
-        + "ignoreRestartSelf:" + IgnoreRestartSelf + ","
-        + "acceptableRadius:" + AcceptableRadius + ","
-        + "}";
-    }
-}
-
 }

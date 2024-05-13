@@ -10,39 +10,47 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class DemoD2 : test.DemoDynamic
-{
-    public DemoD2(JsonElement _buf)  : base(_buf) 
+    public sealed partial class DemoD2 : test.DemoDynamic
     {
-        X2 = _buf.GetProperty("x2").GetInt32();
+        /*
+        public DemoD2(int X1, int X2)  : base(X1) 
+        {
+            this.X2 = X2;
+            PostInit();
+        }        
+        */
+
+        public DemoD2(JsonElement _buf)  : base(_buf) 
+        {
+            X2 = _buf.GetProperty("x2").GetInt32();
+        }
+    
+        public static DemoD2 DeserializeDemoD2(JsonElement _buf)
+        {
+            return new test.DemoD2(_buf);
+        }
+
+        public int X2 { private set; get; }
+
+        private const int __ID__ = -2138341747;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "x1:" + X1 + ","
+            + "x2:" + X2 + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static DemoD2 DeserializeDemoD2(JsonElement _buf)
-    {
-        return new test.DemoD2(_buf);
-    }
-
-    public readonly int X2;
-   
-    public const int __ID__ = -2138341747;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "x1:" + X1 + ","
-        + "x2:" + X2 + ","
-        + "}";
-    }
-}
-
 }

@@ -10,41 +10,50 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class MultiRowType1 : GameFrameX.Config.Core.BeanBase
-{
-    public MultiRowType1(JsonElement _buf) 
+    public sealed partial class MultiRowType1 : BeanBase
     {
-        Id = _buf.GetProperty("id").GetInt32();
-        X = _buf.GetProperty("x").GetInt32();
+        /*
+        public MultiRowType1(int Id, int X) 
+        {
+            this.Id = Id;
+            this.X = X;
+            PostInit();
+        }        
+        */
+
+        public MultiRowType1(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetInt32();
+            X = _buf.GetProperty("x").GetInt32();
+        }
+    
+        public static MultiRowType1 DeserializeMultiRowType1(JsonElement _buf)
+        {
+            return new test.MultiRowType1(_buf);
+        }
+
+        public int Id { private set; get; }
+        public int X { private set; get; }
+
+        private const int __ID__ = 540474970;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "x:" + X + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static MultiRowType1 DeserializeMultiRowType1(JsonElement _buf)
-    {
-        return new test.MultiRowType1(_buf);
-    }
-
-    public readonly int Id;
-    public readonly int X;
-   
-    public const int __ID__ = 540474970;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "x:" + X + ","
-        + "}";
-    }
-}
-
 }

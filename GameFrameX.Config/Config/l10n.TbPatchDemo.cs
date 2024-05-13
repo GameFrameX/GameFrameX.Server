@@ -10,43 +10,49 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.l10n
+namespace GameFrameX.Config.l10n
 {
-public partial class TbPatchDemo
-{
-    private readonly System.Collections.Generic.Dictionary<int, l10n.PatchDemo> _dataMap;
-    private readonly System.Collections.Generic.List<l10n.PatchDemo> _dataList;
+    public partial class TbPatchDemo : BaseDataTable<l10n.PatchDemo>
+    {
+        //private readonly System.Collections.Generic.Dictionary<int, l10n.PatchDemo> _dataMap;
+        //private readonly System.Collections.Generic.List<l10n.PatchDemo> _dataList;
     
-    public TbPatchDemo(JsonElement _buf)
-    {
-        _dataMap = new System.Collections.Generic.Dictionary<int, l10n.PatchDemo>();
-        _dataList = new System.Collections.Generic.List<l10n.PatchDemo>();
-        
-        foreach(JsonElement _ele in _buf.EnumerateArray())
+        //public System.Collections.Generic.Dictionary<int, l10n.PatchDemo> DataMap => _dataMap;
+        //public System.Collections.Generic.List<l10n.PatchDemo> DataList => _dataList;
+        //public l10n.PatchDemo GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
+        //public l10n.PatchDemo Get(int key) => _dataMap[key];
+        //public l10n.PatchDemo this[int key] => _dataMap[key];
+    
+        public override async System.Threading.Tasks.Task LoadAsync()
         {
-            l10n.PatchDemo _v;
-            _v = l10n.PatchDemo.DeserializePatchDemo(_ele);
-            _dataList.Add(_v);
-            _dataMap.Add(_v.Id, _v);
+            var jsonElement = await _loadFunc();
+            DataList.Clear();
+            LongDataMaps.Clear();
+            StringDataMaps.Clear();
+            foreach(var element in jsonElement.EnumerateArray())
+            {
+                l10n.PatchDemo _v;
+                _v = l10n.PatchDemo.DeserializePatchDemo(element);
+                DataList.Add(_v);
+                LongDataMaps.Add(_v.Id, _v);
+                StringDataMaps.Add(_v.Id.ToString(), _v);
+            }
+            PostInit();
+        }
+
+        public void ResolveRef(TablesComponent tables)
+        {
+            foreach(var element in DataList)
+            {
+                element.ResolveRef(tables);
+            }
+        }
+    
+    
+        partial void PostInit();
+
+        public TbPatchDemo(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        {
         }
     }
-
-    public System.Collections.Generic.Dictionary<int, l10n.PatchDemo> DataMap => _dataMap;
-    public System.Collections.Generic.List<l10n.PatchDemo> DataList => _dataList;
-
-    public l10n.PatchDemo GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
-    public l10n.PatchDemo Get(int key) => _dataMap[key];
-    public l10n.PatchDemo this[int key] => _dataMap[key];
-
-    public void ResolveRef(Tables tables)
-    {
-        foreach(var _v in _dataList)
-        {
-            _v.ResolveRef(tables);
-        }
-    }
-
-}
-
 }

@@ -10,42 +10,49 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public abstract partial class ComposeNode : ai.FlowNode
-{
-    public ComposeNode(JsonElement _buf)  : base(_buf) 
+    public abstract partial class ComposeNode : ai.FlowNode
     {
-    }
-
-    public static ComposeNode DeserializeComposeNode(JsonElement _buf)
-    {
-        switch (_buf.GetProperty("$type").GetString())
+        /*
+        public ComposeNode(int Id, string NodeName, System.Collections.Generic.List<ai.Decorator> Decorators, System.Collections.Generic.List<ai.Service> Services)  : base(Id, NodeName, Decorators, Services) 
         {
-            case "Sequence": return new ai.Sequence(_buf);
-            case "Selector": return new ai.Selector(_buf);
-            case "SimpleParallel": return new ai.SimpleParallel(_buf);
-            default: throw new SerializationException();
+            PostInit();
+        }        
+        */
+
+        public ComposeNode(JsonElement _buf)  : base(_buf) 
+        {
         }
+    
+        public static ComposeNode DeserializeComposeNode(JsonElement _buf)
+        {
+            switch (_buf.GetProperty("$type").GetString())
+            {
+                case "Sequence": return new ai.Sequence(_buf);
+                case "Selector": return new ai.Selector(_buf);
+                case "SimpleParallel": return new ai.SimpleParallel(_buf);
+                default: throw new SerializationException();
+            }
+        }
+
+
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
+            + "services:" + StringUtil.CollectionToString(Services) + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-   
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
-        + "services:" + StringUtil.CollectionToString(Services) + ","
-        + "}";
-    }
-}
-
 }

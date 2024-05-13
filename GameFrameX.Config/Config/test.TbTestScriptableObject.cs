@@ -10,43 +10,49 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public partial class TbTestScriptableObject
-{
-    private readonly System.Collections.Generic.Dictionary<int, test.TestScriptableObject> _dataMap;
-    private readonly System.Collections.Generic.List<test.TestScriptableObject> _dataList;
+    public partial class TbTestScriptableObject : BaseDataTable<test.TestScriptableObject>
+    {
+        //private readonly System.Collections.Generic.Dictionary<int, test.TestScriptableObject> _dataMap;
+        //private readonly System.Collections.Generic.List<test.TestScriptableObject> _dataList;
     
-    public TbTestScriptableObject(JsonElement _buf)
-    {
-        _dataMap = new System.Collections.Generic.Dictionary<int, test.TestScriptableObject>();
-        _dataList = new System.Collections.Generic.List<test.TestScriptableObject>();
-        
-        foreach(JsonElement _ele in _buf.EnumerateArray())
+        //public System.Collections.Generic.Dictionary<int, test.TestScriptableObject> DataMap => _dataMap;
+        //public System.Collections.Generic.List<test.TestScriptableObject> DataList => _dataList;
+        //public test.TestScriptableObject GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
+        //public test.TestScriptableObject Get(int key) => _dataMap[key];
+        //public test.TestScriptableObject this[int key] => _dataMap[key];
+    
+        public override async System.Threading.Tasks.Task LoadAsync()
         {
-            test.TestScriptableObject _v;
-            _v = test.TestScriptableObject.DeserializeTestScriptableObject(_ele);
-            _dataList.Add(_v);
-            _dataMap.Add(_v.Id, _v);
+            var jsonElement = await _loadFunc();
+            DataList.Clear();
+            LongDataMaps.Clear();
+            StringDataMaps.Clear();
+            foreach(var element in jsonElement.EnumerateArray())
+            {
+                test.TestScriptableObject _v;
+                _v = test.TestScriptableObject.DeserializeTestScriptableObject(element);
+                DataList.Add(_v);
+                LongDataMaps.Add(_v.Id, _v);
+                StringDataMaps.Add(_v.Id.ToString(), _v);
+            }
+            PostInit();
+        }
+
+        public void ResolveRef(TablesComponent tables)
+        {
+            foreach(var element in DataList)
+            {
+                element.ResolveRef(tables);
+            }
+        }
+    
+    
+        partial void PostInit();
+
+        public TbTestScriptableObject(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        {
         }
     }
-
-    public System.Collections.Generic.Dictionary<int, test.TestScriptableObject> DataMap => _dataMap;
-    public System.Collections.Generic.List<test.TestScriptableObject> DataList => _dataList;
-
-    public test.TestScriptableObject GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
-    public test.TestScriptableObject Get(int key) => _dataMap[key];
-    public test.TestScriptableObject this[int key] => _dataMap[key];
-
-    public void ResolveRef(Tables tables)
-    {
-        foreach(var _v in _dataList)
-        {
-            _v.ResolveRef(tables);
-        }
-    }
-
-}
-
 }

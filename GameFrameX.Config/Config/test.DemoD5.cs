@@ -10,39 +10,47 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class DemoD5 : test.DemoDynamic
-{
-    public DemoD5(JsonElement _buf)  : base(_buf) 
+    public sealed partial class DemoD5 : test.DemoDynamic
     {
-        Time = test.DateTimeRange.DeserializeDateTimeRange(_buf.GetProperty("time"));
+        /*
+        public DemoD5(int X1, test.DateTimeRange Time)  : base(X1) 
+        {
+            this.Time = Time;
+            PostInit();
+        }        
+        */
+
+        public DemoD5(JsonElement _buf)  : base(_buf) 
+        {
+            Time = test.DateTimeRange.DeserializeDateTimeRange(_buf.GetProperty("time"));
+        }
+    
+        public static DemoD5 DeserializeDemoD5(JsonElement _buf)
+        {
+            return new test.DemoD5(_buf);
+        }
+
+        public test.DateTimeRange Time { private set; get; }
+
+        private const int __ID__ = -2138341744;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            Time?.ResolveRef(tables);
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "x1:" + X1 + ","
+            + "time:" + Time + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static DemoD5 DeserializeDemoD5(JsonElement _buf)
-    {
-        return new test.DemoD5(_buf);
-    }
-
-    public readonly test.DateTimeRange Time;
-   
-    public const int __ID__ = -2138341744;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        Time?.ResolveRef(tables);
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "x1:" + X1 + ","
-        + "time:" + Time + ","
-        + "}";
-    }
-}
-
 }

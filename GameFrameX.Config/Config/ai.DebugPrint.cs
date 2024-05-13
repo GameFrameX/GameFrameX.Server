@@ -10,43 +10,51 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class DebugPrint : ai.Task
-{
-    public DebugPrint(JsonElement _buf)  : base(_buf) 
+    public sealed partial class DebugPrint : ai.Task
     {
-        Text = _buf.GetProperty("text").GetString();
+        /*
+        public DebugPrint(int Id, string NodeName, System.Collections.Generic.List<ai.Decorator> Decorators, System.Collections.Generic.List<ai.Service> Services, bool IgnoreRestartSelf, string Text)  : base(Id, NodeName, Decorators, Services, IgnoreRestartSelf) 
+        {
+            this.Text = Text;
+            PostInit();
+        }        
+        */
+
+        public DebugPrint(JsonElement _buf)  : base(_buf) 
+        {
+            Text = _buf.GetProperty("text").GetString();
+        }
+    
+        public static DebugPrint DeserializeDebugPrint(JsonElement _buf)
+        {
+            return new ai.DebugPrint(_buf);
+        }
+
+        public string Text { private set; get; }
+
+        private const int __ID__ = 1357409728;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
+            + "services:" + StringUtil.CollectionToString(Services) + ","
+            + "ignoreRestartSelf:" + IgnoreRestartSelf + ","
+            + "text:" + Text + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static DebugPrint DeserializeDebugPrint(JsonElement _buf)
-    {
-        return new ai.DebugPrint(_buf);
-    }
-
-    public readonly string Text;
-   
-    public const int __ID__ = 1357409728;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
-        + "services:" + StringUtil.CollectionToString(Services) + ","
-        + "ignoreRestartSelf:" + IgnoreRestartSelf + ","
-        + "text:" + Text + ","
-        + "}";
-    }
-}
-
 }

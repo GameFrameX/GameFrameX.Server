@@ -9,7 +9,7 @@
 
 
 
-namespace cfg.item
+namespace GameFrameX.Config.item
 { 
     public enum EMajorType
     {

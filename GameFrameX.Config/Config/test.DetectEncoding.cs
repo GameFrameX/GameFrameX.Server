@@ -10,41 +10,50 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class DetectEncoding : GameFrameX.Config.Core.BeanBase
-{
-    public DetectEncoding(JsonElement _buf) 
+    public sealed partial class DetectEncoding : BeanBase
     {
-        Id = _buf.GetProperty("id").GetInt32();
-        Name = _buf.GetProperty("name").GetString();
+        /*
+        public DetectEncoding(int Id, string Name) 
+        {
+            this.Id = Id;
+            this.Name = Name;
+            PostInit();
+        }        
+        */
+
+        public DetectEncoding(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetInt32();
+            Name = _buf.GetProperty("name").GetString();
+        }
+    
+        public static DetectEncoding DeserializeDetectEncoding(JsonElement _buf)
+        {
+            return new test.DetectEncoding(_buf);
+        }
+
+        public int Id { private set; get; }
+        public string Name { private set; get; }
+
+        private const int __ID__ = -1154609646;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "name:" + Name + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static DetectEncoding DeserializeDetectEncoding(JsonElement _buf)
-    {
-        return new test.DetectEncoding(_buf);
-    }
-
-    public readonly int Id;
-    public readonly string Name;
-   
-    public const int __ID__ = -1154609646;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "name:" + Name + ","
-        + "}";
-    }
-}
-
 }

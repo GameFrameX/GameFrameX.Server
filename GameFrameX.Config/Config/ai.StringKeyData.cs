@@ -10,38 +10,46 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class StringKeyData : ai.KeyData
-{
-    public StringKeyData(JsonElement _buf)  : base(_buf) 
+    public sealed partial class StringKeyData : ai.KeyData
     {
-        Value = _buf.GetProperty("value").GetString();
+        /*
+        public StringKeyData(string Value)  : base() 
+        {
+            this.Value = Value;
+            PostInit();
+        }        
+        */
+
+        public StringKeyData(JsonElement _buf)  : base(_buf) 
+        {
+            Value = _buf.GetProperty("value").GetString();
+        }
+    
+        public static StringKeyData DeserializeStringKeyData(JsonElement _buf)
+        {
+            return new ai.StringKeyData(_buf);
+        }
+
+        public string Value { private set; get; }
+
+        private const int __ID__ = -307888654;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "value:" + Value + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static StringKeyData DeserializeStringKeyData(JsonElement _buf)
-    {
-        return new ai.StringKeyData(_buf);
-    }
-
-    public readonly string Value;
-   
-    public const int __ID__ = -307888654;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "value:" + Value + ","
-        + "}";
-    }
-}
-
 }

@@ -10,53 +10,65 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class TestString : GameFrameX.Config.Core.BeanBase
-{
-    public TestString(JsonElement _buf) 
+    public sealed partial class TestString : BeanBase
     {
-        Id = _buf.GetProperty("id").GetString();
-        S1 = _buf.GetProperty("s1").GetString();
-        S2 = _buf.GetProperty("s2").GetString();
-        Cs1 = test.CompactString.DeserializeCompactString(_buf.GetProperty("cs1"));
-        Cs2 = test.CompactString.DeserializeCompactString(_buf.GetProperty("cs2"));
+        /*
+        public TestString(string Id, string S1, string S2, test.CompactString Cs1, test.CompactString Cs2) 
+        {
+            this.Id = Id;
+            this.S1 = S1;
+            this.S2 = S2;
+            this.Cs1 = Cs1;
+            this.Cs2 = Cs2;
+            PostInit();
+        }        
+        */
+
+        public TestString(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetString();
+            S1 = _buf.GetProperty("s1").GetString();
+            S2 = _buf.GetProperty("s2").GetString();
+            Cs1 = test.CompactString.DeserializeCompactString(_buf.GetProperty("cs1"));
+            Cs2 = test.CompactString.DeserializeCompactString(_buf.GetProperty("cs2"));
+        }
+    
+        public static TestString DeserializeTestString(JsonElement _buf)
+        {
+            return new test.TestString(_buf);
+        }
+
+        public string Id { private set; get; }
+        public string S1 { private set; get; }
+        public string S2 { private set; get; }
+        public test.CompactString Cs1 { private set; get; }
+        public test.CompactString Cs2 { private set; get; }
+
+        private const int __ID__ = 338485823;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+            
+            Cs1?.ResolveRef(tables);
+            Cs2?.ResolveRef(tables);
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "s1:" + S1 + ","
+            + "s2:" + S2 + ","
+            + "cs1:" + Cs1 + ","
+            + "cs2:" + Cs2 + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static TestString DeserializeTestString(JsonElement _buf)
-    {
-        return new test.TestString(_buf);
-    }
-
-    public readonly string Id;
-    public readonly string S1;
-    public readonly string S2;
-    public readonly test.CompactString Cs1;
-    public readonly test.CompactString Cs2;
-   
-    public const int __ID__ = 338485823;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-        
-        Cs1?.ResolveRef(tables);
-        Cs2?.ResolveRef(tables);
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "s1:" + S1 + ","
-        + "s2:" + S2 + ","
-        + "cs1:" + Cs1 + ","
-        + "cs2:" + Cs2 + ","
-        + "}";
-    }
-}
-
 }

@@ -10,79 +10,96 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.item
+namespace GameFrameX.Config.item
 {
-/// <summary>
-/// 道具
-/// </summary>
-public sealed partial class Item : GameFrameX.Config.Core.BeanBase
-{
-    public Item(JsonElement _buf) 
-    {
-        Id = _buf.GetProperty("id").GetInt32();
-        Name = _buf.GetProperty("name").GetString();
-        MajorType = (item.EMajorType)_buf.GetProperty("major_type").GetInt32();
-        MinorType = (item.EMinorType)_buf.GetProperty("minor_type").GetInt32();
-        MaxPileNum = _buf.GetProperty("max_pile_num").GetInt32();
-        Quality = (item.EItemQuality)_buf.GetProperty("quality").GetInt32();
-        IconBackgroud = _buf.GetProperty("icon_backgroud").GetString();
-        IconMask = _buf.GetProperty("icon_mask").GetString();
-        Desc = _buf.GetProperty("desc").GetString();
-        ShowOrder = _buf.GetProperty("show_order").GetInt32();
-    }
-
-    public static Item DeserializeItem(JsonElement _buf)
-    {
-        return new item.Item(_buf);
-    }
-
     /// <summary>
-    /// 道具id
+    /// 道具
     /// </summary>
-    public readonly int Id;
-    public readonly string Name;
-    public readonly item.EMajorType MajorType;
-    public readonly item.EMinorType MinorType;
-    public readonly int MaxPileNum;
-    public readonly item.EItemQuality Quality;
-    public readonly string IconBackgroud;
-    public readonly string IconMask;
-    public readonly string Desc;
-    public readonly int ShowOrder;
-   
-    public const int __ID__ = 2107285806;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
+    public sealed partial class Item : BeanBase
     {
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }
+        /*
+        public Item(int Id, string Name, item.EMajorType MajorType, item.EMinorType MinorType, int MaxPileNum, item.EItemQuality Quality, string IconBackgroud, string IconMask, string Desc, int ShowOrder) 
+        {
+            this.Id = Id;
+            this.Name = Name;
+            this.MajorType = MajorType;
+            this.MinorType = MinorType;
+            this.MaxPileNum = MaxPileNum;
+            this.Quality = Quality;
+            this.IconBackgroud = IconBackgroud;
+            this.IconMask = IconMask;
+            this.Desc = Desc;
+            this.ShowOrder = ShowOrder;
+            PostInit();
+        }        
+        */
 
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "name:" + Name + ","
-        + "majorType:" + MajorType + ","
-        + "minorType:" + MinorType + ","
-        + "maxPileNum:" + MaxPileNum + ","
-        + "quality:" + Quality + ","
-        + "iconBackgroud:" + IconBackgroud + ","
-        + "iconMask:" + IconMask + ","
-        + "desc:" + Desc + ","
-        + "showOrder:" + ShowOrder + ","
-        + "}";
-    }
-}
+        public Item(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetInt32();
+            Name = _buf.GetProperty("name").GetString();
+            MajorType = (item.EMajorType)_buf.GetProperty("major_type").GetInt32();
+            MinorType = (item.EMinorType)_buf.GetProperty("minor_type").GetInt32();
+            MaxPileNum = _buf.GetProperty("max_pile_num").GetInt32();
+            Quality = (item.EItemQuality)_buf.GetProperty("quality").GetInt32();
+            IconBackgroud = _buf.GetProperty("icon_backgroud").GetString();
+            IconMask = _buf.GetProperty("icon_mask").GetString();
+            Desc = _buf.GetProperty("desc").GetString();
+            ShowOrder = _buf.GetProperty("show_order").GetInt32();
+        }
+    
+        public static Item DeserializeItem(JsonElement _buf)
+        {
+            return new item.Item(_buf);
+        }
 
+        /// <summary>
+        /// 道具id
+        /// </summary>
+        public int Id { private set; get; }
+        public string Name { private set; get; }
+        public item.EMajorType MajorType { private set; get; }
+        public item.EMinorType MinorType { private set; get; }
+        public int MaxPileNum { private set; get; }
+        public item.EItemQuality Quality { private set; get; }
+        public string IconBackgroud { private set; get; }
+        public string IconMask { private set; get; }
+        public string Desc { private set; get; }
+        public int ShowOrder { private set; get; }
+
+        private const int __ID__ = 2107285806;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "name:" + Name + ","
+            + "majorType:" + MajorType + ","
+            + "minorType:" + MinorType + ","
+            + "maxPileNum:" + MaxPileNum + ","
+            + "quality:" + Quality + ","
+            + "iconBackgroud:" + IconBackgroud + ","
+            + "iconMask:" + IconMask + ","
+            + "desc:" + Desc + ","
+            + "showOrder:" + ShowOrder + ","
+            + "}";
+        }
+
+        partial void PostInit();
+    }
 }

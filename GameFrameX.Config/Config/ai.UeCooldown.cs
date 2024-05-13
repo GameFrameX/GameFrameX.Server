@@ -10,41 +10,49 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class UeCooldown : ai.Decorator
-{
-    public UeCooldown(JsonElement _buf)  : base(_buf) 
+    public sealed partial class UeCooldown : ai.Decorator
     {
-        CooldownTime = _buf.GetProperty("cooldown_time").GetSingle();
+        /*
+        public UeCooldown(int Id, string NodeName, ai.EFlowAbortMode FlowAbortMode, float CooldownTime)  : base(Id, NodeName, FlowAbortMode) 
+        {
+            this.CooldownTime = CooldownTime;
+            PostInit();
+        }        
+        */
+
+        public UeCooldown(JsonElement _buf)  : base(_buf) 
+        {
+            CooldownTime = _buf.GetProperty("cooldown_time").GetSingle();
+        }
+    
+        public static UeCooldown DeserializeUeCooldown(JsonElement _buf)
+        {
+            return new ai.UeCooldown(_buf);
+        }
+
+        public float CooldownTime { private set; get; }
+
+        private const int __ID__ = -951439423;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "flowAbortMode:" + FlowAbortMode + ","
+            + "cooldownTime:" + CooldownTime + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static UeCooldown DeserializeUeCooldown(JsonElement _buf)
-    {
-        return new ai.UeCooldown(_buf);
-    }
-
-    public readonly float CooldownTime;
-   
-    public const int __ID__ = -951439423;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "flowAbortMode:" + FlowAbortMode + ","
-        + "cooldownTime:" + CooldownTime + ","
-        + "}";
-    }
-}
-
 }

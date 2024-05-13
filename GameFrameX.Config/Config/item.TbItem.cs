@@ -10,46 +10,52 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.item
+namespace GameFrameX.Config.item
 {
-/// <summary>
-/// 道具表
-/// </summary>
-public partial class TbItem
-{
-    private readonly System.Collections.Generic.Dictionary<int, item.Item> _dataMap;
-    private readonly System.Collections.Generic.List<item.Item> _dataList;
+    /// <summary>
+    /// 道具表
+    /// </summary>
+    public partial class TbItem : BaseDataTable<item.Item>
+    {
+        //private readonly System.Collections.Generic.Dictionary<int, item.Item> _dataMap;
+        //private readonly System.Collections.Generic.List<item.Item> _dataList;
     
-    public TbItem(JsonElement _buf)
-    {
-        _dataMap = new System.Collections.Generic.Dictionary<int, item.Item>();
-        _dataList = new System.Collections.Generic.List<item.Item>();
-        
-        foreach(JsonElement _ele in _buf.EnumerateArray())
+        //public System.Collections.Generic.Dictionary<int, item.Item> DataMap => _dataMap;
+        //public System.Collections.Generic.List<item.Item> DataList => _dataList;
+        //public item.Item GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
+        //public item.Item Get(int key) => _dataMap[key];
+        //public item.Item this[int key] => _dataMap[key];
+    
+        public override async System.Threading.Tasks.Task LoadAsync()
         {
-            item.Item _v;
-            _v = item.Item.DeserializeItem(_ele);
-            _dataList.Add(_v);
-            _dataMap.Add(_v.Id, _v);
+            var jsonElement = await _loadFunc();
+            DataList.Clear();
+            LongDataMaps.Clear();
+            StringDataMaps.Clear();
+            foreach(var element in jsonElement.EnumerateArray())
+            {
+                item.Item _v;
+                _v = item.Item.DeserializeItem(element);
+                DataList.Add(_v);
+                LongDataMaps.Add(_v.Id, _v);
+                StringDataMaps.Add(_v.Id.ToString(), _v);
+            }
+            PostInit();
+        }
+
+        public void ResolveRef(TablesComponent tables)
+        {
+            foreach(var element in DataList)
+            {
+                element.ResolveRef(tables);
+            }
+        }
+    
+    
+        partial void PostInit();
+
+        public TbItem(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        {
         }
     }
-
-    public System.Collections.Generic.Dictionary<int, item.Item> DataMap => _dataMap;
-    public System.Collections.Generic.List<item.Item> DataList => _dataList;
-
-    public item.Item GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
-    public item.Item Get(int key) => _dataMap[key];
-    public item.Item this[int key] => _dataMap[key];
-
-    public void ResolveRef(Tables tables)
-    {
-        foreach(var _v in _dataList)
-        {
-            _v.ResolveRef(tables);
-        }
-    }
-
-}
-
 }

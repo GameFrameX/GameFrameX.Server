@@ -10,45 +10,55 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class DemoSingletonType : GameFrameX.Config.Core.BeanBase
-{
-    public DemoSingletonType(JsonElement _buf) 
+    public sealed partial class DemoSingletonType : BeanBase
     {
-        Id = _buf.GetProperty("id").GetInt32();
-        Name = _buf.GetProperty("name").GetString();
-        Date = test.DemoDynamic.DeserializeDemoDynamic(_buf.GetProperty("date"));
+        /*
+        public DemoSingletonType(int Id, string Name, test.DemoDynamic Date) 
+        {
+            this.Id = Id;
+            this.Name = Name;
+            this.Date = Date;
+            PostInit();
+        }        
+        */
+
+        public DemoSingletonType(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetInt32();
+            Name = _buf.GetProperty("name").GetString();
+            Date = test.DemoDynamic.DeserializeDemoDynamic(_buf.GetProperty("date"));
+        }
+    
+        public static DemoSingletonType DeserializeDemoSingletonType(JsonElement _buf)
+        {
+            return new test.DemoSingletonType(_buf);
+        }
+
+        public int Id { private set; get; }
+        public string Name { private set; get; }
+        public test.DemoDynamic Date { private set; get; }
+
+        private const int __ID__ = 539196998;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+            Date?.ResolveRef(tables);
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "name:" + Name + ","
+            + "date:" + Date + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static DemoSingletonType DeserializeDemoSingletonType(JsonElement _buf)
-    {
-        return new test.DemoSingletonType(_buf);
-    }
-
-    public readonly int Id;
-    public readonly string Name;
-    public readonly test.DemoDynamic Date;
-   
-    public const int __ID__ = 539196998;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-        Date?.ResolveRef(tables);
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "name:" + Name + ","
-        + "date:" + Date + ","
-        + "}";
-    }
-}
-
 }

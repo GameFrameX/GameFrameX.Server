@@ -10,49 +10,59 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public abstract partial class ItemBase : GameFrameX.Config.Core.BeanBase
-{
-    public ItemBase(JsonElement _buf) 
+    public abstract partial class ItemBase : BeanBase
     {
-        Id = _buf.GetProperty("id").GetInt32();
-        Name = _buf.GetProperty("name").GetString();
-        Desc = _buf.GetProperty("desc").GetString();
-    }
-
-    public static ItemBase DeserializeItemBase(JsonElement _buf)
-    {
-        switch (_buf.GetProperty("$type").GetString())
+        /*
+        public ItemBase(int Id, string Name, string Desc) 
         {
-            case "Item": return new test.Item(_buf);
-            case "Equipment": return new test.Equipment(_buf);
-            case "Decorator": return new test.Decorator(_buf);
-            default: throw new SerializationException();
+            this.Id = Id;
+            this.Name = Name;
+            this.Desc = Desc;
+            PostInit();
+        }        
+        */
+
+        public ItemBase(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetInt32();
+            Name = _buf.GetProperty("name").GetString();
+            Desc = _buf.GetProperty("desc").GetString();
         }
+    
+        public static ItemBase DeserializeItemBase(JsonElement _buf)
+        {
+            switch (_buf.GetProperty("$type").GetString())
+            {
+                case "Item": return new test.Item(_buf);
+                case "Equipment": return new test.Equipment(_buf);
+                case "Decorator": return new test.Decorator(_buf);
+                default: throw new SerializationException();
+            }
+        }
+
+        public int Id { private set; get; }
+        public string Name { private set; get; }
+        public string Desc { private set; get; }
+
+
+        public virtual void ResolveRef(TablesComponent tables)
+        {
+            
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "name:" + Name + ","
+            + "desc:" + Desc + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public readonly int Id;
-    public readonly string Name;
-    public readonly string Desc;
-   
-
-    public virtual void ResolveRef(Tables tables)
-    {
-        
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "name:" + Name + ","
-        + "desc:" + Desc + ","
-        + "}";
-    }
-}
-
 }

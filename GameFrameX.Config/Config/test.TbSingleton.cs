@@ -10,30 +10,36 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public partial class TbSingleton
-{
-
-     private readonly test.DemoSingletonType _data;
-
-    public TbSingleton(JsonElement _buf)
+    public partial class TbSingleton : BaseDataTable<test.DemoSingletonType>
     {
-        int n = _buf.GetArrayLength();
-        if (n != 1) throw new SerializationException("table mode=one, but size != 1");
-        _data = test.DemoSingletonType.DeserializeDemoSingletonType(_buf[0]);
-    }
-
-
-     public int Id => _data.Id;
-     public string Name => _data.Name;
-     public test.DemoDynamic Date => _data.Date;
     
-    public void ResolveRef(Tables tables)
-    {
-        _data.ResolveRef(tables);
-    }
-}
+        private test.DemoSingletonType _data;
+        public test.DemoSingletonType Data => _data;
 
+        public int Id => _data.Id;
+        public string Name => _data.Name;
+        public test.DemoDynamic Date => _data.Date;
+    
+        public override async Task LoadAsync()
+        {
+            var jsonElement = await _loadFunc();
+
+            int n = jsonElement.GetArrayLength();
+            if (n != 1) throw new SerializationException("table mode=one, but size != 1");
+            _data = test.DemoSingletonType.DeserializeDemoSingletonType(jsonElement[0]);
+        }
+
+        public void ResolveRef(TablesComponent tables)
+        {
+            _data.ResolveRef(tables);
+        }
+    
+        partial void PostInit();
+
+        public TbSingleton(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        {
+        }
+    }
 }

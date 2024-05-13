@@ -10,46 +10,60 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class TestIndex : GameFrameX.Config.Core.BeanBase
-{
-    public TestIndex(JsonElement _buf) 
+    public sealed partial class TestIndex : BeanBase
     {
-        Id = _buf.GetProperty("id").GetInt32();
-        { var __json0 = _buf.GetProperty("eles"); Eles = new System.Collections.Generic.List<test.DemoType1>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { test.DemoType1 __v0;  __v0 = test.DemoType1.DeserializeDemoType1(__e0);  Eles.Add(__v0); }   }
-        foreach(var _v in Eles)
-        { 
-            Eles_Index.Add(_v.X1, _v);
+        /*
+        public TestIndex(int Id, System.Collections.Generic.List<test.DemoType1> Eles) 
+        {
+            this.Id = Id;
+            this.Eles = Eles;
+            this.Eles_Index = new System.Collections.Generic.Dictionary<int, test.DemoType1>();
+            foreach(var _v in Eles)
+            { 
+                this.Eles_Index.Add(_v.X1, _v);
+            }
+            PostInit();
+        }        
+        */
+
+        public TestIndex(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetInt32();
+            { var __json0 = _buf.GetProperty("eles"); Eles = new System.Collections.Generic.List<test.DemoType1>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { test.DemoType1 __v0;  __v0 = test.DemoType1.DeserializeDemoType1(__e0);  Eles.Add(__v0); }   }
+            foreach(var _v in Eles)
+            { 
+                Eles_Index.Add(_v.X1, _v);
+            }
         }
+    
+        public static TestIndex DeserializeTestIndex(JsonElement _buf)
+        {
+            return new test.TestIndex(_buf);
+        }
+
+        public int Id { private set; get; }
+        public System.Collections.Generic.List<test.DemoType1> Eles { private set; get; }
+        public System.Collections.Generic.Dictionary<int, test.DemoType1> Eles_Index { private set; get; } = new System.Collections.Generic.Dictionary<int, test.DemoType1>();
+
+        private const int __ID__ = 1941154020;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            foreach (var _e in Eles) { _e?.ResolveRef(tables); }
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "eles:" + StringUtil.CollectionToString(Eles) + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static TestIndex DeserializeTestIndex(JsonElement _buf)
-    {
-        return new test.TestIndex(_buf);
-    }
-
-    public readonly int Id;
-    public readonly System.Collections.Generic.List<test.DemoType1> Eles;
-    public readonly System.Collections.Generic.Dictionary<int, test.DemoType1> Eles_Index = new System.Collections.Generic.Dictionary<int, test.DemoType1>();
-   
-    public const int __ID__ = 1941154020;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        foreach (var _e in Eles) { _e?.ResolveRef(tables); }
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "eles:" + StringUtil.CollectionToString(Eles) + ","
-        + "}";
-    }
-}
-
 }

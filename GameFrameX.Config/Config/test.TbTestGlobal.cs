@@ -10,29 +10,35 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public partial class TbTestGlobal
-{
-
-     private readonly test.TestGlobal _data;
-
-    public TbTestGlobal(JsonElement _buf)
+    public partial class TbTestGlobal : BaseDataTable<test.TestGlobal>
     {
-        int n = _buf.GetArrayLength();
-        if (n != 1) throw new SerializationException("table mode=one, but size != 1");
-        _data = test.TestGlobal.DeserializeTestGlobal(_buf[0]);
-    }
-
-
-     public int UnlockEquip => _data.UnlockEquip;
-     public int UnlockHero => _data.UnlockHero;
     
-    public void ResolveRef(Tables tables)
-    {
-        _data.ResolveRef(tables);
-    }
-}
+        private test.TestGlobal _data;
+        public test.TestGlobal Data => _data;
 
+        public int UnlockEquip => _data.UnlockEquip;
+        public int UnlockHero => _data.UnlockHero;
+    
+        public override async Task LoadAsync()
+        {
+            var jsonElement = await _loadFunc();
+
+            int n = jsonElement.GetArrayLength();
+            if (n != 1) throw new SerializationException("table mode=one, but size != 1");
+            _data = test.TestGlobal.DeserializeTestGlobal(jsonElement[0]);
+        }
+
+        public void ResolveRef(TablesComponent tables)
+        {
+            _data.ResolveRef(tables);
+        }
+    
+        partial void PostInit();
+
+        public TbTestGlobal(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        {
+        }
+    }
 }

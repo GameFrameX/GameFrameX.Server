@@ -10,45 +10,55 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class MultiRowType2 : GameFrameX.Config.Core.BeanBase
-{
-    public MultiRowType2(JsonElement _buf) 
+    public sealed partial class MultiRowType2 : BeanBase
     {
-        Id = _buf.GetProperty("id").GetInt32();
-        X = _buf.GetProperty("x").GetInt32();
-        Y = _buf.GetProperty("y").GetSingle();
+        /*
+        public MultiRowType2(int Id, int X, float Y) 
+        {
+            this.Id = Id;
+            this.X = X;
+            this.Y = Y;
+            PostInit();
+        }        
+        */
+
+        public MultiRowType2(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetInt32();
+            X = _buf.GetProperty("x").GetInt32();
+            Y = _buf.GetProperty("y").GetSingle();
+        }
+    
+        public static MultiRowType2 DeserializeMultiRowType2(JsonElement _buf)
+        {
+            return new test.MultiRowType2(_buf);
+        }
+
+        public int Id { private set; get; }
+        public int X { private set; get; }
+        public float Y { private set; get; }
+
+        private const int __ID__ = 540474971;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "x:" + X + ","
+            + "y:" + Y + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static MultiRowType2 DeserializeMultiRowType2(JsonElement _buf)
-    {
-        return new test.MultiRowType2(_buf);
-    }
-
-    public readonly int Id;
-    public readonly int X;
-    public readonly float Y;
-   
-    public const int __ID__ = 540474971;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "x:" + X + ","
-        + "y:" + Y + ","
-        + "}";
-    }
-}
-
 }

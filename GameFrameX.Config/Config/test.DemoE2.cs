@@ -10,39 +10,48 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public partial struct DemoE2
-{
-    public DemoE2(JsonElement _buf) 
+    public partial struct DemoE2
     {
-        {if (_buf.TryGetProperty("y1", out var _j) && _j.ValueKind != JsonValueKind.Null) { Y1 = _j.GetInt32(); } else { Y1 = null; } }
-        Y2 = _buf.GetProperty("y2").GetBoolean();
+        /*
+        public DemoE2(int? Y1, bool Y2) 
+        {
+            this.Y1 = Y1;
+            this.Y2 = Y2;
+            PostInit();
+        }        
+        */
+
+        public DemoE2(JsonElement _buf) 
+        {
+            {if (_buf.TryGetProperty("y1", out var _j) && _j.ValueKind != JsonValueKind.Null) { Y1 = _j.GetInt32(); } else { Y1 = null; } }
+            Y2 = _buf.GetProperty("y2").GetBoolean();
+        }
+    
+        public static DemoE2 DeserializeDemoE2(JsonElement _buf)
+        {
+            return new test.DemoE2(_buf);
+        }
+
+        public int? Y1 { private set; get; }
+        public bool Y2 { private set; get; }
+
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "y1:" + Y1 + ","
+            + "y2:" + Y2 + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static DemoE2 DeserializeDemoE2(JsonElement _buf)
-    {
-        return new test.DemoE2(_buf);
-    }
-
-    public readonly int? Y1;
-    public readonly bool Y2;
-   
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "y1:" + Y1 + ","
-        + "y2:" + Y2 + ","
-        + "}";
-    }
-}
-
 }

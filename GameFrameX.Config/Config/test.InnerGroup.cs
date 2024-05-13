@@ -10,45 +10,55 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class InnerGroup : GameFrameX.Config.Core.BeanBase
-{
-    public InnerGroup(JsonElement _buf) 
+    public sealed partial class InnerGroup : BeanBase
     {
-        Y1 = _buf.GetProperty("y1").GetInt32();
-        Y3 = _buf.GetProperty("y3").GetInt32();
-        Y4 = _buf.GetProperty("y4").GetInt32();
+        /*
+        public InnerGroup(int Y1, int Y3, int Y4) 
+        {
+            this.Y1 = Y1;
+            this.Y3 = Y3;
+            this.Y4 = Y4;
+            PostInit();
+        }        
+        */
+
+        public InnerGroup(JsonElement _buf) 
+        {
+            Y1 = _buf.GetProperty("y1").GetInt32();
+            Y3 = _buf.GetProperty("y3").GetInt32();
+            Y4 = _buf.GetProperty("y4").GetInt32();
+        }
+    
+        public static InnerGroup DeserializeInnerGroup(JsonElement _buf)
+        {
+            return new test.InnerGroup(_buf);
+        }
+
+        public int Y1 { private set; get; }
+        public int Y3 { private set; get; }
+        public int Y4 { private set; get; }
+
+        private const int __ID__ = -587873083;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "y1:" + Y1 + ","
+            + "y3:" + Y3 + ","
+            + "y4:" + Y4 + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static InnerGroup DeserializeInnerGroup(JsonElement _buf)
-    {
-        return new test.InnerGroup(_buf);
-    }
-
-    public readonly int Y1;
-    public readonly int Y3;
-    public readonly int Y4;
-   
-    public const int __ID__ = -587873083;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "y1:" + Y1 + ","
-        + "y3:" + Y3 + ","
-        + "y4:" + Y4 + ","
-        + "}";
-    }
-}
-
 }

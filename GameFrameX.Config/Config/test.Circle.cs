@@ -10,44 +10,52 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-/// <summary>
-/// 圆
-/// </summary>
-public sealed partial class Circle : Shape
-{
-    public Circle(JsonElement _buf)  : base(_buf) 
-    {
-        Radius = _buf.GetProperty("radius").GetSingle();
-    }
-
-    public static Circle DeserializeCircle(JsonElement _buf)
-    {
-        return new test.Circle(_buf);
-    }
-
     /// <summary>
-    /// 半径
+    /// 圆
     /// </summary>
-    public readonly float Radius;
-   
-    public const int __ID__ = 2131829196;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
+    public sealed partial class Circle : Shape
     {
-        base.ResolveRef(tables);
-        
-    }
+        /*
+        public Circle(float Radius)  : base() 
+        {
+            this.Radius = Radius;
+            PostInit();
+        }        
+        */
 
-    public override string ToString()
-    {
-        return "{ "
-        + "radius:" + Radius + ","
-        + "}";
-    }
-}
+        public Circle(JsonElement _buf)  : base(_buf) 
+        {
+            Radius = _buf.GetProperty("radius").GetSingle();
+        }
+    
+        public static Circle DeserializeCircle(JsonElement _buf)
+        {
+            return new test.Circle(_buf);
+        }
 
+        /// <summary>
+        /// 半径
+        /// </summary>
+        public float Radius { private set; get; }
+
+        private const int __ID__ = 2131829196;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "radius:" + Radius + ","
+            + "}";
+        }
+
+        partial void PostInit();
+    }
 }

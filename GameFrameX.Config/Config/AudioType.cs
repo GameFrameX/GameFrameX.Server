@@ -9,7 +9,7 @@
 
 
 
-namespace cfg
+namespace GameFrameX.Config
 { 
     public enum AudioType
     {

@@ -10,55 +10,68 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class TestMap : GameFrameX.Config.Core.BeanBase
-{
-    public TestMap(JsonElement _buf) 
+    public sealed partial class TestMap : BeanBase
     {
-        Id = _buf.GetProperty("id").GetInt32();
-        Id_Ref = null;
-        { var __json0 = _buf.GetProperty("x1"); X1 = new System.Collections.Generic.Dictionary<int, int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { int _k0;  _k0 = __e0[0].GetInt32(); int _v0;  _v0 = __e0[1].GetInt32();  X1.Add(_k0, _v0); }   }
-        { var __json0 = _buf.GetProperty("x2"); X2 = new System.Collections.Generic.Dictionary<long, int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { long _k0;  _k0 = __e0[0].GetInt64(); int _v0;  _v0 = __e0[1].GetInt32();  X2.Add(_k0, _v0); }   }
-        { var __json0 = _buf.GetProperty("x3"); X3 = new System.Collections.Generic.Dictionary<string, int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { string _k0;  _k0 = __e0[0].GetString(); int _v0;  _v0 = __e0[1].GetInt32();  X3.Add(_k0, _v0); }   }
-        { var __json0 = _buf.GetProperty("x4"); X4 = new System.Collections.Generic.Dictionary<test.DemoEnum, int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { test.DemoEnum _k0;  _k0 = (test.DemoEnum)__e0[0].GetInt32(); int _v0;  _v0 = __e0[1].GetInt32();  X4.Add(_k0, _v0); }   }
+        /*
+        public TestMap(int Id, System.Collections.Generic.Dictionary<int, int> X1, System.Collections.Generic.Dictionary<long, int> X2, System.Collections.Generic.Dictionary<string, int> X3, System.Collections.Generic.Dictionary<test.DemoEnum, int> X4) 
+        {
+            this.Id = Id;
+            this.Id_Ref = null;
+            this.X1 = X1;
+            this.X2 = X2;
+            this.X3 = X3;
+            this.X4 = X4;
+            PostInit();
+        }        
+        */
+
+        public TestMap(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetInt32();
+            Id_Ref = null;
+            { var __json0 = _buf.GetProperty("x1"); X1 = new System.Collections.Generic.Dictionary<int, int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { int _k0;  _k0 = __e0[0].GetInt32(); int _v0;  _v0 = __e0[1].GetInt32();  X1.Add(_k0, _v0); }   }
+            { var __json0 = _buf.GetProperty("x2"); X2 = new System.Collections.Generic.Dictionary<long, int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { long _k0;  _k0 = __e0[0].GetInt64(); int _v0;  _v0 = __e0[1].GetInt32();  X2.Add(_k0, _v0); }   }
+            { var __json0 = _buf.GetProperty("x3"); X3 = new System.Collections.Generic.Dictionary<string, int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { string _k0;  _k0 = __e0[0].GetString(); int _v0;  _v0 = __e0[1].GetInt32();  X3.Add(_k0, _v0); }   }
+            { var __json0 = _buf.GetProperty("x4"); X4 = new System.Collections.Generic.Dictionary<test.DemoEnum, int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { test.DemoEnum _k0;  _k0 = (test.DemoEnum)__e0[0].GetInt32(); int _v0;  _v0 = __e0[1].GetInt32();  X4.Add(_k0, _v0); }   }
+        }
+    
+        public static TestMap DeserializeTestMap(JsonElement _buf)
+        {
+            return new test.TestMap(_buf);
+        }
+
+        public int Id { private set; get; }
+        public test.TestIndex Id_Ref { private set; get; }
+        public System.Collections.Generic.Dictionary<int, int> X1 { private set; get; }
+        public System.Collections.Generic.Dictionary<long, int> X2 { private set; get; }
+        public System.Collections.Generic.Dictionary<string, int> X3 { private set; get; }
+        public System.Collections.Generic.Dictionary<test.DemoEnum, int> X4 { private set; get; }
+
+        private const int __ID__ = -543227410;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            Id_Ref = tables.TbTestIndex.Get(Id);
+            
+            
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "x1:" + StringUtil.CollectionToString(X1) + ","
+            + "x2:" + StringUtil.CollectionToString(X2) + ","
+            + "x3:" + StringUtil.CollectionToString(X3) + ","
+            + "x4:" + StringUtil.CollectionToString(X4) + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static TestMap DeserializeTestMap(JsonElement _buf)
-    {
-        return new test.TestMap(_buf);
-    }
-
-    public readonly int Id;
-    public test.TestIndex Id_Ref;
-    public readonly System.Collections.Generic.Dictionary<int, int> X1;
-    public readonly System.Collections.Generic.Dictionary<long, int> X2;
-    public readonly System.Collections.Generic.Dictionary<string, int> X3;
-    public readonly System.Collections.Generic.Dictionary<test.DemoEnum, int> X4;
-   
-    public const int __ID__ = -543227410;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        Id_Ref = tables.TbTestIndex.GetOrDefault(Id);
-        
-        
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "x1:" + StringUtil.CollectionToString(X1) + ","
-        + "x2:" + StringUtil.CollectionToString(X2) + ","
-        + "x3:" + StringUtil.CollectionToString(X3) + ","
-        + "x4:" + StringUtil.CollectionToString(X4) + ","
-        + "}";
-    }
-}
-
 }

@@ -10,43 +10,49 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public partial class TbCompositeJsonTable2
-{
-    private readonly System.Collections.Generic.Dictionary<int, test.CompositeJsonTable2> _dataMap;
-    private readonly System.Collections.Generic.List<test.CompositeJsonTable2> _dataList;
+    public partial class TbCompositeJsonTable2 : BaseDataTable<test.CompositeJsonTable2>
+    {
+        //private readonly System.Collections.Generic.Dictionary<int, test.CompositeJsonTable2> _dataMap;
+        //private readonly System.Collections.Generic.List<test.CompositeJsonTable2> _dataList;
     
-    public TbCompositeJsonTable2(JsonElement _buf)
-    {
-        _dataMap = new System.Collections.Generic.Dictionary<int, test.CompositeJsonTable2>();
-        _dataList = new System.Collections.Generic.List<test.CompositeJsonTable2>();
-        
-        foreach(JsonElement _ele in _buf.EnumerateArray())
+        //public System.Collections.Generic.Dictionary<int, test.CompositeJsonTable2> DataMap => _dataMap;
+        //public System.Collections.Generic.List<test.CompositeJsonTable2> DataList => _dataList;
+        //public test.CompositeJsonTable2 GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
+        //public test.CompositeJsonTable2 Get(int key) => _dataMap[key];
+        //public test.CompositeJsonTable2 this[int key] => _dataMap[key];
+    
+        public override async System.Threading.Tasks.Task LoadAsync()
         {
-            test.CompositeJsonTable2 _v;
-            _v = test.CompositeJsonTable2.DeserializeCompositeJsonTable2(_ele);
-            _dataList.Add(_v);
-            _dataMap.Add(_v.Id, _v);
+            var jsonElement = await _loadFunc();
+            DataList.Clear();
+            LongDataMaps.Clear();
+            StringDataMaps.Clear();
+            foreach(var element in jsonElement.EnumerateArray())
+            {
+                test.CompositeJsonTable2 _v;
+                _v = test.CompositeJsonTable2.DeserializeCompositeJsonTable2(element);
+                DataList.Add(_v);
+                LongDataMaps.Add(_v.Id, _v);
+                StringDataMaps.Add(_v.Id.ToString(), _v);
+            }
+            PostInit();
+        }
+
+        public void ResolveRef(TablesComponent tables)
+        {
+            foreach(var element in DataList)
+            {
+                element.ResolveRef(tables);
+            }
+        }
+    
+    
+        partial void PostInit();
+
+        public TbCompositeJsonTable2(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        {
         }
     }
-
-    public System.Collections.Generic.Dictionary<int, test.CompositeJsonTable2> DataMap => _dataMap;
-    public System.Collections.Generic.List<test.CompositeJsonTable2> DataList => _dataList;
-
-    public test.CompositeJsonTable2 GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
-    public test.CompositeJsonTable2 Get(int key) => _dataMap[key];
-    public test.CompositeJsonTable2 this[int key] => _dataMap[key];
-
-    public void ResolveRef(Tables tables)
-    {
-        foreach(var _v in _dataList)
-        {
-            _v.ResolveRef(tables);
-        }
-    }
-
-}
-
 }

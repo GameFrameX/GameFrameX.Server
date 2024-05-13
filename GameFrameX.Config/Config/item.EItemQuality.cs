@@ -9,7 +9,7 @@
 
 
 
-namespace cfg.item
+namespace GameFrameX.Config.item
 { 
     /// <summary>
     /// 道具品质

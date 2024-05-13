@@ -10,41 +10,50 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class MultiRowType3 : GameFrameX.Config.Core.BeanBase
-{
-    public MultiRowType3(JsonElement _buf) 
+    public sealed partial class MultiRowType3 : BeanBase
     {
-        Id = _buf.GetProperty("id").GetInt32();
-        { var __json0 = _buf.GetProperty("items"); Items = new System.Collections.Generic.List<test.MultiRowType1>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { test.MultiRowType1 __v0;  __v0 = test.MultiRowType1.DeserializeMultiRowType1(__e0);  Items.Add(__v0); }   }
+        /*
+        public MultiRowType3(int Id, System.Collections.Generic.List<test.MultiRowType1> Items) 
+        {
+            this.Id = Id;
+            this.Items = Items;
+            PostInit();
+        }        
+        */
+
+        public MultiRowType3(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetInt32();
+            { var __json0 = _buf.GetProperty("items"); Items = new System.Collections.Generic.List<test.MultiRowType1>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { test.MultiRowType1 __v0;  __v0 = test.MultiRowType1.DeserializeMultiRowType1(__e0);  Items.Add(__v0); }   }
+        }
+    
+        public static MultiRowType3 DeserializeMultiRowType3(JsonElement _buf)
+        {
+            return new test.MultiRowType3(_buf);
+        }
+
+        public int Id { private set; get; }
+        public System.Collections.Generic.List<test.MultiRowType1> Items { private set; get; }
+
+        private const int __ID__ = 540474972;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            foreach (var _e in Items) { _e?.ResolveRef(tables); }
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "items:" + StringUtil.CollectionToString(Items) + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static MultiRowType3 DeserializeMultiRowType3(JsonElement _buf)
-    {
-        return new test.MultiRowType3(_buf);
-    }
-
-    public readonly int Id;
-    public readonly System.Collections.Generic.List<test.MultiRowType1> Items;
-   
-    public const int __ID__ = 540474972;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        foreach (var _e in Items) { _e?.ResolveRef(tables); }
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "items:" + StringUtil.CollectionToString(Items) + ","
-        + "}";
-    }
-}
-
 }

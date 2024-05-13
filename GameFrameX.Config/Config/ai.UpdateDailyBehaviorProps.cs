@@ -10,72 +10,88 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class UpdateDailyBehaviorProps : ai.Service
-{
-    public UpdateDailyBehaviorProps(JsonElement _buf)  : base(_buf) 
+    public sealed partial class UpdateDailyBehaviorProps : ai.Service
     {
-        SatietyKey = _buf.GetProperty("satiety_key").GetString();
-        EnergyKey = _buf.GetProperty("energy_key").GetString();
-        MoodKey = _buf.GetProperty("mood_key").GetString();
-        SatietyLowerThresholdKey = _buf.GetProperty("satiety_lower_threshold_key").GetString();
-        SatietyUpperThresholdKey = _buf.GetProperty("satiety_upper_threshold_key").GetString();
-        EnergyLowerThresholdKey = _buf.GetProperty("energy_lower_threshold_key").GetString();
-        EnergyUpperThresholdKey = _buf.GetProperty("energy_upper_threshold_key").GetString();
-        MoodLowerThresholdKey = _buf.GetProperty("mood_lower_threshold_key").GetString();
-        MoodUpperThresholdKey = _buf.GetProperty("mood_upper_threshold_key").GetString();
+        /*
+        public UpdateDailyBehaviorProps(int Id, string NodeName, string SatietyKey, string EnergyKey, string MoodKey, string SatietyLowerThresholdKey, string SatietyUpperThresholdKey, string EnergyLowerThresholdKey, string EnergyUpperThresholdKey, string MoodLowerThresholdKey, string MoodUpperThresholdKey)  : base(Id, NodeName) 
+        {
+            this.SatietyKey = SatietyKey;
+            this.EnergyKey = EnergyKey;
+            this.MoodKey = MoodKey;
+            this.SatietyLowerThresholdKey = SatietyLowerThresholdKey;
+            this.SatietyUpperThresholdKey = SatietyUpperThresholdKey;
+            this.EnergyLowerThresholdKey = EnergyLowerThresholdKey;
+            this.EnergyUpperThresholdKey = EnergyUpperThresholdKey;
+            this.MoodLowerThresholdKey = MoodLowerThresholdKey;
+            this.MoodUpperThresholdKey = MoodUpperThresholdKey;
+            PostInit();
+        }        
+        */
+
+        public UpdateDailyBehaviorProps(JsonElement _buf)  : base(_buf) 
+        {
+            SatietyKey = _buf.GetProperty("satiety_key").GetString();
+            EnergyKey = _buf.GetProperty("energy_key").GetString();
+            MoodKey = _buf.GetProperty("mood_key").GetString();
+            SatietyLowerThresholdKey = _buf.GetProperty("satiety_lower_threshold_key").GetString();
+            SatietyUpperThresholdKey = _buf.GetProperty("satiety_upper_threshold_key").GetString();
+            EnergyLowerThresholdKey = _buf.GetProperty("energy_lower_threshold_key").GetString();
+            EnergyUpperThresholdKey = _buf.GetProperty("energy_upper_threshold_key").GetString();
+            MoodLowerThresholdKey = _buf.GetProperty("mood_lower_threshold_key").GetString();
+            MoodUpperThresholdKey = _buf.GetProperty("mood_upper_threshold_key").GetString();
+        }
+    
+        public static UpdateDailyBehaviorProps DeserializeUpdateDailyBehaviorProps(JsonElement _buf)
+        {
+            return new ai.UpdateDailyBehaviorProps(_buf);
+        }
+
+        public string SatietyKey { private set; get; }
+        public string EnergyKey { private set; get; }
+        public string MoodKey { private set; get; }
+        public string SatietyLowerThresholdKey { private set; get; }
+        public string SatietyUpperThresholdKey { private set; get; }
+        public string EnergyLowerThresholdKey { private set; get; }
+        public string EnergyUpperThresholdKey { private set; get; }
+        public string MoodLowerThresholdKey { private set; get; }
+        public string MoodUpperThresholdKey { private set; get; }
+
+        private const int __ID__ = -61887372;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "satietyKey:" + SatietyKey + ","
+            + "energyKey:" + EnergyKey + ","
+            + "moodKey:" + MoodKey + ","
+            + "satietyLowerThresholdKey:" + SatietyLowerThresholdKey + ","
+            + "satietyUpperThresholdKey:" + SatietyUpperThresholdKey + ","
+            + "energyLowerThresholdKey:" + EnergyLowerThresholdKey + ","
+            + "energyUpperThresholdKey:" + EnergyUpperThresholdKey + ","
+            + "moodLowerThresholdKey:" + MoodLowerThresholdKey + ","
+            + "moodUpperThresholdKey:" + MoodUpperThresholdKey + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static UpdateDailyBehaviorProps DeserializeUpdateDailyBehaviorProps(JsonElement _buf)
-    {
-        return new ai.UpdateDailyBehaviorProps(_buf);
-    }
-
-    public readonly string SatietyKey;
-    public readonly string EnergyKey;
-    public readonly string MoodKey;
-    public readonly string SatietyLowerThresholdKey;
-    public readonly string SatietyUpperThresholdKey;
-    public readonly string EnergyLowerThresholdKey;
-    public readonly string EnergyUpperThresholdKey;
-    public readonly string MoodLowerThresholdKey;
-    public readonly string MoodUpperThresholdKey;
-   
-    public const int __ID__ = -61887372;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "satietyKey:" + SatietyKey + ","
-        + "energyKey:" + EnergyKey + ","
-        + "moodKey:" + MoodKey + ","
-        + "satietyLowerThresholdKey:" + SatietyLowerThresholdKey + ","
-        + "satietyUpperThresholdKey:" + SatietyUpperThresholdKey + ","
-        + "energyLowerThresholdKey:" + EnergyLowerThresholdKey + ","
-        + "energyUpperThresholdKey:" + EnergyUpperThresholdKey + ","
-        + "moodLowerThresholdKey:" + MoodLowerThresholdKey + ","
-        + "moodUpperThresholdKey:" + MoodUpperThresholdKey + ","
-        + "}";
-    }
-}
-
 }

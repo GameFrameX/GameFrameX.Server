@@ -10,42 +10,50 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class RefBean : test.RefDynamicBase
-{
-    public RefBean(JsonElement _buf)  : base(_buf) 
+    public sealed partial class RefBean : test.RefDynamicBase
     {
-        { var __json0 = _buf.GetProperty("arr"); Arr = new System.Collections.Generic.List<int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { int __v0;  __v0 = __e0.GetInt32();  Arr.Add(__v0); }   }
+        /*
+        public RefBean(int X, System.Collections.Generic.List<int> Arr)  : base(X) 
+        {
+            this.Arr = Arr;
+            PostInit();
+        }        
+        */
+
+        public RefBean(JsonElement _buf)  : base(_buf) 
+        {
+            { var __json0 = _buf.GetProperty("arr"); Arr = new System.Collections.Generic.List<int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { int __v0;  __v0 = __e0.GetInt32();  Arr.Add(__v0); }   }
+        }
+    
+        public static RefBean DeserializeRefBean(JsonElement _buf)
+        {
+            return new test.RefBean(_buf);
+        }
+
+        public System.Collections.Generic.List<int> Arr { private set; get; }
+        public System.Collections.Generic.List<test.TestBeRef> Arr_Ref { private set; get; }
+
+        private const int __ID__ = 1963260263;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            Arr_Ref = new System.Collections.Generic.List<test.TestBeRef>();
+            foreach (var _v in Arr) { Arr_Ref.Add(tables.TbTestBeRef.Get(_v)); }
+
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "x:" + X + ","
+            + "arr:" + StringUtil.CollectionToString(Arr) + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static RefBean DeserializeRefBean(JsonElement _buf)
-    {
-        return new test.RefBean(_buf);
-    }
-
-    public readonly System.Collections.Generic.List<int> Arr;
-    public System.Collections.Generic.List<test.TestBeRef> Arr_Ref;
-   
-    public const int __ID__ = 1963260263;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        Arr_Ref = new System.Collections.Generic.List<test.TestBeRef>();
-        foreach (var _v in Arr) { Arr_Ref.Add(tables.TbTestBeRef.GetOrDefault(_v)); }
-
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "x:" + X + ","
-        + "arr:" + StringUtil.CollectionToString(Arr) + ","
-        + "}";
-    }
-}
-
 }

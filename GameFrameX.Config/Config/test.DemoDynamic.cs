@@ -10,42 +10,50 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public abstract partial class DemoDynamic : GameFrameX.Config.Core.BeanBase
-{
-    public DemoDynamic(JsonElement _buf) 
+    public abstract partial class DemoDynamic : BeanBase
     {
-        X1 = _buf.GetProperty("x1").GetInt32();
-    }
-
-    public static DemoDynamic DeserializeDemoDynamic(JsonElement _buf)
-    {
-        switch (_buf.GetProperty("$type").GetString())
+        /*
+        public DemoDynamic(int X1) 
         {
-            case "DemoD2": return new test.DemoD2(_buf);
-            case "DemoE1": return new test.DemoE1(_buf);
-            case "test.login.RoleInfo": return new test.login.RoleInfo(_buf);
-            case "DemoD5": return new test.DemoD5(_buf);
-            default: throw new SerializationException();
+            this.X1 = X1;
+            PostInit();
+        }        
+        */
+
+        public DemoDynamic(JsonElement _buf) 
+        {
+            X1 = _buf.GetProperty("x1").GetInt32();
         }
+    
+        public static DemoDynamic DeserializeDemoDynamic(JsonElement _buf)
+        {
+            switch (_buf.GetProperty("$type").GetString())
+            {
+                case "DemoD2": return new test.DemoD2(_buf);
+                case "DemoE1": return new test.DemoE1(_buf);
+                case "test.login.RoleInfo": return new test.login.RoleInfo(_buf);
+                case "DemoD5": return new test.DemoD5(_buf);
+                default: throw new SerializationException();
+            }
+        }
+
+        public int X1 { private set; get; }
+
+
+        public virtual void ResolveRef(TablesComponent tables)
+        {
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "x1:" + X1 + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public readonly int X1;
-   
-
-    public virtual void ResolveRef(Tables tables)
-    {
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "x1:" + X1 + ","
-        + "}";
-    }
-}
-
 }

@@ -10,38 +10,45 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public abstract partial class KeyData : GameFrameX.Config.Core.BeanBase
-{
-    public KeyData(JsonElement _buf) 
+    public abstract partial class KeyData : BeanBase
     {
-    }
-
-    public static KeyData DeserializeKeyData(JsonElement _buf)
-    {
-        switch (_buf.GetProperty("$type").GetString())
+        /*
+        public KeyData() 
         {
-            case "FloatKeyData": return new ai.FloatKeyData(_buf);
-            case "IntKeyData": return new ai.IntKeyData(_buf);
-            case "StringKeyData": return new ai.StringKeyData(_buf);
-            case "BlackboardKeyData": return new ai.BlackboardKeyData(_buf);
-            default: throw new SerializationException();
+            PostInit();
+        }        
+        */
+
+        public KeyData(JsonElement _buf) 
+        {
         }
+    
+        public static KeyData DeserializeKeyData(JsonElement _buf)
+        {
+            switch (_buf.GetProperty("$type").GetString())
+            {
+                case "FloatKeyData": return new ai.FloatKeyData(_buf);
+                case "IntKeyData": return new ai.IntKeyData(_buf);
+                case "StringKeyData": return new ai.StringKeyData(_buf);
+                case "BlackboardKeyData": return new ai.BlackboardKeyData(_buf);
+                default: throw new SerializationException();
+            }
+        }
+
+
+
+        public virtual void ResolveRef(TablesComponent tables)
+        {
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-   
-
-    public virtual void ResolveRef(Tables tables)
-    {
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "}";
-    }
-}
-
 }

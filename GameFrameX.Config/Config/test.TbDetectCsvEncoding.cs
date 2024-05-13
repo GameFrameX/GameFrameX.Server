@@ -10,43 +10,49 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public partial class TbDetectCsvEncoding
-{
-    private readonly System.Collections.Generic.Dictionary<int, test.DetectEncoding> _dataMap;
-    private readonly System.Collections.Generic.List<test.DetectEncoding> _dataList;
+    public partial class TbDetectCsvEncoding : BaseDataTable<test.DetectEncoding>
+    {
+        //private readonly System.Collections.Generic.Dictionary<int, test.DetectEncoding> _dataMap;
+        //private readonly System.Collections.Generic.List<test.DetectEncoding> _dataList;
     
-    public TbDetectCsvEncoding(JsonElement _buf)
-    {
-        _dataMap = new System.Collections.Generic.Dictionary<int, test.DetectEncoding>();
-        _dataList = new System.Collections.Generic.List<test.DetectEncoding>();
-        
-        foreach(JsonElement _ele in _buf.EnumerateArray())
+        //public System.Collections.Generic.Dictionary<int, test.DetectEncoding> DataMap => _dataMap;
+        //public System.Collections.Generic.List<test.DetectEncoding> DataList => _dataList;
+        //public test.DetectEncoding GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
+        //public test.DetectEncoding Get(int key) => _dataMap[key];
+        //public test.DetectEncoding this[int key] => _dataMap[key];
+    
+        public override async System.Threading.Tasks.Task LoadAsync()
         {
-            test.DetectEncoding _v;
-            _v = test.DetectEncoding.DeserializeDetectEncoding(_ele);
-            _dataList.Add(_v);
-            _dataMap.Add(_v.Id, _v);
+            var jsonElement = await _loadFunc();
+            DataList.Clear();
+            LongDataMaps.Clear();
+            StringDataMaps.Clear();
+            foreach(var element in jsonElement.EnumerateArray())
+            {
+                test.DetectEncoding _v;
+                _v = test.DetectEncoding.DeserializeDetectEncoding(element);
+                DataList.Add(_v);
+                LongDataMaps.Add(_v.Id, _v);
+                StringDataMaps.Add(_v.Id.ToString(), _v);
+            }
+            PostInit();
+        }
+
+        public void ResolveRef(TablesComponent tables)
+        {
+            foreach(var element in DataList)
+            {
+                element.ResolveRef(tables);
+            }
+        }
+    
+    
+        partial void PostInit();
+
+        public TbDetectCsvEncoding(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        {
         }
     }
-
-    public System.Collections.Generic.Dictionary<int, test.DetectEncoding> DataMap => _dataMap;
-    public System.Collections.Generic.List<test.DetectEncoding> DataList => _dataList;
-
-    public test.DetectEncoding GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
-    public test.DetectEncoding Get(int key) => _dataMap[key];
-    public test.DetectEncoding this[int key] => _dataMap[key];
-
-    public void ResolveRef(Tables tables)
-    {
-        foreach(var _v in _dataList)
-        {
-            _v.ResolveRef(tables);
-        }
-    }
-
-}
-
 }

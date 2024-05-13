@@ -10,41 +10,49 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class Decorator : test.ItemBase
-{
-    public Decorator(JsonElement _buf)  : base(_buf) 
+    public sealed partial class Decorator : test.ItemBase
     {
-        Duration = _buf.GetProperty("duration").GetInt32();
+        /*
+        public Decorator(int Id, string Name, string Desc, int Duration)  : base(Id, Name, Desc) 
+        {
+            this.Duration = Duration;
+            PostInit();
+        }        
+        */
+
+        public Decorator(JsonElement _buf)  : base(_buf) 
+        {
+            Duration = _buf.GetProperty("duration").GetInt32();
+        }
+    
+        public static Decorator DeserializeDecorator(JsonElement _buf)
+        {
+            return new test.Decorator(_buf);
+        }
+
+        public int Duration { private set; get; }
+
+        private const int __ID__ = -625155649;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "name:" + Name + ","
+            + "desc:" + Desc + ","
+            + "duration:" + Duration + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static Decorator DeserializeDecorator(JsonElement _buf)
-    {
-        return new test.Decorator(_buf);
-    }
-
-    public readonly int Duration;
-   
-    public const int __ID__ = -625155649;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "name:" + Name + ","
-        + "desc:" + Desc + ","
-        + "duration:" + Duration + ","
-        + "}";
-    }
-}
-
 }

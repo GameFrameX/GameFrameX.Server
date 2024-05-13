@@ -10,41 +10,50 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.tag
+namespace GameFrameX.Config.tag
 {
-public sealed partial class TestTag : GameFrameX.Config.Core.BeanBase
-{
-    public TestTag(JsonElement _buf) 
+    public sealed partial class TestTag : BeanBase
     {
-        Id = _buf.GetProperty("id").GetInt32();
-        Value = _buf.GetProperty("value").GetString();
+        /*
+        public TestTag(int Id, string Value) 
+        {
+            this.Id = Id;
+            this.Value = Value;
+            PostInit();
+        }        
+        */
+
+        public TestTag(JsonElement _buf) 
+        {
+            Id = _buf.GetProperty("id").GetInt32();
+            Value = _buf.GetProperty("value").GetString();
+        }
+    
+        public static TestTag DeserializeTestTag(JsonElement _buf)
+        {
+            return new tag.TestTag(_buf);
+        }
+
+        public int Id { private set; get; }
+        public string Value { private set; get; }
+
+        private const int __ID__ = 1742933812;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "value:" + Value + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static TestTag DeserializeTestTag(JsonElement _buf)
-    {
-        return new tag.TestTag(_buf);
-    }
-
-    public readonly int Id;
-    public readonly string Value;
-   
-    public const int __ID__ = 1742933812;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "value:" + Value + ","
-        + "}";
-    }
-}
-
 }

@@ -10,41 +10,50 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public sealed partial class DateTimeRange : GameFrameX.Config.Core.BeanBase
-{
-    public DateTimeRange(JsonElement _buf) 
+    public sealed partial class DateTimeRange : BeanBase
     {
-        StartTime = _buf.GetProperty("start_time").GetInt64();
-        EndTime = _buf.GetProperty("end_time").GetInt64();
+        /*
+        public DateTimeRange(long StartTime, long EndTime) 
+        {
+            this.StartTime = StartTime;
+            this.EndTime = EndTime;
+            PostInit();
+        }        
+        */
+
+        public DateTimeRange(JsonElement _buf) 
+        {
+            StartTime = _buf.GetProperty("start_time").GetInt64();
+            EndTime = _buf.GetProperty("end_time").GetInt64();
+        }
+    
+        public static DateTimeRange DeserializeDateTimeRange(JsonElement _buf)
+        {
+            return new test.DateTimeRange(_buf);
+        }
+
+        public long StartTime { private set; get; }
+        public long EndTime { private set; get; }
+
+        private const int __ID__ = 495315430;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "startTime:" + StartTime + ","
+            + "endTime:" + EndTime + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static DateTimeRange DeserializeDateTimeRange(JsonElement _buf)
-    {
-        return new test.DateTimeRange(_buf);
-    }
-
-    public readonly long StartTime;
-    public readonly long EndTime;
-   
-    public const int __ID__ = 495315430;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "startTime:" + StartTime + ","
-        + "endTime:" + EndTime + ","
-        + "}";
-    }
-}
-
 }

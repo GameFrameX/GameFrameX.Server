@@ -10,43 +10,48 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public partial class TbBlackboard
-{
-    private readonly System.Collections.Generic.Dictionary<string, ai.Blackboard> _dataMap;
-    private readonly System.Collections.Generic.List<ai.Blackboard> _dataList;
+    public partial class TbBlackboard : BaseDataTable<ai.Blackboard>
+    {
+        //private readonly System.Collections.Generic.Dictionary<string, ai.Blackboard> _dataMap;
+        //private readonly System.Collections.Generic.List<ai.Blackboard> _dataList;
     
-    public TbBlackboard(JsonElement _buf)
-    {
-        _dataMap = new System.Collections.Generic.Dictionary<string, ai.Blackboard>();
-        _dataList = new System.Collections.Generic.List<ai.Blackboard>();
-        
-        foreach(JsonElement _ele in _buf.EnumerateArray())
+        //public System.Collections.Generic.Dictionary<string, ai.Blackboard> DataMap => _dataMap;
+        //public System.Collections.Generic.List<ai.Blackboard> DataList => _dataList;
+        //public ai.Blackboard GetOrDefault(string key) => _dataMap.TryGetValue(key, out var v) ? v : null;
+        //public ai.Blackboard Get(string key) => _dataMap[key];
+        //public ai.Blackboard this[string key] => _dataMap[key];
+    
+        public override async System.Threading.Tasks.Task LoadAsync()
         {
-            ai.Blackboard _v;
-            _v = ai.Blackboard.DeserializeBlackboard(_ele);
-            _dataList.Add(_v);
-            _dataMap.Add(_v.Name, _v);
+            var jsonElement = await _loadFunc();
+            DataList.Clear();
+            LongDataMaps.Clear();
+            StringDataMaps.Clear();
+            foreach(var element in jsonElement.EnumerateArray())
+            {
+                ai.Blackboard _v;
+                _v = ai.Blackboard.DeserializeBlackboard(element);
+                DataList.Add(_v);
+                StringDataMaps.Add(_v.Name.ToString(), _v);
+            }
+            PostInit();
+        }
+
+        public void ResolveRef(TablesComponent tables)
+        {
+            foreach(var element in DataList)
+            {
+                element.ResolveRef(tables);
+            }
+        }
+    
+    
+        partial void PostInit();
+
+        public TbBlackboard(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        {
         }
     }
-
-    public System.Collections.Generic.Dictionary<string, ai.Blackboard> DataMap => _dataMap;
-    public System.Collections.Generic.List<ai.Blackboard> DataList => _dataList;
-
-    public ai.Blackboard GetOrDefault(string key) => _dataMap.TryGetValue(key, out var v) ? v : null;
-    public ai.Blackboard Get(string key) => _dataMap[key];
-    public ai.Blackboard this[string key] => _dataMap[key];
-
-    public void ResolveRef(Tables tables)
-    {
-        foreach(var _v in _dataList)
-        {
-            _v.ResolveRef(tables);
-        }
-    }
-
-}
-
 }

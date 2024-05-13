@@ -10,37 +10,43 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.common
+namespace GameFrameX.Config.common
 {
-public partial class TbGlobalConfig
-{
-
-     private readonly common.GlobalConfig _data;
-
-    public TbGlobalConfig(JsonElement _buf)
+    public partial class TbGlobalConfig : BaseDataTable<common.GlobalConfig>
     {
-        int n = _buf.GetArrayLength();
-        if (n != 1) throw new SerializationException("table mode=one, but size != 1");
-        _data = common.GlobalConfig.DeserializeGlobalConfig(_buf[0]);
-    }
-
-
-    /// <summary>
-    /// 背包容量
-    /// </summary>
-     public int X1 => _data.X1;
-     public int X2 => _data.X2;
-     public int X3 => _data.X3;
-     public int X4 => _data.X4;
-     public int X5 => _data.X5;
-     public int X6 => _data.X6;
-     public System.Collections.Generic.List<int> X7 => _data.X7;
     
-    public void ResolveRef(Tables tables)
-    {
-        _data.ResolveRef(tables);
-    }
-}
+        private common.GlobalConfig _data;
+        public common.GlobalConfig Data => _data;
 
+        /// <summary>
+        /// 背包容量
+        /// </summary>
+        public int X1 => _data.X1;
+        public int X2 => _data.X2;
+        public int X3 => _data.X3;
+        public int X4 => _data.X4;
+        public int X5 => _data.X5;
+        public int X6 => _data.X6;
+        public System.Collections.Generic.List<int> X7 => _data.X7;
+    
+        public override async Task LoadAsync()
+        {
+            var jsonElement = await _loadFunc();
+
+            int n = jsonElement.GetArrayLength();
+            if (n != 1) throw new SerializationException("table mode=one, but size != 1");
+            _data = common.GlobalConfig.DeserializeGlobalConfig(jsonElement[0]);
+        }
+
+        public void ResolveRef(TablesComponent tables)
+        {
+            _data.ResolveRef(tables);
+        }
+    
+        partial void PostInit();
+
+        public TbGlobalConfig(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        {
+        }
+    }
 }

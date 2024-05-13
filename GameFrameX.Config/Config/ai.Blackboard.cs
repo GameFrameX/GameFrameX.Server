@@ -10,51 +10,63 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class Blackboard : GameFrameX.Config.Core.BeanBase
-{
-    public Blackboard(JsonElement _buf) 
+    public sealed partial class Blackboard : BeanBase
     {
-        Name = _buf.GetProperty("name").GetString();
-        Desc = _buf.GetProperty("desc").GetString();
-        ParentName = _buf.GetProperty("parent_name").GetString();
-        ParentName_Ref = null;
-        { var __json0 = _buf.GetProperty("keys"); Keys = new System.Collections.Generic.List<ai.BlackboardKey>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { ai.BlackboardKey __v0;  __v0 = ai.BlackboardKey.DeserializeBlackboardKey(__e0);  Keys.Add(__v0); }   }
+        /*
+        public Blackboard(string Name, string Desc, string ParentName, System.Collections.Generic.List<ai.BlackboardKey> Keys) 
+        {
+            this.Name = Name;
+            this.Desc = Desc;
+            this.ParentName = ParentName;
+            this.ParentName_Ref = null;
+            this.Keys = Keys;
+            PostInit();
+        }        
+        */
+
+        public Blackboard(JsonElement _buf) 
+        {
+            Name = _buf.GetProperty("name").GetString();
+            Desc = _buf.GetProperty("desc").GetString();
+            ParentName = _buf.GetProperty("parent_name").GetString();
+            ParentName_Ref = null;
+            { var __json0 = _buf.GetProperty("keys"); Keys = new System.Collections.Generic.List<ai.BlackboardKey>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { ai.BlackboardKey __v0;  __v0 = ai.BlackboardKey.DeserializeBlackboardKey(__e0);  Keys.Add(__v0); }   }
+        }
+    
+        public static Blackboard DeserializeBlackboard(JsonElement _buf)
+        {
+            return new ai.Blackboard(_buf);
+        }
+
+        public string Name { private set; get; }
+        public string Desc { private set; get; }
+        public string ParentName { private set; get; }
+        public ai.Blackboard ParentName_Ref { private set; get; }
+        public System.Collections.Generic.List<ai.BlackboardKey> Keys { private set; get; }
+
+        private const int __ID__ = 1576193005;
+        public override int GetTypeId() => __ID__;
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+            ParentName_Ref = tables.TbBlackboard.Get(ParentName);
+            foreach (var _e in Keys) { _e?.ResolveRef(tables); }
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "name:" + Name + ","
+            + "desc:" + Desc + ","
+            + "parentName:" + ParentName + ","
+            + "keys:" + StringUtil.CollectionToString(Keys) + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static Blackboard DeserializeBlackboard(JsonElement _buf)
-    {
-        return new ai.Blackboard(_buf);
-    }
-
-    public readonly string Name;
-    public readonly string Desc;
-    public readonly string ParentName;
-    public ai.Blackboard ParentName_Ref;
-    public readonly System.Collections.Generic.List<ai.BlackboardKey> Keys;
-   
-    public const int __ID__ = 1576193005;
-    public override int GetTypeId() => __ID__;
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-        ParentName_Ref = tables.TbBlackboard.GetOrDefault(ParentName);
-        foreach (var _e in Keys) { _e?.ResolveRef(tables); }
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "name:" + Name + ","
-        + "desc:" + Desc + ","
-        + "parentName:" + ParentName + ","
-        + "keys:" + StringUtil.CollectionToString(Keys) + ","
-        + "}";
-    }
-}
-
 }

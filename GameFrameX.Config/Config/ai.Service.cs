@@ -10,43 +10,50 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public abstract partial class Service : ai.Node
-{
-    public Service(JsonElement _buf)  : base(_buf) 
+    public abstract partial class Service : ai.Node
     {
-    }
-
-    public static Service DeserializeService(JsonElement _buf)
-    {
-        switch (_buf.GetProperty("$type").GetString())
+        /*
+        public Service(int Id, string NodeName)  : base(Id, NodeName) 
         {
-            case "UeSetDefaultFocus": return new ai.UeSetDefaultFocus(_buf);
-            case "ExecuteTimeStatistic": return new ai.ExecuteTimeStatistic(_buf);
-            case "ChooseTarget": return new ai.ChooseTarget(_buf);
-            case "KeepFaceTarget": return new ai.KeepFaceTarget(_buf);
-            case "GetOwnerPlayer": return new ai.GetOwnerPlayer(_buf);
-            case "UpdateDailyBehaviorProps": return new ai.UpdateDailyBehaviorProps(_buf);
-            default: throw new SerializationException();
+            PostInit();
+        }        
+        */
+
+        public Service(JsonElement _buf)  : base(_buf) 
+        {
         }
+    
+        public static Service DeserializeService(JsonElement _buf)
+        {
+            switch (_buf.GetProperty("$type").GetString())
+            {
+                case "UeSetDefaultFocus": return new ai.UeSetDefaultFocus(_buf);
+                case "ExecuteTimeStatistic": return new ai.ExecuteTimeStatistic(_buf);
+                case "ChooseTarget": return new ai.ChooseTarget(_buf);
+                case "KeepFaceTarget": return new ai.KeepFaceTarget(_buf);
+                case "GetOwnerPlayer": return new ai.GetOwnerPlayer(_buf);
+                case "UpdateDailyBehaviorProps": return new ai.UpdateDailyBehaviorProps(_buf);
+                default: throw new SerializationException();
+            }
+        }
+
+
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-   
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "}";
-    }
-}
-
 }

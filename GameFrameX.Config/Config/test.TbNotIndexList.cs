@@ -10,36 +10,42 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.test
+namespace GameFrameX.Config.test
 {
-public partial class TbNotIndexList
-{
-    private readonly System.Collections.Generic.List<test.NotIndexList> _dataList;
-
-
-    public TbNotIndexList(JsonElement _buf)
+    public partial class TbNotIndexList : BaseDataTable<test.NotIndexList>
     {
-        _dataList = new System.Collections.Generic.List<test.NotIndexList>();
-        
-        foreach(JsonElement _ele in _buf.EnumerateArray())
-        {
-            test.NotIndexList _v;
-            _v = test.NotIndexList.DeserializeNotIndexList(_ele);
-            _dataList.Add(_v);
-        }
-    }
-
-    public System.Collections.Generic.List<test.NotIndexList> DataList => _dataList;
-
+        //private readonly System.Collections.Generic.List<test.NotIndexList> _dataList;
     
-    public void ResolveRef(Tables tables)
-    {
-        foreach(var _v in _dataList)
+        //public System.Collections.Generic.List<test.NotIndexList> DataList => _dataList;
+    
+
+        public override async System.Threading.Tasks.Task LoadAsync()
         {
-            _v.ResolveRef(tables);
+            var jsonElement = await _loadFunc();
+            DataList.Clear();
+            LongDataMaps.Clear();
+            StringDataMaps.Clear();
+            foreach(var element in jsonElement.EnumerateArray())
+            {
+                test.NotIndexList _v;
+                _v = test.NotIndexList.DeserializeNotIndexList(element);
+                DataList.Add(_v);
+            }
+            PostInit();
+        }
+
+        public void ResolveRef(TablesComponent tables)
+        {
+            foreach(var element in DataList)
+            {
+                element.ResolveRef(tables);
+            }
+        }
+    
+        partial void PostInit();
+
+        public TbNotIndexList(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        {
         }
     }
-}
-
 }

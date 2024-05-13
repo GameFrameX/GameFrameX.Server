@@ -10,43 +10,53 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg
+namespace GameFrameX.Config
 {
-public partial struct vec3
-{
-    public vec3(JsonElement _buf) 
+    public partial struct vec3
     {
-        X = _buf.GetProperty("x").GetSingle();
-        Y = _buf.GetProperty("y").GetSingle();
-        Z = _buf.GetProperty("z").GetSingle();
+        /*
+        public vec3(float X, float Y, float Z) 
+        {
+            this.X = X;
+            this.Y = Y;
+            this.Z = Z;
+            PostInit();
+        }        
+        */
+
+        public vec3(JsonElement _buf) 
+        {
+            X = _buf.GetProperty("x").GetSingle();
+            Y = _buf.GetProperty("y").GetSingle();
+            Z = _buf.GetProperty("z").GetSingle();
+        }
+    
+        public static vec3 Deserializevec3(JsonElement _buf)
+        {
+            return new vec3(_buf);
+        }
+
+        public float X { private set; get; }
+        public float Y { private set; get; }
+        public float Z { private set; get; }
+
+
+        public  void ResolveRef(TablesComponent tables)
+        {
+            
+            
+            
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "x:" + X + ","
+            + "y:" + Y + ","
+            + "z:" + Z + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static vec3 Deserializevec3(JsonElement _buf)
-    {
-        return new vec3(_buf);
-    }
-
-    public readonly float X;
-    public readonly float Y;
-    public readonly float Z;
-   
-
-    public  void ResolveRef(Tables tables)
-    {
-        
-        
-        
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "x:" + X + ","
-        + "y:" + Y + ","
-        + "z:" + Z + ","
-        + "}";
-    }
-}
-
 }

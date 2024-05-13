@@ -10,47 +10,38 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-namespace GameFrameX.Config.test
+namespace GameFrameX.Config.ai
 {
-    public sealed partial class TestBeRef : BeanBase
+    public sealed partial class IsSet2 : ai.KeyQueryOperator
     {
         /*
-        public TestBeRef(int Id, int Count) 
+        public IsSet2()  : base() 
         {
-            this.Id = Id;
-            this.Count = Count;
             PostInit();
         }        
         */
 
-        public TestBeRef(JsonElement _buf) 
+        public IsSet2(JsonElement _buf)  : base(_buf) 
         {
-            Id = _buf.GetProperty("id").GetInt32();
-            Count = _buf.GetProperty("count").GetInt32();
         }
     
-        public static TestBeRef DeserializeTestBeRef(JsonElement _buf)
+        public static IsSet2 DeserializeIsSet2(JsonElement _buf)
         {
-            return new test.TestBeRef(_buf);
+            return new ai.IsSet2(_buf);
         }
 
-        public int Id { private set; get; }
-        public int Count { private set; get; }
 
-        private const int __ID__ = 1934403938;
+        private const int __ID__ = -843729664;
         public override int GetTypeId() => __ID__;
 
-        public  void ResolveRef(TablesComponent tables)
+        public override void ResolveRef(TablesComponent tables)
         {
-            
-            
+            base.ResolveRef(tables);
         }
 
         public override string ToString()
         {
             return "{ "
-            + "id:" + Id + ","
-            + "count:" + Count + ","
             + "}";
         }
 

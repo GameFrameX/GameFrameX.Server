@@ -10,50 +10,60 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class SimpleParallel : ai.ComposeNode
-{
-    public SimpleParallel(JsonElement _buf)  : base(_buf) 
+    public sealed partial class SimpleParallel : ai.ComposeNode
     {
-        FinishMode = (ai.EFinishMode)_buf.GetProperty("finish_mode").GetInt32();
-        MainTask = ai.Task.DeserializeTask(_buf.GetProperty("main_task"));
-        BackgroundNode = ai.FlowNode.DeserializeFlowNode(_buf.GetProperty("background_node"));
+        /*
+        public SimpleParallel(int Id, string NodeName, System.Collections.Generic.List<ai.Decorator> Decorators, System.Collections.Generic.List<ai.Service> Services, ai.EFinishMode FinishMode, ai.Task MainTask, ai.FlowNode BackgroundNode)  : base(Id, NodeName, Decorators, Services) 
+        {
+            this.FinishMode = FinishMode;
+            this.MainTask = MainTask;
+            this.BackgroundNode = BackgroundNode;
+            PostInit();
+        }        
+        */
+
+        public SimpleParallel(JsonElement _buf)  : base(_buf) 
+        {
+            FinishMode = (ai.EFinishMode)_buf.GetProperty("finish_mode").GetInt32();
+            MainTask = ai.Task.DeserializeTask(_buf.GetProperty("main_task"));
+            BackgroundNode = ai.FlowNode.DeserializeFlowNode(_buf.GetProperty("background_node"));
+        }
+    
+        public static SimpleParallel DeserializeSimpleParallel(JsonElement _buf)
+        {
+            return new ai.SimpleParallel(_buf);
+        }
+
+        public ai.EFinishMode FinishMode { private set; get; }
+        public ai.Task MainTask { private set; get; }
+        public ai.FlowNode BackgroundNode { private set; get; }
+
+        private const int __ID__ = -1952582529;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            
+            MainTask?.ResolveRef(tables);
+            BackgroundNode?.ResolveRef(tables);
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
+            + "services:" + StringUtil.CollectionToString(Services) + ","
+            + "finishMode:" + FinishMode + ","
+            + "mainTask:" + MainTask + ","
+            + "backgroundNode:" + BackgroundNode + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static SimpleParallel DeserializeSimpleParallel(JsonElement _buf)
-    {
-        return new ai.SimpleParallel(_buf);
-    }
-
-    public readonly ai.EFinishMode FinishMode;
-    public readonly ai.Task MainTask;
-    public readonly ai.FlowNode BackgroundNode;
-   
-    public const int __ID__ = -1952582529;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        
-        MainTask?.ResolveRef(tables);
-        BackgroundNode?.ResolveRef(tables);
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
-        + "services:" + StringUtil.CollectionToString(Services) + ","
-        + "finishMode:" + FinishMode + ","
-        + "mainTask:" + MainTask + ","
-        + "backgroundNode:" + BackgroundNode + ","
-        + "}";
-    }
-}
-
 }

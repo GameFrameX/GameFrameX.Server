@@ -10,42 +10,50 @@
 using System.Text.Json;
 using GameFrameX.Config.Core;
 
-
-namespace cfg.ai
+namespace GameFrameX.Config.ai
 {
-public sealed partial class Sequence : ai.ComposeNode
-{
-    public Sequence(JsonElement _buf)  : base(_buf) 
+    public sealed partial class Sequence : ai.ComposeNode
     {
-        { var __json0 = _buf.GetProperty("children"); Children = new System.Collections.Generic.List<ai.FlowNode>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { ai.FlowNode __v0;  __v0 = ai.FlowNode.DeserializeFlowNode(__e0);  Children.Add(__v0); }   }
+        /*
+        public Sequence(int Id, string NodeName, System.Collections.Generic.List<ai.Decorator> Decorators, System.Collections.Generic.List<ai.Service> Services, System.Collections.Generic.List<ai.FlowNode> Children)  : base(Id, NodeName, Decorators, Services) 
+        {
+            this.Children = Children;
+            PostInit();
+        }        
+        */
+
+        public Sequence(JsonElement _buf)  : base(_buf) 
+        {
+            { var __json0 = _buf.GetProperty("children"); Children = new System.Collections.Generic.List<ai.FlowNode>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { ai.FlowNode __v0;  __v0 = ai.FlowNode.DeserializeFlowNode(__e0);  Children.Add(__v0); }   }
+        }
+    
+        public static Sequence DeserializeSequence(JsonElement _buf)
+        {
+            return new ai.Sequence(_buf);
+        }
+
+        public System.Collections.Generic.List<ai.FlowNode> Children { private set; get; }
+
+        private const int __ID__ = -1789006105;
+        public override int GetTypeId() => __ID__;
+
+        public override void ResolveRef(TablesComponent tables)
+        {
+            base.ResolveRef(tables);
+            foreach (var _e in Children) { _e?.ResolveRef(tables); }
+        }
+
+        public override string ToString()
+        {
+            return "{ "
+            + "id:" + Id + ","
+            + "nodeName:" + NodeName + ","
+            + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
+            + "services:" + StringUtil.CollectionToString(Services) + ","
+            + "children:" + StringUtil.CollectionToString(Children) + ","
+            + "}";
+        }
+
+        partial void PostInit();
     }
-
-    public static Sequence DeserializeSequence(JsonElement _buf)
-    {
-        return new ai.Sequence(_buf);
-    }
-
-    public readonly System.Collections.Generic.List<ai.FlowNode> Children;
-   
-    public const int __ID__ = -1789006105;
-    public override int GetTypeId() => __ID__;
-
-    public override void ResolveRef(Tables tables)
-    {
-        base.ResolveRef(tables);
-        foreach (var _e in Children) { _e?.ResolveRef(tables); }
-    }
-
-    public override string ToString()
-    {
-        return "{ "
-        + "id:" + Id + ","
-        + "nodeName:" + NodeName + ","
-        + "decorators:" + StringUtil.CollectionToString(Decorators) + ","
-        + "services:" + StringUtil.CollectionToString(Services) + ","
-        + "children:" + StringUtil.CollectionToString(Children) + ","
-        + "}";
-    }
-}
-
 }
