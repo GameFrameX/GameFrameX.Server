@@ -1,7 +1,6 @@
 ﻿using GameFrameX.Apps.Player.Player.Entity;
 using GameFrameX.DBServer;
-using GameFrameX.Setting;
-using GameFrameX.Utility;
+using GameFrameX.Monitor.Player;
 using Random = GameFrameX.Utility.Random;
 
 namespace GameFrameX.Apps.Player.Player.Component
@@ -11,6 +10,7 @@ namespace GameFrameX.Apps.Player.Player.Component
     {
         public async Task<List<PlayerState>?> GetPlayerList(ReqPlayerList reqPlayerList)
         {
+            MetricsPlayerRegister.GetPlayerListCounterOptions.Inc();
             return await GameDb.FindListAsync<PlayerState>(m => m.AccountId == reqPlayerList.Id);
         }
 
@@ -25,12 +25,14 @@ namespace GameFrameX.Apps.Player.Player.Component
                 State = 0,
                 Avatar = (uint)Random.GetRandom(1, 50),
             };
+            MetricsPlayerRegister.CreateCounterOptions.Inc();
             await GameDb.SaveOneAsync<PlayerState>(playerState);
             return playerState;
         }
 
         public async Task<PlayerState?> OnLogin(ReqPlayerLogin reqLogin)
         {
+            MetricsPlayerRegister.LoginCounterOptions.Inc();
             return await GameDb.FindAsync<PlayerState>(m => m.Id == reqLogin.Id);
         }
     }

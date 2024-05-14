@@ -4,6 +4,7 @@ using GameFrameX.Launcher.Common.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using GameFrameX.Extension;
+using GameFrameX.Monitor;
 using GameFrameX.Setting;
 
 namespace GameFrameX.Launcher
@@ -110,7 +111,7 @@ namespace GameFrameX.Launcher
             LogHelper.Info($"----------------------------启动服务器结束啦------------------------------");
 
             ConsoleLogo();
-
+            MetricsHelper.Start();
             await Task.WhenAll(tasks);
         }
 

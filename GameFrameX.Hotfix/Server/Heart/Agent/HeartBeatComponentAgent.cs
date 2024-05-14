@@ -1,6 +1,7 @@
 ﻿using GameFrameX.Apps.Server.Heart.Component;
 using GameFrameX.Apps.Server.Heart.Entity;
 using GameFrameX.Core.Timer.Handler;
+using GameFrameX.Monitor.Player;
 
 namespace GameFrameX.Hotfix.Server.Heart.Agent;
 
@@ -28,5 +29,10 @@ public class HeartBeatComponentAgent : StateComponentAgent<HeartBeatComponent, H
     {
         // Unscheduled(_heartBeatScheduleTimerId);
         return Task.CompletedTask;
+    }
+
+    public void OnUpdateHeartBeatTime(ReqHeartBeat req)
+    {
+        MetricsPlayerRegister.HeartBeatCounterOptions.Inc();
     }
 }

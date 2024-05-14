@@ -20,6 +20,7 @@ internal sealed class ReqHeartBeatHandler : GlobalComponentHandler<HeartBeatComp
     {
         ReqHeartBeat req = this.Message as ReqHeartBeat;
         // LogHelper.Info("收到心跳请求:" + req.Timestamp);
+        Comp.OnUpdateHeartBeatTime(req);
         Channel.UpdateReceiveMessageTime();
         resp.Timestamp = TimeHelper.UnixTimeSeconds();
         resp.UniqueId = req.UniqueId;
