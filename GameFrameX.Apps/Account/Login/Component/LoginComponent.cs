@@ -1,4 +1,5 @@
-﻿using GameFrameX.Apps.Account.Login.Entity;
+﻿using System.Threading.Tasks;
+using GameFrameX.Apps.Account.Login.Entity;
 using GameFrameX.DBServer;
 using GameFrameX.Monitor.Account;
 
@@ -7,7 +8,7 @@ namespace GameFrameX.Apps.Account.Login.Component
     [ComponentType(ActorType.Account)]
     public sealed class LoginComponent : StateComponent<LoginState>
     {
-        public async Task<LoginState?> OnLogin(ReqLogin reqLogin)
+        public async Task<LoginState> OnLogin(ReqLogin reqLogin)
         {
             MetricsAccountRegister.LoginCounterOptions.Inc();
             return await GameDb.FindAsync<LoginState>(m => m.UserName == reqLogin.UserName && m.Password == reqLogin.Password);

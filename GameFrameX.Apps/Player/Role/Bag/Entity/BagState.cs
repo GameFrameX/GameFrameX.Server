@@ -1,5 +1,3 @@
-using GameFrameX.DBServer.State;
-
 namespace GameFrameX.Apps.Player.Role.Bag.Entity;
 
 public class BagState : CacheState

@@ -1,10 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Concurrent;
-using System.Reflection;
-using MongoDB.Bson.Serialization.Conventions;
-using MongoDB.Bson.Serialization.Options;
-
-namespace GameFrameX.Apps
+﻿namespace GameFrameX.Apps
 {
     public class DictionaryRepresentationConvention : ConventionBase, IMemberMapConvention
     {
