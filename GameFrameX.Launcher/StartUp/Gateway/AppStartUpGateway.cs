@@ -2,11 +2,10 @@
 using GameFrameX.Launcher.StartUp.Gateway;
 using GameFrameX.Proto.BuiltIn;
 
-
 /// <summary>
 /// 网关服务器
 /// </summary>
-// [StartUpTag(ServerType.Gateway)]
+[StartUpTag(ServerType.Gateway)]
 internal sealed class AppStartUpGateway : AppStartUpBase
 {
     private IServer tcpService;
@@ -111,16 +110,15 @@ internal sealed class AppStartUpGateway : AppStartUpBase
             {
                 LogHelper.Debug($"---收到消息ID:[{messageId}] ==>消息类型:{msg.GetType()} 消息内容:{messageObject}");
             }
+
             // 发送
             var response = new RespActorHeartBeat()
             {
                 Timestamp = TimeHelper.UnixTimeSeconds()
             };
-            var result = messageEncoderHandler.RpcReplyHandler(msg.UniqueId,response);
+            var result = messageEncoderHandler.RpcReplyHandler(msg.UniqueId, response);
             await session.SendAsync(result);
         }
-
-       
     }
 
     #endregion
@@ -162,6 +160,15 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         LogHelper.Info("和中心服务器链接成功, 开始心跳");
         HeartBeatTimer.Start();
         ReconnectionTimer.Stop();
+        ReqRegisterServer reqRegisterServer = new ReqRegisterServer
+        {
+            ServerID = Setting.ServerId,
+            ServerType = Setting.ServerType,
+            ServerName = Setting.ServerName,
+            ServerIP = Setting.LocalIp,
+            ServerPort = Setting.TcpPort
+        };
+        SendMessage(reqRegisterServer);
     }
 
     private void ClientOnClosed(object sender, EventArgs eventArgs)
@@ -188,7 +195,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         }
 
         client.TrySend(span);
-        ArrayPool<byte>.Shared.Return(span);
+        // ArrayPool<byte>.Shared.Return(span);
     }
 
     #endregion
@@ -205,10 +212,12 @@ internal sealed class AppStartUpGateway : AppStartUpBase
                 TcpPort = 22000,
                 GrpcPort = 33300,
                 CenterUrl = "127.0.0.1",
+                LocalIp = "127.0.0.1"
             };
             if (PlatformRuntimeHelper.IsLinux)
             {
                 Setting.CenterUrl = "discovery";
+                Setting.LocalIp = "gateway";
             }
         }
 
