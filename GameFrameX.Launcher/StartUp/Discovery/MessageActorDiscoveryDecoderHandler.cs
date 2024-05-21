@@ -1,25 +1,24 @@
-using GameFrameX.Extension;
-using GameFrameX.NetWork.Messages;
 using GameFrameX.Serialize.Serialize;
 using SuperSocket.ProtoBase;
 
-namespace GameFrameX.Launcher.Message;
+namespace GameFrameX.Launcher.StartUp.Discovery;
 
-class MessageActorDiscoveryDecoderHandler :  IPackageDecoder<IMessage>
+class MessageActorDiscoveryDecoderHandler : IPackageDecoder<IMessage>
 {
     public IMessage Handler(Span<byte> data)
     {
         int readOffset = 0;
         var length = data.ReadInt(ref readOffset);
-        var timestamp = data.ReadLong(ref readOffset);
+        var uniqueId = data.ReadLong(ref readOffset);
         var messageId = data.ReadInt(ref readOffset);
         // var messageUniqueData = data.ReadBytes(ref readOffset);
         var messageData = data.ReadBytes(ref readOffset);
-        var messageType = ProtoMessageIdHandler.GetRequestActorTypeById(messageId);
+        var messageType = ProtoMessageIdHandler.GetReqTypeById(messageId);
         if (messageType != null)
         {
             var messageObject = (MessageObject)SerializerHelper.Deserialize(messageData, messageType);
             messageObject.MessageId = messageId;
+            messageObject.UniqueId = uniqueId;
             return messageObject;
         }
         else

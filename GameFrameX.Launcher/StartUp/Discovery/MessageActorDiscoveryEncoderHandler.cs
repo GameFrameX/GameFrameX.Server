@@ -1,10 +1,7 @@
-using GameFrameX.Extension;
-using GameFrameX.NetWork.Messages;
 using GameFrameX.Serialize.Serialize;
-using GameFrameX.Utility;
 using SuperSocket.ProtoBase;
 
-namespace GameFrameX.Launcher.Message;
+namespace GameFrameX.Launcher.StartUp.Discovery;
 
 class MessageActorDiscoveryEncoderHandler : IPackageEncoder<IMessage>
 {
