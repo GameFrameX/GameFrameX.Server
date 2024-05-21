@@ -1,8 +1,4 @@
-using GameFrameX.Extension;
-using GameFrameX.NetWork;
-using GameFrameX.NetWork.Messages;
 using GameFrameX.Serialize.Serialize;
-using GameFrameX.Utility;
 
 namespace GameFrameX.Launcher.Message;
 
@@ -10,19 +6,26 @@ class MessageActorGatewayEncoderHandler : IMessageEncoderHandler
 {
     public byte[] Handler(IMessage message)
     {
-        var bytes = SerializerHelper.Serialize(message);
+        MessageObject messageObject = message as MessageObject;
+
+        if (messageObject == null)
+        {
+            LogHelper.Error("消息对象为空");
+            return null;
+        }
+
+        var bytes = SerializerHelper.Serialize(messageObject);
 
         // len +timestamp + msgId + bytes.length
         int len = 4 + 8 + 4 + 4 + 4 + bytes.Length;
-        var span = ArrayPool<byte>.Shared.Rent(len);
+        var span = new byte[len];
         int offset = 0;
         span.WriteInt(len, ref offset);
-        span.WriteLong(TimeHelper.UnixTimeSeconds(), ref offset);
+        span.WriteLong(messageObject.UniqueId, ref offset);
         var messageType = message.GetType();
-        var msgId = ProtoMessageIdHandler.GetRequestActorMessageIdByType(messageType);
+        var msgId = ProtoMessageIdHandler.GetReqMessageIdByType(messageType);
         span.WriteInt(msgId, ref offset);
-        span.WriteInt(bytes.Length, ref offset);
-        span.WriteBytesWithoutLength(bytes, ref offset);
+        span.WriteBytes(bytes, ref offset);
         return span;
     }
 
@@ -31,7 +34,7 @@ class MessageActorGatewayEncoderHandler : IMessageEncoderHandler
         var bytes = SerializerHelper.Serialize(message);
 
         // len +UniqueId + msgId + bytes.length
-        int len = 4 + 8 + 4  + bytes.Length;
+        int len = 4 + 8 + 4 + bytes.Length;
         var span = ArrayPool<byte>.Shared.Rent(len);
         int offset = 0;
         span.WriteInt(len, ref offset);
