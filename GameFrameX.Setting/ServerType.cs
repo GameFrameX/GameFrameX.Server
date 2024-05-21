@@ -39,14 +39,14 @@ public enum ServerType
     Router = Account << 1,
 
     /// <summary>
-    /// 服务发现服
+    /// 服务发现中心服，用于发现其他服务器。
     /// </summary>
-    Discovery = Router << 1,
+    DiscoveryCenter = Router << 1,
 
     ///<summary>
     /// 远程备份
     /// </summary>
-    Backup = Discovery << 1,
+    Backup = DiscoveryCenter << 1,
 
     #endregion
 
@@ -94,5 +94,5 @@ public enum ServerType
     /// <summary>
     /// 全部
     /// </summary>
-    All = Room | Game | Logic | Recharge | Chat | Mail | Guild | Backup | Account | Discovery | Gateway | Cache | DataBase | Log,
+    All = Room | Game | Logic | Recharge | Chat | Mail | Guild | Backup | Account | DiscoveryCenter | Gateway | Cache | DataBase | Log,
 }
