@@ -1,9 +1,8 @@
 using GameFrameX.DBServer.State;
-using GameFrameX.Extension;
 using GameFrameX.Serialize.Serialize;
 using SuperSocket.ProtoBase;
 
-namespace GameFrameX.Launcher.Message;
+namespace GameFrameX.Launcher.StartUp.DataBase;
 
 internal class MessageActorDataBaseDecoderHandler : IPackageDecoder<ICacheState>
 {
