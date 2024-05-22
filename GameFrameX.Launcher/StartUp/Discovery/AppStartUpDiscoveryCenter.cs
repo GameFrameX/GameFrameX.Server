@@ -98,6 +98,12 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
         LogHelper.Info($"{ServerType} Server Done!");
     }
 
+    protected override void ConfigureSuperSocket(ServerOptions options)
+    {
+        base.ConfigureSuperSocket(options);
+        options.ClearIdleSessionInterval = 30;
+    }
+
     protected override void Init()
     {
         if (Setting == null)
