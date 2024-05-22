@@ -35,10 +35,10 @@ namespace GameFrameX.Launcher.StartUp.DataBase
 
         private async Task StartServer()
         {
-            server = SuperSocketHostBuilder.Create<ICacheState>()
+            server = SuperSocketHostBuilder.Create<IMessage>()
                 .ConfigureSuperSocket(ConfigureSuperSocket)
                 .UseClearIdleSession() // 清除空闲连接
-                .UsePipelineFilter<CacheStatePipelineFilter>()
+                .UsePipelineFilter<MessageObjectPipelineFilter>()
                 .UsePackageDecoder<MessageActorDataBaseDecoderHandler>()
                 // .UsePackageEncoder<MessageActorEncoderHandler>()
                 // .UseSessionHandler(OnConnected, OnDisconnected)
@@ -49,7 +49,7 @@ namespace GameFrameX.Launcher.StartUp.DataBase
             await server.StartAsync();
         }
 
-        private async ValueTask MessagePackageHandler(IAppSession session, ICacheState cacheState)
+        private async ValueTask MessagePackageHandler(IAppSession session, IMessage cacheState)
         {
             if (cacheState is HeartBeatState _)
             {

@@ -4,19 +4,19 @@ using SuperSocket.ProtoBase;
 
 namespace GameFrameX.Launcher.StartUp.DataBase;
 
-internal class MessageActorDataBaseDecoderHandler : IPackageDecoder<ICacheState>
+internal class MessageActorDataBaseDecoderHandler : IPackageDecoder<IMessage>
 {
-    public ICacheState Handler(Span<byte> data)
+    public IMessage Handler(Span<byte> data)
     {
         int readOffset = 0;
         var messageTypeId = data.ReadLong(ref readOffset);
         var messageData = data.ReadBytes(ref readOffset);
         var messageTypeType = CacheStateTypeManager.GetType(messageTypeId);
-        var messageObject = (ICacheState)SerializerHelper.Deserialize(messageData, messageTypeType);
+        var messageObject = (IMessage)SerializerHelper.Deserialize(messageData, messageTypeType);
         return messageObject;
     }
 
-    public ICacheState Decode(ref ReadOnlySequence<byte> buffer, object context)
+    public IMessage Decode(ref ReadOnlySequence<byte> buffer, object context)
     {
         var data = buffer.ToArray();
         var messageObject = Handler(data);

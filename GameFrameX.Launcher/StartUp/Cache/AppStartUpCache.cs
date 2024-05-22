@@ -1,8 +1,11 @@
-﻿using GameFrameX.Apps.Server.Heart.Entity;
+﻿using System;
+using System.Threading.Tasks;
+using GameFrameX.Apps.Server.Heart.Entity;
 using GameFrameX.Cache;
 using GameFrameX.Cache.Memory;
 using GameFrameX.DBServer.State;
 using GameFrameX.Launcher.PipelineFilter;
+using GameFrameX.Launcher.StartUp.DataBase;
 using Timer = System.Timers.Timer;
 
 namespace GameFrameX.Launcher.StartUp.Cache
@@ -168,7 +171,7 @@ namespace GameFrameX.Launcher.StartUp.Cache
 
         private async Task StartServer()
         {
-            server = SuperSocketHostBuilder.Create<ICacheState, CacheStatePipelineFilter>()
+            server = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
                 .ConfigureSuperSocket(ConfigureSuperSocket)
                 .UseClearIdleSession()
                 .UsePackageHandler(CacheServerPackageHandler)
@@ -178,7 +181,7 @@ namespace GameFrameX.Launcher.StartUp.Cache
         }
 
 
-        private async ValueTask CacheServerPackageHandler(IAppSession session, ICacheState cacheState)
+        private async ValueTask CacheServerPackageHandler(IAppSession session, IMessage cacheState)
         {
             // 这个要对数据进行缓存处理。定时存档和拉取
             if (cacheState is HeartBeatState heartBeatState)
