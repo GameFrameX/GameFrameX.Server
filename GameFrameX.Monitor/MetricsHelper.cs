@@ -5,6 +5,13 @@ namespace GameFrameX.Monitor;
 
 public static class MetricsHelper
 {
+    private static KestrelMetricServer _server;
+
+    public static void Stop()
+    {
+        _server.Stop();
+    }
+
     /// <summary>
     /// 启动监控
     /// </summary>
@@ -17,8 +24,8 @@ public static class MetricsHelper
             SuppressMeters = true,
             SuppressProcessMetrics = true
         });
-        using var server = new KestrelMetricServer(port);
-        server.Start();
+        _server = new KestrelMetricServer(port);
+        _server.Start();
 
         var totalSleepTime = Prometheus.Metrics.CreateCounter("sample_sleep_seconds_total", "Total amount of time spent sleeping.");
 
