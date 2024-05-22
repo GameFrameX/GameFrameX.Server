@@ -120,17 +120,15 @@ namespace GameFrameX.Launcher
             {
                 foreach (var appSetting in appSettings)
                 {
-                    if (appSetting.ServerType == serverTypeValue)
+                    if (appSetting.ServerType == serverTypeValue && appSetting.APMPort is > 0 and < ushort.MaxValue)
                     {
                         MetricsHelper.Start(appSetting.APMPort);
-                        break;
+                        return;
                     }
                 }
             }
-            else
-            {
-                MetricsHelper.Start();
-            }
+
+            MetricsHelper.Start();
         }
 
         /// <summary>
