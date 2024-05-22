@@ -4,8 +4,6 @@ namespace GameFrameX.Launcher.PipelineFilter;
 
 public class MessageObjectPipelineFilter : PipelineFilterBase<IMessage>
 {
-    const int HeaderSize = 4 + 8 + 4 + 4;
-
     public override IMessage Filter(ref SequenceReader<byte> reader)
     {
         var pack = reader.Sequence;
