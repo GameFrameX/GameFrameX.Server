@@ -212,6 +212,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
                 ServerType = ServerType.Gateway,
                 InnerIp = "127.0.0.1",
                 InnerPort = 22000,
+                APMPort = 22001,
                 DiscoveryCenterPort = 33300,
                 DiscoveryCenterIp = "127.0.0.1",
             };

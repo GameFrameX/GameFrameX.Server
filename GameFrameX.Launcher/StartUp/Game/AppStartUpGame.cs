@@ -18,7 +18,7 @@
                 }
 
                 ConfigComponent.Instance.LoadConfig();
-                
+
                 LogHelper.Info($"actor limit logic start...");
                 ActorLimit.Init(ActorLimit.RuleType.None);
                 LogHelper.Info($"actor limit logic end...");
@@ -63,6 +63,7 @@
                     ServerId = 1501,
                     ServerType = ServerType.Game,
                     InnerPort = 21000,
+                    APMPort = 21001,
                     HttpPort = 20001,
                     WsPort = 21100,
                     //
