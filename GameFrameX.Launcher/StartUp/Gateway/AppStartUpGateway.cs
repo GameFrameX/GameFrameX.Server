@@ -199,7 +199,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         var span = messageEncoderHandler.Handler(message);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
-            LogHelper.Debug($"---发送消息ID:[{ProtoMessageIdHandler.GetReqMessageIdByType(message.GetType())}] ==>消息类型:{message.GetType()} 消息内容:{message}");
+            LogHelper.Debug($"---发送消息ID:[{ProtoMessageIdHandler.GetRequestMessageIdByType(message.GetType())}] ==>消息类型:{message.GetType()} 消息内容:{message}");
         }
 
         client.TrySend(span);
