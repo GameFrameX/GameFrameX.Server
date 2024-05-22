@@ -12,6 +12,8 @@ namespace GameFrameX.Proto
     /// </summary>
     public static class ProtoMessageIdHandler
     {
+        private static readonly BidirectionalDictionary<int, Type> RequestDictionary = new BidirectionalDictionary<int, Type>();
+        private static readonly BidirectionalDictionary<int, Type> ResponseDictionary = new BidirectionalDictionary<int, Type>();
         private static readonly BidirectionalDictionary<int, Type> ReqDictionary = new BidirectionalDictionary<int, Type>();
         private static readonly BidirectionalDictionary<int, Type> RespDictionary = new BidirectionalDictionary<int, Type>();
         private static readonly BidirectionalDictionary<int, Type> RequestActorDictionary = new BidirectionalDictionary<int, Type>();
@@ -66,15 +68,11 @@ namespace GameFrameX.Proto
 
         #endregion
 
+        #region All
 
-        public static int GetMessageIdByType(Type type)
+        public static int GetRequestMessageIdByType(Type type)
         {
-            if (ReqDictionary.TryGetKey(type, out var value))
-            {
-                return value;
-            }
-
-            if (RespDictionary.TryGetKey(type, out value))
+            if (RequestDictionary.TryGetKey(type, out var value))
             {
                 return value;
             }
@@ -82,6 +80,31 @@ namespace GameFrameX.Proto
             return 0;
         }
 
+        public static Type GetRequestMessageTypeById(int messageId)
+        {
+            RequestDictionary.TryGetValue(messageId, out var value);
+            return value;
+        }
+
+        public static int GetResponseMessageIdByType(Type type)
+        {
+            if (ResponseDictionary.TryGetKey(type, out var value))
+            {
+                return value;
+            }
+
+            return 0;
+        }
+
+        public static Type GetResponseMessageTypeById(int messageId)
+        {
+            ResponseDictionary.TryGetValue(messageId, out var value);
+            return value;
+        }
+
+        #endregion
+
+        #region MessagObject
 
         /// <summary>
         /// 根据消息ID获取请求的类型
@@ -128,6 +151,8 @@ namespace GameFrameX.Proto
             return value;
         }
 
+        #endregion
+
         /// <summary>
         /// 初始化所有协议对象
         /// </summary>
@@ -154,6 +179,13 @@ namespace GameFrameX.Proto
                     if (type.IsImplWithInterface(typeof(IRequestMessage)))
                     {
                         // 请求
+
+                        if (!RequestDictionary.TryAdd(messageIdHandler.MessageId, type))
+                        {
+                            RequestDictionary.TryGetValue(messageIdHandler.MessageId, out var value);
+                            LogHelper.Error($"请求Id重复==>当前ID:{messageIdHandler.MessageId},已有ID类型:{value.FullName}");
+                        }
+
                         if (type.IsImplWithInterface(typeof(IActorRequestMessage)) && messageIdHandler.MessageId > 100_0000)
                         {
                             if (!RequestActorDictionary.TryAdd(messageIdHandler.MessageId, type))
@@ -174,6 +206,12 @@ namespace GameFrameX.Proto
                     else if (type.IsImplWithInterface(typeof(IResponseMessage)))
                     {
                         // 返回
+                        if (!ResponseDictionary.TryAdd(messageIdHandler.MessageId, type))
+                        {
+                            ResponseDictionary.TryGetValue(messageIdHandler.MessageId, out var value);
+                            LogHelper.Error($"返回Id重复==>当前ID:{messageIdHandler.MessageId},已有ID类型:{value.FullName}");
+                        }
+
                         if (type.IsImplWithInterface(typeof(IActorResponseMessage)) && messageIdHandler.MessageId > 100_0000)
                         {
                             if (!ResponseActorDictionary.TryAdd(messageIdHandler.MessageId, type))
