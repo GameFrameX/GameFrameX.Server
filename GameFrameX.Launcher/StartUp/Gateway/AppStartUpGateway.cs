@@ -148,7 +148,13 @@ internal sealed class AppStartUpGateway : AppStartUpBase
 
     private void ClientOnDataReceived(object sender, DataEventArgs e)
     {
-        var messageObject = (MessageObject)messageDecoderHandler.Handler(e.Data.ReadBytes(e.Offset, e.Length));
+        var messageObject = messageDecoderHandler.Handler(e.Data.ReadBytes(e.Offset, e.Length));
+        if (messageObject == null)
+        {
+            LogHelper.Error("数据解析失败：" + e.Data.ReadBytes(e.Offset, e.Length));
+            return;
+        }
+
         if (Setting.IsDebug && Setting.IsDebugReceive)
         {
             LogHelper.Debug($"---收到消息 ==>消息类型:{messageObject.GetType()} 消息内容:{messageObject}");
