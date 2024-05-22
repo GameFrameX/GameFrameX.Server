@@ -15,21 +15,25 @@ public class MessageGameEncoderHandler : IMessageEncoderHandler, IPackageEncoder
     /// <returns></returns>
     public byte[] Handler(IMessage message)
     {
-        var messageObject = message as MessageObject;
-        var bytes = SerializerHelper.Serialize(message);
-        // len +uniqueId + msgId + bytes.length
-        int len = 4 + 8 + 4 + bytes.Length;
-        var span = new byte[len];
-        int offset = 0;
-        span.WriteInt(len, ref offset);
-        span.WriteLong(messageObject.UniqueId, ref offset);
-        var messageType = message.GetType();
-        var msgId = ProtoMessageIdHandler.GetRespMessageIdByType(messageType);
-        span.WriteInt(msgId, ref offset);
-        span.WriteBytesWithoutLength(bytes, ref offset);
-        // ArrayPool<byte>.Shared.Return(span);
-        LogHelper.Debug($"---发送消息:[{msgId},{message.GetType().Name}] 消息内容:[{message}],：{span.ToArrayString()}");
-        return span;
+        if (message is MessageObject messageObject)
+        {
+            var bytes = SerializerHelper.Serialize(message);
+            // len +uniqueId + msgId + bytes.length
+            int len = 4 + 8 + 4 + bytes.Length;
+            var span = new byte[len];
+            int offset = 0;
+            span.WriteInt(len, ref offset);
+            span.WriteLong(messageObject.UniqueId, ref offset);
+            var messageType = message.GetType();
+            var msgId = ProtoMessageIdHandler.GetRespMessageIdByType(messageType);
+            span.WriteInt(msgId, ref offset);
+            span.WriteBytesWithoutLength(bytes, ref offset);
+            LogHelper.Debug($"---发送消息:[{msgId},{message.GetType().Name}] 消息内容:[{message}],：{span.ToArrayString()}");
+            return span;
+        }
+
+        LogHelper.Error("消息对象为空，编码异常");
+        return null;
     }
 
     public int Encode(IBufferWriter<byte> writer, IMessage pack)
