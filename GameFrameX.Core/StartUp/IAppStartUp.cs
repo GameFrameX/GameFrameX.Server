@@ -8,7 +8,16 @@ namespace GameFrameX.Core.StartUp;
 public interface IAppStartUp
 {
     Task<string> AppExitToken { get; }
+
+    /// <summary>
+    /// 服务器类型
+    /// </summary>
     ServerType ServerType { get; }
+
+    /// <summary>
+    /// 配置信息
+    /// </summary>
+    AppSetting Setting { get; }
 
     /// <summary>
     /// 初始化
