@@ -38,7 +38,7 @@ namespace GameFrameX.Launcher
                 }
             }
 
-            LoggerHandler.Start();
+            LoggerHandler.Start(serverType);
             JsonSetting();
             GlobalSettings.Load<AppSetting>($"Configs/app_config.json");
             CacheStateTypeManager.Init();

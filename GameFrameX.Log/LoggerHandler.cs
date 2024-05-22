@@ -4,18 +4,24 @@ namespace GameFrameX.Log;
 
 public static class LoggerHandler
 {
-    public static bool Start()
+    public static bool Start(string serverType = null)
     {
         try
         {
-            var logPath = @".\logs\log.txt"; // 日志文件存储的路径
-            Console.WriteLine("init Log config...");
+            var logPath = $"./logs/{serverType}_log_.log"; // 日志文件存储的路径
+            Console.WriteLine("初始化日志系统配置 开始...");
             Serilog.Log.Logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()
                 .MinimumLevel.Debug()
+#if DEBUG
                 .WriteTo.Console()
-                .WriteTo.File(logPath)
+#endif
+                .WriteTo.File(logPath,
+                    rollingInterval: RollingInterval.Hour,
+                    rollOnFileSizeLimit: true,
+                    fileSizeLimitBytes: 10 * 1024 * 1024)
                 .CreateLogger();
+            Console.WriteLine("初始化日志系统配置 结束...");
             return true;
         }
         catch (Exception e)
