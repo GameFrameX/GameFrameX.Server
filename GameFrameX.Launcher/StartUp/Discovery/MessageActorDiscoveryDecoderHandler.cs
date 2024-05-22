@@ -13,19 +13,27 @@ class MessageActorDiscoveryDecoderHandler : IPackageDecoder<IMessage>
         var messageId = data.ReadInt(ref readOffset);
         // var messageUniqueData = data.ReadBytes(ref readOffset);
         var messageData = data.ReadBytes(ref readOffset);
-        var messageType = ProtoMessageIdHandler.GetReqTypeById(messageId);
+        var messageType = ProtoMessageIdHandler.GetRequestMessageTypeById(messageId);
         if (messageType != null)
         {
-            var messageObject = (MessageObject)SerializerHelper.Deserialize(messageData, messageType);
-            messageObject.MessageId = messageId;
-            messageObject.UniqueId = uniqueId;
-            return messageObject;
+            var messageObject = SerializerHelper.Deserialize(messageData, messageType);
+            if (messageObject is MessageObject messageObject1)
+            {
+                messageObject1.MessageId = messageId;
+                messageObject1.UniqueId = uniqueId;
+                return messageObject1;
+            }
+
+            if (messageObject is MessageActorObject messageActorObject)
+            {
+                messageActorObject.MessageId = messageId;
+                messageActorObject.UniqueId = uniqueId;
+                return messageActorObject;
+            }
         }
-        else
-        {
-            LogHelper.Fatal("未知消息类型");
-            return null;
-        }
+
+        LogHelper.Fatal("未知消息类型");
+        return null;
     }
 
     public IMessage Decode(ref ReadOnlySequence<byte> buffer, object context)
