@@ -60,14 +60,13 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
 
     private async ValueTask PackageHandler(IAppSession session, IMessage messageObject)
     {
+        if (Setting.IsDebug && Setting.IsDebugReceive && messageObject is BaseMessageObject baseMessageObject)
+        {
+            LogHelper.Debug($"---收到  {baseMessageObject.ToMessageString()}");
+        }
+
         if (messageObject is MessageObject message)
         {
-            var messageId = message.MessageId;
-            if (Setting.IsDebug && Setting.IsDebugReceive)
-            {
-                LogHelper.Debug($"---收到消息ID:[{messageId}] ==>消息类型:{message.GetType()} 消息内容:{messageObject}");
-            }
-
             if (message is ReqRegisterServer reqRegisterServer)
             {
                 // 注册服务
