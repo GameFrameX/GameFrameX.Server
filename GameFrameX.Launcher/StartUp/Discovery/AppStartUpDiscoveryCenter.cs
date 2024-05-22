@@ -1,4 +1,5 @@
 using GameFrameX.Launcher.PipelineFilter;
+using GameFrameX.Proto.BuiltIn;
 using GameFrameX.ServerManager;
 
 namespace GameFrameX.Launcher.StartUp.Discovery;
@@ -11,7 +12,6 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
 {
     private IServer server;
 
-    // readonly IMessageDecoderHandler messageDecoderHandler = new MessageActorDiscoveryDecoderHandler();
     readonly MessageActorDiscoveryEncoderHandler messageEncoderHandler = new MessageActorDiscoveryEncoderHandler();
 
 
@@ -60,34 +60,48 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
 
     private async ValueTask PackageHandler(IAppSession session, IMessage messageObject)
     {
-        if (messageObject is MessageObject msg)
+        if (messageObject is MessageObject message)
         {
-            var messageId = msg.MessageId;
+            var messageId = message.MessageId;
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
-                LogHelper.Debug($"---收到消息ID:[{messageId}] ==>消息类型:{msg.GetType()} 消息内容:{messageObject}");
+                LogHelper.Debug($"---收到消息ID:[{messageId}] ==>消息类型:{message.GetType()} 消息内容:{messageObject}");
+            }
+
+            if (message is ReqRegisterServer reqRegisterServer)
+            {
+                // 注册服务
+                ServerInfo serverInfo = new ServerInfo(reqRegisterServer.ServerType, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerID, reqRegisterServer.InnerIP, reqRegisterServer.InnerPort, reqRegisterServer.OuterIP, reqRegisterServer.OuterPort);
+                NamingServiceManager.Instance.Add(serverInfo);
+                LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
             }
         }
-
-        // 发送
-        // var response = new RespActorHeartBeat()
-        // {
-        //     Timestamp = TimeHelper.UnixTimeSeconds()
-        // };
-        // await session.SendAsync(messageEncoderHandler, response);
+        else if (messageObject is MessageActorObject messageActorObject)
+        {
+            if (messageActorObject is ReqActorHeartBeat reqActorHeartBeat)
+            {
+                // 心跳相应
+                var response = new RespActorHeartBeat()
+                {
+                    UniqueId = reqActorHeartBeat.UniqueId,
+                    Timestamp = TimeHelper.UnixTimeSeconds()
+                };
+                await session.SendAsync(messageEncoderHandler, response);
+            }
+        }
     }
 
 
     private ValueTask OnConnected(IAppSession appSession)
     {
-        LogHelper.Info("有外部客户端网络连接到中心服务器成功" + "。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-        // NamingServiceManager.Instance.Add();
+        LogHelper.Info("有外部服务连接到中心服务器成功" + "。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
         return ValueTask.CompletedTask;
     }
 
-    private ValueTask OnDisconnected(object sender, CloseEventArgs args)
+    private ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs args)
     {
-        LogHelper.Info("有外部客户端从中心服务器断开。链接信息：断开原因:" + args.Reason);
+        LogHelper.Info("有外部服务从中心服务器断开。链接信息：断开原因:" + args.Reason);
+        NamingServiceManager.Instance.TrySessionRemove(appSession.SessionID);
         return ValueTask.CompletedTask;
     }
 
