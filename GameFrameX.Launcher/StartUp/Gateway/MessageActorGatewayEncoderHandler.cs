@@ -6,24 +6,38 @@ class MessageActorGatewayEncoderHandler : IMessageEncoderHandler
 {
     public byte[] Handler(IMessage message)
     {
-        MessageObject messageObject = message as MessageObject;
-
-        if (messageObject == null)
+        byte[] bytes = null;
+        var messageType = message.GetType();
+        long uniqueId = 0;
+        int msgId = 0;
+        if (message is MessageObject messageObject)
         {
-            LogHelper.Error("消息对象为空");
+            msgId = ProtoMessageIdHandler.GetReqMessageIdByType(messageType);
+            messageObject.MessageId = msgId;
+            uniqueId = messageObject.UniqueId;
+            bytes = SerializerHelper.Serialize(messageObject);
+        }
+        else if (message is MessageActorObject messageActorObject)
+        {
+            msgId = ProtoMessageIdHandler.GetRequestActorMessageIdByType(messageType);
+            messageActorObject.MessageId = msgId;
+            uniqueId = messageActorObject.UniqueId;
+            bytes = SerializerHelper.Serialize(messageActorObject);
+        }
+
+        if (bytes == null)
+        {
+            LogHelper.Error("消息对象为空，编码异常");
             return null;
         }
 
-        var bytes = SerializerHelper.Serialize(messageObject);
-
         // len +timestamp + msgId + bytes.length
-        int len = 4 + 8 + 4 + 4 + 4 + bytes.Length;
+        int len = 4 + 8 + 4 + 4 + bytes.Length;
         var span = new byte[len];
         int offset = 0;
         span.WriteInt(len, ref offset);
-        span.WriteLong(messageObject.UniqueId, ref offset);
-        var messageType = message.GetType();
-        var msgId = ProtoMessageIdHandler.GetReqMessageIdByType(messageType);
+        span.WriteLong(uniqueId, ref offset);
+
         span.WriteInt(msgId, ref offset);
         span.WriteBytes(bytes, ref offset);
         return span;
@@ -40,7 +54,7 @@ class MessageActorGatewayEncoderHandler : IMessageEncoderHandler
         span.WriteInt(len, ref offset);
         span.WriteLong(msgUniqueId, ref offset);
         var messageType = message.GetType();
-        var msgId = ProtoMessageIdHandler.GetResponseActorMessageIdByType(messageType);
+        var msgId = ProtoMessageIdHandler.GetRespMessageIdByType(messageType);
         span.WriteInt(msgId, ref offset);
         span.WriteBytes(bytes, ref offset);
         return span;
