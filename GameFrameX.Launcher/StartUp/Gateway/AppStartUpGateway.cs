@@ -128,12 +128,12 @@ internal sealed class AppStartUpGateway : AppStartUpBase
     protected override void HeartBeatTimerOnElapsed(object sender, ElapsedEventArgs e)
     {
         //心跳包
-        /*if (client.IsConnected)
+        if (client.IsConnected)
         {
             reqHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
             reqHeartBeat.UniqueId = UtilityIdGenerator.GetNextUniqueId();
             SendMessage(reqHeartBeat);
-        }*/
+        }
     }
 
     protected override void ReconnectionTimerOnElapsed(object sender, ElapsedEventArgs e)
