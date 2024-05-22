@@ -97,9 +97,24 @@ public abstract class BaseSetting
     public int SaveDataInterval { get; set; } = 5000;
 
     /// <summary>
-    /// 本地IP
+    /// 内部IP
     /// </summary>
-    public string LocalIp { get; set; }
+    public string InnerIp { get; set; }
+
+    /// <summary>
+    /// 内部端口
+    /// </summary>
+    public string InnerPort { get; set; }
+
+    /// <summary>
+    /// 外部IP
+    /// </summary>
+    public string OuterIp { get; set; }
+
+    /// <summary>
+    /// 外部端口
+    /// </summary>
+    public string OuterPort { get; set; }
 
     /// <summary>
     /// HTTP 响应码
