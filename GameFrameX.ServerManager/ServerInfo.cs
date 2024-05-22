@@ -7,13 +7,15 @@ namespace GameFrameX.ServerManager;
 /// </summary>
 public sealed class ServerInfo
 {
-    public ServerInfo(ServerType type, string sessionId, string serverName, long serverId, string localIp, int innerPort)
+    public ServerInfo(ServerType type, string sessionId, string serverName, long serverId, string innerIp, ushort innerPort, string outerIp, ushort outerPort)
     {
         Type = type;
         ServerName = serverName;
         ServerId = serverId;
-        LocalIp = localIp;
+        InnerIp = innerIp;
         InnerPort = innerPort;
+        OuterIp = outerIp;
+        OuterPort = outerPort;
         SessionId = sessionId;
         StatusInfo = new ServerStatusInfo();
     }
@@ -36,14 +38,24 @@ public sealed class ServerInfo
     public long ServerId { get; }
 
     /// <summary>
-    /// 本地IP
+    /// 内部IP
     /// </summary>
-    public string LocalIp { get; }
+    public string InnerIp { get; }
 
     /// <summary>
     /// 内部端口
     /// </summary>
-    public int InnerPort { get; }
+    public ushort InnerPort { get; }
+
+    /// <summary>
+    /// 外部IP
+    /// </summary>
+    public string OuterIp { get; }
+
+    /// <summary>
+    /// 外部端口
+    /// </summary>
+    public ushort OuterPort { get; }
 
     /// <summary>
     /// 服务器状态

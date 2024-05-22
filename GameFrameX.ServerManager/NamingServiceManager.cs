@@ -96,7 +96,7 @@ namespace GameFrameX.ServerManager
         /// </summary>
         public void AddSelf(BaseSetting setting)
         {
-            serverInfo = new ServerInfo(setting.ServerType, string.Empty, setting.ServerName, setting.ServerId, setting.LocalIp, setting.GrpcPort);
+            serverInfo = new ServerInfo(setting.ServerType, string.Empty, setting.ServerName, setting.ServerId, setting.InnerIp, setting.InnerPort, setting.OuterIp, setting.OuterPort);
             serverMap[serverInfo.ServerId] = serverInfo;
         }
 

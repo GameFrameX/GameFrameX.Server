@@ -104,7 +104,7 @@ public abstract class BaseSetting
     /// <summary>
     /// 内部端口
     /// </summary>
-    public string InnerPort { get; set; }
+    public ushort InnerPort { get; set; }
 
     /// <summary>
     /// 外部IP
@@ -114,7 +114,7 @@ public abstract class BaseSetting
     /// <summary>
     /// 外部端口
     /// </summary>
-    public string OuterPort { get; set; }
+    public ushort OuterPort { get; set; }
 
     /// <summary>
     /// HTTP 响应码

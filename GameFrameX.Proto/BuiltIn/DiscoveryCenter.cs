@@ -23,16 +23,28 @@ public partial class ReqRegisterServer : MessageObject, IRequestMessage
     public string ServerName { get; set; }
 
     /// <summary>
-    /// 服务器IP
+    /// 内部服务器IP
     /// </summary>
     [ProtoMember(3)]
-    public string ServerIP { get; set; }
+    public string InnerIP { get; set; }
 
     /// <summary>
-    /// 服务器端口
+    /// 内部服务器端口
     /// </summary>
     [ProtoMember(4)]
-    public int ServerPort { get; set; }
+    public ushort InnerPort { get; set; }
+
+    /// <summary>
+    /// 外部服务器IP
+    /// </summary>
+    [ProtoMember(3)]
+    public string OuterIP { get; set; }
+
+    /// <summary>
+    /// 外部服务器端口
+    /// </summary>
+    [ProtoMember(4)]
+    public ushort OuterPort { get; set; }
 
     /// <summary>
     /// 服务器ID

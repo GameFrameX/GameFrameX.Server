@@ -21,7 +21,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
     {
         try
         {
-            LogHelper.Info($"启动服务器{Setting.ServerType} 开始! address: {Setting.LocalIp}  port: {Setting.TcpPort}");
+            LogHelper.Info($"启动服务器{Setting.ServerType} 开始! address: {Setting.InnerIp}  port: {Setting.TcpPort}");
             await StartServer();
 
             StartClient();
@@ -54,7 +54,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
 
     public override async Task Stop(string message = "")
     {
-        LogHelper.Info($"服务器{Setting.ServerType} 停止! address: {Setting.LocalIp}  port: {Setting.TcpPort}");
+        LogHelper.Info($"服务器{Setting.ServerType} 停止! address: {Setting.InnerIp}  port: {Setting.TcpPort}");
         client.Close();
         await tcpService.StopAsync();
         await base.Stop(message);
@@ -165,8 +165,10 @@ internal sealed class AppStartUpGateway : AppStartUpBase
             ServerID = Setting.ServerId,
             ServerType = Setting.ServerType,
             ServerName = Setting.ServerName,
-            ServerIP = Setting.LocalIp,
-            ServerPort = Setting.TcpPort
+            InnerIP = Setting.InnerIp,
+            InnerPort = Setting.InnerPort,
+            OuterIP = Setting.OuterIp,
+            OuterPort = Setting.OuterPort
         };
         SendMessage(reqRegisterServer);
     }
@@ -212,12 +214,12 @@ internal sealed class AppStartUpGateway : AppStartUpBase
                 TcpPort = 22000,
                 GrpcPort = 33300,
                 CenterUrl = "127.0.0.1",
-                LocalIp = "127.0.0.1"
+                InnerIp = "127.0.0.1"
             };
             if (PlatformRuntimeHelper.IsLinux)
             {
                 Setting.CenterUrl = "discovery";
-                Setting.LocalIp = "gateway";
+                Setting.InnerIp = "gateway";
             }
         }
 
