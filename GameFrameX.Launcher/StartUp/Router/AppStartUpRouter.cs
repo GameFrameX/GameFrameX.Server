@@ -33,7 +33,7 @@ internal sealed class AppStartUpRouter : AppStartUpBase
         try
         {
             await StartServer();
-            LogHelper.Info($"启动服务器 {ServerType} 端口: {Setting.TcpPort} 结束!");
+            LogHelper.Info($"启动服务器 {ServerType} 端口: {Setting.InnerPort} 结束!");
             StartClient();
             _ = Task.Run(RpcHandler);
             await AppExitToken;
@@ -87,7 +87,7 @@ internal sealed class AppStartUpRouter : AppStartUpBase
 
     private void ConnectToGateWay()
     {
-        var endPoint = new IPEndPoint(IPAddress.Parse(Setting.CenterUrl), Setting.GrpcPort);
+        var endPoint = new IPEndPoint(IPAddress.Parse(Setting.DiscoveryCenterIp), Setting.DiscoveryCenterPort);
         tcpClient.Connect(endPoint);
     }
 
@@ -249,18 +249,18 @@ internal sealed class AppStartUpRouter : AppStartUpBase
             {
                 ServerId = 1000,
                 ServerType = ServerType.Router,
-                TcpPort = 21000,
+                InnerPort = 21000,
                 WsPort = 21100,
                 WssPort = 21200,
                 // 网关配置
-                GrpcPort = 22000,
-                CenterUrl = "127.0.0.1",
+                DiscoveryCenterIp = "127.0.0.1",
+                DiscoveryCenterPort = 22000,
                 // 最大连接数
                 MaxClientCount = 3000,
             };
             if (PlatformRuntimeHelper.IsLinux)
             {
-                Setting.CenterUrl = "gateway";
+                Setting.DiscoveryCenterIp = "gateway";
             }
         }
 

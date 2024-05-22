@@ -62,7 +62,7 @@
                 {
                     ServerId = 1501,
                     ServerType = ServerType.Game,
-                    TcpPort = 21000,
+                    InnerPort = 21000,
                     HttpPort = 20001,
                     WsPort = 21100,
                     //

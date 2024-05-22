@@ -90,7 +90,7 @@ namespace GameFrameX.Launcher.StartUp.DataBase
                 Setting = new AppSetting
                 {
                     ServerId = 6000,
-                    TcpPort = 26000,
+                    InnerPort = 26000,
                     ServerType = ServerType.DataBase,
                     DataBaseName = "gameframex",
                     DataBaseUrl = "mongodb://127.0.0.1:27017"

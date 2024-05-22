@@ -75,7 +75,7 @@ namespace GameFrameX.Launcher.StartUp.Cache
 
         private void ConnectToDataBase()
         {
-            databaseClient.Connect(new DnsEndPoint(Setting.DBUrl, Setting.DbPort));
+            databaseClient.Connect(new DnsEndPoint(Setting.DBIp, Setting.DBPort));
         }
 
         private void DataBaseDatabaseClientOnError(object sender, SuperSocket.ClientEngine.ErrorEventArgs errorEventArgs)
@@ -131,7 +131,7 @@ namespace GameFrameX.Launcher.StartUp.Cache
 
         private void ConnectToDiscovery()
         {
-            discoveryClient.Connect(new DnsEndPoint(Setting.CenterUrl, Setting.GrpcPort));
+            discoveryClient.Connect(new DnsEndPoint(Setting.DiscoveryCenterIp, Setting.DiscoveryCenterPort));
         }
 
         private void DiscoveryClientOnError(object sender, ErrorEventArgs e)
@@ -225,21 +225,21 @@ namespace GameFrameX.Launcher.StartUp.Cache
                 Setting = new AppSetting
                 {
                     ServerId = 5500,
-                    LocalIp = "127.0.0.1",
-                    TcpPort = 25500,
+                    InnerIp = "127.0.0.1",
+                    InnerPort = 25500,
                     ServerType = ServerType.Cache,
                     SaveDataInterval = 5000,
                     // 中心服 配置
-                    CenterUrl = "127.0.0.1",
-                    GrpcPort = 33300,
+                    DiscoveryCenterIp = "127.0.0.1",
+                    DiscoveryCenterPort = 33300,
                     // DB 配置
-                    DBUrl = "127.0.0.1",
-                    DbPort = 26000
+                    DBIp = "127.0.0.1",
+                    DBPort = 26000
                 };
                 if (PlatformRuntimeHelper.IsLinux)
                 {
-                    Setting.CenterUrl = "discovery";
-                    Setting.DBUrl = "database";
+                    Setting.DiscoveryCenterIp = "discovery";
+                    Setting.DBIp = "database";
                 }
             }
 

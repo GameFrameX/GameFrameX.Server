@@ -82,7 +82,7 @@ namespace GameFrameX.Hotfix.Common
         /// <param name="options"></param>
         protected virtual void ConfigureSuperSocket(ServerOptions options)
         {
-            options.AddListener(new ListenOptions { Ip = IPAddress.Any.ToString(), Port = Setting.TcpPort });
+            options.AddListener(new ListenOptions { Ip = IPAddress.Any.ToString(), Port = Setting.InnerPort });
         }
 
         private ValueTask<bool> ClientErrorHandler(IAppSession appSession, PackageHandlingException<IMessage> arg2)

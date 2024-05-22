@@ -21,7 +21,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
     {
         try
         {
-            LogHelper.Info($"启动服务器{Setting.ServerType} 开始! address: {Setting.InnerIp}  port: {Setting.TcpPort}");
+            LogHelper.Info($"启动服务器{Setting.ServerType} 开始! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
             await StartServer();
 
             StartClient();
@@ -54,7 +54,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
 
     public override async Task Stop(string message = "")
     {
-        LogHelper.Info($"服务器{Setting.ServerType} 停止! address: {Setting.InnerIp}  port: {Setting.TcpPort}");
+        LogHelper.Info($"服务器{Setting.ServerType} 停止! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
         client.Close();
         await tcpService.StopAsync();
         await base.Stop(message);
@@ -143,7 +143,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
 
     private void ConnectToDiscovery()
     {
-        client.Connect(new DnsEndPoint(Setting.CenterUrl, Setting.GrpcPort));
+        client.Connect(new DnsEndPoint(Setting.DiscoveryCenterIp, Setting.DiscoveryCenterPort));
     }
 
     private void ClientOnDataReceived(object sender, DataEventArgs e)
@@ -218,14 +218,14 @@ internal sealed class AppStartUpGateway : AppStartUpBase
             {
                 ServerId = 2000,
                 ServerType = ServerType.Gateway,
-                TcpPort = 22000,
-                GrpcPort = 33300,
-                CenterUrl = "127.0.0.1",
-                InnerIp = "127.0.0.1"
+                InnerIp = "127.0.0.1",
+                InnerPort = 22000,
+                DiscoveryCenterPort = 33300,
+                DiscoveryCenterIp = "127.0.0.1",
             };
             if (PlatformRuntimeHelper.IsLinux)
             {
-                Setting.CenterUrl = "discovery";
+                Setting.DiscoveryCenterIp = "discovery";
                 Setting.InnerIp = "gateway";
             }
         }
