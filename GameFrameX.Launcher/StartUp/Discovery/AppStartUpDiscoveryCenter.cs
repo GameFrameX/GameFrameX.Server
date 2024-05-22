@@ -27,7 +27,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
 
             StartServer();
 
-            LogHelper.Info($"启动服务器 {ServerType} 端口: {Setting.TcpPort} 结束!");
+            LogHelper.Info($"启动服务器 {ServerType} 端口: {Setting.InnerPort} 结束!");
 
             await AppExitToken;
         }
@@ -112,7 +112,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
             {
                 ServerId = 3300,
                 ServerType = ServerType.DiscoveryCenter,
-                TcpPort = 33300
+                InnerPort = 33300
             };
         }
 
