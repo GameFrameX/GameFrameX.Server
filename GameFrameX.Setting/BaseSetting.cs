@@ -152,16 +152,6 @@ public abstract class BaseSetting
     public string WssCertFilePath { get; set; }
 
     /// <summary>
-    /// TCP 端口
-    /// </summary>
-    public int TcpPort { get; set; }
-
-    /// <summary>
-    /// GRPC 端口
-    /// </summary>
-    public int GrpcPort { get; set; }
-
-    /// <summary>
     /// 数据库 地址
     /// </summary>
     public string DataBaseUrl { get; set; }
@@ -182,19 +172,24 @@ public abstract class BaseSetting
     public string DataCenter { get; set; }
 
     /// <summary>
-    /// 数据中心地址
+    /// 发现中心地址
     /// </summary>
-    public string CenterUrl { get; set; }
+    public string DiscoveryCenterIp { get; set; }
 
     /// <summary>
-    /// DB 服务器地址
+    /// 发现中心端口
     /// </summary>
-    public string DBUrl { get; set; }
+    public ushort DiscoveryCenterPort { get; set; }
 
     /// <summary>
-    /// DB 服务器端口
+    /// 数据库服务连接地址
     /// </summary>
-    public int DbPort { get; set; }
+    public string DBIp { get; set; }
+
+    /// <summary>
+    /// 数据库服务连接端口
+    /// </summary>
+    public ushort DBPort { get; set; }
 
     /// <summary>
     /// SDK 类型
