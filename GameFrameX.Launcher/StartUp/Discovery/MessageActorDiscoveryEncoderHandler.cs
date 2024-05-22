@@ -11,12 +11,12 @@ class MessageActorDiscoveryEncoderHandler : IPackageEncoder<IMessage>
 
         // len +timestamp + msgId + bytes.length
         int len = 4 + 8 + 4 + 4 + 4 + bytes.Length;
-        var span = ArrayPool<byte>.Shared.Rent(len);
+        var span = new byte[len];
         int offset = 0;
         span.WriteInt(len, ref offset);
         span.WriteLong(TimeHelper.UnixTimeSeconds(), ref offset);
         var messageType = message.GetType();
-        var msgId = ProtoMessageIdHandler.GetResponseActorMessageIdByType(messageType);
+        var msgId = ProtoMessageIdHandler.GetRespMessageIdByType(messageType);
         span.WriteInt(msgId, ref offset);
         span.WriteInt(bytes.Length, ref offset);
         span.WriteBytesWithoutLength(bytes, ref offset);
@@ -28,7 +28,6 @@ class MessageActorDiscoveryEncoderHandler : IPackageEncoder<IMessage>
         var bytes = Handler(messageObject);
         LogHelper.Debug($"---发送消息 ==>消息类型:{messageObject.GetType()} 消息内容:{messageObject}");
         writer.Write(bytes);
-        ArrayPool<byte>.Shared.Return(bytes);
         return bytes.Length;
     }
 }
