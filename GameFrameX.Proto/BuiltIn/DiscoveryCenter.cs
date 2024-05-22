@@ -37,18 +37,18 @@ public partial class ReqRegisterServer : MessageObject, IRequestMessage
     /// <summary>
     /// 外部服务器IP
     /// </summary>
-    [ProtoMember(3)]
+    [ProtoMember(5)]
     public string OuterIP { get; set; }
 
     /// <summary>
     /// 外部服务器端口
     /// </summary>
-    [ProtoMember(4)]
+    [ProtoMember(6)]
     public ushort OuterPort { get; set; }
 
     /// <summary>
     /// 服务器ID
     /// </summary>
-    [ProtoMember(5)]
+    [ProtoMember(7)]
     public int ServerID { get; set; }
 }
