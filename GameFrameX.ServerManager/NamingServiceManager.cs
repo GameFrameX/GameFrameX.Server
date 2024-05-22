@@ -10,7 +10,6 @@ namespace GameFrameX.ServerManager
     /// </summary>
     public sealed class NamingServiceManager : Singleton<NamingServiceManager>
     {
-
         /// <summary>
         /// 服务器节点的id 为自身的serverId
         /// </summary>
@@ -23,6 +22,26 @@ namespace GameFrameX.ServerManager
         /// <returns></returns>
         public bool TryRemove(long serverId)
         {
+            return serverMap.TryRemove(serverId, out _);
+        }
+
+        /// <summary>
+        /// 根据节点数据从服务器列表中删除
+        /// </summary>
+        /// <param name="sessionId"></param>
+        /// <returns></returns>
+        public bool TrySessionRemove(string sessionId)
+        {
+            long serverId = 0;
+            foreach (var keyValuePair in serverMap)
+            {
+                if (keyValuePair.Value.SessionId == sessionId)
+                {
+                    serverId = keyValuePair.Key;
+                    break;
+                }
+            }
+
             return serverMap.TryRemove(serverId, out _);
         }
 
@@ -77,7 +96,7 @@ namespace GameFrameX.ServerManager
         /// </summary>
         public void AddSelf(BaseSetting setting)
         {
-            serverInfo = new ServerInfo(setting.ServerType, setting.ServerName, setting.ServerId, setting.LocalIp, setting.GrpcPort);
+            serverInfo = new ServerInfo(setting.ServerType, string.Empty, setting.ServerName, setting.ServerId, setting.LocalIp, setting.GrpcPort);
             serverMap[serverInfo.ServerId] = serverInfo;
         }
 
@@ -87,13 +106,20 @@ namespace GameFrameX.ServerManager
         /// <param name="node">节点信息</param>
         public void Add(ServerInfo node)
         {
+            Guard.NotNull(node, nameof(node));
             if (node.Type == serverInfo.Type)
             {
                 LogHelper.Error($"不能添加discovery节点...{node}");
                 return;
             }
 
-            serverMap[node.ServerId] = node;
+            if (serverMap.ContainsKey(node.ServerId))
+            {
+                LogHelper.Error($"重复添加节点:[{node}]");
+                return;
+            }
+
+            serverMap.TryAdd(node.ServerId, node);
             LogHelper.Info($"新的网络节点:[{node}]   总数：{GetNodeCount()}");
         }
 
@@ -140,7 +166,7 @@ namespace GameFrameX.ServerManager
             //Log.Debug($"设置节点{nodeId}状态");
             if (serverMap.TryGetValue(nodeId, out var node))
             {
-                node.Status = state;
+                node.StatusInfo.Status = state;
             }
         }
     }
