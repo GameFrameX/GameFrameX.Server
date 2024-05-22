@@ -98,7 +98,6 @@ namespace GameFrameX.Launcher
                         }
                     }
 
-
                     if (isFind == false)
                     {
                         LogHelper.Error("没有找到对应的服务器类型的启动配置,将以默认配置启动=>" + keyValuePair.Value.ServerType);
@@ -109,10 +108,29 @@ namespace GameFrameX.Launcher
             }
 
             LogHelper.Info($"----------------------------启动服务器结束啦------------------------------");
-
+            ApplicationPerformanceMonitorStart(serverType, appSettings);
             ConsoleLogo();
-            MetricsHelper.Start();
+
             await Task.WhenAll(tasks);
+        }
+
+        private static void ApplicationPerformanceMonitorStart(string serverType, List<AppSetting> appSettings)
+        {
+            if (serverType != null && Enum.TryParse(serverType, out ServerType serverTypeValue))
+            {
+                foreach (var appSetting in appSettings)
+                {
+                    if (appSetting.ServerType == serverTypeValue)
+                    {
+                        MetricsHelper.Start(appSetting.APMPort);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                MetricsHelper.Start();
+            }
         }
 
         /// <summary>
@@ -133,7 +151,6 @@ namespace GameFrameX.Launcher
                 }
             };
         }
-
 
         private static Task Start(string[] args, Type appStartUpType, ServerType serverType, BaseSetting setting)
         {

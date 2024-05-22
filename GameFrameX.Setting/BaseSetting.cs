@@ -197,6 +197,11 @@ public abstract class BaseSetting
     public int SDKType { get; set; }
 
     /// <summary>
+    /// Application Performance Monitor (应用性能监控) 端口
+    /// </summary>
+    public int APMPort { get; set; }
+
+    /// <summary>
     /// 最大客户端数量
     /// </summary>
     public int MaxClientCount { get; set; } = 3000;
