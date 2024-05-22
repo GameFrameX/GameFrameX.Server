@@ -21,7 +21,7 @@ public abstract class AppStartUpBase : IAppStartUp
     /// <summary>
     /// 心跳间隔时间。单位毫秒
     /// </summary>
-    protected virtual int HeartBeatInterval { get; } = 5000;
+    protected virtual int HeartBeatInterval { get; } = 15000;
 
 
     protected readonly TaskCompletionSource<string> AppExitSource = new TaskCompletionSource<string>();
