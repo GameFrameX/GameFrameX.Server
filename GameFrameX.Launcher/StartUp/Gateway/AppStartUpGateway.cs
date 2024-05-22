@@ -166,6 +166,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         LogHelper.Info("和中心服务器链接成功, 开始心跳");
         HeartBeatTimer.Start();
         ReconnectionTimer.Stop();
+        // 这里要注册到发现中心
         ReqRegisterServer reqRegisterServer = new ReqRegisterServer
         {
             ServerID = Setting.ServerId,
