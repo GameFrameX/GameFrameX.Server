@@ -23,22 +23,14 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         {
             LogHelper.Info($"启动服务器{Setting.ServerType} 开始! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
             await StartServer();
-
             StartClient();
-
-            TimeSpan delay = TimeSpan.FromSeconds(5);
-            await Task.Delay(delay);
-
             await AppExitToken;
-            await Stop("用户退出");
-            Console.Write("全部断开...");
-            LogHelper.Info("Done!");
         }
         catch (Exception e)
         {
             LogHelper.Fatal(e);
-            await Stop(e.Message);
             AppExitSource.TrySetException(e);
+            await Stop(e.Message);
         }
     }
 
