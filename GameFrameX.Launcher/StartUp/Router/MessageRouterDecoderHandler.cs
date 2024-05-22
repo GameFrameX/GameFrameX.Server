@@ -57,7 +57,7 @@ public class MessageRouterDecoderHandler : IMessageDecoderHandler, IPackageDecod
             var uniqueId = data.ReadLong(ref readOffset);
             var messageId = data.ReadInt(ref readOffset);
             var messageData = data.ReadBytes(ref readOffset);
-            var messageType = ProtoMessageIdHandler.GetResponseActorTypeById(messageId);
+            var messageType = ProtoMessageIdHandler.GetRespTypeById(messageId);
             if (messageType != null)
             {
                 var messageObject = (MessageActorObject)SerializerHelper.Deserialize(messageData, messageType);

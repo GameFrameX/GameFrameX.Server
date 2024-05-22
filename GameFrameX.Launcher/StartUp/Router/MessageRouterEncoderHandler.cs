@@ -47,7 +47,7 @@ class MessageRouterEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMes
         span.WriteInt(len, ref offset);
         span.WriteLong(messageUniqueId, ref offset);
         var messageType = message.GetType();
-        var msgId = ProtoMessageIdHandler.GetRequestActorMessageIdByType(messageType);
+        var msgId = ProtoMessageIdHandler.GetReqMessageIdByType(messageType);
         span.WriteInt(msgId, ref offset);
         span.WriteBytes(bytes, ref offset);
         ArrayPool<byte>.Shared.Return(span);
