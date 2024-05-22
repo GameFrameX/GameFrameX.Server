@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using GameFrameX.Log;
+using GameFrameX.Monitor.Discovery;
 using GameFrameX.Setting;
 using GameFrameX.Utility;
 
@@ -13,7 +14,7 @@ namespace GameFrameX.ServerManager
         /// <summary>
         /// 服务器节点的id 为自身的serverId
         /// </summary>
-        readonly ConcurrentDictionary<long, ServerInfo> serverMap = new ConcurrentDictionary<long, ServerInfo>();
+        private readonly ConcurrentDictionary<long, ServerInfo> _serverMap = new ConcurrentDictionary<long, ServerInfo>();
 
         /// <summary>
         /// 根据节点数据从服务器列表中删除
@@ -22,7 +23,8 @@ namespace GameFrameX.ServerManager
         /// <returns></returns>
         public bool TryRemove(long serverId)
         {
-            return serverMap.TryRemove(serverId, out _);
+            MetricsDiscoveryRegister.ServiceCounterOptions.Inc(-1);
+            return _serverMap.TryRemove(serverId, out _);
         }
 
         /// <summary>
@@ -33,7 +35,7 @@ namespace GameFrameX.ServerManager
         public bool TrySessionRemove(string sessionId)
         {
             long serverId = 0;
-            foreach (var keyValuePair in serverMap)
+            foreach (var keyValuePair in _serverMap)
             {
                 if (keyValuePair.Value.SessionId == sessionId)
                 {
@@ -42,7 +44,8 @@ namespace GameFrameX.ServerManager
                 }
             }
 
-            return serverMap.TryRemove(serverId, out _);
+            MetricsDiscoveryRegister.ServiceCounterOptions.Inc(-1);
+            return _serverMap.TryRemove(serverId, out _);
         }
 
         /// <summary>
@@ -57,7 +60,8 @@ namespace GameFrameX.ServerManager
                 return true;
             }
 
-            return serverMap.TryRemove(new KeyValuePair<long, ServerInfo>(info.ServerId, info));
+            MetricsDiscoveryRegister.ServiceCounterOptions.Inc(-1);
+            return _serverMap.TryRemove(new KeyValuePair<long, ServerInfo>(info.ServerId, info));
         }
 
         /// <summary>
@@ -67,7 +71,7 @@ namespace GameFrameX.ServerManager
         /// <returns></returns>
         public ServerInfo TryGet(long id)
         {
-            serverMap.TryGetValue(id, out var v);
+            _serverMap.TryGetValue(id, out var v);
             return v;
         }
 
@@ -77,7 +81,7 @@ namespace GameFrameX.ServerManager
         /// <returns></returns>
         public List<ServerInfo> GetAllNodes()
         {
-            return serverMap.Values.ToList();
+            return _serverMap.Values.ToList();
         }
 
         /// <summary>
@@ -86,7 +90,7 @@ namespace GameFrameX.ServerManager
         /// <returns></returns>
         public int GetNodeCount()
         {
-            return serverMap.Count;
+            return _serverMap.Count;
         }
 
         private ServerInfo serverInfo;
@@ -97,7 +101,7 @@ namespace GameFrameX.ServerManager
         public void AddSelf(BaseSetting setting)
         {
             serverInfo = new ServerInfo(setting.ServerType, string.Empty, setting.ServerName, setting.ServerId, setting.InnerIp, setting.InnerPort, setting.OuterIp, setting.OuterPort);
-            serverMap[serverInfo.ServerId] = serverInfo;
+            _serverMap[serverInfo.ServerId] = serverInfo;
         }
 
         /// <summary>
@@ -113,13 +117,14 @@ namespace GameFrameX.ServerManager
                 return;
             }
 
-            if (serverMap.ContainsKey(node.ServerId))
+            if (_serverMap.ContainsKey(node.ServerId))
             {
                 LogHelper.Error($"重复添加节点:[{node}]");
                 return;
             }
 
-            serverMap.TryAdd(node.ServerId, node);
+            MetricsDiscoveryRegister.ServiceCounterOptions.Inc();
+            _serverMap.TryAdd(node.ServerId, node);
             LogHelper.Info($"新的网络节点:[{node}]   总数：{GetNodeCount()}");
         }
 
@@ -131,7 +136,7 @@ namespace GameFrameX.ServerManager
         public List<ServerInfo> GetNodesByType(ServerType type)
         {
             var list = new List<ServerInfo>();
-            foreach (var node in serverMap)
+            foreach (var node in _serverMap)
             {
                 if (node.Value.Type == type)
                 {
@@ -150,7 +155,7 @@ namespace GameFrameX.ServerManager
         public void SetNodeState(long nodeId, ServerStatusInfo statusInfo)
         {
             //Log.Debug($"设置节点{nodeId}状态");
-            if (serverMap.TryGetValue(nodeId, out var node))
+            if (_serverMap.TryGetValue(nodeId, out var node))
             {
                 node.StatusInfo = statusInfo;
             }
@@ -164,7 +169,7 @@ namespace GameFrameX.ServerManager
         public void SetNodeState(long nodeId, ServerStatus state)
         {
             //Log.Debug($"设置节点{nodeId}状态");
-            if (serverMap.TryGetValue(nodeId, out var node))
+            if (_serverMap.TryGetValue(nodeId, out var node))
             {
                 node.StatusInfo.Status = state;
             }
