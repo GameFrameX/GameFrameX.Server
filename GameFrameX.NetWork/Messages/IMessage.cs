@@ -5,4 +5,5 @@ namespace GameFrameX.NetWork.Messages;
 /// </summary>
 public interface IMessage
 {
+    string ToMessageString();
 }
