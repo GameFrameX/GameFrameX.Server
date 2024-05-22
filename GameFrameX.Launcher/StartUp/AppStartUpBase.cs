@@ -80,7 +80,7 @@ public abstract class AppStartUpBase : IAppStartUp
     /// <param name="options"></param>
     protected virtual void ConfigureSuperSocket(ServerOptions options)
     {
-        options.AddListener(new ListenOptions { Ip = IPAddress.Any.ToString(), Port = Setting.TcpPort });
+        options.AddListener(new ListenOptions { Ip = Setting.InnerIp.IsNullOrEmpty() ? IPAddress.Any.ToString() : Setting.InnerIp, Port = Setting.InnerPort });
     }
 
     public abstract Task EnterAsync();
