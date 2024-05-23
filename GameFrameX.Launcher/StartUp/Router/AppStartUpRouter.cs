@@ -7,24 +7,24 @@ using Microsoft.Extensions.Hosting;
 /// <summary>
 /// 路由服务器.最后启动。
 /// </summary>
-// [StartUpTag(ServerType.Router, int.MaxValue)]
+[StartUpTag(ServerType.Router, int.MaxValue)]
 internal sealed class AppStartUpRouter : AppStartUpBase
 {
     /// <summary>
     /// 链接到网关的客户端
     /// </summary>
     // private TcpClient tcpClient;
-    AsyncTcpSession tcpClient;
+    AsyncTcpSession _gatewayClient;
 
     /// <summary>
     /// 服务器。对外提供服务
     /// </summary>
-    private IServer tcpService;
+    private IServer _tcpService;
 
     /// <summary>
     /// WS服务器
     /// </summary>
-    private IHost webSocketServer;
+    private IHost _webSocketServer;
 
     RpcSession rpcSession = new RpcSession();
 
@@ -70,7 +70,7 @@ internal sealed class AppStartUpRouter : AppStartUpBase
             LogHelper.Debug($"---发送[{ServerType}] {message.ToMessageString()}");
         }
 
-        tcpClient.TrySend(span);
+        _gatewayClient.TrySend(span);
         // ArrayPool<byte>.Shared.Return(span);
     }
 
@@ -88,16 +88,16 @@ internal sealed class AppStartUpRouter : AppStartUpBase
     private void ConnectToGateWay()
     {
         var endPoint = new IPEndPoint(IPAddress.Parse(Setting.DiscoveryCenterIp), Setting.DiscoveryCenterPort);
-        tcpClient.Connect(endPoint);
+        _gatewayClient.Connect(endPoint);
     }
 
     private void StartClient()
     {
-        tcpClient = new AsyncTcpSession();
-        tcpClient.Closed += ClientOnClosed;
-        tcpClient.DataReceived += ClientOnDataReceived;
-        tcpClient.Connected += ClientOnConnected;
-        tcpClient.Error += ClientOnError;
+        _gatewayClient = new AsyncTcpSession();
+        _gatewayClient.Closed += ClientOnClosed;
+        _gatewayClient.DataReceived += ClientOnDataReceived;
+        _gatewayClient.Connected += ClientOnConnected;
+        _gatewayClient.Error += ClientOnError;
 
         LogHelper.Info("开始链接到网关服务器 ...");
         ConnectToGateWay();
@@ -106,7 +106,7 @@ internal sealed class AppStartUpRouter : AppStartUpBase
     private void ClientOnError(object sender, ErrorEventArgs e)
     {
         LogHelper.Info("和网关服务器链接链接发生错误!" + e);
-        ClientOnClosed(tcpClient, e);
+        ClientOnClosed(_gatewayClient, e);
     }
 
     private void ClientOnConnected(object sender, EventArgs e)
@@ -135,12 +135,12 @@ internal sealed class AppStartUpRouter : AppStartUpBase
 
     private async Task StartServer()
     {
-        webSocketServer = WebSocketHostBuilder.Create()
+        _webSocketServer = WebSocketHostBuilder.Create()
             .UseWebSocketMessageHandler(WebSocketMessageHandler)
             .UseSessionHandler(OnConnected, OnDisconnected)
             .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)(ConfigureWebServer)).Build();
-        await webSocketServer.StartAsync();
-        tcpService = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
+        await _webSocketServer.StartAsync();
+        _tcpService = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
             .ConfigureSuperSocket(ConfigureSuperSocket)
             .UseClearIdleSession()
             .UsePackageDecoder<MessageRouterDecoderHandler>()
@@ -149,12 +149,12 @@ internal sealed class AppStartUpRouter : AppStartUpBase
             .UseInProcSessionContainer()
             .BuildAsServer();
 
-        await tcpService.StartAsync();
+        await _tcpService.StartAsync();
     }
 
-    private ValueTask<bool> ClientErrorHandler(IAppSession appSession, PackageHandlingException<IMessage> arg2)
+    private ValueTask<bool> ClientErrorHandler(IAppSession appSession, PackageHandlingException<IMessage> eventArgs)
     {
-        LogHelper.Error(arg2.ToString());
+        LogHelper.Error(eventArgs.ToString());
         return ValueTask.FromResult(true);
     }
 
@@ -201,14 +201,13 @@ internal sealed class AppStartUpRouter : AppStartUpBase
     /// </summary>
     /// <param name="appSession"></param>
     /// <param name="messageObject"></param>
-    private async ValueTask MessagePackageHandler(IAppSession appSession, IMessage messageObject)
+    private ValueTask MessagePackageHandler(IAppSession appSession, IMessage messageObject)
     {
         if (messageObject is MessageObject message)
         {
-            var messageId = message.MessageId;
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
-                LogHelper.Debug($"---收到消息:[{messageId},{message.GetType().Name}] 消息内容:[{messageObject}]");
+                LogHelper.Debug($"---收到[{ServerType}] 转发到[{ServerType.Gateway}] [{messageObject}]");
             }
 
             SendMessage(message.UniqueId, message);
@@ -225,6 +224,8 @@ internal sealed class AppStartUpRouter : AppStartUpBase
             await handler.Init();
             await handler.InnerAction();*/
         }
+
+        return ValueTask.CompletedTask;
     }
 
     private void ConfigureWebServer(HostBuilderContext context, IConfigurationBuilder builder)
@@ -235,11 +236,11 @@ internal sealed class AppStartUpRouter : AppStartUpBase
 
     public override async Task Stop(string message = "")
     {
-        HeartBeatTimer.Close();
-        ReconnectionTimer.Close();
-        // tcpClient.Close();
-        await webSocketServer.StopAsync();
-        await tcpService.StopAsync();
+        HeartBeatTimer?.Close();
+        ReconnectionTimer?.Close();
+        _gatewayClient?.Close();
+        await _webSocketServer.StopAsync();
+        await _tcpService.StopAsync();
         await base.Stop(message);
     }
 
