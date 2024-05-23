@@ -41,8 +41,8 @@ class MessageRouterEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMes
     {
         var bytes = SerializerHelper.Serialize(message);
         // len + UniqueId + msgId + bytes.length
-        int len = 4 + 8 + 4 + bytes.Length;
-        var span = ArrayPool<byte>.Shared.Rent(len);
+        int len = 4 + 8 + 4 + 4 + bytes.Length;
+        var span = new byte[len];
         int offset = 0;
         span.WriteInt(len, ref offset);
         span.WriteLong(messageUniqueId, ref offset);
@@ -50,8 +50,6 @@ class MessageRouterEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMes
         var msgId = ProtoMessageIdHandler.GetReqMessageIdByType(messageType);
         span.WriteInt(msgId, ref offset);
         span.WriteBytes(bytes, ref offset);
-        ArrayPool<byte>.Shared.Return(span);
-        LogHelper.Debug($"---发送消息:[{msgId},{message.GetType().Name}] 消息内容:[{message}]");
         return span;
     }
 
