@@ -211,6 +211,8 @@ internal sealed class AppStartUpRouter : AppStartUpBase
                 LogHelper.Debug($"---收到消息:[{messageId},{message.GetType().Name}] 消息内容:[{messageObject}]");
             }
 
+            SendMessage(message.UniqueId, message);
+            /*
             var handler = HotfixManager.GetTcpHandler(message.MessageId);
             if (handler == null)
             {
@@ -221,7 +223,7 @@ internal sealed class AppStartUpRouter : AppStartUpBase
             handler.Message = message;
             handler.NetWorkChannel = GameClientSessionManager.GetSession(appSession.SessionID);
             await handler.Init();
-            await handler.InnerAction();
+            await handler.InnerAction();*/
         }
     }
 
