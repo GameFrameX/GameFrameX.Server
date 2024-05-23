@@ -35,6 +35,6 @@ public abstract class BaseMessageObject
 
     public string ToMessageString()
     {
-        return $"消息ID:[{MessageId},{GetType().Name} 消息内容:{JsonHelper.Serialize(this)}";
+        return $"消息ID:[{MessageId},{GetType().Name}] 消息内容:{JsonHelper.Serialize(this)}";
     }
 }
