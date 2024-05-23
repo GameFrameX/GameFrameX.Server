@@ -7,9 +7,10 @@ namespace GameFrameX.ServerManager;
 /// </summary>
 public sealed class ServerInfo
 {
-    public ServerInfo(ServerType type, string sessionId, string serverName, long serverId, string innerIp, ushort innerPort, string outerIp, ushort outerPort)
+    public ServerInfo(ServerType type, object session, string sessionId, string serverName, long serverId, string innerIp, ushort innerPort, string outerIp, ushort outerPort)
     {
         Type = type;
+        Session = session;
         ServerName = serverName;
         ServerId = serverId;
         InnerIp = innerIp;
@@ -26,6 +27,8 @@ public sealed class ServerInfo
     /// 服务器类型
     /// </summary>
     public ServerType Type { get; }
+
+    public object Session { get; }
 
     /// <summary>
     /// 服务器名称
