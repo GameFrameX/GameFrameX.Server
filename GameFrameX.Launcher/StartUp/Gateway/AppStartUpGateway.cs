@@ -93,23 +93,25 @@ internal sealed class AppStartUpGateway : AppStartUpBase
 
     // readonly MessageActorDiscoveryEncoderHandler messageEncoderHandler = new MessageActorDiscoveryEncoderHandler();
 
-    private async ValueTask PackageHandler(IAppSession session, IMessage messageObject)
+    private async ValueTask PackageHandler(IAppSession session, IMessage message)
     {
-        if (messageObject is MessageActorObject msg)
+        if (Setting.IsDebug && Setting.IsDebugReceive && message is BaseMessageObject baseMessageObject)
         {
-            var messageId = msg.MessageId;
-            if (Setting.IsDebug && Setting.IsDebugReceive)
-            {
-                LogHelper.Debug($"---收到消息ID:[{messageId}] ==>消息类型:{msg.GetType()} 消息内容:{messageObject}");
-            }
+            LogHelper.Debug($"---收到[{ServerType}] {baseMessageObject.ToMessageString()}");
+        }
 
+        if (message is MessageActorObject messageActorObject)
+        {
             // 发送
             var response = new RespActorHeartBeat()
             {
                 Timestamp = TimeHelper.UnixTimeSeconds()
             };
-            var result = messageEncoderHandler.RpcReplyHandler(msg.UniqueId, response);
+            var result = messageEncoderHandler.RpcReplyHandler(messageActorObject.UniqueId, response);
             await session.SendAsync(result);
+        }
+        else if (message is MessageObject messageObject)
+        {
         }
     }
 
