@@ -30,7 +30,7 @@ public abstract class BaseMessageObject
 
     public override string ToString()
     {
-        return JsonConvert.SerializeObject(this);
+        return JsonHelper.Serialize(this);
     }
 
     public string ToMessageString()
