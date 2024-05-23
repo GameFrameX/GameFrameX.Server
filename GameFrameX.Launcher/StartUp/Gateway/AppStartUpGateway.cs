@@ -2,6 +2,7 @@
 using GameFrameX.Launcher.StartUp.Gateway;
 using GameFrameX.Proto.BuiltIn;
 
+
 /// <summary>
 /// 网关服务器
 /// </summary>
@@ -10,7 +11,16 @@ internal sealed class AppStartUpGateway : AppStartUpBase
 {
     private IServer tcpService;
 
-    private AsyncTcpSession client;
+    /// <summary>
+    /// 和发现中心链接的客户端
+    /// </summary>
+    private AsyncTcpSession _discoveryCenterClient;
+
+    /// <summary>
+    /// 和游戏逻辑服链接的客户端
+    /// </summary>
+    private List<ClientSession> _gameClientList = new List<ClientSession>();
+
     MessageActorGatewayEncoderHandler messageEncoderHandler = new MessageActorGatewayEncoderHandler();
 
     MessageActorGatewayDecoderHandler messageDecoderHandler = new MessageActorGatewayDecoderHandler();
@@ -23,7 +33,8 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         {
             LogHelper.Info($"启动服务器{Setting.ServerType} 开始! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
             await StartServer();
-            StartClient();
+            StartDiscoveryCenterClient();
+            StartGameClient();
             await AppExitToken;
         }
         catch (Exception e)
@@ -34,20 +45,17 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         }
     }
 
-    private void StartClient()
-    {
-        client = new AsyncTcpSession();
-        client.Connected += ClientOnConnected;
-        client.Closed += ClientOnClosed;
-        client.DataReceived += ClientOnDataReceived;
-        client.Error += ClientOnError;
-        ConnectToDiscovery();
-    }
 
     public override async Task Stop(string message = "")
     {
         LogHelper.Info($"服务器{Setting.ServerType} 停止! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
-        client.Close();
+        _discoveryCenterClient?.Close();
+        foreach (var kv in _gameClientList)
+        {
+            kv.AsyncTcpSession?.Close();
+        }
+
+        _gameClientList.Clear();
         await tcpService.StopAsync();
         await base.Stop(message);
     }
@@ -117,30 +125,22 @@ internal sealed class AppStartUpGateway : AppStartUpBase
 
     #endregion
 
-    #region Client
 
-    protected override void HeartBeatTimerOnElapsed(object sender, ElapsedEventArgs e)
+    private void StartGameClient()
     {
-        //心跳包
-        if (client.IsConnected)
-        {
-            reqHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
-            reqHeartBeat.UniqueId = UtilityIdGenerator.GetNextUniqueId();
-            SendMessage(reqHeartBeat);
-        }
+        // _gameClientList = new AsyncTcpSession();
+        // _gameClientList.Connected += GameClientOnConnected;
+        // _gameClientList.Closed += GameClientOnClosed;
+        // _gameClientList.DataReceived += GameClientOnDataReceived;
+        // _gameClientList.Error += GameClientOnError;
     }
 
-    protected override void ReconnectionTimerOnElapsed(object sender, ElapsedEventArgs e)
+    private void ConnectToGame()
     {
-        ConnectToDiscovery();
+        // _gameClientList.Connect(new DnsEndPoint(Setting.DiscoveryCenterIp, Setting.DiscoveryCenterPort));
     }
 
-    private void ConnectToDiscovery()
-    {
-        client.Connect(new DnsEndPoint(Setting.DiscoveryCenterIp, Setting.DiscoveryCenterPort));
-    }
-
-    private void ClientOnDataReceived(object sender, DataEventArgs e)
+    private void GameClientOnDataReceived(object sender, DataEventArgs e)
     {
         var messageObject = messageDecoderHandler.Handler(e.Data.ReadBytes(e.Offset, e.Length));
         if (messageObject == null)
@@ -155,7 +155,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         }
     }
 
-    private void ClientOnConnected(object sender, EventArgs e)
+    private void GameClientOnConnected(object sender, EventArgs e)
     {
         LogHelper.Info("和中心服务器链接成功, 开始心跳");
         HeartBeatTimer.Start();
@@ -174,14 +174,96 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         SendMessage(reqRegisterServer);
     }
 
-    private void ClientOnClosed(object sender, EventArgs eventArgs)
+    private void GameClientOnClosed(object sender, EventArgs eventArgs)
+    {
+        LogHelper.Info("和游戏服务器网络连接断开, 开始重连：断开信息:" + eventArgs);
+        HeartBeatTimer.Stop();
+        ReconnectionTimer.Start();
+    }
+
+    private void GameClientOnError(object sender, SuperSocket.ClientEngine.ErrorEventArgs errorEventArgs)
+    {
+        LogHelper.Info("和游戏服务器连接错误, 开始重连:错误信息：" + errorEventArgs.Exception);
+        // 开启重连
+        HeartBeatTimer.Stop();
+        ReconnectionTimer.Start();
+    }
+
+    #region Client
+
+    protected override void HeartBeatTimerOnElapsed(object sender, ElapsedEventArgs e)
+    {
+        //心跳包
+        if (_discoveryCenterClient.IsConnected)
+        {
+            reqHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
+            reqHeartBeat.UniqueId = UtilityIdGenerator.GetNextUniqueId();
+            SendMessage(reqHeartBeat);
+        }
+    }
+
+    protected override void ReconnectionTimerOnElapsed(object sender, ElapsedEventArgs e)
+    {
+        ConnectToDiscovery();
+    }
+
+    private void StartDiscoveryCenterClient()
+    {
+        _discoveryCenterClient = new AsyncTcpSession();
+        _discoveryCenterClient.Connected += DiscoveryCenterClientOnConnected;
+        _discoveryCenterClient.Closed += DiscoveryCenterClientOnClosed;
+        _discoveryCenterClient.DataReceived += DiscoveryCenterClientOnDataReceived;
+        _discoveryCenterClient.Error += DiscoveryCenterClientOnError;
+        ConnectToDiscovery();
+    }
+
+    private void ConnectToDiscovery()
+    {
+        _discoveryCenterClient.Connect(new DnsEndPoint(Setting.DiscoveryCenterIp, Setting.DiscoveryCenterPort));
+    }
+
+    private void DiscoveryCenterClientOnDataReceived(object sender, DataEventArgs e)
+    {
+        var messageObject = messageDecoderHandler.Handler(e.Data.ReadBytes(e.Offset, e.Length));
+        if (messageObject == null)
+        {
+            LogHelper.Error("数据解析失败：" + e.Data.ReadBytes(e.Offset, e.Length));
+            return;
+        }
+
+        if (Setting.IsDebug && Setting.IsDebugReceive)
+        {
+            LogHelper.Debug($"---收到[{ServerType}] {messageObject.ToMessageString()}");
+        }
+    }
+
+    private void DiscoveryCenterClientOnConnected(object sender, EventArgs e)
+    {
+        LogHelper.Info("和中心服务器链接成功, 开始心跳");
+        HeartBeatTimer.Start();
+        ReconnectionTimer.Stop();
+        // 这里要注册到发现中心
+        ReqRegisterServer reqRegisterServer = new ReqRegisterServer
+        {
+            ServerID = Setting.ServerId,
+            ServerType = Setting.ServerType,
+            ServerName = Setting.ServerName,
+            InnerIP = Setting.InnerIp,
+            InnerPort = Setting.InnerPort,
+            OuterIP = Setting.OuterIp,
+            OuterPort = Setting.OuterPort
+        };
+        SendMessage(reqRegisterServer);
+    }
+
+    private void DiscoveryCenterClientOnClosed(object sender, EventArgs eventArgs)
     {
         LogHelper.Info("和中心服务器网络连接断开, 开始重连：断开信息:" + eventArgs);
         HeartBeatTimer.Stop();
         ReconnectionTimer.Start();
     }
 
-    private void ClientOnError(object sender, SuperSocket.ClientEngine.ErrorEventArgs errorEventArgs)
+    private void DiscoveryCenterClientOnError(object sender, SuperSocket.ClientEngine.ErrorEventArgs errorEventArgs)
     {
         LogHelper.Info("和中心服务器连接错误, 开始重连:错误信息：" + errorEventArgs.Exception);
         // 开启重连
@@ -197,7 +279,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
             LogHelper.Debug($"---发送[{ServerType}] {message.ToMessageString()}");
         }
 
-        client.TrySend(span);
+        _discoveryCenterClient.TrySend(span);
         // ArrayPool<byte>.Shared.Return(span);
     }
 
@@ -227,4 +309,17 @@ internal sealed class AppStartUpGateway : AppStartUpBase
 
         base.Init();
     }
+}
+
+
+public sealed class ClientSession
+{
+    public ClientSession(long sessionId, AsyncTcpSession asyncTcpSession)
+    {
+        SessionId = sessionId;
+        AsyncTcpSession = asyncTcpSession;
+    }
+
+    public long SessionId { get; }
+    public AsyncTcpSession AsyncTcpSession { get; }
 }
