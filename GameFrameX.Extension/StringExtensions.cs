@@ -50,6 +50,36 @@ namespace GameFrameX.Extension
         }
 
         /// <summary>
+        /// 检查字符串是否不为 null 或空。
+        /// </summary>
+        /// <param name="str">要检查的字符串。</param>
+        /// <returns>如果字符串为 null 或空，则为 true；否则为 false。</returns>
+        public static bool IsNotNullOrEmpty(this string? str)
+        {
+            return !str.IsNullOrEmpty();
+        }
+
+        /// <summary>
+        /// 检查字符串是否为 null 或空白字符串。
+        /// </summary>
+        /// <param name="str">要检查的字符串。</param>
+        /// <returns>如果字符串为 null 或空，则为 true；否则为 false。</returns>
+        public static bool IsNullOrWhiteSpace(this string? str)
+        {
+            return string.IsNullOrWhiteSpace(str);
+        }
+
+        /// <summary>
+        /// 检查字符串是否不为 null 或空白字符串。
+        /// </summary>
+        /// <param name="str">要检查的字符串。</param>
+        /// <returns>如果字符串为 null 或空，则为 true；否则为 false。</returns>
+        public static bool IsNotNullOrWhiteSpace(this string? str)
+        {
+            return !str.IsNullOrWhiteSpace();
+        }
+
+        /// <summary>
         /// 将字符串按指定的分隔符拆分为整数数组。
         /// </summary>
         /// <param name="str">要拆分的字符串。</param>
