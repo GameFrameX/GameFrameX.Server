@@ -1,7 +1,5 @@
-﻿using System.Text.Encodings.Web;
-using System.Text.Unicode;
+﻿using GameFrameX.Utility;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace GameFrameX.NetWork.HTTP
 {
@@ -10,13 +8,6 @@ namespace GameFrameX.NetWork.HTTP
         public static readonly HttpResult Success = new HttpResult(HttpStatusCode.Success, "ok");
         public static readonly HttpResult Undefine = new HttpResult(HttpStatusCode.Undefine, "undefine command");
 
-        public static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
-        {
-            ContractResolver = new DefaultContractResolver
-            {
-                NamingStrategy = new CamelCaseNamingStrategy()
-            }
-        };
 
         public static string Create(HttpStatusCode statusCode = HttpStatusCode.Success, string retMsg = "", object extraMap = null)
         {
@@ -66,7 +57,7 @@ namespace GameFrameX.NetWork.HTTP
 
         public override string ToString()
         {
-            return JsonConvert.SerializeObject(this);
+            return JsonHelper.Serialize(this);
         }
 
         public static implicit operator string(HttpResult value)
