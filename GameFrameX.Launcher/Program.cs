@@ -113,6 +113,7 @@ namespace GameFrameX.Launcher
         private static void Launcher(string[] args, KeyValuePair<Type, StartUpTagAttribute> keyValuePair, AppSetting appSetting = null)
         {
             var task = Start(args, keyValuePair.Key, keyValuePair.Value.ServerType, appSetting, out var startUp);
+            LogHelper.Info("启动配置：" + startUp.Setting);
             AppStartUps.Add(startUp);
             AppStartUpTasks.Add(task);
         }

@@ -1,9 +1,12 @@
+using Newtonsoft.Json;
+
 namespace GameFrameX.Setting;
 
 public abstract class BaseSetting
 {
-    public TaskCompletionSource<bool> AppExitSource = new TaskCompletionSource<bool>();
-    public Task<bool> AppExitToken => AppExitSource.Task;
+    [JsonIgnore] public TaskCompletionSource<bool> AppExitSource = new TaskCompletionSource<bool>();
+
+    [JsonIgnore] public Task<bool> AppExitToken => AppExitSource.Task;
 
     /// <summary>
     /// 是否是本地
@@ -23,6 +26,7 @@ public abstract class BaseSetting
     bool _appRunning;
     private ServerType serverType;
 
+    [JsonIgnore]
     public bool AppRunning
     {
         get => _appRunning;
@@ -207,4 +211,9 @@ public abstract class BaseSetting
     public int MaxClientCount { get; set; } = 3000;
 
     #endregion
+
+    public override string ToString()
+    {
+        return JsonConvert.SerializeObject(this);
+    }
 }
