@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
+      <ProjectReference Include="..\..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
     </ItemGroup>
 
 </Project>

@@ -8,7 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\GameFrameX.DBServer.NoSql\GameFrameX.DBServer.NoSql.csproj" />
-      <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
+      <ProjectReference Include="..\..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
     </ItemGroup>
 
     <ItemGroup>

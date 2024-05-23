@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameFrameX.Hotfix", "GameFr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Config", "GameFrameX.Config\GameFrameX.Config.csproj", "{08B73D90-AB00-4B9D-AE3C-AB19E6D594F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer", "GameFrameX.DBServer\GameFrameX.DBServer.csproj", "{CA28CC8F-B0CB-4343-8097-959625C98E9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer", "DataBaseServer\GameFrameX.DBServer\GameFrameX.DBServer.csproj", "{CA28CC8F-B0CB-4343-8097-959625C98E9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Extension", "GameFrameX.Extension\GameFrameX.Extension.csproj", "{5184AC05-37C8-4E14-B27E-2C6F26E0CA64}"
 EndProject
@@ -37,9 +37,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Dockerfile = Dockerfile
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer.NoSql", "GameFrameX.DBServer.NoSql\GameFrameX.DBServer.NoSql.csproj", "{B01BFC0B-9BF4-498D-893F-84B4684978A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer.NoSql", "DataBaseServer\GameFrameX.DBServer.NoSql\GameFrameX.DBServer.NoSql.csproj", "{B01BFC0B-9BF4-498D-893F-84B4684978A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer.NoSql.Redis", "GameFrameX.DBServer.NoSql.Redis\GameFrameX.DBServer.NoSql.Redis.csproj", "{3DAFFFD6-21DF-4A82-822A-91E5E0AEC997}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer.NoSql.Redis", "DataBaseServer\GameFrameX.DBServer.NoSql.Redis\GameFrameX.DBServer.NoSql.Redis.csproj", "{3DAFFFD6-21DF-4A82-822A-91E5E0AEC997}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Tests", "Tests\GameFrameX.Tests\GameFrameX.Tests.csproj", "{762F0E9F-813B-40BD-B488-A7A6919A534E}"
 EndProject
@@ -85,9 +85,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.ClientEngine", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B2F95E64-146A-4FDE-BB8D-DE49972FA4B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer.Utility", "GameFrameX.DBServer.Utility\GameFrameX.DBServer.Utility.csproj", "{1467937F-0A81-44BF-BF58-7488CD36291D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer.Utility", "DataBaseServer\GameFrameX.DBServer.Utility\GameFrameX.DBServer.Utility.csproj", "{1467937F-0A81-44BF-BF58-7488CD36291D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Monitor", "GameFrameX.Monitor\GameFrameX.Monitor.csproj", "{54542BB2-5C6C-4A4F-9235-C37BFF6048A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBaseServer", "DataBaseServer", "{71D7AB99-1CB2-435D-9D70-05FE9FE05E84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -270,5 +272,9 @@ Global
 		{D896E331-0A71-4B64-911D-93A32EB83745} = {CCB3528E-2239-4C9D-800C-BEF363C58E0A}
 		{A79DAB6E-5B28-4F1F-A2DB-53393D007816} = {CCB3528E-2239-4C9D-800C-BEF363C58E0A}
 		{762F0E9F-813B-40BD-B488-A7A6919A534E} = {B2F95E64-146A-4FDE-BB8D-DE49972FA4B0}
+		{CA28CC8F-B0CB-4343-8097-959625C98E9D} = {71D7AB99-1CB2-435D-9D70-05FE9FE05E84}
+		{B01BFC0B-9BF4-498D-893F-84B4684978A7} = {71D7AB99-1CB2-435D-9D70-05FE9FE05E84}
+		{3DAFFFD6-21DF-4A82-822A-91E5E0AEC997} = {71D7AB99-1CB2-435D-9D70-05FE9FE05E84}
+		{1467937F-0A81-44BF-BF58-7488CD36291D} = {71D7AB99-1CB2-435D-9D70-05FE9FE05E84}
 	EndGlobalSection
 EndGlobal
