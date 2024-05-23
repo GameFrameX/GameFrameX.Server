@@ -67,11 +67,11 @@ internal sealed class AppStartUpRouter : AppStartUpBase
         var span = messageEncoderHandler.RpcHandler(messageUniqueId, message);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
-            LogHelper.Debug($"---发送消息ID:[{ProtoMessageIdHandler.GetReqMessageIdByType(message.GetType())}] ==>消息类型:{message.GetType().Name} 消息内容:{message}");
+            LogHelper.Debug($"---发送[{ServerType}] {message.ToMessageString()}");
         }
 
         tcpClient.TrySend(span);
-        ArrayPool<byte>.Shared.Return(span);
+        // ArrayPool<byte>.Shared.Return(span);
     }
 
     /// <summary>
