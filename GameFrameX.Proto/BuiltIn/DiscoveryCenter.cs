@@ -5,6 +5,56 @@ using ProtoBuf;
 namespace GameFrameX.Proto.BuiltIn;
 
 /// <summary>
+/// 服务上线
+/// </summary>
+[MessageTypeHandler(9000002)]
+public partial class RespServerOnlineServer : MessageObject, IResponseMessage
+{
+    /// <summary>
+    ///  服务器类型
+    /// </summary>
+    [ProtoMember(1)]
+    public ServerType ServerType { get; set; }
+
+    /// <summary>
+    /// 服务器名称
+    /// </summary>
+    [ProtoMember(2)]
+    public string ServerName { get; set; }
+
+    /// <summary>
+    /// 服务器ID
+    /// </summary>
+    [ProtoMember(3)]
+    public long ServerID { get; set; }
+}
+
+/// <summary>
+/// 服务下线
+/// </summary>
+[MessageTypeHandler(9000003)]
+public partial class RespServerOfflineServer : MessageObject, IResponseMessage
+{
+    /// <summary>
+    ///  服务器类型
+    /// </summary>
+    [ProtoMember(1)]
+    public ServerType ServerType { get; set; }
+
+    /// <summary>
+    /// 服务器名称
+    /// </summary>
+    [ProtoMember(2)]
+    public string ServerName { get; set; }
+
+    /// <summary>
+    /// 服务器ID
+    /// </summary>
+    [ProtoMember(3)]
+    public long ServerID { get; set; }
+}
+
+/// <summary>
 /// 请求注册服务
 /// </summary>
 [MessageTypeHandler(9000001)]
@@ -50,5 +100,5 @@ public partial class ReqRegisterServer : MessageObject, IRequestMessage
     /// 服务器ID
     /// </summary>
     [ProtoMember(7)]
-    public int ServerID { get; set; }
+    public long ServerID { get; set; }
 }
