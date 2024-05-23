@@ -20,7 +20,8 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
         try
         {
             LogHelper.Info($"开始启动服务器{ServerType}");
-
+            NamingServiceManager.Instance.OnServerAdd = OnServerAdd;
+            NamingServiceManager.Instance.OnServerRemove = OnServerRemove;
             NamingServiceManager.Instance.AddSelf(Setting);
 
             LogHelper.Info($"启动服务器{ServerType} 开始!");
@@ -40,6 +41,40 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
         LogHelper.Info($"退出服务器开始");
         await Stop();
         LogHelper.Info($"退出服务器成功");
+    }
+
+    private async void OnServerRemove(ServerInfo serverInfo)
+    {
+        var serverList = NamingServiceManager.Instance.GetAllNodes().Where(m => m.ServerId != 0 && m.ServerId != serverInfo.ServerId).ToList();
+
+        RespServerOfflineServer respServerOnlineServer = new RespServerOfflineServer()
+        {
+            ServerType = serverInfo.Type,
+            ServerName = serverInfo.ServerName,
+            ServerID = serverInfo.ServerId
+        };
+        foreach (var info in serverList)
+        {
+            var appSession = (IAppSession)info.Session;
+            await appSession.SendAsync(messageEncoderHandler, respServerOnlineServer);
+        }
+    }
+
+    private async void OnServerAdd(ServerInfo serverInfo)
+    {
+        var serverList = NamingServiceManager.Instance.GetOuterNodes().Where(m => m.ServerId != serverInfo.ServerId).ToList();
+
+        RespServerOnlineServer respServerOnlineServer = new RespServerOnlineServer()
+        {
+            ServerType = serverInfo.Type,
+            ServerName = serverInfo.ServerName,
+            ServerID = serverInfo.ServerId
+        };
+        foreach (var info in serverList)
+        {
+            var appSession = (IAppSession)info.Session;
+            await appSession.SendAsync(messageEncoderHandler, respServerOnlineServer);
+        }
     }
 
     private async void StartServer()
@@ -70,7 +105,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
             if (message is ReqRegisterServer reqRegisterServer)
             {
                 // 注册服务
-                ServerInfo serverInfo = new ServerInfo(reqRegisterServer.ServerType, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerID, reqRegisterServer.InnerIP, reqRegisterServer.InnerPort, reqRegisterServer.OuterIP, reqRegisterServer.OuterPort);
+                ServerInfo serverInfo = new ServerInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerID, reqRegisterServer.InnerIP, reqRegisterServer.InnerPort, reqRegisterServer.OuterIP, reqRegisterServer.OuterPort);
                 NamingServiceManager.Instance.Add(serverInfo);
                 LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
             }
