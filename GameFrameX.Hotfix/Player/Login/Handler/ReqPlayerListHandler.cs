@@ -9,6 +9,6 @@ internal class ReqPlayerListHandler : GlobalComponentHandler<PlayerComponentAgen
 {
     protected override async Task ActionAsync()
     {
-        await Comp.OnGetPlayerList(Channel, Message as ReqPlayerList);
+        await Comp.OnGetPlayerList(NetWorkChannel, Message as ReqPlayerList);
     }
 }

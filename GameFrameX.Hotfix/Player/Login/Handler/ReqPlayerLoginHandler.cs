@@ -9,7 +9,7 @@ namespace GameFrameX.Hotfix.Player.Login.Handler
     {
         protected override async Task ActionAsync()
         {
-            await Comp.OnLogin(Channel, Message as ReqPlayerLogin);
+            await Comp.OnLogin(NetWorkChannel, Message as ReqPlayerLogin);
         }
     }
 }

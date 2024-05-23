@@ -9,7 +9,7 @@ namespace GameFrameX.Hotfix.Account.Login.Agent
 {
     public class LoginComponentAgent : StateComponentAgent<LoginComponent, LoginState>
     {
-        public async Task OnLogin(INetChannel channel, ReqLogin reqLogin)
+        public async Task OnLogin(INetWorkChannel workChannel, ReqLogin reqLogin)
         {
             if (reqLogin.UserName.IsNullOrEmpty() || reqLogin.Password.IsNullOrEmpty())
             {
@@ -17,7 +17,7 @@ namespace GameFrameX.Hotfix.Account.Login.Agent
                 {
                     ErrCode = (int)ResultCode.Failed
                 };
-                await channel.WriteAsync(respErrorCode, reqLogin.UniId, (int)OperationStatusCode.AccountCannotBeNull);
+                await workChannel.WriteAsync(respErrorCode, reqLogin.UniId, (int)OperationStatusCode.AccountCannotBeNull);
                 return;
             }
 
@@ -33,7 +33,7 @@ namespace GameFrameX.Hotfix.Account.Login.Agent
             //添加到session
             var session = new Session(loginState.Id, loginState.Id)
             {
-                Channel = channel,
+                WorkChannel = workChannel,
                 Sign = loginState.Id.ToString()
             };
             SessionManager.Add(session);
@@ -47,7 +47,7 @@ namespace GameFrameX.Hotfix.Account.Login.Agent
                 Id = loginState.Id,
                 RoleName = Utility.Random.GetRandom(1, 100).ToString(),
             };
-            await channel.WriteAsync(respLogin, reqLogin.UniId);
+            await workChannel.WriteAsync(respLogin, reqLogin.UniId);
 
             //加入在线玩家
             var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();

@@ -8,7 +8,7 @@ namespace GameFrameX.Core.Net.BaseHandler
         /// <summary>
         /// 网络频道
         /// </summary>
-        public INetChannel Channel { get; set; }
+        public INetWorkChannel NetWorkChannel { get; set; }
 
         /// <summary>
         /// 消息对象

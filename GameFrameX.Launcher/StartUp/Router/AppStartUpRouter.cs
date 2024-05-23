@@ -168,7 +168,7 @@ internal sealed class AppStartUpRouter : AppStartUpBase
     private ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-        var netChannel = new DefaultNetChannel(appSession, messageEncoderHandler, rpcSession, appSession is WebSocketSession);
+        var netChannel = new DefaultNetWorkChannel(appSession, messageEncoderHandler, rpcSession, appSession is WebSocketSession);
         GameClientSessionManager.SetSession(appSession.SessionID, netChannel); //移除
 
         return ValueTask.CompletedTask;
@@ -219,7 +219,7 @@ internal sealed class AppStartUpRouter : AppStartUpBase
             }
 
             handler.Message = message;
-            handler.Channel = GameClientSessionManager.GetSession(appSession.SessionID);
+            handler.NetWorkChannel = GameClientSessionManager.GetSession(appSession.SessionID);
             await handler.Init();
             await handler.InnerAction();
         }

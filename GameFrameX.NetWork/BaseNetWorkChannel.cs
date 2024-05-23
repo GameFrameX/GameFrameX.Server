@@ -6,7 +6,7 @@ using SuperSocket.WebSocket.Server;
 
 namespace GameFrameX.NetWork
 {
-    public class BaseNetChannel : INetChannel
+    public class BaseNetWorkChannel : INetWorkChannel
     {
         protected readonly CancellationTokenSource CloseSrc = new CancellationTokenSource();
 
@@ -19,7 +19,7 @@ namespace GameFrameX.NetWork
         private readonly IMessageEncoderHandler messageEncoder;
         public bool IsWebSocket { get; }
 
-        public BaseNetChannel(IAppSession session, IMessageEncoderHandler messageEncoder, IRpcSession rpcSession, bool isWebSocket)
+        public BaseNetWorkChannel(IAppSession session, IMessageEncoderHandler messageEncoder, IRpcSession rpcSession, bool isWebSocket)
         {
             AppSession = session;
             IsWebSocket = isWebSocket;

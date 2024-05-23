@@ -4,7 +4,7 @@ using SuperSocket.Server.Abstractions.Session;
 
 namespace GameFrameX.NetWork;
 
-public interface INetChannel
+public interface INetWorkChannel
 {
     /// <summary>
     /// 应用会话

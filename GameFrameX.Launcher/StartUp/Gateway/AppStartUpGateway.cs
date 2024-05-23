@@ -85,7 +85,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
     {
         LogHelper.Info("有路由客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
         // var gameSession = new GameSession(socketClient.IP, socketClient);
-        var netChannel = new DefaultNetChannel(appSession, messageEncoderHandler, rpcSession);
+        var netChannel = new DefaultNetWorkChannel(appSession, messageEncoderHandler, rpcSession);
         GameClientSessionManager.SetSession(appSession.SessionID, netChannel); //移除
         return ValueTask.CompletedTask;
     }

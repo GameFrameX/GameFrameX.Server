@@ -31,9 +31,9 @@ namespace GameFrameX.Hotfix.Player.Login.Agent
         /// <summary>
         /// 使用角色ID登录
         /// </summary>
-        /// <param name="channel"></param>
+        /// <param name="workChannel"></param>
         /// <param name="reqLogin"></param>
-        public async Task OnLogin(INetChannel channel, ReqPlayerLogin reqLogin)
+        public async Task OnLogin(INetWorkChannel workChannel, ReqPlayerLogin reqLogin)
         {
             var playerState = await Comp.OnLogin(reqLogin);
             if (playerState == null)
@@ -45,7 +45,7 @@ namespace GameFrameX.Hotfix.Player.Login.Agent
             //添加到session
             var session = new Session(playerState.Id, playerState.Id)
             {
-                Channel = channel,
+                WorkChannel = workChannel,
                 Sign = playerState.Id.ToString()
             };
             SessionManager.Add(session);
@@ -64,7 +64,7 @@ namespace GameFrameX.Hotfix.Player.Login.Agent
                     Avatar = playerState.Avatar
                 }
             };
-            await channel.WriteAsync(respPlayerLogin, reqLogin.UniId);
+            await workChannel.WriteAsync(respPlayerLogin, reqLogin.UniId);
 
             //加入在线玩家
             var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
@@ -74,9 +74,9 @@ namespace GameFrameX.Hotfix.Player.Login.Agent
         /// <summary>
         /// 创建角色
         /// </summary>
-        /// <param name="channel"></param>
+        /// <param name="workChannel"></param>
         /// <param name="reqPlayerCreate"></param>
-        public async Task OnPlayerCreate(INetChannel channel, ReqPlayerCreate reqPlayerCreate)
+        public async Task OnPlayerCreate(INetWorkChannel workChannel, ReqPlayerCreate reqPlayerCreate)
         {
             var playerState = await Comp.OnPlayerCreate(reqPlayerCreate);
             RespPlayerCreate respPlayerCreate = new RespPlayerCreate
@@ -91,15 +91,15 @@ namespace GameFrameX.Hotfix.Player.Login.Agent
                     Avatar = playerState.Avatar
                 }
             };
-            await channel.WriteAsync(respPlayerCreate, reqPlayerCreate.UniId);
+            await workChannel.WriteAsync(respPlayerCreate, reqPlayerCreate.UniId);
         }
 
         /// <summary>
         /// 获取角色列表
         /// </summary>
-        /// <param name="channel"></param>
+        /// <param name="workChannel"></param>
         /// <param name="reqPlayerList"></param>
-        public async Task OnGetPlayerList(INetChannel channel, ReqPlayerList reqPlayerList)
+        public async Task OnGetPlayerList(INetWorkChannel workChannel, ReqPlayerList reqPlayerList)
         {
             var playerList = await this.Comp.GetPlayerList(reqPlayerList);
 
@@ -124,7 +124,7 @@ namespace GameFrameX.Hotfix.Player.Login.Agent
                 }
             }
 
-            await channel.WriteAsync(respPlayerList, reqPlayerList.UniId);
+            await workChannel.WriteAsync(respPlayerList, reqPlayerList.UniId);
         }
     }
 }

@@ -24,5 +24,5 @@ public interface IMessageHandler
     /// <summary>
     /// 网络频道对象
     /// </summary>
-    INetChannel Channel { get; set; }
+    INetWorkChannel NetWorkChannel { get; set; }
 }
