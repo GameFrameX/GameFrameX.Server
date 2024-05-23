@@ -37,7 +37,7 @@ public static class UnityTcpClient
             }
 
             Console.WriteLine("--------------------------------");
-            for (int i = 0; i < 10; i++)
+            // for (int i = 0; i < 10; i++)
             {
                 var buffer = GetBuffer();
                 tcpClient.Send(buffer);
@@ -89,9 +89,10 @@ public static class UnityTcpClient
             UniqueId = count
         };
         var bytes = SerializerHelper.Serialize(req);
-        var buffer = new byte[bytes.Length + 20];
+        int len = 4 + 8 + 4 + 4 + bytes.Length;
+        var buffer = new byte[len];
         int offset = 0;
-        buffer.WriteInt(bytes.Length, ref offset);
+        buffer.WriteInt(len, ref offset);
         buffer.WriteLong(req.UniqueId, ref offset);
         var messageId = ProtoMessageIdHandler.GetReqMessageIdByType(req.GetType());
         buffer.WriteInt(messageId, ref offset);
