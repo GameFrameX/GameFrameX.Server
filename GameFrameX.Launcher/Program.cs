@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Collections;
+using System.Reflection;
 using CommandLine;
 using GameFrameX.Launcher.Common.Options;
 using Newtonsoft.Json;
@@ -15,27 +16,38 @@ namespace GameFrameX.Launcher
 
         static async Task Main(string[] args)
         {
+            List<string> environmentVariablesList = new List<string>();
+            environmentVariablesList.AddRange(args);
             Console.WriteLine("启动参数：" + string.Join(" ", args));
-            var launcherOptions = Parser.Default.ParseArguments<LauncherOptions>(args)?.Value;
-
             Console.WriteLine("当前环境变量START---------------------");
             var environmentVariables = Environment.GetEnvironmentVariables();
-            foreach (var environmentVariable in environmentVariables)
+            foreach (DictionaryEntry environmentVariable in environmentVariables)
             {
-                Console.WriteLine($"{environmentVariable}");
+                if (environmentVariable.Value == null)
+                {
+                    continue;
+                }
+
+                var key = "--" + environmentVariable.Key;
+                if (environmentVariablesList.Contains(key))
+                {
+                    continue;
+                }
+
+                environmentVariablesList.Add(key);
+                environmentVariablesList.Add(environmentVariable.Value.ToString());
             }
 
             Console.WriteLine("当前环境变量END---------------------");
             Console.WriteLine();
             Console.WriteLine();
-            string serverType = launcherOptions?.ServerType;
-            if (serverType.IsNullOrEmpty())
+            var commandLineParser = new Parser(configuration => { configuration.IgnoreUnknownArguments = true; });
+
+            var launcherOptions = commandLineParser.ParseArguments<LauncherOptions>(environmentVariablesList).WithParsed((LauncherOptionsValidate))?.Value;
+            var serverType = launcherOptions?.ServerType;
+            if (!serverType.IsNullOrEmpty())
             {
-                serverType = Environment.GetEnvironmentVariable("ServerType");
-                if (serverType != null)
-                {
-                    Console.WriteLine("启动的服务器类型 ServerType: " + serverType);
-                }
+                Console.WriteLine("启动的服务器类型 ServerType: " + serverType);
             }
 
             LoggerHandler.Start(serverType);
@@ -108,6 +120,87 @@ namespace GameFrameX.Launcher
             ConsoleLogo();
 
             await Task.WhenAll(AppStartUpTasks);
+        }
+
+        private static void LauncherOptionsValidate(LauncherOptions options)
+        {
+            if (!options.ServerType.IsNullOrEmpty() && Enum.TryParse(options.ServerType, out ServerType serverTypeValue))
+            {
+                options.CheckAPMPort();
+
+                options.CheckServerId();
+
+                options.CheckInnerPort();
+
+                switch (serverTypeValue)
+                {
+                    case ServerType.Log:
+                        break;
+                    case ServerType.DataBase:
+                    {
+                        options.CheckDataBaseUrl();
+
+                        options.CheckDataBaseName();
+
+                        options.CheckOuterIp();
+
+                        options.CheckOuterPort();
+                    }
+                        break;
+                    case ServerType.Cache:
+                        break;
+                    case ServerType.Gateway:
+                    {
+                        options.CheckOuterIp();
+
+                        options.CheckOuterPort();
+                    }
+                        break;
+                    case ServerType.Account:
+                        break;
+                    case ServerType.Router:
+                    { 
+                        options.CheckOuterIp();
+                        options.CheckOuterPort();
+                        options.CheckWsPort();
+                        options.CheckDiscoveryCenterIp();
+                        options.CheckDiscoveryCenterPort();
+                    }
+                        break;
+                    case ServerType.DiscoveryCenter:
+                    {
+                        options.CheckOuterIp();
+                        options.CheckOuterPort();
+                    }
+                        break;
+                    case ServerType.Backup:
+                        break;
+                    case ServerType.Login:
+                        break;
+                    case ServerType.Game:
+                    {
+                        options.CheckOuterIp();
+                        options.CheckOuterPort();
+                        options.CheckDiscoveryCenterIp();
+                        options.CheckDiscoveryCenterPort();
+                    }
+                        break;
+                    case ServerType.Recharge:
+                        break;
+                    case ServerType.Logic:
+                        break;
+                    case ServerType.Chat:
+                        break;
+                    case ServerType.Mail:
+                        break;
+                    case ServerType.Guild:
+                        break;
+                    case ServerType.Room:
+                        break;
+                    case ServerType.All:
+                        break;
+                }
+            }
         }
 
         private static void Launcher(string[] args, KeyValuePair<Type, StartUpTagAttribute> keyValuePair, AppSetting appSetting = null)
