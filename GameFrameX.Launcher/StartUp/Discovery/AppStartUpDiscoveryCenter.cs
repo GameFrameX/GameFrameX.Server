@@ -62,7 +62,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
     {
         if (Setting.IsDebug && Setting.IsDebugReceive && messageObject is BaseMessageObject baseMessageObject)
         {
-            LogHelper.Debug($"---收到  {baseMessageObject.ToMessageString()}");
+            LogHelper.Debug($"---收到[{ServerType}]  {baseMessageObject.ToMessageString()}");
         }
 
         if (messageObject is MessageObject message)

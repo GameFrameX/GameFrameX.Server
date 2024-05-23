@@ -40,7 +40,7 @@ class MessageActorDiscoveryEncoderHandler : IPackageEncoder<IMessage>
     public int Encode(IBufferWriter<byte> writer, IMessage messageObject)
     {
         var bytes = Handler(messageObject);
-        LogHelper.Debug($"---发送  {messageObject.ToMessageString()}");
+        LogHelper.Debug($"---发送[{ServerType.DiscoveryCenter}]  {messageObject.ToMessageString()}");
         writer.Write(bytes);
         return bytes.Length;
     }
