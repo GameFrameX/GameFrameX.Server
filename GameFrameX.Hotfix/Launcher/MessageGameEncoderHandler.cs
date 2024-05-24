@@ -19,7 +19,7 @@ public class MessageGameEncoderHandler : IMessageEncoderHandler, IPackageEncoder
         {
             var bytes = SerializerHelper.Serialize(message);
             // len +uniqueId + msgId + bytes.length
-            int len = 4 + 8 + 4 + bytes.Length;
+            int len = 4 + 8 + 4 + 4 + bytes.Length;
             var span = new byte[len];
             int offset = 0;
             span.WriteInt(len, ref offset);
@@ -27,13 +27,35 @@ public class MessageGameEncoderHandler : IMessageEncoderHandler, IPackageEncoder
             var messageType = message.GetType();
             var msgId = ProtoMessageIdHandler.GetRespMessageIdByType(messageType);
             span.WriteInt(msgId, ref offset);
-            span.WriteBytesWithoutLength(bytes, ref offset);
+            span.WriteBytes(bytes, ref offset);
             LogHelper.Debug($"---发送消息:[{msgId},{message.GetType().Name}] 消息内容:[{message}],：{span.ToArrayString()}");
             return span;
         }
 
         LogHelper.Error("消息对象为空，编码异常");
         return null;
+    }
+
+    /// <summary>
+    /// 和服务器之间的消息 数据长度(4)+消息唯一ID(8)+消息ID(4)+消息内容
+    /// </summary>
+    /// <param name="messageUniqueId"></param>
+    /// <param name="message"></param>
+    /// <returns></returns>
+    public byte[] RpcHandler(long messageUniqueId, IMessage message)
+    {
+        var bytes = SerializerHelper.Serialize(message);
+        // len + UniqueId + msgId + bytes.length
+        int len = 4 + 8 + 4 + 4 + bytes.Length;
+        var span = new byte[len];
+        int offset = 0;
+        span.WriteInt(len, ref offset);
+        span.WriteLong(messageUniqueId, ref offset);
+        var messageType = message.GetType();
+        var msgId = ProtoMessageIdHandler.GetRequestMessageIdByType(messageType);
+        span.WriteInt(msgId, ref offset);
+        span.WriteBytes(bytes, ref offset);
+        return span;
     }
 
     public int Encode(IBufferWriter<byte> writer, IMessage pack)

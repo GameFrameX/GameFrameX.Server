@@ -26,7 +26,7 @@ namespace GameFrameX.Hotfix.Common
     {
         public ServerType BridgeType => ServerType.Game;
         private BaseSetting Setting;
-
+        AppStartUpGame appStartUpGame;
         public async Task<bool> OnLoadSuccess(BaseSetting setting, bool reload)
         {
             Setting = setting;
@@ -40,6 +40,10 @@ namespace GameFrameX.Hotfix.Common
             await StartServer();
             await HttpServer.Start(setting.HttpPort, setting.HttpsPort, HotfixManager.GetHttpHandler);
             LogHelper.Info("启动 HTTP 服务器完成...");
+
+            appStartUpGame = new AppStartUpGame();
+            appStartUpGame.Init(setting);
+            appStartUpGame.Start();
             GlobalTimer.Start();
             await ComponentRegister.ActiveGlobalComps();
             return true;
@@ -172,6 +176,7 @@ namespace GameFrameX.Hotfix.Common
             await QuartzTimer.Stop();
             // 保证actor之前的任务都执行完毕
             await ActorManager.AllFinish();
+            appStartUpGame?.Stop();
             // 关闭网络服务
             await webSocketServer.StopAsync();
             await tcpService.StopAsync();
