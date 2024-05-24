@@ -71,7 +71,7 @@ public partial class RespActorCacheTarget : MessageActorObject, IActorResponseMe
 /// 请求心跳
 /// </summary>
 [MessageTypeHandler(1000001)]
-public partial class ReqActorHeartBeat : MessageActorObject, IActorRequestMessage
+public partial class ReqActorHeartBeat : MessageActorObject, IActorRequestMessage, IReqHeartBeatMessage
 {
     /// <summary>
     ///  时间戳
@@ -85,7 +85,7 @@ public partial class ReqActorHeartBeat : MessageActorObject, IActorRequestMessag
 /// </summary>
 [MessageTypeHandler(1000001)]
 [ProtoContract]
-public partial class RespActorHeartBeat : MessageActorObject, IActorResponseMessage
+public partial class RespActorHeartBeat : MessageActorObject, IActorResponseMessage, IRespHeartBeatMessage
 {
     /// <summary>
     ///  时间戳
