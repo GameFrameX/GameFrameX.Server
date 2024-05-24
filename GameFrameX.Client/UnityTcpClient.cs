@@ -39,7 +39,12 @@ public static class UnityTcpClient
             Console.WriteLine("--------------------------------");
             // for (int i = 0; i < 10; i++)
             {
-                var buffer = GetBuffer();
+                ReqHeartBeat req = new ReqHeartBeat
+                {
+                    Timestamp = TimeHelper.UnixTimeSeconds(),
+                    UniqueId = count
+                };
+                var buffer = Handler(req);
                 tcpClient.Send(buffer);
             }
         }
@@ -86,25 +91,20 @@ public static class UnityTcpClient
 
     private static int count = 0;
 
-    private static byte[] GetBuffer()
+    private static byte[] Handler(MessageObject message)
     {
         count++;
-        ReqHeartBeat req = new ReqHeartBeat
-        {
-            Timestamp = TimeHelper.UnixTimeSeconds(),
-            UniqueId = count
-        };
-        var bytes = SerializerHelper.Serialize(req);
+        var bytes = SerializerHelper.Serialize(message);
         int len = 4 + 8 + 4 + 4 + bytes.Length;
         var buffer = new byte[len];
         int offset = 0;
         buffer.WriteInt(len, ref offset);
-        buffer.WriteLong(req.UniqueId, ref offset);
-        var messageId = ProtoMessageIdHandler.GetReqMessageIdByType(req.GetType());
-        req.MessageId = messageId;
+        buffer.WriteLong(message.UniqueId, ref offset);
+        var messageId = ProtoMessageIdHandler.GetReqMessageIdByType(message.GetType());
+        message.MessageId = messageId;
         buffer.WriteInt(messageId, ref offset);
         buffer.WriteBytes(bytes, ref offset);
-        Console.WriteLine($"客户端接发送信息：{req.ToMessageString()}");
+        Console.WriteLine($"客户端接发送信息：{message.ToMessageString()}");
         return buffer;
     }
 }
