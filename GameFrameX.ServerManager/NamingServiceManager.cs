@@ -26,6 +26,11 @@ namespace GameFrameX.ServerManager
         /// <returns></returns>
         public bool TryRemove(long serverId)
         {
+            if (serverId <= 0)
+            {
+                return false;
+            }
+
             MetricsDiscoveryRegister.ServiceCounterOptions.Dec(-1);
             var result = _serverMap.TryRemove(serverId, out var value);
             OnServerRemove?.Invoke(value);
