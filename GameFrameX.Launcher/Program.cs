@@ -23,12 +23,12 @@ namespace GameFrameX.Launcher
             var environmentVariables = Environment.GetEnvironmentVariables();
             foreach (DictionaryEntry environmentVariable in environmentVariables)
             {
-                if (environmentVariable.Value == null)
+                if (environmentVariable.Value == null || environmentVariable.Key.ToString().IsNullOrWhiteSpace())
                 {
                     continue;
                 }
 
-                var key = "--" + environmentVariable.Key;
+                var key = environmentVariable.Key.ToString().StartsWith("--") ? environmentVariable.Key.ToString() : "--" + environmentVariable.Key;
                 if (environmentVariablesList.Contains(key))
                 {
                     continue;
@@ -188,7 +188,7 @@ namespace GameFrameX.Launcher
                     case ServerType.Account:
                         break;
                     case ServerType.Router:
-                    { 
+                    {
                         options.CheckOuterIp();
                         options.CheckOuterPort();
                         options.CheckWsPort();
