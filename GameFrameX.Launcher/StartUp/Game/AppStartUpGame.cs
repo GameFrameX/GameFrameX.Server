@@ -60,12 +60,14 @@
             {
                 Setting = new AppSetting
                 {
-                    ServerId = 1501,
+                    ServerId = 9000,
                     ServerType = ServerType.Game,
-                    InnerPort = 21000,
-                    APMPort = 21001,
-                    HttpPort = 20001,
-                    WsPort = 21100,
+                    InnerPort = 29000,
+                    APMPort = 29090,
+                    HttpPort = 29001,
+                    WsPort = 29010,
+                    DiscoveryCenterIp = "127.0.0.1",
+                    DiscoveryCenterPort = 21001,
                     //
                     HttpCode = "inner_httpcode",
                     DataBaseUrl = "mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority",
