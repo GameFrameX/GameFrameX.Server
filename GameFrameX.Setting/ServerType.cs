@@ -6,6 +6,11 @@ namespace GameFrameX.Setting;
 [Flags]
 public enum ServerType
 {
+    /// <summary>
+    /// 客户端
+    /// </summary>
+    Client = 0,
+
     #region 基础服务
 
     /// <summary>
