@@ -94,6 +94,19 @@
         #region List<T>
 
         /// <summary>
+        /// 从列表中随机获取一个对象。
+        /// </summary>
+        /// <typeparam name="T">列表元素的类型。</typeparam>
+        /// <param name="list">要随机的列表。</param>
+        public static T Random<T>(this List<T> list)
+        {
+            int n = list.Count;
+            var r = ThreadLocalRandom.Current;
+            int index = r.Next(n);
+            return list[index];
+        }
+
+        /// <summary>
         /// 打乱列表中的元素顺序。
         /// </summary>
         /// <typeparam name="T">列表元素的类型。</typeparam>
