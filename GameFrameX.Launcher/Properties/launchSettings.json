@@ -1,6 +1,9 @@
 ﻿{
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
+    "GameFrameX.Launcher": {
+      "commandName": "Project"
+    },
     "GameFrameX.DiscoveryCenter": {
       "commandName": "Project",
       "environmentVariables": {
