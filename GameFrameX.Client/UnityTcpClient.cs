@@ -64,17 +64,23 @@ public static class UnityTcpClient
     {
         //从服务器收到信息。但是一般byteBlock和requestInfo会根据适配器呈现不同的值。
         // var mes = Encoding.UTF8.GetString(e.ByteBlock.Buffer, 0, e.ByteBlock.Len);
+        DecodeMessage(e.Data.ReadBytes(e.Offset, e.Length));
+    }
+
+    private static void DecodeMessage(byte[] data)
+    {
         int offset = 0;
-        int length = e.Data.ReadInt(ref offset);
-        int uniqueId = e.Data.ReadInt(ref offset);
-        int messageId = e.Data.ReadInt(ref offset);
-        var messageData = e.Data.ReadBytes(ref offset);
+        int length = data.ReadInt(ref offset);
+        var uniqueId = data.ReadLong(ref offset);
+        int messageId = data.ReadInt(ref offset);
+        var messageData = data.ReadBytes(offset, length - 16);
         var messageType = ProtoMessageIdHandler.GetRespTypeById(messageId);
         if (messageType != null)
         {
             var messageObject = (MessageObject)SerializerHelper.Deserialize(messageData, messageType);
             messageObject.MessageId = messageId;
-            Console.WriteLine($"客户端接收到信息：{messageObject}");
+            messageObject.UniqueId = uniqueId;
+            Console.WriteLine($"客户端接收到信息：{messageObject.ToMessageString()}");
         }
     }
 
@@ -95,10 +101,10 @@ public static class UnityTcpClient
         buffer.WriteInt(len, ref offset);
         buffer.WriteLong(req.UniqueId, ref offset);
         var messageId = ProtoMessageIdHandler.GetReqMessageIdByType(req.GetType());
+        req.MessageId = messageId;
         buffer.WriteInt(messageId, ref offset);
         buffer.WriteBytes(bytes, ref offset);
-        Console.WriteLine($"客户端接发送信息：{req}");
-        // System.Buffers.ArrayPool<byte>.Shared.Return(buffer);
+        Console.WriteLine($"客户端接发送信息：{req.ToMessageString()}");
         return buffer;
     }
 }
