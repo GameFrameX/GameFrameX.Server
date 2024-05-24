@@ -1,3 +1,4 @@
+using GameFrameX.Setting;
 using GameFrameX.Utility;
 using Newtonsoft.Json;
 using ProtoBuf;
@@ -14,4 +15,14 @@ public abstract class MessageRpcObject : BaseMessageObject, IActorMessage
     /// </summary>
     [JsonIgnore]
     public int UniId { get; set; }
+
+    public string ToSendMessageString(ServerType srcServerType, ServerType destServerType)
+    {
+        return $"---发送[{srcServerType} To {destServerType}] {ToMessageString()}";
+    }
+
+    public string ToReceiveMessageString(ServerType srcServerType, ServerType destServerType)
+    {
+        return $"---收到[{srcServerType} To {destServerType}] {ToMessageString()}";
+    }
 }
