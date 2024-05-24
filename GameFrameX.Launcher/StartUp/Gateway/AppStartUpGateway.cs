@@ -10,6 +10,7 @@ using GameFrameX.Proto.BuiltIn;
 internal sealed partial class AppStartUpGateway : AppStartUpBase
 {
     private IServer tcpService;
+    protected override int HeartBeatInterval { get; } = 10000;
 
     /// <summary>
     /// 和游戏逻辑服链接的客户端
@@ -114,6 +115,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpBase
         }
         else if (message is MessageObject messageObject)
         {
+            // 这里要拿到对应的逻辑服务器
         }
     }
 
