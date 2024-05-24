@@ -27,19 +27,19 @@ public sealed class LauncherOptions
     /// <summary>
     /// 是否是Debug 模式
     /// </summary>
-    [Option("Debug", HelpText = "是否是Debug 模式")]
+    [Option("Debug", Default = true, HelpText = "是否是Debug 模式")]
     public bool IsDebug { get; set; }
 
     /// <summary>
     /// 是否打印发送数据
     /// </summary>
-    [Option("IsDebugSend", HelpText = "是否打印发送数据")]
+    [Option("IsDebugSend", Default = true, HelpText = "是否打印发送数据")]
     public bool IsDebugSend { get; set; }
 
     /// <summary>
     /// 是否打印接收数据
     /// </summary>
-    [Option("IsDebugReceive", HelpText = "是否打印接收数据")]
+    [Option("IsDebugReceive", Default = true, HelpText = "是否打印接收数据")]
     public bool IsDebugReceive { get; set; }
 
     /// <summary>
