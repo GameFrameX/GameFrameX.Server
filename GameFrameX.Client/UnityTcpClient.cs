@@ -46,6 +46,18 @@ public static class UnityTcpClient
                 };
                 var buffer = Handler(req);
                 tcpClient.Send(buffer);
+
+                if (count % 2 == 0)
+                {
+                    ReqLogin reqLogin = new ReqLogin
+                    {
+                        UserName = "admin",
+                        Password = "123456",
+                        UniqueId = count
+                    };
+                    buffer = Handler(reqLogin);
+                    tcpClient.Send(buffer);
+                }
             }
         }
     }
