@@ -15,6 +15,12 @@ public partial class ReqConnectServer : MessageObject, IRequestMessage
     /// </summary>
     [ProtoMember(1)]
     public ServerType ServerType { get; set; }
+
+    /// <summary>
+    /// 服务器ID
+    /// </summary>
+    [ProtoMember(2)]
+    public long ServerID { get; set; }
 }
 
 /// <summary>

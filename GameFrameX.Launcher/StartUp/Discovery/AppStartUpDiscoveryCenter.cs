@@ -109,6 +109,30 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
                 NamingServiceManager.Instance.Add(serverInfo);
                 LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
             }
+            else if (message is ReqConnectServer reqConnectServer)
+            {
+                var serverList = NamingServiceManager.Instance.GetNodesByType(reqConnectServer.ServerType);
+                if (reqConnectServer.ServerID > 0)
+                {
+                    serverList = serverList.Where(m => m.ServerId == reqConnectServer.ServerID).ToList();
+                }
+
+                if (serverList.Count > 0)
+                {
+                    var serverInfo = serverList.Random();
+
+                    RespConnectServer respConnectServer = new RespConnectServer
+                    {
+                        UniqueId = reqConnectServer.UniqueId,
+                        ServerType = serverInfo.Type,
+                        ServerName = serverInfo.ServerName,
+                        ServerID = serverInfo.ServerId,
+                        TargetIP = serverInfo.OuterIp,
+                        TargetPort = serverInfo.OuterPort
+                    };
+                    await session.SendAsync(messageEncoderHandler, respConnectServer);
+                }
+            }
         }
         else if (messageObject is MessageActorObject messageActorObject)
         {
