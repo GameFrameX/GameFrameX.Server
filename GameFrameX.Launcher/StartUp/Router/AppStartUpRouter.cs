@@ -1,21 +1,16 @@
 ﻿using GameFrameX.Launcher.PipelineFilter;
-using GameFrameX.Launcher.StartUp.Router;
+using GameFrameX.Proto.BuiltIn;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
+namespace GameFrameX.Launcher.StartUp.Router;
 
 /// <summary>
 /// 路由服务器.最后启动。
 /// </summary>
 [StartUpTag(ServerType.Router, int.MaxValue)]
-internal sealed class AppStartUpRouter : AppStartUpBase
+internal partial class AppStartUpRouter : AppStartUpBase
 {
-    /// <summary>
-    /// 链接到网关的客户端
-    /// </summary>
-    // private TcpClient tcpClient;
-    AsyncTcpSession _gatewayClient;
-
     /// <summary>
     /// 服务器。对外提供服务
     /// </summary>
@@ -34,7 +29,8 @@ internal sealed class AppStartUpRouter : AppStartUpBase
         {
             await StartServer();
             LogHelper.Info($"启动服务器 {ServerType} 端口: {Setting.InnerPort} 结束!");
-            StartClient();
+            StartDiscoveryCenterClient();
+            StartGatewayClient();
             _ = Task.Run(RpcHandler);
             await AppExitToken;
             LogHelper.Info("全部断开...");
@@ -58,79 +54,8 @@ internal sealed class AppStartUpRouter : AppStartUpBase
                 continue;
             }
 
-            SendMessage(message.UniqueId, message.RequestMessage);
+            SendToDiscoveryCenterMessage(message.UniqueId, message.RequestMessage);
         }
-    }
-
-    private void SendMessage(long messageUniqueId, IMessage message)
-    {
-        var span = messageEncoderHandler.RpcHandler(messageUniqueId, message);
-        if (Setting.IsDebug && Setting.IsDebugSend)
-        {
-            LogHelper.Debug($"---发送[{ServerType}] {message.ToMessageString()}");
-        }
-
-        _gatewayClient.TrySend(span);
-        // ArrayPool<byte>.Shared.Return(span);
-    }
-
-    /// <summary>
-    /// 重连定时器
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected override void ReconnectionTimerOnElapsed(object sender, ElapsedEventArgs e)
-    {
-        // 重连到网关服务器
-        ConnectToGateWay();
-    }
-
-    private void ConnectToGateWay()
-    {
-        var endPoint = new IPEndPoint(IPAddress.Parse(Setting.DiscoveryCenterIp), Setting.DiscoveryCenterPort);
-        _gatewayClient.Connect(endPoint);
-    }
-
-    private void StartClient()
-    {
-        _gatewayClient = new AsyncTcpSession();
-        _gatewayClient.Closed += ClientOnClosed;
-        _gatewayClient.DataReceived += ClientOnDataReceived;
-        _gatewayClient.Connected += ClientOnConnected;
-        _gatewayClient.Error += ClientOnError;
-
-        LogHelper.Info("开始链接到网关服务器 ...");
-        ConnectToGateWay();
-    }
-
-    private void ClientOnError(object sender, ErrorEventArgs e)
-    {
-        LogHelper.Info("和网关服务器链接链接发生错误!" + e);
-        ClientOnClosed(_gatewayClient, e);
-    }
-
-    private void ClientOnConnected(object sender, EventArgs e)
-    {
-        LogHelper.Info("和网关服务器链接链接成功!");
-        // 和网关服务器链接成功，关闭重连
-        ReconnectionTimer.Stop();
-        // 开启和网关服务器的心跳
-        HeartBeatTimer.Start();
-    }
-
-    private void ClientOnDataReceived(object o, DataEventArgs dataEventArgs)
-    {
-        var messageData = dataEventArgs.Data.ReadBytes(dataEventArgs.Offset, dataEventArgs.Length);
-        var messageObject = (IActorResponseMessage)messageRouterDecoderHandler.RpcHandler(messageData);
-        rpcSession.Reply(messageObject);
-        LogHelper.Info($"收到网关服务器消息：{dataEventArgs.Data}: {messageObject}");
-    }
-
-    private void ClientOnClosed(object sender, EventArgs eventArgs)
-    {
-        LogHelper.Info("和网关服务器链接链接断开!");
-        // 和网关服务器链接断开，开启重连
-        ReconnectionTimer.Start();
     }
 
     private async Task StartServer()
@@ -210,19 +135,19 @@ internal sealed class AppStartUpRouter : AppStartUpBase
                 LogHelper.Debug($"---收到[{ServerType}] 转发到[{ServerType.Gateway}] [{messageObject}]");
             }
 
-            SendMessage(message.UniqueId, message);
+            SendToGatewayMessage(message.UniqueId, message);
             /*
-            var handler = HotfixManager.GetTcpHandler(message.MessageId);
-            if (handler == null)
-            {
-                LogHelper.Error($"找不到[{message.MessageId}][{messageObject.GetType()}]对应的handler");
-                return;
-            }
+        var handler = HotfixManager.GetTcpHandler(message.MessageId);
+        if (handler == null)
+        {
+            LogHelper.Error($"找不到[{message.MessageId}][{messageObject.GetType()}]对应的handler");
+            return;
+        }
 
-            handler.Message = message;
-            handler.NetWorkChannel = GameClientSessionManager.GetSession(appSession.SessionID);
-            await handler.Init();
-            await handler.InnerAction();*/
+        handler.Message = message;
+        handler.NetWorkChannel = GameClientSessionManager.GetSession(appSession.SessionID);
+        await handler.Init();
+        await handler.InnerAction();*/
         }
 
         return ValueTask.CompletedTask;
@@ -238,7 +163,7 @@ internal sealed class AppStartUpRouter : AppStartUpBase
     {
         HeartBeatTimer?.Close();
         ReconnectionTimer?.Close();
-        _gatewayClient?.Close();
+        _discoveryCenterClient?.Close();
         await _webSocketServer.StopAsync();
         await _tcpService.StopAsync();
         await base.Stop(message);

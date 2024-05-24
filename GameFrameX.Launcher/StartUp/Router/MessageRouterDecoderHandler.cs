@@ -60,10 +60,20 @@ public class MessageRouterDecoderHandler : IMessageDecoderHandler, IPackageDecod
             var messageType = ProtoMessageIdHandler.GetRespTypeById(messageId);
             if (messageType != null)
             {
-                var messageObject = (MessageActorObject)SerializerHelper.Deserialize(messageData, messageType);
-                messageObject.MessageId = messageId;
-                messageObject.UniqueId = uniqueId;
-                return messageObject;
+                var message = SerializerHelper.Deserialize(messageData, messageType);
+                if (message is MessageObject messageObject)
+                {
+                    messageObject.MessageId = messageId;
+                    messageObject.UniqueId = uniqueId;
+                    return messageObject;
+                }
+
+                if (message is MessageActorObject messageActorObject)
+                {
+                    messageActorObject.MessageId = messageId;
+                    messageActorObject.UniqueId = uniqueId;
+                    return messageActorObject;
+                }
             }
 
             LogHelper.Fatal("未知消息类型");
