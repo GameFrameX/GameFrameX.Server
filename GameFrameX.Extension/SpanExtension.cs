@@ -284,7 +284,7 @@ namespace GameFrameX.Extension
             }
         }
 
-        public static unsafe void WriteFloat(float value, byte[] buffer, ref int offset)
+        public static unsafe void WriteFloat(this byte[] buffer, float value, ref int offset)
         {
             if (offset + FloatSize > buffer.Length)
             {
@@ -300,7 +300,7 @@ namespace GameFrameX.Extension
             }
         }
 
-        public static unsafe void WriteDouble(double value, byte[] buffer, ref int offset)
+        public static unsafe void WriteDouble(this byte[] buffer, double value, ref int offset)
         {
             if (offset + DoubleSize > buffer.Length)
             {
@@ -370,7 +370,7 @@ namespace GameFrameX.Extension
             }
         }
 
-        public static unsafe void WriteSByte(sbyte value, byte[] buffer, ref int offset)
+        public static unsafe void WriteSByte(this byte[] buffer, sbyte value, ref int offset)
         {
             if (offset + SbyteSize > buffer.Length)
             {
@@ -385,7 +385,7 @@ namespace GameFrameX.Extension
             }
         }
 
-        public static unsafe void WriteString(string value, byte[] buffer, ref int offset)
+        public static unsafe void WriteString(this byte[] buffer, string value, ref int offset)
         {
             if (value == null)
                 value = string.Empty;
@@ -412,7 +412,7 @@ namespace GameFrameX.Extension
             }
         }
 
-        public static unsafe void WriteBool(bool value, byte[] buffer, ref int offset)
+        public static unsafe void WriteBool(this byte[] buffer, bool value, ref int offset)
         {
             if (offset + BoolSize > buffer.Length)
             {
