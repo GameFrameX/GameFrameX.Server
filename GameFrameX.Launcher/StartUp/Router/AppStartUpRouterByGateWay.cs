@@ -20,11 +20,10 @@ internal partial class AppStartUpRouter
         var span = messageEncoderHandler.RpcHandler(messageUniqueId, message);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
-            LogHelper.Debug($"---发送[{ServerType}],[{ServerType.Gateway}] {message.ToMessageString()}");
+            LogHelper.Debug(message.ToSendMessageString(ServerType, ServerType.Gateway));
         }
 
         _gatewayClient.TrySend(span);
-        // ArrayPool<byte>.Shared.Return(span);
     }
 
     private void StartGatewayClient()
@@ -59,21 +58,6 @@ internal partial class AppStartUpRouter
         // 和网关服务器链接成功，关闭重连
         GateWayReconnectionTimer.Stop();
         LogHelper.Info("和发现中心服务器链接链接成功!");
-
-//         ReconnectionTimer.Stop();/*
-//         // 开启和网关服务器的心跳
-//         HeartBeatTimer.Start();
-//         ReqConnectServer reqConnectServer = new ReqConnectServer
-//         {
-//             ServerType = ServerType.Gateway
-//         };
-//         var span = messageEncoderHandler.RpcHandler(reqConnectServer.UniqueId, reqConnectServer);
-//         if (Setting.IsDebug && Setting.IsDebugSend)
-//         {
-//             LogHelper.Debug($"---发送[{ServerType}] {reqConnectServer.ToMessageString()}");
-//         }
-//
-//         _discoveryCenterClient.TrySend(span);*/
     }
 
     private void GateWayClientOnDataReceived(object o, DataEventArgs dataEventArgs)

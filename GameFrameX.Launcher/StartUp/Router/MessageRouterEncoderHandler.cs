@@ -1,5 +1,3 @@
-using GameFrameX.Extension;
-using GameFrameX.NetWork;
 using GameFrameX.Serialize.Serialize;
 using SuperSocket.ProtoBase;
 
@@ -24,10 +22,10 @@ class MessageRouterEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMes
         span.WriteLong(messageObject.UniqueId, ref offset);
         var messageType = message.GetType();
         var msgId = ProtoMessageIdHandler.GetRespMessageIdByType(messageType);
+        messageObject.MessageId = msgId;
         span.WriteInt(msgId, ref offset);
         span.WriteBytesWithoutLength(bytes, ref offset);
-        // ArrayPool<byte>.Shared.Return(span);
-        LogHelper.Debug($"---发送消息:[{msgId},{message.GetType().Name}] 消息内容:[{message}],：{span.ToArrayString()}");
+        LogHelper.Debug(message.ToSendMessageString(ServerType.Router, ServerType.Client));
         return span;
     }
 
@@ -57,7 +55,6 @@ class MessageRouterEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMes
     {
         var bytes = Handler(pack);
         writer.Write(bytes);
-        // ArrayPool<byte>.Shared.Return(bytes);
         return bytes.Length;
     }
 }
