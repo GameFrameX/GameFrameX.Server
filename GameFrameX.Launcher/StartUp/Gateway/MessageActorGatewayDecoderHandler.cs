@@ -13,7 +13,7 @@ class MessageActorGatewayDecoderHandler : IMessageDecoderHandler, IPackageDecode
         var messageId = data.ReadInt(ref readOffset);
         // var messageUniqueData = data.ReadBytes(ref readOffset);
         var messageData = data.ReadBytes(ref readOffset);
-        var messageType = ProtoMessageIdHandler.GetResponseMessageTypeById(messageId);
+        var messageType = ProtoMessageIdHandler.GetRequestMessageTypeById(messageId);
         if (messageType != null)
         {
             var messageObject = SerializerHelper.Deserialize(messageData, messageType);
