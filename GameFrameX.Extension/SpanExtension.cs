@@ -254,7 +254,7 @@ namespace GameFrameX.Extension
             }
         }
 
-        public static unsafe void WriteShort(short value, byte[] buffer, ref int offset)
+        public static unsafe void WriteShort(this byte[] buffer, short value, ref int offset)
         {
             if (offset + ShortSize > buffer.Length)
             {
@@ -407,7 +407,7 @@ namespace GameFrameX.Extension
             fixed (byte* ptr = buffer)
             {
                 System.Text.Encoding.UTF8.GetBytes(value, 0, value.Length, buffer, offset + ShortSize);
-                WriteShort((short)len, buffer, ref offset);
+                WriteShort(buffer, (short)len, ref offset);
                 offset += len;
             }
         }
