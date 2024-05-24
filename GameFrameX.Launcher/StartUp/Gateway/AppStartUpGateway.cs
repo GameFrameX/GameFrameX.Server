@@ -7,14 +7,9 @@ using GameFrameX.Proto.BuiltIn;
 /// 网关服务器
 /// </summary>
 [StartUpTag(ServerType.Gateway)]
-internal sealed class AppStartUpGateway : AppStartUpBase
+internal sealed partial class AppStartUpGateway : AppStartUpBase
 {
     private IServer tcpService;
-
-    /// <summary>
-    /// 和发现中心链接的客户端
-    /// </summary>
-    private AsyncTcpSession _discoveryCenterClient;
 
     /// <summary>
     /// 和游戏逻辑服链接的客户端
@@ -24,7 +19,6 @@ internal sealed class AppStartUpGateway : AppStartUpBase
     MessageActorGatewayEncoderHandler messageEncoderHandler = new MessageActorGatewayEncoderHandler();
 
     MessageActorGatewayDecoderHandler messageDecoderHandler = new MessageActorGatewayDecoderHandler();
-    ReqActorHeartBeat reqHeartBeat = new ReqActorHeartBeat();
     RpcSession rpcSession = new RpcSession();
 
     public override async Task EnterAsync()
@@ -171,7 +165,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
             OuterIP = Setting.OuterIp,
             OuterPort = Setting.OuterPort
         };
-        SendMessage(reqRegisterServer);
+        SendToDiscoveryCenterMessage(reqRegisterServer);
     }
 
     private void GameClientOnClosed(object sender, EventArgs eventArgs)
@@ -188,103 +182,6 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         HeartBeatTimer.Stop();
         ReconnectionTimer.Start();
     }
-
-    #region Client
-
-    protected override void HeartBeatTimerOnElapsed(object sender, ElapsedEventArgs e)
-    {
-        //心跳包
-        if (_discoveryCenterClient.IsConnected)
-        {
-            reqHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
-            reqHeartBeat.UniqueId = UtilityIdGenerator.GetNextUniqueId();
-            SendMessage(reqHeartBeat);
-        }
-    }
-
-    protected override void ReconnectionTimerOnElapsed(object sender, ElapsedEventArgs e)
-    {
-        ConnectToDiscovery();
-    }
-
-    private void StartDiscoveryCenterClient()
-    {
-        _discoveryCenterClient = new AsyncTcpSession();
-        _discoveryCenterClient.Connected += DiscoveryCenterClientOnConnected;
-        _discoveryCenterClient.Closed += DiscoveryCenterClientOnClosed;
-        _discoveryCenterClient.DataReceived += DiscoveryCenterClientOnDataReceived;
-        _discoveryCenterClient.Error += DiscoveryCenterClientOnError;
-        ConnectToDiscovery();
-    }
-
-    private void ConnectToDiscovery()
-    {
-        _discoveryCenterClient.Connect(new DnsEndPoint(Setting.DiscoveryCenterIp, Setting.DiscoveryCenterPort));
-    }
-
-    private void DiscoveryCenterClientOnDataReceived(object sender, DataEventArgs e)
-    {
-        var messageObject = messageDecoderHandler.Handler(e.Data.ReadBytes(e.Offset, e.Length));
-        if (messageObject == null)
-        {
-            LogHelper.Error("数据解析失败：" + e.Data.ReadBytes(e.Offset, e.Length));
-            return;
-        }
-
-        if (Setting.IsDebug && Setting.IsDebugReceive)
-        {
-            LogHelper.Debug($"---收到[{ServerType}] {messageObject.ToMessageString()}");
-        }
-    }
-
-    private void DiscoveryCenterClientOnConnected(object sender, EventArgs e)
-    {
-        LogHelper.Info("和中心服务器链接成功, 开始心跳");
-        HeartBeatTimer.Start();
-        ReconnectionTimer.Stop();
-        // 这里要注册到发现中心
-        ReqRegisterServer reqRegisterServer = new ReqRegisterServer
-        {
-            ServerID = Setting.ServerId,
-            ServerType = Setting.ServerType,
-            ServerName = Setting.ServerName,
-            InnerIP = Setting.InnerIp,
-            InnerPort = Setting.InnerPort,
-            OuterIP = Setting.OuterIp,
-            OuterPort = Setting.OuterPort
-        };
-        SendMessage(reqRegisterServer);
-    }
-
-    private void DiscoveryCenterClientOnClosed(object sender, EventArgs eventArgs)
-    {
-        LogHelper.Info("和中心服务器网络连接断开, 开始重连：断开信息:" + eventArgs);
-        HeartBeatTimer.Stop();
-        ReconnectionTimer.Start();
-    }
-
-    private void DiscoveryCenterClientOnError(object sender, SuperSocket.ClientEngine.ErrorEventArgs errorEventArgs)
-    {
-        LogHelper.Info("和中心服务器连接错误, 开始重连:错误信息：" + errorEventArgs.Exception);
-        // 开启重连
-        HeartBeatTimer.Stop();
-        ReconnectionTimer.Start();
-    }
-
-    private void SendMessage(IMessage message)
-    {
-        var span = messageEncoderHandler.Handler(message);
-        if (Setting.IsDebug && Setting.IsDebugSend)
-        {
-            LogHelper.Debug($"---发送[{ServerType}] {message.ToMessageString()}");
-        }
-
-        _discoveryCenterClient.TrySend(span);
-        // ArrayPool<byte>.Shared.Return(span);
-    }
-
-    #endregion
-
 
     protected override void Init()
     {
