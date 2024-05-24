@@ -292,12 +292,14 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         {
             Setting = new AppSetting
             {
-                ServerId = 2000,
+                ServerId = 22000,
                 ServerType = ServerType.Gateway,
                 InnerIp = "127.0.0.1",
-                InnerPort = 22000,
-                APMPort = 22001,
-                DiscoveryCenterPort = 33300,
+                InnerPort = 22001,
+                OuterIp = "127.0.0.1",
+                OuterPort = 22001,
+                APMPort = 22090,
+                DiscoveryCenterPort = 21001,
                 DiscoveryCenterIp = "127.0.0.1",
             };
             if (PlatformRuntimeHelper.IsLinux)

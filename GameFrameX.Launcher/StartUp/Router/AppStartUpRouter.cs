@@ -250,14 +250,13 @@ internal sealed class AppStartUpRouter : AppStartUpBase
         {
             Setting = new AppSetting
             {
-                ServerId = 1000,
+                ServerId = 3000,
                 ServerType = ServerType.Router,
-                InnerPort = 21000,
-                WsPort = 21100,
-                WssPort = 21200,
+                InnerPort = 23001,
+                WsPort = 23110,
                 // 网关配置
                 DiscoveryCenterIp = "127.0.0.1",
-                DiscoveryCenterPort = 22000,
+                DiscoveryCenterPort = 21001,
                 // 最大连接数
                 MaxClientCount = 3000,
             };

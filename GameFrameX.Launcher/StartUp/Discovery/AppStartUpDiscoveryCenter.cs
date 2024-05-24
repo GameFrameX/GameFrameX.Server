@@ -158,10 +158,10 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
         {
             Setting = new AppSetting
             {
-                ServerId = 3300,
+                ServerId = 21000,
                 ServerType = ServerType.DiscoveryCenter,
-                InnerPort = 33300,
-                APMPort = 33301
+                InnerPort = 21001,
+                APMPort = 21090
             };
         }
 
