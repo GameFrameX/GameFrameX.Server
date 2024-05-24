@@ -1,4 +1,6 @@
 using GameFrameX.Setting;
+using GameFrameX.Utility;
+using Newtonsoft.Json;
 
 namespace GameFrameX.ServerManager;
 
@@ -28,7 +30,7 @@ public sealed class ServerInfo
     /// </summary>
     public ServerType Type { get; }
 
-    public object Session { get; }
+    [JsonIgnore] public object Session { get; }
 
     /// <summary>
     /// 服务器名称
@@ -64,4 +66,9 @@ public sealed class ServerInfo
     /// 服务器状态
     /// </summary>
     public ServerStatusInfo StatusInfo { get; set; }
+
+    public override string ToString()
+    {
+        return JsonHelper.Serialize(this);
+    }
 }
