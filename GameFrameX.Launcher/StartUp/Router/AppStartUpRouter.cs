@@ -130,27 +130,37 @@ internal partial class AppStartUpRouter : AppStartUpBase
     {
         if (messageObject is MessageObject message)
         {
+            if (messageObject is ReqHeartBeat reqHeartBeat)
+            {
+                if (Setting.IsDebug && Setting.IsDebugReceive)
+                {
+                    LogHelper.Debug(messageObject.ToReceiveMessageString(ServerType.Client, ServerType));
+                }
+
+                ReplyHeartBeat(appSession, reqHeartBeat);
+                return ValueTask.CompletedTask;
+            }
+
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
-                LogHelper.Debug($"---收到[{ServerType}] 转发到[{ServerType.Gateway}] [{messageObject}]");
+                LogHelper.Debug($"转发到[{ServerType.Gateway}] [{messageObject.ToReceiveMessageString(ServerType, ServerType.Client)}]");
             }
 
             SendToGatewayMessage(message.UniqueId, message);
-            /*
-        var handler = HotfixManager.GetTcpHandler(message.MessageId);
-        if (handler == null)
-        {
-            LogHelper.Error($"找不到[{message.MessageId}][{messageObject.GetType()}]对应的handler");
-            return;
-        }
-
-        handler.Message = message;
-        handler.NetWorkChannel = GameClientSessionManager.GetSession(appSession.SessionID);
-        await handler.Init();
-        await handler.InnerAction();*/
         }
 
         return ValueTask.CompletedTask;
+    }
+
+    private static async void ReplyHeartBeat(IAppSession appSession, ReqHeartBeat reqHeartBeat)
+    {
+        var response = new RespHeartBeat()
+        {
+            UniqueId = reqHeartBeat.UniqueId,
+            Timestamp = TimeHelper.UnixTimeSeconds()
+        };
+        var result = messageEncoderHandler.Handler(response);
+        await appSession.SendAsync(result);
     }
 
     private void ConfigureWebServer(HostBuilderContext context, IConfigurationBuilder builder)
