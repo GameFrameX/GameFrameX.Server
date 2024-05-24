@@ -1,0 +1,46 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "GameFrameX.DiscoveryCenter": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "--ServerType": "DiscoveryCenter",
+        "--ServerId": 21000,
+        "--APMPort": 21090,
+        "--InnerIp": "127.0.0.1",
+        "--InnerPort": 21001,
+        "--OuterIp": "127.0.0.1",
+        "--OuterPort": 21010
+      }
+    },
+    "GameFrameX.Gateway": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "--ServerType": "Gateway",
+        "--ServerId": 22000,
+        "--APMPort": 22090,
+        "--InnerIp": "127.0.0.1",
+        "--InnerPort": 22001,
+        "--OuterIp": "127.0.0.1",
+        "--OuterPort": 22010,
+        "--DiscoveryCenterIp": "127.0.0.1",
+        "--DiscoveryCenterPort": 21001
+      }
+    },
+    "GameFrameX.Router": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "--ServerType": "Router",
+        "--ServerId": 3000,
+        "--APMPort": 23090,
+        "--InnerIp": "127.0.0.1",
+        "--InnerPort": 23001,
+        "--OuterIp": "127.0.0.1",
+        "--OuterPort": 23010,
+        "--WsPort": 23110,
+        "--DiscoveryCenterIp": "127.0.0.1",
+        "--DiscoveryCenterPort": 21001
+      }
+    }
+  }
+}
