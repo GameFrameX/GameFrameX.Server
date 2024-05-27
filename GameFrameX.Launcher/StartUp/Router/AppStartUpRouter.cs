@@ -9,7 +9,7 @@ namespace GameFrameX.Launcher.StartUp.Router;
 /// 路由服务器.最后启动。
 /// </summary>
 [StartUpTag(ServerType.Router, int.MaxValue)]
-internal partial class AppStartUpRouter : AppStartUpBase
+internal partial class AppStartUpRouter : AppStartUpService
 {
     /// <summary>
     /// 服务器。对外提供服务
@@ -21,7 +21,6 @@ internal partial class AppStartUpRouter : AppStartUpBase
     /// </summary>
     private IHost _webSocketServer;
 
-    RpcSession rpcSession = new RpcSession();
 
     public override async Task EnterAsync()
     {
@@ -29,9 +28,9 @@ internal partial class AppStartUpRouter : AppStartUpBase
         {
             await StartServer();
             LogHelper.Info($"启动服务器 {ServerType} 端口: {Setting.InnerPort} 结束!");
-            StartDiscoveryCenterClient();
+            await base.EnterAsync();
             StartGatewayClient();
-            _ = Task.Run(RpcHandler);
+
             await AppExitToken;
             LogHelper.Info("全部断开...");
             await Stop();
@@ -43,20 +42,21 @@ internal partial class AppStartUpRouter : AppStartUpBase
         }
     }
 
-    private void RpcHandler()
+    protected override void ConnectServerHandler()
     {
-        while (true)
-        {
-            var message = rpcSession.Handler();
-            if (message == null)
-            {
-                Thread.Sleep(1);
-                continue;
-            }
-
-            SendToDiscoveryCenterMessage(message.UniqueId, message.RequestMessage);
-        }
+        ConnectToGateWay();
     }
+
+    protected override void DisconnectServerHandler()
+    {
+        DisconnectToGateWay();
+    }
+
+    protected override void DiscoveryCenterDataReceived(IMessage message)
+    {
+        LogHelper.Debug(message.ToMessageString());
+    }
+
 
     private async Task StartServer()
     {
@@ -93,14 +93,12 @@ internal partial class AppStartUpRouter : AppStartUpBase
     private ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-        var netChannel = new DefaultNetWorkChannel(appSession, messageEncoderHandler, rpcSession, appSession is WebSocketSession);
+        var netChannel = new DefaultNetWorkChannel(appSession, messageEncoderHandler, RpcSession, appSession is WebSocketSession);
         GameClientSessionManager.SetSession(appSession.SessionID, netChannel); //移除
 
         return ValueTask.CompletedTask;
     }
 
-    private static readonly MessageRouterEncoderHandler messageEncoderHandler = new MessageRouterEncoderHandler();
-    private static readonly MessageRouterDecoderHandler messageRouterDecoderHandler = new MessageRouterDecoderHandler();
 
     /// <summary>
     /// 处理收到的WS消息
@@ -117,7 +115,7 @@ internal partial class AppStartUpRouter : AppStartUpBase
 
         var bytes = message.Data;
         var buffer = bytes.ToArray();
-        var messageObject = messageRouterDecoderHandler.Handler(buffer);
+        var messageObject = messageDecoderHandler.Handler(buffer);
         await MessagePackageHandler(session, messageObject);
     }
 
@@ -171,9 +169,7 @@ internal partial class AppStartUpRouter : AppStartUpBase
 
     public override async Task Stop(string message = "")
     {
-        HeartBeatTimer?.Close();
-        ReconnectionTimer?.Close();
-        _discoveryCenterClient?.Close();
+        StopDiscoveryCenter();
         await _webSocketServer.StopAsync();
         await _tcpService.StopAsync();
         await base.Stop(message);
@@ -202,5 +198,17 @@ internal partial class AppStartUpRouter : AppStartUpBase
         }
 
         base.Init();
+    }
+
+    /// <summary>
+    /// 从发现中心请求的目标服务器类型
+    /// </summary>
+    protected override ServerType GetServerType => ServerType.Gateway;
+
+    private static readonly MessageRouterEncoderHandler messageEncoderHandler = new MessageRouterEncoderHandler();
+    private static readonly MessageRouterDecoderHandler messageDecoderHandler = new MessageRouterDecoderHandler();
+
+    public AppStartUpRouter() : base(messageEncoderHandler, messageDecoderHandler)
+    {
     }
 }
