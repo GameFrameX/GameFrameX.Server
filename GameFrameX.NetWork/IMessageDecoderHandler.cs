@@ -10,4 +10,11 @@ public interface IMessageDecoderHandler
     /// <param name="data"></param>
     /// <returns></returns>
     IMessage? Handler(byte[] data);
+
+    /// <summary>
+    /// 处理服务器之间的消息
+    /// </summary>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    IMessage? RpcHandler(byte[] data);
 }
