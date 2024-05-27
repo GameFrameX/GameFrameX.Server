@@ -7,7 +7,6 @@ internal partial class AppStartUpRouter
 {
     AsyncTcpSession _gatewayClient;
 
-    private RespConnectServer _respConnectServer;
     protected Timer GateWayReconnectionTimer;
 
     private void SendToGatewayMessage(long messageUniqueId, IMessage message)
@@ -83,12 +82,12 @@ internal partial class AppStartUpRouter
 
     private void ConnectToGateWay()
     {
-        if (_respConnectServer == null)
+        if (ConnectTargetServer == null)
         {
             return;
         }
 
-        var endPoint = new IPEndPoint(IPAddress.Parse(_respConnectServer.TargetIP), _respConnectServer.TargetPort);
+        var endPoint = new IPEndPoint(IPAddress.Parse(ConnectTargetServer.TargetIP), ConnectTargetServer.TargetPort);
         _gatewayClient.Connect(endPoint);
     }
 
