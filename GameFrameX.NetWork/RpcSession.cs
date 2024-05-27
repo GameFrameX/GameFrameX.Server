@@ -8,7 +8,7 @@ public sealed class RpcSession : IRpcSession
     private readonly ConcurrentQueue<RpcData> waitingObjects = new ConcurrentQueue<RpcData>();
     private readonly ConcurrentQueue<RpcData> handlingObjects = new ConcurrentQueue<RpcData>();
 
-    public RpcData Handler()
+    public RpcData? Handler()
     {
         if (waitingObjects.TryDequeue(out var message))
         {
