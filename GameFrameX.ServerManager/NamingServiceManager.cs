@@ -60,6 +60,24 @@ namespace GameFrameX.ServerManager
         /// <summary>
         /// 根据节点数据从服务器列表中删除
         /// </summary>
+        /// <param name="sessionId"></param>
+        /// <returns></returns>
+        public ServerInfo? GetNodeBySessionId(string sessionId)
+        {
+            foreach (var keyValuePair in _serverMap)
+            {
+                if (keyValuePair.Value.SessionId == sessionId)
+                {
+                    return keyValuePair.Value;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// 根据节点数据从服务器列表中删除
+        /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
         public bool TryRemove(ServerInfo info)
