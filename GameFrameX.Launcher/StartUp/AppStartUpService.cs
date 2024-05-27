@@ -14,7 +14,12 @@ public abstract class AppStartUpService : AppStartUpBase
     /// <summary>
     /// 从发现中心请求的目标服务器类型
     /// </summary>
-    protected abstract ServerType GetServerType { get; }
+    protected virtual ServerType GetServerType { get; } = ServerType.None;
+
+    /// <summary>
+    /// 是否请求其他服务信息
+    /// </summary>
+    protected virtual bool IsRequestConnectServer { get; } = true;
 
     /// <summary>
     /// 连接的目标信息
@@ -63,7 +68,7 @@ public abstract class AppStartUpService : AppStartUpBase
         var span = _messageEncoderHandler.RpcHandler(messageUniqueId, message);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
-            LogHelper.Debug($"---发送[{ServerType} To {ServerType.DiscoveryCenter}] {message.ToMessageString()}");
+            LogHelper.Debug(message.ToSendMessageString(ServerType, ServerType.DiscoveryCenter));
         }
 
         _discoveryCenterClient.TrySend(span);
@@ -112,32 +117,62 @@ public abstract class AppStartUpService : AppStartUpBase
         ReconnectionTimer.Stop();
         // 开启和网关服务器的心跳
         HeartBeatTimer.Start();
-
-        if (ConnectTargetServer == null)
+        DiscoveryCenterClientOnConnectedHandler(sender, e);
+        if (IsRequestConnectServer)
         {
-            ReqConnectServer reqConnectServer = new ReqConnectServer
+            if (ConnectTargetServer == null)
             {
-                ServerType = GetServerType
-            };
-            SendToDiscoveryCenterMessage(reqConnectServer.UniqueId, reqConnectServer);
+                ReqConnectServer reqConnectServer = new ReqConnectServer
+                {
+                    ServerType = GetServerType
+                };
+                SendToDiscoveryCenterMessage(reqConnectServer.UniqueId, reqConnectServer);
+            }
         }
+    }
+
+    /// <summary>
+    /// 链接到发现中心服务器
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void DiscoveryCenterClientOnConnectedHandler(object sender, EventArgs e)
+    {
+        // 这里要注册到发现中心
+        ReqRegisterServer reqRegisterServer = new ReqRegisterServer
+        {
+            ServerID = Setting.ServerId,
+            ServerType = Setting.ServerType,
+            ServerName = Setting.ServerName,
+            InnerIP = Setting.InnerIp,
+            InnerPort = Setting.InnerPort,
+            OuterIP = Setting.OuterIp,
+            OuterPort = Setting.OuterPort
+        };
+        SendToDiscoveryCenterMessage(reqRegisterServer.UniqueId, reqRegisterServer);
     }
 
     /// <summary>
     /// 获取到连接的目标
     /// </summary>
-    protected abstract void ConnectServerHandler();
+    protected virtual void ConnectServerHandler()
+    {
+    }
 
     /// <summary>
     /// 连接的目标下线
     /// </summary>
-    protected abstract void DisconnectServerHandler();
+    protected virtual void DisconnectServerHandler()
+    {
+    }
 
     /// <summary>
     /// 收到发现中心推送的非特殊消息
     /// </summary>
     /// <param name="message"></param>
-    protected abstract void DiscoveryCenterDataReceived(IMessage message);
+    protected virtual void DiscoveryCenterDataReceived(IMessage message)
+    {
+    }
 
     private void DiscoveryCenterClientOnDataReceived(object o, DataEventArgs dataEventArgs)
     {
@@ -147,6 +182,11 @@ public abstract class AppStartUpService : AppStartUpBase
         {
             LogHelper.Error("数据解析失败！");
             return;
+        }
+
+        if (Setting.IsDebug && Setting.IsDebugReceive)
+        {
+            LogHelper.Debug(message.ToReceiveMessageString(ServerType.DiscoveryCenter, ServerType));
         }
 
         if (message is IActorResponseMessage actorResponseMessage)
@@ -172,10 +212,6 @@ public abstract class AppStartUpService : AppStartUpBase
             return;
         }
 
-        if (Setting.IsDebug && Setting.IsDebugReceive)
-        {
-            LogHelper.Debug($"---接收[{ServerType.DiscoveryCenter} To {ServerType}] {message.ToMessageString()}");
-        }
 
         DiscoveryCenterDataReceived(message);
     }

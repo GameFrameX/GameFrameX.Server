@@ -7,7 +7,7 @@ using GameFrameX.Proto.BuiltIn;
 /// 网关服务器
 /// </summary>
 [StartUpTag(ServerType.Gateway)]
-internal sealed partial class AppStartUpGateway : AppStartUpBase
+internal sealed partial class AppStartUpGateway : AppStartUpService
 {
     private IServer tcpService;
     protected override int HeartBeatInterval { get; } = 10000;
@@ -17,10 +17,6 @@ internal sealed partial class AppStartUpGateway : AppStartUpBase
     /// </summary>
     private List<ClientSession> _gameClientList = new List<ClientSession>();
 
-    MessageActorGatewayEncoderHandler messageEncoderHandler = new MessageActorGatewayEncoderHandler();
-
-    MessageActorGatewayDecoderHandler messageDecoderHandler = new MessageActorGatewayDecoderHandler();
-    RpcSession rpcSession = new RpcSession();
 
     public override async Task EnterAsync()
     {
@@ -28,7 +24,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpBase
         {
             LogHelper.Info($"启动服务器{Setting.ServerType} 开始! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
             await StartServer();
-            StartDiscoveryCenterClient();
+            await base.EnterAsync();
             StartGameClient();
             await AppExitToken;
         }
@@ -40,11 +36,10 @@ internal sealed partial class AppStartUpGateway : AppStartUpBase
         }
     }
 
-
     public override async Task Stop(string message = "")
     {
         LogHelper.Info($"服务器{Setting.ServerType} 停止! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
-        _discoveryCenterClient?.Close();
+        StopDiscoveryCenter();
         foreach (var kv in _gameClientList)
         {
             kv.AsyncTcpSession?.Close();
@@ -88,7 +83,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpBase
     {
         LogHelper.Info("有路由客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
         // var gameSession = new GameSession(socketClient.IP, socketClient);
-        var netChannel = new DefaultNetWorkChannel(appSession, messageEncoderHandler, rpcSession);
+        var netChannel = new DefaultNetWorkChannel(appSession, messageEncoderHandler, RpcSession);
         GameClientSessionManager.SetSession(appSession.SessionID, netChannel); //移除
         return ValueTask.CompletedTask;
     }
@@ -167,7 +162,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpBase
             OuterIP = Setting.OuterIp,
             OuterPort = Setting.OuterPort
         };
-        SendToDiscoveryCenterMessage(reqRegisterServer);
+        SendToDiscoveryCenterMessage(reqRegisterServer.UniqueId, reqRegisterServer);
     }
 
     private void GameClientOnClosed(object sender, EventArgs eventArgs)
@@ -209,6 +204,16 @@ internal sealed partial class AppStartUpGateway : AppStartUpBase
         }
 
         base.Init();
+    }
+
+    private static MessageActorGatewayEncoderHandler messageEncoderHandler = new MessageActorGatewayEncoderHandler();
+
+    private static MessageActorGatewayDecoderHandler messageDecoderHandler = new MessageActorGatewayDecoderHandler();
+
+    protected override bool IsRequestConnectServer { get; } = false;
+
+    public AppStartUpGateway() : base(messageEncoderHandler, messageDecoderHandler)
+    {
     }
 }
 

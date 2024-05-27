@@ -47,7 +47,7 @@ internal partial class AppStartUpRouter
 
     private void GateWayClientOnError(object sender, ErrorEventArgs e)
     {
-        LogHelper.Info("和发现中心服务器链接链接发生错误!" + e);
+        LogHelper.Info("和网关服务器链接链接发生错误!" + e.Exception.Message);
         GateWayReconnectionTimer.Start();
         // DiscoveryCenterClientOnClosed(_discoveryCenterClient, e);
     }
@@ -56,7 +56,7 @@ internal partial class AppStartUpRouter
     {
         // 和网关服务器链接成功，关闭重连
         GateWayReconnectionTimer.Stop();
-        LogHelper.Info("和发现中心服务器链接链接成功!");
+        LogHelper.Info("和网关服务器链接链接成功!");
     }
 
     private void GateWayClientOnDataReceived(object o, DataEventArgs dataEventArgs)

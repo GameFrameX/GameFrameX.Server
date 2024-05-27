@@ -25,6 +25,11 @@ class MessageActorCacheEncoderHandler : IMessageEncoderHandler, IPackageEncoder<
         return span;
     }
 
+    public byte[] RpcHandler(long messageUniqueId, IMessage message)
+    {
+        throw new NotImplementedException();
+    }
+
     public int Encode(IBufferWriter<byte> writer, IMessage messageObject)
     {
         var bytes = Handler(messageObject);

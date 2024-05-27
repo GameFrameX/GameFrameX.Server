@@ -3,7 +3,7 @@
     /// <summary>
     /// 游戏服务器
     /// </summary>
-    [StartUpTag(ServerType.Game)]
+    // [StartUpTag(ServerType.Game)]
     internal sealed class AppStartUpGame : AppStartUpBase
     {
         public override async Task EnterAsync()

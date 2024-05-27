@@ -29,6 +29,11 @@ class MessageActorCacheDecoderHandler : IMessageDecoderHandler, IPackageDecoder<
         }
     }
 
+    public IMessage RpcHandler(byte[] data)
+    {
+        throw new NotImplementedException();
+    }
+
     public IMessage Decode(ref ReadOnlySequence<byte> buffer, object context)
     {
         var data = buffer.ToArray();

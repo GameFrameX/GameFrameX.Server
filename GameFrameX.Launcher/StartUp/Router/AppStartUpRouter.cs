@@ -30,7 +30,6 @@ internal partial class AppStartUpRouter : AppStartUpService
             LogHelper.Info($"启动服务器 {ServerType} 端口: {Setting.InnerPort} 结束!");
             await base.EnterAsync();
             StartGatewayClient();
-
             await AppExitToken;
             LogHelper.Info("全部断开...");
             await Stop();

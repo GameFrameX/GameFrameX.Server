@@ -10,7 +10,7 @@ namespace GameFrameX.Launcher.StartUp.Discovery;
 [StartUpTag(ServerType.DiscoveryCenter, 0)]
 internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
 {
-    private IServer server;
+    private IServer _server;
 
     readonly MessageActorDiscoveryEncoderHandler messageEncoderHandler = new MessageActorDiscoveryEncoderHandler();
 
@@ -34,16 +34,16 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
         }
         catch (Exception e)
         {
-            LogHelper.Info($"服务器执行异常，e:{e}");
+            LogHelper.Info($"服务器{ServerType}执行异常，e:{e}");
             LogHelper.Fatal(e);
         }
 
-        LogHelper.Info($"退出服务器开始");
+        LogHelper.Info($"退出服务器{ServerType}开始");
         await Stop();
-        LogHelper.Info($"退出服务器成功");
+        LogHelper.Info($"退出服务器{ServerType}成功");
     }
 
-    private async void OnServerRemove(ServerInfo serverInfo)
+    private void OnServerRemove(ServerInfo serverInfo)
     {
         var serverList = NamingServiceManager.Instance.GetAllNodes().Where(m => m.ServerId != 0 && m.ServerId != serverInfo.ServerId).ToList();
 
@@ -55,12 +55,17 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
         };
         foreach (var info in serverList)
         {
+            if (serverInfo.SessionId == info.SessionId)
+            {
+                continue;
+            }
+
             var appSession = (IAppSession)info.Session;
-            await appSession.SendAsync(messageEncoderHandler, respServerOnlineServer);
+            SendMessage(appSession, respServerOnlineServer);
         }
     }
 
-    private async void OnServerAdd(ServerInfo serverInfo)
+    private void OnServerAdd(ServerInfo serverInfo)
     {
         var serverList = NamingServiceManager.Instance.GetOuterNodes().Where(m => m.ServerId != serverInfo.ServerId).ToList();
 
@@ -73,13 +78,39 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
         foreach (var info in serverList)
         {
             var appSession = (IAppSession)info.Session;
-            await appSession.SendAsync(messageEncoderHandler, respServerOnlineServer);
+            SendMessage(appSession, respServerOnlineServer);
         }
+    }
+
+    /// <summary>
+    /// 发送消息给注册的服务
+    /// </summary>
+    /// <param name="session"></param>
+    /// <param name="message"></param>
+    private async void SendMessage(IAppSession session, IMessage message)
+    {
+        Guard.NotNull(message, nameof(message));
+        if (session == null)
+        {
+            return;
+        }
+
+        var data = messageEncoderHandler.Handler(message);
+        if (Setting.IsDebug && Setting.IsDebugReceive)
+        {
+            var serverInfo = NamingServiceManager.Instance.GetNodeBySessionId(session.SessionID);
+            if (serverInfo != null)
+            {
+                LogHelper.Info(message.ToSendMessageString(ServerType, serverInfo.Type));
+            }
+        }
+
+        await session.SendAsync(data);
     }
 
     private async void StartServer()
     {
-        server = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
+        _server = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
             .ConfigureSuperSocket(ConfigureSuperSocket)
             .UseClearIdleSession()
             .UsePackageDecoder<MessageActorDiscoveryDecoderHandler>()
@@ -89,15 +120,23 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
             .UseInProcSessionContainer()
             .BuildAsServer();
 
-        await server.StartAsync();
+        await _server.StartAsync();
     }
 
 
-    private async ValueTask PackageHandler(IAppSession session, IMessage messageObject)
+    private ValueTask PackageHandler(IAppSession session, IMessage messageObject)
     {
         if (Setting.IsDebug && Setting.IsDebugReceive && messageObject is BaseMessageObject baseMessageObject)
         {
-            LogHelper.Debug($"---收到[{ServerType}]  {baseMessageObject.ToMessageString()}");
+            var serverInfo = NamingServiceManager.Instance.GetNodeBySessionId(session.SessionID);
+            if (serverInfo != null)
+            {
+                LogHelper.Debug($"---收到[{serverInfo.Type} To {ServerType}]  {baseMessageObject.ToMessageString()}");
+            }
+            else
+            {
+                LogHelper.Debug($"---收到[{ServerType}]  {baseMessageObject.ToMessageString()}");
+            }
         }
 
         if (messageObject is MessageObject message)
@@ -108,6 +147,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
                 ServerInfo serverInfo = new ServerInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerID, reqRegisterServer.InnerIP, reqRegisterServer.InnerPort, reqRegisterServer.OuterIP, reqRegisterServer.OuterPort);
                 NamingServiceManager.Instance.Add(serverInfo);
                 LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
+                return ValueTask.CompletedTask;
             }
             else if (message is ReqConnectServer reqConnectServer)
             {
@@ -130,7 +170,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
                         TargetIP = serverInfo.OuterIp,
                         TargetPort = serverInfo.OuterPort
                     };
-                    await session.SendAsync(messageEncoderHandler, respConnectServer);
+                    SendMessage(session, respConnectServer);
                 }
             }
         }
@@ -144,9 +184,12 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
                     UniqueId = reqActorHeartBeat.UniqueId,
                     Timestamp = TimeHelper.UnixTimeSeconds()
                 };
-                await session.SendAsync(messageEncoderHandler, response);
+                SendMessage(session, response);
+                return ValueTask.CompletedTask;
             }
         }
+
+        return ValueTask.CompletedTask;
     }
 
 
@@ -166,7 +209,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
     public override async Task Stop(string message = "")
     {
         LogHelper.Info($"{ServerType} Server stopping...");
-        await server.StopAsync();
+        await _server.StopAsync();
         LogHelper.Info($"{ServerType} Server Done!");
     }
 

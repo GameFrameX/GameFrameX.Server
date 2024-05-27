@@ -1,47 +1,19 @@
-using GameFrameX.Serialize.Serialize;
-using SuperSocket.ProtoBase;
-
 namespace GameFrameX.Launcher.StartUp.Discovery;
 
-class MessageActorDiscoveryEncoderHandler : IPackageEncoder<IMessage>
+class MessageActorDiscoveryEncoderHandler : BaseMessageEncoderHandler
 {
-    public byte[] Handler(IMessage message)
+    protected override int GetActorMessageId(Type messageType)
     {
-        var bytes = SerializerHelper.Serialize(message);
-        var messageType = message.GetType();
-        long uniqueId = 0;
-        int msgId = 0;
-        if (message is MessageObject messageObject)
-        {
-            msgId = ProtoMessageIdHandler.GetRespMessageIdByType(messageType);
-            messageObject.MessageId = msgId;
-            uniqueId = messageObject.UniqueId;
-            bytes = SerializerHelper.Serialize(messageObject);
-        }
-        else if (message is MessageActorObject messageActorObject)
-        {
-            msgId = ProtoMessageIdHandler.GetResponseActorMessageIdByType(messageType);
-            messageActorObject.MessageId = msgId;
-            uniqueId = messageActorObject.UniqueId;
-            bytes = SerializerHelper.Serialize(messageActorObject);
-        }
-
-        // len +timestamp + msgId + bytes.length
-        int len = 4 + 8 + 4 + 4 + bytes.Length;
-        var span = new byte[len];
-        int offset = 0;
-        span.WriteInt(len, ref offset);
-        span.WriteLong(uniqueId, ref offset);
-        span.WriteInt(msgId, ref offset);
-        span.WriteBytes(bytes, ref offset);
-        return span;
+        return ProtoMessageIdHandler.GetResponseActorMessageIdByType(messageType);
     }
 
-    public int Encode(IBufferWriter<byte> writer, IMessage messageObject)
+    protected override int GetMessageId(Type messageType)
     {
-        var bytes = Handler(messageObject);
-        LogHelper.Debug($"---发送[{ServerType.DiscoveryCenter}]  {messageObject.ToMessageString()}");
-        writer.Write(bytes);
-        return bytes.Length;
+        return ProtoMessageIdHandler.GetResponseMessageIdByType(messageType);
+    }
+
+    protected override int GetRpcMessageId(Type messageType)
+    {
+        return ProtoMessageIdHandler.GetRespMessageIdByType(messageType);
     }
 }
