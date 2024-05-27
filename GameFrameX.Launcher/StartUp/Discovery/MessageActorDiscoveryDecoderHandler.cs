@@ -11,7 +11,6 @@ class MessageActorDiscoveryDecoderHandler : IPackageDecoder<IMessage>
         var length = data.ReadInt(ref readOffset);
         var uniqueId = data.ReadLong(ref readOffset);
         var messageId = data.ReadInt(ref readOffset);
-        // var messageUniqueData = data.ReadBytes(ref readOffset);
         var messageData = data.ReadBytes(ref readOffset);
         var messageType = ProtoMessageIdHandler.GetRequestMessageTypeById(messageId);
         if (messageType != null)
