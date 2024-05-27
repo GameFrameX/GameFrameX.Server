@@ -4,7 +4,6 @@ using GameFrameX.Core.Timer;
 using GameFrameX.Core.Utility;
 using MongoDB.Bson;
 using MongoDB.Driver;
-
 using GameFrameX.Core.Actors;
 using GameFrameX.DBServer;
 using GameFrameX.DBServer.DbService.MongoDB;
@@ -13,13 +12,13 @@ using GameFrameX.DBServer.Storage;
 using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.Setting;
+using GameFrameX.Utility;
 
 namespace GameFrameX.Core.Comps
 {
     public sealed class StateComponent
     {
         #region 仅DBModel.Mongodb调用
-
 
         private static readonly ConcurrentBag<Func<bool, bool, Task>> saveFuncs = new();
 
@@ -88,7 +87,7 @@ namespace GameFrameX.Core.Comps
 
         static StateComponent()
         {
-            // StateComponent.AddShutdownSaveFunc(SaveAll);
+            StateComponent.AddShutdownSaveFunc(SaveAll);
         }
 
         public override async Task Active()
@@ -142,7 +141,6 @@ namespace GameFrameX.Core.Comps
 
         #region 仅DBModel.Mongodb调用
 
-        /*
         const int ONCE_SAVE_COUNT = 500;
 
         public static async Task SaveAll(bool shutdown, bool force = false)
@@ -193,7 +191,7 @@ namespace GameFrameX.Core.Comps
                 var stateName = typeof(TState).FullName;
                 StateComponent.statisticsTool.Count(stateName, writeList.Count);
                 LogHelper.Debug($"状态回存 {stateName} count:{writeList.Count}");
-                var currentDatabase = GameDb.As<MongoDbServiceConnection>().CurrentDatabase;
+                var currentDatabase = GameDb.As<MongoDbService>().CurrentDatabase;
                 var mongoCollection = currentDatabase.GetCollection<MongoState>(stateName);
                 for (int idx = 0; idx < writeList.Count; idx += ONCE_SAVE_COUNT)
                 {
@@ -202,7 +200,7 @@ namespace GameFrameX.Core.Comps
                     bool save = false;
                     try
                     {
-                        var result = await mongoCollection.BulkWriteAsync(list, MongoDbServiceConnection.BulkWriteOptions);
+                        var result = await mongoCollection.BulkWriteAsync(list, MongoDbService.BulkWriteOptions);
                         if (result.IsAcknowledged)
                         {
                             list.ForEach(model =>
@@ -223,14 +221,9 @@ namespace GameFrameX.Core.Comps
                     {
                         LogHelper.Error($"保存数据异常，类型:{typeof(TState).FullName}，{ex}");
                     }
-
-                    if (!save && shutdown)
-                    {
-                        await FileBackup.SaveToFile(list, stateName);
-                    }
                 }
             }
-        }*/
+        }
 
 
         // public static async Task<MongoState> FindAsync<TState>(FilterDefinition<BsonDocument> filter, int limit = 0)
