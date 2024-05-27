@@ -7,6 +7,11 @@ namespace GameFrameX.Setting;
 public enum ServerType
 {
     /// <summary>
+    /// 空值
+    /// </summary>
+    None = -1,
+
+    /// <summary>
     /// 客户端
     /// </summary>
     Client = 0,
