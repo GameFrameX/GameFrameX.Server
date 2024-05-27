@@ -235,7 +235,6 @@ namespace GameFrameX.Launcher
         private static void Launcher(string[] args, KeyValuePair<Type, StartUpTagAttribute> keyValuePair, AppSetting appSetting = null)
         {
             var task = Start(args, keyValuePair.Key, keyValuePair.Value.ServerType, appSetting, out var startUp);
-            LogHelper.Info("启动配置：" + startUp.Setting);
             AppStartUps.Add(startUp);
             AppStartUpTasks.Add(task);
         }
@@ -284,8 +283,9 @@ namespace GameFrameX.Launcher
                 bool isSuccess = startUp.Init(serverType, setting, args);
                 if (isSuccess)
                 {
-                    // LogHelper.Info($"启动服务器类型：{keyValuePair.Value.ServerType},配置信息：{JsonConvert.SerializeObject(appSetting)}");
                     LogHelper.Info($"----------------------------START-----{serverType}------------------------------");
+                    LogHelper.Info($"启动服务器类型:{serverType}, 配置信息:{startUp.Setting}");
+                    LogHelper.Info($"--------------------------------------------------------------------------------");
                     var task = AppEnter.Entry(startUp);
                     LogHelper.Info($"-----------------------------END------{serverType}------------------------------");
                     return task;
