@@ -116,7 +116,7 @@ namespace GameFrameX.Core.Comps
         {
             try
             {
-                // await GameDb.UpdateAsync(State);
+                await GameDb.UpdateAsync(State);
             }
             catch (Exception e)
             {
@@ -126,18 +126,18 @@ namespace GameFrameX.Core.Comps
 
         public async Task ReadStateAsync()
         {
-            /*State = await GameDb.LoadState<TState>(ActorId);
+            State = await GameDb.LoadState<TState>(ActorId);
             // if (GlobalSettings.DBModel == (int)DbModel.Mongodb)
             {
                 stateDic.TryRemove(State.Id, out _);
                 stateDic.TryAdd(State.Id, State);
-            }*/
+            }
         }
 
-        /*public Task WriteStateAsync()
+        public Task WriteStateAsync()
         {
             return GameDb.UpdateAsync(State);
-        }*/
+        }
 
 
         #region 仅DBModel.Mongodb调用
