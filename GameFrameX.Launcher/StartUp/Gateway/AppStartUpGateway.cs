@@ -110,7 +110,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpBase
             {
                 Timestamp = TimeHelper.UnixTimeSeconds()
             };
-            var result = messageEncoderHandler.RpcReplyHandler(messageActorObject.UniqueId, response);
+            var result = messageEncoderHandler.RpcHandler(messageActorObject.UniqueId, response);
             await session.SendAsync(result);
         }
         else if (message is MessageObject messageObject)

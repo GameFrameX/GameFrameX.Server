@@ -43,10 +43,9 @@ class MessageActorGatewayEncoderHandler : IMessageEncoderHandler
         return span;
     }
 
-    public byte[] RpcReplyHandler(long msgUniqueId, IMessage message)
+    public byte[] RpcHandler(long msgUniqueId, IMessage message)
     {
         var bytes = SerializerHelper.Serialize(message);
-
         // len +UniqueId + msgId + bytes.length
         int len = 4 + 8 + 4 + bytes.Length;
         var span = ArrayPool<byte>.Shared.Rent(len);
