@@ -5,9 +5,12 @@ namespace GameFrameX.Extension
 {
     public static class ByteExtension
     {
+        private const int UIntSize = sizeof(uint);
         private const int IntSize = sizeof(int);
         private const int ShortSize = sizeof(short);
+        private const int UShortSize = sizeof(ushort);
         private const int LongSize = sizeof(long);
+        private const int ULongSize = sizeof(ulong);
         private const int FloatSize = sizeof(float);
         private const int DoubleSize = sizeof(double);
         private const int ByteSize = sizeof(byte);
@@ -88,70 +91,19 @@ namespace GameFrameX.Extension
             return Encoding.UTF8.GetString(bytes, index, count);
         }
 
-        public static void Write(this byte[] bytes, uint num, int offset)
+        public static void WriteUInt(this byte[] buffer, uint value, ref int offset)
         {
-            BinaryPrimitives.WriteUInt32BigEndian(bytes.AsSpan()[offset..], num);
+            if (offset + UIntSize > buffer.Length)
+            {
+                offset += UIntSize;
+                return;
+            }
+
+            BinaryPrimitives.WriteUInt32BigEndian(buffer.AsSpan()[offset..], value);
+            offset += UIntSize;
         }
 
-        public static void Write(this byte[] bytes, int num, int offset)
-        {
-            BinaryPrimitives.WriteInt32BigEndian(bytes.AsSpan()[offset..], num);
-        }
-
-        public static void Write(this byte[] bytes, byte num, int offset)
-        {
-            bytes[offset] = num;
-        }
-
-        public static void Write(this byte[] bytes, short num, int offset)
-        {
-            BinaryPrimitives.WriteInt16BigEndian(bytes.AsSpan().Slice(offset), num);
-        }
-
-        public static void Write(this byte[] bytes, ushort num, int offset)
-        {
-            BinaryPrimitives.WriteUInt16BigEndian(bytes.AsSpan()[offset..], num);
-        }
-
-        public static void Write(this byte[] bytes, long num, int offset)
-        {
-            BinaryPrimitives.WriteInt64BigEndian(bytes.AsSpan()[offset..], num);
-        }
-
-        public static int ReadInt(this byte[] bytes, int offset)
-        {
-            return BinaryPrimitives.ReadInt32BigEndian(bytes.AsSpan()[offset..]);
-        }
-
-        public static long ReadLong(this byte[] bytes, int offset)
-        {
-            return BinaryPrimitives.ReadInt64BigEndian(bytes.AsSpan()[offset..]);
-        }
-
-        public static int ReadInt(this Span<byte> bytes, int offset)
-        {
-            return BinaryPrimitives.ReadInt32BigEndian(bytes[offset..]);
-        }
-
-        public static long ReadLong(this Span<byte> bytes, int offset)
-        {
-            return BinaryPrimitives.ReadInt64BigEndian(bytes[offset..]);
-        }
-
-        public static int ReadInt(this ReadOnlySpan<byte> bytes, int offset)
-        {
-            return BinaryPrimitives.ReadInt32BigEndian(bytes[offset..]);
-        }
-
-        public static long ReadLong(this ReadOnlySpan<byte> bytes, int offset)
-        {
-            return BinaryPrimitives.ReadInt64BigEndian(bytes[offset..]);
-        }
-
-
-        #region Write
-
-        public static unsafe void WriteInt(this byte[] buffer, int value, ref int offset)
+        public static void WriteInt(this byte[] buffer, int value, ref int offset)
         {
             if (offset + IntSize > buffer.Length)
             {
@@ -159,14 +111,23 @@ namespace GameFrameX.Extension
                 return;
             }
 
-            fixed (byte* ptr = buffer)
-            {
-                *(int*)(ptr + offset) = System.Net.IPAddress.HostToNetworkOrder(value);
-                offset += IntSize;
-            }
+            BinaryPrimitives.WriteInt32BigEndian(buffer.AsSpan()[offset..], value);
+            offset += IntSize;
         }
 
-        public static unsafe void WriteShort(this byte[] buffer, short value, ref int offset)
+        public static void WriteByte(this byte[] buffer, byte value, ref int offset)
+        {
+            if (offset + ByteSize > buffer.Length)
+            {
+                offset += ByteSize;
+                return;
+            }
+
+            buffer[offset] = value;
+            offset += ByteSize;
+        }
+
+        public static void WriteShort(this byte[] buffer, short value, ref int offset)
         {
             if (offset + ShortSize > buffer.Length)
             {
@@ -174,14 +135,23 @@ namespace GameFrameX.Extension
                 return;
             }
 
-            fixed (byte* ptr = buffer)
-            {
-                *(short*)(ptr + offset) = System.Net.IPAddress.HostToNetworkOrder(value);
-                offset += ShortSize;
-            }
+            BinaryPrimitives.WriteInt16BigEndian(buffer.AsSpan()[offset..], value);
+            offset += ShortSize;
         }
 
-        public static unsafe void WriteLong(this byte[] buffer, long value, ref int offset)
+        public static void WriteUShort(this byte[] buffer, ushort value, ref int offset)
+        {
+            if (offset + UShortSize > buffer.Length)
+            {
+                offset += UShortSize;
+                return;
+            }
+
+            BinaryPrimitives.WriteUInt16BigEndian(buffer.AsSpan()[offset..], value);
+            offset += UShortSize;
+        }
+
+        public static void WriteLong(this byte[] buffer, long value, ref int offset)
         {
             if (offset + LongSize > buffer.Length)
             {
@@ -189,12 +159,191 @@ namespace GameFrameX.Extension
                 return;
             }
 
-            fixed (byte* ptr = buffer)
-            {
-                *(long*)(ptr + offset) = System.Net.IPAddress.HostToNetworkOrder(value);
-                offset += LongSize;
-            }
+            BinaryPrimitives.WriteInt64BigEndian(buffer.AsSpan()[offset..], value);
+            offset += LongSize;
         }
+
+        public static void WriteULong(this byte[] buffer, ulong value, ref int offset)
+        {
+            if (offset + ULongSize > buffer.Length)
+            {
+                offset += ULongSize;
+                return;
+            }
+
+            BinaryPrimitives.WriteUInt64BigEndian(buffer.AsSpan()[offset..], value);
+            offset += ULongSize;
+        }
+
+        public static ushort ReadUShort(this byte[] buffer, ref int offset)
+        {
+            if (offset > buffer.Length + UShortSize)
+            {
+                throw new Exception("buffer read out of index");
+            }
+
+            var value = BinaryPrimitives.ReadUInt16BigEndian(buffer.AsSpan()[offset..]);
+            offset += UShortSize;
+            return value;
+        }
+
+        public static short ReadShort(this byte[] buffer, ref int offset)
+        {
+            if (offset > buffer.Length + ShortSize)
+            {
+                throw new Exception("buffer read out of index");
+            }
+
+            var value = BinaryPrimitives.ReadInt16BigEndian(buffer.AsSpan()[offset..]);
+            offset += ShortSize;
+            return value;
+        }
+
+        public static uint ReadUInt(this byte[] buffer, ref int offset)
+        {
+            if (offset > buffer.Length + UIntSize)
+            {
+                throw new Exception("buffer read out of index");
+            }
+
+            var value = BinaryPrimitives.ReadUInt32BigEndian(buffer.AsSpan()[offset..]);
+            offset += UIntSize;
+            return value;
+        }
+
+        public static int ReadInt(this byte[] buffer, ref int offset)
+        {
+            if (offset > buffer.Length + IntSize)
+            {
+                throw new Exception("buffer read out of index");
+            }
+
+            var value = BinaryPrimitives.ReadInt32BigEndian(buffer.AsSpan()[offset..]);
+            offset += IntSize;
+            return value;
+        }
+
+        public static ulong ReadULong(this byte[] buffer, ref int offset)
+        {
+            if (offset > buffer.Length + ULongSize)
+            {
+                throw new Exception("buffer read out of index");
+            }
+
+            var value = BinaryPrimitives.ReadUInt64BigEndian(buffer.AsSpan()[offset..]);
+            offset += ULongSize;
+            return value;
+        }
+
+        public static long ReadLong(this byte[] buffer, ref int offset)
+        {
+            if (offset > buffer.Length + LongSize)
+            {
+                throw new Exception("buffer read out of index");
+            }
+
+            var value = BinaryPrimitives.ReadInt64BigEndian(buffer.AsSpan()[offset..]);
+            offset += LongSize;
+            return value;
+        }
+
+        public static uint ReadUInt(this Span<byte> buffer, ref int offset)
+        {
+            if (offset > buffer.Length + UIntSize)
+            {
+                throw new Exception("buffer read out of index");
+            }
+
+            var value = BinaryPrimitives.ReadUInt32BigEndian(buffer[offset..]);
+            offset += UIntSize;
+            return value;
+        }
+
+        public static int ReadInt(this Span<byte> buffer, ref int offset)
+        {
+            if (offset > buffer.Length + IntSize)
+            {
+                throw new Exception("buffer read out of index");
+            }
+
+            var value = BinaryPrimitives.ReadInt32BigEndian(buffer[offset..]);
+            offset += IntSize;
+            return value;
+        }
+
+        public static ulong ReadULong(this Span<byte> buffer, ref int offset)
+        {
+            if (offset > buffer.Length + ULongSize)
+            {
+                throw new Exception("buffer read out of index");
+            }
+
+            var value = BinaryPrimitives.ReadUInt64BigEndian(buffer[offset..]);
+            offset += ULongSize;
+            return value;
+        }
+
+        public static long ReadLong(this Span<byte> buffer, ref int offset)
+        {
+            if (offset > buffer.Length + LongSize)
+            {
+                throw new Exception("buffer read out of index");
+            }
+
+            var value = BinaryPrimitives.ReadInt64BigEndian(buffer[offset..]);
+            offset += LongSize;
+            return value;
+        }
+
+        public static uint ReadUInt(this ReadOnlySpan<byte> buffer, ref int offset)
+        {
+            if (offset > buffer.Length + UIntSize)
+            {
+                throw new Exception("buffer read out of index");
+            }
+
+            var value = BinaryPrimitives.ReadUInt32BigEndian(buffer[offset..]);
+            offset += UIntSize;
+            return value;
+        }
+
+        public static int ReadInt(this ReadOnlySpan<byte> buffer, ref int offset)
+        {
+            if (offset > buffer.Length + IntSize)
+            {
+                throw new Exception("buffer read out of index");
+            }
+
+            var value = BinaryPrimitives.ReadInt32BigEndian(buffer[offset..]);
+            offset += IntSize;
+            return value;
+        }
+
+        public static ulong ReadULong(this ReadOnlySpan<byte> buffer, ref int offset)
+        {
+            if (offset > buffer.Length + ULongSize)
+            {
+                throw new Exception("buffer read out of index");
+            }
+
+            var value = BinaryPrimitives.ReadUInt64BigEndian(buffer[offset..]);
+            offset += ULongSize;
+            return value;
+        }
+
+        public static long ReadLong(this ReadOnlySpan<byte> buffer, ref int offset)
+        {
+            if (offset > buffer.Length + LongSize)
+            {
+                throw new Exception("buffer read out of index");
+            }
+
+            var value = BinaryPrimitives.ReadInt64BigEndian(buffer[offset..]);
+            offset += LongSize;
+            return value;
+        }
+
+        #region Write
 
         public static unsafe void WriteFloat(this byte[] buffer, float value, ref int offset)
         {
@@ -228,20 +377,6 @@ namespace GameFrameX.Extension
             }
         }
 
-        public static unsafe void WriteByte(this byte[] buffer, byte value, ref int offset)
-        {
-            if (offset + ByteSize > buffer.Length)
-            {
-                offset += ByteSize;
-                return;
-            }
-
-            fixed (byte* ptr = buffer)
-            {
-                *(ptr + offset) = value;
-                offset += ByteSize;
-            }
-        }
 
         public static unsafe void WriteBytes(this byte[] buffer, byte[] value, ref int offset)
         {
@@ -343,56 +478,11 @@ namespace GameFrameX.Extension
 
         #region Read
 
-        public static unsafe int ReadInt(this byte[] buffer, ref int offset)
-        {
-            if (offset > buffer.Length + IntSize)
-            {
-                throw new Exception("xbuffer read out of index");
-            }
-
-            fixed (byte* ptr = buffer)
-            {
-                var value = *(int*)(ptr + offset);
-                offset += IntSize;
-                return System.Net.IPAddress.NetworkToHostOrder(value);
-            }
-        }
-
-        public static unsafe short ReadShort(this byte[] buffer, ref int offset)
-        {
-            if (offset > buffer.Length + ShortSize)
-            {
-                throw new Exception("xbuffer read out of index");
-            }
-
-            fixed (byte* ptr = buffer)
-            {
-                var value = *(short*)(ptr + offset);
-                offset += ShortSize;
-                return System.Net.IPAddress.NetworkToHostOrder(value);
-            }
-        }
-
-        public static unsafe long ReadLong(this byte[] buffer, ref int offset)
-        {
-            if (offset > buffer.Length + LongSize)
-            {
-                throw new Exception("xbuffer read out of index");
-            }
-
-            fixed (byte* ptr = buffer)
-            {
-                var value = *(long*)(ptr + offset);
-                offset += LongSize;
-                return System.Net.IPAddress.NetworkToHostOrder(value);
-            }
-        }
-
         public static unsafe float ReadFloat(this byte[] buffer, ref int offset)
         {
             if (offset > buffer.Length + FloatSize)
             {
-                throw new Exception("xbuffer read out of index");
+                throw new Exception("buffer read out of index");
             }
 
             fixed (byte* ptr = buffer)
@@ -408,7 +498,7 @@ namespace GameFrameX.Extension
         {
             if (offset > buffer.Length + DoubleSize)
             {
-                throw new Exception("xbuffer read out of index");
+                throw new Exception("buffer read out of index");
             }
 
             fixed (byte* ptr = buffer)
@@ -424,7 +514,7 @@ namespace GameFrameX.Extension
         {
             if (offset > buffer.Length + ByteSize)
             {
-                throw new Exception("xbuffer read out of index");
+                throw new Exception("buffer read out of index");
             }
 
             fixed (byte* ptr = buffer)
@@ -467,7 +557,7 @@ namespace GameFrameX.Extension
         {
             if (offset > buffer.Length + ByteSize)
             {
-                throw new Exception("xbuffer read out of index");
+                throw new Exception("buffer read out of index");
             }
 
             fixed (byte* ptr = buffer)
@@ -499,7 +589,7 @@ namespace GameFrameX.Extension
         {
             if (offset > buffer.Length + BoolSize)
             {
-                throw new Exception("xbuffer read out of index");
+                throw new Exception("buffer read out of index");
             }
 
             fixed (byte* ptr = buffer)
