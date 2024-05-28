@@ -3,7 +3,7 @@ using SuperSocket.ProtoBase;
 
 namespace GameFrameX.Launcher.StartUp;
 
-abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMessage>
+public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMessage>
 {
     /// <summary>
     /// 获取Actor消息ID
