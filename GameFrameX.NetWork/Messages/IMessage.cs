@@ -8,6 +8,10 @@ namespace GameFrameX.NetWork.Messages;
 public interface IMessage
 {
     /// <summary>
+    /// 消息的唯一ID
+    /// </summary>
+    int UniqueId { get; set; }
+    /// <summary>
     /// 获取消息字符串
     /// </summary>
     /// <returns></returns>

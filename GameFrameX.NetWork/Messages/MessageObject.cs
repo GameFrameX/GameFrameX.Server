@@ -25,7 +25,7 @@ namespace GameFrameX.NetWork.Messages
         /// 消息的唯一ID
         /// </summary>
         [ProtoMember(999)]
-        public long UniqueId { get; set; }
+        public int UniqueId { get; set; }
 
         public MessageObject()
         {
@@ -34,7 +34,7 @@ namespace GameFrameX.NetWork.Messages
 
         public void UpdateUniqueId()
         {
-            UniqueId = UtilityIdGenerator.GetNextUniqueId();
+            UniqueId = UtilityIdGenerator.GetNextUniqueIntId();
         }
 
         public string ToSendMessageString(ServerType srcServerType, ServerType destServerType)
