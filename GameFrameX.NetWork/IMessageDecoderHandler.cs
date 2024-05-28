@@ -16,5 +16,5 @@ public interface IMessageDecoderHandler
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
-    IMessage? RpcHandler(byte[] data);
+    // IMessage? RpcHandler(byte[] data);
 }
