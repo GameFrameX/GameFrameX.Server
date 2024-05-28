@@ -16,14 +16,14 @@ namespace GameFrameX.Core.Hotfix
 
         private static volatile HotfixModule _module = null;
 
-        private static BaseSetting _baseSetting;
+        private static AppSetting _baseSetting;
         public static Assembly HotfixAssembly => _module?.HotfixAssembly;
 
         private static readonly ConcurrentDictionary<int, HotfixModule> oldModuleMap = new();
 
         public static DateTime ReloadTime { get; private set; }
 
-        public static async Task<bool> LoadHotfixModule(BaseSetting setting, string dllVersion = "")
+        public static async Task<bool> LoadHotfixModule(AppSetting setting, string dllVersion = "")
         {
             if (setting != null)
             {
@@ -43,7 +43,7 @@ namespace GameFrameX.Core.Hotfix
             return await Load(hotfixModule, _baseSetting, reload);
         }
 
-        private static async Task<bool> Load(HotfixModule newModule, BaseSetting setting, bool reload)
+        private static async Task<bool> Load(HotfixModule newModule, AppSetting setting, bool reload)
         {
             ReloadTime = DateTime.Now;
             if (reload)

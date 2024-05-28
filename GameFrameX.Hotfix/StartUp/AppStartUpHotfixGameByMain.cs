@@ -8,14 +8,9 @@ namespace GameFrameX.Hotfix.StartUp;
 /// </summary>
 internal partial class AppStartUpHotfixGame : AppStartUpService
 {
-    public BaseSetting Setting { get; private set; }
     static MessageGameDecoderHandler messageDecoderHandler = new MessageGameDecoderHandler();
     static MessageGameEncoderHandler messageEncoderHandler = new MessageGameEncoderHandler();
 
-    public void Init(BaseSetting baseSetting)
-    {
-        Setting = baseSetting;
-    }
 
     public async void Start()
     {

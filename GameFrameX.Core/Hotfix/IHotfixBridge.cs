@@ -7,7 +7,7 @@ namespace GameFrameX.Core.Hotfix
     {
         ServerType BridgeType { get; }
 
-        Task<bool> OnLoadSuccess(BaseSetting setting, bool reload);
+        Task<bool> OnLoadSuccess(AppSetting setting, bool reload);
 
         Task Stop();
     }

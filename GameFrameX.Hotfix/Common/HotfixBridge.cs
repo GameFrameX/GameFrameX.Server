@@ -25,9 +25,10 @@ namespace GameFrameX.Hotfix.Common
     internal class HotfixBridge : IHotfixBridge
     {
         public ServerType BridgeType => ServerType.Game;
-        private BaseSetting Setting;
+        private AppSetting Setting;
         AppStartUpHotfixGame _appStartUpHotfixGame;
-        public async Task<bool> OnLoadSuccess(BaseSetting setting, bool reload)
+
+        public async Task<bool> OnLoadSuccess(AppSetting setting, bool reload)
         {
             Setting = setting;
             if (reload)
@@ -42,7 +43,7 @@ namespace GameFrameX.Hotfix.Common
             LogHelper.Info("启动 HTTP 服务器完成...");
 
             _appStartUpHotfixGame = new AppStartUpHotfixGame();
-            _appStartUpHotfixGame.Init(setting);
+            _appStartUpHotfixGame.Init(setting.ServerType, setting);
             _appStartUpHotfixGame.Start();
             GlobalTimer.Start();
             await ComponentRegister.ActiveGlobalComps();
