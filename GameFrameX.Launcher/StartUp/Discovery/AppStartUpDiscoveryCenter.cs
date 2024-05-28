@@ -90,7 +90,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
     private async void SendMessage(IAppSession session, IMessage message)
     {
         Guard.NotNull(message, nameof(message));
-        if (session == null)
+        if (session == null || session.Connection.IsClosed)
         {
             return;
         }
