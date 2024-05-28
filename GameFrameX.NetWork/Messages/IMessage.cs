@@ -37,16 +37,16 @@ public interface IMessage
     /// <summary>
     /// 获取发送消息字符串
     /// </summary>
-    /// <param name="srcServerType"></param>
-    /// <param name="destServerType"></param>
+    /// <param name="srcServerType">发送方</param>
+    /// <param name="destServerType">接收方</param>
     /// <returns></returns>
     string ToSendMessageString(ServerType srcServerType, ServerType destServerType);
 
     /// <summary>
     /// 获取接收消息字符串
     /// </summary>
-    /// <param name="srcServerType"></param>
-    /// <param name="destServerType"></param>
+    /// <param name="srcServerType">发送方</param>
+    /// <param name="destServerType">接收方</param>
     /// <returns></returns>
     string ToReceiveMessageString(ServerType srcServerType, ServerType destServerType);
 }
