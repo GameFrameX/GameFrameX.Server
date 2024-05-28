@@ -126,7 +126,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
 
     private ValueTask PackageHandler(IAppSession session, IMessage messageObject)
     {
-        if (Setting.IsDebug && Setting.IsDebugReceive && messageObject is BaseMessageObject baseMessageObject)
+        if (Setting.IsDebug && Setting.IsDebugReceive && messageObject is MessageObject baseMessageObject)
         {
             var serverInfo = NamingServiceManager.Instance.GetNodeBySessionId(session.SessionID);
             if (serverInfo != null)
@@ -173,10 +173,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
                     SendMessage(session, respConnectServer);
                 }
             }
-        }
-        else if (messageObject is MessageActorObject messageActorObject)
-        {
-            if (messageActorObject is ReqActorHeartBeat reqActorHeartBeat)
+            else if (messageObject is ReqActorHeartBeat reqActorHeartBeat)
             {
                 // 心跳相应
                 var response = new RespActorHeartBeat()

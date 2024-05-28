@@ -10,14 +10,14 @@ internal partial class AppStartUpRouter
     protected Timer GateWayReconnectionTimer;
     private Timer GateWayHeartBeatTimer;
 
-    private void SendToGatewayMessage(long messageUniqueId, IMessage message)
+    private void SendToGatewayMessage(IMessage message)
     {
         if (!_gatewayClient.IsConnected)
         {
             return;
         }
 
-        var span = messageEncoderHandler.RpcHandler(messageUniqueId, message);
+        var span = messageEncoderHandler.Handler(message);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
             LogHelper.Debug(message.ToSendMessageString(ServerType, ServerType.Gateway));
@@ -59,7 +59,7 @@ internal partial class AppStartUpRouter
     {
         reqGatewayActorHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
         reqGatewayActorHeartBeat.UpdateUniqueId();
-        SendToGatewayMessage(reqGatewayActorHeartBeat.UniqueId, reqGatewayActorHeartBeat);
+        SendToGatewayMessage(reqGatewayActorHeartBeat);
     }
 
     private void GateWayReconnectionTimerOnElapsed(object sender, ElapsedEventArgs e)
@@ -84,10 +84,10 @@ internal partial class AppStartUpRouter
     private void GateWayClientOnDataReceived(object o, DataEventArgs dataEventArgs)
     {
         var messageData = dataEventArgs.Data.ReadBytes(dataEventArgs.Offset, dataEventArgs.Length);
-        var message = messageDecoderHandler.RpcHandler(messageData);
+        var message = messageDecoderHandler.Handler(messageData);
         if (Setting.IsDebug && Setting.IsDebugReceive)
         {
-            if (message is BaseMessageObject baseMessageObject)
+            if (message is MessageObject baseMessageObject)
             {
                 LogHelper.Info($"收到网关服务器消息：{baseMessageObject.ToMessageString()}");
             }

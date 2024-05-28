@@ -89,7 +89,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
 
     private async ValueTask PackageHandler(IAppSession session, IMessage message)
     {
-        if (Setting.IsDebug && Setting.IsDebugReceive && message is BaseMessageObject baseMessageObject)
+        if (Setting.IsDebug && Setting.IsDebugReceive && message is MessageObject baseMessageObject)
         {
             LogHelper.Debug($"---收到[{ServerType}] {baseMessageObject.ToMessageString()}");
         }
@@ -105,7 +105,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
             return;
         }
 
-        if (message is MessageActorObject messageActorObject)
+        if (message is MessageObject messageActorObject)
         {
             // 发送
             var response = new RespActorHeartBeat()
@@ -113,10 +113,6 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
                 Timestamp = TimeHelper.UnixTimeSeconds()
             };
             SendMessage(session, response);
-        }
-        else if (message is MessageObject messageObject)
-        {
-            // 这里要拿到对应的逻辑服务器
         }
     }
 
@@ -131,7 +127,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
         }
 
         var result = messageEncoderHandler.Handler(message);
-        if (Setting.IsDebug && Setting.IsDebugSend && message is BaseMessageObject baseMessageObject)
+        if (Setting.IsDebug && Setting.IsDebugSend && message is MessageObject baseMessageObject)
         {
             LogHelper.Debug($"---发送[{ServerType}] {baseMessageObject.ToMessageString()}");
         }
@@ -184,7 +180,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
             OuterIP = Setting.OuterIp,
             OuterPort = Setting.OuterPort
         };
-        SendToDiscoveryCenterMessage(reqRegisterServer.UniqueId, reqRegisterServer);
+        SendToDiscoveryCenterMessage(reqRegisterServer);
     }
 
     private void GameClientOnClosed(object sender, EventArgs eventArgs)

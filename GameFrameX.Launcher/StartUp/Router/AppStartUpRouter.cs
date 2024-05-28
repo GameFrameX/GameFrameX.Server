@@ -143,7 +143,7 @@ internal partial class AppStartUpRouter : AppStartUpService
                 LogHelper.Debug($"转发到[{ServerType.Gateway}] [{messageObject.ToReceiveMessageString(ServerType, ServerType.Client)}]");
             }
 
-            SendToGatewayMessage(message.UniqueId, message);
+            SendToGatewayMessage(message);
         }
 
         return ValueTask.CompletedTask;
