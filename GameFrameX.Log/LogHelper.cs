@@ -25,20 +25,20 @@ public static class LogHelper
     public static void Error(string msg, params object[] args)
     {
         Serilog.Log.Error(msg, args);
-        StackTrace();
+        // StackTrace();
     }
 
-    static void StackTrace()
-    {
-        StackTrace stackTrace = new StackTrace(true);
-        Serilog.Log.Information("StackTrace Start: \n");
-        foreach (var frame in stackTrace.GetFrames())
-        {
-            Serilog.Log.Information(frame.ToString()); //获取
-        }
-
-        Serilog.Log.Information("StackTrace End: \n");
-    }
+    // static void StackTrace()
+    // {
+    //     StackTrace stackTrace = new StackTrace(true);
+    //     Serilog.Log.Information("StackTrace Start:");
+    //     foreach (var frame in stackTrace.GetFrames())
+    //     {
+    //         Serilog.Log.Information("Method:" + frame.GetMethod().Name + " file:" + frame.GetFileName() + " Line:" + frame.GetFileLineNumber()); //获取
+    //     }
+    //
+    //     Serilog.Log.Information("StackTrace End: \n");
+    // }
 
     /// <summary>
     /// 记录带有格式参数的信息消息。
@@ -67,7 +67,7 @@ public static class LogHelper
     public static void Fatal(string msg)
     {
         Serilog.Log.Fatal(msg);
-        StackTrace();
+        // StackTrace();
     }
 
     /// <summary>
@@ -77,7 +77,7 @@ public static class LogHelper
     public static void Fatal(Exception msg)
     {
         Serilog.Log.Fatal(msg, msg.Message);
-        StackTrace();
+        // StackTrace();
     }
 
     /// <summary>
