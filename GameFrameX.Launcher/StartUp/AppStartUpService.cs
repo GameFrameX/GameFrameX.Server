@@ -28,12 +28,12 @@ public abstract class AppStartUpService : AppStartUpBase
 
     private readonly IMessageEncoderHandler _messageEncoderHandler;
     private readonly IMessageDecoderHandler _messageDecoderHandler;
-    ReqActorHeartBeat reqActorHeartBeat;
+    readonly ReqActorHeartBeat _reqDiscoveryCenterActorHeartBeat;
 
     protected AppStartUpService(IMessageEncoderHandler messageEncoderHandler, IMessageDecoderHandler messageDecoderHandler)
     {
         RpcSession = new RpcSession();
-        reqActorHeartBeat = new ReqActorHeartBeat();
+        _reqDiscoveryCenterActorHeartBeat = new ReqActorHeartBeat();
         _messageEncoderHandler = messageEncoderHandler;
         _messageDecoderHandler = messageDecoderHandler;
     }
@@ -78,9 +78,9 @@ public abstract class AppStartUpService : AppStartUpBase
 
     protected override void HeartBeatTimerOnElapsed(object sender, ElapsedEventArgs e)
     {
-        reqActorHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
-        reqActorHeartBeat.UpdateUniqueId();
-        SendToDiscoveryCenterMessage(reqActorHeartBeat.UniqueId, reqActorHeartBeat);
+        _reqDiscoveryCenterActorHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
+        _reqDiscoveryCenterActorHeartBeat.UpdateUniqueId();
+        SendToDiscoveryCenterMessage(_reqDiscoveryCenterActorHeartBeat.UniqueId, _reqDiscoveryCenterActorHeartBeat);
     }
 
     /// <summary>
