@@ -28,22 +28,25 @@ public sealed class RpcSession : IRpcSession
         waitingObjects.Enqueue(message);
     }
 
-    public void Reply(IActorResponseMessage message)
+    public bool Reply(IResponseMessage message)
     {
         if (handlingObjects.TryDequeue(out var messageActorObject))
         {
             messageActorObject.Reply(message);
+            return true;
         }
+
+        return false;
     }
 
-    public Task<IActorResponseMessage> Call(IActorRequestMessage message)
+    public Task<IResponseMessage> Call(IRequestMessage message)
     {
         var defaultMessageActorObject = RpcData.Create(message);
         waitingObjects.Enqueue(defaultMessageActorObject);
         return defaultMessageActorObject.Task;
     }
 
-    public void Send(IActorRequestMessage message)
+    public void Send(IRequestMessage message)
     {
         var defaultMessageActorObject = RpcData.Create(message);
         waitingObjects.Enqueue(defaultMessageActorObject);

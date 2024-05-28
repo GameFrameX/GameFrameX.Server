@@ -8,11 +8,11 @@ public interface IRpcSession
     /// 异步调用
     /// </summary>
     /// <param name="message"></param>
-    Task<IActorResponseMessage> Call(IActorRequestMessage message);
+    Task<IResponseMessage> Call(IRequestMessage message);
 
     /// <summary>
     /// 发送
     /// </summary>
     /// <param name="message"></param>
-    void Send(IActorRequestMessage message);
+    void Send(IRequestMessage message);
 }

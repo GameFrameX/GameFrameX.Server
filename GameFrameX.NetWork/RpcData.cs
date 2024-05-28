@@ -25,27 +25,27 @@ public class RpcData
     /// </summary>
     public IResponseMessage ResponseMessage { get; protected set; }
 
-    public void Reply(IActorResponseMessage actorResponseMessage)
+    public void Reply(IResponseMessage actorResponseMessage)
     {
         ResponseMessage = actorResponseMessage;
         tcs.SetResult(actorResponseMessage);
     }
 
-    public static RpcData Create(IActorRequestMessage actorRequestMessage, bool isReply = true)
+    public static RpcData Create(IRequestMessage actorRequestMessage, bool isReply = true)
     {
         var defaultMessageActorObject = new RpcData(actorRequestMessage, isReply);
 
         return defaultMessageActorObject;
     }
 
-    public RpcData(IActorRequestMessage requestMessage, bool isReply = true)
+    public RpcData(IRequestMessage requestMessage, bool isReply = true)
     {
         RequestMessage = requestMessage;
         IsReply = isReply;
         UniqueId = UtilityIdGenerator.GetNextUniqueId();
-        tcs = new TaskCompletionSource<IActorResponseMessage>();
+        tcs = new TaskCompletionSource<IResponseMessage>();
     }
 
-    private readonly TaskCompletionSource<IActorResponseMessage> tcs;
-    public Task<IActorResponseMessage> Task => tcs.Task;
+    private readonly TaskCompletionSource<IResponseMessage> tcs;
+    public Task<IResponseMessage> Task => tcs.Task;
 }
