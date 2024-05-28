@@ -44,7 +44,7 @@ public partial class RespConnected : MessageObject, IResponseMessage
 /// 请求Cache连接 目标
 /// </summary>
 [MessageTypeHandler(2000001)]
-public partial class ReqActorCacheTarget : MessageActorObject, IActorRequestMessage
+public partial class ReqActorCacheTarget : MessageObject, IRequestMessage
 {
     /// <summary>
     ///  时间戳
@@ -58,7 +58,7 @@ public partial class ReqActorCacheTarget : MessageActorObject, IActorRequestMess
 /// </summary>
 [MessageTypeHandler(2000001)]
 [ProtoContract]
-public partial class RespActorCacheTarget : MessageActorObject, IActorResponseMessage
+public partial class RespActorCacheTarget : MessageObject, IResponseMessage
 {
     /// <summary>
     ///  时间戳
@@ -71,7 +71,7 @@ public partial class RespActorCacheTarget : MessageActorObject, IActorResponseMe
 /// 请求心跳
 /// </summary>
 [MessageTypeHandler(1000001)]
-public partial class ReqActorHeartBeat : MessageActorObject, IActorRequestMessage, IReqHeartBeatMessage
+public partial class ReqActorHeartBeat : MessageObject, IRequestMessage, IReqHeartBeatMessage
 {
     /// <summary>
     ///  时间戳
@@ -85,7 +85,7 @@ public partial class ReqActorHeartBeat : MessageActorObject, IActorRequestMessag
 /// </summary>
 [MessageTypeHandler(1000001)]
 [ProtoContract]
-public partial class RespActorHeartBeat : MessageActorObject, IActorResponseMessage, IRespHeartBeatMessage
+public partial class RespActorHeartBeat : MessageObject, IResponseMessage, IRespHeartBeatMessage
 {
     /// <summary>
     ///  时间戳
