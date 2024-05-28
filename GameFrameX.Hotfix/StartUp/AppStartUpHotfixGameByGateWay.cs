@@ -22,13 +22,23 @@ internal partial class AppStartUpHotfixGame
             return;
         }
 
-        var span = AppStartUpHotfixGame.messageEncoderHandler.Handler(message);
+        var span = messageEncoderHandler.Handler(message);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
             LogHelper.Debug(message.ToSendMessageString(Setting.ServerType, ServerType.Gateway));
         }
 
         _gatewayClient.TrySend(span);
+    }
+
+    protected override void ConnectServerHandler()
+    {
+        ConnectToGateWay();
+    }
+
+    protected override void DisconnectServerHandler()
+    {
+        DisconnectToGateWay();
     }
 
     private void StartGatewayClient()
