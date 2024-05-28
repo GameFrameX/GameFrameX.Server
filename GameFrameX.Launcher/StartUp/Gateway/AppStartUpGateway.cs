@@ -73,28 +73,36 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
 
     private ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
     {
-        LogHelper.Info("有路由客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
+        LogHelper.Info("有客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
         GameClientSessionManager.RemoveSession(appSession.SessionID); //移除
         return ValueTask.CompletedTask;
     }
 
     private ValueTask OnConnected(IAppSession appSession)
     {
-        LogHelper.Info("有路由客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
+        LogHelper.Info("有客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
         // var gameSession = new GameSession(socketClient.IP, socketClient);
         var netChannel = new DefaultNetWorkChannel(appSession, messageEncoderHandler, RpcSession);
         GameClientSessionManager.SetSession(appSession.SessionID, netChannel); //移除
         return ValueTask.CompletedTask;
     }
 
-
-    // readonly MessageActorDiscoveryEncoderHandler messageEncoderHandler = new MessageActorDiscoveryEncoderHandler();
-
     private async ValueTask PackageHandler(IAppSession session, IMessage message)
     {
         if (Setting.IsDebug && Setting.IsDebugReceive && message is BaseMessageObject baseMessageObject)
         {
             LogHelper.Debug($"---收到[{ServerType}] {baseMessageObject.ToMessageString()}");
+        }
+
+        if (message is ReqActorHeartBeat reqActorHeartBeat)
+        {
+            var respActorHeartBeat = new RespActorHeartBeat()
+            {
+                UniqueId = reqActorHeartBeat.UniqueId,
+                Timestamp = TimeHelper.UnixTimeSeconds()
+            };
+            SendMessage(session, respActorHeartBeat);
+            return;
         }
 
         if (message is MessageActorObject messageActorObject)
@@ -104,8 +112,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
             {
                 Timestamp = TimeHelper.UnixTimeSeconds()
             };
-            var result = messageEncoderHandler.RpcHandler(messageActorObject.UniqueId, response);
-            await session.SendAsync(result);
+            SendMessage(session, response);
         }
         else if (message is MessageObject messageObject)
         {
@@ -115,6 +122,22 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
 
     #endregion
 
+    private async void SendMessage(IAppSession session, IMessage message)
+    {
+        if (session == null || session.Connection.IsClosed)
+        {
+            LogHelper.Error("目标链接已断开，取消发送");
+            return;
+        }
+
+        var result = messageEncoderHandler.Handler(message);
+        if (Setting.IsDebug && Setting.IsDebugSend && message is BaseMessageObject baseMessageObject)
+        {
+            LogHelper.Debug($"---发送[{ServerType}] {baseMessageObject.ToMessageString()}");
+        }
+
+        await session.SendAsync(result);
+    }
 
     private void StartGameClient()
     {
