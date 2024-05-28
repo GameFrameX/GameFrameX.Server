@@ -25,7 +25,7 @@
         "--InnerIp": "127.0.0.1",
         "--InnerPort": 22001,
         "--OuterIp": "127.0.0.1",
-        "--OuterPort": 22010,
+        "--OuterPort": 22001,
         "--DiscoveryCenterIp": "127.0.0.1",
         "--DiscoveryCenterPort": 21001
       }
