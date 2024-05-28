@@ -39,7 +39,6 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
     public override async Task Stop(string message = "")
     {
         LogHelper.Info($"服务器{Setting.ServerType} 停止! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
-        StopDiscoveryCenter();
         foreach (var kv in _gameClientList)
         {
             kv.AsyncTcpSession?.Close();
