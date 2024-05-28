@@ -17,6 +17,6 @@ class MessageRouterEncoderHandler : BaseMessageEncoderHandler
 
     protected override int GetRpcMessageId(Type messageType)
     {
-        return ProtoMessageIdHandler.GetReqMessageIdByType(messageType);
+        return ProtoMessageIdHandler.GetRequestMessageIdByType(messageType);
     }
 }
