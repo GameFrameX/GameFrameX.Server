@@ -12,5 +12,5 @@ public interface IMessageEncoderHandler
     /// <param name="messageUniqueId"></param>
     /// <param name="message"></param>
     /// <returns></returns>
-    byte[] RpcHandler(long messageUniqueId, IMessage message);
+    // byte[] RpcHandler(int messageUniqueId, IMessage message);
 }
