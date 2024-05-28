@@ -232,7 +232,7 @@ public abstract class AppStartUpService : AppStartUpBase
         ReconnectionTimer.Start();
     }
 
-    protected void StopDiscoveryCenter()
+    public override Task Stop(string message = "")
     {
         HeartBeatTimer?.Close();
         ReconnectionTimer?.Close();
@@ -241,5 +241,7 @@ public abstract class AppStartUpService : AppStartUpBase
             _discoveryCenterClient.Close();
             _discoveryCenterClient = null;
         }
+
+        return base.Stop(message);
     }
 }
