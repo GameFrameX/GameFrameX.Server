@@ -1,4 +1,6 @@
-﻿namespace GameFrameX.Log;
+﻿using System.Diagnostics;
+
+namespace GameFrameX.Log;
 
 /// <summary>
 /// 日志帮助类
@@ -23,6 +25,19 @@ public static class LogHelper
     public static void Error(string msg, params object[] args)
     {
         Serilog.Log.Error(msg, args);
+        StackTrace();
+    }
+
+    static void StackTrace()
+    {
+        StackTrace stackTrace = new StackTrace(true);
+        Serilog.Log.Information("StackTrace Start: \n");
+        foreach (var frame in stackTrace.GetFrames())
+        {
+            Serilog.Log.Information(frame.ToString()); //获取
+        }
+
+        Serilog.Log.Information("StackTrace End: \n");
     }
 
     /// <summary>
@@ -52,6 +67,7 @@ public static class LogHelper
     public static void Fatal(string msg)
     {
         Serilog.Log.Fatal(msg);
+        StackTrace();
     }
 
     /// <summary>
@@ -61,6 +77,7 @@ public static class LogHelper
     public static void Fatal(Exception msg)
     {
         Serilog.Log.Fatal(msg, msg.Message);
+        StackTrace();
     }
 
     /// <summary>
