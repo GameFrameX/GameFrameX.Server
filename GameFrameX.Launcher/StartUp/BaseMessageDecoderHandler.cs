@@ -65,7 +65,7 @@ public class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder
             var uniqueId = data.ReadLong(ref readOffset);
             var messageId = data.ReadInt(ref readOffset);
             var messageData = data.ReadBytes(ref readOffset);
-            var messageType = ProtoMessageIdHandler.GetRespTypeById(messageId);
+            var messageType = ProtoMessageIdHandler.GetResponseMessageTypeById(messageId);
             if (messageType != null)
             {
                 var message = SerializerHelper.Deserialize(messageData, messageType);
