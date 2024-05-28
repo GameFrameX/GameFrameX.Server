@@ -96,11 +96,14 @@ internal partial class AppStartUpHotfixGame
     private void GateWayClientOnDataReceived(object o, DataEventArgs dataEventArgs)
     {
         var messageData = dataEventArgs.Data.ReadBytes(dataEventArgs.Offset, dataEventArgs.Length);
-        // var message = messageRouterDecoderHandler.RpcHandler(messageData);
-        // if (message is IActorResponseMessage actorResponseMessage)
-        // {
-        //     rpcSession.Reply(actorResponseMessage);
-        // }
+        var message = messageDecoderHandler.RpcHandler(messageData);
+        if (Setting.IsDebug && Setting.IsDebugReceive)
+        {
+            if (message is BaseMessageObject baseMessageObject)
+            {
+                LogHelper.Info($"收到网关服务器消息：{baseMessageObject.ToMessageString()}");
+            }
+        }
 
 
         // var messageObject = (BaseMessageObject)message;
