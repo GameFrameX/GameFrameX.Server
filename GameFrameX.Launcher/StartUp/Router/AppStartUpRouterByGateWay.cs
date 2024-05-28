@@ -8,6 +8,7 @@ internal partial class AppStartUpRouter
     AsyncTcpSession _gatewayClient;
 
     protected Timer GateWayReconnectionTimer;
+    private Timer GateWayHeartBeatTimer;
 
     private void SendToGatewayMessage(long messageUniqueId, IMessage message)
     {
@@ -22,8 +23,14 @@ internal partial class AppStartUpRouter
             LogHelper.Debug(message.ToSendMessageString(ServerType, ServerType.Gateway));
         }
 
-        _gatewayClient.TrySend(span);
+        bool result = _gatewayClient.TrySend(span);
+        if (result)
+        {
+            GateWayHeartBeatTimer.Reset();
+        }
     }
+
+    ReqActorHeartBeat reqGatewayActorHeartBeat;
 
     private void StartGatewayClient()
     {
@@ -33,11 +40,26 @@ internal partial class AppStartUpRouter
         };
         GateWayReconnectionTimer.Elapsed += GateWayReconnectionTimerOnElapsed;
         GateWayReconnectionTimer.Start();
+
+        GateWayHeartBeatTimer = new Timer
+        {
+            Interval = 5000
+        };
+        GateWayHeartBeatTimer.Elapsed += GateWayHeartBeatTimerOnElapsed;
+        GateWayHeartBeatTimer.Start();
+        reqGatewayActorHeartBeat = new ReqActorHeartBeat();
         _gatewayClient = new AsyncTcpSession();
         _gatewayClient.Closed += GateWayClientOnClosed;
         _gatewayClient.DataReceived += GateWayClientOnDataReceived;
         _gatewayClient.Connected += GateWayClientOnConnected;
         _gatewayClient.Error += GateWayClientOnError;
+    }
+
+    private void GateWayHeartBeatTimerOnElapsed(object sender, ElapsedEventArgs e)
+    {
+        reqGatewayActorHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
+        reqGatewayActorHeartBeat.UpdateUniqueId();
+        SendToGatewayMessage(reqGatewayActorHeartBeat.UniqueId, reqGatewayActorHeartBeat);
     }
 
     private void GateWayReconnectionTimerOnElapsed(object sender, ElapsedEventArgs e)
@@ -48,14 +70,14 @@ internal partial class AppStartUpRouter
     private void GateWayClientOnError(object sender, ErrorEventArgs e)
     {
         LogHelper.Info("和网关服务器链接链接发生错误!" + e.Exception.Message);
-        GateWayReconnectionTimer.Start();
-        // DiscoveryCenterClientOnClosed(_discoveryCenterClient, e);
+        GateWayClientOnClosed(sender, e);
     }
 
     private void GateWayClientOnConnected(object sender, EventArgs e)
     {
         // 和网关服务器链接成功，关闭重连
         GateWayReconnectionTimer.Stop();
+        GateWayHeartBeatTimer.Start();
         LogHelper.Info("和网关服务器链接链接成功!");
     }
 
@@ -75,9 +97,10 @@ internal partial class AppStartUpRouter
 
     private void GateWayClientOnClosed(object sender, EventArgs eventArgs)
     {
-        LogHelper.Info("和网关服务器链接链接断开!");
+        LogHelper.Info("和网关服务器链接链接断开! 开启重连");
         // 和网关服务器链接断开，开启重连
         GateWayReconnectionTimer.Start();
+        GateWayHeartBeatTimer.Stop();
     }
 
     private void ConnectToGateWay()
