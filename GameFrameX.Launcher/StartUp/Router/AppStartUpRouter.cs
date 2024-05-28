@@ -168,7 +168,7 @@ internal partial class AppStartUpRouter : AppStartUpService
 
     public override async Task Stop(string message = "")
     {
-        StopDiscoveryCenter();
+        DisconnectToGateWay();
         await _webSocketServer.StopAsync();
         await _tcpService.StopAsync();
         await base.Stop(message);
