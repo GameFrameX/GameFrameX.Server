@@ -25,12 +25,17 @@ public abstract class BaseMessageObject
 
     public BaseMessageObject()
     {
-        UniqueId = UtilityIdGenerator.GetNextUniqueId();
+        UpdateUniqueId();
     }
 
     public override string ToString()
     {
         return JsonHelper.Serialize(this);
+    }
+
+    public void UpdateUniqueId()
+    {
+        UniqueId = UtilityIdGenerator.GetNextUniqueId();
     }
 
     public string ToMessageString()
