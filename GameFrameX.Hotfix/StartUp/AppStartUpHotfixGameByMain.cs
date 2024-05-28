@@ -11,6 +11,7 @@ internal partial class AppStartUpHotfixGame : AppStartUpService
     static MessageGameDecoderHandler messageDecoderHandler = new MessageGameDecoderHandler();
     static MessageGameEncoderHandler messageEncoderHandler = new MessageGameEncoderHandler();
 
+    protected override ServerType GetServerType { get; } = ServerType.Gateway;
 
     public async void Start()
     {
