@@ -15,7 +15,6 @@ global using System.Net;
 global using GameFrameX.Setting;
 global using System.Buffers;
 global using System.Timers;
-global using GameFrameX.Launcher.Message;
 global using GameFrameX.Launcher.StartUp;
 global using GameFrameX.Proto;
 global using GameFrameX.Proto.Proto;

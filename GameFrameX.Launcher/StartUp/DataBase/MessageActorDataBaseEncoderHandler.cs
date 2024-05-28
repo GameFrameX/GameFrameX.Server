@@ -1,4 +1,4 @@
-using GameFrameX.DBServer.State;
+/*using GameFrameX.DBServer.State;
 using SuperSocket.ProtoBase;
 
 namespace GameFrameX.Launcher.StartUp.DataBase;
@@ -28,4 +28,4 @@ class MessageActorDataBaseEncoderHandler : IPackageEncoder<ICacheState>
         ArrayPool<byte>.Shared.Return(bytes);
         return bytes.Length;
     }
-}
+}*/

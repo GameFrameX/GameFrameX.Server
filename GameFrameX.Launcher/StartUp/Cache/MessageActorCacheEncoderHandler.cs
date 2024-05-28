@@ -1,4 +1,4 @@
-using GameFrameX.Extension;
+/*using GameFrameX.Extension;
 using GameFrameX.NetWork;
 using GameFrameX.Serialize.Serialize;
 using SuperSocket.ProtoBase;
@@ -38,4 +38,4 @@ class MessageActorCacheEncoderHandler : IMessageEncoderHandler, IPackageEncoder<
         ArrayPool<byte>.Shared.Return(bytes);
         return bytes.Length;
     }
-}
+}*/
