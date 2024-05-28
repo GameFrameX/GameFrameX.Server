@@ -56,18 +56,17 @@ public abstract class AppStartUpService : AppStartUpBase
                 continue;
             }
 
-            SendToDiscoveryCenterMessage(message.UniqueId, message.RequestMessage);
+            SendToDiscoveryCenterMessage(message.RequestMessage);
         }
     }
 
     /// <summary>
     /// 给发现中心发送消息
     /// </summary>
-    /// <param name="messageUniqueId"></param>
     /// <param name="message"></param>
-    protected void SendToDiscoveryCenterMessage(long messageUniqueId, IMessage message)
+    protected void SendToDiscoveryCenterMessage(IMessage message)
     {
-        var span = _messageEncoderHandler.RpcHandler(messageUniqueId, message);
+        var span = _messageEncoderHandler.Handler(message);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
             LogHelper.Debug(message.ToSendMessageString(ServerType, ServerType.DiscoveryCenter));
@@ -80,7 +79,7 @@ public abstract class AppStartUpService : AppStartUpBase
     {
         _reqDiscoveryCenterActorHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
         _reqDiscoveryCenterActorHeartBeat.UpdateUniqueId();
-        SendToDiscoveryCenterMessage(_reqDiscoveryCenterActorHeartBeat.UniqueId, _reqDiscoveryCenterActorHeartBeat);
+        SendToDiscoveryCenterMessage(_reqDiscoveryCenterActorHeartBeat);
     }
 
     /// <summary>
@@ -135,7 +134,7 @@ public abstract class AppStartUpService : AppStartUpBase
                 {
                     ServerType = GetServerType
                 };
-                SendToDiscoveryCenterMessage(reqConnectServer.UniqueId, reqConnectServer);
+                SendToDiscoveryCenterMessage(reqConnectServer);
             }
         }
     }
@@ -158,7 +157,7 @@ public abstract class AppStartUpService : AppStartUpBase
             OuterIP = Setting.OuterIp,
             OuterPort = Setting.OuterPort
         };
-        SendToDiscoveryCenterMessage(reqRegisterServer.UniqueId, reqRegisterServer);
+        SendToDiscoveryCenterMessage(reqRegisterServer);
     }
 
     /// <summary>
@@ -186,7 +185,7 @@ public abstract class AppStartUpService : AppStartUpBase
     private void DiscoveryCenterClientOnDataReceived(object o, DataEventArgs dataEventArgs)
     {
         var messageData = dataEventArgs.Data.ReadBytes(dataEventArgs.Offset, dataEventArgs.Length);
-        var message = _messageDecoderHandler.RpcHandler(messageData);
+        var message = _messageDecoderHandler.Handler(messageData);
         if (message == null)
         {
             LogHelper.Error("数据解析失败！");
@@ -198,7 +197,7 @@ public abstract class AppStartUpService : AppStartUpBase
             LogHelper.Debug(message.ToReceiveMessageString(ServerType.DiscoveryCenter, ServerType));
         }
 
-        if (message is IActorResponseMessage actorResponseMessage)
+        if (message is IResponseMessage actorResponseMessage)
         {
             RpcSession.Reply(actorResponseMessage);
         }
