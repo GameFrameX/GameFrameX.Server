@@ -3,16 +3,17 @@ using System.Timers;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Proto.BuiltIn;
 using SuperSocket.ClientEngine;
-using ErrorEventArgs = System.IO.ErrorEventArgs;
 using Timer = System.Timers.Timer;
 
-namespace GameFrameX.Launcher.StartUp.Router;
+namespace GameFrameX.Hotfix.StartUp;
 
-internal partial class AppStartUpGame
+internal partial class AppStartUpHotfixGame
 {
     AsyncTcpSession _gatewayClient;
 
-    protected Timer GateWayReconnectionTimer;
+    private Timer _gateWayReconnectionTimer;
+    private Timer _gateWayHeartBeatTimer;
+    private ReqActorHeartBeat _reqGatewayActorHeartBeat;
 
     private void SendToGatewayMessage(long messageUniqueId, IMessage message)
     {
@@ -21,7 +22,7 @@ internal partial class AppStartUpGame
             return;
         }
 
-        var span = messageEncoderHandler.Handler(message);
+        var span = AppStartUpHotfixGame.messageEncoderHandler.Handler(message);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
             LogHelper.Debug(message.ToSendMessageString(Setting.ServerType, ServerType.Gateway));
@@ -32,17 +33,31 @@ internal partial class AppStartUpGame
 
     private void StartGatewayClient()
     {
-        GateWayReconnectionTimer = new Timer
+        _gateWayReconnectionTimer = new Timer
         {
             Interval = 5000
         };
-        GateWayReconnectionTimer.Elapsed += GateWayReconnectionTimerOnElapsed;
-        GateWayReconnectionTimer.Start();
+        _gateWayReconnectionTimer.Elapsed += GateWayReconnectionTimerOnElapsed;
+        _gateWayReconnectionTimer.Start();
+        _gateWayHeartBeatTimer = new Timer
+        {
+            Interval = 5000
+        };
+        _gateWayHeartBeatTimer.Elapsed += GateWayHeartBeatTimerOnElapsed;
+        _gateWayHeartBeatTimer.Start();
+        _reqGatewayActorHeartBeat = new ReqActorHeartBeat();
         _gatewayClient = new AsyncTcpSession();
         _gatewayClient.Closed += GateWayClientOnClosed;
         _gatewayClient.DataReceived += GateWayClientOnDataReceived;
         _gatewayClient.Connected += GateWayClientOnConnected;
         _gatewayClient.Error += GateWayClientOnError;
+    }
+
+    private void GateWayHeartBeatTimerOnElapsed(object sender, ElapsedEventArgs e)
+    {
+        _reqGatewayActorHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
+        _reqGatewayActorHeartBeat.UpdateUniqueId();
+        SendToGatewayMessage(_reqGatewayActorHeartBeat.UniqueId, _reqGatewayActorHeartBeat);
     }
 
     private void GateWayReconnectionTimerOnElapsed(object sender, ElapsedEventArgs e)
@@ -52,16 +67,16 @@ internal partial class AppStartUpGame
 
     private void GateWayClientOnError(object sender, SuperSocket.ClientEngine.ErrorEventArgs errorEventArgs)
     {
-        LogHelper.Info("和发现中心服务器链接链接发生错误!" + errorEventArgs);
-        GateWayReconnectionTimer.Start();
-        // DiscoveryCenterClientOnClosed(_discoveryCenterClient, e);
+        LogHelper.Info("和网关服务器链接链接发生错误!" + errorEventArgs);
+        GateWayClientOnClosed(sender, errorEventArgs);
     }
 
     private void GateWayClientOnConnected(object sender, EventArgs e)
     {
         // 和网关服务器链接成功，关闭重连
-        GateWayReconnectionTimer.Stop();
-        LogHelper.Info("和发现中心服务器链接链接成功!");
+        _gateWayReconnectionTimer.Stop();
+        _gateWayHeartBeatTimer.Start();
+        LogHelper.Info("和网关服务器链接链接成功!");
     }
 
     private void GateWayClientOnDataReceived(object o, DataEventArgs dataEventArgs)
@@ -80,19 +95,20 @@ internal partial class AppStartUpGame
 
     private void GateWayClientOnClosed(object sender, EventArgs eventArgs)
     {
-        LogHelper.Info("和网关服务器链接链接断开!");
+        LogHelper.Info("和网关服务器链接链接断开!开启重连");
         // 和网关服务器链接断开，开启重连
-        GateWayReconnectionTimer.Start();
+        _gateWayReconnectionTimer.Start();
+        _gateWayHeartBeatTimer.Stop();
     }
 
     private void ConnectToGateWay()
     {
-        if (_respConnectServer == null)
+        if (ConnectTargetServer == null)
         {
             return;
         }
 
-        var endPoint = new IPEndPoint(IPAddress.Parse(_respConnectServer.TargetIP), _respConnectServer.TargetPort);
+        var endPoint = new IPEndPoint(IPAddress.Parse((string)ConnectTargetServer.TargetIP), ConnectTargetServer.TargetPort);
         _gatewayClient.Connect(endPoint);
     }
 
