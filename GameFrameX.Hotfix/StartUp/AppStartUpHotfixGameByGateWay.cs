@@ -28,7 +28,11 @@ internal partial class AppStartUpHotfixGame
             LogHelper.Debug(message.ToSendMessageString(Setting.ServerType, ServerType.Gateway));
         }
 
-        _gatewayClient.TrySend(span);
+        var result = _gatewayClient.TrySend(span);
+        if (result)
+        {
+            _gateWayHeartBeatTimer.Reset();
+        }
     }
 
     protected override void ConnectServerHandler()
