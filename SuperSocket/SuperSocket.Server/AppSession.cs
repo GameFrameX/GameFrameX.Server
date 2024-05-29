@@ -39,6 +39,16 @@ namespace SuperSocket.Server
 
         public string SessionID { get; private set; }
 
+        public ValueTask SendAsync(byte[] data, CancellationToken cancellationToken = default)
+        {
+            return _connection.SendAsync(data, cancellationToken);
+        }
+
+        public ValueTask SendAsync(ReadOnlyMemory<byte> data, CancellationToken cancellationToken)
+        {
+            return _connection.SendAsync(data, cancellationToken);
+        }
+
         public DateTimeOffset StartTime { get; private set; }
 
         public SessionState State { get; private set; } = SessionState.None;
@@ -143,10 +153,6 @@ namespace SuperSocket.Server
             await connectedEventHandler.Invoke(this, EventArgs.Empty);
         }
 
-        ValueTask IAppSession.SendAsync(ReadOnlyMemory<byte> data, CancellationToken cancellationToken)
-        {
-            return _connection.SendAsync(data, cancellationToken);
-        }
 
         ValueTask IAppSession.SendAsync<TPackage>(IPackageEncoder<TPackage> packageEncoder, TPackage package, CancellationToken cancellationToken)
         {
