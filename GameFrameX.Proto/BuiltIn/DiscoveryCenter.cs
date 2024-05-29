@@ -7,7 +7,7 @@ namespace GameFrameX.Proto.BuiltIn;
 /// <summary>
 /// 请求链接的服务
 /// </summary>
-[MessageTypeHandler(((ushort.MaxValue - 1) << 16) + 100)]
+[MessageTypeHandler(((short.MaxValue - 1) << 16) + 100)]
 public partial class ReqConnectServer : MessageObject, IRequestMessage
 {
     /// <summary>
@@ -26,7 +26,7 @@ public partial class ReqConnectServer : MessageObject, IRequestMessage
 /// <summary>
 /// 请求链接的服务返回
 /// </summary>
-[MessageTypeHandler(((ushort.MaxValue - 1) << 16) + 101)]
+[MessageTypeHandler(((short.MaxValue - 1) << 16) + 101)]
 public partial class RespConnectServer : MessageObject, IResponseMessage
 {
     /// <summary>
@@ -63,7 +63,7 @@ public partial class RespConnectServer : MessageObject, IResponseMessage
 /// <summary>
 /// 服务上线
 /// </summary>
-[MessageTypeHandler(((ushort.MaxValue - 1) << 16) + 102)]
+[MessageTypeHandler(((short.MaxValue - 1) << 16) + 102)]
 public partial class RespServerOnlineServer : MessageObject, IResponseMessage
 {
     /// <summary>
@@ -88,7 +88,7 @@ public partial class RespServerOnlineServer : MessageObject, IResponseMessage
 /// <summary>
 /// 服务下线
 /// </summary>
-[MessageTypeHandler(((ushort.MaxValue - 1) << 16) + 103)]
+[MessageTypeHandler(((short.MaxValue - 1) << 16) + 103)]
 public partial class RespServerOfflineServer : MessageObject, IResponseMessage
 {
     /// <summary>
@@ -113,7 +113,7 @@ public partial class RespServerOfflineServer : MessageObject, IResponseMessage
 /// <summary>
 /// 请求注册服务
 /// </summary>
-[MessageTypeHandler(((ushort.MaxValue - 1) << 16) + 104)]
+[MessageTypeHandler(((short.MaxValue - 1) << 16) + 104)]
 public partial class ReqRegisterServer : MessageObject, IRequestMessage
 {
     /// <summary>
@@ -162,7 +162,7 @@ public partial class ReqRegisterServer : MessageObject, IRequestMessage
 /// <summary>
 /// 请求注册游戏服务
 /// </summary>
-[MessageTypeHandler(((ushort.MaxValue - 1) << 16) + 204)]
+[MessageTypeHandler(((short.MaxValue - 1) << 16) + 204)]
 public partial class ReqRegisterGameServer : MessageObject, IRequestMessage
 {
     /// <summary>

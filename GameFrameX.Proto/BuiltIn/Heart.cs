@@ -7,7 +7,7 @@ namespace GameFrameX.Proto.BuiltIn;
 /// <summary>
 /// 请求心跳
 /// </summary>
-[MessageTypeHandler(((ushort.MaxValue - 1) << 16) + 1)]
+[MessageTypeHandler(((short.MaxValue - 1) << 16) + 1)]
 [ProtoContract]
 public partial class ReqActorHeartBeat : MessageObject, IRequestMessage, IReqHeartBeatMessage
 {
@@ -21,7 +21,7 @@ public partial class ReqActorHeartBeat : MessageObject, IRequestMessage, IReqHea
 /// <summary>
 /// 返回心跳
 /// </summary>
-[MessageTypeHandler(((ushort.MaxValue - 1) << 16) + 2)]
+[MessageTypeHandler(((short.MaxValue - 1) << 16) + 2)]
 [ProtoContract]
 public partial class RespActorHeartBeat : MessageObject, IResponseMessage, IRespHeartBeatMessage
 {
