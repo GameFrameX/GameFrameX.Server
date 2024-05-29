@@ -43,7 +43,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
         LogHelper.Info($"退出服务器{ServerType}成功");
     }
 
-    private void OnServerRemove(ServerInfo serverInfo)
+    private void OnServerRemove(IServiceInfo serverInfo)
     {
         var serverList = _namingServiceManager.GetAllNodes().Where(m => m.ServerId != 0 && m.ServerId != serverInfo.ServerId).ToList();
 
@@ -53,8 +53,9 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
             ServerName = serverInfo.ServerName,
             ServerID = serverInfo.ServerId
         };
-        foreach (var info in serverList)
+        foreach (var serverInfo1 in serverList)
         {
+            var info = (ServiceInfo)serverInfo1;
             if (serverInfo.SessionId == info.SessionId)
             {
                 continue;
@@ -65,7 +66,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
         }
     }
 
-    private void OnServerAdd(ServerInfo serverInfo)
+    private void OnServerAdd(IServiceInfo serverInfo)
     {
         var serverList = _namingServiceManager.GetOuterNodes().Where(m => m.ServerId != serverInfo.ServerId).ToList();
 
@@ -75,8 +76,9 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
             ServerName = serverInfo.ServerName,
             ServerID = serverInfo.ServerId
         };
-        foreach (var info in serverList)
+        foreach (var serverInfo1 in serverList)
         {
+            var info = (ServiceInfo)serverInfo1;
             var appSession = (IAppSession)info.Session;
             SendMessage(appSession, respServerOnlineServer);
         }
@@ -145,8 +147,8 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
             if (messageObject is ReqRegisterServer reqRegisterServer)
             {
                 // 注册服务
-                ServerInfo serverInfo = new ServerInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerID, reqRegisterServer.InnerIP, reqRegisterServer.InnerPort, reqRegisterServer.OuterIP, reqRegisterServer.OuterPort);
-                _namingServiceManager.Add(serverInfo);
+                ServiceInfo serviceInfo = new ServiceInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerID, reqRegisterServer.InnerIP, reqRegisterServer.InnerPort, reqRegisterServer.OuterIP, reqRegisterServer.OuterPort);
+                _namingServiceManager.Add(serviceInfo);
                 LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
                 return ValueTask.CompletedTask;
             }
@@ -160,7 +162,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
 
                 if (serverList.Count > 0)
                 {
-                    var serverInfo = serverList.Random();
+                    var serverInfo = (ServiceInfo)serverList.Random();
 
                     RespConnectServer respConnectServer = new RespConnectServer
                     {
