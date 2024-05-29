@@ -53,7 +53,13 @@ internal partial class AppStartUpRouter : AppStartUpService
 
     protected override void DiscoveryCenterDataReceived(IMessage message)
     {
-        LogHelper.Debug(message.ToMessageString());
+        if (message is MessageObject messageObject)
+        {
+            if (Setting.IsDebug && Setting.IsDebugReceive && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
+            {
+                LogHelper.Info(messageObject.ToReceiveMessageString(ServerType.DiscoveryCenter, ServerType));
+            }
+        }
     }
 
 
