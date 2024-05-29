@@ -192,13 +192,13 @@ public sealed class LauncherOptions
     /// 游戏逻辑服务器的处理最小模块ID
     /// </summary>
     [Option("MinModuleId", HelpText = "游戏逻辑服务器的处理最小模块ID")]
-    public ushort MinModuleId { get; set; }
+    public short MinModuleId { get; set; }
 
     public void CheckMinModuleId()
     {
-        if (MinModuleId <= 0 || MinModuleId >= ushort.MaxValue - 10)
+        if (MinModuleId <= 0 || MinModuleId >= short.MaxValue - 10)
         {
-            throw new ArgumentOutOfRangeException(nameof(MinModuleId), "游戏逻辑服务器的处理最小模块ID必须大于0且小于等于" + (ushort.MaxValue - 10));
+            throw new ArgumentOutOfRangeException(nameof(MinModuleId), "游戏逻辑服务器的处理最小模块ID必须大于0且小于等于" + (short.MaxValue - 10));
         }
     }
 
@@ -206,13 +206,13 @@ public sealed class LauncherOptions
     /// 游戏逻辑服务器的处理最大模块ID
     /// </summary>
     [Option("MaxModuleId", HelpText = "游戏逻辑服务器的处理最大模块ID")]
-    public ushort MaxModuleId { get; set; }
+    public short MaxModuleId { get; set; }
 
     public void CheckMaxModuleId()
     {
-        if (MaxModuleId <= 0 || MaxModuleId >= ushort.MaxValue - 10)
+        if (MaxModuleId <= 0 || MaxModuleId >= short.MaxValue - 10)
         {
-            throw new ArgumentOutOfRangeException(nameof(MaxModuleId), "游戏逻辑服务器的处理最小模块ID必须大于0且小于等于" + (ushort.MaxValue - 10));
+            throw new ArgumentOutOfRangeException(nameof(MaxModuleId), "游戏逻辑服务器的处理最小模块ID必须大于0且小于等于" + (short.MaxValue - 10));
         }
     }
 
