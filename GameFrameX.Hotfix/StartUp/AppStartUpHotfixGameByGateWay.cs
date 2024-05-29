@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Timers;
+using GameFrameX.Launcher;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Proto.BuiltIn;
 using SuperSocket.ClientEngine;
@@ -93,21 +94,29 @@ internal partial class AppStartUpHotfixGame
         LogHelper.Info("和网关服务器链接链接成功!");
     }
 
-    private void GateWayClientOnDataReceived(object o, DataEventArgs dataEventArgs)
+    private async void GateWayClientOnDataReceived(object o, DataEventArgs dataEventArgs)
     {
         var messageData = dataEventArgs.Data.ReadBytes(dataEventArgs.Offset, dataEventArgs.Length);
         var message = messageDecoderHandler.Handler(messageData);
-        if (Setting.IsDebug && Setting.IsDebugReceive)
+        if (message is MessageObject messageObject)
         {
-            if (message is MessageObject baseMessageObject)
+            if (Setting.IsDebug && Setting.IsDebugReceive)
             {
-                LogHelper.Info($"收到网关服务器消息：{baseMessageObject.ToMessageString()}");
+                LogHelper.Info($"收到网关服务器消息：{messageObject.ToReceiveMessageString(ServerType.Gateway, ServerType)}");
             }
+
+            var handler = HotfixManager.GetTcpHandler(message.MessageId);
+            if (handler == null)
+            {
+                LogHelper.Error($"找不到[{message.MessageId}][{messageObject.GetType()}]对应的handler");
+                return;
+            }
+
+            handler.Message = messageObject;
+            handler.NetWorkChannel = GameClientSessionManager.GetSession(string.Empty);
+            await handler.Init();
+            await handler.InnerAction();
         }
-
-
-        // var messageObject = (BaseMessageObject)message;
-        // LogHelper.Info($"收到发现中心服务器消息：{dataEventArgs.Data}: {messageObject}");
     }
 
     private void GateWayClientOnClosed(object sender, EventArgs eventArgs)
