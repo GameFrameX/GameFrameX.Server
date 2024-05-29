@@ -18,7 +18,7 @@ internal partial class AppStartUpRouter
         }
 
         var span = messageEncoderHandler.Handler(message);
-        if (Setting.IsDebug && Setting.IsDebugSend)
+        if (Setting.IsDebug && Setting.IsDebugSend && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
         {
             LogHelper.Debug(message.ToSendMessageString(ServerType, ServerType.Gateway));
         }
@@ -85,9 +85,9 @@ internal partial class AppStartUpRouter
     {
         var messageData = dataEventArgs.Data.ReadBytes(dataEventArgs.Offset, dataEventArgs.Length);
         var message = messageDecoderHandler.Handler(messageData);
-        if (Setting.IsDebug && Setting.IsDebugReceive)
+        if (message is MessageObject baseMessageObject)
         {
-            if (message is MessageObject baseMessageObject)
+            if (Setting.IsDebug && Setting.IsDebugReceive && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
             {
                 LogHelper.Info($"收到网关服务器消息：{baseMessageObject.ToMessageString()}");
             }
