@@ -425,6 +425,11 @@ namespace SuperSocket.ClientEngine
         // Token: 0x0400002F RID: 47
         private bool m_InConnecting;
 
+        public bool IsInConnecting
+        {
+            get { return this.m_InConnecting; }
+        }
+
         // Token: 0x04000030 RID: 48
         private IBatchQueue<ArraySegment<byte>> m_SendingQueue;
 
