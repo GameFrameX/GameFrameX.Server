@@ -25,6 +25,9 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
         {
             LogHelper.Info($"启动服务器{Setting.ServerType} 开始! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
             await StartServer();
+            // _namingServiceManager.OnServerAdd = OnServerAdd;
+            // _namingServiceManager.OnServerRemove = OnServerRemove;
+            _namingServiceManager.AddSelf(Setting);
             await base.EnterAsync();
             StartGameClient();
             await AppExitToken;
