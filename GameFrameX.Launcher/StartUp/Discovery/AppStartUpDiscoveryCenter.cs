@@ -128,6 +128,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
     {
         if (message is MessageObject messageObject)
         {
+            if (Setting.IsDebug && Setting.IsDebugReceive && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
             {
                 var serverInfo = NamingServiceManager.Instance.GetNodeBySessionId(session.SessionID);
                 if (serverInfo != null)
