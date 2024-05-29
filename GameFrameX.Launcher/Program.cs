@@ -113,7 +113,9 @@ namespace GameFrameX.Launcher
                             WssPort = launcherOptions.WssPort,
                             WssCertFilePath = launcherOptions.WssCertFilePath,
                             DataBaseUrl = launcherOptions.DataBaseUrl,
-                            DataBaseName = launcherOptions.DataBaseName
+                            DataBaseName = launcherOptions.DataBaseName,
+                            MinModuleId = launcherOptions.MinModuleId,
+                            MaxModuleId = launcherOptions.MaxModuleId
                         };
                     }
 
