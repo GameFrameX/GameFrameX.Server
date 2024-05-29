@@ -1,4 +1,5 @@
 ﻿using GameFrameX.Proto.BuiltIn;
+using Timer = System.Timers.Timer;
 
 namespace GameFrameX.Launcher.StartUp;
 
@@ -38,8 +39,20 @@ public abstract class AppStartUpService : AppStartUpBase
         _messageDecoderHandler = messageDecoderHandler;
     }
 
+    private Timer ConnectTargetServerTimer { get; set; }
+
     public override Task EnterAsync()
     {
+        if (IsRequestConnectServer)
+        {
+            ConnectTargetServerTimer = new Timer
+            {
+                Interval = 3000
+            };
+            ConnectTargetServerTimer.Elapsed += ConnectTargetServerTimerOnElapsed;
+            ConnectTargetServerTimer.Start();
+        }
+
         StartDiscoveryCenterClient();
         _ = Task.Run(RpcHandler);
         return Task.CompletedTask;
@@ -80,6 +93,31 @@ public abstract class AppStartUpService : AppStartUpBase
         _reqDiscoveryCenterActorHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
         _reqDiscoveryCenterActorHeartBeat.UpdateUniqueId();
         SendToDiscoveryCenterMessage(_reqDiscoveryCenterActorHeartBeat);
+    }
+
+    /// <summary>
+    /// 请求链接目标
+    /// </summary>
+    void SendConnectTargetServer()
+    {
+        if (ConnectTargetServer == null)
+        {
+            ReqConnectServer reqConnectServer = new ReqConnectServer
+            {
+                ServerType = GetServerType
+            };
+            SendToDiscoveryCenterMessage(reqConnectServer);
+        }
+    }
+
+    /// <summary>
+    /// 链接目标重试
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    void ConnectTargetServerTimerOnElapsed(object sender, ElapsedEventArgs e)
+    {
+        SendConnectTargetServer();
     }
 
     /// <summary>
@@ -128,14 +166,7 @@ public abstract class AppStartUpService : AppStartUpBase
         DiscoveryCenterClientOnConnectedHandler(sender, e);
         if (IsRequestConnectServer)
         {
-            if (ConnectTargetServer == null)
-            {
-                ReqConnectServer reqConnectServer = new ReqConnectServer
-                {
-                    ServerType = GetServerType
-                };
-                SendToDiscoveryCenterMessage(reqConnectServer);
-            }
+            SendConnectTargetServer();
         }
     }
 
@@ -205,6 +236,7 @@ public abstract class AppStartUpService : AppStartUpBase
         if (message is RespConnectServer respConnectServer && ConnectTargetServer == null)
         {
             ConnectTargetServer = respConnectServer;
+            ConnectTargetServerTimer?.Stop();
             ConnectServerHandler();
             return;
         }
@@ -214,6 +246,7 @@ public abstract class AppStartUpService : AppStartUpBase
             if (respServerOfflineServer.ServerType == ConnectTargetServer?.ServerType && respServerOfflineServer.ServerID == ConnectTargetServer?.ServerID)
             {
                 ConnectTargetServer = null;
+                ConnectTargetServerTimer?.Stop();
                 DisconnectServerHandler();
             }
 
@@ -235,6 +268,7 @@ public abstract class AppStartUpService : AppStartUpBase
     {
         HeartBeatTimer?.Close();
         ReconnectionTimer?.Close();
+        ConnectTargetServerTimer?.Close();
         if (_discoveryCenterClient != null)
         {
             _discoveryCenterClient.Close();
