@@ -100,6 +100,11 @@ public abstract class AppStartUpService : AppStartUpBase
     /// </summary>
     void SendConnectTargetServer()
     {
+        if (!_discoveryCenterClient.IsConnected)
+        {
+            return;
+        }
+
         if (ConnectTargetServer == null)
         {
             ReqConnectServer reqConnectServer = new ReqConnectServer
