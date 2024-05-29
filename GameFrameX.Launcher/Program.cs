@@ -208,6 +208,8 @@ namespace GameFrameX.Launcher
                         break;
                     case ServerType.Game:
                     {
+                        options.CheckMinModuleId();
+                        options.CheckMaxModuleId();
                         options.CheckOuterIp();
                         options.CheckOuterPort();
                         options.CheckDiscoveryCenterIp();
