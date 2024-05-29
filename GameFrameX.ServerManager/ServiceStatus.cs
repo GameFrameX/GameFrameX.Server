@@ -1,6 +1,6 @@
 namespace GameFrameX.ServerManager;
 
-public enum ServerStatus
+public enum ServiceStatus
 {
     /// <summary>
     /// 在线

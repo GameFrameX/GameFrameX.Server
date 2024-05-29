@@ -7,9 +7,9 @@ namespace GameFrameX.ServerManager;
 /// <summary>
 /// 服务器信息
 /// </summary>
-public sealed class ServerInfo
+public sealed class ServiceInfo : IServiceInfo
 {
-    public ServerInfo(ServerType type, object session, string sessionId, string serverName, long serverId, string innerIp, ushort innerPort, string outerIp, ushort outerPort)
+    public ServiceInfo(ServerType type, object session, string sessionId, string serverName, long serverId, string innerIp, ushort innerPort, string outerIp, ushort outerPort)
     {
         Type = type;
         Session = session;
@@ -20,7 +20,7 @@ public sealed class ServerInfo
         OuterIp = outerIp;
         OuterPort = outerPort;
         SessionId = sessionId;
-        StatusInfo = new ServerStatusInfo();
+        StatusInfo = new ServiceStatusInfo();
     }
 
     public string SessionId { get; }
@@ -65,7 +65,7 @@ public sealed class ServerInfo
     /// <summary>
     /// 服务器状态
     /// </summary>
-    public ServerStatusInfo StatusInfo { get; set; }
+    public ServiceStatusInfo StatusInfo { get; set; }
 
     public override string ToString()
     {

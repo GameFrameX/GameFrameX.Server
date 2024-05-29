@@ -14,15 +14,15 @@ namespace GameFrameX.ServerManager
         /// <summary>
         /// 服务器节点的id 为自身的serverId
         /// </summary>
-        private readonly ConcurrentDictionary<long, ServerInfo> _serverMap;
+        private readonly ConcurrentDictionary<long, IServiceInfo> _serverMap;
 
         public NamingServiceManager()
         {
-            _serverMap = new ConcurrentDictionary<long, ServerInfo>();
+            _serverMap = new ConcurrentDictionary<long, IServiceInfo>();
         }
 
-        public Action<ServerInfo> OnServerAdd;
-        public Action<ServerInfo> OnServerRemove;
+        public Action<IServiceInfo> OnServerAdd;
+        public Action<IServiceInfo> OnServerRemove;
 
         /// <summary>
         /// 根据节点数据从服务器列表中删除
@@ -67,7 +67,7 @@ namespace GameFrameX.ServerManager
         /// </summary>
         /// <param name="sessionId"></param>
         /// <returns></returns>
-        public ServerInfo? GetNodeBySessionId(string sessionId)
+        public IServiceInfo? GetNodeBySessionId(string sessionId)
         {
             foreach (var keyValuePair in _serverMap)
             {
@@ -85,7 +85,7 @@ namespace GameFrameX.ServerManager
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
-        public bool TryRemove(ServerInfo info)
+        public bool TryRemove(IServiceInfo info)
         {
             if (info == null)
             {
@@ -100,17 +100,17 @@ namespace GameFrameX.ServerManager
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ServerInfo TryGet(long id)
+        public IServiceInfo TryGet(long id)
         {
-            _serverMap.TryGetValue(id, out var v);
-            return v;
+            _serverMap.TryGetValue(id, out var value);
+            return value;
         }
 
         /// <summary>
         /// 获取节点列表
         /// </summary>
         /// <returns></returns>
-        public List<ServerInfo> GetAllNodes()
+        public List<IServiceInfo> GetAllNodes()
         {
             return _serverMap.Values.ToList();
         }
@@ -119,7 +119,7 @@ namespace GameFrameX.ServerManager
         /// 获取外部节点
         /// </summary>
         /// <returns></returns>
-        public List<ServerInfo> GetOuterNodes()
+        public List<IServiceInfo> GetOuterNodes()
         {
             return _serverMap.Values.Where(m => !string.IsNullOrEmpty(m.SessionId)).ToList();
         }
@@ -133,25 +133,25 @@ namespace GameFrameX.ServerManager
             return _serverMap.Count;
         }
 
-        private ServerInfo serverInfo;
+        private IServiceInfo _serviceInfo;
 
         /// <summary>
         /// 添加自身
         /// </summary>
         public void AddSelf(BaseSetting setting)
         {
-            serverInfo = new ServerInfo(setting.ServerType, null, string.Empty, setting.ServerName, setting.ServerId, setting.InnerIp, setting.InnerPort, setting.OuterIp, setting.OuterPort);
-            _serverMap[serverInfo.ServerId] = serverInfo;
+            _serviceInfo = new ServiceInfo(setting.ServerType, null, string.Empty, setting.ServerName, setting.ServerId, setting.InnerIp, setting.InnerPort, setting.OuterIp, setting.OuterPort);
+            _serverMap[_serviceInfo.ServerId] = _serviceInfo;
         }
 
         /// <summary>
         /// 添加节点
         /// </summary>
         /// <param name="node">节点信息</param>
-        public void Add(ServerInfo node)
+        public void Add(IServiceInfo node)
         {
             Guard.NotNull(node, nameof(node));
-            if (node.Type == serverInfo.Type)
+            if (node.Type == _serviceInfo.Type)
             {
                 LogHelper.Error($"不能添加discovery节点...{node}");
                 return;
@@ -174,9 +174,9 @@ namespace GameFrameX.ServerManager
         /// </summary>
         /// <param name="type">服务器类型</param>
         /// <returns></returns>
-        public List<ServerInfo> GetNodesByType(ServerType type)
+        public List<IServiceInfo> GetNodesByType(ServerType type)
         {
-            var list = new List<ServerInfo>();
+            var list = new List<IServiceInfo>();
             foreach (var node in _serverMap)
             {
                 if (node.Value.Type == type)

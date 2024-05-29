@@ -5,12 +5,12 @@ namespace GameFrameX.ServerManager;
 /// 默认状态为在线
 /// 默认承载为5000
 /// </summary>
-public sealed class ServerStatusInfo
+public sealed class ServiceStatusInfo
 {
     /// <summary>
     /// 服务器状态
     /// </summary>
-    public ServerStatus Status { get; set; }
+    public ServiceStatus Status { get; set; }
 
     /// <summary>
     /// 承载上限
@@ -22,9 +22,9 @@ public sealed class ServerStatusInfo
     /// </summary>
     public int CurrentLoad { get; set; } = 0;
 
-    public ServerStatusInfo()
+    public ServiceStatusInfo()
     {
-        Status = ServerStatus.Online;
+        Status = ServiceStatus.Online;
         MaxLoad = 5000;
         CurrentLoad = 0;
     }
