@@ -213,12 +213,12 @@ public abstract class BaseSetting
     /// <summary>
     /// 游戏逻辑服务器的处理最小模块ID
     /// </summary>
-    public ushort MinModuleId { get; set; }
+    public short MinModuleId { get; set; }
 
     /// <summary>
     /// 游戏逻辑服务器的处理最大模块ID
     /// </summary>
-    public ushort MaxModuleId { get; set; }
+    public short MaxModuleId { get; set; }
 
     #endregion
 

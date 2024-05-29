@@ -181,13 +181,13 @@ public partial class ReqRegisterGameServer : MessageObject, IRequestMessage
     /// 最小模块消息ID
     /// </summary>
     [ProtoMember(3)]
-    public ushort MinModuleMessageID { get; set; }
+    public short MinModuleMessageID { get; set; }
 
     /// <summary>
     /// 最大模块消息ID
     /// </summary>
     [ProtoMember(4)]
-    public ushort MaxModuleMessageID { get; set; }
+    public short MaxModuleMessageID { get; set; }
 
     /// <summary>
     /// 服务器ID

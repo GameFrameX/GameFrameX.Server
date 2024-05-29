@@ -9,7 +9,7 @@ namespace GameFrameX.ServerManager;
 /// </summary>
 public sealed class GameServiceInfo : IServiceInfo
 {
-    public GameServiceInfo(ServerType type, object session, string sessionId, string serverName, long serverId, ushort minModuleMessageId, ushort maxModuleMessageId)
+    public GameServiceInfo(ServerType type, object session, string sessionId, string serverName, long serverId, short minModuleMessageId, short maxModuleMessageId)
     {
         Type = type;
         Session = session;
@@ -21,9 +21,9 @@ public sealed class GameServiceInfo : IServiceInfo
         StatusInfo = new ServiceStatusInfo();
     }
 
-    public ushort MaxModuleMessageId { get; set; }
+    public short MaxModuleMessageId { get; set; }
 
-    public ushort MinModuleMessageId { get; }
+    public short MinModuleMessageId { get; }
     public string SessionId { get; }
 
     /// <summary>
