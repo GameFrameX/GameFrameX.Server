@@ -87,7 +87,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
         return ValueTask.CompletedTask;
     }
 
-    private async ValueTask PackageHandler(IAppSession session, IMessage message)
+    private ValueTask PackageHandler(IAppSession session, IMessage message)
     {
         if (message is MessageObject messageObject)
         {
@@ -104,7 +104,22 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
                     Timestamp = TimeHelper.UnixTimeSeconds()
                 };
                 SendMessage(session, respActorHeartBeat);
-                return;
+                return ValueTask.CompletedTask;
+            }
+
+            if (message is ReqRegisterGameServer reqRegisterGameServer)
+            {
+                GameServiceInfo gameServiceInfo = new GameServiceInfo(reqRegisterGameServer.ServerType,
+                    session,
+                    session.SessionID,
+                    reqRegisterGameServer.ServerName,
+                    reqRegisterGameServer.ServerID,
+                    reqRegisterGameServer.MinModuleMessageID,
+                    reqRegisterGameServer.MaxModuleMessageID
+                );
+
+                _namingServiceManager.Add(gameServiceInfo);
+                return ValueTask.CompletedTask;
             }
 
             /*if (message is MessageObject messageActorObject)
