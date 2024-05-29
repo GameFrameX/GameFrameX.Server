@@ -9,12 +9,17 @@ namespace GameFrameX.ServerManager
     /// <summary>
     /// 服务器管理
     /// </summary>
-    public sealed class NamingServiceManager : Singleton<NamingServiceManager>
+    public sealed class NamingServiceManager
     {
         /// <summary>
         /// 服务器节点的id 为自身的serverId
         /// </summary>
-        private readonly ConcurrentDictionary<long, ServerInfo> _serverMap = new ConcurrentDictionary<long, ServerInfo>();
+        private readonly ConcurrentDictionary<long, ServerInfo> _serverMap;
+
+        public NamingServiceManager()
+        {
+            _serverMap = new ConcurrentDictionary<long, ServerInfo>();
+        }
 
         public Action<ServerInfo> OnServerAdd;
         public Action<ServerInfo> OnServerRemove;
