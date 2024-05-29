@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\SuperSocket.Server.Abstractions\SuperSocket.Server.Abstractions.csproj" />
+    </ItemGroup>
+
 </Project>

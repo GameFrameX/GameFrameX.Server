@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
+using SuperSocket.Server.Abstractions.Session;
 
 namespace SuperSocket.ClientEngine
 {
     // Token: 0x02000013 RID: 19
-    public interface IClientSession
+    public interface IClientSession : IGameAppSession
     {
         // Token: 0x17000020 RID: 32
         // (get) Token: 0x0600009F RID: 159
