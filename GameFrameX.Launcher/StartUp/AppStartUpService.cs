@@ -151,7 +151,7 @@ public abstract class AppStartUpService : AppStartUpBase
         _discoveryCenterClient.Error += DiscoveryCenterClientOnError;
 
         LogHelper.Info("开始链接到发现中心服务器 ...");
-        ConnectToDiscoveryCenter();
+        ReconnectionTimer.Start();
     }
 
 
