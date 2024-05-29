@@ -91,7 +91,7 @@ public static class UnityTcpClient
         var uniqueId = data.ReadInt(ref offset);
         int messageId = data.ReadInt(ref offset);
         var messageData = data.ReadBytes(offset, length - offset);
-        var messageType = ProtoMessageIdHandler.GetResponseMessageTypeById(messageId);
+        var messageType = ProtoMessageIdHandler.GetMessageTypeById(messageId);
         if (messageType != null)
         {
             var messageObject = (MessageObject)SerializerHelper.Deserialize(messageData, messageType);
@@ -107,15 +107,15 @@ public static class UnityTcpClient
     {
         count++;
         var bytes = SerializerHelper.Serialize(message);
-        int len = 4 + 8 + 4 + 4 + bytes.Length;
+        ushort len = (ushort)(2 + 4 + 4 + bytes.Length);
         var buffer = new byte[len];
         int offset = 0;
-        buffer.WriteInt(len, ref offset);
-        buffer.WriteLong(message.UniqueId, ref offset);
-        var messageId = ProtoMessageIdHandler.GetRequestMessageIdByType(message.GetType());
+        buffer.WriteUShort(len, ref offset);
+        buffer.WriteInt(message.UniqueId, ref offset);
+        var messageId = ProtoMessageIdHandler.GetMessageIdByType(message.GetType());
         message.MessageId = messageId;
         buffer.WriteInt(messageId, ref offset);
-        buffer.WriteBytes(bytes, ref offset);
+        buffer.WriteBytesWithoutLength(bytes, ref offset);
         Console.WriteLine($"客户端接发送信息：{message.ToMessageString()}");
         return buffer;
     }
