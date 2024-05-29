@@ -126,13 +126,16 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
             return;
         }
 
-        var result = messageEncoderHandler.Handler(message);
-        if (Setting.IsDebug && Setting.IsDebugSend && message is MessageObject baseMessageObject)
+        if (message is MessageObject messageObject)
         {
-            LogHelper.Debug($"---发送[{ServerType}] {baseMessageObject.ToMessageString()}");
-        }
+            var result = messageEncoderHandler.Handler(message);
+            if (Setting.IsDebug && Setting.IsDebugSend && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
+            {
+                LogHelper.Debug($"---发送[{ServerType}] {messageObject.ToMessageString()}");
+            }
 
-        await session.SendAsync(result);
+            await session.SendAsync(result);
+        }
     }
 
     private void StartGameClient()
