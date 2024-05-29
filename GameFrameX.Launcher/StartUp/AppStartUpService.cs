@@ -246,7 +246,7 @@ public abstract class AppStartUpService : AppStartUpBase
             if (respServerOfflineServer.ServerType == ConnectTargetServer?.ServerType && respServerOfflineServer.ServerID == ConnectTargetServer?.ServerID)
             {
                 ConnectTargetServer = null;
-                ConnectTargetServerTimer?.Stop();
+                ConnectTargetServerTimer?.Start();
                 DisconnectServerHandler();
             }
 
