@@ -133,6 +133,8 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
                 SendMessage(session, response);
             }*/
         }
+
+        return ValueTask.CompletedTask;
     }
 
     #endregion
