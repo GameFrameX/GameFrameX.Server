@@ -12,20 +12,18 @@ namespace GameFrameX.NetWork
 
         // public long NetId { get; set; } = 0;
         // public int TargetServerId { get; set; }
-        public IAppSession AppSession { get; }
+        public IGameAppSession AppSession { get; }
         public IRpcSession RpcSession { get; }
-        public virtual string RemoteAddress { get; } = "";
 
         private readonly IMessageEncoderHandler messageEncoder;
         public bool IsWebSocket { get; }
 
-        public BaseNetWorkChannel(IAppSession session, IMessageEncoderHandler messageEncoder, IRpcSession rpcSession, bool isWebSocket)
+        public BaseNetWorkChannel(IGameAppSession session, IMessageEncoderHandler messageEncoder, IRpcSession rpcSession, bool isWebSocket)
         {
             AppSession = session;
             IsWebSocket = isWebSocket;
             this.messageEncoder = messageEncoder;
             RpcSession = rpcSession;
-            RemoteAddress = session.RemoteEndPoint.ToString();
         }
 
         /// <summary>

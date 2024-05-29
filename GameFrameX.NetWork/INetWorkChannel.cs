@@ -9,17 +9,12 @@ public interface INetWorkChannel
     /// <summary>
     /// 应用会话
     /// </summary>
-    IAppSession AppSession { get; }
+    IGameAppSession AppSession { get; }
 
     /// <summary>
     /// RPC 会话
     /// </summary>
     IRpcSession RpcSession { get; }
-
-    /// <summary>
-    /// 远程地址
-    /// </summary>
-    string RemoteAddress { get; }
 
     /// <summary>
     /// 写入消息

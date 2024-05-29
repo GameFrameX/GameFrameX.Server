@@ -4,7 +4,7 @@ namespace GameFrameX.NetWork;
 
 public class DefaultNetWorkChannel : BaseNetWorkChannel
 {
-    public DefaultNetWorkChannel(IAppSession session, IMessageEncoderHandler messageEncoder, IRpcSession rpcSession, bool isWebSocket = false) : base(session, messageEncoder, rpcSession, isWebSocket)
+    public DefaultNetWorkChannel(IGameAppSession session, IMessageEncoderHandler messageEncoder, IRpcSession rpcSession = null, bool isWebSocket = false) : base(session, messageEncoder, rpcSession, isWebSocket)
     {
     }
 }
