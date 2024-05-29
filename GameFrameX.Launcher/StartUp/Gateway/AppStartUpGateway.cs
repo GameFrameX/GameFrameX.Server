@@ -89,30 +89,33 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
 
     private async ValueTask PackageHandler(IAppSession session, IMessage message)
     {
-        if (Setting.IsDebug && Setting.IsDebugReceive && message is MessageObject baseMessageObject)
+        if (message is MessageObject messageObject)
         {
-            LogHelper.Debug($"---收到[{ServerType}] {baseMessageObject.ToMessageString()}");
-        }
-
-        if (message is ReqActorHeartBeat reqActorHeartBeat)
-        {
-            var respActorHeartBeat = new RespActorHeartBeat()
+            if (Setting.IsDebug && Setting.IsDebugReceive && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
             {
-                UniqueId = reqActorHeartBeat.UniqueId,
-                Timestamp = TimeHelper.UnixTimeSeconds()
-            };
-            SendMessage(session, respActorHeartBeat);
-            return;
-        }
+                LogHelper.Debug($"---收到[{ServerType}] {messageObject.ToMessageString()}");
+            }
 
-        if (message is MessageObject messageActorObject)
-        {
-            // 发送
-            var response = new RespActorHeartBeat()
+            if (message is ReqActorHeartBeat reqActorHeartBeat)
             {
-                Timestamp = TimeHelper.UnixTimeSeconds()
-            };
-            SendMessage(session, response);
+                var respActorHeartBeat = new RespActorHeartBeat()
+                {
+                    UniqueId = reqActorHeartBeat.UniqueId,
+                    Timestamp = TimeHelper.UnixTimeSeconds()
+                };
+                SendMessage(session, respActorHeartBeat);
+                return;
+            }
+
+            /*if (message is MessageObject messageActorObject)
+            {
+                // 发送
+                var response = new RespActorHeartBeat()
+                {
+                    Timestamp = TimeHelper.UnixTimeSeconds()
+                };
+                SendMessage(session, response);
+            }*/
         }
     }
 
