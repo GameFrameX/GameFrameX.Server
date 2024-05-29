@@ -75,7 +75,11 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
     private ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
     {
         LogHelper.Info("有客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
-        GameClientSessionManager.RemoveSession(appSession.SessionID); //移除
+        if (_namingServiceManager.TrySessionRemove(appSession.SessionID))
+        {
+            LogHelper.Info("有游戏业务客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
+        }
+
         return ValueTask.CompletedTask;
     }
 
