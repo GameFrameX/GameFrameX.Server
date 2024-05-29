@@ -24,7 +24,7 @@ namespace GameFrameX.Proto.Proto
 	/// 请求背包数据
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(100)]
+	[MessageTypeHandler(6553700)]
 	public partial class ReqBagInfo : MessageObject, IRequestMessage
 	{
 		/// <summary>
@@ -39,7 +39,7 @@ namespace GameFrameX.Proto.Proto
 	/// 返回背包数据
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(100)]
+	[MessageTypeHandler(6553701)]
 	public partial class RespBagInfo : MessageObject, IResponseMessage
 	{
 		/// <summary>
@@ -54,7 +54,7 @@ namespace GameFrameX.Proto.Proto
 	/// 请求合成宠物
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(101)]
+	[MessageTypeHandler(6553702)]
 	public partial class ReqComposePet : MessageObject, IRequestMessage
 	{
 		/// <summary>
@@ -69,7 +69,7 @@ namespace GameFrameX.Proto.Proto
 	/// 返回合成宠物
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(101)]
+	[MessageTypeHandler(6553703)]
 	public partial class RespComposePet : MessageObject, IResponseMessage
 	{
 		/// <summary>
@@ -84,7 +84,7 @@ namespace GameFrameX.Proto.Proto
 	/// 请求使用道具
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(102)]
+	[MessageTypeHandler(6553704)]
 	public partial class ReqUseItem : MessageObject, IRequestMessage
 	{
 		/// <summary>
@@ -99,7 +99,7 @@ namespace GameFrameX.Proto.Proto
 	/// 出售道具
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(103)]
+	[MessageTypeHandler(6553705)]
 	public partial class ReqSellItem : MessageObject, IRequestMessage
 	{
 		/// <summary>
@@ -114,7 +114,7 @@ namespace GameFrameX.Proto.Proto
 	/// 出售道具
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(104)]
+	[MessageTypeHandler(6553706)]
 	public partial class RespItemChange : MessageObject, IResponseMessage
 	{
 		/// <summary>

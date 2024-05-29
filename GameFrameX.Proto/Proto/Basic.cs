@@ -9,7 +9,7 @@ namespace GameFrameX.Proto.Proto
 	/// 请求心跳
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(1)]
+	[MessageTypeHandler(65537)]
 	public partial class ReqHeartBeat : MessageObject, IRequestMessage
 	{
 		/// <summary>
@@ -24,7 +24,7 @@ namespace GameFrameX.Proto.Proto
 	/// 返回心跳
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(1)]
+	[MessageTypeHandler(65538)]
 	public partial class RespHeartBeat : MessageObject, IResponseMessage
 	{
 		/// <summary>

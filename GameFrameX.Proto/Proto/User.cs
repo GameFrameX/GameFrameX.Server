@@ -9,7 +9,7 @@ namespace GameFrameX.Proto.Proto
 	/// 请求账号登录
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(300)]
+	[MessageTypeHandler(19661100)]
 	public partial class ReqLogin : MessageObject, IRequestMessage
 	{
 		/// <summary>
@@ -54,7 +54,7 @@ namespace GameFrameX.Proto.Proto
 	/// 请求账号登录返回
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(300)]
+	[MessageTypeHandler(19661101)]
 	public partial class RespLogin : MessageObject, IResponseMessage
 	{
 		/// <summary>
@@ -93,7 +93,7 @@ namespace GameFrameX.Proto.Proto
 	/// 请求角色创建
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(301)]
+	[MessageTypeHandler(19661102)]
 	public partial class ReqPlayerCreate : MessageObject, IRequestMessage
 	{
 		/// <summary>
@@ -114,7 +114,7 @@ namespace GameFrameX.Proto.Proto
 	/// 请求角色创建返回
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(301)]
+	[MessageTypeHandler(19661103)]
 	public partial class RespPlayerCreate : MessageObject, IResponseMessage
 	{
 		/// <summary>
@@ -129,7 +129,7 @@ namespace GameFrameX.Proto.Proto
 	/// 请求角色列表
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(302)]
+	[MessageTypeHandler(19661104)]
 	public partial class ReqPlayerList : MessageObject, IRequestMessage
 	{
 		/// <summary>
@@ -144,7 +144,7 @@ namespace GameFrameX.Proto.Proto
 	/// 请求角色列表返回
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(302)]
+	[MessageTypeHandler(19661105)]
 	public partial class RespPlayerList : MessageObject, IResponseMessage
 	{
 		/// <summary>
@@ -203,7 +203,7 @@ namespace GameFrameX.Proto.Proto
 	/// 请求玩家登录
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(303)]
+	[MessageTypeHandler(19661106)]
 	public partial class ReqPlayerLogin : MessageObject, IRequestMessage
 	{
 		/// <summary>
@@ -218,7 +218,7 @@ namespace GameFrameX.Proto.Proto
 	/// 请求玩家登录返回
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(303)]
+	[MessageTypeHandler(19661107)]
 	public partial class RespPlayerLogin : MessageObject, IResponseMessage
 	{
 		/// <summary>
@@ -245,7 +245,7 @@ namespace GameFrameX.Proto.Proto
 	/// 客户端每次请求都会回复错误码
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(304)]
+	[MessageTypeHandler(19661108)]
 	public partial class RespErrorCode : MessageObject, IResponseMessage
 	{
 		/// <summary>
@@ -266,7 +266,7 @@ namespace GameFrameX.Proto.Proto
 	/// 
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(305)]
+	[MessageTypeHandler(19661109)]
 	public partial class RespPrompt : MessageObject, IResponseMessage
 	{
 		/// <summary>
