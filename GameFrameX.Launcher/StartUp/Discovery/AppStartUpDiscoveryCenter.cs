@@ -96,7 +96,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
         }
 
         var data = messageEncoderHandler.Handler(message);
-        if (Setting.IsDebug && Setting.IsDebugReceive)
+        if (Setting.IsDebug && Setting.IsDebugReceive && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
         {
             var serverInfo = NamingServiceManager.Instance.GetNodeBySessionId(session.SessionID);
             if (serverInfo != null)
@@ -124,24 +124,24 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
     }
 
 
-    private ValueTask PackageHandler(IAppSession session, IMessage messageObject)
+    private ValueTask PackageHandler(IAppSession session, IMessage message)
     {
-        if (Setting.IsDebug && Setting.IsDebugReceive && messageObject is MessageObject baseMessageObject)
+        if (message is MessageObject messageObject)
         {
-            var serverInfo = NamingServiceManager.Instance.GetNodeBySessionId(session.SessionID);
-            if (serverInfo != null)
             {
-                LogHelper.Debug($"---收到[{serverInfo.Type} To {ServerType}]  {baseMessageObject.ToMessageString()}");
+                var serverInfo = NamingServiceManager.Instance.GetNodeBySessionId(session.SessionID);
+                if (serverInfo != null)
+                {
+                    LogHelper.Debug($"---收到[{serverInfo.Type} To {ServerType}]  {messageObject.ToMessageString()}");
+                }
+                else
+                {
+                    LogHelper.Debug($"---收到[{ServerType}]  {messageObject.ToMessageString()}");
+                }
             }
-            else
-            {
-                LogHelper.Debug($"---收到[{ServerType}]  {baseMessageObject.ToMessageString()}");
-            }
-        }
 
-        if (messageObject is MessageObject message)
-        {
-            if (message is ReqRegisterServer reqRegisterServer)
+
+            if (messageObject is ReqRegisterServer reqRegisterServer)
             {
                 // 注册服务
                 ServerInfo serverInfo = new ServerInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerID, reqRegisterServer.InnerIP, reqRegisterServer.InnerPort, reqRegisterServer.OuterIP, reqRegisterServer.OuterPort);
@@ -149,7 +149,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
                 LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
                 return ValueTask.CompletedTask;
             }
-            else if (message is ReqConnectServer reqConnectServer)
+            else if (messageObject is ReqConnectServer reqConnectServer)
             {
                 var serverList = NamingServiceManager.Instance.GetNodesByType(reqConnectServer.ServerType);
                 if (reqConnectServer.ServerID > 0)
@@ -173,7 +173,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
                     SendMessage(session, respConnectServer);
                 }
             }
-            else if (messageObject is ReqActorHeartBeat reqActorHeartBeat)
+            else if (message is ReqActorHeartBeat reqActorHeartBeat)
             {
                 // 心跳相应
                 var response = new RespActorHeartBeat()
