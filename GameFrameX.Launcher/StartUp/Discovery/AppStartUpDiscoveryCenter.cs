@@ -13,16 +13,16 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
     private IServer _server;
 
     readonly MessageActorDiscoveryEncoderHandler messageEncoderHandler = new MessageActorDiscoveryEncoderHandler();
-
+    NamingServiceManager _namingServiceManager = new NamingServiceManager();
 
     public override async Task EnterAsync()
     {
         try
         {
             LogHelper.Info($"开始启动服务器{ServerType}");
-            NamingServiceManager.Instance.OnServerAdd = OnServerAdd;
-            NamingServiceManager.Instance.OnServerRemove = OnServerRemove;
-            NamingServiceManager.Instance.AddSelf(Setting);
+            _namingServiceManager.OnServerAdd = OnServerAdd;
+            _namingServiceManager.OnServerRemove = OnServerRemove;
+            _namingServiceManager.AddSelf(Setting);
 
             LogHelper.Info($"启动服务器{ServerType} 开始!");
 
@@ -45,7 +45,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
 
     private void OnServerRemove(ServerInfo serverInfo)
     {
-        var serverList = NamingServiceManager.Instance.GetAllNodes().Where(m => m.ServerId != 0 && m.ServerId != serverInfo.ServerId).ToList();
+        var serverList = _namingServiceManager.GetAllNodes().Where(m => m.ServerId != 0 && m.ServerId != serverInfo.ServerId).ToList();
 
         RespServerOfflineServer respServerOnlineServer = new RespServerOfflineServer()
         {
@@ -67,7 +67,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
 
     private void OnServerAdd(ServerInfo serverInfo)
     {
-        var serverList = NamingServiceManager.Instance.GetOuterNodes().Where(m => m.ServerId != serverInfo.ServerId).ToList();
+        var serverList = _namingServiceManager.GetOuterNodes().Where(m => m.ServerId != serverInfo.ServerId).ToList();
 
         RespServerOnlineServer respServerOnlineServer = new RespServerOnlineServer()
         {
@@ -98,7 +98,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
         var data = messageEncoderHandler.Handler(message);
         if (Setting.IsDebug && Setting.IsDebugReceive && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
         {
-            var serverInfo = NamingServiceManager.Instance.GetNodeBySessionId(session.SessionID);
+            var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
             if (serverInfo != null)
             {
                 LogHelper.Info(message.ToSendMessageString(ServerType, serverInfo.Type));
@@ -130,7 +130,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
         {
             if (Setting.IsDebug && Setting.IsDebugReceive && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
             {
-                var serverInfo = NamingServiceManager.Instance.GetNodeBySessionId(session.SessionID);
+                var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
                 if (serverInfo != null)
                 {
                     LogHelper.Debug($"---收到[{serverInfo.Type} To {ServerType}]  {messageObject.ToMessageString()}");
@@ -146,13 +146,13 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
             {
                 // 注册服务
                 ServerInfo serverInfo = new ServerInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerID, reqRegisterServer.InnerIP, reqRegisterServer.InnerPort, reqRegisterServer.OuterIP, reqRegisterServer.OuterPort);
-                NamingServiceManager.Instance.Add(serverInfo);
+                _namingServiceManager.Add(serverInfo);
                 LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
                 return ValueTask.CompletedTask;
             }
             else if (messageObject is ReqConnectServer reqConnectServer)
             {
-                var serverList = NamingServiceManager.Instance.GetNodesByType(reqConnectServer.ServerType);
+                var serverList = _namingServiceManager.GetNodesByType(reqConnectServer.ServerType);
                 if (reqConnectServer.ServerID > 0)
                 {
                     serverList = serverList.Where(m => m.ServerId == reqConnectServer.ServerID).ToList();
@@ -200,7 +200,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
     private ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs args)
     {
         LogHelper.Info("有外部服务从中心服务器断开。链接信息：断开原因:" + args.Reason);
-        NamingServiceManager.Instance.TrySessionRemove(appSession.SessionID);
+        _namingServiceManager.TrySessionRemove(appSession.SessionID);
         return ValueTask.CompletedTask;
     }
 
