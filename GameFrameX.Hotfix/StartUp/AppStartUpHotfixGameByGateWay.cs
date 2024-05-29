@@ -16,7 +16,7 @@ internal partial class AppStartUpHotfixGame
     private Timer _gateWayHeartBeatTimer;
     private ReqActorHeartBeat _reqGatewayActorHeartBeat;
 
-    private void SendToGatewayMessage(long messageUniqueId, IMessage message)
+    private void SendToGatewayMessage(IMessage message)
     {
         if (!_gatewayClient.IsConnected)
         {
@@ -72,7 +72,7 @@ internal partial class AppStartUpHotfixGame
     {
         _reqGatewayActorHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
         _reqGatewayActorHeartBeat.UpdateUniqueId();
-        SendToGatewayMessage(_reqGatewayActorHeartBeat.UniqueId, _reqGatewayActorHeartBeat);
+        SendToGatewayMessage(_reqGatewayActorHeartBeat);
     }
 
     private void GateWayReconnectionTimerOnElapsed(object sender, ElapsedEventArgs e)
@@ -92,6 +92,15 @@ internal partial class AppStartUpHotfixGame
         _gateWayReconnectionTimer.Stop();
         _gateWayHeartBeatTimer.Start();
         LogHelper.Info("和网关服务器链接链接成功!");
+        ReqRegisterGameServer reqRegisterGameServer = new ReqRegisterGameServer
+        {
+            ServerType = Setting.ServerType,
+            ServerID = Setting.ServerId,
+            MinModuleMessageID = Setting.MinModuleId,
+            MaxModuleMessageID = Setting.MaxModuleId,
+            ServerName = Setting.ServerName
+        };
+        SendToGatewayMessage(reqRegisterGameServer);
     }
 
     private async void GateWayClientOnDataReceived(object o, DataEventArgs dataEventArgs)
