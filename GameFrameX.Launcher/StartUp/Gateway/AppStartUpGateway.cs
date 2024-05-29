@@ -115,6 +115,12 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
                 return ValueTask.CompletedTask;
             }
 
+            if (message is RespActorHeartBeat discoveryCenterRespActorHeartBeat)
+            {
+                // 发现中心的心跳返回
+                return ValueTask.CompletedTask;
+            }
+
             if (message is ReqRegisterGameServer reqRegisterGameServer)
             {
                 GameServiceInfo gameServiceInfo = new GameServiceInfo(reqRegisterGameServer.ServerType,
