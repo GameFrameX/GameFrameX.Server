@@ -153,7 +153,7 @@ namespace GameFrameX.ServerManager
             Guard.NotNull(node, nameof(node));
             if (node.Type == _serviceInfo.Type)
             {
-                LogHelper.Error($"不能添加discovery节点...{node}");
+                LogHelper.Error($"不能添加{_serviceInfo.Type.ToString()}节点...{node}");
                 return;
             }
 
