@@ -54,7 +54,7 @@ namespace GameFrameX.NetWork.Messages
 
         public string ToMessageString()
         {
-            return $"消息ID:[{MessageId},{GetType().Name}] 消息内容:{JsonHelper.Serialize(this)}";
+            return $"消息ID:[{MessageId}=MainId: {MessageManager.GetMainId(MessageId)} + SubId: {MessageManager.GetSubId(MessageId)},{GetType().Name}] 消息内容:{JsonHelper.Serialize(this)}";
         }
 
         public override string ToString()
