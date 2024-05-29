@@ -1,6 +1,7 @@
 ﻿using GameFrameX.Launcher.PipelineFilter;
 using GameFrameX.Launcher.StartUp.Gateway;
 using GameFrameX.Proto.BuiltIn;
+using GameFrameX.ServerManager;
 
 
 /// <summary>
@@ -251,8 +252,11 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
 
     protected override bool IsRequestConnectServer { get; } = false;
 
+    private NamingServiceManager _namingServiceManager;
+
     public AppStartUpGateway() : base(messageEncoderHandler, messageDecoderHandler)
     {
+        _namingServiceManager = new NamingServiceManager();
     }
 }
 
