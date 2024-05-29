@@ -7,7 +7,7 @@ namespace GameFrameX.Proto.BuiltIn;
 /// <summary>
 /// 请求链接的服务
 /// </summary>
-[MessageTypeHandler(9000004)]
+[MessageTypeHandler((999 << 16) + 100)]
 public partial class ReqConnectServer : MessageObject, IRequestMessage
 {
     /// <summary>
@@ -26,7 +26,7 @@ public partial class ReqConnectServer : MessageObject, IRequestMessage
 /// <summary>
 /// 请求链接的服务返回
 /// </summary>
-[MessageTypeHandler(9000004)]
+[MessageTypeHandler((999 << 16) + 101)]
 public partial class RespConnectServer : MessageObject, IResponseMessage
 {
     /// <summary>
@@ -63,7 +63,7 @@ public partial class RespConnectServer : MessageObject, IResponseMessage
 /// <summary>
 /// 服务上线
 /// </summary>
-[MessageTypeHandler(9000002)]
+[MessageTypeHandler((999 << 16) + 102)]
 public partial class RespServerOnlineServer : MessageObject, IResponseMessage
 {
     /// <summary>
@@ -88,7 +88,7 @@ public partial class RespServerOnlineServer : MessageObject, IResponseMessage
 /// <summary>
 /// 服务下线
 /// </summary>
-[MessageTypeHandler(9000003)]
+[MessageTypeHandler((999 << 16) + 103)]
 public partial class RespServerOfflineServer : MessageObject, IResponseMessage
 {
     /// <summary>
@@ -113,7 +113,7 @@ public partial class RespServerOfflineServer : MessageObject, IResponseMessage
 /// <summary>
 /// 请求注册服务
 /// </summary>
-[MessageTypeHandler(9000001)]
+[MessageTypeHandler((999 << 16) + 104)]
 public partial class ReqRegisterServer : MessageObject, IRequestMessage
 {
     /// <summary>
