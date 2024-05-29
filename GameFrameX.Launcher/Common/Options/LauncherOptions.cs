@@ -189,6 +189,34 @@ public sealed class LauncherOptions
     }
 
     /// <summary>
+    /// 游戏逻辑服务器的处理最小模块ID
+    /// </summary>
+    [Option("MinModuleId", HelpText = "游戏逻辑服务器的处理最小模块ID")]
+    public ushort MinModuleId { get; set; }
+
+    public void CheckMinModuleId()
+    {
+        if (MinModuleId <= 0 || MinModuleId >= ushort.MaxValue - 10)
+        {
+            throw new ArgumentOutOfRangeException(nameof(MinModuleId), "游戏逻辑服务器的处理最小模块ID必须大于0且小于等于" + (ushort.MaxValue - 10));
+        }
+    }
+
+    /// <summary>
+    /// 游戏逻辑服务器的处理最大模块ID
+    /// </summary>
+    [Option("MaxModuleId", HelpText = "游戏逻辑服务器的处理最大模块ID")]
+    public ushort MaxModuleId { get; set; }
+
+    public void CheckMaxModuleId()
+    {
+        if (MaxModuleId <= 0 || MaxModuleId >= ushort.MaxValue - 10)
+        {
+            throw new ArgumentOutOfRangeException(nameof(MaxModuleId), "游戏逻辑服务器的处理最小模块ID必须大于0且小于等于" + (ushort.MaxValue - 10));
+        }
+    }
+
+    /// <summary>
     /// WebSocket 加密端口
     /// </summary>
     [Option("WssPort", HelpText = "WebSocket 加密端口")]

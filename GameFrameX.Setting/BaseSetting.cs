@@ -210,6 +210,16 @@ public abstract class BaseSetting
     /// </summary>
     public int MaxClientCount { get; set; } = 3000;
 
+    /// <summary>
+    /// 游戏逻辑服务器的处理最小模块ID
+    /// </summary>
+    public ushort MinModuleId { get; set; }
+
+    /// <summary>
+    /// 游戏逻辑服务器的处理最大模块ID
+    /// </summary>
+    public ushort MaxModuleId { get; set; }
+
     #endregion
 
     public override string ToString()
