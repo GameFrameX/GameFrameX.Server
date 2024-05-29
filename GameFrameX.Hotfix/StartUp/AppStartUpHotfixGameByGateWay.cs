@@ -1,9 +1,12 @@
 ﻿using System.Net;
 using System.Timers;
 using GameFrameX.Launcher;
+using GameFrameX.NetWork;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Proto.BuiltIn;
 using SuperSocket.ClientEngine;
+using SuperSocket.Server.Abstractions.Session;
+using SuperSocket.WebSocket.Server;
 using Timer = System.Timers.Timer;
 
 namespace GameFrameX.Hotfix.StartUp;
@@ -91,6 +94,9 @@ internal partial class AppStartUpHotfixGame
         // 和网关服务器链接成功，关闭重连
         _gateWayReconnectionTimer.Stop();
         _gateWayHeartBeatTimer.Start();
+        var appSession = sender as IGameAppSession;
+        var netChannel = new DefaultNetWorkChannel(appSession, messageEncoderHandler);
+        GameClientSessionManager.SetSession(appSession.SessionID, netChannel); //移除
         LogHelper.Info("和网关服务器链接链接成功!");
         ReqRegisterGameServer reqRegisterGameServer = new ReqRegisterGameServer
         {
@@ -103,8 +109,9 @@ internal partial class AppStartUpHotfixGame
         SendToGatewayMessage(reqRegisterGameServer);
     }
 
-    private async void GateWayClientOnDataReceived(object o, DataEventArgs dataEventArgs)
+    private async void GateWayClientOnDataReceived(object sender, DataEventArgs dataEventArgs)
     {
+        IGameAppSession appSession = (IGameAppSession)sender;
         var messageData = dataEventArgs.Data.ReadBytes(dataEventArgs.Offset, dataEventArgs.Length);
         var message = messageDecoderHandler.Handler(messageData);
         if (message is MessageObject messageObject)
@@ -122,7 +129,7 @@ internal partial class AppStartUpHotfixGame
             }
 
             handler.Message = messageObject;
-            handler.NetWorkChannel = GameClientSessionManager.GetSession(string.Empty);
+            handler.NetWorkChannel = GameClientSessionManager.GetSession(appSession.SessionID);
             await handler.Init();
             await handler.InnerAction();
         }
