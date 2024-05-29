@@ -8,10 +8,8 @@ using SuperSocket.ProtoBase;
 
 namespace SuperSocket.Server.Abstractions.Session
 {
-    public interface IAppSession
+    public interface IAppSession : IGameAppSession
     {
-        string SessionID { get; }
-
         DateTimeOffset StartTime { get; }
 
         DateTimeOffset LastActiveTime { get; }
@@ -21,8 +19,6 @@ namespace SuperSocket.Server.Abstractions.Session
         EndPoint RemoteEndPoint { get; }
 
         EndPoint LocalEndPoint { get; }
-
-        ValueTask SendAsync(ReadOnlyMemory<byte> data, CancellationToken cancellationToken = default);
 
         ValueTask SendAsync<TPackage>(IPackageEncoder<TPackage> packageEncoder, TPackage package, CancellationToken cancellationToken = default);
 
