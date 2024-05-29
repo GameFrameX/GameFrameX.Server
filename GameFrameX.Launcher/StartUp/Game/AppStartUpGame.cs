@@ -66,6 +66,8 @@
                     APMPort = 29090,
                     HttpPort = 29001,
                     WsPort = 29010,
+                    MinModuleId = 0,
+                    MaxModuleId = 9999,
                     DiscoveryCenterIp = "127.0.0.1",
                     DiscoveryCenterPort = 21001,
                     //
