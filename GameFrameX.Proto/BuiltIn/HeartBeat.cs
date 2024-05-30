@@ -1,5 +1,4 @@
 using GameFrameX.NetWork.Messages;
-using GameFrameX.Proto.Proto;
 using ProtoBuf;
 
 namespace GameFrameX.Proto.BuiltIn;
@@ -9,7 +8,7 @@ namespace GameFrameX.Proto.BuiltIn;
 /// </summary>
 [MessageTypeHandler(((short.MaxValue - 1) << 16) + 1)]
 [ProtoContract]
-public partial class ReqActorHeartBeat : MessageObject, IRequestMessage, IReqHeartBeatMessage
+public partial class ReqHeartBeat : MessageObject, IRequestMessage, IReqHeartBeatMessage
 {
     /// <summary>
     ///  时间戳
@@ -23,7 +22,7 @@ public partial class ReqActorHeartBeat : MessageObject, IRequestMessage, IReqHea
 /// </summary>
 [MessageTypeHandler(((short.MaxValue - 1) << 16) + 2)]
 [ProtoContract]
-public partial class RespActorHeartBeat : MessageObject, IResponseMessage, IRespHeartBeatMessage
+public partial class RespHeartBeat : MessageObject, IResponseMessage, IRespHeartBeatMessage
 {
     /// <summary>
     ///  时间戳
