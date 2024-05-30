@@ -10,7 +10,7 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPacka
     /// </summary>
     /// <param name="message"></param>
     /// <returns></returns>
-    public byte[] Handler(IMessage message)
+    public virtual byte[] Handler(IMessage message)
     {
         if (message is MessageObject messageObject)
         {
@@ -38,7 +38,7 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPacka
     /// <summary>
     /// len +cmdType+uniqueId + msgId + bytes.length
     /// </summary>
-    public ushort PackageLength { get; } = 2 + 1 + 4 + 4;
+    public virtual ushort PackageLength { get; } = 2 + 1 + 4 + 4;
 
     public int Encode(IBufferWriter<byte> writer, IMessage pack)
     {
