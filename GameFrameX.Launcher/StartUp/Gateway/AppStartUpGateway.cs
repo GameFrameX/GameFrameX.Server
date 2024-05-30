@@ -13,12 +13,6 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
     private IServer tcpService;
     protected override int HeartBeatInterval { get; } = 10000;
 
-    /// <summary>
-    /// 和游戏逻辑服链接的客户端
-    /// </summary>
-    private List<ClientSession> _gameClientList = new List<ClientSession>();
-
-
     public override async Task EnterAsync()
     {
         try
@@ -42,12 +36,6 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
     public override async Task Stop(string message = "")
     {
         LogHelper.Info($"服务器{Setting.ServerType} 停止! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
-        foreach (var kv in _gameClientList)
-        {
-            kv.AsyncTcpSession?.Close();
-        }
-
-        _gameClientList.Clear();
         await tcpService.StopAsync();
         await base.Stop(message);
     }
