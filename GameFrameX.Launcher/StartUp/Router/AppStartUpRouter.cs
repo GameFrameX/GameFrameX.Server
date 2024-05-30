@@ -129,24 +129,25 @@ internal partial class AppStartUpRouter : AppStartUpService
     /// </summary>
     /// <param name="appSession"></param>
     /// <param name="messageObject"></param>
-    private ValueTask MessagePackageHandler(IAppSession appSession, IMessage messageObject)
+    private ValueTask MessagePackageHandler(IAppSession appSession, IMessage message)
     {
-        if (messageObject is MessageObject message)
+        if (message is IOuterMessage outerMessage)
         {
-            if (messageObject is ReqHeartBeat reqHeartBeat)
+            if (outerMessage.OperationType == MessageOperationType.HeartBeat)
             {
                 if (Setting.IsDebug && Setting.IsDebugReceive)
                 {
-                    LogHelper.Debug(messageObject.ToReceiveMessageString(ServerType.Client, ServerType));
+                    LogHelper.Debug(outerMessage.ToReceiveMessageString(ServerType.Client, ServerType));
                 }
 
+                var reqHeartBeat = (ReqHeartBeat)outerMessage.DeserializeMessageObject();
                 ReplyHeartBeat(appSession, reqHeartBeat);
                 return ValueTask.CompletedTask;
             }
 
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
-                LogHelper.Debug($"转发到[{ServerType.Gateway}] [{messageObject.ToReceiveMessageString(ServerType, ServerType.Client)}]");
+                LogHelper.Debug($"转发到[{ServerType.Gateway}] [{outerMessage.ToReceiveMessageString(ServerType, ServerType.Client)}]");
             }
 
             SendToGatewayMessage(message);
