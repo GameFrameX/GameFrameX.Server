@@ -10,12 +10,12 @@ public interface IMessage
     /// <summary>
     /// 消息ID
     /// </summary>
-    int MessageId { get; set; }
+    int MessageId { get; }
 
     /// <summary>
     /// 消息的唯一ID
     /// </summary>
-    int UniqueId { get; set; }
+    int UniqueId { get; }
 
     /// <summary>
     /// 更新唯一消息ID
