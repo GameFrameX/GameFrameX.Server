@@ -54,7 +54,7 @@ namespace GameFrameX.Launcher
             JsonSetting();
             GlobalSettings.Load<AppSetting>($"Configs/app_config.json");
             CacheStateTypeManager.Init();
-            ProtoMessageIdHandler.Init();
+            MessageProtoHelper.Init();
 
             var types = Assembly.GetEntryAssembly()?.GetTypes();
             if (types != null)

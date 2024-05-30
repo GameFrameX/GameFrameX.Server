@@ -4,6 +4,6 @@
 using GameFrameX.Client;
 using GameFrameX.Proto;
 
-ProtoMessageIdHandler.Init();
+MessageProtoHelper.Init();
 
 UnityTcpClient.Entry(args);

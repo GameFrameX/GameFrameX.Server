@@ -91,7 +91,7 @@ public static class UnityTcpClient
         var uniqueId = data.ReadInt(ref offset);
         int messageId = data.ReadInt(ref offset);
         var messageData = data.ReadBytes(offset, length - offset);
-        var messageType = ProtoMessageIdHandler.GetMessageTypeById(messageId);
+        var messageType = MessageProtoHelper.GetMessageTypeById(messageId);
         if (messageType != null)
         {
             var messageObject = (MessageObject)SerializerHelper.Deserialize(messageData, messageType);
@@ -112,7 +112,7 @@ public static class UnityTcpClient
         int offset = 0;
         buffer.WriteUShort(len, ref offset);
         buffer.WriteInt(message.UniqueId, ref offset);
-        var messageId = ProtoMessageIdHandler.GetMessageIdByType(message.GetType());
+        var messageId = MessageProtoHelper.GetMessageIdByType(message.GetType());
         message.MessageId = messageId;
         buffer.WriteInt(messageId, ref offset);
         buffer.WriteBytesWithoutLength(bytes, ref offset);

@@ -16,7 +16,7 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPacka
         {
             var messageType = message.GetType();
 
-            var msgId = ProtoMessageIdHandler.GetMessageIdByType(messageType);
+            var msgId = MessageProtoHelper.GetMessageIdByType(messageType);
             messageObject.MessageId = msgId;
             var uniqueId = messageObject.UniqueId;
             var bytes = SerializerHelper.Serialize(messageObject);

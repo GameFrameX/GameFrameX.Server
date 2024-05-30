@@ -10,7 +10,7 @@ namespace GameFrameX.Proto
     /// <summary>
     /// 协议消息处理器
     /// </summary>
-    public static class ProtoMessageIdHandler
+    public static class MessageProtoHelper
     {
         private static readonly BidirectionalDictionary<int, Type> RequestDictionary = new BidirectionalDictionary<int, Type>();
         private static readonly BidirectionalDictionary<int, Type> AllMessageDictionary = new BidirectionalDictionary<int, Type>();
@@ -51,7 +51,7 @@ namespace GameFrameX.Proto
             AllMessageDictionary.Clear();
             RequestDictionary.Clear();
             ResponseDictionary.Clear();
-            var assembly = typeof(ProtoMessageIdHandler).Assembly;
+            var assembly = typeof(MessageProtoHelper).Assembly;
             var types = assembly.GetTypes();
             StringBuilder stringBuilder = new StringBuilder();
             foreach (var type in types)
