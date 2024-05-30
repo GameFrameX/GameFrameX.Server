@@ -1,6 +1,7 @@
 ﻿using GameFrameX.Hotfix.Server.Heart.Agent;
 using GameFrameX.Core.Net.BaseHandler;
 using GameFrameX.NetWork.Messages;
+using GameFrameX.Proto.BuiltIn;
 using GameFrameX.Utility;
 
 namespace GameFrameX.Hotfix.Server.Heart.Handler;

@@ -17,7 +17,7 @@ internal partial class AppStartUpHotfixGame
 
     private Timer _gateWayReconnectionTimer;
     private Timer _gateWayHeartBeatTimer;
-    private ReqActorHeartBeat _reqGatewayActorHeartBeat;
+    private ReqHeartBeat _reqGatewayActorHeartBeat;
 
     private void SendToGatewayMessage(IMessage message)
     {
@@ -63,7 +63,7 @@ internal partial class AppStartUpHotfixGame
         };
         _gateWayHeartBeatTimer.Elapsed += GateWayHeartBeatTimerOnElapsed;
         _gateWayHeartBeatTimer.Start();
-        _reqGatewayActorHeartBeat = new ReqActorHeartBeat();
+        _reqGatewayActorHeartBeat = new ReqHeartBeat();
         _gatewayClient = new AsyncTcpSession();
         _gatewayClient.Closed += GateWayClientOnClosed;
         _gatewayClient.DataReceived += GateWayClientOnDataReceived;

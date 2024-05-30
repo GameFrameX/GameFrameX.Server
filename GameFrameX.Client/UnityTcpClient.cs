@@ -3,6 +3,7 @@ using GameFrameX.Extension;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Proto;
+using GameFrameX.Proto.BuiltIn;
 using GameFrameX.Proto.Proto;
 using GameFrameX.Serialize.Serialize;
 using GameFrameX.Utility;

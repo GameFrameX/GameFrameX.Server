@@ -30,7 +30,7 @@ internal partial class AppStartUpRouter
         }
     }
 
-    ReqActorHeartBeat reqGatewayActorHeartBeat;
+    ReqHeartBeat reqGatewayActorHeartBeat;
 
     private void StartGatewayClient()
     {
@@ -47,7 +47,7 @@ internal partial class AppStartUpRouter
         };
         GateWayHeartBeatTimer.Elapsed += GateWayHeartBeatTimerOnElapsed;
         GateWayHeartBeatTimer.Start();
-        reqGatewayActorHeartBeat = new ReqActorHeartBeat();
+        reqGatewayActorHeartBeat = new ReqHeartBeat();
         _gatewayClient = new AsyncTcpSession();
         _gatewayClient.Closed += GateWayClientOnClosed;
         _gatewayClient.DataReceived += GateWayClientOnDataReceived;

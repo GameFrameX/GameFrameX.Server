@@ -29,12 +29,12 @@ public abstract class AppStartUpService : AppStartUpBase
 
     private readonly IMessageEncoderHandler _messageEncoderHandler;
     private readonly IMessageDecoderHandler _messageDecoderHandler;
-    readonly ReqActorHeartBeat _reqDiscoveryCenterActorHeartBeat;
+    readonly ReqHeartBeat _reqDiscoveryCenterActorHeartBeat;
 
     protected AppStartUpService(IMessageEncoderHandler messageEncoderHandler, IMessageDecoderHandler messageDecoderHandler)
     {
         RpcSession = new RpcSession();
-        _reqDiscoveryCenterActorHeartBeat = new ReqActorHeartBeat();
+        _reqDiscoveryCenterActorHeartBeat = new ReqHeartBeat();
         _messageEncoderHandler = messageEncoderHandler;
         _messageDecoderHandler = messageDecoderHandler;
     }

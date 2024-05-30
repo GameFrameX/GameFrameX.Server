@@ -2,6 +2,7 @@
 using GameFrameX.Apps.Server.Heart.Entity;
 using GameFrameX.Core.Timer.Handler;
 using GameFrameX.Monitor.Player;
+using GameFrameX.Proto.BuiltIn;
 
 namespace GameFrameX.Hotfix.Server.Heart.Agent;
 

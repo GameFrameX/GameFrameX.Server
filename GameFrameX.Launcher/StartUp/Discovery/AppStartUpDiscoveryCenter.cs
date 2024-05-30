@@ -130,7 +130,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
     {
         if (message is MessageObject messageObject)
         {
-            if (Setting.IsDebug && Setting.IsDebugReceive && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
+            if (Setting.IsDebug && Setting.IsDebugReceive && MessageProtoHelper.HasHeartbeat(message.GetType()))
             {
                 var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
                 if (serverInfo != null)
@@ -176,10 +176,10 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
                     SendMessage(session, respConnectServer);
                 }
             }
-            else if (message is ReqActorHeartBeat reqActorHeartBeat)
+            else if (message is ReqHeartBeat reqActorHeartBeat)
             {
                 // 心跳相应
-                var response = new RespActorHeartBeat()
+                var response = new RespHeartBeat()
                 {
                     UniqueId = reqActorHeartBeat.UniqueId,
                     Timestamp = TimeHelper.UnixTimeSeconds()

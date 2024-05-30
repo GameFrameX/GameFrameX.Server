@@ -90,9 +90,9 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
                 LogHelper.Debug($"---收到[{ServerType}] {messageObject.ToMessageString()}");
             }
 
-            if (message is ReqActorHeartBeat reqActorHeartBeat)
+            if (message is ReqHeartBeat reqActorHeartBeat)
             {
-                var respActorHeartBeat = new RespActorHeartBeat()
+                var respActorHeartBeat = new RespHeartBeat()
                 {
                     UniqueId = reqActorHeartBeat.UniqueId,
                     Timestamp = TimeHelper.UnixTimeSeconds()
@@ -101,7 +101,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
                 return ValueTask.CompletedTask;
             }
 
-            if (message is RespActorHeartBeat discoveryCenterRespActorHeartBeat)
+            if (message is RespHeartBeat discoveryCenterRespActorHeartBeat)
             {
                 // 发现中心的心跳返回
                 return ValueTask.CompletedTask;
