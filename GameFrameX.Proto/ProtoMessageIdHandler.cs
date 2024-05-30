@@ -16,43 +16,6 @@ namespace GameFrameX.Proto
         private static readonly BidirectionalDictionary<int, Type> AllMessageDictionary = new BidirectionalDictionary<int, Type>();
         private static readonly BidirectionalDictionary<int, Type> ResponseDictionary = new BidirectionalDictionary<int, Type>();
 
-
-        #region All
-
-        public static int GetRequestMessageIdByType(Type type)
-        {
-            if (RequestDictionary.TryGetKey(type, out var value))
-            {
-                return value;
-            }
-
-            return 0;
-        }
-
-        public static Type GetRequestMessageTypeById(int messageId)
-        {
-            RequestDictionary.TryGetValue(messageId, out var value);
-            return value;
-        }
-
-        public static int GetResponseMessageIdByType(Type type)
-        {
-            if (ResponseDictionary.TryGetKey(type, out var value))
-            {
-                return value;
-            }
-
-            return 0;
-        }
-
-        public static Type GetResponseMessageTypeById(int messageId)
-        {
-            ResponseDictionary.TryGetValue(messageId, out var value);
-            return value;
-        }
-
-        #endregion
-
         /// <summary>
         /// 获取消息ID
         /// </summary>
