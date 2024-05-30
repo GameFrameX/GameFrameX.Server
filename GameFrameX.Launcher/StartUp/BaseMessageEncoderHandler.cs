@@ -21,7 +21,7 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPacka
             var uniqueId = messageObject.UniqueId;
             var bytes = SerializerHelper.Serialize(messageObject);
             // len +uniqueId + msgId + bytes.length
-            ushort len = (ushort)(2 + 4 + 4 + bytes.Length);
+            ushort len = (ushort)(PackageLength + bytes.Length);
             var span = new byte[len];
             int offset = 0;
             span.WriteUShort(len, ref offset);
@@ -34,6 +34,11 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPacka
         LogHelper.Error("消息对象为空，编码异常");
         return null;
     }
+
+    /// <summary>
+    /// len +cmdType+uniqueId + msgId + bytes.length
+    /// </summary>
+    public ushort PackageLength { get; } = 2 + 1 + 4 + 4;
 
     public int Encode(IBufferWriter<byte> writer, IMessage pack)
     {
