@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using System.Text;
 using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.NetWork.Messages;
@@ -53,21 +52,12 @@ namespace GameFrameX.Proto
             ResponseDictionary.Clear();
             var assembly = typeof(MessageProtoHelper).Assembly;
             var types = assembly.GetTypes();
-            StringBuilder stringBuilder = new StringBuilder();
             foreach (var type in types)
             {
-                var attribute = type.GetCustomAttribute(typeof(MessageTypeHandlerAttribute));
-                if (attribute == null)
+                var messageTypeHandlerAttribute = type.GetCustomAttribute(typeof(MessageTypeHandlerAttribute));
+
+                if (messageTypeHandlerAttribute is MessageTypeHandlerAttribute messageIdHandler)
                 {
-                    continue;
-                }
-
-
-                // SerializerHelper.Register(type);
-                if (attribute is MessageTypeHandlerAttribute messageIdHandler)
-                {
-                    stringBuilder.AppendLine($"ID:{messageIdHandler.MessageId},类型: {type}");
-
                     if (!AllMessageDictionary.TryAdd(messageIdHandler.MessageId, type))
                     {
                         RequestDictionary.TryGetValue(messageIdHandler.MessageId, out var value);
@@ -94,9 +84,6 @@ namespace GameFrameX.Proto
                     }
                 }
             }
-
-            // LogHelper.Debug(stringBuilder.ToString());
-            // LogHelper.Info(" 注册消息ID类型: 结束");
         }
     }
 }
