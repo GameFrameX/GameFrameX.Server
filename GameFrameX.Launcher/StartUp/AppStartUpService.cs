@@ -80,7 +80,7 @@ public abstract class AppStartUpService : AppStartUpBase
     protected void SendToDiscoveryCenterMessage(IMessage message)
     {
         var span = _messageEncoderHandler.Handler(message);
-        if (Setting.IsDebug && Setting.IsDebugSend && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
+        if (Setting.IsDebug && Setting.IsDebugSend)
         {
             LogHelper.Debug(message.ToSendMessageString(ServerType, ServerType.DiscoveryCenter));
         }
