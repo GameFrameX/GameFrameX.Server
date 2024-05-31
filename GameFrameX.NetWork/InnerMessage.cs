@@ -5,6 +5,7 @@ using GameFrameX.NetWork.Messages;
 using GameFrameX.Serialize.Serialize;
 using GameFrameX.Setting;
 using GameFrameX.Utility;
+using Newtonsoft.Json;
 
 namespace GameFrameX.NetWork;
 
@@ -89,6 +90,7 @@ public class InnerMessage : IInnerMessage
     /// <summary>
     /// 消息数据
     /// </summary>
+    [JsonIgnore]
     public byte[] MessageData { get; private set; }
 
     /// <summary>
@@ -99,6 +101,7 @@ public class InnerMessage : IInnerMessage
     /// <summary>
     /// 消息类型
     /// </summary>
+    [JsonIgnore]
     public Type MessageType { get; private set; }
 
     /// <summary>
