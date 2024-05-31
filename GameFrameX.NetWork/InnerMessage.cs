@@ -143,6 +143,18 @@ public class InnerMessage : IInnerMessage
         return innerMessage;
     }
 
+    public static InnerMessage Create(IMessage message, MessageOperationType operationType)
+    {
+        var innerMessage = new InnerMessage();
+        innerMessage.SetOperationType(operationType);
+        innerMessage.SetMessageType(message.GetType());
+        innerMessage.SetUniqueId(message.UniqueId);
+        var buffer = SerializerHelper.Serialize(message);
+        innerMessage.SetMessageData(buffer);
+        innerMessage.SetMessageId(message.MessageId);
+        innerMessage.SetData(GlobalConst.UniqueIdIdKey, message.UniqueId);
+        return innerMessage;
+    }
     private readonly ConcurrentDictionary<string, object> _data = new ConcurrentDictionary<string, object>();
     private readonly ushort _messageDataLength;
 
