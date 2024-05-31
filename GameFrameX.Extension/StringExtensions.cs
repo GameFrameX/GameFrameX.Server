@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Text;
+using System.Text.RegularExpressions;
 
 namespace GameFrameX.Extension
 {
@@ -7,6 +8,67 @@ namespace GameFrameX.Extension
     /// </summary>
     public static class StringExtension
     {
+        private static readonly StringBuilder NewSentence = new StringBuilder();
+
+        public static string RepeatChar(this char c, int count)
+        {
+            NewSentence.Clear();
+            for (int i = 0; i < count; i++)
+            {
+                NewSentence.Append(c);
+            }
+
+            return NewSentence.ToString();
+        }
+
+        /// <summary>
+        /// 获取居中的字符串的固定长度打印
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="width"></param>
+        /// <returns></returns>
+        public static string CenterAlignedText(this string text, int width)
+        {
+            if (width < text.Length)
+            {
+                throw new IndexOutOfRangeException(nameof(width));
+            }
+
+            int spaces = (width - text.Length) / 2;
+            string paddedText = new string(' ', spaces) + text + new string(' ', spaces);
+            return paddedText;
+        }
+
+        /// <summary>
+        /// 将字符串按指定宽度进行换行
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="width"></param>
+        /// <returns></returns>
+        public static string WordWrap(this string text, int width)
+        {
+            var words = text.Split(' ');
+            NewSentence.Clear();
+            string line = "";
+            foreach (var word in words)
+            {
+                if ((line + word).Length > width)
+                {
+                    NewSentence.AppendLine(line);
+                    line = "";
+                }
+
+                line += $"{word} ";
+            }
+
+            if (line.Length > 0)
+            {
+                NewSentence.AppendLine(line);
+            }
+
+            return NewSentence.ToString();
+        }
+
         /// <summary>
         /// 从当前字符串中移除指定字符结尾的后缀
         /// </summary>
