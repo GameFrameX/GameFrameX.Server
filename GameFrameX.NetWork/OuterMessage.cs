@@ -1,7 +1,10 @@
-﻿using GameFrameX.NetWork.Messages;
+﻿using System.Text;
+using GameFrameX.Extension;
+using GameFrameX.NetWork.Messages;
 using GameFrameX.Serialize.Serialize;
 using GameFrameX.Setting;
 using GameFrameX.Utility;
+using Newtonsoft.Json;
 
 namespace GameFrameX.NetWork;
 
@@ -56,9 +59,19 @@ public class OuterMessage : IOuterMessage
         return $"---收到[{srcServerType} To {destServerType}] {ToMessageString()}";
     }
 
+    private readonly StringBuilder _stringBuilder = new StringBuilder();
+
     public string ToMessageString()
     {
-        return $"消息ID:[{MessageId}=MainId: {MessageManager.GetMainId(MessageId)} + SubId: {MessageManager.GetSubId(MessageId)},{GetType().Name}] 消息内容:{JsonHelper.Serialize(this)}";
+        _stringBuilder.Clear();
+        _stringBuilder.AppendLine();
+        _stringBuilder.AppendLine($"{'\u2193'.RepeatChar(100)}");
+        _stringBuilder.AppendLine(
+            $"\u2192---MessageType:[{MessageType?.Name.CenterAlignedText(20)}]---MessageId:[{MessageId.ToString().CenterAlignedText(10)}]---MainId:[{MessageManager.GetMainId(MessageId).ToString().CenterAlignedText(5)}]---SubId:[{MessageManager.GetSubId(MessageId).ToString().CenterAlignedText(5)}]---\u2190");
+        _stringBuilder.AppendLine($"{ToString().WordWrap(100),-100}");
+        _stringBuilder.AppendLine($"{'\u2191'.RepeatChar(100)}");
+        _stringBuilder.AppendLine();
+        return _stringBuilder.ToString();
     }
 
     /// <summary>
@@ -83,6 +96,7 @@ public class OuterMessage : IOuterMessage
     /// <summary>
     /// 消息类型
     /// </summary>
+    [JsonIgnore]
     public Type MessageType { get; private set; }
 
     /// <summary>
