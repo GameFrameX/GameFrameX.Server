@@ -11,6 +11,11 @@ public static class GlobalConst
     public const string SessionIdKey = "SESSION_ID";
 
     /// <summary>
+    /// 唯一ID
+    /// </summary>
+    public const string UniqueIdIdKey = "UniqueId_ID";
+
+    /// <summary>
     /// 秒标记
     /// </summary>
     public const int SecondMask = 0b111111111111111111111111111111;
