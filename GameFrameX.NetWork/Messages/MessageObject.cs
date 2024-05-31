@@ -21,6 +21,11 @@ namespace GameFrameX.NetWork.Messages
         [ProtoMember(998)]
         public int MessageId { get; set; }
 
+        public void SetMessageId(int messageId)
+        {
+            MessageId = messageId;
+        }
+
         /// <summary>
         /// 消息的唯一ID
         /// </summary>

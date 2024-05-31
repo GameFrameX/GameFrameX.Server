@@ -13,6 +13,12 @@ public interface IMessage
     int MessageId { get; }
 
     /// <summary>
+    /// 设置消息ID
+    /// </summary>
+    /// <param name="messageId"></param>
+    void SetMessageId(int messageId);
+
+    /// <summary>
     /// 消息的唯一ID
     /// </summary>
     int UniqueId { get; }
