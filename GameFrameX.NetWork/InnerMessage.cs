@@ -161,8 +161,8 @@ public class InnerMessage : IInnerMessage
         innerMessage.SetData(GlobalConst.UniqueIdIdKey, message.UniqueId);
         return innerMessage;
     }
+
     private readonly ConcurrentDictionary<string, object> _data = new ConcurrentDictionary<string, object>();
-    private readonly ushort _messageDataLength;
 
     public void SetData(string key, object value)
     {
