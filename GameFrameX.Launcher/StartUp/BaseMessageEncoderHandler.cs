@@ -1,3 +1,4 @@
+using GameFrameX.Proto.BuiltIn;
 using GameFrameX.Serialize.Serialize;
 using SuperSocket.ProtoBase;
 
@@ -5,6 +6,20 @@ namespace GameFrameX.Launcher.StartUp;
 
 public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMessage>
 {
+    /// <summary>
+    /// 和客户端之间的消息 数据长度(4)+消息唯一ID(4)+消息ID(4)+消息内容
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="messageId"></param>
+    /// <returns></returns>
+    public byte[] HeartBeatHandler(ReqHeartBeat message, out int messageId)
+    {
+        var messageType = message.GetType();
+        messageId = MessageProtoHelper.GetMessageIdByType(messageType);
+        var buffer = SerializerHelper.Serialize(message);
+        return buffer;
+    }
+
     /// <summary>
     /// 和客户端之间的消息 数据长度(4)+消息唯一ID(4)+消息ID(4)+消息内容
     /// </summary>
