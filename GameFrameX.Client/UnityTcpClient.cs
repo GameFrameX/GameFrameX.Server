@@ -14,22 +14,24 @@ namespace GameFrameX.Client;
 
 public static class UnityTcpClient
 {
+    private static AsyncTcpSession _tcpClient;
+
     public static async void Entry(string[] args)
     {
-        var tcpClient = new AsyncTcpSession();
-        tcpClient.Connected += OnTcpClientOnConnected; //成功连接到服务器
-        tcpClient.Closed += OnTcpClientOnClosed; //从服务器断开连接，当连接不成功时不会触发。
-        tcpClient.DataReceived += OnTcpClientOnDataReceived;
-        tcpClient.Error += OnTcpClientOnError;
+        _tcpClient = new AsyncTcpSession();
+        _tcpClient.Connected += OnTcpClientOnConnected; //成功连接到服务器
+        _tcpClient.Closed += OnTcpClientOnClosed; //从服务器断开连接，当连接不成功时不会触发。
+        _tcpClient.DataReceived += OnTcpClientOnDataReceived;
+        _tcpClient.Error += OnTcpClientOnError;
 
         while (true)
         {
             Thread.Sleep(5000);
 
-            if (!tcpClient.IsConnected)
+            if (!_tcpClient.IsConnected)
             {
                 Console.WriteLine("未链接到服务器,开启重连");
-                tcpClient.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 23001));
+                _tcpClient.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 23001));
                 continue;
                 // Console.WriteLine("链接到服务器结果：" + result);
                 // if (result.ResultCode != ResultCode.Success)
@@ -46,8 +48,7 @@ public static class UnityTcpClient
                     Timestamp = TimeHelper.UnixTimeSeconds(),
                     UniqueId = count
                 };
-                var buffer = Handler(req);
-                tcpClient.Send(buffer);
+                SendToServer(req);
 
                 if (count % 2 == 0)
                 {
@@ -57,11 +58,16 @@ public static class UnityTcpClient
                         Password = "123456",
                         UniqueId = count
                     };
-                    buffer = Handler(reqLogin);
-                    tcpClient.Send(buffer);
+                    SendToServer(reqLogin);
                 }
             }
         }
+    }
+
+    private static void SendToServer(MessageObject messageObject)
+    {
+        var buffer = Handler(messageObject);
+        _tcpClient.Send(buffer);
     }
 
     private static void OnTcpClientOnError(object? client, ErrorEventArgs e)
@@ -81,8 +87,6 @@ public static class UnityTcpClient
 
     private static void OnTcpClientOnDataReceived(object? client, DataEventArgs e)
     {
-        //从服务器收到信息。但是一般byteBlock和requestInfo会根据适配器呈现不同的值。
-        // var mes = Encoding.UTF8.GetString(e.ByteBlock.Buffer, 0, e.ByteBlock.Len);
         DecodeMessage(e.Data.ReadBytes(e.Offset, e.Length));
     }
 
@@ -90,6 +94,7 @@ public static class UnityTcpClient
     {
         int offset = 0;
         var length = data.ReadUShort(ref offset);
+        var operationType = data.ReadByte(ref offset);
         var uniqueId = data.ReadInt(ref offset);
         int messageId = data.ReadInt(ref offset);
         var messageData = data.ReadBytes(offset, length - offset);
