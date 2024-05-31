@@ -19,7 +19,7 @@ class MessageRouterEncoderHandler : BaseMessageEncoderHandler
             var operationType = (byte)(MessageProtoHelper.HasHeartbeat(messageType) ? MessageOperationType.HeartBeat : MessageOperationType.Game);
             messageObject.MessageId = msgId;
             var uniqueId = messageObject.UniqueId;
-            var bytes = SerializerHelper.Serialize(messageObject);
+            var bytes = MessageSerializerHelper.Serialize(messageObject);
             // len +uniqueId + msgId + bytes.length
             ushort len = (ushort)(PackageLength + bytes.Length);
             var span = new byte[len];

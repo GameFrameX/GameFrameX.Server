@@ -16,7 +16,7 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPacka
     {
         var messageType = message.GetType();
         messageId = MessageProtoHelper.GetMessageIdByType(messageType);
-        var buffer = SerializerHelper.Serialize(message);
+        var buffer = MessageSerializerHelper.Serialize(message);
         return buffer;
     }
 
@@ -34,7 +34,7 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPacka
             var msgId = MessageProtoHelper.GetMessageIdByType(messageType);
             messageObject.MessageId = msgId;
             var uniqueId = messageObject.UniqueId;
-            var bytes = SerializerHelper.Serialize(messageObject);
+            var bytes = MessageSerializerHelper.Serialize(messageObject);
             // len +uniqueId + msgId + bytes.length
             ushort len = (ushort)(PackageLength + bytes.Length);
             var span = new byte[len];

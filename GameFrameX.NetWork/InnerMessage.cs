@@ -119,7 +119,7 @@ public class InnerMessage : IInnerMessage
     /// <returns></returns>
     public MessageObject DeserializeMessageObject()
     {
-        var value = SerializerHelper.Deserialize(MessageData, MessageType);
+        var value = MessageSerializerHelper.Deserialize(MessageData, MessageType);
         return (MessageObject)value;
     }
 
@@ -155,7 +155,7 @@ public class InnerMessage : IInnerMessage
         innerMessage.SetOperationType(operationType);
         innerMessage.SetMessageType(message.GetType());
         innerMessage.SetUniqueId(message.UniqueId);
-        var buffer = SerializerHelper.Serialize(message);
+        var buffer = MessageSerializerHelper.Serialize(message);
         innerMessage.SetMessageData(buffer);
         innerMessage.SetMessageId(message.MessageId);
         innerMessage.SetData(GlobalConst.UniqueIdIdKey, message.UniqueId);

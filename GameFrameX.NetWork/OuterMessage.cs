@@ -114,7 +114,7 @@ public class OuterMessage : IOuterMessage
     /// <returns></returns>
     public MessageObject DeserializeMessageObject()
     {
-        var value = SerializerHelper.Deserialize(MessageData, MessageType);
+        var value = MessageSerializerHelper.Deserialize(MessageData, MessageType);
         return (MessageObject)value;
     }
 

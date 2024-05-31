@@ -1,6 +1,6 @@
-
 using GameFrameX.DBServer.State;
 using GameFrameX.Log;
+using GameFrameX.Serialize.Serialize;
 using GameFrameX.Utility;
 
 namespace GameFrameX.DBServer.Storage;
@@ -43,7 +43,7 @@ class StateMd5
 
     private static (string md5, byte[] data) GetMd5AndData(CacheState state)
     {
-        var data = GameFrameX.Serialize.Serialize.SerializerHelper.Serialize(state);
+        var data = MessageSerializerHelper.Serialize(state);
         var md5Str = Hash.MD5.Hash(data);
         return (md5Str, data);
     }

@@ -25,7 +25,7 @@ public class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder
             var messageType = MessageProtoHelper.GetMessageTypeById(messageId);
             if (messageType != null)
             {
-                var message = SerializerHelper.Deserialize(messageData, messageType);
+                var message = MessageSerializerHelper.Deserialize(messageData, messageType);
                 if (message is MessageObject messageObject)
                 {
                     messageObject.MessageId = messageId;
