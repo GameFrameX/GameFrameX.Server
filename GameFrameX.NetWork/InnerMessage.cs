@@ -1,5 +1,5 @@
-﻿using GameFrameX.NetWork.Messages;
 ﻿using System.Collections.Concurrent;
+using GameFrameX.NetWork.Messages;
 using GameFrameX.Serialize.Serialize;
 using GameFrameX.Setting;
 using GameFrameX.Utility;
@@ -118,6 +118,18 @@ public class InnerMessage : IInnerMessage
     {
         return JsonHelper.Serialize(this);
     }
+
+    public static InnerMessage Create(IOuterMessage message, MessageOperationType operationType)
+    {
+        var innerMessage = new InnerMessage();
+        innerMessage.SetOperationType(operationType);
+        innerMessage.SetMessageType(message.MessageType);
+        innerMessage.SetMessageData(message.MessageData);
+        innerMessage.SetMessageId(message.MessageId);
+        innerMessage.SetData(GlobalConst.UniqueIdIdKey, message.UniqueId);
+        return innerMessage;
+    }
+
     private readonly ConcurrentDictionary<string, object> _data = new ConcurrentDictionary<string, object>();
     private readonly ushort _messageDataLength;
 
