@@ -97,13 +97,14 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
             return;
         }
 
-        var data = messageEncoderHandler.Handler(message);
-        if (Setting.IsDebug && Setting.IsDebugReceive && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
+        InnerMessage innerMessage = InnerMessage.Create(message, MessageProtoHelper.HasHeartbeat(message.GetType()) ? MessageOperationType.HeartBeat : MessageOperationType.Game);
+        var data = messageEncoderHandler.InnerHandler(innerMessage);
+        if (Setting.IsDebug && Setting.IsDebugReceive)
         {
             var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
             if (serverInfo != null)
             {
-                LogHelper.Info(message.ToSendMessageString(ServerType, serverInfo.Type));
+                LogHelper.Info(innerMessage.ToSendMessageString(ServerType, serverInfo.Type));
             }
         }
 
@@ -128,9 +129,9 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
 
     private ValueTask PackageHandler(IAppSession session, IMessage message)
     {
-        if (message is MessageObject messageObject)
+        if (message is IInnerMessage messageObject)
         {
-            if (Setting.IsDebug && Setting.IsDebugReceive && MessageProtoHelper.HasHeartbeat(message.GetType()))
+            if (Setting.IsDebug && Setting.IsDebugReceive)
             {
                 var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
                 if (serverInfo != null)
@@ -143,49 +144,56 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
                 }
             }
 
-
-            if (messageObject is ReqRegisterServer reqRegisterServer)
-            {
-                // 注册服务
-                ServiceInfo serviceInfo = new ServiceInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerID, reqRegisterServer.InnerIP, reqRegisterServer.InnerPort, reqRegisterServer.OuterIP, reqRegisterServer.OuterPort);
-                _namingServiceManager.Add(serviceInfo);
-                LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
-                return ValueTask.CompletedTask;
-            }
-            else if (messageObject is ReqConnectServer reqConnectServer)
-            {
-                var serverList = _namingServiceManager.GetNodesByType(reqConnectServer.ServerType);
-                if (reqConnectServer.ServerID > 0)
-                {
-                    serverList = serverList.Where(m => m.ServerId == reqConnectServer.ServerID).ToList();
-                }
-
-                if (serverList.Count > 0)
-                {
-                    var serverInfo = (ServiceInfo)serverList.Random();
-
-                    RespConnectServer respConnectServer = new RespConnectServer
-                    {
-                        UniqueId = reqConnectServer.UniqueId,
-                        ServerType = serverInfo.Type,
-                        ServerName = serverInfo.ServerName,
-                        ServerID = serverInfo.ServerId,
-                        TargetIP = serverInfo.OuterIp,
-                        TargetPort = serverInfo.OuterPort
-                    };
-                    SendMessage(session, respConnectServer);
-                }
-            }
-            else if (message is ReqHeartBeat reqActorHeartBeat)
+            if (messageObject.OperationType == MessageOperationType.HeartBeat)
             {
                 // 心跳相应
+                var reqHeartBeat = messageObject.DeserializeMessageObject();
                 var response = new RespHeartBeat()
                 {
-                    UniqueId = reqActorHeartBeat.UniqueId,
+                    UniqueId = reqHeartBeat.UniqueId,
                     Timestamp = TimeHelper.UnixTimeSeconds()
                 };
                 SendMessage(session, response);
                 return ValueTask.CompletedTask;
+            }
+
+            if (messageObject.OperationType == MessageOperationType.Game)
+            {
+                if (messageObject.MessageType == typeof(ReqRegisterServer))
+                {
+                    ReqRegisterServer reqRegisterServer = (ReqRegisterServer)messageObject.DeserializeMessageObject();
+                    // 注册服务
+                    ServiceInfo serviceInfo = new ServiceInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerID, reqRegisterServer.InnerIP, reqRegisterServer.InnerPort, reqRegisterServer.OuterIP, reqRegisterServer.OuterPort);
+                    _namingServiceManager.Add(serviceInfo);
+                    LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
+                    return ValueTask.CompletedTask;
+                }
+
+                if (messageObject.MessageType == typeof(ReqConnectServer))
+                {
+                    ReqConnectServer reqConnectServer = (ReqConnectServer)messageObject.DeserializeMessageObject();
+                    var serverList = _namingServiceManager.GetNodesByType(reqConnectServer.ServerType);
+                    if (reqConnectServer.ServerID > 0)
+                    {
+                        serverList = serverList.Where(m => m.ServerId == reqConnectServer.ServerID).ToList();
+                    }
+
+                    if (serverList.Count > 0)
+                    {
+                        var serverInfo = (ServiceInfo)serverList.Random();
+
+                        RespConnectServer respConnectServer = new RespConnectServer
+                        {
+                            UniqueId = reqConnectServer.UniqueId,
+                            ServerType = serverInfo.Type,
+                            ServerName = serverInfo.ServerName,
+                            ServerID = serverInfo.ServerId,
+                            TargetIP = serverInfo.OuterIp,
+                            TargetPort = serverInfo.OuterPort
+                        };
+                        SendMessage(session, respConnectServer);
+                    }
+                }
             }
         }
 
