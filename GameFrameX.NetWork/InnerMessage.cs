@@ -91,6 +91,9 @@ public class InnerMessage : IInnerMessage
     /// </summary>
     public byte[] MessageData { get; private set; }
 
+    /// <summary>
+    /// 消息数据长度
+    /// </summary>
     public ushort MessageDataLength { get; private set; }
 
     /// <summary>
