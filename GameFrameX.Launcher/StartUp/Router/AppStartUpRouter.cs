@@ -128,44 +128,63 @@ internal partial class AppStartUpRouter : AppStartUpService
     /// 处理收到的消息结果
     /// </summary>
     /// <param name="appSession"></param>
-    /// <param name="messageObject"></param>
+    /// <param name="message"></param>
     private ValueTask MessagePackageHandler(IAppSession appSession, IMessage message)
     {
         if (message is IOuterMessage outerMessage)
         {
+            if (Setting.IsDebug && Setting.IsDebugReceive)
+            {
+                LogHelper.Debug(outerMessage.ToReceiveMessageString(ServerType.Client, ServerType));
+            }
+
             if (outerMessage.OperationType == MessageOperationType.HeartBeat)
             {
-                if (Setting.IsDebug && Setting.IsDebugReceive)
-                {
-                    LogHelper.Debug(outerMessage.ToReceiveMessageString(ServerType.Client, ServerType));
-                }
-
                 var reqHeartBeat = (ReqHeartBeat)outerMessage.DeserializeMessageObject();
-                ReplyHeartBeat(appSession, reqHeartBeat);
+                var response = new RespHeartBeat()
+                {
+                    UniqueId = reqHeartBeat.UniqueId,
+                    Timestamp = TimeHelper.UnixTimeSeconds()
+                };
+                SendToClient(appSession, response);
                 return ValueTask.CompletedTask;
             }
 
+            if (outerMessage.OperationType == MessageOperationType.Game)
+            {
+                if (Setting.IsDebug && Setting.IsDebugReceive)
+                {
+                    LogHelper.Debug($"转发到[{ServerType.Gateway}] {outerMessage.ToReceiveMessageString(ServerType, ServerType.Client)}");
+                }
+
+                InnerMessage innerMessage = InnerMessage.Create(outerMessage, MessageOperationType.Game);
+                innerMessage.SetData(GlobalConst.SessionIdKey, appSession.SessionID);
+                SendToGatewayMessage(innerMessage);
+            }
+        }
+        else if (message is IInnerMessage innerMessage)
+        {
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
-                LogHelper.Debug($"转发到[{ServerType.Gateway}] [{outerMessage.ToReceiveMessageString(ServerType, ServerType.Client)}]");
+                LogHelper.Debug($"转发到[{ServerType.Gateway}] [{innerMessage.ToReceiveMessageString(ServerType, ServerType.Client)}]");
             }
-
-            SendToGatewayMessage(message);
         }
 
         return ValueTask.CompletedTask;
     }
 
-    private static async void ReplyHeartBeat(IAppSession appSession, ReqHeartBeat reqHeartBeat)
+    private static async void SendToClient(IAppSession appSession, MessageObject messageObject)
     {
-        var response = new RespHeartBeat()
+        if (appSession.Connection.IsClosed)
         {
-            UniqueId = reqHeartBeat.UniqueId,
-            Timestamp = TimeHelper.UnixTimeSeconds()
-        };
-        var result = messageEncoderHandler.Handler(response);
+            return;
+        }
+
+        LogHelper.Debug(messageObject.ToSendMessageString(ServerType.Router, ServerType.Client));
+        var result = messageEncoderHandler.Handler(messageObject);
         await appSession.SendAsync(result);
     }
+
 
     private void ConfigureWebServer(HostBuilderContext context, IConfigurationBuilder builder)
     {
