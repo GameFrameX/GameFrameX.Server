@@ -13,6 +13,11 @@ public interface IInnerMessage : IMessage
     byte[] MessageData { get; }
 
     /// <summary>
+    /// 消息数据长度
+    /// </summary>
+    ushort MessageDataLength { get; }
+
+    /// <summary>
     /// 消息类型
     /// </summary>
     Type MessageType { get; }

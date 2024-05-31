@@ -77,6 +77,8 @@ public class InnerMessage : IInnerMessage
     /// </summary>
     public byte[] MessageData { get; private set; }
 
+    public ushort MessageDataLength { get; private set; }
+
     /// <summary>
     /// 消息类型
     /// </summary>
@@ -108,6 +110,7 @@ public class InnerMessage : IInnerMessage
     public void SetMessageData(byte[] messageData)
     {
         MessageData = messageData;
+        MessageDataLength = (ushort)messageData.Length;
     }
 
     public override string ToString()
