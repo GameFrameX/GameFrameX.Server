@@ -5,32 +5,50 @@ namespace GameFrameX.Launcher.StartUp.Router;
 
 internal partial class AppStartUpRouter
 {
+    /// <summary>
+    /// 和网关之间的TCP
+    /// </summary>
     AsyncTcpSession _gatewayClient;
 
-    protected Timer GateWayReconnectionTimer;
-    private Timer GateWayHeartBeatTimer;
+    /// <summary>
+    /// 和网关之间的心跳对象
+    /// </summary>
+    private ReqHeartBeat _reqGatewayActorHeartBeat;
 
-    private void SendToGatewayMessage(IMessage message)
+    /// <summary>
+    /// 网关重连定时器
+    /// </summary>
+    protected Timer GateWayReconnectionTimer;
+
+    /// <summary>
+    /// 和网关之间的心跳
+    /// </summary>
+    private Timer GateWayHeartBeatTimer { get; set; }
+
+    /// <summary>
+    /// 发送消息到网关
+    /// </summary>
+    /// <param name="message"></param>
+    private void SendToGatewayMessage(IInnerMessage message)
     {
         if (!_gatewayClient.IsConnected)
         {
             return;
         }
 
-        var span = messageEncoderHandler.Handler(message);
-        if (Setting.IsDebug && Setting.IsDebugSend && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
+        var buffer = messageEncoderHandler.InnerHandler(message);
+        if (Setting.IsDebug && Setting.IsDebugSend && MessageProtoHelper.HasHeartbeat(message.GetType()))
         {
             LogHelper.Debug(message.ToSendMessageString(ServerType, ServerType.Gateway));
         }
 
-        bool result = _gatewayClient.TrySend(span);
+        bool result = _gatewayClient.TrySend(buffer);
         if (result)
         {
             GateWayHeartBeatTimer.Reset();
         }
     }
 
-    ReqHeartBeat reqGatewayActorHeartBeat;
 
     private void StartGatewayClient()
     {
@@ -47,7 +65,8 @@ internal partial class AppStartUpRouter
         };
         GateWayHeartBeatTimer.Elapsed += GateWayHeartBeatTimerOnElapsed;
         GateWayHeartBeatTimer.Start();
-        reqGatewayActorHeartBeat = new ReqHeartBeat();
+        _reqGatewayActorHeartBeat = new ReqHeartBeat();
+        _reqGatewayActorHeartBeat.SetMessageId(MessageProtoHelper.GetMessageIdByType(typeof(ReqHeartBeat)));
         _gatewayClient = new AsyncTcpSession();
         _gatewayClient.Closed += GateWayClientOnClosed;
         _gatewayClient.DataReceived += GateWayClientOnDataReceived;
@@ -57,9 +76,10 @@ internal partial class AppStartUpRouter
 
     private void GateWayHeartBeatTimerOnElapsed(object sender, ElapsedEventArgs e)
     {
-        reqGatewayActorHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
-        reqGatewayActorHeartBeat.UpdateUniqueId();
-        SendToGatewayMessage(reqGatewayActorHeartBeat);
+        _reqGatewayActorHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
+        _reqGatewayActorHeartBeat.UpdateUniqueId();
+        InnerMessage innerMessage = InnerMessage.Create(_reqGatewayActorHeartBeat, MessageOperationType.HeartBeat);
+        SendToGatewayMessage(innerMessage);
     }
 
     private void GateWayReconnectionTimerOnElapsed(object sender, ElapsedEventArgs e)
