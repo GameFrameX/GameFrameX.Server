@@ -27,4 +27,23 @@ public interface IInnerMessage : IMessage
     /// </summary>
     /// <returns></returns>
     MessageObject DeserializeMessageObject();
+
+    /// <summary>
+    /// 设置消息数据
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="value"></param>
+    void SetData(string key, object value);
+
+    /// <summary>
+    /// 获取消息数据
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns></returns>
+    object GetData(string key);
+
+    /// <summary>
+    /// 清除消息数据
+    /// </summary>
+    void ClearData();
 }

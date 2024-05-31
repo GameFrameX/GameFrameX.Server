@@ -1,4 +1,5 @@
 ﻿using GameFrameX.NetWork.Messages;
+﻿using System.Collections.Concurrent;
 using GameFrameX.Serialize.Serialize;
 using GameFrameX.Setting;
 using GameFrameX.Utility;
@@ -116,5 +117,23 @@ public class InnerMessage : IInnerMessage
     public override string ToString()
     {
         return JsonHelper.Serialize(this);
+    }
+    private readonly ConcurrentDictionary<string, object> _data = new ConcurrentDictionary<string, object>();
+    private readonly ushort _messageDataLength;
+
+    public void SetData(string key, object value)
+    {
+        _data[key] = value;
+    }
+
+    public object GetData(string key)
+    {
+        _data.TryGetValue(key, out var value);
+        return value;
+    }
+
+    public void ClearData()
+    {
+        _data.Clear();
     }
 }
