@@ -8,7 +8,7 @@ namespace GameFrameX.Proto.BuiltIn;
 /// </summary>
 [MessageTypeHandler(((short.MaxValue - 1) << 16) + 1)]
 [ProtoContract]
-public partial class ReqHeartBeat : MessageObject, IRequestMessage, IReqHeartBeatMessage
+public partial class ReqHeartBeat : MessageObject, IRequestMessage
 {
     /// <summary>
     ///  时间戳
@@ -22,7 +22,7 @@ public partial class ReqHeartBeat : MessageObject, IRequestMessage, IReqHeartBea
 /// </summary>
 [MessageTypeHandler(((short.MaxValue - 1) << 16) + 2)]
 [ProtoContract]
-public partial class RespHeartBeat : MessageObject, IResponseMessage, IRespHeartBeatMessage
+public partial class RespHeartBeat : MessageObject, IResponseMessage
 {
     /// <summary>
     ///  时间戳
