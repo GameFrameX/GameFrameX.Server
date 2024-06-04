@@ -58,6 +58,19 @@ namespace GameFrameX.Serialize.Serialize
             }
         }
 
+        /// <summary>
+        /// 反序列化数据对象
+        /// </summary>
+        /// <param name="data">数据内容</param>
+        /// <typeparam name="T">目标类型</typeparam>
+        /// <returns></returns>
+        public static T Deserialize<T>(byte[] data) where T : class, new()
+        {
+            using (var memoryStream = Manager.GetStream(data))
+            {
+                return ProtoBuf.Serializer.Deserialize(typeof(T), memoryStream) as T;
+            }
+        }
         /*
         /// <summary>
         /// 反序列化数据对象
