@@ -15,17 +15,6 @@ namespace GameFrameX.Proto
         private static readonly BidirectionalDictionary<int, Type> RequestDictionary = new BidirectionalDictionary<int, Type>();
         private static readonly BidirectionalDictionary<int, Type> AllMessageDictionary = new BidirectionalDictionary<int, Type>();
         private static readonly BidirectionalDictionary<int, Type> ResponseDictionary = new BidirectionalDictionary<int, Type>();
-        private static readonly HashSet<Type> Heartbeats = new HashSet<Type>();
-
-        /// <summary>
-        /// 判断是否在心跳列表
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public static bool HasHeartbeat(Type type)
-        {
-            return Heartbeats.Contains(type);
-        }
 
         /// <summary>
         /// 获取消息ID
@@ -62,7 +51,6 @@ namespace GameFrameX.Proto
             AllMessageDictionary.Clear();
             RequestDictionary.Clear();
             ResponseDictionary.Clear();
-            Heartbeats.Clear();
             var assembly = typeof(MessageProtoHelper).Assembly;
             var types = assembly.GetTypes();
             foreach (var type in types)
@@ -94,11 +82,6 @@ namespace GameFrameX.Proto
                             ResponseDictionary.TryGetValue(messageIdHandler.MessageId, out var value);
                             LogHelper.Error($"返回Id重复==>当前ID:{messageIdHandler.MessageId},已有ID类型:{value.FullName}");
                         }
-                    }
-
-                    if (type.IsImplWithInterface(typeof(IReqHeartBeatMessage)) || type.IsImplWithInterface(typeof(IRespHeartBeatMessage)))
-                    {
-                        Heartbeats.Add(type);
                     }
                 }
             }
