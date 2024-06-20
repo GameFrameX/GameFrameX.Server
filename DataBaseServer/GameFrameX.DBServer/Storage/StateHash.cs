@@ -1,6 +1,6 @@
 using GameFrameX.DBServer.State;
 using GameFrameX.Log;
-using GameFrameX.Serialize.Serialize;
+using MongoDB.Bson;
 
 namespace GameFrameX.DBServer.Storage;
 
@@ -40,7 +40,7 @@ class StateHash
 
     private static (Standart.Hash.xxHash.uint128 md5, byte[] data) GetHashAndData(CacheState state)
     {
-        var data = MessageSerializerHelper.Serialize(state);
+        var data = state.ToBson();
         var md5Str = Standart.Hash.xxHash.xxHash128.ComputeHash(data, data.Length);
         return (md5Str, data);
     }
