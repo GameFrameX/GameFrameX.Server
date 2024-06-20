@@ -180,7 +180,7 @@ namespace GameFrameX.Core.Comps
 
             if (!writeList.IsNullOrEmpty())
             {
-                var stateName = typeof(TState).FullName;
+                var stateName = typeof(TState).Name;
                 StateComponent.statisticsTool.Count(stateName, writeList.Count);
                 LogHelper.Debug($"状态回存 {stateName} count:{writeList.Count}");
                 var currentDatabase = GameDb.As<MongoDbServiceConnection>().CurrentDatabase;
