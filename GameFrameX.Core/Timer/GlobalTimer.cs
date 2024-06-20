@@ -1,4 +1,5 @@
 ﻿using GameFrameX.Core.Actors;
+using GameFrameX.Core.Comps;
 using GameFrameX.DBServer;
 using GameFrameX.Extension;
 using GameFrameX.Log;
@@ -52,7 +53,7 @@ namespace GameFrameX.Core.Timer
 
                 var startTime = DateTime.Now;
 
-                await GameDb.TimerSave();
+                await StateComponent.TimerSave();
 
                 var cost = (DateTime.Now - startTime).TotalMilliseconds;
                 LogHelper.Info($"定时回存完成 耗时: {cost:f4}ms");
@@ -104,7 +105,7 @@ namespace GameFrameX.Core.Timer
             LogHelper.Info($"停止全局定时开始...");
             IsWorking = false;
             await _loopTask;
-            await GameDb.SaveAll();
+            await StateComponent.SaveAll(true);
             GameDb.Close();
             LogHelper.Info($"停止全局定时完成...");
         }
