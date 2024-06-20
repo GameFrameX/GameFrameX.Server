@@ -5,7 +5,7 @@
 /// </summary>
 public static class UtilityIdGenerator
 {
-    private static readonly DateTime UtcTimeStart = new(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+    private static readonly DateTime utcTimeStart = new(2000, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
     // 共享计数器
     private static long _longCounter = (long)(DateTime.UtcNow - UtcTimeStart).TotalSeconds;
