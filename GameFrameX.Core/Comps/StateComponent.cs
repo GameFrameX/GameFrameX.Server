@@ -145,71 +145,76 @@ namespace GameFrameX.Core.Comps
 
         public static async Task SaveAll(bool shutdown, bool force = false)
         {
-            static void AddReplaceModel(List<ReplaceOneModel<MongoState>> writeList, bool isChanged, long stateId, byte[] data)
+            var idList = new List<long>();
+            var writeList = new List<ReplaceOneModel<MongoDB.Bson.BsonDocument>>();
+            if (shutdown)
             {
-                if (isChanged)
+                foreach (var state in stateDic.Values)
                 {
-                    var mongoState = new MongoState()
+                    if (state.IsModify)
+                {
+                        var bsonDoc = state.ToBsonDocument();
+                        lock (writeList)
                     {
-                        Data = data,
-                        Id = stateId.ToString(),
-                        Timestamp = TimeHelper.CurrentTimeMillisWithUTC()
-                    };
-                    var filter = Builders<MongoState>.Filter.Eq(CacheState.UniqueId, mongoState.Id);
-                    writeList.Add(new ReplaceOneModel<MongoState>(filter, mongoState) { IsUpsert = true });
+                            var filter = Builders<MongoDB.Bson.BsonDocument>.Filter.Eq("_id", state.Id);
+                            writeList.Add(new ReplaceOneModel<MongoDB.Bson.BsonDocument>(filter, bsonDoc) { IsUpsert = true });
+                            idList.Add(state.Id);
+                        }
+                    }
                 }
             }
-
-            var writeList = new List<ReplaceOneModel<MongoState>>();
-            var tasks = new List<Task<(bool, long, byte[])>>();
+            else
+            {
+                var tasks = new List<Task>();
 
             foreach (var state in stateDic.Values)
             {
                 var actor = ActorManager.GetActor(state.Id);
                 if (actor != null)
                 {
-                    if (force)
+                        tasks.Add(actor.SendAsync(() =>
                     {
-                        var (isChanged, data) = state.IsChanged();
-                        AddReplaceModel(writeList, isChanged, state.Id, data);
-                    }
-                    else
+                            if (!force && !state.IsModify)
+                                return;
+                            var bsonDoc = state.ToBsonDocument();
+                            lock (writeList)
                     {
-                        tasks.Add(actor.SendAsync(() => state.IsChangedWithId()));
+                                var filter = Builders<MongoDB.Bson.BsonDocument>.Filter.Eq("_id", state.Id);
+                                writeList.Add(new ReplaceOneModel<MongoDB.Bson.BsonDocument>(filter, bsonDoc) { IsUpsert = true });
+                                idList.Add(state.Id);
                     }
+                        }));
                 }
             }
 
-            var results = await Task.WhenAll(tasks);
-            foreach (var (isChanged, stateId, data) in results)
-            {
-                AddReplaceModel(writeList, isChanged, stateId, data);
+                await Task.WhenAll(tasks);
             }
 
             if (!writeList.IsNullOrEmpty())
             {
                 var stateName = typeof(TState).Name;
                 StateComponent.statisticsTool.Count(stateName, writeList.Count);
-                LogHelper.Debug($"状态回存 {stateName} count:{writeList.Count}");
-                var currentDatabase = GameDb.As<MongoDbService>().CurrentDatabase;
-                var mongoCollection = currentDatabase.GetCollection<MongoState>(stateName);
+                LogHelper.Debug($"[StateComp] 状态回存 {stateName} count:{writeList.Count}");
+                var db = GameDb.As<MongoDbService>().CurrentDatabase;
+                var col = db.GetCollection<MongoDB.Bson.BsonDocument>(stateName);
                 for (int idx = 0; idx < writeList.Count; idx += ONCE_SAVE_COUNT)
                 {
-                    var list = writeList.GetRange(idx, Math.Min(ONCE_SAVE_COUNT, writeList.Count - idx));
+                    var docs = writeList.GetRange(idx, Math.Min(ONCE_SAVE_COUNT, writeList.Count - idx));
+                    var ids = idList.GetRange(idx, docs.Count);
 
                     bool save = false;
                     try
                     {
-                        var result = await mongoCollection.BulkWriteAsync(list, MongoDbService.BulkWriteOptions);
+                        var result = await col.BulkWriteAsync(docs, MongoDbService.BulkWriteOptions);
                         if (result.IsAcknowledged)
                         {
-                            list.ForEach(model =>
+                            foreach (var id in ids)
                             {
-                                if (stateDic.TryGetValue(long.Parse(model.Replacement.Id), out var cacheState))
-                                {
-                                    cacheState.AfterSaveToDB();
+                                stateDic.TryGetValue(id, out var state);
+                                if (state == null)
+                                    continue;
+                                state.AfterSaveToDB();
                                 }
-                            });
                             save = true;
                         }
                         else
@@ -220,6 +225,10 @@ namespace GameFrameX.Core.Comps
                     catch (Exception ex)
                     {
                         LogHelper.Error($"保存数据异常，类型:{typeof(TState).FullName}，{ex}");
+                    }
+                    if (!save && shutdown)
+                    {
+                        LogHelper.Error($"保存数据失败，类型:{typeof(TState).FullName}");
                     }
                 }
             }
