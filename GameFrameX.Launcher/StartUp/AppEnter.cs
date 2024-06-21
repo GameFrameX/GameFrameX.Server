@@ -57,6 +57,7 @@ namespace GameFrameX.Launcher.StartUp
             {
                 GlobalSettings.IsAppRunning = false;
                 _appStartUp.Stop(message);
+                AppExitHandler.Kill();
                 LogHelper.Info($"退出程序");
                 _gameLoopTask?.Wait();
                 Process.GetCurrentProcess().Kill();
