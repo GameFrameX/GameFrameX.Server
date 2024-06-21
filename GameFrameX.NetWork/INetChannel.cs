@@ -31,11 +31,10 @@ public interface INetChannel
     /// 异步写入消息
     /// </summary>
     /// <param name="msg"></param>
-    /// <param name="uniId"></param>
     /// <param name="code"></param>
     /// <param name="desc"></param>
     /// <returns></returns>
-    Task WriteAsync(IMessage msg, int uniId = 0, int code = 0, string desc = "");
+    Task WriteAsync(IMessage msg, int code = 0, string desc = "");
 
     /// <summary>
     /// 关闭网络

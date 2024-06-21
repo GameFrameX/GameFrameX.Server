@@ -10,17 +10,16 @@ public static class NetChannelExtensions
     /// </summary>
     /// <param name="channel">网络通道。</param>
     /// <param name="msg">消息对象。</param>
-    /// <param name="uniId">唯一ID。</param>
     /// <param name="code">状态码。</param>
     /// <param name="desc">描述。</param>
-    public static void WriteAsync(this BaseNetChannel channel, MessageObject msg, int uniId, OperationStatusCode code = OperationStatusCode.Success, string desc = "")
+    public static void WriteAsync(this BaseNetChannel channel, MessageObject msg, OperationStatusCode code = OperationStatusCode.Success, string desc = "")
     {
         if (msg != null)
         {
-            msg.UniId = uniId;
             channel.Write(msg);
         }
 
+        /*
         if (uniId > 0)
         {
             RespErrorCode res = new RespErrorCode
@@ -30,6 +29,6 @@ public static class NetChannelExtensions
                 Desc = desc
             };
             channel.Write(res);
-        }
+        }*/
     }
 }

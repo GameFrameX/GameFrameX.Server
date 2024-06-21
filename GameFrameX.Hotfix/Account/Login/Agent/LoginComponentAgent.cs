@@ -17,7 +17,7 @@ namespace GameFrameX.Hotfix.Account.Login.Agent
                 {
                     ErrCode = (int)ResultCode.Failed
                 };
-                await channel.WriteAsync(respErrorCode, reqLogin.UniId, (int)OperationStatusCode.AccountCannotBeNull);
+                await channel.WriteAsync(respErrorCode, (int)OperationStatusCode.AccountCannotBeNull);
                 return;
             }
 
@@ -47,7 +47,7 @@ namespace GameFrameX.Hotfix.Account.Login.Agent
                 Id = loginState.Id,
                 RoleName = Utility.Random.GetRandom(1, 100).ToString(),
             };
-            await channel.WriteAsync(respLogin, reqLogin.UniId);
+            await channel.WriteAsync(respLogin);
 
             //加入在线玩家
             var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();

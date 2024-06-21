@@ -64,7 +64,7 @@ namespace GameFrameX.Hotfix.Player.Login.Agent
                     Avatar = playerState.Avatar
                 }
             };
-            await channel.WriteAsync(respPlayerLogin, reqLogin.UniId);
+            await channel.WriteAsync(respPlayerLogin);
 
             //加入在线玩家
             var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
@@ -91,7 +91,7 @@ namespace GameFrameX.Hotfix.Player.Login.Agent
                     Avatar = playerState.Avatar
                 }
             };
-            await channel.WriteAsync(respPlayerCreate, reqPlayerCreate.UniId);
+            await channel.WriteAsync(respPlayerCreate);
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace GameFrameX.Hotfix.Player.Login.Agent
                 }
             }
 
-            await channel.WriteAsync(respPlayerList, reqPlayerList.UniId);
+            await channel.WriteAsync(respPlayerList);
         }
     }
 }

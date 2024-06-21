@@ -41,10 +41,9 @@ namespace GameFrameX.NetWork
         /// 将消息对象异步写入网络通道。
         /// </summary>
         /// <param name="messageObject">消息对象。</param>
-        /// <param name="uniId">唯一ID。</param>
         /// <param name="code">状态码。</param>
         /// <param name="desc">描述。</param>
-        public virtual async Task WriteAsync(IMessage messageObject, int uniId = 0, int code = 0, string desc = "")
+        public virtual async Task WriteAsync(IMessage messageObject, int code = 0, string desc = "")
         {
             Guard.NotNull(messageObject, nameof(messageObject));
 
