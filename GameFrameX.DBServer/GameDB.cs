@@ -81,6 +81,59 @@ namespace GameFrameX.DBServer
         }
 
         /// <summary>
+        /// 以升序方式查找符合条件的第一个元素。
+        /// </summary>
+        /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+        /// <param name="filter">过滤表达式。</param>
+        /// <param name="sortExpression">排序字段表达式。</param>
+        /// <returns>符合条件的第一个元素。</returns>
+        public static Task<TState> FindSortAscendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : ICacheState, new()
+        {
+            return _dbServiceImpler.FindSortAscendingFirstOneAsync<TState>(filter, sortExpression);
+        }
+
+        /// <summary>
+        /// 以降序方式查找符合条件的第一个元素。
+        /// </summary>
+        /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+        /// <param name="filter">过滤表达式。</param>
+        /// <param name="sortExpression">排序字段表达式。</param>
+        /// <returns>符合条件的第一个元素。</returns>
+        public static Task<TState> FindSortDescendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : ICacheState, new()
+        {
+            return _dbServiceImpler.FindSortDescendingFirstOneAsync<TState>(filter, sortExpression);
+        }
+
+        /// <summary>
+        /// 以降序方式查找符合条件的元素并进行分页。
+        /// </summary>
+        /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+        /// <param name="filter">过滤表达式。</param>
+        /// <param name="sortExpression">排序字段表达式。</param>
+        /// <param name="pageIndex">页码，从0开始。</param>
+        /// <param name="pageSize">每页数量，默认为10。</param>
+        /// <returns>符合条件的元素列表。</returns>
+        public static Task<List<TState>> FindSortDescendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, long pageIndex = 0, long pageSize = 10) where TState : ICacheState, new()
+        {
+            return _dbServiceImpler.FindSortDescendingAsync<TState>(filter, sortExpression, pageIndex, pageSize);
+        }
+
+        /// <summary>
+        /// 以升序方式查找符合条件的元素并进行分页。
+        /// </summary>
+        /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+        /// <param name="filter">过滤表达式。</param>
+        /// <param name="sortExpression">排序字段表达式。</param>
+        /// <param name="pageIndex">页码，从0开始。</param>
+        /// <param name="pageSize">每页数量，默认为10。</param>
+        /// <returns>符合条件的元素列表。</returns>
+        public static Task<List<TState>> FindSortAscendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, long pageIndex = 0, long pageSize = 10) where TState : ICacheState, new()
+        {
+            return _dbServiceImpler.FindSortAscendingAsync<TState>(filter, sortExpression, pageIndex, pageSize);
+        }
+
+
+        /// <summary>
         /// 加载指定id的文档
         /// </summary>
         /// <typeparam name="TState">文档的类型</typeparam>
@@ -134,30 +187,6 @@ namespace GameFrameX.DBServer
         public static Task<long> DeleteAsync<TState>(TState state) where TState : ICacheState, new()
         {
             return _dbServiceImpler.DeleteAsync<TState>(state);
-        }
-
-        public static async Task SaveAll()
-        {
-            // if (GlobalSettings.DBModel == (int) DbModel.Embeded)
-            // {
-            //     await ActorMgr.SaveAll();
-            // }
-            // else if (GlobalSettings.DBModel == (int) DbModel.Mongodb)
-            // {
-            //     await StateComp.SaveAll();
-            // }
-        }
-
-        public static async Task TimerSave()
-        {
-            // if (GlobalSettings.DBModel == (int) DbModel.Embeded)
-            // {
-            //     await ActorMgr.TimerSave();
-            // }
-            // else if (GlobalSettings.DBModel == (int) DbModel.Mongodb)
-            // {
-            //     await StateComp.TimerSave();
-            // }
         }
     }
 }

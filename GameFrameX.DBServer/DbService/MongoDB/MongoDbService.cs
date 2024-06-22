@@ -136,6 +136,107 @@ namespace GameFrameX.DBServer.DbService.MongoDB
             return state;
         }
 
+        /// <summary>
+        /// 以升序方式查找符合条件的第一个元素。
+        /// </summary>
+        /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+        /// <param name="filter">过滤表达式。</param>
+        /// <param name="sortExpression">排序字段表达式。</param>
+        /// <returns>符合条件的第一个元素。</returns>
+        public async Task<TState> FindSortAscendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : ICacheState, new()
+        {
+            var collection = GetCollection<TState>();
+            var findExpression = GetDefaultFindExpression(filter);
+            var sortDefinition = Builders<TState>.Sort.Ascending(sortExpression);
+            var cursor = collection.Aggregate().Match(findExpression).Sort(sortDefinition).Limit(1);
+            var state = await cursor.FirstOrDefaultAsync();
+            return state;
+        }
+
+        /// <summary>
+        /// 以降序方式查找符合条件的第一个元素。
+        /// </summary>
+        /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+        /// <param name="filter">过滤表达式。</param>
+        /// <param name="sortExpression">排序字段表达式。</param>
+        /// <returns>符合条件的第一个元素。</returns>
+        public async Task<TState> FindSortDescendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : ICacheState, new()
+        {
+            var collection = GetCollection<TState>();
+            var findExpression = GetDefaultFindExpression(filter);
+            var sortDefinition = Builders<TState>.Sort.Descending(sortExpression);
+            var cursor = collection.Aggregate().Match(findExpression).Sort(sortDefinition).Limit(1);
+            var state = await cursor.FirstOrDefaultAsync();
+            return state;
+        }
+
+        /// <summary>
+        /// 以降序方式查找符合条件的元素并进行分页。
+        /// </summary>
+        /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+        /// <param name="filter">过滤表达式。</param>
+        /// <param name="sortExpression">排序字段表达式。</param>
+        /// <param name="pageIndex">页码，从0开始。</param>
+        /// <param name="pageSize">每页数量，默认为10。</param>
+        /// <returns>符合条件的元素列表。</returns>
+        public async Task<List<TState>> FindSortDescendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, long pageIndex = 0, long pageSize = 10) where TState : ICacheState, new()
+        {
+            if (pageIndex < 0)
+            {
+                pageIndex = 0;
+            }
+
+            if (pageSize <= 0)
+            {
+                pageSize = 10;
+            }
+
+            var result = new List<TState>();
+            var collection = GetCollection<TState>();
+            var findExpression = GetDefaultFindExpression(filter);
+            var sortDefinition = Builders<TState>.Sort.Descending(sortExpression);
+            var cursor = await collection.Aggregate().Match(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToCursorAsync();
+            while (await cursor.MoveNextAsync())
+            {
+                result.AddRange(cursor.Current);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 以升序方式查找符合条件的元素并进行分页。
+        /// </summary>
+        /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+        /// <param name="filter">过滤表达式。</param>
+        /// <param name="sortExpression">排序字段表达式。</param>
+        /// <param name="pageIndex">页码，从0开始。</param>
+        /// <param name="pageSize">每页数量，默认为10。</param>
+        /// <returns>符合条件的元素列表。</returns>
+        public async Task<List<TState>> FindSortAscendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, long pageIndex = 0, long pageSize = 10) where TState : ICacheState, new()
+        {
+            if (pageIndex < 0)
+            {
+                pageIndex = 0;
+            }
+
+            if (pageSize <= 0)
+            {
+                pageSize = 10;
+            }
+
+            var result = new List<TState>();
+            var collection = GetCollection<TState>();
+            var findExpression = GetDefaultFindExpression(filter);
+            var sortDefinition = Builders<TState>.Sort.Ascending(sortExpression);
+            var cursor = await collection.Aggregate().Match(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToCursorAsync();
+            while (await cursor.MoveNextAsync())
+            {
+                result.AddRange(cursor.Current);
+            }
+
+            return result;
+        }
 
         /// <summary>
         /// 查询数据长度
