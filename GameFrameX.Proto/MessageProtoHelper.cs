@@ -74,7 +74,7 @@ namespace GameFrameX.Proto
                             LogHelper.Error($"请求Id重复==>当前ID:{messageIdHandler.MessageId},已有ID类型:{value.FullName}");
                         }
                     }
-                    else if (type.IsImplWithInterface(typeof(IResponseMessage)))
+                    else if (type.IsImplWithInterface(typeof(IResponseMessage)) || type.IsImplWithInterface(typeof(INotifyMessage)))
                     {
                         // 返回
                         if (!ResponseDictionary.TryAdd(messageIdHandler.MessageId, type))
