@@ -37,7 +37,13 @@ public partial class RespConnected : MessageObject, IResponseMessage
     /// 错误
     /// </summary>
     [ProtoMember(1)]
-    public ErrorCode ErrorCode { get; set; }
+    public ErrorCode Code { get; set; }
+
+    /// <summary>
+    /// 错误码
+    /// </summary>
+    [ProtoMember(888)]
+    public int ErrorCode { get; set; }
 }
 
 /// <summary>
@@ -65,6 +71,12 @@ public partial class RespActorCacheTarget : MessageActorObject, IActorResponseMe
     /// </summary>
     [ProtoMember(1)]
     public long Timestamp { get; set; }
+
+    /// <summary>
+    /// 错误码
+    /// </summary>
+    [ProtoMember(888)]
+    public int ErrorCode { get; set; }
 }
 
 /// <summary>
@@ -92,4 +104,10 @@ public partial class RespActorHeartBeat : MessageActorObject, IActorResponseMess
     /// </summary>
     [ProtoMember(1)]
     public long Timestamp { get; set; }
+
+    /// <summary>
+    /// 错误码
+    /// </summary>
+    [ProtoMember(888)]
+    public int ErrorCode { get; set; }
 }
