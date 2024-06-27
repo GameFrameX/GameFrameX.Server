@@ -46,7 +46,28 @@ namespace GameFrameX.Proto.Proto
 		/// 
 		/// </summary>
 		[ProtoMember(1)]
-		public Dictionary<int, long> ItemDic { get; set; }
+		public Dictionary<int, long> ItemDic { get; set; } = new Dictionary<int, long>();
+
+		/// <summary>
+		/// 返回的错误码
+		/// </summary>
+		[ProtoMember(888)]
+		public int ErrorCode { get; set; }
+
+	}
+
+	/// <summary>
+	/// 通知背包数据变化
+	/// </summary>
+	[ProtoContract]
+	[MessageTypeHandler(101)]
+	public partial class NotifyBagInfoChanged : MessageObject, INotifyMessage
+	{
+		/// <summary>
+		/// 
+		/// </summary>
+		[ProtoMember(1)]
+		public Dictionary<int, long> ItemDic { get; set; } = new Dictionary<int, long>();
 
 	}
 
@@ -54,7 +75,7 @@ namespace GameFrameX.Proto.Proto
 	/// 请求合成宠物
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(101)]
+	[MessageTypeHandler(102)]
 	public partial class ReqComposePet : MessageObject, IRequestMessage
 	{
 		/// <summary>
@@ -69,7 +90,7 @@ namespace GameFrameX.Proto.Proto
 	/// 返回合成宠物
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(101)]
+	[MessageTypeHandler(102)]
 	public partial class RespComposePet : MessageObject, IResponseMessage
 	{
 		/// <summary>
@@ -78,13 +99,19 @@ namespace GameFrameX.Proto.Proto
 		[ProtoMember(1)]
 		public int PetId { get; set; }
 
+		/// <summary>
+		/// 返回的错误码
+		/// </summary>
+		[ProtoMember(888)]
+		public int ErrorCode { get; set; }
+
 	}
 
 	/// <summary>
 	/// 请求使用道具
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(102)]
+	[MessageTypeHandler(103)]
 	public partial class ReqUseItem : MessageObject, IRequestMessage
 	{
 		/// <summary>
@@ -99,7 +126,7 @@ namespace GameFrameX.Proto.Proto
 	/// 出售道具
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(103)]
+	[MessageTypeHandler(104)]
 	public partial class ReqSellItem : MessageObject, IRequestMessage
 	{
 		/// <summary>
@@ -114,14 +141,20 @@ namespace GameFrameX.Proto.Proto
 	/// 出售道具
 	/// </summary>
 	[ProtoContract]
-	[MessageTypeHandler(104)]
+	[MessageTypeHandler(105)]
 	public partial class RespItemChange : MessageObject, IResponseMessage
 	{
 		/// <summary>
 		/// 变化的道具
 		/// </summary>
 		[ProtoMember(1)]
-		public Dictionary<int, long> ItemDic { get; set; }
+		public Dictionary<int, long> ItemDic { get; set; } = new Dictionary<int, long>();
+
+		/// <summary>
+		/// 返回的错误码
+		/// </summary>
+		[ProtoMember(888)]
+		public int ErrorCode { get; set; }
 
 	}
 
