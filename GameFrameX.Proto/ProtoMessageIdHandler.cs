@@ -171,7 +171,7 @@ namespace GameFrameX.Proto
                             }
                         }
                     }
-                    else if (type.IsImplWithInterface(typeof(IResponseMessage)))
+                    else if (type.IsImplWithInterface(typeof(IResponseMessage)) || type.IsImplWithInterface(typeof(INotifyMessage)))
                     {
                         // 返回
                         if (type.IsImplWithInterface(typeof(IActorResponseMessage)) && messageIdHandler.MessageId > 100_0000)
