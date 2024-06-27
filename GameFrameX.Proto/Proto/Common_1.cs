@@ -43,7 +43,7 @@ namespace GameFrameX.Proto.Proto
 	/// 
 	/// </summary>
 	[ProtoContract]
-	public partial class PhoneNumber
+	public sealed class PhoneNumber
 	{
 		/// <summary>
 		/// 
@@ -63,7 +63,7 @@ namespace GameFrameX.Proto.Proto
 	/// 
 	/// </summary>
 	[ProtoContract]
-	public partial class Person
+	public sealed class Person
 	{
 		/// <summary>
 		/// 
@@ -95,7 +95,7 @@ namespace GameFrameX.Proto.Proto
 	/// Our address book file is just one of these.
 	/// </summary>
 	[ProtoContract]
-	public partial class AddressBook
+	public sealed class AddressBook
 	{
 		/// <summary>
 		/// 
