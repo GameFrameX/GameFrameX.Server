@@ -11,9 +11,9 @@ namespace GameFrameX.Hotfix.Server.Heart.Handler;
 [MessageMapping(typeof(ReqHeartBeat))]
 internal sealed class ReqHeartBeatHandler : GlobalComponentHandler<HeartBeatComponentAgent>
 {
-    readonly RespHeartBeat resp = new RespHeartBeat
+    readonly NotifyHeartBeat resp = new NotifyHeartBeat
     {
-        Timestamp = TimeHelper.UnixTimeSeconds()
+        Timestamp = TimeHelper.UnixTimeMilliseconds()
     };
 
     protected override async Task ActionAsync()
@@ -22,7 +22,7 @@ internal sealed class ReqHeartBeatHandler : GlobalComponentHandler<HeartBeatComp
         // LogHelper.Info("收到心跳请求:" + req.Timestamp);
         Comp.OnUpdateHeartBeatTime(req);
         Channel.UpdateReceiveMessageTime();
-        resp.Timestamp = TimeHelper.UnixTimeSeconds();
+        resp.Timestamp = TimeHelper.UnixTimeMilliseconds();
         resp.UniqueId = req.UniqueId;
         await Channel.WriteAsync(resp);
     }
