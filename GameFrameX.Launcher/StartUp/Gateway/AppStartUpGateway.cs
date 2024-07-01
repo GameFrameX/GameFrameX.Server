@@ -92,7 +92,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
 
             if (message is ReqHeartBeat reqActorHeartBeat)
             {
-                var respActorHeartBeat = new RespHeartBeat()
+                var respActorHeartBeat = new NotifyHeartBeat()
                 {
                     UniqueId = reqActorHeartBeat.UniqueId,
                     Timestamp = TimeHelper.UnixTimeSeconds()
@@ -101,7 +101,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
                 return ValueTask.CompletedTask;
             }
 
-            if (message is RespHeartBeat discoveryCenterRespActorHeartBeat)
+            if (message is NotifyHeartBeat discoveryCenterRespActorHeartBeat)
             {
                 // 发现中心的心跳返回
                 return ValueTask.CompletedTask;

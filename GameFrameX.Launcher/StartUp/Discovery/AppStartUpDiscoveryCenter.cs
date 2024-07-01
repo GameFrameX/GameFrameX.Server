@@ -148,7 +148,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
             {
                 // 心跳相应
                 var reqHeartBeat = messageObject.DeserializeMessageObject();
-                var response = new RespHeartBeat()
+                var response = new NotifyHeartBeat()
                 {
                     UniqueId = reqHeartBeat.UniqueId,
                     Timestamp = TimeHelper.UnixTimeSeconds()

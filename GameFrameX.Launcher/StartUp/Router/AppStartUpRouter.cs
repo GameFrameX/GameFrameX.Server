@@ -141,7 +141,7 @@ internal partial class AppStartUpRouter : AppStartUpService
             if (outerMessage.OperationType == MessageOperationType.HeartBeat)
             {
                 var reqHeartBeat = (ReqHeartBeat)outerMessage.DeserializeMessageObject();
-                var response = new RespHeartBeat()
+                var response = new NotifyHeartBeat()
                 {
                     UniqueId = reqHeartBeat.UniqueId,
                     Timestamp = TimeHelper.UnixTimeSeconds()
