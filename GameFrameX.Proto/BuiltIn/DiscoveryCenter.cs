@@ -58,6 +58,12 @@ public partial class RespConnectServer : MessageObject, IResponseMessage
     /// </summary>
     [ProtoMember(6)]
     public ushort TargetPort { get; set; }
+
+    /// <summary>
+    /// 返回的错误码
+    /// </summary>
+    [ProtoMember(888)]
+    public int ErrorCode { get; set; }
 }
 
 /// <summary>
@@ -83,6 +89,12 @@ public partial class RespServerOnlineServer : MessageObject, IResponseMessage
     /// </summary>
     [ProtoMember(3)]
     public long ServerID { get; set; }
+
+    /// <summary>
+    /// 返回的错误码
+    /// </summary>
+    [ProtoMember(888)]
+    public int ErrorCode { get; set; }
 }
 
 /// <summary>
@@ -108,6 +120,12 @@ public partial class RespServerOfflineServer : MessageObject, IResponseMessage
     /// </summary>
     [ProtoMember(3)]
     public long ServerID { get; set; }
+
+    /// <summary>
+    /// 返回的错误码
+    /// </summary>
+    [ProtoMember(888)]
+    public int ErrorCode { get; set; }
 }
 
 /// <summary>
