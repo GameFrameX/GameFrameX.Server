@@ -35,34 +35,4 @@ namespace GameFrameX.Proto.Proto
 
 	}
 
-	/// <summary>
-	/// 
-	/// </summary>
-	[ProtoContract]
-	[MessageTypeHandler(655363)]
-	public sealed class NotifyTestA : MessageObject, INotifyMessage
-	{
-		/// <summary>
-		/// 时间戳
-		/// </summary>
-		[ProtoMember(1)]
-		public long Timestamp { get; set; }
-
-	}
-
-	/// <summary>
-	/// 
-	/// </summary>
-	[ProtoContract]
-	[MessageTypeHandler(655364)]
-	public sealed class NotifyTest : MessageObject, INotifyMessage
-	{
-		/// <summary>
-		/// 时间戳
-		/// </summary>
-		[ProtoMember(1)]
-		public NotifyTestA? Timestamp { get; set; }
-
-	}
-
 }
