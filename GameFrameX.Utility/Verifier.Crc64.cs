@@ -79,7 +79,6 @@ namespace GameFrameX.Utility
 
             /// <summary>Gets the current computed hash value without modifying accumulated state.</summary>
             /// <returns>The hash value for the data already provided.</returns>
-            [CLSCompliant(false)]
             public ulong GetCurrentHashAsUInt64() => _crc;
 
             /// <summary>
@@ -162,7 +161,6 @@ namespace GameFrameX.Utility
             /// <summary>Computes the CRC-64 hash of the provided data.</summary>
             /// <param name="source">The data to hash.</param>
             /// <returns>The computed CRC-64 hash.</returns>
-            [CLSCompliant(false)]
             public static ulong HashToUInt64(ReadOnlySpan<byte> source) =>
                 Update(InitialState, source);
 
