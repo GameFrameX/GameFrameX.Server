@@ -5,10 +5,10 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <RootNamespace>Server.Google.ProtoBuf</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.0" />
     </ItemGroup>
 
 </Project>

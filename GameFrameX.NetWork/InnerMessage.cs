@@ -2,7 +2,7 @@
 using System.Text;
 using GameFrameX.Extension;
 using GameFrameX.NetWork.Messages;
-using GameFrameX.Serialize.Serialize;
+using GameFrameX.ProtoBuf.Net;
 using GameFrameX.Setting;
 using GameFrameX.Utility;
 using Newtonsoft.Json;
@@ -119,7 +119,7 @@ public class InnerMessage : IInnerMessage
     /// <returns></returns>
     public MessageObject DeserializeMessageObject()
     {
-        var value = MessageSerializerHelper.Deserialize(MessageData, MessageType);
+        var value = ProtoBufSerializerHelper.Deserialize(MessageData, MessageType);
         return (MessageObject)value;
     }
 
@@ -155,7 +155,7 @@ public class InnerMessage : IInnerMessage
         innerMessage.SetOperationType(operationType);
         innerMessage.SetMessageType(message.GetType());
         innerMessage.SetUniqueId(message.UniqueId);
-        var buffer = MessageSerializerHelper.Serialize(message);
+        var buffer = ProtoBufSerializerHelper.Serialize(message);
         innerMessage.SetMessageData(buffer);
         innerMessage.SetMessageId(message.MessageId);
         innerMessage.SetData(GlobalConst.UniqueIdIdKey, message.UniqueId);

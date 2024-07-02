@@ -1,4 +1,4 @@
-using GameFrameX.Serialize.Serialize;
+using GameFrameX.ProtoBuf.Net;
 
 namespace GameFrameX.Launcher.StartUp.Router;
 
@@ -38,7 +38,7 @@ class MessageRouterEncoderHandler : BaseMessageEncoderHandler
             var operationType = (byte)(MessageProtoHelper.IsHeartbeat(messageType) ? MessageOperationType.HeartBeat : MessageOperationType.Game);
             messageObject.MessageId = msgId;
             var uniqueId = messageObject.UniqueId;
-            var bytes = MessageSerializerHelper.Serialize(messageObject);
+            var bytes = ProtoBufSerializerHelper.Serialize(messageObject);
             // len +uniqueId + msgId + bytes.length
             ushort len = (ushort)(PackageLength + bytes.Length);
             var span = new byte[len];

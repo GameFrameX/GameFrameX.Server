@@ -1,12 +1,13 @@
 using Microsoft.IO;
+using ProtoBuf;
 using ProtoBuf.Meta;
 
-namespace GameFrameX.Serialize.Serialize
+namespace GameFrameX.ProtoBuf.Net
 {
     /// <summary>
     /// 消息序列化帮助类
     /// </summary>
-    public static class MessageSerializerHelper
+    public static class ProtoBufSerializerHelper
     {
         private static readonly RecyclableMemoryStreamManager Manager = new RecyclableMemoryStreamManager();
 
@@ -20,7 +21,7 @@ namespace GameFrameX.Serialize.Serialize
         {
             using (var memoryStream = Manager.GetStream())
             {
-                ProtoBuf.Serializer.Serialize(memoryStream, value);
+                Serializer.Serialize(memoryStream, value);
                 return memoryStream.ToArray();
             }
         }
@@ -44,7 +45,7 @@ namespace GameFrameX.Serialize.Serialize
         {
             using (var memoryStream = Manager.GetStream(data))
             {
-                return ProtoBuf.Serializer.Deserialize(type, memoryStream);
+                return Serializer.Deserialize(type, memoryStream);
             }
         }
 
@@ -58,7 +59,7 @@ namespace GameFrameX.Serialize.Serialize
         {
             using (var memoryStream = Manager.GetStream(data))
             {
-                return ProtoBuf.Serializer.Deserialize(typeof(T), memoryStream) as T;
+                return Serializer.Deserialize(typeof(T), memoryStream) as T;
             }
         }
     }

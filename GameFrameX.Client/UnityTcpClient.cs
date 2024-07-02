@@ -3,9 +3,8 @@ using GameFrameX.Extension;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Proto;
-using GameFrameX.Proto.BuiltIn;
 using GameFrameX.Proto.Proto;
-using GameFrameX.Serialize.Serialize;
+using GameFrameX.ProtoBuf.Net;
 using GameFrameX.Utility;
 using SuperSocket.ClientEngine;
 using ErrorEventArgs = SuperSocket.ClientEngine.ErrorEventArgs;
@@ -101,7 +100,7 @@ public static class UnityTcpClient
         var messageType = MessageProtoHelper.GetMessageTypeById(messageId);
         if (messageType != null)
         {
-            var messageObject = (MessageObject)MessageSerializerHelper.Deserialize(messageData, messageType);
+            var messageObject = (MessageObject)ProtoBufSerializerHelper.Deserialize(messageData, messageType);
             messageObject.MessageId = messageId;
             messageObject.SetUniqueId(uniqueId);
             Console.WriteLine($"客户端接收到信息：{messageObject.ToMessageString()}");
@@ -113,7 +112,7 @@ public static class UnityTcpClient
     private static byte[] Handler(MessageObject message)
     {
         count++;
-        var bytes = MessageSerializerHelper.Serialize(message);
+        var bytes = ProtoBufSerializerHelper.Serialize(message);
         ushort len = (ushort)(2 + 1 + 4 + 4 + bytes.Length);
         var buffer = new byte[len];
         int offset = 0;

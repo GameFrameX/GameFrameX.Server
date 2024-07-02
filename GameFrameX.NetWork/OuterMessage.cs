@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using GameFrameX.Extension;
 using GameFrameX.NetWork.Messages;
-using GameFrameX.Serialize.Serialize;
+using GameFrameX.ProtoBuf.Net;
 using GameFrameX.Setting;
 using GameFrameX.Utility;
 using Newtonsoft.Json;
@@ -114,7 +114,7 @@ public class OuterMessage : IOuterMessage
     /// <returns></returns>
     public MessageObject DeserializeMessageObject()
     {
-        var value = MessageSerializerHelper.Deserialize(MessageData, MessageType);
+        var value = ProtoBufSerializerHelper.Deserialize(MessageData, MessageType);
         return (MessageObject)value;
     }
 

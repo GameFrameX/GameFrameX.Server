@@ -1,5 +1,4 @@
-using GameFrameX.Proto.BuiltIn;
-using GameFrameX.Serialize.Serialize;
+using GameFrameX.ProtoBuf.Net;
 using SuperSocket.ProtoBase;
 
 namespace GameFrameX.Launcher.StartUp;
@@ -20,7 +19,7 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPacka
             var msgId = MessageProtoHelper.GetMessageIdByType(messageType);
             messageObject.MessageId = msgId;
             var uniqueId = messageObject.UniqueId;
-            var bytes = MessageSerializerHelper.Serialize(messageObject);
+            var bytes = ProtoBufSerializerHelper.Serialize(messageObject);
             // len +uniqueId + msgId + bytes.length
             ushort len = (ushort)(PackageLength + bytes.Length);
             var span = new byte[len];

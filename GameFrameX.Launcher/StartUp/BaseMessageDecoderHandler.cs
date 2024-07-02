@@ -1,4 +1,4 @@
-using GameFrameX.Serialize.Serialize;
+using GameFrameX.ProtoBuf.Net;
 using SuperSocket.ProtoBase;
 
 namespace GameFrameX.Launcher.StartUp;
@@ -25,7 +25,7 @@ public class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder
             var messageType = MessageProtoHelper.GetMessageTypeById(messageId);
             if (messageType != null)
             {
-                var message = MessageSerializerHelper.Deserialize(messageData, messageType);
+                var message = ProtoBufSerializerHelper.Deserialize(messageData, messageType);
                 if (message is MessageObject messageObject)
                 {
                     messageObject.MessageId = messageId;
