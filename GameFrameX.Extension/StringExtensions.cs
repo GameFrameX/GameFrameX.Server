@@ -106,7 +106,7 @@ namespace GameFrameX.Extension
         /// </summary>
         /// <param name="str">要检查的字符串。</param>
         /// <returns>如果字符串为 null 或空，则为 true；否则为 false。</returns>
-        public static bool IsNullOrEmpty(this string? str)
+        public static bool IsNullOrEmpty(this string str)
         {
             return string.IsNullOrEmpty(str);
         }
@@ -116,7 +116,7 @@ namespace GameFrameX.Extension
         /// </summary>
         /// <param name="str">要检查的字符串。</param>
         /// <returns>如果字符串为 null 或空，则为 true；否则为 false。</returns>
-        public static bool IsNotNullOrEmpty(this string? str)
+        public static bool IsNotNullOrEmpty(this string str)
         {
             return !str.IsNullOrEmpty();
         }
@@ -126,7 +126,7 @@ namespace GameFrameX.Extension
         /// </summary>
         /// <param name="str">要检查的字符串。</param>
         /// <returns>如果字符串为 null 或空，则为 true；否则为 false。</returns>
-        public static bool IsNullOrWhiteSpace(this string? str)
+        public static bool IsNullOrWhiteSpace(this string str)
         {
             return string.IsNullOrWhiteSpace(str);
         }
@@ -136,7 +136,7 @@ namespace GameFrameX.Extension
         /// </summary>
         /// <param name="str">要检查的字符串。</param>
         /// <returns>如果字符串为 null 或空，则为 true；否则为 false。</returns>
-        public static bool IsNotNullOrWhiteSpace(this string? str)
+        public static bool IsNotNullOrWhiteSpace(this string str)
         {
             return !str.IsNullOrWhiteSpace();
         }
