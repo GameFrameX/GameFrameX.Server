@@ -1,6 +1,7 @@
 using GameFrameX.DBServer.State;
 using GameFrameX.Log;
 using GameFrameX.Utility;
+using MongoDB.Bson;
 
 namespace GameFrameX.DBServer.Storage;
 
@@ -42,7 +43,7 @@ class StateMd5
 
     private static (string md5, byte[] data) GetMd5AndData(CacheState state)
     {
-        var data = MessageSerializerHelper.Serialize(state);
+        var data = state.ToBson();
         var md5Str = Hash.MD5.Hash(data);
         return (md5Str, data);
     }
