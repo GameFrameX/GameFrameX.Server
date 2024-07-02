@@ -13,7 +13,12 @@
         /// <returns>如果类型实现了指定的接口且不是接口类型或抽象类型，则为 true；否则为 false。</returns>
         public static bool IsImplWithInterface(this Type self, Type target)
         {
-            return self.GetInterface(target.FullName) != null && !self.IsInterface && !self.IsAbstract;
+            if (target == null)
+            {
+                return false;
+            }
+
+            return !self.IsInterface && !self.IsAbstract && target.FullName != null && self.GetInterface(target.FullName) != null;
         }
     }
 }
