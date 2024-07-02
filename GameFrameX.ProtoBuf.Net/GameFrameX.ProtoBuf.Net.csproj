@@ -10,5 +10,11 @@
     <ItemGroup>
       <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.0" />
     </ItemGroup>
-
+    <ItemGroup>
+        <None Include="..\logo.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+            <Link>logo.png</Link>
+        </None>
+    </ItemGroup>
 </Project>

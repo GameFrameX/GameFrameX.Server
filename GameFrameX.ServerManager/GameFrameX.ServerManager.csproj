@@ -12,5 +12,11 @@
       <ProjectReference Include="..\GameFrameX.Setting\GameFrameX.Setting.csproj" />
       <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
     </ItemGroup>
-
+    <ItemGroup>
+        <None Include="..\logo.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+            <Link>logo.png</Link>
+        </None>
+    </ItemGroup>
 </Project>
