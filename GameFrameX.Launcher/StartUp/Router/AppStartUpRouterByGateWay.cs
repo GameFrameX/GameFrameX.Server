@@ -37,7 +37,7 @@ internal partial class AppStartUpRouter
         }
 
         var buffer = messageEncoderHandler.InnerHandler(message);
-        if (Setting.IsDebug && Setting.IsDebugSend && MessageProtoHelper.HasHeartbeat(message.GetType()))
+        if (Setting.IsDebug && Setting.IsDebugSend && !MessageProtoHelper.IsHeartbeat(message.GetType()))
         {
             LogHelper.Debug(message.ToSendMessageString(ServerType, ServerType.Gateway));
         }
@@ -107,7 +107,7 @@ internal partial class AppStartUpRouter
         var message = messageDecoderHandler.Handler(messageData);
         if (message is MessageObject baseMessageObject)
         {
-            if (Setting.IsDebug && Setting.IsDebugReceive && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
+            if (Setting.IsDebug && Setting.IsDebugReceive && !MessageProtoHelper.IsHeartbeat(message.GetType()))
             {
                 LogHelper.Info($"收到网关服务器消息：{baseMessageObject.ToMessageString()}");
             }

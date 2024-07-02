@@ -35,7 +35,7 @@ class MessageRouterEncoderHandler : BaseMessageEncoderHandler
             var messageType = message.GetType();
 
             var msgId = MessageProtoHelper.GetMessageIdByType(messageType);
-            var operationType = (byte)(MessageProtoHelper.HasHeartbeat(messageType) ? MessageOperationType.HeartBeat : MessageOperationType.Game);
+            var operationType = (byte)(MessageProtoHelper.IsHeartbeat(messageType) ? MessageOperationType.HeartBeat : MessageOperationType.Game);
             messageObject.MessageId = msgId;
             var uniqueId = messageObject.UniqueId;
             var bytes = MessageSerializerHelper.Serialize(messageObject);

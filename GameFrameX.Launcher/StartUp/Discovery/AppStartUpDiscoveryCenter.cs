@@ -97,7 +97,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
             return;
         }
 
-        InnerMessage innerMessage = InnerMessage.Create(message, MessageProtoHelper.HasHeartbeat(message.GetType()) ? MessageOperationType.HeartBeat : MessageOperationType.Game);
+        InnerMessage innerMessage = InnerMessage.Create(message, MessageProtoHelper.IsHeartbeat(message.GetType()) ? MessageOperationType.HeartBeat : MessageOperationType.Game);
         var data = messageEncoderHandler.InnerHandler(innerMessage);
         if (Setting.IsDebug && Setting.IsDebugReceive)
         {

@@ -85,7 +85,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
     {
         if (message is MessageObject messageObject)
         {
-            if (Setting.IsDebug && Setting.IsDebugReceive && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
+            if (Setting.IsDebug && Setting.IsDebugReceive && !MessageProtoHelper.IsHeartbeat(message.GetType()))
             {
                 LogHelper.Debug($"---收到[{ServerType}] {messageObject.ToMessageString()}");
             }
@@ -153,7 +153,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
         if (message is MessageObject messageObject)
         {
             var result = messageEncoderHandler.Handler(message);
-            if (Setting.IsDebug && Setting.IsDebugSend && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
+            if (Setting.IsDebug && Setting.IsDebugSend && !MessageProtoHelper.IsHeartbeat(message.GetType()))
             {
                 LogHelper.Debug($"---发送[{ServerType}] {messageObject.ToMessageString()}");
             }

@@ -228,7 +228,7 @@ public abstract class AppStartUpService : AppStartUpBase
             return;
         }
 
-        if (Setting.IsDebug && Setting.IsDebugReceive && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
+        if (Setting.IsDebug && Setting.IsDebugReceive && !MessageProtoHelper.IsHeartbeat(message.GetType()))
         {
             LogHelper.Debug(message.ToReceiveMessageString(ServerType.DiscoveryCenter, ServerType));
         }

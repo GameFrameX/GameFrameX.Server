@@ -55,7 +55,7 @@ internal partial class AppStartUpRouter : AppStartUpService
     {
         if (message is MessageObject messageObject)
         {
-            if (Setting.IsDebug && Setting.IsDebugReceive && message is not (IReqHeartBeatMessage or IRespHeartBeatMessage))
+            if (Setting.IsDebug && Setting.IsDebugReceive && !MessageProtoHelper.IsHeartbeat(message.GetType()))
             {
                 LogHelper.Info(messageObject.ToReceiveMessageString(ServerType.DiscoveryCenter, ServerType));
             }

@@ -15,6 +15,7 @@ namespace GameFrameX.Proto
         private static readonly BidirectionalDictionary<int, Type> RequestDictionary = new BidirectionalDictionary<int, Type>();
         private static readonly BidirectionalDictionary<int, Type> AllMessageDictionary = new BidirectionalDictionary<int, Type>();
         private static readonly BidirectionalDictionary<int, Type> ResponseDictionary = new BidirectionalDictionary<int, Type>();
+        private static readonly List<Type> HeartBeatList = new List<Type>();
 
         /// <summary>
         /// 获取消息ID
@@ -42,6 +43,15 @@ namespace GameFrameX.Proto
             return value;
         }
 
+        /// <summary>
+        /// 获取消息类型是否是心跳类型
+        /// </summary>
+        /// <param name="type">消息类型</param>
+        /// <returns></returns>
+        public static bool IsHeartbeat(Type type)
+        {
+            return HeartBeatList.Contains(type);
+        }
 
         /// <summary>
         /// 初始化所有协议对象
@@ -51,6 +61,7 @@ namespace GameFrameX.Proto
             AllMessageDictionary.Clear();
             RequestDictionary.Clear();
             ResponseDictionary.Clear();
+            HeartBeatList.Clear();
             var assembly = typeof(MessageProtoHelper).Assembly;
             var types = assembly.GetTypes();
             foreach (var type in types)
@@ -63,6 +74,18 @@ namespace GameFrameX.Proto
                     {
                         RequestDictionary.TryGetValue(messageIdHandler.MessageId, out var value);
                         throw new Exception($"消息Id重复==>当前ID:{messageIdHandler.MessageId},已有ID类型:{value.FullName}");
+                    }
+
+                    if (type.IsImplWithInterface(typeof(IHeartBeatMessage)))
+                    {
+                        if (HeartBeatList.Contains(type))
+                        {
+                            LogHelper.Error($"心跳消息重复==>类型:{type.FullName}");
+                        }
+                        else
+                        {
+                            HeartBeatList.Add(type);
+                        }
                     }
 
                     if (type.IsImplWithInterface(typeof(IRequestMessage)))
