@@ -5,17 +5,49 @@ namespace GameFrameX.Extension
 {
     public static class ByteExtension
     {
-        private const int UIntSize = sizeof(uint);
+        /// <summary>
+        /// 整型变量（32 位）的字节数。
+        /// </summary>
         private const int IntSize = sizeof(int);
+
+        /// <summary>
+        /// 短整型变量（16 位）的字节数。
+        /// </summary>
         private const int ShortSize = sizeof(short);
-        private const int UShortSize = sizeof(ushort);
+
+        /// <summary>
+        /// 长整型变量（64 位）的字节数。
+        /// </summary>
         private const int LongSize = sizeof(long);
-        private const int ULongSize = sizeof(ulong);
+
+        /// <summary>
+        /// 单精度浮点型变量的字节数。
+        /// </summary>
         private const int FloatSize = sizeof(float);
+
+        /// <summary>
+        /// 双精度浮点型变量的字节数。
+        /// </summary>
         private const int DoubleSize = sizeof(double);
+
+        /// <summary>
+        /// 字节型变量（8 位）的字节数。
+        /// </summary>
         private const int ByteSize = sizeof(byte);
+
+        /// <summary>
+        /// 有符号字节类型变量的字节数。
+        /// </summary>
         private const int SbyteSize = sizeof(sbyte);
+
+        /// <summary>
+        /// 布尔型变量的字节数。
+        /// </summary>
         private const int BoolSize = sizeof(bool);
+
+        private const int UIntSize = sizeof(uint);
+        private const int UShortSize = sizeof(ushort);
+        private const int ULongSize = sizeof(ulong);
 
         public static string ToHex(this byte b)
         {
@@ -91,6 +123,12 @@ namespace GameFrameX.Extension
             return Encoding.UTF8.GetString(bytes, index, count);
         }
 
+        /// <summary>
+        /// 将一个32位无符号整数写入指定的缓冲区，并更新偏移量。
+        /// </summary>
+        /// <param name="buffer">要写入的缓冲区。</param>
+        /// <param name="value">要写入的值。</param>
+        /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static void WriteUInt(this byte[] buffer, uint value, ref int offset)
         {
             if (offset + UIntSize > buffer.Length)
@@ -103,6 +141,12 @@ namespace GameFrameX.Extension
             offset += UIntSize;
         }
 
+        /// <summary>
+        /// 将一个32位整数写入指定的缓冲区，并更新偏移量。
+        /// </summary>
+        /// <param name="buffer">要写入的缓冲区。</param>
+        /// <param name="value">要写入的值。</param>
+        /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static void WriteInt(this byte[] buffer, int value, ref int offset)
         {
             if (offset + IntSize > buffer.Length)
@@ -115,6 +159,12 @@ namespace GameFrameX.Extension
             offset += IntSize;
         }
 
+        /// <summary>
+        /// 将一个8位整数写入指定的缓冲区，并更新偏移量。
+        /// </summary>
+        /// <param name="buffer">要写入的缓冲区。</param>
+        /// <param name="value">要写入的值。</param>
+        /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static void WriteByte(this byte[] buffer, byte value, ref int offset)
         {
             if (offset + ByteSize > buffer.Length)
@@ -127,6 +177,12 @@ namespace GameFrameX.Extension
             offset += ByteSize;
         }
 
+        /// <summary>
+        /// 将一个16位整数写入指定的缓冲区，并更新偏移量。
+        /// </summary>
+        /// <param name="buffer">要写入的缓冲区。</param>
+        /// <param name="value">要写入的值。</param>
+        /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static void WriteShort(this byte[] buffer, short value, ref int offset)
         {
             if (offset + ShortSize > buffer.Length)
@@ -139,6 +195,13 @@ namespace GameFrameX.Extension
             offset += ShortSize;
         }
 
+
+        /// <summary>
+        /// 将一个16位无符号整数写入指定的缓冲区，并更新偏移量。
+        /// </summary>
+        /// <param name="buffer">要写入的缓冲区。</param>
+        /// <param name="value">要写入的值。</param>
+        /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static void WriteUShort(this byte[] buffer, ushort value, ref int offset)
         {
             if (offset + UShortSize > buffer.Length)
@@ -151,6 +214,12 @@ namespace GameFrameX.Extension
             offset += UShortSize;
         }
 
+        /// <summary>
+        /// 将一个64位整数写入指定的缓冲区，并更新偏移量。
+        /// </summary>
+        /// <param name="buffer">要写入的缓冲区。</param>
+        /// <param name="value">要写入的值。</param>
+        /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static void WriteLong(this byte[] buffer, long value, ref int offset)
         {
             if (offset + LongSize > buffer.Length)
@@ -163,6 +232,13 @@ namespace GameFrameX.Extension
             offset += LongSize;
         }
 
+
+        /// <summary>
+        /// 将一个64位无符号整数写入指定的缓冲区，并更新偏移量。
+        /// </summary>
+        /// <param name="buffer">要写入的缓冲区。</param>
+        /// <param name="value">要写入的值。</param>
+        /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static void WriteULong(this byte[] buffer, ulong value, ref int offset)
         {
             if (offset + ULongSize > buffer.Length)
@@ -175,6 +251,12 @@ namespace GameFrameX.Extension
             offset += ULongSize;
         }
 
+        /// <summary>
+        /// 从字节数组中读取16位无符号整数，并将偏移量向前移动。
+        /// </summary>
+        /// <param name="buffer">要读取的字节数组。</param>
+        /// <param name="offset">引用偏移量。</param>
+        /// <returns>返回读取的16位无符号整数。</returns>
         public static ushort ReadUShort(this byte[] buffer, ref int offset)
         {
             if (offset > buffer.Length + UShortSize)
@@ -187,6 +269,12 @@ namespace GameFrameX.Extension
             return value;
         }
 
+        /// <summary>
+        /// 从字节数组读取16位有符号整数，并将偏移量前移。
+        /// </summary>
+        /// <param name="buffer">要读取的字节数组。</param>
+        /// <param name="offset">引用偏移量。</param>
+        /// <returns>返回读取的16位有符号整数。</returns>
         public static short ReadShort(this byte[] buffer, ref int offset)
         {
             if (offset > buffer.Length + ShortSize)
@@ -199,6 +287,12 @@ namespace GameFrameX.Extension
             return value;
         }
 
+        /// <summary>
+        /// 从字节数组中读取32位无符号整数，并将偏移量向前移动。
+        /// </summary>
+        /// <param name="buffer">要读取的字节数组。</param>
+        /// <param name="offset">引用偏移量。</param>
+        /// <returns>返回读取的32位无符号整数。</returns>
         public static uint ReadUInt(this byte[] buffer, ref int offset)
         {
             if (offset > buffer.Length + UIntSize)
@@ -211,6 +305,12 @@ namespace GameFrameX.Extension
             return value;
         }
 
+        /// <summary>
+        /// 从字节数组中读取32位有符号整数，并将偏移量向前移动。
+        /// </summary>
+        /// <param name="buffer">要读取的字节数组。</param>
+        /// <param name="offset">引用偏移量。</param>
+        /// <returns>返回读取的32位有符号整数。</returns>
         public static int ReadInt(this byte[] buffer, ref int offset)
         {
             if (offset > buffer.Length + IntSize)
@@ -223,6 +323,12 @@ namespace GameFrameX.Extension
             return value;
         }
 
+        /// <summary>
+        /// 从字节数组中读取64位无符号整数，并将偏移量向前移动。
+        /// </summary>
+        /// <param name="buffer">要读取的字节数组。</param>
+        /// <param name="offset">引用偏移量。</param>
+        /// <returns>返回读取的64位无符号整数。</returns>    
         public static ulong ReadULong(this byte[] buffer, ref int offset)
         {
             if (offset > buffer.Length + ULongSize)
@@ -235,6 +341,12 @@ namespace GameFrameX.Extension
             return value;
         }
 
+        /// <summary>
+        /// 从字节数组中读取64位有符号整数，并将偏移量向前移动。
+        /// </summary>
+        /// <param name="buffer">要读取的字节数组。</param>
+        /// <param name="offset">引用偏移量。</param>
+        /// <returns>返回读取的64位有符号整数。</returns>
         public static long ReadLong(this byte[] buffer, ref int offset)
         {
             if (offset > buffer.Length + LongSize)
@@ -247,6 +359,12 @@ namespace GameFrameX.Extension
             return value;
         }
 
+        /// <summary>
+        /// 从Span字节数组中读取32位无符号整数，并将偏移量向前移动。
+        /// </summary>
+        /// <param name="buffer">要读取的Span字节数组。</param>
+        /// <param name="offset">引用偏移量。</param>
+        /// <returns>返回读取的32位无符号整数。</returns>
         public static uint ReadUInt(this Span<byte> buffer, ref int offset)
         {
             if (offset > buffer.Length + UIntSize)
@@ -259,6 +377,12 @@ namespace GameFrameX.Extension
             return value;
         }
 
+        /// <summary>
+        /// 从Span字节数组中读取32位有符号整数，并将偏移量向前移动。
+        /// </summary>
+        /// <param name="buffer">要读取的Span字节数组。</param>
+        /// <param name="offset">引用偏移量。</param>
+        /// <returns>返回读取的32位有符号整数。</returns>
         public static int ReadInt(this Span<byte> buffer, ref int offset)
         {
             if (offset > buffer.Length + IntSize)
@@ -271,6 +395,12 @@ namespace GameFrameX.Extension
             return value;
         }
 
+        /// <summary>
+        /// 从Span字节数组中读取64位无符号整数，并将偏移量向前移动。
+        /// </summary>
+        /// <param name="buffer">要读取的Span字节数组。</param>
+        /// <param name="offset">引用偏移量。</param>
+        /// <returns>返回读取的64位无符号整数。</returns>
         public static ulong ReadULong(this Span<byte> buffer, ref int offset)
         {
             if (offset > buffer.Length + ULongSize)
@@ -283,6 +413,12 @@ namespace GameFrameX.Extension
             return value;
         }
 
+        /// <summary>
+        /// 从字节数组中以指定偏移量读取64位整型。
+        /// </summary>
+        /// <param name="buffer">要从中读取数据的字节数组。</param>
+        /// <param name="offset">读取数据的起始偏移量，此偏移量在读取后会自动增加。</param>
+        /// <returns>读取的64位整型，若读取长度小于等于0或偏移量超出数组长度，返回0。</returns>
         public static long ReadLong(this Span<byte> buffer, ref int offset)
         {
             if (offset > buffer.Length + LongSize)
@@ -295,6 +431,12 @@ namespace GameFrameX.Extension
             return value;
         }
 
+        /// <summary>
+        /// 从字节数组中以指定偏移量读取无符号整型。
+        /// </summary>
+        /// <param name="buffer">要从中读取数据的字节数组。</param>
+        /// <param name="offset">读取数据的起始偏移量，此偏移量在读取后会自动增加。</param>
+        /// <returns>读取的无符号整型，若读取长度小于等于0或偏移量超出数组长度，返回0。</returns>
         public static uint ReadUInt(this ReadOnlySpan<byte> buffer, ref int offset)
         {
             if (offset > buffer.Length + UIntSize)
@@ -307,6 +449,12 @@ namespace GameFrameX.Extension
             return value;
         }
 
+        /// <summary>
+        /// 从字节数组中以指定偏移量读取整型。
+        /// </summary>
+        /// <param name="buffer">要从中读取数据的字节数组。</param>
+        /// <param name="offset">读取数据的起始偏移量，此偏移量在读取后会自动增加。</param>
+        /// <returns>读取的整型，若读取长度小于等于0或偏移量超出数组长度，返回0。</returns>
         public static int ReadInt(this ReadOnlySpan<byte> buffer, ref int offset)
         {
             if (offset > buffer.Length + IntSize)
@@ -319,6 +467,12 @@ namespace GameFrameX.Extension
             return value;
         }
 
+        /// <summary>
+        /// 从字节数组中以指定偏移量读取无符号长整型。
+        /// </summary>
+        /// <param name="buffer">要从中读取数据的字节数组。</param>
+        /// <param name="offset">读取数据的起始偏移量，此偏移量在读取后会自动增加。</param>
+        /// <returns>读取的无符号长整型，若读取长度小于等于0或偏移量超出数组长度，返回0。</returns>
         public static ulong ReadULong(this ReadOnlySpan<byte> buffer, ref int offset)
         {
             if (offset > buffer.Length + ULongSize)
@@ -331,6 +485,12 @@ namespace GameFrameX.Extension
             return value;
         }
 
+        /// <summary>
+        /// 从字节数组中以指定偏移量读取长整型。
+        /// </summary>
+        /// <param name="buffer">要从中读取数据的字节数组。</param>
+        /// <param name="offset">读取数据的起始偏移量，此偏移量在读取后会自动增加。</param>
+        /// <returns>读取的长整型，若读取长度小于等于0或偏移量超出数组长度，返回0。</returns>
         public static long ReadLong(this ReadOnlySpan<byte> buffer, ref int offset)
         {
             if (offset > buffer.Length + LongSize)
@@ -345,6 +505,12 @@ namespace GameFrameX.Extension
 
         #region Write
 
+        /// <summary>
+        /// 将一个单精度浮点数写入指定的缓冲区，并更新偏移量。
+        /// </summary>
+        /// <param name="buffer">要写入的缓冲区。</param>
+        /// <param name="value">要写入的值。</param>
+        /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static unsafe void WriteFloat(this byte[] buffer, float value, ref int offset)
         {
             if (offset + FloatSize > buffer.Length)
@@ -361,6 +527,12 @@ namespace GameFrameX.Extension
             }
         }
 
+        /// <summary>
+        /// 将一个双精度浮点数写入指定的缓冲区，并更新偏移量。
+        /// </summary>
+        /// <param name="buffer">要写入的缓冲区。</param>
+        /// <param name="value">要写入的值。</param>
+        /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static unsafe void WriteDouble(this byte[] buffer, double value, ref int offset)
         {
             if (offset + DoubleSize > buffer.Length)
@@ -378,6 +550,12 @@ namespace GameFrameX.Extension
         }
 
 
+        /// <summary>
+        /// 将一个字节数组写入指定的缓冲区，并更新偏移量。
+        /// </summary>
+        /// <param name="buffer">要写入的缓冲区。</param>
+        /// <param name="value">要写入的值。</param>
+        /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static unsafe void WriteBytes(this byte[] buffer, byte[] value, ref int offset)
         {
             if (value == null)
@@ -397,6 +575,12 @@ namespace GameFrameX.Extension
             offset += value.Length;
         }
 
+        /// <summary>
+        /// 将一个字节数组写入指定的缓冲区，并更新偏移量。
+        /// </summary>
+        /// <param name="buffer">要写入的缓冲区。</param>
+        /// <param name="value">要写入的值。</param>
+        /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static unsafe void WriteBytesWithoutLength(this byte[] buffer, byte[] value, ref int offset)
         {
             if (value == null)
@@ -417,6 +601,12 @@ namespace GameFrameX.Extension
             }
         }
 
+        /// <summary>
+        /// 将一个字节写入指定的缓冲区，并更新偏移量。
+        /// </summary>
+        /// <param name="buffer">要写入的缓冲区。</param>
+        /// <param name="value">要写入的值。</param>
+        /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static unsafe void WriteSByte(this byte[] buffer, sbyte value, ref int offset)
         {
             if (offset + SbyteSize > buffer.Length)
@@ -432,6 +622,12 @@ namespace GameFrameX.Extension
             }
         }
 
+        /// <summary>
+        /// 将一个字符串写入指定的缓冲区，并更新偏移量。
+        /// </summary>
+        /// <param name="buffer">要写入的缓冲区。</param>
+        /// <param name="value">要写入的值。</param>
+        /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static unsafe void WriteString(this byte[] buffer, string value, ref int offset)
         {
             if (value == null)
@@ -459,6 +655,12 @@ namespace GameFrameX.Extension
             }
         }
 
+        /// <summary>
+        /// 将一个布尔值写入指定的缓冲区，并更新偏移量。
+        /// </summary>
+        /// <param name="buffer">要写入的缓冲区。</param>
+        /// <param name="value">要写入的值。</param>
+        /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static unsafe void WriteBool(this byte[] buffer, bool value, ref int offset)
         {
             if (offset + BoolSize > buffer.Length)
@@ -478,6 +680,13 @@ namespace GameFrameX.Extension
 
         #region Read
 
+        /// <summary>
+        /// 从给定的字节缓冲区中读取浮点数，并更新偏移量。
+        /// </summary>
+        /// <param name="buffer">包含了要读取数据的字节缓冲区。</param>
+        /// <param name="offset">读取数据的起始位置，该方法会更新该值。</param>
+        /// <returns>从字节缓冲区中读取的浮点数。</returns>
+        /// <exception cref="Exception">当尝试读取的位置超出了缓冲区的边界时，会抛出此异常。</exception>
         public static unsafe float ReadFloat(this byte[] buffer, ref int offset)
         {
             if (offset > buffer.Length + FloatSize)
@@ -494,6 +703,12 @@ namespace GameFrameX.Extension
             }
         }
 
+        /// <summary>
+        /// 从指定偏移量读取 double 类型数据。
+        /// </summary>
+        /// <param name="buffer">要操作的字节缓冲区。</param>
+        /// <param name="offset">操作的起始偏移量，操作完成后，会自动累加双精度浮点数的字节数。</param>
+        /// <returns>返回从缓冲区读取的 double 类型数据。</returns>
         public static unsafe double ReadDouble(this byte[] buffer, ref int offset)
         {
             if (offset > buffer.Length + DoubleSize)
@@ -510,6 +725,12 @@ namespace GameFrameX.Extension
             }
         }
 
+        /// <summary>
+        /// 从指定偏移量读取 byte 类型数据。
+        /// </summary>
+        /// <param name="buffer">要操作的字节缓冲区。</param>
+        /// <param name="offset">操作的起始偏移量，操作完成后，会自动累加字节的字节数。</param>
+        /// <returns>返回从缓冲区读取的 byte 类型数据。</returns>
         public static unsafe byte ReadByte(this byte[] buffer, ref int offset)
         {
             if (offset > buffer.Length + ByteSize)
@@ -525,6 +746,13 @@ namespace GameFrameX.Extension
             }
         }
 
+        /// <summary>
+        /// 从指定偏移量开始读取指定长度的字节数组。
+        /// </summary>
+        /// <param name="buffer">要操作的字节缓冲区。</param>
+        /// <param name="offset">操作的起始偏移量。</param>
+        /// <param name="len">需要读取的字节数组长度。</param>
+        /// <returns>返回从缓冲区读取的 byte[] 类型数据。</returns>
         public static unsafe byte[] ReadBytes(this byte[] buffer, int offset, int len)
         {
             if (len <= 0 || offset > buffer.Length + len * ByteSize)
@@ -538,6 +766,12 @@ namespace GameFrameX.Extension
             return data;
         }
 
+        /// <summary>
+        /// 从指定偏移量开始读取指定长度的字节数组，长度作为 int 类型数据在字节数组的开头。
+        /// </summary>
+        /// <param name="buffer">要操作的字节缓冲区。</param>
+        /// <param name="offset">操作的起始偏移量，操作完成后，会自动累加读取的字节长度以及 int 类型长度。</param>
+        /// <returns>返回从缓冲区读取的 byte[] 类型数据。</returns>
         public static unsafe byte[] ReadBytes(this byte[] buffer, ref int offset)
         {
             var len = ReadInt(buffer, ref offset);
@@ -553,6 +787,13 @@ namespace GameFrameX.Extension
             return data;
         }
 
+        /// <summary>
+        /// 从字节数组中以指定偏移量读取有符号字节。
+        /// </summary>
+        /// <param name="buffer">要从中读取数据的字节数组。</param>
+        /// <param name="offset">读取数据的起始偏移量，此偏移量在读取后会自动增加。</param>
+        /// <returns>读取的有符号字节。</returns>
+        /// <exception cref="Exception">当偏移量超过数组长度时，将抛出异常。</exception>
         public static unsafe sbyte ReadSByte(this byte[] buffer, ref int offset)
         {
             if (offset > buffer.Length + ByteSize)
@@ -568,6 +809,12 @@ namespace GameFrameX.Extension
             }
         }
 
+        /// <summary>
+        /// 从字节数组中以指定偏移量读取字符串。
+        /// </summary>
+        /// <param name="buffer">要从中读取数据的字节数组。</param>
+        /// <param name="offset">读取数据的起始偏移量，此偏移量在读取后会自动增加。</param>
+        /// <returns>读取的字符串，若读取长度小于等于0或偏移量超出数组长度，返回空字符串。</returns>
         public static unsafe string ReadString(this byte[] buffer, ref int offset)
         {
             fixed (byte* ptr = buffer)
@@ -585,6 +832,13 @@ namespace GameFrameX.Extension
             }
         }
 
+        /// <summary>
+        /// 从字节数组中以指定偏移量读取布尔值。
+        /// </summary>
+        /// <param name="buffer">要从中读取数据的字节数组。</param>
+        /// <param name="offset">读取数据的起始偏移量，此偏移量在读取后会自动增加。</param>
+        /// <returns>读取的布尔值。</returns>
+        /// <exception cref="Exception">当偏移量超过数组长度时，将抛出异常。</exception>
         public static unsafe bool ReadBool(this byte[] buffer, ref int offset)
         {
             if (offset > buffer.Length + BoolSize)
