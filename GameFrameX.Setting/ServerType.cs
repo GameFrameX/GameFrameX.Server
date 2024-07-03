@@ -70,11 +70,15 @@ public enum ServerType
     /// </summary>
     Game = Login << 1,
 
+    ///<summary>
+    /// 匹配服
+    /// </summary>
+    Match = Game << 1,
 
     ///<summary>
     /// 充值服
     /// </summary>
-    Recharge = Game << 1,
+    Recharge = Match << 1,
 
     /// <summary>
     /// 逻辑服
