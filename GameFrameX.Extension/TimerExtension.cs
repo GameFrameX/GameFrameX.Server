@@ -1,5 +1,8 @@
 ﻿namespace GameFrameX.Extension;
 
+/// <summary>
+/// 
+/// </summary>
 public static class TimerExtension
 {
     /// <summary>

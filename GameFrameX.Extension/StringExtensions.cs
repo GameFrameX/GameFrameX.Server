@@ -10,6 +10,12 @@ namespace GameFrameX.Extension
     {
         private static readonly StringBuilder NewSentence = new StringBuilder();
 
+        /// <summary>
+        /// 替换重复字符
+        /// </summary>
+        /// <param name="c"></param>
+        /// <param name="count">长度</param>
+        /// <returns></returns>
         public static string RepeatChar(this char c, int count)
         {
             NewSentence.Clear();

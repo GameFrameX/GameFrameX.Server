@@ -3,6 +3,9 @@ using System.Text;
 
 namespace GameFrameX.Extension
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ByteExtension
     {
         /// <summary>
@@ -45,10 +48,26 @@ namespace GameFrameX.Extension
         /// </summary>
         private const int BoolSize = sizeof(bool);
 
+        /// <summary>
+        /// 
+        /// </summary>
         private const int UIntSize = sizeof(uint);
+
+        /// <summary>
+        /// 
+        /// </summary>
         private const int UShortSize = sizeof(ushort);
+
+        /// <summary>
+        /// 
+        /// </summary>
         private const int ULongSize = sizeof(ulong);
 
+        /// <summary>
+        /// 将字节转换为16进制字符串
+        /// </summary>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static string ToHex(this byte b)
         {
             return b.ToString("X2");
@@ -70,6 +89,11 @@ namespace GameFrameX.Extension
             return stringBuilder.ToString();
         }
 
+        /// <summary>
+        /// 将字节数组转换为16进制字符串
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
         public static string ToHex(this byte[] bytes)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -81,6 +105,12 @@ namespace GameFrameX.Extension
             return stringBuilder.ToString();
         }
 
+        /// <summary>
+        /// 将字节数组转换为指定格式的字符串
+        /// </summary>
+        /// <param name="bytes">字节数组</param>
+        /// <param name="format">格式</param>
+        /// <returns></returns>
         public static string ToHex(this byte[] bytes, string format)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -92,6 +122,13 @@ namespace GameFrameX.Extension
             return stringBuilder.ToString();
         }
 
+        /// <summary>
+        /// 将字节数组转换为指定范围的16进制字符串
+        /// </summary>
+        /// <param name="bytes">字节数组</param>
+        /// <param name="offset">偏移量</param>
+        /// <param name="count">长度</param>
+        /// <returns></returns>
         public static string ToHex(this byte[] bytes, int offset, int count)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -103,22 +140,46 @@ namespace GameFrameX.Extension
             return stringBuilder.ToString();
         }
 
-        public static string ToStr(this byte[] bytes)
+        /// <summary>
+        /// 将字节数组转换为默认编码字符串
+        /// </summary>
+        /// <param name="bytes">字节数组</param>
+        /// <returns></returns>
+        public static string ToDefaultString(this byte[] bytes)
         {
             return Encoding.Default.GetString(bytes);
         }
 
-        public static string ToStr(this byte[] bytes, int index, int count)
+        /// <summary>
+        /// 将字节数组转换为指定范围的默认编码字符串
+        /// </summary>
+        /// <param name="bytes">字节数组</param>
+        /// <param name="index">偏移量</param>
+        /// <param name="count">长度</param>
+        /// <returns></returns>
+        public static string ToDefaultString(this byte[] bytes, int index, int count)
         {
             return Encoding.Default.GetString(bytes, index, count);
         }
 
-        public static string Utf8ToStr(this byte[] bytes)
+        /// <summary>
+        /// 将字节数组转换为UTF8编码字符串
+        /// </summary>
+        /// <param name="bytes">字节数组</param>
+        /// <returns></returns>
+        public static string ToUtf8String(this byte[] bytes)
         {
             return Encoding.UTF8.GetString(bytes);
         }
 
-        public static string Utf8ToStr(this byte[] bytes, int index, int count)
+        /// <summary>
+        /// 将字节数组转换为指定范围的UTF8编码字符串
+        /// </summary>
+        /// <param name="bytes">字节数组</param>
+        /// <param name="index">偏移量</param>
+        /// <param name="count">长度</param>
+        /// <returns></returns>
+        public static string ToUtf8String(this byte[] bytes, int index, int count)
         {
             return Encoding.UTF8.GetString(bytes, index, count);
         }

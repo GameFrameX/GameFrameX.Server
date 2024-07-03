@@ -2,6 +2,9 @@ using System.Runtime.InteropServices;
 
 namespace GameFrameX.Extension
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class SpanExtension
     {
         /// <summary>
