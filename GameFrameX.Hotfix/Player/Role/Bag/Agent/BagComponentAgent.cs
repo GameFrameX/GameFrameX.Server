@@ -28,6 +28,7 @@ namespace GameFrameX.Hotfix.Player.Role.Bag.Agent
         {
             var ret = BuildInfoMsg();
             ret.UniqueId = reqMsg.UniqueId;
+            await Task.CompletedTask;
             // await this.NotifyClient(ret, reqMsg.UniId);
         }
 
@@ -46,6 +47,7 @@ namespace GameFrameX.Hotfix.Player.Role.Bag.Agent
 
             var res = new RespComposePet();
             res.PetId = 1000;
+            await Task.CompletedTask;
             // await this.NotifyClient(res, reqMsg.UniId);
         }
     }
