@@ -5,22 +5,31 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <AssemblyVersion>1.0.0</AssemblyVersion>
-        <FileVersion>1.0.0</FileVersion>
-        <PublicSign>false</PublicSign>
+        <FileVersion>$(AssemblyVersion)</FileVersion>
+        <PublicSign>true</PublicSign>
+        <SignAssembly>true</SignAssembly>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Title>GameFrameX.ProtoBufNet</Title>
-        <Description>GameFrameX.ProtoBufNet</Description>
-        <Copyright>AlianBlank</Copyright>
+        <Title>$(AssemblyName)</Title>
+        <Copyright>AlianBlank;GameFrameX;Blank</Copyright>
         <PackageProjectUrl>https://github.com/AlianBlank/GameFrameX</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/AlianBlank/GameFrameX/blob/main/LICENSE.md</PackageLicenseUrl>
         <RepositoryUrl>https://github.com/AlianBlank/GameFrameX</RepositoryUrl>
-        <RepositoryType>ProtoBufNet</RepositoryType>
-        <PackageTags>GameFrameX,Lib,ProtoBufNet,Server,GameServer</PackageTags>
+        <RepositoryType>git</RepositoryType>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <Description>GameFrameX.ProtoBuf.Net</Description>
+        <PackageTags>GameFrameX,Lib,ProtoBuf.Net,Server,GameServer</PackageTags>
         <PackageReleaseNotes>https://gameframex.doc.alianblank.com/</PackageReleaseNotes>
         <PackageIcon>logo.png</PackageIcon>
-        <Authors>AlianBlank</Authors>
+        <Authors>AlianBlank;Blank</Authors>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <IsPackable>true</IsPackable>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Version>$(AssemblyVersion)</Version>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <PackageId>$(AssemblyName)</PackageId>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <TargetFramework>net8.0</TargetFramework>
+        <AssemblyOriginatorKeyFile>../gameframex.key.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -29,8 +38,13 @@
     <ItemGroup>
         <None Include="..\logo.png">
             <Pack>True</Pack>
-            <PackagePath></PackagePath>
+            <PackagePath>\</PackagePath>
             <Link>logo.png</Link>
+        </None>
+        <None Include="README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
 </Project>

@@ -1,0 +1,1 @@
+# GameFrameX.Cache.Memory
