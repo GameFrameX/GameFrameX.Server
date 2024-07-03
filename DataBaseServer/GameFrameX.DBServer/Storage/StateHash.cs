@@ -41,7 +41,7 @@ class StateHash
     private static (Standart.Hash.xxHash.uint128 md5, byte[] data) GetHashAndData(CacheState state)
     {
         var data = state.ToBson();
-        var md5Str = Standart.Hash.xxHash.xxHash128.ComputeHash(data, data.Length);
+        var md5Str = Utility.Hash.XXHash.Hash128(data);
         return (md5Str, data);
     }
 }
