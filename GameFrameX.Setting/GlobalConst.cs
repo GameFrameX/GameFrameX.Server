@@ -13,7 +13,7 @@ public static class GlobalConst
     /// <summary>
     /// 唯一ID
     /// </summary>
-    public const string UniqueIdIdKey = "UniqueId_ID";
+    public const string UniqueIdIdKey = "UNIQUEID_ID";
 
     /// <summary>
     /// 秒标记
