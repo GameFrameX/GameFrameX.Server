@@ -4,6 +4,22 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <FileVersion>1.0.0</FileVersion>
+        <PublicSign>false</PublicSign>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>GameFrameX.DBServer.NoSql.Redis</Title>
+        <Description>GameFrameX.DBServer.NoSql.Redis</Description>
+        <Copyright>AlianBlank</Copyright>
+        <PackageProjectUrl>https://github.com/AlianBlank/GameFrameX</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/AlianBlank/GameFrameX/blob/main/LICENSE.md</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/AlianBlank/GameFrameX</RepositoryUrl>
+        <RepositoryType>DBServer.NoSql.Redis</RepositoryType>
+        <PackageTags>GameFrameX,Lib,DBServer.NoSql.Redis,Server,GameServer</PackageTags>
+        <PackageReleaseNotes>https://gameframex.doc.alianblank.com/</PackageReleaseNotes>
+        <PackageIcon>logo.png</PackageIcon>
+        <Authors>AlianBlank</Authors>
     </PropertyGroup>
 
     <ItemGroup>
