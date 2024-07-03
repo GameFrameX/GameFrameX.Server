@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace GameFrameX.Log;
+﻿namespace GameFrameX.Log;
 
 /// <summary>
 /// 日志帮助类

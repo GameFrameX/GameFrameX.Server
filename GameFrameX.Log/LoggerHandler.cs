@@ -2,9 +2,20 @@
 
 namespace GameFrameX.Log;
 
+/// <summary>
+/// 日志对象
+/// </summary>
 public static class LoggerHandler
 {
-    public static bool Start(string serverType = null, string logSavePath = null, bool isDebug = false, RollingInterval rollingInterval = RollingInterval.Hour)
+    /// <summary>
+    /// 启动日志对象
+    /// </summary>
+    /// <param name="serverType">服务器类型</param>
+    /// <param name="logSavePath">日志存储地址,默认为./logs</param>
+    /// <param name="isDebug">是否是Debug模式,默认true</param>
+    /// <param name="rollingInterval">日志滚动间隔,默认为Hour</param>
+    /// <returns></returns>
+    public static bool Start(string serverType = null, string logSavePath = null, bool isDebug = true, RollingInterval rollingInterval = RollingInterval.Hour)
     {
         try
         {
