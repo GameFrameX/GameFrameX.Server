@@ -1,33 +1,46 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>10</LangVersion>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <AssemblyVersion>1.0.0</AssemblyVersion>
-        <FileVersion>1.0.0</FileVersion>
-        <PublicSign>false</PublicSign>
+        <AssemblyVersion>1.0.1</AssemblyVersion>
+        <FileVersion>1.0.1</FileVersion>
+        <PublicSign>true</PublicSign>
+        <SignAssembly>true</SignAssembly>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Title>GameFrameX.Extension</Title>
+        <Title>$(AssemblyName)</Title>
         <Description>GameFrameX.Extension</Description>
-        <Copyright>AlianBlank</Copyright>
+        <Copyright>AlianBlank;GameFrameX;Blank</Copyright>
         <PackageProjectUrl>https://github.com/AlianBlank/GameFrameX</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/AlianBlank/GameFrameX/blob/main/LICENSE.md</PackageLicenseUrl>
         <RepositoryUrl>https://github.com/AlianBlank/GameFrameX</RepositoryUrl>
-        <RepositoryType>Extension</RepositoryType>
+        <RepositoryType>git</RepositoryType>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageTags>GameFrameX,Lib,Extension,Server,GameServer</PackageTags>
         <PackageReleaseNotes>https://gameframex.doc.alianblank.com/</PackageReleaseNotes>
         <PackageIcon>logo.png</PackageIcon>
-        <Authors>AlianBlank</Authors>
+        <Authors>AlianBlank;Blank</Authors>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <IsPackable>true</IsPackable>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Version>1.0.1</Version>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <PackageId>$(AssemblyName)</PackageId>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <TargetFramework>net8.0</TargetFramework>
+        <AssemblyOriginatorKeyFile>../gameframex.key.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
     <ItemGroup>
         <None Include="..\logo.png">
             <Pack>True</Pack>
-            <PackagePath></PackagePath>
+            <PackagePath>\</PackagePath>
             <Link>logo.png</Link>
+        </None>
+        <None Include="README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
 </Project>
