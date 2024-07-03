@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.Text;
+using Standart.Hash.xxHash;
 
 namespace GameFrameX.Utility
 {
@@ -18,9 +19,9 @@ namespace GameFrameX.Utility
             /// </summary>
             /// <param name="buffer">要计算哈希值的字节数组</param>
             /// <returns>32位哈希值</returns>
-            public static uint Hash32(byte[] buffer)
+            public static ulong Hash32(byte[] buffer)
             {
-                return XXHashHelper.Hash32(buffer);
+                return xxHash32.ComputeHash(buffer);
             }
 
             /// <summary>
@@ -30,7 +31,7 @@ namespace GameFrameX.Utility
             /// <returns>32位哈希值。</returns>
             public static uint Hash32(string text)
             {
-                return XXHashHelper.Hash32(text);
+                return xxHash32.ComputeHash(text);
             }
 
             /// <summary>
@@ -60,7 +61,7 @@ namespace GameFrameX.Utility
             /// <returns>64位哈希值。</returns>
             public static ulong Hash64(byte[] buffer)
             {
-                return XXHashHelper.Hash64(buffer);
+                return xxHash64.ComputeHash(buffer);
             }
 
             /// <summary>
@@ -70,7 +71,7 @@ namespace GameFrameX.Utility
             /// <returns>64位哈希值。</returns>
             public static ulong Hash64(string text)
             {
-                return XXHashHelper.Hash64(text);
+                return xxHash64.ComputeHash(text);
             }
 
             /// <summary>
@@ -91,6 +92,37 @@ namespace GameFrameX.Utility
             public static ulong Hash64<T>()
             {
                 return XXHashHelper.Hash64<T>();
+            }
+
+            /// <summary>
+            /// 计算给定字节数组的128位哈希值
+            /// </summary>
+            /// <param name="buffer"></param>
+            /// <returns></returns>
+            public static uint128 Hash128(byte[] buffer)
+            {
+                return xxHash128.ComputeHash(buffer, buffer.Length);
+            }
+
+            /// <summary>
+            /// 计算给定字节数组的128位哈希值
+            /// </summary>
+            /// <param name="buffer"></param>
+            /// <param name="length"></param>
+            /// <returns></returns>
+            public static uint128 Hash128(byte[] buffer, int length)
+            {
+                return xxHash128.ComputeHash(buffer, length);
+            }
+
+            /// <summary>
+            /// 计算给定文本的128位哈希值
+            /// </summary>
+            /// <param name="text"></param>
+            /// <returns></returns>
+            public static uint128 Hash128(string text)
+            {
+                return xxHash128.ComputeHash(text);
             }
         }
 
@@ -331,6 +363,7 @@ namespace GameFrameX.Utility
                     }
                 }
             }
+
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static ulong Hash64(string text) => Hash64(Encoding.UTF8.GetBytes(text));

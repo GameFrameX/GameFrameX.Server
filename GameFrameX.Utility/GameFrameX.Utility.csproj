@@ -26,7 +26,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
+        <PackageReference Include="Standart.Hash.xxHash" Version="4.0.5"/>
     </ItemGroup>
 
     <ItemGroup>
