@@ -13,7 +13,7 @@ public class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
-    public virtual IMessage? Handler(byte[] data)
+    public virtual IMessage Handler(byte[] data)
     {
         try
         {
