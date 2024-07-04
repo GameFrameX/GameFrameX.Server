@@ -1,13 +1,8 @@
-﻿using System.Collections.Concurrent;
-using GameFrameX.DBServer.State;
-using GameFrameX.Extension;
-using GameFrameX.Utility;
-
-namespace GameFrameX.Apps;
+﻿namespace GameFrameX.Apps;
 
 public static class CacheStateTypeManager
 {
-    static readonly ConcurrentDictionary<long, Type> hashMap = new ConcurrentDictionary<long, Type>();
+    private static readonly ConcurrentDictionary<long, Type> HashMap = new ConcurrentDictionary<long, Type>();
 
     /// <summary>
     /// 初始化对象实体集的扫描
@@ -23,7 +18,7 @@ public static class CacheStateTypeManager
             var isImplWithInterface = type.IsImplWithInterface(typeof(ICacheState));
             if (isImplWithInterface)
             {
-                hashMap.TryAdd(Hash.XXHash.Hash32(type.ToString()), type);
+                HashMap.TryAdd(Hash.XXHash.Hash32(type.ToString()), type);
                 BsonClassMapHelper.RegisterClass(type);
             }
         }
@@ -34,9 +29,9 @@ public static class CacheStateTypeManager
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    public static Type? GetType(long id)
+    public static Type GetType(long id)
     {
-        hashMap.TryGetValue(id, out var value);
+        HashMap.TryGetValue(id, out var value);
         return value;
     }
 }

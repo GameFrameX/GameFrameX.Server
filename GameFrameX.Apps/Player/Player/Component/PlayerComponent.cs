@@ -8,7 +8,7 @@ namespace GameFrameX.Apps.Player.Player.Component
     [ComponentType(ActorType.Player)]
     public sealed class PlayerComponent : StateComponent<PlayerState>
     {
-        public async Task<List<PlayerState>?> GetPlayerList(ReqPlayerList reqPlayerList)
+        public async Task<List<PlayerState>> GetPlayerList(ReqPlayerList reqPlayerList)
         {
             MetricsPlayerRegister.GetPlayerListCounterOptions.Inc();
             return await GameDb.FindListAsync<PlayerState>(m => m.AccountId == reqPlayerList.Id);
@@ -30,7 +30,7 @@ namespace GameFrameX.Apps.Player.Player.Component
             return playerState;
         }
 
-        public async Task<PlayerState?> OnLogin(ReqPlayerLogin reqLogin)
+        public async Task<PlayerState> OnLogin(ReqPlayerLogin reqLogin)
         {
             MetricsPlayerRegister.LoginCounterOptions.Inc();
             return await GameDb.FindAsync<PlayerState>(m => m.Id == reqLogin.Id);
