@@ -5,9 +5,9 @@ using GameFrameX.NetWork.Messages;
 using GameFrameX.Proto;
 using GameFrameX.Proto.Proto;
 using GameFrameX.ProtoBuf.Net;
+using GameFrameX.SuperSocket.ClientEngine;
 using GameFrameX.Utility;
-using SuperSocket.ClientEngine;
-using ErrorEventArgs = SuperSocket.ClientEngine.ErrorEventArgs;
+using ErrorEventArgs = GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs;
 
 namespace GameFrameX.Client;
 

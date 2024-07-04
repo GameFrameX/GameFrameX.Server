@@ -2,6 +2,7 @@
 using GameFrameX.Launcher.StartUp.Gateway;
 using GameFrameX.Proto.BuiltIn;
 using GameFrameX.ServerManager;
+using GameFrameX.SuperSocket.Primitives;
 
 
 /// <summary>

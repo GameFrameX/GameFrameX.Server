@@ -31,8 +31,6 @@
     <ItemGroup>
       <ProjectReference Include="..\GameFrameX.ProtoBuf.Net\GameFrameX.ProtoBuf.Net.csproj" />
       <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
-      <ProjectReference Include="..\SuperSocket\SuperSocket.Server.Abstractions\SuperSocket.Server.Abstractions.csproj" />
-      <ProjectReference Include="..\SuperSocket\SuperSocket.WebSocket.Server\SuperSocket.WebSocket.Server.csproj" />
     </ItemGroup>
     <ItemGroup>
         <None Include="..\logo.png">
@@ -45,5 +43,9 @@
             <PackagePath>\</PackagePath>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="GameFrameX.SuperSocket.Server.Abstractions" Version="1.0.0" />
+      <PackageReference Include="GameFrameX.SuperSocket.WebSocket.Server" Version="1.0.0" />
     </ItemGroup>
 </Project>

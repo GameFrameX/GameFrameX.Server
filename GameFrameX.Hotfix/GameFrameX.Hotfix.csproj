@@ -28,6 +28,10 @@
         <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.0.0" />
+    </ItemGroup>
+
 
 
 

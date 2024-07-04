@@ -3,7 +3,6 @@ using GameFrameX.Launcher;
 using GameFrameX.Launcher.Common.Session;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Messages;
-using SuperSocket.Server.Abstractions.Session;
 
 namespace GameFrameX.Hotfix.Common
 {

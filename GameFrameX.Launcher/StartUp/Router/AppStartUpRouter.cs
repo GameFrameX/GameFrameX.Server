@@ -1,5 +1,6 @@
 ﻿using GameFrameX.Launcher.PipelineFilter;
 using GameFrameX.Proto.BuiltIn;
+using GameFrameX.SuperSocket.Primitives;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 

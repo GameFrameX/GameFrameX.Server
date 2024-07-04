@@ -9,7 +9,10 @@
 
     <ItemGroup>
       <ProjectReference Include="..\GameFrameX.Proto\GameFrameX.Proto.csproj" />
-      <ProjectReference Include="..\SuperSocket\SuperSocket.ClientEngine\SuperSocket.ClientEngine.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.0.0" />
     </ItemGroup>
 
 </Project>
