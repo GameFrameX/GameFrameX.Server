@@ -260,14 +260,13 @@ namespace GameFrameX.DBServer.DbService.MongoDB
         /// <returns></returns>
         public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new()
         {
-            // var newFilter = Builders<TState>.Filter.Where(filter);
-            // var collectionName = typeof(TState).Name;
-            // var collection = CurrentDatabase.GetCollection<TState>(collectionName);
-            // state.DeleteTime = DateTime.UtcNow;
-            // state.IsDeleted = true;
-            // var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
-            // return result.ModifiedCount;
-            return -1;
+            var collection = GetCollection<TState>();
+            var state = await FindAsync(filter);
+            var newFilter = Builders<TState>.Filter.Eq(CacheState.UniqueId, state.Id);
+            state.DeleteTime = TimeHelper.UnixTimeSeconds();
+            state.IsDeleted = true;
+            var result = await collection.ReplaceOneAsync(newFilter, state, ReplaceOptions);
+            return result.ModifiedCount;
         }
 
         /// <summary>
