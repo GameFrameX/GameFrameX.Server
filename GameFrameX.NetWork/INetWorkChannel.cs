@@ -3,6 +3,9 @@ using GameFrameX.SuperSocket.Server.Abstractions.Session;
 
 namespace GameFrameX.NetWork;
 
+/// <summary>
+/// 网络通道
+/// </summary>
 public interface INetWorkChannel
 {
     /// <summary>

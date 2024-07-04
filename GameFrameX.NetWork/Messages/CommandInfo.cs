@@ -2,6 +2,9 @@
 
 namespace GameFrameX.NetWork.Messages;
 
+/// <summary>
+/// 指令信息
+/// </summary>
 public sealed class CommandInfo : ICommandInfo
 {
     /// <summary>

@@ -6,23 +6,48 @@ using GameFrameX.Utility;
 
 namespace GameFrameX.NetWork
 {
+    /// <summary>
+    /// 基础网络通道
+    /// </summary>
     public class BaseNetWorkChannel : INetWorkChannel
     {
+        /// <summary>
+        /// 关闭源
+        /// </summary>
         protected readonly CancellationTokenSource CloseSrc = new CancellationTokenSource();
 
-        // public long NetId { get; set; } = 0;
-        // public int TargetServerId { get; set; }
+        /// <summary>
+        /// 会话
+        /// </summary>
         public IGameAppSession AppSession { get; }
+
+        /// <summary>
+        /// Rpc会话
+        /// </summary>
         public IRpcSession RpcSession { get; }
 
-        private readonly IMessageEncoderHandler messageEncoder;
+        /// <summary>
+        /// 消息编码器
+        /// </summary>
+        private readonly IMessageEncoderHandler _messageEncoder;
+
+        /// <summary>
+        /// 是否是WebSocket
+        /// </summary>
         public bool IsWebSocket { get; }
 
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="session"></param>
+        /// <param name="messageEncoder"></param>
+        /// <param name="rpcSession"></param>
+        /// <param name="isWebSocket"></param>
         public BaseNetWorkChannel(IGameAppSession session, IMessageEncoderHandler messageEncoder, IRpcSession rpcSession, bool isWebSocket)
         {
             AppSession = session;
             IsWebSocket = isWebSocket;
-            this.messageEncoder = messageEncoder;
+            this._messageEncoder = messageEncoder;
             RpcSession = rpcSession;
         }
 
@@ -46,7 +71,7 @@ namespace GameFrameX.NetWork
         {
             Guard.NotNull(messageObject, nameof(messageObject));
 
-            var messageData = messageEncoder.Handler(messageObject);
+            var messageData = _messageEncoder.Handler(messageObject);
 
             if (IsWebSocket)
             {
@@ -59,11 +84,18 @@ namespace GameFrameX.NetWork
             }
         }
 
+        /// <summary>
+        /// 关闭
+        /// </summary>
         public virtual void Close()
         {
             CloseSrc.Cancel();
         }
 
+        /// <summary>
+        /// 是否关闭
+        /// </summary>
+        /// <returns></returns>
         public virtual bool IsClose()
         {
             return CloseSrc.IsCancellationRequested;
@@ -71,11 +103,17 @@ namespace GameFrameX.NetWork
 
         #region Data
 
-        private readonly ConcurrentDictionary<string, object> userDataKv = new ConcurrentDictionary<string, object>();
+        private readonly ConcurrentDictionary<string, object> _userDataKv = new ConcurrentDictionary<string, object>();
 
+        /// <summary>
+        /// 获取消息自定义数据
+        /// </summary>
+        /// <param name="key"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public T GetData<T>(string key)
         {
-            if (userDataKv.TryGetValue(key, out var v))
+            if (_userDataKv.TryGetValue(key, out var v))
             {
                 return (T)v;
             }
@@ -83,21 +121,38 @@ namespace GameFrameX.NetWork
             return default;
         }
 
-        public void RemoveData(string key)
+        /// <summary>
+        /// 清除自定义数据
+        /// </summary>
+        public void ClearData()
         {
-            userDataKv.Remove(key, out _);
+            _userDataKv.Clear();
         }
 
+        /// <summary>
+        /// 删除自定义数据
+        /// </summary>
+        /// <param name="key"></param>
+        public void RemoveData(string key)
+        {
+            _userDataKv.Remove(key, out _);
+        }
+
+        /// <summary>
+        /// 设置自定义数据
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public void SetData(string key, object value)
         {
-            userDataKv[key] = value;
+            _userDataKv[key] = value;
         }
 
         #endregion
 
         #region MessageTime
 
-        private long lastReceiveMessageTime;
+        private long _lastReceiveMessageTime;
 
         /// <summary>
         /// 更新接收消息的时间
@@ -105,7 +160,7 @@ namespace GameFrameX.NetWork
         /// <param name="offsetTicks"></param>
         public void UpdateReceiveMessageTime(long offsetTicks = 0)
         {
-            lastReceiveMessageTime = DateTime.UtcNow.Ticks + offsetTicks;
+            _lastReceiveMessageTime = DateTime.UtcNow.Ticks + offsetTicks;
         }
 
         /// <summary>
@@ -115,7 +170,7 @@ namespace GameFrameX.NetWork
         /// <returns></returns>
         public long GetLastMessageTimeSecond(in DateTime utcTime)
         {
-            return (utcTime.Ticks - lastReceiveMessageTime) / 10000_000;
+            return (utcTime.Ticks - _lastReceiveMessageTime) / 10000_000;
         }
 
         #endregion

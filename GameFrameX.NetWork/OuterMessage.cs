@@ -49,11 +49,23 @@ public class OuterMessage : IOuterMessage
         UniqueId = uniqueId;
     }
 
+    /// <summary>
+    /// 消息发送打印日志
+    /// </summary>
+    /// <param name="srcServerType"></param>
+    /// <param name="destServerType"></param>
+    /// <returns></returns>
     public string ToSendMessageString(ServerType srcServerType, ServerType destServerType)
     {
         return $"---发送[{srcServerType} To {destServerType}] {ToMessageString()}";
     }
 
+    /// <summary>
+    /// 消息接收打印日志
+    /// </summary>
+    /// <param name="srcServerType"></param>
+    /// <param name="destServerType"></param>
+    /// <returns></returns>
     public string ToReceiveMessageString(ServerType srcServerType, ServerType destServerType)
     {
         return $"---收到[{srcServerType} To {destServerType}] {ToMessageString()}";
@@ -61,6 +73,10 @@ public class OuterMessage : IOuterMessage
 
     private readonly StringBuilder _stringBuilder = new StringBuilder();
 
+    /// <summary>
+    /// 消息字符串
+    /// </summary>
+    /// <returns></returns>
     public string ToMessageString()
     {
         _stringBuilder.Clear();
@@ -127,6 +143,10 @@ public class OuterMessage : IOuterMessage
         MessageData = messageData;
     }
 
+    /// <summary>
+    /// 消息内容
+    /// </summary>
+    /// <returns></returns>
     public override string ToString()
     {
         return JsonHelper.Serialize(this);

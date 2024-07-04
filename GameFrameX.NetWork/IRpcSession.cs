@@ -2,6 +2,9 @@ using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.NetWork;
 
+/// <summary>
+/// RPC会话接口
+/// </summary>
 public interface IRpcSession
 {
     /// <summary>

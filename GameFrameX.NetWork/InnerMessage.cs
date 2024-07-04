@@ -9,6 +9,9 @@ using Newtonsoft.Json;
 
 namespace GameFrameX.NetWork;
 
+/// <summary>
+/// 内部消息
+/// </summary>
 public class InnerMessage : IInnerMessage
 {
     /// <summary>
@@ -47,11 +50,23 @@ public class InnerMessage : IInnerMessage
         UniqueId = uniqueId;
     }
 
+    /// <summary>
+    /// 消息发送打印日志
+    /// </summary>
+    /// <param name="srcServerType"></param>
+    /// <param name="destServerType"></param>
+    /// <returns></returns>
     public string ToSendMessageString(ServerType srcServerType, ServerType destServerType)
     {
         return $"---发送[{srcServerType} To {destServerType}] {ToMessageString()}";
     }
 
+    /// <summary>
+    /// 消息接收打印日志
+    /// </summary>
+    /// <param name="srcServerType"></param>
+    /// <param name="destServerType"></param>
+    /// <returns></returns>
     public string ToReceiveMessageString(ServerType srcServerType, ServerType destServerType)
     {
         return $"---收到[{srcServerType} To {destServerType}] {ToMessageString()}";
@@ -60,6 +75,10 @@ public class InnerMessage : IInnerMessage
 
     private readonly StringBuilder _stringBuilder = new StringBuilder();
 
+    /// <summary>
+    /// 消息字符串
+    /// </summary>
+    /// <returns></returns>
     public string ToMessageString()
     {
         _stringBuilder.Clear();
@@ -133,11 +152,21 @@ public class InnerMessage : IInnerMessage
         MessageDataLength = (ushort)messageData.Length;
     }
 
+    /// <summary>
+    /// 消息转字符串
+    /// </summary>
+    /// <returns></returns>
     public override string ToString()
     {
         return JsonHelper.Serialize(this);
     }
 
+    /// <summary>
+    /// 创建消息
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="operationType"></param>
+    /// <returns></returns>
     public static InnerMessage Create(IOuterMessage message, MessageOperationType operationType)
     {
         var innerMessage = new InnerMessage();
@@ -149,6 +178,12 @@ public class InnerMessage : IInnerMessage
         return innerMessage;
     }
 
+    /// <summary>
+    /// 创建消息
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="operationType"></param>
+    /// <returns></returns>
     public static InnerMessage Create(IMessage message, MessageOperationType operationType)
     {
         var innerMessage = new InnerMessage();
@@ -164,17 +199,39 @@ public class InnerMessage : IInnerMessage
 
     private readonly ConcurrentDictionary<string, object> _data = new ConcurrentDictionary<string, object>();
 
+    /// <summary>
+    /// 设置自定义数据
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="value"></param>
     public void SetData(string key, object value)
     {
         _data[key] = value;
     }
 
+    /// <summary>
+    /// 获取自定义数据
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns></returns>
     public object GetData(string key)
     {
         _data.TryGetValue(key, out var value);
         return value;
     }
 
+    /// <summary>
+    /// 删除自定义数据
+    /// </summary>
+    /// <param name="key"></param>
+    public void RemoveData(string key)
+    {
+        _data.Remove(key, out _);
+    }
+
+    /// <summary>
+    /// 清除自定义数据
+    /// </summary>
     public void ClearData()
     {
         _data.Clear();

@@ -2,6 +2,9 @@ using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.NetWork;
 
+/// <summary>
+/// 消息处理器
+/// </summary>
 public interface IMessageHandler
 {
     /// <summary>

@@ -28,5 +28,7 @@ public class MessageTypeHandlerAttribute : Attribute
     public MessageTypeHandlerAttribute(int messageId)
     {
         MessageId = messageId;
+        MainId = MessageManager.GetMainId(MessageId);
+        SubId = MessageManager.GetSubId(MessageId);
     }
 }
