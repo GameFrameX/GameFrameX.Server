@@ -1,12 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="../Version.props" />
+    <Import Project="../Version.props" Label="版本号定义"/>
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
         <Description>GameFrameX.Log</Description>
         <PackageTags>GameFrameX,Lib,Log,Server,GameServer</PackageTags>
-        <FileVersion>$(AssemblyVersion)</FileVersion>
         <PublicSign>true</PublicSign>
         <SignAssembly>true</SignAssembly>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -22,7 +21,6 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <IsPackable>true</IsPackable>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <Version>$(AssemblyVersion)</Version>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <PackageId>$(AssemblyName)</PackageId>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
