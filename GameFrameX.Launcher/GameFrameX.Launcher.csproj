@@ -33,20 +33,15 @@
 
     <ItemGroup>
         <ProjectReference Include="..\GameFrameX.Apps\GameFrameX.Apps.csproj" />
-        <ProjectReference Include="..\GameFrameX.Cache.Memory\GameFrameX.Cache.Memory.csproj" />
-        <ProjectReference Include="..\GameFrameX.Cache\GameFrameX.Cache.csproj" />
         <ProjectReference Include="..\GameFrameX.Config\GameFrameX.Config.csproj" />
         <ProjectReference Include="..\GameFrameX.Core\GameFrameX.Core.csproj" />
-        <ProjectReference Include="..\DataBaseServer\GameFrameX.DBServer\GameFrameX.DBServer.csproj" />
-        <ProjectReference Include="..\GameFrameX.Log\GameFrameX.Log.csproj" />
-        <ProjectReference Include="..\GameFrameX.Monitor\GameFrameX.Monitor.csproj" />
         <ProjectReference Include="..\GameFrameX.Proto\GameFrameX.Proto.csproj" />
-        <ProjectReference Include="..\GameFrameX.ServerManager\GameFrameX.ServerManager.csproj" />
-        <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="CommandLineParser" Version="2.9.1" />
+      <PackageReference Include="GameFrameX.DBServer" Version="1.0.3" />
+      <PackageReference Include="GameFrameX.Monitor" Version="1.0.3" />
       <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.0.0" />
     </ItemGroup>
 

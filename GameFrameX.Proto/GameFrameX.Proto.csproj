@@ -6,8 +6,10 @@
 
     <ItemGroup>
         <ProjectReference Include="..\GameFrameX.Core\GameFrameX.Core.csproj" />
-        <ProjectReference Include="..\GameFrameX.Extension\GameFrameX.Extension.csproj" />
-        <ProjectReference Include="..\GameFrameX.ProtoBuf.Net\GameFrameX.ProtoBuf.Net.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="GameFrameX.NetWork" Version="1.0.3" />
     </ItemGroup>
 
 </Project>

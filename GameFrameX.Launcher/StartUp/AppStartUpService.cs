@@ -23,6 +23,11 @@ public abstract class AppStartUpService : AppStartUpBase
     protected virtual bool IsRequestConnectServer { get; } = true;
 
     /// <summary>
+    /// 是否连接到发现中心
+    /// </summary>
+    protected virtual bool IsConnectDiscoveryServer { get; } = true;
+
+    /// <summary>
     /// 连接的目标信息
     /// </summary>
     protected RespConnectServer ConnectTargetServer { get; private set; }
@@ -53,8 +58,12 @@ public abstract class AppStartUpService : AppStartUpBase
             ConnectTargetServerTimer.Start();
         }
 
-        StartDiscoveryCenterClient();
-        _ = Task.Run(RpcHandler);
+        if (IsConnectDiscoveryServer)
+        {
+            StartDiscoveryCenterClient();
+            _ = Task.Run(RpcHandler);
+        }
+
         return Task.CompletedTask;
     }
 
@@ -122,6 +131,11 @@ public abstract class AppStartUpService : AppStartUpBase
     /// <param name="e"></param>
     void ConnectTargetServerTimerOnElapsed(object sender, ElapsedEventArgs e)
     {
+        if (!IsRequestConnectServer)
+        {
+            return;
+        }
+
         SendConnectTargetServer();
     }
 
@@ -132,6 +146,11 @@ public abstract class AppStartUpService : AppStartUpBase
     /// <param name="e"></param>
     protected override void ReconnectionTimerOnElapsed(object sender, ElapsedEventArgs e)
     {
+        if (!IsConnectDiscoveryServer)
+        {
+            return;
+        }
+
         // 重连到发现中心服务器
         ConnectToDiscoveryCenter();
     }

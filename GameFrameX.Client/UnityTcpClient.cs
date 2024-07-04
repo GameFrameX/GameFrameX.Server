@@ -30,7 +30,7 @@ public static class UnityTcpClient
             if (!_tcpClient.IsConnected)
             {
                 Console.WriteLine("未链接到服务器,开启重连");
-                _tcpClient.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 23001));
+                _tcpClient.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 29001));
                 continue;
                 // Console.WriteLine("链接到服务器结果：" + result);
                 // if (result.ResultCode != ResultCode.Success)
@@ -93,7 +93,7 @@ public static class UnityTcpClient
     {
         int offset = 0;
         var length = data.ReadUShort(ref offset);
-        var operationType = data.ReadByte(ref offset);
+        // var operationType = data.ReadByte(ref offset);
         var uniqueId = data.ReadInt(ref offset);
         int messageId = data.ReadInt(ref offset);
         var messageData = data.ReadBytes(offset, length - offset);
@@ -113,11 +113,11 @@ public static class UnityTcpClient
     {
         count++;
         var bytes = ProtoBufSerializerHelper.Serialize(message);
-        ushort len = (ushort)(2 + 1 + 4 + 4 + bytes.Length);
+        ushort len = (ushort)(2 + 4 + 4 + bytes.Length);
         var buffer = new byte[len];
         int offset = 0;
         buffer.WriteUShort(len, ref offset);
-        buffer.WriteByte((byte)(message is ReqHeartBeat ? MessageOperationType.HeartBeat : MessageOperationType.Game), ref offset);
+        // buffer.WriteByte((byte)(message is ReqHeartBeat ? MessageOperationType.HeartBeat : MessageOperationType.Game), ref offset);
         buffer.WriteInt(message.UniqueId, ref offset);
         var messageId = MessageProtoHelper.GetMessageIdByType(message.GetType());
         message.MessageId = messageId;

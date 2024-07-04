@@ -10,19 +10,12 @@ internal partial class AppStartUpHotfixGame : AppStartUpService
 {
     static MessageGameDecoderHandler messageDecoderHandler = new MessageGameDecoderHandler();
     static MessageGameEncoderHandler messageEncoderHandler = new MessageGameEncoderHandler();
-
-    protected override ServerType GetServerType { get; } = ServerType.Gateway;
+    protected override bool IsConnectDiscoveryServer { get; } = false;
+    protected override bool IsRequestConnectServer { get; } = false;
 
     public async void Start()
     {
         await EnterAsync();
-        StartGatewayClient();
-    }
-
-    public override Task Stop(string message = "")
-    {
-        DisconnectToGateWay();
-        return base.Stop(message);
     }
 
     public AppStartUpHotfixGame() : base(messageEncoderHandler, messageDecoderHandler)

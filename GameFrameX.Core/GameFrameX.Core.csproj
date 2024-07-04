@@ -46,6 +46,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="GameFrameX.DBServer" Version="1.0.3" />
+        <PackageReference Include="GameFrameX.NetWork" Version="1.0.3" />
+        <PackageReference Include="GameFrameX.NetWork.HTTP" Version="1.0.3" />
         <PackageReference Include="Microsoft.AspNetCore.Connections.Abstractions" Version="6.0.9"/>
         <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1"/>
         <PackageReference Include="MongoDB.Driver" Version="2.24.0" />
@@ -53,16 +56,6 @@
         <PackageReference Include="Quartz" Version="3.4.0"/>
         <PackageReference Include="Serilog" Version="3.1.1" />
         <PackageReference Include="SharpZipLib" Version="1.3.3"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\DataBaseServer\GameFrameX.DBServer\GameFrameX.DBServer.csproj" />
-        <ProjectReference Include="..\GameFrameX.Extension\GameFrameX.Extension.csproj" />
-        <ProjectReference Include="..\GameFrameX.Log\GameFrameX.Log.csproj" />
-        <ProjectReference Include="..\GameFrameX.NetWork.HTTP\GameFrameX.NetWork.HTTP.csproj" />
-        <ProjectReference Include="..\GameFrameX.NetWork\GameFrameX.NetWork.csproj" />
-        <ProjectReference Include="..\GameFrameX.Setting\GameFrameX.Setting.csproj" />
-        <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
     </ItemGroup>
     <ItemGroup>
         <None Include="..\logo.png">
