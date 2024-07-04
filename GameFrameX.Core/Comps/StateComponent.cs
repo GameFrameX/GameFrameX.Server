@@ -1,18 +1,30 @@
 ﻿using System.Collections.Concurrent;
 using GameFrameX.Core.Timer;
 using GameFrameX.Core.Utility;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using GameFrameX.Core.Actors;
+using GameFrameX.DBServer;
+using GameFrameX.DBServer.DbService.MongoDB;
 using GameFrameX.DBServer.State;
+using GameFrameX.Extension;
 using GameFrameX.Log;
 
 namespace GameFrameX.Core.Comps
 {
+    /// <summary>
+    /// 数据状态组件
+    /// </summary>
     public sealed class StateComponent
     {
         #region 仅DBModel.Mongodb调用
 
-
         private static readonly ConcurrentBag<Func<bool, bool, Task>> saveFuncs = new();
 
+        /// <summary>
+        /// 注册回存
+        /// </summary>
+        /// <param name="shutdown"></param>
         public static void AddShutdownSaveFunc(Func<bool, bool, Task> shutdown)
         {
             saveFuncs.Add(shutdown);
@@ -78,9 +90,13 @@ namespace GameFrameX.Core.Comps
 
         static StateComponent()
         {
-            // StateComponent.AddShutdownSaveFunc(SaveAll);
+            StateComponent.AddShutdownSaveFunc(SaveAll);
         }
 
+        /// <summary>
+        /// 激活组件
+        /// </summary>
+        /// <returns></returns>
         public override async Task Active()
         {
             await base.Active();
@@ -92,6 +108,9 @@ namespace GameFrameX.Core.Comps
             await ReadStateAsync();
         }
 
+        /// <summary>
+        /// 反激活组件
+        /// </summary>
         public override Task Inactive()
         {
             // if (GlobalSettings.DBModel == (int) DbModel.Mongodb)
@@ -106,7 +125,7 @@ namespace GameFrameX.Core.Comps
         {
             try
             {
-                // await GameDb.UpdateAsync(State);
+                await GameDb.UpdateAsync(State);
             }
             catch (Exception e)
             {
@@ -116,25 +135,31 @@ namespace GameFrameX.Core.Comps
 
         public async Task ReadStateAsync()
         {
-            /*State = await GameDb.LoadState<TState>(ActorId);
-            // if (GlobalSettings.DBModel == (int)DbModel.Mongodb)
-            {
-                stateDic.TryRemove(State.Id, out _);
-                stateDic.TryAdd(State.Id, State);
-            }*/
+            State = await GameDb.LoadState<TState>(ActorId);
+
+            stateDic.TryRemove(State.Id, out _);
+            stateDic.TryAdd(State.Id, State);
         }
 
-        /*public Task WriteStateAsync()
+        /// <summary>
+        /// 更新状态
+        /// </summary>
+        /// <returns></returns>
+        public Task WriteStateAsync()
         {
             return GameDb.UpdateAsync(State);
-        }*/
+        }
 
 
         #region 仅DBModel.Mongodb调用
 
-        /*
         const int ONCE_SAVE_COUNT = 500;
 
+        /// <summary>
+        /// 保存全部数据
+        /// </summary>
+        /// <param name="shutdown"></param>
+        /// <param name="force"></param>
         public static async Task SaveAll(bool shutdown, bool force = false)
         {
             var idList = new List<long>();
@@ -144,10 +169,10 @@ namespace GameFrameX.Core.Comps
                 foreach (var state in stateDic.Values)
                 {
                     if (state.IsModify)
-                {
+                    {
                         var bsonDoc = state.ToBsonDocument();
                         lock (writeList)
-                    {
+                        {
                             var filter = Builders<MongoDB.Bson.BsonDocument>.Filter.Eq("_id", state.Id);
                             writeList.Add(new ReplaceOneModel<MongoDB.Bson.BsonDocument>(filter, bsonDoc) { IsUpsert = true });
                             idList.Add(state.Id);
@@ -159,25 +184,25 @@ namespace GameFrameX.Core.Comps
             {
                 var tasks = new List<Task>();
 
-            foreach (var state in stateDic.Values)
-            {
-                var actor = ActorManager.GetActor(state.Id);
-                if (actor != null)
+                foreach (var state in stateDic.Values)
                 {
-                        tasks.Add(actor.SendAsync(() =>
+                    var actor = ActorManager.GetActor(state.Id);
+                    if (actor != null)
                     {
+                        tasks.Add(actor.SendAsync(() =>
+                        {
                             if (!force && !state.IsModify)
                                 return;
                             var bsonDoc = state.ToBsonDocument();
                             lock (writeList)
-                    {
+                            {
                                 var filter = Builders<MongoDB.Bson.BsonDocument>.Filter.Eq("_id", state.Id);
                                 writeList.Add(new ReplaceOneModel<MongoDB.Bson.BsonDocument>(filter, bsonDoc) { IsUpsert = true });
                                 idList.Add(state.Id);
-                    }
+                            }
                         }));
+                    }
                 }
-            }
 
                 await Task.WhenAll(tasks);
             }
@@ -206,7 +231,8 @@ namespace GameFrameX.Core.Comps
                                 if (state == null)
                                     continue;
                                 state.AfterSaveToDB();
-                                }
+                            }
+
                             save = true;
                         }
                         else
@@ -218,13 +244,14 @@ namespace GameFrameX.Core.Comps
                     {
                         LogHelper.Error($"保存数据异常，类型:{typeof(TState).FullName}，{ex}");
                     }
+
                     if (!save && shutdown)
                     {
                         LogHelper.Error($"保存数据失败，类型:{typeof(TState).FullName}");
                     }
                 }
             }
-        }*/
+        }
 
 
         // public static async Task<MongoState> FindAsync<TState>(FilterDefinition<BsonDocument> filter, int limit = 0)
