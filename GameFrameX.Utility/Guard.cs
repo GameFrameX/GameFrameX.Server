@@ -1,5 +1,8 @@
 namespace GameFrameX.Utility;
 
+/// <summary>
+/// 守护.用于判断参数
+/// </summary>
 public static class Guard
 {
     /// <summary>

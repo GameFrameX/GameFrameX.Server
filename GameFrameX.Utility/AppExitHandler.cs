@@ -6,6 +6,9 @@ using GameFrameX.Log;
 
 namespace GameFrameX.Utility
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class AppExitHandler
     {
         private static Action<string> _existCallBack;
@@ -13,6 +16,10 @@ namespace GameFrameX.Utility
         private static PosixSignalRegistration exitSignalRegistration;
         private static bool _isKill = false;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="existCallBack"></param>
         public static void Init(Action<string> existCallBack)
         {
             _isKill = false;
@@ -39,6 +46,9 @@ namespace GameFrameX.Utility
             HandleFetalException("AssemblyLoadContext.Default.Unloading", obj.ToString());
         }
 
+        /// <summary>
+        /// 关闭程序
+        /// </summary>
         public static void Kill()
         {
             _isKill = true;

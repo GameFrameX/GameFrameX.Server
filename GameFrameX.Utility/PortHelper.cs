@@ -15,7 +15,7 @@ public static class PortHelper
     /// <param name="startPort">开始端口</param>
     /// <param name="endPort">结束端口</param>
     /// <returns>可用端口列表</returns>
-    public static async Task<List<int>> ScanPorts(int startPort, int endPort, string? ip = null)
+    public static async Task<List<int>> ScanPorts(int startPort, int endPort, string ip = null)
     {
         var availablePorts = new List<int>();
         for (int port = startPort; port <= endPort; port++)
@@ -29,7 +29,7 @@ public static class PortHelper
         return availablePorts;
     }
 
-    private static async Task<bool> IsPortAvailable(int port, string? ip = null)
+    private static async Task<bool> IsPortAvailable(int port, string ip = null)
     {
         IPAddress ipAddress = IPAddress.Any;
         if (ip != null)

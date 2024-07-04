@@ -68,7 +68,7 @@ namespace GameFrameX.Utility
 
 
         /// <summary>
-        /// 从1~n中随机选取m个数，m < n
+        /// 从1~n中随机选取m个数，m小于n
         /// </summary>
         public static HashSet<int> RandomSelect(int m, int n)
         {
@@ -194,6 +194,11 @@ namespace GameFrameX.Utility
             return array[0];
         }
 
+        /// <summary>
+        /// 根据权重随机
+        /// </summary>
+        /// <param name="weights">权重</param>
+        /// <returns></returns>
         public static int Idx(int[] weights)
         {
             int totalWight = weights.Sum();
@@ -211,6 +216,12 @@ namespace GameFrameX.Utility
             return 0;
         }
 
+        /// <summary>
+        /// 根据权重随机
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="weightIndex"></param>
+        /// <returns></returns>
         public static int Idx(int[][] array, int weightIndex = 1)
         {
             var random = ThreadLocalRandom.Current;
@@ -236,22 +247,52 @@ namespace GameFrameX.Utility
         }
 
 
+        /// <summary>
+        /// 随机获取指定数量的id
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="num"></param>
+        /// <param name="canRepeat"></param>
+        /// <returns></returns>
         public static List<int> Ids(int[][] array, int num, bool canRepeat = true)
         {
             return RandomSelect(array, num, 1, canRepeat).Select(t => t[0]).ToList();
         }
 
+
+        /// <summary>
+        /// 随机获取指定数量的id
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="num"></param>
+        /// <param name="canRepeat"></param>
+        /// <returns></returns>
         public static List<int> Ids(string str, int num, bool canRepeat = true)
         {
             return RandomSelect(str, num, 1, canRepeat).Select(t => t[0]).ToList();
         }
 
 
+        /// <summary>
+        /// 随机获取指定数量的id
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="num"></param>
+        /// <param name="canRepeat"></param>
+        /// <returns></returns>
         public static List<int[]> Items(string str, int num, bool canRepeat = true)
         {
             return RandomSelect(str, num, 2, canRepeat);
         }
 
+
+        /// <summary>
+        /// 随机获取指定数量的id
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="num"></param>
+        /// <param name="canRepeat"></param>
+        /// <returns></returns>
         public static List<int[]> Items(int[][] array, int num, bool canRepeat = true)
         {
             return RandomSelect(array, num, 2, canRepeat);

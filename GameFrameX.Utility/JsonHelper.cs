@@ -1,5 +1,8 @@
 ﻿namespace GameFrameX.Utility;
 
+/// <summary>
+/// Json 帮助类
+/// </summary>
 public static class JsonHelper
 {
     /// <summary>

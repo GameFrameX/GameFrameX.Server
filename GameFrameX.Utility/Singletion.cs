@@ -6,7 +6,7 @@
     /// <typeparam name="T"></typeparam>
     public abstract class Singleton<T> where T : Singleton<T>, new()
     {
-        private static T? _instance;
+        private static T _instance;
         private static readonly object LockObject = new object();
 
         /// <summary>

@@ -328,7 +328,7 @@ namespace GameFrameX.Utility
             /// <exception cref="ArgumentNullException">
             ///   <paramref name="stream"/> is <see langword="null"/>.
             /// </exception>
-            /// <seealso cref="AppendAsync(Stream, CancellationToken)"/>
+            /// <seealso cref="Stream"/>
             public void Append(Stream stream)
             {
                 if (stream is null)

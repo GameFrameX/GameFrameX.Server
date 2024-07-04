@@ -11,6 +11,10 @@ public static class UtilityIdGenerator
     private static long _longCounter = (long)(DateTime.UtcNow - UtcTimeStart).TotalSeconds;
     private static int _intCounter = (int)(DateTime.UtcNow - UtcTimeStart).TotalSeconds;
 
+    /// <summary>
+    /// 使用Interlocked.Increment生成唯一ID的方法
+    /// </summary>
+    /// <returns></returns>
     public static int GetNextUniqueIntId()
     {
         // 原子性地递增值
@@ -27,6 +31,10 @@ public static class UtilityIdGenerator
         return Interlocked.Increment(ref _longCounter);
     }
 
+    /// <summary>
+    /// 获取唯一ID字符串
+    /// </summary>
+    /// <returns></returns>
     public static string GetUniqueIdString()
     {
         return Guid.NewGuid().ToString();

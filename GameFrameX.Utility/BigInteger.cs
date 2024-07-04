@@ -132,6 +132,9 @@
 
 namespace GameFrameX.Utility;
 
+/// <summary>
+/// 
+/// </summary>
 public class BigInteger
 {
     // maximum length of the BigInteger in uint (4 bytes)
@@ -167,6 +170,10 @@ public class BigInteger
 
 
     private uint[] data = null; // stores bytes from the Big Integer
+
+    /// <summary>
+    /// 
+    /// </summary>
     public int dataLength; // number of actual chars used
 
 
@@ -174,6 +181,9 @@ public class BigInteger
     // Constructor (Default value for BigInteger is 0
     //***********************************************************************
 
+    /// <summary>
+    /// 
+    /// </summary>
     public BigInteger()
     {
         data = new uint[maxLength];
@@ -185,6 +195,11 @@ public class BigInteger
     // Constructor (Default value provided by long)
     //***********************************************************************
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
+    /// <exception cref="ArithmeticException"></exception>
     public BigInteger(long value)
     {
         data = new uint[maxLength];
@@ -221,6 +236,11 @@ public class BigInteger
     // Constructor (Default value provided by ulong)
     //***********************************************************************
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
+    /// <exception cref="ArithmeticException"></exception>
     public BigInteger(ulong value)
     {
         data = new uint[maxLength];
@@ -248,6 +268,10 @@ public class BigInteger
     // Constructor (Default value provided by BigInteger)
     //***********************************************************************
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="bi"></param>
     public BigInteger(BigInteger bi)
     {
         data = new uint[maxLength];
