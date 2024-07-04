@@ -39,7 +39,7 @@
             <PackagePath>\</PackagePath>
             <Link>logo.png</Link>
         </None>
-        <None Include="README.md">
+        <None Include="..\README.md">
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
