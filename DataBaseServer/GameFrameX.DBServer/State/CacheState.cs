@@ -4,14 +4,13 @@ using ProtoBuf;
 
 namespace GameFrameX.DBServer.State
 {
+    /// <summary>
+    /// 缓存数据对象
+    /// </summary>
     [BsonIgnoreExtraElements(true, Inherited = true)]
     [ProtoContract]
     public class CacheState : ICacheState
     {
-        public CacheState()
-        {
-        }
-
         /// <summary>
         /// 唯一ID。给DB用的
         /// </summary>
@@ -24,9 +23,16 @@ namespace GameFrameX.DBServer.State
         [ProtoMember(888)]
         public long Id { get; set; }
 
+        /// <summary>
+        /// 是否修改
+        /// </summary>
         public bool IsModify => IsChanged().isChanged;
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"{base.ToString()}[Id={Id}]";
@@ -41,11 +47,19 @@ namespace GameFrameX.DBServer.State
             stateHash = new StateHash(this, isNew);
         }
 
+        /// <summary>
+        /// 是否修改
+        /// </summary>
+        /// <returns></returns>
         public (bool isChanged, byte[] data) IsChanged()
         {
             return stateHash.IsChanged();
         }
 
+        /// <summary>
+        /// 是否由ID引起的变化
+        /// </summary>
+        /// <returns></returns>
         public (bool isChanged, long stateId, byte[] data) IsChangedWithId()
         {
             var res = stateHash.IsChanged();
@@ -69,6 +83,9 @@ namespace GameFrameX.DBServer.State
             // table.Set(saveState.Key, saveState);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void AfterSaveToDB()
         {
             stateHash.AfterSaveToDb();

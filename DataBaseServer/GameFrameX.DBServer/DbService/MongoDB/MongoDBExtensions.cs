@@ -2,6 +2,9 @@ using MongoDB.Driver;
 
 namespace GameFrameX.DBServer.DbService.MongoDB;
 
+/// <summary>
+/// MongoDB扩展
+/// </summary>
 public static class MongoDbExtensions
 {
     /// <summary>

@@ -1,5 +1,8 @@
 namespace GameFrameX.DBServer.State;
 
+/// <summary>
+/// 缓存数据对象接口
+/// </summary>
 public interface ICacheState : ISafeDelete, ISafeCreate, ISafeUpdate
 {
     /// <summary>
@@ -18,5 +21,8 @@ public interface ICacheState : ISafeDelete, ISafeCreate, ISafeUpdate
     /// <param name="isNew"></param>
     void AfterLoadFromDB(bool isNew);
 
+    /// <summary>
+    /// 
+    /// </summary>
     void AfterSaveToDB();
 }

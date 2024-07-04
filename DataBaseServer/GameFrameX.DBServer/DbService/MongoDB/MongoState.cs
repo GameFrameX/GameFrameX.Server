@@ -1,5 +1,8 @@
 ﻿namespace GameFrameX.DBServer.DbService.MongoDB
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MongoState
     {
         /// <summary>

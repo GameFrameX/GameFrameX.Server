@@ -35,7 +35,7 @@ public interface IGameDbService
     /// <param name="filter">查询条件</param>
     /// <typeparam name="TState"></typeparam>
     /// <returns></returns>
-    public Task<TState?> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new();
+    public Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new();
 
     /// <summary>
     /// 查询数据
