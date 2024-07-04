@@ -1,12 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+    <Import Project="../Version.props" />
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
         <Description>GameFrameX.Log</Description>
         <PackageTags>GameFrameX,Lib,Log,Server,GameServer</PackageTags>
-        <AssemblyVersion>1.0.0</AssemblyVersion>
         <FileVersion>$(AssemblyVersion)</FileVersion>
         <PublicSign>true</PublicSign>
         <SignAssembly>true</SignAssembly>
