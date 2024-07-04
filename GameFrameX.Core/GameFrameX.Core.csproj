@@ -28,7 +28,6 @@
         <PackageId>$(AssemblyName)</PackageId>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
         <TargetFramework>net8.0</TargetFramework>
-        <AssemblyOriginatorKeyFile>../gameframex.key.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
 
     <PropertyGroup>

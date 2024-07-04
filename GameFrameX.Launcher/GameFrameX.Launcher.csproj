@@ -44,12 +44,4 @@
       <PackageReference Include="GameFrameX.Monitor" Version="1.0.3" />
       <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.0.0" />
     </ItemGroup>
-
-    <ItemGroup>
-        <None Include="..\logo.png">
-            <Pack>True</Pack>
-            <PackagePath></PackagePath>
-            <Link>logo.png</Link>
-        </None>
-    </ItemGroup>
 </Project>
