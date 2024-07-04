@@ -27,7 +27,7 @@ namespace GameFrameX.DBServer.DbService.MongoDB
         /// </summary>
         /// <param name="url">MongoDB连接URL。</param>
         /// <param name="dbName">要使用的数据库名称。</param>
-        public async void Open(string url, string dbName)
+        public void Open(string url, string dbName)
         {
             try
             {
@@ -47,11 +47,12 @@ namespace GameFrameX.DBServer.DbService.MongoDB
         /// 获取指定类型的MongoDB集合。
         /// </summary>
         /// <typeparam name="TState">文档的类型。</typeparam>
+        /// <param name="settings">集合的设置。</param>
         /// <returns>指定类型的MongoDB集合。</returns>
-        private IMongoCollection<TState> GetCollection<TState>() where TState : ICacheState, new()
+        private IMongoCollection<TState> GetCollection<TState>(MongoCollectionSettings settings = null) where TState : ICacheState, new()
         {
             var collectionName = typeof(TState).Name;
-            IMongoCollection<TState>? collection = CurrentDatabase.GetCollection<TState>(collectionName);
+            IMongoCollection<TState> collection = CurrentDatabase.GetCollection<TState>(collectionName, settings);
             return collection;
         }
 
@@ -303,7 +304,7 @@ namespace GameFrameX.DBServer.DbService.MongoDB
         /// </summary>
         /// <param name="states"></param>
         /// <typeparam name="TState"></typeparam>
-        public async Task AddListAsync<TState>(List<TState> states) where TState : ICacheState, new()
+        public async Task AddListAsync<TState>(List<TState> states) where TState : class, ICacheState, new()
         {
             var collection = GetCollection<TState>();
             var cacheStates = states.ToList();
