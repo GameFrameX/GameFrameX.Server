@@ -3,13 +3,30 @@ namespace GameFrameX.Setting;
 /// <summary>
 /// 需要小于1000，因为1000以上作为服务器id了
 /// </summary>
-public enum IDModule
+public enum IdModule
 {
-    MIN = 0,
+    /// <summary>
+    /// 最小值
+    /// </summary>
+    Min = 0,
 
-    //单服/玩家不同即可
+    /// <summary>
+    /// 单服/玩家不同即可
+    /// </summary>
     Pet = 101,
+
+    /// <summary>
+    /// 
+    /// </summary>
     Equip = 102,
+
+    /// <summary>
+    /// 
+    /// </summary>
     WorkerActor = 103,
-    MAX = 999
+
+    /// <summary>
+    /// 最大值
+    /// </summary>
+    Max = 999
 }

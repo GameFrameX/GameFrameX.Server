@@ -17,7 +17,7 @@ namespace GameFrameX.Core.Actors.Impl
         {
             if (id == 0)
             {
-                id = IdGenerator.GetUniqueId(IDModule.WorkerActor);
+                id = IdGenerator.GetUniqueId(IdModule.WorkerActor);
             }
 
             Id = id;

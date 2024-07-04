@@ -143,7 +143,7 @@ namespace GameFrameX.Core.Utility
             return id;
         }
 
-        public static long GetUniqueId(IDModule module)
+        public static long GetUniqueId(IdModule module)
         {
             long second = (long) (DateTime.UtcNow - utcTimeStart).TotalSeconds;
             lock (lockObj)

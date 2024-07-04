@@ -2,11 +2,21 @@ using Newtonsoft.Json;
 
 namespace GameFrameX.Setting;
 
+/// <summary>
+/// 
+/// </summary>
 public abstract class BaseSetting
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [JsonIgnore] public TaskCompletionSource<bool> AppExitSource = new TaskCompletionSource<bool>();
 
-    [JsonIgnore] public Task<bool> AppExitToken => AppExitSource.Task;
+    /// <summary>
+    /// 
+    /// </summary>
+    [JsonIgnore]
+    public Task<bool> AppExitToken => AppExitSource.Task;
 
     /// <summary>
     /// 是否是本地
@@ -26,6 +36,9 @@ public abstract class BaseSetting
     bool _appRunning;
     private ServerType serverType;
 
+    /// <summary>
+    /// 
+    /// </summary>
     [JsonIgnore]
     public bool AppRunning
     {
@@ -222,6 +235,10 @@ public abstract class BaseSetting
 
     #endregion
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public override string ToString()
     {
         return JsonConvert.SerializeObject(this);

@@ -5,13 +5,21 @@ using GameFrameX.Extension;
 
 namespace GameFrameX.Core.Utility
 {
-    public class StatisticsTool
+    /// <summary>
+    /// 统计工具
+    /// </summary>
+    public sealed class StatisticsTool
     {
         private const string Format = "yyyy-MM-dd HH:mm";
         private readonly Dictionary<string, Dictionary<string, int>> countDic = new();
 
         private readonly WorkerActor workerActor = new();
 
+        /// <summary>
+        /// 统计
+        /// </summary>
+        /// <param name="limit"></param>
+        /// <returns></returns>
         public async Task<string> CountRecord(int limit = 10)
         {
             return await workerActor.SendAsync(() =>
@@ -34,11 +42,18 @@ namespace GameFrameX.Core.Utility
             });
         }
 
+        /// <summary>
+        /// 清理统计
+        /// </summary>
         public void ClearCount()
         {
             workerActor.Tell(countDic.Clear);
         }
 
+        /// <summary>
+        /// 清理统计
+        /// </summary>
+        /// <param name="time"></param>
         public void ClearCount(DateTime time)
         {
             workerActor.Tell(() =>
@@ -48,6 +63,11 @@ namespace GameFrameX.Core.Utility
             });
         }
 
+        /// <summary>
+        /// 记录统计
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="num"></param>
         public void Count(string key, int num = 1)
         {
             if (num <= 0)

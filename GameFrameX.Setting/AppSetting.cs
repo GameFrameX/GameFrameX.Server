@@ -8,7 +8,7 @@
         /// <summary>
         /// 服务列表
         /// </summary>
-        private readonly List<int> servers = new List<int>();
+        private readonly List<int> _servers = new List<int>();
 
         /// <summary>
         /// 是否是本地
@@ -17,9 +17,12 @@
         /// <returns> 返回是否是本地</returns>
         public override bool IsLocal(int serverId)
         {
-            return base.IsLocal(serverId) || servers.Contains(serverId);
+            return base.IsLocal(serverId) || _servers.Contains(serverId);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public AppSetting()
         {
 #if DEBUG

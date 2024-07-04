@@ -8,9 +8,25 @@ namespace GameFrameX.Setting;
 public static class GlobalSettings
 {
     private static readonly List<BaseSetting> Settings = new List<BaseSetting>(16);
+
+    /// <summary>
+    /// 
+    /// </summary>
     public static bool IsAppRunning { get; set; }
+
+    /// <summary>
+    /// 
+    /// </summary>
     public static DateTime LaunchTime { get; set; }
+
+    /// <summary>
+    /// 
+    /// </summary>
     public static bool IsDebug { get; set; }
+
+    /// <summary>
+    /// 
+    /// </summary>
     public static int ServerId { get; set; }
 
     /// <summary>
@@ -47,6 +63,11 @@ public static class GlobalSettings
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
     public static List<T> GetSettings<T>() where T : BaseSetting
     {
         List<T> result = new List<T>();
@@ -58,6 +79,12 @@ public static class GlobalSettings
         return result;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="serverType"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
     public static List<T?> GetSettings<T>(ServerType serverType) where T : BaseSetting
     {
         List<T?> result = new List<T?>();
@@ -72,7 +99,13 @@ public static class GlobalSettings
         return result;
     }
 
-    public static T? GetSetting<T>(ServerType serverType) where T : BaseSetting
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="serverType"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static T GetSetting<T>(ServerType serverType) where T : BaseSetting
     {
         foreach (var setting in Settings)
         {

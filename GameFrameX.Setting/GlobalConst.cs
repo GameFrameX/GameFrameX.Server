@@ -73,6 +73,9 @@ public static class GlobalConst
     /// </summary>
     public const int SaveIntervalInMilliSeconds = 300_000; //300_000;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public const int MAGIC = 60;
 
     #endregion
