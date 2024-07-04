@@ -97,19 +97,19 @@ jobs:
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
           PROJECT_FILE_PATH: DataBaseServer/GameFrameX.DBServer/GameFrameX.DBServer.csproj
-          VERSION_FILE_PATH: ../Version.props
+          VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
       - name: Publish GameFrameX.DBServer.NoSql
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
           PROJECT_FILE_PATH: DataBaseServer/GameFrameX.DBServer.NoSql/GameFrameX.DBServer.NoSql.csproj
-          VERSION_FILE_PATH: ../Version.props
+          VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
       - name: Publish GameFrameX.DBServer.NoSql.Redis
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
           PROJECT_FILE_PATH: DataBaseServer/GameFrameX.DBServer.NoSql.Redis/GameFrameX.DBServer.NoSql.Redis.csproj
-          VERSION_FILE_PATH: ../Version.props
+          VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
