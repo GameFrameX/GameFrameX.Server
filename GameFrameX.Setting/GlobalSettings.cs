@@ -85,9 +85,9 @@ public static class GlobalSettings
     /// <param name="serverType"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static List<T?> GetSettings<T>(ServerType serverType) where T : BaseSetting
+    public static List<T> GetSettings<T>(ServerType serverType) where T : BaseSetting
     {
-        List<T?> result = new List<T?>();
+        var result = new List<T>();
         foreach (var setting in Settings)
         {
             if ((setting.ServerType &= serverType) != 0)
