@@ -1,28 +1,28 @@
-# GeekServer介绍：
+# GameFrameX介绍：
 
-GeekServer是一个开源的[分区分服](https://mp.weixin.qq.com/s?__biz=MzI3MTQ1NzU2NA==&mid=2247483884&idx=1&sn=3547c769a300f1d82cc04e9b1852c6d5&chksm=eac0cd9fddb7448997e38a74e2d26bde259cd2127583e31bc488511bc1fdcd9f35caff27d4a3&scene=21#wechat_redirect)
+GameFrameX 是基于GeekServer是一个开源的[分区分服](https://mp.weixin.qq.com/s?__biz=MzI3MTQ1NzU2NA==&mid=2247483884&idx=1&sn=3547c769a300f1d82cc04e9b1852c6d5&chksm=eac0cd9fddb7448997e38a74e2d26bde259cd2127583e31bc488511bc1fdcd9f35caff27d4a3&scene=21#wechat_redirect)
 的游戏服务器框架，采用C# .Netcore开发，开发效率高，性能强，跨平台，并内置不停服热更新机制。可以满足绝大部分游戏类型的需求，特别是和Unity3D协同开发更佳。    
 __设计理念:大道至简，以简化繁__
 
 # 程序集说明
 
-|         程序集名称          |             介绍             |                               用途                               |
-|:----------------------:|:--------------------------:|:--------------------------------------------------------------:|
-|     Server.Luncher     |           程序启动入口           |                            用于编写启动逻辑                            |
-|     Server.Hotfix      | 热更新逻辑和处理程序对象放置区(该部分为热更新内容) |               用于编写逻辑的地方(`主要工作区`,目录和`Apps`目录结构一致)               |
-|      Server.Apps       |    组件和实体对象放置区(该部分不能热更新)    | 用于编写基础逻辑和数据存储(`功能的添加修改主要工作区`,目录结构按照`ServerType` 划分和`HotFix`对应) |
-|     Server.Config      |       配置文件对象和配置文件放置区       |                 用于编写配置文件的类和文件的映射(目前由LuBan自动生成)                 |
-|      Server.Core       |           核心底层逻辑           |                            用于编写核心库                             |
-|    Server.DBServer     |         数据库操作相关服务          |                         用于编写数据库操作相关的逻辑                         |
-|    Server.Extension    |           对框架的扩展           |                        用于编写函数或其他工具库的扩展                         |
-| Server.Google.ProtoBuf |       ProtoBuff协议支持库       |                    ProtoBuff协议库(一般不会更新和修改)                     |
-|       Server.Log       |         日志配置和操作放置区         |                           用于编写日志配置相关                           |
-|      Server.Proto      |        数据通讯协议对象放置区         |                           用于编写通讯协议对象                           |
-|    Server.Serialize    |         序列化器 对象放置区         |                     用于编写通讯协议的序列化和反序列化的帮助类                      |
-|     Server.Setting     |        设置相关的内容 放置区域        |                        用于编写游戏逻辑配置或常量配置                         |
-|     Server.Utility     |         工具函数 对象放置区         |                         用于编写一些工具相关的函数                          |
+|           程序集名称            |             介绍             |                               用途                               |
+|:--------------------------:|:--------------------------:|:--------------------------------------------------------------:|
+|    GameFrameX.Launcher     |           程序启动入口           |                            用于编写启动逻辑                            |
+|     GameFrameX.Hotfix      | 热更新逻辑和处理程序对象放置区(该部分为热更新内容) |               用于编写逻辑的地方(`主要工作区`,目录和`Apps`目录结构一致)               |
+|      GameFrameX.Apps       |    组件和实体对象放置区(该部分不能热更新)    | 用于编写基础逻辑和数据存储(`功能的添加修改主要工作区`,目录结构按照`ServerType` 划分和`HotFix`对应) |
+|     GameFrameX.Config      |       配置文件对象和配置文件放置区       |                 用于编写配置文件的类和文件的映射(目前由LuBan自动生成)                 |
+|      GameFrameX.Core       |           核心底层逻辑           |                            用于编写核心库                             |
+|    GameFrameX.DBServer     |         数据库操作相关服务          |                         用于编写数据库操作相关的逻辑                         |
+|    GameFrameX.Extension    |           对框架的扩展           |                        用于编写函数或其他工具库的扩展                         |
+| GameFrameX.Google.ProtoBuf |       ProtoBuff协议支持库       |                    ProtoBuff协议库(一般不会更新和修改)                     |
+|       GameFrameX.Log       |         日志配置和操作放置区         |                           用于编写日志配置相关                           |
+|      GameFrameX.Proto      |        数据通讯协议对象放置区         |                           用于编写通讯协议对象                           |
+|    GameFrameX.Serialize    |         序列化器 对象放置区         |                     用于编写通讯协议的序列化和反序列化的帮助类                      |
+|     GameFrameX.Setting     |        设置相关的内容 放置区域        |                        用于编写游戏逻辑配置或常量配置                         |
+|     GameFrameX.Utility     |         工具函数 对象放置区         |                         用于编写一些工具相关的函数                          |
 
-# GeekServer功能：
+# GameFrameX功能：
 
 ### 1.跨平台
 
@@ -65,25 +65,12 @@ Actor模型本身是存在死锁的情况，且不容易被发现。GeekServer�
 
 以功能系统级别的粒度，定期剔除内存中不活跃的玩家数据，尽最大可能减少服务器内存开销。
 
-### 11.高效的通信协议(基于MessagePack)
-
-[Geek.MsgPackTool](https://github.com/leeveel/Geek.MsgPackTool) [MessagePack]
-对多态支持不够友好，GeekServer提供了工具来生成多态注册信息，序列化和反序列化效率极高，同时序列化之后的数据极小，数据传输效率很高。[了解更多](https://github.com/leeveel/GeekServer/blob/main/Docs/%E5%85%B3%E4%BA%8E%E5%8D%8F%E8%AE%AE.md)
-
-### 12.一键导表工具(GeekConfig)
-
-[GeekConfig](https://github.com/leeveel/GeekConfig)是一个一键导表工具，将策划配置表，转化为二进制数据，并提供了方便快捷的API供游戏调用
-
-### 13.数据库客户端(GeekDB.GUI)
-
-[GeekDB.GUI](https://github.com/leeveel/GeekDB.GUI)是一个数据库客户端，GeekServer支持内嵌(RocksDB)
-和直连MongoDB的模式，但是存放的数据都是通过MessagePack序列化之后的二进制，此工具用于对这些二进制数据进行浏览。[了解更多](https://github.com/leeveel/GeekServer/blob/main/Docs/2.Actor%26Component%26State.md)
 
 # 运行
 
-1. 安装[.NetCore6.0](https://dotnet.microsoft.com/download/dotnet/6.0)
+1. 安装[.NetCore8.0](https://dotnet.microsoft.com/download/dotnet/6.0)
 2. 安装[mongodb4.x](https://www.mongodb.com/try/download/community)
-3. 打开git clone本项目https://github.com/leeveel/GeekServer.git
+3. 打开git clone本项目
 4. 运行Tools/ExcelGen/ExcelToCode.exe 点击[服务器-ALL]导出配置表
 5. 用VisualStudio2022打开GeekServer.sln 启动GeekServer.App
 6. 启动GeekServer.Test (一个1000人登录的demo)
@@ -175,6 +162,3 @@ public class ServerCompAgent : StateCompAgent<ServerComp, ServerState>
 
 更多异步书写规范请参考微软官方文档[AsyncGuidance.md](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md)
 
-# 推荐项目
-
-[GeekConfig](https://github.com/leeveel/GeekConfig) 一键从Excel中导出模板代码和二进制数据  
