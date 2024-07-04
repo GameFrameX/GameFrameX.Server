@@ -1,4 +1,6 @@
-﻿namespace GameFrameX.Log;
+﻿using System;
+
+namespace GameFrameX.Log;
 
 /// <summary>
 /// 日志帮助类
@@ -15,16 +17,6 @@ public static class LogHelper
         Serilog.Log.Debug(msg, args);
     }
 
-    /// <summary>
-    /// 记录带有格式参数的错误消息。
-    /// </summary>
-    /// <param name="msg">要记录的错误消息。</param>
-    /// <param name="args">消息的格式参数。</param>
-    public static void Error(string msg, params object[] args)
-    {
-        Serilog.Log.Error(msg, args);
-        // StackTrace();
-    }
 
     // static void StackTrace()
     // {
@@ -49,6 +41,24 @@ public static class LogHelper
     }
 
     /// <summary>
+    /// 记录信息消息。
+    /// </summary>
+    /// <param name="msg">要记录的异常对象。</param>
+    public static void Info(Exception msg)
+    {
+        Serilog.Log.Information(msg.Message);
+    }
+
+    /// <summary>
+    /// 记录信息消息
+    /// </summary>
+    /// <param name="message">要记录的信息对象</param>
+    public static void Info(object message)
+    {
+        Serilog.Log.Information(message?.ToString() ?? "null object");
+    }
+
+    /// <summary>
     /// 记录带有格式参数的警告消息。
     /// </summary>
     /// <param name="msg">要记录的警告消息。</param>
@@ -56,6 +66,17 @@ public static class LogHelper
     public static void Warn(string msg, params object[] args)
     {
         Serilog.Log.Warning(msg, args);
+    }
+
+    /// <summary>
+    /// 记录带有格式参数的错误消息。
+    /// </summary>
+    /// <param name="msg">要记录的错误消息。</param>
+    /// <param name="args">消息的格式参数。</param>
+    public static void Error(string msg, params object[] args)
+    {
+        Serilog.Log.Error(msg, args);
+        // StackTrace();
     }
 
     /// <summary>
@@ -76,19 +97,5 @@ public static class LogHelper
     {
         Serilog.Log.Fatal(msg, msg.Message);
         // StackTrace();
-    }
-
-    /// <summary>
-    /// 记录异常的信息消息。
-    /// </summary>
-    /// <param name="msg">要记录的异常对象。</param>
-    public static void Info(Exception msg)
-    {
-        Serilog.Log.Information(msg.Message);
-    }
-
-    public static void Info(object message)
-    {
-        Serilog.Log.Information(message.ToString());
     }
 }
