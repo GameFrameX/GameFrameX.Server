@@ -3,7 +3,7 @@ name: Publish NuGet
 on:
   push:
     tags:
-      - v*
+      - '*'
 
 jobs:
   build:
@@ -15,6 +15,10 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 8.0.300
+      - name: Install dotnet tool
+        run: dotnet tool install -g dotnetCampus.TagToVersion
+      - name: Set tag to version
+        run: dotnet TagToVersion -t ${{ github.ref }} -f Version.props
       - name: Install dependencies
         run: dotnet restore
       - name: Build
@@ -24,76 +28,75 @@ jobs:
         with:
           PROJECT_FILE_PATH: GameFrameX.Extension/GameFrameX.Extension.csproj
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-          TAG_COMMIT: true
+
       - name: Publish GameFrameX.Utility
         uses: AlianBlank/publish-nuget@v1.0.1
         with:
           PROJECT_FILE_PATH: GameFrameX.Utility/GameFrameX.Utility.csproj
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-          TAG_COMMIT: true
+
       - name: Publish GameFrameX.Setting
         uses: AlianBlank/publish-nuget@v1.0.1
         with:
           PROJECT_FILE_PATH: GameFrameX.Setting/GameFrameX.Setting.csproj
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-          TAG_COMMIT: true
+
       - name: Publish GameFrameX.ProtoBuf.Net
         uses: AlianBlank/publish-nuget@v1.0.1
         with:
           PROJECT_FILE_PATH: GameFrameX.ProtoBuf.Net/GameFrameX.ProtoBuf.Net.csproj
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-          TAG_COMMIT: true
+
       - name: Publish GameFrameX.NetWork.HTTP
         uses: AlianBlank/publish-nuget@v1.0.1
         with:
           PROJECT_FILE_PATH: GameFrameX.NetWork.HTTP/GameFrameX.NetWork.HTTP.csproj
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-          TAG_COMMIT: true
+
       - name: Publish GameFrameX.NetWork
         uses: AlianBlank/publish-nuget@v1.0.1
         with:
           PROJECT_FILE_PATH: GameFrameX.NetWork/GameFrameX.NetWork.csproj
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-          TAG_COMMIT: true
+
       - name: Publish GameFrameX.Log
         uses: AlianBlank/publish-nuget@v1.0.1
         with:
           PROJECT_FILE_PATH: GameFrameX.Log/GameFrameX.Log.csproj
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-          TAG_COMMIT: true
+
       - name: Publish GameFrameX.Monitor
         uses: AlianBlank/publish-nuget@v1.0.1
         with:
           PROJECT_FILE_PATH: GameFrameX.Monitor/GameFrameX.Monitor.csproj
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-          TAG_COMMIT: true
+
       - name: Publish GameFrameX.Cache.Memory
         uses: AlianBlank/publish-nuget@v1.0.1
         with:
           PROJECT_FILE_PATH: GameFrameX.Cache.Memory/GameFrameX.Cache.Memory.csproj
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-          TAG_COMMIT: true
+
       - name: Publish GameFrameX.Cache
         uses: AlianBlank/publish-nuget@v1.0.1
         with:
           PROJECT_FILE_PATH: GameFrameX.Cache/GameFrameX.Cache.csproj
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-          TAG_COMMIT: true
+
       - name: Publish GameFrameX.DBServer
         uses: AlianBlank/publish-nuget@v1.0.1
         with:
           PROJECT_FILE_PATH: DataBaseServer/GameFrameX.DBServer/GameFrameX.DBServer.csproj
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-          TAG_COMMIT: true
+
       - name: Publish GameFrameX.DBServer.NoSql
         uses: AlianBlank/publish-nuget@v1.0.1
         with:
           PROJECT_FILE_PATH: DataBaseServer/GameFrameX.DBServer.NoSql/GameFrameX.DBServer.NoSql.csproj
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-          TAG_COMMIT: true
+
       - name: Publish GameFrameX.DBServer.NoSql.Redis
         uses: AlianBlank/publish-nuget@v1.0.1
         with:
           PROJECT_FILE_PATH: DataBaseServer/GameFrameX.DBServer.NoSql.Redis/GameFrameX.DBServer.NoSql.Redis.csproj
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-          TAG_COMMIT: true
