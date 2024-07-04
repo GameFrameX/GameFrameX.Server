@@ -27,89 +27,89 @@ jobs:
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
           PROJECT_FILE_PATH: GameFrameX.Extension/GameFrameX.Extension.csproj
-          VERSION_FILE_PATH: ../Version.props
+          VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
           
       - name: Publish GameFrameX.Utility
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
           PROJECT_FILE_PATH: GameFrameX.Utility/GameFrameX.Utility.csproj
-          VERSION_FILE_PATH: ../Version.props
+          VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
       - name: Publish GameFrameX.Setting
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
           PROJECT_FILE_PATH: GameFrameX.Setting/GameFrameX.Setting.csproj
-          VERSION_FILE_PATH: ../Version.props
+          VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
       - name: Publish GameFrameX.ProtoBuf.Net
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
           PROJECT_FILE_PATH: GameFrameX.ProtoBuf.Net/GameFrameX.ProtoBuf.Net.csproj
-          VERSION_FILE_PATH: ../Version.props
+          VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
       - name: Publish GameFrameX.NetWork.HTTP
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
           PROJECT_FILE_PATH: GameFrameX.NetWork.HTTP/GameFrameX.NetWork.HTTP.csproj
-          VERSION_FILE_PATH: ../Version.props
+          VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
       - name: Publish GameFrameX.NetWork
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
           PROJECT_FILE_PATH: GameFrameX.NetWork/GameFrameX.NetWork.csproj
-          VERSION_FILE_PATH: ../Version.props
+          VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
       - name: Publish GameFrameX.Log
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
           PROJECT_FILE_PATH: GameFrameX.Log/GameFrameX.Log.csproj
-          VERSION_FILE_PATH: ../Version.props
+          VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
       - name: Publish GameFrameX.Monitor
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
           PROJECT_FILE_PATH: GameFrameX.Monitor/GameFrameX.Monitor.csproj
-          VERSION_FILE_PATH: ../Version.props
+          VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
       - name: Publish GameFrameX.Cache.Memory
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
           PROJECT_FILE_PATH: GameFrameX.Cache.Memory/GameFrameX.Cache.Memory.csproj
-          VERSION_FILE_PATH: ../Version.props
+          VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
       - name: Publish GameFrameX.Cache
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
           PROJECT_FILE_PATH: GameFrameX.Cache/GameFrameX.Cache.csproj
-          VERSION_FILE_PATH: ../Version.props
+          VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
       - name: Publish GameFrameX.DBServer
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
           PROJECT_FILE_PATH: DataBaseServer/GameFrameX.DBServer/GameFrameX.DBServer.csproj
-          VERSION_FILE_PATH: ../../Version.props
+          VERSION_FILE_PATH: ../Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
       - name: Publish GameFrameX.DBServer.NoSql
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
           PROJECT_FILE_PATH: DataBaseServer/GameFrameX.DBServer.NoSql/GameFrameX.DBServer.NoSql.csproj
-          VERSION_FILE_PATH: ../../Version.props
+          VERSION_FILE_PATH: ../Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
       - name: Publish GameFrameX.DBServer.NoSql.Redis
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
           PROJECT_FILE_PATH: DataBaseServer/GameFrameX.DBServer.NoSql.Redis/GameFrameX.DBServer.NoSql.Redis.csproj
-          VERSION_FILE_PATH: ../../Version.props
+          VERSION_FILE_PATH: ../Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
