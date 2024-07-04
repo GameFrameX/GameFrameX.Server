@@ -9,61 +9,6 @@ namespace GameFrameX.Extension
     public static class ByteExtension
     {
         /// <summary>
-        /// 整型变量（32 位）的字节数。
-        /// </summary>
-        private const int IntSize = sizeof(int);
-
-        /// <summary>
-        /// 短整型变量（16 位）的字节数。
-        /// </summary>
-        private const int ShortSize = sizeof(short);
-
-        /// <summary>
-        /// 长整型变量（64 位）的字节数。
-        /// </summary>
-        private const int LongSize = sizeof(long);
-
-        /// <summary>
-        /// 单精度浮点型变量的字节数。
-        /// </summary>
-        private const int FloatSize = sizeof(float);
-
-        /// <summary>
-        /// 双精度浮点型变量的字节数。
-        /// </summary>
-        private const int DoubleSize = sizeof(double);
-
-        /// <summary>
-        /// 字节型变量（8 位）的字节数。
-        /// </summary>
-        private const int ByteSize = sizeof(byte);
-
-        /// <summary>
-        /// 有符号字节类型变量的字节数。
-        /// </summary>
-        private const int SbyteSize = sizeof(sbyte);
-
-        /// <summary>
-        /// 布尔型变量的字节数。
-        /// </summary>
-        private const int BoolSize = sizeof(bool);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private const int UIntSize = sizeof(uint);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private const int UShortSize = sizeof(ushort);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private const int ULongSize = sizeof(ulong);
-
-        /// <summary>
         /// 将字节转换为16进制字符串
         /// </summary>
         /// <param name="b"></param>
@@ -192,14 +137,14 @@ namespace GameFrameX.Extension
         /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static void WriteUInt(this byte[] buffer, uint value, ref int offset)
         {
-            if (offset + UIntSize > buffer.Length)
+            if (offset + ConstSize.UIntSize > buffer.Length)
             {
-                offset += UIntSize;
+                offset += ConstSize.UIntSize;
                 return;
             }
 
             BinaryPrimitives.WriteUInt32BigEndian(buffer.AsSpan()[offset..], value);
-            offset += UIntSize;
+            offset += ConstSize.UIntSize;
         }
 
         /// <summary>
@@ -210,14 +155,14 @@ namespace GameFrameX.Extension
         /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static void WriteInt(this byte[] buffer, int value, ref int offset)
         {
-            if (offset + IntSize > buffer.Length)
+            if (offset + ConstSize.IntSize > buffer.Length)
             {
-                offset += IntSize;
+                offset += ConstSize.IntSize;
                 return;
             }
 
             BinaryPrimitives.WriteInt32BigEndian(buffer.AsSpan()[offset..], value);
-            offset += IntSize;
+            offset += ConstSize.IntSize;
         }
 
         /// <summary>
@@ -228,14 +173,14 @@ namespace GameFrameX.Extension
         /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static void WriteByte(this byte[] buffer, byte value, ref int offset)
         {
-            if (offset + ByteSize > buffer.Length)
+            if (offset + ConstSize.ByteSize > buffer.Length)
             {
-                offset += ByteSize;
+                offset += ConstSize.ByteSize;
                 return;
             }
 
             buffer[offset] = value;
-            offset += ByteSize;
+            offset += ConstSize.ByteSize;
         }
 
         /// <summary>
@@ -246,14 +191,14 @@ namespace GameFrameX.Extension
         /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static void WriteShort(this byte[] buffer, short value, ref int offset)
         {
-            if (offset + ShortSize > buffer.Length)
+            if (offset + ConstSize.ShortSize > buffer.Length)
             {
-                offset += ShortSize;
+                offset += ConstSize.ShortSize;
                 return;
             }
 
             BinaryPrimitives.WriteInt16BigEndian(buffer.AsSpan()[offset..], value);
-            offset += ShortSize;
+            offset += ConstSize.ShortSize;
         }
 
 
@@ -265,14 +210,14 @@ namespace GameFrameX.Extension
         /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static void WriteUShort(this byte[] buffer, ushort value, ref int offset)
         {
-            if (offset + UShortSize > buffer.Length)
+            if (offset + ConstSize.UShortSize > buffer.Length)
             {
-                offset += UShortSize;
+                offset += ConstSize.UShortSize;
                 return;
             }
 
             BinaryPrimitives.WriteUInt16BigEndian(buffer.AsSpan()[offset..], value);
-            offset += UShortSize;
+            offset += ConstSize.UShortSize;
         }
 
         /// <summary>
@@ -283,14 +228,14 @@ namespace GameFrameX.Extension
         /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static void WriteLong(this byte[] buffer, long value, ref int offset)
         {
-            if (offset + LongSize > buffer.Length)
+            if (offset + ConstSize.LongSize > buffer.Length)
             {
-                offset += LongSize;
+                offset += ConstSize.LongSize;
                 return;
             }
 
             BinaryPrimitives.WriteInt64BigEndian(buffer.AsSpan()[offset..], value);
-            offset += LongSize;
+            offset += ConstSize.LongSize;
         }
 
 
@@ -302,14 +247,14 @@ namespace GameFrameX.Extension
         /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static void WriteULong(this byte[] buffer, ulong value, ref int offset)
         {
-            if (offset + ULongSize > buffer.Length)
+            if (offset + ConstSize.ULongSize > buffer.Length)
             {
-                offset += ULongSize;
+                offset += ConstSize.ULongSize;
                 return;
             }
 
             BinaryPrimitives.WriteUInt64BigEndian(buffer.AsSpan()[offset..], value);
-            offset += ULongSize;
+            offset += ConstSize.ULongSize;
         }
 
         /// <summary>
@@ -320,13 +265,13 @@ namespace GameFrameX.Extension
         /// <returns>返回读取的16位无符号整数。</returns>
         public static ushort ReadUShort(this byte[] buffer, ref int offset)
         {
-            if (offset > buffer.Length + UShortSize)
+            if (offset > buffer.Length + ConstSize.UShortSize)
             {
                 throw new Exception("buffer read out of index");
             }
 
             var value = BinaryPrimitives.ReadUInt16BigEndian(buffer.AsSpan()[offset..]);
-            offset += UShortSize;
+            offset += ConstSize.UShortSize;
             return value;
         }
 
@@ -338,13 +283,13 @@ namespace GameFrameX.Extension
         /// <returns>返回读取的16位有符号整数。</returns>
         public static short ReadShort(this byte[] buffer, ref int offset)
         {
-            if (offset > buffer.Length + ShortSize)
+            if (offset > buffer.Length + ConstSize.ShortSize)
             {
                 throw new Exception("buffer read out of index");
             }
 
             var value = BinaryPrimitives.ReadInt16BigEndian(buffer.AsSpan()[offset..]);
-            offset += ShortSize;
+            offset += ConstSize.ShortSize;
             return value;
         }
 
@@ -356,13 +301,13 @@ namespace GameFrameX.Extension
         /// <returns>返回读取的32位无符号整数。</returns>
         public static uint ReadUInt(this byte[] buffer, ref int offset)
         {
-            if (offset > buffer.Length + UIntSize)
+            if (offset > buffer.Length + ConstSize.UIntSize)
             {
                 throw new Exception("buffer read out of index");
             }
 
             var value = BinaryPrimitives.ReadUInt32BigEndian(buffer.AsSpan()[offset..]);
-            offset += UIntSize;
+            offset += ConstSize.UIntSize;
             return value;
         }
 
@@ -374,13 +319,13 @@ namespace GameFrameX.Extension
         /// <returns>返回读取的32位有符号整数。</returns>
         public static int ReadInt(this byte[] buffer, ref int offset)
         {
-            if (offset > buffer.Length + IntSize)
+            if (offset > buffer.Length + ConstSize.IntSize)
             {
                 throw new Exception("buffer read out of index");
             }
 
             var value = BinaryPrimitives.ReadInt32BigEndian(buffer.AsSpan()[offset..]);
-            offset += IntSize;
+            offset += ConstSize.IntSize;
             return value;
         }
 
@@ -392,13 +337,13 @@ namespace GameFrameX.Extension
         /// <returns>返回读取的64位无符号整数。</returns>    
         public static ulong ReadULong(this byte[] buffer, ref int offset)
         {
-            if (offset > buffer.Length + ULongSize)
+            if (offset > buffer.Length + ConstSize.ULongSize)
             {
                 throw new Exception("buffer read out of index");
             }
 
             var value = BinaryPrimitives.ReadUInt64BigEndian(buffer.AsSpan()[offset..]);
-            offset += ULongSize;
+            offset += ConstSize.ULongSize;
             return value;
         }
 
@@ -410,159 +355,16 @@ namespace GameFrameX.Extension
         /// <returns>返回读取的64位有符号整数。</returns>
         public static long ReadLong(this byte[] buffer, ref int offset)
         {
-            if (offset > buffer.Length + LongSize)
+            if (offset > buffer.Length + ConstSize.LongSize)
             {
                 throw new Exception("buffer read out of index");
             }
 
             var value = BinaryPrimitives.ReadInt64BigEndian(buffer.AsSpan()[offset..]);
-            offset += LongSize;
+            offset += ConstSize.LongSize;
             return value;
         }
 
-        /// <summary>
-        /// 从Span字节数组中读取32位无符号整数，并将偏移量向前移动。
-        /// </summary>
-        /// <param name="buffer">要读取的Span字节数组。</param>
-        /// <param name="offset">引用偏移量。</param>
-        /// <returns>返回读取的32位无符号整数。</returns>
-        public static uint ReadUInt(this Span<byte> buffer, ref int offset)
-        {
-            if (offset > buffer.Length + UIntSize)
-            {
-                throw new Exception("buffer read out of index");
-            }
-
-            var value = BinaryPrimitives.ReadUInt32BigEndian(buffer[offset..]);
-            offset += UIntSize;
-            return value;
-        }
-
-        /// <summary>
-        /// 从Span字节数组中读取32位有符号整数，并将偏移量向前移动。
-        /// </summary>
-        /// <param name="buffer">要读取的Span字节数组。</param>
-        /// <param name="offset">引用偏移量。</param>
-        /// <returns>返回读取的32位有符号整数。</returns>
-        public static int ReadInt(this Span<byte> buffer, ref int offset)
-        {
-            if (offset > buffer.Length + IntSize)
-            {
-                throw new Exception("buffer read out of index");
-            }
-
-            var value = BinaryPrimitives.ReadInt32BigEndian(buffer[offset..]);
-            offset += IntSize;
-            return value;
-        }
-
-        /// <summary>
-        /// 从Span字节数组中读取64位无符号整数，并将偏移量向前移动。
-        /// </summary>
-        /// <param name="buffer">要读取的Span字节数组。</param>
-        /// <param name="offset">引用偏移量。</param>
-        /// <returns>返回读取的64位无符号整数。</returns>
-        public static ulong ReadULong(this Span<byte> buffer, ref int offset)
-        {
-            if (offset > buffer.Length + ULongSize)
-            {
-                throw new Exception("buffer read out of index");
-            }
-
-            var value = BinaryPrimitives.ReadUInt64BigEndian(buffer[offset..]);
-            offset += ULongSize;
-            return value;
-        }
-
-        /// <summary>
-        /// 从字节数组中以指定偏移量读取64位整型。
-        /// </summary>
-        /// <param name="buffer">要从中读取数据的字节数组。</param>
-        /// <param name="offset">读取数据的起始偏移量，此偏移量在读取后会自动增加。</param>
-        /// <returns>读取的64位整型，若读取长度小于等于0或偏移量超出数组长度，返回0。</returns>
-        public static long ReadLong(this Span<byte> buffer, ref int offset)
-        {
-            if (offset > buffer.Length + LongSize)
-            {
-                throw new Exception("buffer read out of index");
-            }
-
-            var value = BinaryPrimitives.ReadInt64BigEndian(buffer[offset..]);
-            offset += LongSize;
-            return value;
-        }
-
-        /// <summary>
-        /// 从字节数组中以指定偏移量读取无符号整型。
-        /// </summary>
-        /// <param name="buffer">要从中读取数据的字节数组。</param>
-        /// <param name="offset">读取数据的起始偏移量，此偏移量在读取后会自动增加。</param>
-        /// <returns>读取的无符号整型，若读取长度小于等于0或偏移量超出数组长度，返回0。</returns>
-        public static uint ReadUInt(this ReadOnlySpan<byte> buffer, ref int offset)
-        {
-            if (offset > buffer.Length + UIntSize)
-            {
-                throw new Exception("buffer read out of index");
-            }
-
-            var value = BinaryPrimitives.ReadUInt32BigEndian(buffer[offset..]);
-            offset += UIntSize;
-            return value;
-        }
-
-        /// <summary>
-        /// 从字节数组中以指定偏移量读取整型。
-        /// </summary>
-        /// <param name="buffer">要从中读取数据的字节数组。</param>
-        /// <param name="offset">读取数据的起始偏移量，此偏移量在读取后会自动增加。</param>
-        /// <returns>读取的整型，若读取长度小于等于0或偏移量超出数组长度，返回0。</returns>
-        public static int ReadInt(this ReadOnlySpan<byte> buffer, ref int offset)
-        {
-            if (offset > buffer.Length + IntSize)
-            {
-                throw new Exception("buffer read out of index");
-            }
-
-            var value = BinaryPrimitives.ReadInt32BigEndian(buffer[offset..]);
-            offset += IntSize;
-            return value;
-        }
-
-        /// <summary>
-        /// 从字节数组中以指定偏移量读取无符号长整型。
-        /// </summary>
-        /// <param name="buffer">要从中读取数据的字节数组。</param>
-        /// <param name="offset">读取数据的起始偏移量，此偏移量在读取后会自动增加。</param>
-        /// <returns>读取的无符号长整型，若读取长度小于等于0或偏移量超出数组长度，返回0。</returns>
-        public static ulong ReadULong(this ReadOnlySpan<byte> buffer, ref int offset)
-        {
-            if (offset > buffer.Length + ULongSize)
-            {
-                throw new Exception("buffer read out of index");
-            }
-
-            var value = BinaryPrimitives.ReadUInt64BigEndian(buffer[offset..]);
-            offset += ULongSize;
-            return value;
-        }
-
-        /// <summary>
-        /// 从字节数组中以指定偏移量读取长整型。
-        /// </summary>
-        /// <param name="buffer">要从中读取数据的字节数组。</param>
-        /// <param name="offset">读取数据的起始偏移量，此偏移量在读取后会自动增加。</param>
-        /// <returns>读取的长整型，若读取长度小于等于0或偏移量超出数组长度，返回0。</returns>
-        public static long ReadLong(this ReadOnlySpan<byte> buffer, ref int offset)
-        {
-            if (offset > buffer.Length + LongSize)
-            {
-                throw new Exception("buffer read out of index");
-            }
-
-            var value = BinaryPrimitives.ReadInt64BigEndian(buffer[offset..]);
-            offset += LongSize;
-            return value;
-        }
 
         #region Write
 
@@ -574,9 +376,9 @@ namespace GameFrameX.Extension
         /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static unsafe void WriteFloat(this byte[] buffer, float value, ref int offset)
         {
-            if (offset + FloatSize > buffer.Length)
+            if (offset + ConstSize.FloatSize > buffer.Length)
             {
-                offset += FloatSize;
+                offset += ConstSize.FloatSize;
                 return;
             }
 
@@ -584,7 +386,7 @@ namespace GameFrameX.Extension
             {
                 *(float*)(ptr + offset) = value;
                 *(int*)(ptr + offset) = System.Net.IPAddress.HostToNetworkOrder(*(int*)(ptr + offset));
-                offset += FloatSize;
+                offset += ConstSize.FloatSize;
             }
         }
 
@@ -596,9 +398,9 @@ namespace GameFrameX.Extension
         /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static unsafe void WriteDouble(this byte[] buffer, double value, ref int offset)
         {
-            if (offset + DoubleSize > buffer.Length)
+            if (offset + ConstSize.DoubleSize > buffer.Length)
             {
-                offset += DoubleSize;
+                offset += ConstSize.DoubleSize;
                 return;
             }
 
@@ -606,7 +408,7 @@ namespace GameFrameX.Extension
             {
                 *(double*)(ptr + offset) = value;
                 *(long*)(ptr + offset) = System.Net.IPAddress.HostToNetworkOrder(*(long*)(ptr + offset));
-                offset += DoubleSize;
+                offset += ConstSize.DoubleSize;
             }
         }
 
@@ -625,9 +427,9 @@ namespace GameFrameX.Extension
                 return;
             }
 
-            if (offset + value.Length + IntSize > buffer.Length)
+            if (offset + value.Length + ConstSize.IntSize > buffer.Length)
             {
-                offset += value.Length + IntSize;
+                offset += value.Length + ConstSize.IntSize;
                 return;
             }
 
@@ -652,7 +454,7 @@ namespace GameFrameX.Extension
 
             if (offset + value.Length > buffer.Length)
             {
-                throw new ArgumentException($"buffer write out of index {offset + value.Length + IntSize}, {buffer.Length}");
+                throw new ArgumentException($"buffer write out of index {offset + value.Length + ConstSize.IntSize}, {buffer.Length}");
             }
 
             fixed (byte* ptr = buffer, valPtr = value)
@@ -670,16 +472,16 @@ namespace GameFrameX.Extension
         /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static unsafe void WriteSByte(this byte[] buffer, sbyte value, ref int offset)
         {
-            if (offset + SbyteSize > buffer.Length)
+            if (offset + ConstSize.SbyteSize > buffer.Length)
             {
-                offset += SbyteSize;
+                offset += ConstSize.SbyteSize;
                 return;
             }
 
             fixed (byte* ptr = buffer)
             {
                 *(sbyte*)(ptr + offset) = value;
-                offset += SbyteSize;
+                offset += ConstSize.SbyteSize;
             }
         }
 
@@ -702,15 +504,15 @@ namespace GameFrameX.Extension
             }
 
 
-            if (offset + len + ShortSize > buffer.Length)
+            if (offset + len + ConstSize.ShortSize > buffer.Length)
             {
-                offset += len + ShortSize;
+                offset += len + ConstSize.ShortSize;
                 return;
             }
 
             fixed (byte* ptr = buffer)
             {
-                System.Text.Encoding.UTF8.GetBytes(value, 0, value.Length, buffer, offset + ShortSize);
+                System.Text.Encoding.UTF8.GetBytes(value, 0, value.Length, buffer, offset + ConstSize.ShortSize);
                 WriteShort(buffer, (short)len, ref offset);
                 offset += len;
             }
@@ -724,16 +526,16 @@ namespace GameFrameX.Extension
         /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
         public static unsafe void WriteBool(this byte[] buffer, bool value, ref int offset)
         {
-            if (offset + BoolSize > buffer.Length)
+            if (offset + ConstSize.BoolSize > buffer.Length)
             {
-                offset += BoolSize;
+                offset += ConstSize.BoolSize;
                 return;
             }
 
             fixed (byte* ptr = buffer)
             {
                 *(bool*)(ptr + offset) = value;
-                offset += BoolSize;
+                offset += ConstSize.BoolSize;
             }
         }
 
@@ -750,7 +552,7 @@ namespace GameFrameX.Extension
         /// <exception cref="Exception">当尝试读取的位置超出了缓冲区的边界时，会抛出此异常。</exception>
         public static unsafe float ReadFloat(this byte[] buffer, ref int offset)
         {
-            if (offset > buffer.Length + FloatSize)
+            if (offset > buffer.Length + ConstSize.FloatSize)
             {
                 throw new Exception("buffer read out of index");
             }
@@ -759,7 +561,7 @@ namespace GameFrameX.Extension
             {
                 *(int*)(ptr + offset) = System.Net.IPAddress.NetworkToHostOrder(*(int*)(ptr + offset));
                 var value = *(float*)(ptr + offset);
-                offset += FloatSize;
+                offset += ConstSize.FloatSize;
                 return value;
             }
         }
@@ -772,7 +574,7 @@ namespace GameFrameX.Extension
         /// <returns>返回从缓冲区读取的 double 类型数据。</returns>
         public static unsafe double ReadDouble(this byte[] buffer, ref int offset)
         {
-            if (offset > buffer.Length + DoubleSize)
+            if (offset > buffer.Length + ConstSize.DoubleSize)
             {
                 throw new Exception("buffer read out of index");
             }
@@ -781,7 +583,7 @@ namespace GameFrameX.Extension
             {
                 *(long*)(ptr + offset) = System.Net.IPAddress.NetworkToHostOrder(*(long*)(ptr + offset));
                 var value = *(double*)(ptr + offset);
-                offset += DoubleSize;
+                offset += ConstSize.DoubleSize;
                 return value;
             }
         }
@@ -794,7 +596,7 @@ namespace GameFrameX.Extension
         /// <returns>返回从缓冲区读取的 byte 类型数据。</returns>
         public static unsafe byte ReadByte(this byte[] buffer, ref int offset)
         {
-            if (offset > buffer.Length + ByteSize)
+            if (offset > buffer.Length + ConstSize.ByteSize)
             {
                 throw new Exception("buffer read out of index");
             }
@@ -802,7 +604,7 @@ namespace GameFrameX.Extension
             fixed (byte* ptr = buffer)
             {
                 var value = *(ptr + offset);
-                offset += ByteSize;
+                offset += ConstSize.ByteSize;
                 return value;
             }
         }
@@ -816,7 +618,7 @@ namespace GameFrameX.Extension
         /// <returns>返回从缓冲区读取的 byte[] 类型数据。</returns>
         public static unsafe byte[] ReadBytes(this byte[] buffer, int offset, int len)
         {
-            if (len <= 0 || offset > buffer.Length + len * ByteSize)
+            if (len <= 0 || offset > buffer.Length + len * ConstSize.ByteSize)
             {
                 return Array.Empty<byte>();
             }
@@ -837,7 +639,7 @@ namespace GameFrameX.Extension
         {
             var len = ReadInt(buffer, ref offset);
 
-            if (len <= 0 || offset > buffer.Length + len * ByteSize)
+            if (len <= 0 || offset > buffer.Length + len * ConstSize.ByteSize)
             {
                 return Array.Empty<byte>();
             }
@@ -857,7 +659,7 @@ namespace GameFrameX.Extension
         /// <exception cref="Exception">当偏移量超过数组长度时，将抛出异常。</exception>
         public static unsafe sbyte ReadSByte(this byte[] buffer, ref int offset)
         {
-            if (offset > buffer.Length + ByteSize)
+            if (offset > buffer.Length + ConstSize.ByteSize)
             {
                 throw new Exception("buffer read out of index");
             }
@@ -865,7 +667,7 @@ namespace GameFrameX.Extension
             fixed (byte* ptr = buffer)
             {
                 var value = *(sbyte*)(ptr + offset);
-                offset += ByteSize;
+                offset += ConstSize.ByteSize;
                 return value;
             }
         }
@@ -882,7 +684,7 @@ namespace GameFrameX.Extension
             {
                 var len = ReadShort(buffer, ref offset);
 
-                if (len <= 0 || offset > buffer.Length + len * ByteSize)
+                if (len <= 0 || offset > buffer.Length + len * ConstSize.ByteSize)
                 {
                     return string.Empty;
                 }
@@ -902,7 +704,7 @@ namespace GameFrameX.Extension
         /// <exception cref="Exception">当偏移量超过数组长度时，将抛出异常。</exception>
         public static unsafe bool ReadBool(this byte[] buffer, ref int offset)
         {
-            if (offset > buffer.Length + BoolSize)
+            if (offset > buffer.Length + ConstSize.BoolSize)
             {
                 throw new Exception("buffer read out of index");
             }
@@ -910,7 +712,7 @@ namespace GameFrameX.Extension
             fixed (byte* ptr = buffer)
             {
                 var value = *(bool*)(ptr + offset);
-                offset += BoolSize;
+                offset += ConstSize.BoolSize;
                 return value;
             }
         }

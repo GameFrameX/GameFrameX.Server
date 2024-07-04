@@ -1,3 +1,4 @@
+using System.Buffers.Binary;
 using System.Runtime.InteropServices;
 
 namespace GameFrameX.Extension
@@ -7,46 +8,6 @@ namespace GameFrameX.Extension
     /// </summary>
     public static class SpanExtension
     {
-        /// <summary>
-        /// 整型变量（32 位）的字节数。
-        /// </summary>
-        private const int IntSize = sizeof(int);
-
-        /// <summary>
-        /// 短整型变量（16 位）的字节数。
-        /// </summary>
-        private const int ShortSize = sizeof(short);
-
-        /// <summary>
-        /// 长整型变量（64 位）的字节数。
-        /// </summary>
-        private const int LongSize = sizeof(long);
-
-        /// <summary>
-        /// 单精度浮点型变量的字节数。
-        /// </summary>
-        private const int FloatSize = sizeof(float);
-
-        /// <summary>
-        /// 双精度浮点型变量的字节数。
-        /// </summary>
-        private const int DoubleSize = sizeof(double);
-
-        /// <summary>
-        /// 字节型变量（8 位）的字节数。
-        /// </summary>
-        private const int ByteSize = sizeof(byte);
-
-        /// <summary>
-        /// 有符号字节类型变量的字节数。
-        /// </summary>
-        private const int SbyteSize = sizeof(sbyte);
-
-        /// <summary>
-        /// 布尔型变量的字节数。
-        /// </summary>
-        private const int BoolSize = sizeof(bool);
-
         #region WriteSpan
 
         /// <summary>
@@ -58,15 +19,15 @@ namespace GameFrameX.Extension
         /// <param name="offset">写入的起始偏移量，会在调用后增加整数的大小。</param>
         public static unsafe void WriteInt(this Span<byte> buffer, int value, ref int offset)
         {
-            if (offset + IntSize > buffer.Length)
+            if (offset + ConstSize.IntSize > buffer.Length)
             {
-                throw new ArgumentException($"buffer write out of index {offset + IntSize}, {buffer.Length}");
+                throw new ArgumentException($"buffer write out of index {offset + ConstSize.IntSize}, {buffer.Length}");
             }
 
             fixed (byte* ptr = buffer)
             {
                 *(int*)(ptr + offset) = System.Net.IPAddress.HostToNetworkOrder(value);
-                offset += IntSize;
+                offset += ConstSize.IntSize;
             }
         }
 
@@ -79,15 +40,15 @@ namespace GameFrameX.Extension
         /// <param name="offset">写入的起始偏移量，会在调用后增加长整数的大小。</param>
         public static unsafe void WriteLong(this Span<byte> buffer, long value, ref int offset)
         {
-            if (offset + LongSize > buffer.Length)
+            if (offset + ConstSize.LongSize > buffer.Length)
             {
-                throw new ArgumentException($"buffer write out of index {offset + LongSize}, {buffer.Length}");
+                throw new ArgumentException($"buffer write out of index {offset + ConstSize.LongSize}, {buffer.Length}");
             }
 
             fixed (byte* ptr = buffer)
             {
                 *(long*)(ptr + offset) = System.Net.IPAddress.HostToNetworkOrder(value);
-                offset += LongSize;
+                offset += ConstSize.LongSize;
             }
         }
 
@@ -105,9 +66,9 @@ namespace GameFrameX.Extension
                 return;
             }
 
-            if (offset + value.Length + IntSize > buffer.Length)
+            if (offset + value.Length + ConstSize.IntSize > buffer.Length)
             {
-                throw new ArgumentException($"buffer write out of index {offset + value.Length + IntSize}, {buffer.Length}");
+                throw new ArgumentException($"buffer write out of index {offset + value.Length + ConstSize.IntSize}, {buffer.Length}");
             }
 
             fixed (byte* ptr = buffer, valPtr = value)
@@ -117,20 +78,6 @@ namespace GameFrameX.Extension
             }
         }
 
-        /// <summary>
-        /// 尝试从只读内存中获取数组段，如果不成功则抛出异常。
-        /// </summary>
-        /// <param name="memory">源只读内存。</param>
-        /// <returns>返回对应的数组段。</returns>
-        public static ArraySegment<byte> GetArray(this ReadOnlyMemory<byte> memory)
-        {
-            if (!MemoryMarshal.TryGetArray(memory, out var result))
-            {
-                throw new InvalidOperationException("Buffer backed by array was expected");
-            }
-
-            return result;
-        }
 
         #endregion
 
@@ -146,7 +93,7 @@ namespace GameFrameX.Extension
         /// <exception cref="System.Exception">当偏移量超出缓冲区大小时，会抛出此异常。</exception>
         public static unsafe int ReadInt(this Span<byte> buffer, ref int offset)
         {
-            if (offset > buffer.Length + IntSize)
+            if (offset > buffer.Length + ConstSize.IntSize)
             {
                 throw new Exception("buffer read out of index");
             }
@@ -154,7 +101,7 @@ namespace GameFrameX.Extension
             fixed (byte* ptr = buffer)
             {
                 var value = *(int*)(ptr + offset);
-                offset += IntSize;
+                offset += ConstSize.IntSize;
                 return System.Net.IPAddress.NetworkToHostOrder(value);
             }
         }
@@ -168,7 +115,7 @@ namespace GameFrameX.Extension
         /// <exception cref="Exception">如果读取的位置超出了缓冲区大小范围</exception>
         public static unsafe short ReadShort(this Span<byte> buffer, ref int offset)
         {
-            if (offset > buffer.Length + ShortSize)
+            if (offset > buffer.Length + ConstSize.ShortSize)
             {
                 throw new Exception("buffer read out of index");
             }
@@ -176,10 +123,48 @@ namespace GameFrameX.Extension
             fixed (byte* ptr = buffer)
             {
                 var value = *(short*)(ptr + offset);
-                offset += ShortSize;
+                offset += ConstSize.ShortSize;
                 return System.Net.IPAddress.NetworkToHostOrder(value);
             }
         }
+
+        /// <summary>
+        /// 从Span字节数组中读取32位无符号整数，并将偏移量向前移动。
+        /// </summary>
+        /// <param name="buffer">要读取的Span字节数组。</param>
+        /// <param name="offset">引用偏移量。</param>
+        /// <returns>返回读取的32位无符号整数。</returns>
+        public static uint ReadUInt(this Span<byte> buffer, ref int offset)
+        {
+            if (offset > buffer.Length + ConstSize.UIntSize)
+            {
+                throw new Exception("buffer read out of index");
+            }
+
+            var value = BinaryPrimitives.ReadUInt32BigEndian(buffer[offset..]);
+            offset += ConstSize.UIntSize;
+            return value;
+        }
+
+
+        /// <summary>
+        /// 从Span字节数组中读取64位无符号整数，并将偏移量向前移动。
+        /// </summary>
+        /// <param name="buffer">要读取的Span字节数组。</param>
+        /// <param name="offset">引用偏移量。</param>
+        /// <returns>返回读取的64位无符号整数。</returns>
+        public static ulong ReadULong(this Span<byte> buffer, ref int offset)
+        {
+            if (offset > buffer.Length + ConstSize.ULongSize)
+            {
+                throw new Exception("buffer read out of index");
+            }
+
+            var value = BinaryPrimitives.ReadUInt64BigEndian(buffer[offset..]);
+            offset += ConstSize.ULongSize;
+            return value;
+        }
+
 
         /// <summary>
         /// 从给定的字节缓存区读取一个长整型值（64位）。
@@ -190,7 +175,7 @@ namespace GameFrameX.Extension
         /// <exception cref="Exception">如果读取的位置超出了缓冲区大小范围</exception>
         public static unsafe long ReadLong(this Span<byte> buffer, ref int offset)
         {
-            if (offset > buffer.Length + LongSize)
+            if (offset > buffer.Length + ConstSize.LongSize)
             {
                 throw new Exception("buffer read out of index");
             }
@@ -198,7 +183,7 @@ namespace GameFrameX.Extension
             fixed (byte* ptr = buffer)
             {
                 var value = *(long*)(ptr + offset);
-                offset += LongSize;
+                offset += ConstSize.LongSize;
                 return System.Net.IPAddress.NetworkToHostOrder(value);
             }
         }
@@ -212,7 +197,7 @@ namespace GameFrameX.Extension
         /// <exception cref="Exception">如果读取的位置超出了缓冲区大小范围</exception>
         public static unsafe float ReadFloat(this Span<byte> buffer, ref int offset)
         {
-            if (offset > buffer.Length + FloatSize)
+            if (offset > buffer.Length + ConstSize.FloatSize)
             {
                 throw new Exception("buffer read out of index");
             }
@@ -221,7 +206,7 @@ namespace GameFrameX.Extension
             {
                 *(int*)(ptr + offset) = System.Net.IPAddress.NetworkToHostOrder(*(int*)(ptr + offset));
                 var value = *(float*)(ptr + offset);
-                offset += FloatSize;
+                offset += ConstSize.FloatSize;
                 return value;
             }
         }
@@ -235,7 +220,7 @@ namespace GameFrameX.Extension
         /// <exception cref="Exception">当缓冲区读取超出范围时抛出异常。</exception>
         public static unsafe double ReadDouble(this Span<byte> buffer, ref int offset)
         {
-            if (offset > buffer.Length + DoubleSize)
+            if (offset > buffer.Length + ConstSize.DoubleSize)
             {
                 throw new Exception("buffer read out of index");
             }
@@ -244,7 +229,7 @@ namespace GameFrameX.Extension
             {
                 *(long*)(ptr + offset) = System.Net.IPAddress.NetworkToHostOrder(*(long*)(ptr + offset));
                 var value = *(double*)(ptr + offset);
-                offset += DoubleSize;
+                offset += ConstSize.DoubleSize;
                 return value;
             }
         }
@@ -258,7 +243,7 @@ namespace GameFrameX.Extension
         /// <exception cref="Exception">当缓冲区读取超出范围时抛出异常。</exception>
         public static unsafe byte ReadByte(this Span<byte> buffer, ref int offset)
         {
-            if (offset > buffer.Length + ByteSize)
+            if (offset > buffer.Length + ConstSize.ByteSize)
             {
                 throw new Exception("buffer read out of index");
             }
@@ -266,7 +251,7 @@ namespace GameFrameX.Extension
             fixed (byte* ptr = buffer)
             {
                 var value = *(ptr + offset);
-                offset += ByteSize;
+                offset += ConstSize.ByteSize;
                 return value;
             }
         }
@@ -281,7 +266,7 @@ namespace GameFrameX.Extension
         {
             var len = ReadInt(buffer, ref offset);
 
-            if (len <= 0 || offset > buffer.Length + len * ByteSize)
+            if (len <= 0 || offset > buffer.Length + len * ConstSize.ByteSize)
             {
                 return Array.Empty<byte>();
             }
@@ -302,7 +287,7 @@ namespace GameFrameX.Extension
         /// <exception cref="Exception">当buffer读取超出索引时抛出异常。</exception>
         public static unsafe sbyte ReadSByte(this Span<byte> buffer, ref int offset)
         {
-            if (offset > buffer.Length + ByteSize)
+            if (offset > buffer.Length + ConstSize.ByteSize)
             {
                 throw new Exception("buffer read out of index");
             }
@@ -310,7 +295,7 @@ namespace GameFrameX.Extension
             fixed (byte* ptr = buffer)
             {
                 var value = *(sbyte*)(ptr + offset);
-                offset += ByteSize;
+                offset += ConstSize.ByteSize;
                 return value;
             }
         }
@@ -325,7 +310,7 @@ namespace GameFrameX.Extension
         {
             var len = ReadShort(buffer, ref offset);
 
-            if (len <= 0 || offset > buffer.Length + len * ByteSize)
+            if (len <= 0 || offset > buffer.Length + len * ConstSize.ByteSize)
             {
                 return string.Empty;
             }
@@ -347,7 +332,7 @@ namespace GameFrameX.Extension
         /// <exception cref="Exception">当buffer读取超出索引时抛出异常。</exception>
         public static unsafe bool ReadBool(this Span<byte> buffer, ref int offset)
         {
-            if (offset > buffer.Length + BoolSize)
+            if (offset > buffer.Length + ConstSize.BoolSize)
             {
                 throw new Exception("buffer read out of index");
             }
@@ -355,7 +340,7 @@ namespace GameFrameX.Extension
             fixed (byte* ptr = buffer)
             {
                 var value = *(bool*)(ptr + offset);
-                offset += BoolSize;
+                offset += ConstSize.BoolSize;
                 return value;
             }
         }
