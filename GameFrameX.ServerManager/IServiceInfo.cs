@@ -4,6 +4,9 @@ namespace GameFrameX.ServerManager;
 
 public interface IServiceInfo
 {
+    /// <summary>
+    /// 会话ID
+    /// </summary>
     string SessionId { get; }
 
     /// <summary>

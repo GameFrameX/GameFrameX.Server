@@ -16,12 +16,22 @@ namespace GameFrameX.ServerManager
         /// </summary>
         private readonly ConcurrentDictionary<long, IServiceInfo> _serverMap;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public NamingServiceManager()
         {
             _serverMap = new ConcurrentDictionary<long, IServiceInfo>();
         }
 
+        /// <summary>
+        /// 服务器添加的时候触发的回调
+        /// </summary>
         public Action<IServiceInfo> OnServerAdd;
+
+        /// <summary>
+        /// 服务器移除的时候触发的回调
+        /// </summary>
         public Action<IServiceInfo> OnServerRemove;
 
         /// <summary>
@@ -67,7 +77,7 @@ namespace GameFrameX.ServerManager
         /// </summary>
         /// <param name="sessionId"></param>
         /// <returns></returns>
-        public IServiceInfo? GetNodeBySessionId(string sessionId)
+        public IServiceInfo GetNodeBySessionId(string sessionId)
         {
             foreach (var keyValuePair in _serverMap)
             {
