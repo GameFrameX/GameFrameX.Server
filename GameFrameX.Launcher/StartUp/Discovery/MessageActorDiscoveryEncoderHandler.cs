@@ -2,7 +2,7 @@ using GameFrameX.Extension;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Serialize.Serialize;
 using GameFrameX.Utility;
-using SuperSocket.ProtoBase;
+using GameFrameX.SuperSocket.ProtoBase;
 
 namespace GameFrameX.Launcher.Message;
 

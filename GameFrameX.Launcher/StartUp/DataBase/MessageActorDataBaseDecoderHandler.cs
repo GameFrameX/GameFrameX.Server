@@ -1,7 +1,7 @@
 using GameFrameX.DBServer.State;
 using GameFrameX.Extension;
 using GameFrameX.Serialize.Serialize;
-using SuperSocket.ProtoBase;
+using GameFrameX.SuperSocket.ProtoBase;
 
 namespace GameFrameX.Launcher.Message;
 

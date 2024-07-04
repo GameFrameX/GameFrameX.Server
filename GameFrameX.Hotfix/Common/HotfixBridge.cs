@@ -10,15 +10,16 @@ using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Messages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using SuperSocket;
-using SuperSocket.Connection;
-using SuperSocket.Server;
-using SuperSocket.Server.Abstractions;
-using SuperSocket.Server.Abstractions.Session;
-using SuperSocket.Server.Host;
-using SuperSocket.WebSocket;
-using SuperSocket.WebSocket.Server;
-using CloseReason = SuperSocket.Connection.CloseReason;
+using GameFrameX.SuperSocket;
+using GameFrameX.SuperSocket.Connection;
+using GameFrameX.SuperSocket.Primitives;
+using GameFrameX.SuperSocket.Server;
+using GameFrameX.SuperSocket.Server.Abstractions;
+using GameFrameX.SuperSocket.Server.Abstractions.Session;
+using GameFrameX.SuperSocket.Server.Host;
+using GameFrameX.SuperSocket.WebSocket;
+using GameFrameX.SuperSocket.WebSocket.Server;
+using CloseReason = GameFrameX.SuperSocket.Connection.CloseReason;
 
 namespace GameFrameX.Hotfix.Common
 {

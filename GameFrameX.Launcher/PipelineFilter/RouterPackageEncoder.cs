@@ -1,4 +1,4 @@
-﻿using SuperSocket.ProtoBase;
+﻿using GameFrameX.SuperSocket.ProtoBase;
 
 namespace GameFrameX.Launcher.PipelineFilter;
 

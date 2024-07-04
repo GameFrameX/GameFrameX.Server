@@ -2,7 +2,7 @@ using System.Buffers;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Serialize.Serialize;
-using SuperSocket.ProtoBase;
+using GameFrameX.SuperSocket.ProtoBase;
 
 namespace GameFrameX.Hotfix.Launcher;
 

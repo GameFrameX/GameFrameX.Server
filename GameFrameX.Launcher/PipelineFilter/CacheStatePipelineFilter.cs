@@ -1,5 +1,5 @@
 ﻿using GameFrameX.DBServer.State;
-using SuperSocket.ProtoBase;
+using GameFrameX.SuperSocket.ProtoBase;
 
 namespace GameFrameX.Launcher.PipelineFilter;
 

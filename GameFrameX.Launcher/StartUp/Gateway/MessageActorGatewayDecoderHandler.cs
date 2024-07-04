@@ -1,7 +1,7 @@
 using GameFrameX.Extension;
 using GameFrameX.NetWork;
 using GameFrameX.Serialize.Serialize;
-using SuperSocket.ProtoBase;
+using GameFrameX.SuperSocket.ProtoBase;
 
 namespace GameFrameX.Launcher.StartUp.Gateway;
 

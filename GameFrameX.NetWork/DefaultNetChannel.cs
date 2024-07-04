@@ -1,4 +1,4 @@
-﻿using SuperSocket.Server.Abstractions.Session;
+﻿using GameFrameX.SuperSocket.Server.Abstractions.Session;
 
 namespace GameFrameX.NetWork;
 

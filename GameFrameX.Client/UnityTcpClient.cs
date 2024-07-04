@@ -5,8 +5,8 @@ using GameFrameX.Proto;
 using GameFrameX.Proto.Proto;
 using GameFrameX.Serialize.Serialize;
 using GameFrameX.Utility;
-using SuperSocket.ClientEngine;
-using ErrorEventArgs = SuperSocket.ClientEngine.ErrorEventArgs;
+using GameFrameX.SuperSocket.ClientEngine;
+using ErrorEventArgs = GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs;
 
 namespace GameFrameX.Client;
 

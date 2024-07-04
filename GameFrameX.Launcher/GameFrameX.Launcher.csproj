@@ -44,14 +44,12 @@
         <ProjectReference Include="..\GameFrameX.Serialize\GameFrameX.Serialize.csproj" />
         <ProjectReference Include="..\GameFrameX.ServerManager\GameFrameX.ServerManager.csproj" />
         <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
-        <ProjectReference Include="..\SuperSocket\SuperSocket.ClientEngine\SuperSocket.ClientEngine.csproj" />
-        <ProjectReference Include="..\SuperSocket\SuperSocket.Client\SuperSocket.Client.csproj" />
-        <ProjectReference Include="..\SuperSocket\SuperSocket.Server\SuperSocket.Server.csproj" />
-        <ProjectReference Include="..\SuperSocket\SuperSocket.WebSocket.Server\SuperSocket.WebSocket.Server.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="CommandLineParser" Version="2.9.1" />
+      <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.0.0" />
+      <PackageReference Include="GameFrameX.SuperSocket.WebSocket.Server" Version="1.0.0" />
     </ItemGroup>
 
 

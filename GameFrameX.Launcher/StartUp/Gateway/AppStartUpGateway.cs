@@ -1,6 +1,12 @@
 ﻿using GameFrameX.Launcher.PipelineFilter;
 using GameFrameX.Launcher.StartUp.Gateway;
 using GameFrameX.Proto.BuiltIn;
+using GameFrameX.SuperSocket.ClientEngine;
+using GameFrameX.SuperSocket.Connection;
+using GameFrameX.SuperSocket.Primitives;
+using GameFrameX.SuperSocket.Server.Abstractions;
+using GameFrameX.SuperSocket.Server.Abstractions.Session;
+using GameFrameX.SuperSocket.Server.Host;
 
 
 /// <summary>
@@ -171,7 +177,7 @@ internal sealed class AppStartUpGateway : AppStartUpBase
         ReconnectionTimer.Start();
     }
 
-    private void ClientOnError(object sender, SuperSocket.ClientEngine.ErrorEventArgs errorEventArgs)
+    private void ClientOnError(object sender, GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs errorEventArgs)
     {
         LogHelper.Info("和中心服务器连接错误, 开始重连:错误信息：" + errorEventArgs.Exception);
         // 开启重连
