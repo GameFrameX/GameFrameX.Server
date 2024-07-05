@@ -16,6 +16,7 @@ internal partial class AppStartUpHotfixGame : AppStartUpService
     public async void Start()
     {
         await EnterAsync();
+        RunServer(false);
     }
 
     public AppStartUpHotfixGame() : base(messageEncoderHandler, messageDecoderHandler)

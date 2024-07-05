@@ -20,11 +20,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using CloseReason = GameFrameX.SuperSocket.Connection.CloseReason;
 
-namespace GameFrameX.Hotfix.Common
+namespace GameFrameX.Hotfix.StartUp
 {
-    internal partial class HotfixBridge : IHotfixBridge
+    internal partial class AppStartUpHotfixGame
     {
-        public async void RunServer(bool reload)
+        private async void RunServer(bool reload)
         {
             if (reload)
             {
@@ -100,8 +100,6 @@ namespace GameFrameX.Hotfix.Common
             return ValueTask.CompletedTask;
         }
 
-        private static readonly MessageGameEncoderHandler messageEncoderHandler = new MessageGameEncoderHandler();
-        private static readonly MessageGameDecoderHandler messageDecoderHandler = new MessageGameDecoderHandler();
 
         /// <summary>
         /// 处理收到的WS消息
@@ -134,7 +132,7 @@ namespace GameFrameX.Hotfix.Common
                 var messageId = message.MessageId;
                 if (Setting.IsDebug && Setting.IsDebugReceive)
                 {
-                    LogHelper.Debug($"---收到消息:[{messageId},{message.GetType().Name}] 消息内容:[{messageObject}]");
+                    LogHelper.Debug($"---收到消息:[{messageId},{messageObject.UniqueId},{message.GetType().Name}] 消息内容:[{messageObject}]");
                 }
 
                 var handler = HotfixManager.GetTcpHandler(message.MessageId);

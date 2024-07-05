@@ -23,7 +23,6 @@ namespace GameFrameX.Hotfix.Common
             _appStartUpHotfixGame = new AppStartUpHotfixGame();
             _appStartUpHotfixGame.Init(setting.ServerType, setting);
             _appStartUpHotfixGame.Start();
-            RunServer(false);
             GlobalTimer.Start();
             await ComponentRegister.ActiveGlobalComps();
             return true;
