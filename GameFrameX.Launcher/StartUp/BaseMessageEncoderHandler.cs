@@ -25,6 +25,7 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPacka
             var span = new byte[len];
             int offset = 0;
             span.WriteUShort(len, ref offset);
+            span.WriteByte((byte)MessageOperationType.Game, ref offset);
             span.WriteInt(uniqueId, ref offset);
             span.WriteInt(msgId, ref offset);
             span.WriteBytesWithoutLength(bytes, ref offset);
