@@ -157,7 +157,7 @@ namespace GameFrameX.Launcher
         {
             if (!options.ServerType.IsNullOrEmpty() && Enum.TryParse(options.ServerType, out ServerType serverTypeValue))
             {
-                options.CheckAPMPort();
+                // options.CheckAPMPort();
 
                 options.CheckServerId();
 
@@ -249,15 +249,21 @@ namespace GameFrameX.Launcher
             {
                 foreach (var appStartUp in AppStartUps)
                 {
-                    if (appStartUp.ServerType == serverTypeValue && appStartUp.Setting.APMPort is > 0 and < ushort.MaxValue)
+                    if (appStartUp.ServerType == serverTypeValue)
                     {
-                        MetricsHelper.Start(appStartUp.Setting.APMPort);
-                        return;
+                        if (appStartUp.Setting.APMPort is > 0 and < ushort.MaxValue)
+                        {
+                            MetricsHelper.Start(appStartUp.Setting.APMPort);
+                        }
+                        else
+                        {
+                            Console.WriteLine("APM端口没有配置和无效,将不会启动APM监控");
+                        }
+
+                        break;
                     }
                 }
             }
-
-            MetricsHelper.Start();
         }
 
         /// <summary>
