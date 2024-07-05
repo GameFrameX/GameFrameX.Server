@@ -8,7 +8,6 @@
         <AssemblyVersion>1.0.0</AssemblyVersion>
         <FileVersion>1.0.0</FileVersion>
         <PublicSign>false</PublicSign>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>GameFrameX.Apps</Title>
         <Description>GameFrameX.Apps</Description>
         <Copyright>AlianBlank</Copyright>
@@ -18,7 +17,6 @@
         <RepositoryType>Apps</RepositoryType>
         <PackageTags>GameFrameX,Lib,Apps,Server,GameServer</PackageTags>
         <PackageReleaseNotes>https://gameframex.doc.alianblank.com/</PackageReleaseNotes>
-        <PackageIcon>logo.png</PackageIcon>
         <Authors>AlianBlank</Authors>
     </PropertyGroup>
 
@@ -33,12 +31,5 @@
       <Folder Include="Account\" />
       <Folder Include="Player\" />
       <Folder Include="Server\" />
-    </ItemGroup>
-    <ItemGroup>
-        <None Include="..\logo.png">
-            <Pack>True</Pack>
-            <PackagePath></PackagePath>
-            <Link>logo.png</Link>
-        </None>
     </ItemGroup>
 </Project>
