@@ -18,7 +18,6 @@
         <RepositoryType>Apps</RepositoryType>
         <PackageTags>GameFrameX,Lib,Apps,Server,GameServer</PackageTags>
         <PackageReleaseNotes>https://gameframex.doc.alianblank.com/</PackageReleaseNotes>
-        <PackageIcon>logo.png</PackageIcon>
         <Authors>AlianBlank</Authors>
     </PropertyGroup>
 
