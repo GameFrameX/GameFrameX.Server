@@ -26,6 +26,8 @@
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
         <TargetFramework>net8.0</TargetFramework>
         <AssemblyOriginatorKeyFile>../../gameframex.key.snk</AssemblyOriginatorKeyFile>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
 
     <ItemGroup>
