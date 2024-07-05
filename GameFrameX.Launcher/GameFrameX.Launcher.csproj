@@ -40,8 +40,6 @@
 
     <ItemGroup>
       <PackageReference Include="CommandLineParser" Version="2.9.1" />
-      <PackageReference Include="GameFrameX.DBServer" Version="1.0.3" />
-      <PackageReference Include="GameFrameX.Monitor" Version="1.0.3" />
       <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.0.0" />
     </ItemGroup>
 </Project>
