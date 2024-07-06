@@ -75,8 +75,10 @@ namespace GameFrameX.NetWork
 
             if (IsWebSocket)
             {
-                var webSocketSession = (WebSocketSession)AppSession;
-                await webSocketSession.SendAsync(messageData);
+                if (AppSession is WebSocketSession webSocketSession)
+                {
+                    await webSocketSession.SendAsync(messageData);
+                }
             }
             else
             {
