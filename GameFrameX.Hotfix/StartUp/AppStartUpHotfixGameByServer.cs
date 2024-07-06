@@ -75,14 +75,6 @@ namespace GameFrameX.Hotfix.StartUp
             LogHelper.Info("启动 TCP 服务器完成...");
         }
 
-        /// <summary>
-        /// 配置启动
-        /// </summary>
-        /// <param name="options"></param>
-        protected virtual void ConfigureSuperSocket(ServerOptions options)
-        {
-            options.AddListener(new ListenOptions { Ip = IPAddress.Any.ToString(), Port = Setting.InnerPort });
-        }
 
         private ValueTask<bool> ClientErrorHandler(IAppSession appSession, PackageHandlingException<IMessage> arg2)
         {
