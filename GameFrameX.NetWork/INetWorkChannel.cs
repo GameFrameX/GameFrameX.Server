@@ -11,7 +11,7 @@ public interface INetWorkChannel
     /// <summary>
     /// 应用会话
     /// </summary>
-    IGameAppSession AppSession { get; }
+    IGameAppSession Session { get; }
 
     /// <summary>
     /// RPC 会话

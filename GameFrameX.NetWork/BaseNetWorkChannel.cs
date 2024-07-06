@@ -19,7 +19,7 @@ namespace GameFrameX.NetWork
         /// <summary>
         /// 会话
         /// </summary>
-        public IGameAppSession AppSession { get; }
+        public IGameAppSession Session { get; }
 
         /// <summary>
         /// Rpc会话
@@ -45,7 +45,7 @@ namespace GameFrameX.NetWork
         /// <param name="isWebSocket"></param>
         public BaseNetWorkChannel(IGameAppSession session, IMessageEncoderHandler messageEncoder, IRpcSession rpcSession, bool isWebSocket)
         {
-            AppSession = session;
+            Session = session;
             IsWebSocket = isWebSocket;
             this._messageEncoder = messageEncoder;
             RpcSession = rpcSession;
@@ -73,13 +73,13 @@ namespace GameFrameX.NetWork
 
             var messageData = _messageEncoder.Handler(messageObject);
 
-            if (IsWebSocket && AppSession is WebSocketSession webSocketSession)
+            if (IsWebSocket && Session is WebSocketSession webSocketSession)
             {
                 await webSocketSession.SendAsync(messageData);
             }
             else
             {
-                await AppSession.SendAsync(messageData);
+                await Session.SendAsync(messageData);
             }
         }
 
