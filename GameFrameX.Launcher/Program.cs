@@ -257,7 +257,7 @@ namespace GameFrameX.Launcher
                         }
                         else
                         {
-                            Console.WriteLine("APM端口没有配置和无效,将不会启动APM监控");
+                            LogHelper.Error("APM端口没有配置和无效,将不会启动APM监控");
                         }
 
                         break;
