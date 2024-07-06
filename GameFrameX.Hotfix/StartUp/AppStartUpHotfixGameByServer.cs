@@ -50,12 +50,18 @@ namespace GameFrameX.Hotfix.StartUp
 
         private async Task StartServer()
         {
-            webSocketServer = WebSocketHostBuilder.Create()
-                .UseWebSocketMessageHandler(WebSocketMessageHandler)
-                .UseSessionHandler(OnConnected, OnDisconnected)
-                .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)(ConfigureWebServer)).Build();
-            await webSocketServer.StartAsync();
-            LogHelper.Info("启动 WebSocket 服务器完成...");
+            if (Setting.WsPort > 0 && Setting.WsPort < ushort.MaxValue)
+            {
+                LogHelper.Info("启动 WebSocket 服务器开始...");
+                webSocketServer = WebSocketHostBuilder.Create()
+                    .UseWebSocketMessageHandler(WebSocketMessageHandler)
+                    .UseSessionHandler(OnConnected, OnDisconnected)
+                    .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)(ConfigureWebServer)).Build();
+                await webSocketServer.StartAsync();
+                LogHelper.Info("启动 WebSocket 服务器完成...");
+            }
+
+            LogHelper.Info("启动 TCP 服务器开始...");
             tcpService = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
                 .ConfigureSuperSocket(ConfigureSuperSocket)
                 .UseClearIdleSession()
@@ -158,7 +164,11 @@ namespace GameFrameX.Hotfix.StartUp
         public async Task StopServer()
         {
             // 关闭网络服务
-            await webSocketServer.StopAsync();
+            if (webSocketServer != null)
+            {
+                await webSocketServer.StopAsync();
+            }
+
             await tcpService.StopAsync();
         }
     }
