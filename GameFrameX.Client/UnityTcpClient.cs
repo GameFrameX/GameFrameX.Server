@@ -93,7 +93,8 @@ public static class UnityTcpClient
     {
         int offset = 0;
         var length = data.ReadUShort(ref offset);
-        // var operationType = data.ReadByte(ref offset);
+        var operationType = data.ReadByte(ref offset);
+        var zipFlag = data.ReadByte(ref offset);
         var uniqueId = data.ReadInt(ref offset);
         int messageId = data.ReadInt(ref offset);
         var messageData = data.ReadBytes(offset, length - offset);
@@ -113,11 +114,12 @@ public static class UnityTcpClient
     {
         count++;
         var bytes = ProtoBufSerializerHelper.Serialize(message);
-        ushort len = (ushort)(2 + 4 + 4 + bytes.Length);
+        ushort len = (ushort)(2 + 2 + 4 + 4 + bytes.Length);
         var buffer = new byte[len];
         int offset = 0;
         buffer.WriteUShort(len, ref offset);
-        // buffer.WriteByte((byte)(message is ReqHeartBeat ? MessageOperationType.HeartBeat : MessageOperationType.Game), ref offset);
+        buffer.WriteByte((byte)(message is ReqHeartBeat ? MessageOperationType.HeartBeat : MessageOperationType.Game), ref offset);
+        buffer.WriteByte(byte.MinValue, ref offset);
         buffer.WriteInt(message.UniqueId, ref offset);
         var messageId = MessageProtoHelper.GetMessageIdByType(message.GetType());
         message.MessageId = messageId;
