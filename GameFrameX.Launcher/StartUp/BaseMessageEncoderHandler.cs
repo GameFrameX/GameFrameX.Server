@@ -26,6 +26,7 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPacka
             int offset = 0;
             span.WriteUShort(len, ref offset);
             span.WriteByte((byte)MessageOperationType.Game, ref offset);
+            span.WriteByte(byte.MinValue, ref offset);
             span.WriteInt(uniqueId, ref offset);
             span.WriteInt(msgId, ref offset);
             span.WriteBytesWithoutLength(bytes, ref offset);
@@ -39,7 +40,7 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPacka
     /// <summary>
     /// len +cmdType+uniqueId + msgId + bytes.length
     /// </summary>
-    public virtual ushort PackageLength { get; } = 2 + 1 + 4 + 4;
+    public virtual ushort PackageLength { get; } = 2 + 1 + 1 + 4 + 4;
 
     public int Encode(IBufferWriter<byte> writer, IMessage pack)
     {

@@ -19,6 +19,10 @@ public class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder
         {
             int readOffset = 0;
             var length = data.ReadUShort(ref readOffset);
+            // 消息类型
+            var operationType = data.ReadByte(ref readOffset);
+            // 压缩标记
+            var zipFlag = data.ReadByte(ref readOffset);
             var uniqueId = data.ReadInt(ref readOffset);
             var messageId = data.ReadInt(ref readOffset);
             var messageData = data.ReadBytes(readOffset, length - readOffset);
