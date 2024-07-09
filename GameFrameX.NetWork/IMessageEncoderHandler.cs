@@ -9,9 +9,12 @@ namespace GameFrameX.NetWork;
 public interface IMessageEncoderHandler
 {
     /// <summary>
-    /// 消息编码
+    /// 获取消息业务类型
     /// </summary>
-    /// <param name="message"></param>
+    /// <param name="messageType">消息对象类型</param>
+    /// <returns></returns>
+    MessageOperationType GetMessageOperationType(Type messageType);
+
     /// <summary>
     /// 消息编码,当压缩消息处理器存在的时候将会被调用
     /// </summary>
