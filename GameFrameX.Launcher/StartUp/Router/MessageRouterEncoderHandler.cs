@@ -1,3 +1,4 @@
+using GameFrameX.NetWork.Message;
 using GameFrameX.ProtoBuf.Net;
 
 namespace GameFrameX.Launcher.StartUp.Router;
@@ -54,6 +55,4 @@ class MessageRouterEncoderHandler : BaseMessageEncoderHandler
         LogHelper.Error("消息对象为空，编码异常");
         return null;
     }
-
-    public override ushort PackageLength { get; } = 2 + 1 + 4 + 4;
 }

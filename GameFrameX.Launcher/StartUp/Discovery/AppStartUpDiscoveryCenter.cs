@@ -1,4 +1,4 @@
-using GameFrameX.Launcher.PipelineFilter;
+using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 using GameFrameX.ServerManager;
 

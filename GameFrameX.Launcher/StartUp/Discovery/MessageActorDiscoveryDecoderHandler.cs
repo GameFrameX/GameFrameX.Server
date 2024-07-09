@@ -1,3 +1,5 @@
+using GameFrameX.NetWork.Message;
+
 namespace GameFrameX.Launcher.StartUp.Discovery;
 
 class MessageActorDiscoveryDecoderHandler : BaseMessageDecoderHandler

@@ -5,6 +5,7 @@ using GameFrameX.Launcher.Common.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using GameFrameX.Monitor;
+using GameFrameX.NetWork.Message;
 
 namespace GameFrameX.Launcher
 {
@@ -54,7 +55,7 @@ namespace GameFrameX.Launcher
             JsonSetting();
             GlobalSettings.Load<AppSetting>($"Configs/app_config.json");
             CacheStateTypeManager.Init();
-            MessageProtoHelper.Init();
+            MessageProtoHelper.Init(typeof(MessageProtoHandler).Assembly);
 
             var types = Assembly.GetEntryAssembly()?.GetTypes();
             if (types != null)
