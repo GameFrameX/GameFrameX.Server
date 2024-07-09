@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Reflection;
 using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.NetWork.Messages;
+using GameFrameX.Utility;
 
-namespace GameFrameX.Proto
+namespace GameFrameX.NetWork.Message
 {
     /// <summary>
     /// 协议消息处理器
@@ -56,13 +55,20 @@ namespace GameFrameX.Proto
         /// <summary>
         /// 初始化所有协议对象
         /// </summary>
-        public static void Init()
+        /// <param name="assembly">协议所在程序集.将在此程序集中查找所有的类型进行识别</param>
+        /// <param name="isClear">是否清理之前存在的缓存,默认为true</param>
+        /// <exception cref="Exception">如果ID重复将会触发异常</exception>
+        public static void Init(Assembly assembly, bool isClear = true)
         {
-            AllMessageDictionary.Clear();
-            RequestDictionary.Clear();
-            ResponseDictionary.Clear();
-            HeartBeatList.Clear();
-            var assembly = typeof(MessageProtoHelper).Assembly;
+            Guard.NotNull(assembly, nameof(assembly));
+            if (isClear)
+            {
+                AllMessageDictionary.Clear();
+                RequestDictionary.Clear();
+                ResponseDictionary.Clear();
+                HeartBeatList.Clear();
+            }
+
             var types = assembly.GetTypes();
             foreach (var type in types)
             {
