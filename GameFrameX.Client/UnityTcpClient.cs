@@ -2,6 +2,7 @@ using System.Net;
 using GameFrameX.Extension;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Messages;
+using GameFrameX.NetWork.Message;
 using GameFrameX.Proto;
 using GameFrameX.Proto.Proto;
 using GameFrameX.ProtoBuf.Net;
