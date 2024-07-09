@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="../Version.props" Label="版本号定义"/>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
-        <Description>GameFrameX.NetWork</Description>
-        <PackageTags>GameFrameX,Lib,NetWork,Server,GameServer</PackageTags>
+        <Description>GameFrameX.NetWork.Abstractions</Description>
+        <PackageTags>GameFrameX,Lib,NetWork.Abstractions,Server,GameServer</PackageTags>
         <PublicSign>true</PublicSign>
         <SignAssembly>true</SignAssembly>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -24,17 +24,10 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <PackageId>$(AssemblyName)</PackageId>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-        <TargetFramework>net8.0</TargetFramework>
         <AssemblyOriginatorKeyFile>../gameframex.key.snk</AssemblyOriginatorKeyFile>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\GameFrameX.NetWork.Abstractions\GameFrameX.NetWork.Abstractions.csproj" />
-      <ProjectReference Include="..\GameFrameX.ProtoBuf.Net\GameFrameX.ProtoBuf.Net.csproj" />
-      <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
-    </ItemGroup>
     <ItemGroup>
         <None Include="..\logo.png">
             <Pack>True</Pack>
@@ -46,9 +39,5 @@
             <PackagePath>\</PackagePath>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-    </ItemGroup>
-    <ItemGroup>
-      <PackageReference Include="GameFrameX.SuperSocket.Server.Abstractions" Version="1.0.0" />
-      <PackageReference Include="GameFrameX.SuperSocket.WebSocket.Server" Version="1.0.0" />
     </ItemGroup>
 </Project>

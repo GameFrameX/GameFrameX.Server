@@ -1,4 +1,4 @@
-﻿using GameFrameX.NetWork.Interface;
+﻿using GameFrameX.NetWork.Abstractions;
 
 namespace GameFrameX.NetWork.Messages;
 

@@ -1,4 +1,4 @@
-﻿namespace GameFrameX.NetWork.Interface;
+﻿namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
 /// 消息指令信息
