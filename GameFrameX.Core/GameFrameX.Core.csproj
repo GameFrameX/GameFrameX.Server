@@ -40,9 +40,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="GameFrameX.DBServer" Version="1.0.5" />
-        <PackageReference Include="GameFrameX.NetWork" Version="1.0.5" />
-        <PackageReference Include="GameFrameX.NetWork.HTTP" Version="1.0.5" />
+        <PackageReference Include="GameFrameX.DBServer" Version="1.0.6-beta2" />
+        <PackageReference Include="GameFrameX.NetWork" Version="1.0.6-beta2" />
+        <PackageReference Include="GameFrameX.NetWork.HTTP" Version="1.0.6-beta2" />
         <PackageReference Include="Microsoft.AspNetCore.Connections.Abstractions" Version="6.0.9"/>
         <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1"/>
         <PackageReference Include="MongoDB.Driver" Version="2.24.0" />

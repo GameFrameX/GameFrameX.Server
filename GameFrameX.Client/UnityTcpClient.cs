@@ -1,6 +1,7 @@
 using System.Net;
 using GameFrameX.Extension;
 using GameFrameX.NetWork;
+using GameFrameX.NetWork.Message;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Proto;
 using GameFrameX.Proto.Proto;
@@ -103,6 +104,7 @@ public static class UnityTcpClient
         {
             var messageObject = (MessageObject)ProtoBufSerializerHelper.Deserialize(messageData, messageType);
             messageObject.MessageId = messageId;
+            messageObject.SetMessageOperationType(operationType);
             messageObject.SetUniqueId(uniqueId);
             Console.WriteLine($"客户端接收到信息：{messageObject.ToMessageString()}");
         }
@@ -118,7 +120,7 @@ public static class UnityTcpClient
         var buffer = new byte[len];
         int offset = 0;
         buffer.WriteUShort(len, ref offset);
-        buffer.WriteByte((byte)(message is ReqHeartBeat ? MessageOperationType.HeartBeat : MessageOperationType.Game), ref offset);
+        buffer.WriteByte((byte)(MessageProtoHelper.IsHeartbeat(message.GetType()) ? MessageOperationType.HeartBeat : MessageOperationType.Game), ref offset);
         buffer.WriteByte(byte.MinValue, ref offset);
         buffer.WriteInt(message.UniqueId, ref offset);
         var messageId = MessageProtoHelper.GetMessageIdByType(message.GetType());

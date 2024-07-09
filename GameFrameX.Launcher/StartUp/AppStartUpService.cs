@@ -1,4 +1,5 @@
-﻿using GameFrameX.Proto.BuiltIn;
+﻿using GameFrameX.NetWork.Message;
+using GameFrameX.Proto.BuiltIn;
 using Timer = System.Timers.Timer;
 
 namespace GameFrameX.Launcher.StartUp;

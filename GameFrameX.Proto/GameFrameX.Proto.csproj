@@ -9,7 +9,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.NetWork" Version="1.0.5" />
+      <PackageReference Include="GameFrameX.NetWork" Version="1.0.6-beta2" />
     </ItemGroup>
 
 </Project>
