@@ -22,6 +22,17 @@ public interface INetworkMessage
     int UniqueId { get; }
 
     /// <summary>
+    /// 消息业务类型
+    /// </summary>
+    byte MessageOperationType { get; }
+
+    /// <summary>
+    /// 设置消息业务类型
+    /// </summary>
+    /// <param name="messageOperationType">消息业务类型 </param>
+    void SetMessageOperationType(byte messageOperationType);
+
+    /// <summary>
     /// 更新唯一消息ID
     /// </summary>
     void UpdateUniqueId();
