@@ -21,6 +21,10 @@ namespace GameFrameX.NetWork.Messages
         [ProtoMember(998)]
         public int MessageId { get; set; }
 
+        /// <summary>
+        /// 设置消息ID
+        /// </summary>
+        /// <param name="messageId"></param>
         public void SetMessageId(int messageId)
         {
             MessageId = messageId;
@@ -54,26 +58,50 @@ namespace GameFrameX.NetWork.Messages
             UpdateUniqueId();
         }
 
+
+        /// <summary>
+        /// 更新唯一消息ID
+        /// </summary>
         public void UpdateUniqueId()
         {
             UniqueId = UtilityIdGenerator.GetNextUniqueIntId();
         }
 
+        /// <summary>
+        /// 设置唯一消息ID
+        /// </summary>
+        /// <param name="uniqueId"></param>
         public void SetUniqueId(int uniqueId)
         {
             UniqueId = uniqueId;
         }
 
+        /// <summary>
+        /// 获取发送消息字符串
+        /// </summary>
+        /// <param name="srcServerType">发送方</param>
+        /// <param name="destServerType">接收方</param>
+        /// <returns></returns>
         public string ToSendMessageString(ServerType srcServerType, ServerType destServerType)
         {
             return $"---发送[{srcServerType} To {destServerType}] {ToMessageString()}";
         }
 
+        /// <summary>
+        /// 获取接收消息字符串
+        /// </summary>
+        /// <param name="srcServerType">发送方</param>
+        /// <param name="destServerType">接收方</param>
+        /// <returns></returns>
         public string ToReceiveMessageString(ServerType srcServerType, ServerType destServerType)
         {
             return $"---收到[{srcServerType} To {destServerType}] {ToMessageString()}";
         }
 
+        /// <summary>
+        /// 获取消息字符串
+        /// </summary>
+        /// <returns></returns>
         public string ToMessageString()
         {
             return $"消息ID:[{MessageId}=MainId: {MessageManager.GetMainId(MessageId)} + SubId: {MessageManager.GetSubId(MessageId)},{GetType().Name}] 消息内容:{JsonHelper.Serialize(this)}";
