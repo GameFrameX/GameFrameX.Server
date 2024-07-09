@@ -1,3 +1,4 @@
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.NetWork;
@@ -15,9 +16,8 @@ public interface IMessageDecoderHandler
     IMessage Handler(byte[] data);
 
     /// <summary>
-    /// 处理服务器之间的消息
+    /// 设置解压消息处理器
     /// </summary>
-    /// <param name="data"></param>
-    /// <returns></returns>
-    // IMessage? RpcHandler(byte[] data);
+    /// <param name="decompressHandler">解压消息处理器</param>
+    void SetDecompressionHandler(IMessageDecompressHandler decompressHandler = null);
 }
