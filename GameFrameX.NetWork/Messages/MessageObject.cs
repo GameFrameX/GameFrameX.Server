@@ -32,6 +32,23 @@ namespace GameFrameX.NetWork.Messages
         [ProtoMember(999)]
         public int UniqueId { get; set; }
 
+        /// <summary>
+        /// 消息业务类型
+        /// </summary>
+        public byte MessageOperationType { get; private set; }
+
+        /// <summary>
+        /// 设置消息业务类型
+        /// </summary>
+        /// <param name="messageOperationType">消息业务类型 </param>
+        public void SetMessageOperationType(byte messageOperationType)
+        {
+            MessageOperationType = messageOperationType;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         protected MessageObject()
         {
             UpdateUniqueId();

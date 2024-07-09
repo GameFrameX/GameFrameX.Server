@@ -34,6 +34,20 @@ public class InnerMessage : IInnerMessage
     public int UniqueId { get; private set; }
 
     /// <summary>
+    /// 消息业务类型
+    /// </summary>
+    public byte MessageOperationType { get; private set; }
+
+    /// <summary>
+    /// 设置消息业务类型
+    /// </summary>
+    /// <param name="messageOperationType">消息业务类型 </param>
+    public void SetMessageOperationType(byte messageOperationType)
+    {
+        MessageOperationType = messageOperationType;
+    }
+
+    /// <summary>
     /// 更新消息唯一ID
     /// </summary>
     public void UpdateUniqueId()
