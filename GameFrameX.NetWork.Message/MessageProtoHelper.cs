@@ -60,7 +60,7 @@ namespace GameFrameX.NetWork.Message
         /// <exception cref="Exception">如果ID重复将会触发异常</exception>
         public static void Init(Assembly assembly, bool isClear = true)
         {
-            Guard.NotNull(assembly, nameof(assembly));
+            assembly.CheckNotNull(nameof(assembly));
             if (isClear)
             {
                 AllMessageDictionary.Clear();

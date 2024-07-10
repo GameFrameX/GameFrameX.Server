@@ -1,8 +1,8 @@
 ﻿using System.Collections.Concurrent;
+using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.Monitor.Discovery;
 using GameFrameX.Setting;
-using GameFrameX.Utility;
 
 namespace GameFrameX.ServerManager
 {
@@ -150,7 +150,7 @@ namespace GameFrameX.ServerManager
         /// </summary>
         public void AddSelf(BaseSetting setting)
         {
-            _serviceInfo = new ServiceInfo(setting.ServerType, null, string.Empty, setting.ServerName, setting.ServerId, setting.InnerIp, setting.InnerPort, setting.OuterIp, setting.OuterPort);
+            _serviceInfo                      = new ServiceInfo(setting.ServerType, null, string.Empty, setting.ServerName, setting.ServerId, setting.InnerIp, setting.InnerPort, setting.OuterIp, setting.OuterPort);
             _serverMap[_serviceInfo.ServerId] = _serviceInfo;
         }
 
@@ -160,7 +160,7 @@ namespace GameFrameX.ServerManager
         /// <param name="node">节点信息</param>
         public void Add(IServiceInfo node)
         {
-            Guard.NotNull(node, nameof(node));
+            node.CheckNotNull(nameof(node));
             if (node.Type == _serviceInfo.Type)
             {
                 LogHelper.Error($"不能添加{_serviceInfo.Type.ToString()}节点...{node}");

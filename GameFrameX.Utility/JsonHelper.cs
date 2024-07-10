@@ -1,4 +1,6 @@
-﻿namespace GameFrameX.Utility;
+﻿using GameFrameX.Extension;
+
+namespace GameFrameX.Utility;
 
 /// <summary>
 /// Json 帮助类
@@ -12,7 +14,7 @@ public static class JsonHelper
     /// <returns></returns>
     public static string Serialize(object obj)
     {
-        Guard.NotNull(obj, nameof(obj));
+        obj.CheckNotNull(nameof(obj));
         string json = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
         return json;
     }
@@ -25,7 +27,7 @@ public static class JsonHelper
     /// <returns></returns>
     public static T Deserialize<T>(string json) where T : class, new()
     {
-        Guard.NotNull(json, nameof(json));
+        json.CheckNotNullOrEmpty(nameof(json));
         return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using GameFrameX.Extension;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
 using GameFrameX.SuperSocket.WebSocket.Server;
@@ -69,7 +70,7 @@ namespace GameFrameX.NetWork
         /// <param name="desc">描述。</param>
         public virtual async Task WriteAsync(IMessage messageObject, int uniId = 0, int code = 0, string desc = "")
         {
-            Guard.NotNull(messageObject, nameof(messageObject));
+            messageObject.CheckNotNull(nameof(messageObject));
 
             var messageData = _messageEncoder.Handler(messageObject);
 

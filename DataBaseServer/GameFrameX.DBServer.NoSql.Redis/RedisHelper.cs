@@ -1,5 +1,6 @@
 ﻿using FreeRedis;
 using GameFrameX.DBServer.NoSql;
+using GameFrameX.Extension;
 using GameFrameX.Utility;
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
@@ -54,7 +55,7 @@ public partial class RedisHelper : INoSqlHelper
     /// <returns></returns>
     public long Exists(params string[] keys)
     {
-        Guard.NotNull(client, nameof(client));
+        client.CheckNotNull(nameof(client));
         return client.Exists(keys);
     }
 
@@ -65,7 +66,7 @@ public partial class RedisHelper : INoSqlHelper
     /// <returns></returns>
     public Task<long> ExistsAsync(params string[] keys)
     {
-        Guard.NotNull(client, nameof(client));
+        client.CheckNotNull(nameof(client));
         return client.ExistsAsync(keys);
     }
 
@@ -163,13 +164,13 @@ public partial class RedisHelper : INoSqlHelper
 
     private void NullGuard(string key)
     {
-        Guard.NotNull(client, nameof(client));
-        Guard.NotNullOrEmpty(key, nameof(key));
+        client.CheckNotNull(nameof(client));
+        key.CheckNotNullOrEmpty(nameof(key));
     }
 
     private void NullGuard<T>(string key, T value) where T : class
     {
         NullGuard(key);
-        Guard.NotNull(value, nameof(value));
+        value.CheckNotNull(nameof(value));
     }
 }

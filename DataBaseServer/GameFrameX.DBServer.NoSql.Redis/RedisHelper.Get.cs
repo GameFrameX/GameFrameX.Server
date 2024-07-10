@@ -1,4 +1,5 @@
 ﻿using GameFrameX.DBServer.NoSql;
+using GameFrameX.Extension;
 using GameFrameX.Utility;
 
 namespace GameFrameX.DBServer.NoSql.Redis;
@@ -35,8 +36,8 @@ public partial class RedisHelper : INoSqlHelper
     /// <returns></returns>
     public T Get<T>(string key) where T : class
     {
-        Guard.NotNull(client, nameof(client));
-        Guard.NotNullOrEmpty(key, nameof(key));
+        client.CheckNotNull(nameof(client));
+        key.CheckNotNullOrEmpty(nameof(key));
         return client.Get<T>(key);
     }
 
@@ -48,8 +49,8 @@ public partial class RedisHelper : INoSqlHelper
     /// <returns></returns>
     public Task<T> GetAsync<T>(string key) where T : class
     {
-        Guard.NotNull(client, nameof(client));
-        Guard.NotNullOrEmpty(key, nameof(key));
+        client.CheckNotNull(nameof(client));
+        key.CheckNotNullOrEmpty(nameof(key));
         return client.GetAsync<T>(key);
     }
 }

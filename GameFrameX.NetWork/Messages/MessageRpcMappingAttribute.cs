@@ -1,3 +1,5 @@
+using GameFrameX.Extension;
+
 namespace GameFrameX.NetWork.Messages;
 
 /// <summary>
@@ -16,11 +18,16 @@ public class MessageRpcMappingAttribute : Attribute
     /// </summary>
     public IResponseMessage ResponseMessage { get; }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="requestMessage"></param>
+    /// <param name="responseMessage"></param>
     public MessageRpcMappingAttribute(IRequestMessage requestMessage, IResponseMessage responseMessage)
     {
-        Utility.Guard.NotNull(requestMessage, nameof(requestMessage));
-        Utility.Guard.NotNull(responseMessage, nameof(responseMessage));
-        RequestMessage = requestMessage;
+        requestMessage.CheckNotNull(nameof(requestMessage));
+        responseMessage.CheckNotNull(nameof(responseMessage));
+        RequestMessage  = requestMessage;
         ResponseMessage = responseMessage;
     }
 }
