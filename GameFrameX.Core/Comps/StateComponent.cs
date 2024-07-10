@@ -5,7 +5,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using GameFrameX.Core.Actors;
 using GameFrameX.DBServer;
-using GameFrameX.DBServer.DbService.MongoDB;
+using GameFrameX.DBServer.Mongo;
 using GameFrameX.DBServer.State;
 using GameFrameX.Extension;
 using GameFrameX.Log;

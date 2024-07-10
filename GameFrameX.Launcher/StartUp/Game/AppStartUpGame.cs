@@ -1,4 +1,6 @@
-﻿namespace GameFrameX.Launcher.StartUp.Game
+﻿using GameFrameX.DBServer.Mongo;
+
+namespace GameFrameX.Launcher.StartUp.Game
 {
     /// <summary>
     /// 游戏服务器

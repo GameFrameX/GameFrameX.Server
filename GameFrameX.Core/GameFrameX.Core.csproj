@@ -54,6 +54,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\DataBaseServer\GameFrameX.DBServer.Mongo\GameFrameX.DBServer.Mongo.csproj" />
         <ProjectReference Include="..\DataBaseServer\GameFrameX.DBServer\GameFrameX.DBServer.csproj" />
         <ProjectReference Include="..\GameFrameX.Extension\GameFrameX.Extension.csproj" />
         <ProjectReference Include="..\GameFrameX.Log\GameFrameX.Log.csproj" />

@@ -64,6 +64,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.NetWork.Abstract
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.NetWork.Message", "GameFrameX.NetWork.Message\GameFrameX.NetWork.Message.csproj", "{377E0DA0-61E6-4D85-B3FE-C1DFD0FF703B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer.Mongo", "DataBaseServer\GameFrameX.DBServer.Mongo\GameFrameX.DBServer.Mongo.csproj", "{B68E1E74-0CB9-465D-BC71-87B29B8C2C03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -166,6 +168,10 @@ Global
 		{377E0DA0-61E6-4D85-B3FE-C1DFD0FF703B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{377E0DA0-61E6-4D85-B3FE-C1DFD0FF703B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{377E0DA0-61E6-4D85-B3FE-C1DFD0FF703B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B68E1E74-0CB9-465D-BC71-87B29B8C2C03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B68E1E74-0CB9-465D-BC71-87B29B8C2C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B68E1E74-0CB9-465D-BC71-87B29B8C2C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B68E1E74-0CB9-465D-BC71-87B29B8C2C03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -178,5 +184,6 @@ Global
 		{CA28CC8F-B0CB-4343-8097-959625C98E9D} = {71D7AB99-1CB2-435D-9D70-05FE9FE05E84}
 		{B01BFC0B-9BF4-498D-893F-84B4684978A7} = {71D7AB99-1CB2-435D-9D70-05FE9FE05E84}
 		{3DAFFFD6-21DF-4A82-822A-91E5E0AEC997} = {71D7AB99-1CB2-435D-9D70-05FE9FE05E84}
+		{B68E1E74-0CB9-465D-BC71-87B29B8C2C03} = {71D7AB99-1CB2-435D-9D70-05FE9FE05E84}
 	EndGlobalSection
 EndGlobal
