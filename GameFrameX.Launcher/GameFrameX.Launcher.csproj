@@ -59,8 +59,4 @@
             <Link>logo.png</Link>
         </None>
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="PipelineFilter\" />
-    </ItemGroup>
 </Project>
