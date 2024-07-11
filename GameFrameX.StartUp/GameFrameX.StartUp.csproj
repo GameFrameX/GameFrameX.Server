@@ -37,9 +37,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.0.0" />
-      <PackageReference Include="GameFrameX.SuperSocket.Server" Version="1.0.0" />
-      <PackageReference Include="GameFrameX.SuperSocket.Server.Abstractions" Version="1.0.0" />
+      <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.0.1" />
+      <PackageReference Include="GameFrameX.SuperSocket.Server" Version="1.0.1" />
+      <PackageReference Include="GameFrameX.SuperSocket.Server.Abstractions" Version="1.0.1" />
     </ItemGroup>
     <ItemGroup>
         <None Include="..\logo.png">
