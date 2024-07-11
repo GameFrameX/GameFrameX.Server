@@ -1,4 +1,5 @@
-﻿using GameFrameX.NetWork.Message;
+﻿using GameFrameX.NetWork.Abstractions;
+using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 using Timer = System.Timers.Timer;
 

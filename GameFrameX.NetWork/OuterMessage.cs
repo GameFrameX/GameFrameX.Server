@@ -34,21 +34,6 @@ public class OuterMessage : IOuterMessage
     public int UniqueId { get; private set; }
 
     /// <summary>
-    /// 消息业务类型
-    /// </summary>
-    public byte MessageOperationType { get; private set; }
-
-
-    /// <summary>
-    /// 设置消息业务类型
-    /// </summary>
-    /// <param name="messageOperationType">消息业务类型 </param>
-    public void SetMessageOperationType(byte messageOperationType)
-    {
-        MessageOperationType = messageOperationType;
-    }
-
-    /// <summary>
     /// 更新消息唯一ID
     /// </summary>
     public void UpdateUniqueId()
@@ -114,10 +99,10 @@ public class OuterMessage : IOuterMessage
     /// <summary>
     /// 设置消息操作业务类型
     /// </summary>
-    /// <param name="operationType"></param>
-    public void SetOperationType(MessageOperationType operationType)
+    /// <param name="messageOperationType">消息操作业务类型</param>
+    public void SetOperationType(MessageOperationType messageOperationType)
     {
-        OperationType = operationType;
+        OperationType = messageOperationType;
     }
 
     /// <summary>

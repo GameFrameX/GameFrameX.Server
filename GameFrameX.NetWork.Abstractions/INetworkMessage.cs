@@ -24,13 +24,13 @@ public interface INetworkMessage
     /// <summary>
     /// 消息业务类型
     /// </summary>
-    byte MessageOperationType { get; }
+    MessageOperationType OperationType { get; }
 
     /// <summary>
     /// 设置消息业务类型
     /// </summary>
     /// <param name="messageOperationType">消息业务类型 </param>
-    void SetMessageOperationType(byte messageOperationType);
+    void SetOperationType(MessageOperationType messageOperationType);
 
     /// <summary>
     /// 更新唯一消息ID

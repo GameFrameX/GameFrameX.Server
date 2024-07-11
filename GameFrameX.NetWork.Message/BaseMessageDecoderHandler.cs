@@ -23,13 +23,13 @@ public class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder
         try
         {
             int readOffset = 0;
-            var length = data.ReadUShort(ref readOffset);
+            var length     = data.ReadUShort(ref readOffset);
             // 消息类型
             var operationType = data.ReadByte(ref readOffset);
             // 压缩标记
-            var zipFlag = data.ReadByte(ref readOffset);
-            var uniqueId = data.ReadInt(ref readOffset);
-            var messageId = data.ReadInt(ref readOffset);
+            var zipFlag     = data.ReadByte(ref readOffset);
+            var uniqueId    = data.ReadInt(ref readOffset);
+            var messageId   = data.ReadInt(ref readOffset);
             var messageData = data.ReadBytes(readOffset, length - readOffset);
 
             if (zipFlag > 0)
@@ -50,7 +50,7 @@ public class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder
                 if (message is MessageObject messageObject)
                 {
                     messageObject.MessageId = messageId;
-                    messageObject.SetMessageOperationType(operationType);
+                    messageObject.SetOperationType((MessageOperationType)operationType);
                     messageObject.SetUniqueId(uniqueId);
                     return messageObject;
                 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Text;
 using GameFrameX.Extension;
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.ProtoBuf.Net;
 using GameFrameX.Setting;
@@ -33,19 +34,6 @@ public class InnerMessage : IInnerMessage
     /// </summary>
     public int UniqueId { get; private set; }
 
-    /// <summary>
-    /// 消息业务类型
-    /// </summary>
-    public byte MessageOperationType { get; private set; }
-
-    /// <summary>
-    /// 设置消息业务类型
-    /// </summary>
-    /// <param name="messageOperationType">消息业务类型 </param>
-    public void SetMessageOperationType(byte messageOperationType)
-    {
-        MessageOperationType = messageOperationType;
-    }
 
     /// <summary>
     /// 更新消息唯一ID
@@ -162,7 +150,7 @@ public class InnerMessage : IInnerMessage
     /// <param name="messageData"></param>
     public void SetMessageData(byte[] messageData)
     {
-        MessageData = messageData;
+        MessageData       = messageData;
         MessageDataLength = (ushort)messageData.Length;
     }
 

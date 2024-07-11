@@ -1,4 +1,5 @@
-﻿using GameFrameX.Setting;
+﻿using GameFrameX.NetWork.Abstractions;
+using GameFrameX.Setting;
 using GameFrameX.Utility;
 using Newtonsoft.Json;
 using ProtoBuf;
@@ -39,15 +40,15 @@ namespace GameFrameX.NetWork.Messages
         /// <summary>
         /// 消息业务类型
         /// </summary>
-        public byte MessageOperationType { get; private set; }
+        public MessageOperationType OperationType { get; private set; }
 
         /// <summary>
         /// 设置消息业务类型
         /// </summary>
         /// <param name="messageOperationType">消息业务类型 </param>
-        public void SetMessageOperationType(byte messageOperationType)
+        public void SetOperationType(MessageOperationType messageOperationType)
         {
-            MessageOperationType = messageOperationType;
+            OperationType = messageOperationType;
         }
 
         /// <summary>
