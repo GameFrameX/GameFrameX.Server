@@ -12,7 +12,7 @@ namespace GameFrameX.DBServer.Mongo
     /// <summary>
     /// MongoDB服务连接类，实现了 <see cref="IGameDbService"/> 接口。
     /// </summary>
-    public class MongoDbService : IGameDbService
+    public sealed class MongoDbService : IGameDbService
     {
         /// <summary>
         /// 获取或设置MongoDB客户端。
@@ -73,16 +73,48 @@ namespace GameFrameX.DBServer.Mongo
         #region 插入
 
         /// <summary>
-        /// 插入一条数据
+        /// 增加一条数据
         /// </summary>
+        /// <param name="state"></param>
         /// <typeparam name="TState"></typeparam>
-        /// <param name="t">数据</param>
-        public void InsertOne<TState>(TState t) where TState : ICacheState, new()
+        public async Task<long> AddAsync<TState>(TState state) where TState : ICacheState, new()
         {
-            GetCollection<TState>().InsertOne(t);
+            var collection = GetCollection<TState>();
+            state.CreateTime = TimeHelper.UnixTimeSeconds();
+            var filter = Builders<TState>.Filter.Eq(CacheState.UniqueId, state.Id);
+            var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
+            return result.ModifiedCount;
         }
 
         /// <summary>
+        /// 增加一个列表数据
+        /// </summary>
+        /// <param name="states"></param>
+        /// <typeparam name="TState"></typeparam>
+        public async Task AddListAsync<TState>(IEnumerable<TState> states) where TState : class, ICacheState, new()
+        {
+            var collection  = GetCollection<TState>();
+            var cacheStates = states.ToList();
+            foreach (var cacheState in cacheStates)
+            {
+                cacheState.CreateTime = TimeHelper.UnixTimeSeconds();
+            }
+
+            await collection.InsertManyAsync(cacheStates);
+        }
+
+        /*
+        /// <summary>
+        /// 插入一条数据
+        /// </summary>
+        /// <typeparam name="TState"></typeparam>
+        /// <param name="state">数据</param>
+        public void InsertOne<TState>(TState state) where TState : ICacheState, new()
+        {
+            GetCollection<TState>().InsertOne(state);
+        }*/
+
+        /*/// <summary>
         /// 插入一条数据
         /// </summary>
         /// <param name="collectionName">表名</param>
@@ -90,8 +122,9 @@ namespace GameFrameX.DBServer.Mongo
         public void InsertOne(string collectionName, BsonDocument doc)
         {
             GetCollection(collectionName).InsertOne(doc);
-        }
+        }*/
 
+        /*
         /// <summary>
         /// 插入一条数据
         /// </summary>
@@ -101,7 +134,9 @@ namespace GameFrameX.DBServer.Mongo
         {
             return GetCollection<TState>().InsertOneAsync(t);
         }
+        */
 
+        /*
         /// <summary>
         /// 插入一条数据
         /// </summary>
@@ -110,19 +145,19 @@ namespace GameFrameX.DBServer.Mongo
         public Task InsertOneAsync(string collectionName, BsonDocument doc)
         {
             return GetCollection(collectionName).InsertOneAsync(doc);
-        }
+        }*/
 
-        /// <summary>
+        /*/// <summary>
         /// 插入多条数据
         /// </summary>
         /// <typeparam name="TState"></typeparam>
-        /// <param name="collectionName">表名</param>
         /// <param name="list">集合</param>
-        public void InsertMany<TState>(string collectionName, IEnumerable<TState> list) where TState : ICacheState, new()
+        public void InsertMany<TState>(IEnumerable<TState> list) where TState : ICacheState, new()
         {
             GetCollection<TState>().InsertMany(list);
-        }
+        }*/
 
+        /*
         /// <summary>
         /// 插入多条数据
         /// </summary>
@@ -131,9 +166,9 @@ namespace GameFrameX.DBServer.Mongo
         public void InsertMany(string collectionName, IEnumerable<BsonDocument> list)
         {
             GetCollection(collectionName).InsertMany(list);
-        }
+        }*/
 
-        /// <summary>
+        /*/// <summary>
         /// 插入多条数据
         /// </summary>
         /// <typeparam name="TState"></typeparam>
@@ -141,8 +176,9 @@ namespace GameFrameX.DBServer.Mongo
         public Task InsertManyAsync<TState>(IEnumerable<TState> list) where TState : ICacheState, new()
         {
             return GetCollection<TState>().InsertManyAsync(list);
-        }
+        }*/
 
+        /*
         /// <summary>
         /// 插入多条数据
         /// </summary>
@@ -151,16 +187,16 @@ namespace GameFrameX.DBServer.Mongo
         public Task InsertManyAsync(string collectionName, IEnumerable<BsonDocument> list)
         {
             return GetCollection(collectionName).InsertManyAsync(list);
-        }
+        }*/
 
+        /*
         /// <summary>
         /// 大批量插入数据
         /// </summary>
         /// <typeparam name="TState"></typeparam>
-        /// <param name="collectionName">表名</param>
         /// <param name="list">数据集合</param>
         /// <returns></returns>
-        public List<WriteModel<TState>> BulkInsert<TState>(string collectionName, IEnumerable<WriteModel<TState>> list) where TState : ICacheState, new()
+        public List<WriteModel<TState>> BulkInsert<TState>(IEnumerable<WriteModel<TState>> list) where TState : ICacheState, new()
         {
             var result = GetCollection<TState>().BulkWrite(list);
             return result.ProcessedRequests.ToList();
@@ -182,10 +218,9 @@ namespace GameFrameX.DBServer.Mongo
         /// 大批量插入数据
         /// </summary>
         /// <typeparam name="TState"></typeparam>
-        /// <param name="collectionName">表名</param>
         /// <param name="list">数据集合</param>
         /// <returns></returns>
-        public async Task<List<WriteModel<TState>>> BulkInsertAsync<TState>(string collectionName, IEnumerable<WriteModel<TState>> list) where TState : ICacheState, new()
+        public async Task<List<WriteModel<TState>>> BulkInsertAsync<TState>(IEnumerable<WriteModel<TState>> list) where TState : ICacheState, new()
         {
             var result = await GetCollection<TState>().BulkWriteAsync(list);
             return result.ProcessedRequests.ToList();
@@ -201,7 +236,7 @@ namespace GameFrameX.DBServer.Mongo
         {
             var result = await GetCollection(collectionName).BulkWriteAsync(list);
             return result.ProcessedRequests.ToList();
-        }
+        }*/
 
         #endregion 插入
 
@@ -211,12 +246,11 @@ namespace GameFrameX.DBServer.Mongo
         /// 修改一条数据
         /// </summary>
         /// <typeparam name="TState"></typeparam>
-        /// <param name="collectionName">表名</param>
         /// <param name="filter">条件</param>
         /// <param name="update">更新的数据</param>
         /// <param name="upsert">如果它不存在是否插入文档</param>
         /// <returns></returns>
-        public UpdateResult UpdateOne<TState>(string collectionName, Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert) where TState : ICacheState, new()
+        public UpdateResult UpdateOne<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert = true) where TState : ICacheState, new()
         {
             return GetCollection<TState>().UpdateOne(filter, update, new UpdateOptions()
                                                                      {
@@ -370,11 +404,10 @@ namespace GameFrameX.DBServer.Mongo
         /// 修改文档
         /// </summary>
         /// <typeparam name="TState"></typeparam>
-        /// <param name="collName">表名</param>
         /// <param name="filter">条件</param>
         /// <param name="update">更新后的数据</param>
         /// <returns></returns>
-        public async Task<TState> UpdateOneAsync<TState>(string collName, Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update) where TState : ICacheState, new()
+        public async Task<TState> UpdateOneAsync<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update) where TState : ICacheState, new()
         {
             TState result = await GetCollection<TState>().FindOneAndUpdateAsync(filter, update);
             return result;
@@ -817,7 +850,7 @@ namespace GameFrameX.DBServer.Mongo
 
         #region 查询
 
-        /// <summary>
+        /*/// <summary>
         /// 查询，复杂查询直接用Linq处理
         /// </summary>
         /// <param name="collName">集合名称</param>
@@ -825,8 +858,9 @@ namespace GameFrameX.DBServer.Mongo
         public IMongoQueryable<TState> GetQueryable<TState>(string collName)
         {
             return CurrentDatabase.GetCollection<TState>(collName).AsQueryable();
-        }
+        }*/
 
+        /*
         /// <summary>
         /// 查询，复杂查询直接用Linq处理
         /// </summary>
@@ -835,22 +869,22 @@ namespace GameFrameX.DBServer.Mongo
         public IMongoQueryable<BsonDocument> GetQueryable(string collName)
         {
             return GetCollection(collName).AsQueryable();
-        }
+        }*/
 
+        /*
         /// <summary>
         /// 获取一条数据
         /// </summary>
         /// <typeparam name="TState"></typeparam>
-        /// <param name="collName">表名</param>
         /// <param name="filter">条件</param>
         /// <returns></returns>
-        public TState Get<TState>(string collName, FilterDefinition<TState> filter) where TState : ICacheState, new()
+        public TState Get<TState>(FilterDefinition<TState> filter) where TState : ICacheState, new()
         {
             var find = GetCollection<TState>().Find(filter);
             return find.FirstOrDefault();
-        }
+        }*/
 
-        /// <summary>
+        /*/// <summary>
         /// 获取一条数据
         /// </summary>
         /// <param name="collName">表名</param>
@@ -860,9 +894,9 @@ namespace GameFrameX.DBServer.Mongo
         {
             var find = GetCollection(collName).Find(filter);
             return find.FirstOrDefault();
-        }
+        }*/
 
-        /// <summary>
+        /*/// <summary>
         /// 获取一条数据
         /// </summary>
         /// <typeparam name="TState"></typeparam>
@@ -873,8 +907,9 @@ namespace GameFrameX.DBServer.Mongo
         {
             var find = await GetCollection<TState>().FindAsync(filter);
             return await find.FirstOrDefaultAsync();
-        }
+        }*/
 
+        /*
         /// <summary>
         /// 获取一条数据
         /// </summary>
@@ -886,7 +921,9 @@ namespace GameFrameX.DBServer.Mongo
             var find = await GetCollection(collName).FindAsync(filter);
             return await find.FirstOrDefaultAsync();
         }
+        */
 
+        /*
         /// <summary>
         /// 获取多条数据
         /// </summary>
@@ -898,8 +935,9 @@ namespace GameFrameX.DBServer.Mongo
         {
             var find = GetCollection<TState>().Find(filter);
             return find.ToEnumerable();
-        }
+        }*/
 
+        /*
         /// <summary>
         /// 获取多条数据
         /// </summary>
@@ -911,7 +949,9 @@ namespace GameFrameX.DBServer.Mongo
             var find = GetCollection(collName).Find(filter);
             return find.ToEnumerable();
         }
+        */
 
+        /*
         /// <summary>
         /// 获取多条数据
         /// </summary>
@@ -924,7 +964,9 @@ namespace GameFrameX.DBServer.Mongo
             var find = await GetCollection<TState>().FindAsync(filter);
             return find.ToEnumerable();
         }
+        */
 
+        /*
         /// <summary>
         /// 获取多条数据
         /// </summary>
@@ -936,20 +978,22 @@ namespace GameFrameX.DBServer.Mongo
             var find = await GetCollection(collName).FindAsync(filter);
             return find.ToEnumerable();
         }
+        */
 
         /// <summary>
         /// 判断是否存在符合条件的数据
         /// </summary>
         /// <typeparam name="TState"></typeparam>
-        /// <param name="collName">表名</param>
         /// <param name="filter">条件</param>
         /// <returns></returns>
-        public bool Any<TState>(string collName, FilterDefinition<TState> filter) where TState : ICacheState, new()
+        public bool Any<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new()
         {
+            filter = GetDefaultFindExpression(filter);
             var find = GetCollection<TState>().Find(filter);
             return find.Any();
         }
 
+        /*
         /// <summary>
         /// 判断是否存在符合条件的数据
         /// </summary>
@@ -961,19 +1005,21 @@ namespace GameFrameX.DBServer.Mongo
             var find = GetCollection(collName).Find(filter);
             return find.Any();
         }
+        */
 
         /// <summary>
         /// 判断是否存在符合条件的数据
         /// </summary>
-        /// <param name="collName">表名</param>
         /// <param name="filter">条件</param>
         /// <returns></returns>
-        public async Task<bool> AnyAsync<TState>(string collName, FilterDefinition<TState> filter) where TState : ICacheState, new()
+        public async Task<bool> AnyAsync<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new()
         {
+            filter = GetDefaultFindExpression(filter);
             var find = await GetCollection<TState>().FindAsync(filter);
             return await find.AnyAsync();
         }
 
+        /*
         /// <summary>
         /// 判断是否存在符合条件的数据
         /// </summary>
@@ -985,6 +1031,7 @@ namespace GameFrameX.DBServer.Mongo
             var find = await GetCollection(collName).FindAsync(filter);
             return await find.AnyAsync();
         }
+        */
 
         #endregion 查询
 
@@ -1360,7 +1407,7 @@ namespace GameFrameX.DBServer.Mongo
             var collection = GetCollection<TState>();
             var state      = await FindAsync(filter);
             var newFilter  = Builders<TState>.Filter.Eq(CacheState.UniqueId, state.Id);
-            state.DeleteTime = TimeHelper.UnixTimeSeconds();
+            state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
             state.IsDeleted  = true;
             var result = await collection.ReplaceOneAsync(newFilter, state, ReplaceOptions);
             return result.ModifiedCount;
@@ -1375,42 +1422,12 @@ namespace GameFrameX.DBServer.Mongo
         {
             var filter     = Builders<TState>.Filter.Eq(CacheState.UniqueId, state.Id);
             var collection = GetCollection<TState>();
-            state.DeleteTime = TimeHelper.UnixTimeSeconds();
+            state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
             state.IsDeleted  = true;
             var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
             return result.ModifiedCount;
         }
 
-        /// <summary>
-        /// 增加一条数据
-        /// </summary>
-        /// <param name="state"></param>
-        /// <typeparam name="TState"></typeparam>
-        public async Task<long> AddAsync<TState>(TState state) where TState : ICacheState, new()
-        {
-            var collection = GetCollection<TState>();
-            state.CreateTime = TimeHelper.UnixTimeSeconds();
-            var filter = Builders<TState>.Filter.Eq(CacheState.UniqueId, state.Id);
-            var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
-            return result.ModifiedCount;
-        }
-
-        /// <summary>
-        /// 增加一个列表数据
-        /// </summary>
-        /// <param name="states"></param>
-        /// <typeparam name="TState"></typeparam>
-        public async Task AddListAsync<TState>(List<TState> states) where TState : class, ICacheState, new()
-        {
-            var collection  = GetCollection<TState>();
-            var cacheStates = states.ToList();
-            foreach (var cacheState in cacheStates)
-            {
-                cacheState.CreateTime = TimeHelper.UnixTimeSeconds();
-            }
-
-            await collection.InsertManyAsync(cacheStates);
-        }
 
         /// <summary>
         /// 保存数据
@@ -1420,11 +1437,10 @@ namespace GameFrameX.DBServer.Mongo
         /// <returns></returns>
         public async Task<TState> UpdateAsync<TState>(TState state) where TState : ICacheState, new()
         {
-            // var (isChanged, data) = state.IsChanged();
-            // if (isChanged)
+            var isChanged = state.IsModify;
+            if (isChanged)
             {
-                // var cacheState = BsonSerializer.Deserialize<TState>(data);
-                state.UpdateTime = TimeHelper.UnixTimeSeconds();
+                state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
                 state.UpdateCount++;
                 var filter     = Builders<TState>.Filter.Eq(CacheState.UniqueId, state.Id);
                 var collection = GetCollection<TState>();
@@ -1442,6 +1458,11 @@ namespace GameFrameX.DBServer.Mongo
         /// 替换选项，用于替换文档。设置 <see cref="IsUpsert"/> 属性为 true 可以在找不到匹配的文档时插入新文档。
         /// </summary>
         public static readonly ReplaceOptions ReplaceOptions = new() { IsUpsert = true };
+
+        /// <summary>
+        /// 更新选项，用于更新文档。设置 <see cref="IsUpsert"/> 属性为 true 可以在找不到匹配的文档时插入新文档。
+        /// </summary>
+        public static readonly UpdateOptions UpdateOptions = new() { IsUpsert = true };
 
         /// <summary>
         /// 批量写入选项，用于批量写入文档。设置 <see cref="IsOrdered"/> 属性为 false 可以并行执行写入操作。
