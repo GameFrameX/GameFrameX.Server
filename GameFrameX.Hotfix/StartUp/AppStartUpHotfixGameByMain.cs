@@ -8,15 +8,15 @@ namespace GameFrameX.Hotfix.StartUp;
 /// </summary>
 internal partial class AppStartUpHotfixGame : AppStartUpService
 {
-    static MessageGameDecoderHandler messageDecoderHandler = new MessageGameDecoderHandler();
-    static MessageGameEncoderHandler messageEncoderHandler = new MessageGameEncoderHandler();
-    protected override bool IsConnectDiscoveryServer { get; } = false;
-    protected override bool IsRequestConnectServer { get; } = false;
+    static             MessageGameDecoderHandler messageDecoderHandler = new MessageGameDecoderHandler();
+    static             MessageGameEncoderHandler messageEncoderHandler = new MessageGameEncoderHandler();
+    protected override bool                      IsConnectDiscoveryServer { get; } = false;
+    protected override bool                      IsRequestConnectServer   { get; } = false;
 
-    public async void Start()
+    public override Task StartAsync()
     {
-        await EnterAsync();
         RunServer(false);
+        return base.StartAsync();
     }
 
     public AppStartUpHotfixGame() : base(messageEncoderHandler, messageDecoderHandler)

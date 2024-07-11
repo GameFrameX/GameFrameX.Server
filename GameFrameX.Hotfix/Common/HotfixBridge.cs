@@ -7,8 +7,8 @@ namespace GameFrameX.Hotfix.Common
 {
     internal partial class HotfixBridge : IHotfixBridge
     {
-        public ServerType BridgeType => ServerType.Game;
-        private AppSetting Setting { get; set; }
+        public  ServerType   BridgeType => ServerType.Game;
+        private AppSetting   Setting    { get; set; }
         AppStartUpHotfixGame _appStartUpHotfixGame;
 
         public async Task<bool> OnLoadSuccess(AppSetting setting, bool reload)
@@ -22,7 +22,7 @@ namespace GameFrameX.Hotfix.Common
 
             _appStartUpHotfixGame = new AppStartUpHotfixGame();
             _appStartUpHotfixGame.Init(setting.ServerType, setting);
-            _appStartUpHotfixGame.Start();
+            await _appStartUpHotfixGame.StartAsync();
             GlobalTimer.Start();
             await ComponentRegister.ActiveGlobalComps();
             return true;
@@ -36,7 +36,7 @@ namespace GameFrameX.Hotfix.Common
             await QuartzTimer.Stop();
             // 保证actor之前的任务都执行完毕
             await ActorManager.AllFinish();
-            _appStartUpHotfixGame?.Stop();
+            _appStartUpHotfixGame?.StopAsync();
             await HttpServer.Stop();
             // 存储所有数据
             await GlobalTimer.Stop();

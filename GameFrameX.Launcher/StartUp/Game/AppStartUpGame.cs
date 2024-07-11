@@ -6,7 +6,7 @@
     [StartUpTag(ServerType.Game)]
     internal sealed class AppStartUpGame : AppStartUpBase
     {
-        public override async Task EnterAsync()
+        public override async Task StartAsync()
         {
             try
             {

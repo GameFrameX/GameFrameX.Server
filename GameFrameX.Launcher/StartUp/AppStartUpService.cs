@@ -47,7 +47,7 @@ public abstract class AppStartUpService : AppStartUpBase
 
     private Timer ConnectTargetServerTimer { get; set; }
 
-    public override Task EnterAsync()
+    public override Task StartAsync()
     {
         if (IsRequestConnectServer)
         {
@@ -289,7 +289,7 @@ public abstract class AppStartUpService : AppStartUpBase
         ReconnectionTimer.Start();
     }
 
-    public override Task Stop(string message = "")
+    public override Task StopAsync(string message = "")
     {
         HeartBeatTimer?.Close();
         ReconnectionTimer?.Close();
@@ -300,6 +300,6 @@ public abstract class AppStartUpService : AppStartUpBase
             _discoveryCenterClient = null;
         }
 
-        return base.Stop(message);
+        return base.StopAsync(message);
     }
 }
