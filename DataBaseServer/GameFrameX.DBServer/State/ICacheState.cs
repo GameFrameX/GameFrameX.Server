@@ -19,10 +19,10 @@ public interface ICacheState : ISafeDelete, ISafeCreate, ISafeUpdate
     /// 
     /// </summary>
     /// <param name="isNew"></param>
-    void AfterLoadFromDB(bool isNew);
+    void AfterLoadFromDb(bool isNew);
 
     /// <summary>
     /// 
     /// </summary>
-    void AfterSaveToDB();
+    void AfterSaveToDb();
 }

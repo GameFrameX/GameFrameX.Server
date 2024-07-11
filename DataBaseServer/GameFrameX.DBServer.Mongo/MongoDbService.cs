@@ -1224,7 +1224,7 @@ namespace GameFrameX.DBServer.Mongo
                 state = new TState { Id = id };
             }
 
-            state.AfterLoadFromDB(isNew);
+            state.AfterLoadFromDb(isNew);
             return state;
         }
 
@@ -1447,7 +1447,7 @@ namespace GameFrameX.DBServer.Mongo
                 var result     = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
                 if (result.IsAcknowledged)
                 {
-                    state.AfterSaveToDB();
+                    state.AfterSaveToDb();
                 }
             }
 

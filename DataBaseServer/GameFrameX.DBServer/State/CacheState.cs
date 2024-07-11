@@ -26,7 +26,10 @@ namespace GameFrameX.DBServer.State
         /// <summary>
         /// 是否修改
         /// </summary>
-        public bool IsModify => IsChanged().isChanged;
+        public bool IsModify
+        {
+            get { return IsChanged().isChanged; }
+        }
 
 
         /// <summary>
@@ -42,7 +45,11 @@ namespace GameFrameX.DBServer.State
 
         private StateHash stateHash;
 
-        public void AfterLoadFromDB(bool isNew)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isNew"></param>
+        public void AfterLoadFromDb(bool isNew)
         {
             stateHash = new StateHash(this, isNew);
         }
@@ -86,7 +93,7 @@ namespace GameFrameX.DBServer.State
         /// <summary>
         /// 
         /// </summary>
-        public void AfterSaveToDB()
+        public void AfterSaveToDb()
         {
             stateHash.AfterSaveToDb();
         }

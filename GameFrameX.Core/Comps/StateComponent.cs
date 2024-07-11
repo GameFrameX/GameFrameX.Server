@@ -162,7 +162,7 @@ namespace GameFrameX.Core.Comps
         /// <param name="force"></param>
         public static async Task SaveAll(bool shutdown, bool force = false)
         {
-            var idList = new List<long>();
+            var idList    = new List<long>();
             var writeList = new List<ReplaceOneModel<MongoDB.Bson.BsonDocument>>();
             if (shutdown)
             {
@@ -190,17 +190,17 @@ namespace GameFrameX.Core.Comps
                     if (actor != null)
                     {
                         tasks.Add(actor.SendAsync(() =>
-                        {
-                            if (!force && !state.IsModify)
-                                return;
-                            var bsonDoc = state.ToBsonDocument();
-                            lock (writeList)
-                            {
-                                var filter = Builders<MongoDB.Bson.BsonDocument>.Filter.Eq("_id", state.Id);
-                                writeList.Add(new ReplaceOneModel<MongoDB.Bson.BsonDocument>(filter, bsonDoc) { IsUpsert = true });
-                                idList.Add(state.Id);
-                            }
-                        }));
+                                                  {
+                                                      if (!force && !state.IsModify)
+                                                          return;
+                                                      var bsonDoc = state.ToBsonDocument();
+                                                      lock (writeList)
+                                                      {
+                                                          var filter = Builders<MongoDB.Bson.BsonDocument>.Filter.Eq("_id", state.Id);
+                                                          writeList.Add(new ReplaceOneModel<MongoDB.Bson.BsonDocument>(filter, bsonDoc) { IsUpsert = true });
+                                                          idList.Add(state.Id);
+                                                      }
+                                                  }));
                     }
                 }
 
@@ -212,17 +212,17 @@ namespace GameFrameX.Core.Comps
                 var stateName = typeof(TState).Name;
                 StateComponent.statisticsTool.Count(stateName, writeList.Count);
                 LogHelper.Debug($"[StateComp] 状态回存 {stateName} count:{writeList.Count}");
-                var db = GameDb.As<MongoDbService>().CurrentDatabase;
-                var col = db.GetCollection<MongoDB.Bson.BsonDocument>(stateName);
+                var currentDatabase = GameDb.As<MongoDbService>().CurrentDatabase;
+                var collection      = currentDatabase.GetCollection<MongoDB.Bson.BsonDocument>(stateName);
                 for (int idx = 0; idx < writeList.Count; idx += ONCE_SAVE_COUNT)
                 {
                     var docs = writeList.GetRange(idx, Math.Min(ONCE_SAVE_COUNT, writeList.Count - idx));
-                    var ids = idList.GetRange(idx, docs.Count);
+                    var ids  = idList.GetRange(idx, docs.Count);
 
                     bool save = false;
                     try
                     {
-                        var result = await col.BulkWriteAsync(docs, MongoDbService.BulkWriteOptions);
+                        var result = await collection.BulkWriteAsync(docs, MongoDbService.BulkWriteOptions);
                         if (result.IsAcknowledged)
                         {
                             foreach (var id in ids)
@@ -230,7 +230,7 @@ namespace GameFrameX.Core.Comps
                                 stateDic.TryGetValue(id, out var state);
                                 if (state == null)
                                     continue;
-                                state.AfterSaveToDB();
+                                state.AfterSaveToDb();
                             }
 
                             save = true;
@@ -252,19 +252,6 @@ namespace GameFrameX.Core.Comps
                 }
             }
         }
-
-
-        // public static async Task<MongoState> FindAsync<TState>(FilterDefinition<BsonDocument> filter, int limit = 0)
-        // {
-        //     var stateName = typeof(TState).FullName;
-        //     var _database = GameDb.As<MongoDbServiceConnection>().CurrentDatabase;
-        //     var collection = _database.GetCollection<MongoState>(stateName);
-        //     // var result = new List<BsonDocument>();
-        //     using (var cursor = await collection.FindAsync(filter, new FindOptions<MongoState> {Limit = limit}))
-        //     {
-        //         return await cursor.FirstOrDefaultAsync();
-        //     }
-        // }
 
         #endregion
     }
