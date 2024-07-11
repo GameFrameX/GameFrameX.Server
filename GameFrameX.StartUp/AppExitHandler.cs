@@ -4,7 +4,7 @@ using System.Runtime.Loader;
 using System.Text;
 using GameFrameX.Log;
 
-namespace GameFrameX.Utility
+namespace GameFrameX.StartUp
 {
     /// <summary>
     /// 
@@ -14,7 +14,7 @@ namespace GameFrameX.Utility
         private static Action<string> _existCallBack;
 
         private static PosixSignalRegistration exitSignalRegistration;
-        private static bool _isKill = false;
+        private static bool                    _isKill = false;
 
         /// <summary>
         /// 
@@ -22,13 +22,9 @@ namespace GameFrameX.Utility
         /// <param name="existCallBack"></param>
         public static void Init(Action<string> existCallBack)
         {
-            _isKill = false;
-            _existCallBack = existCallBack;
-            exitSignalRegistration = PosixSignalRegistration.Create(PosixSignal.SIGTERM, c =>
-            {
-                LogHelper.Info("PosixSignalRegistration SIGTERM....");
-                _existCallBack?.Invoke("SIGTERM exit");
-            });
+            _isKill                = false;
+            _existCallBack         = existCallBack;
+            exitSignalRegistration = PosixSignalRegistration.Create(PosixSignal.SIGTERM, ExitSignalRegistrationHandler);
             //退出监听
             AppDomain.CurrentDomain.ProcessExit += (s, e) => { _existCallBack?.Invoke("process exit"); };
             //卸载监听
@@ -39,6 +35,12 @@ namespace GameFrameX.Utility
             TaskScheduler.UnobservedTaskException += (s, e) => { HandleFetalException("TaskScheduler.UnobservedTaskException", e.Exception); };
             //ctrl+c
             Console.CancelKeyPress += (s, e) => { _existCallBack?.Invoke("ctrl+c exit"); };
+        }
+
+        private static void ExitSignalRegistrationHandler(PosixSignalContext posixSignalContext)
+        {
+            LogHelper.Info("PosixSignalRegistration SIGTERM....");
+            _existCallBack?.Invoke("SIGTERM exit");
         }
 
         private static void DefaultOnUnloading(AssemblyLoadContext obj)
@@ -67,7 +69,7 @@ namespace GameFrameX.Utility
             LogHelper.Error("get unhandled exception");
             if (e is IEnumerable arr)
             {
-                var sb = new StringBuilder();
+                var sb   = new StringBuilder();
                 int line = 0;
                 foreach (var ex in arr)
                 {

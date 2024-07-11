@@ -1,25 +1,32 @@
 ﻿using System.Diagnostics;
 using System.Text;
+using GameFrameX.Log;
+using GameFrameX.Setting;
+using GameFrameX.StartUp.Abstractions;
 
-namespace GameFrameX.Launcher.StartUp
+namespace GameFrameX.StartUp
 {
     /// <summary>
     /// App入口
     /// </summary>
     public static class AppEnter
     {
-        private static volatile bool _exitCalled = false;
-        private static volatile Task _gameLoopTask = null;
-        private static volatile Task _shutDownTask = null;
+        private static volatile bool        _exitCalled   = false;
+        private static volatile Task        _gameLoopTask = null;
+        private static volatile Task        _shutDownTask = null;
         private static volatile IAppStartUp _appStartUp;
 
+        /// <summary>
+        /// 启动
+        /// </summary>
+        /// <param name="appStartUp">启动对象</param>
         public static async Task Entry(IAppStartUp appStartUp)
         {
             try
             {
                 _appStartUp = appStartUp;
                 AppExitHandler.Init(HandleExit);
-                _gameLoopTask = appStartUp.EnterAsync();
+                _gameLoopTask = appStartUp.StartAsync();
                 await _gameLoopTask;
                 if (_shutDownTask != null)
                 {
@@ -53,15 +60,18 @@ namespace GameFrameX.Launcher.StartUp
 
             _exitCalled = true;
             LogHelper.Info($"监听到退出程序消息");
-            _shutDownTask = Task.Run(() =>
+
+            void Function()
             {
                 GlobalSettings.IsAppRunning = false;
-                _appStartUp.Stop(message);
+                _appStartUp.StopAsync(message);
                 AppExitHandler.Kill();
                 LogHelper.Info($"退出程序");
                 _gameLoopTask?.Wait();
                 Process.GetCurrentProcess().Kill();
-            });
+            }
+
+            _shutDownTask = Task.Run(Function);
             _shutDownTask.Wait();
         }
     }
