@@ -13,12 +13,12 @@ public interface IGameDbService
     /// </summary>
     /// <param name="url">链接地址</param>
     /// <param name="dbName">数据库名称</param>
-    public void Open(string url, string dbName);
+    void Open(string url, string dbName);
 
     /// <summary>
     /// 关闭数据库连接
     /// </summary>
-    public void Close();
+    void Close();
 
     /// <summary>
     /// 加载数据
@@ -27,7 +27,7 @@ public interface IGameDbService
     /// <param name="defaultGetter"></param>
     /// <typeparam name="TState"></typeparam>
     /// <returns></returns>
-    public Task<TState> LoadState<TState>(long id, Func<TState> defaultGetter = null) where TState : ICacheState, new();
+    Task<TState> LoadState<TState>(long id, Func<TState> defaultGetter = null) where TState : ICacheState, new();
 
     /// <summary>
     /// 查询单条数据
@@ -35,7 +35,7 @@ public interface IGameDbService
     /// <param name="filter">查询条件</param>
     /// <typeparam name="TState"></typeparam>
     /// <returns></returns>
-    public Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new();
+    Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new();
 
     /// <summary>
     /// 查询数据
@@ -43,7 +43,7 @@ public interface IGameDbService
     /// <param name="filter">查询条件</param>
     /// <typeparam name="TState"></typeparam>
     /// <returns></returns>
-    public Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new();
+    Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new();
 
     /// <summary>
     /// 以升序方式查找符合条件的第一个元素。
@@ -91,7 +91,7 @@ public interface IGameDbService
     /// <param name="filter">查询条件</param>
     /// <typeparam name="TState"></typeparam>
     /// <returns></returns>
-    public Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new();
+    Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new();
 
     /// <summary>
     /// 删除数据
@@ -99,7 +99,7 @@ public interface IGameDbService
     /// <param name="filter">查询条件</param>
     /// <typeparam name="TState"></typeparam>
     /// <returns></returns>
-    public Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new();
+    Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new();
 
     /// <summary>
     /// 删除数据
@@ -107,7 +107,7 @@ public interface IGameDbService
     /// <param name="state"></param>
     /// <typeparam name="TState"></typeparam>
     /// <returns></returns>
-    public Task<long> DeleteAsync<TState>(TState state) where TState : ICacheState, new();
+    Task<long> DeleteAsync<TState>(TState state) where TState : ICacheState, new();
 
     /// <summary>
     /// 保存数据
@@ -115,13 +115,37 @@ public interface IGameDbService
     /// <param name="state"></param>
     /// <typeparam name="TState"></typeparam>
     /// <returns></returns>
-    public Task<long> AddAsync<TState>(TState state) where TState : ICacheState, new();
+    Task<long> AddAsync<TState>(TState state) where TState : ICacheState, new();
 
     /// <summary>
-    /// 保存数据
+    /// 保存多条数据
+    /// </summary>
+    /// <param name="states"></param>
+    /// <typeparam name="TState"></typeparam>
+    /// <returns></returns>
+    Task AddListAsync<TState>(IEnumerable<TState> states) where TState : class, ICacheState, new();
+
+    /// <summary>
+    /// 保存数据,如果数据已经存在则更新,如果不存在则插入
     /// </summary>
     /// <param name="state"></param>
     /// <typeparam name="TState"></typeparam>
     /// <returns></returns>
-    public Task<TState> UpdateAsync<TState>(TState state) where TState : ICacheState, new();
+    Task<TState> UpdateAsync<TState>(TState state) where TState : ICacheState, new();
+
+    /// <summary>
+    /// 查询符合条件的数据是否存在
+    /// </summary>
+    /// <param name="filter">查询条件</param>
+    /// <typeparam name="TState"></typeparam>
+    /// <returns></returns>
+    bool Any<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new();
+
+    /// <summary>
+    /// 查询符合条件的数据是否存在
+    /// </summary>
+    /// <param name="filter">查询条件</param>
+    /// <typeparam name="TState"></typeparam>
+    /// <returns></returns>
+    Task<bool> AnyAsync<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new();
 }
