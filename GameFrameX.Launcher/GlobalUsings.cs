@@ -9,7 +9,6 @@ global using GameFrameX.Core.Hotfix;
 global using GameFrameX.Core.StartUp;
 global using GameFrameX.Core.StartUp.Attributes;
 global using GameFrameX.DBServer;
-global using GameFrameX.DBServer.DbService.MongoDB;
 global using System.Collections.Concurrent;
 global using System.Net;
 global using GameFrameX.Setting;
