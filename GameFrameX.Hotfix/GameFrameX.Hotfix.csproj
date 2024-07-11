@@ -32,6 +32,10 @@
       <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Logic\" />
+    </ItemGroup>
+
 
 
 

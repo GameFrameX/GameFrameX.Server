@@ -1,6 +1,4 @@
-﻿using GameFrameX.Hotfix.Server.Server.Agent;
-
-namespace GameFrameX.Hotfix.Common.Events
+﻿namespace GameFrameX.Hotfix.Common.Events
 {
     public static class EventDispatcherExtensions
     {

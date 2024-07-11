@@ -1,6 +1,4 @@
-﻿using GameFrameX.Hotfix.Launcher;
-using GameFrameX.Launcher.StartUp;
-using GameFrameX.StartUp;
+﻿using GameFrameX.StartUp;
 
 namespace GameFrameX.Hotfix.StartUp;
 
@@ -9,8 +7,6 @@ namespace GameFrameX.Hotfix.StartUp;
 /// </summary>
 internal partial class AppStartUpHotfixGame : AppStartUpBase
 {
-    static MessageGameDecoderHandler messageDecoderHandler = new MessageGameDecoderHandler();
-    static MessageGameEncoderHandler messageEncoderHandler = new MessageGameEncoderHandler();
 
     protected override bool IsEnableReconnection { get; } = false;
 

@@ -1,0 +1,14 @@
+﻿using GameFrameX.Core.Net.BaseHandler;
+using GameFrameX.NetWork.Messages;
+
+namespace GameFrameX.Hotfix.Logic.Account.Login
+{
+    [MessageMapping(typeof(ReqLogin))]
+    internal class ReqLoginHandler : GlobalComponentHandler<LoginComponentAgent>
+    {
+        protected override async Task ActionAsync()
+        {
+            await Comp.OnLogin(NetWorkChannel, Message as ReqLogin);
+        }
+    }
+}

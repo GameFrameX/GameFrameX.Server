@@ -1,6 +1,5 @@
 ﻿using System.Buffers;
 using System.Net;
-using GameFrameX.Hotfix.Launcher;
 using GameFrameX.Launcher;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
@@ -58,7 +57,7 @@ namespace GameFrameX.Hotfix.Common
             tcpService = SuperSocketHostBuilder.Create<INetworkMessage, MessageObjectPipelineFilter>()
                 .ConfigureSuperSocket(ConfigureSuperSocket)
                 .UseClearIdleSession()
-                .UsePackageDecoder<MessageGameDecoderHandler>()
+                .UsePackageDecoder<BaseMessageDecoderHandler>()
                 .UseSessionHandler(OnConnected, OnDisconnected)
                 .UsePackageHandler(MessagePackageHandler, ClientErrorHandler)
                 .UseInProcSessionContainer()
@@ -99,8 +98,8 @@ namespace GameFrameX.Hotfix.Common
             return ValueTask.CompletedTask;
         }
 
-        private static readonly MessageGameEncoderHandler messageEncoderHandler = new MessageGameEncoderHandler();
-        private static readonly MessageGameDecoderHandler messageDecoderHandler = new MessageGameDecoderHandler();
+        private static readonly BaseMessageEncoderHandler messageEncoderHandler = new BaseMessageEncoderHandler();
+        private static readonly BaseMessageDecoderHandler messageDecoderHandler = new BaseMessageDecoderHandler();
 
         /// <summary>
         /// 处理收到的WS消息
