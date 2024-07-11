@@ -30,7 +30,7 @@ class MessageRouterEncoderHandler : BaseMessageEncoderHandler
     /// </summary>
     /// <param name="message"></param>
     /// <returns></returns>
-    public override byte[] Handler(IMessage message)
+    public override byte[] Handler(INetworkMessage message)
     {
         if (message is MessageObject messageObject)
         {

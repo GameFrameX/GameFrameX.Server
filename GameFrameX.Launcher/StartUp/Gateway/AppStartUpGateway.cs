@@ -1,4 +1,5 @@
 ﻿using GameFrameX.Launcher.StartUp.Gateway;
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 using GameFrameX.ServerManager;
@@ -11,8 +12,8 @@ using GameFrameX.SuperSocket.Primitives;
 [StartUpTag(ServerType.Gateway)]
 internal sealed partial class AppStartUpGateway : AppStartUpService
 {
-    private IServer tcpService;
-    protected override int HeartBeatInterval { get; } = 10000;
+    private            IServer tcpService;
+    protected override int     HeartBeatInterval { get; } = 10000;
 
     public override async Task StartAsync()
     {
@@ -45,20 +46,20 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
 
     private async Task StartServer()
     {
-        tcpService = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
-            .ConfigureSuperSocket(ConfigureSuperSocket)
-            .UseClearIdleSession()
-            .UsePackageDecoder<MessageActorGatewayDecoderHandler>()
-            // .UsePackageEncoder<MessageActorDiscoveryEncoderHandler>()
-            .UseSessionHandler(OnConnected, OnDisconnected)
-            .UsePackageHandler(PackageHandler, ClientErrorHandler)
-            .UseInProcSessionContainer()
-            .BuildAsServer();
+        tcpService = SuperSocketHostBuilder.Create<INetworkMessage, MessageObjectPipelineFilter>()
+                                           .ConfigureSuperSocket(ConfigureSuperSocket)
+                                           .UseClearIdleSession()
+                                           .UsePackageDecoder<MessageActorGatewayDecoderHandler>()
+                                           // .UsePackageEncoder<MessageActorDiscoveryEncoderHandler>()
+                                           .UseSessionHandler(OnConnected, OnDisconnected)
+                                           .UsePackageHandler(PackageHandler, ClientErrorHandler)
+                                           .UseInProcSessionContainer()
+                                           .BuildAsServer();
 
         await tcpService.StartAsync();
     }
 
-    private ValueTask<bool> ClientErrorHandler(IAppSession appSession, PackageHandlingException<IMessage> exception)
+    private ValueTask<bool> ClientErrorHandler(IAppSession appSession, PackageHandlingException<INetworkMessage> exception)
     {
         return ValueTask.FromResult(true);
     }
@@ -82,7 +83,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
         return ValueTask.CompletedTask;
     }
 
-    private ValueTask PackageHandler(IAppSession session, IMessage message)
+    private ValueTask PackageHandler(IAppSession session, INetworkMessage message)
     {
         if (message is MessageObject messageObject)
         {
@@ -94,10 +95,10 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
             if (message is ReqHeartBeat reqActorHeartBeat)
             {
                 var respActorHeartBeat = new NotifyHeartBeat()
-                {
-                    UniqueId = reqActorHeartBeat.UniqueId,
-                    Timestamp = TimeHelper.UnixTimeSeconds()
-                };
+                                         {
+                                             UniqueId  = reqActorHeartBeat.UniqueId,
+                                             Timestamp = TimeHelper.UnixTimeSeconds()
+                                         };
                 SendMessage(session, respActorHeartBeat);
                 return ValueTask.CompletedTask;
             }
@@ -111,19 +112,19 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
             if (message is ReqRegisterGameServer reqRegisterGameServer)
             {
                 GameServiceInfo gameServiceInfo = new GameServiceInfo(reqRegisterGameServer.ServerType,
-                    session,
-                    session.SessionID,
-                    reqRegisterGameServer.ServerName,
-                    reqRegisterGameServer.ServerID,
-                    reqRegisterGameServer.MinModuleMessageID,
-                    reqRegisterGameServer.MaxModuleMessageID
+                                                                      session,
+                                                                      session.SessionID,
+                                                                      reqRegisterGameServer.ServerName,
+                                                                      reqRegisterGameServer.ServerID,
+                                                                      reqRegisterGameServer.MinModuleMessageID,
+                                                                      reqRegisterGameServer.MaxModuleMessageID
                 );
 
                 _namingServiceManager.Add(gameServiceInfo);
                 return ValueTask.CompletedTask;
             }
 
-            var mainId = MessageManager.GetMainId(messageObject.MessageId);
+            var mainId       = MessageManager.GetMainId(messageObject.MessageId);
             var serviceInfos = _namingServiceManager.GetNodesByType(ServerType.Game);
             foreach (var serviceInfo in serviceInfos)
             {
@@ -168,21 +169,21 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
         if (Setting == null)
         {
             Setting = new AppSetting
-            {
-                ServerId = 22000,
-                ServerType = ServerType.Gateway,
-                InnerIp = "127.0.0.1",
-                InnerPort = 22001,
-                OuterIp = "127.0.0.1",
-                OuterPort = 22001,
-                APMPort = 22090,
-                DiscoveryCenterPort = 21001,
-                DiscoveryCenterIp = "127.0.0.1",
-            };
+                      {
+                          ServerId            = 22000,
+                          ServerType          = ServerType.Gateway,
+                          InnerIp             = "127.0.0.1",
+                          InnerPort           = 22001,
+                          OuterIp             = "127.0.0.1",
+                          OuterPort           = 22001,
+                          APMPort             = 22090,
+                          DiscoveryCenterPort = 21001,
+                          DiscoveryCenterIp   = "127.0.0.1",
+                      };
             if (PlatformRuntimeHelper.IsLinux)
             {
                 Setting.DiscoveryCenterIp = "discovery";
-                Setting.InnerIp = "gateway";
+                Setting.InnerIp           = "gateway";
             }
         }
 
@@ -208,10 +209,10 @@ public sealed class ClientSession
 {
     public ClientSession(long sessionId, AsyncTcpSession asyncTcpSession)
     {
-        SessionId = sessionId;
+        SessionId       = sessionId;
         AsyncTcpSession = asyncTcpSession;
     }
 
-    public long SessionId { get; }
+    public long            SessionId       { get; }
     public AsyncTcpSession AsyncTcpSession { get; }
 }

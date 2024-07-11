@@ -115,7 +115,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
 
     private async void StartServer()
     {
-        _server = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
+        _server = SuperSocketHostBuilder.Create<INetworkMessage, MessageObjectPipelineFilter>()
             .ConfigureSuperSocket(ConfigureSuperSocket)
             .UseClearIdleSession()
             .UsePackageDecoder<MessageActorDiscoveryDecoderHandler>()
@@ -129,7 +129,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
     }
 
 
-    private ValueTask PackageHandler(IAppSession session, IMessage message)
+    private ValueTask PackageHandler(IAppSession session, INetworkMessage message)
     {
         if (message is IInnerMessage messageObject)
         {

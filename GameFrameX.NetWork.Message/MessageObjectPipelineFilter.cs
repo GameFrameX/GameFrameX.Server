@@ -1,5 +1,5 @@
 ﻿using System.Buffers;
-using GameFrameX.NetWork.Messages;
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.SuperSocket.ProtoBase;
 
 namespace GameFrameX.NetWork.Message;
@@ -7,9 +7,9 @@ namespace GameFrameX.NetWork.Message;
 /// <summary>
 /// 消息对象流水线过滤处理器
 /// </summary>
-public class MessageObjectPipelineFilter : PipelineFilterBase<IMessage>
+public class MessageObjectPipelineFilter : PipelineFilterBase<INetworkMessage>
 {
-    public override IMessage Filter(ref SequenceReader<byte> reader)
+    public override INetworkMessage Filter(ref SequenceReader<byte> reader)
     {
         var pack = reader.Sequence;
         reader.TryReadBigEndian(out ushort totalLength);

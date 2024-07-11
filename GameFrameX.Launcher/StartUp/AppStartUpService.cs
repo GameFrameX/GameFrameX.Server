@@ -1,4 +1,5 @@
-﻿using GameFrameX.NetWork.Message;
+﻿using GameFrameX.NetWork.Abstractions;
+using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 using Timer = System.Timers.Timer;
 
@@ -234,7 +235,7 @@ public abstract class AppStartUpService : AppStartUpBase
     /// 收到发现中心推送的非特殊消息
     /// </summary>
     /// <param name="message"></param>
-    protected virtual void DiscoveryCenterDataReceived(IMessage message)
+    protected virtual void DiscoveryCenterDataReceived(INetworkMessage message)
     {
     }
 
@@ -250,7 +251,7 @@ public abstract class AppStartUpService : AppStartUpBase
 
         if (Setting.IsDebug && Setting.IsDebugReceive && !MessageProtoHelper.IsHeartbeat(message.GetType()))
         {
-            LogHelper.Debug(message.ToReceiveMessageString(ServerType.DiscoveryCenter, ServerType));
+            LogHelper.Debug(message.ToMessageString());
         }
 
         if (message is IResponseMessage actorResponseMessage)

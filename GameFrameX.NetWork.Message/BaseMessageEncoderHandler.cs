@@ -11,7 +11,7 @@ namespace GameFrameX.NetWork.Message;
 /// <summary>
 /// 基础消息编码处理器
 /// </summary>
-public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMessage>
+public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder<INetworkMessage>
 {
     /// <summary>
     /// 获取消息业务类型
@@ -29,7 +29,7 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPacka
     /// </summary>
     /// <param name="message"></param>
     /// <returns></returns>
-    public virtual byte[] Handler(IMessage message)
+    public virtual byte[] Handler(INetworkMessage message)
     {
         if (message is MessageObject messageObject)
         {
@@ -82,7 +82,13 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPacka
     /// </summary>
     public virtual ushort PackageLength { get; } = 2 + 1 + 1 + 4 + 4;
 
-    public int Encode(IBufferWriter<byte> writer, IMessage pack)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="writer"></param>
+    /// <param name="pack"></param>
+    /// <returns></returns>
+    public int Encode(IBufferWriter<byte> writer, INetworkMessage pack)
     {
         var bytes = Handler(pack);
         writer.Write(bytes);

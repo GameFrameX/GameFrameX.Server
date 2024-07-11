@@ -1,7 +1,4 @@
-using GameFrameX.NetWork.Abstractions;
-using GameFrameX.NetWork.Messages;
-
-namespace GameFrameX.NetWork;
+namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
 /// 消息编码器接口定义
@@ -20,7 +17,7 @@ public interface IMessageEncoderHandler
     /// </summary>
     /// <param name="message">消息对象</param>
     /// <returns></returns>
-    byte[] Handler(IMessage message);
+    byte[] Handler(INetworkMessage message);
 
     /// <summary>
     /// 设置压缩消息处理器

@@ -1,4 +1,5 @@
-﻿using GameFrameX.SuperSocket.Server.Abstractions.Session;
+﻿using GameFrameX.NetWork.Abstractions;
+using GameFrameX.SuperSocket.Server.Abstractions.Session;
 
 namespace GameFrameX.NetWork;
 

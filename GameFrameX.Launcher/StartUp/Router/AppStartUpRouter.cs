@@ -53,7 +53,7 @@ internal partial class AppStartUpRouter : AppStartUpService
         DisconnectToGateWay();
     }
 
-    protected override void DiscoveryCenterDataReceived(IMessage message)
+    protected override void DiscoveryCenterDataReceived(INetworkMessage message)
     {
         if (message is MessageObject messageObject)
         {
@@ -72,7 +72,7 @@ internal partial class AppStartUpRouter : AppStartUpService
             .UseSessionHandler(OnConnected, OnDisconnected)
             .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)(ConfigureWebServer)).Build();
         await _webSocketServer.StartAsync();
-        _tcpService = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
+        _tcpService = SuperSocketHostBuilder.Create<INetworkMessage, MessageObjectPipelineFilter>()
             .ConfigureSuperSocket(ConfigureSuperSocket)
             .UseClearIdleSession()
             .UsePackageDecoder<MessageRouterDecoderHandler>()
@@ -84,7 +84,7 @@ internal partial class AppStartUpRouter : AppStartUpService
         await _tcpService.StartAsync();
     }
 
-    private ValueTask<bool> ClientErrorHandler(IAppSession appSession, PackageHandlingException<IMessage> eventArgs)
+    private ValueTask<bool> ClientErrorHandler(IAppSession appSession, PackageHandlingException<INetworkMessage> eventArgs)
     {
         LogHelper.Error(eventArgs.ToString());
         return ValueTask.FromResult(true);
@@ -131,7 +131,7 @@ internal partial class AppStartUpRouter : AppStartUpService
     /// </summary>
     /// <param name="appSession"></param>
     /// <param name="message"></param>
-    private ValueTask MessagePackageHandler(IAppSession appSession, IMessage message)
+    private ValueTask MessagePackageHandler(IAppSession appSession, INetworkMessage message)
     {
         if (message is IOuterMessage outerMessage)
         {

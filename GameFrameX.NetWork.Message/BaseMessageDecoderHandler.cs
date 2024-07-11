@@ -11,14 +11,14 @@ namespace GameFrameX.NetWork.Message;
 /// <summary>
 /// 基础消息解码处理器
 /// </summary>
-public class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder<IMessage>
+public class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder<INetworkMessage>
 {
     /// <summary>
     /// 和客户端之间的消息 数据长度(2)+消息唯一ID(4)+消息ID(4)+消息内容
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
-    public virtual IMessage Handler(byte[] data)
+    public virtual INetworkMessage Handler(byte[] data)
     {
         try
         {
@@ -80,7 +80,7 @@ public class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder
         DecompressHandler = decompressHandler;
     }
 
-    public IMessage Decode(ref ReadOnlySequence<byte> buffer, object context)
+    public INetworkMessage Decode(ref ReadOnlySequence<byte> buffer, object context)
     {
         return Handler(buffer.ToArray());
     }

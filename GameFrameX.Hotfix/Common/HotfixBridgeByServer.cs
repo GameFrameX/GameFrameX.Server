@@ -3,6 +3,7 @@ using System.Net;
 using GameFrameX.Hotfix.Launcher;
 using GameFrameX.Launcher;
 using GameFrameX.NetWork;
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Message;
 using GameFrameX.NetWork.Messages;
@@ -54,7 +55,7 @@ namespace GameFrameX.Hotfix.Common
                 .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)(ConfigureWebServer)).Build();
             await webSocketServer.StartAsync();
             LogHelper.Info("启动 WebSocket 服务器完成...");
-            tcpService = SuperSocketHostBuilder.Create<IMessage, MessageObjectPipelineFilter>()
+            tcpService = SuperSocketHostBuilder.Create<INetworkMessage, MessageObjectPipelineFilter>()
                 .ConfigureSuperSocket(ConfigureSuperSocket)
                 .UseClearIdleSession()
                 .UsePackageDecoder<MessageGameDecoderHandler>()
@@ -76,7 +77,7 @@ namespace GameFrameX.Hotfix.Common
             options.AddListener(new ListenOptions { Ip = IPAddress.Any.ToString(), Port = Setting.InnerPort });
         }
 
-        private ValueTask<bool> ClientErrorHandler(IAppSession appSession, PackageHandlingException<IMessage> arg2)
+        private ValueTask<bool> ClientErrorHandler(IAppSession appSession, PackageHandlingException<INetworkMessage> arg2)
         {
             LogHelper.Error(arg2.ToString());
             return ValueTask.FromResult(true);
@@ -125,7 +126,7 @@ namespace GameFrameX.Hotfix.Common
         /// </summary>
         /// <param name="appSession"></param>
         /// <param name="messageObject"></param>
-        private async ValueTask MessagePackageHandler(IAppSession appSession, IMessage messageObject)
+        private async ValueTask MessagePackageHandler(IAppSession appSession, INetworkMessage messageObject)
         {
             if (messageObject is MessageObject message)
             {
