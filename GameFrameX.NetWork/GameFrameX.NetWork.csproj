@@ -28,6 +28,7 @@
         <AssemblyOriginatorKeyFile>../gameframex.key.snk</AssemblyOriginatorKeyFile>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
