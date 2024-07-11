@@ -11,7 +11,7 @@ namespace GameFrameX.NetWork.Message;
 /// <summary>
 /// 基础消息编码处理器
 /// </summary>
-public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder<INetworkMessage>
+public class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder<INetworkMessage>
 {
     /// <summary>
     /// 获取消息业务类型
