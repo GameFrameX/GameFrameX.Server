@@ -4,7 +4,7 @@
     /// 消息类型对应的消息映射处理器
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class MessageMappingAttribute : Attribute
+    public sealed class MessageMappingAttribute : Attribute
     {
         /// <summary>
         /// 处理类型
