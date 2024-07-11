@@ -7,9 +7,14 @@ namespace GameFrameX.Hotfix.StartUp;
 /// </summary>
 internal partial class AppStartUpHotfixGame : AppStartUpBase
 {
-
+    /// <summary>
+    /// 是否启用重连
+    /// </summary>
     protected override bool IsEnableReconnection { get; } = false;
 
+    /// <summary>
+    /// 是否启用心跳
+    /// </summary>
     protected override bool IsEnableHeartBeat { get; } = false;
 
 
