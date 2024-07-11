@@ -6,7 +6,7 @@ namespace GameFrameX.Hotfix.Logic.Http;
 /// 热更新
 /// http://localhost:20001/game/api?command=Reload&amp;version=1.0.0
 /// </summary>
-[HttpMsgMapping(typeof(ReloadHttpHandler))]
+[HttpMessageMapping(typeof(ReloadHttpHandler))]
 public sealed class ReloadHttpHandler : BaseHttpHandler
 {
     /// <summary>

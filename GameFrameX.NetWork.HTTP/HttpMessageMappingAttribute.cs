@@ -6,7 +6,7 @@ namespace GameFrameX.NetWork.HTTP
     /// Http 消息处理器
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class HttpMsgMappingAttribute : Attribute
+    public sealed class HttpMessageMappingAttribute : Attribute
     {
         /// <summary>
         /// 原始命令
@@ -21,14 +21,20 @@ namespace GameFrameX.NetWork.HTTP
         /// <summary>
         /// 处理器命名前缀
         /// </summary>
-        public const string HTTPprefix = "Http";
+        public const string HTTPprefix = "";
 
         /// <summary>
         /// 处理器命名后缀
         /// </summary>
-        public const string HTTPsuffix = "Handler";
+        public const string HTTPsuffix = "HttpHandler";
 
-        public HttpMsgMappingAttribute(Type classType)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="classType"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
+        public HttpMessageMappingAttribute(Type classType)
         {
             if (classType == null)
             {
@@ -36,15 +42,19 @@ namespace GameFrameX.NetWork.HTTP
             }
 
             var className = classType.Name;
-
-            if (!className.StartsWith(HTTPprefix, StringComparison.Ordinal))
+            if (!classType.IsSealed)
             {
-                throw new InvalidOperationException("HttpMsgMapping 必须以Http开头");
+                throw new InvalidOperationException($"{className} 必须是标记为sealed的类");
             }
+
+            // if (!className.StartsWith(HTTPprefix, StringComparison.Ordinal))
+            // {
+            //     throw new InvalidOperationException($"{className} 必须以{HTTPprefix}开头");
+            // }
 
             if (!className.EndsWith(HTTPsuffix, StringComparison.Ordinal))
             {
-                throw new InvalidOperationException("HttpMsgMapping 必须以Handler结尾");
+                throw new InvalidOperationException($"{className} 必须以{HTTPsuffix}结尾");
             }
 
             OriginalCmd = className.Substring(HTTPprefix.Length, className.Length - HTTPprefix.Length - HTTPsuffix.Length);
