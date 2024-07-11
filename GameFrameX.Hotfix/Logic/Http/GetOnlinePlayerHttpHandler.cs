@@ -3,18 +3,18 @@ using GameFrameX.NetWork.HTTP;
 
 namespace GameFrameX.Hotfix.Logic.Http
 {
-    class GetOnlinePlayerResponse
-    {
-        public int Count { get; set; }
-    }
-
     /// <summary>
     /// 获取在线人数
     /// http://localhost:20001/game/api?command=GetOnlinePlayer
     /// </summary>
-    [HttpMsgMapping(typeof(HttpGetOnlinePlayerHandler))]
-    public class HttpGetOnlinePlayerHandler : BaseHttpHandler
+    [HttpMsgMapping(typeof(GetOnlinePlayerHttpHandler))]
+    public sealed class GetOnlinePlayerHttpHandler : BaseHttpHandler
     {
+        class GetOnlinePlayerResponse
+        {
+            public int Count { get; set; }
+        }
+
         /// <summary>
         /// 
         /// </summary>

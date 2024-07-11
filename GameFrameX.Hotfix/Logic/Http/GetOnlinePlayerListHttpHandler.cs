@@ -6,8 +6,8 @@ namespace GameFrameX.Hotfix.Logic.Http;
 /// <summary>
 /// 获取在线玩家列表
 /// </summary>
-[HttpMsgMapping(typeof(HttpGetOnlinePlayerListHandler))]
-public class HttpGetOnlinePlayerListHandler : BaseHttpHandler
+[HttpMsgMapping(typeof(GetOnlinePlayerListHttpHandler))]
+public sealed class GetOnlinePlayerListHttpHandler : BaseHttpHandler
 {
     /// <summary>
     /// 
