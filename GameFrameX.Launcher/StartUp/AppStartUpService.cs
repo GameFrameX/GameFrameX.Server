@@ -1,19 +1,15 @@
-﻿using System.Net;
-using System.Timers;
-using GameFrameX.Log;
-using GameFrameX.Setting;
-using GameFrameX.SuperSocket.ClientEngine;
-using ErrorEventArgs = System.IO.ErrorEventArgs;
+﻿using GameFrameX.NetWork.Message;
+using GameFrameX.Proto.BuiltIn;
 using Timer = System.Timers.Timer;
 
-namespace GameFrameX.StartUp;
+namespace GameFrameX.Launcher.StartUp;
 
 public abstract class AppStartUpService : AppStartUpBase
 {
     /// <summary>
     /// 链接到发现中心的客户端
     /// </summary>
-    AsyncTcpSession _discoveryCenterClient;
+    AsyncTcpSession discoveryCenterClient;
 
     protected RpcSession RpcSession { get; private set; }
 
@@ -51,7 +47,7 @@ public abstract class AppStartUpService : AppStartUpBase
 
     private Timer ConnectTargetServerTimer { get; set; }
 
-    public override Task EnterAsync()
+    public override Task StartAsync()
     {
         if (IsRequestConnectServer)
         {
@@ -77,7 +73,7 @@ public abstract class AppStartUpService : AppStartUpBase
         while (true)
         {
             var message = RpcSession.Handler();
-            if (message == null || _discoveryCenterClient.IsConnected == false)
+            if (message == null || discoveryCenterClient.IsConnected == false)
             {
                 Thread.Sleep(1);
                 continue;
@@ -99,7 +95,7 @@ public abstract class AppStartUpService : AppStartUpBase
             LogHelper.Debug(message.ToSendMessageString(ServerType, ServerType.DiscoveryCenter));
         }
 
-        _discoveryCenterClient.TrySend(span);
+        discoveryCenterClient.TrySend(span);
     }
 
     protected override void HeartBeatTimerOnElapsed(object sender, ElapsedEventArgs e)
@@ -114,7 +110,7 @@ public abstract class AppStartUpService : AppStartUpBase
     /// </summary>
     void SendConnectTargetServer()
     {
-        if (!_discoveryCenterClient.IsConnected)
+        if (!discoveryCenterClient.IsConnected)
         {
             return;
         }
@@ -163,16 +159,16 @@ public abstract class AppStartUpService : AppStartUpBase
     private void ConnectToDiscoveryCenter()
     {
         var endPoint = new IPEndPoint(IPAddress.Parse(Setting.DiscoveryCenterIp), Setting.DiscoveryCenterPort);
-        _discoveryCenterClient.Connect(endPoint);
+        discoveryCenterClient.Connect(endPoint);
     }
 
     private void StartDiscoveryCenterClient()
     {
-        _discoveryCenterClient              =  new AsyncTcpSession();
-        _discoveryCenterClient.Closed       += DiscoveryCenterClientOnClosed;
-        _discoveryCenterClient.DataReceived += DiscoveryCenterClientOnDataReceived;
-        _discoveryCenterClient.Connected    += DiscoveryCenterClientOnConnected;
-        _discoveryCenterClient.Error        += DiscoveryCenterClientOnError;
+        discoveryCenterClient              =  new AsyncTcpSession();
+        discoveryCenterClient.Closed       += DiscoveryCenterClientOnClosed;
+        discoveryCenterClient.DataReceived += DiscoveryCenterClientOnDataReceived;
+        discoveryCenterClient.Connected    += DiscoveryCenterClientOnConnected;
+        discoveryCenterClient.Error        += DiscoveryCenterClientOnError;
 
         LogHelper.Info("开始链接到发现中心服务器 ...");
         ReconnectionTimer.Start();
@@ -182,7 +178,7 @@ public abstract class AppStartUpService : AppStartUpBase
     private void DiscoveryCenterClientOnError(object sender, ErrorEventArgs e)
     {
         LogHelper.Info("和发现中心服务器链接链接发生错误!" + e);
-        DiscoveryCenterClientOnClosed(_discoveryCenterClient, e);
+        DiscoveryCenterClientOnClosed(discoveryCenterClient, e);
     }
 
     private void DiscoveryCenterClientOnConnected(object sender, EventArgs e)
@@ -293,17 +289,17 @@ public abstract class AppStartUpService : AppStartUpBase
         ReconnectionTimer.Start();
     }
 
-    public override Task Stop(string message = "")
+    public override Task StopAsync(string message = "")
     {
         HeartBeatTimer?.Close();
         ReconnectionTimer?.Close();
         ConnectTargetServerTimer?.Close();
-        if (_discoveryCenterClient != null)
+        if (discoveryCenterClient != null)
         {
-            _discoveryCenterClient.Close();
-            _discoveryCenterClient = null;
+            discoveryCenterClient.Close();
+            discoveryCenterClient = null;
         }
 
-        return base.Stop(message);
+        return base.StopAsync(message);
     }
 }

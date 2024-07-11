@@ -2,6 +2,7 @@ using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 using GameFrameX.ServerManager;
 
+
 namespace GameFrameX.Launcher.StartUp.Discovery;
 
 /// <summary>
@@ -15,7 +16,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
     readonly MessageActorDiscoveryEncoderHandler messageEncoderHandler = new MessageActorDiscoveryEncoderHandler();
     NamingServiceManager _namingServiceManager = new NamingServiceManager();
 
-    public override async Task EnterAsync()
+    public override async Task StartAsync()
     {
         try
         {
@@ -39,7 +40,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
         }
 
         LogHelper.Info($"退出服务器{ServerType}开始");
-        await Stop();
+        await StopAsync();
         LogHelper.Info($"退出服务器{ServerType}成功");
     }
 
@@ -214,7 +215,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
         return ValueTask.CompletedTask;
     }
 
-    public override async Task Stop(string message = "")
+    public override async Task StopAsync(string message = "")
     {
         LogHelper.Info($"{ServerType} Server stopping...");
         await _server.StopAsync();

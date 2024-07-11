@@ -23,22 +23,22 @@ internal partial class AppStartUpRouter : AppStartUpService
     private IHost _webSocketServer;
 
 
-    public override async Task EnterAsync()
+    public override async Task StartAsync()
     {
         try
         {
             await StartServer();
             LogHelper.Info($"启动服务器 {ServerType} 端口: {Setting.InnerPort} 结束!");
-            await base.EnterAsync();
+            await base.StartAsync();
             StartGatewayClient();
             await AppExitToken;
             LogHelper.Info("全部断开...");
-            await Stop();
+            await StopAsync();
             LogHelper.Info("Done!");
         }
         catch (Exception e)
         {
-            await Stop(e.Message);
+            await StopAsync(e.Message);
         }
     }
 
@@ -193,12 +193,12 @@ internal partial class AppStartUpRouter : AppStartUpService
             { { "serverOptions:name", "TestServer" }, { "serverOptions:listeners:0:ip", "Any" }, { "serverOptions:listeners:0:port", Setting.WsPort.ToString() } });
     }
 
-    public override async Task Stop(string message = "")
+    public override async Task StopAsync(string message = "")
     {
         DisconnectToGateWay();
         await _webSocketServer.StopAsync();
         await _tcpService.StopAsync();
-        await base.Stop(message);
+        await base.StopAsync(message);
     }
 
     protected override void Init()

@@ -14,7 +14,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
     private IServer tcpService;
     protected override int HeartBeatInterval { get; } = 10000;
 
-    public override async Task EnterAsync()
+    public override async Task StartAsync()
     {
         try
         {
@@ -23,22 +23,22 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
             // _namingServiceManager.OnServerAdd = OnServerAdd;
             // _namingServiceManager.OnServerRemove = OnServerRemove;
             _namingServiceManager.AddSelf(Setting);
-            await base.EnterAsync();
+            await base.StartAsync();
             await AppExitToken;
         }
         catch (Exception e)
         {
             LogHelper.Fatal(e);
             AppExitSource.TrySetException(e);
-            await Stop(e.Message);
+            await StopAsync(e.Message);
         }
     }
 
-    public override async Task Stop(string message = "")
+    public override async Task StopAsync(string message = "")
     {
         LogHelper.Info($"服务器{Setting.ServerType} 停止! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
         await tcpService.StopAsync();
-        await base.Stop(message);
+        await base.StopAsync(message);
     }
 
     #region Server

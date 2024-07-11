@@ -1,4 +1,4 @@
-﻿using System.Net;
+﻿/*using System.Net;
 using System.Timers;
 using GameFrameX.Launcher;
 using GameFrameX.NetWork;
@@ -157,4 +157,4 @@ internal partial class AppStartUpHotfixGame
     {
         _gatewayClient?.Close();
     }
-}
+}*/
