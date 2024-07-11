@@ -16,6 +16,21 @@ public static class GlobalConst
     public const string UniqueIdIdKey = "UNIQUEID_ID";
 
     /// <summary>
+    /// 组件代理名称后缀
+    /// </summary>
+    public const string ComponentAgentNameSuffix = "ComponentAgent";
+
+    /// <summary>
+    /// 组件代理包裹名称后缀
+    /// </summary>
+    public const string ComponentAgentWrapperNameSuffix = "ComponentAgentWrapper";
+
+    /// <summary>
+    /// 组件代理名称前缀
+    /// </summary>
+    public const string HotfixNameSpaceNamePrefix = "GameFrameX.Hotfix.";
+
+    /// <summary>
     /// 秒标记
     /// </summary>
     public const int SecondMask = 0b111111111111111111111111111111;

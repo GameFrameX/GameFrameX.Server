@@ -15,8 +15,8 @@ namespace GameFrameX.Core.Hotfix
 {
     internal class HotfixModule
     {
-        private DllLoader _dllLoader = null;
-        readonly string _dllPath;
+        private  DllLoader _dllLoader = null;
+        readonly string    _dllPath;
 
         internal IHotfixBridge HotfixBridge { get; private set; }
 
@@ -67,7 +67,7 @@ namespace GameFrameX.Core.Hotfix
             bool success = false;
             try
             {
-                _dllLoader = new DllLoader(_dllPath);
+                _dllLoader     = new DllLoader(_dllPath);
                 HotfixAssembly = _dllLoader.HotfixDll;
                 if (!reload)
                 {
@@ -101,25 +101,25 @@ namespace GameFrameX.Core.Hotfix
                 {
                     //检查hotfix dll是否已经释放
                     Task.Run(async () =>
-                    {
-                        int tryCount = 0;
-                        while (weak.IsAlive && tryCount++ < 10)
-                        {
-                            await Task.Delay(100);
-                            GC.Collect();
-                            GC.WaitForPendingFinalizers();
-                        }
+                             {
+                                 int tryCount = 0;
+                                 while (weak.IsAlive && tryCount++ < 10)
+                                 {
+                                     await Task.Delay(100);
+                                     GC.Collect();
+                                     GC.WaitForPendingFinalizers();
+                                 }
 
-                        LogHelper.Warn($"hotfix dll unloaded {(weak.IsAlive ? "failed" : "success")}");
-                    });
+                                 LogHelper.Warn($"hotfix dll unloaded {(weak.IsAlive ? "failed" : "success")}");
+                             });
                 }
             }
         }
 
         private void LoadRefAssemblies()
         {
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-            var nameSet = new HashSet<string>(assemblies.Select(t => t.GetName().Name));
+            var assemblies          = AppDomain.CurrentDomain.GetAssemblies();
+            var nameSet             = new HashSet<string>(assemblies.Select(t => t.GetName().Name));
             var hotfixRefAssemblies = HotfixAssembly.GetReferencedAssemblies();
             foreach (var refAssembly in hotfixRefAssemblies)
             {
@@ -139,7 +139,7 @@ namespace GameFrameX.Core.Hotfix
         private void ParseDll()
         {
             var fullName = typeof(IHotfixBridge).FullName;
-            var types = HotfixAssembly.GetTypes();
+            var types    = HotfixAssembly.GetTypes();
             foreach (var type in types)
             {
                 if (!AddAgent(type)
@@ -168,7 +168,7 @@ namespace GameFrameX.Core.Hotfix
                 return false;
             }
 
-            var attr = (HttpMsgMappingAttribute)type.GetCustomAttribute(typeof(HttpMsgMappingAttribute));
+            var attr = (HttpMessageMappingAttribute)type.GetCustomAttribute(typeof(HttpMessageMappingAttribute));
             if (attr == null)
             {
                 // 不是最终实现类
@@ -226,11 +226,7 @@ namespace GameFrameX.Core.Hotfix
             }
 
             int msgId = msgIdField.MessageId;
-            if (!tcpHandlerMap.ContainsKey(msgId))
-            {
-                tcpHandlerMap.Add(msgId, type);
-            }
-            else
+            if (!tcpHandlerMap.TryAdd(msgId, type))
             {
                 LogHelper.Error("重复注册消息tcp handler:[{}] msg:[{}]", msgId, type);
             }
@@ -245,9 +241,9 @@ namespace GameFrameX.Core.Hotfix
                 return false;
             }
 
-            var compAgentType = type.BaseType.GetGenericArguments()[0];
-            var compType = compAgentType.BaseType.GetGenericArguments()[0];
-            var actorType = ComponentRegister.CompActorDic[compType];
+            var compAgentType   = type.BaseType.GetGenericArguments()[0];
+            var compType        = compAgentType.BaseType.GetGenericArguments()[0];
+            var actorType       = ComponentRegister.CompActorDic[compType];
             var evtListenersDic = actorEvtListeners.GetOrAdd(actorType);
 
             bool find = false;
@@ -257,7 +253,7 @@ namespace GameFrameX.Core.Hotfix
                 {
                     find = true;
 
-                    var evtId = evt.EventId;
+                    var evtId     = evt.EventId;
                     var listeners = evtListenersDic.GetOrAdd(evtId);
                     listeners.Add((IEventListener)Activator.CreateInstance(type));
                 }
@@ -284,19 +280,23 @@ namespace GameFrameX.Core.Hotfix
                 return false;
             }
 
-            if (fullName.StartsWith("GameFrameX.Hotfix.") && fullName.EndsWith("ComponentAgentWrapper"))
+            if (fullName.StartsWith(GlobalConst.HotfixNameSpaceNamePrefix) && fullName.EndsWith(GlobalConst.ComponentAgentWrapperNameSuffix))
             {
                 agentAgentWrapperMap[type.BaseType] = type;
                 return true;
             }
 
+            if (!fullName.EndsWith(GlobalConst.ComponentAgentNameSuffix))
+            {
+                throw new Exception($"组件agent必须以{GlobalConst.ComponentAgentNameSuffix}结尾，{fullName}");
+            }
+
             var compType = type.BaseType.GetGenericArguments()[0];
-            if (compAgentMap.ContainsKey(compType))
+            if (!compAgentMap.TryAdd(compType, type))
             {
                 throw new Exception($"comp:{compType.FullName}有多个agent");
             }
 
-            compAgentMap[compType] = type;
             agentCompMap[type] = compType;
             return true;
         }
