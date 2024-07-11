@@ -120,6 +120,13 @@ jobs:
           VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
+      - name: Publish GameFrameX.DBServer.Mongo
+        uses: AlianBlank/publish-nuget@v1.0.2
+        with:
+          PROJECT_FILE_PATH: DataBaseServer/GameFrameX.DBServer.Mongo/GameFrameX.DBServer.Mongo.csproj
+          VERSION_FILE_PATH: Version.props
+          NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
+
       - name: Publish GameFrameX.DBServer.NoSql
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
