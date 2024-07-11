@@ -49,7 +49,7 @@ public class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder
                 var message = ProtoBufSerializerHelper.Deserialize(messageData, messageType);
                 if (message is MessageObject messageObject)
                 {
-                    messageObject.MessageId = messageId;
+                    messageObject.SetMessageId(messageId);
                     messageObject.SetOperationType((MessageOperationType)operationType);
                     messageObject.SetUniqueId(uniqueId);
                     return messageObject;

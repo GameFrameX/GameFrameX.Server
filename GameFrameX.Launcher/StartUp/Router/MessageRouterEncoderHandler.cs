@@ -13,10 +13,10 @@ class MessageRouterEncoderHandler : BaseMessageEncoderHandler
     /// <returns></returns>
     public byte[] InnerHandler(IInnerMessage message)
     {
-        var msgId = MessageProtoHelper.GetMessageIdByType(message.MessageType);
-        ushort len = (ushort)(PackageLength + message.MessageDataLength);
-        var buffer = new byte[len];
-        int offset = 0;
+        var    msgId  = MessageProtoHelper.GetMessageIdByType(message.MessageType);
+        ushort len    = (ushort)(PackageLength + message.MessageDataLength);
+        var    buffer = new byte[len];
+        int    offset = 0;
         buffer.WriteUShort(len, ref offset);
         buffer.WriteByte((byte)message.OperationType, ref offset);
         buffer.WriteInt(message.UniqueId, ref offset);
@@ -36,19 +36,19 @@ class MessageRouterEncoderHandler : BaseMessageEncoderHandler
         {
             var messageType = message.GetType();
 
-            var msgId = MessageProtoHelper.GetMessageIdByType(messageType);
+            var messageId     = MessageProtoHelper.GetMessageIdByType(messageType);
             var operationType = (byte)(MessageProtoHelper.IsHeartbeat(messageType) ? MessageOperationType.HeartBeat : MessageOperationType.Game);
-            messageObject.MessageId = msgId;
-            var uniqueId = messageObject.UniqueId;
+            messageObject.SetMessageId(messageId);
             var bytes = ProtoBufSerializerHelper.Serialize(messageObject);
             // len +uniqueId + msgId + bytes.length
-            ushort len = (ushort)(PackageLength + bytes.Length);
-            var span = new byte[len];
-            int offset = 0;
+            ushort len    = (ushort)(PackageLength + bytes.Length);
+            var    span   = new byte[len];
+            int    offset = 0;
             span.WriteUShort(len, ref offset);
             span.WriteByte(operationType, ref offset);
-            span.WriteInt(uniqueId, ref offset);
-            span.WriteInt(msgId, ref offset);
+            span.WriteByte(byte.MinValue, ref offset);
+            span.WriteInt(messageObject.UniqueId, ref offset);
+            span.WriteInt(messageObject.MessageId, ref offset);
             span.WriteBytesWithoutLength(bytes, ref offset);
             return span;
         }

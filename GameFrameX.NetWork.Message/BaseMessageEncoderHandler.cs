@@ -35,11 +35,11 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPacka
         {
             var messageType = message.GetType();
 
-            var msgId = MessageProtoHelper.GetMessageIdByType(messageType);
-            messageObject.MessageId = msgId;
-            var uniqueId = messageObject.UniqueId;
-            var bytes = ProtoBufSerializerHelper.Serialize(messageObject);
-            byte zipFlag = 0;
+            var messageId = MessageProtoHelper.GetMessageIdByType(messageType);
+            messageObject.SetMessageId(messageId);
+            var  uniqueId = messageObject.UniqueId;
+            var  bytes    = ProtoBufSerializerHelper.Serialize(messageObject);
+            byte zipFlag  = 0;
             if (CompressHandler != null)
             {
                 zipFlag = 1;
@@ -47,14 +47,14 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPacka
                 bytes = CompressHandler.Handler(bytes);
             }
 
-            var len = (ushort)(PackageLength + bytes.Length);
-            var span = new byte[len];
+            var len    = (ushort)(PackageLength + bytes.Length);
+            var span   = new byte[len];
             int offset = 0;
             span.WriteUShort(len, ref offset);
             span.WriteByte((byte)GetMessageOperationType(messageType), ref offset);
             span.WriteByte(zipFlag, ref offset);
             span.WriteInt(uniqueId, ref offset);
-            span.WriteInt(msgId, ref offset);
+            span.WriteInt(messageId, ref offset);
             span.WriteBytesWithoutLength(bytes, ref offset);
             return span;
         }

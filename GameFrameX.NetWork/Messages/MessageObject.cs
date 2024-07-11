@@ -19,8 +19,7 @@ namespace GameFrameX.NetWork.Messages
         /// 消息ID
         /// </summary>
         [JsonIgnore]
-        [ProtoMember(998)]
-        public int MessageId { get; set; }
+        public int MessageId { get; private set; }
 
         /// <summary>
         /// 设置消息ID
@@ -34,6 +33,7 @@ namespace GameFrameX.NetWork.Messages
         /// <summary>
         /// 消息的唯一ID
         /// </summary>
+        [JsonIgnore]
         [ProtoMember(999)]
         public int UniqueId { get; set; }
 

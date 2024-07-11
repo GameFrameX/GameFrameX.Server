@@ -19,11 +19,11 @@ public static class UnityTcpClient
 
     public static async void Entry(string[] args)
     {
-        _tcpClient = new AsyncTcpSession();
-        _tcpClient.Connected += OnTcpClientOnConnected; //成功连接到服务器
-        _tcpClient.Closed += OnTcpClientOnClosed; //从服务器断开连接，当连接不成功时不会触发。
+        _tcpClient              =  new AsyncTcpSession();
+        _tcpClient.Connected    += OnTcpClientOnConnected; //成功连接到服务器
+        _tcpClient.Closed       += OnTcpClientOnClosed; //从服务器断开连接，当连接不成功时不会触发。
         _tcpClient.DataReceived += OnTcpClientOnDataReceived;
-        _tcpClient.Error += OnTcpClientOnError;
+        _tcpClient.Error        += OnTcpClientOnError;
 
         while (true)
         {
@@ -45,20 +45,20 @@ public static class UnityTcpClient
             // for (int i = 0; i < 10; i++)
             {
                 ReqHeartBeat req = new ReqHeartBeat
-                {
-                    Timestamp = TimeHelper.UnixTimeSeconds(),
-                    UniqueId = count
-                };
+                                   {
+                                       Timestamp = TimeHelper.UnixTimeSeconds(),
+                                       UniqueId  = count
+                                   };
                 SendToServer(req);
 
                 if (count % 2 == 0)
                 {
                     ReqLogin reqLogin = new ReqLogin
-                    {
-                        UserName = "admin",
-                        Password = "123456",
-                        UniqueId = count
-                    };
+                                        {
+                                            UserName = "admin",
+                                            Password = "123456",
+                                            UniqueId = count
+                                        };
                     SendToServer(reqLogin);
                 }
             }
@@ -93,17 +93,18 @@ public static class UnityTcpClient
 
     private static void DecodeMessage(byte[] data)
     {
-        int offset = 0;
-        var length = data.ReadUShort(ref offset);
+        int offset        = 0;
+        var length        = data.ReadUShort(ref offset);
         var operationType = data.ReadByte(ref offset);
-        var uniqueId = data.ReadInt(ref offset);
-        int messageId = data.ReadInt(ref offset);
-        var messageData = data.ReadBytes(offset, length - offset);
-        var messageType = MessageProtoHelper.GetMessageTypeById(messageId);
+        var uniqueId      = data.ReadInt(ref offset);
+        int messageId     = data.ReadInt(ref offset);
+        var messageData   = data.ReadBytes(offset, length - offset);
+        var messageType   = MessageProtoHelper.GetMessageTypeById(messageId);
         if (messageType != null)
         {
             var messageObject = (MessageObject)ProtoBufSerializerHelper.Deserialize(messageData, messageType);
-            messageObject.MessageId = messageId;
+            messageObject.SetMessageId(messageId);
+            messageObject.SetOperationType((MessageOperationType)operationType);
             messageObject.SetUniqueId(uniqueId);
             Console.WriteLine($"客户端接收到信息：{messageObject.ToMessageString()}");
         }
@@ -114,15 +115,15 @@ public static class UnityTcpClient
     private static byte[] Handler(MessageObject message)
     {
         count++;
-        var bytes = ProtoBufSerializerHelper.Serialize(message);
-        ushort len = (ushort)(2 + 1 + 4 + 4 + bytes.Length);
-        var buffer = new byte[len];
-        int offset = 0;
+        var    bytes  = ProtoBufSerializerHelper.Serialize(message);
+        ushort len    = (ushort)(2 + 1 + 4 + 4 + bytes.Length);
+        var    buffer = new byte[len];
+        int    offset = 0;
         buffer.WriteUShort(len, ref offset);
         buffer.WriteByte((byte)(message is ReqHeartBeat ? MessageOperationType.HeartBeat : MessageOperationType.Game), ref offset);
         buffer.WriteInt(message.UniqueId, ref offset);
         var messageId = MessageProtoHelper.GetMessageIdByType(message.GetType());
-        message.MessageId = messageId;
+        message.SetMessageId(messageId);
         buffer.WriteInt(messageId, ref offset);
         buffer.WriteBytesWithoutLength(bytes, ref offset);
         Console.WriteLine($"客户端接发送信息：{message.ToMessageString()}");
