@@ -50,6 +50,13 @@ jobs:
           VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
+      - name: Publish GameFrameX.StartUp
+        uses: AlianBlank/publish-nuget@v1.0.2
+        with:
+          PROJECT_FILE_PATH: GameFrameX.StartUp/GameFrameX.StartUp.csproj
+          VERSION_FILE_PATH: Version.props
+          NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
+
       - name: Publish GameFrameX.ProtoBuf.Net
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
