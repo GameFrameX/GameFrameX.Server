@@ -3,6 +3,9 @@ using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.Core.Net.BaseHandler
 {
+    /// <summary>
+    /// 基础消息处理器
+    /// </summary>
     public abstract class BaseMessageHandler : IMessageHandler
     {
         /// <summary>
@@ -15,6 +18,10 @@ namespace GameFrameX.Core.Net.BaseHandler
         /// </summary>
         public MessageObject Message { get; set; }
 
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <returns></returns>
         public virtual Task Init()
         {
             return Task.CompletedTask;

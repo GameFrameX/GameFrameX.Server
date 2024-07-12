@@ -1,5 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Reflection;
+using GameFrameX.Core.Abstractions;
+using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Actors;
 using GameFrameX.Core.Comps;
 using GameFrameX.Core.Events;
@@ -17,12 +19,22 @@ namespace GameFrameX.Core.Hotfix
         private static volatile HotfixModule _module = null;
 
         private static AppSetting _baseSetting;
-        public static Assembly HotfixAssembly => _module?.HotfixAssembly;
 
-        private static readonly ConcurrentDictionary<int, HotfixModule> oldModuleMap = new();
+        public static Assembly HotfixAssembly
+        {
+            get { return _module?.HotfixAssembly; }
+        }
+
+        private static readonly ConcurrentDictionary<int, HotfixModule> oldModuleMap = new ConcurrentDictionary<int, HotfixModule>();
 
         public static DateTime ReloadTime { get; private set; }
 
+        /// <summary>
+        /// 加载热更新模块
+        /// </summary>
+        /// <param name="setting"></param>
+        /// <param name="dllVersion"></param>
+        /// <returns></returns>
         public static async Task<bool> LoadHotfixModule(AppSetting setting, string dllVersion = "")
         {
             if (setting != null)
@@ -30,9 +42,9 @@ namespace GameFrameX.Core.Hotfix
                 _baseSetting = setting;
             }
 
-            var dllPath = Path.Combine(Environment.CurrentDirectory, string.IsNullOrEmpty(dllVersion) ? "hotfix/GameFrameX.Hotfix.dll" : $"{dllVersion}/GameFrameX.Hotfix.dll");
-            var hotfixModule = new HotfixModule(dllPath);
-            bool reload = _module != null;
+            var  dllPath      = Path.Combine(Environment.CurrentDirectory, string.IsNullOrEmpty(dllVersion) ? "hotfix/GameFrameX.Hotfix.dll" : $"{dllVersion}/GameFrameX.Hotfix.dll");
+            var  hotfixModule = new HotfixModule(dllPath);
+            bool reload       = _module != null;
             // 起服时失败会有异常抛出
             var success = hotfixModule.Init(reload);
             if (!success)
@@ -53,12 +65,12 @@ namespace GameFrameX.Core.Hotfix
                 int oldModuleHash = oldModule.GetHashCode();
                 oldModuleMap.TryAdd(oldModuleHash, oldModule);
                 _ = Task.Run(async () =>
-                {
-                    await Task.Delay(1000 * 60 * 3);
-                    oldModuleMap.TryRemove(oldModuleHash, out _);
-                    oldModule.Unload();
-                    DoingHotfix = !oldModuleMap.IsEmpty;
-                });
+                             {
+                                 await Task.Delay(1000 * 60 * 3);
+                                 oldModuleMap.TryRemove(oldModuleHash, out _);
+                                 oldModule.Unload();
+                                 DoingHotfix = !oldModuleMap.IsEmpty;
+                             });
             }
 
             _module = newModule;
@@ -67,6 +79,10 @@ namespace GameFrameX.Core.Hotfix
             return true;
         }
 
+        /// <summary>
+        /// 停止
+        /// </summary>
+        /// <returns></returns>
         public static Task Stop()
         {
             return _module?.HotfixBridge?.Stop() ?? Task.CompletedTask;
@@ -82,11 +98,18 @@ namespace GameFrameX.Core.Hotfix
             return _module.GetCompType(agentType);
         }
 
+        /// <summary>
+        /// 获取代理
+        /// </summary>
+        /// <param name="component"></param>
+        /// <param name="refAssemblyType"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public static T GetAgent<T>(BaseComponent component, Type refAssemblyType) where T : IComponentAgent
         {
             if (!oldModuleMap.IsEmpty)
             {
-                var asb = typeof(T).Assembly;
+                var asb  = typeof(T).Assembly;
                 var asb2 = refAssemblyType?.Assembly;
                 foreach (var kv in oldModuleMap)
                 {
@@ -99,22 +122,38 @@ namespace GameFrameX.Core.Hotfix
             return _module.GetAgent<T>(component);
         }
 
+        /// <summary>
+        /// 获取TCP消息处理器
+        /// </summary>
+        /// <param name="msgId"></param>
+        /// <returns></returns>
         public static BaseMessageHandler GetTcpHandler(int msgId)
         {
             return _module.GetTcpHandler(msgId);
         }
 
+        /// <summary>
+        /// 获取HTTP消息处理器
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <returns></returns>
         public static BaseHttpHandler GetHttpHandler(string cmd)
         {
             return _module.GetHttpHandler(cmd);
         }
 
+        /// <summary>
+        /// 获取事件监听器列表
+        /// </summary>
+        /// <param name="actorType"></param>
+        /// <param name="evtId"></param>
+        /// <returns></returns>
         public static List<IEventListener> FindListeners(ActorType actorType, int evtId)
         {
-            return _module.FindListeners(actorType, evtId) ?? EMPTY_LISTENER_LIST;
+            return _module.FindListeners(actorType, evtId) ?? EmptyListenerList;
         }
 
-        private static readonly List<IEventListener> EMPTY_LISTENER_LIST = new();
+        private static readonly List<IEventListener> EmptyListenerList = new();
 
         /// <summary>
         /// 获取实例
@@ -123,7 +162,10 @@ namespace GameFrameX.Core.Hotfix
         public static T GetInstance<T>(string typeName, Type refAssemblyType = null)
         {
             if (string.IsNullOrEmpty(typeName))
+            {
                 return default;
+            }
+
             if (oldModuleMap.Count > 0)
             {
                 var asb = refAssemblyType?.Assembly;

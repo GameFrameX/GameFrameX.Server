@@ -1,17 +1,18 @@
 ﻿using System.Threading.Tasks.Dataflow;
+using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Utility;
 using Serilog;
 using GameFrameX.Setting;
 
 namespace GameFrameX.Core.Actors.Impl
 {
-    public class WorkerActor
+    public class WorkerActor : IWorkerActor
     {
         private static readonly ILogger Log = Serilog.Log.ForContext<WorkWrapper>();
 
-        internal long CurChainId { get; set; }
-        internal long Id { get; init; }
-        public const int TIME_OUT = 13000;
+        internal     long CurChainId { get; set; }
+        internal     long Id         { get; init; }
+        public const int  TIME_OUT = 13000;
 
         public WorkerActor(long id = 0)
         {
@@ -20,7 +21,7 @@ namespace GameFrameX.Core.Actors.Impl
                 id = IdGenerator.GetUniqueId(IdModule.WorkerActor);
             }
 
-            Id = id;
+            Id          = id;
             ActionBlock = new ActionBlock<WorkWrapper>(InnerRun, new ExecutionDataflowBlockOptions() { MaxDegreeOfParallelism = 1 });
         }
 
@@ -48,8 +49,8 @@ namespace GameFrameX.Core.Actors.Impl
         /// <returns></returns>
         public (bool needEnqueue, long chainId) IsNeedEnqueue()
         {
-            var chainId = RuntimeContext.CurChainId;
-            bool needEnqueue = chainId == 0 || chainId != CurChainId;
+            var  chainId                             = RuntimeContext.CurrentChainId;
+            bool needEnqueue                         = chainId == 0 || chainId != CurChainId;
             if (needEnqueue && chainId == 0) chainId = NextChainId();
             return (needEnqueue, chainId);
         }
@@ -61,11 +62,11 @@ namespace GameFrameX.Core.Actors.Impl
             if (!discard && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
                 return default;
             var at = new ActionWrapper(work)
-            {
-                Owner = this,
-                TimeOut = timeOut,
-                CallChainId = callChainId
-            };
+                     {
+                         Owner       = this,
+                         TimeOut     = timeOut,
+                         CallChainId = callChainId
+                     };
             ActionBlock.SendAsync(at);
             return at.Tcs.Task;
         }
@@ -75,11 +76,11 @@ namespace GameFrameX.Core.Actors.Impl
             if (!discard && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
                 return default;
             var at = new FuncWrapper<T>(work)
-            {
-                Owner = this,
-                TimeOut = timeOut,
-                CallChainId = callChainId
-            };
+                     {
+                         Owner       = this,
+                         TimeOut     = timeOut,
+                         CallChainId = callChainId
+                     };
             ActionBlock.SendAsync(at);
             return at.Tcs.Task;
         }
@@ -89,11 +90,11 @@ namespace GameFrameX.Core.Actors.Impl
             if (!discard && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
                 return default;
             var at = new ActionAsyncWrapper(work)
-            {
-                Owner = this,
-                TimeOut = timeOut,
-                CallChainId = callChainId
-            };
+                     {
+                         Owner       = this,
+                         TimeOut     = timeOut,
+                         CallChainId = callChainId
+                     };
             ActionBlock.SendAsync(at);
             return at.Tcs.Task;
         }
@@ -103,11 +104,11 @@ namespace GameFrameX.Core.Actors.Impl
             if (!discard && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
                 return default;
             var at = new FuncAsyncWrapper<T>(work)
-            {
-                Owner = this,
-                TimeOut = timeOut,
-                CallChainId = callChainId
-            };
+                     {
+                         Owner       = this,
+                         TimeOut     = timeOut,
+                         CallChainId = callChainId
+                     };
             ActionBlock.SendAsync(at);
             return at.Tcs.Task;
         }
@@ -119,22 +120,22 @@ namespace GameFrameX.Core.Actors.Impl
         public void Tell(Action work, int timeout = Actor.TIME_OUT)
         {
             var at = new ActionWrapper(work)
-            {
-                Owner = this,
-                TimeOut = timeout,
-                CallChainId = NextChainId(),
-            };
+                     {
+                         Owner       = this,
+                         TimeOut     = timeout,
+                         CallChainId = NextChainId(),
+                     };
             _ = ActionBlock.SendAsync(at);
         }
 
         public void Tell(Func<Task> work, int timeout = Actor.TIME_OUT)
         {
             var wrapper = new ActionAsyncWrapper(work)
-            {
-                Owner = this,
-                TimeOut = timeout,
-                CallChainId = NextChainId(),
-            };
+                          {
+                              Owner       = this,
+                              TimeOut     = timeout,
+                              CallChainId = NextChainId(),
+                          };
             _ = ActionBlock.SendAsync(wrapper);
         }
 
@@ -150,11 +151,11 @@ namespace GameFrameX.Core.Actors.Impl
                     return default;
 
                 var at = new ActionWrapper(work)
-                {
-                    Owner = this,
-                    TimeOut = timeout,
-                    CallChainId = chainId,
-                };
+                         {
+                             Owner       = this,
+                             TimeOut     = timeout,
+                             CallChainId = chainId,
+                         };
                 ActionBlock.SendAsync(at);
                 return at.Tcs.Task;
             }
@@ -174,11 +175,11 @@ namespace GameFrameX.Core.Actors.Impl
                     return default;
 
                 var at = new FuncWrapper<T>(work)
-                {
-                    Owner = this,
-                    TimeOut = timeout,
-                    CallChainId = chainId,
-                };
+                         {
+                             Owner       = this,
+                             TimeOut     = timeout,
+                             CallChainId = chainId,
+                         };
                 ActionBlock.SendAsync(at);
                 return at.Tcs.Task;
             }
@@ -186,6 +187,11 @@ namespace GameFrameX.Core.Actors.Impl
             {
                 return Task.FromResult(work());
             }
+        }
+
+        public Task SendAsync(Func<Task> work, int timeOut = Int32.MaxValue)
+        {
+            return SendAsync(work, timeOut, true);
         }
 
         public Task SendAsync(Func<Task> work, int timeout = Actor.TIME_OUT, bool checkLock = true)
@@ -197,11 +203,11 @@ namespace GameFrameX.Core.Actors.Impl
                     return default;
 
                 var wrapper = new ActionAsyncWrapper(work)
-                {
-                    Owner = this,
-                    TimeOut = timeout,
-                    CallChainId = chainId,
-                };
+                              {
+                                  Owner       = this,
+                                  TimeOut     = timeout,
+                                  CallChainId = chainId,
+                              };
                 ActionBlock.SendAsync(wrapper);
                 return wrapper.Tcs.Task;
             }
@@ -220,11 +226,11 @@ namespace GameFrameX.Core.Actors.Impl
                     return default;
 
                 var wrapper = new FuncAsyncWrapper<T>(work)
-                {
-                    Owner = this,
-                    TimeOut = timeout,
-                    CallChainId = chainId,
-                };
+                              {
+                                  Owner       = this,
+                                  TimeOut     = timeout,
+                                  CallChainId = chainId,
+                              };
                 ActionBlock.SendAsync(wrapper);
                 return wrapper.Tcs.Task;
             }

@@ -1,26 +1,34 @@
 ﻿using System.Collections.Concurrent;
+using GameFrameX.Core.Abstractions;
+using GameFrameX.Core.Abstractions.Agent;
+using GameFrameX.Core.Abstractions.Timer;
 using GameFrameX.Core.Actors.Impl;
 using GameFrameX.Core.Comps;
-using GameFrameX.Core.Hotfix.Agent;
-using GameFrameX.Core.Timer;
 using GameFrameX.Log;
 
 namespace GameFrameX.Core.Actors
 {
-    public sealed class Actor
+    public sealed class Actor : IActor
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public Actor()
+        {
+            ScheduleIdSet = new HashSet<long>();
+        }
 
         private readonly ConcurrentDictionary<Type, BaseComponent> compDic = new ConcurrentDictionary<Type, BaseComponent>();
 
-        public long Id { get; init; }
+        public long Id { get; set; }
 
-        public ActorType Type { get; init; }
+        public HashSet<long> ScheduleIdSet { get; }
+        public ActorType     Type          { get; set; }
 
-        public WorkerActor WorkerActor { get; init; }
+        public IWorkerActor WorkerActor { get; init; }
 
         public bool AutoRecycle { get; private set; } = false;
 
-        public readonly HashSet<long> ScheduleIdSet = new HashSet<long>();
 
         /// <summary>
         /// 设置自动回收标记
@@ -49,8 +57,8 @@ namespace GameFrameX.Core.Actors
         public async Task<IComponentAgent> GetComponentAgent(Type agentType)
         {
             var compType = agentType.BaseType.GetGenericArguments()[0];
-            var comp = compDic.GetOrAdd(compType, GetOrAddFactory);
-            var agent = comp.GetAgent(agentType);
+            var comp     = compDic.GetOrAdd(compType, GetOrAddFactory);
+            var agent    = comp.GetAgent(agentType);
             if (!comp.IsActive)
             {
                 async Task Worker()
@@ -79,8 +87,8 @@ namespace GameFrameX.Core.Actors
 
         public Actor(long id, ActorType type)
         {
-            Id = id;
-            Type = type;
+            Id          = id;
+            Type        = type;
             WorkerActor = new WorkerActor(id);
 
             if (type == ActorType.Player)
@@ -158,12 +166,22 @@ namespace GameFrameX.Core.Actors
         }
 
         /// <summary>
+        /// 发送无返回值工作指令,超时,默认为int.MaxValue
+        /// </summary>
+        /// <param name="work">工作内容</param>
+        /// <returns></returns>
+        public Task SendAsync(Action work)
+        {
+            return WorkerActor.SendAsync(work, int.MaxValue);
+        }
+
+        /// <summary>
         /// 发送异步消息
         /// </summary>
         /// <param name="work"></param>
         /// <param name="timeout"></param>
         /// <returns></returns>
-        public Task SendAsync(Action work, int timeout = TIME_OUT)
+        public Task SendAsync(Action work, int timeout)
         {
             return WorkerActor.SendAsync(work, timeout);
         }
@@ -180,15 +198,17 @@ namespace GameFrameX.Core.Actors
             return WorkerActor.SendAsync(work, timeout);
         }
 
+
         /// <summary>
         /// 发送异步消息
         /// </summary>
         /// <param name="work"></param>
         /// <param name="timeout"></param>
+        /// <param name="checkLock">是否检查锁</param>
         /// <returns></returns>
-        public Task SendAsync(Func<Task> work, int timeout = TIME_OUT)
+        public Task SendAsync(Func<Task> work, int timeout = TIME_OUT, bool checkLock = true)
         {
-            return WorkerActor.SendAsync(work, timeout);
+            return WorkerActor.SendAsync(work, timeout, checkLock);
         }
 
         /// <summary>

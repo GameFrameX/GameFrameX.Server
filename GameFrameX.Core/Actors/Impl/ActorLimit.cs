@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Utility;
 using Serilog;
 using GameFrameX.Log;
@@ -15,6 +16,9 @@ namespace GameFrameX.Core.Actors.Impl
         /// </summary>
         public enum RuleType
         {
+            /// <summary>
+            /// 不检查
+            /// </summary>
             None,
 
             /// <summary>
@@ -34,32 +38,38 @@ namespace GameFrameX.Core.Actors.Impl
         }
 
 
-
-        private static IRule _rule;
+        private static          IRule                      _rule;
         private static readonly Dictionary<ActorType, int> LevelDic = new Dictionary<ActorType, int>(128);
 
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="type"> 检查规则 </param>
         public static void Init(RuleType type)
         {
             switch (type)
             {
                 case RuleType.ByLevel:
+                {
                     _rule = new ByLevelRule();
                     try
                     {
                         foreach (ActorTypeLevel foo in Enum.GetValues(typeof(ActorTypeLevel)))
                         {
-                            ActorType actorType = (ActorType) Enum.Parse(typeof(ActorType), foo.ToString());
-                            LevelDic.Add(actorType, (int) foo);
+                            ActorType actorType = (ActorType)Enum.Parse(typeof(ActorType), foo.ToString());
+                            LevelDic.Add(actorType, (int)foo);
                         }
                     }
                     catch (Exception)
                     {
                         throw;
                     }
-
+                }
                     break;
                 case RuleType.NoBidirectionCall:
+                {
                     _rule = new NoBidirectionCallRule();
+                }
                     break;
                 case RuleType.None:
                     break;
@@ -69,10 +79,18 @@ namespace GameFrameX.Core.Actors.Impl
             }
         }
 
+        /// <summary>
+        /// 是否允许调用
+        /// </summary>
+        /// <param name="target">目标</param>
+        /// <returns>返回是否调用</returns>
         public static bool AllowCall(long target)
         {
             if (_rule != null)
+            {
                 return _rule.AllowCall(target);
+            }
+
             return true;
         }
 
@@ -81,18 +99,26 @@ namespace GameFrameX.Core.Actors.Impl
 
         class ByLevelRule : IRule
         {
+            /// <summary>
+            /// 判断是否允许调用
+            /// </summary>
+            /// <param name="target">目标</param>
+            /// <returns></returns>
             public bool AllowCall(long target)
             {
-                var actorId = RuntimeContext.CurActor;
+                var actorId = RuntimeContext.CurrentActor;
                 // 从其他线程抛到actor，不涉及入队行为
                 if (actorId == 0)
+                {
                     return true;
-                ActorType curType = IdGenerator.GetActorType(actorId);
+                }
+
+                ActorType curType    = IdGenerator.GetActorType(actorId);
                 ActorType targetType = IdGenerator.GetActorType(target);
-                if (LevelDic.ContainsKey(targetType) && LevelDic.ContainsKey(curType))
+                if (LevelDic.ContainsKey(targetType) && LevelDic.TryGetValue(curType, out var value))
                 {
                     //等级高的不能【等待】调用等级低的
-                    if (LevelDic[curType] > LevelDic[targetType])
+                    if (value > LevelDic[targetType])
                     {
                         LogHelper.Error($"不合法的调用路径:{curType}==>{targetType}");
                         return false;
@@ -116,22 +142,30 @@ namespace GameFrameX.Core.Actors.Impl
             {
                 // 自己入自己的队允许，会直接执行
                 if (self == target)
+                {
                     return true;
+                }
+
                 if (CrossDic.TryGetValue(target, out var set) && set.ContainsKey(self))
                 {
                     LogHelper.Error($"发生交叉死锁，ActorId1:{self} ActorType1:{IdGenerator.GetActorType(self)} ActorId2:{target} ActorType2:{IdGenerator.GetActorType(target)}");
                     return false;
                 }
 
-                var selfSet = CrossDic.GetOrAdd(self, k => new());
+                var selfSet = CrossDic.GetOrAdd(self, k => new ConcurrentDictionary<long, bool>());
                 selfSet.TryAdd(target, false);
 
                 return true;
             }
 
+            /// <summary>
+            /// 是否允许调用
+            /// </summary>
+            /// <param name="target">目标</param>
+            /// <returns>返回是否调用</returns>
             public bool AllowCall(long target)
             {
-                var actorId = RuntimeContext.CurActor;
+                var actorId = RuntimeContext.CurrentActor;
                 // 从IO线程抛到actor，不涉及入队行为
                 if (actorId == 0)
                     return true;

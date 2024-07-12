@@ -8,12 +8,22 @@ namespace GameFrameX.Core.Timer.Handler
     /// </summary>
     public abstract class NotHotfixTimerHandler : IJob
     {
+        /// <summary>
+        /// 内部计时器处理器调用函数
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public Task Execute(IJobExecutionContext context)
         {
             var param = context.JobDetail.JobDataMap.Get(QuartzTimer.PARAM_KEY) as Param;
             return HandleTimer(param);
         }
 
+        /// <summary>
+        /// 计时器处理函数
+        /// </summary>
+        /// <param name="param">参数</param>
+        /// <returns></returns>
         protected abstract Task HandleTimer(Param param);
     }
 }

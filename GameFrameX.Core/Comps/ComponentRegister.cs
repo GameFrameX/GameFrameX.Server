@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using GameFrameX.Core.Abstractions;
+using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Actors;
 using GameFrameX.Core.Hotfix;
 using GameFrameX.Core.Hotfix.Agent;
@@ -10,7 +12,6 @@ namespace GameFrameX.Core.Comps
 {
     public static class ComponentRegister
     {
-
         /// <summary>
         /// ActorType -> CompTypeList
         /// </summary>
@@ -50,8 +51,9 @@ namespace GameFrameX.Core.Comps
                 assembly = Assembly.GetEntryAssembly();
             }
 
-            Type baseCompName = typeof(BaseComponent);
-            var types = assembly.GetTypes();
+            assembly.CheckNotNull(nameof(assembly));
+            var baseCompName = typeof(BaseComponent);
+            var types        = assembly.GetTypes();
             foreach (var type in types)
             {
                 if (type.IsAbstract || !type.IsSubclassOf(baseCompName))
@@ -127,8 +129,8 @@ namespace GameFrameX.Core.Comps
         public static Task ActiveRoleComps(IComponentAgent componentAgent, HashSet<short> openFuncSet)
         {
             return ActiveComps(componentAgent.Owner.Actor,
-                t => !CompFuncDic.TryGetValue(t, out var func)
-                     || openFuncSet.Contains(func));
+                               t => !CompFuncDic.TryGetValue(t, out var func)
+                                    || openFuncSet.Contains(func));
             //foreach (var compType in GetComps(ActorType.Role))
             //{
             //    bool active;
@@ -148,7 +150,7 @@ namespace GameFrameX.Core.Comps
             //}
         }
 
-        internal static async Task ActiveComps(Actor actor, Func<Type, bool> predict = null)
+        internal static async Task ActiveComps(IActor actor, Func<Type, bool> predict = null)
         {
             var compTypes = GetComps(actor.Type);
 
@@ -182,7 +184,7 @@ namespace GameFrameX.Core.Comps
                 throw new Exception($"获取不属于此actor：{actor.Type}的comp:{compType.FullName}");
             }
 
-            var comp = (BaseComponent) Activator.CreateInstance(compType);
+            var comp = (BaseComponent)Activator.CreateInstance(compType);
             if (comp != null)
             {
                 comp.Actor = actor;

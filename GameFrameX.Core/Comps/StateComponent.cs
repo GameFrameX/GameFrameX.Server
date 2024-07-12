@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Timer;
 using GameFrameX.Core.Utility;
 using MongoDB.Bson;
@@ -17,9 +18,7 @@ namespace GameFrameX.Core.Comps
     /// </summary>
     public sealed class StateComponent
     {
-        #region 仅DBModel.Mongodb调用
-
-        private static readonly ConcurrentBag<Func<bool, bool, Task>> saveFuncs = new();
+        private static readonly ConcurrentBag<Func<bool, bool, Task>> SaveFuncMap = new ConcurrentBag<Func<bool, bool, Task>>();
 
         /// <summary>
         /// 注册回存
@@ -27,7 +26,7 @@ namespace GameFrameX.Core.Comps
         /// <param name="shutdown"></param>
         public static void AddShutdownSaveFunc(Func<bool, bool, Task> shutdown)
         {
-            saveFuncs.Add(shutdown);
+            SaveFuncMap.Add(shutdown);
         }
 
         /// <summary>
@@ -42,7 +41,7 @@ namespace GameFrameX.Core.Comps
             {
                 var begin = DateTime.Now;
                 var tasks = new List<Task>();
-                foreach (var saveFunc in saveFuncs)
+                foreach (var saveFunc in SaveFuncMap)
                 {
                     tasks.Add(saveFunc(true, force));
                 }
@@ -63,7 +62,7 @@ namespace GameFrameX.Core.Comps
         {
             try
             {
-                foreach (var func in saveFuncs)
+                foreach (var func in SaveFuncMap)
                 {
                     await func(false, false);
                     if (!GlobalTimer.IsWorking)
@@ -78,13 +77,11 @@ namespace GameFrameX.Core.Comps
         }
 
         public static readonly StatisticsTool statisticsTool = new();
-
-        #endregion
     }
 
     public abstract class StateComponent<TState> : BaseComponent, IState where TState : CacheState, new()
     {
-        static readonly ConcurrentDictionary<long, TState> stateDic = new();
+        private static readonly ConcurrentDictionary<long, TState> StateDic = new ConcurrentDictionary<long, TState>();
 
         public TState State { get; private set; }
 
@@ -113,13 +110,15 @@ namespace GameFrameX.Core.Comps
         /// </summary>
         public override Task Inactive()
         {
-            // if (GlobalSettings.DBModel == (int) DbModel.Mongodb)
-            stateDic.TryRemove(ActorId, out _);
+            StateDic.TryRemove(ActorId, out _);
             return base.Inactive();
         }
 
 
-        internal override bool ReadyToInactive => State == null || !State.IsChanged().isChanged;
+        internal override bool ReadyToInactive
+        {
+            get { return State == null || !State.IsChanged().isChanged; }
+        }
 
         internal override async Task SaveState()
         {
@@ -133,12 +132,16 @@ namespace GameFrameX.Core.Comps
             }
         }
 
+        /// <summary>
+        /// 准备状态
+        /// </summary>
+        /// <returns></returns>
         public async Task ReadStateAsync()
         {
             State = await GameDb.LoadState<TState>(ActorId);
 
-            stateDic.TryRemove(State.Id, out _);
-            stateDic.TryAdd(State.Id, State);
+            StateDic.TryRemove(State.Id, out _);
+            StateDic.TryAdd(State.Id, State);
         }
 
         /// <summary>
@@ -166,7 +169,7 @@ namespace GameFrameX.Core.Comps
             var writeList = new List<ReplaceOneModel<MongoDB.Bson.BsonDocument>>();
             if (shutdown)
             {
-                foreach (var state in stateDic.Values)
+                foreach (var state in StateDic.Values)
                 {
                     if (state.IsModify)
                     {
@@ -184,7 +187,7 @@ namespace GameFrameX.Core.Comps
             {
                 var tasks = new List<Task>();
 
-                foreach (var state in stateDic.Values)
+                foreach (var state in StateDic.Values)
                 {
                     var actor = ActorManager.GetActor(state.Id);
                     if (actor != null)
@@ -227,7 +230,7 @@ namespace GameFrameX.Core.Comps
                         {
                             foreach (var id in ids)
                             {
-                                stateDic.TryGetValue(id, out var state);
+                                StateDic.TryGetValue(id, out var state);
                                 if (state == null)
                                     continue;
                                 state.AfterSaveToDb();

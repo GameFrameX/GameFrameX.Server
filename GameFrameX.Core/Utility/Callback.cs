@@ -1,4 +1,5 @@
-﻿using GameFrameX.Core.Hotfix.Agent;
+﻿using GameFrameX.Core.Abstractions.Agent;
+using GameFrameX.Core.Hotfix.Agent;
 using GameFrameX.Utility;
 
 namespace GameFrameX.Core.Utility

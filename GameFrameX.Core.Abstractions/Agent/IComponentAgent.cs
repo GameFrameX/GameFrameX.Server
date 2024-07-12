@@ -1,12 +1,11 @@
 ﻿using GameFrameX.Core.Actors;
-using GameFrameX.Core.Comps;
 
-namespace GameFrameX.Core.Hotfix.Agent
+namespace GameFrameX.Core.Abstractions.Agent
 {
     /// <summary>
     /// 组件代理接口
     /// </summary>
-    public interface IComponentAgent
+    public interface IComponentAgent : IWorker
     {
         /// <summary>
         /// ActorId
@@ -16,7 +15,7 @@ namespace GameFrameX.Core.Hotfix.Agent
         /// <summary>
         /// 拥有者
         /// </summary>
-        BaseComponent Owner { get; set; }
+        IComponent Owner { get; set; }
 
         /// <summary>
         /// 激活
@@ -47,17 +46,5 @@ namespace GameFrameX.Core.Hotfix.Agent
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public Task<T> GetComponentAgent<T>() where T : IComponentAgent;
-
-        void Tell(Action work, int timeOut = Actor.TIME_OUT);
-
-        void Tell(Func<Task> work, int timeOut = Actor.TIME_OUT);
-
-        Task SendAsync(Action work, int timeOut = Actor.TIME_OUT);
-
-        Task<T> SendAsync<T>(Func<T> work, int timeOut = Actor.TIME_OUT);
-
-        Task SendAsync(Func<Task> work, int timeOut = Actor.TIME_OUT);
-
-        Task<T> SendAsync<T>(Func<Task<T>> work, int timeOut = Actor.TIME_OUT);
     }
 }

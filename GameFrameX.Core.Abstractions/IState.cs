@@ -1,4 +1,4 @@
-﻿namespace GameFrameX.Core.Comps
+﻿namespace GameFrameX.Core.Abstractions
 {
     /// <summary>
     /// 状态接口

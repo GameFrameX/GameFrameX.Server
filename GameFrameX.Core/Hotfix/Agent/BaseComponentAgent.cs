@@ -1,4 +1,5 @@
-﻿
+﻿using GameFrameX.Core.Abstractions;
+using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Actors;
 using GameFrameX.Core.Comps;
 using GameFrameX.Core.Timer;
@@ -7,71 +8,174 @@ using GameFrameX.Utility;
 
 namespace GameFrameX.Core.Hotfix.Agent
 {
+    /// <summary>
+    /// 基础组件代理
+    /// </summary>
+    /// <typeparam name="TComponent"></typeparam>
     public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TComponent : BaseComponent
     {
-        public BaseComponent Owner { get; set; }
-        public TComponent Comp => (TComponent)Owner;
-        public Actor Actor => Owner.Actor;
-        public long ActorId => Actor.Id;
-        public ActorType OwnerType => Actor.Type;
+        /// <summary>
+        /// 拥有者
+        /// </summary>
+        public IComponent Owner { get; set; }
 
-        public HashSet<long> ScheduleIdSet => Actor.ScheduleIdSet;
+        /// <summary>
+        /// 拥有者组件
+        /// </summary>
+        public TComponent Comp
+        {
+            get { return (TComponent)Owner; }
+        }
 
+        /// <summary>
+        /// 拥有者的Actor
+        /// </summary>
+        public IActor Actor
+        {
+            get { return Owner.Actor; }
+        }
+
+        /// <summary>
+        /// ActorId
+        /// </summary>
+        public long ActorId
+        {
+            get { return Actor.Id; }
+        }
+
+        /// <summary>
+        /// 拥有者类型
+        /// </summary>
+        public ActorType OwnerType
+        {
+            get { return Actor.Type; }
+        }
+
+        /// <summary>
+        /// 订阅哈希字典
+        /// </summary>
+        public HashSet<long> ScheduleIdSet
+        {
+            get { return Actor.ScheduleIdSet; }
+        }
+
+        /// <summary>
+        /// 激活
+        /// </summary>
         public virtual void Active()
         {
         }
 
+        /// <summary>
+        /// 设置自动回收
+        /// </summary>
+        /// <param name="autoRecycle">是否自动回收</param>
         protected void SetAutoRecycle(bool autoRecycle)
         {
             Actor.SetAutoRecycle(autoRecycle);
         }
 
+        /// <summary>
+        /// 反激活
+        /// </summary>
+        /// <returns></returns>
         public virtual Task Inactive()
         {
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Actor跨天
+        /// </summary>
+        /// <param name="serverDay">服务器运行天数</param>
+        /// <returns></returns>
         public Task ActorCrossDay(int serverDay)
         {
             return Actor.CrossDay(serverDay);
         }
 
+        /// <summary>
+        /// 根据代理类型获取组件
+        /// </summary>
+        /// <param name="agentType"></param>
+        /// <returns></returns>
         public Task<IComponentAgent> GetComponentAgent(Type agentType)
         {
             return Actor.GetComponentAgent(agentType);
         }
 
+        /// <summary>
+        /// 根据代理类型获取代理组件
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public Task<T> GetComponentAgent<T>() where T : IComponentAgent
         {
             return Actor.GetComponentAgent<T>();
         }
 
-        public void Tell(Action work, int timeout = Actor.TIME_OUT)
+        /// <summary>
+        /// 发送无返回值的工作指令
+        /// </summary>
+        /// <param name="work">工作内容</param>
+        /// <param name="timeout">超时,默认为int.MaxValue</param>
+        public void Tell(Action work, int timeout = int.MaxValue)
         {
             Actor.Tell(work, timeout);
         }
 
-        public void Tell(Func<Task> work, int timeout = Actor.TIME_OUT)
+        /// <summary>
+        /// 发送有返回值的工作指令
+        /// </summary>
+        /// <param name="work">工作内容</param>
+        /// <param name="timeout">超时,默认为int.MaxValue</param>
+        public void Tell(Func<Task> work, int timeout = int.MaxValue)
         {
             Actor.Tell(work, timeout);
         }
 
-        public Task SendAsync(Action work, int timeout = Actor.TIME_OUT)
+        /// <summary>
+        /// 发送无返回值工作指令
+        /// </summary>
+        /// <param name="work">工作内容</param>
+        /// <param name="timeout">超时,默认为int.MaxValue</param>
+        /// <returns></returns>
+        public Task SendAsync(Action work, int timeout = int.MaxValue)
         {
             return Actor.SendAsync(work, timeout);
         }
 
-        public Task<T> SendAsync<T>(Func<T> work, int timeout = Actor.TIME_OUT)
+        /// <summary>
+        /// 发送有返回值工作指令
+        /// </summary>
+        /// <param name="work">工作内容</param>
+        /// <param name="timeout">超时,默认为int.MaxValue</param>
+        /// <returns></returns>
+        public Task<T> SendAsync<T>(Func<T> work, int timeout = int.MaxValue)
         {
             return Actor.SendAsync(work, timeout);
         }
 
-        public Task SendAsync(Func<Task> work, int timeout = Actor.TIME_OUT)
+
+        /// <summary>
+        /// 发送有返回值工作指令
+        /// </summary>
+        /// <param name="work">工作内容</param>
+        /// <param name="timeout">超时,默认为int.MaxValue</param>
+        /// <param name="checkLock">是否检查锁</param>
+        /// <returns></returns>
+        public Task SendAsync(Func<Task> work, int timeout = int.MaxValue, bool checkLock = true)
         {
-            return Actor.SendAsync(work, timeout);
+            return Actor.SendAsync(work, timeout, checkLock);
         }
 
-        public Task<T> SendAsync<T>(Func<Task<T>> work, int timeOut = Actor.TIME_OUT)
+        /// <summary>
+        /// 发送有返回值工作指令
+        /// </summary>
+        /// <param name="work">工作内容</param>
+        /// <param name="timeOut">超时,默认为int.MaxValue</param>
+        /// <returns></returns>
+        public Task<T> SendAsync<T>(Func<Task<T>> work, int timeOut = int.MaxValue)
         {
             return Actor.SendAsync(work, timeOut);
         }

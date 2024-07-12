@@ -1,4 +1,4 @@
-﻿namespace GameFrameX.Core.Timer
+﻿namespace GameFrameX.Core.Abstractions.Timer
 {
     /// <summary>
     /// 跨天接口

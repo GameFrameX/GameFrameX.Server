@@ -1,4 +1,5 @@
-﻿using GameFrameX.Log;
+﻿using GameFrameX.Core.Abstractions;
+using GameFrameX.Log;
 
 namespace GameFrameX.Core.Actors.Impl
 {

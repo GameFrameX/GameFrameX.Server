@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Actors.Impl;
 using GameFrameX.Core.Comps;
 using GameFrameX.Core.Hotfix;
@@ -14,7 +15,6 @@ namespace GameFrameX.Core.Actors
     /// </summary>
     public static class ActorManager
     {
-
         private static readonly ConcurrentDictionary<long, Actor> ActorMap = new ConcurrentDictionary<long, Actor>();
 
         /// <summary>
@@ -69,9 +69,9 @@ namespace GameFrameX.Core.Actors
         /// <returns></returns>
         public static Task<T> GetComponentAgent<T>() where T : IComponentAgent
         {
-            var compType = HotfixManager.GetCompType(typeof(T));
+            var compType  = HotfixManager.GetCompType(typeof(T));
             var actorType = ComponentRegister.GetActorType(compType);
-            var actorId = IdGenerator.GetActorID(actorType);
+            var actorId   = IdGenerator.GetActorID(actorType);
             return GetComponentAgent<T>(actorId);
         }
 
@@ -96,10 +96,10 @@ namespace GameFrameX.Core.Actors
                 else
                 {
                     return await GetLifeActor(actorId).SendAsync(() =>
-                    {
-                        activeTimeDic[actorId] = now;
-                        return ActorMap.GetOrAdd(actorId, k => new Actor(k, IdGenerator.GetActorType(k)));
-                    });
+                                                                 {
+                                                                     activeTimeDic[actorId] = now;
+                                                                     return ActorMap.GetOrAdd(actorId, k => new Actor(k, IdGenerator.GetActorType(k)));
+                                                                 });
                 }
             }
             else
@@ -126,7 +126,7 @@ namespace GameFrameX.Core.Actors
         private static readonly ConcurrentDictionary<long, DateTime> activeTimeDic = new();
 
         private static readonly List<WorkerActor> workerActors = new();
-        private const int workerCount = 10;
+        private const           int               workerCount  = 10;
 
         static ActorManager()
         {
@@ -156,33 +156,33 @@ namespace GameFrameX.Core.Actors
                 if (actor.AutoRecycle)
                 {
                     actor.Tell(async () =>
-                    {
-                        if (actor.AutoRecycle
-                            && (DateTime.Now - activeTimeDic[actor.Id]).TotalMinutes > 15)
-                        {
-                            await GetLifeActor(actor.Id).SendAsync(async () =>
-                            {
-                                if (activeTimeDic.TryGetValue(actor.Id, out var activeTime)
-                                    && (DateTime.Now - activeTimeDic[actor.Id]).TotalMinutes > 15)
-                                {
-                                    // 防止定时回存失败时State被直接移除
-                                    if (actor.ReadyToDeActive)
-                                    {
-                                        await actor.DeActive();
-                                        ActorMap.TryRemove(actor.Id, out var _);
-                                        LogHelper.Debug($"actor回收 id:{actor.Id} type:{actor.Type}");
-                                    }
-                                    else
-                                    {
-                                        // 不能存就久一点再判断
-                                        activeTimeDic[actor.Id] = DateTime.Now;
-                                    }
-                                }
+                               {
+                                   if (actor.AutoRecycle
+                                       && (DateTime.Now - activeTimeDic[actor.Id]).TotalMinutes > 15)
+                                   {
+                                       await GetLifeActor(actor.Id).SendAsync(async () =>
+                                                                              {
+                                                                                  if (activeTimeDic.TryGetValue(actor.Id, out var activeTime)
+                                                                                      && (DateTime.Now - activeTimeDic[actor.Id]).TotalMinutes > 15)
+                                                                                  {
+                                                                                      // 防止定时回存失败时State被直接移除
+                                                                                      if (actor.ReadyToDeActive)
+                                                                                      {
+                                                                                          await actor.DeActive();
+                                                                                          ActorMap.TryRemove(actor.Id, out var _);
+                                                                                          LogHelper.Debug($"actor回收 id:{actor.Id} type:{actor.Type}");
+                                                                                      }
+                                                                                      else
+                                                                                      {
+                                                                                          // 不能存就久一点再判断
+                                                                                          activeTimeDic[actor.Id] = DateTime.Now;
+                                                                                      }
+                                                                                  }
 
-                                return true;
-                            });
-                        }
-                    });
+                                                                                  return true;
+                                                                              });
+                                   }
+                               });
                 }
             }
 
@@ -197,11 +197,16 @@ namespace GameFrameX.Core.Actors
         {
             try
             {
-                var begin = DateTime.Now;
+                var begin    = DateTime.Now;
                 var taskList = new List<Task>();
                 foreach (var actor in ActorMap.Values)
                 {
-                    taskList.Add(actor.SendAsync(async () => await actor.SaveAllState()));
+                    async void M()
+                    {
+                        await actor.SaveAllState();
+                    }
+
+                    taskList.Add(actor.SendAsync(M));
                 }
 
                 await Task.WhenAll(taskList);
@@ -225,7 +230,7 @@ namespace GameFrameX.Core.Actors
         {
             try
             {
-                int count = 0;
+                int count    = 0;
                 var taskList = new List<Task>();
                 foreach (var actor in ActorMap.Values)
                 {
@@ -234,7 +239,12 @@ namespace GameFrameX.Core.Actors
                         return;
                     if (count < ONCE_SAVE_COUNT)
                     {
-                        taskList.Add(actor.SendAsync(async () => await actor.SaveAllState()));
+                        async void M()
+                        {
+                            await actor.SaveAllState();
+                        }
+
+                        taskList.Add(actor.SendAsync(M));
                         count++;
                     }
                     else
@@ -242,7 +252,7 @@ namespace GameFrameX.Core.Actors
                         await Task.WhenAll(taskList);
                         await Task.Delay(1000);
                         taskList = new List<Task>();
-                        count = 0;
+                        count    = 0;
                     }
                 }
             }
@@ -272,7 +282,7 @@ namespace GameFrameX.Core.Actors
             return Task.CompletedTask;
         }
 
-        const int CROSS_DAY_GLOBAL_WAIT_SECONDS = 60;
+        const int CROSS_DAY_GLOBAL_WAIT_SECONDS   = 60;
         const int CROSS_DAY_NOT_ROLE_WAIT_SECONDS = 120;
 
         /// <summary>
@@ -283,24 +293,24 @@ namespace GameFrameX.Core.Actors
         public static async Task CrossDay(int openServerDay, ActorType driverActorType)
         {
             // 驱动actor优先执行跨天
-            var id = IdGenerator.GetActorID(driverActorType);
+            var id          = IdGenerator.GetActorID(driverActorType);
             var driverActor = ActorMap[id];
             await driverActor.CrossDay(openServerDay);
 
             var begin = DateTime.Now;
-            int a = 0;
-            int b = 0;
+            int a     = 0;
+            int b     = 0;
             foreach (var actor in ActorMap.Values)
             {
                 if (actor.Type > ActorType.Separator && actor.Type != driverActorType)
                 {
                     b++;
                     actor.Tell(async () =>
-                    {
-                        LogHelper.Info($"全局Actor：{actor.Type}执行跨天");
-                        await actor.CrossDay(openServerDay);
-                        Interlocked.Increment(ref a);
-                    });
+                               {
+                                   LogHelper.Info($"全局Actor：{actor.Type}执行跨天");
+                                   await actor.CrossDay(openServerDay);
+                                   Interlocked.Increment(ref a);
+                               });
                 }
             }
 
@@ -325,10 +335,10 @@ namespace GameFrameX.Core.Actors
                 {
                     b++;
                     actor.Tell(async () =>
-                    {
-                        await actor.CrossDay(openServerDay);
-                        Interlocked.Increment(ref a);
-                    });
+                               {
+                                   await actor.CrossDay(openServerDay);
+                                   Interlocked.Increment(ref a);
+                               });
                 }
             }
 
@@ -384,17 +394,17 @@ namespace GameFrameX.Core.Actors
         public static void ActorForEach<T>(Func<T, Task> func) where T : IComponentAgent
         {
             var agentType = typeof(T);
-            var compType = HotfixManager.GetCompType(agentType);
+            var compType  = HotfixManager.GetCompType(agentType);
             var actorType = ComponentRegister.GetActorType(compType);
             foreach (var actor in ActorMap.Values)
             {
                 if (actor.Type == actorType)
                 {
                     actor.Tell(async () =>
-                    {
-                        var comp = await actor.GetComponentAgent<T>();
-                        await func(comp);
-                    });
+                               {
+                                   var comp = await actor.GetComponentAgent<T>();
+                                   await func(comp);
+                               });
                 }
             }
         }
@@ -407,17 +417,17 @@ namespace GameFrameX.Core.Actors
         public static void ActorForEach<T>(Action<T> action) where T : IComponentAgent
         {
             var agentType = typeof(T);
-            var compType = HotfixManager.GetCompType(agentType);
+            var compType  = HotfixManager.GetCompType(agentType);
             var actorType = ComponentRegister.GetActorType(compType);
             foreach (var actor in ActorMap.Values)
             {
                 if (actor.Type == actorType)
                 {
                     actor.Tell(async () =>
-                    {
-                        var comp = await actor.GetComponentAgent<T>();
-                        action(comp);
-                    });
+                               {
+                                   var comp = await actor.GetComponentAgent<T>();
+                                   action(comp);
+                               });
                 }
             }
         }

@@ -7,6 +7,9 @@ using GameFrameX.Setting;
 
 namespace GameFrameX.Core.Timer
 {
+    /// <summary>
+    /// 全局定时器
+    /// </summary>
     public static class GlobalTimer
     {
         /// <summary>
@@ -37,7 +40,7 @@ namespace GameFrameX.Core.Timer
         {
             var nextSaveTime = NextSaveTime();
             var saveInterval = TimeSpan.FromMilliseconds(GlobalConst.SaveIntervalInMilliSeconds);
-            var onceDelay = TimeSpan.FromMilliseconds(200);
+            var onceDelay    = TimeSpan.FromMilliseconds(200);
 
             while (IsWorking)
             {
@@ -74,7 +77,7 @@ namespace GameFrameX.Core.Timer
         private static DateTime NextSaveTime()
         {
             var now = DateTime.Now;
-            var t = now.Date.AddHours(now.Hour);
+            var t   = now.Date.AddHours(now.Hour);
 
             while (t < now)
             {
@@ -82,11 +85,11 @@ namespace GameFrameX.Core.Timer
             }
 
             int serverId = GlobalSettings.ServerId;
-            int a = serverId % 1000;
-            int b = a % GlobalConst.MAGIC;
-            int c = GlobalConst.SaveIntervalInMilliSeconds / GlobalConst.MAGIC;
-            int r = ThreadLocalRandom.Current.Next(0, c);
-            int delay = b * c + r;
+            int a        = serverId % 1000;
+            int b        = a % GlobalConst.MAGIC;
+            int c        = GlobalConst.SaveIntervalInMilliSeconds / GlobalConst.MAGIC;
+            int r        = ThreadLocalRandom.Current.Next(0, c);
+            int delay    = b * c + r;
             t = t.AddMilliseconds(delay);
 
             if ((t - now).TotalMilliseconds > GlobalConst.SaveIntervalInMilliSeconds)

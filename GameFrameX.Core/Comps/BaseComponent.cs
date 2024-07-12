@@ -1,16 +1,16 @@
-﻿using GameFrameX.Core.Actors;
+﻿using GameFrameX.Core.Abstractions;
+using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Hotfix;
-using GameFrameX.Core.Hotfix.Agent;
 
 namespace GameFrameX.Core.Comps
 {
     /// <summary>
     /// 基础组件基类
     /// </summary>
-    public abstract class BaseComponent
+    public abstract class BaseComponent : IComponent
     {
-        private IComponentAgent cacheAgent = null;
-        private readonly object cacheAgentLock = new();
+        private          IComponentAgent _cacheAgent     = null;
+        private readonly object          _cacheAgentLock = new();
 
         /// <summary>
         /// 根据组件类型获取对应的IComponentAgent数据
@@ -19,15 +19,15 @@ namespace GameFrameX.Core.Comps
         /// <returns></returns>
         public IComponentAgent GetAgent(Type refAssemblyType = null)
         {
-            lock (cacheAgentLock)
+            lock (_cacheAgentLock)
             {
-                if (cacheAgent != null && !HotfixManager.DoingHotfix)
+                if (_cacheAgent != null && !HotfixManager.DoingHotfix)
                 {
-                    return cacheAgent;
+                    return _cacheAgent;
                 }
 
                 var agent = HotfixManager.GetAgent<IComponentAgent>(this, refAssemblyType);
-                cacheAgent = agent;
+                _cacheAgent = agent;
                 return agent;
             }
         }
@@ -37,18 +37,21 @@ namespace GameFrameX.Core.Comps
         /// </summary>
         public void ClearCacheAgent()
         {
-            cacheAgent = null;
+            _cacheAgent = null;
         }
 
         /// <summary>
         /// Actor对象
         /// </summary>
-        internal Actor Actor { get; set; }
+        public IActor Actor { get; set; }
 
         /// <summary>
         /// ActorId
         /// </summary>
-        internal long ActorId => Actor.Id;
+        internal long ActorId
+        {
+            get { return Actor.Id; }
+        }
 
         /// <summary>
         /// 是否是激活状态
@@ -84,6 +87,13 @@ namespace GameFrameX.Core.Comps
             return Task.CompletedTask;
         }
 
-        internal virtual bool ReadyToInactive => true;
+        /// <summary>
+        /// 是否准备完毕
+        /// </summary>
+        /// <returns></returns>
+        internal virtual bool ReadyToInactive
+        {
+            get { return true; }
+        }
     }
 }

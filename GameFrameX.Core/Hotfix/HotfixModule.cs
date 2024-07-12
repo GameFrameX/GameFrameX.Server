@@ -1,5 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Reflection;
+using GameFrameX.Core.Abstractions;
+using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Actors;
 using GameFrameX.Core.Comps;
 using GameFrameX.Core.Events;

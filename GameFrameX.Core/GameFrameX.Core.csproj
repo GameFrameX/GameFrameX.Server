@@ -5,28 +5,30 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <Description>GameFrameX.Core</Description>
-        <PackageTags>GameFrameX,Lib,Core,Server,GameServer</PackageTags>
-        <AssemblyVersion>1.0.0</AssemblyVersion>
-        <FileVersion>$(AssemblyVersion)</FileVersion>
+        <LangVersion>10</LangVersion>
         <PublicSign>true</PublicSign>
         <SignAssembly>true</SignAssembly>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>$(AssemblyName)</Title>
         <Copyright>AlianBlank;GameFrameX;Blank</Copyright>
         <PackageProjectUrl>https://github.com/AlianBlank/GameFrameX</PackageProjectUrl>
         <RepositoryUrl>https://github.com/AlianBlank/GameFrameX</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <PackageTags>GameFrameX,Lib,Extension,Server,GameServer</PackageTags>
         <PackageReleaseNotes>https://gameframex.doc.alianblank.com/</PackageReleaseNotes>
+        <PackageIcon>logo.png</PackageIcon>
         <Authors>AlianBlank;Blank</Authors>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <IsPackable>true</IsPackable>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <Version>$(AssemblyVersion)</Version>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <PackageId>$(AssemblyName)</PackageId>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
         <TargetFramework>net8.0</TargetFramework>
         <AssemblyOriginatorKeyFile>../gameframex.key.snk</AssemblyOriginatorKeyFile>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -44,23 +46,31 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Connections.Abstractions" Version="6.0.9"/>
-        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1"/>
-        <PackageReference Include="MongoDB.Driver" Version="2.24.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
         <PackageReference Include="Quartz" Version="3.4.0"/>
-        <PackageReference Include="Serilog" Version="3.1.1" />
-        <PackageReference Include="SharpZipLib" Version="1.3.3"/>
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\DataBaseServer\GameFrameX.DBServer.Mongo\GameFrameX.DBServer.Mongo.csproj" />
         <ProjectReference Include="..\DataBaseServer\GameFrameX.DBServer\GameFrameX.DBServer.csproj" />
+        <ProjectReference Include="..\GameFrameX.Core.Abstractions\GameFrameX.Core.Abstractions.csproj" />
         <ProjectReference Include="..\GameFrameX.Extension\GameFrameX.Extension.csproj" />
         <ProjectReference Include="..\GameFrameX.Log\GameFrameX.Log.csproj" />
         <ProjectReference Include="..\GameFrameX.NetWork.HTTP\GameFrameX.NetWork.HTTP.csproj" />
         <ProjectReference Include="..\GameFrameX.NetWork\GameFrameX.NetWork.csproj" />
         <ProjectReference Include="..\GameFrameX.Setting\GameFrameX.Setting.csproj" />
         <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="..\logo.png">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+            <Link>logo.png</Link>
+        </None>
+        <None Include="../README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 </Project>
