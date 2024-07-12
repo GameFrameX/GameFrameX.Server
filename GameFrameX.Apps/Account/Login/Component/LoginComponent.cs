@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using GameFrameX.Apps.Account.Login.Entity;
+using GameFrameX.Core.Abstractions;
 using GameFrameX.DBServer;
 using GameFrameX.Monitor.Account;
 

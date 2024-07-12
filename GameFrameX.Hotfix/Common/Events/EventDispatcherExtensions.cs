@@ -1,4 +1,5 @@
-﻿using GameFrameX.Core.Abstractions.Agent;
+﻿using GameFrameX.Core.Abstractions;
+using GameFrameX.Core.Abstractions.Agent;
 
 namespace GameFrameX.Hotfix.Common.Events
 {

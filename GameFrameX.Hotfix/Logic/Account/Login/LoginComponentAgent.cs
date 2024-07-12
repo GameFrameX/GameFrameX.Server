@@ -1,5 +1,6 @@
 ﻿using GameFrameX.Apps.Account.Login.Component;
 using GameFrameX.Apps.Account.Login.Entity;
+using GameFrameX.Core.Abstractions;
 using GameFrameX.Hotfix.Common;
 using GameFrameX.Hotfix.Logic.Server.Server;
 using GameFrameX.Launcher.Common.Session;
@@ -26,7 +27,7 @@ namespace GameFrameX.Hotfix.Logic.Account.Login
             var loginState = await loginCompAgent.Comp.OnLogin(reqLogin);
             if (loginState == null)
             {
-                var accountId = IdGenerator.GetActorID(ActorType.Account);
+                var accountId = IdGenerator.GetActorId(ActorType.Account);
                 loginState = await loginCompAgent.Comp.Register(accountId, reqLogin);
             }
 

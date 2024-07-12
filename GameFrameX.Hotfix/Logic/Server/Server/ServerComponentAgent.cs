@@ -1,5 +1,6 @@
 ﻿using GameFrameX.Apps.Server.Server.Component;
 using GameFrameX.Apps.Server.Server.Entity;
+using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Attribute;
 using GameFrameX.Core.Timer.Handler;
 using GameFrameX.Hotfix.Logic.Role.Login;
