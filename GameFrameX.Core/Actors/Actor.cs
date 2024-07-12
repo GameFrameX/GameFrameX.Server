@@ -8,6 +8,9 @@ using GameFrameX.Log;
 
 namespace GameFrameX.Core.Actors
 {
+    /// <summary>
+    /// Actor
+    /// </summary>
     public sealed class Actor : IActor
     {
         /// <summary>
@@ -18,15 +21,31 @@ namespace GameFrameX.Core.Actors
             ScheduleIdSet = new HashSet<long>();
         }
 
-        private readonly ConcurrentDictionary<Type, BaseComponent> compDic = new ConcurrentDictionary<Type, BaseComponent>();
+        private readonly ConcurrentDictionary<Type, BaseComponent> _componentsMap = new ConcurrentDictionary<Type, BaseComponent>();
 
+        /// <summary>
+        /// IActor唯一标识
+        /// </summary>
         public long Id { get; set; }
 
+        /// <summary>
+        /// 订阅哈希列表
+        /// </summary>
         public HashSet<long> ScheduleIdSet { get; }
-        public ActorType     Type          { get; set; }
 
+        /// <summary>
+        /// Actor类型
+        /// </summary>
+        public ActorType Type { get; set; }
+
+        /// <summary>
+        /// 工作Actor
+        /// </summary>
         public IWorkerActor WorkerActor { get; init; }
 
+        /// <summary>
+        /// 是否自动回收
+        /// </summary>
         public bool AutoRecycle { get; private set; } = false;
 
 
@@ -57,7 +76,7 @@ namespace GameFrameX.Core.Actors
         public async Task<IComponentAgent> GetComponentAgent(Type agentType)
         {
             var compType = agentType.BaseType.GetGenericArguments()[0];
-            var comp     = compDic.GetOrAdd(compType, GetOrAddFactory);
+            var comp     = _componentsMap.GetOrAdd(compType, GetOrAddFactory);
             var agent    = comp.GetAgent(agentType);
             if (!comp.IsActive)
             {
@@ -83,8 +102,16 @@ namespace GameFrameX.Core.Actors
             return ComponentRegister.NewComp(this, type);
         }
 
+        /// <summary>
+        /// 默认超时时长
+        /// </summary>
         public const int TIME_OUT = int.MaxValue;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="type"></param>
         public Actor(long id, ActorType type)
         {
             Id          = id;
@@ -108,7 +135,7 @@ namespace GameFrameX.Core.Actors
         public async Task CrossDay(int openServerDay)
         {
             LogHelper.Debug($"actor跨天 id:{Id} type:{Type}");
-            foreach (var comp in compDic.Values)
+            foreach (var comp in _componentsMap.Values)
             {
                 var agent = comp.GetAgent();
                 if (agent is ICrossDay crossDay)
@@ -128,7 +155,7 @@ namespace GameFrameX.Core.Actors
 
         internal bool ReadyToDeActive
         {
-            get { return compDic.Values.All(item => item.ReadyToInactive); }
+            get { return _componentsMap.Values.All(item => item.ReadyToInactive); }
         }
 
         /// <summary>
@@ -136,7 +163,7 @@ namespace GameFrameX.Core.Actors
         /// </summary>
         internal async Task SaveAllState()
         {
-            foreach (var item in compDic)
+            foreach (var item in _componentsMap)
             {
                 await item.Value.SaveState();
             }
@@ -145,9 +172,9 @@ namespace GameFrameX.Core.Actors
         /// <summary>
         /// 反激活所有组件
         /// </summary>
-        public async Task DeActive()
+        public async Task Inactive()
         {
-            foreach (var item in compDic.Values)
+            foreach (var item in _componentsMap.Values)
             {
                 await item.Inactive();
             }
@@ -155,14 +182,24 @@ namespace GameFrameX.Core.Actors
 
         #region actor 入队
 
-        public void Tell(Action work, int timeout = TIME_OUT)
+        /// <summary>
+        /// 发送无返回值的工作指令
+        /// </summary>
+        /// <param name="work">工作内容</param>
+        /// <param name="timeOut">超时,默认为int.MaxValue</param>
+        public void Tell(Action work, int timeOut = TIME_OUT)
         {
-            WorkerActor.Tell(work, timeout);
+            WorkerActor.Tell(work, timeOut);
         }
 
-        public void Tell(Func<Task> work, int timeout = TIME_OUT)
+        /// <summary>
+        /// 发送有返回值的工作指令
+        /// </summary>
+        /// <param name="work">工作内容</param>
+        /// <param name="timeOut">超时,默认为int.MaxValue</param>
+        public void Tell(Func<Task> work, int timeOut = TIME_OUT)
         {
-            WorkerActor.Tell(work, timeout);
+            WorkerActor.Tell(work, timeOut);
         }
 
         /// <summary>
@@ -236,6 +273,10 @@ namespace GameFrameX.Core.Actors
 
         #endregion
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"{base.ToString()}_{Type}_{Id}";
@@ -246,7 +287,7 @@ namespace GameFrameX.Core.Actors
         /// </summary>
         public void ClearAgent()
         {
-            foreach (var comp in compDic.Values)
+            foreach (var comp in _componentsMap.Values)
             {
                 comp.ClearCacheAgent();
             }

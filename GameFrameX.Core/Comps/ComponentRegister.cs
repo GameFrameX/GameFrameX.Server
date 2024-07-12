@@ -10,6 +10,9 @@ using GameFrameX.Log;
 
 namespace GameFrameX.Core.Comps
 {
+    /// <summary>
+    /// 组件注册器
+    /// </summary>
     public static class ComponentRegister
     {
         /// <summary>
@@ -32,18 +35,34 @@ namespace GameFrameX.Core.Comps
         /// </summary>
         private static readonly Dictionary<Type, short> CompFuncDic = new();
 
+        /// <summary>
+        /// 根据CompType获取对应的ActorType类型
+        /// </summary>
+        /// <param name="compType"></param>
+        /// <returns></returns>
         public static ActorType GetActorType(Type compType)
         {
             CompActorDic.TryGetValue(compType, out var actorType);
             return actorType;
         }
 
+        /// <summary>
+        /// 根据ActorType类型获取对应的CompTypes列表
+        /// </summary>
+        /// <param name="actorType"></param>
+        /// <returns></returns>
         public static IEnumerable<Type> GetComps(ActorType actorType)
         {
             ActorCompDic.TryGetValue(actorType, out var comps);
             return comps;
         }
 
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="assembly">目标程序集</param>
+        /// <returns></returns>
+        /// <exception cref="Exception">当程序集为null时抛出</exception>
         public static Task Init(Assembly assembly = null)
         {
             if (assembly == null)
@@ -89,6 +108,9 @@ namespace GameFrameX.Core.Comps
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// 激活全局组件
+        /// </summary>
         public static async Task ActiveGlobalComps()
         {
             try
@@ -113,7 +135,7 @@ namespace GameFrameX.Core.Comps
                     if (actorType > ActorType.Separator)
                     {
                         LogHelper.Info($"激活全局Actor: {actorType}");
-                        await ActorManager.GetOrNew(IdGenerator.GetActorID(actorType));
+                        await ActorManager.GetOrNew(IdGenerator.GetActorId(actorType));
                     }
                 }
 
@@ -126,6 +148,12 @@ namespace GameFrameX.Core.Comps
             }
         }
 
+        /// <summary>
+        /// 激活角色组件
+        /// </summary>
+        /// <param name="componentAgent"></param>
+        /// <param name="openFuncSet"></param>
+        /// <returns></returns>
         public static Task ActiveRoleComps(IComponentAgent componentAgent, HashSet<short> openFuncSet)
         {
             return ActiveComps(componentAgent.Owner.Actor,

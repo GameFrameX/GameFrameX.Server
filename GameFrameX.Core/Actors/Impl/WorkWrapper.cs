@@ -1,201 +1,59 @@
 ﻿using GameFrameX.Core.Abstractions;
-using GameFrameX.Log;
 
 namespace GameFrameX.Core.Actors.Impl
 {
+    /// <summary>
+    /// 工作包装器
+    /// </summary>
     public abstract class WorkWrapper
     {
+        /// <summary>
+        /// 工作对象
+        /// </summary>
         public WorkerActor Owner { get; set; }
+
+        /// <summary>
+        /// 超时时间
+        /// </summary>
         public int TimeOut { get; set; }
+
+        /// <summary>
+        /// 执行
+        /// </summary>
+        /// <returns></returns>
         public abstract Task DoTask();
+
+        /// <summary>
+        /// 获取调用链
+        /// </summary>
+        /// <returns></returns>
         public abstract string GetTrace();
+
+        /// <summary>
+        /// 强制设置结果
+        /// </summary>
         public abstract void ForceSetResult();
+
+        /// <summary>
+        /// 调用链ID
+        /// </summary>
         public long CallChainId { get; set; }
 
+        /// <summary>
+        /// 设置上下文
+        /// </summary>
         protected void SetContext()
         {
             RuntimeContext.SetContext(CallChainId, Owner.Id);
-            Owner.CurChainId = CallChainId;
+            Owner.CurrentChainId = CallChainId;
         }
 
+        /// <summary>
+        /// 重置上下文
+        /// </summary>
         public void ResetContext()
         {
-            Owner.CurChainId = 0;
-        }
-    }
-
-    public class ActionWrapper : WorkWrapper
-    {
-
-        public Action Work { private set; get; }
-        public TaskCompletionSource<bool> Tcs { private set; get; }
-
-        public ActionWrapper(Action work)
-        {
-            Work = work;
-            Tcs = new TaskCompletionSource<bool>();
-        }
-
-        public override Task DoTask()
-        {
-            try
-            {
-                SetContext();
-                Work();
-            }
-            catch (Exception e)
-            {
-                LogHelper.Error(e.ToString());
-            }
-            finally
-            {
-                ResetContext();
-                Tcs.TrySetResult(true);
-            }
-
-            return Task.CompletedTask;
-        }
-
-        public override string GetTrace()
-        {
-            return Work.Target + "|" + Work.Method.Name;
-        }
-
-        public override void ForceSetResult()
-        {
-            ResetContext();
-            Tcs.TrySetResult(false);
-        }
-    }
-
-    public class FuncWrapper<T> : WorkWrapper
-    {
-        public Func<T> Work { private set; get; }
-        public TaskCompletionSource<T> Tcs { private set; get; }
-
-        public FuncWrapper(Func<T> work)
-        {
-            Work = work;
-            Tcs = new TaskCompletionSource<T>();
-        }
-
-        public override Task DoTask()
-        {
-            T ret = default;
-            try
-            {
-                SetContext();
-                ret = Work();
-            }
-            catch (Exception e)
-            {
-                LogHelper.Error(e.ToString());
-            }
-            finally
-            {
-                ResetContext();
-                Tcs.TrySetResult(ret);
-            }
-
-            return Task.CompletedTask;
-        }
-
-        public override string GetTrace()
-        {
-            return Work.Target + "|" + Work.Method.Name;
-        }
-
-        public override void ForceSetResult()
-        {
-            ResetContext();
-            Tcs.TrySetResult(default);
-        }
-    }
-
-    public class ActionAsyncWrapper : WorkWrapper
-    {
-        
-
-        public Func<Task> Work { private set; get; }
-        public TaskCompletionSource<bool> Tcs { private set; get; }
-
-        public ActionAsyncWrapper(Func<Task> work)
-        {
-            Work = work;
-            Tcs = new TaskCompletionSource<bool>();
-        }
-
-        public override async Task DoTask()
-        {
-            try
-            {
-                SetContext();
-                await Work();
-            }
-            catch (Exception e)
-            {
-                LogHelper.Error(e.ToString());
-            }
-            finally
-            {
-                ResetContext();
-                Tcs.TrySetResult(true);
-            }
-        }
-
-        public override string GetTrace()
-        {
-            return Work.Target + "|" + Work.Method.Name;
-        }
-
-        public override void ForceSetResult()
-        {
-            ResetContext();
-            Tcs.TrySetResult(false);
-        }
-    }
-
-    public class FuncAsyncWrapper<T> : WorkWrapper
-    {
-        
-
-        public Func<Task<T>> Work { private set; get; }
-        public TaskCompletionSource<T> Tcs { private set; get; }
-
-        public FuncAsyncWrapper(Func<Task<T>> work)
-        {
-            Work = work;
-            Tcs = new TaskCompletionSource<T>();
-        }
-
-        public override async Task DoTask()
-        {
-            T ret = default;
-            try
-            {
-                SetContext();
-                ret = await Work();
-            }
-            catch (Exception e)
-            {
-                LogHelper.Error(e.ToString());
-            }
-            finally
-            {
-                ResetContext();
-                Tcs.TrySetResult(ret);
-            }
-        }
-
-        public override string GetTrace()
-        {
-            return Work.Target + "|" + Work.Method.Name;
-        }
-
-        public override void ForceSetResult()
-        {
-            ResetContext();
-            Tcs.TrySetResult(default);
+            Owner.CurrentChainId = 0;
         }
     }
 }

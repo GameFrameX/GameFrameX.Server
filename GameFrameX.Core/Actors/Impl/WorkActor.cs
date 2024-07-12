@@ -6,14 +6,21 @@ using GameFrameX.Setting;
 
 namespace GameFrameX.Core.Actors.Impl
 {
+    /// <summary>
+    /// 工作Actor
+    /// </summary>
     public class WorkerActor : IWorkerActor
     {
         private static readonly ILogger Log = Serilog.Log.ForContext<WorkWrapper>();
 
-        internal     long CurChainId { get; set; }
-        internal     long Id         { get; init; }
-        public const int  TIME_OUT = 13000;
+        internal      long CurrentChainId { get; set; }
+        internal      long Id             { get; init; }
+        private const int  TimeOut = 13000;
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="id"></param>
         public WorkerActor(long id = 0)
         {
             if (id == 0)
@@ -50,14 +57,22 @@ namespace GameFrameX.Core.Actors.Impl
         public (bool needEnqueue, long chainId) IsNeedEnqueue()
         {
             var  chainId                             = RuntimeContext.CurrentChainId;
-            bool needEnqueue                         = chainId == 0 || chainId != CurChainId;
+            bool needEnqueue                         = chainId == 0 || chainId != CurrentChainId;
             if (needEnqueue && chainId == 0) chainId = NextChainId();
             return (needEnqueue, chainId);
         }
 
         #region 勿调用(仅供代码生成器调用)
 
-        public Task Enqueue(Action work, long callChainId, bool discard = false, int timeOut = TIME_OUT)
+        /// <summary>
+        /// 压入一个异步任务
+        /// </summary>
+        /// <param name="work">工作单元</param>
+        /// <param name="callChainId">调用链ID</param>
+        /// <param name="discard">是否强制</param>
+        /// <param name="timeOut">超时时间</param>
+        /// <returns></returns>
+        public Task Enqueue(Action work, long callChainId, bool discard = false, int timeOut = TimeOut)
         {
             if (!discard && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
                 return default;
@@ -71,7 +86,15 @@ namespace GameFrameX.Core.Actors.Impl
             return at.Tcs.Task;
         }
 
-        public Task<T> Enqueue<T>(Func<T> work, long callChainId, bool discard = false, int timeOut = TIME_OUT)
+        /// <summary>
+        /// 压入一个异步任务
+        /// </summary>
+        /// <param name="work">工作单元</param>
+        /// <param name="callChainId">调用链ID</param>
+        /// <param name="discard">是否强制</param>
+        /// <param name="timeOut">超时时间</param>
+        /// <returns></returns>
+        public Task<T> Enqueue<T>(Func<T> work, long callChainId, bool discard = false, int timeOut = TimeOut)
         {
             if (!discard && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
                 return default;
@@ -85,7 +108,15 @@ namespace GameFrameX.Core.Actors.Impl
             return at.Tcs.Task;
         }
 
-        public Task Enqueue(Func<Task> work, long callChainId, bool discard = false, int timeOut = TIME_OUT)
+        /// <summary>
+        /// 压入一个异步任务
+        /// </summary>
+        /// <param name="work">工作单元</param>
+        /// <param name="callChainId">调用链ID</param>
+        /// <param name="discard">是否强制</param>
+        /// <param name="timeOut">超时时间</param>
+        /// <returns></returns>
+        public Task Enqueue(Func<Task> work, long callChainId, bool discard = false, int timeOut = TimeOut)
         {
             if (!discard && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
                 return default;
@@ -99,7 +130,16 @@ namespace GameFrameX.Core.Actors.Impl
             return at.Tcs.Task;
         }
 
-        public Task<T> Enqueue<T>(Func<Task<T>> work, long callChainId, bool discard = false, int timeOut = TIME_OUT)
+        /// <summary>
+        /// 压入一个异步任务
+        /// </summary>
+        /// <param name="work">工作单元</param>
+        /// <param name="callChainId">调用链ID</param>
+        /// <param name="discard">是否强制</param>
+        /// <param name="timeOut">超时时间</param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public Task<T> Enqueue<T>(Func<Task<T>> work, long callChainId, bool discard = false, int timeOut = TimeOut)
         {
             if (!discard && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
                 return default;
@@ -117,23 +157,33 @@ namespace GameFrameX.Core.Actors.Impl
 
         #region 供框架底层调用(逻辑开发人员应尽量避免调用)
 
-        public void Tell(Action work, int timeout = Actor.TIME_OUT)
+        /// <summary>
+        /// 发送无返回值的工作指令
+        /// </summary>
+        /// <param name="work">工作内容</param>
+        /// <param name="timeOut">超时,默认为int.MaxValue</param>
+        public void Tell(Action work, int timeOut = Actor.TIME_OUT)
         {
             var at = new ActionWrapper(work)
                      {
                          Owner       = this,
-                         TimeOut     = timeout,
+                         TimeOut     = timeOut,
                          CallChainId = NextChainId(),
                      };
             _ = ActionBlock.SendAsync(at);
         }
 
-        public void Tell(Func<Task> work, int timeout = Actor.TIME_OUT)
+        /// <summary>
+        /// 发送有返回值的工作指令
+        /// </summary>
+        /// <param name="work">工作内容</param>
+        /// <param name="timeOut">超时,默认为int.MaxValue</param>
+        public void Tell(Func<Task> work, int timeOut = Actor.TIME_OUT)
         {
             var wrapper = new ActionAsyncWrapper(work)
                           {
                               Owner       = this,
-                              TimeOut     = timeout,
+                              TimeOut     = timeOut,
                               CallChainId = NextChainId(),
                           };
             _ = ActionBlock.SendAsync(wrapper);
@@ -142,7 +192,7 @@ namespace GameFrameX.Core.Actors.Impl
         /// <summary>
         /// 调用该方法禁止丢弃Task，丢弃Task请使用Tell方法
         /// </summary>
-        public Task SendAsync(Action work, int timeout = Actor.TIME_OUT)
+        public Task SendAsync(Action work, int timeOut = Actor.TIME_OUT)
         {
             (bool needEnqueue, long chainId) = IsNeedEnqueue();
             if (needEnqueue)
@@ -153,7 +203,7 @@ namespace GameFrameX.Core.Actors.Impl
                 var at = new ActionWrapper(work)
                          {
                              Owner       = this,
-                             TimeOut     = timeout,
+                             TimeOut     = timeOut,
                              CallChainId = chainId,
                          };
                 ActionBlock.SendAsync(at);
@@ -166,7 +216,13 @@ namespace GameFrameX.Core.Actors.Impl
             }
         }
 
-        public Task<T> SendAsync<T>(Func<T> work, int timeout = Actor.TIME_OUT)
+        /// <summary>
+        /// 发送有返回值工作指令
+        /// </summary>
+        /// <param name="work">工作内容</param>
+        /// <param name="timeOut">超时,默认为int.MaxValue</param>
+        /// <returns></returns>
+        public Task<T> SendAsync<T>(Func<T> work, int timeOut = Actor.TIME_OUT)
         {
             (bool needEnqueue, long chainId) = IsNeedEnqueue();
             if (needEnqueue)
@@ -177,7 +233,7 @@ namespace GameFrameX.Core.Actors.Impl
                 var at = new FuncWrapper<T>(work)
                          {
                              Owner       = this,
-                             TimeOut     = timeout,
+                             TimeOut     = timeOut,
                              CallChainId = chainId,
                          };
                 ActionBlock.SendAsync(at);
@@ -189,12 +245,25 @@ namespace GameFrameX.Core.Actors.Impl
             }
         }
 
-        public Task SendAsync(Func<Task> work, int timeOut = Int32.MaxValue)
+        /// <summary>
+        /// 发送有返回值工作指令
+        /// </summary>
+        /// <param name="work">工作内容</param>
+        /// <param name="timeOut">超时,默认为int.MaxValue</param>
+        /// <returns></returns>
+        public Task SendAsync(Func<Task> work, int timeOut = int.MaxValue)
         {
             return SendAsync(work, timeOut, true);
         }
 
-        public Task SendAsync(Func<Task> work, int timeout = Actor.TIME_OUT, bool checkLock = true)
+        /// <summary>
+        /// 发送有返回值工作指令
+        /// </summary>
+        /// <param name="work">工作内容</param>
+        /// <param name="timeOut">超时,默认为int.MaxValue</param>
+        /// <param name="checkLock">是否检查锁</param>
+        /// <returns></returns>
+        public Task SendAsync(Func<Task> work, int timeOut = Actor.TIME_OUT, bool checkLock = true)
         {
             (bool needEnqueue, long chainId) = IsNeedEnqueue();
             if (needEnqueue)
@@ -205,7 +274,7 @@ namespace GameFrameX.Core.Actors.Impl
                 var wrapper = new ActionAsyncWrapper(work)
                               {
                                   Owner       = this,
-                                  TimeOut     = timeout,
+                                  TimeOut     = timeOut,
                                   CallChainId = chainId,
                               };
                 ActionBlock.SendAsync(wrapper);
@@ -217,7 +286,13 @@ namespace GameFrameX.Core.Actors.Impl
             }
         }
 
-        public Task<T> SendAsync<T>(Func<Task<T>> work, int timeout = Actor.TIME_OUT)
+        /// <summary>
+        /// 发送有返回值工作指令
+        /// </summary>
+        /// <param name="work">工作内容</param>
+        /// <param name="timeOut">超时,默认为int.MaxValue</param>
+        /// <returns></returns>
+        public Task<T> SendAsync<T>(Func<Task<T>> work, int timeOut = Actor.TIME_OUT)
         {
             (bool needEnqueue, long chainId) = IsNeedEnqueue();
             if (needEnqueue)
@@ -228,7 +303,7 @@ namespace GameFrameX.Core.Actors.Impl
                 var wrapper = new FuncAsyncWrapper<T>(work)
                               {
                                   Owner       = this,
-                                  TimeOut     = timeout,
+                                  TimeOut     = timeOut,
                                   CallChainId = chainId,
                               };
                 ActionBlock.SendAsync(wrapper);
@@ -242,17 +317,17 @@ namespace GameFrameX.Core.Actors.Impl
 
         #endregion
 
-        private static long chainId = DateTime.Now.Ticks;
+        private static long _chainId = DateTime.Now.Ticks;
 
         /// <summary>
         /// 调用链生成
         /// </summary>
         public static long NextChainId()
         {
-            var id = Interlocked.Increment(ref chainId);
+            var id = Interlocked.Increment(ref _chainId);
             if (id == 0)
             {
-                id = Interlocked.Increment(ref chainId);
+                id = Interlocked.Increment(ref _chainId);
             }
 
             return id;

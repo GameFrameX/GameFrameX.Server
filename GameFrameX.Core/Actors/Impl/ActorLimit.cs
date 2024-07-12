@@ -1,7 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Utility;
-using Serilog;
 using GameFrameX.Log;
 
 namespace GameFrameX.Core.Actors.Impl
@@ -60,8 +59,9 @@ namespace GameFrameX.Core.Actors.Impl
                             LevelDic.Add(actorType, (int)foo);
                         }
                     }
-                    catch (Exception)
+                    catch (Exception exception)
                     {
+                        LogHelper.Fatal(exception);
                         throw;
                     }
                 }
@@ -104,7 +104,7 @@ namespace GameFrameX.Core.Actors.Impl
             /// </summary>
             /// <param name="target">目标</param>
             /// <returns></returns>
-            public bool AllowCall(long target)
+            bool IRule.AllowCall(long target)
             {
                 var actorId = RuntimeContext.CurrentActor;
                 // 从其他线程抛到actor，不涉及入队行为
@@ -113,14 +113,14 @@ namespace GameFrameX.Core.Actors.Impl
                     return true;
                 }
 
-                ActorType curType    = IdGenerator.GetActorType(actorId);
-                ActorType targetType = IdGenerator.GetActorType(target);
-                if (LevelDic.ContainsKey(targetType) && LevelDic.TryGetValue(curType, out var value))
+                var currentType = IdGenerator.GetActorType(actorId);
+                var targetType  = IdGenerator.GetActorType(target);
+                if (LevelDic.TryGetValue(targetType, out var targetValue) && LevelDic.TryGetValue(currentType, out var currentValue))
                 {
                     //等级高的不能【等待】调用等级低的
-                    if (value > LevelDic[targetType])
+                    if (currentValue > targetValue)
                     {
-                        LogHelper.Error($"不合法的调用路径:{curType}==>{targetType}");
+                        LogHelper.Error($"不合法的调用路径:{currentType}==>{targetType}");
                         return false;
                     }
                 }

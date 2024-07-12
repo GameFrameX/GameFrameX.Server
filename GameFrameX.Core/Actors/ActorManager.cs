@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Actors.Impl;
 using GameFrameX.Core.Comps;
@@ -71,7 +72,7 @@ namespace GameFrameX.Core.Actors
         {
             var compType  = HotfixManager.GetCompType(typeof(T));
             var actorType = ComponentRegister.GetActorType(compType);
-            var actorId   = IdGenerator.GetActorID(actorType);
+            var actorId   = IdGenerator.GetActorId(actorType);
             return GetComponentAgent<T>(actorId);
         }
 
@@ -168,7 +169,7 @@ namespace GameFrameX.Core.Actors
                                                                                       // 防止定时回存失败时State被直接移除
                                                                                       if (actor.ReadyToDeActive)
                                                                                       {
-                                                                                          await actor.DeActive();
+                                                                                          await actor.Inactive();
                                                                                           ActorMap.TryRemove(actor.Id, out var _);
                                                                                           LogHelper.Debug($"actor回收 id:{actor.Id} type:{actor.Type}");
                                                                                       }
@@ -293,7 +294,7 @@ namespace GameFrameX.Core.Actors
         public static async Task CrossDay(int openServerDay, ActorType driverActorType)
         {
             // 驱动actor优先执行跨天
-            var id          = IdGenerator.GetActorID(driverActorType);
+            var id          = IdGenerator.GetActorId(driverActorType);
             var driverActor = ActorMap[id];
             await driverActor.CrossDay(openServerDay);
 
@@ -365,7 +366,7 @@ namespace GameFrameX.Core.Actors
             var tasks = new List<Task>();
             foreach (var actor in ActorMap.Values)
             {
-                tasks.Add(actor.DeActive());
+                tasks.Add(actor.Inactive());
             }
 
             await Task.WhenAll(tasks);
@@ -380,7 +381,7 @@ namespace GameFrameX.Core.Actors
         {
             if (ActorMap.Remove(actorId, out var actor))
             {
-                actor.Tell(actor.DeActive);
+                actor.Tell(actor.Inactive);
             }
 
             return Task.CompletedTask;

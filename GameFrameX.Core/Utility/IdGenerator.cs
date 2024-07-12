@@ -1,4 +1,5 @@
-﻿using GameFrameX.Core.Actors;
+﻿using GameFrameX.Core.Abstractions;
+using GameFrameX.Core.Actors;
 using GameFrameX.Setting;
 
 namespace GameFrameX.Core.Utility
@@ -14,19 +15,31 @@ namespace GameFrameX.Core.Utility
     /// </summary>
     public static class IdGenerator
     {
-        private static long genSecond = 0L;
-        private static long incrNum = 0L;
+        private static long _genSecond = 0L;
+        private static long _incrNum   = 0L;
 
         //此时间决定可用id年限(最晚有效年限=34年+此时间)(可调整,早于开服时间就行)
-        private readonly static DateTime utcTimeStart = new(2022, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        private static readonly DateTime UtcTimeStart = new(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-        private static readonly object lockObj = new();
+        private static readonly object LockObj = new();
 
+        /// <summary>
+        /// 根据ActorId获取服务器id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static int GetServerId(long id)
         {
-            return (int) (id < GlobalConst.MaxGlobalId ? id / 1000 : id >> GlobalConst.ServerIdOrModuleIdMask);
+            return (int)(id < GlobalConst.MaxGlobalId ? id / 1000 : id >> GlobalConst.ServerIdOrModuleIdMask);
         }
 
+        /// <summary>
+        /// 根据ActorId获取生成时间
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="utc"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         public static DateTime GetGenerateTime(long id, bool utc = false)
         {
             if (id < GlobalConst.MaxGlobalId)
@@ -34,7 +47,7 @@ namespace GameFrameX.Core.Utility
                 throw new ArgumentException($"input is a global id:{id}");
             }
 
-            var serverId = GetServerId(id);
+            var  serverId = GetServerId(id);
             long seconds;
             if (serverId < GlobalConst.MinServerId)
             {
@@ -46,10 +59,16 @@ namespace GameFrameX.Core.Utility
                 seconds = (id >> GlobalConst.TimestampMask) & GlobalConst.SecondMask;
             }
 
-            var date = utcTimeStart.AddSeconds(seconds);
+            var date = UtcTimeStart.AddSeconds(seconds);
             return utc ? date : date.ToLocalTime();
         }
 
+        /// <summary>
+        /// 根据ActorId获取ActorType
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         public static ActorType GetActorType(long id)
         {
             if (id <= 0)
@@ -60,18 +79,21 @@ namespace GameFrameX.Core.Utility
             if (id < GlobalConst.MaxGlobalId)
             {
                 // 全局actor
-                return (ActorType) (id % 1000);
+                return (ActorType)(id % 1000);
             }
 
-            return (ActorType) ((id >> GlobalConst.ActorTypeMask) & 0xF);
+            return (ActorType)((id >> GlobalConst.ActorTypeMask) & 0xF);
         }
 
-        public static long GetActorID(int type, int serverId = 0)
-        {
-            return GetActorID((ActorType) type, serverId);
-        }
 
-        public static long GetActorID(ActorType type, int serverId = 0)
+        /// <summary>
+        /// 根据ActorType获取ActorId
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="serverId"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static long GetActorId(ActorType type, int serverId = 0)
         {
             if (type == ActorType.Separator)
             {
@@ -89,84 +111,99 @@ namespace GameFrameX.Core.Utility
 
             if (type < ActorType.Separator)
             {
-                return GetMultiActorID(type, serverId);
+                return GetMultiActorId(type, serverId);
             }
             else
             {
-                return GetGlobalActorID(type, serverId);
+                return GetGlobalActorId(type, serverId);
             }
         }
 
-        public static long GetMultiActorIDBegin(ActorType type)
+        /// <summary>
+        /// 根据ActorType获取ActorId开始值
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static long GetMultiActorIdBegin(ActorType type)
         {
             if (type >= ActorType.Separator)
             {
                 throw new ArgumentException($"input actor type error: {type}");
             }
 
-            var id = (long) GlobalSettings.ServerId << GlobalConst.ServerIdOrModuleIdMask;
-            id |= (long) type << GlobalConst.ActorTypeMask;
+            var id = (long)GlobalSettings.ServerId << GlobalConst.ServerIdOrModuleIdMask;
+            id |= (long)type << GlobalConst.ActorTypeMask;
             return id;
         }
 
-        private static long GetGlobalActorID(ActorType type, int serverId)
+        private static long GetGlobalActorId(ActorType type, int serverId)
         {
-            return (long) (serverId * 1000 + type);
+            return (long)(serverId * 1000 + type);
         }
 
 
-        private static long GetMultiActorID(ActorType type, int serverId)
+        private static long GetMultiActorId(ActorType type, int serverId)
         {
-            long second = (long) (DateTime.UtcNow - utcTimeStart).TotalSeconds;
-            lock (lockObj)
+            long second = (long)(DateTime.UtcNow - UtcTimeStart).TotalSeconds;
+            lock (LockObj)
             {
-                if (second > genSecond)
+                if (second > _genSecond)
                 {
-                    genSecond = second;
-                    incrNum = 0L;
+                    _genSecond = second;
+                    _incrNum   = 0L;
                 }
-                else if (incrNum >= GlobalConst.MaxActorIncrease)
+                else if (_incrNum >= GlobalConst.MaxActorIncrease)
                 {
-                    ++genSecond;
-                    incrNum = 0L;
+                    ++_genSecond;
+                    _incrNum = 0L;
                 }
                 else
                 {
-                    ++incrNum;
+                    ++_incrNum;
                 }
             }
 
-            var id = (long) serverId << GlobalConst.ServerIdOrModuleIdMask; // serverId-14位, 支持1000~9999
-            id |= (long) type << GlobalConst.ActorTypeMask; // 多actor类型-7位, 支持0~127
-            id |= genSecond << GlobalConst.TimestampMask; // 时间戳-30位, 支持34年
-            id |= incrNum; // 自增-12位, 每秒4096个
+            var id = (long)serverId << GlobalConst.ServerIdOrModuleIdMask; // serverId-14位, 支持1000~9999
+            id |= (long)type << GlobalConst.ActorTypeMask; // 多actor类型-7位, 支持0~127
+            id |= _genSecond << GlobalConst.TimestampMask; // 时间戳-30位, 支持34年
+            id |= _incrNum; // 自增-12位, 每秒4096个
             return id;
         }
 
+        /// <summary>
+        /// 根据模块获取唯一ID
+        /// </summary>
+        /// <param name="module"></param>
+        /// <returns></returns>
         public static long GetUniqueId(IdModule module)
         {
-            long second = (long) (DateTime.UtcNow - utcTimeStart).TotalSeconds;
-            lock (lockObj)
+            long second = (long)(DateTime.UtcNow - UtcTimeStart).TotalSeconds;
+            lock (LockObj)
             {
-                if (second > genSecond)
+                if (second > _genSecond)
                 {
-                    genSecond = second;
-                    incrNum = 0L;
+                    _genSecond = second;
+                    _incrNum   = 0L;
                 }
-                else if (incrNum >= GlobalConst.MaxUniqueIncrease)
+                else if (_incrNum >= GlobalConst.MaxUniqueIncrease)
                 {
-                    ++genSecond;
-                    incrNum = 0L;
+                    ++_genSecond;
+                    _incrNum = 0L;
                 }
                 else
                 {
-                    ++incrNum;
+                    ++_incrNum;
                 }
             }
 
-            var id = (long) module << GlobalConst.ServerIdOrModuleIdMask; // 模块id 14位 支持 0~9999
-            id |= genSecond << GlobalConst.ModuleIdTimestampMask; // 时间戳 30位
-            id |= incrNum; // 自增 19位
+            var id = (long)module << GlobalConst.ServerIdOrModuleIdMask; // 模块id 14位 支持 0~9999
+            lock (LockObj)
+            {
+                id |= _genSecond << GlobalConst.ModuleIdTimestampMask; // 时间戳 30位
+            }
+
+            id |= _incrNum; // 自增 19位
             return id;
         }
     }

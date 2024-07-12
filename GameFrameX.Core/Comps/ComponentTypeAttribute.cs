@@ -1,4 +1,5 @@
-﻿using GameFrameX.Core.Actors;
+﻿using GameFrameX.Core.Abstractions;
+using GameFrameX.Core.Actors;
 
 namespace GameFrameX.Core.Comps
 {
