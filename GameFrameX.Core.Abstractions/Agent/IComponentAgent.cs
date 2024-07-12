@@ -1,6 +1,4 @@
-﻿using GameFrameX.Core.Actors;
-
-namespace GameFrameX.Core.Abstractions.Agent
+﻿namespace GameFrameX.Core.Abstractions.Agent
 {
     /// <summary>
     /// 组件代理接口

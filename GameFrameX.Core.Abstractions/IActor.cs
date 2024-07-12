@@ -1,5 +1,4 @@
 ﻿using GameFrameX.Core.Abstractions.Agent;
-using GameFrameX.Core.Actors;
 
 namespace GameFrameX.Core.Abstractions;
 
@@ -42,7 +41,7 @@ public interface IActor : IWorker
     /// 反激活所有组件
     /// </summary>
     /// <returns></returns>
-    Task DeActive();
+    Task Inactive();
 
     /// <summary>
     /// 根据组件类型获取对应的IComponentAgent

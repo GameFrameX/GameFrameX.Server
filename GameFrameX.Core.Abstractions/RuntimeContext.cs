@@ -26,12 +26,12 @@ namespace GameFrameX.Core.Abstractions
         /// <summary>
         /// 当前链上下文
         /// </summary>
-        public static readonly AsyncLocal<long> ChainContext = new AsyncLocal<long>();
+        private static readonly AsyncLocal<long> ChainContext = new AsyncLocal<long>();
 
         /// <summary>
         /// 当前Actor上下文
         /// </summary>
-        public static readonly AsyncLocal<long> ActorContext = new AsyncLocal<long>();
+        private static readonly AsyncLocal<long> ActorContext = new AsyncLocal<long>();
 
 
         /// <summary>
