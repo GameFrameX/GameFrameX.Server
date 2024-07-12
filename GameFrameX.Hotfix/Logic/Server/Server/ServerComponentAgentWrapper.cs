@@ -1,7 +1,6 @@
 using GameFrameX.Core.Actors.Impl;
-using GameFrameX.Hotfix.Logic.Server.Server.Agent;
 
-namespace GameFrameX.Hotfix.Logic.Server.Server.Warpper;
+namespace GameFrameX.Hotfix.Logic.Server.Server;
 
 public class ServerComponentAgentWrapper : ServerComponentAgent
 {

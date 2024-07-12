@@ -1,7 +1,7 @@
 ﻿using GameFrameX.Apps.Account.Login.Component;
 using GameFrameX.Apps.Account.Login.Entity;
 using GameFrameX.Hotfix.Common;
-using GameFrameX.Hotfix.Logic.Server.Server.Agent;
+using GameFrameX.Hotfix.Logic.Server.Server;
 using GameFrameX.Launcher.Common.Session;
 using GameFrameX.NetWork;
 

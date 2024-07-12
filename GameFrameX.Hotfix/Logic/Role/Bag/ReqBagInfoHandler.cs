@@ -8,7 +8,7 @@ namespace GameFrameX.Hotfix.Logic.Role.Bag
     {
         protected override async Task ActionAsync()
         {
-            await Comp.GetBagInfo(Message as ReqBagInfo);
+            await ComponentAgent.GetBagInfo(Message as ReqBagInfo);
         }
     }
 }

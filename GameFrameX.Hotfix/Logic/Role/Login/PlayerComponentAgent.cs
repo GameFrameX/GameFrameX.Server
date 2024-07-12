@@ -1,6 +1,6 @@
 ﻿using GameFrameX.Apps.Player.Player.Component;
 using GameFrameX.Apps.Player.Player.Entity;
-using GameFrameX.Hotfix.Logic.Server.Server.Agent;
+using GameFrameX.Hotfix.Logic.Server.Server;
 using GameFrameX.Launcher.Common.Session;
 using GameFrameX.NetWork;
 

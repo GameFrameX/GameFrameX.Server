@@ -22,6 +22,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\GameFrameX.Apps\GameFrameX.Apps.csproj" />
+        <ProjectReference Include="..\GameFrameX.Core.Abstractions\GameFrameX.Core.Abstractions.csproj" />
         <ProjectReference Include="..\GameFrameX.Launcher\GameFrameX.Launcher.csproj" />
         <ProjectReference Include="..\GameFrameX.Core\GameFrameX.Core.csproj" />
         <ProjectReference Include="..\GameFrameX.NetWork.HTTP\GameFrameX.NetWork.HTTP.csproj" />

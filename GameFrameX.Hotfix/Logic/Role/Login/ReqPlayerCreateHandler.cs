@@ -8,6 +8,6 @@ internal class ReqPlayerCreateHandler : GlobalComponentHandler<PlayerComponentAg
 {
     protected override async Task ActionAsync()
     {
-        await Comp.OnPlayerCreate(NetWorkChannel, Message as ReqPlayerCreate);
+        await ComponentAgent.OnPlayerCreate(NetWorkChannel, Message as ReqPlayerCreate);
     }
 }

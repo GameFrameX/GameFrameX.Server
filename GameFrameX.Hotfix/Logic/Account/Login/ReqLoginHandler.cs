@@ -8,7 +8,7 @@ namespace GameFrameX.Hotfix.Logic.Account.Login
     {
         protected override async Task ActionAsync()
         {
-            await Comp.OnLogin(NetWorkChannel, Message as ReqLogin);
+            await ComponentAgent.OnLogin(NetWorkChannel, Message as ReqLogin);
         }
     }
 }

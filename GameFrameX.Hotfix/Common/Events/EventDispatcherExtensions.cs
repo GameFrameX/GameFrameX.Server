@@ -1,4 +1,6 @@
-﻿namespace GameFrameX.Hotfix.Common.Events
+﻿using GameFrameX.Core.Abstractions.Agent;
+
+namespace GameFrameX.Hotfix.Common.Events
 {
     public static class EventDispatcherExtensions
     {

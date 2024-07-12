@@ -8,7 +8,7 @@ namespace GameFrameX.Hotfix.Logic.Role.Bag
     {
         protected override async Task ActionAsync()
         {
-            await Comp.ComposePet(Message as ReqComposePet);
+            await ComponentAgent.ComposePet(Message as ReqComposePet);
         }
     }
 }
