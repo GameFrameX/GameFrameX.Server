@@ -98,4 +98,13 @@ public static class LogHelper
         Serilog.Log.Fatal(msg, msg.Message);
         // StackTrace();
     }
+
+    /// <summary>
+    /// 记录严重的异常错误
+    /// </summary>
+    /// <param name="exception">异常</param>
+    public static void Error(Exception exception)
+    {
+        Serilog.Log.Error(exception, exception.Message);
+    }
 }
