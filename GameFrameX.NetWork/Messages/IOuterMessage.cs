@@ -8,11 +8,6 @@ namespace GameFrameX.NetWork.Messages;
 public interface IOuterMessage : IMessage
 {
     /// <summary>
-    /// 消息操作业务类型
-    /// </summary>
-    MessageOperationType OperationType { get; }
-
-    /// <summary>
     /// 消息数据
     /// </summary>
     byte[] MessageData { get; }
