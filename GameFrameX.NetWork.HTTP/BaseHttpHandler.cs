@@ -5,28 +5,43 @@ using GameFrameX.Setting;
 
 namespace GameFrameX.NetWork.HTTP
 {
-    public abstract class BaseHttpHandler
+    /// <summary>
+    /// 基础HTTP处理器
+    /// </summary>
+    public abstract class BaseHttpHandler : IHttpHandler
     {
         /// <summary>
         /// 是否使用内部验证方式
         /// </summary>
-        public virtual bool IsCheckSign => false;
+        public virtual bool IsCheckSign
+        {
+            get { return false; }
+        }
 
+        /// <summary>
+        /// 获取签名
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public static string GetStringSign(string str)
         {
             //取md5
-            var data = Encoding.UTF8.GetBytes(str);
+            var    data     = Encoding.UTF8.GetBytes(str);
             byte[] md5Bytes = MD5.Create().ComputeHash(data);
-            string md5 = BitConverter.ToString(md5Bytes).Replace("-", "").ToLower();
+            string md5      = BitConverter.ToString(md5Bytes).Replace("-", "").ToLower();
 
             int checkCode1 = 0; //校验码
             int checkCode2 = 0;
             foreach (var t in md5)
             {
                 if (t >= 'a')
+                {
                     checkCode1 += t;
+                }
                 else
+                {
                     checkCode2 += t;
+                }
             }
 
             md5 = checkCode1 + md5 + checkCode2;
@@ -34,6 +49,11 @@ namespace GameFrameX.NetWork.HTTP
             return md5;
         }
 
+        /// <summary>
+        /// 校验签名
+        /// </summary>
+        /// <param name="paramMap"></param>
+        /// <returns></returns>
         public string CheckSign(Dictionary<string, string> paramMap)
         {
             // if (!IsCheckSign || GlobalSettings.IsDebug)
@@ -70,6 +90,13 @@ namespace GameFrameX.NetWork.HTTP
             }
         }
 
+        /// <summary>
+        /// 执行
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <param name="url"></param>
+        /// <param name="paramMap"></param>
+        /// <returns></returns>
         public abstract Task<string> Action(string ip, string url, Dictionary<string, string> paramMap);
     }
 }

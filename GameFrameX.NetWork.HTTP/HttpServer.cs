@@ -8,10 +8,16 @@ using GameFrameX.Log;
 
 namespace GameFrameX.NetWork.HTTP
 {
+    /// <summary>
+    /// HTTP服务器
+    /// </summary>
     public static class HttpServer
     {
         private static WebApplication App { get; set; }
 
+        /// <summary>
+        /// 游戏API根地址
+        /// </summary>
         public const string GameApiPath = "/game/api/";
 
         /// <summary>
@@ -24,34 +30,34 @@ namespace GameFrameX.NetWork.HTTP
         {
             var builder = WebApplication.CreateBuilder();
             builder.WebHost.UseKestrel(options =>
-                {
-                    // HTTP 
-                    if (httpPort > 0)
-                    {
-                        options.ListenAnyIP(httpPort);
-                    }
+                                       {
+                                           // HTTP 
+                                           if (httpPort > 0)
+                                           {
+                                               options.ListenAnyIP(httpPort);
+                                           }
 
-                    // HTTPS
-                    if (httpsPort > 0)
-                    {
-                        options.ListenAnyIP(httpsPort, listenOptions => { listenOptions.UseHttps(); });
-                    }
-                })
-                .ConfigureLogging(logging => { logging.SetMinimumLevel(LogLevel.Debug); })
-                .UseSerilog();
+                                           // HTTPS
+                                           if (httpsPort > 0)
+                                           {
+                                               options.ListenAnyIP(httpsPort, listenOptions => { listenOptions.UseHttps(); });
+                                           }
+                                       })
+                   .ConfigureLogging(logging => { logging.SetMinimumLevel(LogLevel.Debug); })
+                   .UseSerilog();
 
             App = builder.Build();
             App.UseExceptionHandler((errorContext) =>
-            {
-                errorContext.Run(async (context) =>
-                {
-                    // 获取异常信息
-                    var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+                                    {
+                                        errorContext.Run(async (context) =>
+                                                         {
+                                                             // 获取异常信息
+                                                             var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
 
-                    // 自定义返回Json信息；
-                    await context.Response.WriteAsync(exceptionHandlerPathFeature.Error.Message);
-                });
-            });
+                                                             // 自定义返回Json信息；
+                                                             await context.Response.WriteAsync(exceptionHandlerPathFeature.Error.Message);
+                                                         });
+                                    });
             App.MapGet(GameApiPath + "{text}", context => HttpHandler.HandleRequest(context, baseHandler));
             App.MapPost(GameApiPath + "{text}", context => HttpHandler.HandleRequest(context, baseHandler));
             return App.StartAsync();

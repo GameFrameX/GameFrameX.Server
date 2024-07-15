@@ -1,5 +1,8 @@
 namespace GameFrameX.NetWork.HTTP;
 
+/// <summary>
+/// HTTP状态码
+/// </summary>
 public enum HttpStatusCode
 {
     ///<summary>

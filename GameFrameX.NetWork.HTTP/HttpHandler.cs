@@ -7,13 +7,21 @@ using GameFrameX.Setting;
 
 namespace GameFrameX.NetWork.HTTP
 {
+    /// <summary>
+    /// HTTP处理器
+    /// </summary>
     public static class HttpHandler
     {
+        /// <summary>
+        /// 处理HTTP请求
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="baseHandler"></param>
         public static async Task HandleRequest(HttpContext context, Func<string, BaseHttpHandler> baseHandler)
         {
             try
             {
-                string ip = context.Connection.RemoteIpAddress.ToString();
+                string ip  = context.Connection.RemoteIpAddress.ToString();
                 string url = context.Request.PathBase + context.Request.Path;
 
                 string command = context.Request.Path.ToString().Substring(HttpServer.GameApiPath.Length);
@@ -74,8 +82,11 @@ namespace GameFrameX.NetWork.HTTP
                 foreach (var parameter in paramMap)
                 {
                     if (parameter.Key.Equals(""))
+                    {
                         continue;
-                    str.Append("'").Append(parameter.Key).Append("'='").Append(parameter.Value).Append("'  ");
+                    }
+
+                    str.Append('\'').Append(parameter.Key).Append("'='").Append(parameter.Value).Append("'  ");
                 }
 
                 LogHelper.Info(str.ToString());
