@@ -2,6 +2,9 @@
 
 namespace GameFrameX.ServerManager;
 
+/// <summary>
+/// 服务信息
+/// </summary>
 public interface IServiceInfo
 {
     /// <summary>

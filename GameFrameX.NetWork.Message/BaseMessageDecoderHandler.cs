@@ -80,6 +80,12 @@ public class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder
         DecompressHandler = decompressHandler;
     }
 
+    /// <summary>
+    /// 解码
+    /// </summary>
+    /// <param name="buffer"></param>
+    /// <param name="context"></param>
+    /// <returns></returns>
     public INetworkMessage Decode(ref ReadOnlySequence<byte> buffer, object context)
     {
         return Handler(buffer.ToArray());

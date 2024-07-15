@@ -9,6 +9,11 @@ namespace GameFrameX.NetWork.Message;
 /// </summary>
 public class MessageObjectPipelineFilter : PipelineFilterBase<INetworkMessage>
 {
+    /// <summary>
+    /// 解析函数
+    /// </summary>
+    /// <param name="reader"></param>
+    /// <returns></returns>
     public override INetworkMessage Filter(ref SequenceReader<byte> reader)
     {
         var pack = reader.Sequence;

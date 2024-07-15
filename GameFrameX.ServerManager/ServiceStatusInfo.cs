@@ -22,13 +22,20 @@ public sealed class ServiceStatusInfo
     /// </summary>
     public int CurrentLoad { get; set; } = 0;
 
+    /// <summary>
+    /// 构造
+    /// </summary>
     public ServiceStatusInfo()
     {
-        Status = ServiceStatus.Online;
-        MaxLoad = 5000;
+        Status      = ServiceStatus.Online;
+        MaxLoad     = 5000;
         CurrentLoad = 0;
     }
 
+    /// <summary>
+    /// 转换为字符串
+    /// </summary>
+    /// <returns></returns>
     public override string ToString()
     {
         return $"MaxLoad:{MaxLoad},CurrentLoad:{CurrentLoad},Status:{Status}";

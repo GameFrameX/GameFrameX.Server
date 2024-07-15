@@ -1,5 +1,8 @@
 namespace GameFrameX.ServerManager;
 
+/// <summary>
+/// 服务器状态
+/// </summary>
 public enum ServiceStatus
 {
     /// <summary>
