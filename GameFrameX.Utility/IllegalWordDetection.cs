@@ -465,7 +465,7 @@ namespace GameFrameX.Utility
                     //如果有只有一个词的敏感词，且当前的字符串的“非第一个词”满足这个敏感词，则先加入已检测到的敏感词列表
                     if (startCache[*itor] != 0 && (fastLength[*itor] & 0x01) > 0)
                     {
-                        ///返回敏感词在text中的位置，以及敏感词的长度，供过滤功能用
+                        //返回敏感词在text中的位置，以及敏感词的长度，供过滤功能用
                         findResult.Add((int)(itor - ptext), 1);
                         if (returnWhenFindFirst)
                             return true;

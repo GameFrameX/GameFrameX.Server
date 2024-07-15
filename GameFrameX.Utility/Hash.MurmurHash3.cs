@@ -10,12 +10,25 @@
         /// </summary>
         public static class MurmurHash3
         {
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="str"></param>
+            /// <param name="seed"></param>
+            /// <returns></returns>
             public static uint Hash(string str, uint seed = 27)
             {
                 var data = System.Text.Encoding.UTF8.GetBytes(str);
                 return Hash(data, (uint)data.Length, seed);
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="data"></param>
+            /// <param name="length"></param>
+            /// <param name="seed"></param>
+            /// <returns></returns>
             public static uint Hash(byte[] data, uint length, uint seed)
             {
                 uint nblocks = length >> 2;
@@ -35,12 +48,12 @@
                     uint k1l = BitConverter.ToUInt32(data, i);
 
                     k1l *= c1;
-                    k1l = rotl32(k1l, 15);
+                    k1l =  rotl32(k1l, 15);
                     k1l *= c2;
 
                     h1 ^= k1l;
-                    h1 = rotl32(h1, 13);
-                    h1 = h1 * 5 + 0xe6546b64;
+                    h1 =  rotl32(h1, 13);
+                    h1 =  h1 * 5 + 0xe6546b64;
 
                     i += 4;
                 }
@@ -62,7 +75,7 @@
                 {
                     k1 ^= data[nblocks];
                     k1 *= c1;
-                    k1 = rotl32(k1, 15);
+                    k1 =  rotl32(k1, 15);
                     k1 *= c2;
                     h1 ^= k1;
                 }
