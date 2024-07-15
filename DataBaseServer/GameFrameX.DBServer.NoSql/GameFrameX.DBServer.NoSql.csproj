@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
+        <Nullable>disable</Nullable>
         <Description>GameFrameX.DBServer.NoSql</Description>
         <PackageTags>GameFrameX,Lib,DBServer.NoSql,Server,GameServer</PackageTags>
         <PublicSign>true</PublicSign>
@@ -28,6 +28,7 @@
         <AssemblyOriginatorKeyFile>../../gameframex.key.snk</AssemblyOriginatorKeyFile>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

@@ -1,15 +1,21 @@
 ﻿using GameFrameX.Extension;
-using GameFrameX.Utility;
 
 namespace GameFrameX.DBServer.NoSql;
 
+/// <summary>
+/// NoSql帮助类
+/// </summary>
 public static class NoSqlHelper
 {
-    private static INoSqlHelper noSqlHelper;
+    private static INoSqlHelper _noSqlHelper;
 
+    /// <summary>
+    /// 设置NoSql
+    /// </summary>
+    /// <param name="helper"></param>
     public static void SetNoSqlHelper(INoSqlHelper helper)
     {
-        noSqlHelper = helper;
+        _noSqlHelper = helper;
     }
 
     /// <summary>
@@ -18,8 +24,8 @@ public static class NoSqlHelper
     /// <param name="connectionStrings">链接字符串</param>
     public static void Init(params string[] connectionStrings)
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        noSqlHelper.Init(connectionStrings);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        _noSqlHelper.Init(connectionStrings);
     }
 
     /// <summary>
@@ -29,8 +35,8 @@ public static class NoSqlHelper
     /// <param name="value">value</param>
     public static void Set(string key, string value)
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        noSqlHelper.Set(key, value);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        _noSqlHelper.Set(key, value);
     }
 
     /// <summary>
@@ -41,8 +47,8 @@ public static class NoSqlHelper
     /// <typeparam name="T"></typeparam>
     public static void Set<T>(string key, T value) where T : class
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        noSqlHelper.Set(key, value);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        _noSqlHelper.Set(key, value);
     }
 
     /// <summary>
@@ -54,8 +60,8 @@ public static class NoSqlHelper
     /// <typeparam name="T"></typeparam>
     public static void Set<T>(string key, T value, TimeSpan timeOut) where T : class
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        noSqlHelper.Set(key, value, timeOut);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        _noSqlHelper.Set(key, value, timeOut);
     }
 
     /// <summary>
@@ -67,8 +73,8 @@ public static class NoSqlHelper
     /// <typeparam name="T"></typeparam>
     public static void Set<T>(string key, T value, int timeoutSeconds) where T : class
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        noSqlHelper.Set(key, value, timeoutSeconds);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        _noSqlHelper.Set(key, value, timeoutSeconds);
     }
 
     /// <summary>
@@ -79,9 +85,9 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static Task SetAsync(string key, string value)
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
 
-        return noSqlHelper.SetAsync(key, value);
+        return _noSqlHelper.SetAsync(key, value);
     }
 
     /// <summary>
@@ -93,8 +99,8 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static Task SetAsync<T>(string key, T value) where T : class
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        return noSqlHelper.SetAsync(key, value);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        return _noSqlHelper.SetAsync(key, value);
     }
 
     /// <summary>
@@ -107,8 +113,8 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static Task SetAsync<T>(string key, T value, TimeSpan timeOut) where T : class
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        return noSqlHelper.SetAsync(key, value, timeOut);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        return _noSqlHelper.SetAsync(key, value, timeOut);
     }
 
     /// <summary>
@@ -121,8 +127,8 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static Task SetAsync<T>(string key, T value, int timeoutSeconds) where T : class
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        return noSqlHelper.SetAsync(key, value, timeoutSeconds);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        return _noSqlHelper.SetAsync(key, value, timeoutSeconds);
     }
 
     /// <summary>
@@ -132,8 +138,8 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static string GetString(string key)
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        return noSqlHelper.GetString(key);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        return _noSqlHelper.GetString(key);
     }
 
     /// <summary>
@@ -143,8 +149,8 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static Task<string> GetStringAsync(string key)
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        return noSqlHelper.GetStringAsync(key);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        return _noSqlHelper.GetStringAsync(key);
     }
 
     /// <summary>
@@ -155,9 +161,9 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static T Get<T>(string key) where T : class
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
         key.CheckNotNullOrEmpty(nameof(key));
-        return noSqlHelper.Get<T>(key);
+        return _noSqlHelper.Get<T>(key);
     }
 
     /// <summary>
@@ -168,9 +174,9 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static Task<T> GetAsync<T>(string key) where T : class
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
         key.CheckNotNullOrEmpty(nameof(key));
-        return noSqlHelper.GetAsync<T>(key);
+        return _noSqlHelper.GetAsync<T>(key);
     }
 
     /// <summary>
@@ -180,8 +186,8 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static long Delete(params string[] keys)
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        return noSqlHelper.Delete(keys);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        return _noSqlHelper.Delete(keys);
     }
 
     /// <summary>
@@ -191,8 +197,8 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static Task<long> DeleteAsync(params string[] keys)
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        return noSqlHelper.DeleteAsync(keys);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        return _noSqlHelper.DeleteAsync(keys);
     }
 
     /// <summary>
@@ -202,8 +208,8 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static long Exists(params string[] keys)
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        return noSqlHelper.Exists(keys);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        return _noSqlHelper.Exists(keys);
     }
 
     /// <summary>
@@ -213,8 +219,8 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static Task<long> ExistsAsync(params string[] keys)
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        return noSqlHelper.ExistsAsync(keys);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        return _noSqlHelper.ExistsAsync(keys);
     }
 
     /// <summary>
@@ -224,8 +230,8 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static bool Exists(string key)
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        return noSqlHelper.Exists(key);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        return _noSqlHelper.Exists(key);
     }
 
     /// <summary>
@@ -235,8 +241,8 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static Task<bool> ExistsAsync(string key)
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        return noSqlHelper.ExistsAsync(key);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        return _noSqlHelper.ExistsAsync(key);
     }
 
     /// <summary>
@@ -247,8 +253,8 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static bool Expire(string key, int seconds)
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        return noSqlHelper.Expire(key, seconds);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        return _noSqlHelper.Expire(key, seconds);
     }
 
     /// <summary>
@@ -259,8 +265,8 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static Task<bool> ExpireAsync(string key, int seconds)
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        return noSqlHelper.ExpireAsync(key, seconds);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        return _noSqlHelper.ExpireAsync(key, seconds);
     }
 
     /// <summary>
@@ -271,8 +277,8 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static bool Expire(string key, TimeSpan expireTime)
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        return noSqlHelper.Expire(key, expireTime);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        return _noSqlHelper.Expire(key, expireTime);
     }
 
     /// <summary>
@@ -283,8 +289,8 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static Task<bool> ExpireAsync(string key, TimeSpan expireTime)
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        return noSqlHelper.ExpireAsync(key, expireTime);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        return _noSqlHelper.ExpireAsync(key, expireTime);
     }
 
     /// <summary>
@@ -294,8 +300,8 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static bool RemoveExpireTime(string key)
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        return noSqlHelper.RemoveExpireTime(key);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        return _noSqlHelper.RemoveExpireTime(key);
     }
 
     /// <summary>
@@ -305,7 +311,7 @@ public static class NoSqlHelper
     /// <returns></returns>
     public static Task<bool> RemoveExpireTimeAsync(string key)
     {
-        noSqlHelper.CheckNotNull(nameof(noSqlHelper));
-        return noSqlHelper.RemoveExpireTimeAsync(key);
+        _noSqlHelper.CheckNotNull(nameof(_noSqlHelper));
+        return _noSqlHelper.RemoveExpireTimeAsync(key);
     }
 }
