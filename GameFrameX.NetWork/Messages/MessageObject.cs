@@ -6,6 +6,9 @@ using ProtoBuf;
 
 namespace GameFrameX.NetWork.Messages
 {
+    /// <summary>
+    /// 消息对象
+    /// </summary>
     [ProtoContract]
     public abstract class MessageObject : IMessage
     {
@@ -108,6 +111,10 @@ namespace GameFrameX.NetWork.Messages
             return $"消息ID:[{MessageId}=MainId: {MessageManager.GetMainId(MessageId)} + SubId: {MessageManager.GetSubId(MessageId)},{GetType().Name}] 消息内容:{JsonHelper.Serialize(this)}";
         }
 
+        /// <summary>
+        /// 转换为字符串
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return JsonHelper.Serialize(this);
