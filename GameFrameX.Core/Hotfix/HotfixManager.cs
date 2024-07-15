@@ -12,6 +12,9 @@ using GameFrameX.Setting;
 
 namespace GameFrameX.Core.Hotfix
 {
+    /// <summary>
+    /// 热更新管理器
+    /// </summary>
     public static class HotfixManager
     {
         internal static volatile bool DoingHotfix = false;
@@ -20,13 +23,19 @@ namespace GameFrameX.Core.Hotfix
 
         private static AppSetting _baseSetting;
 
+        /// <summary>
+        /// 热更新程序集
+        /// </summary>
         public static Assembly HotfixAssembly
         {
             get { return _module?.HotfixAssembly; }
         }
 
-        private static readonly ConcurrentDictionary<int, HotfixModule> oldModuleMap = new ConcurrentDictionary<int, HotfixModule>();
+        private static readonly ConcurrentDictionary<int, HotfixModule> OldModuleMap = new ConcurrentDictionary<int, HotfixModule>();
 
+        /// <summary>
+        /// 重载时间
+        /// </summary>
         public static DateTime ReloadTime { get; private set; }
 
         /// <summary>
@@ -63,13 +72,13 @@ namespace GameFrameX.Core.Hotfix
                 var oldModule = _module;
                 DoingHotfix = true;
                 int oldModuleHash = oldModule.GetHashCode();
-                oldModuleMap.TryAdd(oldModuleHash, oldModule);
+                OldModuleMap.TryAdd(oldModuleHash, oldModule);
                 _ = Task.Run(async () =>
                              {
                                  await Task.Delay(1000 * 60 * 3);
-                                 oldModuleMap.TryRemove(oldModuleHash, out _);
+                                 OldModuleMap.TryRemove(oldModuleHash, out _);
                                  oldModule.Unload();
-                                 DoingHotfix = !oldModuleMap.IsEmpty;
+                                 DoingHotfix = !OldModuleMap.IsEmpty;
                              });
             }
 
@@ -107,11 +116,11 @@ namespace GameFrameX.Core.Hotfix
         /// <returns></returns>
         public static T GetAgent<T>(BaseComponent component, Type refAssemblyType) where T : IComponentAgent
         {
-            if (!oldModuleMap.IsEmpty)
+            if (!OldModuleMap.IsEmpty)
             {
                 var asb  = typeof(T).Assembly;
                 var asb2 = refAssemblyType?.Assembly;
-                foreach (var kv in oldModuleMap)
+                foreach (var kv in OldModuleMap)
                 {
                     var old = kv.Value;
                     if (asb == old.HotfixAssembly || asb2 == old.HotfixAssembly)
@@ -166,10 +175,10 @@ namespace GameFrameX.Core.Hotfix
                 return default;
             }
 
-            if (oldModuleMap.Count > 0)
+            if (OldModuleMap.Count > 0)
             {
                 var asb = refAssemblyType?.Assembly;
-                foreach (var kv in oldModuleMap)
+                foreach (var kv in OldModuleMap)
                 {
                     var old = kv.Value;
                     if (asb == old.HotfixAssembly)

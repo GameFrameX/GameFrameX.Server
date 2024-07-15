@@ -10,6 +10,9 @@ using GameFrameX.Utility;
 
 namespace GameFrameX.Core.Timer
 {
+    /// <summary>
+    /// Quartz定时器
+    /// </summary>
     public static class QuartzTimer
     {
         private static readonly StatisticsTool StatisticsTool = new();
@@ -52,8 +55,8 @@ namespace GameFrameX.Core.Timer
         /// <returns></returns>
         public static long Schedule<T>(long actorId, TimeSpan delay, TimeSpan interval, Param param = null, int repeatCount = -1) where T : ITimerHandler
         {
-            var nextId = NextId();
-            var firstTimeOffset = DateTimeOffset.Now.Add(delay);
+            var            nextId          = NextId();
+            var            firstTimeOffset = DateTimeOffset.Now.Add(delay);
             TriggerBuilder builder;
             if (repeatCount < 0)
             {
@@ -78,9 +81,9 @@ namespace GameFrameX.Core.Timer
         /// <returns></returns>
         public static long Delay<T>(long actorId, TimeSpan delay, Param param = null) where T : ITimerHandler
         {
-            var nextId = NextId();
+            var nextId          = NextId();
             var firstTimeOffset = DateTimeOffset.Now.Add(delay);
-            var trigger = TriggerBuilder.Create().StartAt(firstTimeOffset).Build();
+            var trigger         = TriggerBuilder.Create().StartAt(firstTimeOffset).Build();
             _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, param), trigger);
             return nextId;
         }
@@ -90,7 +93,7 @@ namespace GameFrameX.Core.Timer
         /// </summary>
         public static long WithCronExpression<T>(long actorId, string cronExpression, Param param = null) where T : ITimerHandler
         {
-            var nextId = NextId();
+            var nextId  = NextId();
             var trigger = TriggerBuilder.Create().StartNow().WithCronSchedule(cronExpression).Build();
             _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, param), trigger);
             return nextId;
@@ -106,7 +109,7 @@ namespace GameFrameX.Core.Timer
                 throw new ArgumentOutOfRangeException($"定时器参数错误 TimerHandler:{typeof(T).FullName} {nameof(hour)}:{hour} {nameof(minute)}:{minute}");
             }
 
-            var nextId = NextId();
+            var nextId  = NextId();
             var trigger = TriggerBuilder.Create().StartNow().WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(hour, minute)).Build();
             _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, param), trigger);
             return nextId;
@@ -122,7 +125,7 @@ namespace GameFrameX.Core.Timer
                 throw new ArgumentNullException($"定时每周执行 参数为空：{nameof(dayOfWeeks)} TimerHandler:{typeof(T).FullName} actorId:{actorId} actorType:{IdGenerator.GetActorType(actorId)}");
             }
 
-            var nextId = NextId();
+            var nextId  = NextId();
             var trigger = TriggerBuilder.Create().StartNow().WithSchedule(CronScheduleBuilder.AtHourAndMinuteOnGivenDaysOfWeek(hour, minute, dayOfWeeks)).Build();
             _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, param), trigger);
             return nextId;
@@ -133,7 +136,7 @@ namespace GameFrameX.Core.Timer
         /// </summary>
         public static long Weekly<T>(long actorId, DayOfWeek dayOfWeek, int hour, int minute, Param param = null) where T : ITimerHandler
         {
-            var nextId = NextId();
+            var nextId  = NextId();
             var trigger = TriggerBuilder.Create().StartNow().WithSchedule(CronScheduleBuilder.WeeklyOnDayAndHourAndMinute(dayOfWeek, hour, minute)).Build();
             _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, param), trigger);
             return nextId;
@@ -149,7 +152,7 @@ namespace GameFrameX.Core.Timer
                 throw new ArgumentException($"定时器参数错误 TimerHandler:{typeof(T).FullName} {nameof(dayOfMonth)}:{dayOfMonth} actorId:{actorId} actorType:{IdGenerator.GetActorType(actorId)}");
             }
 
-            var nextId = NextId();
+            var nextId  = NextId();
             var trigger = TriggerBuilder.Create().StartNow().WithSchedule(CronScheduleBuilder.MonthlyOnDayAndHourAndMinute(dayOfMonth, hour, minute)).Build();
             _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, param), trigger);
             return nextId;
@@ -170,8 +173,8 @@ namespace GameFrameX.Core.Timer
         /// <returns></returns>
         public static long Schedule<T>(TimeSpan delay, TimeSpan interval, Param param = null, int repeatCount = -1) where T : NotHotfixTimerHandler
         {
-            var nextId = NextId();
-            var firstTimeOffset = DateTimeOffset.Now.Add(delay);
+            var            nextId          = NextId();
+            var            firstTimeOffset = DateTimeOffset.Now.Add(delay);
             TriggerBuilder builder;
             if (repeatCount < 0)
             {
@@ -195,9 +198,9 @@ namespace GameFrameX.Core.Timer
         /// <returns></returns>
         public static long Delay<T>(TimeSpan delay, Param param = null) where T : NotHotfixTimerHandler
         {
-            var nextId = NextId();
+            var nextId          = NextId();
             var firstTimeOffset = DateTimeOffset.Now.Add(delay);
-            var trigger = TriggerBuilder.Create().StartAt(firstTimeOffset).Build();
+            var trigger         = TriggerBuilder.Create().StartAt(firstTimeOffset).Build();
             _scheduler.ScheduleJob(GetJobDetail<T>(nextId, param), trigger);
             return nextId;
         }
@@ -211,7 +214,7 @@ namespace GameFrameX.Core.Timer
         /// <returns></returns>
         public static long WithCronExpression<T>(string cronExpression, Param param = null) where T : NotHotfixTimerHandler
         {
-            var nextId = NextId();
+            var nextId  = NextId();
             var trigger = TriggerBuilder.Create().StartNow().WithCronSchedule(cronExpression).Build();
             _scheduler.ScheduleJob(GetJobDetail<T>(nextId, param), trigger);
             return nextId;
@@ -233,7 +236,7 @@ namespace GameFrameX.Core.Timer
                 throw new ArgumentOutOfRangeException($"定时器参数错误 TimerHandler:{typeof(T).FullName} {nameof(hour)}:{hour} {nameof(minute)}:{minute}");
             }
 
-            var nextId = NextId();
+            var nextId  = NextId();
             var trigger = TriggerBuilder.Create().StartNow().WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(hour, minute)).Build();
             _scheduler.ScheduleJob(GetJobDetail<T>(nextId, param), trigger);
             return nextId;
@@ -256,7 +259,7 @@ namespace GameFrameX.Core.Timer
                 throw new ArgumentNullException($"定时每周执行 参数为空：{nameof(dayOfWeeks)} TimerHandler:{typeof(T).FullName}");
             }
 
-            var nextId = NextId();
+            var nextId  = NextId();
             var trigger = TriggerBuilder.Create().StartNow().WithSchedule(CronScheduleBuilder.AtHourAndMinuteOnGivenDaysOfWeek(hour, minute, dayOfWeeks)).Build();
             _scheduler.ScheduleJob(GetJobDetail<T>(nextId, param), trigger);
             return nextId;
@@ -273,7 +276,7 @@ namespace GameFrameX.Core.Timer
         /// <returns></returns>
         public static long Weekly<T>(DayOfWeek dayOfWeek, int hour, int minute, Param param = null) where T : NotHotfixTimerHandler
         {
-            var nextId = NextId();
+            var nextId  = NextId();
             var trigger = TriggerBuilder.Create().StartNow().WithSchedule(CronScheduleBuilder.WeeklyOnDayAndHourAndMinute(dayOfWeek, hour, minute)).Build();
             _scheduler.ScheduleJob(GetJobDetail<T>(nextId, param), trigger);
             return nextId;
@@ -296,7 +299,7 @@ namespace GameFrameX.Core.Timer
                 throw new ArgumentException($"定时器参数错误 TimerHandler:{typeof(T).FullName} {nameof(dayOfMonth)}:{dayOfMonth}");
             }
 
-            var nextId = NextId();
+            var nextId  = NextId();
             var trigger = TriggerBuilder.Create().StartNow().WithSchedule(CronScheduleBuilder.MonthlyOnDayAndHourAndMinute(dayOfMonth, hour, minute)).Build();
             _scheduler.ScheduleJob(GetJobDetail<T>(nextId, param), trigger);
             return nextId;
@@ -352,20 +355,23 @@ namespace GameFrameX.Core.Timer
             return Interlocked.Increment(ref _id);
         }
 
+        /// <summary>
+        /// 定时器
+        /// </summary>
         private sealed class TimerJobHelper : IJob
         {
             public async Task Execute(IJobExecutionContext context)
             {
-                var handlerType = context.JobDetail.JobDataMap.GetString(TIMER_KEY);
+                var handlerType = context.JobDetail.JobDataMap.GetString(TimerKey);
                 try
                 {
-                    var param = context.JobDetail.JobDataMap.Get(PARAM_KEY) as Param;
+                    var param   = context.JobDetail.JobDataMap.Get(ParamKey) as Param;
                     var handler = HotfixManager.GetInstance<ITimerHandler>(handlerType);
                     if (handler != null)
                     {
-                        var actorId = context.JobDetail.JobDataMap.GetLong(ACTOR_ID_KEY);
+                        var actorId   = context.JobDetail.JobDataMap.GetLong(ActorIdKey);
                         var agentType = handler.GetType().BaseType.GenericTypeArguments[0];
-                        var comp = await ActorManager.GetComponentAgent(actorId, agentType);
+                        var comp      = await ActorManager.GetComponentAgent(actorId, agentType);
                         comp.Tell(() => handler.InnerHandleTimer(comp, param));
                     }
                     else
@@ -380,9 +386,20 @@ namespace GameFrameX.Core.Timer
             }
         }
 
-        public const string PARAM_KEY = "param";
-        const string ACTOR_ID_KEY = "actor_id";
-        const string TIMER_KEY = "timer";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ParamKey = "param";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        const string ActorIdKey = "actor_id";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        const string TimerKey = "timer";
 
         private static IJobDetail GetJobDetail<T>(long id, long actorId, Param param) where T : ITimerHandler
         {
@@ -394,9 +411,9 @@ namespace GameFrameX.Core.Timer
             }
 
             var job = JobBuilder.Create<TimerJobHelper>().WithIdentity(id + string.Empty).Build();
-            job.JobDataMap.Add(PARAM_KEY, param);
-            job.JobDataMap.Add(ACTOR_ID_KEY, actorId);
-            job.JobDataMap.Add(TIMER_KEY, handlerType.FullName);
+            job.JobDataMap.Add(ParamKey, param);
+            job.JobDataMap.Add(ActorIdKey, actorId);
+            job.JobDataMap.Add(TimerKey, handlerType.FullName);
             return job;
         }
 
@@ -404,7 +421,7 @@ namespace GameFrameX.Core.Timer
         {
             StatisticsTool.Count(typeof(T).FullName);
             var job = JobBuilder.Create<T>().WithIdentity(id + string.Empty).Build();
-            job.JobDataMap.Add(PARAM_KEY, param);
+            job.JobDataMap.Add(ParamKey, param);
             return job;
         }
 
@@ -413,24 +430,24 @@ namespace GameFrameX.Core.Timer
             public Logger GetLogger(string name)
             {
                 return (level, func, exception, parameters) =>
-                {
-                    if (func != null)
-                    {
-                        if (level < LogLevel.Warn)
-                        {
-                        }
-                        else if (level == LogLevel.Warn)
-                        {
-                            LogHelper.Warn(func(), parameters);
-                        }
-                        else
-                        {
-                            LogHelper.Error(func(), parameters);
-                        }
-                    }
+                       {
+                           if (func != null)
+                           {
+                               if (level < LogLevel.Warn)
+                               {
+                               }
+                               else if (level == LogLevel.Warn)
+                               {
+                                   LogHelper.Warn(func(), parameters);
+                               }
+                               else
+                               {
+                                   LogHelper.Error(func(), parameters);
+                               }
+                           }
 
-                    return true;
-                };
+                           return true;
+                       };
             }
 
             public IDisposable OpenMappedContext(string key, object value, bool destructure = false)

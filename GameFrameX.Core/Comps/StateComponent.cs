@@ -76,13 +76,23 @@ namespace GameFrameX.Core.Comps
             }
         }
 
-        public static readonly StatisticsTool statisticsTool = new();
+        /// <summary>
+        /// 统计工具
+        /// </summary>
+        public static readonly StatisticsTool StatisticsTool = new();
     }
 
+    /// <summary>
+    /// 数据状态组件
+    /// </summary>
+    /// <typeparam name="TState"></typeparam>
     public abstract class StateComponent<TState> : BaseComponent, IState where TState : CacheState, new()
     {
         private static readonly ConcurrentDictionary<long, TState> StateDic = new ConcurrentDictionary<long, TState>();
 
+        /// <summary>
+        /// 数据对象
+        /// </summary>
         public TState State { get; private set; }
 
         static StateComponent()
@@ -213,7 +223,7 @@ namespace GameFrameX.Core.Comps
             if (!writeList.IsNullOrEmpty())
             {
                 var stateName = typeof(TState).Name;
-                StateComponent.statisticsTool.Count(stateName, writeList.Count);
+                StateComponent.StatisticsTool.Count(stateName, writeList.Count);
                 LogHelper.Debug($"[StateComp] 状态回存 {stateName} count:{writeList.Count}");
                 var currentDatabase = GameDb.As<MongoDbService>().CurrentDatabase;
                 var collection      = currentDatabase.GetCollection<MongoDB.Bson.BsonDocument>(stateName);

@@ -50,7 +50,10 @@ namespace GameFrameX.Core.Events
     /// </summary>
     public struct Event
     {
-        public static Event NULL = new Event();
+        /// <summary>
+        /// 空
+        /// </summary>
+        public static Event Null = new Event();
 
         /// <summary>
         /// 事件id

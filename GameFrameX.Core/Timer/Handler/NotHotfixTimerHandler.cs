@@ -15,7 +15,7 @@ namespace GameFrameX.Core.Timer.Handler
         /// <returns></returns>
         public Task Execute(IJobExecutionContext context)
         {
-            var param = context.JobDetail.JobDataMap.Get(QuartzTimer.PARAM_KEY) as Param;
+            var param = context.JobDetail.JobDataMap.Get(QuartzTimer.ParamKey) as Param;
             return HandleTimer(param);
         }
 
