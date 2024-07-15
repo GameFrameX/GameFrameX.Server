@@ -17,7 +17,7 @@ public static class UnityTcpClient
 {
     private static AsyncTcpSession _tcpClient;
 
-    public static async void Entry(string[] args)
+    public static void Entry(string[] args)
     {
         _tcpClient              =  new AsyncTcpSession();
         _tcpClient.Connected    += OnTcpClientOnConnected; //成功连接到服务器
@@ -47,17 +47,17 @@ public static class UnityTcpClient
                 ReqHeartBeat req = new ReqHeartBeat
                                    {
                                        Timestamp = TimeHelper.UnixTimeSeconds(),
-                                       UniqueId  = count
+                                       UniqueId  = _count
                                    };
                 SendToServer(req);
 
-                if (count % 2 == 0)
+                if (_count % 2 == 0)
                 {
                     ReqLogin reqLogin = new ReqLogin
                                         {
                                             UserName = "admin",
                                             Password = "123456",
-                                            UniqueId = count
+                                            UniqueId = _count
                                         };
                     SendToServer(reqLogin);
                 }
@@ -71,22 +71,22 @@ public static class UnityTcpClient
         _tcpClient.Send(buffer);
     }
 
-    private static void OnTcpClientOnError(object? client, ErrorEventArgs e)
+    private static void OnTcpClientOnError(object client, ErrorEventArgs e)
     {
         Console.WriteLine("客户端发生错误:" + e.Exception.Message);
     }
 
-    private static void OnTcpClientOnClosed(object? client, EventArgs e)
+    private static void OnTcpClientOnClosed(object client, EventArgs e)
     {
         Console.WriteLine("客户端断开连接");
     }
 
-    private static void OnTcpClientOnConnected(object? client, EventArgs e)
+    private static void OnTcpClientOnConnected(object client, EventArgs e)
     {
         Console.WriteLine("客户端成功连接到服务器");
     }
 
-    private static void OnTcpClientOnDataReceived(object? client, DataEventArgs e)
+    private static void OnTcpClientOnDataReceived(object client, DataEventArgs e)
     {
         DecodeMessage(e.Data.ReadBytes(e.Offset, e.Length));
     }
@@ -110,11 +110,11 @@ public static class UnityTcpClient
         }
     }
 
-    private static int count = 0;
+    private static int _count;
 
     private static byte[] Handler(MessageObject message)
     {
-        count++;
+        _count++;
         var    bytes  = ProtoBufSerializerHelper.Serialize(message);
         ushort len    = (ushort)(2 + 1 + 4 + 4 + bytes.Length);
         var    buffer = new byte[len];
