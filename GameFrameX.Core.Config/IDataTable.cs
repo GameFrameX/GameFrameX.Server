@@ -1,5 +1,8 @@
-﻿namespace GameFrameX.Config.Core;
+﻿namespace GameFrameX.Core.Config;
 
+/// <summary>
+/// 数据表基础接口
+/// </summary>
 public interface IDataTable
 {
     /// <summary>

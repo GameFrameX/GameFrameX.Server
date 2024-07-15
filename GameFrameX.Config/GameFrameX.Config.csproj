@@ -3,10 +3,12 @@
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
+        <Nullable>disable</Nullable>
+        <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\GameFrameX.Core.Config\GameFrameX.Core.Config.csproj" />
       <ProjectReference Include="..\GameFrameX.Log\GameFrameX.Log.csproj" />
     </ItemGroup>
 

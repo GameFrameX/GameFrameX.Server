@@ -1,7 +1,10 @@
 using System.Text;
 
-namespace GameFrameX.Config.Core
+namespace GameFrameX.Core.Config
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class StringUtil
     {
         public static string ToStr(object o)

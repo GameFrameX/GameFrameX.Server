@@ -1,6 +1,4 @@
-using GameFrameX.Config.Core;
-
-namespace GameFrameX.Config;
+namespace GameFrameX.Core.Config;
 
 /// <summary>
 /// 全局配置管理器接口。

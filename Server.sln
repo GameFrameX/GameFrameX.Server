@@ -70,6 +70,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.StartUp", "GameF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Core.Abstractions", "GameFrameX.Core.Abstractions\GameFrameX.Core.Abstractions.csproj", "{19A7F819-0532-4488-9E5F-84E38E99468A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Core.Config", "GameFrameX.Core.Config\GameFrameX.Core.Config.csproj", "{729E96D5-53C9-48FF-AE58-2F7EBE482E7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -184,6 +186,10 @@ Global
 		{19A7F819-0532-4488-9E5F-84E38E99468A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19A7F819-0532-4488-9E5F-84E38E99468A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19A7F819-0532-4488-9E5F-84E38E99468A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{729E96D5-53C9-48FF-AE58-2F7EBE482E7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{729E96D5-53C9-48FF-AE58-2F7EBE482E7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{729E96D5-53C9-48FF-AE58-2F7EBE482E7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{729E96D5-53C9-48FF-AE58-2F7EBE482E7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
