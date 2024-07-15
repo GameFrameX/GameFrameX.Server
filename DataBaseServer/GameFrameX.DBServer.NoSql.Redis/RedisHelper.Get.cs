@@ -14,7 +14,7 @@ public partial class RedisHelper : INoSqlHelper
     public string GetString(string key)
     {
         NullGuard(key);
-        return client.Get<string>(key);
+        return _client.Get<string>(key);
     }
 
     /// <summary>
@@ -25,7 +25,7 @@ public partial class RedisHelper : INoSqlHelper
     public Task<string> GetStringAsync(string key)
     {
         NullGuard(key);
-        return client.GetAsync<string>(key);
+        return _client.GetAsync<string>(key);
     }
 
     /// <summary>
@@ -36,9 +36,9 @@ public partial class RedisHelper : INoSqlHelper
     /// <returns></returns>
     public T Get<T>(string key) where T : class
     {
-        client.CheckNotNull(nameof(client));
+        _client.CheckNotNull(nameof(_client));
         key.CheckNotNullOrEmpty(nameof(key));
-        return client.Get<T>(key);
+        return _client.Get<T>(key);
     }
 
     /// <summary>
@@ -49,8 +49,8 @@ public partial class RedisHelper : INoSqlHelper
     /// <returns></returns>
     public Task<T> GetAsync<T>(string key) where T : class
     {
-        client.CheckNotNull(nameof(client));
+        _client.CheckNotNull(nameof(_client));
         key.CheckNotNullOrEmpty(nameof(key));
-        return client.GetAsync<T>(key);
+        return _client.GetAsync<T>(key);
     }
 }

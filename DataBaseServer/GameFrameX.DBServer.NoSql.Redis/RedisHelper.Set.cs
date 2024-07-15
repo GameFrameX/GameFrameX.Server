@@ -17,7 +17,7 @@ public partial  class RedisHelper : INoSqlHelper
     public void Set(string key, string value)
     {
         NullGuard(key, value);
-        client.Set(key, value);
+        _client.Set(key, value);
     }
 
     /// <summary>
@@ -29,7 +29,7 @@ public partial  class RedisHelper : INoSqlHelper
     public void Set<T>(string key, T value) where T : class
     {
         NullGuard(key, value);
-        client.Set(key, value);
+        _client.Set(key, value);
     }
 
     /// <summary>
@@ -42,7 +42,7 @@ public partial  class RedisHelper : INoSqlHelper
     public void Set<T>(string key, T value, TimeSpan timeOut) where T : class
     {
         NullGuard(key, value);
-        client.Set(key, value, timeOut);
+        _client.Set(key, value, timeOut);
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ public partial  class RedisHelper : INoSqlHelper
     public void Set<T>(string key, T value, int timeoutSeconds) where T : class
     {
         NullGuard(key, value);
-        client.Set(key, value, timeoutSeconds);
+        _client.Set(key, value, timeoutSeconds);
     }
 
     /// <summary>
@@ -67,7 +67,7 @@ public partial  class RedisHelper : INoSqlHelper
     public Task SetAsync(string key, string value)
     {
         NullGuard(key, value);
-        return client.SetAsync(key, value);
+        return _client.SetAsync(key, value);
     }
 
     /// <summary>
@@ -80,7 +80,7 @@ public partial  class RedisHelper : INoSqlHelper
     public Task SetAsync<T>(string key, T value) where T : class
     {
         NullGuard(key, value);
-        return client.SetAsync(key, value);
+        return _client.SetAsync(key, value);
     }
 
     /// <summary>
@@ -94,7 +94,7 @@ public partial  class RedisHelper : INoSqlHelper
     public Task SetAsync<T>(string key, T value, TimeSpan timeOut) where T : class
     {
         NullGuard(key, value);
-        return client.SetAsync(key, value, timeOut);
+        return _client.SetAsync(key, value, timeOut);
     }
 
     /// <summary>
@@ -108,6 +108,6 @@ public partial  class RedisHelper : INoSqlHelper
     public Task SetAsync<T>(string key, T value, int timeoutSeconds) where T : class
     {
         NullGuard(key, value);
-        return client.SetAsync(key, value, timeoutSeconds);
+        return _client.SetAsync(key, value, timeoutSeconds);
     }
 }

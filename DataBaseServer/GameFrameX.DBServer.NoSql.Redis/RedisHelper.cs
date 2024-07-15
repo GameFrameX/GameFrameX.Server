@@ -1,15 +1,15 @@
 ﻿using FreeRedis;
-using GameFrameX.DBServer.NoSql;
 using GameFrameX.Extension;
-using GameFrameX.Utility;
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
 namespace GameFrameX.DBServer.NoSql.Redis;
 
+/// <summary>
+/// Redis帮助类
+/// </summary>
 public partial class RedisHelper : INoSqlHelper
 {
-    private RedisClient client;
+    private RedisClient _client;
 
 
     /// <summary>
@@ -25,7 +25,7 @@ public partial class RedisHelper : INoSqlHelper
             connectionStringBuilders[index] = connectionString;
         }
 
-        client = new RedisClient(connectionStringBuilders);
+        _client = new RedisClient(connectionStringBuilders);
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ public partial class RedisHelper : INoSqlHelper
     /// <returns></returns>
     public long Delete(params string[] keys)
     {
-        return client.Del(keys);
+        return _client.Del(keys);
     }
 
     /// <summary>
@@ -45,7 +45,7 @@ public partial class RedisHelper : INoSqlHelper
     /// <returns></returns>
     public Task<long> DeleteAsync(params string[] keys)
     {
-        return client.DelAsync(keys);
+        return _client.DelAsync(keys);
     }
 
     /// <summary>
@@ -55,8 +55,8 @@ public partial class RedisHelper : INoSqlHelper
     /// <returns></returns>
     public long Exists(params string[] keys)
     {
-        client.CheckNotNull(nameof(client));
-        return client.Exists(keys);
+        _client.CheckNotNull(nameof(_client));
+        return _client.Exists(keys);
     }
 
     /// <summary>
@@ -66,8 +66,8 @@ public partial class RedisHelper : INoSqlHelper
     /// <returns></returns>
     public Task<long> ExistsAsync(params string[] keys)
     {
-        client.CheckNotNull(nameof(client));
-        return client.ExistsAsync(keys);
+        _client.CheckNotNull(nameof(_client));
+        return _client.ExistsAsync(keys);
     }
 
     /// <summary>
@@ -78,7 +78,7 @@ public partial class RedisHelper : INoSqlHelper
     public bool Exists(string key)
     {
         NullGuard(key);
-        return client.Exists(key);
+        return _client.Exists(key);
     }
 
     /// <summary>
@@ -89,7 +89,7 @@ public partial class RedisHelper : INoSqlHelper
     public Task<bool> ExistsAsync(string key)
     {
         NullGuard(key);
-        return client.ExistsAsync(key);
+        return _client.ExistsAsync(key);
     }
 
     /// <summary>
@@ -101,7 +101,7 @@ public partial class RedisHelper : INoSqlHelper
     public bool Expire(string key, int seconds)
     {
         NullGuard(key);
-        return client.Expire(key, seconds);
+        return _client.Expire(key, seconds);
     }
 
     /// <summary>
@@ -113,7 +113,7 @@ public partial class RedisHelper : INoSqlHelper
     public Task<bool> ExpireAsync(string key, int seconds)
     {
         NullGuard(key);
-        return client.ExpireAsync(key, seconds);
+        return _client.ExpireAsync(key, seconds);
     }
 
     /// <summary>
@@ -125,7 +125,7 @@ public partial class RedisHelper : INoSqlHelper
     public bool Expire(string key, TimeSpan expireTime)
     {
         NullGuard(key);
-        return client.Expire(key, expireTime);
+        return _client.Expire(key, expireTime);
     }
 
     /// <summary>
@@ -137,7 +137,7 @@ public partial class RedisHelper : INoSqlHelper
     public Task<bool> ExpireAsync(string key, TimeSpan expireTime)
     {
         NullGuard(key);
-        return client.ExpireAsync(key, expireTime);
+        return _client.ExpireAsync(key, expireTime);
     }
 
     /// <summary>
@@ -148,7 +148,7 @@ public partial class RedisHelper : INoSqlHelper
     public bool RemoveExpireTime(string key)
     {
         NullGuard(key);
-        return client.Persist(key);
+        return _client.Persist(key);
     }
 
     /// <summary>
@@ -159,12 +159,12 @@ public partial class RedisHelper : INoSqlHelper
     public Task<bool> RemoveExpireTimeAsync(string key)
     {
         NullGuard(key);
-        return client.PersistAsync(key);
+        return _client.PersistAsync(key);
     }
 
     private void NullGuard(string key)
     {
-        client.CheckNotNull(nameof(client));
+        _client.CheckNotNull(nameof(_client));
         key.CheckNotNullOrEmpty(nameof(key));
     }
 
