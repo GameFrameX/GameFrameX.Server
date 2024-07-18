@@ -4,8 +4,8 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
-        <Description>GameFrameX.DBServer.NoSql.Redis</Description>
-        <PackageTags>GameFrameX,Lib,DBServer.NoSql.Redis,Server,GameServer</PackageTags>
+        <Description>GameFrameX.DataBase.NoSql.Redis</Description>
+        <PackageTags>GameFrameX,Lib,DataBase.NoSql.Redis,Server,GameServer</PackageTags>
         <PublicSign>true</PublicSign>
         <SignAssembly>true</SignAssembly>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>

@@ -5,8 +5,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
         <LangVersion>10</LangVersion>
-        <Description>GameFrameX.DBServer.Mongo</Description>
-        <PackageTags>GameFrameX,Lib,DBServer.Mongo,Server,GameServer</PackageTags>
+        <Description>GameFrameX.DataBase.Mongo</Description>
+        <PackageTags>GameFrameX,Lib,DataBase.Mongo,Server,GameServer</PackageTags>
         <PublicSign>true</PublicSign>
         <SignAssembly>true</SignAssembly>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
