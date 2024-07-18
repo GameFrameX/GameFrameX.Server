@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameFrameX.Hotfix", "GameFr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Config", "GameFrameX.Config\GameFrameX.Config.csproj", "{08B73D90-AB00-4B9D-AE3C-AB19E6D594F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer", "DataBaseServer\GameFrameX.DBServer\GameFrameX.DBServer.csproj", "{CA28CC8F-B0CB-4343-8097-959625C98E9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DataBase", "DataBaseServer\GameFrameX.DataBase\GameFrameX.DataBase.csproj", "{CA28CC8F-B0CB-4343-8097-959625C98E9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Extension", "GameFrameX.Extension\GameFrameX.Extension.csproj", "{5184AC05-37C8-4E14-B27E-2C6F26E0CA64}"
 EndProject
@@ -38,9 +38,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Version.props = Version.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer.NoSql", "DataBaseServer\GameFrameX.DBServer.NoSql\GameFrameX.DBServer.NoSql.csproj", "{B01BFC0B-9BF4-498D-893F-84B4684978A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DataBase.NoSql", "DataBaseServer\GameFrameX.DataBase.NoSql\GameFrameX.DataBase.NoSql.csproj", "{B01BFC0B-9BF4-498D-893F-84B4684978A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer.NoSql.Redis", "DataBaseServer\GameFrameX.DBServer.NoSql.Redis\GameFrameX.DBServer.NoSql.Redis.csproj", "{3DAFFFD6-21DF-4A82-822A-91E5E0AEC997}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DataBase.NoSql.Redis", "DataBaseServer\GameFrameX.DataBase.NoSql.Redis\GameFrameX.DataBase.NoSql.Redis.csproj", "{3DAFFFD6-21DF-4A82-822A-91E5E0AEC997}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Tests", "Tests\GameFrameX.Tests\GameFrameX.Tests.csproj", "{762F0E9F-813B-40BD-B488-A7A6919A534E}"
 EndProject
@@ -64,7 +64,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.NetWork.Abstract
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.NetWork.Message", "GameFrameX.NetWork.Message\GameFrameX.NetWork.Message.csproj", "{377E0DA0-61E6-4D85-B3FE-C1DFD0FF703B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DBServer.Mongo", "DataBaseServer\GameFrameX.DBServer.Mongo\GameFrameX.DBServer.Mongo.csproj", "{B68E1E74-0CB9-465D-BC71-87B29B8C2C03}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DataBase.Mongo", "DataBaseServer\GameFrameX.DataBase.Mongo\GameFrameX.DataBase.Mongo.csproj", "{B68E1E74-0CB9-465D-BC71-87B29B8C2C03}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.StartUp", "GameFrameX.StartUp\GameFrameX.StartUp.csproj", "{E854CA8B-8A84-4213-8F0C-3BD6E763C80F}"
 EndProject
