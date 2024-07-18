@@ -1,14 +1,13 @@
 using GameFrameX.DBServer.State;
 using GameFrameX.Log;
-using MongoDB.Bson;
 
 namespace GameFrameX.DBServer.Storage;
 
 class StateHash
 {
-    private CacheState State { get; }
+    private BaseCacheState State { get; }
 
-    public StateHash(CacheState state, bool isNew)
+    public StateHash(BaseCacheState state, bool isNew)
     {
         State = state;
         if (!isNew)
@@ -24,7 +23,7 @@ class StateHash
     public (bool, byte[]) IsChanged()
     {
         var (toSaveHash, data) = GetHashAndData(State);
-        ToSaveHash = toSaveHash;
+        ToSaveHash             = toSaveHash;
         return (CacheHash.IsDefault() || !toSaveHash.Equals(CacheHash), data);
     }
 
@@ -38,9 +37,9 @@ class StateHash
         CacheHash = ToSaveHash;
     }
 
-    private static (Standart.Hash.xxHash.uint128 md5, byte[] data) GetHashAndData(CacheState state)
+    private static (Standart.Hash.xxHash.uint128 md5, byte[] data) GetHashAndData(BaseCacheState state)
     {
-        var data = state.ToBson();
+        var data   = state.ToBytes();
         var md5Str = Utility.Hash.XXHash.Hash128(data);
         return (md5Str, data);
     }

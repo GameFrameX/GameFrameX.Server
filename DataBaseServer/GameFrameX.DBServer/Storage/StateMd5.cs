@@ -1,18 +1,17 @@
 using GameFrameX.DBServer.State;
 using GameFrameX.Log;
 using GameFrameX.Utility;
-using MongoDB.Bson;
 
 namespace GameFrameX.DBServer.Storage;
 
 class StateMd5
 {
-    private CacheState State { get; }
+    private BaseCacheState State { get; }
 
-    public StateMd5(CacheState state, bool isNew, string cacheMd5, string toSaveMd5)
+    public StateMd5(BaseCacheState state, bool isNew, string cacheMd5, string toSaveMd5)
     {
-        State = state;
-        CacheMd5 = cacheMd5;
+        State     = state;
+        CacheMd5  = cacheMd5;
         ToSaveMd5 = toSaveMd5;
         if (!isNew)
         {
@@ -27,7 +26,7 @@ class StateMd5
     public (bool, byte[]) IsChanged()
     {
         var (toSaveMd5, data) = GetMd5AndData(State);
-        ToSaveMd5 = toSaveMd5;
+        ToSaveMd5             = toSaveMd5;
         return (CacheMd5 == default || toSaveMd5 != CacheMd5, data);
     }
 
@@ -41,9 +40,9 @@ class StateMd5
         CacheMd5 = ToSaveMd5;
     }
 
-    private static (string md5, byte[] data) GetMd5AndData(CacheState state)
+    private static (string md5, byte[] data) GetMd5AndData(BaseCacheState state)
     {
-        var data = state.ToBson();
+        var data   = state.ToBytes();
         var md5Str = Hash.MD5.Hash(data);
         return (md5Str, data);
     }

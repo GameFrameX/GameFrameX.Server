@@ -1,13 +1,12 @@
-﻿using GameFrameX.DBServer.Storage;
-using MongoDB.Bson.Serialization.Attributes;
+﻿using GameFrameX.DBServer.State;
+using GameFrameX.DBServer.Storage;
 
-namespace GameFrameX.DBServer.State
+namespace GameFrameX.DBServer
 {
     /// <summary>
     /// 缓存数据对象
     /// </summary>
-    [BsonIgnoreExtraElements(true, Inherited = true)]
-    public class CacheState : ICacheState
+    public abstract class BaseCacheState : ICacheState
     {
         /// <summary>
         /// 唯一ID。给DB用的
@@ -17,13 +16,12 @@ namespace GameFrameX.DBServer.State
         /// <summary>
         /// 唯一ID
         /// </summary>
-        [BsonId]
-        public long Id { get; set; }
+        public virtual long Id { get; set; }
 
         /// <summary>
         /// 是否修改
         /// </summary>
-        public bool IsModify
+        public virtual bool IsModify
         {
             get { return IsChanged().isChanged; }
         }
@@ -40,40 +38,40 @@ namespace GameFrameX.DBServer.State
 
         #region hash
 
-        private StateHash stateHash;
+        private StateHash _stateHash;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="isNew"></param>
-        public void AfterLoadFromDb(bool isNew)
+        public virtual void AfterLoadFromDb(bool isNew)
         {
-            stateHash = new StateHash(this, isNew);
+            _stateHash = new StateHash(this, isNew);
         }
 
         /// <summary>
         /// 是否修改
         /// </summary>
         /// <returns></returns>
-        public (bool isChanged, byte[] data) IsChanged()
+        public virtual (bool isChanged, byte[] data) IsChanged()
         {
-            return stateHash.IsChanged();
+            return _stateHash.IsChanged();
         }
 
         /// <summary>
         /// 是否由ID引起的变化
         /// </summary>
         /// <returns></returns>
-        public (bool isChanged, long stateId, byte[] data) IsChangedWithId()
+        public virtual (bool isChanged, long stateId, byte[] data) IsChangedWithId()
         {
-            var res = stateHash.IsChanged();
+            var res = _stateHash.IsChanged();
             return (res.Item1, Id, res.Item2);
         }
 
         /// <summary>
         /// 仅DBModel.Mongodb时调用
         /// </summary>
-        public void BeforeSaveToDB()
+        public virtual void BeforeSaveToDb()
         {
             // var db = GameDb.As<RocksDBConnection>().CurDataBase;
             // var table = db.GetTable<SaveTimestamp>();
@@ -92,8 +90,14 @@ namespace GameFrameX.DBServer.State
         /// </summary>
         public void AfterSaveToDb()
         {
-            stateHash.AfterSaveToDb();
+            _stateHash.AfterSaveToDb();
         }
+
+        /// <summary>
+        /// 将对象序列化转换为字节数组
+        /// </summary>
+        /// <returns></returns>
+        public abstract byte[] ToBytes();
 
         #endregion
 

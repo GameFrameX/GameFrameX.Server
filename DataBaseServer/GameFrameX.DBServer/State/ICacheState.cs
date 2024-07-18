@@ -25,4 +25,10 @@ public interface ICacheState : ISafeDelete, ISafeCreate, ISafeUpdate
     /// 
     /// </summary>
     void AfterSaveToDb();
+
+    /// <summary>
+    /// 将对象序列化转换为字节数组
+    /// </summary>
+    /// <returns></returns>
+    byte[] ToBytes();
 }

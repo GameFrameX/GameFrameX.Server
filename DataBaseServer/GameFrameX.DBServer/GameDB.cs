@@ -162,7 +162,7 @@ namespace GameFrameX.DBServer
         /// <typeparam name="TState">文档的类型</typeparam>
         /// <param name="state">要保存的文档</param>
         /// <returns>表示异步操作的任务</returns>
-        public static Task SaveOneAsync<TState>(TState state) where TState : CacheState, new()
+        public static Task SaveOneAsync<TState>(TState state) where TState : ICacheState, new()
         {
             return _dbServiceImpler.AddAsync<TState>(state);
         }
