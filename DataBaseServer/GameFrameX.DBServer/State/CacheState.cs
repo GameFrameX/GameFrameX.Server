@@ -1,6 +1,5 @@
 ﻿using GameFrameX.DBServer.Storage;
 using MongoDB.Bson.Serialization.Attributes;
-using ProtoBuf;
 
 namespace GameFrameX.DBServer.State
 {
@@ -8,7 +7,6 @@ namespace GameFrameX.DBServer.State
     /// 缓存数据对象
     /// </summary>
     [BsonIgnoreExtraElements(true, Inherited = true)]
-    [ProtoContract]
     public class CacheState : ICacheState
     {
         /// <summary>
@@ -20,7 +18,6 @@ namespace GameFrameX.DBServer.State
         /// 唯一ID
         /// </summary>
         [BsonId]
-        [ProtoMember(888)]
         public long Id { get; set; }
 
         /// <summary>

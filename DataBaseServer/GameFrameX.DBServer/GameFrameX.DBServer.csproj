@@ -39,7 +39,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\GameFrameX.ProtoBuf.Net\GameFrameX.ProtoBuf.Net.csproj"/>
         <ProjectReference Include="..\..\GameFrameX.Setting\GameFrameX.Setting.csproj"/>
         <ProjectReference Include="..\..\GameFrameX.Utility\GameFrameX.Utility.csproj"/>
     </ItemGroup>
