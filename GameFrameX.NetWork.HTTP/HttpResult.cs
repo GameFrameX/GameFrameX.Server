@@ -6,7 +6,7 @@ namespace GameFrameX.NetWork.HTTP
     /// <summary>
     /// HTTP结果
     /// </summary>
-    public class HttpResult
+    public sealed class HttpResult
     {
         /// <summary>
         /// 成功
