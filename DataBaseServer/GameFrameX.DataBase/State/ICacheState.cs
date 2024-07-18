@@ -1,4 +1,4 @@
-namespace GameFrameX.DBServer.State;
+namespace GameFrameX.DataBase.State;
 
 /// <summary>
 /// 缓存数据对象接口

@@ -1,4 +1,4 @@
-﻿namespace GameFrameX.DBServer.State;
+﻿namespace GameFrameX.DataBase.State;
 
 /// <summary>
 /// 软删除标记

@@ -1,4 +1,4 @@
-namespace GameFrameX.DBServer.Storage;
+namespace GameFrameX.DataBase.Storage;
 
 /// <summary>
 /// XXHash扩展

@@ -1,8 +1,8 @@
-using GameFrameX.DBServer.State;
+using GameFrameX.DataBase.State;
 using GameFrameX.Log;
 using GameFrameX.Utility;
 
-namespace GameFrameX.DBServer.Storage;
+namespace GameFrameX.DataBase.Storage;
 
 class StateMd5
 {

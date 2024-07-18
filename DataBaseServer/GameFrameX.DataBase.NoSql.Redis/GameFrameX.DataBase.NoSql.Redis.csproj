@@ -29,10 +29,11 @@
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <LangVersion>10</LangVersion>
+        <RootNamespace>GameFrameX.DBServer.NoSql.Redis</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GameFrameX.DBServer.NoSql\GameFrameX.DBServer.NoSql.csproj" />
+      <ProjectReference Include="..\GameFrameX.DataBase.NoSql\GameFrameX.DataBase.NoSql.csproj" />
       <ProjectReference Include="..\..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
     </ItemGroup>
 

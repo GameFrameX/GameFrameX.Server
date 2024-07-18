@@ -1,11 +1,11 @@
 ﻿using System.Linq.Expressions;
-using GameFrameX.DBServer.State;
+using GameFrameX.DataBase;
+using GameFrameX.DataBase.State;
 using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.Utility;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoDB.Driver.Linq;
 
 namespace GameFrameX.DBServer.Mongo
 {

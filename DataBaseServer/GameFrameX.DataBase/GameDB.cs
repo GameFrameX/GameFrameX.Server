@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
-using GameFrameX.DBServer.State;
+using GameFrameX.DataBase.State;
 
-namespace GameFrameX.DBServer
+namespace GameFrameX.DataBase
 {
     /// <summary>
     /// 游戏数据库类

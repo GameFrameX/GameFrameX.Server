@@ -1,7 +1,7 @@
-using GameFrameX.DBServer.State;
+using GameFrameX.DataBase.State;
 using GameFrameX.Log;
 
-namespace GameFrameX.DBServer.Storage;
+namespace GameFrameX.DataBase.Storage;
 
 class StateHash
 {

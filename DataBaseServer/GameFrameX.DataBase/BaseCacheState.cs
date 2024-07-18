@@ -1,7 +1,7 @@
-﻿using GameFrameX.DBServer.State;
-using GameFrameX.DBServer.Storage;
+﻿using GameFrameX.DataBase.State;
+using GameFrameX.DataBase.Storage;
 
-namespace GameFrameX.DBServer
+namespace GameFrameX.DataBase
 {
     /// <summary>
     /// 缓存数据对象

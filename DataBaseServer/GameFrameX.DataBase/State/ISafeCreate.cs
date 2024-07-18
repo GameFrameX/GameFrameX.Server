@@ -1,4 +1,4 @@
-namespace GameFrameX.DBServer.State;
+namespace GameFrameX.DataBase.State;
 
 /// <summary>
 /// 创建标记

@@ -29,6 +29,7 @@
         <AssemblyOriginatorKeyFile>../../gameframex.key.snk</AssemblyOriginatorKeyFile>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <RootNamespace>GameFrameX.DBServer.Mongo</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
         <None Include="../../logo.png">
@@ -43,7 +44,7 @@
         </None>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\GameFrameX.DBServer\GameFrameX.DBServer.csproj"/>
+        <ProjectReference Include="..\GameFrameX.DataBase\GameFrameX.DataBase.csproj" />
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="MongoDB.Driver" Version="2.24.0" />

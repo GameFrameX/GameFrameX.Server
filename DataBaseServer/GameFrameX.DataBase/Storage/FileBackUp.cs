@@ -1,10 +1,10 @@
 ﻿/*using MongoDB.Bson;
 using MongoDB.Driver;
-using GameFrameX.DBServer.DbService.MongoDB;
-using GameFrameX.DBServer.State;
+using GameFrameX.DataBase.DbService.MongoDB;
+using GameFrameX.DataBase.State;
 using GameFrameX.Log;
 
-namespace GameFrameX.DBServer.Storage
+namespace GameFrameX.DataBase.Storage
 {
     public static class FileBackup
     {

@@ -1,5 +1,4 @@
-﻿using GameFrameX.DBServer.State;
-using GameFrameX.DBServer.Storage;
+﻿using GameFrameX.DataBase;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 

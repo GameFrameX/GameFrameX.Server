@@ -29,6 +29,7 @@
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <LangVersion>10</LangVersion>
+        <RootNamespace>GameFrameX.DBServer.NoSql</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
