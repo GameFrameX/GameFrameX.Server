@@ -15,6 +15,6 @@ public class CacheEntry
     /// <summary>
     /// Value
     /// </summary>
-    public CacheState Value { get; set; }
+    public ICacheState Value { get; set; }
     // 可以添加更多属性，例如过期时间等
 }

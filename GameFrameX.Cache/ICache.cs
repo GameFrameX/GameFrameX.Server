@@ -12,7 +12,7 @@ public interface ICache
     /// </summary>
     /// <param name="key"></param>
     /// <param name="value"></param>
-    void Set(string key, CacheState value);
+    void Set(string key, ICacheState value);
 
     /// <summary>
     /// 获取
@@ -27,7 +27,7 @@ public interface ICache
     /// <param name="key"></param>
     /// <param name="value"></param>
     /// <returns></returns>
-    bool TryGet(string key, out CacheState value);
+    bool TryGet(string key, out ICacheState value);
 
     /// <summary>
     /// 移除
@@ -60,7 +60,7 @@ public interface ICache
     /// <param name="key"></param>
     /// <param name="value"></param>
     /// <returns></returns>
-    Task SetAsync(long key, CacheState value);
+    Task SetAsync(long key, ICacheState value);
 
     /// <summary>
     /// 设置
@@ -68,14 +68,14 @@ public interface ICache
     /// <param name="key"></param>
     /// <param name="value"></param>
     /// <returns></returns>
-    Task SetAsync(string key, CacheState value);
+    Task SetAsync(string key, ICacheState value);
 
     /// <summary>
     /// 获取
     /// </summary>
     /// <param name="key"></param>
     /// <returns></returns>
-    Task<CacheState> GetAsync(string key);
+    Task<ICacheState> GetAsync(string key);
 
     /// <summary>
     /// 尝试获取
@@ -83,7 +83,7 @@ public interface ICache
     /// <param name="key"></param>
     /// <param name="value"></param>
     /// <returns></returns>
-    Task<bool> TryGetAsync(string key, out CacheState value);
+    Task<bool> TryGetAsync(string key, out ICacheState value);
 
     /// <summary>
     /// 移除
@@ -116,12 +116,12 @@ public interface ICache
     /// 获取第一个
     /// </summary>
     /// <returns></returns>
-    Task<CacheState> GetFirstAsync();
+    Task<ICacheState> GetFirstAsync();
 
     /// <summary>
     /// 移除
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
-    bool Remove(CacheState value);
+    bool Remove(ICacheState value);
 }

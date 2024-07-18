@@ -8,19 +8,19 @@ public sealed class MemoryCacheService : ICache
 {
     private readonly ConcurrentDictionary<string, CacheEntry> cache = new ConcurrentDictionary<string, CacheEntry>();
 
-    public async Task SetAsync(long key, CacheState value)
+    public async Task SetAsync(long key, ICacheState value)
     {
         cache[key.ToString()] = new CacheEntry { Value = value, Key = value.Id.ToString() };
         await Task.CompletedTask;
     }
 
-    public async Task SetAsync(string key, CacheState value)
+    public async Task SetAsync(string key, ICacheState value)
     {
         cache[key] = new CacheEntry { Value = value, Key = value.Id.ToString() };
         await Task.CompletedTask;
     }
 
-    public async Task<CacheState> GetAsync(string key)
+    public async Task<ICacheState> GetAsync(string key)
     {
         if (cache.TryGetValue(key, out var entry))
         {
@@ -30,7 +30,7 @@ public sealed class MemoryCacheService : ICache
         return null;
     }
 
-    public Task<bool> TryGetAsync(string key, out CacheState value)
+    public Task<bool> TryGetAsync(string key, out ICacheState value)
     {
         throw new NotImplementedException();
     }
@@ -66,18 +66,18 @@ public sealed class MemoryCacheService : ICache
         await Task.CompletedTask;
     }
 
-    public Task<CacheState> GetFirstAsync()
+    public Task<ICacheState> GetFirstAsync()
     {
         return Task.FromResult(cache.Values.First().Value);
     }
 
-    public bool Remove(CacheState value)
+    public bool Remove(ICacheState value)
     {
         return cache.TryRemove(value.Id.ToString(), out _);
     }
 
     // 同步方法实现
-    public void Set(string key, CacheState value)
+    public void Set(string key, ICacheState value)
     {
         cache[key] = new CacheEntry { Value = value };
     }
@@ -92,7 +92,7 @@ public sealed class MemoryCacheService : ICache
         return null;
     }
 
-    public bool TryGet(string key, out CacheState value)
+    public bool TryGet(string key, out ICacheState value)
     {
         throw new NotImplementedException();
     }
