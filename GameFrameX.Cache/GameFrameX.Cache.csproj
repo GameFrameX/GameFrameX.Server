@@ -32,7 +32,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DataBaseServer\GameFrameX.DBServer\GameFrameX.DBServer.csproj" />
+      <ProjectReference Include="..\DataBaseServer\GameFrameX.DataBase\GameFrameX.DataBase.csproj" />
     </ItemGroup>
     <ItemGroup>
         <None Include="..\logo.png">

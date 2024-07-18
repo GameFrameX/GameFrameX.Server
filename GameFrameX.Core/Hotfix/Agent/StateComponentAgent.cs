@@ -1,7 +1,5 @@
 ﻿using GameFrameX.Core.Comps;
-using GameFrameX.DBServer.Mongo;
-using GameFrameX.DBServer.State;
-using GameFrameX.DBServer.Storage;
+using GameFrameX.DataBase.State;
 
 namespace GameFrameX.Core.Hotfix.Agent
 {
@@ -10,7 +8,7 @@ namespace GameFrameX.Core.Hotfix.Agent
     /// </summary>
     /// <typeparam name="TComp">组件对象</typeparam>
     /// <typeparam name="TState">数据对象</typeparam>
-    public abstract class StateComponentAgent<TComp, TState> : BaseComponentAgent<TComp> where TComp : StateComponent<TState> where TState : CacheState, new()
+    public abstract class StateComponentAgent<TComp, TState> : BaseComponentAgent<TComp> where TComp : StateComponent<TState> where TState : ICacheState, new()
     {
         /// <summary>
         /// 数据对象

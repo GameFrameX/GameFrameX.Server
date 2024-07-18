@@ -1,4 +1,4 @@
-﻿using GameFrameX.DBServer.Mongo;
+﻿using GameFrameX.DataBase.Mongo;
 
 namespace GameFrameX.Launcher.StartUp.Game
 {

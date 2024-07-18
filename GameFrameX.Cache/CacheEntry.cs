@@ -1,4 +1,4 @@
-﻿using GameFrameX.DBServer.State;
+﻿using GameFrameX.DataBase.State;
 
 namespace GameFrameX.Cache;
 

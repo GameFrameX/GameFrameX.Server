@@ -1,5 +1,5 @@
-using GameFrameX.DBServer.Mongo;
-using GameFrameX.DBServer.State;
+using GameFrameX.DataBase.Mongo;
+using GameFrameX.DataBase.State;
 
 namespace GameFrameX.Apps.Server.Heart.Entity;
 

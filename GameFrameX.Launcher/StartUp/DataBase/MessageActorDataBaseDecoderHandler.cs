@@ -1,4 +1,4 @@
-/*using GameFrameX.DBServer.State;
+/*using GameFrameX.DataBase.State;
 using GameFrameX.Serialize.Serialize;
 using SuperSocket.ProtoBase;
 

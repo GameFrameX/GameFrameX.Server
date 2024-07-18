@@ -2,14 +2,14 @@
 using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Timer;
 using GameFrameX.Core.Utility;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using GameFrameX.Core.Actors;
-using GameFrameX.DBServer;
-using GameFrameX.DBServer.Mongo;
-using GameFrameX.DBServer.State;
+using GameFrameX.DataBase;
+using GameFrameX.DataBase.Mongo;
+using GameFrameX.DataBase.State;
 using GameFrameX.Extension;
 using GameFrameX.Log;
+using MongoDB.Bson;
 
 namespace GameFrameX.Core.Comps
 {
@@ -86,7 +86,7 @@ namespace GameFrameX.Core.Comps
     /// 数据状态组件
     /// </summary>
     /// <typeparam name="TState"></typeparam>
-    public abstract class StateComponent<TState> : BaseComponent, IState where TState : CacheState, new()
+    public abstract class StateComponent<TState> : BaseComponent, IState where TState : ICacheState, new()
     {
         private static readonly ConcurrentDictionary<long, TState> StateDic = new ConcurrentDictionary<long, TState>();
 
@@ -127,7 +127,7 @@ namespace GameFrameX.Core.Comps
 
         internal override bool ReadyToInactive
         {
-            get { return State == null || !State.IsChanged().isChanged; }
+            get { return State == null || !State.IsModify; }
         }
 
         internal override async Task SaveState()

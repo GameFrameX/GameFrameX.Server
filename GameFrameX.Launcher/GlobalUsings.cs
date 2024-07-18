@@ -5,7 +5,7 @@ global using GameFrameX.Core.Actors.Impl;
 global using GameFrameX.Core.Comps;
 global using GameFrameX.Core.Hotfix;
 global using GameFrameX.StartUp;
-global using GameFrameX.DBServer;
+global using GameFrameX.DataBase;
 global using System.Collections.Concurrent;
 global using System.Net;
 global using GameFrameX.Setting;

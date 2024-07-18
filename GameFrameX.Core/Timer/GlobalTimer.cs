@@ -1,6 +1,6 @@
 ﻿using GameFrameX.Core.Actors;
 using GameFrameX.Core.Comps;
-using GameFrameX.DBServer;
+using GameFrameX.DataBase;
 using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.Setting;

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Concurrent;
-using GameFrameX.DBServer.State;
+using GameFrameX.DataBase.State;
 using GameFrameX.Cache;
 
 namespace GameFrameX.Cache.Memory;
