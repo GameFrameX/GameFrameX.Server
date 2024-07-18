@@ -131,8 +131,7 @@ public static class IEnumerableExtensions
         return first.Where(f => !second.Any(s => condition(f, s)));
     }
 
-#if NET6_0_OR_GREATER
-#else
+
     /// <summary>
     /// 按字段去重
     /// </summary>
@@ -226,7 +225,6 @@ public static class IEnumerableExtensions
         return first.Where(source => set.Add(keySelector(source)));
     }
 
-#endif
 
     /// <summary>
     /// 添加多个元素
@@ -370,10 +368,10 @@ public static class IEnumerableExtensions
     public static void InsertAfter<T>(this IList<T> list, Func<T, bool> condition, T value)
     {
         foreach (var index in list.Select((item, index) => new
-                 {
-                     item,
-                     index
-                 }).Where(p => condition(p.item)).OrderByDescending(p => p.index).Select(t => t.index))
+                                                           {
+                                                               item,
+                                                               index
+                                                           }).Where(p => condition(p.item)).OrderByDescending(p => p.index).Select(t => t.index))
         {
             if (index + 1 == list.Count)
             {
@@ -396,10 +394,10 @@ public static class IEnumerableExtensions
     public static void InsertAfter<T>(this IList<T> list, int index, T value)
     {
         foreach (var i in list.Select((v, i) => new
-                 {
-                     Value = v,
-                     Index = i
-                 }).Where(p => p.Index == index).OrderByDescending(p => p.Index).Select(t => t.Index))
+                                                {
+                                                    Value = v,
+                                                    Index = i
+                                                }).Where(p => p.Index == index).OrderByDescending(p => p.Index).Select(t => t.Index))
         {
             if (i + 1 == list.Count)
             {
@@ -536,7 +534,7 @@ public static class IEnumerableExtensions
     public static async Task<List<TResult>> SelectAsync<T, TResult>(this IEnumerable<T> source, Func<T, Task<TResult>> selector, int maxParallelCount)
     {
         var results = new List<TResult>();
-        var tasks = new List<Task<TResult>>();
+        var tasks   = new List<Task<TResult>>();
         foreach (var item in source)
         {
             var task = selector(item);
@@ -566,8 +564,8 @@ public static class IEnumerableExtensions
     public static async Task<List<TResult>> SelectAsync<T, TResult>(this IEnumerable<T> source, Func<T, int, Task<TResult>> selector, int maxParallelCount)
     {
         var results = new List<TResult>();
-        var tasks = new List<Task<TResult>>();
-        int index = 0;
+        var tasks   = new List<Task<TResult>>();
+        int index   = 0;
         foreach (var item in source)
         {
             var task = selector(item, index);
@@ -809,8 +807,8 @@ public static class IEnumerableExtensions
     public static double StandardDeviation(this IEnumerable<double> source)
     {
         double result = 0;
-        var list = source as ICollection<double> ?? source.ToList();
-        int count = list.Count;
+        var    list   = source as ICollection<double> ?? source.ToList();
+        int    count  = list.Count;
         if (count > 1)
         {
             var avg = list.Average();
@@ -934,13 +932,13 @@ public static class IEnumerableExtensions
     /// <returns></returns>
     public static (List<T1> adds, List<T2> remove, List<T1> updates) CompareChanges<T1, T2>(this IEnumerable<T1> first, IEnumerable<T2> second, Func<T1, T2, bool> condition)
     {
-        first ??= new List<T1>();
+        first  ??= new List<T1>();
         second ??= new List<T2>();
-        var firstSource = first as ICollection<T1> ?? first.ToList();
+        var firstSource  = first as ICollection<T1> ?? first.ToList();
         var secondSource = second as ICollection<T2> ?? second.ToList();
-        var add = firstSource.ExceptBy(secondSource, condition).ToList();
-        var remove = secondSource.ExceptBy(firstSource, (s, f) => condition(f, s)).ToList();
-        var update = firstSource.IntersectBy(secondSource, condition).ToList();
+        var add          = firstSource.ExceptBy(secondSource, condition).ToList();
+        var remove       = secondSource.ExceptBy(firstSource, (s, f) => condition(f, s)).ToList();
+        var update       = firstSource.IntersectBy(secondSource, condition).ToList();
         return (add, remove, update);
     }
 
@@ -955,13 +953,13 @@ public static class IEnumerableExtensions
     /// <returns></returns>
     public static (List<T1> adds, List<T2> remove, List<(T1 first, T2 second)> updates) CompareChangesPlus<T1, T2>(this IEnumerable<T1> first, IEnumerable<T2> second, Func<T1, T2, bool> condition)
     {
-        first ??= new List<T1>();
+        first  ??= new List<T1>();
         second ??= new List<T2>();
-        var firstSource = first as ICollection<T1> ?? first.ToList();
+        var firstSource  = first as ICollection<T1> ?? first.ToList();
         var secondSource = second as ICollection<T2> ?? second.ToList();
-        var add = firstSource.ExceptBy(secondSource, condition).ToList();
-        var remove = secondSource.ExceptBy(firstSource, (s, f) => condition(f, s)).ToList();
-        var updates = firstSource.IntersectBy(secondSource, condition).Select(t1 => (t1, secondSource.FirstOrDefault(t2 => condition(t1, t2)))).ToList();
+        var add          = firstSource.ExceptBy(secondSource, condition).ToList();
+        var remove       = secondSource.ExceptBy(firstSource, (s, f) => condition(f, s)).ToList();
+        var updates      = firstSource.IntersectBy(secondSource, condition).Select(t1 => (t1, secondSource.FirstOrDefault(t2 => condition(t1, t2)))).ToList();
         return (add, remove, updates);
     }
 
