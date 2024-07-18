@@ -1,5 +1,8 @@
 namespace GameFrameX.DBServer.NoSql;
 
+/// <summary>
+/// 非关系型数据库帮助类接口约束
+/// </summary>
 public interface INoSqlHelper
 {
     /// <summary>

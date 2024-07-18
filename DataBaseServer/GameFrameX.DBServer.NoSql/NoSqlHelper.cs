@@ -15,6 +15,7 @@ public static class NoSqlHelper
     /// <param name="helper"></param>
     public static void SetNoSqlHelper(INoSqlHelper helper)
     {
+        helper.CheckNotNull(nameof(helper));
         _noSqlHelper = helper;
     }
 

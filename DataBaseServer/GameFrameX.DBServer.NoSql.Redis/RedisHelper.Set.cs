@@ -1,14 +1,7 @@
-﻿using FreeRedis;
-using GameFrameX.DBServer.NoSql;
+﻿namespace GameFrameX.DBServer.NoSql.Redis;
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-
-namespace GameFrameX.DBServer.NoSql.Redis;
-
-public partial  class RedisHelper : INoSqlHelper
+public partial class RedisHelper : INoSqlHelper
 {
-   
-
     /// <summary>
     /// 同步设置指定的Key的数据到NoSql中
     /// </summary>
