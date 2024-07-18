@@ -3,7 +3,7 @@ namespace GameFrameX.DBServer.Storage;
 /// <summary>
 /// XXHash扩展
 /// </summary>
-public static class XxHashExtension
+static class XxHashExtension
 {
     /// <summary>
     /// 判断是否是默认值
