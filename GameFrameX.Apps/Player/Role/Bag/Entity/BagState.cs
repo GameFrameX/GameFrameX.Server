@@ -1,3 +1,5 @@
+using GameFrameX.DBServer.Mongo;
+
 namespace GameFrameX.Apps.Player.Role.Bag.Entity;
 
 public class BagState : CacheState

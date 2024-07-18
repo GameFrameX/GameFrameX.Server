@@ -1,3 +1,4 @@
+using GameFrameX.DBServer.Mongo;
 using GameFrameX.DBServer.State;
 
 namespace GameFrameX.Apps.Player.Role.Pet.Entity;

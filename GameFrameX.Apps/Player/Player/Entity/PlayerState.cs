@@ -1,3 +1,5 @@
+using GameFrameX.DBServer.Mongo;
+
 namespace GameFrameX.Apps.Player.Player.Entity;
 
 public class PlayerState : CacheState

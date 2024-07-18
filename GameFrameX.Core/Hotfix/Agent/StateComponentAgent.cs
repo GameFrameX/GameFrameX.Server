@@ -1,4 +1,5 @@
 ﻿using GameFrameX.Core.Comps;
+using GameFrameX.DBServer.Mongo;
 using GameFrameX.DBServer.State;
 using GameFrameX.DBServer.Storage;
 
