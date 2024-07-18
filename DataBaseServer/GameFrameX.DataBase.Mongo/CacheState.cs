@@ -1,8 +1,7 @@
-﻿using GameFrameX.DataBase;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace GameFrameX.DBServer.Mongo
+namespace GameFrameX.DataBase.Mongo
 {
     /// <summary>
     /// 缓存数据对象

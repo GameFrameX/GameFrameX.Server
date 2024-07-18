@@ -1,6 +1,6 @@
 ﻿using GameFrameX.Extension;
 
-namespace GameFrameX.DBServer.NoSql.Redis;
+namespace GameFrameX.DataBase.NoSql.Redis;
 
 public partial class RedisHelper : INoSqlHelper
 {

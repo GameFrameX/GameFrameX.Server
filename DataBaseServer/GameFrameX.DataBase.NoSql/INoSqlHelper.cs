@@ -1,4 +1,4 @@
-namespace GameFrameX.DBServer.NoSql;
+namespace GameFrameX.DataBase.NoSql;
 
 /// <summary>
 /// 非关系型数据库帮助类接口约束

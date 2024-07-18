@@ -1,8 +1,7 @@
 ﻿using FreeRedis;
 using GameFrameX.Extension;
 
-
-namespace GameFrameX.DBServer.NoSql.Redis;
+namespace GameFrameX.DataBase.NoSql.Redis;
 
 /// <summary>
 /// Redis帮助类

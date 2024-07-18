@@ -1,6 +1,6 @@
 ﻿using GameFrameX.Extension;
 
-namespace GameFrameX.DBServer.NoSql;
+namespace GameFrameX.DataBase.NoSql;
 
 /// <summary>
 /// 键Key重命名,用于重写NoSql中的Key

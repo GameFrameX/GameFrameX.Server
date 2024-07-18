@@ -29,7 +29,6 @@
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <LangVersion>10</LangVersion>
-        <RootNamespace>GameFrameX.DBServer.NoSql.Redis</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

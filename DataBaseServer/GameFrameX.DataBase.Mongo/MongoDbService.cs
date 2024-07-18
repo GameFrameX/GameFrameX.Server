@@ -1,5 +1,4 @@
 ﻿using System.Linq.Expressions;
-using GameFrameX.DataBase;
 using GameFrameX.DataBase.State;
 using GameFrameX.Extension;
 using GameFrameX.Log;
@@ -7,7 +6,7 @@ using GameFrameX.Utility;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace GameFrameX.DBServer.Mongo
+namespace GameFrameX.DataBase.Mongo
 {
     /// <summary>
     /// MongoDB服务连接类，实现了 <see cref="IGameDbService"/> 接口。

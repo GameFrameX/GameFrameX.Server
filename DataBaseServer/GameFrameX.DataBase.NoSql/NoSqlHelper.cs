@@ -1,6 +1,6 @@
 ﻿using GameFrameX.Extension;
 
-namespace GameFrameX.DBServer.NoSql;
+namespace GameFrameX.DataBase.NoSql;
 
 /// <summary>
 /// NoSql帮助类
