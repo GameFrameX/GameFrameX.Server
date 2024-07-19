@@ -1,4 +1,4 @@
-﻿namespace GameFrameX.Core.Comps
+﻿namespace GameFrameX.Core.Components
 {
     /// <summary>
     /// 有关组件的功能

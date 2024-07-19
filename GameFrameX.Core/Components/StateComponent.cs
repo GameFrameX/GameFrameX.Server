@@ -1,17 +1,17 @@
 ﻿using System.Collections.Concurrent;
 using GameFrameX.Core.Abstractions;
+using GameFrameX.Core.Actors;
 using GameFrameX.Core.Timer;
 using GameFrameX.Core.Utility;
-using MongoDB.Driver;
-using GameFrameX.Core.Actors;
 using GameFrameX.DataBase;
 using GameFrameX.DataBase.Mongo;
 using GameFrameX.DataBase.State;
 using GameFrameX.Extension;
 using GameFrameX.Log;
 using MongoDB.Bson;
+using MongoDB.Driver;
 
-namespace GameFrameX.Core.Comps
+namespace GameFrameX.Core.Components
 {
     /// <summary>
     /// 数据状态组件

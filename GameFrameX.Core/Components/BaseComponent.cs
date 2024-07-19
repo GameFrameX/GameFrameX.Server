@@ -2,7 +2,7 @@
 using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Hotfix;
 
-namespace GameFrameX.Core.Comps
+namespace GameFrameX.Core.Components
 {
     /// <summary>
     /// 基础组件基类
@@ -75,7 +75,9 @@ namespace GameFrameX.Core.Comps
         {
             var agent = GetAgent();
             if (agent != null)
+            {
                 await agent.Inactive();
+            }
         }
 
         /// <summary>

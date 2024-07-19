@@ -3,12 +3,11 @@ using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Actors;
 using GameFrameX.Core.Hotfix;
-using GameFrameX.Core.Hotfix.Agent;
 using GameFrameX.Core.Utility;
 using GameFrameX.Extension;
 using GameFrameX.Log;
 
-namespace GameFrameX.Core.Comps
+namespace GameFrameX.Core.Components
 {
     /// <summary>
     /// 组件注册器

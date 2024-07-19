@@ -1,7 +1,6 @@
 ﻿using GameFrameX.Core.Abstractions;
-using GameFrameX.Core.Actors;
 
-namespace GameFrameX.Core.Comps
+namespace GameFrameX.Core.Components
 {
     /// <summary>
     /// 组件类型标记
