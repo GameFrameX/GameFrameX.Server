@@ -1,10 +1,10 @@
-﻿namespace GameFrameX.Core.Components
+﻿namespace GameFrameX.Core.Abstractions.Attribute
 {
     /// <summary>
     /// 有关组件的功能
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class FuncAttribute : Attribute
+    public class FuncAttribute : System.Attribute
     {
         /// <summary>
         /// 

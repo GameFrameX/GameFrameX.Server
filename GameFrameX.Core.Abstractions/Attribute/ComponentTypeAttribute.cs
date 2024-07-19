@@ -1,12 +1,10 @@
-﻿using GameFrameX.Core.Abstractions;
-
-namespace GameFrameX.Core.Components
+﻿namespace GameFrameX.Core.Abstractions.Attribute
 {
     /// <summary>
     /// 组件类型标记
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class ComponentTypeAttribute : Attribute
+    public class ComponentTypeAttribute : System.Attribute
     {
         /// <summary>
         /// 组件类型
