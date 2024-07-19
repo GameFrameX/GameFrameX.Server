@@ -1,4 +1,4 @@
-﻿using GameFrameX.Core.Net.BaseHandler;
+﻿using GameFrameX.Core.BaseHandler;
 using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.Hotfix.Logic.Role.Login

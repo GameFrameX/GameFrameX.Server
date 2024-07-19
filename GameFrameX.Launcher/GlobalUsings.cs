@@ -2,7 +2,6 @@
 global using GameFrameX.Apps;
 global using GameFrameX.Config;
 global using GameFrameX.Core.Actors.Impl;
-global using GameFrameX.Core.Comps;
 global using GameFrameX.Core.Hotfix;
 global using GameFrameX.StartUp;
 global using GameFrameX.DataBase;

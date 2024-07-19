@@ -1,4 +1,5 @@
-﻿using GameFrameX.DataBase.Mongo;
+﻿using GameFrameX.Core.Components;
+using GameFrameX.DataBase.Mongo;
 
 namespace GameFrameX.Launcher.StartUp.Game
 {

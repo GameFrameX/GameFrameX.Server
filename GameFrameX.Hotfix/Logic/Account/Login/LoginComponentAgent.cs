@@ -24,11 +24,11 @@ namespace GameFrameX.Hotfix.Logic.Account.Login
 
 
             var loginCompAgent = await ActorManager.GetComponentAgent<LoginComponentAgent>();
-            var loginState = await loginCompAgent.Comp.OnLogin(reqLogin);
+            var loginState = await loginCompAgent.OwnerComponent.OnLogin(reqLogin);
             if (loginState == null)
             {
                 var accountId = IdGenerator.GetActorId(ActorType.Account);
-                loginState = await loginCompAgent.Comp.Register(accountId, reqLogin);
+                loginState = await loginCompAgent.OwnerComponent.Register(accountId, reqLogin);
             }
 
             //添加到session

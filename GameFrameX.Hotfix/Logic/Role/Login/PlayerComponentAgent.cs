@@ -1,5 +1,6 @@
 ﻿using GameFrameX.Apps.Player.Player.Component;
 using GameFrameX.Apps.Player.Player.Entity;
+using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Hotfix.Logic.Server.Server;
 using GameFrameX.Launcher.Common.Session;
 using GameFrameX.NetWork;
@@ -35,7 +36,7 @@ namespace GameFrameX.Hotfix.Logic.Role.Login
         /// <param name="reqLogin"></param>
         public async Task OnLogin(INetWorkChannel workChannel, ReqPlayerLogin reqLogin)
         {
-            var playerState = await Comp.OnLogin(reqLogin);
+            var playerState = await OwnerComponent.OnLogin(reqLogin);
             if (playerState == null)
             {
                 //角色找不到？
@@ -78,7 +79,7 @@ namespace GameFrameX.Hotfix.Logic.Role.Login
         /// <param name="reqPlayerCreate"></param>
         public async Task OnPlayerCreate(INetWorkChannel workChannel, ReqPlayerCreate reqPlayerCreate)
         {
-            var playerState = await Comp.OnPlayerCreate(reqPlayerCreate);
+            var playerState = await OwnerComponent.OnPlayerCreate(reqPlayerCreate);
             RespPlayerCreate respPlayerCreate = new RespPlayerCreate
             {
                 UniqueId = reqPlayerCreate.UniqueId,
@@ -101,7 +102,7 @@ namespace GameFrameX.Hotfix.Logic.Role.Login
         /// <param name="reqPlayerList"></param>
         public async Task OnGetPlayerList(INetWorkChannel workChannel, ReqPlayerList reqPlayerList)
         {
-            var playerList = await this.Comp.GetPlayerList(reqPlayerList);
+            var playerList = await this.OwnerComponent.GetPlayerList(reqPlayerList);
 
             RespPlayerList respPlayerList = new RespPlayerList
             {

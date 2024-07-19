@@ -49,7 +49,7 @@ namespace GameFrameX.Hotfix.Logic.Server.Server
         [Discard]
         public virtual ValueTask AddOnlineRole(long roleId)
         {
-            Comp.OnlineSet.Add(roleId);
+            OwnerComponent.OnlineSet.Add(roleId);
             return ValueTask.CompletedTask;
         }
 
@@ -57,7 +57,7 @@ namespace GameFrameX.Hotfix.Logic.Server.Server
         [Discard]
         public virtual ValueTask RemoveOnlineRole(long roleId)
         {
-            Comp.OnlineSet.Remove(roleId);
+            OwnerComponent.OnlineSet.Remove(roleId);
             return ValueTask.CompletedTask;
         }
 
@@ -67,7 +67,7 @@ namespace GameFrameX.Hotfix.Logic.Server.Server
             var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
             serverComp.Tell(async () =>
             {
-                foreach (var roleId in serverComp.Comp.OnlineSet)
+                foreach (var roleId in serverComp.OwnerComponent.OnlineSet)
                 {
                     var roleComp = await ActorManager.GetComponentAgent<PlayerComponentAgent>(roleId);
                     roleComp.Tell(() => func(roleComp));
@@ -117,7 +117,7 @@ namespace GameFrameX.Hotfix.Logic.Server.Server
         [Service]
         public virtual Task<bool> IsOnline(long roleId)
         {
-            foreach (var id in Comp.OnlineSet)
+            foreach (var id in OwnerComponent.OnlineSet)
             {
                 if (id == roleId)
                     return Task.FromResult(true);

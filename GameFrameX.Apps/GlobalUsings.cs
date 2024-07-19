@@ -5,7 +5,6 @@ global using MongoDB.Bson.Serialization;
 global using MongoDB.Bson.Serialization.Attributes;
 global using GameFrameX.Core;
 global using GameFrameX.Core.Utility;
-global using GameFrameX.Core.Comps;
 global using GameFrameX.Core.Events;
 global using GameFrameX.Core.Hotfix.Agent;
 global using GameFrameX.Core.Hotfix;

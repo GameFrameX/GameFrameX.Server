@@ -1,4 +1,5 @@
-﻿using GameFrameX.Core.Events;
+﻿using GameFrameX.Core.Abstractions.Events;
+using GameFrameX.Core.Events;
 
 namespace GameFrameX.Launcher.Common.Event
 {
