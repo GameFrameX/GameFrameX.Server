@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Agent;
+using GameFrameX.Core.Abstractions.Attribute;
 using GameFrameX.Core.Actors;
 using GameFrameX.Core.Hotfix;
 using GameFrameX.Core.Utility;
