@@ -1,9 +1,9 @@
 using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Agent;
-using GameFrameX.Core.Comps;
+using GameFrameX.Core.Components;
 using GameFrameX.Core.Utility;
 
-namespace GameFrameX.Core.Net.BaseHandler;
+namespace GameFrameX.Core.BaseHandler;
 
 /// <summary>
 /// 全局组件处理器

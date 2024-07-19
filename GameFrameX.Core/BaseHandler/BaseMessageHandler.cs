@@ -1,7 +1,7 @@
 ﻿using GameFrameX.NetWork;
 using GameFrameX.NetWork.Messages;
 
-namespace GameFrameX.Core.Net.BaseHandler
+namespace GameFrameX.Core.BaseHandler
 {
     /// <summary>
     /// 基础消息处理器

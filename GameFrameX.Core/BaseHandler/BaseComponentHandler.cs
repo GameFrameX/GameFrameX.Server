@@ -1,8 +1,7 @@
 ﻿using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Actors;
-using GameFrameX.Core.Hotfix.Agent;
 
-namespace GameFrameX.Core.Net.BaseHandler
+namespace GameFrameX.Core.BaseHandler
 {
     /// <summary>
     /// 基础组件处理器基类
