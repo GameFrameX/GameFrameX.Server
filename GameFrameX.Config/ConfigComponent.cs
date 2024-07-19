@@ -1,5 +1,5 @@
 ﻿using System.Text.Json;
-using GameFrameX.Config.Core;
+using GameFrameX.Core.Config;
 using GameFrameX.Log;
 
 namespace GameFrameX.Config;

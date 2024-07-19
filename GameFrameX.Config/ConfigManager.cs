@@ -1,5 +1,5 @@
 ﻿using System.Collections.Concurrent;
-using GameFrameX.Config.Core;
+using GameFrameX.Core.Config;
 
 namespace GameFrameX.Config;
 
