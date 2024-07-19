@@ -1,4 +1,5 @@
 ﻿using GameFrameX.Apps.Server.Server.Entity;
+using GameFrameX.Core.Abstractions;
 
 namespace GameFrameX.Apps.Server.Server.Component
 {

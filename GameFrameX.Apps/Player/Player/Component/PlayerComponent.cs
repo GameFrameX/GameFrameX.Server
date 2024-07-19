@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using GameFrameX.Apps.Player.Player.Entity;
+using GameFrameX.Core.Abstractions;
 using GameFrameX.Monitor.Player;
 using Random = GameFrameX.Utility.Random;
 
@@ -18,7 +19,7 @@ namespace GameFrameX.Apps.Player.Player.Component
         {
             PlayerState playerState = new PlayerState
             {
-                Id = IdGenerator.GetActorID(ActorType.Player),
+                Id = IdGenerator.GetActorId(ActorType.Player),
                 AccountId = reqPlayerCreate.Id,
                 Name = reqPlayerCreate.Name,
                 Level = 0,

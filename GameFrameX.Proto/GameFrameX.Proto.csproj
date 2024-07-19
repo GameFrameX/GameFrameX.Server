@@ -5,11 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\GameFrameX.Core\GameFrameX.Core.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="GameFrameX.NetWork" Version="1.0.6-beta2" />
+      <PackageReference Include="GameFrameX.NetWork" Version="1.0.7-beta12" />
     </ItemGroup>
 
 </Project>

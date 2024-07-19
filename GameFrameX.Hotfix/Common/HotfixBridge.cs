@@ -2,6 +2,7 @@
 using GameFrameX.Launcher;
 using GameFrameX.Launcher.Common.Session;
 using GameFrameX.NetWork.HTTP;
+using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.Hotfix.Common
 {
@@ -23,6 +24,7 @@ namespace GameFrameX.Hotfix.Common
             _appStartUpHotfixGame = new AppStartUpHotfixGame();
             _appStartUpHotfixGame.Init(setting.ServerType, setting);
             await _appStartUpHotfixGame.StartAsync();
+            RunServer(reload);
             GlobalTimer.Start();
             await ComponentRegister.ActiveGlobalComps();
             return true;

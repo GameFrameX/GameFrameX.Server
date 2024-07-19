@@ -22,7 +22,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GameFrameX.Core\GameFrameX.Core.csproj" />
       <ProjectReference Include="..\GameFrameX.Proto\GameFrameX.Proto.csproj" />
     </ItemGroup>
 
@@ -33,7 +32,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.DBServer" Version="1.0.6-beta2" />
-      <PackageReference Include="GameFrameX.Monitor" Version="1.0.6-beta2" />
+      <PackageReference Include="GameFrameX.Core" Version="1.0.7-beta12" />
+      <PackageReference Include="GameFrameX.Monitor" Version="1.0.7-beta12" />
     </ItemGroup>
 </Project>

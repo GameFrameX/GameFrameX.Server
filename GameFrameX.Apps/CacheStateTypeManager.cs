@@ -1,4 +1,6 @@
-﻿namespace GameFrameX.Apps;
+﻿
+
+namespace GameFrameX.Apps;
 
 public static class CacheStateTypeManager
 {

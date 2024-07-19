@@ -7,7 +7,7 @@ global using GameFrameX.Proto.Proto;
 global using GameFrameX.Core;
 global using GameFrameX.Log;
 global using GameFrameX.Core.Utility;
-global using GameFrameX.Core.Comps;
+global using GameFrameX.Core.Components;
 global using GameFrameX.Core.Events;
 global using GameFrameX.Core.Hotfix.Agent;
 global using GameFrameX.Core.Hotfix;
