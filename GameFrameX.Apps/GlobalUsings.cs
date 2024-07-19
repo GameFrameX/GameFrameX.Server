@@ -11,6 +11,7 @@ global using GameFrameX.Core.Hotfix.Agent;
 global using GameFrameX.Core.Hotfix;
 global using GameFrameX.Core.Actors;
 global using GameFrameX.Core.Timer;
+global using GameFrameX.Core.Abstractions.Attribute;
 global using GameFrameX.Proto.Proto;
 global using GameFrameX.DataBase;
 global using GameFrameX.DataBase.Mongo;

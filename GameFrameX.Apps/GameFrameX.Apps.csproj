@@ -32,7 +32,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.Core" Version="1.0.7-beta12" />
-      <PackageReference Include="GameFrameX.Monitor" Version="1.0.7-beta12" />
+      <PackageReference Include="GameFrameX.Core" Version="1.0.7-beta13" />
+      <PackageReference Include="GameFrameX.Monitor" Version="1.0.7-beta13" />
     </ItemGroup>
 </Project>
