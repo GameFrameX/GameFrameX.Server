@@ -162,7 +162,7 @@ namespace GameFrameX.Core.Actors.Impl
         /// </summary>
         /// <param name="work">工作内容</param>
         /// <param name="timeOut">超时,默认为int.MaxValue</param>
-        public void Tell(Action work, int timeOut = Actor.TIME_OUT)
+        public void Tell(Action work, int timeOut = Actor.TimeOut)
         {
             var at = new ActionWrapper(work)
                      {
@@ -178,7 +178,7 @@ namespace GameFrameX.Core.Actors.Impl
         /// </summary>
         /// <param name="work">工作内容</param>
         /// <param name="timeOut">超时,默认为int.MaxValue</param>
-        public void Tell(Func<Task> work, int timeOut = Actor.TIME_OUT)
+        public void Tell(Func<Task> work, int timeOut = Actor.TimeOut)
         {
             var wrapper = new ActionAsyncWrapper(work)
                           {
@@ -192,7 +192,7 @@ namespace GameFrameX.Core.Actors.Impl
         /// <summary>
         /// 调用该方法禁止丢弃Task，丢弃Task请使用Tell方法
         /// </summary>
-        public Task SendAsync(Action work, int timeOut = Actor.TIME_OUT)
+        public Task SendAsync(Action work, int timeOut = Actor.TimeOut)
         {
             (bool needEnqueue, long chainId) = IsNeedEnqueue();
             if (needEnqueue)
@@ -222,7 +222,7 @@ namespace GameFrameX.Core.Actors.Impl
         /// <param name="work">工作内容</param>
         /// <param name="timeOut">超时,默认为int.MaxValue</param>
         /// <returns></returns>
-        public Task<T> SendAsync<T>(Func<T> work, int timeOut = Actor.TIME_OUT)
+        public Task<T> SendAsync<T>(Func<T> work, int timeOut = Actor.TimeOut)
         {
             (bool needEnqueue, long chainId) = IsNeedEnqueue();
             if (needEnqueue)
@@ -263,7 +263,7 @@ namespace GameFrameX.Core.Actors.Impl
         /// <param name="timeOut">超时,默认为int.MaxValue</param>
         /// <param name="checkLock">是否检查锁</param>
         /// <returns></returns>
-        public Task SendAsync(Func<Task> work, int timeOut = Actor.TIME_OUT, bool checkLock = true)
+        public Task SendAsync(Func<Task> work, int timeOut = Actor.TimeOut, bool checkLock = true)
         {
             (bool needEnqueue, long chainId) = IsNeedEnqueue();
             if (needEnqueue)
@@ -292,7 +292,7 @@ namespace GameFrameX.Core.Actors.Impl
         /// <param name="work">工作内容</param>
         /// <param name="timeOut">超时,默认为int.MaxValue</param>
         /// <returns></returns>
-        public Task<T> SendAsync<T>(Func<Task<T>> work, int timeOut = Actor.TIME_OUT)
+        public Task<T> SendAsync<T>(Func<Task<T>> work, int timeOut = Actor.TimeOut)
         {
             (bool needEnqueue, long chainId) = IsNeedEnqueue();
             if (needEnqueue)

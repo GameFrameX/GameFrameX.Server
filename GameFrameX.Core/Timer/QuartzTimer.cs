@@ -24,7 +24,10 @@ namespace GameFrameX.Core.Timer
         public static void UnSchedule(long id)
         {
             if (id <= 0)
+            {
                 return;
+            }
+
             _scheduler.DeleteJob(JobKey.Create(id + ""));
         }
 
@@ -37,7 +40,9 @@ namespace GameFrameX.Core.Timer
             foreach (var id in set)
             {
                 if (id > 0)
+                {
                     _scheduler.DeleteJob(JobKey.Create(id + ""));
+                }
             }
         }
 
@@ -160,6 +165,7 @@ namespace GameFrameX.Core.Timer
 
         #endregion
 
+        /*
         #region 非热更定时器
 
         /// <summary>
@@ -306,6 +312,7 @@ namespace GameFrameX.Core.Timer
         }
 
         #endregion
+        */
 
         #region 调度
 
@@ -331,7 +338,7 @@ namespace GameFrameX.Core.Timer
         }
 
         /// <summary>
-        /// 停止
+        /// 开始
         /// </summary>
         /// <returns></returns>
         public static async Task Start()
@@ -435,6 +442,14 @@ namespace GameFrameX.Core.Timer
                            {
                                if (level < LogLevel.Warn)
                                {
+                                   if (level == LogLevel.Debug)
+                                   {
+                                       LogHelper.Debug(func(), parameters);
+                                   }
+                                   else
+                                   {
+                                       LogHelper.Info(func(), parameters);
+                                   }
                                }
                                else if (level == LogLevel.Warn)
                                {

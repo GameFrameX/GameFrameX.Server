@@ -1,5 +1,5 @@
 ﻿using GameFrameX.Core.Actors;
-using GameFrameX.Core.Comps;
+using GameFrameX.Core.Components;
 using GameFrameX.DataBase;
 using GameFrameX.Extension;
 using GameFrameX.Log;
@@ -52,7 +52,9 @@ namespace GameFrameX.Core.Timer
                 }
 
                 if (!IsWorking)
+                {
                     break;
+                }
 
                 var startTime = DateTime.Now;
 

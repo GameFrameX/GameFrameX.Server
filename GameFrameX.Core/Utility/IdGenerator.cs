@@ -1,5 +1,4 @@
 ﻿using GameFrameX.Core.Abstractions;
-using GameFrameX.Core.Actors;
 using GameFrameX.Setting;
 
 namespace GameFrameX.Core.Utility

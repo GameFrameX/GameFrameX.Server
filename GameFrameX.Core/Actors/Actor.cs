@@ -3,7 +3,7 @@ using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Abstractions.Timer;
 using GameFrameX.Core.Actors.Impl;
-using GameFrameX.Core.Comps;
+using GameFrameX.Core.Components;
 using GameFrameX.Log;
 
 namespace GameFrameX.Core.Actors
@@ -105,7 +105,7 @@ namespace GameFrameX.Core.Actors
         /// <summary>
         /// 默认超时时长
         /// </summary>
-        public const int TIME_OUT = int.MaxValue;
+        public const int TimeOut = int.MaxValue;
 
         /// <summary>
         /// 
@@ -187,7 +187,7 @@ namespace GameFrameX.Core.Actors
         /// </summary>
         /// <param name="work">工作内容</param>
         /// <param name="timeOut">超时,默认为int.MaxValue</param>
-        public void Tell(Action work, int timeOut = TIME_OUT)
+        public void Tell(Action work, int timeOut = TimeOut)
         {
             WorkerActor.Tell(work, timeOut);
         }
@@ -197,7 +197,7 @@ namespace GameFrameX.Core.Actors
         /// </summary>
         /// <param name="work">工作内容</param>
         /// <param name="timeOut">超时,默认为int.MaxValue</param>
-        public void Tell(Func<Task> work, int timeOut = TIME_OUT)
+        public void Tell(Func<Task> work, int timeOut = TimeOut)
         {
             WorkerActor.Tell(work, timeOut);
         }
@@ -230,7 +230,7 @@ namespace GameFrameX.Core.Actors
         /// <param name="timeout"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public Task<T> SendAsync<T>(Func<T> work, int timeout = TIME_OUT)
+        public Task<T> SendAsync<T>(Func<T> work, int timeout = TimeOut)
         {
             return WorkerActor.SendAsync(work, timeout);
         }
@@ -243,7 +243,7 @@ namespace GameFrameX.Core.Actors
         /// <param name="timeout"></param>
         /// <param name="checkLock">是否检查锁</param>
         /// <returns></returns>
-        public Task SendAsync(Func<Task> work, int timeout = TIME_OUT, bool checkLock = true)
+        public Task SendAsync(Func<Task> work, int timeout = TimeOut, bool checkLock = true)
         {
             return WorkerActor.SendAsync(work, timeout, checkLock);
         }
@@ -254,7 +254,7 @@ namespace GameFrameX.Core.Actors
         /// <param name="work"></param>
         /// <param name="timeout"></param>
         /// <returns></returns>
-        public Task SendAsyncWithoutCheck(Func<Task> work, int timeout = TIME_OUT)
+        public Task SendAsyncWithoutCheck(Func<Task> work, int timeout = TimeOut)
         {
             return WorkerActor.SendAsync(work, timeout, false);
         }
@@ -266,7 +266,7 @@ namespace GameFrameX.Core.Actors
         /// <param name="timeout">超时时间</param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public Task<T> SendAsync<T>(Func<Task<T>> work, int timeout = TIME_OUT)
+        public Task<T> SendAsync<T>(Func<Task<T>> work, int timeout = TimeOut)
         {
             return WorkerActor.SendAsync(work, timeout);
         }

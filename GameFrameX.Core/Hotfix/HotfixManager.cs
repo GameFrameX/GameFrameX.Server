@@ -2,11 +2,10 @@
 using System.Reflection;
 using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Agent;
-using GameFrameX.Core.Actors;
-using GameFrameX.Core.Comps;
+using GameFrameX.Core.Abstractions.Events;
+using GameFrameX.Core.BaseHandler;
+using GameFrameX.Core.Components;
 using GameFrameX.Core.Events;
-using GameFrameX.Core.Hotfix.Agent;
-using GameFrameX.Core.Net.BaseHandler;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.Setting;
 
@@ -84,7 +83,10 @@ namespace GameFrameX.Core.Hotfix
 
             _module = newModule;
             if (_module.HotfixBridge != null)
+            {
                 return await _module.HotfixBridge.OnLoadSuccess(setting, reload);
+            }
+
             return true;
         }
 

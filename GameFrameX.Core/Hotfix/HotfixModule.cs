@@ -2,11 +2,10 @@
 using System.Reflection;
 using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Agent;
-using GameFrameX.Core.Actors;
-using GameFrameX.Core.Comps;
+using GameFrameX.Core.Abstractions.Events;
+using GameFrameX.Core.BaseHandler;
+using GameFrameX.Core.Components;
 using GameFrameX.Core.Events;
-using GameFrameX.Core.Hotfix.Agent;
-using GameFrameX.Core.Net.BaseHandler;
 using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.NetWork.HTTP;
@@ -27,30 +26,31 @@ namespace GameFrameX.Core.Hotfix
         /// <summary>
         /// comp -> compAgent
         /// </summary>
-        readonly Dictionary<Type, Type> agentCompMap = new Dictionary<Type, Type>(512);
+        private readonly Dictionary<Type, Type> _agentCompMap = new Dictionary<Type, Type>(512);
 
-        readonly Dictionary<Type, Type> compAgentMap = new Dictionary<Type, Type>(512);
+        readonly Dictionary<Type, Type> _compAgentMap = new Dictionary<Type, Type>(512);
 
-        readonly Dictionary<Type, Type> agentAgentWrapperMap = new Dictionary<Type, Type>(512);
+        private readonly Dictionary<Type, Type> _agentAgentWrapperMap = new Dictionary<Type, Type>(512);
 
         /// <summary>
         /// cmd -> handler
         /// </summary>
-        readonly Dictionary<string, BaseHttpHandler> httpHandlerMap = new Dictionary<string, BaseHttpHandler>(512);
+        private readonly Dictionary<string, BaseHttpHandler> _httpHandlerMap = new Dictionary<string, BaseHttpHandler>(512);
 
         /// <summary>
         /// msgId -> handler
         /// </summary>
-        readonly Dictionary<int, Type> tcpHandlerMap = new Dictionary<int, Type>(512);
+        private readonly Dictionary<int, Type> _tcpHandlerMap = new Dictionary<int, Type>(512);
 
-        private readonly Dictionary<Type, Type> rpcHandlerMap = new Dictionary<Type, Type>();
+        private readonly Dictionary<Type, Type>               _rpcHandlerMap = new Dictionary<Type, Type>();
+        private readonly ConcurrentDictionary<string, object> _typeCacheMap  = new();
 
         /// <summary>
         /// actorType -> evtId -> listeners
         /// </summary>
-        readonly Dictionary<ActorType, Dictionary<int, List<IEventListener>>> actorEvtListeners = new Dictionary<ActorType, Dictionary<int, List<IEventListener>>>(512);
+        private readonly Dictionary<ActorType, Dictionary<int, List<IEventListener>>> _actorEvtListeners = new Dictionary<ActorType, Dictionary<int, List<IEventListener>>>(512);
 
-        readonly bool useAgentWrapper = true;
+        readonly bool _useAgentWrapper = true;
 
         internal HotfixModule(string dllPath)
         {
@@ -88,7 +88,9 @@ namespace GameFrameX.Core.Hotfix
             {
                 LogHelper.Error($"hotfix dll init failed...\n{e}");
                 if (!reload)
+                {
                     throw;
+                }
             }
 
             return success;
@@ -179,13 +181,13 @@ namespace GameFrameX.Core.Hotfix
 
             var handler = (BaseHttpHandler)Activator.CreateInstance(type);
             // 注册原始命令
-            if (!httpHandlerMap.TryAdd(attr.OriginalCmd, handler))
+            if (!_httpHandlerMap.TryAdd(attr.OriginalCmd, handler))
             {
                 throw new Exception($"http handler cmd重复注册，cmd:{attr.OriginalCmd}");
             }
 
             // 注册标准化的命名
-            if (!httpHandlerMap.TryAdd(attr.StandardCmd, handler))
+            if (!_httpHandlerMap.TryAdd(attr.StandardCmd, handler))
             {
                 throw new Exception($"http handler cmd重复注册，cmd:{attr.OriginalCmd}");
             }
@@ -201,14 +203,14 @@ namespace GameFrameX.Core.Hotfix
                 return false;
             }
 
-            bool isHas = rpcHandlerMap.TryGetValue(attribute.RequestMessage.GetType(), out var requestHandler);
+            bool isHas = _rpcHandlerMap.TryGetValue(attribute.RequestMessage.GetType(), out var requestHandler);
             if (isHas && requestHandler?.GetType() == attribute.ResponseMessage.GetType())
             {
                 LogHelper.Error($"重复注册消息rpc handler:[{attribute.RequestMessage}] msg:[{attribute.ResponseMessage}]");
                 return false;
             }
 
-            rpcHandlerMap.Add(attribute.RequestMessage.GetType(), attribute.ResponseMessage.GetType());
+            _rpcHandlerMap.Add(attribute.RequestMessage.GetType(), attribute.ResponseMessage.GetType());
 
             return true;
         }
@@ -228,7 +230,7 @@ namespace GameFrameX.Core.Hotfix
             }
 
             int msgId = msgIdField.MessageId;
-            if (!tcpHandlerMap.TryAdd(msgId, type))
+            if (!_tcpHandlerMap.TryAdd(msgId, type))
             {
                 LogHelper.Error("重复注册消息tcp handler:[{}] msg:[{}]", msgId, type);
             }
@@ -246,7 +248,7 @@ namespace GameFrameX.Core.Hotfix
             var compAgentType   = type.BaseType.GetGenericArguments()[0];
             var compType        = compAgentType.BaseType.GetGenericArguments()[0];
             var actorType       = ComponentRegister.CompActorDic[compType];
-            var evtListenersDic = actorEvtListeners.GetOrAdd(actorType);
+            var evtListenersDic = _actorEvtListeners.GetOrAdd(actorType);
 
             bool find = false;
             foreach (var attr in type.GetCustomAttributes())
@@ -284,7 +286,7 @@ namespace GameFrameX.Core.Hotfix
 
             if (fullName.StartsWith(GlobalConst.HotfixNameSpaceNamePrefix) && fullName.EndsWith(GlobalConst.ComponentAgentWrapperNameSuffix))
             {
-                agentAgentWrapperMap[type.BaseType] = type;
+                _agentAgentWrapperMap[type.BaseType] = type;
                 return true;
             }
 
@@ -294,28 +296,26 @@ namespace GameFrameX.Core.Hotfix
             }
 
             var compType = type.BaseType.GetGenericArguments()[0];
-            if (!compAgentMap.TryAdd(compType, type))
+            if (!_compAgentMap.TryAdd(compType, type))
             {
                 throw new Exception($"comp:{compType.FullName}有多个agent");
             }
 
-            agentCompMap[type] = compType;
+            _agentCompMap[type] = compType;
             return true;
         }
 
         internal BaseMessageHandler GetTcpHandler(int msgId)
         {
-            if (tcpHandlerMap.TryGetValue(msgId, out var handlerType))
+            if (_tcpHandlerMap.TryGetValue(msgId, out var handlerType))
             {
-                var ins = Activator.CreateInstance(handlerType);
-                if (ins is BaseMessageHandler handler)
+                var instance = Activator.CreateInstance(handlerType);
+                if (instance is BaseMessageHandler handler)
                 {
                     return handler;
                 }
-                else
-                {
-                    throw new Exception($"错误的tcp handler类型，{ins.GetType().FullName}");
-                }
+
+                throw new Exception($"错误的tcp handler类型，{instance.GetType().FullName}");
             }
 
             return null;
@@ -324,7 +324,7 @@ namespace GameFrameX.Core.Hotfix
 
         internal BaseHttpHandler GetHttpHandler(string cmd)
         {
-            if (httpHandlerMap.TryGetValue(cmd, out var handler))
+            if (_httpHandlerMap.TryGetValue(cmd, out var handler))
             {
                 return handler;
             }
@@ -336,12 +336,12 @@ namespace GameFrameX.Core.Hotfix
         internal T GetAgent<T>(BaseComponent component) where T : IComponentAgent
         {
             var type = component.GetType();
-            if (compAgentMap.TryGetValue(type, out var agentType))
+            if (_compAgentMap.TryGetValue(type, out var agentType))
             {
                 T agent = default;
-                if (useAgentWrapper)
+                if (_useAgentWrapper)
                 {
-                    if (agentAgentWrapperMap.TryGetValue(agentType, out var warpType))
+                    if (_agentAgentWrapperMap.TryGetValue(agentType, out var warpType))
                     {
                         agent = (T)Activator.CreateInstance(warpType);
                     }
@@ -361,12 +361,12 @@ namespace GameFrameX.Core.Hotfix
                 return agent;
             }
 
-            throw new KeyNotFoundException(nameof(compAgentMap) + " ===>" + nameof(type));
+            throw new KeyNotFoundException(nameof(_compAgentMap) + " ===>" + nameof(type));
         }
 
         internal List<IEventListener> FindListeners(ActorType actorType, int evtId)
         {
-            if (actorEvtListeners.TryGetValue(actorType, out var evtListeners)
+            if (_actorEvtListeners.TryGetValue(actorType, out var evtListeners)
                 && evtListeners.TryGetValue(evtId, out var listeners))
             {
                 return listeners;
@@ -375,7 +375,6 @@ namespace GameFrameX.Core.Hotfix
             return null;
         }
 
-        readonly ConcurrentDictionary<string, object> typeCacheMap = new();
 
         /// <summary>
         /// 获取实例(主要用于获取Event,Timer, Schedule,的Handler实例)
@@ -385,18 +384,18 @@ namespace GameFrameX.Core.Hotfix
         /// <returns></returns>
         internal T GetInstance<T>(string typeName)
         {
-            return (T)typeCacheMap.GetOrAdd(typeName, k => HotfixAssembly.CreateInstance(k));
+            return (T)_typeCacheMap.GetOrAdd(typeName, k => HotfixAssembly.CreateInstance(k));
         }
 
         internal Type GetAgentType(Type compType)
         {
-            compAgentMap.TryGetValue(compType, out var agentType);
+            _compAgentMap.TryGetValue(compType, out var agentType);
             return agentType;
         }
 
         internal Type GetCompType(Type agentType)
         {
-            agentCompMap.TryGetValue(agentType, out var compType);
+            _agentCompMap.TryGetValue(agentType, out var compType);
             return compType;
         }
     }

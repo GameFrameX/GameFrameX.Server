@@ -1,5 +1,4 @@
-﻿using GameFrameX.Core.Utility;
-using GameFrameX.Setting;
+﻿using GameFrameX.Setting;
 
 namespace GameFrameX.Core.Hotfix
 {
