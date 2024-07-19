@@ -7,7 +7,7 @@ namespace GameFrameX.Core.Hotfix
     {
         public DllLoader(string dllPath)
         {
-            Context = new HostAssemblyLoadContext();
+            Context   = new HostAssemblyLoadContext();
             HotfixDll = Context.LoadFromAssemblyPath(dllPath);
         }
 
