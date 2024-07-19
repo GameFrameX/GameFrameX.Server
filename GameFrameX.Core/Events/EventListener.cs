@@ -1,5 +1,5 @@
 ﻿using GameFrameX.Core.Abstractions.Agent;
-using GameFrameX.Core.Hotfix.Agent;
+using GameFrameX.Core.Abstractions.Events;
 
 namespace GameFrameX.Core.Events
 {
@@ -27,7 +27,6 @@ namespace GameFrameX.Core.Events
         /// <param name="evt"></param>
         /// <returns></returns>
         protected abstract Task HandleEvent(T agent, Event evt);
-
 
         /// <summary>
         /// 事件代理类型

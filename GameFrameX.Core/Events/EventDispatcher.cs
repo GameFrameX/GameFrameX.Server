@@ -1,6 +1,8 @@
-﻿using GameFrameX.Core.Actors;
+﻿using GameFrameX.Core.Abstractions.Events;
+using GameFrameX.Core.Actors;
 using GameFrameX.Core.Hotfix;
 using GameFrameX.Extension;
+using GameFrameX.Log;
 using GameFrameX.Utility;
 
 namespace GameFrameX.Core.Events
@@ -13,12 +15,12 @@ namespace GameFrameX.Core.Events
         /// <summary>
         /// 分发事件
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="eventId"></param>
-        /// <param name="args"></param>
-        public static void Dispatch(long id, int eventId, Param args = null)
+        /// <param name="actorId"></param>
+        /// <param name="eventId">事件ID</param>
+        /// <param name="args">参数对象,可以为null</param>
+        public static void Dispatch(long actorId, int eventId, Param args = null)
         {
-            var actor = ActorManager.GetActor(id);
+            var actor = ActorManager.GetActor(actorId);
             if (actor != null)
             {
                 var evt = new Event
@@ -33,7 +35,7 @@ namespace GameFrameX.Core.Events
                                var listeners = HotfixManager.FindListeners(actor.Type, eventId);
                                if (listeners.IsNullOrEmpty())
                                {
-                                   // Log.Warn($"事件：{(EventID)evtId} 没有找到任何监听者");
+                                   LogHelper.Warn($"事件：{eventId} 没有找到任何监听者");
                                    return;
                                }
 
