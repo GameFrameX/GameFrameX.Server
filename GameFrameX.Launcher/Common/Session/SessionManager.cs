@@ -1,7 +1,6 @@
 ﻿using GameFrameX.Launcher.Common.Event;
 using GameFrameX.Core.Actors;
 using GameFrameX.Core.Events;
-using GameFrameX.NetWork;
 using GameFrameX.Setting;
 
 namespace GameFrameX.Launcher.Common.Session
@@ -84,10 +83,10 @@ namespace GameFrameX.Launcher.Common.Session
         /// </summary>
         /// <param name="sessionId"></param>
         /// <returns></returns>
-        public static INetChannel GetChannel(long sessionId)
+        public static INetWorkChannel GetChannel(long sessionId)
         {
             sessionMap.TryGetValue(sessionId, out var session);
-            return session?.Channel;
+            return session?.WorkChannel;
         }
 
         /// <summary>
@@ -96,7 +95,7 @@ namespace GameFrameX.Launcher.Common.Session
         /// <param name="session"></param>
         public static void Add(Session session)
         {
-            if (sessionMap.TryGetValue(session.Id, out var oldSession) && oldSession.Channel != session.Channel)
+            if (sessionMap.TryGetValue(session.Id, out var oldSession) && oldSession.WorkChannel != session.WorkChannel)
             {
                 if (oldSession.Sign != session.Sign)
                 {
@@ -109,11 +108,11 @@ namespace GameFrameX.Launcher.Common.Session
                 }
 
                 // 新连接 or 顶号
-                oldSession.Channel.RemoveData(GlobalConst.SessionIdKey);
-                oldSession.Channel.Close();
+                oldSession.WorkChannel.RemoveData(GlobalConst.SessionIdKey);
+                oldSession.WorkChannel.Close();
             }
 
-            session.Channel.SetData(GlobalConst.SessionIdKey, session.Id);
+            session.WorkChannel.SetData(GlobalConst.SessionIdKey, session.Id);
             sessionMap[session.Id] = session;
         }
     }

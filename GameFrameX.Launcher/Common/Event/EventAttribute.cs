@@ -1,4 +1,4 @@
-﻿using GameFrameX.Core.Events;
+﻿
 
 namespace GameFrameX.Launcher.Common.Event
 {

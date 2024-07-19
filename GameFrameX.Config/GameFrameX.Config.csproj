@@ -7,13 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GameFrameX.Log\GameFrameX.Log.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
         <None Update="json\*.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="GameFrameX.Core.Config" Version="1.0.7-beta12" />
+      <PackageReference Include="GameFrameX.Log" Version="1.0.7-beta12" />
     </ItemGroup>
 
 </Project>

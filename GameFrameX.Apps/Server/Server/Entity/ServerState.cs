@@ -1,5 +1,3 @@
-using GameFrameX.DBServer.State;
-
 namespace GameFrameX.Apps.Server.Server.Entity;
 
 public class ServerState : CacheState

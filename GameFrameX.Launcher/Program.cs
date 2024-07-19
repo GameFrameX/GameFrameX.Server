@@ -1,48 +1,61 @@
-﻿using System.Reflection;
+﻿using System.Collections;
+using System.Reflection;
 using CommandLine;
 using GameFrameX.Launcher.Common.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using GameFrameX.Extension;
 using GameFrameX.Monitor;
-using GameFrameX.Setting;
+using GameFrameX.NetWork.Message;
 
 namespace GameFrameX.Launcher
 {
     internal static class Program
     {
-        private static readonly Dictionary<Type, StartUpTagAttribute> startUpTypes = new();
+        private static readonly Dictionary<Type, StartUpTagAttribute> StartUpTypes = new();
+        private static readonly List<Task> AppStartUpTasks = new List<Task>();
+        private static readonly List<IAppStartUp> AppStartUps = new List<IAppStartUp>();
 
         static async Task Main(string[] args)
         {
+            List<string> environmentVariablesList = new List<string>();
+            environmentVariablesList.AddRange(args);
             Console.WriteLine("启动参数：" + string.Join(" ", args));
-            var launcherOptions = Parser.Default.ParseArguments<LauncherOptions>(args)?.Value;
-
             Console.WriteLine("当前环境变量START---------------------");
             var environmentVariables = Environment.GetEnvironmentVariables();
-            foreach (var environmentVariable in environmentVariables)
+            foreach (DictionaryEntry environmentVariable in environmentVariables)
             {
-                Console.WriteLine($"{environmentVariable}");
+                if (environmentVariable.Value == null || environmentVariable.Key.ToString().IsNullOrWhiteSpace())
+                {
+                    continue;
+                }
+
+                var key = environmentVariable.Key.ToString().StartsWith("--") ? environmentVariable.Key.ToString() : "--" + environmentVariable.Key;
+                if (environmentVariablesList.Contains(key))
+                {
+                    continue;
+                }
+
+                environmentVariablesList.Add(key);
+                environmentVariablesList.Add(environmentVariable.Value.ToString());
             }
 
             Console.WriteLine("当前环境变量END---------------------");
             Console.WriteLine();
             Console.WriteLine();
-            string serverType = launcherOptions?.ServerType;
-            if (serverType.IsNullOrEmpty())
+            var commandLineParser = new Parser(configuration => { configuration.IgnoreUnknownArguments = true; });
+
+            var launcherOptions = commandLineParser.ParseArguments<LauncherOptions>(environmentVariablesList).WithParsed((LauncherOptionsValidate))?.Value;
+            var serverType = launcherOptions?.ServerType;
+            if (!serverType.IsNullOrEmpty())
             {
-                serverType = Environment.GetEnvironmentVariable("ServerType");
-                if (serverType != null)
-                {
-                    Console.WriteLine("启动的服务器类型 ServerType: " + serverType);
-                }
+                Console.WriteLine("启动的服务器类型 ServerType: " + serverType);
             }
 
             LoggerHandler.Start(serverType);
             JsonSetting();
             GlobalSettings.Load<AppSetting>($"Configs/app_config.json");
             CacheStateTypeManager.Init();
-            ProtoMessageIdHandler.Init();
+            MessageProtoHelper.Init(typeof(MessageProtoHandler).Assembly);
 
             var types = Assembly.GetEntryAssembly()?.GetTypes();
             if (types != null)
@@ -52,13 +65,13 @@ namespace GameFrameX.Launcher
                     if (type.IsClass && type.IsImplWithInterface(typeof(IAppStartUp)) && type.GetCustomAttribute<StartUpTagAttribute>() != null)
                     {
                         var startUpTag = type.GetCustomAttribute<StartUpTagAttribute>();
-                        startUpTypes.Add(type, startUpTag);
+                        StartUpTypes.Add(type, startUpTag);
                     }
                 }
             }
 
-            var sortedStartUpTypes = startUpTypes.OrderBy(m => m.Value.Priority);
-            List<Task> tasks = new();
+            var sortedStartUpTypes = StartUpTypes.OrderBy(m => m.Value.Priority);
+
             LogHelper.Info($"----------------------------开始启动服务器啦------------------------------");
             var appSettings = GlobalSettings.GetSettings<AppSetting>();
             if (serverType != null && Enum.TryParse(serverType, out ServerType serverTypeValue))
@@ -70,15 +83,44 @@ namespace GameFrameX.Launcher
                     if (appSetting != null)
                     {
                         LogHelper.Error("从配置文件中找到对应的服务器类型的启动配置,将以配置启动=>" + startKv.Value.ServerType);
-                        var task = Start(args, startKv.Key, startKv.Value.ServerType, appSetting);
-                        tasks.Add(task);
                     }
                     else
                     {
                         LogHelper.Error("没有找到对应的服务器类型的启动配置,将以默认配置启动=>" + startKv.Value.ServerType);
-                        var task = Start(args, startKv.Key, startKv.Value.ServerType, null);
-                        tasks.Add(task);
+                        appSetting = new AppSetting
+                        {
+                            ServerId = launcherOptions.ServerId,
+                            ServerType = serverTypeValue,
+                            APMPort = launcherOptions.APMPort,
+                            IsDebug = launcherOptions.IsDebug,
+                            IsDebugSend = launcherOptions.IsDebugSend,
+                            IsDebugReceive = launcherOptions.IsDebugReceive,
+                            Language = launcherOptions.Language,
+                            DataCenter = launcherOptions.DataCenter,
+                            DiscoveryCenterIp = launcherOptions.DiscoveryCenterIp,
+                            DiscoveryCenterPort = launcherOptions.DiscoveryCenterPort,
+                            DBIp = launcherOptions.DBIp,
+                            DBPort = launcherOptions.DBPort,
+                            SaveDataInterval = launcherOptions.SaveDataInterval,
+                            HttpCode = launcherOptions.HttpCode,
+                            HttpPort = launcherOptions.HttpPort,
+                            HttpsPort = launcherOptions.HttpsPort,
+                            HttpUrl = launcherOptions.HttpUrl,
+                            InnerIp = launcherOptions.InnerIp,
+                            InnerPort = launcherOptions.InnerPort,
+                            OuterIp = launcherOptions.OuterIp,
+                            OuterPort = launcherOptions.OuterPort,
+                            WsPort = launcherOptions.WsPort,
+                            WssPort = launcherOptions.WssPort,
+                            WssCertFilePath = launcherOptions.WssCertFilePath,
+                            DataBaseUrl = launcherOptions.DataBaseUrl,
+                            DataBaseName = launcherOptions.DataBaseName,
+                            MinModuleId = launcherOptions.MinModuleId,
+                            MaxModuleId = launcherOptions.MaxModuleId
+                        };
                     }
+
+                    Launcher(args, startKv, appSetting);
                 }
             }
             else
@@ -91,28 +133,138 @@ namespace GameFrameX.Launcher
                     {
                         if (keyValuePair.Value.ServerType == appSetting.ServerType)
                         {
-                            var task = Start(args, keyValuePair.Key, appSetting.ServerType, appSetting);
-                            tasks.Add(task);
+                            Launcher(args, keyValuePair, appSetting);
                             isFind = true;
                             break;
                         }
                     }
 
-
                     if (isFind == false)
                     {
                         LogHelper.Error("没有找到对应的服务器类型的启动配置,将以默认配置启动=>" + keyValuePair.Value.ServerType);
-                        var task = Start(args, keyValuePair.Key, keyValuePair.Value.ServerType, null);
-                        tasks.Add(task);
+                        Launcher(args, keyValuePair);
                     }
                 }
             }
 
             LogHelper.Info($"----------------------------启动服务器结束啦------------------------------");
-
+            ApplicationPerformanceMonitorStart(serverType);
             ConsoleLogo();
-            MetricsHelper.Start();
-            await Task.WhenAll(tasks);
+
+            await Task.WhenAll(AppStartUpTasks);
+        }
+
+        private static void LauncherOptionsValidate(LauncherOptions options)
+        {
+            if (!options.ServerType.IsNullOrEmpty() && Enum.TryParse(options.ServerType, out ServerType serverTypeValue))
+            {
+                // options.CheckAPMPort();
+
+                options.CheckServerId();
+
+                options.CheckInnerPort();
+
+                switch (serverTypeValue)
+                {
+                    case ServerType.Log:
+                        break;
+                    case ServerType.DataBase:
+                    {
+                        options.CheckDataBaseUrl();
+
+                        options.CheckDataBaseName();
+
+                        options.CheckOuterIp();
+
+                        options.CheckOuterPort();
+                    }
+                        break;
+                    case ServerType.Cache:
+                        break;
+                    case ServerType.Gateway:
+                    {
+                        options.CheckOuterIp();
+
+                        options.CheckOuterPort();
+                    }
+                        break;
+                    case ServerType.Account:
+                        break;
+                    case ServerType.Router:
+                    {
+                        options.CheckOuterIp();
+                        options.CheckOuterPort();
+                        options.CheckWsPort();
+                        options.CheckDiscoveryCenterIp();
+                        options.CheckDiscoveryCenterPort();
+                    }
+                        break;
+                    case ServerType.DiscoveryCenter:
+                    {
+                        options.CheckOuterIp();
+                        options.CheckOuterPort();
+                    }
+                        break;
+                    case ServerType.Backup:
+                        break;
+                    case ServerType.Login:
+                        break;
+                    case ServerType.Game:
+                    {
+                        options.CheckMinModuleId();
+                        options.CheckMaxModuleId();
+                        options.CheckOuterIp();
+                        options.CheckOuterPort();
+                        options.CheckDiscoveryCenterIp();
+                        options.CheckDiscoveryCenterPort();
+                    }
+                        break;
+                    case ServerType.Recharge:
+                        break;
+                    case ServerType.Logic:
+                        break;
+                    case ServerType.Chat:
+                        break;
+                    case ServerType.Mail:
+                        break;
+                    case ServerType.Guild:
+                        break;
+                    case ServerType.Room:
+                        break;
+                    case ServerType.All:
+                        break;
+                }
+            }
+        }
+
+        private static void Launcher(string[] args, KeyValuePair<Type, StartUpTagAttribute> keyValuePair, AppSetting appSetting = null)
+        {
+            var task = Start(args, keyValuePair.Key, keyValuePair.Value.ServerType, appSetting, out var startUp);
+            AppStartUps.Add(startUp);
+            AppStartUpTasks.Add(task);
+        }
+
+        private static void ApplicationPerformanceMonitorStart(string serverType)
+        {
+            if (serverType != null && Enum.TryParse(serverType, out ServerType serverTypeValue))
+            {
+                foreach (var appStartUp in AppStartUps)
+                {
+                    if (appStartUp.ServerType == serverTypeValue)
+                    {
+                        if (appStartUp.Setting.APMPort is > 0 and < ushort.MaxValue)
+                        {
+                            MetricsHelper.Start(appStartUp.Setting.APMPort);
+                        }
+                        else
+                        {
+                            LogHelper.Error("APM端口没有配置和无效,将不会启动APM监控");
+                        }
+
+                        break;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -134,17 +286,17 @@ namespace GameFrameX.Launcher
             };
         }
 
-
-        private static Task Start(string[] args, Type appStartUpType, ServerType serverType, BaseSetting setting)
+        private static Task Start(string[] args, Type appStartUpType, ServerType serverType, BaseSetting setting, out IAppStartUp startUp)
         {
-            var startUp = (IAppStartUp)Activator.CreateInstance(appStartUpType);
+            startUp = (IAppStartUp)Activator.CreateInstance(appStartUpType);
             if (startUp != null)
             {
                 bool isSuccess = startUp.Init(serverType, setting, args);
                 if (isSuccess)
                 {
-                    // LogHelper.Info($"启动服务器类型：{keyValuePair.Value.ServerType},配置信息：{JsonConvert.SerializeObject(appSetting)}");
                     LogHelper.Info($"----------------------------START-----{serverType}------------------------------");
+                    LogHelper.Info($"启动服务器类型:{serverType}, 配置信息:{startUp.Setting}");
+                    LogHelper.Info($"--------------------------------------------------------------------------------");
                     var task = AppEnter.Entry(startUp);
                     LogHelper.Info($"-----------------------------END------{serverType}------------------------------");
                     return task;

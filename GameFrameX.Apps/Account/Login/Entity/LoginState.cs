@@ -1,5 +1,3 @@
-using GameFrameX.DBServer.State;
-
 namespace GameFrameX.Apps.Account.Login.Entity;
 
 public class LoginState : CacheState

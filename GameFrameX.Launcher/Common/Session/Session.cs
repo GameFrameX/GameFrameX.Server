@@ -27,7 +27,7 @@
         /// <summary>
         /// 连接上下文
         /// </summary>
-        public INetChannel Channel { get; set; }
+        public INetWorkChannel WorkChannel { get; set; }
 
         /// <summary>
         /// 连接标示，避免自己顶自己的号,客户端每次启动游戏生成一次/或者每个设备一个
@@ -36,7 +36,7 @@
 
         public void WriteAsync(MessageObject msg)
         {
-            Channel?.Write(msg);
+            WorkChannel?.Write(msg);
         }
     }
 }

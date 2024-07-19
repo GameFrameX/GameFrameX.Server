@@ -1,4 +1,6 @@
-﻿using GameFrameX.Hotfix.Server.Server.Agent;
+﻿using GameFrameX.Core.Abstractions;
+using GameFrameX.Core.Abstractions.Agent;
+using GameFrameX.Core.Abstractions.Events;
 
 namespace GameFrameX.Hotfix.Common.Events
 {
@@ -7,15 +9,15 @@ namespace GameFrameX.Hotfix.Common.Events
         public static void Dispatch(this IComponentAgent agent, int evtId, Param args = null)
         {
             var evt = new Event
-            {
-                EventId = evtId,
-                Data = args
-            };
+                      {
+                          EventId = evtId,
+                          Data    = args
+                      };
 
             // 自己处理
             SelfHandle(agent, evtId, evt);
 
-            if ((EventId) evtId > EventId.RoleSeparator && agent.OwnerType > ActorType.Separator)
+            if ((EventId)evtId > EventId.RoleSeparator && agent.OwnerType > ActorType.Separator)
             {
                 // 全局非玩家事件，抛给所有玩家
                 /*agent.Tell(()
@@ -26,27 +28,27 @@ namespace GameFrameX.Hotfix.Common.Events
             static void SelfHandle(IComponentAgent agent, int evtId, Event evt)
             {
                 agent.Tell(async () =>
-                {
-                    // 事件需要在本actor内执行，不可多线程执行，所以不能使用Task.WhenAll来处理
-                    var listeners = HotfixManager.FindListeners(agent.OwnerType, evtId);
-                    if (listeners.IsNullOrEmpty())
-                    {
-                        // Log.Warn($"事件：{(EventID)evtId} 没有找到任何监听者");
-                        return;
-                    }
+                           {
+                               // 事件需要在本actor内执行，不可多线程执行，所以不能使用Task.WhenAll来处理
+                               var listeners = HotfixManager.FindListeners(agent.OwnerType, evtId);
+                               if (listeners.IsNullOrEmpty())
+                               {
+                                   // Log.Warn($"事件：{(EventID)evtId} 没有找到任何监听者");
+                                   return;
+                               }
 
-                    foreach (var listener in listeners)
-                    {
-                        var comp = await agent.GetComponentAgent(listener.AgentType);
-                        await listener.HandleEvent(comp, evt);
-                    }
-                });
+                               foreach (var listener in listeners)
+                               {
+                                   var comp = await agent.GetComponentAgent(listener.AgentType);
+                                   await listener.HandleEvent(comp, evt);
+                               }
+                           });
             }
         }
 
         public static void Dispatch(this IComponentAgent agent, EventId evtId, Param args = null)
         {
-            Dispatch(agent, (int) evtId, args);
+            Dispatch(agent, (int)evtId, args);
         }
     }
 }

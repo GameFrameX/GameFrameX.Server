@@ -1,4 +1,6 @@
-﻿namespace GameFrameX.Launcher.StartUp.Game
+﻿using GameFrameX.DataBase.Mongo;
+
+namespace GameFrameX.Launcher.StartUp.Game
 {
     /// <summary>
     /// 游戏服务器
@@ -6,7 +8,7 @@
     [StartUpTag(ServerType.Game)]
     internal sealed class AppStartUpGame : AppStartUpBase
     {
-        public override async Task EnterAsync()
+        public override async Task StartAsync()
         {
             try
             {
@@ -18,7 +20,7 @@
                 }
 
                 ConfigComponent.Instance.LoadConfig();
-                
+
                 LogHelper.Info($"actor limit logic start...");
                 ActorLimit.Init(ActorLimit.RuleType.None);
                 LogHelper.Info($"actor limit logic end...");
@@ -39,7 +41,7 @@
 
                 LogHelper.Info("进入游戏主循环...");
                 LogHelper.Info("***进入游戏主循环***");
-                GlobalSettings.LaunchTime = DateTime.Now;
+                GlobalSettings.LaunchTime   = DateTime.Now;
                 GlobalSettings.IsAppRunning = true;
                 await AppExitToken;
             }
@@ -59,17 +61,22 @@
             if (Setting == null)
             {
                 Setting = new AppSetting
-                {
-                    ServerId = 1501,
-                    ServerType = ServerType.Game,
-                    TcpPort = 21000,
-                    HttpPort = 20001,
-                    WsPort = 21100,
-                    //
-                    HttpCode = "inner_httpcode",
-                    DataBaseUrl = "mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority",
-                    DataBaseName = "gameframex"
-                };
+                          {
+                              ServerId            = 9000,
+                              ServerType          = ServerType.Game,
+                              InnerPort           = 29000,
+                              APMPort             = 29090,
+                              HttpPort            = 29001,
+                              WsPort              = 29010,
+                              MinModuleId         = 0,
+                              MaxModuleId         = 9999,
+                              DiscoveryCenterIp   = "127.0.0.1",
+                              DiscoveryCenterPort = 21001,
+                              //
+                              HttpCode     = "inner_httpcode",
+                              DataBaseUrl  = "mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority",
+                              DataBaseName = "gameframex"
+                          };
             }
 
             base.Init();

@@ -1,10 +1,8 @@
-﻿using GameFrameX.NetWork;
-
-namespace GameFrameX.Launcher;
+﻿namespace GameFrameX.Launcher;
 
 public static class GameClientSessionManager
 {
-    static readonly ConcurrentDictionary<string, INetChannel> Sessions = new ConcurrentDictionary<string, INetChannel>();
+    static readonly ConcurrentDictionary<string, INetWorkChannel> Sessions = new ConcurrentDictionary<string, INetWorkChannel>();
 
     /// <summary>
     /// 当前连接数量
@@ -14,13 +12,13 @@ public static class GameClientSessionManager
         get { return Sessions.Count; }
     }
 
-    public static INetChannel GetSession(string id)
+    public static INetWorkChannel GetSession(string id)
     {
         Sessions.TryGetValue(id, out var session);
         return session;
     }
 
-    public static void SetSession(string id, INetChannel session)
+    public static void SetSession(string id, INetWorkChannel session)
     {
         Sessions.TryAdd(id, session);
     }
