@@ -1,7 +1,6 @@
 ﻿using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Agent;
-using GameFrameX.Core.Actors;
-using GameFrameX.Core.Comps;
+using GameFrameX.Core.Components;
 using GameFrameX.Core.Timer;
 using GameFrameX.Core.Timer.Handler;
 using GameFrameX.Utility;
@@ -22,7 +21,7 @@ namespace GameFrameX.Core.Hotfix.Agent
         /// <summary>
         /// 拥有者组件
         /// </summary>
-        public TComponent Comp
+        public TComponent OwnerComponent
         {
             get { return (TComponent)Owner; }
         }
