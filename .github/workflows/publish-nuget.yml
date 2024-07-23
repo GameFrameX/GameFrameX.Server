@@ -155,10 +155,17 @@ jobs:
           VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
-      - name: Publish GameFrameX.DataBase.MySql
+      - name: Publish GameFrameX.DataBase.RDS
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
-          PROJECT_FILE_PATH: DataBaseServer/GameFrameX.DataBase.MySql/GameFrameX.DataBase.MySql.csproj
+          PROJECT_FILE_PATH: DataBaseServer/GameFrameX.DataBase.RDS/GameFrameX.DataBase.RDS.csproj
+          VERSION_FILE_PATH: Version.props
+          NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
+
+      - name: Publish GameFrameX.DataBase.RDS.MySql
+        uses: AlianBlank/publish-nuget@v1.0.2
+        with:
+          PROJECT_FILE_PATH: DataBaseServer/GameFrameX.DataBase.RDS.MySql/GameFrameX.DataBase.RDS.MySql.csproj
           VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
