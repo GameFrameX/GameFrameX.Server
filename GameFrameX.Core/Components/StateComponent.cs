@@ -86,7 +86,7 @@ namespace GameFrameX.Core.Components
     /// 数据状态组件
     /// </summary>
     /// <typeparam name="TState"></typeparam>
-    public abstract class StateComponent<TState> : BaseComponent, IState where TState : ICacheState, new()
+    public abstract class StateComponent<TState> : BaseComponent, IState where TState : class, ICacheState, new()
     {
         private static readonly ConcurrentDictionary<long, TState> StateDic = new ConcurrentDictionary<long, TState>();
 
