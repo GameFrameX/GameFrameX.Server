@@ -2,7 +2,7 @@
 using FreeSql.DataAnnotations;
 using GameFrameX.Utility;
 
-namespace GameFrameX.DataBase.Mysql;
+namespace GameFrameX.DataBase.RDS;
 
 /// <summary>
 /// 缓存数据对象

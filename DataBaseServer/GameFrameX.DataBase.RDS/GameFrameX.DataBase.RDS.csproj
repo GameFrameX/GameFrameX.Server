@@ -12,7 +12,6 @@
 
     <ItemGroup>
       <PackageReference Include="FreeSql" Version="3.2.833" />
-      <PackageReference Include="FreeSql.Repository" Version="3.2.833" />
     </ItemGroup>
 
 </Project>

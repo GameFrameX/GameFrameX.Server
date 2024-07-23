@@ -5,7 +5,7 @@ using GameFrameX.DataBase.State;
 using GameFrameX.Log;
 using GameFrameX.Utility;
 
-namespace GameFrameX.DataBase.Mysql
+namespace GameFrameX.DataBase.RDS.MySql
 {
     /// <summary>
     /// MongoDB服务连接类，实现了 <see cref="IGameDbService"/> 接口。
@@ -28,7 +28,7 @@ namespace GameFrameX.DataBase.Mysql
             {
                 Client = new FreeSql.FreeSqlBuilder()
                          .UseConnectionString(FreeSql.DataType.MySql, url)
-                         .UseNameConvert(NameConvertType.PascalCaseToUnderscoreWithLower) //默认为小驼峰，这里修改为大驼峰()
+                         .UseNameConvert(NameConvertType.PascalCaseToUnderscoreWithLower) //默认为小驼峰，这里修改为小写和下划线分割
                          .UseAutoSyncStructure(true) //自动同步实体结构【开发环境必备】，FreeSql不会扫描程序集，只有CRUD时才会生成表。
                          .UseMonitorCommand(cmd => LogHelper.Debug(cmd.CommandText))
                          .Build(); //请务必定义成 Singleton 单例模式
