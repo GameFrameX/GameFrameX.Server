@@ -72,7 +72,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Core.Abstraction
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Core.Config", "GameFrameX.Core.Config\GameFrameX.Core.Config.csproj", "{729E96D5-53C9-48FF-AE58-2F7EBE482E7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DataBase.Mysql", "DataBaseServer\GameFrameX.DataBase.Mysql\GameFrameX.DataBase.Mysql.csproj", "{C5636E49-AD38-4AB0-82A1-6AC8FD70DA0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DataBase.RDS", "DataBaseServer\GameFrameX.DataBase.RDS\GameFrameX.DataBase.RDS.csproj", "{C5636E49-AD38-4AB0-82A1-6AC8FD70DA0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DataBase.RDS.MySql", "DataBaseServer\GameFrameX.DataBase.RDS.MySql\GameFrameX.DataBase.RDS.MySql.csproj", "{D8D6DA94-6C53-47C3-8339-7E15F878B3F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -196,6 +198,10 @@ Global
 		{C5636E49-AD38-4AB0-82A1-6AC8FD70DA0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5636E49-AD38-4AB0-82A1-6AC8FD70DA0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5636E49-AD38-4AB0-82A1-6AC8FD70DA0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8D6DA94-6C53-47C3-8339-7E15F878B3F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8D6DA94-6C53-47C3-8339-7E15F878B3F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8D6DA94-6C53-47C3-8339-7E15F878B3F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8D6DA94-6C53-47C3-8339-7E15F878B3F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -210,5 +216,6 @@ Global
 		{3DAFFFD6-21DF-4A82-822A-91E5E0AEC997} = {71D7AB99-1CB2-435D-9D70-05FE9FE05E84}
 		{B68E1E74-0CB9-465D-BC71-87B29B8C2C03} = {71D7AB99-1CB2-435D-9D70-05FE9FE05E84}
 		{C5636E49-AD38-4AB0-82A1-6AC8FD70DA0A} = {71D7AB99-1CB2-435D-9D70-05FE9FE05E84}
+		{D8D6DA94-6C53-47C3-8339-7E15F878B3F3} = {71D7AB99-1CB2-435D-9D70-05FE9FE05E84}
 	EndGlobalSection
 EndGlobal
