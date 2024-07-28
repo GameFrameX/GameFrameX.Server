@@ -5,11 +5,14 @@
 /// </summary>
 public static class UtilityIdGenerator
 {
-    private static readonly DateTime UtcTimeStart = new(2000, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+    /// <summary>
+    /// 全局UTC 开始时间
+    /// </summary>
+    public static readonly DateTime UtcTimeStart = new(2000, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
     // 共享计数器
     private static long _longCounter = (long)(DateTime.UtcNow - UtcTimeStart).TotalSeconds;
-    private static int _intCounter = (int)(DateTime.UtcNow - UtcTimeStart).TotalSeconds;
+    private static int  _intCounter  = (int)(DateTime.UtcNow - UtcTimeStart).TotalSeconds;
 
     /// <summary>
     /// 使用Interlocked.Increment生成唯一ID的方法
