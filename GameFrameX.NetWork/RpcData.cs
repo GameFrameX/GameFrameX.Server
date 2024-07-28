@@ -60,7 +60,7 @@ public sealed class RpcData
     {
         RequestMessage = requestMessage;
         IsReply = isReply;
-        UniqueId = UtilityIdGenerator.GetNextUniqueId();
+        UniqueId = IdGenerator.GetNextUniqueId();
         _tcs = new TaskCompletionSource<IResponseMessage>();
     }
 

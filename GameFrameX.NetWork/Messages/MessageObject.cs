@@ -68,7 +68,7 @@ namespace GameFrameX.NetWork.Messages
         /// </summary>
         public void UpdateUniqueId()
         {
-            UniqueId = UtilityIdGenerator.GetNextUniqueIntId();
+            UniqueId = IdGenerator.GetNextUniqueIntId();
         }
 
         /// <summary>

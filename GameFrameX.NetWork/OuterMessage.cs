@@ -38,7 +38,7 @@ public class OuterMessage : IOuterMessage
     /// </summary>
     public void UpdateUniqueId()
     {
-        UniqueId = UtilityIdGenerator.GetNextUniqueIntId();
+        UniqueId = IdGenerator.GetNextUniqueIntId();
     }
 
     /// <summary>

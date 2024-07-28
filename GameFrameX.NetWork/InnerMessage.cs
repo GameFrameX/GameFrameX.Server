@@ -40,7 +40,7 @@ public class InnerMessage : IInnerMessage
     /// </summary>
     public void UpdateUniqueId()
     {
-        UniqueId = UtilityIdGenerator.GetNextUniqueIntId();
+        UniqueId = IdGenerator.GetNextUniqueIntId();
     }
 
     /// <summary>
