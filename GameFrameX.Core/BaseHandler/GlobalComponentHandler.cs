@@ -20,7 +20,7 @@ public abstract class GlobalComponentHandler : BaseComponentHandler
         {
             var       compType  = ComponentAgentType.BaseType.GetGenericArguments()[0];
             ActorType actorType = ComponentRegister.GetActorType(compType);
-            ActorId = IdGenerator.GetActorId(actorType);
+            ActorId = ActorIdGenerator.GetActorId(actorType);
         }
 
         return Task.CompletedTask;

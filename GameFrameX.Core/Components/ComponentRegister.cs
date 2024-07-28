@@ -135,7 +135,7 @@ namespace GameFrameX.Core.Components
                     if (actorType > ActorType.Separator)
                     {
                         LogHelper.Info($"激活全局Actor: {actorType}");
-                        await ActorManager.GetOrNew(IdGenerator.GetActorId(actorType));
+                        await ActorManager.GetOrNew(ActorIdGenerator.GetActorId(actorType));
                     }
                 }
 

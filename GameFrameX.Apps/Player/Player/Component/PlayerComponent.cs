@@ -21,7 +21,7 @@ namespace GameFrameX.Apps.Player.Player.Component
         {
             PlayerState playerState = new PlayerState
             {
-                Id = IdGenerator.GetActorId(ActorType.Player),
+                Id = ActorIdGenerator.GetActorId(ActorType.Player),
                 AccountId = reqPlayerCreate.Id,
                 Name = reqPlayerCreate.Name,
                 Level = 0,

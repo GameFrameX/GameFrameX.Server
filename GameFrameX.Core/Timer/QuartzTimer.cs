@@ -127,7 +127,7 @@ namespace GameFrameX.Core.Timer
         {
             if (dayOfWeeks == null || dayOfWeeks.Length <= 0)
             {
-                throw new ArgumentNullException($"定时每周执行 参数为空：{nameof(dayOfWeeks)} TimerHandler:{typeof(T).FullName} actorId:{actorId} actorType:{IdGenerator.GetActorType(actorId)}");
+                throw new ArgumentNullException($"定时每周执行 参数为空：{nameof(dayOfWeeks)} TimerHandler:{typeof(T).FullName} actorId:{actorId} actorType:{ActorIdGenerator.GetActorType(actorId)}");
             }
 
             var nextId  = NextId();
@@ -154,7 +154,7 @@ namespace GameFrameX.Core.Timer
         {
             if (dayOfMonth is < 0 or > 31)
             {
-                throw new ArgumentException($"定时器参数错误 TimerHandler:{typeof(T).FullName} {nameof(dayOfMonth)}:{dayOfMonth} actorId:{actorId} actorType:{IdGenerator.GetActorType(actorId)}");
+                throw new ArgumentException($"定时器参数错误 TimerHandler:{typeof(T).FullName} {nameof(dayOfMonth)}:{dayOfMonth} actorId:{actorId} actorType:{ActorIdGenerator.GetActorType(actorId)}");
             }
 
             var nextId  = NextId();

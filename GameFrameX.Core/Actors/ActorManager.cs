@@ -71,7 +71,7 @@ namespace GameFrameX.Core.Actors
         {
             var compType  = HotfixManager.GetCompType(typeof(T));
             var actorType = ComponentRegister.GetActorType(compType);
-            var actorId   = IdGenerator.GetActorId(actorType);
+            var actorId   = ActorIdGenerator.GetActorId(actorType);
             return GetComponentAgent<T>(actorId);
         }
 
@@ -82,7 +82,7 @@ namespace GameFrameX.Core.Actors
         /// <returns></returns>
         internal static async Task<Actor> GetOrNew(long actorId)
         {
-            var actorType = IdGenerator.GetActorType(actorId);
+            var actorType = ActorIdGenerator.GetActorType(actorId);
             if (actorType == ActorType.Player)
             {
                 var now = DateTime.Now;
@@ -98,13 +98,13 @@ namespace GameFrameX.Core.Actors
                     return await GetLifeActor(actorId).SendAsync(() =>
                                                                  {
                                                                      ActiveTimeDic[actorId] = now;
-                                                                     return ActorMap.GetOrAdd(actorId, k => new Actor(k, IdGenerator.GetActorType(k)));
+                                                                     return ActorMap.GetOrAdd(actorId, k => new Actor(k, ActorIdGenerator.GetActorType(k)));
                                                                  });
                 }
             }
             else
             {
-                return ActorMap.GetOrAdd(actorId, k => new Actor(k, IdGenerator.GetActorType(k)));
+                return ActorMap.GetOrAdd(actorId, k => new Actor(k, ActorIdGenerator.GetActorType(k)));
             }
         }
 
@@ -298,7 +298,7 @@ namespace GameFrameX.Core.Actors
         public static async Task CrossDay(int openServerDay, ActorType driverActorType)
         {
             // 驱动actor优先执行跨天
-            var id          = IdGenerator.GetActorId(driverActorType);
+            var id          = ActorIdGenerator.GetActorId(driverActorType);
             var driverActor = ActorMap[id];
             await driverActor.CrossDay(openServerDay);
 

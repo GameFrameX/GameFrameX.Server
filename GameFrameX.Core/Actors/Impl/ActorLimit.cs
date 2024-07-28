@@ -113,8 +113,8 @@ namespace GameFrameX.Core.Actors.Impl
                     return true;
                 }
 
-                var currentType = IdGenerator.GetActorType(actorId);
-                var targetType  = IdGenerator.GetActorType(target);
+                var currentType = ActorIdGenerator.GetActorType(actorId);
+                var targetType  = ActorIdGenerator.GetActorType(target);
                 if (LevelDic.TryGetValue(targetType, out var targetValue) && LevelDic.TryGetValue(currentType, out var currentValue))
                 {
                     //等级高的不能【等待】调用等级低的
@@ -148,7 +148,7 @@ namespace GameFrameX.Core.Actors.Impl
 
                 if (CrossDic.TryGetValue(target, out var set) && set.ContainsKey(self))
                 {
-                    LogHelper.Error($"发生交叉死锁，ActorId1:{self} ActorType1:{IdGenerator.GetActorType(self)} ActorId2:{target} ActorType2:{IdGenerator.GetActorType(target)}");
+                    LogHelper.Error($"发生交叉死锁，ActorId1:{self} ActorType1:{ActorIdGenerator.GetActorType(self)} ActorId2:{target} ActorType2:{ActorIdGenerator.GetActorType(target)}");
                     return false;
                 }
 
