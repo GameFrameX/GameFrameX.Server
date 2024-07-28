@@ -1,10 +1,11 @@
 ﻿using GameFrameX.Core.Abstractions;
 using GameFrameX.Setting;
+using GameFrameX.Utility;
 
 namespace GameFrameX.Core.Utility
 {
     /// <summary>
-    /// ActorId
+    /// ActorId 生成器
     ///     14   +   7  + 30 +  12   = 63
     ///     服务器id 类型 时间戳 自增
     ///         玩家
@@ -12,76 +13,84 @@ namespace GameFrameX.Core.Utility
     ///     服务器id * 100000 + 全局功能id
     ///         全局玩法
     /// </summary>
-    public static class IdGenerator
+    public static class ActorIdGenerator
     {
         private static long _genSecond = 0L;
         private static long _incrNum   = 0L;
 
-        //此时间决定可用id年限(最晚有效年限=34年+此时间)(可调整,早于开服时间就行)
-        private static readonly DateTime UtcTimeStart = new(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         private static readonly object LockObj = new();
 
         /// <summary>
         /// 根据ActorId获取服务器id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public static int GetServerId(long id)
+        /// <param name="actorId">ActorId</param>
+        /// <returns>服务器id</returns>
+        public static int GetServerId(long actorId)
         {
-            return (int)(id < GlobalConst.MaxGlobalId ? id / 100000 : id >> GlobalConst.ServerIdOrModuleIdMask);
+            if (actorId < GlobalConst.MinServerId)
+            {
+                throw new ArgumentOutOfRangeException(nameof(actorId), "actorId is less than min server id, min server id is " + GlobalConst.MinServerId);
+            }
+
+            if (actorId < GlobalConst.MaxGlobalId)
+            {
+                return (int)(actorId / 1000);
+            }
+
+            return (int)(actorId >> GlobalConst.ServerIdOrModuleIdMask);
         }
 
         /// <summary>
         /// 根据ActorId获取生成时间
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="utc"></param>
+        /// <param name="actorId">ActorId</param>
+        /// <param name="isUtc">是否使用UTC</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public static DateTime GetGenerateTime(long id, bool utc = false)
+        /*public static DateTime GetGenerateTime(long actorId, bool isUtc = false)
         {
-            if (id < GlobalConst.MaxGlobalId)
+            if (actorId < GlobalConst.MaxGlobalId)
             {
-                throw new ArgumentException($"input is a global id:{id}");
+                throw new ArgumentException($"input is a global id:{actorId}");
             }
 
-            var  serverId = GetServerId(id);
+            var  serverId = GetServerId(actorId);
             long seconds;
             if (serverId < GlobalConst.MinServerId)
             {
                 // IDModule unique_id
-                seconds = (id >> GlobalConst.ModuleIdTimestampMask) & GlobalConst.SecondMask;
+                seconds = (actorId >> GlobalConst.ModuleIdTimestampMask) & GlobalConst.SecondMask;
             }
             else
             {
-                seconds = (id >> GlobalConst.TimestampMask) & GlobalConst.SecondMask;
+                seconds = (actorId >> GlobalConst.TimestampMask) & GlobalConst.SecondMask;
             }
 
-            var date = UtcTimeStart.AddSeconds(seconds);
-            return utc ? date : date.ToLocalTime();
-        }
+            var date = IdGenerator.UtcTimeStart.AddSeconds(seconds);
+            return isUtc ? date : date.ToLocalTime();
+        }*/
 
         /// <summary>
         /// 根据ActorId获取ActorType
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="actorId"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public static ActorType GetActorType(long id)
+        public static ActorType GetActorType(long actorId)
         {
-            if (id <= 0)
+            if (actorId < GlobalConst.MinServerId)
             {
-                throw new ArgumentException($"input id error:{id}");
+                throw new ArgumentOutOfRangeException(nameof(actorId), "actorId is less than min server id, min server id is " + GlobalConst.MinServerId);
             }
 
-            if (id < GlobalConst.MaxGlobalId)
+            if (actorId < GlobalConst.MaxGlobalId)
             {
                 // 全局actor
-                return (ActorType)id;
+                return (ActorType)(actorId / 1000);
             }
 
-            return (ActorType)((id >> GlobalConst.ActorTypeMask) & 0xF);
+            return (ActorType)((actorId >> GlobalConst.ActorTypeMask) & 0xFF);
         }
 
 
@@ -103,7 +112,8 @@ namespace GameFrameX.Core.Utility
             {
                 throw new ArgumentException($"serverId negtive when generate id {serverId}");
             }
-            else if (serverId == 0)
+
+            if (serverId == 0)
             {
                 serverId = GlobalSettings.ServerId;
             }
@@ -117,20 +127,30 @@ namespace GameFrameX.Core.Utility
         }
 
         /// <summary>
-        /// 
+        /// 根据ActorType类型和服务器id获取ActorId
         /// </summary>
-        /// <param name="type"></param>
-        /// <param name="serverId"></param>
+        /// <param name="actorType"></param>
+        /// <param name="serverId">服务器ID</param>
         /// <returns></returns>
-        private static long GetGlobalActorId(ActorType type, int serverId)
+        private static long GetGlobalActorId(ActorType actorType, int serverId)
         {
-            return (long)(serverId * 100000 + type);
+            if (serverId <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(serverId), "serverId is less than 0");
+            }
+
+            if (actorType == ActorType.Max || actorType == ActorType.Separator || actorType == ActorType.None)
+            {
+                throw new ArgumentOutOfRangeException(nameof(actorType), "type is invalid");
+            }
+
+            return serverId * 1000 + (int)actorType;
         }
 
 
         private static long GetMultiActorId(ActorType type, int serverId)
         {
-            long second = (long)(DateTime.UtcNow - UtcTimeStart).TotalSeconds;
+            long second = (long)(DateTime.UtcNow - IdGenerator.UtcTimeStart).TotalSeconds;
             lock (LockObj)
             {
                 if (second > _genSecond)
@@ -149,11 +169,11 @@ namespace GameFrameX.Core.Utility
                 }
             }
 
-            var id = (long)serverId << GlobalConst.ServerIdOrModuleIdMask; // serverId-14位, 支持1000~9999
-            id |= (long)type << GlobalConst.ActorTypeMask; // 多actor类型-7位, 支持0~127
-            id |= _genSecond << GlobalConst.TimestampMask; // 时间戳-30位, 支持34年
-            id |= _incrNum; // 自增-12位, 每秒4096个
-            return id;
+            var actorId = (long)serverId << GlobalConst.ServerIdOrModuleIdMask; // serverId-14位, 支持1000~9999
+            actorId |= (long)type << GlobalConst.ActorTypeMask; // 多actor类型-7位, 支持0~127
+            actorId |= _genSecond << GlobalConst.TimestampMask; // 时间戳-30位, 支持34年
+            actorId |= _incrNum; // 自增-12位, 每秒4096个
+            return actorId;
         }
 
         /// <summary>
@@ -163,7 +183,7 @@ namespace GameFrameX.Core.Utility
         /// <returns></returns>
         public static long GetUniqueId(IdModule module)
         {
-            long second = (long)(DateTime.UtcNow - UtcTimeStart).TotalSeconds;
+            long second = (long)(DateTime.UtcNow - IdGenerator.UtcTimeStart).TotalSeconds;
             lock (LockObj)
             {
                 if (second > _genSecond)
