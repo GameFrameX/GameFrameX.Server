@@ -38,7 +38,7 @@ public static class GlobalConst
     /// <summary>
     /// 最大全局ID
     /// </summary>
-    public const int MaxGlobalId = 1_000_000_000;
+    public const int MaxGlobalId = MaxServerId * 1000;
 
     /// <summary>
     /// 最小服务器ID
@@ -48,7 +48,7 @@ public static class GlobalConst
     /// <summary>
     /// 最大服务器ID
     /// </summary>
-    public const int MaxServerId = 99999;
+    public const int MaxServerId = 9999;
 
     /// <summary>
     /// 最大Actor增量
@@ -61,7 +61,7 @@ public static class GlobalConst
     public const int MaxUniqueIncrease = 524287; //524287
 
     /// <summary>
-    /// 服务器ID或模块ID掩码
+    /// 服务器ID 长度标记位=>49 = 63-14
     /// </summary>
     public const int ServerIdOrModuleIdMask = 49; //49+14=63
 
