@@ -18,22 +18,22 @@ namespace GameFrameX.Core.Components
         /// <summary>
         /// ActorType -> CompTypeList
         /// </summary>
-        private static readonly Dictionary<ActorType, HashSet<Type>> ActorCompDic = new();
+        private static readonly Dictionary<ActorType, HashSet<Type>> ActorComponentDic = new();
 
         /// <summary>
         /// CompType -> ActorType
         /// </summary>
-        internal static readonly Dictionary<Type, ActorType> CompActorDic = new();
+        internal static readonly Dictionary<Type, ActorType> ComponentActorDic = new();
 
         /// <summary>
         /// func -> CompTypes
         /// </summary>
-        private static readonly Dictionary<int, HashSet<Type>> FuncCompDic = new();
+        private static readonly Dictionary<int, HashSet<Type>> FuncComponentDic = new();
 
         /// <summary>
         /// CompType -> func
         /// </summary>
-        private static readonly Dictionary<Type, short> CompFuncDic = new();
+        private static readonly Dictionary<Type, short> ComponentFuncDic = new();
 
         /// <summary>
         /// 根据CompType获取对应的ActorType类型
@@ -42,7 +42,7 @@ namespace GameFrameX.Core.Components
         /// <returns></returns>
         public static ActorType GetActorType(Type compType)
         {
-            CompActorDic.TryGetValue(compType, out var actorType);
+            ComponentActorDic.TryGetValue(compType, out var actorType);
             return actorType;
         }
 
@@ -51,9 +51,9 @@ namespace GameFrameX.Core.Components
         /// </summary>
         /// <param name="actorType"></param>
         /// <returns></returns>
-        public static IEnumerable<Type> GetComps(ActorType actorType)
+        public static IEnumerable<Type> GetComponents(ActorType actorType)
         {
-            ActorCompDic.TryGetValue(actorType, out var comps);
+            ActorComponentDic.TryGetValue(actorType, out var comps);
             return comps;
         }
 
@@ -83,18 +83,18 @@ namespace GameFrameX.Core.Components
                 if (type.GetCustomAttribute(typeof(ComponentTypeAttribute)) is ComponentTypeAttribute compAttr)
                 {
                     var actorType = compAttr.ActorType;
-                    var compTypes = ActorCompDic.GetOrAdd(actorType);
+                    var compTypes = ActorComponentDic.GetOrAdd(actorType);
                     compTypes.Add(type);
 
-                    CompActorDic[type] = actorType;
+                    ComponentActorDic[type] = actorType;
 
                     if (actorType == ActorType.Player)
                     {
                         if (type.GetCustomAttribute(typeof(FuncAttribute)) is FuncAttribute funcAttr)
                         {
-                            var set = FuncCompDic.GetOrAdd(funcAttr.Func);
+                            var set = FuncComponentDic.GetOrAdd(funcAttr.Func);
                             set.Add(type);
-                            CompFuncDic[type] = funcAttr.Func;
+                            ComponentFuncDic[type] = funcAttr.Func;
                         }
                     }
                 }
@@ -115,7 +115,7 @@ namespace GameFrameX.Core.Components
         {
             try
             {
-                foreach (var (actorType, value) in ActorCompDic)
+                foreach (var (actorType, value) in ActorComponentDic)
                 {
                     foreach (var compType in value)
                     {
@@ -156,9 +156,9 @@ namespace GameFrameX.Core.Components
         /// <returns></returns>
         public static Task ActiveRoleComps(IComponentAgent componentAgent, HashSet<short> openFuncSet)
         {
-            return ActiveComps(componentAgent.Owner.Actor,
-                               t => !CompFuncDic.TryGetValue(t, out var func)
-                                    || openFuncSet.Contains(func));
+            return ActiveComponents(componentAgent.Owner.Actor,
+                                    t => !ComponentFuncDic.TryGetValue(t, out var func)
+                                         || openFuncSet.Contains(func));
             //foreach (var compType in GetComps(ActorType.Role))
             //{
             //    bool active;
@@ -178,9 +178,9 @@ namespace GameFrameX.Core.Components
             //}
         }
 
-        internal static async Task ActiveComps(IActor actor, Func<Type, bool> predict = null)
+        internal static async Task ActiveComponents(IActor actor, Func<Type, bool> predict = null)
         {
-            var compTypes = GetComps(actor.Type);
+            var compTypes = GetComponents(actor.Type);
 
             foreach (var compType in compTypes)
             {
@@ -202,7 +202,7 @@ namespace GameFrameX.Core.Components
 
         internal static BaseComponent NewComp(Actor actor, Type compType)
         {
-            if (!ActorCompDic.TryGetValue(actor.Type, out var compTypes))
+            if (!ActorComponentDic.TryGetValue(actor.Type, out var compTypes))
             {
                 throw new Exception($"获取不属于此actor：{actor.Type}的comp:{compType.FullName}");
             }

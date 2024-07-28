@@ -124,7 +124,7 @@ namespace GameFrameX.Core.Actors
             }
             else
             {
-                Tell(() => ComponentRegister.ActiveComps(this));
+                Tell(() => ComponentRegister.ActiveComponents(this));
             }
         }
 

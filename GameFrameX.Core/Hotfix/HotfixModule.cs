@@ -247,7 +247,7 @@ namespace GameFrameX.Core.Hotfix
 
             var compAgentType   = type.BaseType.GetGenericArguments()[0];
             var compType        = compAgentType.BaseType.GetGenericArguments()[0];
-            var actorType       = ComponentRegister.CompActorDic[compType];
+            var actorType       = ComponentRegister.ComponentActorDic[compType];
             var evtListenersDic = _actorEvtListeners.GetOrAdd(actorType);
 
             bool find = false;
