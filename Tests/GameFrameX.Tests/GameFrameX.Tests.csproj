@@ -18,6 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\GameFrameX.Core\GameFrameX.Core.csproj" />
       <ProjectReference Include="..\..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
     </ItemGroup>
 
