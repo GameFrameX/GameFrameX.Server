@@ -979,6 +979,7 @@ namespace GameFrameX.DataBase.Mongo
         }
         */
 
+
         /// <summary>
         /// 判断是否存在符合条件的数据
         /// </summary>
@@ -1451,6 +1452,30 @@ namespace GameFrameX.DataBase.Mongo
             }
 
             return state;
+        }
+
+        public Task<long> UpdateAsync(IEnumerable<ICacheState> stateList)
+        {
+            long resultCount = 0;
+            foreach (var state in stateList)
+            {
+                var isChanged = state.IsModify;
+                if (isChanged)
+                {
+                    state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
+                    state.UpdateCount++;
+                    var filter     = Builders<ICacheState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
+                    var name       = state.GetType().Name;
+                    var collection = GetCollection(name);
+                    /*var result     = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
+                    if (result.IsAcknowledged)
+                    {
+                        resultCount++;
+                        state.AfterSaveToDb();
+                    }*/
+                }
+            }
+            return Task.FromResult(resultCount);
         }
 
         /// <summary>

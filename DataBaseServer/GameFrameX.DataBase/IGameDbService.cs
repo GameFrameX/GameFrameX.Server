@@ -134,6 +134,13 @@ public interface IGameDbService
     Task<TState> UpdateAsync<TState>(TState state) where TState : class, ICacheState, new();
 
     /// <summary>
+    /// 保存多条数据
+    /// </summary>
+    /// <param name="stateList"></param>
+    /// <returns></returns>
+    Task<long> UpdateAsync(IEnumerable<ICacheState> stateList);
+
+    /// <summary>
     /// 查询符合条件的数据是否存在
     /// </summary>
     /// <param name="filter">查询条件</param>

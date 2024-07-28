@@ -975,6 +975,8 @@ namespace GameFrameX.DataBase.RDS.MySql
         }
         */
 
+
+
         /// <summary>
         /// 判断是否存在符合条件的数据
         /// </summary>
@@ -1440,6 +1442,25 @@ namespace GameFrameX.DataBase.RDS.MySql
             return state;
         }
 
+        public Task<long> UpdateAsync(IEnumerable<ICacheState> stateList)
+        {
+            // foreach (var cacheState in stateList)
+            // {
+            //     cacheState.UpdateTime = TimeHelper.UnixTimeMilliseconds();
+            //     cacheState.UpdateCount++;
+            //     // var repository = Client.GetRepository(cacheState);
+            //     Client.InsertOrUpdate(cacheState); // repository.Update()
+            //     var result     = await collection.UpdateAsync(cacheState);
+            //     if (result > 0)
+            //     {
+            //         cacheState.AfterSaveToDb();
+            //     }
+            // }
+            //
+            // await collection.InsertAsync(cacheStates);
+            return Task.FromResult(0L);
+        }
+        
         /*
         /// <summary>
         /// 替换选项，用于替换文档。设置 <see cref="IsUpsert"/> 属性为 true 可以在找不到匹配的文档时插入新文档。
