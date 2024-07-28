@@ -9,7 +9,7 @@ namespace GameFrameX.Core.Utility
     ///     服务器id 类型 时间戳 自增
     ///         玩家
     ///         公会
-    ///     服务器id * 1000 + 全局功能id
+    ///     服务器id * 100000 + 全局功能id
     ///         全局玩法
     /// </summary>
     public static class IdGenerator
@@ -29,7 +29,7 @@ namespace GameFrameX.Core.Utility
         /// <returns></returns>
         public static int GetServerId(long id)
         {
-            return (int)(id < GlobalConst.MaxGlobalId ? id / 1000 : id >> GlobalConst.ServerIdOrModuleIdMask);
+            return (int)(id < GlobalConst.MaxGlobalId ? id / 100000 : id >> GlobalConst.ServerIdOrModuleIdMask);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace GameFrameX.Core.Utility
             if (id < GlobalConst.MaxGlobalId)
             {
                 // 全局actor
-                return (ActorType)(id % 1000);
+                return (ActorType)id;
             }
 
             return (ActorType)((id >> GlobalConst.ActorTypeMask) & 0xF);
@@ -112,33 +112,19 @@ namespace GameFrameX.Core.Utility
             {
                 return GetMultiActorId(type, serverId);
             }
-            else
-            {
-                return GetGlobalActorId(type, serverId);
-            }
+
+            return GetGlobalActorId(type, serverId);
         }
 
         /// <summary>
-        /// 根据ActorType获取ActorId开始值
+        /// 
         /// </summary>
         /// <param name="type"></param>
+        /// <param name="serverId"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
-        public static long GetMultiActorIdBegin(ActorType type)
-        {
-            if (type >= ActorType.Separator)
-            {
-                throw new ArgumentException($"input actor type error: {type}");
-            }
-
-            var id = (long)GlobalSettings.ServerId << GlobalConst.ServerIdOrModuleIdMask;
-            id |= (long)type << GlobalConst.ActorTypeMask;
-            return id;
-        }
-
         private static long GetGlobalActorId(ActorType type, int serverId)
         {
-            return (long)(serverId * 1000 + type);
+            return (long)(serverId * 100000 + type);
         }
 
 
