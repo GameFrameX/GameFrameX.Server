@@ -70,17 +70,17 @@
         /// <summary>
         /// 分割线(勿调整,勿用于业务逻辑)
         /// </summary>
-        Separator = 512,
+        Separator = 128,
 
         /// <summary>
         /// 固定ID类型Actor
         /// </summary>
-        Server = 1024,
+        Server = 129,
 
         /// <summary>
         /// 最大值
         /// </summary>
-        Max = 4096,
+        Max = 999,
     }
 
     /// <summary>
