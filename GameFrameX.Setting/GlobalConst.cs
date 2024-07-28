@@ -38,7 +38,7 @@ public static class GlobalConst
     /// <summary>
     /// 最大全局ID
     /// </summary>
-    public const int MaxGlobalId = 10_000_000;
+    public const int MaxGlobalId = 1_000_000_000;
 
     /// <summary>
     /// 最小服务器ID
