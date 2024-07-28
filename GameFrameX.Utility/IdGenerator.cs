@@ -3,7 +3,7 @@
 /// <summary>
 /// ID生成器，生成唯一ID
 /// </summary>
-public static class UtilityIdGenerator
+public static class IdGenerator
 {
     /// <summary>
     /// 全局UTC 开始时间
