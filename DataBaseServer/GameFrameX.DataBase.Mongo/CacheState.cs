@@ -10,12 +10,6 @@ namespace GameFrameX.DataBase.Mongo
     public class CacheState : BaseCacheState
     {
         /// <summary>
-        /// 唯一ID
-        /// </summary>
-        [BsonId]
-        public override long Id { get; set; }
-
-        /// <summary>
         /// 将对象序列化转换为字节数组
         /// </summary>
         /// <returns></returns>
