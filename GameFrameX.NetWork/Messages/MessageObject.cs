@@ -112,6 +112,15 @@ namespace GameFrameX.NetWork.Messages
         }
 
         /// <summary>
+        /// 获取格式化后的消息字符串
+        /// </summary>
+        /// <returns></returns>
+        public string ToFormatMessageString()
+        {
+            return $"消息:[{MessageId}, {UniqueId}, {GetType().Name}] 消息内容:{this}";
+        }
+
+        /// <summary>
         /// 转换为字符串
         /// </summary>
         /// <returns></returns>

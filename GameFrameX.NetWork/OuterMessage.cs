@@ -91,6 +91,16 @@ public class OuterMessage : IOuterMessage
         return _stringBuilder.ToString();
     }
 
+
+    /// <summary>
+    /// 获取格式化后的消息字符串
+    /// </summary>
+    /// <returns></returns>
+    public string ToFormatMessageString()
+    {
+        return $"消息:[MessageId:{MessageId},UniqueId: {UniqueId}, {MessageType?.Name}] 消息内容:{this}";
+    }
+
     /// <summary>
     /// 消息操作业务类型
     /// </summary>
