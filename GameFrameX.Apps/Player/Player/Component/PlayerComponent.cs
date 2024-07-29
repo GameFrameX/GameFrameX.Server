@@ -18,14 +18,14 @@ namespace GameFrameX.Apps.Player.Player.Component
         public async Task<PlayerState> OnPlayerCreate(ReqPlayerCreate reqPlayerCreate)
         {
             PlayerState playerState = new PlayerState
-            {
-                Id = IdGenerator.GetActorId(ActorType.Player),
-                AccountId = reqPlayerCreate.Id,
-                Name = reqPlayerCreate.Name,
-                Level = 0,
-                State = 0,
-                Avatar = (uint)Random.GetRandom(1, 50),
-            };
+                                      {
+                                          Id        = ActorIdGenerator.GetActorId(ActorType.Player),
+                                          AccountId = reqPlayerCreate.Id,
+                                          Name      = reqPlayerCreate.Name,
+                                          Level     = 0,
+                                          State     = 0,
+                                          Avatar    = (uint)Random.GetRandom(1, 50),
+                                      };
             MetricsPlayerRegister.CreateCounterOptions.Inc();
             await GameDb.SaveOneAsync<PlayerState>(playerState);
             return playerState;
