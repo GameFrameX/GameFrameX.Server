@@ -33,13 +33,13 @@ public class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder
     {
         if (message is MessageObject messageObject)
         {
-            var messageType = message.GetType();
-
-            var messageId = MessageProtoHelper.GetMessageIdByType(messageType);
-            messageObject.SetMessageId(messageId);
-            var  uniqueId = messageObject.UniqueId;
-            var  bytes    = ProtoBufSerializerHelper.Serialize(messageObject);
-            byte zipFlag  = 0;
+            var messageType          = message.GetType();
+            var messageOperationType = GetMessageOperationType(messageType);
+            var messageId            = MessageProtoHelper.GetMessageIdByType(messageType);
+            message.SetMessageId(messageId);
+            message.SetOperationType(messageOperationType);
+            var  bytes   = ProtoBufSerializerHelper.Serialize(messageObject);
+            byte zipFlag = 0;
             if (CompressHandler != null)
             {
                 zipFlag = 1;
@@ -51,10 +51,10 @@ public class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder
             var span   = new byte[len];
             int offset = 0;
             span.WriteUShort(len, ref offset);
-            span.WriteByte((byte)GetMessageOperationType(messageType), ref offset);
+            span.WriteByte((byte)messageOperationType, ref offset);
             span.WriteByte(zipFlag, ref offset);
-            span.WriteInt(uniqueId, ref offset);
-            span.WriteInt(messageId, ref offset);
+            span.WriteInt(message.UniqueId, ref offset);
+            span.WriteInt(message.MessageId, ref offset);
             span.WriteBytesWithoutLength(bytes, ref offset);
             return span;
         }
