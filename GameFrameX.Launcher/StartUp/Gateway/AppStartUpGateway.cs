@@ -9,7 +9,7 @@ using GameFrameX.SuperSocket.Primitives;
 /// <summary>
 /// 网关服务器
 /// </summary>
-[StartUpTag(ServerType.Gateway)]
+// [StartUpTag(ServerType.Gateway)]
 internal sealed partial class AppStartUpGateway : AppStartUpService
 {
     private            IServer tcpService;

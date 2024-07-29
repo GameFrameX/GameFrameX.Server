@@ -10,7 +10,7 @@ namespace GameFrameX.Launcher.StartUp.Router;
 /// <summary>
 /// 路由服务器.最后启动。
 /// </summary>
-[StartUpTag(ServerType.Router, int.MaxValue)]
+// [StartUpTag(ServerType.Router, int.MaxValue)]
 internal partial class AppStartUpRouter : AppStartUpService
 {
     /// <summary>
