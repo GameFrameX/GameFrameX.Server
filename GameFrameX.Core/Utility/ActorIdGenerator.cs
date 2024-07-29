@@ -87,7 +87,7 @@ namespace GameFrameX.Core.Utility
             if (actorId < GlobalConst.MaxGlobalId)
             {
                 // 全局actor
-                return (ActorType)(actorId / 1000);
+                return (ActorType)(actorId % 1000);
             }
 
             return (ActorType)((actorId >> GlobalConst.ActorTypeMask) & 0xFF);
@@ -139,7 +139,7 @@ namespace GameFrameX.Core.Utility
                 throw new ArgumentOutOfRangeException(nameof(serverId), "serverId is less than 0");
             }
 
-            if (actorType == ActorType.Max || actorType == ActorType.Separator || actorType == ActorType.None)
+            if (actorType >= ActorType.Max || actorType == ActorType.Separator || actorType == ActorType.None)
             {
                 throw new ArgumentOutOfRangeException(nameof(actorType), "type is invalid");
             }
