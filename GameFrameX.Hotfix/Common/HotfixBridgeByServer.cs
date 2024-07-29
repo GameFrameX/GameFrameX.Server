@@ -49,19 +49,19 @@ namespace GameFrameX.Hotfix.Common
         private async Task StartServer()
         {
             webSocketServer = WebSocketHostBuilder.Create()
-                .UseWebSocketMessageHandler(WebSocketMessageHandler)
-                .UseSessionHandler(OnConnected, OnDisconnected)
-                .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)(ConfigureWebServer)).Build();
+                                                  .UseWebSocketMessageHandler(WebSocketMessageHandler)
+                                                  .UseSessionHandler(OnConnected, OnDisconnected)
+                                                  .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)(ConfigureWebServer)).Build();
             await webSocketServer.StartAsync();
             LogHelper.Info("启动 WebSocket 服务器完成...");
             tcpService = SuperSocketHostBuilder.Create<INetworkMessage, MessageObjectPipelineFilter>()
-                .ConfigureSuperSocket(ConfigureSuperSocket)
-                .UseClearIdleSession()
-                .UsePackageDecoder<BaseMessageDecoderHandler>()
-                .UseSessionHandler(OnConnected, OnDisconnected)
-                .UsePackageHandler(MessagePackageHandler, ClientErrorHandler)
-                .UseInProcSessionContainer()
-                .BuildAsServer();
+                                               .ConfigureSuperSocket(ConfigureSuperSocket)
+                                               .UseClearIdleSession()
+                                               .UsePackageDecoder<BaseMessageDecoderHandler>()
+                                               .UseSessionHandler(OnConnected, OnDisconnected)
+                                               .UsePackageHandler(MessagePackageHandler, ClientErrorHandler)
+                                               .UseInProcSessionContainer()
+                                               .BuildAsServer();
 
             await tcpService.StartAsync();
             LogHelper.Info("启动 TCP 服务器完成...");
@@ -92,7 +92,8 @@ namespace GameFrameX.Hotfix.Common
         private ValueTask OnConnected(IAppSession appSession)
         {
             LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-            var netChannel = new DefaultNetWorkChannel(appSession, messageEncoderHandler, null, appSession is WebSocketSession);
+
+            var netChannel = new DefaultNetWorkChannel(appSession, Setting, messageEncoderHandler, null, appSession is WebSocketSession);
             GameClientSessionManager.SetSession(appSession.SessionID, netChannel); //移除
 
             return ValueTask.CompletedTask;
@@ -114,8 +115,8 @@ namespace GameFrameX.Hotfix.Common
                 return;
             }
 
-            var bytes = message.Data;
-            var buffer = bytes.ToArray();
+            var bytes         = message.Data;
+            var buffer        = bytes.ToArray();
             var messageObject = messageDecoderHandler.Handler(buffer);
             await MessagePackageHandler(session, messageObject);
         }
@@ -129,10 +130,9 @@ namespace GameFrameX.Hotfix.Common
         {
             if (messageObject is MessageObject message)
             {
-                var messageId = message.MessageId;
                 if (Setting.IsDebug && Setting.IsDebugReceive)
                 {
-                    LogHelper.Debug($"---收到消息:[{messageId},{message.GetType().Name}] 消息内容:[{messageObject}]");
+                    LogHelper.Debug($"---收到{messageObject.ToFormatMessageString()}");
                 }
 
                 var handler = HotfixManager.GetTcpHandler(message.MessageId);
@@ -142,7 +142,7 @@ namespace GameFrameX.Hotfix.Common
                     return;
                 }
 
-                handler.Message = message;
+                handler.Message        = message;
                 handler.NetWorkChannel = GameClientSessionManager.GetSession(appSession.SessionID);
                 await handler.Init();
                 await handler.InnerAction();
@@ -152,7 +152,7 @@ namespace GameFrameX.Hotfix.Common
         private void ConfigureWebServer(HostBuilderContext context, IConfigurationBuilder builder)
         {
             builder.AddInMemoryCollection(new Dictionary<string, string>()
-                { { "serverOptions:name", "GameServer" }, { "serverOptions:listeners:0:ip", "Any" }, { "serverOptions:listeners:0:port", Setting.WsPort.ToString() } });
+                                          { { "serverOptions:name", "GameServer" }, { "serverOptions:listeners:0:ip", "Any" }, { "serverOptions:listeners:0:port", Setting.WsPort.ToString() } });
         }
 
         public async Task StopServer()
