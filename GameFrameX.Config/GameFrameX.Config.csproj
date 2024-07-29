@@ -13,8 +13,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.Core.Config" Version="1.0.7-beta13" />
-      <PackageReference Include="GameFrameX.Log" Version="1.0.7-beta13" />
+      <PackageReference Include="GameFrameX.Core.Config" Version="1.1.1-beta1" />
+      <PackageReference Include="GameFrameX.Log" Version="1.1.1-beta1" />
     </ItemGroup>
 
 </Project>
