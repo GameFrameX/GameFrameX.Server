@@ -83,10 +83,10 @@ namespace GameFrameX.StartUp
         /// <returns></returns>
         public bool Init(ServerType serverType, BaseSetting setting, string[] args = null)
         {
-            ServerType              = serverType;
-            Setting                 = (AppSetting)setting;
-            GlobalSettings.ServerId = Setting.ServerId;
+            ServerType = serverType;
+            Setting    = (AppSetting)setting;
             Init();
+            GlobalSettings.ServerId = Setting.ServerId;
             if (IsEnableHeartBeat)
             {
                 HeartBeatTimer         =  new Timer(HeartBeatInterval);
