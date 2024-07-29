@@ -1,5 +1,6 @@
 using System.Net;
 using System.Timers;
+using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.Setting;
 using GameFrameX.StartUp.Abstractions;
@@ -86,6 +87,7 @@ namespace GameFrameX.StartUp
             ServerType = serverType;
             Setting    = (AppSetting)setting;
             Init();
+            Setting.CheckNotNull(nameof(Setting));
             GlobalSettings.ServerId = Setting.ServerId;
             if (IsEnableHeartBeat)
             {

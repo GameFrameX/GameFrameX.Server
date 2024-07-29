@@ -32,6 +32,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\GameFrameX.Extension\GameFrameX.Extension.csproj" />
       <ProjectReference Include="..\GameFrameX.Log\GameFrameX.Log.csproj" />
       <ProjectReference Include="..\GameFrameX.Setting\GameFrameX.Setting.csproj" />
     </ItemGroup>
