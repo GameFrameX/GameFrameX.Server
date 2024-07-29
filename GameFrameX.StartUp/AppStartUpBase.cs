@@ -83,8 +83,9 @@ namespace GameFrameX.StartUp
         /// <returns></returns>
         public bool Init(ServerType serverType, BaseSetting setting, string[] args = null)
         {
-            ServerType = serverType;
-            Setting    = (AppSetting)setting;
+            ServerType              = serverType;
+            Setting                 = (AppSetting)setting;
+            GlobalSettings.ServerId = Setting.ServerId;
             Init();
             if (IsEnableHeartBeat)
             {
