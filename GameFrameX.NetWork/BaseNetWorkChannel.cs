@@ -1,7 +1,9 @@
 ﻿using System.Collections.Concurrent;
 using GameFrameX.Extension;
+using GameFrameX.Log;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
+using GameFrameX.Setting;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
 using GameFrameX.SuperSocket.WebSocket.Server;
 using GameFrameX.Utility;
@@ -39,6 +41,11 @@ namespace GameFrameX.NetWork
         public bool IsWebSocket { get; }
 
         /// <summary>
+        /// 设置
+        /// </summary>
+        public AppSetting Setting { get; }
+
+        /// <summary>
         /// WebSocket会话
         /// </summary>
         private readonly WebSocketSession _webSocketSession;
@@ -47,13 +54,17 @@ namespace GameFrameX.NetWork
         /// 初始化
         /// </summary>
         /// <param name="session"></param>
+        /// <param name="setting"></param>
         /// <param name="messageEncoder"></param>
         /// <param name="rpcSession"></param>
         /// <param name="isWebSocket"></param>
-        public BaseNetWorkChannel(IGameAppSession session, IMessageEncoderHandler messageEncoder, IRpcSession rpcSession, bool isWebSocket)
+        public BaseNetWorkChannel(IGameAppSession session, AppSetting setting, IMessageEncoderHandler messageEncoder, IRpcSession rpcSession, bool isWebSocket)
         {
+            setting.CheckNotNull(nameof(setting));
+            messageEncoder.CheckNotNull(nameof(messageEncoder));
             Session         = session;
             IsWebSocket     = isWebSocket;
+            Setting         = setting;
             _messageEncoder = messageEncoder;
             RpcSession      = rpcSession;
             if (isWebSocket)
@@ -83,6 +94,10 @@ namespace GameFrameX.NetWork
             messageObject.CheckNotNull(nameof(messageObject));
 
             var messageData = _messageEncoder.Handler(messageObject);
+            if (Setting.IsDebug && Setting.IsDebugSend)
+            {
+                LogHelper.Debug($"---发送{messageObject.ToFormatMessageString()}");
+            }
 
             if (IsWebSocket)
             {
