@@ -62,13 +62,16 @@ namespace GameFrameX.Launcher.StartUp.Game
             {
                 Setting = new AppSetting
                           {
-                              ServerId            = 9000,
-                              ServerType          = ServerType.Game,
-                              InnerPort           = 29000,
-                              HttpPort            = 29001,
-                              WsPort              = 29010,
-                              MinModuleId         = 0,
-                              MaxModuleId         = 9999,
+                              ServerId       = 9000,
+                              ServerType     = ServerType.Game,
+                              InnerPort      = 29100,
+                              HttpPort       = 29001,
+                              WsPort         = 29110,
+                              MinModuleId    = 0,
+                              MaxModuleId    = 9999,
+                              IsDebug        = true,
+                              IsDebugReceive = true,
+                              IsDebugSend    = true,
                               //
                               HttpCode     = "inner_httpcode",
                               DataBaseUrl  = "mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority",

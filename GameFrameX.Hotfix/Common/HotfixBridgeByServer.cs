@@ -142,10 +142,9 @@ namespace GameFrameX.Hotfix.Common
         {
             if (messageObject is MessageObject message)
             {
-                var messageId = message.MessageId;
                 if (Setting.IsDebug && Setting.IsDebugReceive)
                 {
-                    LogHelper.Debug($"---收到消息:[{messageId},{message.GetType().Name}] 消息内容:[{messageObject}]");
+                    LogHelper.Debug($"---收到{messageObject.ToFormatMessageString()}");
                 }
 
                 var handler = HotfixManager.GetTcpHandler(message.MessageId);
