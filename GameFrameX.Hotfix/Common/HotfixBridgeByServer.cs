@@ -105,7 +105,7 @@ namespace GameFrameX.Hotfix.Common
         private ValueTask OnConnected(IAppSession appSession)
         {
             LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-            var netChannel = new DefaultNetWorkChannel(appSession, messageEncoderHandler, null, appSession is WebSocketSession);
+            var netChannel = new DefaultNetWorkChannel(appSession, Setting, messageEncoderHandler, null, appSession is WebSocketSession);
             GameClientSessionManager.SetSession(appSession.SessionID, netChannel); //移除
 
             return ValueTask.CompletedTask;
