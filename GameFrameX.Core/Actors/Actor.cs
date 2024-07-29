@@ -91,7 +91,7 @@ namespace GameFrameX.Core.Actors
         /// <returns></returns>
         private BaseComponent GetOrAddFactory(Type type)
         {
-            return ComponentRegister.NewComp(this, type);
+            return ComponentRegister.CreateComponent(this, type);
         }
 
         /// <summary>

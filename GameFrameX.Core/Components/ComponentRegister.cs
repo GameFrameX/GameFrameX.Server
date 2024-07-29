@@ -111,7 +111,7 @@ namespace GameFrameX.Core.Components
         /// <summary>
         /// 激活全局组件
         /// </summary>
-        public static async Task ActiveGlobalComps()
+        public static async Task ActiveGlobalComponents()
         {
             try
             {
@@ -154,7 +154,7 @@ namespace GameFrameX.Core.Components
         /// <param name="componentAgent"></param>
         /// <param name="openFuncSet"></param>
         /// <returns></returns>
-        public static Task ActiveRoleComps(IComponentAgent componentAgent, HashSet<short> openFuncSet)
+        public static Task ActiveRoleComponents(IComponentAgent componentAgent, HashSet<short> openFuncSet)
         {
             return ActiveComponents(componentAgent.Owner.Actor,
                                     t => !ComponentFuncDic.TryGetValue(t, out var func)
@@ -207,7 +207,7 @@ namespace GameFrameX.Core.Components
             }
         }
 
-        internal static BaseComponent NewComp(Actor actor, Type compType)
+        internal static BaseComponent CreateComponent(Actor actor, Type compType)
         {
             if (!ActorComponentDic.TryGetValue(actor.Type, out var compTypes))
             {
