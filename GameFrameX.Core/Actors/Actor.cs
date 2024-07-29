@@ -13,14 +13,6 @@ namespace GameFrameX.Core.Actors
     /// </summary>
     public sealed class Actor : IActor
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public Actor()
-        {
-            ScheduleIdSet = new HashSet<long>();
-        }
-
         private readonly ConcurrentDictionary<Type, BaseComponent> _componentsMap = new ConcurrentDictionary<Type, BaseComponent>();
 
         /// <summary>
@@ -31,7 +23,7 @@ namespace GameFrameX.Core.Actors
         /// <summary>
         /// 订阅哈希列表
         /// </summary>
-        public HashSet<long> ScheduleIdSet { get; }
+        public HashSet<long> ScheduleIdSet { get; } = new HashSet<long>();
 
         /// <summary>
         /// Actor类型
