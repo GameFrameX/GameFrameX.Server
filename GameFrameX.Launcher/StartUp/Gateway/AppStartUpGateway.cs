@@ -78,7 +78,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
     private ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("有客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-        var netChannel = new DefaultNetWorkChannel(appSession, messageEncoderHandler, RpcSession);
+        var netChannel = new DefaultNetWorkChannel(appSession, Setting, messageEncoderHandler, RpcSession);
         GameClientSessionManager.SetSession(appSession.SessionID, netChannel); //移除
         return ValueTask.CompletedTask;
     }
