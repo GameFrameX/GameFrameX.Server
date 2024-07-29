@@ -26,7 +26,7 @@ namespace GameFrameX.Hotfix.Common
             await _appStartUpHotfixGame.StartAsync();
             RunServer(reload);
             GlobalTimer.Start();
-            await ComponentRegister.ActiveGlobalComps();
+            await ComponentRegister.ActiveGlobalComponents();
             return true;
         }
 
