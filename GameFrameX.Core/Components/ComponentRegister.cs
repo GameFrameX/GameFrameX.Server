@@ -182,21 +182,28 @@ namespace GameFrameX.Core.Components
         {
             var compTypes = GetComponents(actor.Type);
 
-            foreach (var compType in compTypes)
+            if (compTypes != null)
             {
-                if (predict == null || predict(compType))
+                foreach (var compType in compTypes)
                 {
-                    var agentType = HotfixManager.GetAgentType(compType);
-                    try
+                    if (predict == null || predict(compType))
                     {
-                        await actor.GetComponentAgent(agentType);
-                    }
-                    catch (Exception e)
-                    {
-                        LogHelper.Info(e);
-                        // throw;
+                        var agentType = HotfixManager.GetAgentType(compType);
+                        try
+                        {
+                            await actor.GetComponentAgent(agentType);
+                        }
+                        catch (Exception e)
+                        {
+                            LogHelper.Info(e);
+                            // throw;
+                        }
                     }
                 }
+            }
+            else
+            {
+                LogHelper.Fatal($"获取不属于此actor：{actor.Type}的组件");
             }
         }
 
