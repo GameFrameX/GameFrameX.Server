@@ -1,8 +1,4 @@
 ﻿global using System;
-global using MongoDB.Bson;
-global using MongoDB.Driver;
-global using MongoDB.Bson.Serialization;
-global using MongoDB.Bson.Serialization.Attributes;
 global using GameFrameX.Core;
 global using GameFrameX.Core.Utility;
 global using GameFrameX.Core.Events;
@@ -19,5 +15,3 @@ global using System.Collections;
 global using System.Collections.Concurrent;
 global using System.Collections.Generic;
 global using System.Reflection;
-global using MongoDB.Bson.Serialization.Conventions;
-global using MongoDB.Bson.Serialization.Options;

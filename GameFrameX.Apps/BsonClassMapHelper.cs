@@ -1,4 +1,4 @@
-﻿using GameFrameX.Log;
+﻿/*using GameFrameX.Log;
 
 namespace GameFrameX.Apps
 {
@@ -108,4 +108,4 @@ namespace GameFrameX.Apps
             BsonClassMap.RegisterClassMap(bsonClassMap);
         }
     }
-}
+}*/

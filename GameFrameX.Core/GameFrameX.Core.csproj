@@ -51,7 +51,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\DataBaseServer\GameFrameX.DataBase.Mongo\GameFrameX.DataBase.Mongo.csproj" />
+        <ProjectReference Include="..\DataBaseServer\GameFrameX.DataBase.RDS\GameFrameX.DataBase.RDS.csproj" />
         <ProjectReference Include="..\DataBaseServer\GameFrameX.DataBase\GameFrameX.DataBase.csproj" />
         <ProjectReference Include="..\GameFrameX.Core.Abstractions\GameFrameX.Core.Abstractions.csproj" />
         <ProjectReference Include="..\GameFrameX.Extension\GameFrameX.Extension.csproj" />

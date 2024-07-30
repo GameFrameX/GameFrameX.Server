@@ -10,7 +10,7 @@ public static class CacheStateTypeManager
     public static void Init()
     {
         var assembly = typeof(AppsHandler).Assembly;
-        BsonClassMapHelper.SetConvention();
+        // BsonClassMapHelper.SetConvention();
 
         var types = assembly.GetTypes();
         foreach (var type in types)
@@ -19,7 +19,7 @@ public static class CacheStateTypeManager
             if (isImplWithInterface)
             {
                 HashMap.TryAdd(Hash.XXHash.Hash32(type.ToString()), type);
-                BsonClassMapHelper.RegisterClass(type);
+                // BsonClassMapHelper.RegisterClass(type);
             }
         }
     }

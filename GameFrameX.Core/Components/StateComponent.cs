@@ -4,12 +4,9 @@ using GameFrameX.Core.Actors;
 using GameFrameX.Core.Timer;
 using GameFrameX.Core.Utility;
 using GameFrameX.DataBase;
-using GameFrameX.DataBase.Mongo;
 using GameFrameX.DataBase.State;
 using GameFrameX.Extension;
 using GameFrameX.Log;
-using MongoDB.Bson;
-using MongoDB.Driver;
 
 namespace GameFrameX.Core.Components
 {
@@ -66,7 +63,9 @@ namespace GameFrameX.Core.Components
                 {
                     await func(false, false);
                     if (!GlobalTimer.IsWorking)
+                    {
                         return;
+                    }
                 }
             }
             catch (Exception e)
@@ -171,23 +170,21 @@ namespace GameFrameX.Core.Components
         /// <summary>
         /// 保存全部数据
         /// </summary>
-        /// <param name="shutdown"></param>
-        /// <param name="force"></param>
-        public static async Task SaveAll(bool shutdown, bool force = false)
+        /// <param name="isShutdown">是否是关服</param>
+        /// <param name="isForce">是否强制</param>
+        public static async Task SaveAll(bool isShutdown, bool isForce = false)
         {
             var idList    = new List<long>();
-            var writeList = new List<ReplaceOneModel<MongoDB.Bson.BsonDocument>>();
-            if (shutdown)
+            var writeList = new List<ICacheState>();
+            if (isShutdown)
             {
                 foreach (var state in StateDic.Values)
                 {
                     if (state.IsModify)
                     {
-                        var bsonDoc = state.ToBsonDocument();
                         lock (writeList)
                         {
-                            var filter = Builders<MongoDB.Bson.BsonDocument>.Filter.Eq("_id", state.Id);
-                            writeList.Add(new ReplaceOneModel<MongoDB.Bson.BsonDocument>(filter, bsonDoc) { IsUpsert = true });
+                            writeList.Add(state);
                             idList.Add(state.Id);
                         }
                     }
@@ -202,18 +199,21 @@ namespace GameFrameX.Core.Components
                     var actor = ActorManager.GetActor(state.Id);
                     if (actor != null)
                     {
-                        tasks.Add(actor.SendAsync(() =>
-                                                  {
-                                                      if (!force && !state.IsModify)
-                                                          return;
-                                                      var bsonDoc = state.ToBsonDocument();
-                                                      lock (writeList)
-                                                      {
-                                                          var filter = Builders<MongoDB.Bson.BsonDocument>.Filter.Eq("_id", state.Id);
-                                                          writeList.Add(new ReplaceOneModel<MongoDB.Bson.BsonDocument>(filter, bsonDoc) { IsUpsert = true });
-                                                          idList.Add(state.Id);
-                                                      }
-                                                  }));
+                        void Work()
+                        {
+                            if (!isForce && !state.IsModify)
+                            {
+                                return;
+                            }
+
+                            lock (writeList)
+                            {
+                                writeList.Add(state);
+                                idList.Add(state.Id);
+                            }
+                        }
+
+                        tasks.Add(actor.SendAsync(Work));
                     }
                 }
 
@@ -225,8 +225,7 @@ namespace GameFrameX.Core.Components
                 var stateName = typeof(TState).Name;
                 StateComponent.StatisticsTool.Count(stateName, writeList.Count);
                 LogHelper.Debug($"[StateComp] 状态回存 {stateName} count:{writeList.Count}");
-                var currentDatabase = GameDb.As<MongoDbService>().CurrentDatabase;
-                var collection      = currentDatabase.GetCollection<MongoDB.Bson.BsonDocument>(stateName);
+                var currentDatabase = GameDb.As<IGameDbService>();
                 for (int idx = 0; idx < writeList.Count; idx += ONCE_SAVE_COUNT)
                 {
                     var docs = writeList.GetRange(idx, Math.Min(ONCE_SAVE_COUNT, writeList.Count - idx));
@@ -235,14 +234,17 @@ namespace GameFrameX.Core.Components
                     bool save = false;
                     try
                     {
-                        var result = await collection.BulkWriteAsync(docs, MongoDbService.BulkWriteOptions);
-                        if (result.IsAcknowledged)
+                        var result = await currentDatabase.UpdateAsync(docs);
+                        if (result > 0)
                         {
                             foreach (var id in ids)
                             {
                                 StateDic.TryGetValue(id, out var state);
                                 if (state == null)
+                                {
                                     continue;
+                                }
+
                                 state.AfterSaveToDb();
                             }
 
@@ -258,7 +260,7 @@ namespace GameFrameX.Core.Components
                         LogHelper.Error($"保存数据异常，类型:{typeof(TState).FullName}，{ex}");
                     }
 
-                    if (!save && shutdown)
+                    if (!save && isShutdown)
                     {
                         LogHelper.Error($"保存数据失败，类型:{typeof(TState).FullName}");
                     }

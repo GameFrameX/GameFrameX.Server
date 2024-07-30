@@ -32,6 +32,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\DataBaseServer\GameFrameX.DataBase.RDS.MySql\GameFrameX.DataBase.RDS.MySql.csproj" />
         <ProjectReference Include="..\GameFrameX.Apps\GameFrameX.Apps.csproj" />
         <ProjectReference Include="..\GameFrameX.Cache.Memory\GameFrameX.Cache.Memory.csproj" />
         <ProjectReference Include="..\GameFrameX.Cache\GameFrameX.Cache.csproj" />

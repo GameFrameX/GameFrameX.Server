@@ -1,4 +1,4 @@
-using GameFrameX.DataBase.Mongo;
+using GameFrameX.DataBase.RDS;
 
 namespace GameFrameX.Apps.Player.Role.Bag.Entity;
 
