@@ -82,13 +82,15 @@ namespace GameFrameX.NetWork
             await WriteAsync(messageObject);
         }
 
+
         /// <summary>
-        /// 将消息对象异步写入网络通道。
+        /// 异步写入消息
         /// </summary>
-        /// <param name="messageObject">消息对象。</param>
-        /// <param name="uniId">唯一ID。</param>
-        /// <param name="code">状态码。</param>
-        /// <param name="desc">描述。</param>
+        /// <param name="messageObject">消息对象</param>
+        /// <param name="uniId">单位ID</param>
+        /// <param name="code">错误码</param>
+        /// <param name="desc">消息描述</param>
+        /// <returns></returns>
         public virtual async Task WriteAsync(IMessage messageObject, int uniId = 0, int code = 0, string desc = "")
         {
             messageObject.CheckNotNull(nameof(messageObject));

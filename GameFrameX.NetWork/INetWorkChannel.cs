@@ -27,10 +27,10 @@ public interface INetWorkChannel
     /// <summary>
     /// 异步写入消息
     /// </summary>
-    /// <param name="msg"></param>
-    /// <param name="uniId"></param>
-    /// <param name="code"></param>
-    /// <param name="desc"></param>
+    /// <param name="msg">消息对象</param>
+    /// <param name="uniId">单位ID</param>
+    /// <param name="code">错误码</param>
+    /// <param name="desc">消息描述</param>
     /// <returns></returns>
     Task WriteAsync(IMessage msg, int uniId = 0, int code = 0, string desc = "");
 
