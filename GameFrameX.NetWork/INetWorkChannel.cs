@@ -28,11 +28,9 @@ public interface INetWorkChannel
     /// 异步写入消息
     /// </summary>
     /// <param name="msg">消息对象</param>
-    /// <param name="uniId">单位ID</param>
-    /// <param name="code">错误码</param>
-    /// <param name="desc">消息描述</param>
+    /// <param name="errorCode">错误码</param>
     /// <returns></returns>
-    Task WriteAsync(IMessage msg, int uniId = 0, int code = 0, string desc = "");
+    Task WriteAsync(IMessage msg, int errorCode = 0);
 
     /// <summary>
     /// 关闭网络

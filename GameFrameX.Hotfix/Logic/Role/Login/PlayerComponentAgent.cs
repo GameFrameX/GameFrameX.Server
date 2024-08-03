@@ -9,7 +9,6 @@ namespace GameFrameX.Hotfix.Logic.Role.Login
 {
     public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerState>
     {
-        
         [Event(EventId.SessionRemove)]
         private class EL : EventListener<PlayerComponentAgent>
         {
@@ -18,6 +17,7 @@ namespace GameFrameX.Hotfix.Logic.Role.Login
                 return agent.OnLogout();
             }
         }
+
         public async Task OnLogout()
         {
             //移除在线玩家
@@ -65,7 +65,7 @@ namespace GameFrameX.Hotfix.Logic.Role.Login
                     Avatar = playerState.Avatar
                 }
             };
-            await workChannel.WriteAsync(respPlayerLogin, reqLogin.UniId);
+            await workChannel.WriteAsync(respPlayerLogin);
 
             //加入在线玩家
             var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
@@ -92,7 +92,7 @@ namespace GameFrameX.Hotfix.Logic.Role.Login
                     Avatar = playerState.Avatar
                 }
             };
-            await workChannel.WriteAsync(respPlayerCreate, reqPlayerCreate.UniId);
+            await workChannel.WriteAsync(respPlayerCreate);
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace GameFrameX.Hotfix.Logic.Role.Login
                 }
             }
 
-            await workChannel.WriteAsync(respPlayerList, reqPlayerList.UniId);
+            await workChannel.WriteAsync(respPlayerList);
         }
     }
 }
