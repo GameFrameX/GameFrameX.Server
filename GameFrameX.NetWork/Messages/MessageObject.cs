@@ -12,11 +12,11 @@ namespace GameFrameX.NetWork.Messages
     [ProtoContract]
     public abstract class MessageObject : IMessage
     {
-        /// <summary>
-        /// 消息唯一id
+        /*/// <summary>
+        /// 单位id
         /// </summary>
         [JsonIgnore]
-        public int UniId { get; set; }
+        public int UniId { get; set; }*/
 
         /// <summary>
         /// 消息ID
