@@ -1,6 +1,5 @@
-﻿using System;
-using System.IO;
-using Serilog;
+﻿using Serilog;
+using Serilog.Events;
 
 namespace GameFrameX.Log;
 
@@ -14,10 +13,12 @@ public static class LoggerHandler
     /// </summary>
     /// <param name="serverType">服务器类型</param>
     /// <param name="logSavePath">日志存储地址,默认为./logs</param>
-    /// <param name="isDebug">是否是Debug模式,默认true</param>
+    /// <param name="isConsole">是否是输出到控制台,默认true</param>
     /// <param name="rollingInterval">日志滚动间隔,默认为Hour</param>
+    /// <param name="logEventLevel">日志输出级别,默认为Debug</param>
+    /// <param name="fileSizeLimitBytes">日志文件大小限制,默认为10MB</param>
     /// <returns></returns>
-    public static bool Start(string serverType = null, string logSavePath = null, bool isDebug = true, RollingInterval rollingInterval = RollingInterval.Hour)
+    public static bool Start(string serverType = null, string logSavePath = null, bool isConsole = true, RollingInterval rollingInterval = RollingInterval.Hour, LogEventLevel logEventLevel = LogEventLevel.Debug, int fileSizeLimitBytes = 10 * 1024 * 1024)
     {
         try
         {
@@ -37,12 +38,43 @@ public static class LoggerHandler
 
             var logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()
-                .MinimumLevel.Debug()
-                .WriteTo.File(logPath,
-                    rollingInterval: rollingInterval,
-                    rollOnFileSizeLimit: true,
-                    fileSizeLimitBytes: 10 * 1024 * 1024);
-            if (isDebug)
+                .WriteTo.File(logPath, rollingInterval: rollingInterval, rollOnFileSizeLimit: true, fileSizeLimitBytes: fileSizeLimitBytes);
+
+            switch (logEventLevel)
+            {
+                case LogEventLevel.Verbose:
+                {
+                    logger.MinimumLevel.Verbose();
+                }
+                    break;
+                case LogEventLevel.Debug:
+                {
+                    logger.MinimumLevel.Debug();
+                }
+                    break;
+                case LogEventLevel.Information:
+                {
+                    logger.MinimumLevel.Information();
+                }
+                    break;
+                case LogEventLevel.Warning:
+                {
+                    logger.MinimumLevel.Warning();
+                }
+                    break;
+                case LogEventLevel.Error:
+                {
+                    logger.MinimumLevel.Error();
+                }
+                    break;
+                case LogEventLevel.Fatal:
+                {
+                    logger.MinimumLevel.Fatal();
+                }
+                    break;
+            }
+
+            if (isConsole)
             {
                 logger.WriteTo.Console();
             }
