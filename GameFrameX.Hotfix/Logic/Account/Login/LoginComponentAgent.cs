@@ -18,17 +18,16 @@ namespace GameFrameX.Hotfix.Logic.Account.Login
                 {
                     ErrCode = (int)ResultCode.Failed
                 };
-                await workChannel.WriteAsync(respErrorCode, reqLogin.UniId, (int)OperationStatusCode.AccountCannotBeNull);
+                await workChannel.WriteAsync(respErrorCode, (int)OperationStatusCode.AccountCannotBeNull);
                 return;
             }
 
 
-            var loginCompAgent = await ActorManager.GetComponentAgent<LoginComponentAgent>();
-            var loginState = await loginCompAgent.OwnerComponent.OnLogin(reqLogin);
+            var loginState = await OwnerComponent.OnLogin(reqLogin);
             if (loginState == null)
             {
                 var accountId = ActorIdGenerator.GetActorId(ActorType.Account);
-                loginState = await loginCompAgent.OwnerComponent.Register(accountId, reqLogin);
+                loginState = await OwnerComponent.Register(accountId, reqLogin);
             }
 
             //添加到session
@@ -48,7 +47,7 @@ namespace GameFrameX.Hotfix.Logic.Account.Login
                 Id = loginState.Id,
                 RoleName = Utility.Random.GetRandom(1, 100).ToString(),
             };
-            await workChannel.WriteAsync(respLogin, reqLogin.UniId);
+            await workChannel.WriteAsync(respLogin);
 
             //加入在线玩家
             var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
