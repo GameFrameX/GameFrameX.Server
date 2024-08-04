@@ -11,6 +11,16 @@ public enum IdModule
     Min = 0,
 
     /// <summary>
+    /// 账号
+    /// </summary>
+    Account,
+
+    /// <summary>
+    /// 角色
+    /// </summary>
+    Player,
+
+    /// <summary>
     /// 单服/玩家不同即可
     /// </summary>
     Pet = 101,
