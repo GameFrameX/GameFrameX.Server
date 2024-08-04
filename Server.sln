@@ -18,8 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose.yml = docker-compose.yml
 		Dockerfile = Dockerfile
 		logo.png = logo.png
-		gameframex.key.snk = gameframex.key.snk
-		Version.props = Version.props
 	EndProjectSection
 EndProject
 Global
