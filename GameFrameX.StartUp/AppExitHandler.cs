@@ -14,7 +14,7 @@ namespace GameFrameX.StartUp
         private static Action<string> _existCallBack;
 
         private static PosixSignalRegistration exitSignalRegistration;
-        private static bool                    _isKill = false;
+        private static bool _isKill = false;
 
         /// <summary>
         /// 
@@ -22,8 +22,8 @@ namespace GameFrameX.StartUp
         /// <param name="existCallBack"></param>
         public static void Init(Action<string> existCallBack)
         {
-            _isKill                = false;
-            _existCallBack         = existCallBack;
+            _isKill = false;
+            _existCallBack = existCallBack;
             exitSignalRegistration = PosixSignalRegistration.Create(PosixSignal.SIGTERM, ExitSignalRegistrationHandler);
             //退出监听
             AppDomain.CurrentDomain.ProcessExit += (s, e) => { _existCallBack?.Invoke("process exit"); };
@@ -64,12 +64,15 @@ namespace GameFrameX.StartUp
         private static void HandleFetalException(string tag, object e)
         {
             if (_isKill)
+            {
                 return;
+            }
+
             //这里可以发送短信或者钉钉消息通知到运维
-            LogHelper.Error("get unhandled exception");
+            LogHelper.Error("get unhandled exception Tag:" + tag);
             if (e is IEnumerable arr)
             {
-                var sb   = new StringBuilder();
+                var sb = new StringBuilder();
                 int line = 0;
                 foreach (var ex in arr)
                 {
