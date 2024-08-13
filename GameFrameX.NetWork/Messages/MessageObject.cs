@@ -42,6 +42,7 @@ namespace GameFrameX.NetWork.Messages
         /// <summary>
         /// 消息业务类型
         /// </summary>
+        [JsonIgnore]
         public MessageOperationType OperationType { get; private set; }
 
         /// <summary>
@@ -116,7 +117,7 @@ namespace GameFrameX.NetWork.Messages
         /// <returns></returns>
         public string ToFormatMessageString()
         {
-            return $"消息:[{MessageId}, {UniqueId}, {GetType().Name}] 消息内容:{this}";
+            return $"消息:[{MessageId}, {UniqueId}, {GetType().Name}, {OperationType}] 消息内容:{this}";
         }
 
         /// <summary>
