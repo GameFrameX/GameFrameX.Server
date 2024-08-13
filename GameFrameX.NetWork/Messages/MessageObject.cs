@@ -37,7 +37,6 @@ namespace GameFrameX.NetWork.Messages
         /// 消息的唯一ID
         /// </summary>
         [JsonIgnore]
-        [ProtoMember(999)]
         public int UniqueId { get; set; }
 
         /// <summary>
