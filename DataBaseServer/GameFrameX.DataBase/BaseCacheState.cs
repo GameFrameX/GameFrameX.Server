@@ -21,9 +21,9 @@ namespace GameFrameX.DataBase
         /// <summary>
         /// 是否修改
         /// </summary>
-        public virtual bool IsModify
+        public virtual bool IsModify()
         {
-            get { return IsChanged().isChanged; }
+            return IsChanged().isChanged;
         }
 
 

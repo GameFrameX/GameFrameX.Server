@@ -1425,7 +1425,7 @@ namespace GameFrameX.DataBase.RDS.MySql
         /// <returns></returns>
         public async Task<TState> UpdateAsync<TState>(TState state) where TState : class, ICacheState, new()
         {
-            var isChanged = state.IsModify;
+            var isChanged = state.IsModify();
             if (isChanged)
             {
                 state.UpdateTime = TimeHelper.UnixTimeMilliseconds();

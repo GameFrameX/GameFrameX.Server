@@ -13,7 +13,7 @@ public interface ICacheState : ISafeDelete, ISafeCreate, ISafeUpdate
     /// <summary>
     /// 是否修改
     /// </summary>
-    bool IsModify { get; }
+    bool IsModify();
 
     /// <summary>
     /// 用于在对象从数据库加载后进行一些特定的处理，如初始化数据或设置状态。

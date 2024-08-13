@@ -1437,7 +1437,7 @@ namespace GameFrameX.DataBase.Mongo
         /// <returns></returns>
         public async Task<TState> UpdateAsync<TState>(TState state) where TState : class, ICacheState, new()
         {
-            var isChanged = state.IsModify;
+            var isChanged = state.IsModify();
             if (isChanged)
             {
                 state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
@@ -1459,7 +1459,7 @@ namespace GameFrameX.DataBase.Mongo
             long resultCount = 0;
             foreach (var state in stateList)
             {
-                var isChanged = state.IsModify;
+                var isChanged = state.IsModify();
                 if (isChanged)
                 {
                     state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
