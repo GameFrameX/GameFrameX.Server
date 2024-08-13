@@ -8,6 +8,7 @@ using GameFrameX.NetWork.Message;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.SuperSocket.Connection;
 using GameFrameX.SuperSocket.Primitives;
+using GameFrameX.SuperSocket.ProtoBase;
 using GameFrameX.SuperSocket.Server;
 using GameFrameX.SuperSocket.Server.Abstractions;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
@@ -51,7 +52,8 @@ namespace GameFrameX.Hotfix.Common
             webSocketServer = WebSocketHostBuilder.Create()
                                                   .UseWebSocketMessageHandler(WebSocketMessageHandler)
                                                   .UseSessionHandler(OnConnected, OnDisconnected)
-                                                  .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)(ConfigureWebServer)).Build();
+                                                  .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)(ConfigureWebServer))
+                                                  .Build();
             await webSocketServer.StartAsync();
             LogHelper.Info("启动 WebSocket 服务器完成...");
             tcpService = SuperSocketHostBuilder.Create<INetworkMessage, MessageObjectPipelineFilter>()
@@ -61,8 +63,23 @@ namespace GameFrameX.Hotfix.Common
                                                .UseSessionHandler(OnConnected, OnDisconnected)
                                                .UsePackageHandler(MessagePackageHandler, ClientErrorHandler)
                                                .UseInProcSessionContainer()
+                                               // .ConfigureServices((services) =>
+                                               // {
+                                               //     var eventBusBuilder = services.AddEventBus((options => { }));
+                                               //     eventBusBuilder.AddMySql<DataContext>();
+                                               //     eventBusBuilder.AddMemoryQueue();
+                                               // })
                                                .BuildAsServer();
 
+
+            // 获取解码器
+            var baseMessageDecoderHandler = (BaseMessageDecoderHandler)tcpService.ServiceProvider.GetService(typeof(IPackageDecoder<INetworkMessage>));
+            // 设置解码器的解压缩处理器
+            baseMessageDecoderHandler?.SetDecompressionHandler(new BaseMessageDecompressHandler());
+
+            messageDecoderHandler.SetDecompressionHandler(new BaseMessageDecompressHandler());
+            // 设置编码器的压缩处理器
+            messageEncoderHandler.SetCompressionHandler(new BaseMessageCompressHandler());
             await tcpService.StartAsync();
             LogHelper.Info("启动 TCP 服务器完成...");
         }
@@ -115,8 +132,8 @@ namespace GameFrameX.Hotfix.Common
                 return;
             }
 
-            var bytes         = message.Data;
-            var buffer        = bytes.ToArray();
+            var bytes = message.Data;
+            var buffer = bytes.ToArray();
             var messageObject = messageDecoderHandler.Handler(buffer);
             await MessagePackageHandler(session, messageObject);
         }
@@ -142,7 +159,7 @@ namespace GameFrameX.Hotfix.Common
                     return;
                 }
 
-                handler.Message        = message;
+                handler.Message = message;
                 handler.NetWorkChannel = GameClientSessionManager.GetSession(appSession.SessionID);
                 await handler.Init();
                 await handler.InnerAction();
@@ -152,7 +169,7 @@ namespace GameFrameX.Hotfix.Common
         private void ConfigureWebServer(HostBuilderContext context, IConfigurationBuilder builder)
         {
             builder.AddInMemoryCollection(new Dictionary<string, string>()
-                                          { { "serverOptions:name", "GameServer" }, { "serverOptions:listeners:0:ip", "Any" }, { "serverOptions:listeners:0:port", Setting.WsPort.ToString() } });
+                                              { { "serverOptions:name", "GameServer" }, { "serverOptions:listeners:0:ip", "Any" }, { "serverOptions:listeners:0:port", Setting.WsPort.ToString() } });
         }
 
         public async Task StopServer()
