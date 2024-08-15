@@ -16,7 +16,7 @@ public class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder
     /// <summary>
     /// 超过多少字节长度才启用压缩,默认100
     /// </summary>
-    public virtual int LimitCompressSize { get; } = 100;
+    public virtual uint LimitCompressLength { get; } = 100;
 
     /// <summary>
     /// 获取消息业务类型
@@ -45,7 +45,7 @@ public class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder
             message.SetOperationType(messageOperationType);
             var bytes = ProtoBufSerializerHelper.Serialize(messageObject);
             byte zipFlag = 0;
-            if (CompressHandler != null && bytes.Length > LimitCompressSize)
+            if (CompressHandler != null && bytes.Length > LimitCompressLength)
             {
                 zipFlag = 1;
                 // 压缩

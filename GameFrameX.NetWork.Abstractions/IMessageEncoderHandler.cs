@@ -8,7 +8,7 @@ public interface IMessageEncoderHandler
     /// <summary>
     /// 超过多少字节长度才启用压缩
     /// </summary>
-    int LimitCompressSize { get; }
+    uint LimitCompressLength { get; }
 
     /// <summary>
     /// 获取消息业务类型
