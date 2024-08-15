@@ -6,6 +6,11 @@ namespace GameFrameX.NetWork.Abstractions;
 public interface IMessageEncoderHandler
 {
     /// <summary>
+    /// 超过多少字节长度才启用压缩
+    /// </summary>
+    int LimitCompressSize { get; }
+
+    /// <summary>
     /// 获取消息业务类型
     /// </summary>
     /// <param name="messageType">消息对象类型</param>

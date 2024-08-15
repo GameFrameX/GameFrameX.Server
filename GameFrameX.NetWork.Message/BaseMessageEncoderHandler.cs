@@ -14,6 +14,11 @@ namespace GameFrameX.NetWork.Message;
 public class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder<INetworkMessage>
 {
     /// <summary>
+    /// 超过多少字节长度才启用压缩,默认100
+    /// </summary>
+    public virtual int LimitCompressSize { get; } = 100;
+
+    /// <summary>
     /// 获取消息业务类型
     /// </summary>
     /// <param name="messageType">消息对象类型</param>
@@ -33,22 +38,22 @@ public class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder
     {
         if (message is MessageObject messageObject)
         {
-            var messageType          = message.GetType();
+            var messageType = message.GetType();
             var messageOperationType = GetMessageOperationType(messageType);
-            var messageId            = MessageProtoHelper.GetMessageIdByType(messageType);
+            var messageId = MessageProtoHelper.GetMessageIdByType(messageType);
             message.SetMessageId(messageId);
             message.SetOperationType(messageOperationType);
-            var  bytes   = ProtoBufSerializerHelper.Serialize(messageObject);
+            var bytes = ProtoBufSerializerHelper.Serialize(messageObject);
             byte zipFlag = 0;
-            if (CompressHandler != null)
+            if (CompressHandler != null && bytes.Length > LimitCompressSize)
             {
                 zipFlag = 1;
                 // 压缩
                 bytes = CompressHandler.Handler(bytes);
             }
 
-            var len    = (ushort)(PackageLength + bytes.Length);
-            var span   = new byte[len];
+            var len = (ushort)(PackageLength + bytes.Length);
+            var span = new byte[len];
             int offset = 0;
             span.WriteUShort(len, ref offset);
             span.WriteByte((byte)messageOperationType, ref offset);
