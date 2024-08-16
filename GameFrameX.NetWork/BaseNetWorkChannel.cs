@@ -62,11 +62,11 @@ namespace GameFrameX.NetWork
         {
             setting.CheckNotNull(nameof(setting));
             messageEncoder.CheckNotNull(nameof(messageEncoder));
-            Session         = session;
-            IsWebSocket     = isWebSocket;
-            Setting         = setting;
+            Session = session;
+            IsWebSocket = isWebSocket;
+            Setting = setting;
             _messageEncoder = messageEncoder;
-            RpcSession      = rpcSession;
+            RpcSession = rpcSession;
             if (isWebSocket)
             {
                 _webSocketSession = (WebSocketSession)session;
@@ -104,13 +104,34 @@ namespace GameFrameX.NetWork
                 LogHelper.Debug($"---发送{messageObject.ToFormatMessageString()}");
             }
 
+
             if (IsWebSocket)
             {
-                await _webSocketSession.SendAsync(messageData);
+                if (_webSocketSession.State == SessionState.Connected)
+                {
+                    try
+                    {
+                        await _webSocketSession.SendAsync(messageData);
+                    }
+                    catch (Exception e)
+                    {
+                        LogHelper.Error(e);
+                    }
+                }
             }
             else
             {
-                await Session.SendAsync(messageData);
+                if (((IAppSession)Session).State == SessionState.Connected)
+                {
+                    try
+                    {
+                        await Session.SendAsync(messageData);
+                    }
+                    catch (Exception e)
+                    {
+                        LogHelper.Error(e);
+                    }
+                }
             }
         }
 
