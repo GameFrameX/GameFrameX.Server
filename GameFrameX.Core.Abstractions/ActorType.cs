@@ -12,11 +12,6 @@
         /// </summary>
         None,
 
-        /// <summary>
-        /// 账号
-        /// 管理玩家账号信息，如注册、密码找回等。
-        /// </summary>
-        Account,
 
         /// <summary>
         /// 角色
@@ -358,6 +353,12 @@
         /// 固定ID类型Actor
         /// </summary>
         Server = 129,
+
+        /// <summary>
+        /// 账号
+        /// 管理玩家账号信息，如注册、密码找回等。
+        /// </summary>
+        Account,
 
         /// <summary>
         /// 最大值
