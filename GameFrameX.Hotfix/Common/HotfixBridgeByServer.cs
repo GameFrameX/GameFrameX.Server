@@ -104,8 +104,15 @@ namespace GameFrameX.Hotfix.Common
         {
             LogHelper.Info("有外部客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
             var netWorkChannel = GameClientSessionManager.RemoveSession(appSession.SessionID); //移除
-            var sessionId = netWorkChannel.GetData<long>(GlobalConst.SessionIdKey);
-            SessionManager.Remove(sessionId);
+            if (netWorkChannel != null)
+            {
+                var sessionId = netWorkChannel.GetData<long>(GlobalConst.SessionIdKey);
+                if (sessionId > 0)
+                {
+                    SessionManager.Remove(sessionId);
+                }
+            }
+
             return ValueTask.CompletedTask;
         }
 
