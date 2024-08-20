@@ -129,10 +129,10 @@ namespace GameFrameX.Core.Utility
         /// <summary>
         /// 根据ActorType类型和服务器id获取ActorId
         /// </summary>
-        /// <param name="actorType">ActorType</param>
+        /// <param name="actorType"></param>
         /// <param name="serverId">服务器ID</param>
         /// <returns></returns>
-        public static long GetGlobalActorId(ActorType actorType, int serverId)
+        private static long GetGlobalActorId(ActorType actorType, int serverId)
         {
             if (serverId <= 0)
             {
@@ -148,19 +148,8 @@ namespace GameFrameX.Core.Utility
         }
 
 
-        /// <summary>
-        /// 根据ActorType类型和服务器id获取ActorId
-        /// </summary>
-        /// <param name="actorType">ActorType</param>
-        /// <param name="serverId">服务器ID</param>
-        /// <returns></returns>
-        public static long GetMultiActorId(ActorType actorType, int serverId)
+        private static long GetMultiActorId(ActorType type, int serverId)
         {
-            if (serverId <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(serverId), "serverId is less than 0");
-            }
-
             long second = (long)(DateTime.UtcNow - IdGenerator.UtcTimeStart).TotalSeconds;
             lock (LockObj)
             {
@@ -181,29 +170,10 @@ namespace GameFrameX.Core.Utility
             }
 
             var actorId = (long)serverId << GlobalConst.ServerIdOrModuleIdMask; // serverId-14位, 支持1000~9999
-            actorId |= (long)actorType << GlobalConst.ActorTypeMask; // 多actor类型-7位, 支持0~127
+            actorId |= (long)type << GlobalConst.ActorTypeMask; // 多actor类型-7位, 支持0~127
             actorId |= _genSecond << GlobalConst.TimestampMask; // 时间戳-30位, 支持34年
             actorId |= _incrNum; // 自增-12位, 每秒4096个
             return actorId;
-        }
-
-
-        /// <summary>
-        /// 生成账号的唯一ID
-        /// </summary>
-        /// <returns></returns>
-        public static long GetAccountUniqueId()
-        {
-            return GetUniqueId(IdModule.Account);
-        }
-
-        /// <summary>
-        /// 生成玩家的唯一ID
-        /// </summary>
-        /// <returns></returns>
-        public static long GetPlayerUniqueId()
-        {
-            return GetUniqueId(IdModule.Player);
         }
 
         /// <summary>
