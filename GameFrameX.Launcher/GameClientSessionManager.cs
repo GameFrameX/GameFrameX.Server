@@ -25,8 +25,9 @@ public static class GameClientSessionManager
         Sessions.TryAdd(id, session);
     }
 
-    public static void RemoveSession(string id)
+    public static INetWorkChannel RemoveSession(string id)
     {
-        Sessions.TryRemove(id, out _);
+        Sessions.TryRemove(id, out var value);
+        return value;
     }
 }
