@@ -26,15 +26,17 @@ public class LoginState : CacheState
     public int State { get; set; }
 
     /// <summary>
+    /// 等级
+    /// </summary>
+    public uint Level { get; set; }
+
+    /// <summary>
     /// //是否是重连
     /// </summary>
     public bool isReconnect { get; set; }
 
-    // public long roleId { get; set; }
     public int serverId { get; set; }
 
-    // public string playerId { get; set; }
-    // public string newName { get; set; }
     public int uniId { get; set; }
 
     public int sdkType { get; set; }
