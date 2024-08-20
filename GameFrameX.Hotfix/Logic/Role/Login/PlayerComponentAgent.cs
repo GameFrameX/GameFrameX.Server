@@ -43,13 +43,10 @@ namespace GameFrameX.Hotfix.Logic.Role.Login
                 return;
             }
 
-            //添加到session
-            var session = new Session(playerState.Id, playerState.Id)
-            {
-                WorkChannel = workChannel,
-                Sign = playerState.Id.ToString()
-            };
-            SessionManager.Add(session);
+            // 更新连接会话数据
+            var session = SessionManager.Get(workChannel.Session.SessionID);
+            session.SetRoleId(playerState.Id);
+            session.SetSign(playerState.Id.ToString());
 
             RespPlayerLogin respPlayerLogin = new RespPlayerLogin
             {
@@ -62,8 +59,8 @@ namespace GameFrameX.Hotfix.Logic.Role.Login
                     Name = playerState.Name,
                     Level = playerState.Level,
                     State = playerState.State,
-                    Avatar = playerState.Avatar
-                }
+                    Avatar = playerState.Avatar,
+                },
             };
             await workChannel.WriteAsync(respPlayerLogin);
 
