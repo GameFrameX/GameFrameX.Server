@@ -26,7 +26,7 @@ namespace GameFrameX.Hotfix.Logic.Account.Login
             if (loginState == null)
             {
                 var accountId = ActorIdGenerator.GetActorId(ActorType.Account);
-                loginState = await loginCompAgent.OwnerComponent.Register(accountId, reqLogin);
+                loginState = await OwnerComponent.Register(accountId, reqLogin);
             }
 
             // 构建账号登录返回信息
