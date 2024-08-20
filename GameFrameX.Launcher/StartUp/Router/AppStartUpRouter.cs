@@ -1,4 +1,5 @@
-﻿using GameFrameX.NetWork.Abstractions;
+﻿using GameFrameX.Launcher.Common.Session;
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 using GameFrameX.SuperSocket.Primitives;
@@ -93,7 +94,7 @@ internal partial class AppStartUpRouter : AppStartUpService
     private ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
     {
         LogHelper.Info("有外部客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
-        GameClientSessionManager.RemoveSession(appSession.SessionID); //移除
+        SessionManager.Remove(appSession.SessionID);
         return ValueTask.CompletedTask;
     }
 
@@ -101,7 +102,8 @@ internal partial class AppStartUpRouter : AppStartUpService
     {
         LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
         var netChannel = new DefaultNetWorkChannel(appSession, Setting, messageEncoderHandler, RpcSession, appSession is WebSocketSession);
-        GameClientSessionManager.SetSession(appSession.SessionID, netChannel); //移除
+        var session = new Session(appSession.SessionID, netChannel);
+        SessionManager.Add(session);
 
         return ValueTask.CompletedTask;
     }
@@ -120,8 +122,8 @@ internal partial class AppStartUpRouter : AppStartUpService
             return;
         }
 
-        var bytes         = message.Data;
-        var buffer        = bytes.ToArray();
+        var bytes = message.Data;
+        var buffer = bytes.ToArray();
         var messageObject = messageDecoderHandler.Handler(buffer);
         await MessagePackageHandler(session, messageObject);
     }
@@ -144,10 +146,10 @@ internal partial class AppStartUpRouter : AppStartUpService
             {
                 var reqHeartBeat = (ReqHeartBeat)outerMessage.DeserializeMessageObject();
                 var response = new NotifyHeartBeat()
-                               {
-                                   UniqueId  = reqHeartBeat.UniqueId,
-                                   Timestamp = TimeHelper.UnixTimeSeconds()
-                               };
+                {
+                    UniqueId = reqHeartBeat.UniqueId,
+                    Timestamp = TimeHelper.UnixTimeSeconds()
+                };
                 SendToClient(appSession, response);
                 return ValueTask.CompletedTask;
             }
@@ -191,7 +193,7 @@ internal partial class AppStartUpRouter : AppStartUpService
     private void ConfigureWebServer(HostBuilderContext context, IConfigurationBuilder builder)
     {
         builder.AddInMemoryCollection(new Dictionary<string, string>()
-                                      { { "serverOptions:name", "TestServer" }, { "serverOptions:listeners:0:ip", "Any" }, { "serverOptions:listeners:0:port", Setting.WsPort.ToString() } });
+                                          { { "serverOptions:name", "TestServer" }, { "serverOptions:listeners:0:ip", "Any" }, { "serverOptions:listeners:0:port", Setting.WsPort.ToString() } });
     }
 
     public override async Task StopAsync(string message = "")
@@ -207,17 +209,17 @@ internal partial class AppStartUpRouter : AppStartUpService
         if (Setting == null)
         {
             Setting = new AppSetting
-                      {
-                          ServerId   = 3000,
-                          ServerType = ServerType.Router,
-                          InnerPort  = 23001,
-                          WsPort     = 23110,
-                          // 网关配置
-                          DiscoveryCenterIp   = "127.0.0.1",
-                          DiscoveryCenterPort = 21001,
-                          // 最大连接数
-                          MaxClientCount = 3000,
-                      };
+            {
+                ServerId = 3000,
+                ServerType = ServerType.Router,
+                InnerPort = 23001,
+                WsPort = 23110,
+                // 网关配置
+                DiscoveryCenterIp = "127.0.0.1",
+                DiscoveryCenterPort = 21001,
+                // 最大连接数
+                MaxClientCount = 3000,
+            };
             if (PlatformRuntimeHelper.IsLinux)
             {
                 Setting.DiscoveryCenterIp = "gateway";

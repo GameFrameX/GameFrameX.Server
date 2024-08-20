@@ -103,25 +103,16 @@ namespace GameFrameX.Hotfix.Common
         private ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
         {
             LogHelper.Info("有外部客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
-            var netWorkChannel = GameClientSessionManager.RemoveSession(appSession.SessionID); //移除
-            if (netWorkChannel != null)
-            {
-                var sessionId = netWorkChannel.GetData<long>(GlobalConst.SessionIdKey);
-                if (sessionId > 0)
-                {
-                    SessionManager.Remove(sessionId);
-                }
-            }
-
+            SessionManager.Remove(appSession.SessionID);
             return ValueTask.CompletedTask;
         }
 
         private ValueTask OnConnected(IAppSession appSession)
         {
             LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-
             var netChannel = new DefaultNetWorkChannel(appSession, Setting, messageEncoderHandler, null, appSession is WebSocketSession);
-            GameClientSessionManager.SetSession(appSession.SessionID, netChannel); //移除
+            var session = new Session(appSession.SessionID, netChannel);
+            SessionManager.Add(session);
 
             return ValueTask.CompletedTask;
         }
@@ -170,7 +161,7 @@ namespace GameFrameX.Hotfix.Common
                 }
 
                 handler.Message = message;
-                handler.NetWorkChannel = GameClientSessionManager.GetSession(appSession.SessionID);
+                handler.NetWorkChannel = SessionManager.GetChannel(appSession.SessionID);
                 await handler.Init();
                 await handler.InnerAction();
             }
