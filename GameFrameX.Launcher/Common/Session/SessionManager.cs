@@ -1,17 +1,15 @@
 ﻿using GameFrameX.Launcher.Common.Event;
 using GameFrameX.Core.Actors;
 using GameFrameX.Core.Events;
-using GameFrameX.NetWork;
-using GameFrameX.Setting;
 
 namespace GameFrameX.Launcher.Common.Session
 {
     /// <summary>
     /// 管理玩家session，一个玩家一个，下线之后移除，顶号之后释放之前的channel，替换channel
     /// </summary>
-    public sealed class SessionManager
+    public static class SessionManager
     {
-        private static readonly ConcurrentDictionary<long, Session> sessionMap = new ConcurrentDictionary<long, Session>();
+        private static readonly ConcurrentDictionary<string, Session> SessionMap = new ConcurrentDictionary<string, Session>();
 
         /// <summary>
         /// 玩家数量
@@ -19,7 +17,7 @@ namespace GameFrameX.Launcher.Common.Session
         /// <returns></returns>
         public static int Count()
         {
-            return sessionMap.Count;
+            return SessionMap.Count;
         }
 
         /// <summary>
@@ -29,7 +27,7 @@ namespace GameFrameX.Launcher.Common.Session
         /// <param name="pageIndex"></param>
         public static List<Session> GetPageList(int pageSize, int pageIndex)
         {
-            var result = sessionMap.Values.OrderBy(m => m.CreateTime).Where(m => ActorManager.HasActor(m.Id)).Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            var result = SessionMap.Values.OrderBy(m => m.CreateTime).Where(m => ActorManager.HasActor(m.RoleId)).Skip(pageIndex * pageSize).Take(pageSize).ToList();
             return result;
         }
 
@@ -39,26 +37,38 @@ namespace GameFrameX.Launcher.Common.Session
         /// <param name="roleId">链接ID</param>
         public static void KickOffLineByUserId(long roleId)
         {
-            var roleSession = sessionMap.Values.FirstOrDefault(m => m.RoleId == roleId);
+            var roleSession = SessionMap.Values.FirstOrDefault(m => m.RoleId == roleId);
             if (roleSession != null)
             {
-                if (sessionMap.TryRemove(roleSession.Id, out var value) && ActorManager.HasActor(roleSession.Id))
+                if (SessionMap.TryRemove(roleSession.Id, out var value) && ActorManager.HasActor(roleSession.RoleId))
                 {
-                    EventDispatcher.Dispatch(roleSession.Id, (int)EventId.SessionRemove);
+                    EventDispatcher.Dispatch(roleSession.RoleId, (int)EventId.SessionRemove);
                 }
             }
+        }
+
+        /// <summary>
+        /// 获取连接会话
+        /// </summary>
+        /// <param name="sessionId">链接ID</param>
+        public static Session Get(string sessionId)
+        {
+            SessionMap.TryRemove(sessionId, out var value);
+            return value;
         }
 
         /// <summary>
         /// 移除玩家
         /// </summary>
         /// <param name="sessionId">链接ID</param>
-        public static void Remove(long sessionId)
+        public static Session Remove(string sessionId)
         {
-            if (sessionMap.TryRemove(sessionId, out var _) && ActorManager.HasActor(sessionId))
+            if (SessionMap.TryRemove(sessionId, out var value) && ActorManager.HasActor(value.RoleId))
             {
-                EventDispatcher.Dispatch(sessionId, (int)EventId.SessionRemove);
+                EventDispatcher.Dispatch(value.RoleId, (int)EventId.SessionRemove);
             }
+
+            return value;
         }
 
         /// <summary>
@@ -67,15 +77,15 @@ namespace GameFrameX.Launcher.Common.Session
         /// <returns></returns>
         public static Task RemoveAll()
         {
-            foreach (var session in sessionMap.Values)
+            foreach (var session in SessionMap.Values)
             {
-                if (ActorManager.HasActor(session.Id))
+                if (ActorManager.HasActor(session.RoleId))
                 {
-                    EventDispatcher.Dispatch(session.Id, (int)EventId.SessionRemove);
+                    EventDispatcher.Dispatch(session.RoleId, (int)EventId.SessionRemove);
                 }
             }
 
-            sessionMap.Clear();
+            SessionMap.Clear();
             return Task.CompletedTask;
         }
 
@@ -84,9 +94,9 @@ namespace GameFrameX.Launcher.Common.Session
         /// </summary>
         /// <param name="sessionId"></param>
         /// <returns></returns>
-        public static INetWorkChannel GetChannel(long sessionId)
+        public static INetWorkChannel GetChannel(string sessionId)
         {
-            sessionMap.TryGetValue(sessionId, out var session);
+            SessionMap.TryGetValue(sessionId, out var session);
             return session?.WorkChannel;
         }
 
@@ -96,7 +106,7 @@ namespace GameFrameX.Launcher.Common.Session
         /// <param name="session"></param>
         public static void Add(Session session)
         {
-            if (sessionMap.TryGetValue(session.Id, out var oldSession) && oldSession.WorkChannel != session.WorkChannel)
+            if (SessionMap.TryGetValue(session.Id, out var oldSession) && oldSession.WorkChannel != session.WorkChannel)
             {
                 if (oldSession.Sign != session.Sign)
                 {
@@ -114,7 +124,7 @@ namespace GameFrameX.Launcher.Common.Session
             }
 
             session.WorkChannel.SetData(GlobalConst.SessionIdKey, session.Id);
-            sessionMap[session.Id] = session;
+            SessionMap[session.Id] = session;
         }
     }
 }

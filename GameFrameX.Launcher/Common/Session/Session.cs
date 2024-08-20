@@ -3,19 +3,33 @@
     public class Session
     {
         /// <summary>
-        /// 全局标识符
+        /// 全局会话ID
         /// </summary>
-        public long Id { get; }
+        public string Id { get; }
 
         /// <summary>
         /// 角色ID
         /// </summary>
-        public long RoleId { get; set; }
+        public long RoleId { get; private set; }
 
-        public Session(long id, long roleId)
+        /// <summary>
+        /// 设置角色ID
+        /// </summary>
+        /// <param name="roleId"></param>
+        public void SetRoleId(long roleId)
         {
             RoleId = roleId;
-            Id = id;
+        }
+
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="sessionId">连接会话ID</param>
+        /// <param name="netWorkChannel">网络渠道对象</param>
+        public Session(string sessionId, INetWorkChannel netWorkChannel)
+        {
+            WorkChannel = netWorkChannel;
+            Id = sessionId;
             CreateTime = DateTime.Now;
         }
 
@@ -27,16 +41,29 @@
         /// <summary>
         /// 连接上下文
         /// </summary>
-        public INetWorkChannel WorkChannel { get; set; }
+        public INetWorkChannel WorkChannel { get; }
 
         /// <summary>
         /// 连接标示，避免自己顶自己的号,客户端每次启动游戏生成一次/或者每个设备一个
         /// </summary>
-        public string Sign { get; set; }
+        public string Sign { get; private set; }
 
-        public void WriteAsync(MessageObject msg)
+        /// <summary>
+        /// 设置签名
+        /// </summary>
+        /// <param name="sign">签名</param>
+        public void SetSign(string sign)
         {
-            WorkChannel?.Write(msg);
+            Sign = sign;
+        }
+
+        /// <summary>
+        /// 发送消息
+        /// </summary>
+        /// <param name="messageObject"></param>
+        public void WriteAsync(MessageObject messageObject)
+        {
+            WorkChannel?.Write(messageObject);
         }
     }
 }
