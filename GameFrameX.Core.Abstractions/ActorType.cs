@@ -13,74 +13,10 @@
         None,
 
         /// <summary>
-        /// 任务
-        /// 管理游戏内任务和任务进度。
+        /// 账号
+        /// 管理玩家账号信息，如注册、密码找回等。
         /// </summary>
-        Task,
-
-        /// <summary>
-        /// 逻辑
-        /// 负责处理游戏规则、玩家行为、AI等逻辑。
-        /// </summary>
-        Logic,
-
-        /// <summary>
-        /// 团队
-        /// 管理玩家的队伍信息。
-        /// </summary>
-        Team,
-
-        /// <summary>
-        /// 成就
-        /// </summary>
-        Achievement,
-
-        /// <summary>
-        /// 邮件
-        /// 处理游戏内邮件系统，发送通知和奖励。
-        /// </summary>
-        Email,
-
-        /// <summary>
-        /// 推荐
-        /// 根据玩家行为推荐游戏内容或商品。
-        /// </summary>
-        Recommendation,
-
-        /// <summary>
-        /// 战斗
-        /// 专门处理游戏中的战斗逻辑和同步。
-        /// </summary>
-        Combat,
-
-        /// <summary>
-        /// 技能
-        /// 管理玩家技能和技能树。
-        /// </summary>
-        Skill,
-
-        /// <summary>
-        /// 装备
-        /// 管理玩家装备和装备属性。
-        /// </summary>
-        Equipment,
-
-        /// <summary>
-        /// 属性
-        /// 管理角色或对象的属性，如力量、智力等。
-        /// </summary>
-        Attribute,
-
-        /// <summary>
-        /// 游戏教程
-        /// 提供新玩家教程和游戏指导。
-        /// </summary>
-        Tutorial,
-
-        /// <summary>
-        /// 分割线(勿调整,勿用于业务逻辑)
-        /// </summary>
-        Separator = 128,
+        Account,
 
         /// <summary>
         /// 角色
@@ -119,6 +55,18 @@
         /// 管理游戏世界的状态，包括地图信息、NPC、环境等。
         /// </summary>
         World,
+
+        /// <summary>
+        /// 任务
+        /// 管理游戏内任务和任务进度。
+        /// </summary>
+        Task,
+
+        /// <summary>
+        /// 逻辑
+        /// 负责处理游戏规则、玩家行为、AI等逻辑。
+        /// </summary>
+        Logic,
 
         /// <summary>
         /// 全局
@@ -198,6 +146,12 @@
         Ranking,
 
         /// <summary>
+        /// 团队
+        /// 管理玩家的队伍信息。
+        /// </summary>
+        Team,
+
+        /// <summary>
         /// 语音
         /// 处理游戏内语音聊天。
         /// </summary>
@@ -210,6 +164,17 @@
         Social,
 
         /// <summary>
+        /// 成就
+        /// </summary>
+        Achievement,
+
+        /// <summary>
+        /// 邮件
+        /// 处理游戏内邮件系统，发送通知和奖励。
+        /// </summary>
+        Email,
+
+        /// <summary>
         /// 广告
         /// 管理游戏内广告展示和广告投放和验证
         /// </summary>
@@ -220,6 +185,12 @@
         /// 收集和分析玩家行为数据，用于优化游戏。
         /// </summary>
         Analytics,
+
+        /// <summary>
+        /// 推荐
+        /// 根据玩家行为推荐游戏内容或商品。
+        /// </summary>
+        Recommendation,
 
         /// <summary>
         /// 日志
@@ -295,6 +266,30 @@
         Room,
 
         /// <summary>
+        /// 战斗
+        /// 专门处理游戏中的战斗逻辑和同步。
+        /// </summary>
+        Combat,
+
+        /// <summary>
+        /// 技能
+        /// 管理玩家技能和技能树。
+        /// </summary>
+        Skill,
+
+        /// <summary>
+        /// 装备
+        /// 管理玩家装备和装备属性。
+        /// </summary>
+        Equipment,
+
+        /// <summary>
+        /// 属性
+        /// 管理角色或对象的属性，如力量、智力等。
+        /// </summary>
+        Attribute,
+
+        /// <summary>
         /// NPC行为
         /// 控制NPC的行为和交互。
         /// </summary>
@@ -336,6 +331,11 @@
         /// </summary>
         VirtualCurrency,
 
+        /// <summary>
+        /// 游戏教程
+        /// 提供新玩家教程和游戏指导。
+        /// </summary>
+        Tutorial,
 
         /// <summary>
         /// 玩家行为预测
@@ -349,17 +349,15 @@
         /// </summary>
         PlayerBehaviorRecognition,
 
+        /// <summary>
+        /// 分割线(勿调整,勿用于业务逻辑)
+        /// </summary>
+        Separator = 128,
 
         /// <summary>
-        /// 全局服务
+        /// 固定ID类型Actor
         /// </summary>
-        Server,
-
-        /// <summary>
-        /// 账号
-        /// 管理玩家账号信息，如注册、密码找回等。
-        /// </summary>
-        Account,
+        Server = 129,
 
         /// <summary>
         /// 最大值
