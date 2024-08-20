@@ -1,6 +1,7 @@
 ﻿using System.Buffers;
 using System.Net;
 using GameFrameX.Launcher;
+using GameFrameX.Launcher.Common.Session;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
@@ -102,7 +103,9 @@ namespace GameFrameX.Hotfix.Common
         private ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
         {
             LogHelper.Info("有外部客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
-            GameClientSessionManager.RemoveSession(appSession.SessionID); //移除
+            var netWorkChannel = GameClientSessionManager.RemoveSession(appSession.SessionID); //移除
+            var sessionId = netWorkChannel.GetData<long>(GlobalConst.SessionIdKey);
+            SessionManager.Remove(sessionId);
             return ValueTask.CompletedTask;
         }
 
