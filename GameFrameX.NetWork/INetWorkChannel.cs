@@ -46,6 +46,11 @@ public interface INetWorkChannel
     T GetData<T>(string key);
 
     /// <summary>
+    /// 清除自定义数据
+    /// </summary>
+    void ClearData();
+
+    /// <summary>
     /// 移除用户数据
     /// </summary>
     /// <param name="key"></param>
