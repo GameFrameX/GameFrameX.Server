@@ -11,6 +11,11 @@ public static class GlobalConst
     public const string SessionIdKey = "SESSION_ID";
 
     /// <summary>
+    /// ActorId Key
+    /// </summary>
+    public const string ActorIdKey = "ACTOR_ID";
+
+    /// <summary>
     /// 唯一ID
     /// </summary>
     public const string UniqueIdIdKey = "UNIQUEID_ID";

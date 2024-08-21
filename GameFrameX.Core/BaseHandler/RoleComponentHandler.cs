@@ -16,7 +16,7 @@ public abstract class RoleComponentHandler : BaseComponentHandler
     {
         if (ActorId <= 0)
         {
-            ActorId = NetWorkChannel.GetData<long>(GlobalConst.SessionIdKey);
+            ActorId = NetWorkChannel.GetData<long>(GlobalConst.ActorIdKey);
         }
 
         return Task.CompletedTask;
