@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.NetWork" Version="1.1.1-beta6" />
+      <PackageReference Include="GameFrameX.NetWork" Version="1.1.1-beta7" />
     </ItemGroup>
 
 </Project>
