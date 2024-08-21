@@ -46,6 +46,7 @@ namespace GameFrameX.Hotfix.Logic.Role.Login
             var session = SessionManager.Get(workChannel.Session.SessionID);
             session.SetRoleId(playerState.Id);
             session.SetSign(playerState.Id.ToString());
+            session.SetActorId(ActorId);
 
             RespPlayerLogin respPlayerLogin = new RespPlayerLogin
             {
