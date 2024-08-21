@@ -40,9 +40,9 @@ namespace GameFrameX.Launcher.Common.Session
             var roleSession = SessionMap.Values.FirstOrDefault(m => m.RoleId == roleId);
             if (roleSession != null)
             {
-                if (SessionMap.TryRemove(roleSession.Id, out var value) && ActorManager.HasActor(roleSession.RoleId))
+                if (SessionMap.TryRemove(roleSession.Id, out var value) && ActorManager.HasActor(roleSession.ActorId))
                 {
-                    EventDispatcher.Dispatch(roleSession.RoleId, (int)EventId.SessionRemove);
+                    EventDispatcher.Dispatch(roleSession.ActorId, (int)EventId.SessionRemove);
                 }
             }
         }
@@ -63,9 +63,9 @@ namespace GameFrameX.Launcher.Common.Session
         /// <param name="sessionId">链接ID</param>
         public static Session Remove(string sessionId)
         {
-            if (SessionMap.TryRemove(sessionId, out var value) && ActorManager.HasActor(value.RoleId))
+            if (SessionMap.TryRemove(sessionId, out var value) && ActorManager.HasActor(value.ActorId))
             {
-                EventDispatcher.Dispatch(value.RoleId, (int)EventId.SessionRemove);
+                EventDispatcher.Dispatch(value.ActorId, (int)EventId.SessionRemove);
             }
 
             return value;
@@ -79,9 +79,9 @@ namespace GameFrameX.Launcher.Common.Session
         {
             foreach (var session in SessionMap.Values)
             {
-                if (ActorManager.HasActor(session.RoleId))
+                if (ActorManager.HasActor(session.ActorId))
                 {
-                    EventDispatcher.Dispatch(session.RoleId, (int)EventId.SessionRemove);
+                    EventDispatcher.Dispatch(session.ActorId, (int)EventId.SessionRemove);
                 }
             }
 
