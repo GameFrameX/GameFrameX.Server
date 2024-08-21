@@ -16,7 +16,7 @@ namespace GameFrameX.Core.Utility
     public static class ActorIdGenerator
     {
         private static long _genSecond = 0L;
-        private static long _incrNum   = 0L;
+        private static long _incrNum = 0L;
 
 
         private static readonly object LockObj = new();
@@ -156,7 +156,7 @@ namespace GameFrameX.Core.Utility
                 if (second > _genSecond)
                 {
                     _genSecond = second;
-                    _incrNum   = 0L;
+                    _incrNum = 0L;
                 }
                 else if (_incrNum >= GlobalConst.MaxActorIncrease)
                 {
@@ -179,9 +179,9 @@ namespace GameFrameX.Core.Utility
         /// <summary>
         /// 根据模块获取唯一ID
         /// </summary>
-        /// <param name="module"></param>
+        /// <param name="module">默认最大值.</param>
         /// <returns></returns>
-        public static long GetUniqueId(IdModule module)
+        public static long GetUniqueId(IdModule module = IdModule.Max)
         {
             long second = (long)(DateTime.UtcNow - IdGenerator.UtcTimeStart).TotalSeconds;
             lock (LockObj)
@@ -189,7 +189,48 @@ namespace GameFrameX.Core.Utility
                 if (second > _genSecond)
                 {
                     _genSecond = second;
-                    _incrNum   = 0L;
+                    _incrNum = 0L;
+                }
+                else if (_incrNum >= GlobalConst.MaxUniqueIncrease)
+                {
+                    ++_genSecond;
+                    _incrNum = 0L;
+                }
+                else
+                {
+                    ++_incrNum;
+                }
+            }
+
+            var id = (long)module << GlobalConst.ServerIdOrModuleIdMask; // 模块id 14位 支持 0~9999
+            lock (LockObj)
+            {
+                id |= _genSecond << GlobalConst.ModuleIdTimestampMask; // 时间戳 30位
+            }
+
+            id |= _incrNum; // 自增 19位
+            return id;
+        }
+
+        /// <summary>
+        /// 根据模块获取唯一ID
+        /// </summary>
+        /// <param name="module">默认最大值. 最大值不能超过999</param>
+        /// <returns></returns>
+        public static long GetUniqueId(ushort module = 999)
+        {
+            if (module > 999)
+            {
+                throw new ArgumentOutOfRangeException(nameof(module), "module is invalid");
+            }
+
+            long second = (long)(DateTime.UtcNow - IdGenerator.UtcTimeStart).TotalSeconds;
+            lock (LockObj)
+            {
+                if (second > _genSecond)
+                {
+                    _genSecond = second;
+                    _incrNum = 0L;
                 }
                 else if (_incrNum >= GlobalConst.MaxUniqueIncrease)
                 {
