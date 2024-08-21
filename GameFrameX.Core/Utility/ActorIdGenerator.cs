@@ -217,7 +217,7 @@ namespace GameFrameX.Core.Utility
         /// </summary>
         /// <param name="module">默认最大值. 最大值不能超过999</param>
         /// <returns></returns>
-        public static long GetUniqueId(ushort module = 999)
+        public static long GetUniqueIdByModule(ushort module = 999)
         {
             if (module > 999)
             {
