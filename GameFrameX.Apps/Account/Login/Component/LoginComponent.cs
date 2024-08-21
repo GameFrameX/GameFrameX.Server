@@ -1,10 +1,13 @@
 ﻿using System.Threading.Tasks;
 using GameFrameX.Apps.Account.Login.Entity;
+using GameFrameX.Apps.Player.Player.Entity;
 using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Attribute;
 using GameFrameX.Core.Components;
 using GameFrameX.DataBase;
 using GameFrameX.Monitor.Account;
+using GameFrameX.Monitor.Player;
+using Random = GameFrameX.Utility.Random;
 
 namespace GameFrameX.Apps.Account.Login.Component
 {
@@ -24,5 +27,29 @@ namespace GameFrameX.Apps.Account.Login.Component
             await GameDb.SaveOneAsync<LoginState>(loginState);
             return loginState;
         }
+
+        public async Task<List<PlayerState>> GetPlayerList(ReqPlayerList reqPlayerList)
+        {
+            MetricsPlayerRegister.GetPlayerListCounterOptions.Inc();
+            return await GameDb.FindListAsync<PlayerState>(m => m.AccountId == reqPlayerList.Id);
+        }
+
+        public async Task<PlayerState> OnPlayerCreate(ReqPlayerCreate reqPlayerCreate)
+        {
+            PlayerState playerState = new PlayerState
+            {
+                Id = ActorIdGenerator.GetActorId(ActorType.Player),
+                AccountId = reqPlayerCreate.Id,
+                Name = reqPlayerCreate.Name,
+                Level = (uint)Random.GetRandom(1, 50),
+                State = 0,
+                Avatar = (uint)Random.GetRandom(1, 50),
+            };
+            MetricsPlayerRegister.CreateCounterOptions.Inc();
+            await GameDb.SaveOneAsync<PlayerState>(playerState);
+            return playerState;
+        }
+
+
     }
 }

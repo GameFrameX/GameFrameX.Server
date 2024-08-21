@@ -1,10 +1,10 @@
 ﻿using GameFrameX.Core.BaseHandler;
 using GameFrameX.NetWork.Messages;
 
-namespace GameFrameX.Hotfix.Logic.Role.Login;
+namespace GameFrameX.Hotfix.Logic.Account.Login;
 
 [MessageMapping(typeof(ReqPlayerList))]
-internal class ReqPlayerListHandler : GlobalComponentHandler<PlayerComponentAgent>
+internal class ReqPlayerListHandler : GlobalComponentHandler<LoginComponentAgent>
 {
     protected override async Task ActionAsync()
     {

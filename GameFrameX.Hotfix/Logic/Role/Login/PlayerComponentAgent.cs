@@ -28,15 +28,14 @@ namespace GameFrameX.Hotfix.Logic.Role.Login
             QuartzTimer.UnSchedule(ScheduleIdSet);
         }
 
-
         /// <summary>
         /// 使用角色ID登录
         /// </summary>
         /// <param name="workChannel"></param>
         /// <param name="reqLogin"></param>
-        public async Task OnLogin(INetWorkChannel workChannel, ReqPlayerLogin reqLogin)
+        public async Task OnPlayerLogin(INetWorkChannel workChannel, ReqPlayerLogin reqLogin)
         {
-            var playerState = await OwnerComponent.OnLogin(reqLogin);
+            var playerState = await OwnerComponent.OnPlayerLogin(reqLogin);
             if (playerState == null)
             {
                 //角色找不到？
@@ -67,62 +66,6 @@ namespace GameFrameX.Hotfix.Logic.Role.Login
             //加入在线玩家
             var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
             await serverComp.AddOnlineRole(ActorId);
-        }
-
-        /// <summary>
-        /// 创建角色
-        /// </summary>
-        /// <param name="workChannel"></param>
-        /// <param name="reqPlayerCreate"></param>
-        public async Task OnPlayerCreate(INetWorkChannel workChannel, ReqPlayerCreate reqPlayerCreate)
-        {
-            var playerState = await OwnerComponent.OnPlayerCreate(reqPlayerCreate);
-            RespPlayerCreate respPlayerCreate = new RespPlayerCreate
-            {
-                UniqueId = reqPlayerCreate.UniqueId,
-                PlayerInfo = new PlayerInfo
-                {
-                    Id = playerState.Id,
-                    Name = playerState.Name,
-                    Level = playerState.Level,
-                    State = playerState.State,
-                    Avatar = playerState.Avatar
-                }
-            };
-            await workChannel.WriteAsync(respPlayerCreate);
-        }
-
-        /// <summary>
-        /// 获取角色列表
-        /// </summary>
-        /// <param name="workChannel"></param>
-        /// <param name="reqPlayerList"></param>
-        public async Task OnGetPlayerList(INetWorkChannel workChannel, ReqPlayerList reqPlayerList)
-        {
-            var playerList = await this.OwnerComponent.GetPlayerList(reqPlayerList);
-
-            RespPlayerList respPlayerList = new RespPlayerList
-            {
-                UniqueId = reqPlayerList.UniqueId,
-                PlayerList = new List<PlayerInfo>()
-            };
-            if (playerList != null)
-            {
-                foreach (var playerState in playerList)
-                {
-                    var playerInfo = new PlayerInfo
-                    {
-                        Id = playerState.Id,
-                        Name = playerState.Name
-                    };
-                    playerInfo.Level = playerState.Level;
-                    playerInfo.State = playerState.State;
-                    playerInfo.Avatar = playerState.Avatar;
-                    respPlayerList.PlayerList.Add(playerInfo);
-                }
-            }
-
-            await workChannel.WriteAsync(respPlayerList);
         }
     }
 }
