@@ -26,6 +26,11 @@ public enum IdModule
     WorkerActor = 103,
 
     /// <summary>
+    /// 账号
+    /// </summary>
+    Account = 104,
+
+    /// <summary>
     /// 最大值
     /// </summary>
     Max = 999
