@@ -119,7 +119,7 @@ namespace GameFrameX.Launcher.Common.Session
                 }
 
                 // 新连接 or 顶号
-                oldSession.WorkChannel.RemoveData(GlobalConst.SessionIdKey);
+                oldSession.WorkChannel.ClearData();
                 oldSession.WorkChannel.Close();
             }
 

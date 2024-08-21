@@ -140,6 +140,7 @@ namespace GameFrameX.NetWork
         /// </summary>
         public virtual void Close()
         {
+            ClearData();
             CloseSrc.Cancel();
         }
 
