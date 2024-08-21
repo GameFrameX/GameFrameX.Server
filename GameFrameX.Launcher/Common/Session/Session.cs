@@ -19,6 +19,7 @@
         public void SetRoleId(long roleId)
         {
             RoleId = roleId;
+            WorkChannel.SetData(GlobalConst.ActorIdKey, roleId);
         }
 
         /// <summary>
