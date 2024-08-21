@@ -53,7 +53,7 @@ namespace GameFrameX.Launcher.Common.Session
         /// <param name="sessionId">链接ID</param>
         public static Session Get(string sessionId)
         {
-            SessionMap.TryRemove(sessionId, out var value);
+            SessionMap.TryGetValue(sessionId, out var value);
             return value;
         }
 
