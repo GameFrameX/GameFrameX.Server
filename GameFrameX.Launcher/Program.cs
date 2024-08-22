@@ -151,7 +151,7 @@ namespace GameFrameX.Launcher
 
             LogHelper.Info($"----------------------------启动服务器结束啦------------------------------");
             ApplicationPerformanceMonitorStart(serverType);
-            ConsoleLogo();
+            ConsoleHelper.ConsoleLogo();
 
             await Task.WhenAll(AppStartUpTasks);
         }
@@ -302,15 +302,6 @@ namespace GameFrameX.Launcher
             return Task.CompletedTask;
         }
 
-        private static void ConsoleLogo()
-        {
-            Console.WriteLine(@" _____                         ______                               __   __");
-            Console.WriteLine(@"|  __ \                        |  ___|                              \ \ / /");
-            Console.WriteLine(@"| |  \/  __ _  _ __ ___    ___ | |_    _ __   __ _  _ __ ___    ___  \ V / ");
-            Console.WriteLine(@"| | __  / _` || '_ ` _ \  / _ \|  _|  | '__| / _` || '_ ` _ \  / _ \ /   \ ");
-            Console.WriteLine(@"| |_\ \| (_| || | | | | ||  __/| |    | |   | (_| || | | | | ||  __// /^\ \");
-            Console.WriteLine(@" \____/ \__,_||_| |_| |_| \___|\_|    |_|    \__,_||_| |_| |_| \___|\/   \/");
-            Console.WriteLine(@"                                                                           ");
-        }
+
     }
 }
