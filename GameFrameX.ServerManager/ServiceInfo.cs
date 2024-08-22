@@ -23,15 +23,15 @@ public sealed class ServiceInfo : IServiceInfo
     /// <param name="outerPort"></param>
     public ServiceInfo(ServerType type, object session, string sessionId, string serverName, long serverId, string innerIp, ushort innerPort, string outerIp, ushort outerPort)
     {
-        Type       = type;
-        Session    = session;
+        Type = type;
+        Session = session;
         ServerName = serverName;
-        ServerId   = serverId;
-        InnerIp    = innerIp;
-        InnerPort  = innerPort;
-        OuterIp    = outerIp;
-        OuterPort  = outerPort;
-        SessionId  = sessionId;
+        ServerId = serverId;
+        InnerIp = innerIp;
+        InnerPort = innerPort;
+        OuterIp = outerIp;
+        OuterPort = outerPort;
+        SessionId = sessionId;
         StatusInfo = new ServiceStatusInfo();
     }
 
@@ -92,6 +92,6 @@ public sealed class ServiceInfo : IServiceInfo
     /// <returns></returns>
     public override string ToString()
     {
-        return JsonHelper.Serialize(this);
+        return JsonHelper.SerializeFormat(this);
     }
 }

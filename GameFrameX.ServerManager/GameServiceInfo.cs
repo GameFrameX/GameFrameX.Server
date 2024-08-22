@@ -21,14 +21,14 @@ public sealed class GameServiceInfo : IServiceInfo
     /// <param name="maxModuleMessageId"></param>
     public GameServiceInfo(ServerType type, object session, string sessionId, string serverName, long serverId, short minModuleMessageId, short maxModuleMessageId)
     {
-        Type               = type;
-        Session            = session;
-        ServerName         = serverName;
-        ServerId           = serverId;
+        Type = type;
+        Session = session;
+        ServerName = serverName;
+        ServerId = serverId;
         MinModuleMessageId = minModuleMessageId;
         MaxModuleMessageId = maxModuleMessageId;
-        SessionId          = sessionId;
-        StatusInfo         = new ServiceStatusInfo();
+        SessionId = sessionId;
+        StatusInfo = new ServiceStatusInfo();
     }
 
     /// <summary>
@@ -79,6 +79,6 @@ public sealed class GameServiceInfo : IServiceInfo
     /// <returns></returns>
     public override string ToString()
     {
-        return JsonHelper.Serialize(this);
+        return JsonHelper.SerializeFormat(this);
     }
 }
