@@ -23,7 +23,7 @@ namespace GameFrameX.NetWork
         /// <summary>
         /// 会话
         /// </summary>
-        public IGameAppSession Session { get; }
+        public IGameAppSession GameAppSession { get; }
 
         /// <summary>
         /// Rpc会话
@@ -62,7 +62,7 @@ namespace GameFrameX.NetWork
         {
             setting.CheckNotNull(nameof(setting));
             messageEncoder.CheckNotNull(nameof(messageEncoder));
-            Session = session;
+            GameAppSession = session;
             IsWebSocket = isWebSocket;
             Setting = setting;
             _messageEncoder = messageEncoder;
@@ -121,11 +121,11 @@ namespace GameFrameX.NetWork
             }
             else
             {
-                if (((IAppSession)Session).State == SessionState.Connected)
+                if (((IAppSession)GameAppSession).State == SessionState.Connected)
                 {
                     try
                     {
-                        await Session.SendAsync(messageData);
+                        await GameAppSession.SendAsync(messageData);
                     }
                     catch (Exception e)
                     {
@@ -148,7 +148,7 @@ namespace GameFrameX.NetWork
         /// 是否关闭
         /// </summary>
         /// <returns></returns>
-        public virtual bool IsClose()
+        public virtual bool IsClosed()
         {
             return CloseSrc.IsCancellationRequested;
         }
@@ -157,12 +157,15 @@ namespace GameFrameX.NetWork
 
         private readonly ConcurrentDictionary<string, object> _userDataKv = new ConcurrentDictionary<string, object>();
 
+
         /// <summary>
-        /// 获取消息自定义数据
+        /// 获取用户数据对象.
+        /// 可能会发生转换失败的异常。
+        /// 如果数据不存在则返回null
         /// </summary>
-        /// <param name="key"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <param name="key">数据Key</param>
+        /// <typeparam name="T">将要获取的数据类型。</typeparam>
+        /// <returns>用户数据对象</returns>
         public T GetData<T>(string key)
         {
             if (_userDataKv.TryGetValue(key, out var v))

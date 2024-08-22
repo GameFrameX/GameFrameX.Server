@@ -5,6 +5,7 @@ using GameFrameX.Hotfix.Common;
 using GameFrameX.Hotfix.Logic.Server.Server;
 using GameFrameX.Launcher.Common.Session;
 using GameFrameX.NetWork;
+using GameFrameX.NetWork.Abstractions;
 
 namespace GameFrameX.Hotfix.Logic.Account.Login
 {

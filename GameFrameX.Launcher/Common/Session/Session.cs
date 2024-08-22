@@ -1,4 +1,6 @@
-﻿namespace GameFrameX.Launcher.Common.Session
+﻿using GameFrameX.NetWork.Abstractions;
+
+namespace GameFrameX.Launcher.Common.Session
 {
     public class Session
     {
