@@ -243,4 +243,13 @@ public abstract class BaseSetting
     {
         return JsonConvert.SerializeObject(this);
     }
+
+    /// <summary>
+    /// 格式化JSON输出
+    /// </summary>
+    /// <returns></returns>
+    public string ToFormatString()
+    {
+        return JsonConvert.SerializeObject(this, Formatting.Indented);
+    }
 }
