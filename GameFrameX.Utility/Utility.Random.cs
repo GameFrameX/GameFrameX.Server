@@ -72,7 +72,15 @@ namespace GameFrameX.Utility
         /// </summary>
         public static HashSet<int> RandomSelect(int m, int n)
         {
-            if (m == 0) return new HashSet<int>();
+            if (m == 0)
+            {
+                return new HashSet<int>();
+            }
+
+            if (m > n)
+            {
+                throw new ArgumentOutOfRangeException(nameof(m), "m must less than n");
+            }
 
             var s = RandomSelect(m - 1, n - 1);
             var i = ThreadLocalRandom.Current.Next(0, n);
@@ -102,7 +110,9 @@ namespace GameFrameX.Utility
             {
                 // 不可重复，需求数量不应超过id数量
                 if (num > array.Length)
+                {
                     throw new ArgumentException($"can't repeat random arg error, num:{num} is great than id count:{array.Length}");
+                }
 
                 return NoRepeatRandom(num, weightIndex, random, array);
             }
@@ -118,7 +128,9 @@ namespace GameFrameX.Utility
                 for (int j = 0; j < array.Length; j++)
                 {
                     if (!idxSet.Contains(j))
+                    {
                         totalWeight += array[j][weightIndex];
+                    }
                 }
 
                 int r = random.Next(totalWeight);
@@ -219,8 +231,8 @@ namespace GameFrameX.Utility
         /// <summary>
         /// 根据权重随机
         /// </summary>
-        /// <param name="array"></param>
-        /// <param name="weightIndex"></param>
+        /// <param name="array">数据列表</param>
+        /// <param name="weightIndex">权重索引</param>
         /// <returns></returns>
         public static int Idx(int[][] array, int weightIndex = 1)
         {
@@ -251,12 +263,12 @@ namespace GameFrameX.Utility
         /// 随机获取指定数量的id
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="num"></param>
-        /// <param name="canRepeat"></param>
+        /// <param name="num">数量</param>
+        /// <param name="isCanRepeat">是否允许重复</param>
         /// <returns></returns>
-        public static List<int> Ids(int[][] array, int num, bool canRepeat = true)
+        public static List<int> Ids(int[][] array, int num, bool isCanRepeat = true)
         {
-            return RandomSelect(array, num, 1, canRepeat).Select(t => t[0]).ToList();
+            return RandomSelect(array, num, 1, isCanRepeat).Select(t => t[0]).ToList();
         }
 
 
@@ -264,12 +276,12 @@ namespace GameFrameX.Utility
         /// 随机获取指定数量的id
         /// </summary>
         /// <param name="str"></param>
-        /// <param name="num"></param>
-        /// <param name="canRepeat"></param>
+        /// <param name="num">数量</param>
+        /// <param name="isCanRepeat">是否允许重复</param>
         /// <returns></returns>
-        public static List<int> Ids(string str, int num, bool canRepeat = true)
+        public static List<int> Ids(string str, int num, bool isCanRepeat = true)
         {
-            return RandomSelect(str, num, 1, canRepeat).Select(t => t[0]).ToList();
+            return RandomSelect(str, num, 1, isCanRepeat).Select(t => t[0]).ToList();
         }
 
 
@@ -277,12 +289,12 @@ namespace GameFrameX.Utility
         /// 随机获取指定数量的id
         /// </summary>
         /// <param name="str"></param>
-        /// <param name="num"></param>
-        /// <param name="canRepeat"></param>
+        /// <param name="num">数量</param>
+        /// <param name="isCanRepeat">是否允许重复</param>
         /// <returns></returns>
-        public static List<int[]> Items(string str, int num, bool canRepeat = true)
+        public static List<int[]> Items(string str, int num, bool isCanRepeat = true)
         {
-            return RandomSelect(str, num, 2, canRepeat);
+            return RandomSelect(str, num, 2, isCanRepeat);
         }
 
 
@@ -291,11 +303,11 @@ namespace GameFrameX.Utility
         /// </summary>
         /// <param name="array"></param>
         /// <param name="num"></param>
-        /// <param name="canRepeat"></param>
+        /// <param name="isCanRepeat"></param>
         /// <returns></returns>
-        public static List<int[]> Items(int[][] array, int num, bool canRepeat = true)
+        public static List<int[]> Items(int[][] array, int num, bool isCanRepeat = true)
         {
-            return RandomSelect(array, num, 2, canRepeat);
+            return RandomSelect(array, num, 2, isCanRepeat);
         }
 
 
@@ -305,9 +317,14 @@ namespace GameFrameX.Utility
         public static int Gcd(params int[] input)
         {
             if (input.Length == 0)
+            {
                 return 1;
+            }
+
             if (input.Length == 1)
+            {
                 return input[0];
+            }
 
             int n = input[0];
             for (int i = 1; i < input.Length; i++)
@@ -329,9 +346,13 @@ namespace GameFrameX.Utility
             }
 
             if (b == 0)
+            {
                 return a;
+            }
             else
+            {
                 return Gcd(b, a % b);
+            }
         }
     }
 }
