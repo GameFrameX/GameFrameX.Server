@@ -1,3 +1,4 @@
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.NetWork;
@@ -22,7 +23,7 @@ public interface IMessageHandler
     /// <summary>
     /// 消息对象
     /// </summary>
-    MessageObject Message { get; set; }
+    INetworkMessage Message { get; set; }
 
     /// <summary>
     /// 网络频道对象

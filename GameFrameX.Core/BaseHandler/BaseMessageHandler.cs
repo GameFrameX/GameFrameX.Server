@@ -1,4 +1,5 @@
 ﻿using GameFrameX.NetWork;
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.Core.BaseHandler
@@ -16,7 +17,7 @@ namespace GameFrameX.Core.BaseHandler
         /// <summary>
         /// 消息对象
         /// </summary>
-        public MessageObject Message { get; set; }
+        public INetworkMessage Message { get; set; }
 
         /// <summary>
         /// 初始化
