@@ -88,12 +88,12 @@ public abstract class AppStartUpService : AppStartUpBase
     /// 给发现中心发送消息
     /// </summary>
     /// <param name="message"></param>
-    protected void SendToDiscoveryCenterMessage(IMessage message)
+    protected void SendToDiscoveryCenterMessage(INetworkMessage message)
     {
         var span = _messageEncoderHandler.Handler(message);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
-            LogHelper.Debug(message.ToSendMessageString(ServerType, ServerType.DiscoveryCenter));
+            LogHelper.Debug(message.ToFormatMessageString());
         }
 
         discoveryCenterClient.TrySend(span);

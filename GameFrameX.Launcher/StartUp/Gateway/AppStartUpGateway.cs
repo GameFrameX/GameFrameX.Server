@@ -126,7 +126,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
                 return ValueTask.CompletedTask;
             }
 
-            var mainId = MessageManager.GetMainId(messageObject.MessageId);
+            var mainId = MessageIdUtility.GetMainId(messageObject.MessageId);
             var serviceInfos = _namingServiceManager.GetNodesByType(ServerType.Game);
             foreach (var serviceInfo in serviceInfos)
             {

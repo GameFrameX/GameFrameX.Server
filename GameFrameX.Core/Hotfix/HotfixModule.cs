@@ -8,6 +8,7 @@ using GameFrameX.Core.Components;
 using GameFrameX.Core.Events;
 using GameFrameX.Extension;
 using GameFrameX.Log;
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Setting;

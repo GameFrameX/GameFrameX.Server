@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using GameFrameX.Extension;
 using GameFrameX.Log;
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Utility;
 
@@ -17,7 +18,7 @@ namespace GameFrameX.NetWork.Message
         private static readonly List<Type> HeartBeatList = new List<Type>();
 
         /// <summary>
-        /// 获取消息ID
+        /// 获取消息ID,如果没有则返回0
         /// </summary>
         /// <param name="type">消息类型</param>
         /// <returns></returns>
@@ -32,7 +33,7 @@ namespace GameFrameX.NetWork.Message
         }
 
         /// <summary>
-        /// 获取消息类型
+        /// 获取消息类型，如果没有则返回null
         /// </summary>
         /// <param name="messageId">消息ID</param>
         /// <returns></returns>

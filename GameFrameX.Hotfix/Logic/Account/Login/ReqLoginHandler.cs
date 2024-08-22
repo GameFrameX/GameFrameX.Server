@@ -1,4 +1,5 @@
 ﻿using GameFrameX.Core.BaseHandler;
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.Hotfix.Logic.Account.Login
