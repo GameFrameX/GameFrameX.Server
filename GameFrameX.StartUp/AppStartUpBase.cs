@@ -82,10 +82,10 @@ namespace GameFrameX.StartUp
         /// <param name="setting">配置信息对象</param>
         /// <param name="args">参数</param>
         /// <returns></returns>
-        public bool Init(ServerType serverType, BaseSetting setting, string[] args = null)
+        public bool Init(ServerType serverType, AppSetting setting, string[] args = null)
         {
             ServerType = serverType;
-            Setting = (AppSetting)setting;
+            Setting = setting;
             ListenOptions = new ListenOptions();
             Init();
             Setting.CheckNotNull(nameof(Setting));

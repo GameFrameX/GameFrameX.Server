@@ -148,9 +148,9 @@ namespace GameFrameX.ServerManager
         /// <summary>
         /// 添加自身
         /// </summary>
-        public void AddSelf(BaseSetting setting)
+        public void AddSelf(AppSetting setting)
         {
-            _serviceInfo                      = new ServiceInfo(setting.ServerType, null, string.Empty, setting.ServerName, setting.ServerId, setting.InnerIp, setting.InnerPort, setting.OuterIp, setting.OuterPort);
+            _serviceInfo = new ServiceInfo(setting.ServerType, null, string.Empty, setting.ServerName, setting.ServerId, setting.InnerIp, setting.InnerPort, setting.OuterIp, setting.OuterPort);
             _serverMap[_serviceInfo.ServerId] = _serviceInfo;
         }
 

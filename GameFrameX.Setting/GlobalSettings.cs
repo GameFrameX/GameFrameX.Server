@@ -7,25 +7,25 @@ namespace GameFrameX.Setting;
 /// </summary>
 public static class GlobalSettings
 {
-    private static readonly List<BaseSetting> Settings = new List<BaseSetting>(16);
+    private static readonly List<AppSetting> Settings = new List<AppSetting>(16);
 
     /// <summary>
-    /// 
+    /// 是否运行中
     /// </summary>
     public static bool IsAppRunning { get; set; }
 
     /// <summary>
-    /// 
+    /// 启动时间
     /// </summary>
     public static DateTime LaunchTime { get; set; }
 
     /// <summary>
-    /// 
+    /// 是否是调试模式
     /// </summary>
     public static bool IsDebug { get; set; }
 
     /// <summary>
-    /// 
+    /// 服务器ID
     /// </summary>
     public static int ServerId { get; set; }
 
@@ -33,10 +33,9 @@ public static class GlobalSettings
     /// 加载启动配置
     /// </summary>
     /// <param name="path">配置文件路径</param>
-    /// <typeparam name="T"></typeparam>
     /// <exception cref="InvalidOperationException"></exception>
     /// <exception cref="Exception"></exception>
-    public static void Load<T>(string path) where T : BaseSetting
+    public static void Load(string path)
     {
         Settings.Clear();
 
@@ -50,7 +49,7 @@ public static class GlobalSettings
         }
 
         var configJson = File.ReadAllText(path);
-        var settings = JsonConvert.DeserializeObject<List<T>>(configJson) ?? throw new InvalidOperationException();
+        var settings = JsonConvert.DeserializeObject<List<AppSetting>>(configJson) ?? throw new InvalidOperationException();
 
         foreach (var setting in settings)
         {
@@ -66,33 +65,25 @@ public static class GlobalSettings
     /// <summary>
     /// 
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static List<T> GetSettings<T>() where T : BaseSetting
+    public static List<AppSetting> GetSettings()
     {
-        List<T> result = new List<T>();
-        foreach (var setting in Settings)
-        {
-            result.Add((setting as T)!);
-        }
-
-        return result;
+        return Settings.ToList();
     }
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="serverType"></param>
-    /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static List<T> GetSettings<T>(ServerType serverType) where T : BaseSetting
+    public static List<AppSetting> GetSettings(ServerType serverType)
     {
-        var result = new List<T>();
+        var result = new List<AppSetting>();
         foreach (var setting in Settings)
         {
             if ((setting.ServerType &= serverType) != 0)
             {
-                result.Add(setting as T);
+                result.Add(setting);
             }
         }
 
@@ -105,13 +96,13 @@ public static class GlobalSettings
     /// <param name="serverType"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T GetSetting<T>(ServerType serverType) where T : BaseSetting
+    public static AppSetting GetSetting<T>(ServerType serverType)
     {
         foreach (var setting in Settings)
         {
             if ((setting.ServerType &= serverType) != 0)
             {
-                return setting as T;
+                return setting;
             }
         }
 

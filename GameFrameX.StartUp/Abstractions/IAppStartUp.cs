@@ -29,7 +29,7 @@ namespace GameFrameX.StartUp.Abstractions
         /// <param name="setting">启动设置</param>
         /// <param name="args">启动参数</param>
         /// <returns></returns>
-        bool Init(ServerType serverType, BaseSetting setting, string[] args);
+        bool Init(ServerType serverType, AppSetting setting, string[] args);
 
         /// <summary>
         /// 启动

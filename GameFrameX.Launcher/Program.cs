@@ -55,7 +55,7 @@ namespace GameFrameX.Launcher
 
             LoggerHandler.Start(serverType);
             JsonSetting();
-            GlobalSettings.Load<AppSetting>($"Configs/app_config.json");
+            GlobalSettings.Load($"Configs/app_config.json");
             CacheStateTypeManager.Init();
             MessageProtoHelper.Init(typeof(MessageProtoHandler).Assembly);
 
@@ -75,7 +75,7 @@ namespace GameFrameX.Launcher
             var sortedStartUpTypes = StartUpTypes.OrderBy(m => m.Value.Priority);
 
             LogHelper.Info($"----------------------------开始启动服务器啦------------------------------");
-            var appSettings = GlobalSettings.GetSettings<AppSetting>();
+            var appSettings = GlobalSettings.GetSettings();
             if (serverType != null && Enum.TryParse(serverType, out ServerType serverTypeValue))
             {
                 var startKv = sortedStartUpTypes.FirstOrDefault(m => m.Value.ServerType == serverTypeValue);
@@ -282,7 +282,7 @@ namespace GameFrameX.Launcher
             };
         }
 
-        private static Task Start(string[] args, Type appStartUpType, ServerType serverType, BaseSetting setting, out IAppStartUp startUp)
+        private static Task Start(string[] args, Type appStartUpType, ServerType serverType, AppSetting setting, out IAppStartUp startUp)
         {
             startUp = (IAppStartUp)Activator.CreateInstance(appStartUpType);
             if (startUp != null)
@@ -301,7 +301,5 @@ namespace GameFrameX.Launcher
 
             return Task.CompletedTask;
         }
-
-
     }
 }
