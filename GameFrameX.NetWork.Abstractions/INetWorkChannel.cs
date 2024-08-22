@@ -1,8 +1,6 @@
-using GameFrameX.NetWork.Abstractions;
-using GameFrameX.NetWork.Messages;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
 
-namespace GameFrameX.NetWork;
+namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
 /// 网络通道
@@ -10,9 +8,9 @@ namespace GameFrameX.NetWork;
 public interface INetWorkChannel
 {
     /// <summary>
-    /// 应用会话
+    /// 应用会话对象
     /// </summary>
-    IGameAppSession Session { get; }
+    IGameAppSession GameAppSession { get; }
 
     /// <summary>
     /// RPC 会话
@@ -39,11 +37,13 @@ public interface INetWorkChannel
     void Close();
 
     /// <summary>
-    /// 获取用户数据对象
+    /// 获取用户数据对象.
+    /// 可能会发生转换失败的异常。
+    /// 如果数据不存在则返回null
     /// </summary>
-    /// <param name="key"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    /// <param name="key">数据Key</param>
+    /// <typeparam name="T">将要获取的数据类型。</typeparam>
+    /// <returns>用户数据对象</returns>
     T GetData<T>(string key);
 
     /// <summary>
@@ -54,14 +54,14 @@ public interface INetWorkChannel
     /// <summary>
     /// 移除用户数据
     /// </summary>
-    /// <param name="key"></param>
+    /// <param name="key">数据Key</param>
     void RemoveData(string key);
 
     /// <summary>
     /// 设置用户数据
     /// </summary>
-    /// <param name="key"></param>
-    /// <param name="value"></param>
+    /// <param name="key">数据Key</param>
+    /// <param name="value">数据值</param>
     void SetData(string key, object value);
 
     /// <summary>
@@ -71,8 +71,15 @@ public interface INetWorkChannel
     void UpdateReceiveMessageTime(long offsetTicks = 0);
 
     /// <summary>
-    /// 是否已经关闭
+    /// 获取最后一次消息的时间
     /// </summary>
+    /// <param name="utcTime">UTC时间</param>
     /// <returns></returns>
-    bool IsClose();
+    long GetLastMessageTimeSecond(in DateTime utcTime);
+
+    /// <summary>
+    /// 网络是否已经关闭
+    /// </summary>
+    /// <returns>是否已经关闭</returns>
+    bool IsClosed();
 }
