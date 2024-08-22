@@ -30,4 +30,12 @@ public static class PlatformRuntimeHelper
     {
         get { return RuntimeInformation.IsOSPlatform(OSPlatform.Windows); }
     }
+
+    /// <summary>
+    /// 是否是FreeBSD
+    /// </summary>
+    public static bool IsFreeBsd
+    {
+        get { return RuntimeInformation.IsOSPlatform(OSPlatform.FreeBSD); }
+    }
 }
