@@ -47,7 +47,7 @@ namespace GameFrameX.StartUp
                     LogHelper.Info(error);
                 }
 
-                await File.WriteAllTextAsync("server_error.txt", $"{error}", Encoding.UTF8);
+                await File.WriteAllTextAsync($"server_error_{appStartUp.ServerType}.txt", $"{appStartUp.Setting.ToFormatString()}\n\n{error}", Encoding.UTF8);
             }
         }
 
