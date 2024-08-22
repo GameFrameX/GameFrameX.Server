@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Text;
+using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.Setting;
 using GameFrameX.StartUp.Abstractions;
@@ -11,9 +12,9 @@ namespace GameFrameX.StartUp
     /// </summary>
     public static class AppEnter
     {
-        private static volatile bool        _exitCalled   = false;
-        private static volatile Task        _gameLoopTask = null;
-        private static volatile Task        _shutDownTask = null;
+        private static volatile bool _exitCalled = false;
+        private static volatile Task _gameLoopTask = null;
+        private static volatile Task _shutDownTask = null;
         private static volatile IAppStartUp _appStartUp;
 
         /// <summary>
@@ -22,6 +23,8 @@ namespace GameFrameX.StartUp
         /// <param name="appStartUp">启动对象</param>
         public static async Task Entry(IAppStartUp appStartUp)
         {
+            appStartUp.CheckNotNull(nameof(appStartUp));
+
             try
             {
                 _appStartUp = appStartUp;
