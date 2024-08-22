@@ -69,7 +69,7 @@ namespace GameFrameX.StartUp
         }
 
         /// <summary>
-        /// 
+        /// 初始化
         /// </summary>
         protected virtual void Init()
         {
@@ -92,13 +92,13 @@ namespace GameFrameX.StartUp
             GlobalSettings.ServerId = Setting.ServerId;
             if (IsEnableHeartBeat)
             {
-                HeartBeatTimer         =  new Timer(HeartBeatInterval);
+                HeartBeatTimer = new Timer(HeartBeatInterval);
                 HeartBeatTimer.Elapsed += HeartBeatTimerOnElapsed;
             }
 
             if (IsEnableReconnection)
             {
-                ReconnectionTimer         =  new Timer(ReconnectInterval);
+                ReconnectionTimer = new Timer(ReconnectInterval);
                 ReconnectionTimer.Elapsed += ReconnectionTimerOnElapsed;
             }
 
