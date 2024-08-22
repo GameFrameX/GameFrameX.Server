@@ -1,3 +1,4 @@
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
 
@@ -22,7 +23,7 @@ public interface INetWorkChannel
     /// 写入消息
     /// </summary>
     /// <param name="messageObject">消息对象</param>
-    void Write(IMessage messageObject);
+    void Write(INetworkMessage messageObject);
 
     /// <summary>
     /// 异步写入消息
@@ -30,7 +31,7 @@ public interface INetWorkChannel
     /// <param name="msg">消息对象</param>
     /// <param name="errorCode">错误码</param>
     /// <returns></returns>
-    Task WriteAsync(IMessage msg, int errorCode = 0);
+    Task WriteAsync(INetworkMessage msg, int errorCode = 0);
 
     /// <summary>
     /// 关闭网络

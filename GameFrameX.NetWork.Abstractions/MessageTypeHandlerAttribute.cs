@@ -1,4 +1,4 @@
-namespace GameFrameX.NetWork.Messages;
+namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
 /// 消息类型处理器标记
@@ -28,7 +28,7 @@ public class MessageTypeHandlerAttribute : Attribute
     public MessageTypeHandlerAttribute(int messageId)
     {
         MessageId = messageId;
-        MainId = MessageManager.GetMainId(MessageId);
-        SubId = MessageManager.GetSubId(MessageId);
+        MainId = MessageIdUtility.GetMainId(MessageId);
+        SubId = MessageIdUtility.GetSubId(MessageId);
     }
 }

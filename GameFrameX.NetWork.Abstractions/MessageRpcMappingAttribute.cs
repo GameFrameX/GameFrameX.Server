@@ -1,9 +1,9 @@
 using GameFrameX.Extension;
 
-namespace GameFrameX.NetWork.Messages;
+namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// RPC 消息
+/// RPC 消息属性标记
 /// </summary>
 [AttributeUsage(AttributeTargets.Class)]
 public class MessageRpcMappingAttribute : Attribute
@@ -19,15 +19,15 @@ public class MessageRpcMappingAttribute : Attribute
     public IResponseMessage ResponseMessage { get; }
 
     /// <summary>
-    /// 
+    /// 构建RPC 消息
     /// </summary>
-    /// <param name="requestMessage"></param>
-    /// <param name="responseMessage"></param>
+    /// <param name="requestMessage">请求消息类型</param>
+    /// <param name="responseMessage">返回消息类型</param>
     public MessageRpcMappingAttribute(IRequestMessage requestMessage, IResponseMessage responseMessage)
     {
         requestMessage.CheckNotNull(nameof(requestMessage));
         responseMessage.CheckNotNull(nameof(responseMessage));
-        RequestMessage  = requestMessage;
+        RequestMessage = requestMessage;
         ResponseMessage = responseMessage;
     }
 }

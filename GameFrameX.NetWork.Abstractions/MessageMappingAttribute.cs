@@ -1,4 +1,4 @@
-﻿namespace GameFrameX.NetWork.Messages
+﻿namespace GameFrameX.NetWork.Abstractions
 {
     /// <summary>
     /// 消息类型对应的消息映射处理器

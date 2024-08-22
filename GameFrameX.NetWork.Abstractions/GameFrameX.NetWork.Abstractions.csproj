@@ -40,4 +40,7 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\GameFrameX.Extension\GameFrameX.Extension.csproj" />
+    </ItemGroup>
 </Project>

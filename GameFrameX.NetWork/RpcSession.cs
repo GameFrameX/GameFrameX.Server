@@ -1,4 +1,5 @@
 using System.Collections.Concurrent;
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.NetWork;
@@ -62,22 +63,25 @@ public sealed class RpcSession : IRpcSession
         return false;
     }
 
+
     /// <summary>
-    /// 异步调用
+    /// 异步调用,且等待返回
     /// </summary>
-    /// <param name="message"></param>
-    /// <returns></returns>
-    public Task<IResponseMessage> Call(IRequestMessage message)
+    /// <param name="message">调用消息对象</param>
+    /// <param name="timeOutMillisecond">调用超时,单位毫秒,默认10秒</param>
+    /// <returns>返回消息对象</returns>
+    public Task<IResponseMessage> Call(IRequestMessage message, int timeOutMillisecond = 10000)
     {
         var defaultMessageActorObject = RpcData.Create(message);
         _waitingObjects.Enqueue(defaultMessageActorObject);
         return defaultMessageActorObject.Task;
     }
 
+
     /// <summary>
-    /// 发送
+    /// 异步发送,不等待结果
     /// </summary>
-    /// <param name="message"></param>
+    /// <param name="message">调用消息对象</param>
     public void Send(IRequestMessage message)
     {
         var defaultMessageActorObject = RpcData.Create(message);

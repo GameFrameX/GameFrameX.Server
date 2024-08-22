@@ -77,7 +77,7 @@ namespace GameFrameX.NetWork
         /// 写入消息
         /// </summary>
         /// <param name="messageObject">消息对象</param>
-        public virtual async void Write(IMessage messageObject)
+        public virtual async void Write(INetworkMessage messageObject)
         {
             await WriteAsync(messageObject);
         }
@@ -89,7 +89,7 @@ namespace GameFrameX.NetWork
         /// <param name="messageObject">消息对象</param>
         /// <param name="errorCode">错误码</param>
         /// <returns></returns>
-        public virtual async Task WriteAsync(IMessage messageObject, int errorCode = 0)
+        public virtual async Task WriteAsync(INetworkMessage messageObject, int errorCode = 0)
         {
             messageObject.CheckNotNull(nameof(messageObject));
 

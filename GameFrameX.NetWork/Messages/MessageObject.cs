@@ -108,7 +108,7 @@ namespace GameFrameX.NetWork.Messages
         /// <returns></returns>
         public string ToMessageString()
         {
-            return $"消息ID:[{MessageId}=MainId: {MessageManager.GetMainId(MessageId)} + SubId: {MessageManager.GetSubId(MessageId)},{GetType().Name}] 消息内容:{JsonHelper.Serialize(this)}";
+            return $"消息ID:[{MessageId}=MainId: {MessageIdUtility.GetMainId(MessageId)} + SubId: {MessageIdUtility.GetSubId(MessageId)},{GetType().Name}] 消息内容:{JsonHelper.Serialize(this)}";
         }
 
         /// <summary>

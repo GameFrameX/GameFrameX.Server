@@ -29,8 +29,8 @@ public sealed class CommandInfo : ICommandInfo
     public CommandInfo(int messageId)
     {
         MessageId = messageId;
-        MainId = MessageManager.GetMainId(MessageId);
-        SubId = MessageManager.GetSubId(MessageId);
+        MainId = MessageIdUtility.GetMainId(MessageId);
+        SubId = MessageIdUtility.GetSubId(MessageId);
     }
 
     /// <summary>
@@ -40,7 +40,7 @@ public sealed class CommandInfo : ICommandInfo
     /// <param name="subId"></param>
     public CommandInfo(int mainId, int subId)
     {
-        MessageId = MessageManager.GetMessageId(mainId, subId);
+        MessageId = MessageIdUtility.GetMessageId(mainId, subId);
         MainId = mainId;
         SubId = subId;
     }

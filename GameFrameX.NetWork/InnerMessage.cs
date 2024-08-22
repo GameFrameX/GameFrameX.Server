@@ -87,7 +87,7 @@ public class InnerMessage : IInnerMessage
         _stringBuilder.AppendLine();
         _stringBuilder.AppendLine($"{'\u2193'.RepeatChar(100)}");
         _stringBuilder.AppendLine(
-            $"\u2193---MessageType:[{MessageType?.Name.CenterAlignedText(20)}]---MessageId:[{MessageId.ToString().CenterAlignedText(10)}]---MainId:[{MessageManager.GetMainId(MessageId).ToString().CenterAlignedText(5)}]---SubId:[{MessageManager.GetSubId(MessageId).ToString().CenterAlignedText(5)}]---\u2193");
+            $"\u2193---MessageType:[{MessageType?.Name.CenterAlignedText(20)}]---MessageId:[{MessageId.ToString().CenterAlignedText(10)}]---MainId:[{MessageIdUtility.GetMainId(MessageId).ToString().CenterAlignedText(5)}]---SubId:[{MessageIdUtility.GetSubId(MessageId).ToString().CenterAlignedText(5)}]---\u2193");
         _stringBuilder.AppendLine($"{ToString().WordWrap(100),-100}");
         _stringBuilder.AppendLine($"{'\u2191'.RepeatChar(100)}");
         _stringBuilder.AppendLine();
