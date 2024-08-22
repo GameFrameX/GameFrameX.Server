@@ -1,3 +1,5 @@
+using GameFrameX.Utility;
+
 namespace GameFrameX.ServerManager;
 
 /// <summary>
@@ -27,8 +29,8 @@ public sealed class ServiceStatusInfo
     /// </summary>
     public ServiceStatusInfo()
     {
-        Status      = ServiceStatus.Online;
-        MaxLoad     = 5000;
+        Status = ServiceStatus.Online;
+        MaxLoad = 5000;
         CurrentLoad = 0;
     }
 
@@ -38,6 +40,6 @@ public sealed class ServiceStatusInfo
     /// <returns></returns>
     public override string ToString()
     {
-        return $"MaxLoad:{MaxLoad},CurrentLoad:{CurrentLoad},Status:{Status}";
+        return JsonHelper.SerializeFormat(this);
     }
 }
