@@ -16,15 +16,15 @@ public class CompressTest
     [Test]
     public void compress()
     {
-        var comData = Utility.Compression.Compress(bytes);
+        var comData = GameFrameX.Utility.Compression.Compress(bytes);
         Console.WriteLine(comData);
     }
 
     [Test]
     public void decompress()
     {
-        comData = Utility.Compression.Compress(bytes);
-        var data = Utility.Compression.Decompress(comData);
+        comData = GameFrameX.Utility.Compression.Compress(bytes);
+        var data = GameFrameX.Utility.Compression.Decompress(comData);
         var x = Encoding.UTF8.GetString(data);
         Console.WriteLine(x);
     }
