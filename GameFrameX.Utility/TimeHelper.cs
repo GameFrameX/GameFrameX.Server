@@ -5,8 +5,8 @@
     /// </summary>
     public static class TimeHelper
     {
-        private static readonly DateTime epochLocal = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Local);
-        private static readonly DateTime epochUtc = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Utc);
+        private static readonly DateTime EpochLocal = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Local);
+        private static readonly DateTime EpochUtc = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Utc);
 
         /// <summary>
         /// 返回当前时间的毫秒表示。
@@ -79,8 +79,8 @@
         public static long TimeMillis(DateTime time, bool utc = false)
         {
             if (utc)
-                return (long)(time - epochUtc).TotalMilliseconds;
-            return (long)(time - epochLocal).TotalMilliseconds;
+                return (long)(time - EpochUtc).TotalMilliseconds;
+            return (long)(time - EpochLocal).TotalMilliseconds;
         }
 
         /// <summary>
@@ -92,8 +92,11 @@
         public static int TimeSecond(DateTime time, bool utc = false)
         {
             if (utc)
-                return (int)(time - epochUtc).TotalSeconds;
-            return (int)(time - epochLocal).TotalSeconds;
+            {
+                return (int)(time - EpochUtc).TotalSeconds;
+            }
+
+            return (int)(time - EpochLocal).TotalSeconds;
         }
 
         /// <summary>
@@ -105,8 +108,11 @@
         public static DateTime MillisToDateTime(long time, bool utc = false)
         {
             if (utc)
-                return epochUtc.AddMilliseconds(time);
-            return epochLocal.AddMilliseconds(time);
+            {
+                return EpochUtc.AddMilliseconds(time);
+            }
+
+            return EpochLocal.AddMilliseconds(time);
         }
 
 
@@ -132,9 +138,15 @@
         {
             int days = (int)(after.Date - begin.Date).TotalDays;
             if (begin.Hour < hour)
+            {
                 days++;
+            }
+
             if (after.Hour < hour)
+            {
                 days--;
+            }
+
             return days;
         }
 
@@ -189,9 +201,17 @@
         public static DateTime GetDayOfWeekTime(DateTime t, DayOfWeek d)
         {
             int dd = (int)d;
-            if (dd == 0) dd = 7;
+            if (dd == 0)
+            {
+                dd = 7;
+            }
+
             var dayOfWeek = (int)t.DayOfWeek;
-            if (dayOfWeek == 0) dayOfWeek = 7;
+            if (dayOfWeek == 0)
+            {
+                dayOfWeek = 7;
+            }
+
             return t.AddDays(dd - dayOfWeek).Date;
         }
 
@@ -213,7 +233,11 @@
         public static int GetChinaDayOfWeek(DayOfWeek d)
         {
             int dayOfWeek = (int)d;
-            if (dayOfWeek == 0) dayOfWeek = 7;
+            if (dayOfWeek == 0)
+            {
+                dayOfWeek = 7;
+            }
+
             return dayOfWeek;
         }
 
@@ -254,7 +278,7 @@
         {
             var time1 = UtcToUtcDateTime(timestamp1);
             var time2 = UtcToUtcDateTime(timestamp2);
-            return time1.Date.Year == time2.Date.Year && time1.Date.Month == time2.Date.Month && time1.Date.Day == time2.Date.Day;
+            return IsSameDay(time1, time2);
         }
 
         /// <summary>
@@ -267,7 +291,7 @@
         {
             var time1 = UtcToLocalDateTime(timestamp1);
             var time2 = UtcToLocalDateTime(timestamp2);
-            return time1.Date.Year == time2.Date.Year && time1.Date.Month == time2.Date.Month && time1.Date.Day == time2.Date.Day;
+            return IsSameDay(time1, time2);
         }
 
 
