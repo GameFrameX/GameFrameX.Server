@@ -291,7 +291,7 @@ namespace GameFrameX.Launcher
                 if (isSuccess)
                 {
                     LogHelper.Info($"----------------------------START-----{serverType}------------------------------");
-                    LogHelper.Info($"启动服务器类型:{serverType}, 配置信息:{startUp.Setting}");
+                    LogHelper.Info($"启动服务器类型:{serverType}, 配置信息:{startUp.Setting.ToFormatString()}");
                     LogHelper.Info($"--------------------------------------------------------------------------------");
                     var task = AppEnter.Entry(startUp);
                     LogHelper.Info($"-----------------------------END------{serverType}------------------------------");
