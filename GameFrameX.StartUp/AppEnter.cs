@@ -25,7 +25,7 @@ namespace GameFrameX.StartUp
             try
             {
                 _appStartUp = appStartUp;
-                AppExitHandler.Init(HandleExit);
+                AppExitHandler.Init(HandleExit, appStartUp.Setting);
                 _gameLoopTask = appStartUp.StartAsync();
                 await _gameLoopTask;
                 if (_shutDownTask != null)

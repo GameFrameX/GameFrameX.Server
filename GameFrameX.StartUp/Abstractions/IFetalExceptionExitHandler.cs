@@ -1,3 +1,5 @@
+using GameFrameX.Setting;
+
 namespace GameFrameX.StartUp.Abstractions;
 
 /// <summary>
@@ -9,6 +11,7 @@ public interface IFetalExceptionExitHandler
     /// 执行
     /// </summary>
     /// <param name="tag">标签</param>
+    /// <param name="setting">服务器设置</param>
     /// <param name="message">退出原因</param>
-    void Run(string tag, string message);
+    void Run(string tag, BaseSetting setting, string message);
 }

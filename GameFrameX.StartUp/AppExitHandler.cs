@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Loader;
 using System.Text;
 using GameFrameX.Log;
+using GameFrameX.Setting;
 using GameFrameX.StartUp.Abstractions;
 using GameFrameX.Utility;
 
@@ -15,7 +16,7 @@ namespace GameFrameX.StartUp
     public static class AppExitHandler
     {
         private static Action<string> _existCallBack;
-
+        private static AppSetting _setting;
         private static PosixSignalRegistration _exitSignalRegistration;
         private static bool _isKill = false;
         private static readonly List<IFetalExceptionExitHandler> FetalExceptionExitHandlers = new List<IFetalExceptionExitHandler>();
@@ -23,10 +24,12 @@ namespace GameFrameX.StartUp
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="existCallBack"></param>
-        public static void Init(Action<string> existCallBack)
+        /// <param name="existCallBack">退出回调</param>
+        /// <param name="setting">启动设置</param>
+        public static void Init(Action<string> existCallBack, AppSetting setting)
         {
             _isKill = false;
+            _setting = setting;
             _existCallBack = existCallBack;
             var fetalExceptionExitHandlers = AssemblyHelper.GetRuntimeImplementTypeNames<IFetalExceptionExitHandler>();
             foreach (var exceptionExitHandler in fetalExceptionExitHandlers)
@@ -83,7 +86,7 @@ namespace GameFrameX.StartUp
             {
                 foreach (var fetalExceptionExitHandler in FetalExceptionExitHandlers)
                 {
-                    fetalExceptionExitHandler.Run(tag, e?.ToString());
+                    fetalExceptionExitHandler.Run(tag, _setting, e?.ToString());
                 }
             }
 
