@@ -1,8 +1,11 @@
 ﻿using System.Collections;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.Loader;
 using System.Text;
 using GameFrameX.Log;
+using GameFrameX.StartUp.Abstractions;
+using GameFrameX.Utility;
 
 namespace GameFrameX.StartUp
 {
@@ -13,8 +16,9 @@ namespace GameFrameX.StartUp
     {
         private static Action<string> _existCallBack;
 
-        private static PosixSignalRegistration exitSignalRegistration;
+        private static PosixSignalRegistration _exitSignalRegistration;
         private static bool _isKill = false;
+        private static readonly List<IFetalExceptionExitHandler> FetalExceptionExitHandlers = new List<IFetalExceptionExitHandler>();
 
         /// <summary>
         /// 
@@ -24,7 +28,14 @@ namespace GameFrameX.StartUp
         {
             _isKill = false;
             _existCallBack = existCallBack;
-            exitSignalRegistration = PosixSignalRegistration.Create(PosixSignal.SIGTERM, ExitSignalRegistrationHandler);
+            var fetalExceptionExitHandlers = AssemblyHelper.GetRuntimeImplementTypeNames<IFetalExceptionExitHandler>();
+            foreach (var exceptionExitHandler in fetalExceptionExitHandlers)
+            {
+                var handler = (IFetalExceptionExitHandler)Activator.CreateInstance(exceptionExitHandler);
+                FetalExceptionExitHandlers.Add(handler);
+            }
+
+            _exitSignalRegistration = PosixSignalRegistration.Create(PosixSignal.SIGTERM, ExitSignalRegistrationHandler);
             //退出监听
             AppDomain.CurrentDomain.ProcessExit += (s, e) => { _existCallBack?.Invoke("process exit"); };
             //卸载监听
@@ -66,6 +77,14 @@ namespace GameFrameX.StartUp
             if (_isKill)
             {
                 return;
+            }
+
+            if (FetalExceptionExitHandlers?.Count > 0)
+            {
+                foreach (var fetalExceptionExitHandler in FetalExceptionExitHandlers)
+                {
+                    fetalExceptionExitHandler.Run(tag, e?.ToString());
+                }
             }
 
             //这里可以发送短信或者钉钉消息通知到运维
