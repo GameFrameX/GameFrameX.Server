@@ -40,7 +40,7 @@ namespace GameFrameX.Extension
                 throw new IndexOutOfRangeException(nameof(width));
             }
 
-            int    spaces     = (width - text.Length) / 2;
+            int spaces = (width - text.Length) / 2;
             string paddedText = new string(' ', spaces) + text + new string(' ', spaces);
             return paddedText;
         }
@@ -118,6 +118,26 @@ namespace GameFrameX.Extension
         }
 
         /// <summary>
+        /// 检查字符串是否为 null 或 空 或 空白字符串
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsNullOrEmptyOrWhiteSpace(this string str)
+        {
+            return str.IsNullOrEmpty() || str.IsNullOrWhiteSpace();
+        }
+
+        /// <summary>
+        /// 检查字符串是否 [不] 为 null 或 空 或 空白字符串
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsNotNullOrEmptyOrWhiteSpace(this string str)
+        {
+            return !str.IsNullOrEmptyOrWhiteSpace();
+        }
+
+        /// <summary>
         /// 检查字符串是否不为 null 或空。
         /// </summary>
         /// <param name="str">要检查的字符串。</param>
@@ -172,7 +192,7 @@ namespace GameFrameX.Extension
             if (string.IsNullOrEmpty(str))
                 return Array.Empty<int>();
 
-            var   arr = str.Split(sep);
+            var arr = str.Split(sep);
             int[] ret = new int[arr.Length];
             for (int i = 0; i < arr.Length; ++i)
             {
