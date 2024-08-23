@@ -1,4 +1,6 @@
+using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Agent;
+using GameFrameX.Core.Utility;
 using GameFrameX.Setting;
 
 namespace GameFrameX.Core.BaseHandler;
@@ -17,6 +19,11 @@ public abstract class PlayerComponentHandler : BaseComponentHandler
         if (ActorId <= 0)
         {
             ActorId = NetWorkChannel.GetData<long>(GlobalConst.ActorIdKey);
+        }
+
+        if (ActorId <= 0)
+        {
+            ActorId = ActorIdGenerator.GetActorId(ActorType.Player);
         }
 
         return Task.CompletedTask;
