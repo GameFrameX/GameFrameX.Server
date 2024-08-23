@@ -19,11 +19,11 @@ public static class UnityTcpClient
 
     public static void Entry(string[] args)
     {
-        _tcpClient              =  new AsyncTcpSession();
-        _tcpClient.Connected    += OnTcpClientOnConnected; //成功连接到服务器
-        _tcpClient.Closed       += OnTcpClientOnClosed; //从服务器断开连接，当连接不成功时不会触发。
+        _tcpClient = new AsyncTcpSession();
+        _tcpClient.Connected += OnTcpClientOnConnected; //成功连接到服务器
+        _tcpClient.Closed += OnTcpClientOnClosed; //从服务器断开连接，当连接不成功时不会触发。
         _tcpClient.DataReceived += OnTcpClientOnDataReceived;
-        _tcpClient.Error        += OnTcpClientOnError;
+        _tcpClient.Error += OnTcpClientOnError;
 
         while (true)
         {
@@ -32,7 +32,7 @@ public static class UnityTcpClient
             if (!_tcpClient.IsConnected)
             {
                 Console.WriteLine("未链接到服务器,开启重连");
-                _tcpClient.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 23001));
+                _tcpClient.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 29100));
                 continue;
                 // Console.WriteLine("链接到服务器结果：" + result);
                 // if (result.ResultCode != ResultCode.Success)
@@ -45,20 +45,19 @@ public static class UnityTcpClient
             // for (int i = 0; i < 10; i++)
             {
                 ReqHeartBeat req = new ReqHeartBeat
-                                   {
-                                       Timestamp = TimeHelper.UnixTimeSeconds(),
-                                       UniqueId  = _count
-                                   };
+                {
+                    Timestamp = TimeHelper.UnixTimeSeconds(),
+                };
                 SendToServer(req);
 
                 if (_count % 2 == 0)
                 {
                     ReqLogin reqLogin = new ReqLogin
-                                        {
-                                            UserName = "admin",
-                                            Password = "123456",
-                                            UniqueId = _count
-                                        };
+                    {
+                        UserName = "admin",
+                        Password = "123456",
+                        UniqueId = _count
+                    };
                     SendToServer(reqLogin);
                 }
             }
@@ -93,13 +92,14 @@ public static class UnityTcpClient
 
     private static void DecodeMessage(byte[] data)
     {
-        int offset        = 0;
-        var length        = data.ReadUShort(ref offset);
+        int offset = 0;
+        var length = data.ReadUShort(ref offset);
         var operationType = data.ReadByte(ref offset);
-        var uniqueId      = data.ReadInt(ref offset);
-        int messageId     = data.ReadInt(ref offset);
-        var messageData   = data.ReadBytes(offset, length - offset);
-        var messageType   = MessageProtoHelper.GetMessageTypeById(messageId);
+        var zipFlag = data.ReadByte(ref offset);
+        var uniqueId = data.ReadInt(ref offset);
+        int messageId = data.ReadInt(ref offset);
+        var messageData = data.ReadBytes(offset, length - offset);
+        var messageType = MessageProtoHelper.GetMessageTypeById(messageId);
         if (messageType != null)
         {
             var messageObject = (MessageObject)ProtoBufSerializerHelper.Deserialize(messageData, messageType);
@@ -115,12 +115,13 @@ public static class UnityTcpClient
     private static byte[] Handler(MessageObject message)
     {
         _count++;
-        var    bytes  = ProtoBufSerializerHelper.Serialize(message);
-        ushort len    = (ushort)(2 + 1 + 4 + 4 + bytes.Length);
-        var    buffer = new byte[len];
-        int    offset = 0;
+        var bytes = ProtoBufSerializerHelper.Serialize(message);
+        ushort len = (ushort)(2 + 1 + 1 + 4 + 4 + bytes.Length);
+        var buffer = new byte[len];
+        int offset = 0;
         buffer.WriteUShort(len, ref offset);
         buffer.WriteByte((byte)(message is ReqHeartBeat ? MessageOperationType.HeartBeat : MessageOperationType.Game), ref offset);
+        buffer.WriteByte(0, ref offset);
         buffer.WriteInt(message.UniqueId, ref offset);
         var messageId = MessageProtoHelper.GetMessageIdByType(message.GetType());
         message.SetMessageId(messageId);
