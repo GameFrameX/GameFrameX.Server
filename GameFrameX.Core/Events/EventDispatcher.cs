@@ -24,27 +24,29 @@ namespace GameFrameX.Core.Events
             if (actor != null)
             {
                 var evt = new Event
-                          {
-                              EventId = eventId,
-                              Data    = args
-                          };
+                {
+                    EventId = eventId,
+                    Data = args
+                };
 
-                actor.Tell(async () =>
-                           {
-                               // 事件需要在本actor内执行，不可多线程执行，所以不能使用Task.WhenAll来处理
-                               var listeners = HotfixManager.FindListeners(actor.Type, eventId);
-                               if (listeners.IsNullOrEmpty())
-                               {
-                                   LogHelper.Warn($"事件：{eventId} 没有找到任何监听者");
-                                   return;
-                               }
+                async Task Work()
+                {
+                    // 事件需要在本actor内执行，不可多线程执行，所以不能使用Task.WhenAll来处理
+                    var listeners = HotfixManager.FindListeners(actor.Type, eventId);
+                    if (listeners.IsNullOrEmpty())
+                    {
+                        LogHelper.Warn($"事件：{eventId} 没有找到任何监听者");
+                        return;
+                    }
 
-                               foreach (var listener in listeners)
-                               {
-                                   var comp = await actor.GetComponentAgent(listener.AgentType);
-                                   await listener.HandleEvent(comp, evt);
-                               }
-                           });
+                    foreach (var listener in listeners)
+                    {
+                        var comp = await actor.GetComponentAgent(listener.AgentType);
+                        await listener.HandleEvent(comp, evt);
+                    }
+                }
+
+                actor.Tell(Work);
             }
         }
     }
