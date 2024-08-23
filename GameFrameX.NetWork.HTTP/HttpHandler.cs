@@ -51,28 +51,24 @@ namespace GameFrameX.NetWork.HTTP
                         JsonElement json = await context.Request.ReadFromJsonAsync<JsonElement>();
                         foreach (var keyValuePair in json.EnumerateObject())
                         {
-                            if (paramMap.ContainsKey(keyValuePair.Name))
+                            if (!paramMap.TryAdd(keyValuePair.Name, keyValuePair.Value.GetString()))
                             {
+                                // 参数Key发生重复
                                 await context.Response.WriteAsync(HttpResult.CreateErrorParam("参数重复了:" + keyValuePair.Name));
                                 return;
                             }
-
-                            var key = keyValuePair.Name;
-                            var val = keyValuePair.Value.GetString();
-                            paramMap.TryAdd(key, val);
                         }
                     }
                     else if (isForm)
                     {
                         foreach (var keyValuePair in context.Request.Form)
                         {
-                            if (paramMap.ContainsKey(keyValuePair.Key))
+                            if (!paramMap.TryAdd(keyValuePair.Key, keyValuePair.Value.ToString()))
                             {
+                                // 参数Key发生重复
                                 await context.Response.WriteAsync(HttpResult.CreateErrorParam("参数重复了:" + keyValuePair.Key));
                                 return;
                             }
-
-                            paramMap.Add(keyValuePair.Key, keyValuePair.Value.ToString());
                         }
                     }
                 }
