@@ -14,46 +14,81 @@ namespace GameFrameX.NetWork.Message;
 public class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder<INetworkMessage>
 {
     /// <summary>
+    /// 消息头长度
+    /// </summary>
+    public virtual int MessageHeaderLength { get; } = 12;
+
+    /// <summary>
     /// 和客户端之间的消息 数据长度(2)+消息唯一ID(4)+消息ID(4)+消息内容
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
     public virtual INetworkMessage Handler(byte[] data)
     {
-        try
+        ReadOnlySequence<byte> sequence = new ReadOnlySequence<byte>(data);
+        return Handler(ref sequence);
+    }
+
+    private bool DecodeNetworkMessage(byte zipFlag, byte[] messageData, int messageId, byte operationType, int uniqueId, out INetworkMessage networkMessage)
+    {
+        networkMessage = null;
+        if (zipFlag > 0)
         {
-            int readOffset = 0;
-            var length     = data.ReadUShort(ref readOffset);
-            // 消息类型
-            var operationType = data.ReadByte(ref readOffset);
-            // 压缩标记
-            var zipFlag     = data.ReadByte(ref readOffset);
-            var uniqueId    = data.ReadInt(ref readOffset);
-            var messageId   = data.ReadInt(ref readOffset);
-            var messageData = data.ReadBytes(readOffset, length - readOffset);
-
-            if (zipFlag > 0)
+            if (DecompressHandler == null)
             {
-                if (DecompressHandler == null)
+                LogHelper.Fatal("未设置解压消息处理器, 请先设置解压消息处理器");
                 {
-                    LogHelper.Fatal("未设置解压消息处理器, 请先设置解压消息处理器");
-                    return null;
+                    return true;
                 }
-
-                messageData = DecompressHandler.Handler(messageData);
             }
 
-            var messageType = MessageProtoHelper.GetMessageTypeById(messageId);
-            if (messageType != null)
+            messageData = DecompressHandler.Handler(messageData);
+        }
+
+        var messageType = MessageProtoHelper.GetMessageTypeById(messageId);
+        if (messageType != null)
+        {
+            var message = ProtoBufSerializerHelper.Deserialize(messageData, messageType);
+            if (message is MessageObject messageObject)
             {
-                var message = ProtoBufSerializerHelper.Deserialize(messageData, messageType);
-                if (message is MessageObject messageObject)
+                messageObject.SetMessageId(messageId);
+                messageObject.SetOperationType((MessageOperationType)operationType);
+                messageObject.SetUniqueId(uniqueId);
                 {
-                    messageObject.SetMessageId(messageId);
-                    messageObject.SetOperationType((MessageOperationType)operationType);
-                    messageObject.SetUniqueId(uniqueId);
-                    return messageObject;
+                    networkMessage = messageObject;
+                    return true;
                 }
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sequence"></param>
+    /// <returns></returns>
+    public INetworkMessage Handler(ref ReadOnlySequence<byte> sequence)
+    {
+        var reader = new SequenceReader<byte>(sequence);
+        try
+        {
+            reader.TryReadBigEndian(out ushort length);
+            // 消息类型
+            reader.TryReadBigEndian(out byte operationType);
+            // 压缩标记
+            reader.TryReadBigEndian(out byte zipFlag);
+            // 消息唯一ID
+            reader.TryReadBigEndian(out int uniqueId);
+            // 消息ID
+            reader.TryReadBigEndian(out int messageId);
+
+            reader.TryReadBytes(length - MessageHeaderLength, out var messageData);
+
+            if (DecodeNetworkMessage(zipFlag, messageData, messageId, operationType, uniqueId, out var networkMessage))
+            {
+                return networkMessage;
             }
 
             LogHelper.Fatal("未知消息类型");
@@ -88,6 +123,6 @@ public class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder
     /// <returns></returns>
     public INetworkMessage Decode(ref ReadOnlySequence<byte> buffer, object context)
     {
-        return Handler(buffer.ToArray());
+        return Handler(ref buffer);
     }
 }

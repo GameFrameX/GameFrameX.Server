@@ -1,3 +1,5 @@
+using System.Buffers;
+
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
@@ -6,11 +8,23 @@ namespace GameFrameX.NetWork.Abstractions;
 public interface IMessageDecoderHandler
 {
     /// <summary>
+    /// 消息头长度
+    /// </summary>
+    int MessageHeaderLength { get; }
+
+    /// <summary>
     /// 解析消息
     /// </summary>
-    /// <param name="data"></param>
-    /// <returns></returns>
+    /// <param name="data">消息数据</param>
+    /// <returns>消息结果对象</returns>
     INetworkMessage Handler(byte[] data);
+
+    /// <summary>
+    /// 解析消息
+    /// </summary>
+    /// <param name="sequence">消息数据</param>
+    /// <returns>消息结果对象</returns>
+    INetworkMessage Handler(ref ReadOnlySequence<byte> sequence);
 
     /// <summary>
     /// 设置解压消息处理器
