@@ -78,6 +78,8 @@ namespace GameFrameX.Core.Components
             {
                 await agent.Inactive();
             }
+
+            IsActive = false;
         }
 
         /// <summary>
