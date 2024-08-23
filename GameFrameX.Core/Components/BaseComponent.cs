@@ -9,8 +9,8 @@ namespace GameFrameX.Core.Components
     /// </summary>
     public abstract class BaseComponent : IComponent
     {
-        private          IComponentAgent _cacheAgent     = null;
-        private readonly object          _cacheAgentLock = new();
+        private IComponentAgent _cacheAgent = null;
+        private readonly object _cacheAgentLock = new();
 
         /// <summary>
         /// 根据组件类型获取对应的IComponentAgent数据
@@ -56,7 +56,7 @@ namespace GameFrameX.Core.Components
         /// <summary>
         /// 是否是激活状态
         /// </summary>
-        public bool IsActive { get; private set; } = false;
+        public bool IsActive { get; private set; }
 
         /// <summary>
         /// 激活组件

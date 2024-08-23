@@ -66,7 +66,9 @@ namespace GameFrameX.Core.Components
                 {
                     await func(false, false);
                     if (!GlobalTimer.IsWorking)
+                    {
                         return;
+                    }
                 }
             }
             catch (Exception e)

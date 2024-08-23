@@ -72,7 +72,7 @@ namespace GameFrameX.Core.Components
 
             assembly.CheckNotNull(nameof(assembly));
             var baseCompName = typeof(BaseComponent);
-            var types        = assembly.GetTypes();
+            var types = assembly.GetTypes();
             foreach (var type in types)
             {
                 if (type.IsAbstract || !type.IsSubclassOf(baseCompName))
@@ -122,14 +122,14 @@ namespace GameFrameX.Core.Components
                         var agentType = HotfixManager.GetAgentType(compType);
                         if (agentType == null)
                         {
-                            LogHelper.Info($"{compType}未实现agent");
+                            LogHelper.Warn($"{compType}未实现Agent");
                         }
 
-                        // if (actorType > ActorType.Separator)
-                        // {
-                        //     Log.Info($"激活全局组件：{actorType} {compType}");
-                        //     await ActorMgr.GetCompAgent(agentType, actorType);
-                        // }
+                        /*if (actorType > ActorType.Separator)
+                        {
+                            LogHelper.Info($"激活全局组件：{actorType} {compType}");
+                            await ActorManager.GetComponentAgent(agentType, actorType);
+                        }*/
                     }
 
                     if (actorType > ActorType.Separator)
@@ -211,12 +211,12 @@ namespace GameFrameX.Core.Components
         {
             if (!ActorComponentDic.TryGetValue(actor.Type, out var compTypes))
             {
-                throw new Exception($"获取不属于此actor：{actor.Type}的comp:{compType.FullName}");
+                throw new Exception($"获取不属于此actor：{actor.Type}的Component:{compType.FullName}");
             }
 
             if (!compTypes.Contains(compType))
             {
-                throw new Exception($"获取不属于此actor：{actor.Type}的comp:{compType.FullName}");
+                throw new Exception($"获取不属于此actor：{actor.Type}的Component:{compType.FullName}");
             }
 
             var comp = (BaseComponent)Activator.CreateInstance(compType);

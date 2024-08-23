@@ -69,9 +69,9 @@ namespace GameFrameX.Core.Actors
         /// <returns></returns>
         public static Task<T> GetComponentAgent<T>() where T : IComponentAgent
         {
-            var compType  = HotfixManager.GetCompType(typeof(T));
+            var compType = HotfixManager.GetCompType(typeof(T));
             var actorType = ComponentRegister.GetActorType(compType);
-            var actorId   = ActorIdGenerator.GetActorId(actorType);
+            var actorId = ActorIdGenerator.GetActorId(actorType);
             return GetComponentAgent<T>(actorId);
         }
 
@@ -96,10 +96,10 @@ namespace GameFrameX.Core.Actors
                 else
                 {
                     return await GetLifeActor(actorId).SendAsync(() =>
-                                                                 {
-                                                                     ActiveTimeDic[actorId] = now;
-                                                                     return ActorMap.GetOrAdd(actorId, k => new Actor(k, ActorIdGenerator.GetActorType(k)));
-                                                                 });
+                    {
+                        ActiveTimeDic[actorId] = now;
+                        return ActorMap.GetOrAdd(actorId, k => new Actor(k, ActorIdGenerator.GetActorType(k)));
+                    });
                 }
             }
             else
@@ -126,7 +126,7 @@ namespace GameFrameX.Core.Actors
         private static readonly ConcurrentDictionary<long, DateTime> ActiveTimeDic = new();
 
         private static readonly List<WorkerActor> WorkerActors = new();
-        private const           int               WorkerCount  = 10;
+        private const int WorkerCount = 10;
 
         static ActorManager()
         {
@@ -199,7 +199,7 @@ namespace GameFrameX.Core.Actors
         {
             try
             {
-                var begin    = DateTime.Now;
+                var begin = DateTime.Now;
                 var taskList = new List<Task>();
                 foreach (var actor in ActorMap.Values)
                 {
@@ -232,7 +232,7 @@ namespace GameFrameX.Core.Actors
         {
             try
             {
-                int count    = 0;
+                int count = 0;
                 var taskList = new List<Task>();
                 foreach (var actor in ActorMap.Values)
                 {
@@ -257,7 +257,7 @@ namespace GameFrameX.Core.Actors
                         await Task.WhenAll(taskList);
                         await Task.Delay(1000);
                         taskList = new List<Task>();
-                        count    = 0;
+                        count = 0;
                     }
                 }
             }
@@ -287,7 +287,7 @@ namespace GameFrameX.Core.Actors
             return Task.CompletedTask;
         }
 
-        private const int CrossDayGlobalWaitSeconds  = 60;
+        private const int CrossDayGlobalWaitSeconds = 60;
         private const int CrossDayNotRoleWaitSeconds = 120;
 
         /// <summary>
@@ -298,13 +298,13 @@ namespace GameFrameX.Core.Actors
         public static async Task CrossDay(int openServerDay, ActorType driverActorType)
         {
             // 驱动actor优先执行跨天
-            var id          = ActorIdGenerator.GetActorId(driverActorType);
+            var id = ActorIdGenerator.GetActorId(driverActorType);
             var driverActor = ActorMap[id];
             await driverActor.CrossDay(openServerDay);
 
             var begin = DateTime.Now;
-            int a     = 0;
-            int b     = 0;
+            int a = 0;
+            int b = 0;
             foreach (var actor in ActorMap.Values)
             {
                 if (actor.Type > ActorType.Separator && actor.Type != driverActorType)
@@ -405,7 +405,7 @@ namespace GameFrameX.Core.Actors
         public static void ActorForEach<T>(Func<T, Task> func) where T : IComponentAgent
         {
             var agentType = typeof(T);
-            var compType  = HotfixManager.GetCompType(agentType);
+            var compType = HotfixManager.GetCompType(agentType);
             var actorType = ComponentRegister.GetActorType(compType);
             foreach (var actor in ActorMap.Values)
             {
@@ -430,7 +430,7 @@ namespace GameFrameX.Core.Actors
         public static void ActorForEach<T>(Action<T> action) where T : IComponentAgent
         {
             var agentType = typeof(T);
-            var compType  = HotfixManager.GetCompType(agentType);
+            var compType = HotfixManager.GetCompType(agentType);
             var actorType = ComponentRegister.GetActorType(compType);
             foreach (var actor in ActorMap.Values)
             {

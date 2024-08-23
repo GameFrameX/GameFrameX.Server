@@ -68,8 +68,8 @@ namespace GameFrameX.Core.Actors
         public async Task<IComponentAgent> GetComponentAgent(Type agentType)
         {
             var compType = agentType.BaseType.GetGenericArguments()[0];
-            var comp     = _componentsMap.GetOrAdd(compType, GetOrAddFactory);
-            var agent    = comp.GetAgent(agentType);
+            var comp = _componentsMap.GetOrAdd(compType, GetOrAddFactory);
+            var agent = comp.GetAgent(agentType);
             if (!comp.IsActive)
             {
                 async Task Worker()
@@ -106,8 +106,8 @@ namespace GameFrameX.Core.Actors
         /// <param name="type"></param>
         public Actor(long id, ActorType type)
         {
-            Id          = id;
-            Type        = type;
+            Id = id;
+            Type = type;
             WorkerActor = new WorkerActor(id);
 
             if (type == ActorType.Player)
