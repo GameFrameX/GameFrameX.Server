@@ -35,8 +35,8 @@ namespace GameFrameX.NetWork.HTTP
                     paramMap.Add(keyValuePair.Key, keyValuePair.Value.ToString());
                 }
 
-                if (context.Request.Method.Equals("POST"))
                 context.Response.Headers.ContentType = ContentType;
+                if (string.Equals(context.Request.Method, HttpMethod.Post.Method, StringComparison.OrdinalIgnoreCase))
                 {
                     var headCType = context.Request.ContentType;
                     if (string.IsNullOrEmpty(headCType))
