@@ -127,20 +127,6 @@ jobs:
           VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
-      - name: Publish GameFrameX.Cache.Memory
-        uses: AlianBlank/publish-nuget@v1.0.2
-        with:
-          PROJECT_FILE_PATH: GameFrameX.Cache.Memory/GameFrameX.Cache.Memory.csproj
-          VERSION_FILE_PATH: Version.props
-          NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-
-      - name: Publish GameFrameX.Cache
-        uses: AlianBlank/publish-nuget@v1.0.2
-        with:
-          PROJECT_FILE_PATH: GameFrameX.Cache/GameFrameX.Cache.csproj
-          VERSION_FILE_PATH: Version.props
-          NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-
       - name: Publish GameFrameX.DataBase
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
