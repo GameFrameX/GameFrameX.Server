@@ -172,9 +172,7 @@ namespace GameFrameX.Hotfix.Common
                     return;
                 }
 
-                handler.Message = message;
-                handler.NetWorkChannel = SessionManager.GetChannel(appSession.SessionID);
-                await handler.Init();
+                await handler.Init(message, SessionManager.GetChannel(appSession.SessionID));
                 await handler.InnerAction();
             }
         }

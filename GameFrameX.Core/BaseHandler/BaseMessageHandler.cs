@@ -12,19 +12,24 @@ namespace GameFrameX.Core.BaseHandler
         /// <summary>
         /// 网络频道
         /// </summary>
-        public INetWorkChannel NetWorkChannel { get; set; }
+        public INetWorkChannel NetWorkChannel { get; private set; }
 
         /// <summary>
         /// 消息对象
         /// </summary>
-        public INetworkMessage Message { get; set; }
+        public INetworkMessage Message { get; private set; }
 
         /// <summary>
         /// 初始化
+        /// 子类实现必须调用
         /// </summary>
+        /// <param name="message">消息对象</param>
+        /// <param name="netWorkChannel">网络渠道</param>
         /// <returns></returns>
-        public virtual Task Init()
+        public virtual Task Init(INetworkMessage message, INetWorkChannel netWorkChannel)
         {
+            Message = message;
+            NetWorkChannel = netWorkChannel;
             return Task.CompletedTask;
         }
 

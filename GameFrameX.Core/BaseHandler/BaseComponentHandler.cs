@@ -1,5 +1,6 @@
 ﻿using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Actors;
+using GameFrameX.NetWork.Abstractions;
 
 namespace GameFrameX.Core.BaseHandler
 {
@@ -29,11 +30,16 @@ namespace GameFrameX.Core.BaseHandler
         /// <returns></returns>
         protected abstract Task InitActor();
 
+
         /// <summary>
         /// 初始化
         /// </summary>
-        public override async Task Init()
+        /// <param name="message"></param>
+        /// <param name="netWorkChannel"></param>
+        /// <returns></returns>
+        public override async Task Init(INetworkMessage message, INetWorkChannel netWorkChannel)
         {
+            await base.Init(message, netWorkChannel);
             await InitActor();
             if (CacheComponent == null)
             {
