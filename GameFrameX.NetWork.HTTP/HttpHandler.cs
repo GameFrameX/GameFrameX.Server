@@ -23,11 +23,11 @@ namespace GameFrameX.NetWork.HTTP
         {
             try
             {
-                string ip  = context.Connection.RemoteIpAddress.ToString();
+                string ip = context.Connection.RemoteIpAddress?.ToString();
                 string url = context.Request.PathBase + context.Request.Path;
 
-                string command = context.Request.Path.ToString().Substring(HttpServer.GameApiPath.Length);
-                LogHelper.Info("收到来自[{}]的HTTP请求. 请求url:[{}]", ip, url);
+                string command = context.Request.Path.ToString().Substring(HttpServer.ApiRootPath.Length);
+                LogHelper.Info($"收到来自[{ip}]的HTTP请求. 请求url:[{url}],TraceIdentifier:[{context.TraceIdentifier}]");
                 Dictionary<string, string> paramMap = new Dictionary<string, string>();
 
                 foreach (var keyValuePair in context.Request.Query)
@@ -38,8 +38,8 @@ namespace GameFrameX.NetWork.HTTP
                 context.Response.Headers.ContentType = ContentType;
                 if (string.Equals(context.Request.Method, HttpMethod.Post.Method, StringComparison.OrdinalIgnoreCase))
                 {
-                    var headCType = context.Request.ContentType;
-                    if (string.IsNullOrEmpty(headCType))
+                    var headContentType = context.Request.ContentType;
+                    if (headContentType.IsNullOrWhiteSpace())
                     {
                         await context.Response.WriteAsync("http header content type is null");
                         return;
@@ -73,13 +73,18 @@ namespace GameFrameX.NetWork.HTTP
                             }
                         }
                     }
+                    else
+                    {
+                        await context.Response.WriteAsync(HttpResult.CreateErrorParam("不支持的Content Type: " + headContentType));
+                        return;
+                    }
                 }
 
                 var str = new StringBuilder();
-                str.Append("请求参数:");
+                str.Append($"TraceIdentifier:[{context.TraceIdentifier}]:请求参数:");
                 foreach (var parameter in paramMap)
                 {
-                    if (parameter.Key.Equals(""))
+                    if (parameter.Key.IsNullOrEmptyOrWhiteSpace())
                     {
                         continue;
                     }
@@ -89,9 +94,10 @@ namespace GameFrameX.NetWork.HTTP
 
                 LogHelper.Info(str.ToString());
 
-                if (command.IsNullOrEmpty())
+                // 检查指令是否有效
+                if (command.IsNullOrEmptyOrWhiteSpace())
                 {
-                    await context.Response.WriteAsync(HttpResult.Undefine);
+                    await context.Response.WriteAsync(HttpResult.Undefined);
                     return;
                 }
 
@@ -105,26 +111,26 @@ namespace GameFrameX.NetWork.HTTP
                 if (handler == null)
                 {
                     LogHelper.Warn($"http cmd handler 不存在：{command}");
-                    await context.Response.WriteAsync(HttpResult.Undefine);
+                    await context.Response.WriteAsync(HttpResult.NotFound);
                     return;
                 }
 
                 //验证
                 var checkCode = handler.CheckSign(paramMap);
-                if (!string.IsNullOrEmpty(checkCode))
+                if (checkCode.IsNotNullOrEmptyOrWhiteSpace())
                 {
-                    await context.Response.WriteAsync(checkCode);
+                    await context.Response.WriteAsync(HttpResult.CheckFailed);
                     return;
                 }
 
-                var ret = await Task.Run(() => { return handler.Action(ip, url, paramMap); });
-                LogHelper.Warn("http result:" + ret);
-                await context.Response.WriteAsync(ret);
+                var result = await Task.Run(() => { return handler.Action(ip, url, paramMap); });
+                LogHelper.Warn($"执行http命令：{command}, TraceIdentifier:[{context.TraceIdentifier}]: Results: {result}");
+                await context.Response.WriteAsync(result);
             }
             catch (Exception e)
             {
                 LogHelper.Error("执行http异常. {0} {1}", e.Message, e.StackTrace);
-                await context.Response.WriteAsync(e.Message);
+                await context.Response.WriteAsync(HttpResult.Create(HttpStatusCode.ServerError, e.Message));
             }
         }
     }
