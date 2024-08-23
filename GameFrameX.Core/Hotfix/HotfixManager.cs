@@ -5,7 +5,7 @@ using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Core.BaseHandler;
 using GameFrameX.Core.Components;
-using GameFrameX.Core.Events;
+using GameFrameX.Extension;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.Setting;
 
@@ -41,18 +41,22 @@ namespace GameFrameX.Core.Hotfix
         /// 加载热更新模块
         /// </summary>
         /// <param name="setting"></param>
-        /// <param name="dllVersion"></param>
-        /// <returns></returns>
-        public static async Task<bool> LoadHotfixModule(AppSetting setting, string dllVersion = "")
+        /// <param name="dllPath">热更新程序集路径，默认为hotfix</param>
+        /// <param name="hotfixDllName">热更新程序集名称</param>
+        /// <param name="dllVersion">Dll版本.当不为空的时候会优先加载指定的Dll.替换 dllPath 参数</param>
+        /// <returns>返回是否成功</returns>
+        public static async Task<bool> LoadHotfixModule(AppSetting setting, string dllVersion = "", string dllPath = "hotfix", string hotfixDllName = "GameFrameX.Hotfix.dll")
         {
+            dllPath.CheckNotNullOrEmptyOrWhiteSpace(nameof(dllPath));
+            hotfixDllName.CheckNotNullOrEmptyOrWhiteSpace(nameof(hotfixDllName));
             if (setting != null)
             {
                 _baseSetting = setting;
             }
 
-            var  dllPath      = Path.Combine(Environment.CurrentDirectory, string.IsNullOrEmpty(dllVersion) ? "hotfix/GameFrameX.Hotfix.dll" : $"{dllVersion}/GameFrameX.Hotfix.dll");
-            var  hotfixModule = new HotfixModule(dllPath);
-            bool reload       = _module != null;
+            var path = Path.Combine(Environment.CurrentDirectory, string.IsNullOrEmpty(dllVersion) ? dllPath : $"{dllVersion}", hotfixDllName);
+            var hotfixModule = new HotfixModule(path);
+            bool reload = _module != null;
             // 起服时失败会有异常抛出
             var success = hotfixModule.Init(reload);
             if (!success)
@@ -73,12 +77,12 @@ namespace GameFrameX.Core.Hotfix
                 int oldModuleHash = oldModule.GetHashCode();
                 OldModuleMap.TryAdd(oldModuleHash, oldModule);
                 _ = Task.Run(async () =>
-                             {
-                                 await Task.Delay(1000 * 60 * 3);
-                                 OldModuleMap.TryRemove(oldModuleHash, out _);
-                                 oldModule.Unload();
-                                 DoingHotfix = !OldModuleMap.IsEmpty;
-                             });
+                {
+                    await Task.Delay(1000 * 60 * 3);
+                    OldModuleMap.TryRemove(oldModuleHash, out _);
+                    oldModule.Unload();
+                    DoingHotfix = !OldModuleMap.IsEmpty;
+                });
             }
 
             _module = newModule;
@@ -120,7 +124,7 @@ namespace GameFrameX.Core.Hotfix
         {
             if (!OldModuleMap.IsEmpty)
             {
-                var asb  = typeof(T).Assembly;
+                var asb = typeof(T).Assembly;
                 var asb2 = refAssemblyType?.Assembly;
                 foreach (var kv in OldModuleMap)
                 {
