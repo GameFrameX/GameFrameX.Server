@@ -182,6 +182,20 @@ namespace GameFrameX.Extension
         }
 
         /// <summary>
+        /// 确保指定的值不为null或空或空白字符串。
+        /// </summary>
+        /// <param name="value">要检查的值。</param>
+        /// <param name="name">值的名称。</param>
+        /// <exception cref="ArgumentNullException">当值为null或空或空白字符串时引发。</exception>
+        public static void CheckNotNullOrEmptyOrWhiteSpace(this string value, string name)
+        {
+            if (value.IsNullOrEmptyOrWhiteSpace())
+            {
+                throw new ArgumentNullException(name, " can not be null.");
+            }
+        }
+
+        /// <summary>
         /// 将字符串按指定的分隔符拆分为整数数组。
         /// </summary>
         /// <param name="str">要拆分的字符串。</param>
