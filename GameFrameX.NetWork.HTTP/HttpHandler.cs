@@ -12,6 +12,8 @@ namespace GameFrameX.NetWork.HTTP
     /// </summary>
     public static class HttpHandler
     {
+        private const string ContentType = "application/json; charset=utf-8";
+
         /// <summary>
         /// 处理HTTP请求
         /// </summary>
@@ -33,8 +35,8 @@ namespace GameFrameX.NetWork.HTTP
                     paramMap.Add(keyValuePair.Key, keyValuePair.Value.ToString());
                 }
 
-                context.Response.Headers.Add("content-type", "application/json; charset=utf-8");
                 if (context.Request.Method.Equals("POST"))
+                context.Response.Headers.ContentType = ContentType;
                 {
                     var headCType = context.Request.ContentType;
                     if (string.IsNullOrEmpty(headCType))
