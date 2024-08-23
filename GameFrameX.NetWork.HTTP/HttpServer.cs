@@ -36,6 +36,7 @@ namespace GameFrameX.NetWork.HTTP
         /// <param name="minimumLevelLogLevel">日志记录最小级别</param>
         public static Task Start(int httpPort, int httpsPort, Func<string, BaseHttpHandler> baseHandler, string apiRootPath = GameApiPath, LogLevel minimumLevelLogLevel = LogLevel.Debug)
         {
+            LogHelper.Info("开始启动 HTTP 服务器...");
             baseHandler.CheckNotNull(nameof(baseHandler));
 
             // 如果没有指定端口，则默认为28080
@@ -95,7 +96,9 @@ namespace GameFrameX.NetWork.HTTP
             string routePath = $"{ApiRootPath}{{text}}";
             App.MapGet(routePath, context => HttpHandler.HandleRequest(context, baseHandler));
             App.MapPost(routePath, context => HttpHandler.HandleRequest(context, baseHandler));
-            return App.StartAsync();
+            var task = App.StartAsync();
+            LogHelper.Info("启动 HTTP 服务器完成...");
+            return task;
         }
 
         /// <summary>
