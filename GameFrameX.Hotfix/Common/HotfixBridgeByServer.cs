@@ -32,57 +32,70 @@ namespace GameFrameX.Hotfix.Common
                 return;
             }
 
-            LogHelper.Info("load config data");
-            await StartServer();
+            StartServer();
             await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetHttpHandler);
-            LogHelper.Info("启动 HTTP 服务器完成...");
         }
 
         /// <summary>
         /// 服务器。对外提供服务
         /// </summary>
-        private IServer tcpService;
+        private IServer _tcpService;
 
         /// <summary>
         /// WS服务器
         /// </summary>
-        private IHost webSocketServer;
+        private IHost _webSocketServer;
 
-        private async Task StartServer()
+        private void StartServer()
         {
-            webSocketServer = WebSocketHostBuilder.Create()
-                                                  .UseWebSocketMessageHandler(WebSocketMessageHandler)
-                                                  .UseSessionHandler(OnConnected, OnDisconnected)
-                                                  .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)(ConfigureWebServer))
-                                                  .Build();
-            await webSocketServer.StartAsync();
-            LogHelper.Info("启动 WebSocket 服务器完成...");
-            tcpService = SuperSocketHostBuilder.Create<INetworkMessage, MessageObjectPipelineFilter>()
-                                               .ConfigureSuperSocket(ConfigureSuperSocket)
-                                               .UseClearIdleSession()
-                                               .UsePackageDecoder<BaseMessageDecoderHandler>()
-                                               .UseSessionHandler(OnConnected, OnDisconnected)
-                                               .UsePackageHandler(MessagePackageHandler, ClientErrorHandler)
-                                               .UseInProcSessionContainer()
-                                               // .ConfigureServices((services) =>
-                                               // {
-                                               //     var eventBusBuilder = services.AddEventBus((options => { }));
-                                               //     eventBusBuilder.AddMySql<DataContext>();
-                                               //     eventBusBuilder.AddMemoryQueue();
-                                               // })
-                                               .BuildAsServer();
-
-
-            // 获取解码器
-            var baseMessageDecoderHandler = (BaseMessageDecoderHandler)tcpService.ServiceProvider.GetService(typeof(IPackageDecoder<INetworkMessage>));
-            // 设置解码器的解压缩处理器
-            baseMessageDecoderHandler?.SetDecompressionHandler(new BaseMessageDecompressHandler());
-
-            messageDecoderHandler.SetDecompressionHandler(new BaseMessageDecompressHandler());
-            // 设置编码器的压缩处理器
             messageEncoderHandler.SetCompressionHandler(new BaseMessageCompressHandler());
-            await tcpService.StartAsync();
-            LogHelper.Info("启动 TCP 服务器完成...");
+            messageDecoderHandler.SetDecompressionHandler(new BaseMessageDecompressHandler());
+
+            // 启动网络服务
+            StartTcpServer();
+            StartWebSocketServer();
+        }
+
+        /// <summary>
+        /// 启动WebSocket
+        /// </summary>
+        private async void StartWebSocketServer()
+        {
+            if (Setting.WsPort > 0)
+            {
+                LogHelper.Info("启动 WebSocket 服务器开始...");
+                _webSocketServer = WebSocketHostBuilder.Create()
+                                                       .UseWebSocketMessageHandler(WebSocketMessageHandler)
+                                                       .UseSessionHandler(OnConnected, OnDisconnected)
+                                                       .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)(ConfigureWebServer)).Build();
+                await _webSocketServer.StartAsync();
+                LogHelper.Info("启动 WebSocket 服务器完成...");
+            }
+        }
+
+        /// <summary>
+        /// 启动TCP
+        /// </summary>
+        private async void StartTcpServer()
+        {
+            if (Setting.InnerPort > 0)
+            {
+                LogHelper.Info("启动 TCP 服务器开始...");
+                _tcpService = SuperSocketHostBuilder.Create<INetworkMessage, MessageObjectPipelineFilter>()
+                                                    .ConfigureSuperSocket(ConfigureSuperSocket)
+                                                    .UseClearIdleSession()
+                                                    .UsePackageDecoder<BaseMessageDecoderHandler>()
+                                                    .UseSessionHandler(OnConnected, OnDisconnected)
+                                                    .UsePackageHandler(MessagePackageHandler, ClientErrorHandler)
+                                                    .UseInProcSessionContainer()
+                                                    .BuildAsServer();
+
+                // 设置消息解压缩的处理器
+                var baseMessageDecoderHandler = (BaseMessageDecoderHandler)_tcpService.ServiceProvider.GetService(typeof(IPackageDecoder<INetworkMessage>));
+                baseMessageDecoderHandler?.SetDecompressionHandler(new BaseMessageDecompressHandler());
+                await _tcpService.StartAsync();
+                LogHelper.Info("启动 TCP 服务器完成...");
+            }
         }
 
         /// <summary>
@@ -176,8 +189,15 @@ namespace GameFrameX.Hotfix.Common
         public async Task StopServer()
         {
             // 关闭网络服务
-            await webSocketServer.StopAsync();
-            await tcpService.StopAsync();
+            if (_webSocketServer != null)
+            {
+                await _webSocketServer.StopAsync();
+            }
+
+            if (_tcpService != null)
+            {
+                await _tcpService.StopAsync();
+            }
         }
     }
 }
