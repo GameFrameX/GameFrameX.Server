@@ -11,12 +11,22 @@ namespace GameFrameX.NetWork.HTTP
         /// <summary>
         /// 成功
         /// </summary>
-        public static readonly HttpResult Success = new HttpResult(HttpStatusCode.Success, "ok");
+        public static readonly HttpResult Success = new HttpResult(HttpStatusCode.Success, HttpStatusMessage.Success);
 
         /// <summary>
         /// 未定义的命令
         /// </summary>
-        public static readonly HttpResult Undefine = new HttpResult(HttpStatusCode.Undefine, "undefine command");
+        public static readonly HttpResult Undefined = new HttpResult(HttpStatusCode.Undefined, HttpStatusMessage.UndefinedCommand);
+
+        /// <summary>
+        /// 未找到的命令
+        /// </summary>
+        public static readonly HttpResult NotFound = new HttpResult(HttpStatusCode.NotFound, HttpStatusMessage.NotFoundCommand);
+
+        /// <summary>
+        /// 验证失败的命令
+        /// </summary>
+        public static readonly HttpResult CheckFailed = new HttpResult(HttpStatusCode.CheckFailed, HttpStatusMessage.CheckFailedCommand);
 
 
         /// <summary>
@@ -82,9 +92,9 @@ namespace GameFrameX.NetWork.HTTP
 
         private HttpResult(HttpStatusCode retCode = HttpStatusCode.Success, string retMessage = "ok", object data = null)
         {
-            Code    = retCode;
+            Code = retCode;
             Message = retMessage;
-            Data    = data;
+            Data = data;
         }
 
 
