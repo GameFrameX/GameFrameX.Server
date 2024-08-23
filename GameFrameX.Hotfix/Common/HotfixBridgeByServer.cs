@@ -146,9 +146,8 @@ namespace GameFrameX.Hotfix.Common
                 return;
             }
 
-            var bytes = message.Data;
-            var buffer = bytes.ToArray();
-            var messageObject = messageDecoderHandler.Handler(buffer);
+            var readOnlySequence = message.Data;
+            var messageObject = messageDecoderHandler.Handler(ref readOnlySequence);
             await MessagePackageHandler(session, messageObject);
         }
 
