@@ -13,7 +13,7 @@ public enum HttpStatusCode
     ///<summary>
     /// 未定义的命令
     /// </summary>
-    Undefine = 11,
+    Undefined = 11,
 
     ///<summary>
     /// 非法
@@ -33,5 +33,15 @@ public enum HttpStatusCode
     ///<summary>
     /// 操作失败
     /// </summary>
-    ActionFailed = 15
+    ActionFailed = 15,
+
+    ///<summary>
+    /// 未找到的命令
+    /// </summary>
+    NotFound = 16,
+
+    /// <summary>
+    /// 服务器错误
+    /// </summary>
+    ServerError = 17,
 }
