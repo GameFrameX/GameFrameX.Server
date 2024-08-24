@@ -18,6 +18,8 @@ using GameFrameX.SuperSocket.WebSocket;
 using GameFrameX.SuperSocket.WebSocket.Server;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Serilog;
 using CloseReason = GameFrameX.SuperSocket.Connection.CloseReason;
 
 namespace GameFrameX.Hotfix.Common
@@ -88,6 +90,7 @@ namespace GameFrameX.Hotfix.Common
                                                     .UseSessionHandler(OnConnected, OnDisconnected)
                                                     .UsePackageHandler(MessagePackageHandler, ClientErrorHandler)
                                                     .UseInProcSessionContainer()
+                                                    .ConfigureLogging(ConfigureLogging)
                                                     .BuildAsServer();
 
                 // 设置消息解压缩的处理器
@@ -96,6 +99,12 @@ namespace GameFrameX.Hotfix.Common
                 await _tcpService.StartAsync();
                 LogHelper.Info("启动 TCP 服务器完成...");
             }
+        }
+
+        private void ConfigureLogging(HostBuilderContext context, ILoggingBuilder loggingBuilder)
+        {
+            loggingBuilder.ClearProviders();
+            loggingBuilder.AddSerilog(Serilog.Log.Logger);
         }
 
         /// <summary>
