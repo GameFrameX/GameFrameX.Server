@@ -10,7 +10,7 @@ namespace GameFrameX.StartUp
     /// <summary>
     /// App入口
     /// </summary>
-    public static class AppEnter
+    internal static class AppEnter
     {
         private static volatile bool _exitCalled = false;
         private static volatile Task _gameLoopTask = null;
@@ -21,7 +21,7 @@ namespace GameFrameX.StartUp
         /// 启动
         /// </summary>
         /// <param name="appStartUp">启动对象</param>
-        public static async Task Entry(IAppStartUp appStartUp)
+        internal static async Task Entry(IAppStartUp appStartUp)
         {
             appStartUp.CheckNotNull(nameof(appStartUp));
 
