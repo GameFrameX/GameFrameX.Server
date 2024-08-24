@@ -34,9 +34,9 @@ public class AgentGenerator : ISourceGenerator
                 var fullName = agent.GetFullName();
                 var info = new AgentInfo();
                 info.Super = agent.Identifier.Text;
-                info.Name = info.Super + "Wrapper";
+                info.Name = info.Super + GlobalConst.WrapperNameSuffix;
                 //info.Space = Tools.GetNameSpace(fullName);
-                info.Space = GlobalConst.HotfixNameSpaceNamePrefix + "Wrapper.Agent";
+                info.Space = GlobalConst.HotfixNameSpaceNamePrefix + GlobalConst.WrapperNameSuffix + ".Agent";
 
                 string outFileName = null;
 
