@@ -1,5 +1,4 @@
-﻿using GameFrameX.Entry;
-using GameFrameX.NetWork.Message;
+﻿using GameFrameX.NetWork.Message;
 
 namespace GameFrameX.Launcher
 {
