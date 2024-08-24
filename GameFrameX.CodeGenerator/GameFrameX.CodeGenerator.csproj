@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -36,6 +36,9 @@
   <ItemGroup>
     <EmbeddedResource Include="$(PKGScriban)\lib\netstandard2.0\Scriban.dll" Visible="false" />
     <EmbeddedResource Include="$(ProjectPath)\..\Template\Agent.liquid" Visible="true" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameFrameX.Setting\GameFrameX.Setting.csproj" />
   </ItemGroup>
 
 </Project>
