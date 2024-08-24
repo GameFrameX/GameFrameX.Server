@@ -1,8 +1,10 @@
 ﻿using GameFrameX.NetWork.Abstractions;
+using GameFrameX.NetWork.Messages;
+using GameFrameX.Setting;
 
-namespace GameFrameX.Launcher.Common.Session
+namespace GameFrameX.Apps.Common.Session
 {
-    public class Session
+    public sealed class Session
     {
         /// <summary>
         /// 全局会话ID

@@ -1,4 +1,4 @@
-﻿namespace GameFrameX.Launcher.Common.Event
+﻿namespace GameFrameX.Apps.Common.Event
 {
     public enum EventId
     {
