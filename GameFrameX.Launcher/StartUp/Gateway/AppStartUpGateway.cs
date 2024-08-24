@@ -1,4 +1,4 @@
-﻿using GameFrameX.Launcher.Common.Session;
+﻿using GameFrameX.Apps.Common.Session;
 using GameFrameX.Launcher.StartUp.Gateway;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Message;

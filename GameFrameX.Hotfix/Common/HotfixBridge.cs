@@ -1,7 +1,7 @@
-﻿using GameFrameX.Core.Components;
+﻿using GameFrameX.Apps.Common.Session;
+using GameFrameX.Core.Components;
 using GameFrameX.Hotfix.StartUp;
 using GameFrameX.Launcher;
-using GameFrameX.Launcher.Common.Session;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Messages;
 
