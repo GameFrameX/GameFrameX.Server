@@ -44,7 +44,6 @@ namespace GameFrameX.Hotfix.Logic.Server.Server
             WithCronExpression<CrossDayTimeHandler>("0 0 0 * * ? *");
         }
 
-
         [Service]
         [Discard]
         public virtual ValueTask AddOnlineRole(long roleId)
@@ -60,8 +59,7 @@ namespace GameFrameX.Hotfix.Logic.Server.Server
             OwnerComponent.OnlineSet.Remove(roleId);
             return ValueTask.CompletedTask;
         }
-
-
+        
         public static async Task OnlineRoleForeach(Action<PlayerComponentAgent> func)
         {
             var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
