@@ -7,4 +7,10 @@ using GameFrameX.Proto;
 
 MessageProtoHelper.Init(typeof(MessageProtoHandler).Assembly);
 
-UnityTcpClient.Entry(args);
+new UnityTcpClient().Entry(args);
+// for (int i = 0; i < 20; i++)
+// {
+//     Task.Run(() => { new UnityTcpClient().Entry(args); });
+// }
+
+Console.ReadKey();

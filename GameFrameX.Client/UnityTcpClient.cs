@@ -13,11 +13,11 @@ using ErrorEventArgs = GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs;
 
 namespace GameFrameX.Client;
 
-public static class UnityTcpClient
+public class UnityTcpClient
 {
-    private static AsyncTcpSession _tcpClient;
+    private AsyncTcpSession _tcpClient;
 
-    public static void Entry(string[] args)
+    public void Entry(string[] args)
     {
         _tcpClient = new AsyncTcpSession();
         _tcpClient.Connected += OnTcpClientOnConnected; //成功连接到服务器
@@ -64,7 +64,7 @@ public static class UnityTcpClient
         }
     }
 
-    private static void SendToServer(MessageObject messageObject)
+    private void SendToServer(MessageObject messageObject)
     {
         var buffer = Handler(messageObject);
         _tcpClient.Send(buffer);
