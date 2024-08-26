@@ -7,7 +7,7 @@ public class MthInfo
 {
     public string Name { get; set; }
 
-    public string ReturnType { get; set; }
+    public string Returntype { get; set; }
 
     public string Declare
     {
@@ -15,7 +15,7 @@ public class MthInfo
         {
             var sb = new StringBuilder();
             sb.Append(Modify);
-            sb.Append(ReturnType);
+            sb.Append(Returntype);
             sb.Append(" ");
             sb.Append(Name);
             sb.Append(Typeparams);
