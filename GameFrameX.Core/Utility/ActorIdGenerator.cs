@@ -41,14 +41,14 @@ namespace GameFrameX.Core.Utility
             return (int)(actorId >> GlobalConst.ServerIdOrModuleIdMask);
         }
 
-        /// <summary>
+        /*/// <summary>
         /// 根据ActorId获取生成时间
         /// </summary>
         /// <param name="actorId">ActorId</param>
         /// <param name="isUtc">是否使用UTC</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        /*public static DateTime GetGenerateTime(long actorId, bool isUtc = false)
+        public static DateTime GetGenerateTime(long actorId, bool isUtc = false)
         {
             if (actorId < GlobalConst.MaxGlobalId)
             {
