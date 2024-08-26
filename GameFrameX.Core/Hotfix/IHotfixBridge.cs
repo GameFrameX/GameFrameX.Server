@@ -7,10 +7,6 @@ namespace GameFrameX.Core.Hotfix
     /// </summary>
     public interface IHotfixBridge
     {
-        /// <summary>
-        /// 桥接类型
-        /// </summary>
-        ServerType BridgeType { get; }
 
         /// <summary>
         /// 加载成功

@@ -155,10 +155,8 @@ namespace GameFrameX.Core.Hotfix
                     if ((HotfixBridge == null && type.GetInterface(fullName) != null))
                     {
                         var bridge = (IHotfixBridge)Activator.CreateInstance(type);
-                        if (bridge.BridgeType == ServerType.Game)
-                        {
-                            HotfixBridge = bridge;
-                        }
+
+                        HotfixBridge = bridge;
                     }
                 }
 
