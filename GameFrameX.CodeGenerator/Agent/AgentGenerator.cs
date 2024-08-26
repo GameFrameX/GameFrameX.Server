@@ -107,7 +107,7 @@ public class AgentGenerator : ISourceGenerator
                             continue;
                         }
 
-                        mth.ReturnType = method.ReturnType?.ToString() ?? "void"; //Task<T>
+                        mth.Returntype = method.ReturnType?.ToString() ?? "void"; //Task<T>
                         //遍历注解
                         foreach (var a in method.AttributeLists)
                         {
@@ -166,7 +166,7 @@ public class AgentGenerator : ISourceGenerator
                             continue;
                         }
 
-                        if (mth.IsApi && !mth.Threadsafe && !mth.ReturnType.Contains("Task"))
+                        if (mth.IsApi && !mth.Threadsafe && !mth.Returntype.Contains("Task"))
                         {
                             context.LogError($"{fullName}.{method.Identifier.Text}, 非【Threadsafe】的【Api】接口只能是异步函数");
                         }
@@ -182,7 +182,7 @@ public class AgentGenerator : ISourceGenerator
                             mth.Name = method.Identifier.Text;
                             mth.ParamDeclare = method.ParameterList.ToString(); //(int a, List<int> list)
                             //mth.Returntype = method.ReturnType.ToString();   //Task<T>
-                            if (mth.Discard && !mth.ReturnType.Equals("Task") && !mth.ReturnType.Equals("ValueTask"))
+                            if (mth.Discard && !mth.Returntype.Equals("Task") && !mth.Returntype.Equals("ValueTask"))
                             {
                                 context.LogError($"{fullName}.{method.Identifier.Text}只有返回值为Task类型或ValueTask类型才能添加【Discard】注解");
                             }
