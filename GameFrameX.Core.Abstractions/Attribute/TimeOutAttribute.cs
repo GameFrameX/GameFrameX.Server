@@ -23,8 +23,8 @@ public sealed class TimeOutAttribute : System.Attribute
     /// <summary>
     /// 超时时间
     /// </summary>
-    /// <param name="timeout"></param>
-    public TimeOutAttribute(TimeSpan timeout) : this(timeout.Milliseconds)
+    /// <param name="timeOut"></param>
+    public TimeOutAttribute(TimeSpan timeOut) : this(timeOut.Milliseconds)
     {
     }
 }
