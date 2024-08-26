@@ -38,7 +38,7 @@ internal partial class AppStartUpRouter
             return;
         }
 
-        var buffer = messageEncoderHandler.InnerHandler(message);
+        var buffer = MessageEncoderHandler.Handler(message);
         if (Setting.IsDebug && Setting.IsDebugSend && !MessageProtoHelper.IsHeartbeat(message.GetType()))
         {
             LogHelper.Debug(message.ToSendMessageString(ServerType, ServerType.Gateway));
@@ -106,7 +106,7 @@ internal partial class AppStartUpRouter
     private void GateWayClientOnDataReceived(object o, DataEventArgs dataEventArgs)
     {
         var messageData = dataEventArgs.Data.ReadBytes(dataEventArgs.Offset, dataEventArgs.Length);
-        var message = messageDecoderHandler.Handler(messageData);
+        var message = MessageDecoderHandler.Handler(messageData);
         if (message is MessageObject baseMessageObject)
         {
             if (Setting.IsDebug && Setting.IsDebugReceive && !MessageProtoHelper.IsHeartbeat(message.GetType()))

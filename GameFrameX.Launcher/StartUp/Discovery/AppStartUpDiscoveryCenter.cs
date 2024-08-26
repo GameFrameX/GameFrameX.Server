@@ -2,6 +2,8 @@ using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 using GameFrameX.ServerManager;
+using GameFrameX.SuperSocket.ProtoBase;
+using Microsoft.Extensions.DependencyInjection;
 
 
 namespace GameFrameX.Launcher.StartUp.Discovery;
@@ -10,11 +12,11 @@ namespace GameFrameX.Launcher.StartUp.Discovery;
 /// 服务发现中心服务器
 /// </summary>
 // [StartUpTag(ServerType.DiscoveryCenter, 0)]
-internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
+internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
 {
     private IServer _server;
 
-    readonly MessageActorDiscoveryEncoderHandler messageEncoderHandler = new MessageActorDiscoveryEncoderHandler();
+
     NamingServiceManager _namingServiceManager = new NamingServiceManager();
 
     public override async Task StartAsync()
@@ -100,7 +102,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
         }
 
         InnerMessage innerMessage = InnerMessage.Create(message, MessageProtoHelper.IsHeartbeat(message.GetType()) ? MessageOperationType.HeartBeat : MessageOperationType.Game);
-        var data = messageEncoderHandler.InnerHandler(innerMessage);
+        var data = MessageEncoderHandler.Handler(message);
         if (Setting.IsDebug && Setting.IsDebugReceive)
         {
             var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
@@ -115,17 +117,22 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpBase
 
     private async void StartServer()
     {
-        _server = SuperSocketHostBuilder.Create<INetworkMessage, MessageObjectPipelineFilter>()
-            .ConfigureSuperSocket(ConfigureSuperSocket)
-            .UseClearIdleSession()
-            .UsePackageDecoder<MessageActorDiscoveryDecoderHandler>()
-            .UsePackageEncoder<MessageActorDiscoveryEncoderHandler>()
-            .UseSessionHandler(OnConnected, OnDisconnected)
-            .UsePackageHandler(PackageHandler)
-            .UseInProcSessionContainer()
-            .BuildAsServer();
+        _server = SuperSocketHostBuilder
+                  .Create<INetworkMessage, MessageObjectPipelineFilter>()
+                  .ConfigureSuperSocket(ConfigureSuperSocket)
+                  .UseClearIdleSession()
+                  .UsePackageDecoder<BaseMessageDecoderHandler>()
+                  .UsePackageEncoder<BaseMessageEncoderHandler>()
+                  .UseSessionHandler(OnConnected, OnDisconnected)
+                  .UsePackageHandler(PackageHandler)
+                  .UseInProcSessionContainer()
+                  .BuildAsServer();
 
         await _server.StartAsync();
+        var eventSubscriber = _server.ServiceProvider.GetService<IEventSubscriber>();
+        var messageEncoderHandler = (BaseMessageEncoderHandler)_server.ServiceProvider.GetService<IPackageEncoder<INetworkMessage>>();
+        var messageDecoderHandler = (BaseMessageDecoderHandler)_server.ServiceProvider.GetService<IPackageDecoder<INetworkMessage>>();
+        SetMessageHandler(messageEncoderHandler, messageDecoderHandler);
     }
 
 
