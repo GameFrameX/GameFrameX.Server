@@ -1,10 +1,12 @@
 ﻿using GameFrameX.Apps.Common.Session;
-using GameFrameX.Launcher.StartUp.Gateway;
+using GameFrameX.Launcher.StartUp.Discovery;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 using GameFrameX.ServerManager;
 using GameFrameX.SuperSocket.Primitives;
+using GameFrameX.SuperSocket.ProtoBase;
+using Microsoft.Extensions.DependencyInjection;
 
 
 /// <summary>
@@ -50,13 +52,16 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
         tcpService = SuperSocketHostBuilder.Create<INetworkMessage, MessageObjectPipelineFilter>()
                                            .ConfigureSuperSocket(ConfigureSuperSocket)
                                            .UseClearIdleSession()
-                                           .UsePackageDecoder<MessageActorGatewayDecoderHandler>()
-                                           // .UsePackageEncoder<MessageActorDiscoveryEncoderHandler>()
+                                           .UsePackageDecoder<BaseMessageDecoderHandler>()
+                                           .UsePackageEncoder<BaseMessageEncoderHandler>()
                                            .UseSessionHandler(OnConnected, OnDisconnected)
                                            .UsePackageHandler(PackageHandler, ClientErrorHandler)
                                            .UseInProcSessionContainer()
                                            .BuildAsServer();
 
+        var messageEncoderHandler = (BaseMessageEncoderHandler)tcpService.ServiceProvider.GetService<IPackageEncoder<INetworkMessage>>();
+        var messageDecoderHandler = (BaseMessageDecoderHandler)tcpService.ServiceProvider.GetService<IPackageDecoder<INetworkMessage>>();
+        SetMessageHandler(messageEncoderHandler, messageDecoderHandler);
         await tcpService.StartAsync();
     }
 
@@ -79,7 +84,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
     private ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("有客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-        var netChannel = new DefaultNetWorkChannel(appSession, Setting, messageEncoderHandler, RpcSession);
+        var netChannel = new DefaultNetWorkChannel(appSession, Setting, MessageEncoderHandler, RpcSession);
         var session = new Session(appSession.SessionID, netChannel);
         SessionManager.Add(session);
         return ValueTask.CompletedTask;
@@ -156,7 +161,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
 
         if (message is MessageObject messageObject)
         {
-            var result = messageEncoderHandler.Handler(message);
+            var result = MessageEncoderHandler.Handler(message);
             if (Setting.IsDebug && Setting.IsDebugSend && !MessageProtoHelper.IsHeartbeat(message.GetType()))
             {
                 LogHelper.Debug($"---发送[{ServerType}] {messageObject.ToMessageString()}");
@@ -192,29 +197,12 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
         base.Init();
     }
 
-    private static MessageActorGatewayEncoderHandler messageEncoderHandler = new MessageActorGatewayEncoderHandler();
-
-    private static MessageActorGatewayDecoderHandler messageDecoderHandler = new MessageActorGatewayDecoderHandler();
-
     protected override bool IsRequestConnectServer { get; } = false;
 
     private NamingServiceManager _namingServiceManager;
 
-    public AppStartUpGateway() : base(messageEncoderHandler, messageDecoderHandler)
+    public AppStartUpGateway()
     {
         _namingServiceManager = new NamingServiceManager();
     }
-}
-
-
-public sealed class ClientSession
-{
-    public ClientSession(long sessionId, AsyncTcpSession asyncTcpSession)
-    {
-        SessionId = sessionId;
-        AsyncTcpSession = asyncTcpSession;
-    }
-
-    public long SessionId { get; }
-    public AsyncTcpSession AsyncTcpSession { get; }
 }

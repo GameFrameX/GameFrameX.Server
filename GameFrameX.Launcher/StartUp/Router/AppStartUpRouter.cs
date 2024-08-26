@@ -3,7 +3,9 @@ using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 using GameFrameX.SuperSocket.Primitives;
+using GameFrameX.SuperSocket.ProtoBase;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace GameFrameX.Launcher.StartUp.Router;
@@ -76,12 +78,15 @@ internal partial class AppStartUpRouter : AppStartUpService
         _tcpService = SuperSocketHostBuilder.Create<INetworkMessage, MessageObjectPipelineFilter>()
                                             .ConfigureSuperSocket(ConfigureSuperSocket)
                                             .UseClearIdleSession()
-                                            .UsePackageDecoder<MessageRouterDecoderHandler>()
+                                            .UsePackageDecoder<BaseMessageDecoderHandler>()
+                                            .UsePackageEncoder<BaseMessageEncoderHandler>()
                                             .UseSessionHandler(OnConnected, OnDisconnected)
                                             .UsePackageHandler(MessagePackageHandler, ClientErrorHandler)
                                             .UseInProcSessionContainer()
                                             .BuildAsServer();
-
+        var messageEncoderHandler = (BaseMessageEncoderHandler)_tcpService.ServiceProvider.GetService<IPackageEncoder<INetworkMessage>>();
+        var messageDecoderHandler = (BaseMessageDecoderHandler)_tcpService.ServiceProvider.GetService<IPackageDecoder<INetworkMessage>>();
+        SetMessageHandler(messageEncoderHandler, messageDecoderHandler);
         await _tcpService.StartAsync();
     }
 
@@ -101,7 +106,7 @@ internal partial class AppStartUpRouter : AppStartUpService
     private ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-        var netChannel = new DefaultNetWorkChannel(appSession, Setting, messageEncoderHandler, RpcSession, appSession is WebSocketSession);
+        var netChannel = new DefaultNetWorkChannel(appSession, Setting, MessageEncoderHandler, RpcSession, appSession is WebSocketSession);
         var session = new Session(appSession.SessionID, netChannel);
         SessionManager.Add(session);
 
@@ -124,7 +129,7 @@ internal partial class AppStartUpRouter : AppStartUpService
 
         var bytes = message.Data;
         var buffer = bytes.ToArray();
-        var messageObject = messageDecoderHandler.Handler(buffer);
+        var messageObject = MessageDecoderHandler.Handler(buffer);
         await MessagePackageHandler(session, messageObject);
     }
 
@@ -177,7 +182,7 @@ internal partial class AppStartUpRouter : AppStartUpService
         return ValueTask.CompletedTask;
     }
 
-    private static async void SendToClient(IAppSession appSession, MessageObject messageObject)
+    private async void SendToClient(IAppSession appSession, MessageObject messageObject)
     {
         if (appSession.Connection.IsClosed)
         {
@@ -185,7 +190,7 @@ internal partial class AppStartUpRouter : AppStartUpService
         }
 
         LogHelper.Debug(messageObject.ToSendMessageString(ServerType.Router, ServerType.Client));
-        var result = messageEncoderHandler.Handler(messageObject);
+        var result = MessageEncoderHandler.Handler(messageObject);
         await appSession.SendAsync(result);
     }
 
@@ -233,11 +238,4 @@ internal partial class AppStartUpRouter : AppStartUpService
     /// 从发现中心请求的目标服务器类型
     /// </summary>
     protected override ServerType GetServerType => ServerType.Gateway;
-
-    private static readonly MessageRouterEncoderHandler messageEncoderHandler = new MessageRouterEncoderHandler();
-    private static readonly MessageRouterDecoderHandler messageDecoderHandler = new MessageRouterDecoderHandler();
-
-    public AppStartUpRouter() : base(messageEncoderHandler, messageDecoderHandler)
-    {
-    }
 }
