@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using GameFrameX.CodeGenerator.Utils;
+using GameFrameX.Core.Abstractions.Attribute;
 using GameFrameX.Setting;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Scriban;
 
 namespace GameFrameX.CodeGenerator.Agent;
 
@@ -23,9 +25,10 @@ public class AgentGenerator : ISourceGenerator
         if (context.SyntaxReceiver is AgentFilter receiver)
         {
             receiver.ClearPartialList();
-            //生成模板
-            var str = ResLoader.LoadTemplate("Agent.liquid");
-            var agentTemplate = Template.Parse(str);
+            var serviceAttributeName = nameof(ServiceAttribute).Replace("Attribute", string.Empty);
+            var threadSafeAttributeName = nameof(ThreadSafeAttribute).Replace("Attribute", string.Empty);
+            var discardAttributeName = nameof(DiscardAttribute).Replace("Attribute", string.Empty);
+            var timeOutAttributeName = nameof(TimeOutAttribute).Replace("Attribute", string.Empty);
 
             var partialClassCount = new Dictionary<string, int>();
 
@@ -57,10 +60,10 @@ public class AgentGenerator : ISourceGenerator
                 var root = agent.SyntaxTree.GetCompilationUnitRoot();
                 foreach (var element in root.Usings)
                 {
-                    info.Usingspaces.Add(element.Name.ToString());
+                    info.UsingSpaces.Add(element.Name.ToString());
                 }
 
-                info.Usingspaces.Add(Tools.GetNameSpace(fullName));
+                info.UsingSpaces.Add(Tools.GetNameSpace(fullName));
 
                 foreach (var member in agent.Members)
                 {
@@ -98,7 +101,7 @@ public class AgentGenerator : ISourceGenerator
 
                             if (m.Text.Equals("async"))
                             {
-                                mth.Isasync = true;
+                                mth.IsAsync = true;
                             }
                         }
 
@@ -109,71 +112,72 @@ public class AgentGenerator : ISourceGenerator
 
                         mth.ReturnType = method.ReturnType?.ToString() ?? "void"; //Task<T>
                         //遍历注解
-                        foreach (var a in method.AttributeLists)
+                        foreach (var attributeListSyntax in method.AttributeLists)
                         {
-                            var attStr = a.ToString().RemoveWhitespace();
-                            if (attStr.Contains("[Api]") || attStr.Contains("[Service]"))
+                            var attrName = attributeListSyntax.ToString().RemoveWhitespace() + "Attribute";
+                            // if (attStr.Contains("[Api]") || attStr.Contains("[Service]"))
+                            if (attrName.IndexOf(serviceAttributeName, StringComparison.OrdinalIgnoreCase) >= 0)
                             {
                                 mth.IsApi = true;
                             }
-                            else if (attStr.Contains("[Discard]"))
+                            else if (attrName.IndexOf(discardAttributeName, StringComparison.OrdinalIgnoreCase) >= 0)
                             {
                                 mth.Discard = true;
-                                if (mth.Isasync)
+                                if (mth.IsAsync)
                                 {
                                     mth.Modify = mth.Modify.Replace("async ", "");
-                                    mth.Isasync = false;
+                                    mth.IsAsync = false;
                                 }
                             }
-                            else if (attStr.Contains("TimeOut"))
+                            else if (attrName.IndexOf(timeOutAttributeName, StringComparison.OrdinalIgnoreCase) >= 0)
                             {
                                 mth.HasTimeout = true;
-                                var argStr = a.Attributes[0].ArgumentList.Arguments[0].ToString();
-                                if (argStr.Contains("timeout"))
+                                var argStr = attributeListSyntax.Attributes[0].ArgumentList.Arguments[0].ToString();
+                                if (argStr.IndexOf(":", StringComparison.OrdinalIgnoreCase) >= 0)
                                 {
-                                    mth.Timeout = int.Parse(argStr.Split(':')[1]);
+                                    mth.TimeOut = int.Parse(argStr.Split(':')[1].Trim());
                                 }
                                 else
                                 {
-                                    mth.Timeout = int.Parse(a.Attributes[0].ArgumentList.Arguments[0].ToString());
+                                    mth.TimeOut = int.Parse(argStr);
                                 }
                             }
-                            else if (attStr.Contains("[ThreadSafe]"))
+                            else if (attrName.IndexOf(threadSafeAttributeName, StringComparison.OrdinalIgnoreCase) >= 0)
                             {
-                                mth.Threadsafe = true;
+                                mth.IsThreadSafe = true;
                             }
                         }
 
-                        if (mth.Threadsafe && mth.HasTimeout)
+                        if (mth.IsThreadSafe && mth.HasTimeout)
                         {
-                            context.LogError($"{fullName}.{method.Identifier.Text}无法为标记【Threadsafe】的函数指定超时时间");
+                            context.LogError($"{fullName}.{method.Identifier.Text}无法为标记【{threadSafeAttributeName}】的函数指定超时时间");
                         }
 
                         if (!mth.IsApi && !mth.Discard && mth.HasTimeout)
                         {
-                            context.LogError($"{fullName}.{method.Identifier.Text}【Timeout】注解只能配合【Api】或【Discard】使用");
+                            context.LogError($"{fullName}.{method.Identifier.Text}【{timeOutAttributeName}】注解只能配合【Api】或【{discardAttributeName}】使用");
                         }
 
                         //跳过没有标记任何注解的函数
-                        if (!mth.IsApi && !mth.Discard && !mth.Threadsafe)
+                        if (!mth.IsApi && !mth.Discard && !mth.IsThreadSafe)
                         {
                             continue;
                         }
 
                         //线程安全且没有丢弃直接跳过
-                        if (mth.Threadsafe && !mth.Discard)
+                        if (mth.IsThreadSafe && !mth.Discard)
                         {
                             continue;
                         }
 
-                        if (mth.IsApi && !mth.Threadsafe && !mth.ReturnType.Contains("Task"))
+                        if (mth.IsApi && !mth.IsThreadSafe && !mth.ReturnType.Contains("Task"))
                         {
-                            context.LogError($"{fullName}.{method.Identifier.Text}, 非【Threadsafe】的【Api】接口只能是异步函数");
+                            context.LogError($"{fullName}.{method.Identifier.Text}, 非【{threadSafeAttributeName}】的【Api】接口只能是异步函数");
                         }
 
-                        if ((mth.IsApi || mth.Discard || mth.Threadsafe) && !mth.IsVirtual)
+                        if ((mth.IsApi || mth.Discard || mth.IsThreadSafe) && !mth.IsVirtual)
                         {
-                            context.LogError($"{fullName}.{method.Identifier.Text}标记了【AsyncApi】【Threadsafe】【Discard】注解的函数必须申明为virtual");
+                            context.LogError($"{fullName}.{method.Identifier.Text}标记了【AsyncApi】【{threadSafeAttributeName}】【{discardAttributeName}】注解的函数必须申明为virtual");
                         }
 
                         if (mth.IsVirtual)
@@ -181,8 +185,8 @@ public class AgentGenerator : ISourceGenerator
                             info.Methods.Add(mth);
                             mth.Name = method.Identifier.Text;
                             mth.ParamDeclare = method.ParameterList.ToString(); //(int a, List<int> list)
-                            //mth.Returntype = method.ReturnType.ToString();   //Task<T>
-                            if (mth.Discard && !mth.ReturnType.Equals("Task") && !mth.ReturnType.Equals("ValueTask"))
+                            // mth.ReturnType = method.ReturnType.ToString();   //Task<T>
+                            if (mth.Discard && !mth.ReturnType.Equals(nameof(Task)) && !mth.ReturnType.Equals(nameof(ValueTask)))
                             {
                                 context.LogError($"{fullName}.{method.Identifier.Text}只有返回值为Task类型或ValueTask类型才能添加【Discard】注解");
                             }
@@ -197,7 +201,7 @@ public class AgentGenerator : ISourceGenerator
                     }
                 }
 
-                var source = agentTemplate.Render(info);
+                var source = AgentTemplate.Run(info);
                 context.AddSource(outFileName, source);
             }
         }
