@@ -11,36 +11,32 @@ public static class LoggerHandler
     /// <summary>
     /// 启动日志对象
     /// </summary>
-    /// <param name="serverType">服务器类型</param>
-    /// <param name="logSavePath">日志存储地址,默认为./logs</param>
-    /// <param name="isConsole">是否是输出到控制台,默认true</param>
-    /// <param name="rollingInterval">日志滚动间隔,默认为Hour</param>
-    /// <param name="logEventLevel">日志输出级别,默认为Debug</param>
-    /// <param name="fileSizeLimitBytes">日志文件大小限制,默认为10MB</param>
+    /// <param name="logOptions"></param>
     /// <returns></returns>
-    public static bool Start(string serverType = null, string logSavePath = null, bool isConsole = true, RollingInterval rollingInterval = RollingInterval.Hour, LogEventLevel logEventLevel = LogEventLevel.Debug, int fileSizeLimitBytes = 10 * 1024 * 1024)
+    public static void Start(LogOptions logOptions)
     {
         try
         {
             // 日志文件存储的路径
             string logPath = "./logs/";
-            string logFileName = $"{serverType ?? "Server"}_log.log";
-            if (logSavePath != null)
+            string logFileName = $"{logOptions.ServerType ?? "Server"}_log_.log";
+            if (logOptions.LogSavePath != null)
             {
-                logPath = Path.Combine(logSavePath, logFileName);
+                logPath = Path.Combine(logOptions.LogSavePath, logFileName);
             }
             else
             {
                 logPath = Path.Combine(logPath, logFileName);
             }
 
-            Console.WriteLine("初始化日志系统配置 开始...");
+            Console.WriteLine("日志系统配置");
+            Console.WriteLine(logOptions);
 
             var logger = new LoggerConfiguration()
-                .Enrich.FromLogContext()
-                .WriteTo.File(logPath, rollingInterval: rollingInterval, rollOnFileSizeLimit: true, fileSizeLimitBytes: fileSizeLimitBytes);
+                         .Enrich.FromLogContext()
+                         .WriteTo.File(logPath, rollingInterval: logOptions.RollingInterval, rollOnFileSizeLimit: logOptions.IsFileSizeLimit, fileSizeLimitBytes: logOptions.FileSizeLimitBytes);
 
-            switch (logEventLevel)
+            switch (logOptions.LogEventLevel)
             {
                 case LogEventLevel.Verbose:
                 {
@@ -74,19 +70,18 @@ public static class LoggerHandler
                     break;
             }
 
-            if (isConsole)
+            if (logOptions.IsConsole)
             {
                 logger.WriteTo.Console();
             }
 
             Serilog.Log.Logger = logger.CreateLogger();
-            Console.WriteLine($"初始化日志系统配置 结束...,日志文件路径：{logPath} 存档周期：{rollingInterval}");
-            return true;
+            Console.WriteLine($"日志系统配置 结束");
         }
         catch (Exception e)
         {
             Serilog.Log.Error($"启动服务器失败,异常:{e}");
-            return false;
+            throw;
         }
     }
 }

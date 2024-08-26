@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace GameFrameX.Launcher.Common.Options;
+namespace GameFrameX.Entry.Options;
 
 public sealed class LauncherOptions
 {
@@ -16,6 +16,10 @@ public sealed class LauncherOptions
     [Option("APMPort", HelpText = "APM监控端口")]
     public int APMPort { get; set; }
 
+    /// <summary>
+    /// 检查APM监控端口
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public void CheckAPMPort()
     {
         if (APMPort <= 10000 || APMPort >= ushort.MaxValue)
@@ -48,6 +52,10 @@ public sealed class LauncherOptions
     [Option("ServerId", HelpText = "服务器ID")]
     public int ServerId { get; set; }
 
+    /// <summary>
+    /// 检查ServerId
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public void CheckServerId()
     {
         if (ServerId <= 0)
@@ -70,7 +78,7 @@ public sealed class LauncherOptions
 
     public void CheckInnerIp()
     {
-        if (InnerIp.IsNullOrWhiteSpace())
+        if (string.IsNullOrWhiteSpace(InnerIp))
         {
             throw new ArgumentNullException(nameof(InnerIp), "内部IP不能为空");
         }
@@ -98,7 +106,7 @@ public sealed class LauncherOptions
 
     public void CheckOuterIp()
     {
-        if (OuterIp.IsNullOrWhiteSpace())
+        if (string.IsNullOrWhiteSpace(OuterIp))
         {
             throw new ArgumentNullException(nameof(OuterIp), "外部IP不能为空");
         }
@@ -126,7 +134,7 @@ public sealed class LauncherOptions
 
     public void CheckHttpCode()
     {
-        if (HttpCode.IsNullOrWhiteSpace())
+        if (string.IsNullOrWhiteSpace(HttpCode))
         {
             throw new ArgumentNullException(nameof(HttpCode), "HTTP 响应码不能为空");
         }
@@ -140,7 +148,7 @@ public sealed class LauncherOptions
 
     public void CheckHttpUrl()
     {
-        if (HttpUrl.IsNullOrWhiteSpace())
+        if (string.IsNullOrWhiteSpace(HttpUrl))
         {
             throw new ArgumentNullException(nameof(HttpUrl), "Http 地址不能为空");
         }
@@ -238,7 +246,7 @@ public sealed class LauncherOptions
 
     public void CheckWssCertFilePath()
     {
-        if (WssCertFilePath.IsNullOrWhiteSpace())
+        if (string.IsNullOrWhiteSpace(WssCertFilePath))
         {
             throw new ArgumentNullException(nameof(WssCertFilePath), "Wss 使用的证书路径不能为空");
         }
@@ -252,7 +260,7 @@ public sealed class LauncherOptions
 
     public void CheckDataBaseUrl()
     {
-        if (DataBaseUrl.IsNullOrWhiteSpace())
+        if (string.IsNullOrWhiteSpace(DataBaseUrl))
         {
             throw new ArgumentNullException(nameof(DataBaseUrl), "数据库 地址不能为空");
         }
@@ -266,7 +274,7 @@ public sealed class LauncherOptions
 
     public void CheckDataBaseName()
     {
-        if (DataBaseName.IsNullOrWhiteSpace())
+        if (string.IsNullOrWhiteSpace(DataBaseName))
         {
             throw new ArgumentNullException(nameof(DataBaseName), "数据库名称不能为空");
         }
@@ -290,7 +298,7 @@ public sealed class LauncherOptions
 
     public void CheckDiscoveryCenterIp()
     {
-        if (DiscoveryCenterIp.IsNullOrWhiteSpace())
+        if (string.IsNullOrWhiteSpace(DiscoveryCenterIp))
         {
             throw new ArgumentNullException(nameof(DiscoveryCenterIp), "发现中心地址不能为空");
         }
@@ -318,7 +326,7 @@ public sealed class LauncherOptions
 
     public void CheckDBIp()
     {
-        if (DBIp.IsNullOrWhiteSpace())
+        if (string.IsNullOrWhiteSpace(DBIp))
         {
             throw new ArgumentNullException(nameof(DBIp), "数据库服务连接地址不能为空");
         }

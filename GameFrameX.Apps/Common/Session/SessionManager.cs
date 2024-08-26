@@ -1,16 +1,17 @@
-﻿using GameFrameX.Launcher.Common.Event;
-using GameFrameX.Core.Actors;
-using GameFrameX.Core.Events;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using GameFrameX.Apps.Common.Event;
 using GameFrameX.NetWork.Abstractions;
+using GameFrameX.Setting;
 
-namespace GameFrameX.Launcher.Common.Session
+namespace GameFrameX.Apps.Common.Session
 {
     /// <summary>
     /// 管理玩家session，一个玩家一个，下线之后移除，顶号之后释放之前的channel，替换channel
     /// </summary>
     public static class SessionManager
     {
-        private static readonly ConcurrentDictionary<string, Session> SessionMap = new ConcurrentDictionary<string, Session>();
+        private static readonly ConcurrentDictionary<string, Apps.Common.Session.Session> SessionMap = new ConcurrentDictionary<string, Apps.Common.Session.Session>();
 
         /// <summary>
         /// 玩家数量

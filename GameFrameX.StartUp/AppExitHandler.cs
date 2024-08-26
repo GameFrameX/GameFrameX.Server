@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.Loader;
 using System.Text;
@@ -13,7 +12,7 @@ namespace GameFrameX.StartUp
     /// <summary>
     /// 
     /// </summary>
-    public static class AppExitHandler
+    internal static class AppExitHandler
     {
         private static Action<string> _existCallBack;
         private static AppSetting _setting;

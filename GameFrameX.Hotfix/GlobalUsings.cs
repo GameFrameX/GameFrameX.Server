@@ -12,7 +12,6 @@ global using GameFrameX.Core.Hotfix.Agent;
 global using GameFrameX.Core.Hotfix;
 global using GameFrameX.Core.Actors;
 global using GameFrameX.Core.Timer;
-global using GameFrameX.Launcher.Common.Event;
 global using GameFrameX.Setting;
 global using GameFrameX.Extension;
 global using GameFrameX.Utility;
