@@ -34,16 +34,22 @@ public abstract class AppStartUpService : AppStartUpBase
     /// </summary>
     protected RespConnectServer ConnectTargetServer { get; private set; }
 
-    private readonly IMessageEncoderHandler _messageEncoderHandler;
-    private readonly IMessageDecoderHandler _messageDecoderHandler;
-    private readonly ReqHeartBeat           _reqDiscoveryCenterActorHeartBeat;
+    protected IMessageEncoderHandler MessageEncoderHandler { get; private set; }
+    protected IMessageDecoderHandler MessageDecoderHandler { get; private set; }
+    private readonly ReqHeartBeat _reqDiscoveryCenterActorHeartBeat;
 
-    protected AppStartUpService(IMessageEncoderHandler messageEncoderHandler, IMessageDecoderHandler messageDecoderHandler)
+    protected void SetMessageHandler(IMessageEncoderHandler messageEncoderHandler, IMessageDecoderHandler messageDecoderHandler)
     {
-        RpcSession                        = new RpcSession();
+        messageDecoderHandler.CheckNotNull(nameof(messageDecoderHandler));
+        messageEncoderHandler.CheckNotNull(nameof(messageEncoderHandler));
+        MessageEncoderHandler = messageEncoderHandler;
+        MessageDecoderHandler = messageDecoderHandler;
+    }
+
+    protected AppStartUpService()
+    {
+        RpcSession = new RpcSession();
         _reqDiscoveryCenterActorHeartBeat = new ReqHeartBeat();
-        _messageEncoderHandler            = messageEncoderHandler;
-        _messageDecoderHandler            = messageDecoderHandler;
     }
 
     private Timer ConnectTargetServerTimer { get; set; }
@@ -53,9 +59,9 @@ public abstract class AppStartUpService : AppStartUpBase
         if (IsRequestConnectServer)
         {
             ConnectTargetServerTimer = new Timer
-                                       {
-                                           Interval = 3000
-                                       };
+            {
+                Interval = 3000
+            };
             ConnectTargetServerTimer.Elapsed += ConnectTargetServerTimerOnElapsed;
             ConnectTargetServerTimer.Start();
         }
@@ -90,7 +96,7 @@ public abstract class AppStartUpService : AppStartUpBase
     /// <param name="message"></param>
     protected void SendToDiscoveryCenterMessage(INetworkMessage message)
     {
-        var span = _messageEncoderHandler.Handler(message);
+        var span = MessageEncoderHandler.Handler(message);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
             LogHelper.Debug(message.ToFormatMessageString());
@@ -119,9 +125,9 @@ public abstract class AppStartUpService : AppStartUpBase
         if (ConnectTargetServer == null)
         {
             ReqConnectServer reqConnectServer = new ReqConnectServer
-                                                {
-                                                    ServerType = GetServerType
-                                                };
+            {
+                ServerType = GetServerType
+            };
             SendToDiscoveryCenterMessage(reqConnectServer);
         }
     }
@@ -165,11 +171,11 @@ public abstract class AppStartUpService : AppStartUpBase
 
     private void StartDiscoveryCenterClient()
     {
-        discoveryCenterClient              =  new AsyncTcpSession();
-        discoveryCenterClient.Closed       += DiscoveryCenterClientOnClosed;
+        discoveryCenterClient = new AsyncTcpSession();
+        discoveryCenterClient.Closed += DiscoveryCenterClientOnClosed;
         discoveryCenterClient.DataReceived += DiscoveryCenterClientOnDataReceived;
-        discoveryCenterClient.Connected    += DiscoveryCenterClientOnConnected;
-        discoveryCenterClient.Error        += DiscoveryCenterClientOnError;
+        discoveryCenterClient.Connected += DiscoveryCenterClientOnConnected;
+        discoveryCenterClient.Error += DiscoveryCenterClientOnError;
 
         LogHelper.Info("开始链接到发现中心服务器 ...");
         ReconnectionTimer.Start();
@@ -205,15 +211,15 @@ public abstract class AppStartUpService : AppStartUpBase
     {
         // 这里要注册到发现中心
         ReqRegisterServer reqRegisterServer = new ReqRegisterServer
-                                              {
-                                                  ServerID   = Setting.ServerId,
-                                                  ServerType = Setting.ServerType,
-                                                  ServerName = Setting.ServerName,
-                                                  InnerIP    = Setting.InnerIp,
-                                                  InnerPort  = Setting.InnerPort,
-                                                  OuterIP    = Setting.OuterIp,
-                                                  OuterPort  = Setting.OuterPort
-                                              };
+        {
+            ServerID = Setting.ServerId,
+            ServerType = Setting.ServerType,
+            ServerName = Setting.ServerName,
+            InnerIP = Setting.InnerIp,
+            InnerPort = Setting.InnerPort,
+            OuterIP = Setting.OuterIp,
+            OuterPort = Setting.OuterPort
+        };
         SendToDiscoveryCenterMessage(reqRegisterServer);
     }
 
@@ -242,7 +248,7 @@ public abstract class AppStartUpService : AppStartUpBase
     private void DiscoveryCenterClientOnDataReceived(object o, DataEventArgs dataEventArgs)
     {
         var messageData = dataEventArgs.Data.ReadBytes(dataEventArgs.Offset, dataEventArgs.Length);
-        var message     = _messageDecoderHandler.Handler(messageData);
+        var message = MessageDecoderHandler.Handler(messageData);
         if (message == null)
         {
             LogHelper.Error("数据解析失败！");
