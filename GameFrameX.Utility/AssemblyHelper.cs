@@ -1,3 +1,4 @@
+using System.Reflection;
 using GameFrameX.Extension;
 
 namespace GameFrameX.Utility;
@@ -7,7 +8,7 @@ namespace GameFrameX.Utility;
 /// </summary>
 public static class AssemblyHelper
 {
-    private static readonly System.Reflection.Assembly[] Assemblies = null;
+    private static readonly Assembly[] Assemblies;
     private static readonly Dictionary<string, Type> CachedTypes = new Dictionary<string, Type>(StringComparer.Ordinal);
 
     static AssemblyHelper()
@@ -19,7 +20,7 @@ public static class AssemblyHelper
     /// 获取已加载的程序集。
     /// </summary>
     /// <returns>已加载的程序集。</returns>
-    public static System.Reflection.Assembly[] GetAssemblies()
+    public static Assembly[] GetAssemblies()
     {
         return Assemblies;
     }
@@ -31,7 +32,7 @@ public static class AssemblyHelper
     public static Type[] GetTypes()
     {
         List<Type> results = new List<Type>();
-        foreach (System.Reflection.Assembly assembly in Assemblies)
+        foreach (var assembly in Assemblies)
         {
             results.AddRange(assembly.GetTypes());
         }
@@ -51,7 +52,7 @@ public static class AssemblyHelper
         }
 
         results.Clear();
-        foreach (System.Reflection.Assembly assembly in Assemblies)
+        foreach (Assembly assembly in Assemblies)
         {
             results.AddRange(assembly.GetTypes());
         }
@@ -81,7 +82,7 @@ public static class AssemblyHelper
             return type;
         }
 
-        foreach (System.Reflection.Assembly assembly in Assemblies)
+        foreach (var assembly in Assemblies)
         {
             type = Type.GetType($"{typeName}, {assembly.FullName}");
             if (type != null)
@@ -102,6 +103,19 @@ public static class AssemblyHelper
     public static List<Type> GetRuntimeImplementTypeNames<T>()
     {
         return GetRuntimeImplementTypeNames(typeof(T));
+    }
+
+    /// <summary>
+    /// 获取已加载的程序集中的指定类型的子类列表。
+    /// </summary>
+    /// <typeparam name="T">指定类型</typeparam>
+    /// <typeparam name="TAttribute">指定自定义的特性标记</typeparam>
+    /// <returns></returns>
+    public static List<Type> GetRuntimeImplementTypeNames<T, TAttribute>() where TAttribute : Attribute
+    {
+        var types = GetRuntimeImplementTypeNames(typeof(T));
+
+        return types.Where(t => t.GetCustomAttribute<TAttribute>() != null).ToList();
     }
 
     /// <summary>
