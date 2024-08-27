@@ -59,7 +59,7 @@ internal partial class AppStartUpHotfixGame
             ActorManager.ClearAgent();
             return;
         }
-        ConfigComponent.Instance.GetConfig<TbItem>().All;
+
         await StartAsync();
     }
 
