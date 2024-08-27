@@ -107,7 +107,7 @@ public abstract class BaseDataTable<T> : IDataTable<T>
     /// <returns></returns>
     public T FirstOrDefault
     {
-        get { return DataList.FirstOrDefault(); }
+        get { return DataList.FirstOrDefault(m => m != null); }
     }
 
     /// <summary>
@@ -116,7 +116,7 @@ public abstract class BaseDataTable<T> : IDataTable<T>
     /// <returns></returns>
     public T LastOrDefault
     {
-        get { return DataList.LastOrDefault(); }
+        get { return DataList.LastOrDefault(m => m != null); }
     }
 
     /// <summary>
