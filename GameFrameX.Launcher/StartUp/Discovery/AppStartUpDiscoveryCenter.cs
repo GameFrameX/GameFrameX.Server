@@ -129,7 +129,6 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
                   .BuildAsServer();
 
         await _server.StartAsync();
-        var eventSubscriber = _server.ServiceProvider.GetService<IEventSubscriber>();
         var messageEncoderHandler = (BaseMessageEncoderHandler)_server.ServiceProvider.GetService<IPackageEncoder<INetworkMessage>>();
         var messageDecoderHandler = (BaseMessageDecoderHandler)_server.ServiceProvider.GetService<IPackageDecoder<INetworkMessage>>();
         SetMessageHandler(messageEncoderHandler, messageDecoderHandler);
