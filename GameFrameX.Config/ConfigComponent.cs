@@ -12,6 +12,8 @@ public class ConfigComponent
     public ConfigComponent()
     {
         m_ConfigManager = new ConfigManager();
+        Tables = new TablesComponent();
+        Tables.Init(Instance);
     }
 
     public TablesComponent Tables { get; private set; }
@@ -19,8 +21,7 @@ public class ConfigComponent
     public async void LoadConfig()
     {
         LogHelper.Info($"Load Config Start...");
-        Tables = new TablesComponent();
-        Tables.Init(Instance);
+        Instance.RemoveAllConfigs();
         await Tables.LoadAsync(Loader);
         LogHelper.Info($"Load Config End...");
         LogHelper.Info("== load success ==");
