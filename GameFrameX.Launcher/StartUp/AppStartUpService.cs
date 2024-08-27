@@ -54,6 +54,10 @@ public abstract class AppStartUpService : AppStartUpBase
 
     private Timer ConnectTargetServerTimer { get; set; }
 
+    /// <summary>
+    /// 启动服务器
+    /// </summary>
+    /// <returns></returns>
     public override Task StartAsync()
     {
         if (IsRequestConnectServer)
@@ -296,6 +300,11 @@ public abstract class AppStartUpService : AppStartUpBase
         ReconnectionTimer.Start();
     }
 
+    /// <summary>
+    /// 终止服务器
+    /// </summary>
+    /// <param name="message">终止原因</param>
+    /// <returns></returns>
     public override Task StopAsync(string message = "")
     {
         HeartBeatTimer?.Close();
@@ -308,5 +317,11 @@ public abstract class AppStartUpService : AppStartUpBase
         }
 
         return base.StopAsync(message);
+    }
+    /// <summary>
+    /// 添加事件总线的注册
+    /// </summary>
+    protected virtual void AddEventBusRegister()
+    {
     }
 }
