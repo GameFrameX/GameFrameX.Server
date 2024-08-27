@@ -26,31 +26,30 @@ public interface IDataTable<out T> : IDataTable
     /// <summary>
     /// 根据ID获取对象
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="id">表唯一主键ID</param>
     /// <returns></returns>
     T Get(int id);
 
     /// <summary>
     /// 根据ID获取对象
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="id">表唯一主键ID</param>
     /// <returns></returns>
     T Get(string id);
 
     /// <summary>
     /// 根据ID获取对象
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="id">表唯一主键ID</param>
     /// <returns></returns>
     T this[int id] { get; }
 
     /// <summary>
     /// 根据ID获取对象
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="id">表唯一主键ID</param>
     /// <returns></returns>
     T this[string id] { get; }
-
 
     /// <summary>
     /// 获取数据表中第一个对象
@@ -77,16 +76,16 @@ public interface IDataTable<out T> : IDataTable
     T[] ToArray();
 
     /// <summary>
-    /// 根据条件查找
+    /// 根据条件查找,第一个满足条件的对象
     /// </summary>
-    /// <param name="func"></param>
+    /// <param name="func">查询条件表达式</param>
     /// <returns></returns>
     T Find(System.Func<T, bool> func);
 
     /// <summary>
-    /// 根据条件查找
+    /// 根据条件查找,获得所有满足条件的对象
     /// </summary>
-    /// <param name="func"></param>
+    /// <param name="func">查询条件表达式</param>
     /// <returns></returns>
     T[] FindList(System.Func<T, bool> func);
 }
