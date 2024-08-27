@@ -19,7 +19,7 @@ namespace GameFrameX.Launcher.StartUp.Game
                     Directory.CreateDirectory(hotfixPath);
                 }
 
-                ConfigComponent.Instance.LoadConfig();
+                
 
                 LogHelper.Info($"actor limit logic start...");
                 ActorLimit.Init(ActorLimit.RuleType.None);

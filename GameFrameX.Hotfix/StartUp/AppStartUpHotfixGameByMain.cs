@@ -1,4 +1,6 @@
 ﻿using GameFrameX.Apps.Common.Session;
+using GameFrameX.Config;
+using GameFrameX.Config.item;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
@@ -50,12 +52,14 @@ internal partial class AppStartUpHotfixGame
 
     public async void RunServer(bool reload = false)
     {
+        // 不管是不是重启服务器，都要加载配置
+        ConfigComponent.Instance.LoadConfig();
         if (reload)
         {
             ActorManager.ClearAgent();
             return;
         }
-
+        ConfigComponent.Instance.GetConfig<TbItem>().All;
         await StartAsync();
     }
 
