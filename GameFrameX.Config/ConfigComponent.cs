@@ -13,13 +13,13 @@ public class ConfigComponent
     {
         m_ConfigManager = new ConfigManager();
         Tables = new TablesComponent();
-        Tables.Init(Instance);
     }
 
     public TablesComponent Tables { get; private set; }
 
     public async void LoadConfig()
     {
+        Tables.Init(Instance);
         LogHelper.Info($"Load Config Start...");
         Instance.RemoveAllConfigs();
         await Tables.LoadAsync(Loader);
