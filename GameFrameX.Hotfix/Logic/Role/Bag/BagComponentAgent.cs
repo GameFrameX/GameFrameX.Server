@@ -2,6 +2,7 @@
 using GameFrameX.Apps.Player.Role.Bag.Component;
 using GameFrameX.Apps.Player.Role.Bag.Entity;
 using GameFrameX.Hotfix.Common.Events;
+using GameFrameX.NetWork.Abstractions;
 
 namespace GameFrameX.Hotfix.Logic.Role.Bag
 {
@@ -20,15 +21,18 @@ namespace GameFrameX.Hotfix.Logic.Role.Bag
         {
             var res = new RespBagInfo();
             foreach (var kv in State.ItemMap)
+            {
                 res.ItemDic[kv.Key] = kv.Value;
+            }
+
             return res;
         }
 
-        public async Task GetBagInfo(ReqBagInfo reqMsg)
+        public async Task GetBagInfo(INetWorkChannel netWorkChannel, ReqBagInfo reqMsg)
         {
-            var ret = BuildInfoMsg();
-            ret.UniqueId = reqMsg.UniqueId;
-            await Task.CompletedTask;
+            var respBagInfo = BuildInfoMsg();
+            respBagInfo.UniqueId = reqMsg.UniqueId;
+            await netWorkChannel.WriteAsync(respBagInfo);
             // await this.NotifyClient(ret, reqMsg.UniId);
         }
 

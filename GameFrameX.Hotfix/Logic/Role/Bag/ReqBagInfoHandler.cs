@@ -5,11 +5,11 @@ using GameFrameX.NetWork.Messages;
 namespace GameFrameX.Hotfix.Logic.Role.Bag
 {
     [MessageMapping(typeof(ReqBagInfo))]
-    public class ReqBagInfoHandler : RoleComponentHandler<BagComponentAgent>
+    public class ReqBagInfoHandler : PlayerComponentHandler<BagComponentAgent>
     {
         protected override async Task ActionAsync()
         {
-            await ComponentAgent.GetBagInfo(Message as ReqBagInfo);
+            await ComponentAgent.GetBagInfo(NetWorkChannel,Message as ReqBagInfo);
         }
     }
 }
