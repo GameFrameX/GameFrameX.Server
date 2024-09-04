@@ -1,4 +1,5 @@
-﻿using GameFrameX.NetWork.Messages;
+﻿using GameFrameX.NetWork.Abstractions;
+using GameFrameX.NetWork.Messages;
 using GameFrameX.Setting;
 using ProtoBuf;
 
