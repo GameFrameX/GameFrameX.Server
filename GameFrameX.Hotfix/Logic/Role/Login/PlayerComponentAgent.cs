@@ -1,10 +1,9 @@
-﻿using GameFrameX.Apps.Common.Event;
-using GameFrameX.Apps.Common.Session;
-using GameFrameX.Apps.Player.Player.Component;
+﻿using GameFrameX.Apps.Player.Player.Component;
 using GameFrameX.Apps.Player.Player.Entity;
 using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Hotfix.Logic.Server.Server;
-using GameFrameX.NetWork;
+using GameFrameX.Launcher.Common.Event;
+using GameFrameX.Launcher.Common.Session;
 
 namespace GameFrameX.Hotfix.Logic.Role.Login
 {
@@ -44,7 +43,7 @@ namespace GameFrameX.Hotfix.Logic.Role.Login
             }
 
             // 更新连接会话数据
-            var session = SessionManager.Get(workChannel.Session.SessionID);
+            var session = SessionManager.Get(workChannel.GameAppSession.SessionID);
             session.SetRoleId(playerState.Id);
             session.SetSign(playerState.Id.ToString());
             session.SetActorId(ActorId);

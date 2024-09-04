@@ -1,8 +1,8 @@
-﻿using GameFrameX.Apps.Common.Event;
-using GameFrameX.Apps.Player.Role.Pet.Component;
+﻿using GameFrameX.Apps.Player.Role.Pet.Component;
 using GameFrameX.Apps.Player.Role.Pet.Entity;
 using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Hotfix.Logic.Server.Server;
+using GameFrameX.Launcher.Common.Event;
 
 namespace GameFrameX.Hotfix.Logic.Role.Pet
 {

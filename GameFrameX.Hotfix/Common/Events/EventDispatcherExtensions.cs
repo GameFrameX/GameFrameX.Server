@@ -1,7 +1,7 @@
-﻿using GameFrameX.Apps.Common.Event;
-using GameFrameX.Core.Abstractions;
+﻿using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Abstractions.Events;
+using GameFrameX.Launcher.Common.Event;
 
 namespace GameFrameX.Hotfix.Common.Events
 {

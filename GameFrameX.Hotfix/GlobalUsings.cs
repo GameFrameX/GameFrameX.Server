@@ -16,3 +16,4 @@ global using GameFrameX.Core.Timer;
 global using GameFrameX.Setting;
 global using GameFrameX.Extension;
 global using GameFrameX.Utility;
+global using GameFrameX.NetWork.Abstractions;
