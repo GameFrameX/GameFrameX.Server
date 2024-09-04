@@ -1,4 +1,5 @@
-﻿using GameFrameX.DataBase.Mongo;
+﻿using GameFrameX.Core.Components;
+using GameFrameX.DataBase.Mongo;
 
 namespace GameFrameX.Launcher.StartUp.Game
 {
@@ -19,7 +20,6 @@ namespace GameFrameX.Launcher.StartUp.Game
                     Directory.CreateDirectory(hotfixPath);
                 }
 
-                
 
                 LogHelper.Info($"actor limit logic start...");
                 ActorLimit.Init(ActorLimit.RuleType.None);
@@ -41,7 +41,7 @@ namespace GameFrameX.Launcher.StartUp.Game
 
                 LogHelper.Info("进入游戏主循环...");
                 LogHelper.Info("***进入游戏主循环***");
-                GlobalSettings.LaunchTime   = DateTime.Now;
+                GlobalSettings.LaunchTime = DateTime.Now;
                 GlobalSettings.IsAppRunning = true;
                 await AppExitToken;
             }
@@ -61,22 +61,25 @@ namespace GameFrameX.Launcher.StartUp.Game
             if (Setting == null)
             {
                 Setting = new AppSetting
-                          {
-                              ServerId       = 9000,
-                              ServerType     = ServerType.Game,
-                              InnerPort      = 29100,
-                              HttpPort       = 29001,
-                              WsPort         = 29110,
-                              MinModuleId    = 0,
-                              MaxModuleId    = 9999,
-                              IsDebug        = true,
-                              IsDebugReceive = true,
-                              IsDebugSend    = true,
-                              //
-                              HttpCode     = "inner_httpcode",
-                              DataBaseUrl  = "mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority",
-                              DataBaseName = "gameframex"
-                          };
+                {
+                    ServerId = 9000,
+                    ServerType = ServerType.Game,
+                    InnerPort = 29100,
+                    APMPort = 29090,
+                    HttpPort = 29001,
+                    WsPort = 29110,
+                    MinModuleId = 0,
+                    MaxModuleId = 9999,
+                    DiscoveryCenterIp = "127.0.0.1",
+                    DiscoveryCenterPort = 21001,
+                    IsDebug = true,
+                    IsDebugSend = true,
+                    IsDebugReceive = true,
+                    //
+                    HttpCode = "inner_httpcode",
+                    DataBaseUrl = "mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority",
+                    DataBaseName = "gameframex"
+                };
             }
 
             base.Init();
