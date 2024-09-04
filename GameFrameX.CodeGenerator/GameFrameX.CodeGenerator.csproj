@@ -24,8 +24,7 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GameFrameX.Core.Abstractions\GameFrameX.Core.Abstractions.csproj" />
-    <ProjectReference Include="..\GameFrameX.Setting\GameFrameX.Setting.csproj" />
+    <PackageReference Include="GameFrameX.Core.Abstractions" Version="1.2.0-beta1" />
   </ItemGroup>
 
 </Project>
