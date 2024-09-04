@@ -26,7 +26,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.NetWork.Message" Version="1.1.1-beta9" />
+      <PackageReference Include="GameFrameX.NetWork.Message" Version="1.2.0-beta1" />
       <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.0.1" />
     </ItemGroup>
 
