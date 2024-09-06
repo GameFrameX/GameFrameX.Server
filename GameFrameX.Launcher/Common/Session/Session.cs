@@ -77,10 +77,23 @@ namespace GameFrameX.Launcher.Common.Session
         /// <summary>
         /// 发送消息
         /// </summary>
-        /// <param name="messageObject"></param>
-        public void WriteAsync(MessageObject messageObject)
+        /// <param name="messageObject">消息对象</param>
+        public void Write(MessageObject messageObject)
         {
             WorkChannel?.Write(messageObject);
+        }
+
+        /// <summary>
+        /// 发送消息
+        /// </summary>
+        /// <param name="messageObject">消息对象</param>
+        /// <param name="errorCode">消息错误码</param>
+        public async void WriteAsync(MessageObject messageObject, int errorCode = 0)
+        {
+            if (WorkChannel != null)
+            {
+                await WorkChannel.WriteAsync(messageObject, errorCode);
+            }
         }
     }
 }
