@@ -15,7 +15,7 @@ namespace GameFrameX.Launcher
 
         private static void LogAction(LogOptions options)
         {
-            options.IsConsole = false;
+            // options.IsConsole = false;
         }
     }
 }
