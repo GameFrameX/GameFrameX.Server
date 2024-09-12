@@ -12,9 +12,9 @@ namespace GameFrameX.StartUp
     /// </summary>
     internal static class AppEnter
     {
-        private static volatile bool _exitCalled = false;
-        private static volatile Task _gameLoopTask = null;
-        private static volatile Task _shutDownTask = null;
+        private static volatile bool _exitCalled;
+        private static volatile Task _gameLoopTask;
+        private static volatile Task _shutDownTask;
         private static volatile IAppStartUp _appStartUp;
 
         /// <summary>
@@ -42,12 +42,12 @@ namespace GameFrameX.StartUp
                 if (GlobalSettings.IsAppRunning)
                 {
                     error = $"服务器运行时异常 e:{e}";
-                    LogHelper.Info(error);
+                    LogHelper.InfoConsole(error);
                 }
                 else
                 {
                     error = $"启动服务器失败 e:{e}";
-                    LogHelper.Info(error);
+                    LogHelper.InfoConsole(error);
                 }
 
                 await File.WriteAllTextAsync($"server_error_{appStartUp.ServerType}.txt", $"{appStartUp.Setting.ToFormatString()}\n\n{error}", Encoding.UTF8);
@@ -62,14 +62,14 @@ namespace GameFrameX.StartUp
             }
 
             _exitCalled = true;
-            LogHelper.Info($"监听到退出程序消息");
+            LogHelper.InfoConsole($"监听到退出程序消息");
 
             void Function()
             {
                 GlobalSettings.IsAppRunning = false;
                 _appStartUp.StopAsync(message);
                 AppExitHandler.Kill();
-                LogHelper.Info($"退出程序");
+                LogHelper.InfoConsole($"退出程序");
                 _gameLoopTask?.Wait();
                 Process.GetCurrentProcess().Kill();
             }

@@ -31,8 +31,7 @@ namespace GameFrameX.StartUp
         public static async Task Entry(string[] args, Action initAction, Action<LogOptions> logConfiguration = null)
         {
             JsonSetting();
-            List<string> environmentVariablesList = new List<string>();
-            environmentVariablesList.AddRange(args);
+            List<string> environmentVariablesList = new List<string>(args);
             Console.WriteLine("启动参数：" + string.Join(" ", args));
             Console.WriteLine("当前环境变量START---------------------");
             var environmentVariables = Environment.GetEnvironmentVariables();
@@ -87,8 +86,7 @@ namespace GameFrameX.StartUp
 
             var sortedStartUpTypes = StartUpTypes.OrderBy(m => m.Value.Priority);
 
-            LogHelper.Info($"----------------------------开始启动服务器啦------------------------------");
-            Console.WriteLine($"----------------------------开始启动服务器啦------------------------------");
+            LogHelper.InfoConsole($"----------------------------开始启动服务器啦------------------------------");
             var appSettings = GlobalSettings.GetSettings();
             if (serverType != null && Enum.TryParse(serverType, out ServerType serverTypeValue))
             {
@@ -98,13 +96,11 @@ namespace GameFrameX.StartUp
                     var appSetting = appSettings.FirstOrDefault(m => m.ServerType == serverTypeValue);
                     if (appSetting != null)
                     {
-                        LogHelper.Error("从配置文件中找到对应的服务器类型的启动配置,将以配置启动=>" + startKv.Value.ServerType);
-                        Console.WriteLine("从配置文件中找到对应的服务器类型的启动配置,将以配置启动=>" + startKv.Value.ServerType);
+                        LogHelper.ErrorConsole("从配置文件中找到对应的服务器类型的启动配置,将以配置启动=>" + startKv.Value.ServerType);
                     }
                     else
                     {
-                        LogHelper.Error("没有找到对应的服务器类型的启动配置,将以默认配置启动=>" + startKv.Value.ServerType);
-                        Console.WriteLine("没有找到对应的服务器类型的启动配置,将以默认配置启动=>" + startKv.Value.ServerType);
+                        LogHelper.ErrorConsole("没有找到对应的服务器类型的启动配置,将以默认配置启动=>" + startKv.Value.ServerType);
                         appSetting = new AppSetting
                         {
                             ServerId = launcherOptions.ServerId,
@@ -159,15 +155,13 @@ namespace GameFrameX.StartUp
 
                     if (isFind == false)
                     {
-                        LogHelper.Error("没有找到对应的服务器类型的启动配置,将以默认配置启动=>" + keyValuePair.Value.ServerType);
-                        Console.WriteLine("没有找到对应的服务器类型的启动配置,将以默认配置启动=>" + keyValuePair.Value.ServerType);
+                        LogHelper.ErrorConsole("没有找到对应的服务器类型的启动配置,将以默认配置启动=>" + keyValuePair.Value.ServerType);
                         Launcher(args, keyValuePair);
                     }
                 }
             }
 
-            LogHelper.Info($"----------------------------启动服务器结束啦------------------------------");
-            Console.WriteLine($"----------------------------启动服务器结束啦------------------------------");
+            LogHelper.InfoConsole($"----------------------------启动服务器结束啦------------------------------");
             ApplicationPerformanceMonitorStart(serverType);
             ConsoleHelper.ConsoleLogo();
 
@@ -308,17 +302,12 @@ namespace GameFrameX.StartUp
                 bool isSuccess = startUp.Init(serverType, setting, args);
                 if (isSuccess)
                 {
-                    LogHelper.Info($"----------------------------START-----{serverType}------------------------------");
-                    Console.WriteLine($"----------------------------START-----{serverType}------------------------------");
-                    LogHelper.Info($"----------------------------配置信息----------------------------------------------");
-                    Console.WriteLine($"----------------------------配置信息----------------------------------------------");
-                    LogHelper.Info($"{startUp.Setting.ToFormatString()}");
-                    Console.WriteLine($"{startUp.Setting.ToFormatString()}");
-                    LogHelper.Info($"--------------------------------------------------------------------------------");
-                    Console.WriteLine($"--------------------------------------------------------------------------------");
+                    LogHelper.InfoConsole($"----------------------------START-----{serverType}------------------------------");
+                    LogHelper.InfoConsole($"----------------------------配置信息----------------------------------------------");
+                    LogHelper.InfoConsole($"{startUp.Setting.ToFormatString()}", true);
+                    LogHelper.InfoConsole($"--------------------------------------------------------------------------------");
                     var task = AppEnter.Entry(startUp);
-                    LogHelper.Info($"-----------------------------END------{serverType}------------------------------");
-                    Console.WriteLine($"-----------------------------END------{serverType}------------------------------");
+                    LogHelper.InfoConsole($"-----------------------------END------{serverType}------------------------------");
                     return task;
                 }
             }
