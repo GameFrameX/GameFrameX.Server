@@ -17,6 +17,17 @@ public static class LogHelper
         Serilog.Log.Debug(msg, args);
     }
 
+    /// <summary>
+    /// 记录带有可选格式参数的调试消息。并控制台打印
+    /// </summary>
+    /// <param name="msg">要记录的调试消息。</param>
+    /// <param name="args">消息的可选格式参数。</param>
+    public static void DebugConsole(string msg, params object[] args)
+    {
+        Serilog.Log.Debug(msg, args);
+        Console.WriteLine(msg, args);
+    }
+
 
     // static void StackTrace()
     // {
@@ -38,6 +49,17 @@ public static class LogHelper
     public static void Info(string msg, params object[] args)
     {
         Serilog.Log.Information(msg, args);
+    }
+
+    /// <summary>
+    /// 记录带有格式参数的信息消息。并控制台打印
+    /// </summary>
+    /// <param name="msg">要记录的信息消息。</param>
+    /// <param name="args">消息的格式参数。</param>
+    public static void InfoConsole(string msg, params object[] args)
+    {
+        Serilog.Log.Information(msg, args);
+        Console.WriteLine(msg, args);
     }
 
     /// <summary>
@@ -69,6 +91,20 @@ public static class LogHelper
     }
 
     /// <summary>
+    /// 记录带有格式参数的警告消息。
+    /// </summary>
+    /// <param name="msg">要记录的警告消息。</param>
+    /// <param name="args">消息的格式参数。</param>
+    public static void WarnConsole(string msg, params object[] args)
+    {
+        Serilog.Log.Warning(msg, args);
+
+        Console.BackgroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(msg, args);
+        Console.ResetColor();
+    }
+
+    /// <summary>
     /// 记录带有格式参数的错误消息。
     /// </summary>
     /// <param name="msg">要记录的错误消息。</param>
@@ -76,6 +112,21 @@ public static class LogHelper
     public static void Error(string msg, params object[] args)
     {
         Serilog.Log.Error(msg, args);
+        // StackTrace();
+    }
+
+    /// <summary>
+    /// 记录带有格式参数的错误消息。
+    /// </summary>
+    /// <param name="msg">要记录的错误消息。</param>
+    /// <param name="args">消息的格式参数。</param>
+    public static void ErrorConsole(string msg, params object[] args)
+    {
+        Serilog.Log.Error(msg, args);
+
+        Console.BackgroundColor = ConsoleColor.Red;
+        Console.WriteLine(msg, args);
+        Console.ResetColor();
         // StackTrace();
     }
 
