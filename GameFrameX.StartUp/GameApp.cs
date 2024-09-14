@@ -32,8 +32,8 @@ namespace GameFrameX.StartUp
         {
             JsonSetting();
             List<string> environmentVariablesList = new List<string>(args);
-            Console.WriteLine("启动参数：" + string.Join(" ", args));
-            Console.WriteLine("当前环境变量START---------------------");
+            LogHelper.Console("启动参数：" + string.Join(" ", args));
+            LogHelper.Console("当前环境变量START---------------------");
             var environmentVariables = Environment.GetEnvironmentVariables();
             foreach (DictionaryEntry environmentVariable in environmentVariables)
             {
@@ -52,16 +52,16 @@ namespace GameFrameX.StartUp
                 environmentVariablesList.Add(environmentVariable.Value.ToString());
             }
 
-            Console.WriteLine("当前环境变量END---------------------");
-            Console.WriteLine();
-            Console.WriteLine();
+            LogHelper.Console("当前环境变量END---------------------");
+            LogHelper.Console(string.Empty);
+            LogHelper.Console(string.Empty);
             var commandLineParser = new Parser(configuration => { configuration.IgnoreUnknownArguments = true; });
 
             var launcherOptions = commandLineParser.ParseArguments<LauncherOptions>(environmentVariablesList).WithParsed((LauncherOptionsValidate))?.Value;
             var serverType = launcherOptions?.ServerType;
             if (!serverType.IsNullOrEmpty())
             {
-                Console.WriteLine("启动的服务器类型 ServerType: " + serverType);
+                LogHelper.Console("启动的服务器类型 ServerType: " + serverType);
             }
 
             LogOptions.Default.ServerType = serverType;
@@ -96,7 +96,7 @@ namespace GameFrameX.StartUp
                     var appSetting = appSettings.FirstOrDefault(m => m.ServerType == serverTypeValue);
                     if (appSetting != null)
                     {
-                        LogHelper.ErrorConsole("从配置文件中找到对应的服务器类型的启动配置,将以配置启动=>" + startKv.Value.ServerType);
+                        LogHelper.InfoConsole("从配置文件中找到对应的服务器类型的启动配置,将以配置启动=>" + startKv.Value.ServerType);
                     }
                     else
                     {
