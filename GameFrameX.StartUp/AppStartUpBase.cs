@@ -165,7 +165,7 @@ namespace GameFrameX.StartUp
         {
             ReconnectionTimer?.Stop();
             HeartBeatTimer?.Stop();
-            LogHelper.Error(message);
+            LogHelper.ErrorConsole($"服务器类型:{Setting.ServerType} 停止! 终止原因：{message}  配置信息: {Setting.ToFormatString()}");
             AppExitSource?.TrySetResult(message);
             await Task.CompletedTask;
         }
