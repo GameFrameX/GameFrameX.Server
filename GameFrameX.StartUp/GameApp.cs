@@ -304,7 +304,7 @@ namespace GameFrameX.StartUp
                 {
                     LogHelper.InfoConsole($"----------------------------START-----{serverType}------------------------------");
                     LogHelper.InfoConsole($"----------------------------配置信息----------------------------------------------");
-                    LogHelper.InfoConsole($"{startUp.Setting.ToFormatString()}", true);
+                    LogHelper.InfoConsole($"{startUp.Setting.ToFormatString()}");
                     LogHelper.InfoConsole($"--------------------------------------------------------------------------------");
                     var task = AppEnter.Entry(startUp);
                     LogHelper.InfoConsole($"-----------------------------END------{serverType}------------------------------");
