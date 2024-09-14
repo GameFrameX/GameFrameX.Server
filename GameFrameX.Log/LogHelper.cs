@@ -25,7 +25,7 @@ public static class LogHelper
     public static void DebugConsole(string msg, params object[] args)
     {
         Serilog.Log.Debug(msg, args);
-        Console.WriteLine(msg, args);
+        Console(msg, args);
     }
 
 
@@ -59,7 +59,25 @@ public static class LogHelper
     public static void InfoConsole(string msg, params object[] args)
     {
         Serilog.Log.Information(msg, args);
-        Console.WriteLine(msg, args);
+        Console(msg, args);
+    }
+
+    /// <summary>
+    /// 记录带有格式参数的信息消息。,只打印到控制台
+    /// </summary>
+    /// <param name="message">要记录的信息消息。</param>
+    /// <param name="args">消息的格式参数。</param>
+    public static void Console(string message, params object[] args)
+    {
+        var time = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}]";
+        if (args is { Length: > 0 })
+        {
+            System.Console.WriteLine(time + message, args);
+        }
+        else
+        {
+            System.Console.WriteLine(time + message);
+        }
     }
 
     /// <summary>
@@ -99,9 +117,10 @@ public static class LogHelper
     {
         Serilog.Log.Warning(msg, args);
 
-        Console.BackgroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(msg, args);
-        Console.ResetColor();
+        System.Console.ForegroundColor = ConsoleColor.Yellow;
+        Console(msg, args);
+
+        System.Console.ResetColor();
     }
 
     /// <summary>
@@ -124,9 +143,10 @@ public static class LogHelper
     {
         Serilog.Log.Error(msg, args);
 
-        Console.BackgroundColor = ConsoleColor.Red;
-        Console.WriteLine(msg, args);
-        Console.ResetColor();
+        System.Console.ForegroundColor = ConsoleColor.Red;
+        Console(msg, args);
+
+        System.Console.ResetColor();
         // StackTrace();
     }
 
