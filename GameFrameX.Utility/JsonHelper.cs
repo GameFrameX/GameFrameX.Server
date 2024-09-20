@@ -42,4 +42,17 @@ public static class JsonHelper
         json.CheckNotNullOrEmpty(nameof(json));
         return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
     }
+
+    /// <summary>
+    /// 反序列化对象
+    /// </summary>
+    /// <param name="json"></param>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    public static object Deserialize(string json, Type type)
+    {
+        json.CheckNotNullOrEmpty(nameof(json));
+        type.CheckNotNull(nameof(type));
+        return Newtonsoft.Json.JsonConvert.DeserializeObject(json, type);
+    }
 }
