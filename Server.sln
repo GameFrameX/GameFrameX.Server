@@ -37,6 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		gameframex.key.snk = gameframex.key.snk
 		Version.props = Version.props
 		README.md = README.md
+		.github\workflows\publish-nuget.yml = .github\workflows\publish-nuget.yml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DataBase.NoSql", "DataBaseServer\GameFrameX.DataBase.NoSql\GameFrameX.DataBase.NoSql.csproj", "{B01BFC0B-9BF4-498D-893F-84B4684978A7}"

@@ -168,7 +168,7 @@ jobs:
           PROJECT_FILE_PATH: DataBaseServer/GameFrameX.DataBase.NoSql.Redis/GameFrameX.DataBase.NoSql.Redis.csproj
           VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-          
+
       - name: Publish GameFrameX.ServerManager
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
@@ -176,3 +176,9 @@ jobs:
           VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
+      - name: Publish GameFrameX.GameAnalytics
+        uses: AlianBlank/publish-nuget@v1.0.2
+        with:
+          PROJECT_FILE_PATH: GameFrameX.GameAnalytics/GameFrameX.GameAnalytics.csproj
+          VERSION_FILE_PATH: Version.props
+          NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
