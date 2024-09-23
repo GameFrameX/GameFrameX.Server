@@ -12,21 +12,22 @@ using Microsoft.Extensions.DependencyInjection;
 /// <summary>
 /// 网关服务器
 /// </summary>
-// [StartUpTag(ServerType.Gateway)]
+[StartUpTag(ServerType.Gateway)]
 internal sealed partial class AppStartUpGateway : AppStartUpService
 {
-    private IServer tcpService;
-    protected override int HeartBeatInterval { get; } = 10000;
+    /// <summary>
+    /// 是否请求其他服务信息
+    /// </summary>
+    protected override bool IsRequestConnectServer { get; } = false;
 
     public override async Task StartAsync()
     {
         try
         {
-            LogHelper.Info($"启动服务器{Setting.ServerType} 开始! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
             await StartServer();
             // _namingServiceManager.OnServerAdd = OnServerAdd;
             // _namingServiceManager.OnServerRemove = OnServerRemove;
-            _namingServiceManager.AddSelf(Setting);
+            // _namingServiceManager.AddSelf(Setting);
             await base.StartAsync();
             await AppExitToken;
         }
@@ -38,42 +39,13 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
         }
     }
 
-    public override async Task StopAsync(string message = "")
-    {
-        LogHelper.Info($"服务器{Setting.ServerType} 停止! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
-        await tcpService.StopAsync();
-        await base.StopAsync(message);
-    }
 
     #region Server
 
-    private async Task StartServer()
-    {
-        tcpService = SuperSocketHostBuilder.Create<INetworkMessage, MessageObjectPipelineFilter>()
-                                           .ConfigureSuperSocket(ConfigureSuperSocket)
-                                           .UseClearIdleSession()
-                                           .UsePackageDecoder<BaseMessageDecoderHandler>()
-                                           .UsePackageEncoder<BaseMessageEncoderHandler>()
-                                           .UseSessionHandler(OnConnected, OnDisconnected)
-                                           .UsePackageHandler(PackageHandler, ClientErrorHandler)
-                                           .UseInProcSessionContainer()
-                                           .BuildAsServer();
-
-        var messageEncoderHandler = (BaseMessageEncoderHandler)tcpService.ServiceProvider.GetService<IPackageEncoder<INetworkMessage>>();
-        var messageDecoderHandler = (BaseMessageDecoderHandler)tcpService.ServiceProvider.GetService<IPackageDecoder<INetworkMessage>>();
-        SetMessageHandler(messageEncoderHandler, messageDecoderHandler);
-        await tcpService.StartAsync();
-    }
-
-    private ValueTask<bool> ClientErrorHandler(IAppSession appSession, PackageHandlingException<INetworkMessage> exception)
-    {
-        return ValueTask.FromResult(true);
-    }
-
-    private ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
+    protected override ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
     {
         LogHelper.Info("有客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
-        if (_namingServiceManager.TrySessionRemove(appSession.SessionID))
+        // if (_namingServiceManager.TrySessionRemove(appSession.SessionID))
         {
             LogHelper.Info("有游戏业务客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
         }
@@ -81,16 +53,16 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
         return ValueTask.CompletedTask;
     }
 
-    private ValueTask OnConnected(IAppSession appSession)
+    protected override ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("有客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-        var netChannel = new DefaultNetWorkChannel(appSession, Setting, MessageEncoderHandler, RpcSession);
+        var netChannel = new DefaultNetWorkChannel(appSession, Setting, MessageEncoderHandler, null);
         var session = new Session(appSession.SessionID, netChannel);
         SessionManager.Add(session);
         return ValueTask.CompletedTask;
     }
 
-    private ValueTask PackageHandler(IAppSession session, INetworkMessage message)
+    protected override ValueTask PackageHandler(IAppSession session, INetworkMessage message)
     {
         if (message is MessageObject messageObject)
         {
@@ -127,23 +99,23 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
                                                                       reqRegisterGameServer.MaxModuleMessageID
                 );
 
-                _namingServiceManager.Add(gameServiceInfo);
+                // _namingServiceManager.Add(gameServiceInfo);
                 return ValueTask.CompletedTask;
             }
 
             var mainId = MessageIdUtility.GetMainId(messageObject.MessageId);
-            var serviceInfos = _namingServiceManager.GetNodesByType(ServerType.Game);
-            foreach (var serviceInfo in serviceInfos)
-            {
-                if (serviceInfo is GameServiceInfo gameServiceInfo)
-                {
-                    if (mainId >= gameServiceInfo.MinModuleMessageId && mainId <= gameServiceInfo.MaxModuleMessageId)
-                    {
-                        SendMessage((IAppSession)gameServiceInfo.Session, messageObject);
-                        break;
-                    }
-                }
-            }
+            // var serviceInfos = _namingServiceManager.GetNodesByType(ServerType.Game);
+            // foreach (var serviceInfo in serviceInfos)
+            // {
+            //     if (serviceInfo is GameServiceInfo gameServiceInfo)
+            //     {
+            //         if (mainId >= gameServiceInfo.MinModuleMessageId && mainId <= gameServiceInfo.MaxModuleMessageId)
+            //         {
+            //             SendMessage((IAppSession)gameServiceInfo.Session, messageObject);
+            //             break;
+            //         }
+            //     }
+            // }
         }
 
         return ValueTask.CompletedTask;
@@ -197,12 +169,11 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
         base.Init();
     }
 
-    protected override bool IsRequestConnectServer { get; } = false;
 
-    private NamingServiceManager _namingServiceManager;
-
-    public AppStartUpGateway()
-    {
-        _namingServiceManager = new NamingServiceManager();
-    }
+    // private NamingServiceManager _namingServiceManager;
+    //
+    // public AppStartUpGateway()
+    // {
+    //     _namingServiceManager = new NamingServiceManager();
+    // }
 }

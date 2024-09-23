@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System.Collections.Concurrent;
+using System.Collections.ObjectModel;
+using System.Reflection;
 using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.NetWork.Abstractions;
@@ -15,6 +17,7 @@ namespace GameFrameX.NetWork.Message
         private static readonly BidirectionalDictionary<int, Type> RequestDictionary = new BidirectionalDictionary<int, Type>();
         private static readonly BidirectionalDictionary<int, Type> AllMessageDictionary = new BidirectionalDictionary<int, Type>();
         private static readonly BidirectionalDictionary<int, Type> ResponseDictionary = new BidirectionalDictionary<int, Type>();
+        private static readonly ConcurrentDictionary<Type, MessageOperationType> OperationType = new ConcurrentDictionary<Type, MessageOperationType>();
         private static readonly List<Type> HeartBeatList = new List<Type>();
 
         /// <summary>
@@ -41,6 +44,26 @@ namespace GameFrameX.NetWork.Message
         {
             AllMessageDictionary.TryGetValue(messageId, out var value);
             return value;
+        }
+
+        /// <summary>
+        /// 获取消息操作类型
+        /// </summary>
+        /// <param name="type">消息类型</param>
+        /// <returns></returns>
+        public static MessageOperationType GetMessageOperationType(Type type)
+        {
+            if (IsHeartbeat(type))
+            {
+                return MessageOperationType.HeartBeat;
+            }
+
+            if (OperationType.TryGetValue(type, out var value))
+            {
+                return value;
+            }
+
+            return MessageOperationType.None;
         }
 
         /// <summary>
@@ -82,6 +105,8 @@ namespace GameFrameX.NetWork.Message
                         RequestDictionary.TryGetValue(messageIdHandler.MessageId, out var value);
                         throw new Exception($"消息Id重复==>当前ID:{messageIdHandler.MessageId},已有ID类型:{value.FullName}");
                     }
+
+                    OperationType.TryAdd(type, messageIdHandler.OperationType);
 
                     if (type.IsImplWithInterface(typeof(IHeartBeatMessage)))
                     {

@@ -74,4 +74,9 @@ public enum MessageOperationType : byte
     /// 转发
     /// </summary>
     Forward,
+
+    /// <summary>
+    /// 注册
+    /// </summary>
+    Register,
 }

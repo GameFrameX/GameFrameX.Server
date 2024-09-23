@@ -100,7 +100,7 @@ public class InnerMessage : IInnerMessage
     /// <returns></returns>
     public string ToFormatMessageString()
     {
-        return $"消息:[MessageId:{MessageId},UniqueId: {UniqueId}, {MessageType?.Name}] 消息内容:{this}";
+        return $"消息:[{MessageId}, {UniqueId}, {GetType().Name}, {OperationType}] 消息内容:{this}";
     }
 
     /// <summary>

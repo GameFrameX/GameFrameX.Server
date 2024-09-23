@@ -6,7 +6,6 @@ using GameFrameX.Setting;
 using GameFrameX.StartUp.Abstractions;
 using GameFrameX.SuperSocket.Server;
 using GameFrameX.SuperSocket.Server.Abstractions;
-using Timer = System.Timers.Timer;
 
 namespace GameFrameX.StartUp
 {
@@ -26,39 +25,9 @@ namespace GameFrameX.StartUp
         public AppSetting Setting { get; protected set; }
 
         /// <summary>
-        /// 重连间隔时间。单位毫秒,默认为5秒
-        /// </summary>
-        protected virtual int ReconnectInterval { get; } = 5000;
-
-        /// <summary>
-        /// 心跳间隔时间。单位毫秒,默认为15秒
-        /// </summary>
-        protected virtual int HeartBeatInterval { get; } = 15000;
-
-        /// <summary>
         /// 应用退出
         /// </summary>
         protected readonly TaskCompletionSource<string> AppExitSource = new TaskCompletionSource<string>();
-
-        /// <summary>
-        /// 重连定时器
-        /// </summary>
-        protected Timer ReconnectionTimer;
-
-        /// <summary>
-        /// 是否启用重连
-        /// </summary>
-        protected virtual bool IsEnableReconnection { get; } = true;
-
-        /// <summary>
-        /// 心跳定时器
-        /// </summary>
-        protected Timer HeartBeatTimer { get; set; }
-
-        /// <summary>
-        /// 是否启用心跳
-        /// </summary>
-        protected virtual bool IsEnableHeartBeat { get; } = true;
 
         /// <summary>
         /// 应用退出
@@ -90,17 +59,6 @@ namespace GameFrameX.StartUp
             Init();
             Setting.CheckNotNull(nameof(Setting));
             GlobalSettings.ServerId = Setting.ServerId;
-            if (IsEnableHeartBeat)
-            {
-                HeartBeatTimer = new Timer(HeartBeatInterval);
-                HeartBeatTimer.Elapsed += HeartBeatTimerOnElapsed;
-            }
-
-            if (IsEnableReconnection)
-            {
-                ReconnectionTimer = new Timer(ReconnectInterval);
-                ReconnectionTimer.Elapsed += ReconnectionTimerOnElapsed;
-            }
 
             return true;
         }
@@ -163,8 +121,6 @@ namespace GameFrameX.StartUp
         /// <param name="message">终止原因</param>
         public virtual async Task StopAsync(string message = "")
         {
-            ReconnectionTimer?.Stop();
-            HeartBeatTimer?.Stop();
             LogHelper.ErrorConsole($"服务器类型:{Setting.ServerType} 停止! 终止原因：{message}  配置信息: {Setting.ToFormatString()}");
             AppExitSource?.TrySetResult(message);
             await Task.CompletedTask;

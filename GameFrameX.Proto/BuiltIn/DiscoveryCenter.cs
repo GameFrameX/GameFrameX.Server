@@ -132,7 +132,7 @@ public partial class RespServerOfflineServer : MessageObject, IResponseMessage
 /// <summary>
 /// 请求注册服务
 /// </summary>
-[MessageTypeHandler(((short.MaxValue - 1) << 16) + 104)]
+[MessageTypeHandler(((short.MaxValue - 1) << 16) + 104, MessageOperationType.Register)]
 public partial class ReqRegisterServer : MessageObject, IRequestMessage
 {
     /// <summary>

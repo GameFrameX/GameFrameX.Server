@@ -11,28 +11,16 @@ namespace GameFrameX.Launcher.StartUp.Discovery;
 /// <summary>
 /// 服务发现中心服务器
 /// </summary>
-// [StartUpTag(ServerType.DiscoveryCenter, 0)]
+[StartUpTag(ServerType.DiscoveryCenter, 0)]
 internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
 {
-    private IServer _server;
-
-
-    NamingServiceManager _namingServiceManager = new NamingServiceManager();
-
     public override async Task StartAsync()
     {
         try
         {
-            LogHelper.Info($"开始启动服务器{ServerType}");
-            _namingServiceManager.OnServerAdd = OnServerAdd;
-            _namingServiceManager.OnServerRemove = OnServerRemove;
             _namingServiceManager.AddSelf(Setting);
 
-            LogHelper.Info($"启动服务器{ServerType} 开始!");
-
-            StartServer();
-
-            LogHelper.Info($"启动服务器 {ServerType} 端口: {Setting.InnerPort} 结束!");
+            await StartServer();
 
             await AppExitToken;
         }
@@ -46,6 +34,16 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
         await StopAsync();
         LogHelper.Info($"退出服务器{ServerType}成功");
     }
+
+    #region NamingServiceManager
+
+    readonly NamingServiceManager _namingServiceManager;
+
+    public AppStartUpDiscoveryCenter()
+    {
+        _namingServiceManager = new NamingServiceManager(OnServerAdd, OnServerRemove);
+    }
+
 
     private void OnServerRemove(IServiceInfo serverInfo)
     {
@@ -88,6 +86,8 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
         }
     }
 
+    #endregion
+
     /// <summary>
     /// 发送消息给注册的服务
     /// </summary>
@@ -115,27 +115,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
         await session.SendAsync(data);
     }
 
-    private async void StartServer()
-    {
-        _server = SuperSocketHostBuilder
-                  .Create<INetworkMessage, MessageObjectPipelineFilter>()
-                  .ConfigureSuperSocket(ConfigureSuperSocket)
-                  .UseClearIdleSession()
-                  .UsePackageDecoder<BaseMessageDecoderHandler>()
-                  .UsePackageEncoder<BaseMessageEncoderHandler>()
-                  .UseSessionHandler(OnConnected, OnDisconnected)
-                  .UsePackageHandler(PackageHandler)
-                  .UseInProcSessionContainer()
-                  .BuildAsServer();
-
-        await _server.StartAsync();
-        var messageEncoderHandler = (BaseMessageEncoderHandler)_server.ServiceProvider.GetService<IPackageEncoder<INetworkMessage>>();
-        var messageDecoderHandler = (BaseMessageDecoderHandler)_server.ServiceProvider.GetService<IPackageDecoder<INetworkMessage>>();
-        SetMessageHandler(messageEncoderHandler, messageDecoderHandler);
-    }
-
-
-    private ValueTask PackageHandler(IAppSession session, INetworkMessage message)
+    protected override ValueTask PackageHandler(IAppSession session, INetworkMessage message)
     {
         if (message is IInnerMessage messageObject)
         {
@@ -165,7 +145,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
                 return ValueTask.CompletedTask;
             }
 
-            if (messageObject.OperationType == MessageOperationType.Game)
+            if (messageObject.OperationType == MessageOperationType.Register)
             {
                 if (messageObject.MessageType == typeof(ReqRegisterServer))
                 {
@@ -176,7 +156,10 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
                     LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
                     return ValueTask.CompletedTask;
                 }
+            }
 
+            if (messageObject.OperationType == MessageOperationType.Game)
+            {
                 if (messageObject.MessageType == typeof(ReqConnectServer))
                 {
                     ReqConnectServer reqConnectServer = (ReqConnectServer)messageObject.DeserializeMessageObject();
@@ -209,30 +192,23 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
     }
 
 
-    private ValueTask OnConnected(IAppSession appSession)
+    protected override ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("有外部服务连接到中心服务器成功" + "。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
         return ValueTask.CompletedTask;
     }
 
-    private ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs args)
+    protected override ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs args)
     {
         LogHelper.Info("有外部服务从中心服务器断开。链接信息：断开原因:" + args.Reason);
         _namingServiceManager.TrySessionRemove(appSession.SessionID);
         return ValueTask.CompletedTask;
     }
 
-    public override async Task StopAsync(string message = "")
-    {
-        LogHelper.Info($"{ServerType} Server stopping...");
-        await _server.StopAsync();
-        LogHelper.Info($"{ServerType} Server Done!");
-    }
-
     protected override void ConfigureSuperSocket(ServerOptions options)
     {
-        base.ConfigureSuperSocket(options);
         options.ClearIdleSessionInterval = 30;
+        base.ConfigureSuperSocket(options);
     }
 
     protected override void Init()

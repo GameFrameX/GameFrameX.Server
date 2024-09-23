@@ -19,20 +19,22 @@ namespace GameFrameX.ServerManager
         /// <summary>
         /// 
         /// </summary>
-        public NamingServiceManager()
+        public NamingServiceManager(Action<IServiceInfo> onServerAdd, Action<IServiceInfo> onServerRemove)
         {
             _serverMap = new ConcurrentDictionary<long, IServiceInfo>();
+            _onServerAdd = onServerAdd;
+            _onServerRemove = onServerRemove;
         }
 
         /// <summary>
         /// 服务器添加的时候触发的回调
         /// </summary>
-        public Action<IServiceInfo> OnServerAdd;
+        private readonly Action<IServiceInfo> _onServerAdd;
 
         /// <summary>
         /// 服务器移除的时候触发的回调
         /// </summary>
-        public Action<IServiceInfo> OnServerRemove;
+        private readonly Action<IServiceInfo> _onServerRemove;
 
         /// <summary>
         /// 根据节点数据从服务器列表中删除
@@ -48,7 +50,7 @@ namespace GameFrameX.ServerManager
 
             MetricsDiscoveryRegister.ServiceCounterOptions.Dec(-1);
             var result = _serverMap.TryRemove(serverId, out var value);
-            OnServerRemove?.Invoke(value);
+            _onServerRemove?.Invoke(value);
             return result;
         }
 
@@ -175,7 +177,7 @@ namespace GameFrameX.ServerManager
 
             MetricsDiscoveryRegister.ServiceCounterOptions.Inc();
             _serverMap.TryAdd(node.ServerId, node);
-            OnServerAdd?.Invoke(node);
+            _onServerAdd?.Invoke(node);
             LogHelper.Info($"新的网络节点:[{node}]   总数：{GetNodeCount()}");
         }
 

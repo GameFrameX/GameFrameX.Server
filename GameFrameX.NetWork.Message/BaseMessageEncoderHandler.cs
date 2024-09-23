@@ -25,8 +25,13 @@ public class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder
     /// <returns></returns>
     public virtual MessageOperationType GetMessageOperationType(Type messageType)
     {
-        var isHeartbeat = MessageProtoHelper.IsHeartbeat(messageType);
-        return isHeartbeat ? MessageOperationType.HeartBeat : MessageOperationType.Game;
+        var messageOperationType = MessageProtoHelper.GetMessageOperationType(messageType);
+        if (messageOperationType == MessageOperationType.None)
+        {
+            return MessageOperationType.Game;
+        }
+
+        return messageOperationType;
     }
 
     /// <summary>
@@ -67,6 +72,42 @@ public class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder
         LogHelper.Error("消息对象为空，编码异常");
         return null;
     }
+    
+    public virtual byte[] Handler(IInnerMessage message)
+    {
+        
+        if (message is MessageObject messageObject)
+        {
+            var messageType = message.GetType();
+            var messageOperationType = GetMessageOperationType(messageType);
+            var messageId = MessageProtoHelper.GetMessageIdByType(messageType);
+            message.SetMessageId(messageId);
+            message.SetOperationType(messageOperationType);
+            var bytes = ProtoBufSerializerHelper.Serialize(messageObject);
+            byte zipFlag = 0;
+            if (CompressHandler != null && bytes.Length > LimitCompressLength)
+            {
+                zipFlag = 1;
+                // 压缩
+                bytes = CompressHandler.Handler(bytes);
+            }
+
+            var len = (ushort)(PackageLength + bytes.Length);
+            var span = new byte[len];
+            int offset = 0;
+            span.WriteUShort(len, ref offset);
+            span.WriteByte((byte)messageOperationType, ref offset);
+            span.WriteByte(zipFlag, ref offset);
+            span.WriteInt(message.UniqueId, ref offset);
+            span.WriteInt(message.MessageId, ref offset);
+            span.WriteBytesWithoutLength(bytes, ref offset);
+            return span;
+        }
+
+        LogHelper.Error("消息对象为空，编码异常");
+        return null;
+    }
+    
 
     /// <summary>
     /// 压缩消息处理器

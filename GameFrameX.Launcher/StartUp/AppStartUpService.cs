@@ -1,6 +1,12 @@
 ﻿using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
+using GameFrameX.SuperSocket.Primitives;
+using GameFrameX.SuperSocket.ProtoBase;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Serilog;
 using Timer = System.Timers.Timer;
 
 namespace GameFrameX.Launcher.StartUp;
@@ -10,9 +16,8 @@ public abstract class AppStartUpService : AppStartUpBase
     /// <summary>
     /// 链接到发现中心的客户端
     /// </summary>
-    AsyncTcpSession discoveryCenterClient;
+    // AsyncTcpSession discoveryCenterClient;
 
-    protected RpcSession RpcSession { get; private set; }
 
     /// <summary>
     /// 从发现中心请求的目标服务器类型
@@ -36,7 +41,6 @@ public abstract class AppStartUpService : AppStartUpBase
 
     protected IMessageEncoderHandler MessageEncoderHandler { get; private set; }
     protected IMessageDecoderHandler MessageDecoderHandler { get; private set; }
-    private readonly ReqHeartBeat _reqDiscoveryCenterActorHeartBeat;
 
     protected void SetMessageHandler(IMessageEncoderHandler messageEncoderHandler, IMessageDecoderHandler messageDecoderHandler)
     {
@@ -46,11 +50,6 @@ public abstract class AppStartUpService : AppStartUpBase
         MessageDecoderHandler = messageDecoderHandler;
     }
 
-    protected AppStartUpService()
-    {
-        RpcSession = new RpcSession();
-        _reqDiscoveryCenterActorHeartBeat = new ReqHeartBeat();
-    }
 
     private Timer ConnectTargetServerTimer { get; set; }
 
@@ -72,56 +71,21 @@ public abstract class AppStartUpService : AppStartUpBase
 
         if (IsConnectDiscoveryServer)
         {
-            StartDiscoveryCenterClient();
-            _ = Task.Run(RpcHandler);
+            _discoveryCenterChannelHelper?.Start();
+           
         }
 
         return Task.CompletedTask;
     }
 
-    private void RpcHandler()
-    {
-        while (true)
-        {
-            var message = RpcSession.Handler();
-            if (message == null || discoveryCenterClient.IsConnected == false)
-            {
-                Thread.Sleep(1);
-                continue;
-            }
 
-            SendToDiscoveryCenterMessage(message.RequestMessage);
-        }
-    }
-
-    /// <summary>
-    /// 给发现中心发送消息
-    /// </summary>
-    /// <param name="message"></param>
-    protected void SendToDiscoveryCenterMessage(INetworkMessage message)
-    {
-        var span = MessageEncoderHandler.Handler(message);
-        if (Setting.IsDebug && Setting.IsDebugSend)
-        {
-            LogHelper.Debug(message.ToFormatMessageString());
-        }
-
-        discoveryCenterClient.TrySend(span);
-    }
-
-    protected override void HeartBeatTimerOnElapsed(object sender, ElapsedEventArgs e)
-    {
-        _reqDiscoveryCenterActorHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
-        _reqDiscoveryCenterActorHeartBeat.UpdateUniqueId();
-        SendToDiscoveryCenterMessage(_reqDiscoveryCenterActorHeartBeat);
-    }
 
     /// <summary>
     /// 请求链接目标
     /// </summary>
     void SendConnectTargetServer()
     {
-        if (!discoveryCenterClient.IsConnected)
+        if (!_discoveryCenterChannelHelper.IsConnected)
         {
             return;
         }
@@ -132,7 +96,7 @@ public abstract class AppStartUpService : AppStartUpBase
             {
                 ServerType = GetServerType
             };
-            SendToDiscoveryCenterMessage(reqConnectServer);
+            _discoveryCenterChannelHelper.Send(reqConnectServer);
         }
     }
 
@@ -151,81 +115,6 @@ public abstract class AppStartUpService : AppStartUpBase
         SendConnectTargetServer();
     }
 
-    /// <summary>
-    /// 重连定时器
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected override void ReconnectionTimerOnElapsed(object sender, ElapsedEventArgs e)
-    {
-        if (!IsRequestConnectServer)
-        {
-            return;
-        }
-
-        // 重连到发现中心服务器
-        ConnectToDiscoveryCenter();
-    }
-
-    private void ConnectToDiscoveryCenter()
-    {
-        var endPoint = new IPEndPoint(IPAddress.Parse(Setting.DiscoveryCenterIp), Setting.DiscoveryCenterPort);
-        discoveryCenterClient.Connect(endPoint);
-    }
-
-    private void StartDiscoveryCenterClient()
-    {
-        discoveryCenterClient = new AsyncTcpSession();
-        discoveryCenterClient.Closed += DiscoveryCenterClientOnClosed;
-        discoveryCenterClient.DataReceived += DiscoveryCenterClientOnDataReceived;
-        discoveryCenterClient.Connected += DiscoveryCenterClientOnConnected;
-        discoveryCenterClient.Error += DiscoveryCenterClientOnError;
-
-        LogHelper.Info("开始链接到发现中心服务器 ...");
-        ReconnectionTimer.Start();
-    }
-
-
-    private void DiscoveryCenterClientOnError(object sender, ErrorEventArgs e)
-    {
-        LogHelper.Info("和发现中心服务器链接链接发生错误!" + e);
-        DiscoveryCenterClientOnClosed(discoveryCenterClient, e);
-    }
-
-    private void DiscoveryCenterClientOnConnected(object sender, EventArgs e)
-    {
-        LogHelper.Info("和发现中心服务器链接链接成功!");
-        // 和网关服务器链接成功，关闭重连
-        ReconnectionTimer.Stop();
-        // 开启和网关服务器的心跳
-        HeartBeatTimer.Start();
-        DiscoveryCenterClientOnConnectedHandler(sender, e);
-        if (IsRequestConnectServer)
-        {
-            SendConnectTargetServer();
-        }
-    }
-
-    /// <summary>
-    /// 链接到发现中心服务器
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void DiscoveryCenterClientOnConnectedHandler(object sender, EventArgs e)
-    {
-        // 这里要注册到发现中心
-        ReqRegisterServer reqRegisterServer = new ReqRegisterServer
-        {
-            ServerID = Setting.ServerId,
-            ServerType = Setting.ServerType,
-            ServerName = Setting.ServerName,
-            InnerIP = Setting.InnerIp,
-            InnerPort = Setting.InnerPort,
-            OuterIP = Setting.OuterIp,
-            OuterPort = Setting.OuterPort
-        };
-        SendToDiscoveryCenterMessage(reqRegisterServer);
-    }
 
     /// <summary>
     /// 获取到连接的目标
@@ -249,6 +138,7 @@ public abstract class AppStartUpService : AppStartUpBase
     {
     }
 
+    /*
     private void DiscoveryCenterClientOnDataReceived(object o, DataEventArgs dataEventArgs)
     {
         var messageData = dataEventArgs.Data.ReadBytes(dataEventArgs.Offset, dataEventArgs.Length);
@@ -298,7 +188,7 @@ public abstract class AppStartUpService : AppStartUpBase
         LogHelper.Info("和网关服务器链接链接断开!");
         // 和网关服务器链接断开，开启重连
         ReconnectionTimer.Start();
-    }
+    }*/
 
     /// <summary>
     /// 终止服务器
@@ -307,21 +197,68 @@ public abstract class AppStartUpService : AppStartUpBase
     /// <returns></returns>
     public override Task StopAsync(string message = "")
     {
-        HeartBeatTimer?.Close();
-        ReconnectionTimer?.Close();
         ConnectTargetServerTimer?.Close();
-        if (discoveryCenterClient != null)
-        {
-            discoveryCenterClient.Close();
-            discoveryCenterClient = null;
-        }
-
+        _discoveryCenterChannelHelper?.Stop();
+        _tcpService?.StopAsync();
         return base.StopAsync(message);
     }
-    /// <summary>
-    /// 添加事件总线的注册
-    /// </summary>
-    protected virtual void AddEventBusRegister()
+
+    #region Server
+
+    private IServer _tcpService;
+    private DiscoveryCenterChannelHelper _discoveryCenterChannelHelper;
+
+    protected async Task StartServer()
     {
+        LogHelper.InfoConsole($"启动服务器{ServerType} 开始! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
+        var hostBuilder = SuperSocketHostBuilder
+                          .Create<INetworkMessage, MessageObjectPipelineFilter>()
+                          .ConfigureSuperSocket(ConfigureSuperSocket)
+                          .UseClearIdleSession()
+                          .UsePackageDecoder<BaseMessageDecoderHandler>()
+                          .UsePackageEncoder<BaseMessageEncoderHandler>()
+                          .UseSessionHandler(OnConnected, OnDisconnected)
+                          .UsePackageHandler(PackageHandler, PackageErrorHandler)
+                          .UseInProcSessionContainer()
+            ;
+
+        hostBuilder.ConfigureLogging(logging =>
+        {
+            logging.ClearProviders();
+            logging.AddSerilog(Serilog.Log.Logger, true);
+        });
+        _tcpService = hostBuilder.BuildAsServer();
+        var messageEncoderHandler = (BaseMessageEncoderHandler)_tcpService.ServiceProvider.GetService<IPackageEncoder<INetworkMessage>>();
+        var messageDecoderHandler = (BaseMessageDecoderHandler)_tcpService.ServiceProvider.GetService<IPackageDecoder<INetworkMessage>>();
+
+        SetMessageHandler(messageEncoderHandler, messageDecoderHandler);
+
+        await _tcpService.StartAsync();
+
+        _discoveryCenterChannelHelper = new DiscoveryCenterChannelHelper(Setting, MessageEncoderHandler, MessageDecoderHandler);
+        LogHelper.InfoConsole($"启动服务器 {ServerType} 端口: {Setting.InnerPort} 结束!");
     }
+
+    protected virtual ValueTask<bool> PackageErrorHandler(IAppSession appSession, PackageHandlingException<INetworkMessage> exception)
+    {
+        return ValueTask.FromResult(true);
+    }
+
+    protected virtual ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
+    {
+        return ValueTask.CompletedTask;
+    }
+
+    protected virtual ValueTask OnConnected(IAppSession appSession)
+    {
+        LogHelper.Info("有客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
+        return ValueTask.CompletedTask;
+    }
+
+    protected virtual ValueTask PackageHandler(IAppSession session, INetworkMessage message)
+    {
+        return ValueTask.CompletedTask;
+    }
+
+    #endregion
 }

@@ -106,7 +106,7 @@ internal partial class AppStartUpRouter : AppStartUpService
     private ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-        var netChannel = new DefaultNetWorkChannel(appSession, Setting, MessageEncoderHandler, RpcSession, appSession is WebSocketSession);
+        var netChannel = new DefaultNetWorkChannel(appSession, Setting, MessageEncoderHandler, null, appSession is WebSocketSession);
         var session = new Session(appSession.SessionID, netChannel);
         SessionManager.Add(session);
 

@@ -22,11 +22,18 @@ public class MessageTypeHandlerAttribute : Attribute
     public int SubId { get; }
 
     /// <summary>
+    /// 消息操作类型
+    /// </summary>
+    public MessageOperationType OperationType { get; }
+
+    /// <summary>
     /// 构造消息类型处理器
     /// </summary>
     /// <param name="messageId">消息ID</param>
-    public MessageTypeHandlerAttribute(int messageId)
+    /// <param name="operationType">消息类型</param>
+    public MessageTypeHandlerAttribute(int messageId, MessageOperationType operationType = MessageOperationType.None)
     {
+        OperationType = operationType;
         MessageId = messageId;
         MainId = MessageIdUtility.GetMainId(MessageId);
         SubId = MessageIdUtility.GetSubId(MessageId);
