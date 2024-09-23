@@ -166,12 +166,13 @@ internal partial class AppStartUpHotfixGame
         await MessagePackageHandler(session, messageObject);
     }
 
+
     /// <summary>
     /// 处理收到的消息结果
     /// </summary>
     /// <param name="appSession"></param>
     /// <param name="messageObject"></param>
-    private async ValueTask MessagePackageHandler(IAppSession appSession, INetworkMessage messageObject)
+    private ValueTask MessagePackageHandler(IAppSession appSession, INetworkMessage messageObject)
     {
         if (messageObject is MessageObject message)
         {
@@ -180,16 +181,32 @@ internal partial class AppStartUpHotfixGame
                 LogHelper.Debug($"---收到{messageObject.ToFormatMessageString()}");
             }
 
+            var netWorkChannel = SessionManager.GetChannel(appSession.SessionID);
+            if (messageObject.OperationType == MessageOperationType.HeartBeat)
+            {
+                // LogHelper.Info("收到心跳请求:" + req.Timestamp);
+                ReplyHeartBeat(netWorkChannel, message);
+                // 心跳消息
+                return ValueTask.CompletedTask;
+            }
+
             var handler = HotfixManager.GetTcpHandler(message.MessageId);
             if (handler == null)
             {
                 LogHelper.Error($"找不到[{message.MessageId}][{messageObject.GetType()}]对应的handler");
-                return;
+                return ValueTask.CompletedTask;
             }
 
-            await handler.Init(message, SessionManager.GetChannel(appSession.SessionID));
-            await handler.InnerAction();
+            async void InvokeAction()
+            {
+                await handler.Init(message, netWorkChannel);
+                await handler.InnerAction();
+            }
+
+            Task.Run(InvokeAction);
         }
+
+        return ValueTask.CompletedTask;
     }
 
     private void ConfigureWebServer(HostBuilderContext context, IConfigurationBuilder builder)
