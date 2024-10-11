@@ -1,4 +1,4 @@
-﻿using GameFrameX.NetWork.Abstractions;
+﻿/*using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 using Timer = System.Timers.Timer;
@@ -30,18 +30,18 @@ internal partial class AppStartUpRouter
     /// <summary>
     /// 发送消息到网关
     /// </summary>
-    /// <param name="message"></param>
-    private void SendToGatewayMessage(IInnerMessage message)
+    /// <param name="networkMessage"></param>
+    private void SendToGatewayMessage(IInnerNetworkMessage networkMessage)
     {
         if (!_gatewayClient.IsConnected)
         {
             return;
         }
 
-        var buffer = MessageEncoderHandler.Handler(message);
-        if (Setting.IsDebug && Setting.IsDebugSend && !MessageProtoHelper.IsHeartbeat(message.GetType()))
+        var buffer = MessageEncoderHandler.Handler((INetworkMessage)networkMessage);
+        if (Setting.IsDebug && Setting.IsDebugSend && !MessageProtoHelper.IsHeartbeat(networkMessage.GetType()))
         {
-            LogHelper.Debug(message.ToSendMessageString(ServerType, ServerType.Gateway));
+            // LogHelper.Debug(message.ToSendMessageString(ServerType, ServerType.Gateway));
         }
 
         bool result = _gatewayClient.TrySend(buffer);
@@ -80,8 +80,8 @@ internal partial class AppStartUpRouter
     {
         _reqGatewayActorHeartBeat.Timestamp = TimeHelper.UnixTimeSeconds();
         _reqGatewayActorHeartBeat.UpdateUniqueId();
-        InnerMessage innerMessage = InnerMessage.Create(_reqGatewayActorHeartBeat, MessageOperationType.HeartBeat);
-        SendToGatewayMessage(innerMessage);
+        InnerNetworkMessage innerNetworkMessage = InnerNetworkMessage.Create(_reqGatewayActorHeartBeat, MessageOperationType.HeartBeat);
+        SendToGatewayMessage(innerNetworkMessage);
     }
 
     private void GateWayReconnectionTimerOnElapsed(object sender, ElapsedEventArgs e)
@@ -147,4 +147,4 @@ internal partial class AppStartUpRouter
     {
         _gatewayClient?.Close();
     }
-}
+}*/

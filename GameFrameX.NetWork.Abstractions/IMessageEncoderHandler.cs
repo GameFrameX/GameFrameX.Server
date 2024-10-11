@@ -1,3 +1,5 @@
+using GameFrameX.NetWork.Messages;
+
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
@@ -23,6 +25,13 @@ public interface IMessageEncoderHandler
     /// <param name="message">消息对象</param>
     /// <returns></returns>
     byte[] Handler(INetworkMessage message);
+
+    /// <summary>
+    /// 内部消息
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
+    byte[] Handler(IInnerNetworkMessage message);
 
     /// <summary>
     /// 设置压缩消息处理器

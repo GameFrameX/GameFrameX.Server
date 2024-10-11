@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System.Buffers;
+using System.Collections.Concurrent;
 using System.Text;
 using GameFrameX.Extension;
 using GameFrameX.NetWork.Abstractions;
@@ -13,7 +14,7 @@ namespace GameFrameX.NetWork;
 /// <summary>
 /// 内部消息
 /// </summary>
-public class InnerMessage : IInnerMessage
+public class InnerNetworkMessage : IInnerNetworkMessage
 {
     /// <summary>
     /// 消息ID
@@ -147,7 +148,7 @@ public class InnerMessage : IInnerMessage
     /// 反序列化消息内容
     /// </summary>
     /// <returns></returns>
-    public MessageObject DeserializeMessageObject()
+    public INetworkMessage DeserializeMessageObject()
     {
         var value = ProtoBufSerializerHelper.Deserialize(MessageData, MessageType);
         return (MessageObject)value;
@@ -159,7 +160,7 @@ public class InnerMessage : IInnerMessage
     /// <param name="messageData"></param>
     public void SetMessageData(byte[] messageData)
     {
-        MessageData       = messageData;
+        MessageData = messageData;
         MessageDataLength = (ushort)messageData.Length;
     }
 
@@ -178,9 +179,9 @@ public class InnerMessage : IInnerMessage
     /// <param name="message"></param>
     /// <param name="operationType"></param>
     /// <returns></returns>
-    public static InnerMessage Create(IOuterMessage message, MessageOperationType operationType)
+    public static InnerNetworkMessage Create(IOuterMessage message, MessageOperationType operationType)
     {
-        var innerMessage = new InnerMessage();
+        var innerMessage = new InnerNetworkMessage();
         innerMessage.SetOperationType(operationType);
         innerMessage.SetMessageType(message.MessageType);
         innerMessage.SetMessageData(message.MessageData);
@@ -193,19 +194,33 @@ public class InnerMessage : IInnerMessage
     /// 创建消息
     /// </summary>
     /// <param name="message"></param>
+    /// <param name="header"></param>
     /// <param name="operationType"></param>
     /// <returns></returns>
-    public static InnerMessage Create(IMessage message, MessageOperationType operationType)
+    public static InnerNetworkMessage Create(IMessage message, MessageObjectHeader header, MessageOperationType operationType)
     {
-        var innerMessage = new InnerMessage();
+        var innerMessage = new InnerNetworkMessage();
         innerMessage.SetOperationType(operationType);
         innerMessage.SetMessageType(message.GetType());
         innerMessage.SetUniqueId(message.UniqueId);
         var buffer = ProtoBufSerializerHelper.Serialize(message);
         innerMessage.SetMessageData(buffer);
+        innerMessage.SetMessageHeader(header);
         innerMessage.SetMessageId(message.MessageId);
         innerMessage.SetData(GlobalConst.UniqueIdIdKey, message.UniqueId);
+        ArrayPool<byte>.Shared.Rent(28)
         return innerMessage;
+    }
+
+    public MessageObjectHeader Header { get; private set; }
+
+    /// <summary>
+    /// 设置消息头
+    /// </summary>
+    /// <param name="header"></param>
+    public void SetMessageHeader(MessageObjectHeader header)
+    {
+        Header = header;
     }
 
     private readonly ConcurrentDictionary<string, object> _data = new ConcurrentDictionary<string, object>();

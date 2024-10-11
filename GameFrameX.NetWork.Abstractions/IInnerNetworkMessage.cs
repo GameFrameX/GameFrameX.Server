@@ -5,7 +5,7 @@ namespace GameFrameX.NetWork.Messages;
 /// <summary>
 /// 内部消息
 /// </summary>
-public interface IInnerMessage : IMessage
+public interface IInnerNetworkMessage : INetworkMessage
 {
     /// <summary>
     /// 消息数据
@@ -26,7 +26,7 @@ public interface IInnerMessage : IMessage
     /// 转换消息数据为消息对象
     /// </summary>
     /// <returns></returns>
-    MessageObject DeserializeMessageObject();
+    INetworkMessage DeserializeMessageObject();
 
     /// <summary>
     /// 设置消息数据

@@ -101,14 +101,18 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
             return;
         }
 
-        InnerMessage innerMessage = InnerMessage.Create(message, MessageProtoHelper.IsHeartbeat(message.GetType()) ? MessageOperationType.HeartBeat : MessageOperationType.Game);
+        MessageObjectHeader messageObjectHeader = new MessageObjectHeader
+        {
+            ServerId = Setting.ServerId,
+        };
+        InnerNetworkMessage innerNetworkMessage = InnerNetworkMessage.Create(message, messageObjectHeader, MessageProtoHelper.IsHeartbeat(message.GetType()) ? MessageOperationType.HeartBeat : MessageOperationType.Game);
         var data = MessageEncoderHandler.Handler(message);
         if (Setting.IsDebug && Setting.IsDebugReceive)
         {
             var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
             if (serverInfo != null)
             {
-                LogHelper.Info(innerMessage.ToSendMessageString(ServerType, serverInfo.Type));
+                LogHelper.Info(innerNetworkMessage.ToSendMessageString(ServerType, serverInfo.Type));
             }
         }
 
@@ -117,7 +121,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
 
     protected override ValueTask PackageHandler(IAppSession session, INetworkMessage message)
     {
-        if (message is IInnerMessage messageObject)
+        if (message is IInnerNetworkMessage messageObject)
         {
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {

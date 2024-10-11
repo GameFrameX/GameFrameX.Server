@@ -75,7 +75,8 @@ public sealed class DiscoveryCenterChannelHelper
                 continue;
             }
 
-            Send(message.RequestMessage);
+            var message2 = InnerNetworkMessage.Create((IMessage)message.RequestMessage, MessageOperationType.HeartBeat);
+            Send(message2);
         }
     }
 
@@ -89,8 +90,8 @@ public sealed class DiscoveryCenterChannelHelper
         _reqHeartBeat.UpdateUniqueId();
         _reqHeartBeat.SetMessageId(MessageProtoHelper.GetMessageIdByType(typeof(ReqHeartBeat)));
         _reqHeartBeat.Timestamp = TimeHelper.UnixTimeMilliseconds();
-        InnerMessage innerMessage = InnerMessage.Create(_reqHeartBeat, MessageOperationType.HeartBeat);
-        Send(innerMessage);
+        InnerNetworkMessage innerNetworkMessage = InnerNetworkMessage.Create(_reqHeartBeat, MessageOperationType.HeartBeat);
+        Send(innerNetworkMessage);
     }
 
     /// <summary>
@@ -138,8 +139,8 @@ public sealed class DiscoveryCenterChannelHelper
             OuterPort = _setting.OuterPort,
         };
 
-        InnerMessage innerMessage = InnerMessage.Create(reqRegisterServer, MessageOperationType.Register);
-        Send(innerMessage);
+        InnerNetworkMessage innerNetworkMessage = InnerNetworkMessage.Create(reqRegisterServer, MessageOperationType.Register);
+        Send(innerNetworkMessage);
     }
 
     private void DiscoveryCenterClientOnDataReceived(object o, DataEventArgs dataEventArgs)
@@ -221,13 +222,13 @@ public sealed class DiscoveryCenterChannelHelper
     /// <summary>
     /// 给发现中心发送消息
     /// </summary>
-    /// <param name="message"></param>
-    public bool Send(INetworkMessage message)
+    /// <param name="networkMessage"></param>
+    public bool Send(IInnerNetworkMessage networkMessage)
     {
-        var buffer = _messageEncoderHandler.Handler(message);
+        var buffer = _messageEncoderHandler.Handler(networkMessage);
         if (_setting.IsDebug && _setting.IsDebugSend)
         {
-            LogHelper.Debug(message.ToFormatMessageString());
+            LogHelper.Debug(networkMessage.ToFormatMessageString());
         }
 
         if (buffer == null)

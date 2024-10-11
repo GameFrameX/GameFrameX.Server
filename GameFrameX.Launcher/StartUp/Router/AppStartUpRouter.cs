@@ -1,4 +1,4 @@
-﻿using GameFrameX.Apps.Common.Session;
+﻿/*using GameFrameX.Apps.Common.Session;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
@@ -166,16 +166,16 @@ internal partial class AppStartUpRouter : AppStartUpService
                     LogHelper.Debug($"转发到[{ServerType.Gateway}] {outerMessage.ToReceiveMessageString(ServerType, ServerType.Client)}");
                 }
 
-                InnerMessage innerMessage = InnerMessage.Create(outerMessage, MessageOperationType.Game);
-                innerMessage.SetData(GlobalConst.SessionIdKey, appSession.SessionID);
-                SendToGatewayMessage(innerMessage);
+                InnerNetworkMessage innerNetworkMessage = InnerNetworkMessage.Create(outerMessage, MessageOperationType.Game);
+                innerNetworkMessage.SetData(GlobalConst.SessionIdKey, appSession.SessionID);
+                SendToGatewayMessage(innerNetworkMessage);
             }
         }
-        else if (message is IInnerMessage innerMessage)
+        else if (message is IInnerNetworkMessage innerMessage)
         {
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
-                LogHelper.Debug($"转发到[{ServerType.Gateway}] [{innerMessage.ToReceiveMessageString(ServerType, ServerType.Client)}]");
+                // LogHelper.Debug($"转发到[{ServerType.Gateway}] [{innerMessage.ToReceiveMessageString(ServerType, ServerType.Client)}]");
             }
         }
 
@@ -238,4 +238,4 @@ internal partial class AppStartUpRouter : AppStartUpService
     /// 从发现中心请求的目标服务器类型
     /// </summary>
     protected override ServerType GetServerType => ServerType.Gateway;
-}
+}*/

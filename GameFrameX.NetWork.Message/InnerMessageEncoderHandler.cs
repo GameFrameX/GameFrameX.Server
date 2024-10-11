@@ -11,7 +11,7 @@ namespace GameFrameX.NetWork.Message;
 /// <summary>
 /// 基础消息编码处理器
 /// </summary>
-public class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder<INetworkMessage>
+public class InnerMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IInnerNetworkMessage>
 {
     /// <summary>
     /// 超过多少字节长度才启用压缩,默认100
@@ -80,49 +80,19 @@ public class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder
     /// <returns></returns>
     public virtual byte[] Handler(IInnerNetworkMessage message)
     {
-        if (message is InnerNetworkMessage messageObject)
-        {
-            var messageType = message.GetType();
-            var messageOperationType = GetMessageOperationType(messageType);
-            var messageId = MessageProtoHelper.GetMessageIdByType(messageType);
-            message.SetMessageId(messageId);
-            message.SetOperationType(messageOperationType);
-            var bytes = ProtoBufSerializerHelper.Serialize(messageObject);
-            byte zipFlag = 0;
-            bytes = BytesCompressHandler(ref bytes, ref zipFlag);
-
-            var len = (ushort)(PackageLength + bytes.Length);
-            var span = new byte[len];
-            int offset = 0;
-            span.WriteUShort(len, ref offset);
-            span.WriteByte((byte)messageOperationType, ref offset);
-            span.WriteByte(zipFlag, ref offset);
-            span.WriteInt(message.UniqueId, ref offset);
-            span.WriteInt(message.MessageId, ref offset);
-            span.WriteBytesWithoutLength(bytes, ref offset);
-            return span;
-        }
-
-        LogHelper.Error("消息对象为空，编码异常");
-        return null;
-    }
-
-    /// <summary>
-    /// 消息压缩处理
-    /// </summary>
-    /// <param name="bytes">压缩前的数据</param>
-    /// <param name="zipFlag">压缩标记</param>
-    /// <returns></returns>
-    protected byte[] BytesCompressHandler(ref byte[] bytes, ref byte zipFlag)
-    {
-        if (CompressHandler != null && bytes.Length > LimitCompressLength)
-        {
-            zipFlag = 1;
-            // 压缩
-            bytes = CompressHandler.Handler(bytes);
-        }
-
-        return bytes;
+        var header = ProtoBufSerializerHelper.Serialize(message);
+        int offset = 0;
+        var totalLength = header.Length + message.MessageData.Length + InnerPackageHeaderLength;
+        var buffer = new byte[totalLength];
+        // 总长度
+        buffer.WriteInt(totalLength, ref offset);
+        // 消息头长度
+        buffer.WriteUShort((ushort)header.Length, ref offset);
+        // 消息头
+        buffer.WriteBytes(header, ref offset);
+        // 消息体
+        buffer.WriteBytes(message.MessageData, ref offset);
+        return buffer;
     }
 
 
@@ -140,6 +110,8 @@ public class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder
         CompressHandler = compressHandler;
     }
 
+    const ushort InnerPackageHeaderLength = 4 + 2;
+
     /// <summary>
     /// len +cmdType + zipFlag+uniqueId + msgId + bytes.length
     /// </summary>
@@ -151,9 +123,9 @@ public class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder
     /// <param name="writer"></param>
     /// <param name="pack"></param>
     /// <returns></returns>
-    public int Encode(IBufferWriter<byte> writer, INetworkMessage pack)
+    public int Encode(IBufferWriter<byte> writer, IInnerNetworkMessage pack)
     {
-        var bytes = Handler(pack);
+        var bytes = Handler((INetworkMessage)pack);
         writer.Write(bytes);
         return bytes.Length;
     }

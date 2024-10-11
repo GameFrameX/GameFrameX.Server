@@ -72,12 +72,10 @@ public abstract class AppStartUpService : AppStartUpBase
         if (IsConnectDiscoveryServer)
         {
             _discoveryCenterChannelHelper?.Start();
-           
         }
 
         return Task.CompletedTask;
     }
-
 
 
     /// <summary>
@@ -96,7 +94,8 @@ public abstract class AppStartUpService : AppStartUpBase
             {
                 ServerType = GetServerType
             };
-            _discoveryCenterChannelHelper.Send(reqConnectServer);
+
+            // _discoveryCenterChannelHelper.Send(reqConnectServer);
         }
     }
 
@@ -212,11 +211,11 @@ public abstract class AppStartUpService : AppStartUpBase
     {
         LogHelper.InfoConsole($"启动服务器{ServerType} 开始! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
         var hostBuilder = SuperSocketHostBuilder
-                          .Create<INetworkMessage, MessageObjectPipelineFilter>()
+                          .Create<IInnerNetworkMessage, InnerMessageObjectPipelineFilter>()
                           .ConfigureSuperSocket(ConfigureSuperSocket)
                           .UseClearIdleSession()
-                          .UsePackageDecoder<BaseMessageDecoderHandler>()
-                          .UsePackageEncoder<BaseMessageEncoderHandler>()
+                          .UsePackageDecoder<InnerMessageDecoderHandler>()
+                          .UsePackageEncoder<InnerMessageEncoderHandler>()
                           .UseSessionHandler(OnConnected, OnDisconnected)
                           .UsePackageHandler(PackageHandler, PackageErrorHandler)
                           .UseInProcSessionContainer()
@@ -228,8 +227,8 @@ public abstract class AppStartUpService : AppStartUpBase
             logging.AddSerilog(Serilog.Log.Logger, true);
         });
         _tcpService = hostBuilder.BuildAsServer();
-        var messageEncoderHandler = (BaseMessageEncoderHandler)_tcpService.ServiceProvider.GetService<IPackageEncoder<INetworkMessage>>();
-        var messageDecoderHandler = (BaseMessageDecoderHandler)_tcpService.ServiceProvider.GetService<IPackageDecoder<INetworkMessage>>();
+        var messageEncoderHandler = (InnerMessageEncoderHandler)_tcpService.ServiceProvider.GetService<IPackageEncoder<IInnerNetworkMessage>>();
+        var messageDecoderHandler = (InnerMessageDecoderHandler)_tcpService.ServiceProvider.GetService<IPackageDecoder<IInnerNetworkMessage>>();
 
         SetMessageHandler(messageEncoderHandler, messageDecoderHandler);
 
@@ -239,7 +238,7 @@ public abstract class AppStartUpService : AppStartUpBase
         LogHelper.InfoConsole($"启动服务器 {ServerType} 端口: {Setting.InnerPort} 结束!");
     }
 
-    protected virtual ValueTask<bool> PackageErrorHandler(IAppSession appSession, PackageHandlingException<INetworkMessage> exception)
+    protected virtual ValueTask<bool> PackageErrorHandler(IAppSession appSession, PackageHandlingException<IInnerNetworkMessage> exception)
     {
         return ValueTask.FromResult(true);
     }
