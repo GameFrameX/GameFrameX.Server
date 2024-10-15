@@ -18,7 +18,7 @@ namespace GameFrameX.NetWork
         /// <summary>
         /// 关闭源
         /// </summary>
-        protected readonly CancellationTokenSource CloseSrc = new CancellationTokenSource();
+        protected readonly CancellationTokenSource CancellationTokenSource = new CancellationTokenSource();
 
         /// <summary>
         /// 会话
@@ -141,7 +141,7 @@ namespace GameFrameX.NetWork
         public virtual void Close()
         {
             ClearData();
-            CloseSrc.Cancel();
+            CancellationTokenSource.Cancel();
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace GameFrameX.NetWork
         /// <returns></returns>
         public virtual bool IsClosed()
         {
-            return CloseSrc.IsCancellationRequested;
+            return CancellationTokenSource.IsCancellationRequested;
         }
 
         #region Data
