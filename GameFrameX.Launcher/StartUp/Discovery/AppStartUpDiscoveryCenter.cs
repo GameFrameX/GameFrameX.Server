@@ -128,11 +128,11 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
                 var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
                 if (serverInfo != null)
                 {
-                    LogHelper.Debug($"---收到[{serverInfo.Type} To {ServerType}]  {messageObject.ToMessageString()}");
+                    LogHelper.Debug($"---收到[{serverInfo.Type} To {ServerType}]  {messageObject.ToFormatMessageString()}");
                 }
                 else
                 {
-                    LogHelper.Debug($"---收到[{ServerType}]  {messageObject.ToMessageString()}");
+                    LogHelper.Debug($"---收到[{ServerType}]  {messageObject.ToFormatMessageString()}");
                 }
             }
 

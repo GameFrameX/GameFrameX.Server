@@ -44,12 +44,6 @@ public interface INetworkMessage
     void SetUniqueId(int uniqueId);
 
     /// <summary>
-    /// 获取消息字符串
-    /// </summary>
-    /// <returns></returns>
-    string ToMessageString();
-
-    /// <summary>
     /// 获取格式化后的消息字符串
     /// </summary>
     /// <returns></returns>

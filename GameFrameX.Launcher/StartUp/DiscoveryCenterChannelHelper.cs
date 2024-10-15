@@ -155,7 +155,7 @@ public sealed class DiscoveryCenterChannelHelper
 
         if (_setting.IsDebug && _setting.IsDebugReceive && !MessageProtoHelper.IsHeartbeat(message.GetType()))
         {
-            LogHelper.Debug(message.ToMessageString());
+            LogHelper.Debug(message.ToFormatMessageString());
         }
 
         if (message is IResponseMessage actorResponseMessage)

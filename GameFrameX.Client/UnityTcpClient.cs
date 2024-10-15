@@ -106,7 +106,7 @@ public class UnityTcpClient
             messageObject.SetMessageId(messageId);
             messageObject.SetOperationType((MessageOperationType)operationType);
             messageObject.SetUniqueId(uniqueId);
-            Console.WriteLine($"客户端接收到信息：{messageObject.ToMessageString()}");
+            Console.WriteLine($"客户端接收到信息：{messageObject.ToFormatMessageString()}");
         }
     }
 
@@ -127,7 +127,7 @@ public class UnityTcpClient
         message.SetMessageId(messageId);
         buffer.WriteInt(messageId, ref offset);
         buffer.WriteBytesWithoutLength(bytes, ref offset);
-        Console.WriteLine($"客户端接发送信息：{message.ToMessageString()}");
+        Console.WriteLine($"客户端接发送信息：{message.ToFormatMessageString()}");
         return buffer;
     }
 }

@@ -1,5 +1,6 @@
-﻿using GameFrameX.NetWork.Abstractions;
-using GameFrameX.Setting;
+﻿using System.Text;
+using GameFrameX.Extension;
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Utility;
 using Newtonsoft.Json;
 using ProtoBuf;
@@ -80,36 +81,8 @@ namespace GameFrameX.NetWork.Messages
             UniqueId = uniqueId;
         }
 
-        /// <summary>
-        /// 获取发送消息字符串
-        /// </summary>
-        /// <param name="srcServerType">发送方</param>
-        /// <param name="destServerType">接收方</param>
-        /// <returns></returns>
-        public string ToSendMessageString(ServerType srcServerType, ServerType destServerType)
-        {
-            return $"---发送[{srcServerType} To {destServerType}] {ToMessageString()}";
-        }
 
-        /// <summary>
-        /// 获取接收消息字符串
-        /// </summary>
-        /// <param name="srcServerType">发送方</param>
-        /// <param name="destServerType">接收方</param>
-        /// <returns></returns>
-        public string ToReceiveMessageString(ServerType srcServerType, ServerType destServerType)
-        {
-            return $"---收到[{srcServerType} To {destServerType}] {ToMessageString()}";
-        }
-
-        /// <summary>
-        /// 获取消息字符串
-        /// </summary>
-        /// <returns></returns>
-        public string ToMessageString()
-        {
-            return $"消息ID:[{MessageId}=MainId: {MessageIdUtility.GetMainId(MessageId)} + SubId: {MessageIdUtility.GetSubId(MessageId)},{GetType().Name}] 消息内容:{JsonHelper.Serialize(this)}";
-        }
+        private readonly StringBuilder _stringBuilder = new StringBuilder(1024);
 
         /// <summary>
         /// 获取格式化后的消息字符串
@@ -117,7 +90,28 @@ namespace GameFrameX.NetWork.Messages
         /// <returns></returns>
         public string ToFormatMessageString()
         {
-            return $"消息:[{MessageId}, {UniqueId}, {GetType().Name}, {OperationType}] 消息内容:{this}";
+            _stringBuilder.Clear();
+            _stringBuilder.AppendLine();
+            // 向下的箭头
+            _stringBuilder.AppendLine($"{'\u2193'.RepeatChar(120)}");
+            // 消息的头部信息
+            // 消息类型
+            _stringBuilder.Append($"---MessageType:[{GetType().Name.CenterAlignedText(20)}]");
+            // 消息ID
+            _stringBuilder.Append($"--MsgId:[{MessageId.ToString().CenterAlignedText(10)}]({MessageIdUtility.GetMainId(MessageId).ToString().CenterAlignedText(5)},{MessageIdUtility.GetSubId(MessageId).ToString().CenterAlignedText(5)})");
+            // 操作类型
+            _stringBuilder.Append($"--OpType:[{OperationType.ToString().CenterAlignedText(12)}]");
+            // 唯一ID
+            _stringBuilder.Append($"--UniqueId:[{UniqueId.ToString().CenterAlignedText(12)}]---");
+            _stringBuilder.AppendLine();
+            // 消息的内容 分割
+            _stringBuilder.AppendLine();
+            // 消息内容
+            _stringBuilder.AppendLine($"{ToString().WordWrap(120),-120}");
+            // 向上的箭头
+            _stringBuilder.AppendLine($"{'\u2191'.RepeatChar(120)}");
+            _stringBuilder.AppendLine();
+            return _stringBuilder.ToString();
         }
 
         /// <summary>
