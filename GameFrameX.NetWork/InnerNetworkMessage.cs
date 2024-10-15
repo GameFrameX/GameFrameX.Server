@@ -226,6 +226,15 @@ public class InnerNetworkMessage : IInnerNetworkMessage
     private readonly ConcurrentDictionary<string, object> _data = new ConcurrentDictionary<string, object>();
 
     /// <summary>
+    /// 获取自定义数据
+    /// </summary>
+    /// <returns></returns>
+    public Dictionary<string, object> GetData()
+    {
+        return _data.ToDictionary();
+    }
+
+    /// <summary>
     /// 设置自定义数据
     /// </summary>
     /// <param name="key"></param>
@@ -250,9 +259,9 @@ public class InnerNetworkMessage : IInnerNetworkMessage
     /// 删除自定义数据
     /// </summary>
     /// <param name="key"></param>
-    public void RemoveData(string key)
+    public bool RemoveData(string key)
     {
-        _data.Remove(key, out _);
+        return _data.Remove(key, out _);
     }
 
     /// <summary>
