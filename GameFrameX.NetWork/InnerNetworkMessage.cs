@@ -1,5 +1,4 @@
-﻿using System.Buffers;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Text;
 using GameFrameX.Extension;
 using GameFrameX.NetWork.Abstractions;
@@ -208,7 +207,6 @@ public class InnerNetworkMessage : IInnerNetworkMessage
         innerMessage.SetMessageHeader(header);
         innerMessage.SetMessageId(message.MessageId);
         innerMessage.SetData(GlobalConst.UniqueIdIdKey, message.UniqueId);
-        ArrayPool<byte>.Shared.Rent(28)
         return innerMessage;
     }
 
