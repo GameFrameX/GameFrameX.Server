@@ -1,6 +1,4 @@
-using GameFrameX.NetWork.Abstractions;
-
-namespace GameFrameX.NetWork;
+namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
 /// RPC会话接口
