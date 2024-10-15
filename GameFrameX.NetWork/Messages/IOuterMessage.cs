@@ -5,7 +5,7 @@ namespace GameFrameX.NetWork.Messages;
 /// <summary>
 /// 外部消息
 /// </summary>
-public interface IOuterMessage : IMessage
+public interface IOuterMessage : INetworkMessage
 {
     /// <summary>
     /// 消息数据

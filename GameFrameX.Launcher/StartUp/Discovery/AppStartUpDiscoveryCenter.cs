@@ -93,7 +93,7 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
     /// </summary>
     /// <param name="session"></param>
     /// <param name="message"></param>
-    private async void SendMessage(IAppSession session, IMessage message)
+    private async void SendMessage(IAppSession session, INetworkMessage message)
     {
         message.CheckNotNull(nameof(message));
         if (session == null || session.Connection.IsClosed)

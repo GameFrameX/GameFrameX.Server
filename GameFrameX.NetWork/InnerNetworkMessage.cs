@@ -197,7 +197,7 @@ public class InnerNetworkMessage : IInnerNetworkMessage
     /// <param name="header"></param>
     /// <param name="operationType"></param>
     /// <returns></returns>
-    public static InnerNetworkMessage Create(IMessage message, MessageObjectHeader header, MessageOperationType operationType)
+    public static InnerNetworkMessage Create(INetworkMessage message, MessageObjectHeader header, MessageOperationType operationType)
     {
         var innerMessage = new InnerNetworkMessage();
         innerMessage.SetOperationType(operationType);

@@ -123,7 +123,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
 
     #endregion
 
-    private async void SendMessage(IAppSession session, IMessage message)
+    private async void SendMessage(IAppSession session, INetworkMessage message)
     {
         if (session == null || session.Connection.IsClosed)
         {

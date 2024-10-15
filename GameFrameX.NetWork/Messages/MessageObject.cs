@@ -10,7 +10,7 @@ namespace GameFrameX.NetWork.Messages
     /// 消息对象
     /// </summary>
     [ProtoContract]
-    public abstract class MessageObject : IMessage
+    public abstract class MessageObject : INetworkMessage
     {
         /*/// <summary>
         /// 单位id
