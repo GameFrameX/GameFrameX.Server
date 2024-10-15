@@ -210,6 +210,9 @@ public class InnerNetworkMessage : IInnerNetworkMessage
         return innerMessage;
     }
 
+    /// <summary>
+    /// 消息头
+    /// </summary>
     public MessageObjectHeader Header { get; private set; }
 
     /// <summary>
