@@ -25,13 +25,14 @@ public class InnerMessageDecoderHandler : IMessageDecoderHandler, IPackageDecode
     /// <returns></returns>
     public virtual INetworkMessage Handler(byte[] data)
     {
-        return default;
+        ReadOnlySequence<byte> sequence = new ReadOnlySequence<byte>(data);
+        return InnerHandler(ref sequence);
     }
 
-    private bool DecodeHeaderNetworkMessage(byte[] messageData, out InnerNetworkMessage networkMessage)
+    private MessageObjectHeader DecodeHeaderNetworkMessage(byte[] messageData)
     {
-        networkMessage = (InnerNetworkMessage)ProtoBufSerializerHelper.Deserialize(messageData, typeof(MessageObjectHeader));
-        return true;
+        var messageObjectHeader = (MessageObjectHeader)ProtoBufSerializerHelper.Deserialize(messageData, typeof(MessageObjectHeader));
+        return messageObjectHeader;
     }
 
     /// <summary>
@@ -41,28 +42,7 @@ public class InnerMessageDecoderHandler : IMessageDecoderHandler, IPackageDecode
     /// <returns></returns>
     public INetworkMessage Handler(ref ReadOnlySequence<byte> sequence)
     {
-        var reader = new SequenceReader<byte>(sequence);
-        try
-        {
-            reader.TryReadBigEndian(out int totalLength);
-            // 消息头长度
-            reader.TryReadBigEndian(out int headerLength);
-
-            reader.TryReadBytes(headerLength, out var messageHeaderData);
-
-            if (DecodeHeaderNetworkMessage(messageHeaderData, out var networkMessage))
-            {
-                return networkMessage;
-            }
-
-            LogHelper.Fatal("未知消息类型");
-            return null;
-        }
-        catch (Exception e)
-        {
-            LogHelper.Fatal(e);
-            return null;
-        }
+        return InnerHandler(ref sequence);
     }
 
     /// <summary>
@@ -75,22 +55,23 @@ public class InnerMessageDecoderHandler : IMessageDecoderHandler, IPackageDecode
         var reader = new SequenceReader<byte>(sequence);
         try
         {
+            // 消息总长度
             reader.TryReadBigEndian(out int totalLength);
             // 消息头长度
             reader.TryReadBigEndian(out ushort headerLength);
 
+            // 消息头字节数组
             reader.TryReadBytes(headerLength, out var messageHeaderData);
+            var messageObjectHeader = DecodeHeaderNetworkMessage(messageHeaderData);
 
-            if (DecodeHeaderNetworkMessage(messageHeaderData, out var networkMessage))
-            {
-                return networkMessage;
-            }
-
-            LogHelper.Fatal("未知消息类型");
-            return null;
+            // 消息内容
+            reader.TryReadBytes(totalLength - headerLength - MessageHeaderLength, out var messageData);
+            var messageType = MessageProtoHelper.GetMessageTypeById(messageObjectHeader.MessageId);
+            return InnerNetworkMessage.Create(messageObjectHeader, messageData, messageType);
         }
         catch (Exception e)
         {
+            LogHelper.Fatal("未知消息类型");
             LogHelper.Fatal(e);
             return null;
         }

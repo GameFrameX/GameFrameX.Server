@@ -80,7 +80,9 @@ public class InnerMessageEncoderHandler : IMessageEncoderHandler, IPackageEncode
     /// <returns></returns>
     public virtual byte[] Handler(IInnerNetworkMessage message)
     {
-        var header = ProtoBufSerializerHelper.Serialize(message);
+        InnerNetworkMessage innerNetworkMessage = (InnerNetworkMessage)message;
+        
+        var header = ProtoBufSerializerHelper.Serialize(innerNetworkMessage.Header);
         int offset = 0;
         var totalLength = header.Length + message.MessageData.Length + InnerPackageHeaderLength;
         var buffer = new byte[totalLength];
@@ -89,9 +91,9 @@ public class InnerMessageEncoderHandler : IMessageEncoderHandler, IPackageEncode
         // 消息头长度
         buffer.WriteUShort((ushort)header.Length, ref offset);
         // 消息头
-        buffer.WriteBytes(header, ref offset);
+        buffer.WriteBytesWithoutLength(header, ref offset);
         // 消息体
-        buffer.WriteBytes(message.MessageData, ref offset);
+        buffer.WriteBytesWithoutLength(message.MessageData, ref offset);
         return buffer;
     }
 
