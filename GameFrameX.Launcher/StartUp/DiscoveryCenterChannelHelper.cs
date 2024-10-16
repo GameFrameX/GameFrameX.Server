@@ -71,11 +71,16 @@ public sealed class DiscoveryCenterChannelHelper
             var message = _rpcSession.Handler();
             if (message == null || IsConnected == false)
             {
-                Thread.Sleep(500);
+                Thread.Sleep(1);
                 continue;
             }
 
-            var message2 = InnerNetworkMessage.Create((IMessage)message.RequestMessage, MessageOperationType.HeartBeat);
+            message.RequestMessage.SetMessageId(MessageProtoHelper.GetMessageIdByType(message.RequestMessage.GetType()));
+            MessageObjectHeader messageObjectHeader = new MessageObjectHeader
+            {
+                ServerId = _setting.ServerId,
+            };
+            var message2 = InnerNetworkMessage.Create(message.RequestMessage, messageObjectHeader, MessageOperationType.HeartBeat);
             Send(message2);
         }
     }
@@ -90,7 +95,13 @@ public sealed class DiscoveryCenterChannelHelper
         _reqHeartBeat.UpdateUniqueId();
         _reqHeartBeat.SetMessageId(MessageProtoHelper.GetMessageIdByType(typeof(ReqHeartBeat)));
         _reqHeartBeat.Timestamp = TimeHelper.UnixTimeMilliseconds();
-        InnerNetworkMessage innerNetworkMessage = InnerNetworkMessage.Create(_reqHeartBeat, MessageOperationType.HeartBeat);
+        MessageObjectHeader messageObjectHeader = new MessageObjectHeader
+        {
+            ServerId = _setting.ServerId,
+            OperationType = (byte)MessageOperationType.HeartBeat,
+        };
+
+        InnerNetworkMessage innerNetworkMessage = InnerNetworkMessage.Create(_reqHeartBeat, messageObjectHeader, MessageOperationType.HeartBeat);
         Send(innerNetworkMessage);
     }
 
@@ -138,8 +149,13 @@ public sealed class DiscoveryCenterChannelHelper
             OuterIP = _setting.OuterIp,
             OuterPort = _setting.OuterPort,
         };
-
-        InnerNetworkMessage innerNetworkMessage = InnerNetworkMessage.Create(reqRegisterServer, MessageOperationType.Register);
+        reqRegisterServer.SetMessageId(MessageProtoHelper.GetMessageIdByType(typeof(ReqRegisterServer)));
+        MessageObjectHeader messageObjectHeader = new MessageObjectHeader
+        {
+            ServerId = _setting.ServerId,
+            OperationType = (byte)MessageOperationType.Register,
+        };
+        InnerNetworkMessage innerNetworkMessage = InnerNetworkMessage.Create(reqRegisterServer, messageObjectHeader, MessageOperationType.Register);
         Send(innerNetworkMessage);
     }
 
@@ -208,7 +224,7 @@ public sealed class DiscoveryCenterChannelHelper
         var buffer = _messageEncoderHandler.Handler(message);
         if (_setting.IsDebug && _setting.IsDebugSend)
         {
-            LogHelper.Debug(message.ToFormatMessageString());
+            LogHelper.Debug("--发送到发现中心 " + message.ToFormatMessageString());
         }
 
         if (buffer == null)
@@ -228,7 +244,7 @@ public sealed class DiscoveryCenterChannelHelper
         var buffer = _messageEncoderHandler.Handler(networkMessage);
         if (_setting.IsDebug && _setting.IsDebugSend)
         {
-            LogHelper.Debug(networkMessage.ToFormatMessageString());
+            LogHelper.Debug("--发送到发现中心 " + networkMessage.ToFormatMessageString());
         }
 
         if (buffer == null)
