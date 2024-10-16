@@ -70,5 +70,8 @@ public sealed class RpcData
     /// <summary>
     /// RPC 回复任务
     /// </summary>
-    public Task<IResponseMessage> Task => _tcs.Task;
+    public Task<IResponseMessage> Task
+    {
+        get { return _tcs.Task; }
+    }
 }
