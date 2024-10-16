@@ -121,14 +121,14 @@ internal partial class AppStartUpHotfixGame
         return ValueTask.FromResult(true);
     }
 
-    private ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
+    protected override ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
     {
         LogHelper.Info("有外部客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
         SessionManager.Remove(appSession.SessionID);
         return ValueTask.CompletedTask;
     }
 
-    private ValueTask OnConnected(IAppSession appSession)
+    protected override ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
         var netChannel = new DefaultNetWorkChannel(appSession, Setting, MessageEncoderHandler, null, appSession is WebSocketSession);
