@@ -22,6 +22,7 @@ public static class SequenceReaderExtension
         }
 
         value = num1;
+        reader.Advance(sizeof(byte));
         return true;
     }
 
@@ -40,6 +41,7 @@ public static class SequenceReaderExtension
             return false;
         }
 
+        reader.Advance(length);
         return true;
     }
 
@@ -58,6 +60,7 @@ public static class SequenceReaderExtension
         }
 
         value = (ushort)(num1 * 256U + num2);
+        reader.Advance(sizeof(ushort));
         return true;
     }
 }
