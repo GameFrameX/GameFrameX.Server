@@ -94,13 +94,12 @@ namespace GameFrameX.StartUp
             if (e is IEnumerable arr)
             {
                 var sb = new StringBuilder();
-                int line = 0;
                 foreach (var ex in arr)
                 {
-                    sb.AppendLine($"Unhandled Exception:{line++}:{ex}");
-                    LogHelper.Error($"Unhandled Exception:{ex}");
+                    sb.Append(ex);
                 }
 
+                LogHelper.Error($"Unhandled Exception:{sb}");
                 _existCallBack?.Invoke("all Unhandled Exception:" + sb);
             }
             else
