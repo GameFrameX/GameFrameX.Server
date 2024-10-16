@@ -67,6 +67,26 @@ namespace GameFrameX.NetWork.Message
         }
 
         /// <summary>
+        /// 设置消息ID
+        /// </summary>
+        /// <param name="message">消息对象</param>
+        public static void SetMessageId(INetworkMessage message)
+        {
+            message.CheckNotNull(nameof(message));
+            message.SetMessageId(GetMessageIdByType(message.GetType()));
+        }
+
+        /// <summary>
+        /// 设置消息操作类型
+        /// </summary>
+        /// <param name="message">消息对象</param>
+        public static void SetMessageOperationType(INetworkMessage message)
+        {
+            message.CheckNotNull(nameof(message));
+            message.SetOperationType(GetMessageOperationType(message.GetType()));
+        }
+
+        /// <summary>
         /// 获取消息类型是否是心跳类型
         /// </summary>
         /// <param name="type">消息类型</param>
