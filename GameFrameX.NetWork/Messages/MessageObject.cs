@@ -81,37 +81,35 @@ namespace GameFrameX.NetWork.Messages
             UniqueId = uniqueId;
         }
 
-
-        private readonly StringBuilder _stringBuilder = new StringBuilder(1024);
-
         /// <summary>
         /// 获取格式化后的消息字符串
         /// </summary>
         /// <returns></returns>
         public string ToFormatMessageString()
         {
-            _stringBuilder.Clear();
-            _stringBuilder.AppendLine();
+            StringBuilder stringBuilder = StringBuilderCache.Acquire();
+            stringBuilder.Clear();
+            stringBuilder.AppendLine();
             // 向下的箭头
-            _stringBuilder.AppendLine($"{'\u2193'.RepeatChar(120)}");
+            stringBuilder.AppendLine($"{'\u2193'.RepeatChar(120)}");
             // 消息的头部信息
             // 消息类型
-            _stringBuilder.Append($"---MessageType:[{GetType().Name.CenterAlignedText(20)}]");
+            stringBuilder.Append($"---MessageType:[{GetType().Name.CenterAlignedText(20)}]");
             // 消息ID
-            _stringBuilder.Append($"--MsgId:[{MessageId.ToString().CenterAlignedText(10)}]({MessageIdUtility.GetMainId(MessageId).ToString().CenterAlignedText(5)},{MessageIdUtility.GetSubId(MessageId).ToString().CenterAlignedText(5)})");
+            stringBuilder.Append($"--MsgId:[{MessageId.ToString().CenterAlignedText(10)}]({MessageIdUtility.GetMainId(MessageId).ToString().CenterAlignedText(5)},{MessageIdUtility.GetSubId(MessageId).ToString().CenterAlignedText(5)})");
             // 操作类型
-            _stringBuilder.Append($"--OpType:[{OperationType.ToString().CenterAlignedText(12)}]");
+            stringBuilder.Append($"--OpType:[{OperationType.ToString().CenterAlignedText(12)}]");
             // 唯一ID
-            _stringBuilder.Append($"--UniqueId:[{UniqueId.ToString().CenterAlignedText(12)}]---");
-            _stringBuilder.AppendLine();
+            stringBuilder.Append($"--UniqueId:[{UniqueId.ToString().CenterAlignedText(12)}]---");
+            stringBuilder.AppendLine();
             // 消息的内容 分割
-            _stringBuilder.AppendLine();
+            stringBuilder.AppendLine();
             // 消息内容
-            _stringBuilder.AppendLine($"{ToString().WordWrap(120),-120}");
+            stringBuilder.AppendLine($"{ToString().WordWrap(120),-120}");
             // 向上的箭头
-            _stringBuilder.AppendLine($"{'\u2191'.RepeatChar(120)}");
-            _stringBuilder.AppendLine();
-            return _stringBuilder.ToString();
+            stringBuilder.AppendLine($"{'\u2191'.RepeatChar(120)}");
+            stringBuilder.AppendLine();
+            return StringBuilderCache.GetStringAndRelease(stringBuilder);
         }
 
         /// <summary>
