@@ -18,7 +18,14 @@ public class InnerNetworkMessage : IInnerNetworkMessage
     /// <summary>
     /// 消息ID
     /// </summary>
+    [JsonIgnore]
     public int MessageId { get; private set; }
+
+    /// <summary>
+    /// 消息数据长度
+    /// </summary>
+    [JsonIgnore]
+    public ushort MessageDataLength { get; private set; }
 
     /// <summary>
     /// 设置消息ID
@@ -32,8 +39,8 @@ public class InnerNetworkMessage : IInnerNetworkMessage
     /// <summary>
     /// 消息唯一ID
     /// </summary>
+    [JsonIgnore]
     public int UniqueId { get; private set; }
-
 
     /// <summary>
     /// 更新消息唯一ID
@@ -53,59 +60,40 @@ public class InnerNetworkMessage : IInnerNetworkMessage
     }
 
     /// <summary>
-    /// 消息发送打印日志
-    /// </summary>
-    /// <param name="srcServerType"></param>
-    /// <param name="destServerType"></param>
-    /// <returns></returns>
-    public string ToSendMessageString(ServerType srcServerType, ServerType destServerType)
-    {
-        return $"---发送[{srcServerType} To {destServerType}] {ToMessageString()}";
-    }
-
-    /// <summary>
-    /// 消息接收打印日志
-    /// </summary>
-    /// <param name="srcServerType"></param>
-    /// <param name="destServerType"></param>
-    /// <returns></returns>
-    public string ToReceiveMessageString(ServerType srcServerType, ServerType destServerType)
-    {
-        return $"---收到[{srcServerType} To {destServerType}] {ToMessageString()}";
-    }
-
-
-    private readonly StringBuilder _stringBuilder = new StringBuilder();
-
-    /// <summary>
-    /// 消息字符串
-    /// </summary>
-    /// <returns></returns>
-    public string ToMessageString()
-    {
-        _stringBuilder.Clear();
-        _stringBuilder.AppendLine();
-        _stringBuilder.AppendLine($"{'\u2193'.RepeatChar(100)}");
-        _stringBuilder.AppendLine(
-            $"\u2193---MessageType:[{MessageType?.Name.CenterAlignedText(20)}]---MessageId:[{MessageId.ToString().CenterAlignedText(10)}]---MainId:[{MessageIdUtility.GetMainId(MessageId).ToString().CenterAlignedText(5)}]---SubId:[{MessageIdUtility.GetSubId(MessageId).ToString().CenterAlignedText(5)}]---\u2193");
-        _stringBuilder.AppendLine($"{ToString().WordWrap(100),-100}");
-        _stringBuilder.AppendLine($"{'\u2191'.RepeatChar(100)}");
-        _stringBuilder.AppendLine();
-        return _stringBuilder.ToString();
-    }
-
-    /// <summary>
     /// 获取格式化后的消息字符串
     /// </summary>
     /// <returns></returns>
     public string ToFormatMessageString()
     {
-        return $"消息:[{MessageId}, {UniqueId}, {GetType().Name}, {OperationType}] 消息内容:{this}";
+        StringBuilder stringBuilder = StringBuilderCache.Acquire();
+        stringBuilder.Clear();
+        stringBuilder.AppendLine();
+        // 向下的箭头
+        stringBuilder.AppendLine($"{'\u2193'.RepeatChar(120)}");
+        // 消息的头部信息
+        // 消息类型
+        stringBuilder.Append($"---MessageType:[{GetType().Name.CenterAlignedText(20)}]");
+        // 消息ID
+        stringBuilder.Append($"--MsgId:[{MessageId.ToString().CenterAlignedText(10)}]({MessageIdUtility.GetMainId(MessageId).ToString().CenterAlignedText(5)},{MessageIdUtility.GetSubId(MessageId).ToString().CenterAlignedText(5)})");
+        // 操作类型
+        stringBuilder.Append($"--OpType:[{OperationType.ToString().CenterAlignedText(12)}]");
+        // 唯一ID
+        stringBuilder.Append($"--UniqueId:[{UniqueId.ToString().CenterAlignedText(12)}]---");
+        stringBuilder.AppendLine();
+        // 消息的内容 分割
+        stringBuilder.AppendLine();
+        // 消息内容
+        stringBuilder.AppendLine($"{DeserializeMessageObject().ToString().WordWrap(120),-120}");
+        // 向上的箭头
+        stringBuilder.AppendLine($"{'\u2191'.RepeatChar(120)}");
+        stringBuilder.AppendLine();
+        return StringBuilderCache.GetStringAndRelease(stringBuilder);
     }
 
     /// <summary>
     /// 消息操作业务类型
     /// </summary>
+    [JsonIgnore]
     public MessageOperationType OperationType { get; private set; }
 
     /// <summary>
@@ -123,10 +111,6 @@ public class InnerNetworkMessage : IInnerNetworkMessage
     [JsonIgnore]
     public byte[] MessageData { get; private set; }
 
-    /// <summary>
-    /// 消息数据长度
-    /// </summary>
-    public ushort MessageDataLength { get; private set; }
 
     /// <summary>
     /// 消息类型
@@ -204,6 +188,9 @@ public class InnerNetworkMessage : IInnerNetworkMessage
         innerMessage.SetUniqueId(message.UniqueId);
         var buffer = ProtoBufSerializerHelper.Serialize(message);
         innerMessage.SetMessageData(buffer);
+
+        header.OperationType = (byte)operationType;
+        header.MessageId = message.MessageId;
         innerMessage.SetMessageHeader(header);
         innerMessage.SetMessageId(message.MessageId);
         innerMessage.SetData(GlobalConst.UniqueIdIdKey, message.UniqueId);
@@ -211,8 +198,27 @@ public class InnerNetworkMessage : IInnerNetworkMessage
     }
 
     /// <summary>
+    /// 创建消息
+    /// </summary>
+    /// <param name="header"></param>
+    /// <param name="messageData"></param>
+    /// <param name="messageBodyType"></param>
+    /// <returns></returns>
+    public static InnerNetworkMessage Create(MessageObjectHeader header, byte[] messageData, Type messageBodyType)
+    {
+        var innerMessage = new InnerNetworkMessage();
+        innerMessage.SetMessageHeader(header);
+        innerMessage.SetMessageId(header.MessageId);
+        innerMessage.SetMessageData(messageData);
+        innerMessage.SetMessageType(messageBodyType);
+        innerMessage.SetOperationType((MessageOperationType)header.OperationType);
+        return innerMessage;
+    }
+
+    /// <summary>
     /// 消息头
     /// </summary>
+    [JsonIgnore]
     public MessageObjectHeader Header { get; private set; }
 
     /// <summary>
