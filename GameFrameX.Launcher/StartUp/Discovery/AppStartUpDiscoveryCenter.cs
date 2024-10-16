@@ -101,18 +101,20 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
             return;
         }
 
+        MessageProtoHelper.SetMessageId(message);
+        var messageOperationType = MessageProtoHelper.GetMessageOperationType(message.GetType());
         MessageObjectHeader messageObjectHeader = new MessageObjectHeader
         {
             ServerId = Setting.ServerId,
         };
-        InnerNetworkMessage innerNetworkMessage = InnerNetworkMessage.Create(message, messageObjectHeader, MessageProtoHelper.IsHeartbeat(message.GetType()) ? MessageOperationType.HeartBeat : MessageOperationType.Game);
-        var data = MessageEncoderHandler.Handler(message);
+        InnerNetworkMessage innerNetworkMessage = InnerNetworkMessage.Create(message, messageObjectHeader, messageOperationType);
+        var data = MessageEncoderHandler.Handler(innerNetworkMessage);
         if (Setting.IsDebug && Setting.IsDebugReceive)
         {
             var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
             if (serverInfo != null)
             {
-                LogHelper.Info(innerNetworkMessage.ToSendMessageString(ServerType, serverInfo.Type));
+                LogHelper.Info("---发送[" + ServerType + " To " + serverInfo.Type + "]  " + innerNetworkMessage.ToFormatMessageString());
             }
         }
 
@@ -224,7 +226,10 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
                 ServerId = 21000,
                 ServerType = ServerType.DiscoveryCenter,
                 InnerPort = 21001,
-                APMPort = 21090
+                APMPort = 21090,
+                IsDebug = true,
+                IsDebugReceive = true,
+                IsDebugSend = true
             };
         }
 
