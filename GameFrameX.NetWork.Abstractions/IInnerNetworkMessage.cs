@@ -1,6 +1,4 @@
-﻿using GameFrameX.NetWork.Abstractions;
-
-namespace GameFrameX.NetWork.Messages;
+﻿namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
 /// 内部消息
