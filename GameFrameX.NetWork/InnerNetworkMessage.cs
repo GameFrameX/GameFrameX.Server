@@ -95,13 +95,12 @@ public sealed class InnerNetworkMessage : IInnerNetworkMessage
         // 消息类型
         stringBuilder.Append($"---MessageType:[{GetType().Name.CenterAlignedText(20)}]");
 
-        InnerMessageObjectHeader innerMessageObjectHeader = (InnerMessageObjectHeader)Header;
         // 消息ID
-        stringBuilder.Append($"--MsgId:[{innerMessageObjectHeader.MessageId.ToString().CenterAlignedText(10)}]({MessageIdUtility.GetMainId(innerMessageObjectHeader.MessageId).ToString().CenterAlignedText(5)},{MessageIdUtility.GetSubId(innerMessageObjectHeader.MessageId).ToString().CenterAlignedText(5)})");
+        stringBuilder.Append($"--MsgId:[{Header.MessageId.ToString().CenterAlignedText(10)}]({MessageIdUtility.GetMainId(Header.MessageId).ToString().CenterAlignedText(5)},{MessageIdUtility.GetSubId(Header.MessageId).ToString().CenterAlignedText(5)})");
         // 操作类型
-        stringBuilder.Append($"--OpType:[{innerMessageObjectHeader.OperationType.ToString().CenterAlignedText(12)}]");
+        stringBuilder.Append($"--OpType:[{((MessageOperationType)Header.OperationType).ToString().CenterAlignedText(12)}]");
         // 唯一ID
-        stringBuilder.Append($"--UniqueId:[{innerMessageObjectHeader.ServerId.ToString().CenterAlignedText(12)}]---");
+        stringBuilder.Append($"--UniqueId:[{Header.UniqueId.ToString().CenterAlignedText(12)}]---");
         stringBuilder.AppendLine();
         // 消息的内容 分割
         stringBuilder.AppendLine();
