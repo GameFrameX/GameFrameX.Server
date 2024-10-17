@@ -170,7 +170,7 @@ public sealed class DiscoveryCenterChannelHelper
 
         if (_setting.IsDebug && _setting.IsDebugReceive && !MessageProtoHelper.IsHeartbeat(message.GetType()))
         {
-            LogHelper.Debug(message.ToFormatMessageString());
+            LogHelper.Debug("---收到发现中心发来的消息:" + message.ToFormatMessageString());
         }
 
         if (message is IResponseMessage actorResponseMessage)
