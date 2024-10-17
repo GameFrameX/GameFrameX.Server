@@ -209,33 +209,45 @@ public abstract class AppStartUpService : AppStartUpBase
 
     protected async Task StartServer()
     {
-        LogHelper.InfoConsole($"启动服务器{ServerType} 开始! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
-        var hostBuilder = SuperSocketHostBuilder
-                          .Create<IMessage, MessageObjectPipelineFilter>()
-                          .ConfigureSuperSocket(ConfigureSuperSocket)
-                          .UseClearIdleSession()
-                          .UsePackageDecoder<DefaultMessageDecoderHandler>()
-                          .UsePackageEncoder<DefaultMessageEncoderHandler>()
-                          .UseSessionHandler(OnConnected, OnDisconnected)
-                          .UsePackageHandler(PackageHandler, PackageErrorHandler)
-                          .UseInProcSessionContainer()
-            ;
-
-        hostBuilder.ConfigureLogging(logging =>
-        {
-            logging.ClearProviders();
-            logging.AddSerilog(Serilog.Log.Logger, true);
-        });
-        _tcpService = hostBuilder.BuildAsServer();
-        var messageEncoderHandler = (DefaultMessageEncoderHandler)_tcpService.ServiceProvider.GetService<IPackageEncoder<IMessage>>();
-        var messageDecoderHandler = (DefaultMessageDecoderHandler)_tcpService.ServiceProvider.GetService<IPackageDecoder<IMessage>>();
-
-        SetMessageHandler(messageEncoderHandler, messageDecoderHandler);
-
-        await _tcpService.StartAsync();
-
+        await StartTcpServer();
         _discoveryCenterChannelHelper = new DiscoveryCenterChannelHelper(Setting, MessageEncoderHandler, MessageDecoderHandler);
-        LogHelper.InfoConsole($"启动服务器 {ServerType} 端口: {Setting.InnerPort} 结束!");
+    }
+
+    protected async Task StartTcpServer()
+    {
+        if (Setting.InnerPort > 0)
+        {
+            LogHelper.InfoConsole($"启动服务器{ServerType} 开始! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
+            var hostBuilder = SuperSocketHostBuilder
+                              .Create<IMessage, MessageObjectPipelineFilter>()
+                              .ConfigureSuperSocket(ConfigureSuperSocket)
+                              .UseClearIdleSession()
+                              .UsePackageDecoder<DefaultMessageDecoderHandler>()
+                              .UsePackageEncoder<DefaultMessageEncoderHandler>()
+                              .UseSessionHandler(OnConnected, OnDisconnected)
+                              .UsePackageHandler(PackageHandler, PackageErrorHandler)
+                              .UseInProcSessionContainer()
+                ;
+
+            hostBuilder.ConfigureLogging(logging =>
+            {
+                logging.ClearProviders();
+                logging.AddSerilog(Serilog.Log.Logger, true);
+            });
+            _tcpService = hostBuilder.BuildAsServer();
+            var messageEncoderHandler = (DefaultMessageEncoderHandler)_tcpService.ServiceProvider.GetService<IPackageEncoder<IMessage>>();
+            var messageDecoderHandler = (DefaultMessageDecoderHandler)_tcpService.ServiceProvider.GetService<IPackageDecoder<IMessage>>();
+
+            SetMessageHandler(messageEncoderHandler, messageDecoderHandler);
+
+            await _tcpService.StartAsync();
+
+            LogHelper.InfoConsole($"启动服务器 {ServerType} 端口: {Setting.InnerPort} 结束!");
+        }
+        else
+        {
+            LogHelper.Error("启动服务器失败，内网端口不能小于0,检查端口值是否正确");
+        }
     }
 
     protected virtual ValueTask<bool> PackageErrorHandler(IAppSession appSession, PackageHandlingException<IMessage> exception)
@@ -245,12 +257,13 @@ public abstract class AppStartUpService : AppStartUpBase
 
     protected virtual ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
     {
+        LogHelper.Info("有外部客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
         return ValueTask.CompletedTask;
     }
 
     protected virtual ValueTask OnConnected(IAppSession appSession)
     {
-        LogHelper.Info("有客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
+        LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
         return ValueTask.CompletedTask;
     }
 
