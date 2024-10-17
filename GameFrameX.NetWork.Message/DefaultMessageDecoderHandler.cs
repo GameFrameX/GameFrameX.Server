@@ -11,49 +11,47 @@ namespace GameFrameX.NetWork.Message;
 /// <summary>
 /// 基础消息解码处理器
 /// </summary>
-public class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder<INetworkMessage>
+public sealed class DefaultMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder<INetworkMessage>
 {
     /// <summary>
     /// 消息头长度
     /// </summary>
-    public virtual int MessageHeaderLength { get; } = 12;
+    public int MessageHeaderLength { get; } = 6;
 
     /// <summary>
     /// 和客户端之间的消息 数据长度(2)+消息唯一ID(4)+消息ID(4)+消息内容
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
-    public virtual INetworkMessage Handler(byte[] data)
+    public INetworkMessage Handler(byte[] data)
     {
         ReadOnlySequence<byte> sequence = new ReadOnlySequence<byte>(data);
         return Handler(ref sequence);
     }
 
-    private bool DecodeNetworkMessage(byte zipFlag, byte[] messageData, int messageId, byte operationType, int uniqueId, out INetworkMessage networkMessage)
+    private bool DecodeNetworkMessage(INetworkMessageHeader networkMessageHeader, byte[] messageData, out INetworkMessage networkMessage)
     {
         networkMessage = null;
-        if (zipFlag > 0)
+        if (networkMessageHeader.ZipFlag > 0)
         {
             if (DecompressHandler == null)
             {
                 LogHelper.Fatal("未设置解压消息处理器, 请先设置解压消息处理器");
-                {
-                    return true;
-                }
+                return true;
             }
 
             messageData = DecompressHandler.Handler(messageData);
         }
 
-        var messageType = MessageProtoHelper.GetMessageTypeById(messageId);
+        var messageType = MessageProtoHelper.GetMessageTypeById(networkMessageHeader.MessageId);
         if (messageType != null)
         {
             var message = ProtoBufSerializerHelper.Deserialize(messageData, messageType);
             if (message is MessageObject messageObject)
             {
-                messageObject.SetMessageId(messageId);
-                messageObject.SetOperationType((MessageOperationType)operationType);
-                messageObject.SetUniqueId(uniqueId);
+                messageObject.SetMessageId(networkMessageHeader.MessageId);
+                messageObject.SetOperationType((MessageOperationType)networkMessageHeader.OperationType);
+                messageObject.SetUniqueId(networkMessageHeader.UniqueId);
                 {
                     networkMessage = messageObject;
                     return true;
@@ -74,19 +72,19 @@ public class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder
         var reader = new SequenceReader<byte>(sequence);
         try
         {
-            reader.TryReadBigEndian(out ushort length);
-            // 消息类型
-            reader.TryReadBigEndian(out byte operationType);
-            // 压缩标记
-            reader.TryReadBigEndian(out byte zipFlag);
-            // 消息唯一ID
-            reader.TryReadBigEndian(out int uniqueId);
-            // 消息ID
-            reader.TryReadBigEndian(out int messageId);
+            // 消息总长度
+            reader.TryReadBigEndian(out int totalLength);
+            // 消息头长度
+            reader.TryReadBigEndian(out ushort headerLength);
+            // 消息头字节数组
+            reader.TryReadBytes(headerLength, out var messageHeaderData);
+            // 消息对象头
+            var messageObjectHeader = DecodeHeaderNetworkMessage(messageHeaderData);
 
-            reader.TryReadBytes(length - MessageHeaderLength, out var messageData);
+            // 消息内容
+            reader.TryReadBytes(totalLength - headerLength - MessageHeaderLength, out var messageData);
 
-            if (DecodeNetworkMessage(zipFlag, messageData, messageId, operationType, uniqueId, out var networkMessage))
+            if (DecodeNetworkMessage(messageObjectHeader, messageData, out var networkMessage))
             {
                 return networkMessage;
             }
@@ -101,10 +99,16 @@ public class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder
         }
     }
 
+    private INetworkMessageHeader DecodeHeaderNetworkMessage(byte[] messageData)
+    {
+        var messageObjectHeader = (INetworkMessageHeader)ProtoBufSerializerHelper.Deserialize(messageData, typeof(MessageObjectHeader));
+        return messageObjectHeader;
+    }
+
     /// <summary>
     /// 解压消息处理器
     /// </summary>
-    protected IMessageDecompressHandler DecompressHandler { get; private set; }
+    private IMessageDecompressHandler DecompressHandler { get; set; }
 
     /// <summary>
     /// 设置解压消息处理器
