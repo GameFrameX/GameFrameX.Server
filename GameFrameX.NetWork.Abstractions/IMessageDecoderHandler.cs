@@ -17,14 +17,14 @@ public interface IMessageDecoderHandler
     /// </summary>
     /// <param name="data">消息数据</param>
     /// <returns>消息结果对象</returns>
-    INetworkMessage Handler(byte[] data);
+    IMessage Handler(byte[] data);
 
     /// <summary>
     /// 解析消息
     /// </summary>
     /// <param name="sequence">消息数据</param>
     /// <returns>消息结果对象</returns>
-    INetworkMessage Handler(ref ReadOnlySequence<byte> sequence);
+    IMessage Handler(ref ReadOnlySequence<byte> sequence);
 
     /// <summary>
     /// 设置解压消息处理器

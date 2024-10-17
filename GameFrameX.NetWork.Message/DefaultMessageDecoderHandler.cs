@@ -11,7 +11,7 @@ namespace GameFrameX.NetWork.Message;
 /// <summary>
 /// 基础消息解码处理器
 /// </summary>
-public sealed class DefaultMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder<INetworkMessage>
+public sealed class DefaultMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder<IMessage>
 {
     /// <summary>
     /// 消息头长度
@@ -23,7 +23,7 @@ public sealed class DefaultMessageDecoderHandler : IMessageDecoderHandler, IPack
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
-    public INetworkMessage Handler(byte[] data)
+    public IMessage Handler(byte[] data)
     {
         ReadOnlySequence<byte> sequence = new ReadOnlySequence<byte>(data);
         return Handler(ref sequence);
@@ -67,7 +67,7 @@ public sealed class DefaultMessageDecoderHandler : IMessageDecoderHandler, IPack
     /// </summary>
     /// <param name="sequence"></param>
     /// <returns></returns>
-    public INetworkMessage Handler(ref ReadOnlySequence<byte> sequence)
+    public IMessage Handler(ref ReadOnlySequence<byte> sequence)
     {
         var reader = new SequenceReader<byte>(sequence);
         try
@@ -84,13 +84,9 @@ public sealed class DefaultMessageDecoderHandler : IMessageDecoderHandler, IPack
             // 消息内容
             reader.TryReadBytes(totalLength - headerLength - MessageHeaderLength, out var messageData);
 
-            if (DecodeNetworkMessage(messageObjectHeader, messageData, out var networkMessage))
-            {
-                return networkMessage;
-            }
+            var messageType = MessageProtoHelper.GetMessageTypeById(messageObjectHeader.MessageId);
 
-            LogHelper.Fatal("未知消息类型");
-            return null;
+            return InnerNetworkMessage.Create(messageObjectHeader, messageData, messageType);
         }
         catch (Exception e)
         {
@@ -125,7 +121,7 @@ public sealed class DefaultMessageDecoderHandler : IMessageDecoderHandler, IPack
     /// <param name="buffer"></param>
     /// <param name="context"></param>
     /// <returns></returns>
-    public INetworkMessage Decode(ref ReadOnlySequence<byte> buffer, object context)
+    public IMessage Decode(ref ReadOnlySequence<byte> buffer, object context)
     {
         return Handler(ref buffer);
     }
