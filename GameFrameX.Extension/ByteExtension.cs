@@ -625,6 +625,25 @@ namespace GameFrameX.Extension
 
             var data = new byte[len];
             System.Array.Copy(buffer, offset, data, 0, len);
+            return data;
+        }
+
+        /// <summary>
+        /// 从指定偏移量开始读取指定长度的字节数组。
+        /// </summary>
+        /// <param name="buffer">要操作的字节缓冲区。</param>
+        /// <param name="offset">操作的起始偏移量。</param>
+        /// <param name="len">需要读取的字节数组长度。</param>
+        /// <returns>返回从缓冲区读取的 byte[] 类型数据。</returns>
+        public static unsafe byte[] ReadBytes(this byte[] buffer, ref int offset, int len)
+        {
+            if (len <= 0 || offset > buffer.Length + len * ConstSize.ByteSize)
+            {
+                return Array.Empty<byte>();
+            }
+
+            var data = new byte[len];
+            System.Array.Copy(buffer, offset, data, 0, len);
             offset += len;
             return data;
         }
