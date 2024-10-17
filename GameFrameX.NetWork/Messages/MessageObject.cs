@@ -105,11 +105,20 @@ namespace GameFrameX.NetWork.Messages
             // 消息的内容 分割
             stringBuilder.AppendLine();
             // 消息内容
-            stringBuilder.AppendLine($"{ToString().WordWrap(120),-120}");
+            stringBuilder.AppendLine($"{ToJsonString()}");
             // 向上的箭头
             stringBuilder.AppendLine($"{'\u2191'.RepeatChar(120)}");
             stringBuilder.AppendLine();
             return StringBuilderCache.GetStringAndRelease(stringBuilder);
+        }
+
+        /// <summary>
+        /// 获取JSON格式化后的消息字符串
+        /// </summary>
+        /// <returns></returns>
+        public string ToJsonString()
+        {
+            return JsonHelper.SerializeFormat(this);
         }
 
         /// <summary>
