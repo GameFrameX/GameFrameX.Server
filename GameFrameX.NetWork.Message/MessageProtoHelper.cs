@@ -1,11 +1,8 @@
 ﻿using System.Collections.Concurrent;
-using System.Collections.ObjectModel;
 using System.Reflection;
 using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.NetWork.Abstractions;
-using GameFrameX.NetWork.Messages;
-using GameFrameX.Utility;
 
 namespace GameFrameX.NetWork.Message
 {
@@ -21,7 +18,7 @@ namespace GameFrameX.NetWork.Message
         private static readonly List<Type> HeartBeatList = new List<Type>();
 
         /// <summary>
-        /// 获取消息ID,如果没有则返回0
+        /// 获取消息ID,如果没有找到则返回 -1
         /// </summary>
         /// <param name="type">消息类型</param>
         /// <returns></returns>
@@ -32,7 +29,7 @@ namespace GameFrameX.NetWork.Message
                 return value;
             }
 
-            return 0;
+            return -1;
         }
 
         /// <summary>
@@ -67,23 +64,15 @@ namespace GameFrameX.NetWork.Message
         }
 
         /// <summary>
-        /// 设置消息ID
+        /// 设置消息ID和操作类型
         /// </summary>
         /// <param name="message">消息对象</param>
-        public static void SetMessageId(INetworkMessage message)
+        public static void SetMessageIdAndOperationType(INetworkMessage message)
         {
             message.CheckNotNull(nameof(message));
-            message.SetMessageId(GetMessageIdByType(message.GetType()));
-        }
-
-        /// <summary>
-        /// 设置消息操作类型
-        /// </summary>
-        /// <param name="message">消息对象</param>
-        public static void SetMessageOperationType(INetworkMessage message)
-        {
-            message.CheckNotNull(nameof(message));
-            message.SetOperationType(GetMessageOperationType(message.GetType()));
+            var messageType = message.GetType();
+            message.SetMessageId(GetMessageIdByType(messageType));
+            message.SetOperationType(GetMessageOperationType(messageType));
         }
 
         /// <summary>
@@ -111,6 +100,7 @@ namespace GameFrameX.NetWork.Message
                 RequestDictionary.Clear();
                 ResponseDictionary.Clear();
                 HeartBeatList.Clear();
+                OperationType.Clear();
             }
 
             var types = assembly.GetTypes();
@@ -118,15 +108,15 @@ namespace GameFrameX.NetWork.Message
             {
                 var messageTypeHandlerAttribute = type.GetCustomAttribute(typeof(MessageTypeHandlerAttribute));
 
-                if (messageTypeHandlerAttribute is MessageTypeHandlerAttribute messageIdHandler)
+                if (messageTypeHandlerAttribute is MessageTypeHandlerAttribute messageTypeHandler)
                 {
-                    if (!AllMessageDictionary.TryAdd(messageIdHandler.MessageId, type))
+                    if (!AllMessageDictionary.TryAdd(messageTypeHandler.MessageId, type))
                     {
-                        RequestDictionary.TryGetValue(messageIdHandler.MessageId, out var value);
-                        throw new Exception($"消息Id重复==>当前ID:{messageIdHandler.MessageId},已有ID类型:{value.FullName}");
+                        RequestDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
+                        throw new AlreadyArgumentException($"消息Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
                     }
 
-                    OperationType.TryAdd(type, messageIdHandler.OperationType);
+                    OperationType.TryAdd(type, messageTypeHandler.OperationType);
 
                     if (type.IsImplWithInterface(typeof(IHeartBeatMessage)))
                     {
@@ -143,19 +133,19 @@ namespace GameFrameX.NetWork.Message
                     if (type.IsImplWithInterface(typeof(IRequestMessage)))
                     {
                         // 请求
-                        if (!RequestDictionary.TryAdd(messageIdHandler.MessageId, type))
+                        if (!RequestDictionary.TryAdd(messageTypeHandler.MessageId, type))
                         {
-                            RequestDictionary.TryGetValue(messageIdHandler.MessageId, out var value);
-                            LogHelper.Error($"请求Id重复==>当前ID:{messageIdHandler.MessageId},已有ID类型:{value.FullName}");
+                            RequestDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
+                            throw new AlreadyArgumentException($"请求Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
                         }
                     }
                     else if (type.IsImplWithInterface(typeof(IResponseMessage)) || type.IsImplWithInterface(typeof(INotifyMessage)))
                     {
                         // 返回
-                        if (!ResponseDictionary.TryAdd(messageIdHandler.MessageId, type))
+                        if (!ResponseDictionary.TryAdd(messageTypeHandler.MessageId, type))
                         {
-                            ResponseDictionary.TryGetValue(messageIdHandler.MessageId, out var value);
-                            LogHelper.Error($"返回Id重复==>当前ID:{messageIdHandler.MessageId},已有ID类型:{value.FullName}");
+                            ResponseDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
+                            throw new AlreadyArgumentException($"返回Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
                         }
                     }
                 }
