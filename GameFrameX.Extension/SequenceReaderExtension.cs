@@ -51,10 +51,28 @@ public static class SequenceReaderExtension
     /// <param name="reader">读取器</param>
     /// <param name="value">结果值</param>
     /// <returns>读取成功返回True，否则返回False</returns>
+    public static bool TryPeekBigEndian(ref this SequenceReader<byte> reader, out byte value)
+    {
+        value = 0;
+        if (reader.Remaining < 1L || !reader.TryPeek(0, out var num1))
+        {
+            return false;
+        }
+
+        value = num1;
+        return true;
+    }
+
+    /// <summary>
+    /// 从只读内存中获取字节数据. 但是不移动读取位置
+    /// </summary>
+    /// <param name="reader">读取器</param>
+    /// <param name="value">结果值</param>
+    /// <returns>读取成功返回True，否则返回False</returns>
     public static bool TryPeekBigEndian(ref this SequenceReader<byte> reader, out ushort value)
     {
         value = 0;
-        if (reader.Remaining < 2L || !reader.TryPeek(out var num1) || !reader.TryPeek(out var num2))
+        if (reader.Remaining < 2L || !reader.TryPeek(0, out var num1) || !reader.TryPeek(1, out var num2))
         {
             return false;
         }
@@ -82,7 +100,7 @@ public static class SequenceReaderExtension
         int num2 = (int)Math.Pow(256.0, 3.0);
         for (int index = 0; index < 4; ++index)
         {
-            if (!reader.TryPeek(out var num3))
+            if (!reader.TryPeek(index, out var num3))
             {
                 return false;
             }
@@ -113,7 +131,7 @@ public static class SequenceReaderExtension
         long num2 = (long)Math.Pow(256.0, 7.0);
         for (int index = 0; index < 8; ++index)
         {
-            if (!reader.TryPeek(out var num3))
+            if (!reader.TryPeek(index, out var num3))
             {
                 return false;
             }
