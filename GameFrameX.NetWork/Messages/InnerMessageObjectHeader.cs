@@ -1,5 +1,4 @@
-﻿using GameFrameX.NetWork.Abstractions;
-using ProtoBuf;
+﻿using ProtoBuf;
 
 namespace GameFrameX.NetWork.Messages;
 
