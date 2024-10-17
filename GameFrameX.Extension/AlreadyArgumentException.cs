@@ -3,7 +3,7 @@
 /// <summary>
 /// 已经存在参数重复异常
 /// </summary>
-public class AlreadyArgumentException : Exception
+public sealed class AlreadyArgumentException : Exception
 {
     /// <summary>
     /// 已经存在参数重复
