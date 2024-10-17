@@ -62,7 +62,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
         return ValueTask.CompletedTask;
     }
 
-    protected override ValueTask PackageHandler(IAppSession session, INetworkMessage message)
+    protected override ValueTask PackageHandler(IAppSession session, IMessage message)
     {
         if (message is MessageObject messageObject)
         {

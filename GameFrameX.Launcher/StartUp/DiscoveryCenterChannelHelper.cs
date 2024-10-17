@@ -56,6 +56,7 @@ public sealed class DiscoveryCenterChannelHelper
         _reconnectionTimer = new Timer(reconnectInterval);
         _reconnectionTimer.Elapsed += ReconnectionTimerOnElapsed;
         _reqHeartBeat = new ReqHeartBeat();
+        MessageProtoHelper.SetMessageIdAndOperationType(_reqHeartBeat);
         _discoveryCenterClient = new AsyncTcpSession();
         _discoveryCenterClient.Closed += DiscoveryCenterClientOnClosed;
         _discoveryCenterClient.DataReceived += DiscoveryCenterClientOnDataReceived;
@@ -75,12 +76,12 @@ public sealed class DiscoveryCenterChannelHelper
                 continue;
             }
 
-            message.RequestMessage.SetMessageId(MessageProtoHelper.GetMessageIdByType(message.RequestMessage.GetType()));
-            MessageObjectHeader messageObjectHeader = new MessageObjectHeader
+            MessageProtoHelper.SetMessageIdAndOperationType(message.RequestMessage);
+            InnerMessageObjectHeader messageObjectHeader = new InnerMessageObjectHeader
             {
                 ServerId = _setting.ServerId,
             };
-            var message2 = InnerNetworkMessage.Create(message.RequestMessage, messageObjectHeader, MessageOperationType.HeartBeat);
+            var message2 = InnerNetworkMessage.Create(message.RequestMessage, messageObjectHeader);
             Send(message2);
         }
     }
@@ -93,15 +94,14 @@ public sealed class DiscoveryCenterChannelHelper
     void HeartBeatTimerOnElapsed(object sender, ElapsedEventArgs e)
     {
         _reqHeartBeat.UpdateUniqueId();
-        _reqHeartBeat.SetMessageId(MessageProtoHelper.GetMessageIdByType(typeof(ReqHeartBeat)));
         _reqHeartBeat.Timestamp = TimeHelper.UnixTimeMilliseconds();
-        MessageObjectHeader messageObjectHeader = new MessageObjectHeader
+
+        InnerMessageObjectHeader messageObjectHeader = new InnerMessageObjectHeader
         {
             ServerId = _setting.ServerId,
-            OperationType = (byte)MessageOperationType.HeartBeat,
         };
 
-        InnerNetworkMessage innerNetworkMessage = InnerNetworkMessage.Create(_reqHeartBeat, messageObjectHeader, MessageOperationType.HeartBeat);
+        var innerNetworkMessage = InnerNetworkMessage.Create(_reqHeartBeat, messageObjectHeader);
         Send(innerNetworkMessage);
     }
 
@@ -149,13 +149,12 @@ public sealed class DiscoveryCenterChannelHelper
             OuterIP = _setting.OuterIp,
             OuterPort = _setting.OuterPort,
         };
-        reqRegisterServer.SetMessageId(MessageProtoHelper.GetMessageIdByType(typeof(ReqRegisterServer)));
-        MessageObjectHeader messageObjectHeader = new MessageObjectHeader
+        MessageProtoHelper.SetMessageIdAndOperationType(reqRegisterServer);
+        InnerMessageObjectHeader messageObjectHeader = new InnerMessageObjectHeader
         {
             ServerId = _setting.ServerId,
-            OperationType = (byte)MessageOperationType.Register,
         };
-        InnerNetworkMessage innerNetworkMessage = InnerNetworkMessage.Create(reqRegisterServer, messageObjectHeader, MessageOperationType.Register);
+        var innerNetworkMessage = InnerNetworkMessage.Create(reqRegisterServer, messageObjectHeader);
         Send(innerNetworkMessage);
     }
 

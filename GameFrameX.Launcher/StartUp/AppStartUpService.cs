@@ -211,11 +211,11 @@ public abstract class AppStartUpService : AppStartUpBase
     {
         LogHelper.InfoConsole($"启动服务器{ServerType} 开始! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
         var hostBuilder = SuperSocketHostBuilder
-                          .Create<IInnerNetworkMessage, InnerMessageObjectPipelineFilter>()
+                          .Create<IMessage, MessageObjectPipelineFilter>()
                           .ConfigureSuperSocket(ConfigureSuperSocket)
                           .UseClearIdleSession()
-                          .UsePackageDecoder<InnerMessageDecoderHandler>()
-                          .UsePackageEncoder<InnerMessageEncoderHandler>()
+                          .UsePackageDecoder<DefaultMessageDecoderHandler>()
+                          .UsePackageEncoder<DefaultMessageEncoderHandler>()
                           .UseSessionHandler(OnConnected, OnDisconnected)
                           .UsePackageHandler(PackageHandler, PackageErrorHandler)
                           .UseInProcSessionContainer()
@@ -227,8 +227,8 @@ public abstract class AppStartUpService : AppStartUpBase
             logging.AddSerilog(Serilog.Log.Logger, true);
         });
         _tcpService = hostBuilder.BuildAsServer();
-        var messageEncoderHandler = (InnerMessageEncoderHandler)_tcpService.ServiceProvider.GetService<IPackageEncoder<IInnerNetworkMessage>>();
-        var messageDecoderHandler = (InnerMessageDecoderHandler)_tcpService.ServiceProvider.GetService<IPackageDecoder<IInnerNetworkMessage>>();
+        var messageEncoderHandler = (DefaultMessageEncoderHandler)_tcpService.ServiceProvider.GetService<IPackageEncoder<IMessage>>();
+        var messageDecoderHandler = (DefaultMessageDecoderHandler)_tcpService.ServiceProvider.GetService<IPackageDecoder<IMessage>>();
 
         SetMessageHandler(messageEncoderHandler, messageDecoderHandler);
 
@@ -238,7 +238,7 @@ public abstract class AppStartUpService : AppStartUpBase
         LogHelper.InfoConsole($"启动服务器 {ServerType} 端口: {Setting.InnerPort} 结束!");
     }
 
-    protected virtual ValueTask<bool> PackageErrorHandler(IAppSession appSession, PackageHandlingException<IInnerNetworkMessage> exception)
+    protected virtual ValueTask<bool> PackageErrorHandler(IAppSession appSession, PackageHandlingException<IMessage> exception)
     {
         return ValueTask.FromResult(true);
     }
@@ -254,7 +254,7 @@ public abstract class AppStartUpService : AppStartUpBase
         return ValueTask.CompletedTask;
     }
 
-    protected virtual ValueTask PackageHandler(IAppSession session, INetworkMessage message)
+    protected virtual ValueTask PackageHandler(IAppSession session, IMessage message)
     {
         return ValueTask.CompletedTask;
     }
