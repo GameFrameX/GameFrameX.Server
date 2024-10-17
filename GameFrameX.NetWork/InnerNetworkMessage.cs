@@ -127,6 +127,7 @@ public sealed class InnerNetworkMessage : IInnerNetworkMessage
         innerMessage.SetMessageData(buffer);
         messageObjectHeader.OperationType = (byte)message.OperationType;
         messageObjectHeader.MessageId = message.MessageId;
+        messageObjectHeader.UniqueId = message.UniqueId;
         innerMessage.SetMessageHeader(messageObjectHeader);
         return innerMessage;
     }
