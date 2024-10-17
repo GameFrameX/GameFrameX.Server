@@ -269,6 +269,11 @@ public abstract class AppStartUpService : AppStartUpBase
 
     protected virtual ValueTask PackageHandler(IAppSession session, IMessage message)
     {
+        if (Setting.IsDebug && Setting.IsDebugReceive)
+        {
+            LogHelper.Debug($"---收到外部发给[{ServerType}]的消息  {message.ToFormatMessageString()}");
+        }
+
         return ValueTask.CompletedTask;
     }
 
