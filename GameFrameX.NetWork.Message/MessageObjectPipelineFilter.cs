@@ -18,7 +18,7 @@ public class MessageObjectPipelineFilter : PipelineFilterBase<IMessage>
     public override IMessage Filter(ref SequenceReader<byte> reader)
     {
         var pack = reader.Sequence;
-        reader.TryPeekBigEndian(out ushort totalLength);
+        reader.TryPeekBigEndian(out uint totalLength);
         if (totalLength <= 0)
         {
             reader.AdvanceToEnd();
@@ -27,6 +27,10 @@ public class MessageObjectPipelineFilter : PipelineFilterBase<IMessage>
 
         var readBuffer = pack.Slice(pack.Start, totalLength);
         if (reader.Remaining < totalLength)
+        {
+            reader.AdvanceToEnd();
+        }
+        else
         {
             reader.AdvanceToEnd();
         }
