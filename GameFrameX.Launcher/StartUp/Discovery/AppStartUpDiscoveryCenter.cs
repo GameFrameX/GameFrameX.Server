@@ -2,8 +2,6 @@ using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 using GameFrameX.ServerManager;
-using GameFrameX.SuperSocket.ProtoBase;
-using Microsoft.Extensions.DependencyInjection;
 
 
 namespace GameFrameX.Launcher.StartUp.Discovery;
@@ -12,7 +10,7 @@ namespace GameFrameX.Launcher.StartUp.Discovery;
 /// 服务发现中心服务器
 /// </summary>
 [StartUpTag(ServerType.DiscoveryCenter, 0)]
-internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
+internal partial class AppStartUpDiscoveryCenter : AppStartUpService
 {
     public override async Task StartAsync()
     {
@@ -30,69 +28,14 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
             LogHelper.Fatal(e);
         }
 
-        LogHelper.Info($"退出服务器{ServerType}开始");
         await StopAsync();
-        LogHelper.Info($"退出服务器{ServerType}成功");
     }
-
-    #region NamingServiceManager
-
-    readonly NamingServiceManager _namingServiceManager;
-
-    public AppStartUpDiscoveryCenter()
-    {
-        _namingServiceManager = new NamingServiceManager(OnServerAdd, OnServerRemove);
-    }
-
-
-    private void OnServerRemove(IServiceInfo serverInfo)
-    {
-        var serverList = _namingServiceManager.GetAllNodes().Where(m => m.ServerId != 0 && m.ServerId != serverInfo.ServerId).ToList();
-
-        RespServerOfflineServer respServerOnlineServer = new RespServerOfflineServer()
-        {
-            ServerType = serverInfo.Type,
-            ServerName = serverInfo.ServerName,
-            ServerID = serverInfo.ServerId
-        };
-        foreach (var serverInfo1 in serverList)
-        {
-            var info = (ServiceInfo)serverInfo1;
-            if (serverInfo.SessionId == info.SessionId)
-            {
-                continue;
-            }
-
-            var appSession = (IAppSession)info.Session;
-            SendMessage(appSession, respServerOnlineServer);
-        }
-    }
-
-    private void OnServerAdd(IServiceInfo serverInfo)
-    {
-        var serverList = _namingServiceManager.GetOuterNodes().Where(m => m.ServerId != serverInfo.ServerId).ToList();
-
-        RespServerOnlineServer respServerOnlineServer = new RespServerOnlineServer()
-        {
-            ServerType = serverInfo.Type,
-            ServerName = serverInfo.ServerName,
-            ServerID = serverInfo.ServerId
-        };
-        foreach (var serverInfo1 in serverList)
-        {
-            var info = (ServiceInfo)serverInfo1;
-            var appSession = (IAppSession)info.Session;
-            SendMessage(appSession, respServerOnlineServer);
-        }
-    }
-
-    #endregion
 
     /// <summary>
     /// 发送消息给注册的服务
     /// </summary>
-    /// <param name="session"></param>
-    /// <param name="message"></param>
+    /// <param name="session">连接会话对象</param>
+    /// <param name="message">消息对象</param>
     private async void SendMessage(IAppSession session, INetworkMessage message)
     {
         message.CheckNotNull(nameof(message));
@@ -101,14 +44,13 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
             return;
         }
 
-        MessageProtoHelper.SetMessageId(message);
-        var messageOperationType = MessageProtoHelper.GetMessageOperationType(message.GetType());
-        MessageObjectHeader messageObjectHeader = new MessageObjectHeader
+        MessageProtoHelper.SetMessageIdAndOperationType(message);
+        var messageObjectHeader = new InnerMessageObjectHeader()
         {
             ServerId = Setting.ServerId,
         };
-        InnerNetworkMessage innerNetworkMessage = InnerNetworkMessage.Create(message, messageObjectHeader, messageOperationType);
-        var data = MessageEncoderHandler.Handler(innerNetworkMessage);
+        var innerNetworkMessage = InnerNetworkMessage.Create(message, messageObjectHeader);
+        var buffer = MessageEncoderHandler.Handler(innerNetworkMessage);
         if (Setting.IsDebug && Setting.IsDebugReceive)
         {
             var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
@@ -118,55 +60,47 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
             }
         }
 
-        await session.SendAsync(data);
+        await session.SendAsync(buffer);
     }
 
-    protected override ValueTask PackageHandler(IAppSession session, INetworkMessage message)
+    protected override ValueTask PackageHandler(IAppSession session, IMessage message)
     {
+        if (Setting.IsDebug && Setting.IsDebugReceive)
+        {
+            var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
+            if (serverInfo != null)
+            {
+                LogHelper.Debug($"---收到[{serverInfo.Type} To {ServerType}]  {message.ToFormatMessageString()}");
+            }
+            else
+            {
+                LogHelper.Debug($"---收到[{ServerType}]  {message.ToFormatMessageString()}");
+            }
+        }
+
         if (message is IInnerNetworkMessage messageObject)
         {
-            if (Setting.IsDebug && Setting.IsDebugReceive)
+            switch ((MessageOperationType)messageObject.Header.OperationType)
             {
-                var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
-                if (serverInfo != null)
+                case MessageOperationType.None:
+                    break;
+                case MessageOperationType.HeartBeat:
                 {
-                    LogHelper.Debug($"---收到[{serverInfo.Type} To {ServerType}]  {messageObject.ToFormatMessageString()}");
-                }
-                else
-                {
-                    LogHelper.Debug($"---收到[{ServerType}]  {messageObject.ToFormatMessageString()}");
-                }
-            }
-
-            if (messageObject.OperationType == MessageOperationType.HeartBeat)
-            {
-                // 心跳相应
-                var reqHeartBeat = messageObject.DeserializeMessageObject();
-                var response = new NotifyHeartBeat()
-                {
-                    UniqueId = reqHeartBeat.UniqueId,
-                    Timestamp = TimeHelper.UnixTimeSeconds()
-                };
-                SendMessage(session, response);
-                return ValueTask.CompletedTask;
-            }
-
-            if (messageObject.OperationType == MessageOperationType.Register)
-            {
-                if (messageObject.MessageType == typeof(ReqRegisterServer))
-                {
-                    ReqRegisterServer reqRegisterServer = (ReqRegisterServer)messageObject.DeserializeMessageObject();
-                    // 注册服务
-                    ServiceInfo serviceInfo = new ServiceInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerID, reqRegisterServer.InnerIP, reqRegisterServer.InnerPort, reqRegisterServer.OuterIP, reqRegisterServer.OuterPort);
-                    _namingServiceManager.Add(serviceInfo);
-                    LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
+                    // 心跳响应
+                    var reqHeartBeat = messageObject.DeserializeMessageObject();
+                    var response = new NotifyHeartBeat()
+                    {
+                        UniqueId = reqHeartBeat.UniqueId,
+                        Timestamp = TimeHelper.UnixTimeMilliseconds(),
+                    };
+                    SendMessage(session, response);
                     return ValueTask.CompletedTask;
                 }
-            }
-
-            if (messageObject.OperationType == MessageOperationType.Game)
-            {
-                if (messageObject.MessageType == typeof(ReqConnectServer))
+                case MessageOperationType.Cache:
+                    break;
+                case MessageOperationType.Database:
+                    break;
+                case MessageOperationType.Game:
                 {
                     ReqConnectServer reqConnectServer = (ReqConnectServer)messageObject.DeserializeMessageObject();
                     var serverList = _namingServiceManager.GetNodesByType(reqConnectServer.ServerType);
@@ -191,6 +125,36 @@ internal sealed class AppStartUpDiscoveryCenter : AppStartUpService
                         SendMessage(session, respConnectServer);
                     }
                 }
+                    break;
+                case MessageOperationType.GameManager:
+                    break;
+                case MessageOperationType.Forbid:
+                    break;
+                case MessageOperationType.Reboot:
+                    break;
+                case MessageOperationType.Reconnect:
+                    break;
+                case MessageOperationType.Reload:
+                    break;
+                case MessageOperationType.Exit:
+                    break;
+                case MessageOperationType.Kick:
+                    break;
+                case MessageOperationType.Notify:
+                    break;
+                case MessageOperationType.Forward:
+                    break;
+                case MessageOperationType.Register:
+                {
+                    ReqRegisterServer reqRegisterServer = (ReqRegisterServer)messageObject.DeserializeMessageObject();
+                    // 注册服务
+                    ServiceInfo serviceInfo = new ServiceInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerID, reqRegisterServer.InnerIP, reqRegisterServer.InnerPort, reqRegisterServer.OuterIP, reqRegisterServer.OuterPort);
+                    _namingServiceManager.Add(serviceInfo);
+                    LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
+                    return ValueTask.CompletedTask;
+                }
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
