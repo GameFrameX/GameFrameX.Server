@@ -3,7 +3,7 @@
 /// <summary>
 /// 内部消息
 /// </summary>
-public interface IInnerNetworkMessage : INetworkMessage
+public interface IInnerNetworkMessage : IMessage
 {
     /// <summary>
     /// 消息数据
@@ -11,20 +11,26 @@ public interface IInnerNetworkMessage : INetworkMessage
     byte[] MessageData { get; }
 
     /// <summary>
-    /// 消息数据长度
+    /// 消息头对象
     /// </summary>
-    ushort MessageDataLength { get; }
+    INetworkMessageHeader Header { get; }
 
     /// <summary>
-    /// 消息类型
+    /// 消息唯一ID
     /// </summary>
-    Type MessageType { get; }
+    string UniqueId { get; }
 
     /// <summary>
     /// 转换消息数据为消息对象
     /// </summary>
     /// <returns></returns>
     INetworkMessage DeserializeMessageObject();
+
+    /// <summary>
+    /// 设置消息数据
+    /// </summary>
+    /// <param name="messageData"></param>
+    void SetMessageData(byte[] messageData);
 
     /// <summary>
     /// 设置消息数据
