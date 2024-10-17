@@ -3,7 +3,7 @@
 /// <summary>
 /// 网络消息接口
 /// </summary>
-public interface INetworkMessage
+public interface INetworkMessage : IMessage
 {
     /// <summary>
     /// 消息ID
@@ -44,8 +44,8 @@ public interface INetworkMessage
     void SetUniqueId(int uniqueId);
 
     /// <summary>
-    /// 获取格式化后的消息字符串
+    /// 获取JSON格式化后的消息字符串
     /// </summary>
     /// <returns></returns>
-    string ToFormatMessageString();
+    string ToJsonString();
 }
