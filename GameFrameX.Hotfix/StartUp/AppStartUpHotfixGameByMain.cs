@@ -24,13 +24,14 @@ internal partial class AppStartUpHotfixGame
     public override async Task StartAsync()
     {
         // 启动网络服务
-        await StartTcpServer();
+        await StartServer();
         StartWebSocketServer();
         // 设置压缩和解压缩
         MessageEncoderHandler.SetCompressionHandler(new DefaultMessageCompressHandler());
         MessageDecoderHandler.SetDecompressionHandler(new DefaultMessageDecompressHandler());
         // 启动Http服务
         await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetHttpHandler);
+        await base.StartAsync();
     }
 
     public async void RunServer(bool reload = false)
