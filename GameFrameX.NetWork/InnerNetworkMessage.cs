@@ -181,7 +181,14 @@ public sealed class InnerNetworkMessage : IInnerNetworkMessage
         _data.Clear();
     }
 
-    public static InnerNetworkMessage Create(MessageObjectHeader messageObjectHeader, byte[] messageData, Type messageType)
+    /// <summary>
+    /// 创建内部消息
+    /// </summary>
+    /// <param name="messageObjectHeader">消息头</param>
+    /// <param name="messageData">消息体</param>
+    /// <param name="messageType">消息体的类型</param>
+    /// <returns></returns>
+    public static InnerNetworkMessage Create(INetworkMessageHeader messageObjectHeader, byte[] messageData, Type messageType)
     {
         var innerMessage = new InnerNetworkMessage();
         innerMessage.SetMessageHeader(messageObjectHeader);
