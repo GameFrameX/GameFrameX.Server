@@ -1,4 +1,5 @@
 using GameFrameX.NetWork.Abstractions;
+using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 using GameFrameX.ServerManager;
@@ -19,7 +20,10 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
             _namingServiceManager.AddSelf(Setting);
 
             await StartServer();
-
+            var aopHandlerTypes = AssemblyHelper.GetRuntimeImplementTypeNamesInstance<IHttpAopHandler>();
+            aopHandlerTypes.Sort((handlerX, handlerY) => handlerX.Priority.CompareTo(handlerY.Priority));
+            // 启动Http服务
+            await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetHttpHandler, aopHandlerTypes);
             await AppExitToken;
         }
         catch (Exception e)
@@ -217,6 +221,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
                 ServerType = ServerType.DiscoveryCenter,
                 InnerPort = 21001,
                 APMPort = 21090,
+                HttpPort = 21011,
                 IsDebug = true,
                 IsDebugReceive = true,
                 IsDebugSend = true
