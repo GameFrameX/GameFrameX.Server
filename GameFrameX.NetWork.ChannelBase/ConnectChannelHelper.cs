@@ -156,13 +156,13 @@ public sealed class ConnectChannelHelper
 
     private void ConnectClientOnError(object sender, SuperSocket.ClientEngine.ErrorEventArgs errorEventArgs)
     {
-        LogHelper.Info($"和服务器{TargetEndPoint}链接链接发生错误!{errorEventArgs}");
+        LogHelper.Info($"[{_setting.ServerType}]和服务器{TargetEndPoint}链接链接发生错误!{errorEventArgs.Exception.Message}");
         ConnectClientOnClosed(_connectClient, errorEventArgs);
     }
 
     private void ConnectClientOnConnected(object sender, EventArgs eventArgs)
     {
-        LogHelper.Info($"和服务器{TargetEndPoint}链接链接成功!");
+        LogHelper.Info($"[{_setting.ServerType}]和服务器{TargetEndPoint}链接链接成功!");
         // 和服务器链接成功，关闭重连
         _reconnectionTimer.Stop();
         // 开启和服务器的心跳
@@ -206,17 +206,17 @@ public sealed class ConnectChannelHelper
 
         if (_setting.IsDebug && _setting.IsDebugReceive && !MessageProtoHelper.IsHeartbeat(message.GetType()))
         {
-            LogHelper.Debug($"---收到服务器[{TargetEndPoint}]发来的消息:{message.ToFormatMessageString()}");
+            LogHelper.Debug($"---[{_setting.ServerType}]收到服务器[{TargetEndPoint}]发来的消息:{message.ToFormatMessageString()}");
         }
 
         if (message is IResponseMessage actorResponseMessage)
         {
             bool result = _rpcSession.Reply(actorResponseMessage);
-            if (result)
-            {
-                return;
+                if (result)
+                {
+                    return;
+                }
             }
-        }
 
         _messageHandler?.Invoke(message);
 
@@ -252,7 +252,7 @@ public sealed class ConnectChannelHelper
     /// <param name="eventArgs"></param>
     private void ConnectClientOnClosed(object sender, EventArgs eventArgs)
     {
-        LogHelper.Info($"和服务器[{TargetEndPoint}]链接链接断开!");
+        LogHelper.Info($"[{_setting.ServerType}]和服务器[{TargetEndPoint}]链接链接断开!");
         // 和服务器链接断开，开启重连
         _reconnectionTimer.Start();
     }
@@ -283,7 +283,7 @@ public sealed class ConnectChannelHelper
 
         if (_setting.IsDebug && _setting.IsDebugSend)
         {
-            LogHelper.Debug($"--发送到服务器[{TargetEndPoint}] {networkMessage.ToFormatMessageString()}");
+            LogHelper.Debug($"--[{_setting.ServerType}]发送到服务器[{TargetEndPoint}] {networkMessage.ToFormatMessageString()}");
         }
 
         try
@@ -337,7 +337,7 @@ public sealed class ConnectChannelHelper
             TargetEndPoint = new DnsEndPoint(serverIp, serverPort);
         }
 
-        LogHelper.Info($"开始链接到目标服务器[{TargetEndPoint}]...");
+        LogHelper.Info($"[{_setting.ServerType}]开始链接到目标服务器[{TargetEndPoint}]...");
         _reconnectionTimer.Start();
     }
 
