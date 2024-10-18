@@ -78,6 +78,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.CodeGenerator", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.GameAnalytics", "GameFrameX.GameAnalytics\GameFrameX.GameAnalytics.csproj", "{755C375D-204F-44D0-BC3D-CE6DDC1D9381}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Proto.BuiltIn", "GameFrameX.Proto.BuiltIn\GameFrameX.Proto.BuiltIn.csproj", "{4E950BB2-27B9-4442-BA8C-D75C7ACD15E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -204,6 +206,10 @@ Global
 		{755C375D-204F-44D0-BC3D-CE6DDC1D9381}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{755C375D-204F-44D0-BC3D-CE6DDC1D9381}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{755C375D-204F-44D0-BC3D-CE6DDC1D9381}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E950BB2-27B9-4442-BA8C-D75C7ACD15E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E950BB2-27B9-4442-BA8C-D75C7ACD15E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E950BB2-27B9-4442-BA8C-D75C7ACD15E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E950BB2-27B9-4442-BA8C-D75C7ACD15E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
