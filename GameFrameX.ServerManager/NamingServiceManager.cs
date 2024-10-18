@@ -145,15 +145,24 @@ namespace GameFrameX.ServerManager
             return _serverMap.Count;
         }
 
-        private IServiceInfo _serviceInfo;
+        /// <summary>
+        /// 自身服务器信息
+        /// </summary>
+        public IServiceInfo SelfServiceInfo { get; private set; }
 
         /// <summary>
         /// 添加自身
         /// </summary>
         public void AddSelf(AppSetting setting)
         {
-            _serviceInfo = new ServiceInfo(setting.ServerType, null, string.Empty, setting.ServerName, setting.ServerId, setting.InnerIp, setting.InnerPort, setting.OuterIp, setting.OuterPort);
-            _serverMap[_serviceInfo.ServerId] = _serviceInfo;
+            if (SelfServiceInfo != null)
+            {
+                // 已经添加过了
+                return;
+            }
+
+            SelfServiceInfo = new ServiceInfo(setting.ServerType, null, string.Empty, setting.ServerName, setting.ServerId, setting.InnerIp, setting.InnerPort, setting.OuterIp, setting.OuterPort);
+            _serverMap[SelfServiceInfo.ServerId] = SelfServiceInfo;
         }
 
         /// <summary>
@@ -163,9 +172,9 @@ namespace GameFrameX.ServerManager
         public void Add(IServiceInfo node)
         {
             node.CheckNotNull(nameof(node));
-            if (node.Type == _serviceInfo.Type)
+            if (node.Type == SelfServiceInfo.Type)
             {
-                LogHelper.Error($"不能添加{_serviceInfo.Type.ToString()}节点...{node}");
+                LogHelper.Error($"不能添加{SelfServiceInfo.Type.ToString()}节点...{node}");
                 return;
             }
 
@@ -178,7 +187,7 @@ namespace GameFrameX.ServerManager
             MetricsDiscoveryRegister.ServiceCounterOptions.Inc();
             _serverMap.TryAdd(node.ServerId, node);
             _onServerAdd?.Invoke(node);
-            LogHelper.Info($"新的网络节点总数：{GetNodeCount()} 节点信息:\n {node}");
+            LogHelper.Info($"新的网络节点总数：{GetNodeCount()} 新的节点信息:\n {node}");
         }
 
         /// <summary>
