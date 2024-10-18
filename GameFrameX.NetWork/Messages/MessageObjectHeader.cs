@@ -19,7 +19,7 @@ public class MessageObjectHeader : INetworkMessageHeader
     /// 操作类型
     /// </summary>
     [ProtoMember(2)]
-    public byte OperationType { get; set; }
+    public MessageOperationType OperationType { get; set; }
 
     /// <summary>
     /// 压缩标记

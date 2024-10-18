@@ -18,7 +18,7 @@ public interface INetworkMessageHeader
     /// <summary>
     /// 操作类型
     /// </summary>
-    byte OperationType { get; set; }
+    MessageOperationType OperationType { get; set; }
 
     /// <summary>
     /// 压缩标记

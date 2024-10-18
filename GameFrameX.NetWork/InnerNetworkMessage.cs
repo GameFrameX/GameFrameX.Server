@@ -125,7 +125,7 @@ public sealed class InnerNetworkMessage : IInnerNetworkMessage
         innerMessage.SetUniqueId(message.UniqueId.ToString());
         var buffer = ProtoBufSerializerHelper.Serialize(message);
         innerMessage.SetMessageData(buffer);
-        messageObjectHeader.OperationType = (byte)message.OperationType;
+        messageObjectHeader.OperationType = message.OperationType;
         messageObjectHeader.MessageId = message.MessageId;
         messageObjectHeader.UniqueId = message.UniqueId;
         innerMessage.SetMessageHeader(messageObjectHeader);

@@ -43,7 +43,7 @@ public sealed class DefaultMessageEncoderHandler : IMessageEncoderHandler, IPack
             byte zipFlag = 0;
             BytesCompressHandler(ref messageBodyData, ref zipFlag);
             var messageObjectHeader = _messageObjectHeaderObjectPool.Get();
-            messageObjectHeader.OperationType = (byte)messageObject.OperationType;
+            messageObjectHeader.OperationType = messageObject.OperationType;
             messageObjectHeader.UniqueId = messageObject.UniqueId;
             messageObjectHeader.MessageId = messageObject.MessageId;
             messageObjectHeader.ZipFlag = zipFlag;
