@@ -55,7 +55,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
         };
         var innerNetworkMessage = InnerNetworkMessage.Create(message, messageObjectHeader);
         var buffer = MessageEncoderHandler.Handler(innerNetworkMessage);
-        if (Setting.IsDebug && Setting.IsDebugReceive)
+        if (Setting.IsDebug && Setting.IsDebugSend)
         {
             var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
             if (serverInfo != null)
