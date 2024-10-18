@@ -76,7 +76,7 @@ public sealed class RpcData : IDisposable
     {
         RequestMessage = requestMessage;
         IsReply = isReply;
-        UniqueId = IdGenerator.GetNextUniqueId();
+        UniqueId = requestMessage.UniqueId;
         Timeout = timeout;
         _tcs = new TaskCompletionSource<IResponseMessage>();
     }
