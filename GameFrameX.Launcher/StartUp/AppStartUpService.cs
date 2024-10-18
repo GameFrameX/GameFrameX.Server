@@ -211,6 +211,7 @@ public abstract class AppStartUpService : AppStartUpBase
     {
         await StartTcpServer();
         _discoveryCenterChannelHelper = new DiscoveryCenterChannelHelper(Setting, MessageEncoderHandler, MessageDecoderHandler);
+        GlobalSettings.IsAppRunning = true;
     }
 
     protected async Task StartTcpServer()
