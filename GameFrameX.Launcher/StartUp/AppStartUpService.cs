@@ -122,6 +122,10 @@ public abstract class AppStartUpService : AppStartUpBase
 
     private IServer _tcpService;
     private ConnectChannelHelper _discoveryCenterChannelHelper;
+    protected ConnectChannelHelper DiscoveryCenterChannelHelper
+    {
+        get { return _discoveryCenterChannelHelper; }
+    }
     // private ConnectChannelHelper connectTargetServerChannelHelper;
 
     protected async void StartServer()
@@ -217,6 +221,8 @@ public abstract class AppStartUpService : AppStartUpBase
         }
     }
 
+    #region WebSocket
+
     /// <summary>
     /// WS服务器
     /// </summary>
@@ -270,6 +276,8 @@ public abstract class AppStartUpService : AppStartUpBase
         var message = MessageDecoderHandler.Handler(ref readOnlySequence);
         await PackageHandler(session, message);
     }
+
+    #endregion
 
     protected virtual ValueTask<bool> PackageErrorHandler(IAppSession appSession, PackageHandlingException<IMessage> exception)
     {
