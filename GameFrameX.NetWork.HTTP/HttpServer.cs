@@ -1,3 +1,4 @@
+using System.Reflection;
 using GameFrameX.Extension;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using GameFrameX.Log;
+using GameFrameX.Utility;
 
 namespace GameFrameX.NetWork.HTTP
 {
@@ -32,9 +34,10 @@ namespace GameFrameX.NetWork.HTTP
         /// <param name="httpPort">HTTP端口,如果没有指定端口，则默认为28080</param>
         /// <param name="httpsPort">HTTPS端口,如果没有指定端口，则不监听HTTPS</param>
         /// <param name="baseHandler">根据命令Id获得处理器</param>
+        /// <param name="aopHandlerTypes">Aop处理器列表</param>
         /// <param name="apiRootPath">接口根路径,必须以 / 开头和以 / 结尾,默认为 [/game/api]</param>
         /// <param name="minimumLevelLogLevel">日志记录最小级别</param>
-        public static Task Start(int httpPort, int httpsPort, Func<string, BaseHttpHandler> baseHandler, string apiRootPath = GameApiPath, LogLevel minimumLevelLogLevel = LogLevel.Debug)
+        public static Task Start(int httpPort, int httpsPort, Func<string, BaseHttpHandler> baseHandler, List<IHttpAopHandler> aopHandlerTypes = null, string apiRootPath = GameApiPath, LogLevel minimumLevelLogLevel = LogLevel.Debug)
         {
             LogHelper.Info("开始启动 HTTP 服务器...");
             baseHandler.CheckNotNull(nameof(baseHandler));
@@ -78,7 +81,12 @@ namespace GameFrameX.NetWork.HTTP
                            options.ListenAnyIP(httpsPort, listenOptions => { listenOptions.UseHttps(); });
                        }
                    })
-                   .ConfigureLogging(logging => { logging.SetMinimumLevel(minimumLevelLogLevel); })
+                   .ConfigureLogging(logging =>
+                   {
+                       logging.ClearProviders();
+                       logging.AddSerilog();
+                       logging.SetMinimumLevel(minimumLevelLogLevel);
+                   })
                    .UseSerilog();
 
             App = builder.Build();
@@ -94,8 +102,8 @@ namespace GameFrameX.NetWork.HTTP
                 });
             });
             string routePath = $"{ApiRootPath}{{text}}";
-            App.MapGet(routePath, context => HttpHandler.HandleRequest(context, baseHandler));
-            App.MapPost(routePath, context => HttpHandler.HandleRequest(context, baseHandler));
+            App.MapGet(routePath, context => HttpHandler.HandleRequest(context, baseHandler, aopHandlerTypes));
+            App.MapPost(routePath, context => HttpHandler.HandleRequest(context, baseHandler, aopHandlerTypes));
             var task = App.StartAsync();
             LogHelper.Info("启动 HTTP 服务器完成...");
             return task;

@@ -19,7 +19,8 @@ namespace GameFrameX.NetWork.HTTP
         /// </summary>
         /// <param name="context"></param>
         /// <param name="baseHandler"></param>
-        public static async Task HandleRequest(HttpContext context, Func<string, BaseHttpHandler> baseHandler)
+        /// <param name="aopHandlerTypes"></param>
+        public static async Task HandleRequest(HttpContext context, Func<string, BaseHttpHandler> baseHandler, List<IHttpAopHandler> aopHandlerTypes = null)
         {
             try
             {
@@ -106,6 +107,22 @@ namespace GameFrameX.NetWork.HTTP
                     await context.Response.WriteAsync(HttpResult.CreateActionFailed("服务器状态错误[正在起/关服]"));
                     return;
                 }
+
+                #region AOP
+
+                if (aopHandlerTypes is { Count: > 0 })
+                {
+                    foreach (var httpAopHandler in aopHandlerTypes)
+                    {
+                        if (!httpAopHandler.Run(context, ip, url, paramMap))
+                        {
+                            return;
+                        }
+                    }
+                }
+
+                #endregion
+
 
                 var handler = baseHandler(command);
                 if (handler == null)
