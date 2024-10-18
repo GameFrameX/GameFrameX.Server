@@ -86,6 +86,13 @@ public sealed class DefaultMessageDecoderHandler : IMessageDecoderHandler, IPack
 
             var messageType = MessageProtoHelper.GetMessageTypeById(messageObjectHeader.MessageId);
 
+            if (messageObjectHeader.MessageId >= 0)
+            {
+                // 外部消息
+                return OuterNetworkMessage.Create(messageObjectHeader, messageData, messageType);
+            }
+
+            // 内部消息
             return InnerNetworkMessage.Create(messageObjectHeader, messageData, messageType);
         }
         catch (Exception e)
