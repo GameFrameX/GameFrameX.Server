@@ -79,4 +79,9 @@ public enum MessageOperationType : byte
     /// 注册
     /// </summary>
     Register,
+
+    /// <summary>
+    /// 请求链接服务器信息
+    /// </summary>
+    RequestConnectServer,
 }
