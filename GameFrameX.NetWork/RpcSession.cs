@@ -57,15 +57,6 @@ public sealed class RpcSession : IRpcSession, IDisposable
     }
 
     /// <summary>
-    /// 调用
-    /// </summary>
-    /// <param name="message"></param>
-    public void Call(RpcData message)
-    {
-        _waitingObjects.Enqueue(message);
-    }
-
-    /// <summary>
     /// 回复
     /// </summary>
     /// <param name="message"></param>

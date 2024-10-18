@@ -10,8 +10,12 @@ public sealed class RpcData : IDisposable
 {
     /// <summary>
     /// 消息的唯一ID
+    /// 从RequestMessage中获得
     /// </summary>
-    public long UniqueId { get; }
+    public long UniqueId
+    {
+        get { return RequestMessage.UniqueId; }
+    }
 
     /// <summary>
     /// 是否需要回复
@@ -24,9 +28,9 @@ public sealed class RpcData : IDisposable
     public long CreatedTime { get; }
 
     /// <summary>
-    /// 消耗的时间
+    /// 计时器消耗的时间
     /// </summary>
-    public long ElapseTime { get; private set; }
+    private long ElapseTime { get; set; }
 
     /// <summary>
     /// 超时时间。单位毫秒
@@ -44,13 +48,20 @@ public sealed class RpcData : IDisposable
     public IResponseMessage ResponseMessage { get; private set; }
 
     /// <summary>
+    /// RPC 耗时时间.单位毫秒
+    /// 从创建到回复的时间差
+    /// </summary>
+    public long Time { get; private set; }
+
+    /// <summary>
     /// RPC 回复
     /// </summary>
-    /// <param name="actorResponseMessage"></param>
-    public void Reply(IResponseMessage actorResponseMessage)
+    /// <param name="responseMessage"></param>
+    public void Reply(IResponseMessage responseMessage)
     {
-        ResponseMessage = actorResponseMessage;
-        _tcs.SetResult(actorResponseMessage);
+        ResponseMessage = responseMessage;
+        Time = TimeHelper.UnixTimeMilliseconds() - CreatedTime;
+        _tcs.SetResult(responseMessage);
     }
 
     /// <summary>
@@ -71,12 +82,12 @@ public sealed class RpcData : IDisposable
     /// </summary>
     /// <param name="requestMessage">请求消息</param>
     /// <param name="isReply">是否需要回复</param>
-    /// <param name="timeout">超时时间,单位毫秒</param>
-    private RpcData(IRequestMessage requestMessage, bool isReply = true, int timeout = 10000) : this()
+    /// <param name="timeout">超时时间,单位毫秒,默认10秒</param>
+    private RpcData(IRequestMessage requestMessage, bool isReply = true, int timeout = 10000)
     {
+        CreatedTime = TimeHelper.UnixTimeMilliseconds();
         RequestMessage = requestMessage;
         IsReply = isReply;
-        UniqueId = requestMessage.UniqueId;
         Timeout = timeout;
         _tcs = new TaskCompletionSource<IResponseMessage>();
     }
@@ -106,14 +117,6 @@ public sealed class RpcData : IDisposable
     public Task<IResponseMessage> Task
     {
         get { return _tcs.Task; }
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    private RpcData()
-    {
-        CreatedTime = TimeHelper.UnixTimeMilliseconds();
     }
 
     /// <summary>
