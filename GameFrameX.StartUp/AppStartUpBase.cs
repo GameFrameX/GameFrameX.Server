@@ -121,6 +121,7 @@ namespace GameFrameX.StartUp
         /// <param name="message">终止原因</param>
         public virtual async Task StopAsync(string message = "")
         {
+            GlobalSettings.IsAppRunning = false;
             LogHelper.ErrorConsole($"服务器类型:{Setting.ServerType} 停止! 终止原因：{message}  配置信息: {Setting.ToFormatString()}");
             AppExitSource?.TrySetResult(message);
             await Task.CompletedTask;
