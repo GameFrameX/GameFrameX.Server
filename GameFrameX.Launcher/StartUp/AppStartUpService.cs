@@ -198,6 +198,7 @@ public abstract class AppStartUpService : AppStartUpBase
     {
         ConnectTargetServerTimer?.Close();
         _discoveryCenterChannelHelper?.Stop();
+        StopWebSocketServer();
         _tcpService?.StopAsync();
         return base.StopAsync(message);
     }
@@ -249,6 +250,60 @@ public abstract class AppStartUpService : AppStartUpBase
         {
             LogHelper.Error("启动服务器失败，内网端口不能小于0,检查端口值是否正确");
         }
+    }
+
+    /// <summary>
+    /// WS服务器
+    /// </summary>
+    private IHost _webSocketServer;
+
+    /// <summary>
+    /// 启动WebSocket
+    /// </summary>
+    private async void StartWebSocketServer()
+    {
+        if (Setting.WsPort > 0)
+        {
+            LogHelper.Info("启动 WebSocket 服务器开始...");
+            _webSocketServer = WebSocketHostBuilder.Create()
+                                                   .UseWebSocketMessageHandler(WebSocketMessageHandler)
+                                                   .UseSessionHandler(OnConnected, OnDisconnected).ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)(Action<HostBuilderContext, IConfigurationBuilder>)(ConfigureWebServer)).Build();
+            await _webSocketServer.StartAsync();
+            LogHelper.Info("启动 WebSocket 服务器完成...");
+        }
+    }
+
+    protected async void StopWebSocketServer()
+    {
+        // 关闭WS网络服务
+        if (_webSocketServer != null)
+        {
+            await _webSocketServer.StopAsync();
+        }
+    }
+
+    private void ConfigureWebServer(HostBuilderContext context, IConfigurationBuilder builder)
+    {
+        builder.AddInMemoryCollection(new Dictionary<string, string>()
+                                          { { "serverOptions:name", "TestServer" }, { "serverOptions:listeners:0:ip", "Any" }, { "serverOptions:listeners:0:port", Setting.WsPort.ToString() } });
+    }
+
+    /// <summary>
+    /// 处理收到的WS消息
+    /// </summary>
+    /// <param name="session"></param>
+    /// <param name="messagePackage"></param>
+    private async ValueTask WebSocketMessageHandler(WebSocketSession session, WebSocketPackage messagePackage)
+    {
+        if (messagePackage.OpCode != OpCode.Binary)
+        {
+            await session.CloseAsync(CloseReason.ProtocolError);
+            return;
+        }
+
+        var readOnlySequence = messagePackage.Data;
+        var message = MessageDecoderHandler.Handler(ref readOnlySequence);
+        await PackageHandler(session, message);
     }
 
     protected virtual ValueTask<bool> PackageErrorHandler(IAppSession appSession, PackageHandlingException<IMessage> exception)
