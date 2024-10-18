@@ -96,6 +96,24 @@ public static class AssemblyHelper
     }
 
     /// <summary>
+    /// 获取已加载的程序集中的指定类型的子类实例化列表。
+    /// </summary>
+    /// <typeparam name="T">指定类型</typeparam>
+    /// <returns>指定类型的子类列表。</returns>
+    public static List<T> GetRuntimeImplementTypeNamesInstance<T>()
+    {
+        var types = GetRuntimeImplementTypeNames(typeof(T));
+
+        List<T> results = new List<T>(types.Count);
+        foreach (var type in types)
+        {
+            results.Add((T)Activator.CreateInstance(type));
+        }
+
+        return results;
+    }
+
+    /// <summary>
     /// 获取已加载的程序集中的指定类型的子类列表。
     /// </summary>
     /// <typeparam name="T">指定类型</typeparam>
