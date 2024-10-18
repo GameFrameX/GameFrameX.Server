@@ -24,7 +24,7 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
     {
         try
         {
-            await StartServer();
+            StartServer();
             // _namingServiceManager.OnServerAdd = OnServerAdd;
             // _namingServiceManager.OnServerRemove = OnServerRemove;
             // _namingServiceManager.AddSelf(Setting);

@@ -21,16 +21,17 @@ namespace GameFrameX.Hotfix.StartUp;
 /// </summary>
 internal partial class AppStartUpHotfixGame
 {
+    protected override ServerType GetServerType { get; } = ServerType.Gateway;
+
     public override async Task StartAsync()
     {
         // 启动网络服务
-        await StartServer();
-        StartWebSocketServer();
+        StartServer();
         // 设置压缩和解压缩
-        MessageEncoderHandler.SetCompressionHandler(new DefaultMessageCompressHandler());
-        MessageDecoderHandler.SetDecompressionHandler(new DefaultMessageDecompressHandler());
+        // MessageEncoderHandler.SetCompressionHandler(new DefaultMessageCompressHandler());
+        // MessageDecoderHandler.SetDecompressionHandler(new DefaultMessageDecompressHandler());
         // 启动Http服务
-        await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetHttpHandler);
+        // await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetHttpHandler);
         await base.StartAsync();
     }
 
@@ -47,27 +48,7 @@ internal partial class AppStartUpHotfixGame
         await StartAsync();
     }
 
-    /// <summary>
-    /// WS服务器
-    /// </summary>
-    private IHost _webSocketServer;
-
-
-    /// <summary>
-    /// 启动WebSocket
-    /// </summary>
-    private async void StartWebSocketServer()
-    {
-        if (Setting.WsPort > 0)
-        {
-            LogHelper.Info("启动 WebSocket 服务器开始...");
-            _webSocketServer = WebSocketHostBuilder.Create()
-                                                   .UseWebSocketMessageHandler(WebSocketMessageHandler)
-                                                   .UseSessionHandler(OnConnected, OnDisconnected).ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)(Action<HostBuilderContext, IConfigurationBuilder>)(ConfigureWebServer)).Build();
-            await _webSocketServer.StartAsync();
-            LogHelper.Info("启动 WebSocket 服务器完成...");
-        }
-    }
+   
 
     protected override ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
     {
@@ -86,23 +67,7 @@ internal partial class AppStartUpHotfixGame
         return ValueTask.CompletedTask;
     }
 
-    /// <summary>
-    /// 处理收到的WS消息
-    /// </summary>
-    /// <param name="session"></param>
-    /// <param name="messagePackage"></param>
-    private async ValueTask WebSocketMessageHandler(WebSocketSession session, WebSocketPackage messagePackage)
-    {
-        if (messagePackage.OpCode != OpCode.Binary)
-        {
-            await session.CloseAsync(CloseReason.ProtocolError);
-            return;
-        }
-
-        var readOnlySequence = messagePackage.Data;
-        var message = MessageDecoderHandler.Handler(ref readOnlySequence);
-        await PackageHandler(session, message);
-    }
+    
 
     /// <summary>
     /// 处理收到的消息结果
@@ -154,11 +119,7 @@ internal partial class AppStartUpHotfixGame
 
     public override async Task StopAsync(string message = "")
     {
-        // 关闭网络服务
-        if (_webSocketServer != null)
-        {
-            await _webSocketServer.StopAsync();
-        }
+
 
         await base.StopAsync(message);
 
