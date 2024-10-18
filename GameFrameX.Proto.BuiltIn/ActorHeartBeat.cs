@@ -8,7 +8,7 @@ namespace GameFrameX.Proto.BuiltIn;
 /// 请求心跳
 /// </summary>
 [ProtoContract]
-[MessageTypeHandler((-1 << 16) + 100, MessageOperationType.HeartBeat)]
+[MessageTypeHandler((-1 << 16) + 1, MessageOperationType.HeartBeat)]
 public sealed class ReqActorHeartBeat : MessageObject, IRequestMessage, IHeartBeatMessage
 {
     /// <summary>
@@ -22,7 +22,7 @@ public sealed class ReqActorHeartBeat : MessageObject, IRequestMessage, IHeartBe
 /// 服务器通知心跳结果，因为有些业务需要对心跳结果做处理所以不做成RPC的方式处理
 /// </summary>
 [ProtoContract]
-[MessageTypeHandler((-1 << 16) + 101, MessageOperationType.HeartBeat)]
+[MessageTypeHandler((-1 << 16) + 2, MessageOperationType.HeartBeat)]
 public sealed class NotifyActorHeartBeat : MessageObject, INotifyMessage, IHeartBeatMessage
 {
     /// <summary>
