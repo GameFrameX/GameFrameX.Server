@@ -58,17 +58,28 @@ public sealed class ConnectChannelHelper
     private readonly ObjectPool<InnerMessageObjectHeader> _innerMessageObjectHeader;
 
     /// <summary>
+    /// 非RPC消息处理回调
+    /// </summary>
+    private readonly Action<IMessage> _messageHandler;
+
+    /// <summary>
     /// 
     /// </summary>
-    /// <param name="setting"></param>
-    /// <param name="messageEncoderHandler"></param>
-    /// <param name="messageDecoderHandler"></param>
-    /// <param name="heartBeatInterval"></param>
-    /// <param name="reconnectInterval"></param>
-    public ConnectChannelHelper(AppSetting setting, IMessageEncoderHandler messageEncoderHandler, IMessageDecoderHandler messageDecoderHandler, int heartBeatInterval = 15000, int reconnectInterval = 5000)
+    /// <param name="setting">设置</param>
+    /// <param name="messageEncoderHandler">消息编码器</param>
+    /// <param name="messageDecoderHandler">消息解码器</param>
+    /// <param name="messageHandler">非RPC消息处理回调</param>
+    /// <param name="heartBeatInterval">心跳时间间隔,单位毫秒</param>
+    /// <param name="reconnectInterval">重连时间间隔,单位毫秒</param>
+    public ConnectChannelHelper(AppSetting setting, IMessageEncoderHandler messageEncoderHandler, IMessageDecoderHandler messageDecoderHandler, Action<IMessage> messageHandler, int heartBeatInterval = 15000, int reconnectInterval = 5000)
     {
+        setting.CheckNotNull(nameof(setting));
+        messageHandler.CheckNotNull(nameof(messageHandler));
+        messageEncoderHandler.CheckNotNull(nameof(messageEncoderHandler));
+        messageDecoderHandler.CheckNotNull(nameof(messageDecoderHandler));
         _setting = setting;
         _rpcSession = new RpcSession();
+        _messageHandler = messageHandler;
         _messageEncoderHandler = messageEncoderHandler;
         _messageDecoderHandler = messageDecoderHandler;
         _heartBeatTimer = new Timer(heartBeatInterval);
@@ -192,7 +203,7 @@ public sealed class ConnectChannelHelper
 
         if (_setting.IsDebug && _setting.IsDebugReceive && !MessageProtoHelper.IsHeartbeat(message.GetType()))
         {
-            LogHelper.Debug("---收到发现中心发来的消息:" + message.ToFormatMessageString());
+            LogHelper.Debug($"---收到服务器[{TargetEndPoint}]发来的消息:{message.ToFormatMessageString()}");
         }
 
         if (message is IResponseMessage actorResponseMessage)
@@ -203,6 +214,8 @@ public sealed class ConnectChannelHelper
                 return;
             }
         }
+
+        _messageHandler?.Invoke(message);
 
         /*
         if (message is RespConnectServer respConnectServer && ConnectTargetServer == null)
