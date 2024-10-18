@@ -1,13 +1,12 @@
 using System.Collections.Concurrent;
 using GameFrameX.NetWork.Abstractions;
-using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.NetWork;
 
 /// <summary>
 /// RPC会话
 /// </summary>
-public sealed class RpcSession : IRpcSession
+public sealed class RpcSession : IRpcSession, IDisposable
 {
     /// <summary>
     /// 等待队列
@@ -15,9 +14,28 @@ public sealed class RpcSession : IRpcSession
     private readonly ConcurrentQueue<RpcData> _waitingObjects = new ConcurrentQueue<RpcData>();
 
     /// <summary>
+    /// 删除列表
+    /// </summary>
+    private readonly HashSet<long> _removeUniqueIds = new HashSet<long>();
+
+    /// <summary>
     /// RPC处理队列
     /// </summary>
     private readonly ConcurrentDictionary<long, RpcData> _rpcHandlingObjects = new ConcurrentDictionary<long, RpcData>();
+
+    /// <summary>
+    /// 处理消息队列
+    /// </summary>
+    /// <returns></returns>
+    public RpcData TryPeek()
+    {
+        if (_waitingObjects.TryPeek(out var message))
+        {
+            return message;
+        }
+
+        return null;
+    }
 
     /// <summary>
     /// 处理消息队列
@@ -72,11 +90,10 @@ public sealed class RpcSession : IRpcSession
     /// <returns>返回消息对象</returns>
     public Task<IResponseMessage> Call(IRequestMessage message, int timeOutMillisecond = 10000)
     {
-        var rpcData = RpcData.Create(message);
+        var rpcData = RpcData.Create(message, true, timeOutMillisecond);
         _waitingObjects.Enqueue(rpcData);
         return rpcData.Task;
     }
-
 
     /// <summary>
     /// 异步发送,不等待结果
@@ -84,16 +101,57 @@ public sealed class RpcSession : IRpcSession
     /// <param name="message">调用消息对象</param>
     public void Send(IRequestMessage message)
     {
-        var actorObject = RpcData.Create(message);
+        var actorObject = RpcData.Create(message, false);
         _waitingObjects.Enqueue(actorObject);
     }
 
     /// <summary>
-    /// 添加
+    /// 计时器
     /// </summary>
-    /// <param name="rpcData"></param>
-    public void Add(RpcData rpcData)
+    /// <param name="elapseMillisecondsTime">流逝时间,单位毫秒</param>
+    public void Tick(int elapseMillisecondsTime)
     {
-        _waitingObjects.Enqueue(rpcData);
+        if (_rpcHandlingObjects.Count > 0)
+        {
+            var elapseSecondsTime = (long)elapseMillisecondsTime;
+            _removeUniqueIds.Clear();
+            foreach (var handlingObject in _rpcHandlingObjects)
+            {
+                var isTimeout = handlingObject.Value.IncrementalElapseTime(elapseSecondsTime);
+                if (isTimeout)
+                {
+                    _removeUniqueIds.Add(handlingObject.Key);
+                }
+            }
+        }
+
+        if (_removeUniqueIds.Count > 0)
+        {
+            foreach (var uniqueId in _removeUniqueIds)
+            {
+                _rpcHandlingObjects.TryRemove(uniqueId, out _);
+            }
+
+            _removeUniqueIds.Clear();
+        }
+    }
+
+    /// <summary>
+    /// 停止
+    /// </summary>
+    public void Stop()
+    {
+        _removeUniqueIds?.Clear();
+        _waitingObjects?.Clear();
+        _rpcHandlingObjects?.Clear();
+    }
+
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
+    public void Dispose()
+    {
+        Stop();
+        GC.SuppressFinalize(this);
     }
 }
