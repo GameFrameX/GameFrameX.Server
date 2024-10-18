@@ -132,7 +132,7 @@ public class UnityTcpClient
 
         MessageObjectHeader messageObjectHeader = new MessageObjectHeader
         {
-            OperationType = (byte)message.OperationType,
+            OperationType = message.OperationType,
             UniqueId = message.UniqueId,
             MessageId = message.MessageId,
         };
