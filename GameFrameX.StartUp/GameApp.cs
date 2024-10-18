@@ -172,7 +172,7 @@ namespace GameFrameX.StartUp
         {
             if (!options.ServerType.IsNullOrEmpty() && Enum.TryParse(options.ServerType, out ServerType serverTypeValue))
             {
-                options.CheckAPMPort();
+                // options.CheckAPMPort();
 
                 options.CheckServerId();
 
