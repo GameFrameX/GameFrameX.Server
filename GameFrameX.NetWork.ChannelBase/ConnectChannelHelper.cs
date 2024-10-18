@@ -99,9 +99,12 @@ public sealed class ConnectChannelHelper
 
     private void RpcHandler()
     {
+        var lastDateTimeOffset = DateTimeOffset.Now;
         while (true)
         {
-            _rpcSession.Tick(1);
+            var timeSpan = DateTimeOffset.Now - lastDateTimeOffset;
+            lastDateTimeOffset = DateTimeOffset.Now;
+            _rpcSession.Tick(timeSpan.Milliseconds);
             if (IsConnected == false)
             {
                 Thread.Sleep(1);
