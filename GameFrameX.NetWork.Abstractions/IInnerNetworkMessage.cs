@@ -16,11 +16,6 @@ public interface IInnerNetworkMessage : IMessage
     INetworkMessageHeader Header { get; }
 
     /// <summary>
-    /// 消息唯一ID
-    /// </summary>
-    string UniqueId { get; }
-
-    /// <summary>
     /// 转换消息数据为消息对象
     /// </summary>
     /// <returns></returns>

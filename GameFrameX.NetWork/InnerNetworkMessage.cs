@@ -33,20 +33,6 @@ public sealed class InnerNetworkMessage : IInnerNetworkMessage
     }
 
     /// <summary>
-    /// 消息唯一ID
-    /// </summary>
-    public string UniqueId { get; private set; }
-
-    /// <summary>
-    /// 设置唯一消息ID
-    /// </summary>
-    /// <param name="uniqueId"></param>
-    public void SetUniqueId(string uniqueId)
-    {
-        UniqueId = uniqueId;
-    }
-
-    /// <summary>
     /// 转换消息数据为消息对象
     /// </summary>
     /// <returns></returns>
@@ -98,7 +84,7 @@ public sealed class InnerNetworkMessage : IInnerNetworkMessage
         // 消息ID
         stringBuilder.Append($"--MsgId:[{Header.MessageId.ToString().CenterAlignedText(10)}]({MessageIdUtility.GetMainId(Header.MessageId).ToString().CenterAlignedText(5)},{MessageIdUtility.GetSubId(Header.MessageId).ToString().CenterAlignedText(5)})");
         // 操作类型
-        stringBuilder.Append($"--OpType:[{((MessageOperationType)Header.OperationType).ToString().CenterAlignedText(12)}]");
+        stringBuilder.Append($"--OpType:[{Header.OperationType.ToString().CenterAlignedText(12)}]");
         // 唯一ID
         stringBuilder.Append($"--UniqueId:[{Header.UniqueId.ToString().CenterAlignedText(12)}]---");
         stringBuilder.AppendLine();
@@ -121,13 +107,13 @@ public sealed class InnerNetworkMessage : IInnerNetworkMessage
     public static IInnerNetworkMessage Create(INetworkMessage message, INetworkMessageHeader messageObjectHeader)
     {
         var innerMessage = new InnerNetworkMessage();
-        innerMessage.SetMessageType(message.GetType());
-        innerMessage.SetUniqueId(message.UniqueId.ToString());
-        var buffer = ProtoBufSerializerHelper.Serialize(message);
-        innerMessage.SetMessageData(buffer);
         messageObjectHeader.OperationType = message.OperationType;
         messageObjectHeader.MessageId = message.MessageId;
         messageObjectHeader.UniqueId = message.UniqueId;
+        
+        innerMessage.SetMessageType(message.GetType());
+        var buffer = ProtoBufSerializerHelper.Serialize(message);
+        innerMessage.SetMessageData(buffer);
         innerMessage.SetMessageHeader(messageObjectHeader);
         return innerMessage;
     }
