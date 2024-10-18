@@ -209,14 +209,19 @@ public sealed class ConnectChannelHelper
             LogHelper.Debug($"---[{_setting.ServerType}]收到服务器[{TargetEndPoint}]发来的消息:{message.ToFormatMessageString()}");
         }
 
-        if (message is IResponseMessage actorResponseMessage)
+        if (message is InnerNetworkMessage innerNetworkMessage)
         {
-            bool result = _rpcSession.Reply(actorResponseMessage);
+            var messageObject = innerNetworkMessage.DeserializeMessageObject();
+            messageObject.SetUniqueId(innerNetworkMessage.Header.UniqueId);
+            if (messageObject is IResponseMessage responseMessage)
+            {
+                bool result = _rpcSession.Reply(responseMessage);
                 if (result)
                 {
                     return;
                 }
             }
+        }
 
         _messageHandler?.Invoke(message);
 
