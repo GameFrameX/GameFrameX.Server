@@ -29,39 +29,6 @@ public sealed class DefaultMessageDecoderHandler : IMessageDecoderHandler, IPack
         return Handler(ref sequence);
     }
 
-    private bool DecodeNetworkMessage(INetworkMessageHeader networkMessageHeader, byte[] messageData, out INetworkMessage networkMessage)
-    {
-        networkMessage = null;
-        if (networkMessageHeader.ZipFlag > 0)
-        {
-            if (DecompressHandler == null)
-            {
-                LogHelper.Fatal("未设置解压消息处理器, 请先设置解压消息处理器");
-                return true;
-            }
-
-            messageData = DecompressHandler.Handler(messageData);
-        }
-
-        var messageType = MessageProtoHelper.GetMessageTypeById(networkMessageHeader.MessageId);
-        if (messageType != null)
-        {
-            var message = ProtoBufSerializerHelper.Deserialize(messageData, messageType);
-            if (message is MessageObject messageObject)
-            {
-                messageObject.SetMessageId(networkMessageHeader.MessageId);
-                messageObject.SetOperationType((MessageOperationType)networkMessageHeader.OperationType);
-                messageObject.SetUniqueId(networkMessageHeader.UniqueId);
-                {
-                    networkMessage = messageObject;
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
     /// <summary>
     /// 
     /// </summary>
