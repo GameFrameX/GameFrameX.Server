@@ -26,7 +26,7 @@ internal partial class AppStartUpDiscoveryCenter
         {
             ServerType = serverInfo.Type,
             ServerName = serverInfo.ServerName,
-            ServerID = serverInfo.ServerId
+            ServerId = serverInfo.ServerId
         };
         MessageProtoHelper.SetMessageIdAndOperationType(respServerOnlineServer);
         foreach (var serverInfo1 in serverList)
@@ -51,7 +51,7 @@ internal partial class AppStartUpDiscoveryCenter
         {
             ServerType = serverInfo.Type,
             ServerName = serverInfo.ServerName,
-            ServerID = serverInfo.ServerId,
+            ServerId = serverInfo.ServerId,
         };
         MessageProtoHelper.SetMessageIdAndOperationType(respServerOnlineServer);
         foreach (var serverInfo1 in serverList)

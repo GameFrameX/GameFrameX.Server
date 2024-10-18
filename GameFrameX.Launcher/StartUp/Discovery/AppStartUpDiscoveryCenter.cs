@@ -104,9 +104,9 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
                 {
                     ReqConnectServer reqConnectServer = (ReqConnectServer)messageObject.DeserializeMessageObject();
                     var serverList = _namingServiceManager.GetNodesByType(reqConnectServer.ServerType);
-                    if (reqConnectServer.ServerID > 0)
+                    if (reqConnectServer.ServerId > 0)
                     {
-                        serverList = serverList.Where(m => m.ServerId == reqConnectServer.ServerID).ToList();
+                        serverList = serverList.Where(m => m.ServerId == reqConnectServer.ServerId).ToList();
                     }
 
                     if (serverList.Count > 0)
@@ -118,8 +118,8 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
                             UniqueId = reqConnectServer.UniqueId,
                             ServerType = serverInfo.Type,
                             ServerName = serverInfo.ServerName,
-                            ServerID = serverInfo.ServerId,
-                            TargetIP = serverInfo.OuterIp,
+                            ServerId = serverInfo.ServerId,
+                            TargetIp = serverInfo.OuterIp,
                             TargetPort = serverInfo.OuterPort
                         };
                         SendMessage(session, respConnectServer);
@@ -148,7 +148,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
                 {
                     ReqRegisterServer reqRegisterServer = (ReqRegisterServer)messageObject.DeserializeMessageObject();
                     // 注册服务
-                    ServiceInfo serviceInfo = new ServiceInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerID, reqRegisterServer.InnerIP, reqRegisterServer.InnerPort, reqRegisterServer.OuterIP, reqRegisterServer.OuterPort);
+                    ServiceInfo serviceInfo = new ServiceInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerId, reqRegisterServer.InnerIp, reqRegisterServer.InnerPort, reqRegisterServer.OuterIp, reqRegisterServer.OuterPort);
                     _namingServiceManager.Add(serviceInfo);
                     LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
                     return ValueTask.CompletedTask;

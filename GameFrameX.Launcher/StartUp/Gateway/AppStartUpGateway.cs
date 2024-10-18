@@ -94,9 +94,9 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
                                                                       session,
                                                                       session.SessionID,
                                                                       reqRegisterGameServer.ServerName,
-                                                                      reqRegisterGameServer.ServerID,
-                                                                      reqRegisterGameServer.MinModuleMessageID,
-                                                                      reqRegisterGameServer.MaxModuleMessageID
+                                                                      reqRegisterGameServer.ServerId,
+                                                                      reqRegisterGameServer.MinModuleMessageId,
+                                                                      reqRegisterGameServer.MaxModuleMessageId
                 );
 
                 // _namingServiceManager.Add(gameServiceInfo);

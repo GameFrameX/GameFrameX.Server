@@ -141,12 +141,12 @@ public sealed class DiscoveryCenterChannelHelper
         // 这里要注册到发现中心
         var reqRegisterServer = new ReqRegisterServer
         {
-            ServerID = _setting.ServerId,
+            ServerId = _setting.ServerId,
             ServerType = _setting.ServerType,
             ServerName = _setting.ServerName,
-            InnerIP = _setting.InnerIp,
+            InnerIp = _setting.InnerIp,
             InnerPort = _setting.InnerPort,
-            OuterIP = _setting.OuterIp,
+            OuterIp = _setting.OuterIp,
             OuterPort = _setting.OuterPort,
         };
         MessageProtoHelper.SetMessageIdAndOperationType(reqRegisterServer);
