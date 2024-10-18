@@ -84,7 +84,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
 
         if (message is IInnerNetworkMessage messageObject)
         {
-            switch ((MessageOperationType)messageObject.Header.OperationType)
+            switch (messageObject.Header.OperationType)
             {
                 case MessageOperationType.None:
                     break;
@@ -166,9 +166,9 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
                         serverList = serverList.Where(m => m.ServerId == reqConnectServer.ServerId).ToList();
                     }
 
-                    RespConnectServer respConnectServer = new RespConnectServer
+                    var respConnectServer = new RespConnectServer
                     {
-                        UniqueId = reqConnectServer.UniqueId,
+                        UniqueId = messageObject.Header.UniqueId,
                     };
                     if (serverList.Count > 0)
                     {
