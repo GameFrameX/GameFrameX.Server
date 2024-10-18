@@ -32,7 +32,7 @@ public class UnityTcpClient
             if (!_tcpClient.IsConnected)
             {
                 Console.WriteLine("未链接到服务器,开启重连");
-                _tcpClient.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 29100));
+                _tcpClient.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 23110));
                 continue;
                 // Console.WriteLine("链接到服务器结果：" + result);
                 // if (result.ResultCode != ResultCode.Success)
