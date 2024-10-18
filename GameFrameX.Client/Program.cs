@@ -5,6 +5,7 @@ using GameFrameX.Client;
 using GameFrameX.NetWork.Message;
 using GameFrameX.Proto;
 
+Console.WriteLine("模拟客户端启动成功!!!");
 MessageProtoHelper.Init(typeof(MessageProtoHandler).Assembly);
 
 new UnityTcpClient().Entry(args);
