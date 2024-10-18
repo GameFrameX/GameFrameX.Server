@@ -1,7 +1,10 @@
 ﻿using CommandLine;
 
-namespace GameFrameX.Entry.Options;
+namespace GameFrameX.StartUp.Options;
 
+/// <summary>
+/// 启动参数
+/// </summary>
 public sealed class LauncherOptions
 {
     /// <summary>
@@ -76,6 +79,10 @@ public sealed class LauncherOptions
     [Option("InnerIp", Default = "127.0.0.1", HelpText = "内部IP")]
     public string InnerIp { get; set; }
 
+    /// <summary>
+    /// 检查InnerIp
+    /// </summary>
+    /// <exception cref="ArgumentNullException"></exception>
     public void CheckInnerIp()
     {
         if (string.IsNullOrWhiteSpace(InnerIp))
@@ -90,6 +97,10 @@ public sealed class LauncherOptions
     [Option("InnerPort", HelpText = "内部端口")]
     public ushort InnerPort { get; set; }
 
+    /// <summary>
+    /// 检查内部端口
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public void CheckInnerPort()
     {
         if (InnerPort <= 10000 || InnerPort >= ushort.MaxValue)
@@ -104,6 +115,10 @@ public sealed class LauncherOptions
     [Option("OuterIp", HelpText = "外部IP")]
     public string OuterIp { get; set; }
 
+    /// <summary>
+    /// 检查OuterIp
+    /// </summary>
+    /// <exception cref="ArgumentNullException"></exception>
     public void CheckOuterIp()
     {
         if (string.IsNullOrWhiteSpace(OuterIp))
@@ -118,6 +133,10 @@ public sealed class LauncherOptions
     [Option("OuterPort", HelpText = "外部端口")]
     public ushort OuterPort { get; set; }
 
+    /// <summary>
+    /// 检查外部端口
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public void CheckOuterPort()
     {
         if (OuterPort <= 10000 || OuterPort >= ushort.MaxValue)
@@ -132,6 +151,10 @@ public sealed class LauncherOptions
     [Option("HttpCode", HelpText = "HTTP 响应码")]
     public string HttpCode { get; set; }
 
+    /// <summary>
+    /// 检查HttpCode
+    /// </summary>
+    /// <exception cref="ArgumentNullException"></exception>
     public void CheckHttpCode()
     {
         if (string.IsNullOrWhiteSpace(HttpCode))
@@ -146,6 +169,10 @@ public sealed class LauncherOptions
     [Option("HttpUrl", HelpText = "Http 地址")]
     public string HttpUrl { get; set; }
 
+    /// <summary>
+    /// 检查HttpUrl
+    /// </summary>
+    /// <exception cref="ArgumentNullException"></exception>
     public void CheckHttpUrl()
     {
         if (string.IsNullOrWhiteSpace(HttpUrl))
@@ -160,6 +187,10 @@ public sealed class LauncherOptions
     [Option("HttpPort", HelpText = "HTTP 端口")]
     public int HttpPort { get; set; }
 
+    /// <summary>
+    /// 检查HttpPort
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public void CheckHttpPort()
     {
         if (HttpPort <= 10000 || HttpPort >= ushort.MaxValue)
@@ -174,6 +205,10 @@ public sealed class LauncherOptions
     [Option("HttpsPort", HelpText = "HTTPS 端口")]
     public int HttpsPort { get; set; }
 
+    /// <summary>
+    /// 检查HttpsPort
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public void CheckHttpsPort()
     {
         if (HttpsPort <= 10000 || HttpsPort >= ushort.MaxValue)
@@ -188,6 +223,10 @@ public sealed class LauncherOptions
     [Option("WsPort", HelpText = "WebSocket 端口")]
     public int WsPort { get; set; }
 
+    /// <summary>
+    /// 检查WsPort
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public void CheckWsPort()
     {
         if (WsPort <= 10000 || WsPort >= ushort.MaxValue)
@@ -202,6 +241,10 @@ public sealed class LauncherOptions
     [Option("MinModuleId", HelpText = "游戏逻辑服务器的处理最小模块ID")]
     public short MinModuleId { get; set; }
 
+    /// <summary>
+    /// 检查MinModuleId
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public void CheckMinModuleId()
     {
         if (MinModuleId <= 0 || MinModuleId >= short.MaxValue - 10)
@@ -216,6 +259,10 @@ public sealed class LauncherOptions
     [Option("MaxModuleId", HelpText = "游戏逻辑服务器的处理最大模块ID")]
     public short MaxModuleId { get; set; }
 
+    /// <summary>
+    /// 检查MaxModuleId
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public void CheckMaxModuleId()
     {
         if (MaxModuleId <= 0 || MaxModuleId >= short.MaxValue - 10)
@@ -230,6 +277,10 @@ public sealed class LauncherOptions
     [Option("WssPort", HelpText = "WebSocket 加密端口")]
     public int WssPort { get; set; }
 
+    /// <summary>
+    /// 检查WssPort
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public void CheckWssPort()
     {
         if (WssPort <= 10000 || WssPort >= ushort.MaxValue)
@@ -244,6 +295,10 @@ public sealed class LauncherOptions
     [Option("WssCertFilePath", HelpText = "Wss 使用的证书路径")]
     public string WssCertFilePath { get; set; }
 
+    /// <summary>
+    /// 检查WssCertFilePath
+    /// </summary>
+    /// <exception cref="ArgumentNullException"></exception>
     public void CheckWssCertFilePath()
     {
         if (string.IsNullOrWhiteSpace(WssCertFilePath))
@@ -258,6 +313,10 @@ public sealed class LauncherOptions
     [Option("DataBaseUrl", HelpText = "数据库 地址")]
     public string DataBaseUrl { get; set; }
 
+    /// <summary>
+    /// 检查DataBaseUrl
+    /// </summary>
+    /// <exception cref="ArgumentNullException"></exception>
     public void CheckDataBaseUrl()
     {
         if (string.IsNullOrWhiteSpace(DataBaseUrl))
@@ -272,6 +331,10 @@ public sealed class LauncherOptions
     [Option("DataBaseName", HelpText = "数据库名称")]
     public string DataBaseName { get; set; }
 
+    /// <summary>
+    /// 检查DataBaseName
+    /// </summary>
+    /// <exception cref="ArgumentNullException"></exception>
     public void CheckDataBaseName()
     {
         if (string.IsNullOrWhiteSpace(DataBaseName))
@@ -296,6 +359,10 @@ public sealed class LauncherOptions
     [Option("DiscoveryCenterIp", HelpText = "发现中心地址")]
     public string DiscoveryCenterIp { get; set; }
 
+    /// <summary>
+    /// 检查DiscoveryCenterIp
+    /// </summary>
+    /// <exception cref="ArgumentNullException"></exception>
     public void CheckDiscoveryCenterIp()
     {
         if (string.IsNullOrWhiteSpace(DiscoveryCenterIp))
@@ -310,6 +377,10 @@ public sealed class LauncherOptions
     [Option("DiscoveryCenterPort", HelpText = "发现中心端口")]
     public ushort DiscoveryCenterPort { get; set; }
 
+    /// <summary>
+    /// 检查DiscoveryCenterPort
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public void CheckDiscoveryCenterPort()
     {
         if (DiscoveryCenterPort <= 10000 || DiscoveryCenterPort >= ushort.MaxValue)
@@ -324,7 +395,11 @@ public sealed class LauncherOptions
     [Option("DBIp", HelpText = "数据库服务连接地址")]
     public string DBIp { get; set; }
 
-    public void CheckDBIp()
+    /// <summary>
+    /// 检查DBIp
+    /// </summary>
+    /// <exception cref="ArgumentNullException"></exception>
+    public void CheckDbIp()
     {
         if (string.IsNullOrWhiteSpace(DBIp))
         {
@@ -342,7 +417,7 @@ public sealed class LauncherOptions
     /// 检查数据库服务连接端口
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckDBPort()
+    public void CheckDbPort()
     {
         if (DBPort <= 10000 || DBPort >= ushort.MaxValue)
         {
