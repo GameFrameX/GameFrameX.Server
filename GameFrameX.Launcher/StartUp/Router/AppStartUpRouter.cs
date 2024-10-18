@@ -1,5 +1,6 @@
 ﻿using GameFrameX.Apps.Common.Session;
 using GameFrameX.NetWork.Abstractions;
+using GameFrameX.Proto.BuiltIn;
 
 namespace GameFrameX.Launcher.StartUp.Router;
 
@@ -50,7 +51,7 @@ internal partial class AppStartUpRouter : AppStartUpService
     /// </summary>
     /// <param name="appSession"></param>
     /// <param name="message"></param>
-    protected override ValueTask PackageHandler(IAppSession appSession, IMessage message)
+    protected override async ValueTask PackageHandler(IAppSession appSession, IMessage message)
     {
         if (message is IOuterNetworkMessage outerMessage)
         {
@@ -68,15 +69,25 @@ internal partial class AppStartUpRouter : AppStartUpService
                     Timestamp = TimeHelper.UnixTimeMilliseconds()
                 };
                 SendToClient(appSession, response);
-                return ValueTask.CompletedTask;
+                await ValueTask.CompletedTask;
+                return;
             }
 
-            if (outerMessage.Header.OperationType == MessageOperationType.Game)
+            if (outerMessage.Header.OperationType is MessageOperationType.Game or MessageOperationType.None)
             {
                 if (Setting.IsDebug && Setting.IsDebugReceive)
                 {
                     LogHelper.Debug($"转发到[{ServerType.Gateway}] {outerMessage.ToFormatMessageString()}");
                 }
+
+                ReqConnectServer reqConnectServer = new ReqConnectServer()
+                {
+                    //ServerId = Setting.ServerId,
+                    ServerType = ServerType.Gateway,
+                };
+
+                var respConnectServer = await DiscoveryCenterChannelHelper.Call<RespConnectServer>(reqConnectServer);
+                // LogHelper.Info(respConnectServer);
 
                 // var innerNetworkMessage = InnerNetworkMessage.Create(outerMessage, MessageOperationType.Game);
                 // innerNetworkMessage.SetData(GlobalConst.SessionIdKey, appSession.SessionID);
@@ -91,7 +102,7 @@ internal partial class AppStartUpRouter : AppStartUpService
             }
         }
 
-        return ValueTask.CompletedTask;
+        await ValueTask.CompletedTask;
     }
 
     private async void SendToClient(IAppSession appSession, MessageObject messageObject)
