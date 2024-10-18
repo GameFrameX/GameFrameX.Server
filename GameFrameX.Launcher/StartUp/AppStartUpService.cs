@@ -1,24 +1,18 @@
 ﻿using GameFrameX.NetWork.Abstractions;
+using GameFrameX.NetWork.ChannelBase;
 using GameFrameX.NetWork.Message;
-using GameFrameX.Proto.BuiltIn;
 using GameFrameX.SuperSocket.Primitives;
 using GameFrameX.SuperSocket.ProtoBase;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using Timer = System.Timers.Timer;
 
 namespace GameFrameX.Launcher.StartUp;
 
 public abstract class AppStartUpService : AppStartUpBase
 {
-    /// <summary>
-    /// 链接到发现中心的客户端
-    /// </summary>
-    // AsyncTcpSession discoveryCenterClient;
-
-
     /// <summary>
     /// 从发现中心请求的目标服务器类型
     /// </summary>
@@ -34,11 +28,6 @@ public abstract class AppStartUpService : AppStartUpBase
     /// </summary>
     protected virtual bool IsConnectDiscoveryServer { get; } = true;
 
-    /// <summary>
-    /// 连接的目标信息
-    /// </summary>
-    protected RespConnectServer ConnectTargetServer { get; private set; }
-
     protected IMessageEncoderHandler MessageEncoderHandler { get; private set; }
     protected IMessageDecoderHandler MessageDecoderHandler { get; private set; }
 
@@ -50,9 +39,6 @@ public abstract class AppStartUpService : AppStartUpBase
         MessageDecoderHandler = messageDecoderHandler;
     }
 
-
-    private Timer ConnectTargetServerTimer { get; set; }
-
     /// <summary>
     /// 启动服务器
     /// </summary>
@@ -61,80 +47,15 @@ public abstract class AppStartUpService : AppStartUpBase
     {
         if (IsRequestConnectServer)
         {
-            ConnectTargetServerTimer = new Timer
-            {
-                Interval = 3000
-            };
-            ConnectTargetServerTimer.Elapsed += ConnectTargetServerTimerOnElapsed;
-            ConnectTargetServerTimer.Start();
+            // connectTargetServerChannelHelper.Start();
         }
 
         if (IsConnectDiscoveryServer)
         {
-            _discoveryCenterChannelHelper?.Start();
+            _discoveryCenterChannelHelper?.Start(Setting.DiscoveryCenterIp, Setting.DiscoveryCenterPort);
         }
 
         return Task.CompletedTask;
-    }
-
-
-    /// <summary>
-    /// 请求链接目标
-    /// </summary>
-    void SendConnectTargetServer()
-    {
-        if (!_discoveryCenterChannelHelper.IsConnected)
-        {
-            return;
-        }
-
-        if (ConnectTargetServer == null)
-        {
-            ReqConnectServer reqConnectServer = new ReqConnectServer
-            {
-                ServerType = GetServerType
-            };
-
-            // _discoveryCenterChannelHelper.Send(reqConnectServer);
-        }
-    }
-
-    /// <summary>
-    /// 链接目标重试
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    void ConnectTargetServerTimerOnElapsed(object sender, ElapsedEventArgs e)
-    {
-        if (!IsRequestConnectServer)
-        {
-            return;
-        }
-
-        SendConnectTargetServer();
-    }
-
-
-    /// <summary>
-    /// 获取到连接的目标
-    /// </summary>
-    protected virtual void ConnectServerHandler()
-    {
-    }
-
-    /// <summary>
-    /// 连接的目标下线
-    /// </summary>
-    protected virtual void DisconnectServerHandler()
-    {
-    }
-
-    /// <summary>
-    /// 收到发现中心推送的非特殊消息
-    /// </summary>
-    /// <param name="message"></param>
-    protected virtual void DiscoveryCenterDataReceived(INetworkMessage message)
-    {
     }
 
     /*
@@ -181,13 +102,7 @@ public abstract class AppStartUpService : AppStartUpBase
 
         DiscoveryCenterDataReceived(message);
     }
-
-    private void DiscoveryCenterClientOnClosed(object sender, EventArgs eventArgs)
-    {
-        LogHelper.Info("和网关服务器链接链接断开!");
-        // 和网关服务器链接断开，开启重连
-        ReconnectionTimer.Start();
-    }*/
+*/
 
     /// <summary>
     /// 终止服务器
@@ -196,7 +111,7 @@ public abstract class AppStartUpService : AppStartUpBase
     /// <returns></returns>
     public override Task StopAsync(string message = "")
     {
-        ConnectTargetServerTimer?.Close();
+        // connectTargetServerChannelHelper?.Stop();
         _discoveryCenterChannelHelper?.Stop();
         StopWebSocketServer();
         _tcpService?.StopAsync();
@@ -206,16 +121,66 @@ public abstract class AppStartUpService : AppStartUpBase
     #region Server
 
     private IServer _tcpService;
-    private DiscoveryCenterChannelHelper _discoveryCenterChannelHelper;
+    private ConnectChannelHelper _discoveryCenterChannelHelper;
+    // private ConnectChannelHelper connectTargetServerChannelHelper;
 
-    protected async Task StartServer()
+    protected async void StartServer()
     {
         await StartTcpServer();
-        _discoveryCenterChannelHelper = new DiscoveryCenterChannelHelper(Setting, MessageEncoderHandler, MessageDecoderHandler);
+        StartWebSocketServer();
+        _discoveryCenterChannelHelper = new ConnectChannelHelper(Setting, MessageEncoderHandler, MessageDecoderHandler, DiscoveryCenterMessageHandler);
+        // connectTargetServerChannelHelper = new ConnectChannelHelper(Setting,MessageEncoderHandler, MessageDecoderHandler, GetServerType, Setting);
         GlobalSettings.IsAppRunning = true;
     }
 
-    protected async Task StartTcpServer()
+    private void DiscoveryCenterMessageHandler(IMessage message)
+    {
+        if (message is InnerNetworkMessage innerNetworkMessage)
+        {
+            switch (innerNetworkMessage.Header.OperationType)
+            {
+                case MessageOperationType.None:
+                    break;
+                case MessageOperationType.HeartBeat:
+                    return;
+                case MessageOperationType.Cache:
+                    break;
+                case MessageOperationType.Database:
+                    break;
+                case MessageOperationType.Game:
+                    break;
+                case MessageOperationType.GameManager:
+                    break;
+                case MessageOperationType.Forbid:
+                    break;
+                case MessageOperationType.Reboot:
+                    break;
+                case MessageOperationType.Reconnect:
+                    break;
+                case MessageOperationType.Reload:
+                    break;
+                case MessageOperationType.Exit:
+                    break;
+                case MessageOperationType.Kick:
+                    break;
+                case MessageOperationType.Notify:
+                    break;
+                case MessageOperationType.Forward:
+                    break;
+                case MessageOperationType.Register:
+                    break;
+                case MessageOperationType.RequestConnectServer:
+                    break;
+            }
+        }
+
+        LogHelper.Info(message.ToFormatMessageString());
+    }
+
+    /// <summary>
+    /// 启动TCP服务器
+    /// </summary>
+    private async Task StartTcpServer()
     {
         if (Setting.InnerPort > 0)
         {
