@@ -72,9 +72,9 @@ public sealed class RpcSession : IRpcSession
     /// <returns>返回消息对象</returns>
     public Task<IResponseMessage> Call(IRequestMessage message, int timeOutMillisecond = 10000)
     {
-        var defaultMessageActorObject = RpcData.Create(message);
-        _waitingObjects.Enqueue(defaultMessageActorObject);
-        return defaultMessageActorObject.Task;
+        var rpcData = RpcData.Create(message);
+        _waitingObjects.Enqueue(rpcData);
+        return rpcData.Task;
     }
 
 
@@ -84,8 +84,8 @@ public sealed class RpcSession : IRpcSession
     /// <param name="message">调用消息对象</param>
     public void Send(IRequestMessage message)
     {
-        var defaultMessageActorObject = RpcData.Create(message);
-        _waitingObjects.Enqueue(defaultMessageActorObject);
+        var actorObject = RpcData.Create(message);
+        _waitingObjects.Enqueue(actorObject);
     }
 
     /// <summary>

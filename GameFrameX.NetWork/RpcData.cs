@@ -47,9 +47,9 @@ public sealed class RpcData
     /// <returns></returns>
     public static RpcData Create(IRequestMessage actorRequestMessage, bool isReply = true)
     {
-        var defaultMessageActorObject = new RpcData(actorRequestMessage, isReply);
+        var rpcData = new RpcData(actorRequestMessage, isReply);
 
-        return defaultMessageActorObject;
+        return rpcData;
     }
 
     /// <summary>
