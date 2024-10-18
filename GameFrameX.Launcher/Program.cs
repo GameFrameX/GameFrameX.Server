@@ -1,4 +1,5 @@
 ﻿using GameFrameX.NetWork.Message;
+using GameFrameX.Proto.BuiltIn;
 
 namespace GameFrameX.Launcher
 {
@@ -9,7 +10,8 @@ namespace GameFrameX.Launcher
             await GameApp.Entry(args, () =>
             {
                 CacheStateTypeManager.Init();
-                MessageProtoHelper.Init(typeof(MessageProtoHandler).Assembly);
+                MessageProtoHelper.Init(typeof(MessageProtoBuildInTag).Assembly);
+                MessageProtoHelper.Init(typeof(MessageProtoHandler).Assembly, false);
             }, LogAction);
         }
 
