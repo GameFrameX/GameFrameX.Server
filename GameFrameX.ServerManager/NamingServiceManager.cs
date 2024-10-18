@@ -178,7 +178,7 @@ namespace GameFrameX.ServerManager
             MetricsDiscoveryRegister.ServiceCounterOptions.Inc();
             _serverMap.TryAdd(node.ServerId, node);
             _onServerAdd?.Invoke(node);
-            LogHelper.Info($"新的网络节点:[{node}]   总数：{GetNodeCount()}");
+            LogHelper.Info($"新的网络节点总数：{GetNodeCount()} 节点信息:\n {node}");
         }
 
         /// <summary>
