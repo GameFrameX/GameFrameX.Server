@@ -1,40 +1,21 @@
-﻿/*using GameFrameX.Apps.Common.Session;
+﻿using GameFrameX.Apps.Common.Session;
 using GameFrameX.NetWork.Abstractions;
-using GameFrameX.NetWork.Message;
-using GameFrameX.Proto.BuiltIn;
-using GameFrameX.SuperSocket.Primitives;
-using GameFrameX.SuperSocket.ProtoBase;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace GameFrameX.Launcher.StartUp.Router;
 
 /// <summary>
 /// 路由服务器.最后启动。
 /// </summary>
-// [StartUpTag(ServerType.Router, int.MaxValue)]
+[StartUpTag(ServerType.Router, int.MaxValue)]
 internal partial class AppStartUpRouter : AppStartUpService
 {
-    /// <summary>
-    /// 服务器。对外提供服务
-    /// </summary>
-    private IServer _tcpService;
-
-    /// <summary>
-    /// WS服务器
-    /// </summary>
-    private IHost _webSocketServer;
-
-
     public override async Task StartAsync()
     {
         try
         {
-            await StartServer();
+            StartServer();
             LogHelper.Info($"启动服务器 {ServerType} 端口: {Setting.InnerPort} 结束!");
             await base.StartAsync();
-            StartGatewayClient();
             await AppExitToken;
             LogHelper.Info("全部断开...");
             await StopAsync();
@@ -46,64 +27,14 @@ internal partial class AppStartUpRouter : AppStartUpService
         }
     }
 
-    protected override void ConnectServerHandler()
-    {
-        ConnectToGateWay();
-    }
-
-    protected override void DisconnectServerHandler()
-    {
-        DisconnectToGateWay();
-    }
-
-    protected override void DiscoveryCenterDataReceived(INetworkMessage message)
-    {
-        if (message is MessageObject messageObject)
-        {
-            if (Setting.IsDebug && Setting.IsDebugReceive && !MessageProtoHelper.IsHeartbeat(message.GetType()))
-            {
-                LogHelper.Info(messageObject.ToReceiveMessageString(ServerType.DiscoveryCenter, ServerType));
-            }
-        }
-    }
-
-
-    private async Task StartServer()
-    {
-        _webSocketServer = WebSocketHostBuilder.Create()
-                                               .UseWebSocketMessageHandler(WebSocketMessageHandler)
-                                               .UseSessionHandler(OnConnected, OnDisconnected)
-                                               .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)(ConfigureWebServer)).Build();
-        await _webSocketServer.StartAsync();
-        _tcpService = SuperSocketHostBuilder.Create<INetworkMessage, MessageObjectPipelineFilter>()
-                                            .ConfigureSuperSocket(ConfigureSuperSocket)
-                                            .UseClearIdleSession()
-                                            .UsePackageDecoder<BaseMessageDecoderHandler>()
-                                            .UsePackageEncoder<BaseMessageEncoderHandler>()
-                                            .UseSessionHandler(OnConnected, OnDisconnected)
-                                            .UsePackageHandler(MessagePackageHandler, ClientErrorHandler)
-                                            .UseInProcSessionContainer()
-                                            .BuildAsServer();
-        var messageEncoderHandler = (BaseMessageEncoderHandler)_tcpService.ServiceProvider.GetService<IPackageEncoder<INetworkMessage>>();
-        var messageDecoderHandler = (BaseMessageDecoderHandler)_tcpService.ServiceProvider.GetService<IPackageDecoder<INetworkMessage>>();
-        SetMessageHandler(messageEncoderHandler, messageDecoderHandler);
-        await _tcpService.StartAsync();
-    }
-
-    private ValueTask<bool> ClientErrorHandler(IAppSession appSession, PackageHandlingException<INetworkMessage> eventArgs)
-    {
-        LogHelper.Error(eventArgs.ToString());
-        return ValueTask.FromResult(true);
-    }
-
-    private ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
+    protected override ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
     {
         LogHelper.Info("有外部客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
         SessionManager.Remove(appSession.SessionID);
         return ValueTask.CompletedTask;
     }
 
-    private ValueTask OnConnected(IAppSession appSession)
+    protected override ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
         var netChannel = new DefaultNetWorkChannel(appSession, Setting, MessageEncoderHandler, null, appSession is WebSocketSession);
@@ -138,13 +69,13 @@ internal partial class AppStartUpRouter : AppStartUpService
     /// </summary>
     /// <param name="appSession"></param>
     /// <param name="message"></param>
-    private ValueTask MessagePackageHandler(IAppSession appSession, INetworkMessage message)
+    private ValueTask MessagePackageHandler(IAppSession appSession, IMessage message)
     {
         if (message is IOuterMessage outerMessage)
         {
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
-                LogHelper.Debug(outerMessage.ToReceiveMessageString(ServerType.Client, ServerType));
+                LogHelper.Debug(outerMessage.ToFormatMessageString());
             }
 
             if (outerMessage.OperationType == MessageOperationType.HeartBeat)
@@ -153,7 +84,7 @@ internal partial class AppStartUpRouter : AppStartUpService
                 var response = new NotifyHeartBeat()
                 {
                     UniqueId = reqHeartBeat.UniqueId,
-                    Timestamp = TimeHelper.UnixTimeSeconds()
+                    Timestamp = TimeHelper.UnixTimeMilliseconds()
                 };
                 SendToClient(appSession, response);
                 return ValueTask.CompletedTask;
@@ -163,12 +94,12 @@ internal partial class AppStartUpRouter : AppStartUpService
             {
                 if (Setting.IsDebug && Setting.IsDebugReceive)
                 {
-                    LogHelper.Debug($"转发到[{ServerType.Gateway}] {outerMessage.ToReceiveMessageString(ServerType, ServerType.Client)}");
+                    LogHelper.Debug($"转发到[{ServerType.Gateway}] {outerMessage.ToFormatMessageString()}");
                 }
 
-                InnerNetworkMessage innerNetworkMessage = InnerNetworkMessage.Create(outerMessage, MessageOperationType.Game);
-                innerNetworkMessage.SetData(GlobalConst.SessionIdKey, appSession.SessionID);
-                SendToGatewayMessage(innerNetworkMessage);
+                // var innerNetworkMessage = InnerNetworkMessage.Create(outerMessage, MessageOperationType.Game);
+                // innerNetworkMessage.SetData(GlobalConst.SessionIdKey, appSession.SessionID);
+                // SendToGatewayMessage(innerNetworkMessage);
             }
         }
         else if (message is IInnerNetworkMessage innerMessage)
@@ -189,23 +120,14 @@ internal partial class AppStartUpRouter : AppStartUpService
             return;
         }
 
-        LogHelper.Debug(messageObject.ToSendMessageString(ServerType.Router, ServerType.Client));
+        LogHelper.Debug(messageObject.ToFormatMessageString());
         var result = MessageEncoderHandler.Handler(messageObject);
         await appSession.SendAsync(result);
     }
 
 
-    private void ConfigureWebServer(HostBuilderContext context, IConfigurationBuilder builder)
-    {
-        builder.AddInMemoryCollection(new Dictionary<string, string>()
-                                          { { "serverOptions:name", "TestServer" }, { "serverOptions:listeners:0:ip", "Any" }, { "serverOptions:listeners:0:port", Setting.WsPort.ToString() } });
-    }
-
     public override async Task StopAsync(string message = "")
     {
-        DisconnectToGateWay();
-        await _webSocketServer.StopAsync();
-        await _tcpService.StopAsync();
         await base.StopAsync(message);
     }
 
@@ -217,8 +139,8 @@ internal partial class AppStartUpRouter : AppStartUpService
             {
                 ServerId = 3000,
                 ServerType = ServerType.Router,
-                InnerPort = 23001,
-                WsPort = 23110,
+                InnerPort = 23110,
+                WsPort = 23111,
                 // 网关配置
                 DiscoveryCenterIp = "127.0.0.1",
                 DiscoveryCenterPort = 21001,
@@ -238,4 +160,4 @@ internal partial class AppStartUpRouter : AppStartUpService
     /// 从发现中心请求的目标服务器类型
     /// </summary>
     protected override ServerType GetServerType => ServerType.Gateway;
-}*/
+}
