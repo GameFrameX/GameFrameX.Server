@@ -46,39 +46,20 @@ internal partial class AppStartUpRouter : AppStartUpService
 
 
     /// <summary>
-    /// 处理收到的WS消息
-    /// </summary>
-    /// <param name="session"></param>
-    /// <param name="message"></param>
-    private async ValueTask WebSocketMessageHandler(WebSocketSession session, WebSocketPackage message)
-    {
-        if (message.OpCode != OpCode.Binary)
-        {
-            await session.CloseAsync(CloseReason.ProtocolError);
-            return;
-        }
-
-        var bytes = message.Data;
-        var buffer = bytes.ToArray();
-        var messageObject = MessageDecoderHandler.Handler(buffer);
-        await MessagePackageHandler(session, messageObject);
-    }
-
-    /// <summary>
     /// 处理收到的消息结果
     /// </summary>
     /// <param name="appSession"></param>
     /// <param name="message"></param>
-    private ValueTask MessagePackageHandler(IAppSession appSession, IMessage message)
+    protected override ValueTask PackageHandler(IAppSession appSession, IMessage message)
     {
-        if (message is IOuterMessage outerMessage)
+        if (message is IOuterNetworkMessage outerMessage)
         {
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
                 LogHelper.Debug(outerMessage.ToFormatMessageString());
             }
 
-            if (outerMessage.OperationType == MessageOperationType.HeartBeat)
+            if (outerMessage.Header.OperationType == MessageOperationType.HeartBeat)
             {
                 var reqHeartBeat = (ReqHeartBeat)outerMessage.DeserializeMessageObject();
                 var response = new NotifyHeartBeat()
@@ -90,7 +71,7 @@ internal partial class AppStartUpRouter : AppStartUpService
                 return ValueTask.CompletedTask;
             }
 
-            if (outerMessage.OperationType == MessageOperationType.Game)
+            if (outerMessage.Header.OperationType == MessageOperationType.Game)
             {
                 if (Setting.IsDebug && Setting.IsDebugReceive)
                 {
@@ -159,5 +140,8 @@ internal partial class AppStartUpRouter : AppStartUpService
     /// <summary>
     /// 从发现中心请求的目标服务器类型
     /// </summary>
-    protected override ServerType GetServerType => ServerType.Gateway;
+    protected override ServerType GetServerType
+    {
+        get { return ServerType.Gateway; }
+    }
 }
