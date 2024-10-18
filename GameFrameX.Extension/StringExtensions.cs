@@ -37,7 +37,8 @@ namespace GameFrameX.Extension
         {
             if (width < text.Length)
             {
-                throw new IndexOutOfRangeException(nameof(width));
+                width = text.Length;
+                // throw new IndexOutOfRangeException(nameof(width));
             }
 
             int spaces = (width - text.Length) / 2;
