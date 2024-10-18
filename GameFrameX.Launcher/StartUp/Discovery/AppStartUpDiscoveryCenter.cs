@@ -153,6 +153,32 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
                     LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
                     return ValueTask.CompletedTask;
                 }
+                case MessageOperationType.RequestConnectServer:
+                {
+                    ReqConnectServer reqConnectServer = (ReqConnectServer)messageObject.DeserializeMessageObject();
+                    var serverList = _namingServiceManager.GetNodesByType(reqConnectServer.ServerType);
+                    if (reqConnectServer.ServerId > 0)
+                    {
+                        serverList = serverList.Where(m => m.ServerId == reqConnectServer.ServerId).ToList();
+                    }
+
+                    RespConnectServer respConnectServer = new RespConnectServer
+                    {
+                        UniqueId = reqConnectServer.UniqueId,
+                    };
+                    if (serverList.Count > 0)
+                    {
+                        var serverInfo = (ServiceInfo)serverList.Random();
+                        respConnectServer.ServerType = serverInfo.Type;
+                        respConnectServer.ServerName = serverInfo.ServerName;
+                        respConnectServer.ServerId = serverInfo.ServerId;
+                        respConnectServer.TargetIp = serverInfo.OuterIp;
+                        respConnectServer.TargetPort = serverInfo.OuterPort;
+                    }
+
+                    SendMessage(session, respConnectServer);
+                }
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
