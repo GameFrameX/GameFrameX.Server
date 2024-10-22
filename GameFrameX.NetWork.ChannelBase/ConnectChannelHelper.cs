@@ -266,10 +266,10 @@ public sealed class ConnectChannelHelper
     /// 给服务器发送消息,并等待响应
     /// </summary>
     /// <param name="message">消息内容对象</param>
-    public async Task<T> Call<T>(IRequestMessage message) where T : class, IResponseMessage, new()
+    public async Task<IRpcResult> Call<T>(IRequestMessage message) where T : class, IResponseMessage, new()
     {
         var value = await _rpcSession.Call(message);
-        return value as T;
+        return value;
     }
 
     /// <summary>

@@ -61,7 +61,8 @@ public sealed class RpcData : IDisposable
     {
         ResponseMessage = responseMessage;
         Time = TimeHelper.UnixTimeMilliseconds() - CreatedTime;
-        _tcs.SetResult(responseMessage);
+        var result = new RpcResult(responseMessage);
+        _tcs.SetResult(result);
     }
 
     /// <summary>
@@ -89,7 +90,7 @@ public sealed class RpcData : IDisposable
         RequestMessage = requestMessage;
         IsReply = isReply;
         Timeout = timeout;
-        _tcs = new TaskCompletionSource<IResponseMessage>();
+        _tcs = new TaskCompletionSource<IRpcResult>();
     }
 
     /// <summary>
@@ -102,21 +103,27 @@ public sealed class RpcData : IDisposable
         ElapseTime += millisecondsTime;
         if (ElapseTime >= Timeout)
         {
-            _tcs.TrySetException(new TimeoutException("Rpc call timeout! Message is :" + RequestMessage));
+            string error = "Rpc call timeout! Message is :" + RequestMessage;
+            _tcs.TrySetResult(new RpcResult(error));
             return true;
         }
 
         return false;
     }
 
-    private readonly TaskCompletionSource<IResponseMessage> _tcs;
+    private readonly TaskCompletionSource<IRpcResult> _tcs;
 
     /// <summary>
     /// RPC 回复任务
     /// </summary>
-    public Task<IResponseMessage> Task
+    public Task<IRpcResult> Task
     {
         get { return _tcs.Task; }
+    }
+
+    ~RpcData()
+    {
+        Dispose();
     }
 
     /// <summary>
@@ -124,6 +131,10 @@ public sealed class RpcData : IDisposable
     /// </summary>
     public void Dispose()
     {
+        ElapseTime = 0;
+        RequestMessage = null;
+        ResponseMessage = null;
+        Time = 0;
         _tcs?.TrySetCanceled();
         GC.SuppressFinalize(this);
     }
