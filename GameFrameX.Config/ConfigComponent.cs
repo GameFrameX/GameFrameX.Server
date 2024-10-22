@@ -7,15 +7,15 @@ namespace GameFrameX.Config;
 public class ConfigComponent
 {
     public static ConfigComponent Instance { get; } = new ConfigComponent();
-    private ConfigManager m_ConfigManager;
+    private readonly ConfigManager _configManager;
 
-    public ConfigComponent()
+    private ConfigComponent()
     {
-        m_ConfigManager = new ConfigManager();
+        _configManager = new ConfigManager();
         Tables = new TablesComponent();
     }
 
-    public TablesComponent Tables { get; private set; }
+    private TablesComponent Tables { get; set; }
 
     public async void LoadConfig()
     {
@@ -35,111 +35,16 @@ public class ConfigComponent
     }
 
     /// <summary>
-    /// 根据ID获取对象
-    /// </summary>
-    /// <param name="id">表唯一主键ID</param>
-    /// <returns></returns>
-    public T Get<T>(int id) where T : IDataTable<T>
-    {
-        var value = GetConfig<T>();
-        if (value != null)
-        {
-            return value.Get(id);
-        }
-
-        return default;
-    }
-
-    /// <summary>
-    /// 根据ID获取对象
-    /// </summary>
-    /// <param name="id">表唯一主键ID</param>
-    /// <returns></returns>
-    public T Get<T>(string id) where T : IDataTable<T>
-    {
-        var value = GetConfig<T>();
-        if (value != null)
-        {
-            return value.Get(id);
-        }
-
-        return default;
-    }
-
-    /// <summary>
-    /// 根据条件查找,第一个满足条件的对象
-    /// </summary>
-    /// <param name="func">查询条件表达式</param>
-    /// <returns></returns>
-    public T Find<T>(Func<T, bool> func) where T : IDataTable<T>
-    {
-        var value = GetConfig<T>();
-        if (value != null)
-        {
-            return value.Find(func);
-        }
-
-        return default;
-    }
-
-
-    /// <summary>
-    /// 根据条件查找,第一个满足条件的对象
-    /// </summary>
-    /// <param name="func">查询条件表达式</param>
-    /// <returns></returns>
-    public T[] FindList<T>(Func<T, bool> func) where T : IDataTable<T>
-    {
-        var value = GetConfig<T>();
-        if (value != null)
-        {
-            return value.FindList(func);
-        }
-
-        return default;
-    }
-
-    /// <summary>
-    /// 获取数据表中最后一个对象
-    /// </summary>
-    /// <returns></returns>
-    public T LastOrDefault<T>() where T : IDataTable<T>
-    {
-        var value = GetConfig<T>();
-        if (value != null)
-        {
-            return value.LastOrDefault;
-        }
-
-        return default;
-    }
-
-    /// <summary>
-    /// 获取数据表中第一个对象
-    /// </summary>
-    /// <returns></returns>
-    public T FirstOrDefault<T>() where T : IDataTable<T>
-    {
-        var value = GetConfig<T>();
-        if (value != null)
-        {
-            return value.FirstOrDefault;
-        }
-
-        return default;
-    }
-
-    /// <summary>
     /// 获取指定全局配置项。
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public T GetConfig<T>() where T : IDataTable<T>
+    public T GetConfig<T>() where T : IDataTable
     {
         if (HasConfig<T>())
         {
             var configName = typeof(T).Name;
-            var config = m_ConfigManager.GetConfig(configName);
+            var config = _configManager.GetConfig(configName);
             if (config != null)
             {
                 return (T)config;
@@ -153,10 +58,10 @@ public class ConfigComponent
     /// 检查是否存在指定全局配置项。
     /// </summary>
     /// <returns>指定的全局配置项是否存在。</returns>
-    public bool HasConfig<T>() where T : IDataTable<T>
+    public bool HasConfig<T>() where T : IDataTable
     {
         var configName = typeof(T).Name;
-        return m_ConfigManager.HasConfig(configName);
+        return _configManager.HasConfig(configName);
     }
 
     /// <summary>
@@ -166,7 +71,7 @@ public class ConfigComponent
     public bool RemoveConfig<T>() where T : IDataTable<T>
     {
         var configName = typeof(T).Name;
-        return m_ConfigManager.RemoveConfig(configName);
+        return _configManager.RemoveConfig(configName);
     }
 
     /// <summary>
@@ -174,7 +79,7 @@ public class ConfigComponent
     /// </summary>
     public void RemoveAllConfigs()
     {
-        m_ConfigManager.RemoveAllConfigs();
+        _configManager.RemoveAllConfigs();
     }
 
     /// <summary>
@@ -184,6 +89,6 @@ public class ConfigComponent
     /// <param name="dataTable"></param>
     public void Add(string configName, IDataTable dataTable)
     {
-        m_ConfigManager.AddConfig(configName, dataTable);
+        _configManager.AddConfig(configName, dataTable);
     }
 }
