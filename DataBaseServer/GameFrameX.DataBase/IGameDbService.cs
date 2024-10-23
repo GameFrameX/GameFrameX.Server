@@ -23,26 +23,26 @@ public interface IGameDbService
     /// <summary>
     /// 加载数据
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="id">数据的唯一ID</param>
     /// <param name="defaultGetter"></param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns></returns>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <returns>返回符合条件的数据对象</returns>
     Task<TState> LoadState<TState>(long id, Func<TState> defaultGetter = null) where TState : class, ICacheState, new();
 
     /// <summary>
     /// 查询单条数据
     /// </summary>
     /// <param name="filter">查询条件</param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns></returns>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <returns>返回符合条件的数据对象</returns>
     Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new();
 
     /// <summary>
     /// 查询数据
     /// </summary>
     /// <param name="filter">查询条件</param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns></returns>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <returns>返回符合条件的数据列表</returns>
     Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new();
 
     /// <summary>
@@ -89,70 +89,70 @@ public interface IGameDbService
     /// 查询数据长度
     /// </summary>
     /// <param name="filter">查询条件</param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns></returns>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <returns>返回数据的长度</returns>
     Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new();
 
     /// <summary>
     /// 删除数据
     /// </summary>
     /// <param name="filter">查询条件</param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns></returns>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <returns>返回删除的条数</returns>
     Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new();
 
     /// <summary>
     /// 删除数据
     /// </summary>
-    /// <param name="state"></param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns></returns>
+    /// <param name="state">数据对象</param>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <returns>返回删除的条数</returns>
     Task<long> DeleteAsync<TState>(TState state) where TState : class, ICacheState, new();
 
     /// <summary>
     /// 保存数据
     /// </summary>
-    /// <param name="state"></param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns></returns>
+    /// <param name="state">数据对象</param>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <returns>返回增加成功的条数</returns>
     Task<long> AddAsync<TState>(TState state) where TState : class, ICacheState, new();
 
     /// <summary>
     /// 保存多条数据
     /// </summary>
-    /// <param name="states"></param>
-    /// <typeparam name="TState"></typeparam>
+    /// <param name="states">数据对象</param>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
     /// <returns></returns>
     Task AddListAsync<TState>(IEnumerable<TState> states) where TState : class, ICacheState, new();
 
     /// <summary>
     /// 保存数据,如果数据已经存在则更新,如果不存在则插入
     /// </summary>
-    /// <param name="state"></param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns></returns>
+    /// <param name="state">数据对象</param>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <returns>返回更新后的数据对象</returns>
     Task<TState> UpdateAsync<TState>(TState state) where TState : class, ICacheState, new();
 
     /// <summary>
     /// 保存多条数据
     /// </summary>
-    /// <param name="stateList"></param>
-    /// <returns></returns>
+    /// <param name="stateList">数据列表对象</param>
+    /// <returns>返回更新成功的数量</returns>
     Task<long> UpdateAsync(IEnumerable<ICacheState> stateList);
 
     /// <summary>
     /// 查询符合条件的数据是否存在
     /// </summary>
     /// <param name="filter">查询条件</param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns></returns>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <returns>返回是否存在值,true表示存在，false表示不存在</returns>
     bool Any<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new();
 
     /// <summary>
     /// 查询符合条件的数据是否存在
     /// </summary>
     /// <param name="filter">查询条件</param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns></returns>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <returns>返回是否存在值,true表示存在，false表示不存在</returns>
     Task<bool> AnyAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new();
 }
