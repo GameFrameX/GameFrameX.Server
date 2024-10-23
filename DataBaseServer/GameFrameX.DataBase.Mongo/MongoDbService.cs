@@ -33,7 +33,7 @@ namespace GameFrameX.DataBase.Mongo
             try
             {
                 var settings = MongoClientSettings.FromConnectionString(url);
-                Client          = new MongoClient(settings);
+                Client = new MongoClient(settings);
                 CurrentDatabase = Client.GetDatabase(dbName);
                 LogHelper.Info($"初始化MongoDB服务完成 Url:{url} DbName:{dbName}");
             }
@@ -53,7 +53,7 @@ namespace GameFrameX.DataBase.Mongo
         private IMongoCollection<TState> GetCollection<TState>(MongoCollectionSettings settings = null) where TState : class, ICacheState, new()
         {
             var collectionName = typeof(TState).Name;
-            var collection     = CurrentDatabase.GetCollection<TState>(collectionName, settings);
+            var collection = CurrentDatabase.GetCollection<TState>(collectionName, settings);
             return collection;
         }
 
@@ -92,7 +92,7 @@ namespace GameFrameX.DataBase.Mongo
         /// <typeparam name="TState"></typeparam>
         public async Task AddListAsync<TState>(IEnumerable<TState> states) where TState : class, ICacheState, new()
         {
-            var collection  = GetCollection<TState>();
+            var collection = GetCollection<TState>();
             var cacheStates = states.ToList();
             foreach (var cacheState in cacheStates)
             {
@@ -252,9 +252,9 @@ namespace GameFrameX.DataBase.Mongo
         public UpdateResult UpdateOne<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert = true) where TState : class, ICacheState, new()
         {
             return GetCollection<TState>().UpdateOne(filter, update, new UpdateOptions()
-                                                                     {
-                                                                         IsUpsert = upsert
-                                                                     });
+            {
+                IsUpsert = upsert
+            });
         }
 
         /// <summary>
@@ -268,9 +268,9 @@ namespace GameFrameX.DataBase.Mongo
         public UpdateResult UpdateOne(string collectionName, Expression<Func<BsonDocument, bool>> filter, UpdateDefinition<BsonDocument> update, bool upsert)
         {
             return GetCollection(collectionName).UpdateOne(filter, update, new UpdateOptions()
-                                                                           {
-                                                                               IsUpsert = upsert
-                                                                           });
+            {
+                IsUpsert = upsert
+            });
         }
 
         /// <summary>
@@ -284,9 +284,9 @@ namespace GameFrameX.DataBase.Mongo
         public async Task<UpdateResult> UpdateOneAsync<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert) where TState : class, ICacheState, new()
         {
             return await GetCollection<TState>().UpdateOneAsync(filter, update, new UpdateOptions()
-                                                                                {
-                                                                                    IsUpsert = upsert
-                                                                                });
+            {
+                IsUpsert = upsert
+            });
         }
 
         /// <summary>
@@ -300,9 +300,9 @@ namespace GameFrameX.DataBase.Mongo
         public async Task<UpdateResult> UpdateOneAsync(string collectionName, Expression<Func<BsonDocument, bool>> filter, UpdateDefinition<BsonDocument> update, bool upsert)
         {
             return await GetCollection(collectionName).UpdateOneAsync(filter, update, new UpdateOptions()
-                                                                                      {
-                                                                                          IsUpsert = upsert
-                                                                                      });
+            {
+                IsUpsert = upsert
+            });
         }
 
         /// <summary>
@@ -315,9 +315,9 @@ namespace GameFrameX.DataBase.Mongo
         public long UpdateMany<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert = false) where TState : class, ICacheState, new()
         {
             UpdateResult result = GetCollection<TState>().UpdateMany(filter, update, new UpdateOptions
-                                                                                     {
-                                                                                         IsUpsert = upsert
-                                                                                     });
+            {
+                IsUpsert = upsert
+            });
             return result.ModifiedCount;
         }
 
@@ -332,9 +332,9 @@ namespace GameFrameX.DataBase.Mongo
         public long UpdateMany(string collName, Expression<Func<BsonDocument, bool>> filter, UpdateDefinition<BsonDocument> update, bool upsert = false)
         {
             UpdateResult result = GetCollection(collName).UpdateMany(filter, update, new UpdateOptions
-                                                                                     {
-                                                                                         IsUpsert = upsert
-                                                                                     });
+            {
+                IsUpsert = upsert
+            });
             return result.ModifiedCount;
         }
 
@@ -349,9 +349,9 @@ namespace GameFrameX.DataBase.Mongo
         public async Task<long> UpdateManyAsync<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert = false) where TState : class, ICacheState, new()
         {
             UpdateResult result = await GetCollection<TState>().UpdateManyAsync(filter, update, new UpdateOptions
-                                                                                                {
-                                                                                                    IsUpsert = upsert
-                                                                                                });
+            {
+                IsUpsert = upsert
+            });
             return result.ModifiedCount;
         }
 
@@ -366,9 +366,9 @@ namespace GameFrameX.DataBase.Mongo
         public async Task<long> UpdateManyAsync(string collName, Expression<Func<BsonDocument, bool>> filter, UpdateDefinition<BsonDocument> update, bool upsert = false)
         {
             UpdateResult result = await GetCollection(collName).UpdateManyAsync(filter, update, new UpdateOptions
-                                                                                                {
-                                                                                                    IsUpsert = upsert
-                                                                                                });
+            {
+                IsUpsert = upsert
+            });
             return result.ModifiedCount;
         }
 
@@ -1046,7 +1046,7 @@ namespace GameFrameX.DataBase.Mongo
         /// <returns></returns>
         public string CreateIndex(string collectionName, string index, bool asc = true)
         {
-            var mgr  = GetCollection(collectionName).Indexes;
+            var mgr = GetCollection(collectionName).Indexes;
             var list = mgr.List();
             while (list.MoveNext())
             {
@@ -1068,7 +1068,7 @@ namespace GameFrameX.DataBase.Mongo
         /// <returns></returns>
         public async Task<string> CreateIndexAsync(string collectionName, string index, bool asc = true)
         {
-            var mgr  = GetCollection(collectionName).Indexes;
+            var mgr = GetCollection(collectionName).Indexes;
             var list = await mgr.ListAsync();
             while (await list.MoveNextAsync())
             {
@@ -1138,7 +1138,7 @@ namespace GameFrameX.DataBase.Mongo
         /// <returns></returns>
         public string CreateIndex<TState>(string index, Expression<Func<TState, object>> key, bool asc = true) where TState : class, ICacheState, new()
         {
-            var mgr  = GetCollection<TState>().Indexes;
+            var mgr = GetCollection<TState>().Indexes;
             var list = mgr.List();
             while (list.MoveNext())
             {
@@ -1160,7 +1160,7 @@ namespace GameFrameX.DataBase.Mongo
         /// <returns></returns>
         public async Task<string> CreateIndexAsync<TState>(string index, Expression<Func<TState, object>> key, bool asc = true) where TState : class, ICacheState, new()
         {
-            var mgr  = GetCollection<TState>().Indexes;
+            var mgr = GetCollection<TState>().Indexes;
             var list = await mgr.ListAsync();
             while (await list.MoveNextAsync())
             {
@@ -1210,10 +1210,10 @@ namespace GameFrameX.DataBase.Mongo
         {
             var filter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, id);
 
-            var       col    = GetCollection<TState>();
+            var col = GetCollection<TState>();
             using var cursor = await col.FindAsync(filter);
-            var       state  = await cursor.FirstOrDefaultAsync();
-            bool      isNew  = state == null;
+            var state = await cursor.FirstOrDefaultAsync();
+            bool isNew = state == null;
             if (state == null && defaultGetter != null)
             {
                 state = defaultGetter();
@@ -1253,9 +1253,9 @@ namespace GameFrameX.DataBase.Mongo
         /// <returns>满足条件的缓存状态列表。</returns>
         public async Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
         {
-            var       result     = new List<TState>();
-            var       collection = GetCollection<TState>();
-            using var cursor     = await collection.FindAsync<TState>(GetDefaultFindExpression(filter));
+            var result = new List<TState>();
+            var collection = GetCollection<TState>();
+            using var cursor = await collection.FindAsync<TState>(GetDefaultFindExpression(filter));
             while (await cursor.MoveNextAsync())
             {
                 result.AddRange(cursor.Current);
@@ -1272,11 +1272,11 @@ namespace GameFrameX.DataBase.Mongo
         /// <returns>满足条件的缓存状态。</returns>
         public async Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
         {
-            var       collection       = GetCollection<TState>();
-            var       findExpression   = GetDefaultFindExpression(filter);
-            var       filterDefinition = Builders<TState>.Filter.Where(findExpression);
-            using var cursor           = await collection.FindAsync<TState>(filterDefinition);
-            var       state            = await cursor.FirstOrDefaultAsync();
+            var collection = GetCollection<TState>();
+            var findExpression = GetDefaultFindExpression(filter);
+            var filterDefinition = Builders<TState>.Filter.Where(findExpression);
+            using var cursor = await collection.FindAsync<TState>(filterDefinition);
+            var state = await cursor.FirstOrDefaultAsync();
             return state;
         }
 
@@ -1289,11 +1289,11 @@ namespace GameFrameX.DataBase.Mongo
         /// <returns>符合条件的第一个元素。</returns>
         public async Task<TState> FindSortAscendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : class, ICacheState, new()
         {
-            var collection     = GetCollection<TState>();
+            var collection = GetCollection<TState>();
             var findExpression = GetDefaultFindExpression(filter);
             var sortDefinition = Builders<TState>.Sort.Ascending(sortExpression);
-            var cursor         = collection.Aggregate().Match(findExpression).Sort(sortDefinition).Limit(1);
-            var state          = await cursor.FirstOrDefaultAsync();
+            var cursor = collection.Aggregate().Match(findExpression).Sort(sortDefinition).Limit(1);
+            var state = await cursor.FirstOrDefaultAsync();
             return state;
         }
 
@@ -1306,11 +1306,11 @@ namespace GameFrameX.DataBase.Mongo
         /// <returns>符合条件的第一个元素。</returns>
         public async Task<TState> FindSortDescendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : class, ICacheState, new()
         {
-            var collection     = GetCollection<TState>();
+            var collection = GetCollection<TState>();
             var findExpression = GetDefaultFindExpression(filter);
             var sortDefinition = Builders<TState>.Sort.Descending(sortExpression);
-            var cursor         = collection.Aggregate().Match(findExpression).Sort(sortDefinition).Limit(1);
-            var state          = await cursor.FirstOrDefaultAsync();
+            var cursor = collection.Aggregate().Match(findExpression).Sort(sortDefinition).Limit(1);
+            var state = await cursor.FirstOrDefaultAsync();
             return state;
         }
 
@@ -1335,11 +1335,11 @@ namespace GameFrameX.DataBase.Mongo
                 pageSize = 10;
             }
 
-            var result         = new List<TState>();
-            var collection     = GetCollection<TState>();
+            var result = new List<TState>();
+            var collection = GetCollection<TState>();
             var findExpression = GetDefaultFindExpression(filter);
             var sortDefinition = Builders<TState>.Sort.Descending(sortExpression);
-            var cursor         = await collection.Aggregate().Match(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToCursorAsync();
+            var cursor = await collection.Aggregate().Match(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToCursorAsync();
             while (await cursor.MoveNextAsync())
             {
                 result.AddRange(cursor.Current);
@@ -1369,11 +1369,11 @@ namespace GameFrameX.DataBase.Mongo
                 pageSize = 10;
             }
 
-            var result         = new List<TState>();
-            var collection     = GetCollection<TState>();
+            var result = new List<TState>();
+            var collection = GetCollection<TState>();
             var findExpression = GetDefaultFindExpression(filter);
             var sortDefinition = Builders<TState>.Sort.Ascending(sortExpression);
-            var cursor         = await collection.Aggregate().Match(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToCursorAsync();
+            var cursor = await collection.Aggregate().Match(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToCursorAsync();
             while (await cursor.MoveNextAsync())
             {
                 result.AddRange(cursor.Current);
@@ -1391,8 +1391,8 @@ namespace GameFrameX.DataBase.Mongo
         public async Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
         {
             var collection = GetCollection<TState>();
-            var newFilter  = GetDefaultFindExpression(filter);
-            var count      = await collection.CountDocumentsAsync<TState>(newFilter);
+            var newFilter = GetDefaultFindExpression(filter);
+            var count = await collection.CountDocumentsAsync<TState>(newFilter);
             return count;
         }
 
@@ -1405,10 +1405,10 @@ namespace GameFrameX.DataBase.Mongo
         public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
         {
             var collection = GetCollection<TState>();
-            var state      = await FindAsync(filter);
-            var newFilter  = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
+            var state = await FindAsync(filter);
+            var newFilter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
             state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
-            state.IsDeleted  = true;
+            state.IsDeleted = true;
             var result = await collection.ReplaceOneAsync(newFilter, state, ReplaceOptions);
             return result.ModifiedCount;
         }
@@ -1420,10 +1420,10 @@ namespace GameFrameX.DataBase.Mongo
         /// <typeparam name="TState"></typeparam>
         public async Task<long> DeleteAsync<TState>(TState state) where TState : class, ICacheState, new()
         {
-            var filter     = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
+            var filter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
             var collection = GetCollection<TState>();
             state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
-            state.IsDeleted  = true;
+            state.IsDeleted = true;
             var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
             return result.ModifiedCount;
         }
@@ -1442,9 +1442,9 @@ namespace GameFrameX.DataBase.Mongo
             {
                 state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
                 state.UpdateCount++;
-                var filter     = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
+                var filter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
                 var collection = GetCollection<TState>();
-                var result     = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
+                var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
                 if (result.IsAcknowledged)
                 {
                     state.AfterSaveToDb();
@@ -1454,6 +1454,12 @@ namespace GameFrameX.DataBase.Mongo
             return state;
         }
 
+
+        /// <summary>
+        /// 保存多条数据
+        /// </summary>
+        /// <param name="stateList">数据列表对象</param>
+        /// <returns>返回更新成功的数量</returns>
         public Task<long> UpdateAsync(IEnumerable<ICacheState> stateList)
         {
             long resultCount = 0;
@@ -1464,8 +1470,8 @@ namespace GameFrameX.DataBase.Mongo
                 {
                     state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
                     state.UpdateCount++;
-                    var filter     = Builders<ICacheState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
-                    var name       = state.GetType().Name;
+                    var filter = Builders<ICacheState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
+                    var name = state.GetType().Name;
                     var collection = GetCollection(name);
                     /*var result     = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
                     if (result.IsAcknowledged)
@@ -1475,21 +1481,34 @@ namespace GameFrameX.DataBase.Mongo
                     }*/
                 }
             }
+
             return Task.FromResult(resultCount);
         }
 
         /// <summary>
-        /// 替换选项，用于替换文档。设置 <see cref="IsUpsert"/> 属性为 true 可以在找不到匹配的文档时插入新文档。
+        /// 替换选项，用于替换文档。设置
+        /// <see>
+        ///     <cref>IsUpsert</cref>
+        /// </see>
+        /// 属性为 true 可以在找不到匹配的文档时插入新文档。
         /// </summary>
         public static readonly ReplaceOptions ReplaceOptions = new() { IsUpsert = true };
 
         /// <summary>
-        /// 更新选项，用于更新文档。设置 <see cref="IsUpsert"/> 属性为 true 可以在找不到匹配的文档时插入新文档。
+        /// 更新选项，用于更新文档。设置
+        /// <see>
+        ///     <cref>IsUpsert</cref>
+        /// </see>
+        /// 属性为 true 可以在找不到匹配的文档时插入新文档。
         /// </summary>
         public static readonly UpdateOptions UpdateOptions = new() { IsUpsert = true };
 
         /// <summary>
-        /// 批量写入选项，用于批量写入文档。设置 <see cref="IsOrdered"/> 属性为 false 可以并行执行写入操作。
+        /// 批量写入选项，用于批量写入文档。设置
+        /// <see>
+        ///     <cref>IsOrdered</cref>
+        /// </see>
+        /// 属性为 false 可以并行执行写入操作。
         /// </summary>
         public static readonly BulkWriteOptions BulkWriteOptions = new() { IsOrdered = false };
 
@@ -1502,8 +1521,8 @@ namespace GameFrameX.DataBase.Mongo
         public Task CreateIndex<TState>(string indexKey) where TState : CacheState, new()
         {
             var collection = GetCollection<TState>();
-            var key        = Builders<TState>.IndexKeys.Ascending(indexKey);
-            var model      = new CreateIndexModel<TState>(key);
+            var key = Builders<TState>.IndexKeys.Ascending(indexKey);
+            var model = new CreateIndexModel<TState>(key);
             return collection.Indexes.CreateOneAsync(model);
         }
 
