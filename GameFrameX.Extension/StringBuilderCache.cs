@@ -34,67 +34,69 @@
 **
 ===========================================================*/
 
-using System.Threading;
+using System.Text;
 
-namespace System.Text
+namespace GameFrameX.Extension;
+
+/// <summary>
+/// 提供 StringBuilder 的缓存可重用实例
+/// </summary>
+public static class StringBuilderCache
 {
-    public static class StringBuilderCache
+    // The value 360 was chosen in discussion with performance experts as a compromise between using
+    // as litle memory (per thread) as possible and still covering a large part of short-lived
+    // StringBuilder creations on the startup path of VS designers.
+    private const int MAX_BUILDER_SIZE = 360;
+
+    [ThreadStatic] private static StringBuilder CachedInstance;
+
+    /// <summary>
+    /// 获取指定大小的 StringBuilder
+    /// </summary>
+    /// <param name="capacity">长度,默认为 16</param>
+    /// <returns>StringBuilder 对象</returns>
+    public static StringBuilder Acquire(int capacity = 16)
     {
-        // The value 360 was chosen in discussion with performance experts as a compromise between using
-        // as litle memory (per thread) as possible and still covering a large part of short-lived
-        // StringBuilder creations on the startup path of VS designers.
-        private const int MAX_BUILDER_SIZE = 360;
-
-        [ThreadStatic] private static StringBuilder CachedInstance;
-
-        /// <summary>
-        /// Acquire a stringbuilder of the specified size
-        /// </summary>
-        /// <param name="capacity"></param>
-        /// <returns></returns>
-        public static StringBuilder Acquire(int capacity = 16)
+        if (capacity <= MAX_BUILDER_SIZE)
         {
-            if (capacity <= MAX_BUILDER_SIZE)
+            StringBuilder sb = StringBuilderCache.CachedInstance;
+            if (sb != null)
             {
-                StringBuilder sb = StringBuilderCache.CachedInstance;
-                if (sb != null)
+                // Avoid stringbuilder block fragmentation by getting a new StringBuilder
+                // when the requested size is larger than the current capacity
+                if (capacity <= sb.Capacity)
                 {
-                    // Avoid stringbuilder block fragmentation by getting a new StringBuilder
-                    // when the requested size is larger than the current capacity
-                    if (capacity <= sb.Capacity)
-                    {
-                        StringBuilderCache.CachedInstance = null;
-                        sb.Clear();
-                        return sb;
-                    }
+                    StringBuilderCache.CachedInstance = null;
+                    sb.Clear();
+                    return sb;
                 }
             }
-
-            return new StringBuilder(capacity);
         }
 
-        /// <summary>
-        /// Place the specified builder in the cache if it is not too big
-        /// </summary>
-        /// <param name="sb"></param>
-        public static void Release(StringBuilder sb)
+        return new StringBuilder(capacity);
+    }
+
+    /// <summary>
+    /// 如果指定的构建器不是太大，则将其放在缓存中
+    /// </summary>
+    /// <param name="sb">StringBuilder 对象</param>
+    public static void Release(StringBuilder sb)
+    {
+        if (sb.Capacity <= MAX_BUILDER_SIZE)
         {
-            if (sb.Capacity <= MAX_BUILDER_SIZE)
-            {
-                StringBuilderCache.CachedInstance = sb;
-            }
+            StringBuilderCache.CachedInstance = sb;
         }
+    }
 
-        /// <summary>
-        /// ToString() the stringbuilder, Release it to the cache and return the resulting string
-        /// </summary>
-        /// <param name="sb"></param>
-        /// <returns></returns>
-        public static string GetStringAndRelease(StringBuilder sb)
-        {
-            string result = sb.ToString();
-            Release(sb);
-            return result;
-        }
+    /// <summary>
+    /// ToString（） 字符串生成器，将其释放到缓存中并返回结果字符串
+    /// </summary>
+    /// <param name="sb">StringBuilder 对象</param>
+    /// <returns>返回其生成的字符串</returns>
+    public static string GetStringAndRelease(StringBuilder sb)
+    {
+        string result = sb.ToString();
+        Release(sb);
+        return result;
     }
 }
