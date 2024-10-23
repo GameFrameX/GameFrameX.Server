@@ -1,0 +1,55 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "../",
+          "files": [
+            "**/GameFrameX.NetWork.*.csproj",
+            "**/GameFrameX.DataBase.*.csproj",
+            "**/GameFrameX.Core.*.csproj",
+            "**/GameFrameX.Extension.csproj",
+            "**/GameFrameX.Log.csproj",
+            "**/GameFrameX.Setting.csproj",
+            "**/GameFrameX.StartUp.csproj",
+            "**/GameFrameX.Utility.csproj",
+            "**/GameFrameX.ServerManager.csproj",
+            "**/GameFrameX.Launcher.csproj",
+            "**/GameFrameX.GameAnalytics.csproj"
+          ]
+        }
+      ],
+      "dest": "api"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.{md,yml}"
+        ],
+        "exclude": [
+          "_site/**"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "output": "_site",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "GameFrameX.Server",
+      "_appTitle": "GameFrameX.Server",
+      "_enableSearch": true,
+      "pdf": false
+    }
+  }
+}

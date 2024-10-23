@@ -7,3 +7,4 @@ bin
 **/bin
 .DS_Store
 *.user
+docs/_site
