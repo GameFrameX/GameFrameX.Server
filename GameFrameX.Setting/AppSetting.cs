@@ -45,7 +45,7 @@ namespace GameFrameX.Setting
         [JsonIgnore]
         public bool AppRunning
         {
-            get => _appRunning;
+            get { return _appRunning; }
             set
             {
                 lock (AppExitSource)
@@ -76,7 +76,7 @@ namespace GameFrameX.Setting
         /// </summary>
         public ServerType ServerType
         {
-            get => _serverType;
+            get { return _serverType; }
             set
             {
                 _serverType = value;
@@ -109,7 +109,7 @@ namespace GameFrameX.Setting
         /// <summary>
         /// 服务器名称
         /// </summary>
-        public string ServerName { get; protected set; }
+        public string ServerName { get; set; }
 
         /// <summary>
         /// 保存数据间隔
