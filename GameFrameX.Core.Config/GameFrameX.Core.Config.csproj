@@ -12,8 +12,8 @@
         <Title>$(AssemblyName)</Title>
         <Description>GameFrameX.Core.Config</Description>
         <Copyright>AlianBlank;GameFrameX;Blank</Copyright>
-        <PackageProjectUrl>https://github.com/AlianBlank/GameFrameX</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/AlianBlank/GameFrameX</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/GameFrameX/GameFrameX</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/GameFrameX/GameFrameX</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageTags>GameFrameX,Lib,Core.Config,Core,Config,Server,GameServer</PackageTags>

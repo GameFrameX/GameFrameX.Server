@@ -11,8 +11,8 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>$(AssemblyName)</Title>
         <Copyright>AlianBlank;GameFrameX;Blank</Copyright>
-        <PackageProjectUrl>https://github.com/AlianBlank/GameFrameX</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/AlianBlank/GameFrameX</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/GameFrameX/GameFrameX</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/GameFrameX/GameFrameX</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageReleaseNotes>https://gameframex.doc.alianblank.com/</PackageReleaseNotes>
@@ -30,14 +30,6 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <LangVersion>10</LangVersion>
     </PropertyGroup>
-
-    <ItemGroup>
-      <PackageReference Include="FreeRedis" Version="1.2.13" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
-    </ItemGroup>
     <ItemGroup>
         <None Include="../../logo.png">
             <Pack>True</Pack>
@@ -50,4 +42,12 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="FreeRedis" Version="1.2.13" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
+    </ItemGroup>
+
 </Project>

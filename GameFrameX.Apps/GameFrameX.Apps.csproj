@@ -11,9 +11,9 @@
         <Title>GameFrameX.Apps</Title>
         <Description>GameFrameX.Apps</Description>
         <Copyright>AlianBlank</Copyright>
-        <PackageProjectUrl>https://github.com/AlianBlank/GameFrameX</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/AlianBlank/GameFrameX/blob/main/LICENSE.md</PackageLicenseUrl>
-        <RepositoryUrl>https://github.com/AlianBlank/GameFrameX</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/GameFrameX/GameFrameX</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/GameFrameX/GameFrameX/blob/main/LICENSE.md</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/GameFrameX/GameFrameX</RepositoryUrl>
         <RepositoryType>Apps</RepositoryType>
         <PackageTags>GameFrameX,Lib,Apps,Server,GameServer</PackageTags>
         <PackageReleaseNotes>https://gameframex.doc.alianblank.com/</PackageReleaseNotes>

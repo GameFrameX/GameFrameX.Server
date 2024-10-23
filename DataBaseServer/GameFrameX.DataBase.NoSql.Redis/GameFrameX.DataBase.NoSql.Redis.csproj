@@ -11,8 +11,8 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>$(AssemblyName)</Title>
         <Copyright>AlianBlank;GameFrameX;Blank</Copyright>
-        <PackageProjectUrl>https://github.com/AlianBlank/GameFrameX</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/AlianBlank/GameFrameX</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/GameFrameX/GameFrameX</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/GameFrameX/GameFrameX</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageReleaseNotes>https://gameframex.doc.alianblank.com/</PackageReleaseNotes>
