@@ -49,14 +49,14 @@ public sealed class DefaultMessageEncoderHandler : IMessageEncoderHandler, IPack
             messageObjectHeader.ZipFlag = zipFlag;
             var messageHeaderData = ProtoBufSerializerHelper.Serialize(messageObjectHeader);
             _messageObjectHeaderObjectPool.Return(messageObjectHeader);
-            return BufferBytes(messageBodyData, messageHeaderData);
+            return BufferBytes(messageBodyData, ref messageHeaderData);
         }
 
         LogHelper.Error("消息对象为空，编码异常");
         return null;
     }
 
-    private byte[] BufferBytes(byte[] messageBodyData, byte[] messageHeaderData)
+    private byte[] BufferBytes(byte[] messageBodyData, ref byte[] messageHeaderData)
     {
         var totalLength = (ushort)(PackageLength + messageBodyData.Length + messageHeaderData.Length);
 
@@ -84,8 +84,13 @@ public sealed class DefaultMessageEncoderHandler : IMessageEncoderHandler, IPack
     public byte[] Handler(IInnerNetworkMessage message)
     {
         var innerNetworkMessage = message;
+        var headerZipFlag = innerNetworkMessage.Header.ZipFlag;
+        var messageData = innerNetworkMessage.MessageData;
+        BytesCompressHandler(ref messageData, ref headerZipFlag);
+        innerNetworkMessage.Header.ZipFlag = headerZipFlag;
+        innerNetworkMessage.SetMessageData(messageData);
         var messageHeaderData = ProtoBufSerializerHelper.Serialize(innerNetworkMessage.Header);
-        return BufferBytes(message.MessageData, messageHeaderData);
+        return BufferBytes(message.MessageData, ref messageHeaderData);
     }
 
 

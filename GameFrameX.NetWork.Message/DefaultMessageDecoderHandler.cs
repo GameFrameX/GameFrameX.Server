@@ -50,6 +50,11 @@ public sealed class DefaultMessageDecoderHandler : IMessageDecoderHandler, IPack
 
             // 消息内容
             reader.TryReadBytes(totalLength - headerLength - MessageHeaderLength, out var messageData);
+            if (messageObjectHeader.ZipFlag > 0)
+            {
+                DecompressHandler.CheckNotNull(nameof(DecompressHandler));
+                messageData = DecompressHandler.Handler(messageData);
+            }
 
             var messageType = MessageProtoHelper.GetMessageTypeById(messageObjectHeader.MessageId);
 
