@@ -11,6 +11,42 @@ namespace GameFrameX.Extension
         #region WriteSpan
 
         /// <summary>
+        /// 将一个32位无符号整数写入指定的缓冲区，并更新偏移量。
+        /// </summary>
+        /// <param name="buffer">要写入的缓冲区。</param>
+        /// <param name="value">要写入的值。</param>
+        /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
+        public static void WriteUInt(this Span<byte> buffer, uint value, ref int offset)
+        {
+            if (offset + ConstSize.UIntSize > buffer.Length)
+            {
+                offset += ConstSize.UIntSize;
+                return;
+            }
+
+            BinaryPrimitives.WriteUInt32BigEndian(buffer[offset..], value);
+            offset += ConstSize.UIntSize;
+        }
+
+        /// <summary>
+        /// 将一个16位无符号整数写入指定的缓冲区，并更新偏移量。
+        /// </summary>
+        /// <param name="buffer">要写入的缓冲区。</param>
+        /// <param name="value">要写入的值。</param>
+        /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
+        public static void WriteUShort(this Span<byte> buffer, ushort value, ref int offset)
+        {
+            if (offset + ConstSize.UShortSize > buffer.Length)
+            {
+                offset += ConstSize.UShortSize;
+                return;
+            }
+
+            BinaryPrimitives.WriteUInt16BigEndian(buffer[offset..], value);
+            offset += ConstSize.UShortSize;
+        }
+
+        /// <summary>
         /// 将整数值写入到指定的字节跨度中。如果指定的偏移量加上整数大小超过了字节跨度的长度，则抛出异常。
         /// 以网络字节顺序存储整数值。
         /// </summary>
@@ -77,7 +113,6 @@ namespace GameFrameX.Extension
                 offset += value.Length;
             }
         }
-
 
         #endregion
 
