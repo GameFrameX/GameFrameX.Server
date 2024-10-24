@@ -4,8 +4,8 @@ using GameFrameX.Core.Actors;
 using GameFrameX.Core.Timer;
 using GameFrameX.Core.Utility;
 using GameFrameX.DataBase;
+using GameFrameX.DataBase.Abstractions;
 using GameFrameX.DataBase.Mongo;
-using GameFrameX.DataBase.State;
 using GameFrameX.Extension;
 using GameFrameX.Log;
 using MongoDB.Bson;
@@ -248,7 +248,7 @@ namespace GameFrameX.Core.Components
                                 StateDic.TryGetValue(id, out var state);
                                 if (state == null)
                                     continue;
-                                state.AfterSaveToDb();
+                                state.SaveToDbPostHandler();
                             }
 
                             save = true;

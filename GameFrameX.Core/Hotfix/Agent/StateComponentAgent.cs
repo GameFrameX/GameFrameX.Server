@@ -1,5 +1,5 @@
 ﻿using GameFrameX.Core.Components;
-using GameFrameX.DataBase.State;
+using GameFrameX.DataBase.Abstractions;
 
 namespace GameFrameX.Core.Hotfix.Agent
 {

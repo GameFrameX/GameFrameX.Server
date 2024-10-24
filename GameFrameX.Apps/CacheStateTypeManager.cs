@@ -1,4 +1,6 @@
-﻿namespace GameFrameX.Apps;
+﻿using GameFrameX.DataBase.Abstractions;
+
+namespace GameFrameX.Apps;
 
 public static class CacheStateTypeManager
 {

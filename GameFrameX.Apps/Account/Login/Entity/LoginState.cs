@@ -1,5 +1,4 @@
 using GameFrameX.DataBase.Mongo;
-using GameFrameX.DataBase.State;
 
 namespace GameFrameX.Apps.Account.Login.Entity;
 
