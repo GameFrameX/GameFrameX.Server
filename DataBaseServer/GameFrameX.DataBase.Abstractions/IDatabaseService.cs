@@ -1,12 +1,11 @@
 ﻿using System.Linq.Expressions;
-using GameFrameX.DataBase.State;
 
-namespace GameFrameX.DataBase;
+namespace GameFrameX.DataBase.Abstractions;
 
 /// <summary>
 /// 数据库服务
 /// </summary>
-public interface IGameDbService
+public interface IDatabaseService
 {
     /// <summary>
     /// 链接数据库

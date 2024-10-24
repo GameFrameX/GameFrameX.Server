@@ -1,4 +1,4 @@
-namespace GameFrameX.DataBase.State;
+namespace GameFrameX.DataBase.Abstractions;
 
 /// <summary>
 /// 创建标记
