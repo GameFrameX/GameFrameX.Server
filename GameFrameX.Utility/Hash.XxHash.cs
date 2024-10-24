@@ -105,6 +105,16 @@ namespace GameFrameX.Utility
             }
 
             /// <summary>
+            /// 判断是否是默认值
+            /// </summary>
+            /// <param name="self">判断对象</param>
+            /// <returns></returns>
+            public static bool IsDefault(uint128 self)
+            {
+                return self is { high64: 0, low64: 0 };
+            }
+
+            /// <summary>
             /// 计算给定字节数组的128位哈希值
             /// </summary>
             /// <param name="buffer"></param>
