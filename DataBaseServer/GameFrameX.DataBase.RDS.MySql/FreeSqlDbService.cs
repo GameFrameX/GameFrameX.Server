@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using FreeSql;
 using FreeSql.Internal;
+using GameFrameX.DataBase.Abstractions;
 using GameFrameX.DataBase.State;
 using GameFrameX.Log;
 using GameFrameX.Utility;
@@ -1435,7 +1436,7 @@ namespace GameFrameX.DataBase.RDS.MySql
                 var result     = await collection.UpdateAsync(state);
                 if (result > 0)
                 {
-                    state.AfterSaveToDb();
+                    state.SaveToDbPostHandler();
                 }
             }
 

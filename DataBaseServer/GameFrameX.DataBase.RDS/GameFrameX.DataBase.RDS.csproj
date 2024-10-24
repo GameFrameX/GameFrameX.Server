@@ -48,8 +48,4 @@
       <ProjectReference Include="..\GameFrameX.DataBase\GameFrameX.DataBase.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="FreeSql" Version="3.2.833" />
-    </ItemGroup>
-
 </Project>
