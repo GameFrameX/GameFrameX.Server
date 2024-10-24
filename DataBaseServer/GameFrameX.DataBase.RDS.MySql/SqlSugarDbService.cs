@@ -3,10 +3,9 @@ using GameFrameX.DataBase.Abstractions;
 using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.Utility;
-using MongoDB.Bson;
-using MongoDB.Driver;
+using SqlSugar;
 
-namespace GameFrameX.DataBase.Mongo;
+namespace GameFrameX.DataBase.RDS.MySql;
 
 /// <summary>
 /// MongoDB服务连接类，实现了
@@ -15,17 +14,12 @@ namespace GameFrameX.DataBase.Mongo;
 /// </see>
 /// 接口。
 /// </summary>
-public sealed class MongoDbService : IDatabaseService
+public sealed class SqlSugarDbService : IDatabaseService
 {
     /// <summary>
     /// 获取或设置MongoDB客户端。
     /// </summary>
-    public MongoClient Client { get; private set; }
-
-    /// <summary>
-    /// 获取或设置当前使用的MongoDB数据库。
-    /// </summary>
-    public IMongoDatabase CurrentDatabase { get; private set; }
+    public SqlSugarScope Client { get; private set; }
 
     /// <summary>
     /// 打开MongoDB连接并指定URL和数据库名称。
@@ -36,30 +30,41 @@ public sealed class MongoDbService : IDatabaseService
     {
         try
         {
-            var settings = MongoClientSettings.FromConnectionString(url);
-            Client = new MongoClient(settings);
-            CurrentDatabase = Client.GetDatabase(dbName);
-            LogHelper.Info($"初始化MongoDB服务完成 Url:{url} DbName:{dbName}");
+            Client =
+                new SqlSugarScope(new ConnectionConfig()
+                                  {
+                                      ConnectionString = url, //连接符字串
+                                      DbType = DbType.MySql, //数据库类型
+                                      IsAutoCloseConnection = true, //不设成true要手动close
+                                      InitKeyType = InitKeyType.Attribute
+                                  },
+                                  db =>
+                                  {
+                                      //(A)全局生效配置点
+                                      //调试SQL事件，可以删掉
+                                      db.Aop.OnLogExecuting = (sql, pars) =>
+                                      {
+                                          Console.WriteLine(sql); //输出sql,查看执行sql
+                                          //5.0.8.2 获取无参数化 SQL 
+                                          //UtilMethods.GetSqlString(DbType.SqlServer,sql,pars)
+                                      };
+                                  });
+
+            var types = AssemblyHelper.GetRuntimeImplementTypeNames<BaseCacheState>();
+            foreach (var type in types)
+            {
+                Client.CodeFirst.InitTables(type);
+            }
+
+            LogHelper.Info($"初始化FreeSql服务完成 Url:{url} DbName:{dbName}");
         }
         catch (Exception)
         {
-            LogHelper.Error($"初始化MongoDB服务失败 Url:{url} DbName:{dbName}");
+            LogHelper.Error($"初始化FreeSql服务失败 Url:{url} DbName:{dbName}");
             throw;
         }
     }
 
-    /// <summary>
-    /// 获取指定类型的MongoDB集合。
-    /// </summary>
-    /// <typeparam name="TState">文档的类型。</typeparam>
-    /// <param name="settings">集合的设置。</param>
-    /// <returns>指定类型的MongoDB集合。</returns>
-    private IMongoCollection<TState> GetCollection<TState>(MongoCollectionSettings settings = null) where TState : class, ICacheState, new()
-    {
-        var collectionName = typeof(TState).Name;
-        var collection = CurrentDatabase.GetCollection<TState>(collectionName, settings);
-        return collection;
-    }
 
     /// <summary>
     /// 获取指定类型的MongoDB集合。
@@ -67,11 +72,11 @@ public sealed class MongoDbService : IDatabaseService
     /// <param name="collectionName">集合名称。</param>
     /// <param name="settings">集合的设置。</param>
     /// <returns>指定类型的MongoDB集合。</returns>
-    private IMongoCollection<BsonDocument> GetCollection(string collectionName, MongoCollectionSettings settings = null)
-    {
-        var collection = CurrentDatabase.GetCollection<BsonDocument>(collectionName, settings);
-        return collection;
-    }
+    // private IMongoCollection<BsonDocument> GetCollection(string collectionName)
+    // {
+    //     var collection = CurrentDatabase.GetCollection<BsonDocument>(collectionName, settings);
+    //     return collection;
+    // }
 
     #region 插入
 
@@ -82,11 +87,8 @@ public sealed class MongoDbService : IDatabaseService
     /// <typeparam name="TState"></typeparam>
     public async Task<long> AddAsync<TState>(TState state) where TState : class, ICacheState, new()
     {
-        var collection = GetCollection<TState>();
-        state.CreateTime = TimeHelper.UnixTimeSeconds();
-        var filter = Builders<TState>.Filter.Eq(CacheState.UniqueId, state.Id);
-        var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
-        return result.ModifiedCount;
+        var result = await Client.Insertable(state).ExecuteReturnEntityAsync();
+        return result.Id;
     }
 
     /// <summary>
@@ -96,14 +98,13 @@ public sealed class MongoDbService : IDatabaseService
     /// <typeparam name="TState"></typeparam>
     public async Task AddListAsync<TState>(IEnumerable<TState> states) where TState : class, ICacheState, new()
     {
-        var collection = GetCollection<TState>();
         var cacheStates = states.ToList();
         foreach (var cacheState in cacheStates)
         {
             cacheState.CreateTime = TimeHelper.UnixTimeSeconds();
         }
 
-        await collection.InsertManyAsync(cacheStates);
+        await Client.Insertable(cacheStates).ExecuteCommandAsync();
     }
 
     /*
@@ -245,6 +246,7 @@ public sealed class MongoDbService : IDatabaseService
 
     #region 更新
 
+    /*
     /// <summary>
     /// 修改一条数据
     /// </summary>
@@ -253,12 +255,12 @@ public sealed class MongoDbService : IDatabaseService
     /// <param name="update">更新的数据</param>
     /// <param name="upsert">如果它不存在是否插入文档</param>
     /// <returns></returns>
-    public UpdateResult UpdateOne<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert = true) where TState : class, ICacheState, new()
+    public UpdateResult UpdateOne<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert = true) where TState : ICacheState, new()
     {
         return GetCollection<TState>().UpdateOne(filter, update, new UpdateOptions()
-        {
-            IsUpsert = upsert
-        });
+                                                                 {
+                                                                     IsUpsert = upsert
+                                                                 });
     }
 
     /// <summary>
@@ -272,9 +274,9 @@ public sealed class MongoDbService : IDatabaseService
     public UpdateResult UpdateOne(string collectionName, Expression<Func<BsonDocument, bool>> filter, UpdateDefinition<BsonDocument> update, bool upsert)
     {
         return GetCollection(collectionName).UpdateOne(filter, update, new UpdateOptions()
-        {
-            IsUpsert = upsert
-        });
+                                                                       {
+                                                                           IsUpsert = upsert
+                                                                       });
     }
 
     /// <summary>
@@ -285,12 +287,12 @@ public sealed class MongoDbService : IDatabaseService
     /// <param name="update">更新的数据</param>
     /// <param name="upsert">如果它不存在是否插入文档</param>
     /// <returns></returns>
-    public async Task<UpdateResult> UpdateOneAsync<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert) where TState : class, ICacheState, new()
+    public async Task<UpdateResult> UpdateOneAsync<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert) where TState : ICacheState, new()
     {
         return await GetCollection<TState>().UpdateOneAsync(filter, update, new UpdateOptions()
-        {
-            IsUpsert = upsert
-        });
+                                                                            {
+                                                                                IsUpsert = upsert
+                                                                            });
     }
 
     /// <summary>
@@ -304,9 +306,9 @@ public sealed class MongoDbService : IDatabaseService
     public async Task<UpdateResult> UpdateOneAsync(string collectionName, Expression<Func<BsonDocument, bool>> filter, UpdateDefinition<BsonDocument> update, bool upsert)
     {
         return await GetCollection(collectionName).UpdateOneAsync(filter, update, new UpdateOptions()
-        {
-            IsUpsert = upsert
-        });
+                                                                                  {
+                                                                                      IsUpsert = upsert
+                                                                                  });
     }
 
     /// <summary>
@@ -316,12 +318,12 @@ public sealed class MongoDbService : IDatabaseService
     /// <param name="update">修改结果</param>
     /// <param name="upsert">是否插入新文档（filter条件满足就更新，否则插入新文档）</param>
     /// <returns></returns>
-    public long UpdateMany<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert = false) where TState : class, ICacheState, new()
+    public long UpdateMany<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert = false) where TState : ICacheState, new()
     {
         UpdateResult result = GetCollection<TState>().UpdateMany(filter, update, new UpdateOptions
-        {
-            IsUpsert = upsert
-        });
+                                                                                 {
+                                                                                     IsUpsert = upsert
+                                                                                 });
         return result.ModifiedCount;
     }
 
@@ -336,9 +338,9 @@ public sealed class MongoDbService : IDatabaseService
     public long UpdateMany(string collName, Expression<Func<BsonDocument, bool>> filter, UpdateDefinition<BsonDocument> update, bool upsert = false)
     {
         UpdateResult result = GetCollection(collName).UpdateMany(filter, update, new UpdateOptions
-        {
-            IsUpsert = upsert
-        });
+                                                                                 {
+                                                                                     IsUpsert = upsert
+                                                                                 });
         return result.ModifiedCount;
     }
 
@@ -350,12 +352,12 @@ public sealed class MongoDbService : IDatabaseService
     /// <param name="update">修改结果</param>
     /// <param name="upsert">是否插入新文档（filter条件满足就更新，否则插入新文档）</param>
     /// <returns></returns>
-    public async Task<long> UpdateManyAsync<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert = false) where TState : class, ICacheState, new()
+    public async Task<long> UpdateManyAsync<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert = false) where TState : ICacheState, new()
     {
         UpdateResult result = await GetCollection<TState>().UpdateManyAsync(filter, update, new UpdateOptions
-        {
-            IsUpsert = upsert
-        });
+                                                                                            {
+                                                                                                IsUpsert = upsert
+                                                                                            });
         return result.ModifiedCount;
     }
 
@@ -370,9 +372,9 @@ public sealed class MongoDbService : IDatabaseService
     public async Task<long> UpdateManyAsync(string collName, Expression<Func<BsonDocument, bool>> filter, UpdateDefinition<BsonDocument> update, bool upsert = false)
     {
         UpdateResult result = await GetCollection(collName).UpdateManyAsync(filter, update, new UpdateOptions
-        {
-            IsUpsert = upsert
-        });
+                                                                                            {
+                                                                                                IsUpsert = upsert
+                                                                                            });
         return result.ModifiedCount;
     }
 
@@ -384,7 +386,7 @@ public sealed class MongoDbService : IDatabaseService
     /// <param name="filter">条件</param>
     /// <param name="update">更新后的数据</param>
     /// <returns></returns>
-    public TState UpdateOne<TState>(string collName, Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update) where TState : class, ICacheState, new()
+    public TState UpdateOne<TState>(string collName, Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update) where TState : ICacheState, new()
     {
         TState result = GetCollection<TState>().FindOneAndUpdate(filter, update);
         return result;
@@ -410,7 +412,7 @@ public sealed class MongoDbService : IDatabaseService
     /// <param name="filter">条件</param>
     /// <param name="update">更新后的数据</param>
     /// <returns></returns>
-    public async Task<TState> UpdateOneAsync<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update) where TState : class, ICacheState, new()
+    public async Task<TState> UpdateOneAsync<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update) where TState : ICacheState, new()
     {
         TState result = await GetCollection<TState>().FindOneAndUpdateAsync(filter, update);
         return result;
@@ -427,12 +429,13 @@ public sealed class MongoDbService : IDatabaseService
     {
         BsonDocument result = await GetCollection(collName).FindOneAndUpdateAsync(filter, update);
         return result;
-    }
+    }*/
 
     #endregion 更新
 
     #region 删除
 
+    /*
     /// <summary>
     /// 按BsonDocument条件删除
     /// </summary>
@@ -450,7 +453,7 @@ public sealed class MongoDbService : IDatabaseService
     /// </summary>
     /// <param name="document">文档</param>
     /// <returns></returns>
-    public long DeleteMany<TState>(BsonDocument document) where TState : class, ICacheState, new()
+    public long DeleteMany<TState>(BsonDocument document) where TState : ICacheState, new()
     {
         DeleteResult result = GetCollection<TState>().DeleteMany(document);
         return result.DeletedCount;
@@ -485,7 +488,7 @@ public sealed class MongoDbService : IDatabaseService
     /// </summary>
     /// <param name="document">文档</param>
     /// <returns></returns>
-    public async Task<long> DeleteAsync<TState>(BsonDocument document) where TState : class, ICacheState, new()
+    public async Task<long> DeleteAsync<TState>(BsonDocument document) where TState : ICacheState, new()
     {
         DeleteResult result = await GetCollection<TState>().DeleteOneAsync(document);
         return result.DeletedCount;
@@ -496,7 +499,7 @@ public sealed class MongoDbService : IDatabaseService
     /// </summary>
     /// <param name="document">文档</param>
     /// <returns></returns>
-    public async Task<long> DeleteManyAsync<TState>(BsonDocument document) where TState : class, ICacheState, new()
+    public async Task<long> DeleteManyAsync<TState>(BsonDocument document) where TState : ICacheState, new()
     {
         DeleteResult result = await GetCollection<TState>().DeleteManyAsync(document);
         return result.DeletedCount;
@@ -531,7 +534,7 @@ public sealed class MongoDbService : IDatabaseService
     /// </summary>
     /// <param name="json">json字符串</param>
     /// <returns></returns>
-    public long Delete<TState>(string json) where TState : class, ICacheState, new()
+    public long Delete<TState>(string json) where TState : ICacheState, new()
     {
         var result = GetCollection<TState>().DeleteOne(json);
         return result.DeletedCount;
@@ -542,7 +545,7 @@ public sealed class MongoDbService : IDatabaseService
     /// </summary>
     /// <param name="json">json字符串</param>
     /// <returns></returns>
-    public long DeleteMany<TState>(string json) where TState : class, ICacheState, new()
+    public long DeleteMany<TState>(string json) where TState : ICacheState, new()
     {
         var result = GetCollection<TState>().DeleteMany(json);
         return result.DeletedCount;
@@ -589,7 +592,7 @@ public sealed class MongoDbService : IDatabaseService
     /// </summary>
     /// <param name="json">json字符串</param>
     /// <returns></returns>
-    public async Task<long> DeleteManyAsync<TState>(string json) where TState : class, ICacheState, new()
+    public async Task<long> DeleteManyAsync<TState>(string json) where TState : ICacheState, new()
     {
         var result = await GetCollection<TState>().DeleteManyAsync(json);
         return result.DeletedCount;
@@ -624,7 +627,7 @@ public sealed class MongoDbService : IDatabaseService
     /// </summary>
     /// <param name="predicate">条件表达式</param>
     /// <returns></returns>
-    public long Delete<TState>(Expression<Func<TState, bool>> predicate) where TState : class, ICacheState, new()
+    public long Delete<TState>(Expression<Func<TState, bool>> predicate) where TState : ICacheState, new()
     {
         var result = GetCollection<TState>().DeleteOne(predicate);
         return result.DeletedCount;
@@ -635,7 +638,7 @@ public sealed class MongoDbService : IDatabaseService
     /// </summary>
     /// <param name="predicate">条件表达式</param>
     /// <returns></returns>
-    public long DeleteMany<TState>(Expression<Func<TState, bool>> predicate) where TState : class, ICacheState, new()
+    public long DeleteMany<TState>(Expression<Func<TState, bool>> predicate) where TState : ICacheState, new()
     {
         var result = GetCollection<TState>().DeleteMany(predicate);
         return result.DeletedCount;
@@ -670,7 +673,7 @@ public sealed class MongoDbService : IDatabaseService
     /// </summary>
     /// <param name="predicate">条件表达式</param>
     /// <returns></returns>
-    public async Task<long> DeleteManyAsync<TState>(Expression<Func<TState, bool>> predicate) where TState : class, ICacheState, new()
+    public async Task<long> DeleteManyAsync<TState>(Expression<Func<TState, bool>> predicate) where TState : ICacheState, new()
     {
         var result = await GetCollection<TState>().DeleteManyAsync(predicate);
         return result.DeletedCount;
@@ -707,7 +710,7 @@ public sealed class MongoDbService : IDatabaseService
     /// <param name="collName">集合名称</param>
     /// <param name="filter">条件</param>
     /// <returns></returns>
-    public long Delete<TState>(string collName, FilterDefinition<TState> filter) where TState : class, ICacheState, new()
+    public long Delete<TState>(string collName, FilterDefinition<TState> filter) where TState : ICacheState, new()
     {
         var result = GetCollection<TState>().DeleteOne(filter);
         return result.DeletedCount;
@@ -719,7 +722,7 @@ public sealed class MongoDbService : IDatabaseService
     /// </summary>
     /// <param name="filter">条件</param>
     /// <returns></returns>
-    public long DeleteMany<TState>(FilterDefinition<TState> filter) where TState : class, ICacheState, new()
+    public long DeleteMany<TState>(FilterDefinition<TState> filter) where TState : ICacheState, new()
     {
         var result = GetCollection<TState>().DeleteMany(filter);
         return result.DeletedCount;
@@ -757,7 +760,7 @@ public sealed class MongoDbService : IDatabaseService
     /// </summary>
     /// <param name="filter">条件</param>
     /// <returns></returns>
-    public async Task<long> DeleteAsync<TState>(FilterDefinition<TState> filter) where TState : class, ICacheState, new()
+    public async Task<long> DeleteAsync<TState>(FilterDefinition<TState> filter) where TState : ICacheState, new()
     {
         var result = await GetCollection<TState>().DeleteOneAsync(filter);
         return result.DeletedCount;
@@ -769,7 +772,7 @@ public sealed class MongoDbService : IDatabaseService
     /// </summary>
     /// <param name="filter">条件</param>
     /// <returns></returns>
-    public async Task<long> DeleteManyAsync<TState>(FilterDefinition<TState> filter) where TState : class, ICacheState, new()
+    public async Task<long> DeleteManyAsync<TState>(FilterDefinition<TState> filter) where TState : ICacheState, new()
     {
         var result = await GetCollection<TState>().DeleteManyAsync(filter);
         return result.DeletedCount;
@@ -807,7 +810,7 @@ public sealed class MongoDbService : IDatabaseService
     /// <typeparam name="TState"></typeparam>
     /// <param name="filter">条件</param>
     /// <returns></returns>
-    public TState DeleteOne<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
+    public TState DeleteOne<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new()
     {
         var result = GetCollection<TState>().FindOneAndDelete(filter);
         return result;
@@ -831,7 +834,7 @@ public sealed class MongoDbService : IDatabaseService
     /// <typeparam name="TState"></typeparam>
     /// <param name="filter">条件</param>
     /// <returns></returns>
-    public async Task<TState> DeleteOneAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
+    public async Task<TState> DeleteOneAsync<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new()
     {
         TState result = await GetCollection<TState>().FindOneAndDeleteAsync(filter);
         return result;
@@ -847,7 +850,7 @@ public sealed class MongoDbService : IDatabaseService
     {
         var result = await GetCollection(collName).FindOneAndDeleteAsync(filter);
         return result;
-    }
+    }*/
 
     #endregion 删除
 
@@ -993,8 +996,7 @@ public sealed class MongoDbService : IDatabaseService
     public bool Any<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
     {
         filter = GetDefaultFindExpression(filter);
-        var find = GetCollection<TState>().Find(filter);
-        return find.Any();
+        return Client.Queryable<TState>().Where(filter).Any();
     }
 
     /*
@@ -1019,7 +1021,7 @@ public sealed class MongoDbService : IDatabaseService
     public async Task<bool> AnyAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
     {
         filter = GetDefaultFindExpression(filter);
-        var find = await GetCollection<TState>().FindAsync(filter);
+        var find = Client.Queryable<TState>().Where(filter);
         return await find.AnyAsync();
     }
 
@@ -1041,6 +1043,7 @@ public sealed class MongoDbService : IDatabaseService
 
     #region 索引
 
+    /*
     /// <summary>
     /// 创建索引
     /// </summary>
@@ -1050,7 +1053,7 @@ public sealed class MongoDbService : IDatabaseService
     /// <returns></returns>
     public string CreateIndex(string collectionName, string index, bool asc = true)
     {
-        var mgr = GetCollection(collectionName).Indexes;
+        var mgr  = GetCollection(collectionName).Indexes;
         var list = mgr.List();
         while (list.MoveNext())
         {
@@ -1072,7 +1075,7 @@ public sealed class MongoDbService : IDatabaseService
     /// <returns></returns>
     public async Task<string> CreateIndexAsync(string collectionName, string index, bool asc = true)
     {
-        var mgr = GetCollection(collectionName).Indexes;
+        var mgr  = GetCollection(collectionName).Indexes;
         var list = await mgr.ListAsync();
         while (await list.MoveNextAsync())
         {
@@ -1140,9 +1143,9 @@ public sealed class MongoDbService : IDatabaseService
     /// <param name="key"></param>
     /// <param name="asc"></param>
     /// <returns></returns>
-    public string CreateIndex<TState>(string index, Expression<Func<TState, object>> key, bool asc = true) where TState : class, ICacheState, new()
+    public string CreateIndex<TState>(string index, Expression<Func<TState, object>> key, bool asc = true) where TState : ICacheState, new()
     {
-        var mgr = GetCollection<TState>().Indexes;
+        var mgr  = GetCollection<TState>().Indexes;
         var list = mgr.List();
         while (list.MoveNext())
         {
@@ -1162,9 +1165,9 @@ public sealed class MongoDbService : IDatabaseService
     /// <param name="key"></param>
     /// <param name="asc"></param>
     /// <returns></returns>
-    public async Task<string> CreateIndexAsync<TState>(string index, Expression<Func<TState, object>> key, bool asc = true) where TState : class, ICacheState, new()
+    public async Task<string> CreateIndexAsync<TState>(string index, Expression<Func<TState, object>> key, bool asc = true) where TState : ICacheState, new()
     {
-        var mgr = GetCollection<TState>().Indexes;
+        var mgr  = GetCollection<TState>().Indexes;
         var list = await mgr.ListAsync();
         while (await list.MoveNextAsync())
         {
@@ -1183,7 +1186,7 @@ public sealed class MongoDbService : IDatabaseService
     /// <param name="key"></param>
     /// <param name="asc"></param>
     /// <returns></returns>
-    public string UpdateIndex<TState>(Expression<Func<TState, object>> key, bool asc = true) where TState : class, ICacheState, new()
+    public string UpdateIndex<TState>(Expression<Func<TState, object>> key, bool asc = true) where TState : ICacheState, new()
     {
         var mgr = GetCollection<TState>().Indexes;
         return mgr.CreateOne(new CreateIndexModel<TState>(asc ? Builders<TState>.IndexKeys.Ascending(key) : Builders<TState>.IndexKeys.Descending(key)));
@@ -1195,11 +1198,11 @@ public sealed class MongoDbService : IDatabaseService
     /// <param name="key"></param>
     /// <param name="asc"></param>
     /// <returns></returns>
-    public async Task<string> UpdateIndexAsync<TState>(Expression<Func<TState, object>> key, bool asc = true) where TState : class, ICacheState, new()
+    public async Task<string> UpdateIndexAsync<TState>(Expression<Func<TState, object>> key, bool asc = true) where TState : ICacheState, new()
     {
         var mgr = GetCollection<TState>().Indexes;
         return await mgr.CreateOneAsync(new CreateIndexModel<TState>(asc ? Builders<TState>.IndexKeys.Ascending(key) : Builders<TState>.IndexKeys.Descending(key)));
-    }
+    }*/
 
     #endregion 索引
 
@@ -1212,11 +1215,9 @@ public sealed class MongoDbService : IDatabaseService
     /// <returns>加载的缓存状态。</returns>
     public async Task<TState> LoadState<TState>(long id, Func<TState> defaultGetter = null) where TState : class, ICacheState, new()
     {
-        var filter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, id);
+        var filter = GetDefaultFindExpression<TState>(m => m.Id == id);
 
-        var col = GetCollection<TState>();
-        using var cursor = await col.FindAsync(filter);
-        var state = await cursor.FirstOrDefaultAsync();
+        var state = await Client.Queryable<TState>().Where(filter).SingleAsync();
         bool isNew = state == null;
         if (state == null && defaultGetter != null)
         {
@@ -1238,7 +1239,7 @@ public sealed class MongoDbService : IDatabaseService
     /// <typeparam name="TState">缓存状态的类型。</typeparam>
     /// <param name="filter">自定义查询表达式。</param>
     /// <returns>默认的查询表达式。</returns>
-    private static Expression<Func<TState, bool>> GetDefaultFindExpression<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
+    private static Expression<Func<TState, bool>> GetDefaultFindExpression<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new()
     {
         Expression<Func<TState, bool>> expression = m => m.IsDeleted == false;
         if (filter != null)
@@ -1257,12 +1258,11 @@ public sealed class MongoDbService : IDatabaseService
     /// <returns>满足条件的缓存状态列表。</returns>
     public async Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
     {
-        var result = new List<TState>();
-        var collection = GetCollection<TState>();
-        using var cursor = await collection.FindAsync<TState>(GetDefaultFindExpression(filter));
-        while (await cursor.MoveNextAsync())
+        var findExpression = GetDefaultFindExpression(filter);
+        var result = await Client.Queryable<TState>().Where(findExpression).ToListAsync();
+        if (result == null)
         {
-            result.AddRange(cursor.Current);
+            result = new List<TState>();
         }
 
         return result;
@@ -1276,11 +1276,8 @@ public sealed class MongoDbService : IDatabaseService
     /// <returns>满足条件的缓存状态。</returns>
     public async Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
     {
-        var collection = GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
-        var filterDefinition = Builders<TState>.Filter.Where(findExpression);
-        using var cursor = await collection.FindAsync<TState>(filterDefinition);
-        var state = await cursor.FirstOrDefaultAsync();
+        var state = await Client.Queryable<TState>().Where(findExpression).SingleAsync();
         return state;
     }
 
@@ -1293,11 +1290,8 @@ public sealed class MongoDbService : IDatabaseService
     /// <returns>符合条件的第一个元素。</returns>
     public async Task<TState> FindSortAscendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : class, ICacheState, new()
     {
-        var collection = GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
-        var sortDefinition = Builders<TState>.Sort.Ascending(sortExpression);
-        var cursor = collection.Aggregate().Match(findExpression).Sort(sortDefinition).Limit(1);
-        var state = await cursor.FirstOrDefaultAsync();
+        var state = await Client.Queryable<TState>().Where(findExpression).OrderBy(sortExpression).Take(1).SingleAsync();
         return state;
     }
 
@@ -1310,11 +1304,8 @@ public sealed class MongoDbService : IDatabaseService
     /// <returns>符合条件的第一个元素。</returns>
     public async Task<TState> FindSortDescendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : class, ICacheState, new()
     {
-        var collection = GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
-        var sortDefinition = Builders<TState>.Sort.Descending(sortExpression);
-        var cursor = collection.Aggregate().Match(findExpression).Sort(sortDefinition).Limit(1);
-        var state = await cursor.FirstOrDefaultAsync();
+        var state = await Client.Queryable<TState>().Where(findExpression).OrderByDescending(sortExpression).Take(1).SingleAsync();
         return state;
     }
 
@@ -1339,14 +1330,12 @@ public sealed class MongoDbService : IDatabaseService
             pageSize = 10;
         }
 
-        var result = new List<TState>();
-        var collection = GetCollection<TState>();
+
         var findExpression = GetDefaultFindExpression(filter);
-        var sortDefinition = Builders<TState>.Sort.Descending(sortExpression);
-        var cursor = await collection.Aggregate().Match(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToCursorAsync();
-        while (await cursor.MoveNextAsync())
+        var result = await Client.Queryable<TState>().Where(findExpression).OrderByDescending(sortExpression).ToPageListAsync(pageIndex, pageSize);
+        if (result == null)
         {
-            result.AddRange(cursor.Current);
+            result = new List<TState>();
         }
 
         return result;
@@ -1373,14 +1362,12 @@ public sealed class MongoDbService : IDatabaseService
             pageSize = 10;
         }
 
-        var result = new List<TState>();
-        var collection = GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
-        var sortDefinition = Builders<TState>.Sort.Ascending(sortExpression);
-        var cursor = await collection.Aggregate().Match(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToCursorAsync();
-        while (await cursor.MoveNextAsync())
+        var result = await Client.Queryable<TState>().Where(findExpression).OrderBy(sortExpression).ToPageListAsync(pageIndex, pageSize);
+
+        if (result == null)
         {
-            result.AddRange(cursor.Current);
+            result = new List<TState>();
         }
 
         return result;
@@ -1394,9 +1381,8 @@ public sealed class MongoDbService : IDatabaseService
     /// <returns></returns>
     public async Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
     {
-        var collection = GetCollection<TState>();
         var newFilter = GetDefaultFindExpression(filter);
-        var count = await collection.CountDocumentsAsync<TState>(newFilter);
+        var count = await Client.Queryable<TState>().Where(newFilter).CountAsync();
         return count;
     }
 
@@ -1408,13 +1394,11 @@ public sealed class MongoDbService : IDatabaseService
     /// <returns></returns>
     public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
     {
-        var collection = GetCollection<TState>();
         var state = await FindAsync(filter);
-        var newFilter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
         state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
         state.IsDeleted = true;
-        var result = await collection.ReplaceOneAsync(newFilter, state, ReplaceOptions);
-        return result.ModifiedCount;
+        var result = await Client.Updateable(state).ExecuteCommandAsync();
+        return result;
     }
 
     /// <summary>
@@ -1424,12 +1408,10 @@ public sealed class MongoDbService : IDatabaseService
     /// <typeparam name="TState"></typeparam>
     public async Task<long> DeleteAsync<TState>(TState state) where TState : class, ICacheState, new()
     {
-        var filter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
-        var collection = GetCollection<TState>();
         state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
         state.IsDeleted = true;
-        var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
-        return result.ModifiedCount;
+        var result = await Client.Updateable(state).ExecuteCommandAsync();
+        return result;
     }
 
 
@@ -1446,10 +1428,8 @@ public sealed class MongoDbService : IDatabaseService
         {
             state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
             state.UpdateCount++;
-            var filter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
-            var collection = GetCollection<TState>();
-            var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
-            if (result.IsAcknowledged)
+            var result = await Client.Updateable(state).ExecuteCommandAsync();
+            if (result > 0)
             {
                 state.SaveToDbPostHandler();
             }
@@ -1458,61 +1438,38 @@ public sealed class MongoDbService : IDatabaseService
         return state;
     }
 
-
-    /// <summary>
-    /// 保存多条数据
-    /// </summary>
-    /// <param name="stateList">数据列表对象</param>
-    /// <returns>返回更新成功的数量</returns>
     public Task<long> UpdateAsync(IEnumerable<ICacheState> stateList)
     {
-        long resultCount = 0;
-        foreach (var state in stateList)
-        {
-            var isChanged = state.IsModify();
-            if (isChanged)
-            {
-                state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
-                state.UpdateCount++;
-                var filter = Builders<ICacheState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
-                var name = state.GetType().Name;
-                var collection = GetCollection(name);
-                /*var result     = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
-                if (result.IsAcknowledged)
-                {
-                    resultCount++;
-                    state.AfterSaveToDb();
-                }*/
-            }
-        }
-
-        return Task.FromResult(resultCount);
+        // foreach (var cacheState in stateList)
+        // {
+        //     cacheState.UpdateTime = TimeHelper.UnixTimeMilliseconds();
+        //     cacheState.UpdateCount++;
+        //     // var repository = Client.GetRepository(cacheState);
+        //     Client.InsertOrUpdate(cacheState); // repository.Update()
+        //     var result     = await collection.UpdateAsync(cacheState);
+        //     if (result > 0)
+        //     {
+        //         cacheState.AfterSaveToDb();
+        //     }
+        // }
+        //
+        // await collection.InsertAsync(cacheStates);
+        return Task.FromResult(0L);
     }
 
+    /*
     /// <summary>
-    /// 替换选项，用于替换文档。设置
-    /// <see>
-    ///     <cref>IsUpsert</cref>
-    /// </see>
-    /// 属性为 true 可以在找不到匹配的文档时插入新文档。
+    /// 替换选项，用于替换文档。设置 <see cref="IsUpsert"/> 属性为 true 可以在找不到匹配的文档时插入新文档。
     /// </summary>
     public static readonly ReplaceOptions ReplaceOptions = new() { IsUpsert = true };
 
     /// <summary>
-    /// 更新选项，用于更新文档。设置
-    /// <see>
-    ///     <cref>IsUpsert</cref>
-    /// </see>
-    /// 属性为 true 可以在找不到匹配的文档时插入新文档。
+    /// 更新选项，用于更新文档。设置 <see cref="IsUpsert"/> 属性为 true 可以在找不到匹配的文档时插入新文档。
     /// </summary>
     public static readonly UpdateOptions UpdateOptions = new() { IsUpsert = true };
 
     /// <summary>
-    /// 批量写入选项，用于批量写入文档。设置
-    /// <see>
-    ///     <cref>IsOrdered</cref>
-    /// </see>
-    /// 属性为 false 可以并行执行写入操作。
+    /// 批量写入选项，用于批量写入文档。设置 <see cref="IsOrdered"/> 属性为 false 可以并行执行写入操作。
     /// </summary>
     public static readonly BulkWriteOptions BulkWriteOptions = new() { IsOrdered = false };
 
@@ -1525,16 +1482,16 @@ public sealed class MongoDbService : IDatabaseService
     public Task CreateIndex<TState>(string indexKey) where TState : CacheState, new()
     {
         var collection = GetCollection<TState>();
-        var key = Builders<TState>.IndexKeys.Ascending(indexKey);
-        var model = new CreateIndexModel<TState>(key);
+        var key        = Builders<TState>.IndexKeys.Ascending(indexKey);
+        var model      = new CreateIndexModel<TState>(key);
         return collection.Indexes.CreateOneAsync(model);
-    }
+    }*/
 
     /// <summary>
     /// 关闭MongoDB连接。
     /// </summary>
     public void Close()
     {
-        Client.Cluster.Dispose();
+        Client.Dispose();
     }
 }

@@ -71,7 +71,7 @@ public interface IDatabaseService
     /// <param name="pageIndex">页码，从0开始。</param>
     /// <param name="pageSize">每页数量，默认为10。</param>
     /// <returns>符合条件的元素列表。</returns>
-    Task<List<TState>> FindSortDescendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, long pageIndex = 0, long pageSize = 10) where TState : class, ICacheState, new();
+    Task<List<TState>> FindSortDescendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : class, ICacheState, new();
 
     /// <summary>
     /// 以升序方式查找符合条件的元素并进行分页。
@@ -82,7 +82,7 @@ public interface IDatabaseService
     /// <param name="pageIndex">页码，从0开始。</param>
     /// <param name="pageSize">每页数量，默认为10。</param>
     /// <returns>符合条件的元素列表。</returns>
-    Task<List<TState>> FindSortAscendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, long pageIndex = 0, long pageSize = 10) where TState : class, ICacheState, new();
+    Task<List<TState>> FindSortAscendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : class, ICacheState, new();
 
     /// <summary>
     /// 查询数据长度
