@@ -32,12 +32,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
+        <PackageReference Include="SqlSugarCore" Version="5.1.4.169" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\..\GameFrameX.Setting\GameFrameX.Setting.csproj"/>
         <ProjectReference Include="..\..\GameFrameX.Utility\GameFrameX.Utility.csproj"/>
+        <ProjectReference Include="..\GameFrameX.DataBase.Abstractions\GameFrameX.DataBase.Abstractions.csproj" />
     </ItemGroup>
     <ItemGroup>
         <None Include="../../logo.png">
