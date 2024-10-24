@@ -12,8 +12,12 @@
         "--APMPort": 21090,
         "--InnerIp": "127.0.0.1",
         "--InnerPort": 21001,
+        "--HttpPort": 21011,
         "--OuterIp": "127.0.0.1",
-        "--OuterPort": 21010
+        "--OuterPort": 21010,
+        "--IsDebug": true,
+        "--IsDebugReceive": true,
+        "--IsDebugSend": true
       }
     },
     "GameFrameX.Gateway": {
@@ -27,20 +31,22 @@
         "--OuterIp": "127.0.0.1",
         "--OuterPort": 22001,
         "--DiscoveryCenterIp": "127.0.0.1",
-        "--DiscoveryCenterPort": 21001
+        "--DiscoveryCenterPort": 21001,
+        "--IsDebug": true,
+        "--IsDebugReceive": true,
+        "--IsDebugSend": true
       }
     },
     "GameFrameX.Router": {
       "commandName": "Project",
       "environmentVariables": {
         "--ServerType": "Router",
-        "--ServerId": 3000,
-        "--APMPort": 23090,
+        "--ServerId": 23000,
         "--InnerIp": "127.0.0.1",
-        "--InnerPort": 23001,
+        "--InnerPort": 23110,
         "--OuterIp": "127.0.0.1",
-        "--OuterPort": 23010,
-        "--WsPort": 23110,
+        "--OuterPort": 23110,
+        "--WsPort": 23111,
         "--DiscoveryCenterIp": "127.0.0.1",
         "--DiscoveryCenterPort": 21001
       }
