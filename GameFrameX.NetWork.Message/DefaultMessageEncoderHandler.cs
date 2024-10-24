@@ -49,22 +49,31 @@ public sealed class DefaultMessageEncoderHandler : IMessageEncoderHandler, IPack
             messageObjectHeader.ZipFlag = zipFlag;
             var messageHeaderData = ProtoBufSerializerHelper.Serialize(messageObjectHeader);
             _messageObjectHeaderObjectPool.Return(messageObjectHeader);
-            var totalLength = (ushort)(PackageLength + messageBodyData.Length + messageHeaderData.Length);
-            var buffer = new byte[totalLength];
-            int offset = 0;
-            // 总长度
-            buffer.WriteUInt(totalLength, ref offset);
-            // 消息头长度
-            buffer.WriteUShort((ushort)messageHeaderData.Length, ref offset);
-            // 消息头
-            buffer.WriteBytesWithoutLength(messageHeaderData, ref offset);
-            // 消息体
-            buffer.WriteBytesWithoutLength(messageBodyData, ref offset);
-            return buffer;
+            return BufferBytes(messageBodyData, messageHeaderData);
         }
 
         LogHelper.Error("消息对象为空，编码异常");
         return null;
+    }
+
+    private byte[] BufferBytes(byte[] messageBodyData, byte[] messageHeaderData)
+    {
+        var totalLength = (ushort)(PackageLength + messageBodyData.Length + messageHeaderData.Length);
+
+        var buffer = ArrayPool<byte>.Shared.Rent(totalLength);
+        var writer = buffer.AsSpan(0, totalLength);
+        int offset = 0;
+        // 总长度
+        writer.WriteUInt(totalLength, ref offset);
+        // 消息头长度
+        writer.WriteUShort((ushort)messageHeaderData.Length, ref offset);
+        // 消息头
+        writer.WriteBytesWithoutLength(messageHeaderData, ref offset);
+        // 消息体
+        writer.WriteBytesWithoutLength(messageBodyData, ref offset);
+
+        ArrayPool<byte>.Shared.Return(buffer);
+        return writer.ToArray();
     }
 
     /// <summary>
@@ -75,21 +84,8 @@ public sealed class DefaultMessageEncoderHandler : IMessageEncoderHandler, IPack
     public byte[] Handler(IInnerNetworkMessage message)
     {
         var innerNetworkMessage = message;
-
-        var header = ProtoBufSerializerHelper.Serialize(innerNetworkMessage.Header);
-        int offset = 0;
-        var totalLength = header.Length + message.MessageData.Length + PackageLength;
-
-        var buffer = new byte[totalLength];
-        // 总长度
-        buffer.WriteUInt((uint)totalLength, ref offset);
-        // 消息头长度
-        buffer.WriteUShort((ushort)header.Length, ref offset);
-        // 消息头
-        buffer.WriteBytesWithoutLength(header, ref offset);
-        // 消息体
-        buffer.WriteBytesWithoutLength(message.MessageData, ref offset);
-        return buffer;
+        var messageHeaderData = ProtoBufSerializerHelper.Serialize(innerNetworkMessage.Header);
+        return BufferBytes(message.MessageData, messageHeaderData);
     }
 
 
