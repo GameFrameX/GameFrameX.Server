@@ -1,4 +1,6 @@
-﻿using System.Linq.Expressions;
+﻿using System.Collections.Concurrent;
+using System.Linq.Expressions;
+using System.Reflection;
 using GameFrameX.DataBase.Abstractions;
 using GameFrameX.Extension;
 using GameFrameX.Log;
@@ -7,6 +9,19 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace GameFrameX.DataBase.Mongo;
+
+sealed class MongoIndexModel
+{
+    public MongoIndexModel(bool unique, string name)
+    {
+        Unique = unique;
+        Name = name;
+    }
+
+    public string Name { get; set; }
+    public bool Unique { get; set; }
+    public List<BsonDocument> Keys { get; set; }
+}
 
 /// <summary>
 /// MongoDB服务连接类，实现了
@@ -48,6 +63,90 @@ public sealed class MongoDbService : IDatabaseService
         }
     }
 
+    readonly ConcurrentDictionary<string, List<MongoIndexModel>> _indexCache = new ConcurrentDictionary<string, List<MongoIndexModel>>();
+
+    private static bool AreIndexesConsistent<T>(List<CreateIndexModel<T>> toBeCreatedIndexes, List<BsonDocument> createdIndexes)
+    {
+        var toBeCreatedIndexNames = toBeCreatedIndexes.Select(i => i.Options.Name).ToList();
+        var createdIndexNames = createdIndexes.Select(i => i["name"].AsString).ToList();
+        if (toBeCreatedIndexNames.Count != createdIndexNames.Count)
+        {
+            return false;
+        }
+
+
+        foreach (var indexInfo in toBeCreatedIndexes)
+        {
+            var correspondingCreatedIndex = createdIndexes.FirstOrDefault(i => i["name"].AsString == indexInfo.Options.Name);
+            if (correspondingCreatedIndex == null)
+            {
+                return false;
+            }
+
+            // var createdIndexKeys = ((BsonDocument)correspondingCreatedIndex["key"]);
+            // if (indexInfo.Keys != createdIndexKeys)
+            // {
+            //     return false;
+            // }
+            //
+            // foreach (var key in indexInfo.Keys)
+            // {
+            //     if (!createdIndexKeys.Contains(key))
+            //     {
+            //         return false;
+            //     }
+            // }
+
+            var uniqueAttribute = indexInfo.Options.Unique;
+            var createdIndexUnique = correspondingCreatedIndex["unique"].AsBoolean;
+            if (uniqueAttribute != createdIndexUnique)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void CreateIndexes<T>(IMongoCollection<T> collection)
+    {
+        var entityType = typeof(T);
+        if (_indexCache.TryGetValue(entityType.Name, out var list))
+        {
+            return;
+        }
+
+        list = new List<MongoIndexModel>();
+        _indexCache.TryAdd(entityType.Name, list);
+        var properties = entityType.GetProperties();
+        // 索引列表
+        var result = collection.Indexes.List().ToList();
+
+        var indexModels = new List<CreateIndexModel<T>>();
+        foreach (var property in properties)
+        {
+            var indexAttribute = property.GetCustomAttribute<MongoIndexAttribute>();
+            if (indexAttribute != null)
+            {
+                var indexKeys = indexAttribute.IsAscending ? Builders<T>.IndexKeys.Ascending(property.Name) : Builders<T>.IndexKeys.Descending(property.Name);
+
+                var indexModel = new CreateIndexModel<T>(indexKeys, new CreateIndexOptions
+                {
+                    Unique = indexAttribute.Unique,
+                    Name = indexAttribute.Name,
+                });
+                indexModels.Add(indexModel);
+                var mongoIndexModel = new MongoIndexModel(indexAttribute.Unique, indexAttribute.Name);
+                list.Add(mongoIndexModel);
+            }
+        }
+
+        if (indexModels.Count > 0 && !AreIndexesConsistent(indexModels, result))
+        {
+            collection.Indexes.CreateMany(indexModels);
+        }
+    }
+
     /// <summary>
     /// 获取指定类型的MongoDB集合。
     /// </summary>
@@ -58,6 +157,7 @@ public sealed class MongoDbService : IDatabaseService
     {
         var collectionName = typeof(TState).Name;
         var collection = CurrentDatabase.GetCollection<TState>(collectionName, settings);
+        CreateIndexes(collection);
         return collection;
     }
 
@@ -83,7 +183,7 @@ public sealed class MongoDbService : IDatabaseService
     public async Task<long> AddAsync<TState>(TState state) where TState : class, ICacheState, new()
     {
         var collection = GetCollection<TState>();
-        state.CreateTime = TimeHelper.UnixTimeSeconds();
+        state.CreateTime = TimeHelper.UnixTimeMilliseconds();
         var filter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
         var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
         return result.ModifiedCount;
@@ -100,7 +200,7 @@ public sealed class MongoDbService : IDatabaseService
         var cacheStates = states.ToList();
         foreach (var cacheState in cacheStates)
         {
-            cacheState.CreateTime = TimeHelper.UnixTimeSeconds();
+            cacheState.CreateTime = TimeHelper.UnixTimeMilliseconds();
         }
 
         await collection.InsertManyAsync(cacheStates);
@@ -1530,19 +1630,6 @@ public sealed class MongoDbService : IDatabaseService
     /// </summary>
     public static readonly BulkWriteOptions BulkWriteOptions = new() { IsOrdered = false };
 
-    /// <summary>
-    /// 创建指定字段的索引。
-    /// </summary>
-    /// <typeparam name="TState">缓存状态的类型。</typeparam>
-    /// <param name="indexKey">要创建索引的字段。</param>
-    /// <returns>表示异步操作的任务。</returns>
-    public Task CreateIndex<TState>(string indexKey) where TState : CacheState, new()
-    {
-        var collection = GetCollection<TState>();
-        var key = Builders<TState>.IndexKeys.Ascending(indexKey);
-        var model = new CreateIndexModel<TState>(key);
-        return collection.Indexes.CreateOneAsync(model);
-    }
 
     /// <summary>
     /// 关闭MongoDB连接。
