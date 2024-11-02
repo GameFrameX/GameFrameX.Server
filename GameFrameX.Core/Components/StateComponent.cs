@@ -150,7 +150,7 @@ namespace GameFrameX.Core.Components
         /// <returns></returns>
         public async Task ReadStateAsync()
         {
-            State = await GameDb.LoadState<TState>(ActorId);
+            State = await GameDb.FindAsync<TState>(ActorId);
 
             StateDic.TryRemove(State.Id, out _);
             StateDic.TryAdd(State.Id, State);

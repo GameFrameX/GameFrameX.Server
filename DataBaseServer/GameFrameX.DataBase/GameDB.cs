@@ -69,16 +69,6 @@ public static class GameDb
         return _dbServiceImplementation.CountAsync<TState>(filter);
     }
 
-    /// <summary>
-    /// 查找与指定过滤器匹配的文档
-    /// </summary>
-    /// <typeparam name="TState">文档的类型</typeparam>
-    /// <param name="filter">过滤器表达式</param>
-    /// <returns>表示异步操作的任务。任务结果包含文档</returns>
-    public static Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
-    {
-        return _dbServiceImplementation.FindAsync<TState>(filter);
-    }
 
     /// <summary>
     /// 以升序方式查找符合条件的第一个元素。
@@ -138,11 +128,22 @@ public static class GameDb
     /// </summary>
     /// <typeparam name="TState">文档的类型</typeparam>
     /// <param name="id">文档的id</param>
-    /// <param name="defaultGetter">一个用于获取默认值的函数，如果指定的文档不存在</param>
+    /// <param name="filter">一个用于获取默认值的函数，如果指定的文档不存在</param>
     /// <returns>表示异步操作的任务。任务结果包含文档</returns>
-    public static Task<TState> LoadState<TState>(long id, Func<TState> defaultGetter = null) where TState : class, ICacheState, new()
+    public static Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null) where TState : class, ICacheState, new()
     {
-        return _dbServiceImplementation.LoadState(id, defaultGetter);
+        return _dbServiceImplementation.FindAsync(id, filter);
+    }
+
+    /// <summary>
+    /// 查找与指定过滤器匹配的文档
+    /// </summary>
+    /// <typeparam name="TState">文档的类型</typeparam>
+    /// <param name="filter">过滤器表达式</param>
+    /// <returns>表示异步操作的任务。任务结果包含文档</returns>
+    public static Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
+    {
+        return _dbServiceImplementation.FindAsync<TState>(filter);
     }
 
     /// <summary>
@@ -161,8 +162,8 @@ public static class GameDb
     /// </summary>
     /// <typeparam name="TState">文档的类型</typeparam>
     /// <param name="state">要保存的文档</param>
-    /// <returns>表示异步操作的任务</returns>
-    public static Task SaveOneAsync<TState>(TState state) where TState : class, ICacheState, new()
+    /// <returns>返回增加成功的条数</returns>
+    public static Task<long> SaveOneAsync<TState>(TState state) where TState : class, ICacheState, new()
     {
         return _dbServiceImplementation.AddAsync<TState>(state);
     }
