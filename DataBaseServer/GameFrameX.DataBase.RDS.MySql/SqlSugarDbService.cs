@@ -1213,16 +1213,16 @@ public sealed class SqlSugarDbService : IDatabaseService
     /// <param name="id">要加载的缓存状态的ID。</param>
     /// <param name="defaultGetter">默认值获取器。</param>
     /// <returns>加载的缓存状态。</returns>
-    public async Task<TState> LoadState<TState>(long id, Func<TState> defaultGetter = null) where TState : class, ICacheState, new()
+    public async Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> defaultGetter = null) where TState : class, ICacheState, new()
     {
         var filter = GetDefaultFindExpression<TState>(m => m.Id == id);
+        if (defaultGetter != null)
+        {
+            filter = filter.And(defaultGetter);
+        }
 
         var state = await Client.Queryable<TState>().Where(filter).SingleAsync();
-        bool isNew = state == null;
-        if (state == null && defaultGetter != null)
-        {
-            state = defaultGetter();
-        }
+        var isNew = state == null;
 
         if (state == null)
         {
@@ -1438,23 +1438,27 @@ public sealed class SqlSugarDbService : IDatabaseService
         return state;
     }
 
-    public Task<long> UpdateAsync(IEnumerable<ICacheState> stateList)
+    /// <summary>
+    /// 保存多条数据
+    /// </summary>
+    /// <param name="stateList">数据列表对象</param>
+    /// <returns>返回更新成功的数量</returns>
+    public async Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList) where TState : class, ICacheState, new()
     {
-        // foreach (var cacheState in stateList)
-        // {
-        //     cacheState.UpdateTime = TimeHelper.UnixTimeMilliseconds();
-        //     cacheState.UpdateCount++;
-        //     // var repository = Client.GetRepository(cacheState);
-        //     Client.InsertOrUpdate(cacheState); // repository.Update()
-        //     var result     = await collection.UpdateAsync(cacheState);
-        //     if (result > 0)
-        //     {
-        //         cacheState.AfterSaveToDb();
-        //     }
-        // }
-        //
-        // await collection.InsertAsync(cacheStates);
-        return Task.FromResult(0L);
+        var count = 0;
+        foreach (var cacheState in stateList)
+        {
+            cacheState.UpdateTime = TimeHelper.UnixTimeMilliseconds();
+            cacheState.UpdateCount++;
+            var result = await Client.Updateable(cacheState).ExecuteCommandAsync();
+            if (result > 0)
+            {
+                count++;
+                cacheState.SaveToDbPostHandler();
+            }
+        }
+
+        return count;
     }
 
     /*
