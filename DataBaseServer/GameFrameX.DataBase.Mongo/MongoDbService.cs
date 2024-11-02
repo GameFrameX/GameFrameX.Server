@@ -84,7 +84,7 @@ public sealed class MongoDbService : IDatabaseService
     {
         var collection = GetCollection<TState>();
         state.CreateTime = TimeHelper.UnixTimeSeconds();
-        var filter = Builders<TState>.Filter.Eq(CacheState.UniqueId, state.Id);
+        var filter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
         var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
         return result.ModifiedCount;
     }
@@ -1208,20 +1208,17 @@ public sealed class MongoDbService : IDatabaseService
     /// </summary>
     /// <typeparam name="TState">缓存状态的类型。</typeparam>
     /// <param name="id">要加载的缓存状态的ID。</param>
-    /// <param name="defaultGetter">默认值获取器。</param>
+    /// <param name="filter">默认值获取器。</param>
     /// <returns>加载的缓存状态。</returns>
-    public async Task<TState> LoadState<TState>(long id, Func<TState> defaultGetter = null) where TState : class, ICacheState, new()
+    public async Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null) where TState : class, ICacheState, new()
     {
-        var filter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, id);
-
+        var newFilter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, id);
+        var findExpression = GetDefaultFindExpression(filter);
+        var filterDefinition = Builders<TState>.Filter.And(newFilter, findExpression);
         var col = GetCollection<TState>();
-        using var cursor = await col.FindAsync(filter);
+        using var cursor = await col.FindAsync(filterDefinition);
         var state = await cursor.FirstOrDefaultAsync();
         bool isNew = state == null;
-        if (state == null && defaultGetter != null)
-        {
-            state = defaultGetter();
-        }
 
         if (state == null)
         {
@@ -1265,6 +1262,11 @@ public sealed class MongoDbService : IDatabaseService
             result.AddRange(cursor.Current);
         }
 
+        foreach (var state in result)
+        {
+            state?.LoadFromDbPostHandler(false);
+        }
+
         return result;
     }
 
@@ -1281,6 +1283,7 @@ public sealed class MongoDbService : IDatabaseService
         var filterDefinition = Builders<TState>.Filter.Where(findExpression);
         using var cursor = await collection.FindAsync<TState>(filterDefinition);
         var state = await cursor.FirstOrDefaultAsync();
+        state?.LoadFromDbPostHandler(false);
         return state;
     }
 
@@ -1298,6 +1301,7 @@ public sealed class MongoDbService : IDatabaseService
         var sortDefinition = Builders<TState>.Sort.Ascending(sortExpression);
         var cursor = collection.Aggregate().Match(findExpression).Sort(sortDefinition).Limit(1);
         var state = await cursor.FirstOrDefaultAsync();
+        state?.LoadFromDbPostHandler(false);
         return state;
     }
 
@@ -1315,6 +1319,7 @@ public sealed class MongoDbService : IDatabaseService
         var sortDefinition = Builders<TState>.Sort.Descending(sortExpression);
         var cursor = collection.Aggregate().Match(findExpression).Sort(sortDefinition).Limit(1);
         var state = await cursor.FirstOrDefaultAsync();
+        state?.LoadFromDbPostHandler(false);
         return state;
     }
 
@@ -1349,6 +1354,11 @@ public sealed class MongoDbService : IDatabaseService
             result.AddRange(cursor.Current);
         }
 
+        foreach (var state in result)
+        {
+            state?.LoadFromDbPostHandler(false);
+        }
+
         return result;
     }
 
@@ -1381,6 +1391,11 @@ public sealed class MongoDbService : IDatabaseService
         while (await cursor.MoveNextAsync())
         {
             result.AddRange(cursor.Current);
+        }
+
+        foreach (var state in result)
+        {
+            state?.LoadFromDbPostHandler(false);
         }
 
         return result;
@@ -1464,7 +1479,7 @@ public sealed class MongoDbService : IDatabaseService
     /// </summary>
     /// <param name="stateList">数据列表对象</param>
     /// <returns>返回更新成功的数量</returns>
-    public Task<long> UpdateAsync(IEnumerable<ICacheState> stateList)
+    public async Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList) where TState : class, ICacheState, new()
     {
         long resultCount = 0;
         foreach (var state in stateList)
@@ -1474,19 +1489,18 @@ public sealed class MongoDbService : IDatabaseService
             {
                 state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
                 state.UpdateCount++;
-                var filter = Builders<ICacheState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
-                var name = state.GetType().Name;
-                var collection = GetCollection(name);
-                /*var result     = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
+                var filter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
+                var collection = GetCollection<TState>();
+                var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
                 if (result.IsAcknowledged)
                 {
                     resultCount++;
-                    state.AfterSaveToDb();
-                }*/
+                    state.SaveToDbPostHandler();
+                }
             }
         }
 
-        return Task.FromResult(resultCount);
+        return resultCount;
     }
 
     /// <summary>

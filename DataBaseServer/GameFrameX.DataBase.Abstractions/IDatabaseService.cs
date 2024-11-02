@@ -20,13 +20,13 @@ public interface IDatabaseService
     void Close();
 
     /// <summary>
-    /// 加载数据
+    /// 查询单条数据
     /// </summary>
     /// <param name="id">数据的唯一ID</param>
-    /// <param name="defaultGetter"></param>
+    /// <param name="filter">查询条件</param>
     /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
     /// <returns>返回符合条件的数据对象</returns>
-    Task<TState> LoadState<TState>(long id, Func<TState> defaultGetter = null) where TState : class, ICacheState, new();
+    Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null) where TState : class, ICacheState, new();
 
     /// <summary>
     /// 查询单条数据
@@ -137,7 +137,7 @@ public interface IDatabaseService
     /// </summary>
     /// <param name="stateList">数据列表对象</param>
     /// <returns>返回更新成功的数量</returns>
-    Task<long> UpdateAsync(IEnumerable<ICacheState> stateList);
+    Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList) where TState : class, ICacheState, new();
 
     /// <summary>
     /// 查询符合条件的数据是否存在
