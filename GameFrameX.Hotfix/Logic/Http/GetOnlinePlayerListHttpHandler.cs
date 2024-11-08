@@ -17,12 +17,12 @@ public sealed class GetOnlinePlayerListHttpHandler : BaseHttpHandler
     /// <param name="url"></param>
     /// <param name="parameters"></param>
     /// <returns></returns>
-    public override Task<string> Action(string ip, string url, Dictionary<string, string> parameters)
+    public override Task<string> Action(string ip, string url, Dictionary<string, object> parameters)
     {
         parameters.TryGetValue("pageSize", out var pageSizeStr);
         parameters.TryGetValue("pageIndex", out var pageIndexStr);
-        var pageSize = string.IsNullOrEmpty(pageSizeStr) ? 0 : Convert.ToInt32(pageSizeStr);
-        var pageIndex = string.IsNullOrEmpty(pageIndexStr) ? 0 : Convert.ToInt32(pageIndexStr);
+        var pageSize = string.IsNullOrEmpty(pageSizeStr?.ToString()) ? 0 : Convert.ToInt32(pageSizeStr);
+        var pageIndex = string.IsNullOrEmpty(pageIndexStr?.ToString()) ? 0 : Convert.ToInt32(pageIndexStr);
 
         var response = SessionManager.GetPageList(pageSize, pageIndex);
         var res = HttpResult.CreateOk($"当前在线玩家", response);

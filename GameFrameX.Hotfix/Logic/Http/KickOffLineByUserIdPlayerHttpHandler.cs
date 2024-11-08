@@ -17,9 +17,9 @@ public sealed class KickOffLineByUserIdPlayerHttpHandler : BaseHttpHandler
     /// <param name="url"></param>
     /// <param name="parameters"></param>
     /// <returns></returns>
-    public override Task<string> Action(string ip, string url, Dictionary<string, string> parameters)
+    public override Task<string> Action(string ip, string url, Dictionary<string, object> parameters)
     {
-        if (parameters.TryGetValue("roleId", out var roleId) && !string.IsNullOrEmpty(roleId))
+        if (parameters.TryGetValue("roleId", out var roleId) && !string.IsNullOrEmpty(roleId.ToString()))
         {
             SessionManager.KickOffLineByUserId(Convert.ToInt64(roleId));
 

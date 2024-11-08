@@ -30,7 +30,7 @@ namespace GameFrameX.Hotfix.Logic.Http
         /// <param name="url"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public override Task<string> Action(string ip, string url, Dictionary<string, string> parameters)
+        public override Task<string> Action(string ip, string url, Dictionary<string, object> parameters)
         {
             var response = new HttpTestRes
                            {
