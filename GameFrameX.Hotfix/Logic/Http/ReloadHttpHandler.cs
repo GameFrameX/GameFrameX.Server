@@ -4,7 +4,7 @@ namespace GameFrameX.Hotfix.Logic.Http;
 
 /// <summary>
 /// 热更新
-/// http://localhost:20001/game/api?command=Reload&amp;version=1.0.0
+/// http://localhost:20001/game/api/Reload?version=1.0.0
 /// </summary>
 [HttpMessageMapping(typeof(ReloadHttpHandler))]
 public sealed class ReloadHttpHandler : BaseHttpHandler

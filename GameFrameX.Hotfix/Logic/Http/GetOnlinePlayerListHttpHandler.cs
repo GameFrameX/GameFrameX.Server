@@ -5,6 +5,7 @@ namespace GameFrameX.Hotfix.Logic.Http;
 
 /// <summary>
 /// 获取在线玩家列表
+/// http://localhost:20001/game/api/GetOnlinePlayerList
 /// </summary>
 [HttpMessageMapping(typeof(GetOnlinePlayerListHttpHandler))]
 public sealed class GetOnlinePlayerListHttpHandler : BaseHttpHandler

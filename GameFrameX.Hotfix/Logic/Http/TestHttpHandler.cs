@@ -4,7 +4,7 @@ namespace GameFrameX.Hotfix.Logic.Http
 {
     /// <summary>
     /// 测试
-    /// http://localhost:20001/game/api?command=test
+    /// http://localhost:20001/game/api/test
     /// </summary>
     [HttpMessageMapping(typeof(TestHttpHandler))]
     public sealed class TestHttpHandler : BaseHttpHandler
