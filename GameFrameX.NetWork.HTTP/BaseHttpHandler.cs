@@ -2,6 +2,7 @@
 using System.Text;
 using GameFrameX.Log;
 using GameFrameX.Setting;
+using GameFrameX.Utility;
 
 namespace GameFrameX.NetWork.HTTP
 {
@@ -26,9 +27,7 @@ namespace GameFrameX.NetWork.HTTP
         public static string GetStringSign(string str)
         {
             //取md5
-            var    data     = Encoding.UTF8.GetBytes(str);
-            byte[] md5Bytes = MD5.Create().ComputeHash(data);
-            string md5      = BitConverter.ToString(md5Bytes).Replace("-", "").ToLower();
+            string md5 = Hash.MD5.Hash(str);
 
             int checkCode1 = 0; //校验码
             int checkCode2 = 0;
