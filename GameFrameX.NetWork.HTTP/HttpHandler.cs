@@ -22,14 +22,14 @@ namespace GameFrameX.NetWork.HTTP
         /// <param name="aopHandlerTypes"></param>
         public static async Task HandleRequest(HttpContext context, Func<string, BaseHttpHandler> baseHandler, List<IHttpAopHandler> aopHandlerTypes = null)
         {
+            string ip = context.Connection.RemoteIpAddress?.ToString();
+            string url = context.Request.PathBase + context.Request.Path;
+            string command = context.Request.Path.ToString().Substring(HttpServer.ApiRootPath.Length);
+            string logHeader = $"[HTTPServer] TraceIdentifier:[{context.TraceIdentifier}], 来源[{ip}], url:[{url}]";
+            LogHelper.Info($"{logHeader}，请求方式:[{context.Request.Method}]");
             try
             {
-                string ip = context.Connection.RemoteIpAddress?.ToString();
-                string url = context.Request.PathBase + context.Request.Path;
-
-                string command = context.Request.Path.ToString().Substring(HttpServer.ApiRootPath.Length);
-                LogHelper.Info($"收到来自[{ip}]的HTTP请求. 请求url:[{url}],TraceIdentifier:[{context.TraceIdentifier}]");
-                Dictionary<string, string> paramMap = new Dictionary<string, string>();
+                Dictionary<string, object> paramMap = new Dictionary<string, object>();
 
                 foreach (var keyValuePair in context.Request.Query)
                 {
@@ -48,13 +48,13 @@ namespace GameFrameX.NetWork.HTTP
 
                     var isJson = context.Request.HasJsonContentType();
                     var isForm = context.Request.HasFormContentType;
-                    LogHelper.Info("isJson:" + isJson);
+                    // LogHelper.Info("isJson:" + isJson);
                     if (isJson)
                     {
                         JsonElement json = await context.Request.ReadFromJsonAsync<JsonElement>();
                         foreach (var keyValuePair in json.EnumerateObject())
                         {
-                            if (!paramMap.TryAdd(keyValuePair.Name, keyValuePair.Value.GetString()))
+                            if (!paramMap.TryAdd(keyValuePair.Name, keyValuePair.Value))
                             {
                                 // 参数Key发生重复
                                 await context.Response.WriteAsync(HttpResult.CreateErrorParam("参数重复了:" + keyValuePair.Name));
@@ -81,19 +81,22 @@ namespace GameFrameX.NetWork.HTTP
                     }
                 }
 
-                var str = new StringBuilder();
-                str.Append($"TraceIdentifier:[{context.TraceIdentifier}]:请求参数:");
-                foreach (var parameter in paramMap)
+                if (paramMap.Count > 0)
                 {
-                    if (parameter.Key.IsNullOrEmptyOrWhiteSpace())
+                    var str = new StringBuilder();
+                    str.Append("请求参数:");
+                    foreach (var parameter in paramMap)
                     {
-                        continue;
+                        if (parameter.Key.IsNullOrEmptyOrWhiteSpace())
+                        {
+                            continue;
+                        }
+
+                        str.Append('\'').Append(parameter.Key).Append("'='").Append(parameter.Value).Append("'  ");
                     }
 
-                    str.Append('\'').Append(parameter.Key).Append("'='").Append(parameter.Value).Append("'  ");
+                    LogHelper.Info(str.ToString());
                 }
-
-                LogHelper.Info(str.ToString());
 
                 // 检查指令是否有效
                 if (command.IsNullOrEmptyOrWhiteSpace())
@@ -133,20 +136,20 @@ namespace GameFrameX.NetWork.HTTP
                 }
 
                 //验证
-                var checkCode = handler.CheckSign(paramMap);
-                if (checkCode.IsNotNullOrEmptyOrWhiteSpace())
+                var isChecked = handler.CheckSign(paramMap, out var error);
+                if (isChecked == false)
                 {
                     await context.Response.WriteAsync(HttpResult.CheckFailed);
                     return;
                 }
 
                 var result = await Task.Run(() => { return handler.Action(ip, url, paramMap); });
-                LogHelper.Warn($"执行http命令：{command}, TraceIdentifier:[{context.TraceIdentifier}]: Results: {result}");
+                LogHelper.Warn($"{logHeader}, 结果: {result}");
                 await context.Response.WriteAsync(result);
             }
             catch (Exception e)
             {
-                LogHelper.Error("执行http异常. {0} {1}", e.Message, e.StackTrace);
+                LogHelper.Error($"{logHeader}, 发生异常. {{0}} {{1}}", e.Message, e.StackTrace);
                 await context.Response.WriteAsync(HttpResult.Create(HttpStatusCode.ServerError, e.Message));
             }
         }
