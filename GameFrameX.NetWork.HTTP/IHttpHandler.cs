@@ -17,5 +17,5 @@ public interface IHttpHandler
     /// <param name="url">请求URL</param>
     /// <param name="paramMap">参数字典</param>
     /// <returns></returns>
-    Task<string> Action(string ip, string url, Dictionary<string, string> paramMap);
+    Task<string> Action(string ip, string url, Dictionary<string, object> paramMap);
 }

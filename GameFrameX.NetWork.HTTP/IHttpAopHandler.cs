@@ -20,5 +20,5 @@ public interface IHttpAopHandler
     /// <param name="url">请求地址</param>
     /// <param name="paramMap">参数列表</param>
     /// <returns>需要继续执行返回TRUE,否则返回FALSE</returns>
-    bool Run(HttpContext context, string ip, string url, Dictionary<string, string> paramMap);
+    bool Run(HttpContext context, string ip, string url, Dictionary<string, object> paramMap);
 }

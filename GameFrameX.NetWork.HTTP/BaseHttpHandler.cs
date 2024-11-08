@@ -12,7 +12,7 @@ namespace GameFrameX.NetWork.HTTP
     public abstract class BaseHttpHandler : IHttpHandler
     {
         /// <summary>
-        /// 是否使用内部验证方式
+        /// 是否校验签名
         /// </summary>
         public virtual bool IsCheckSign
         {
@@ -51,42 +51,46 @@ namespace GameFrameX.NetWork.HTTP
         /// <summary>
         /// 校验签名
         /// </summary>
-        /// <param name="paramMap"></param>
+        /// <param name="paramMap">参数列表</param>
+        /// <param name="error">错误消息</param>
         /// <returns></returns>
-        public string CheckSign(Dictionary<string, string> paramMap)
+        public bool CheckSign(Dictionary<string, object> paramMap, out string error)
         {
+            error = string.Empty;
             // if (!IsCheckSign || GlobalSettings.IsDebug)
             if (!IsCheckSign)
             {
-                return "";
+                // 不校验
+                return true;
             }
 
             //内部验证
             if (!paramMap.ContainsKey("token") || !paramMap.ContainsKey("timestamp"))
             {
                 LogHelper.Error("http命令未包含验证参数");
-                return HttpResult.Create(HttpStatusCode.Illegal, "http命令未包含验证参数");
+                error = HttpResult.Create(HttpStatusCode.Illegal, "http命令未包含验证参数");
+                return false;
             }
 
-            var sign = paramMap["token"];
-            var time = paramMap["timestamp"];
-            long.TryParse(time, out long timeTick);
+            var sign = paramMap["token"].ToString();
+            var time = paramMap["timestamp"].ToString();
+            long.TryParse(time, out var timeTick);
             var span = new TimeSpan(Math.Abs(DateTime.Now.Ticks - timeTick));
             if (span.TotalMinutes > 5) //5分钟内有效
             {
                 LogHelper.Error("http命令已过期");
-                return HttpResult.Create(HttpStatusCode.Illegal, "http命令已过期");
+                error = HttpResult.Create(HttpStatusCode.Illegal, "http命令已过期");
+                return false;
             }
 
             var str = 21001 + time;
             if (sign == GetStringSign(str))
             {
-                return "";
+                return true;
             }
-            else
-            {
-                return HttpResult.Create(HttpStatusCode.Illegal, "命令验证失败");
-            }
+
+            error = HttpResult.Create(HttpStatusCode.Illegal, "命令验证失败");
+            return false;
         }
 
         /// <summary>
@@ -96,6 +100,6 @@ namespace GameFrameX.NetWork.HTTP
         /// <param name="url"></param>
         /// <param name="paramMap"></param>
         /// <returns></returns>
-        public abstract Task<string> Action(string ip, string url, Dictionary<string, string> paramMap);
+        public abstract Task<string> Action(string ip, string url, Dictionary<string, object> paramMap);
     }
 }
