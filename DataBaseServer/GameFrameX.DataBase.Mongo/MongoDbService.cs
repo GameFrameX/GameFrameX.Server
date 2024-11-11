@@ -184,6 +184,7 @@ public sealed class MongoDbService : IDatabaseService
     {
         var collection = GetCollection<TState>();
         state.CreateTime = TimeHelper.UnixTimeMilliseconds();
+        state.UpdateTime = state.CreateTime;
         var filter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
         var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
         return result.ModifiedCount;
@@ -201,6 +202,7 @@ public sealed class MongoDbService : IDatabaseService
         foreach (var cacheState in cacheStates)
         {
             cacheState.CreateTime = TimeHelper.UnixTimeMilliseconds();
+            cacheState.UpdateTime = cacheState.CreateTime;
         }
 
         await collection.InsertManyAsync(cacheStates);
