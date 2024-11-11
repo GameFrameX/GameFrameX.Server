@@ -92,6 +92,23 @@ public sealed class SqlSugarDbService : IDatabaseService
     }
 
     /// <summary>
+    /// 增加或更新数据
+    /// </summary>
+    /// <param name="state">数据对象</param>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <returns>修改的条数</returns>
+    public async Task<long> AddOrUpdateAsync<TState>(TState state) where TState : class, ICacheState, new()
+    {
+        var result = await FindAsync<TState>(m => m.Id == state.Id);
+        if (result == null)
+        {
+            return await AddAsync(state);
+        }
+
+        return await UpdateCountAsync(state);
+    }
+
+    /// <summary>
     /// 增加一个列表数据
     /// </summary>
     /// <param name="states"></param>
@@ -1436,6 +1453,30 @@ public sealed class SqlSugarDbService : IDatabaseService
         }
 
         return state;
+    }
+
+    /// <summary>
+    /// 保存数据
+    /// </summary>
+    /// <param name="state"></param>
+    /// <typeparam name="TState"></typeparam>
+    /// <returns></returns>
+    public async Task<long> UpdateCountAsync<TState>(TState state) where TState : class, ICacheState, new()
+    {
+        var isChanged = state.IsModify();
+        if (isChanged)
+        {
+            state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
+            state.UpdateCount++;
+            var result = await Client.Updateable(state).ExecuteCommandAsync();
+            if (result > 0)
+            {
+                state.SaveToDbPostHandler();
+                return result;
+            }
+        }
+
+        return 0;
     }
 
     /// <summary>

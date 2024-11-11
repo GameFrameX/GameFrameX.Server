@@ -117,6 +117,14 @@ public interface IDatabaseService
     Task<long> AddAsync<TState>(TState state) where TState : class, ICacheState, new();
 
     /// <summary>
+    /// 增加或更新数据
+    /// </summary>
+    /// <param name="state">数据对象</param>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <returns>修改的条数</returns>
+    Task<long> AddOrUpdateAsync<TState>(TState state) where TState : class, ICacheState, new();
+
+    /// <summary>
     /// 保存多条数据
     /// </summary>
     /// <param name="states">数据对象</param>
