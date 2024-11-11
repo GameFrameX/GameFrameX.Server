@@ -4,7 +4,7 @@ namespace GameFrameX.DataBase.Mongo;
 /// MongoDB索引
 /// </summary>
 [AttributeUsage(AttributeTargets.Property)]
-public class MongoIndexAttribute : Attribute
+public sealed class MongoIndexAttribute : Attribute
 {
     /// <summary>
     /// 是否唯一，默认为false
