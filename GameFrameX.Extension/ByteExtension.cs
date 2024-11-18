@@ -419,7 +419,7 @@ namespace GameFrameX.Extension
         /// <param name="buffer">要写入的缓冲区。</param>
         /// <param name="value">要写入的值。</param>
         /// <param name="offset">要写入值的缓冲区中的偏移量。</param>
-        public static unsafe void WriteBytes(this byte[] buffer, byte[] value, ref int offset)
+        public static void WriteBytes(this byte[] buffer, byte[] value, ref int offset)
         {
             if (value == null)
             {
@@ -434,7 +434,7 @@ namespace GameFrameX.Extension
             }
 
             buffer.WriteInt(value.Length, ref offset);
-            System.Array.Copy(value, 0, buffer, offset, value.Length);
+            Array.Copy(value, 0, buffer, offset, value.Length);
             offset += value.Length;
         }
 
@@ -494,9 +494,11 @@ namespace GameFrameX.Extension
         public static unsafe void WriteString(this byte[] buffer, string value, ref int offset)
         {
             if (value == null)
+            {
                 value = string.Empty;
+            }
 
-            int len = System.Text.Encoding.UTF8.GetByteCount(value);
+            int len = Encoding.UTF8.GetByteCount(value);
 
             if (len > short.MaxValue)
             {
@@ -512,7 +514,7 @@ namespace GameFrameX.Extension
 
             fixed (byte* ptr = buffer)
             {
-                System.Text.Encoding.UTF8.GetBytes(value, 0, value.Length, buffer, offset + ConstSize.ShortSize);
+                Encoding.UTF8.GetBytes(value, 0, value.Length, buffer, offset + ConstSize.ShortSize);
                 WriteShort(buffer, (short)len, ref offset);
                 offset += len;
             }
@@ -616,7 +618,7 @@ namespace GameFrameX.Extension
         /// <param name="offset">操作的起始偏移量。</param>
         /// <param name="len">需要读取的字节数组长度。</param>
         /// <returns>返回从缓冲区读取的 byte[] 类型数据。</returns>
-        public static unsafe byte[] ReadBytes(this byte[] buffer, int offset, int len)
+        public static byte[] ReadBytes(this byte[] buffer, int offset, int len)
         {
             if (len <= 0 || offset > buffer.Length + len * ConstSize.ByteSize)
             {
@@ -624,7 +626,7 @@ namespace GameFrameX.Extension
             }
 
             var data = new byte[len];
-            System.Array.Copy(buffer, offset, data, 0, len);
+            Array.Copy(buffer, offset, data, 0, len);
             return data;
         }
 
@@ -635,7 +637,7 @@ namespace GameFrameX.Extension
         /// <param name="offset">操作的起始偏移量。</param>
         /// <param name="len">需要读取的字节数组长度。</param>
         /// <returns>返回从缓冲区读取的 byte[] 类型数据。</returns>
-        public static unsafe byte[] ReadBytes(this byte[] buffer, ref int offset, int len)
+        public static byte[] ReadBytes(this byte[] buffer, ref int offset, int len)
         {
             if (len <= 0 || offset > buffer.Length + len * ConstSize.ByteSize)
             {
@@ -643,7 +645,7 @@ namespace GameFrameX.Extension
             }
 
             var data = new byte[len];
-            System.Array.Copy(buffer, offset, data, 0, len);
+            Array.Copy(buffer, offset, data, 0, len);
             offset += len;
             return data;
         }
@@ -654,7 +656,7 @@ namespace GameFrameX.Extension
         /// <param name="buffer">要操作的字节缓冲区。</param>
         /// <param name="offset">操作的起始偏移量，操作完成后，会自动累加读取的字节长度以及 int 类型长度。</param>
         /// <returns>返回从缓冲区读取的 byte[] 类型数据。</returns>
-        public static unsafe byte[] ReadBytes(this byte[] buffer, ref int offset)
+        public static byte[] ReadBytes(this byte[] buffer, ref int offset)
         {
             var len = ReadInt(buffer, ref offset);
 
@@ -664,7 +666,7 @@ namespace GameFrameX.Extension
             }
 
             var data = new byte[len];
-            System.Array.Copy(buffer, offset, data, 0, len);
+            Array.Copy(buffer, offset, data, 0, len);
             offset += len;
             return data;
         }
@@ -708,7 +710,7 @@ namespace GameFrameX.Extension
                     return string.Empty;
                 }
 
-                var value = System.Text.Encoding.UTF8.GetString(buffer, offset, len);
+                var value = Encoding.UTF8.GetString(buffer, offset, len);
                 offset += len;
                 return value;
             }

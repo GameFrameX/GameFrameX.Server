@@ -50,8 +50,8 @@ public class NullableConcurrentDictionary<TKey, TValue> : ConcurrentDictionary<N
     /// <param name="key"></param>
     public new TValue this[NullObject<TKey> key]
     {
-        get => base.TryGetValue(key, out var value) ? value : FallbackValue;
-        set => base[key] = value;
+        get { return base.TryGetValue(key, out var value) ? value : FallbackValue; }
+        set { base[key] = value; }
     }
 
     /// <summary>
@@ -156,8 +156,8 @@ public class NullableConcurrentDictionary<TKey, TValue> : ConcurrentDictionary<N
     /// <param name="key"></param>
     public TValue this[TKey key]
     {
-        get => base.TryGetValue(new NullObject<TKey>(key), out var value) ? value : FallbackValue;
-        set => base[new NullObject<TKey>(key)] = value;
+        get { return base.TryGetValue(new NullObject<TKey>(key), out var value) ? value : FallbackValue; }
+        set { base[new NullObject<TKey>(key)] = value; }
     }
 
     /// <summary>
@@ -251,12 +251,12 @@ public class NullableConcurrentDictionary<TKey, TValue> : ConcurrentDictionary<N
     /// <param name="dic"></param>
     public static implicit operator ConcurrentDictionary<TKey, TValue>(NullableConcurrentDictionary<TKey, TValue> dic)
     {
-        var newdic = new ConcurrentDictionary<TKey, TValue>();
+        var concurrentDictionary = new ConcurrentDictionary<TKey, TValue>();
         foreach (var p in dic)
         {
-            newdic[p.Key] = p.Value;
+            concurrentDictionary[p.Key] = p.Value;
         }
 
-        return newdic;
+        return concurrentDictionary;
     }
 }

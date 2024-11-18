@@ -18,7 +18,7 @@ namespace GameFrameX.Extension
         /// <param name="param">访问器中的参数表达式。</param>
         public ExpressionVisitorCustom(ParameterExpression param)
         {
-            this.Parameter = param;
+            Parameter = param;
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace GameFrameX.Extension
         /// <returns>返回访问后的表达式。</returns>
         protected override Expression VisitParameter(ParameterExpression node)
         {
-            return this.Parameter;
+            return Parameter;
         }
     }
 }

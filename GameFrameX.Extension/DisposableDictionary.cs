@@ -7,7 +7,7 @@
 /// <typeparam name="TValue"></typeparam>
 public class DisposableDictionary<TKey, TValue> : NullableDictionary<TKey, TValue>, IDisposable where TValue : IDisposable
 {
-    private bool isDisposed;
+    private bool _isDisposed;
 
     /// <summary>
     /// 终结器
@@ -22,13 +22,13 @@ public class DisposableDictionary<TKey, TValue> : NullableDictionary<TKey, TValu
     /// </summary>
     public void Dispose()
     {
-        if (isDisposed)
+        if (_isDisposed)
         {
             return;
         }
 
         Dispose(true);
-        isDisposed = true;
+        _isDisposed = true;
         GC.SuppressFinalize(this);
     }
 
@@ -43,7 +43,7 @@ public class DisposableDictionary<TKey, TValue> : NullableDictionary<TKey, TValu
     /// 
     /// </summary>
     /// <param name="fallbackValue"></param>
-    public DisposableDictionary(TValue fallbackValue) : base()
+    public DisposableDictionary(TValue fallbackValue)
     {
         FallbackValue = fallbackValue;
     }

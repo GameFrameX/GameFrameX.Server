@@ -51,7 +51,7 @@
         /// <returns>指定键的值。</returns>
         public static TValue GetOrAdd<TKey, TValue>(this Dictionary<TKey, TValue> self, TKey key) where TValue : new()
         {
-            return GetOrAdd(self, key, k => new TValue());
+            return GetOrAdd(self, key, _ => new TValue());
         }
 
         /// <summary>

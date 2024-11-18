@@ -105,7 +105,7 @@ public static class SequenceReaderExtension
                 return false;
             }
 
-            num1 += num2 * (int)num3;
+            num1 += num2 * num3;
             num2 /= 256;
         }
 
@@ -136,7 +136,7 @@ public static class SequenceReaderExtension
                 return false;
             }
 
-            num1 += num2 * (long)num3;
+            num1 += num2 * num3;
             num2 /= 256L;
         }
 

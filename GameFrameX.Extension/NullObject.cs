@@ -18,7 +18,10 @@ public readonly record struct NullObject<T> : IComparable, IComparable<T>, IEqua
     /// <summary>
     /// 
     /// </summary>
-    public static NullObject<T> Null => new();
+    public static NullObject<T> Null
+    {
+        get { return new NullObject<T>(); }
+    }
 
     /// <summary>
     /// 
@@ -97,7 +100,9 @@ public readonly record struct NullObject<T> : IComparable, IComparable<T>, IEqua
         return EqualityComparer<T>.Default.GetHashCode(Item);
     }
 
-    /// <summary>指示当前对象是否等于同一类型的另一个对象。</summary>
+    /// <summary>
+    /// 指示当前对象是否等于同一类型的另一个对象。
+    /// </summary>
     /// <param name="other">一个与此对象进行比较的对象。</param>
     /// <returns>如果当前对象等于 <paramref name="other" /> 参数，则为 true；否则为 false。</returns>
     public bool Equals(NullObject<T> other)

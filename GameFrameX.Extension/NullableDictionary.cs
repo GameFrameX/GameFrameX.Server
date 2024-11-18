@@ -75,8 +75,8 @@ public class NullableDictionary<TKey, TValue> : Dictionary<NullObject<TKey>, TVa
     /// <param name="key"></param>
     public new TValue this[NullObject<TKey> key]
     {
-        get => TryGetValue(key, out var value) ? value : FallbackValue;
-        set => base[key] = value;
+        get { return TryGetValue(key, out var value) ? value : FallbackValue; }
+        set { base[key] = value; }
     }
 
     /// <summary>
@@ -181,8 +181,8 @@ public class NullableDictionary<TKey, TValue> : Dictionary<NullObject<TKey>, TVa
     /// <param name="key"></param>
     public TValue this[TKey key]
     {
-        get => TryGetValue(new NullObject<TKey>(key), out var value) ? value : FallbackValue;
-        set => base[new NullObject<TKey>(key)] = value;
+        get { return TryGetValue(new NullObject<TKey>(key), out var value) ? value : FallbackValue; }
+        set { base[new NullObject<TKey>(key)] = value; }
     }
 
     /// <summary>
@@ -262,12 +262,12 @@ public class NullableDictionary<TKey, TValue> : Dictionary<NullObject<TKey>, TVa
     /// <param name="dic"></param>
     public static implicit operator Dictionary<TKey, TValue>(NullableDictionary<TKey, TValue> dic)
     {
-        var newdic = new Dictionary<TKey, TValue>();
+        var dictionary = new Dictionary<TKey, TValue>();
         foreach (var p in dic)
         {
-            newdic[p.Key] = p.Value;
+            dictionary[p.Key] = p.Value;
         }
 
-        return newdic;
+        return dictionary;
     }
 }

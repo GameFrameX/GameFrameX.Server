@@ -10,74 +10,74 @@ public static class IDictionaryExtensions
     /// <summary>
     /// 添加或更新键值对
     /// </summary>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
-    public static void AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> @this, IDictionary<TKey, TValue> that)
+    public static void AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> self, IDictionary<TKey, TValue> that)
     {
         foreach (var item in that)
         {
-            @this[item.Key] = item.Value;
+            self[item.Key] = item.Value;
         }
     }
 
     /// <summary>
     /// 添加或更新键值对
     /// </summary>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
-    public static void AddOrUpdate<TKey, TValue>(this NullableDictionary<TKey, TValue> @this, IDictionary<TKey, TValue> that)
+    public static void AddOrUpdate<TKey, TValue>(this NullableDictionary<TKey, TValue> self, IDictionary<TKey, TValue> that)
     {
         foreach (var item in that)
         {
-            @this[item.Key] = item.Value;
+            self[item.Key] = item.Value;
         }
     }
 
     /// <summary>
     /// 添加或更新键值对
     /// </summary>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
-    public static void AddOrUpdate<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> @this, IDictionary<TKey, TValue> that)
+    public static void AddOrUpdate<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> self, IDictionary<TKey, TValue> that)
     {
         foreach (var item in that)
         {
-            @this[item.Key] = item.Value;
+            self[item.Key] = item.Value;
         }
     }
 
     /// <summary>
     /// 添加或更新键值对
     /// </summary>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key">键</param>
     /// <param name="addValue">添加时的值</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static TValue AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> @this, TKey key, TValue addValue, Func<TKey, TValue, TValue> updateValueFactory)
+    public static TValue AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> self, TKey key, TValue addValue, Func<TKey, TValue, TValue> updateValueFactory)
     {
-        if (!@this.TryAdd(key, addValue))
+        if (!self.TryAdd(key, addValue))
         {
-            @this[key] = updateValueFactory(key, @this[key]);
+            self[key] = updateValueFactory(key, self[key]);
         }
 
-        return @this[key];
+        return self[key];
     }
 
     /// <summary>
     /// 添加或更新键值对
     /// </summary>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key">键</param>
     /// <param name="addValue">添加时的值</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static TValue AddOrUpdate<TKey, TValue>(this NullableDictionary<TKey, TValue> @this, TKey key, TValue addValue, Func<TKey, TValue, TValue> updateValueFactory)
+    public static TValue AddOrUpdate<TKey, TValue>(this NullableDictionary<TKey, TValue> self, TKey key, TValue addValue, Func<TKey, TValue, TValue> updateValueFactory)
     {
-        if (!@this.TryAdd(key, addValue))
+        if (!self.TryAdd(key, addValue))
         {
-            @this[key] = updateValueFactory(key, @this[key]);
+            self[key] = updateValueFactory(key, self[key]);
         }
 
-        return @this[key];
+        return self[key];
     }
 
     /// <summary>
@@ -85,18 +85,18 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key">键</param>
     /// <param name="addValue">添加时的值</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static TValue AddOrUpdate<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> @this, TKey key, TValue addValue, Func<TKey, TValue, TValue> updateValueFactory)
+    public static TValue AddOrUpdate<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> self, TKey key, TValue addValue, Func<TKey, TValue, TValue> updateValueFactory)
     {
-        if (!@this.TryAdd(key, addValue))
+        if (!self.TryAdd(key, addValue))
         {
-            @this[key] = updateValueFactory(key, @this[key]);
+            self[key] = updateValueFactory(key, self[key]);
         }
 
-        return @this[key];
+        return self[key];
     }
 
     /// <summary>
@@ -104,35 +104,35 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key">键</param>
     /// <param name="addValue">添加时的值</param>
     /// <param name="updateValue">更新时的值</param>
-    public static TValue AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> @this, TKey key, TValue addValue, TValue updateValue)
+    public static TValue AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> self, TKey key, TValue addValue, TValue updateValue)
     {
-        if (!@this.TryAdd(key, addValue))
+        if (!self.TryAdd(key, addValue))
         {
-            @this[key] = updateValue;
+            self[key] = updateValue;
         }
 
-        return @this[key];
+        return self[key];
     }
 
     /// <summary>
     /// 添加或更新键值对
     /// </summary>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key">键</param>
     /// <param name="addValue">添加时的值</param>
     /// <param name="updateValue">更新时的值</param>
-    public static TValue AddOrUpdate<TKey, TValue>(this NullableDictionary<TKey, TValue> @this, TKey key, TValue addValue, TValue updateValue)
+    public static TValue AddOrUpdate<TKey, TValue>(this NullableDictionary<TKey, TValue> self, TKey key, TValue addValue, TValue updateValue)
     {
-        if (!@this.TryAdd(key, addValue))
+        if (!self.TryAdd(key, addValue))
         {
-            @this[key] = updateValue;
+            self[key] = updateValue;
         }
 
-        return @this[key];
+        return self[key];
     }
 
     /// <summary>
@@ -140,18 +140,18 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key">键</param>
     /// <param name="addValue">添加时的值</param>
     /// <param name="updateValue">更新时的值</param>
-    public static TValue AddOrUpdate<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> @this, TKey key, TValue addValue, TValue updateValue)
+    public static TValue AddOrUpdate<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> self, TKey key, TValue addValue, TValue updateValue)
     {
-        if (!@this.TryAdd(key, addValue))
+        if (!self.TryAdd(key, addValue))
         {
-            @this[key] = updateValue;
+            self[key] = updateValue;
         }
 
-        return @this[key];
+        return self[key];
     }
 
     /// <summary>
@@ -159,14 +159,14 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static void AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> @this, IDictionary<TKey, TValue> that, Func<TKey, TValue, TValue> updateValueFactory)
+    public static void AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> self, IDictionary<TKey, TValue> that, Func<TKey, TValue, TValue> updateValueFactory)
     {
         foreach (var item in that)
         {
-            AddOrUpdate(@this, item.Key, item.Value, updateValueFactory);
+            AddOrUpdate(self, item.Key, item.Value, updateValueFactory);
         }
     }
 
@@ -175,14 +175,14 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static void AddOrUpdate<TKey, TValue>(this NullableDictionary<TKey, TValue> @this, IDictionary<TKey, TValue> that, Func<TKey, TValue, TValue> updateValueFactory)
+    public static void AddOrUpdate<TKey, TValue>(this NullableDictionary<TKey, TValue> self, IDictionary<TKey, TValue> that, Func<TKey, TValue, TValue> updateValueFactory)
     {
         foreach (var item in that)
         {
-            AddOrUpdate(@this, item.Key, item.Value, updateValueFactory);
+            AddOrUpdate(self, item.Key, item.Value, updateValueFactory);
         }
     }
 
@@ -191,14 +191,14 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static void AddOrUpdate<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> @this, IDictionary<TKey, TValue> that, Func<TKey, TValue, TValue> updateValueFactory)
+    public static void AddOrUpdate<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> self, IDictionary<TKey, TValue> that, Func<TKey, TValue, TValue> updateValueFactory)
     {
         foreach (var item in that)
         {
-            AddOrUpdate(@this, item.Key, item.Value, updateValueFactory);
+            AddOrUpdate(self, item.Key, item.Value, updateValueFactory);
         }
     }
 
@@ -207,18 +207,18 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key">键</param>
     /// <param name="addValueFactory">添加时的操作</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static TValue AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> @this, TKey key, Func<TKey, TValue> addValueFactory, Func<TKey, TValue, TValue> updateValueFactory)
+    public static TValue AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> self, TKey key, Func<TKey, TValue> addValueFactory, Func<TKey, TValue, TValue> updateValueFactory)
     {
-        if (!@this.TryAdd(key, addValueFactory(key)))
+        if (!self.TryAdd(key, addValueFactory(key)))
         {
-            @this[key] = updateValueFactory(key, @this[key]);
+            self[key] = updateValueFactory(key, self[key]);
         }
 
-        return @this[key];
+        return self[key];
     }
 
     /// <summary>
@@ -226,18 +226,18 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key">键</param>
     /// <param name="addValueFactory">添加时的操作</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static TValue AddOrUpdate<TKey, TValue>(this NullableDictionary<TKey, TValue> @this, TKey key, Func<TKey, TValue> addValueFactory, Func<TKey, TValue, TValue> updateValueFactory)
+    public static TValue AddOrUpdate<TKey, TValue>(this NullableDictionary<TKey, TValue> self, TKey key, Func<TKey, TValue> addValueFactory, Func<TKey, TValue, TValue> updateValueFactory)
     {
-        if (!@this.TryAdd(key, addValueFactory(key)))
+        if (!self.TryAdd(key, addValueFactory(key)))
         {
-            @this[key] = updateValueFactory(key, @this[key]);
+            self[key] = updateValueFactory(key, self[key]);
         }
 
-        return @this[key];
+        return self[key];
     }
 
     /// <summary>
@@ -245,18 +245,18 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key">键</param>
     /// <param name="addValueFactory">添加时的操作</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static TValue AddOrUpdate<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> @this, TKey key, Func<TKey, TValue> addValueFactory, Func<TKey, TValue, TValue> updateValueFactory)
+    public static TValue AddOrUpdate<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> self, TKey key, Func<TKey, TValue> addValueFactory, Func<TKey, TValue, TValue> updateValueFactory)
     {
-        if (!@this.TryAdd(key, addValueFactory(key)))
+        if (!self.TryAdd(key, addValueFactory(key)))
         {
-            @this[key] = updateValueFactory(key, @this[key]);
+            self[key] = updateValueFactory(key, self[key]);
         }
 
-        return @this[key];
+        return self[key];
     }
 
     /// <summary>
@@ -264,18 +264,18 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key">键</param>
     /// <param name="addValue">添加时的值</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static async Task<TValue> AddOrUpdateAsync<TKey, TValue>(this IDictionary<TKey, TValue> @this, TKey key, TValue addValue, Func<TKey, TValue, Task<TValue>> updateValueFactory)
+    public static async Task<TValue> AddOrUpdateAsync<TKey, TValue>(this IDictionary<TKey, TValue> self, TKey key, TValue addValue, Func<TKey, TValue, Task<TValue>> updateValueFactory)
     {
-        if (!@this.TryAdd(key, addValue))
+        if (!self.TryAdd(key, addValue))
         {
-            @this[key] = await updateValueFactory(key, @this[key]);
+            self[key] = await updateValueFactory(key, self[key]);
         }
 
-        return @this[key];
+        return self[key];
     }
 
     /// <summary>
@@ -283,18 +283,18 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key">键</param>
     /// <param name="addValue">添加时的值</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static async Task<TValue> AddOrUpdateAsync<TKey, TValue>(this NullableDictionary<TKey, TValue> @this, TKey key, TValue addValue, Func<TKey, TValue, Task<TValue>> updateValueFactory)
+    public static async Task<TValue> AddOrUpdateAsync<TKey, TValue>(this NullableDictionary<TKey, TValue> self, TKey key, TValue addValue, Func<TKey, TValue, Task<TValue>> updateValueFactory)
     {
-        if (!@this.TryAdd(key, addValue))
+        if (!self.TryAdd(key, addValue))
         {
-            @this[key] = await updateValueFactory(key, @this[key]);
+            self[key] = await updateValueFactory(key, self[key]);
         }
 
-        return @this[key];
+        return self[key];
     }
 
     /// <summary>
@@ -302,18 +302,18 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key">键</param>
     /// <param name="addValue">添加时的值</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static async Task<TValue> AddOrUpdateAsync<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> @this, TKey key, TValue addValue, Func<TKey, TValue, Task<TValue>> updateValueFactory)
+    public static async Task<TValue> AddOrUpdateAsync<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> self, TKey key, TValue addValue, Func<TKey, TValue, Task<TValue>> updateValueFactory)
     {
-        if (!@this.TryAdd(key, addValue))
+        if (!self.TryAdd(key, addValue))
         {
-            @this[key] = await updateValueFactory(key, @this[key]);
+            self[key] = await updateValueFactory(key, self[key]);
         }
 
-        return @this[key];
+        return self[key];
     }
 
     /// <summary>
@@ -321,12 +321,12 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static Task AddOrUpdateAsync<TKey, TValue>(this IDictionary<TKey, TValue> @this, IDictionary<TKey, TValue> that, Func<TKey, TValue, Task<TValue>> updateValueFactory)
+    public static Task AddOrUpdateAsync<TKey, TValue>(this IDictionary<TKey, TValue> self, IDictionary<TKey, TValue> that, Func<TKey, TValue, Task<TValue>> updateValueFactory)
     {
-        return that.ForeachAsync(item => AddOrUpdateAsync(@this, item.Key, item.Value, updateValueFactory));
+        return that.ForeachAsync(item => AddOrUpdateAsync(self, item.Key, item.Value, updateValueFactory));
     }
 
     /// <summary>
@@ -334,12 +334,12 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static Task AddOrUpdateAsync<TKey, TValue>(this NullableDictionary<TKey, TValue> @this, IDictionary<TKey, TValue> that, Func<TKey, TValue, Task<TValue>> updateValueFactory)
+    public static Task AddOrUpdateAsync<TKey, TValue>(this NullableDictionary<TKey, TValue> self, IDictionary<TKey, TValue> that, Func<TKey, TValue, Task<TValue>> updateValueFactory)
     {
-        return that.ForeachAsync(item => AddOrUpdateAsync(@this, item.Key, item.Value, updateValueFactory));
+        return that.ForeachAsync(item => AddOrUpdateAsync(self, item.Key, item.Value, updateValueFactory));
     }
 
     /// <summary>
@@ -347,12 +347,12 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static Task AddOrUpdateAsync<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> @this, IDictionary<TKey, TValue> that, Func<TKey, TValue, Task<TValue>> updateValueFactory)
+    public static Task AddOrUpdateAsync<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> self, IDictionary<TKey, TValue> that, Func<TKey, TValue, Task<TValue>> updateValueFactory)
     {
-        return that.ForeachAsync(item => AddOrUpdateAsync(@this, item.Key, item.Value, updateValueFactory));
+        return that.ForeachAsync(item => AddOrUpdateAsync(self, item.Key, item.Value, updateValueFactory));
     }
 
     /// <summary>
@@ -360,18 +360,18 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key">键</param>
     /// <param name="addValueFactory">添加时的操作</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static async Task<TValue> AddOrUpdateAsync<TKey, TValue>(this IDictionary<TKey, TValue> @this, TKey key, Func<TKey, Task<TValue>> addValueFactory, Func<TKey, TValue, Task<TValue>> updateValueFactory)
+    public static async Task<TValue> AddOrUpdateAsync<TKey, TValue>(this IDictionary<TKey, TValue> self, TKey key, Func<TKey, Task<TValue>> addValueFactory, Func<TKey, TValue, Task<TValue>> updateValueFactory)
     {
-        if (!@this.TryAdd(key, await addValueFactory(key)))
+        if (!self.TryAdd(key, await addValueFactory(key)))
         {
-            @this[key] = await updateValueFactory(key, @this[key]);
+            self[key] = await updateValueFactory(key, self[key]);
         }
 
-        return @this[key];
+        return self[key];
     }
 
     /// <summary>
@@ -379,18 +379,18 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key">键</param>
     /// <param name="addValueFactory">添加时的操作</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static async Task<TValue> AddOrUpdateAsync<TKey, TValue>(this NullableDictionary<TKey, TValue> @this, TKey key, Func<TKey, Task<TValue>> addValueFactory, Func<TKey, TValue, Task<TValue>> updateValueFactory)
+    public static async Task<TValue> AddOrUpdateAsync<TKey, TValue>(this NullableDictionary<TKey, TValue> self, TKey key, Func<TKey, Task<TValue>> addValueFactory, Func<TKey, TValue, Task<TValue>> updateValueFactory)
     {
-        if (!@this.TryAdd(key, await addValueFactory(key)))
+        if (!self.TryAdd(key, await addValueFactory(key)))
         {
-            @this[key] = await updateValueFactory(key, @this[key]);
+            self[key] = await updateValueFactory(key, self[key]);
         }
 
-        return @this[key];
+        return self[key];
     }
 
     /// <summary>
@@ -398,28 +398,28 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key">键</param>
     /// <param name="addValueFactory">添加时的操作</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static async Task<TValue> AddOrUpdateAsync<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> @this, TKey key, Func<TKey, Task<TValue>> addValueFactory, Func<TKey, TValue, Task<TValue>> updateValueFactory)
+    public static async Task<TValue> AddOrUpdateAsync<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> self, TKey key, Func<TKey, Task<TValue>> addValueFactory, Func<TKey, TValue, Task<TValue>> updateValueFactory)
     {
-        if (!@this.TryAdd(key, await addValueFactory(key)))
+        if (!self.TryAdd(key, await addValueFactory(key)))
         {
-            @this[key] = await updateValueFactory(key, @this[key]);
+            self[key] = await updateValueFactory(key, self[key]);
         }
 
-        return @this[key];
+        return self[key];
     }
 
     /// <summary>
     /// 添加或更新键值对
     /// </summary>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
-    public static void AddOrUpdateTo<TKey, TValue>(this IDictionary<TKey, TValue> @this, IDictionary<TKey, TValue> that)
+    public static void AddOrUpdateTo<TKey, TValue>(this IDictionary<TKey, TValue> self, IDictionary<TKey, TValue> that)
     {
-        foreach (var item in @this)
+        foreach (var item in self)
         {
             that[item.Key] = item.Value;
         }
@@ -428,11 +428,11 @@ public static class IDictionaryExtensions
     /// <summary>
     /// 添加或更新键值对
     /// </summary>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
-    public static void AddOrUpdateTo<TKey, TValue>(this NullableDictionary<TKey, TValue> @this, IDictionary<TKey, TValue> that)
+    public static void AddOrUpdateTo<TKey, TValue>(this NullableDictionary<TKey, TValue> self, IDictionary<TKey, TValue> that)
     {
-        foreach (var item in @this)
+        foreach (var item in self)
         {
             that[item.Key] = item.Value;
         }
@@ -441,11 +441,11 @@ public static class IDictionaryExtensions
     /// <summary>
     /// 添加或更新键值对
     /// </summary>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
-    public static void AddOrUpdateTo<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> @this, IDictionary<TKey, TValue> that)
+    public static void AddOrUpdateTo<TKey, TValue>(this NullableConcurrentDictionary<TKey, TValue> self, IDictionary<TKey, TValue> that)
     {
-        foreach (var item in @this)
+        foreach (var item in self)
         {
             that[item.Key] = item.Value;
         }
@@ -456,12 +456,12 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static void AddOrUpdateTo<TKey, TValue>(this IDictionary<TKey, TValue> @this, IDictionary<TKey, TValue> that, Func<TKey, TValue, TValue> updateValueFactory)
+    public static void AddOrUpdateTo<TKey, TValue>(this IDictionary<TKey, TValue> self, IDictionary<TKey, TValue> that, Func<TKey, TValue, TValue> updateValueFactory)
     {
-        foreach (var item in @this)
+        foreach (var item in self)
         {
             AddOrUpdate(that, item.Key, item.Value, updateValueFactory);
         }
@@ -472,12 +472,12 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static void AddOrUpdateTo<TKey, TValue>(this IDictionary<TKey, TValue> @this, NullableDictionary<TKey, TValue> that, Func<TKey, TValue, TValue> updateValueFactory)
+    public static void AddOrUpdateTo<TKey, TValue>(this IDictionary<TKey, TValue> self, NullableDictionary<TKey, TValue> that, Func<TKey, TValue, TValue> updateValueFactory)
     {
-        foreach (var item in @this)
+        foreach (var item in self)
         {
             AddOrUpdate(that, item.Key, item.Value, updateValueFactory);
         }
@@ -488,12 +488,12 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static void AddOrUpdateTo<TKey, TValue>(this IDictionary<TKey, TValue> @this, NullableConcurrentDictionary<TKey, TValue> that, Func<TKey, TValue, TValue> updateValueFactory)
+    public static void AddOrUpdateTo<TKey, TValue>(this IDictionary<TKey, TValue> self, NullableConcurrentDictionary<TKey, TValue> that, Func<TKey, TValue, TValue> updateValueFactory)
     {
-        foreach (var item in @this)
+        foreach (var item in self)
         {
             AddOrUpdate(that, item.Key, item.Value, updateValueFactory);
         }
@@ -504,12 +504,12 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static Task AddOrUpdateToAsync<TKey, TValue>(this IDictionary<TKey, TValue> @this, IDictionary<TKey, TValue> that, Func<TKey, TValue, Task<TValue>> updateValueFactory)
+    public static Task AddOrUpdateToAsync<TKey, TValue>(this IDictionary<TKey, TValue> self, IDictionary<TKey, TValue> that, Func<TKey, TValue, Task<TValue>> updateValueFactory)
     {
-        return @this.ForeachAsync(item => AddOrUpdateAsync(that, item.Key, item.Value, updateValueFactory));
+        return self.ForeachAsync(item => AddOrUpdateAsync(that, item.Key, item.Value, updateValueFactory));
     }
 
     /// <summary>
@@ -517,12 +517,12 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static Task AddOrUpdateToAsync<TKey, TValue>(this IDictionary<TKey, TValue> @this, NullableDictionary<TKey, TValue> that, Func<TKey, TValue, Task<TValue>> updateValueFactory)
+    public static Task AddOrUpdateToAsync<TKey, TValue>(this IDictionary<TKey, TValue> self, NullableDictionary<TKey, TValue> that, Func<TKey, TValue, Task<TValue>> updateValueFactory)
     {
-        return @this.ForeachAsync(item => AddOrUpdateAsync(that, item.Key, item.Value, updateValueFactory));
+        return self.ForeachAsync(item => AddOrUpdateAsync(that, item.Key, item.Value, updateValueFactory));
     }
 
     /// <summary>
@@ -530,12 +530,12 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="that">另一个字典集</param>
     /// <param name="updateValueFactory">更新时的操作</param>
-    public static Task AddOrUpdateToAsync<TKey, TValue>(this IDictionary<TKey, TValue> @this, NullableConcurrentDictionary<TKey, TValue> that, Func<TKey, TValue, Task<TValue>> updateValueFactory)
+    public static Task AddOrUpdateToAsync<TKey, TValue>(this IDictionary<TKey, TValue> self, NullableConcurrentDictionary<TKey, TValue> that, Func<TKey, TValue, Task<TValue>> updateValueFactory)
     {
-        return @this.ForeachAsync(item => AddOrUpdateAsync(that, item.Key, item.Value, updateValueFactory));
+        return self.ForeachAsync(item => AddOrUpdateAsync(that, item.Key, item.Value, updateValueFactory));
     }
 
     /// <summary>
@@ -543,17 +543,17 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key"></param>
     /// <param name="addValueFactory"></param>
-    public static TValue GetOrAdd<TKey, TValue>(this IDictionary<TKey, TValue> @this, TKey key, Func<TValue> addValueFactory)
+    public static TValue GetOrAdd<TKey, TValue>(this IDictionary<TKey, TValue> self, TKey key, Func<TValue> addValueFactory)
     {
-        if (!@this.ContainsKey(key))
+        if (!self.ContainsKey(key))
         {
-            @this[key] = addValueFactory();
+            self[key] = addValueFactory();
         }
 
-        return @this[key];
+        return self[key];
     }
 
     /// <summary>
@@ -561,12 +561,12 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key"></param>
     /// <param name="addValue"></param>
-    public static TValue GetOrAdd<TKey, TValue>(this Dictionary<TKey, TValue> @this, TKey key, TValue addValue)
+    public static TValue GetOrAdd<TKey, TValue>(this Dictionary<TKey, TValue> self, TKey key, TValue addValue)
     {
-        return @this.TryAdd(key, addValue) ? addValue : @this[key];
+        return self.TryAdd(key, addValue) ? addValue : self[key];
     }
 
     /// <summary>
@@ -574,17 +574,17 @@ public static class IDictionaryExtensions
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    /// <param name="this"></param>
+    /// <param name="self"></param>
     /// <param name="key"></param>
     /// <param name="addValueFactory"></param>
-    public static async Task<TValue> GetOrAddAsync<TKey, TValue>(this IDictionary<TKey, TValue> @this, TKey key, Func<Task<TValue>> addValueFactory)
+    public static async Task<TValue> GetOrAddAsync<TKey, TValue>(this IDictionary<TKey, TValue> self, TKey key, Func<Task<TValue>> addValueFactory)
     {
-        if (!@this.ContainsKey(key))
+        if (!self.ContainsKey(key))
         {
-            @this[key] = await addValueFactory();
+            self[key] = await addValueFactory();
         }
 
-        return @this[key];
+        return self[key];
     }
 
     private static bool TryAdd<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue value) where TKey : notnull

@@ -10,7 +10,7 @@ namespace GameFrameX.Extension;
 /// <typeparam name="TElement"></typeparam>
 public class LookupX<TKey, TElement> : IEnumerable<List<TElement>>
 {
-    private readonly IDictionary<TKey, List<TElement>> dictionary;
+    private readonly IDictionary<TKey, List<TElement>> _dictionary;
 
     /// <summary>
     /// 
@@ -18,7 +18,7 @@ public class LookupX<TKey, TElement> : IEnumerable<List<TElement>>
     /// <param name="dic"></param>
     public LookupX(IDictionary<TKey, List<TElement>> dic)
     {
-        dictionary = dic;
+        _dictionary = dic;
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ public class LookupX<TKey, TElement> : IEnumerable<List<TElement>>
     /// <param name="dic"></param>
     public LookupX(ConcurrentDictionary<TKey, List<TElement>> dic)
     {
-        dictionary = dic;
+        _dictionary = dic;
     }
 
     /// <summary>
@@ -36,7 +36,7 @@ public class LookupX<TKey, TElement> : IEnumerable<List<TElement>>
     /// <returns></returns>
     public IEnumerator<List<TElement>> GetEnumerator()
     {
-        return dictionary.Values.GetEnumerator();
+        return _dictionary.Values.GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
@@ -51,13 +51,16 @@ public class LookupX<TKey, TElement> : IEnumerable<List<TElement>>
     /// <returns></returns>
     public bool Contains(TKey key)
     {
-        return dictionary.ContainsKey(key);
+        return _dictionary.ContainsKey(key);
     }
 
     /// <summary>
     /// 
     /// </summary>
-    public int Count => dictionary.Count;
+    public int Count
+    {
+        get { return _dictionary.Count; }
+    }
 
     /// <summary>
     /// 
@@ -65,6 +68,6 @@ public class LookupX<TKey, TElement> : IEnumerable<List<TElement>>
     /// <param name="key"></param>
     public List<TElement> this[TKey key]
     {
-        get { return dictionary.TryGetValue(key, out var value) ? value : new List<TElement>(); }
+        get { return _dictionary.TryGetValue(key, out var value) ? value : new List<TElement>(); }
     }
 }

@@ -7,16 +7,16 @@
     /// <typeparam name="TValue">值的类型。</typeparam>
     public class BidirectionalDictionary<TKey, TValue>
     {
-        private Dictionary<TKey, TValue> forwardDictionary;
-        private Dictionary<TValue, TKey> reverseDictionary;
+        private readonly Dictionary<TKey, TValue> _forwardDictionary;
+        private readonly Dictionary<TValue, TKey> _reverseDictionary;
 
         /// <summary>
         /// 初始化 <see cref="BidirectionalDictionary{TKey, TValue}"/> 类的新实例。
         /// </summary>
         public BidirectionalDictionary(int initialCapacity = 8)
         {
-            forwardDictionary = new Dictionary<TKey, TValue>(initialCapacity);
-            reverseDictionary = new Dictionary<TValue, TKey>(initialCapacity);
+            _forwardDictionary = new Dictionary<TKey, TValue>(initialCapacity);
+            _reverseDictionary = new Dictionary<TValue, TKey>(initialCapacity);
         }
 
         /// <summary>
@@ -27,7 +27,7 @@
         /// <returns>如果成功找到键，则为 true；否则为 false。</returns>
         public bool TryGetKey(TValue value, out TKey key)
         {
-            return reverseDictionary.TryGetValue(value, out key);
+            return _reverseDictionary.TryGetValue(value, out key);
         }
 
         /// <summary>
@@ -38,7 +38,7 @@
         /// <returns>如果成功找到值，则为 true；否则为 false。</returns>
         public bool TryGetValue(TKey key, out TValue value)
         {
-            return forwardDictionary.TryGetValue(key, out value);
+            return _forwardDictionary.TryGetValue(key, out value);
         }
 
         /// <summary>
@@ -46,8 +46,8 @@
         /// </summary>
         public void Clear()
         {
-            forwardDictionary.Clear();
-            reverseDictionary.Clear();
+            _forwardDictionary.Clear();
+            _reverseDictionary.Clear();
         }
 
         /// <summary>
@@ -58,9 +58,9 @@
         /// <returns>如果成功添加键值对，则为 true；否则为 false。</returns>
         public bool TryAdd(TKey key, TValue value)
         {
-            if (forwardDictionary.TryAdd(key, value))
+            if (_forwardDictionary.TryAdd(key, value))
             {
-                reverseDictionary.Add(value, key);
+                _reverseDictionary.Add(value, key);
                 return true;
             }
 

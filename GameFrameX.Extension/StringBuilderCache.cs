@@ -46,9 +46,9 @@ public static class StringBuilderCache
     // The value 360 was chosen in discussion with performance experts as a compromise between using
     // as litle memory (per thread) as possible and still covering a large part of short-lived
     // StringBuilder creations on the startup path of VS designers.
-    private const int MAX_BUILDER_SIZE = 360;
+    private const int MaxBuilderSize = 360;
 
-    [ThreadStatic] private static StringBuilder CachedInstance;
+    [ThreadStatic] private static StringBuilder _cachedInstance;
 
     /// <summary>
     /// 获取指定大小的 StringBuilder
@@ -57,16 +57,16 @@ public static class StringBuilderCache
     /// <returns>StringBuilder 对象</returns>
     public static StringBuilder Acquire(int capacity = 16)
     {
-        if (capacity <= MAX_BUILDER_SIZE)
+        if (capacity <= MaxBuilderSize)
         {
-            StringBuilder sb = StringBuilderCache.CachedInstance;
+            var sb = _cachedInstance;
             if (sb != null)
             {
                 // Avoid stringbuilder block fragmentation by getting a new StringBuilder
                 // when the requested size is larger than the current capacity
                 if (capacity <= sb.Capacity)
                 {
-                    StringBuilderCache.CachedInstance = null;
+                    _cachedInstance = null;
                     sb.Clear();
                     return sb;
                 }
@@ -82,9 +82,9 @@ public static class StringBuilderCache
     /// <param name="sb">StringBuilder 对象</param>
     public static void Release(StringBuilder sb)
     {
-        if (sb.Capacity <= MAX_BUILDER_SIZE)
+        if (sb.Capacity <= MaxBuilderSize)
         {
-            StringBuilderCache.CachedInstance = sb;
+            _cachedInstance = sb;
         }
     }
 
