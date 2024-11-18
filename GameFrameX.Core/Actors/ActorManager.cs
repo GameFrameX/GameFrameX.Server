@@ -83,7 +83,7 @@ namespace GameFrameX.Core.Actors
         internal static async Task<Actor> GetOrNew(long actorId)
         {
             var actorType = ActorIdGenerator.GetActorType(actorId);
-            if (actorType == ActorType.Player)
+            if (actorType < ActorType.Separator)
             {
                 var now = DateTime.Now;
                 if (ActiveTimeDic.TryGetValue(actorId, out var activeTime)
@@ -278,7 +278,7 @@ namespace GameFrameX.Core.Actors
         {
             foreach (var actor in ActorMap.Values)
             {
-                if (actor.Type == ActorType.Player)
+                if (actor.Type < ActorType.Separator)
                 {
                     actor.Tell(() => actor.CrossDay(openServerDay));
                 }
@@ -339,7 +339,7 @@ namespace GameFrameX.Core.Actors
             b = 0;
             foreach (var actor in ActorMap.Values)
             {
-                if (actor.Type < ActorType.Separator && actor.Type != ActorType.Player)
+                if (actor.Type > ActorType.Separator)
                 {
                     b++;
 

@@ -110,7 +110,7 @@ namespace GameFrameX.Core.Actors
             Type = type;
             WorkerActor = new WorkerActor(id);
 
-            if (type == ActorType.Player)
+            if (type < ActorType.Separator)
             {
                 Tell(() => SetAutoRecycle(true));
             }

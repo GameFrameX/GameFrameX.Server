@@ -88,7 +88,7 @@ namespace GameFrameX.Core.Components
 
                     ComponentActorDic[type] = actorType;
 
-                    if (actorType == ActorType.Player)
+                    if (actorType < ActorType.Separator)
                     {
                         if (type.GetCustomAttribute(typeof(FuncAttribute)) is FuncAttribute funcAttr)
                         {
