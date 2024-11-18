@@ -71,7 +71,7 @@ namespace GameFrameX.StartUp
             GlobalSettings.Load($"Configs/app_config.json");
             initAction?.Invoke();
 
-            var types = AssemblyHelper.GetTypes();
+            var types = Utility.Assembly.GetTypes();
             if (types != null)
             {
                 foreach (var type in types)

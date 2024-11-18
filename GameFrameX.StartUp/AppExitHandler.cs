@@ -30,7 +30,7 @@ namespace GameFrameX.StartUp
             _isKill = false;
             _setting = setting;
             _existCallBack = existCallBack;
-            var fetalExceptionExitHandlers = AssemblyHelper.GetRuntimeImplementTypeNames<IFetalExceptionExitHandler>();
+            var fetalExceptionExitHandlers = Assembly.GetRuntimeImplementTypeNames<IFetalExceptionExitHandler>();
             foreach (var exceptionExitHandler in fetalExceptionExitHandlers)
             {
                 var handler = (IFetalExceptionExitHandler)Activator.CreateInstance(exceptionExitHandler);

@@ -333,7 +333,7 @@ public sealed class ConnectChannelHelper
     /// <param name="serverPort">服务器端口</param>
     public void Start(string serverIp, int serverPort)
     {
-        if (IpHelper.IsValidIpAddress(serverIp, out var value))
+        if (Net.IsValidIpAddress(serverIp, out var value))
         {
             TargetEndPoint = new IPEndPoint(value, serverPort);
         }

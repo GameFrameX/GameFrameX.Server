@@ -50,7 +50,7 @@ public sealed class SqlSugarDbService : IDatabaseService
                                       };
                                   });
 
-            var types = AssemblyHelper.GetRuntimeImplementTypeNames<BaseCacheState>();
+            var types = Assembly.GetRuntimeImplementTypeNames<BaseCacheState>();
             foreach (var type in types)
             {
                 Client.CodeFirst.InitTables(type);

@@ -32,37 +32,37 @@ namespace GameFrameX.Apps
                 if (genType == typeof(List<>))
                 {
                     memberMap.SetShouldSerializeMethod(o =>
-                                                       {
-                                                           var value = memberMap.Getter(o);
-                                                           if (value is IList list)
-                                                           {
-                                                               return list != null && list.Count > 0;
-                                                           }
+                    {
+                        var value = memberMap.Getter(o);
+                        if (value is IList list)
+                        {
+                            return list != null && list.Count > 0;
+                        }
 
-                                                           return true;
-                                                       });
+                        return true;
+                    });
                 }
 
                 else if (genType == typeof(ConcurrentDictionary<,>) || genType == typeof(Dictionary<,>))
                 {
                     memberMap.SetShouldSerializeMethod(o =>
-                                                       {
-                                                           if (o != null)
-                                                           {
-                                                               var value = memberMap.Getter(o);
-                                                               if (value != null)
-                                                               {
-                                                                   PropertyInfo countProperty = value.GetType().GetProperty("Count");
-                                                                   if (countProperty != null)
-                                                                   {
-                                                                       int count = (int)countProperty.GetValue(value, null);
-                                                                       return count > 0;
-                                                                   }
-                                                               }
-                                                           }
+                    {
+                        if (o != null)
+                        {
+                            var value = memberMap.Getter(o);
+                            if (value != null)
+                            {
+                                PropertyInfo countProperty = value.GetType().GetProperty("Count");
+                                if (countProperty != null)
+                                {
+                                    int count = (int)countProperty.GetValue(value, null);
+                                    return count > 0;
+                                }
+                            }
+                        }
 
-                                                           return true;
-                                                       });
+                        return true;
+                    });
                 }
             }
         }
@@ -70,7 +70,7 @@ namespace GameFrameX.Apps
 
     public static class BsonClassMapHelper
     {
-        static public void SetConvention()
+        public static void SetConvention()
         {
             ConventionRegistry.Register(nameof(DictionaryRepresentationConvention),
                                         new ConventionPack { new DictionaryRepresentationConvention(DictionaryRepresentation.ArrayOfDocuments) }, _ => true);
@@ -79,8 +79,11 @@ namespace GameFrameX.Apps
                                         new ConventionPack { new EmptyContainerSerializeMethodConvention() }, _ => true);
         }
 
-        //提前注册,简化多态类型处理
-        public static void RegisterAllClass(Assembly assembly)
+        /// <summary>
+        /// 提前注册,简化多态类型处理
+        /// </summary>
+        /// <param name="assembly"></param>
+        public static void RegisterAllClass(System.Reflection.Assembly assembly)
         {
             var types = assembly.GetTypes();
             foreach (var t in types)
