@@ -6,12 +6,12 @@ namespace GameFrameX.Utility;
 /// <summary>
 /// 程序集辅助器
 /// </summary>
-public static class AssemblyHelper
+public static class Assembly
 {
-    private static readonly Assembly[] Assemblies;
+    private static readonly System.Reflection.Assembly[] Assemblies;
     private static readonly Dictionary<string, Type> CachedTypes = new Dictionary<string, Type>(StringComparer.Ordinal);
 
-    static AssemblyHelper()
+    static Assembly()
     {
         Assemblies = AppDomain.CurrentDomain.GetAssemblies();
     }
@@ -20,7 +20,7 @@ public static class AssemblyHelper
     /// 获取已加载的程序集。
     /// </summary>
     /// <returns>已加载的程序集。</returns>
-    public static Assembly[] GetAssemblies()
+    public static System.Reflection.Assembly[] GetAssemblies()
     {
         return Assemblies;
     }
@@ -52,7 +52,7 @@ public static class AssemblyHelper
         }
 
         results.Clear();
-        foreach (Assembly assembly in Assemblies)
+        foreach (System.Reflection.Assembly assembly in Assemblies)
         {
             results.AddRange(assembly.GetTypes());
         }
