@@ -24,7 +24,7 @@ public class ActionAsyncWrapper : WorkWrapper
     public ActionAsyncWrapper(Func<Task> work)
     {
         Work = work;
-        Tcs  = new TaskCompletionSource<bool>();
+        Tcs = new TaskCompletionSource<bool>();
     }
 
     /// <summary>

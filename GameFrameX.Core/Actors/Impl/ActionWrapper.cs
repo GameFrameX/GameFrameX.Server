@@ -24,7 +24,7 @@ public class ActionWrapper : WorkWrapper
     public ActionWrapper(Action work)
     {
         Work = work;
-        Tcs  = new TaskCompletionSource<bool>();
+        Tcs = new TaskCompletionSource<bool>();
     }
 
     /// <summary>
