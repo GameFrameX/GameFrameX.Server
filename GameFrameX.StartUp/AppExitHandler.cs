@@ -7,106 +7,105 @@ using GameFrameX.Setting;
 using GameFrameX.StartUp.Abstractions;
 using GameFrameX.Utility;
 
-namespace GameFrameX.StartUp
+namespace GameFrameX.StartUp;
+
+/// <summary>
+/// 
+/// </summary>
+internal static class AppExitHandler
 {
+    private static Action<string> _existCallBack;
+    private static AppSetting _setting;
+    private static PosixSignalRegistration _exitSignalRegistration;
+    private static bool _isKill = false;
+    private static readonly List<IFetalExceptionExitHandler> FetalExceptionExitHandlers = new List<IFetalExceptionExitHandler>();
+
     /// <summary>
     /// 
     /// </summary>
-    internal static class AppExitHandler
+    /// <param name="existCallBack">退出回调</param>
+    /// <param name="setting">启动设置</param>
+    public static void Init(Action<string> existCallBack, AppSetting setting)
     {
-        private static Action<string> _existCallBack;
-        private static AppSetting _setting;
-        private static PosixSignalRegistration _exitSignalRegistration;
-        private static bool _isKill = false;
-        private static readonly List<IFetalExceptionExitHandler> FetalExceptionExitHandlers = new List<IFetalExceptionExitHandler>();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="existCallBack">退出回调</param>
-        /// <param name="setting">启动设置</param>
-        public static void Init(Action<string> existCallBack, AppSetting setting)
+        _isKill = false;
+        _setting = setting;
+        _existCallBack = existCallBack;
+        var fetalExceptionExitHandlers = Assembly.GetRuntimeImplementTypeNames<IFetalExceptionExitHandler>();
+        foreach (var exceptionExitHandler in fetalExceptionExitHandlers)
         {
-            _isKill = false;
-            _setting = setting;
-            _existCallBack = existCallBack;
-            var fetalExceptionExitHandlers = Assembly.GetRuntimeImplementTypeNames<IFetalExceptionExitHandler>();
-            foreach (var exceptionExitHandler in fetalExceptionExitHandlers)
-            {
-                var handler = (IFetalExceptionExitHandler)Activator.CreateInstance(exceptionExitHandler);
-                FetalExceptionExitHandlers.Add(handler);
-            }
-
-            _exitSignalRegistration = PosixSignalRegistration.Create(PosixSignal.SIGTERM, ExitSignalRegistrationHandler);
-            //退出监听
-            AppDomain.CurrentDomain.ProcessExit += (s, e) => { _existCallBack?.Invoke("process exit"); };
-            //卸载监听
-            AssemblyLoadContext.Default.Unloading += DefaultOnUnloading;
-            //Fetal异常监听
-            AppDomain.CurrentDomain.UnhandledException += (s, e) => { HandleFetalException("AppDomain.CurrentDomain.UnhandledException", e.ExceptionObject); };
-            //Task异常监听
-            TaskScheduler.UnobservedTaskException += (s, e) => { HandleFetalException("TaskScheduler.UnobservedTaskException", e.Exception); };
-            //ctrl+c
-            Console.CancelKeyPress += (s, e) => { _existCallBack?.Invoke("ctrl+c exit"); };
+            var handler = (IFetalExceptionExitHandler)Activator.CreateInstance(exceptionExitHandler);
+            FetalExceptionExitHandlers.Add(handler);
         }
 
-        private static void ExitSignalRegistrationHandler(PosixSignalContext posixSignalContext)
+        _exitSignalRegistration = PosixSignalRegistration.Create(PosixSignal.SIGTERM, ExitSignalRegistrationHandler);
+        //退出监听
+        AppDomain.CurrentDomain.ProcessExit += (s, e) => { _existCallBack?.Invoke("process exit"); };
+        //卸载监听
+        AssemblyLoadContext.Default.Unloading += DefaultOnUnloading;
+        //Fetal异常监听
+        AppDomain.CurrentDomain.UnhandledException += (s, e) => { HandleFetalException("AppDomain.CurrentDomain.UnhandledException", e.ExceptionObject); };
+        //Task异常监听
+        TaskScheduler.UnobservedTaskException += (s, e) => { HandleFetalException("TaskScheduler.UnobservedTaskException", e.Exception); };
+        //ctrl+c
+        Console.CancelKeyPress += (s, e) => { _existCallBack?.Invoke("ctrl+c exit"); };
+    }
+
+    private static void ExitSignalRegistrationHandler(PosixSignalContext posixSignalContext)
+    {
+        LogHelper.Info("PosixSignalRegistration SIGTERM....");
+        _existCallBack?.Invoke("SIGTERM exit");
+    }
+
+    private static void DefaultOnUnloading(AssemblyLoadContext obj)
+    {
+        HandleFetalException("AssemblyLoadContext.Default.Unloading", obj.ToString());
+    }
+
+    /// <summary>
+    /// 关闭程序
+    /// </summary>
+    public static void Kill()
+    {
+        _isKill = true;
+    }
+
+    /// <summary>
+    /// 程序发生内部异常导致程序终止
+    /// </summary>
+    /// <param name="tag"></param>
+    /// <param name="e"></param>
+    private static void HandleFetalException(string tag, object e)
+    {
+        if (_isKill)
         {
-            LogHelper.Info("PosixSignalRegistration SIGTERM....");
-            _existCallBack?.Invoke("SIGTERM exit");
+            return;
         }
 
-        private static void DefaultOnUnloading(AssemblyLoadContext obj)
+        if (FetalExceptionExitHandlers?.Count > 0)
         {
-            HandleFetalException("AssemblyLoadContext.Default.Unloading", obj.ToString());
+            foreach (var fetalExceptionExitHandler in FetalExceptionExitHandlers)
+            {
+                fetalExceptionExitHandler.Run(tag, _setting, e?.ToString());
+            }
         }
 
-        /// <summary>
-        /// 关闭程序
-        /// </summary>
-        public static void Kill()
+        //这里可以发送短信或者钉钉消息通知到运维
+        LogHelper.Error("get unhandled exception Tag:" + tag);
+        if (e is IEnumerable arr)
         {
-            _isKill = true;
+            var sb = new StringBuilder();
+            foreach (var ex in arr)
+            {
+                sb.Append(ex);
+            }
+
+            LogHelper.Error($"Unhandled Exception:{sb}");
+            _existCallBack?.Invoke("all Unhandled Exception:" + sb);
         }
-
-        /// <summary>
-        /// 程序发生内部异常导致程序终止
-        /// </summary>
-        /// <param name="tag"></param>
-        /// <param name="e"></param>
-        private static void HandleFetalException(string tag, object e)
+        else
         {
-            if (_isKill)
-            {
-                return;
-            }
-
-            if (FetalExceptionExitHandlers?.Count > 0)
-            {
-                foreach (var fetalExceptionExitHandler in FetalExceptionExitHandlers)
-                {
-                    fetalExceptionExitHandler.Run(tag, _setting, e?.ToString());
-                }
-            }
-
-            //这里可以发送短信或者钉钉消息通知到运维
-            LogHelper.Error("get unhandled exception Tag:" + tag);
-            if (e is IEnumerable arr)
-            {
-                var sb = new StringBuilder();
-                foreach (var ex in arr)
-                {
-                    sb.Append(ex);
-                }
-
-                LogHelper.Error($"Unhandled Exception:{sb}");
-                _existCallBack?.Invoke("all Unhandled Exception:" + sb);
-            }
-            else
-            {
-                LogHelper.Error($"Unhandled Exception:{e}");
-                _existCallBack?.Invoke($"Unhandled Exception:{e}");
-            }
+            LogHelper.Error($"Unhandled Exception:{e}");
+            _existCallBack?.Invoke($"Unhandled Exception:{e}");
         }
     }
 }
