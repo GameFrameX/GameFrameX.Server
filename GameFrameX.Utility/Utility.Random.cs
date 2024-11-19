@@ -19,10 +19,21 @@ namespace GameFrameX.Utility
         }
 
         /// <summary>
+        /// 获取UInt32范围内的随机数
+        /// </summary>
+        /// <returns></returns>
+        public static uint NextUInt32()
+        {
+            var bytes = new byte[4];
+            _random.NextBytes(bytes);
+            return BitConverter.ToUInt32(bytes, 0);
+        }
+
+        /// <summary>
         /// 返回非负随机数。
         /// </summary>
         /// <returns>大于等于零且小于 System.Int32.MaxValue 的 32 位带符号整数。</returns>
-        public static int GetRandom()
+        public static int Next()
         {
             return _random.Next();
         }
@@ -32,7 +43,7 @@ namespace GameFrameX.Utility
         /// </summary>
         /// <param name="maxValue">要生成的随机数的上界（随机数不能取该上界值）。maxValue 必须大于等于零。</param>
         /// <returns>大于等于零且小于 maxValue 的 32 位带符号整数，即：返回值的范围通常包括零但不包括 maxValue。不过，如果 maxValue 等于零，则返回 maxValue。</returns>
-        public static int GetRandom(int maxValue)
+        public static int Next(int maxValue)
         {
             return _random.Next(maxValue);
         }
@@ -43,16 +54,57 @@ namespace GameFrameX.Utility
         /// <param name="minValue">返回的随机数的下界（随机数可取该下界值）。</param>
         /// <param name="maxValue">返回的随机数的上界（随机数不能取该上界值）。maxValue 必须大于等于 minValue。</param>
         /// <returns>一个大于等于 minValue 且小于 maxValue 的 32 位带符号整数，即：返回的值范围包括 minValue 但不包括 maxValue。如果 minValue 等于 maxValue，则返回 minValue。</returns>
-        public static int GetRandom(int minValue, int maxValue)
+        public static int Next(int minValue, int maxValue)
         {
             return _random.Next(minValue, maxValue);
+        }
+
+        /// <summary>
+        /// 返回非负随机数。
+        /// </summary>
+        /// <returns>大于等于零且小于 System.Int64.MaxValue 的 64 位带符号整数。</returns>
+        public static long NextInt64()
+        {
+            return _random.NextInt64();
+        }
+
+        /// <summary>
+        /// 返回一个小于所指定最大值的非负随机数。
+        /// </summary>
+        /// <param name="maxValue">要生成的随机数的上界（随机数不能取该上界值）。maxValue 必须大于等于零。</param>
+        /// <returns>大于等于零且小于 maxValue 的 64 位带符号整数，即：返回值的范围通常包括零但不包括 maxValue。不过，如果 maxValue 等于零，则返回 maxValue。</returns>
+        public static long NextInt64(int maxValue)
+        {
+            return _random.NextInt64(maxValue);
+        }
+
+        /// <summary>
+        /// 返回一个指定范围内的随机数。
+        /// </summary>
+        /// <param name="minValue">返回的随机数的下界（随机数可取该下界值）。</param>
+        /// <param name="maxValue">返回的随机数的上界（随机数不能取该上界值）。maxValue 必须大于等于 minValue。</param>
+        /// <returns>一个大于等于 minValue 且小于 maxValue 的 64 位带符号整数，即：返回的值范围包括 minValue 但不包括 maxValue。如果 minValue 等于 maxValue，则返回 minValue。</returns>
+        public static long NxtInt64(long minValue, long maxValue)
+        {
+            return _random.NextInt64(minValue, maxValue);
+        }
+
+        /// <summary>
+        /// 获取UInt64范围内的随机数
+        /// </summary>
+        /// <returns></returns>
+        public static ulong NextUInt64()
+        {
+            var bytes = new byte[8];
+            _random.NextBytes(bytes);
+            return BitConverter.ToUInt64(bytes, 0);
         }
 
         /// <summary>
         /// 返回一个介于 0.0 和 1.0 之间的随机数。
         /// </summary>
         /// <returns>大于等于 0.0 并且小于 1.0 的双精度浮点数。</returns>
-        public static double GetRandomDouble()
+        public static double NextDouble()
         {
             return _random.NextDouble();
         }
@@ -61,7 +113,7 @@ namespace GameFrameX.Utility
         /// 用随机数填充指定字节数组的元素。
         /// </summary>
         /// <param name="buffer">包含随机数的字节数组。</param>
-        public static void GetRandomBytes(byte[] buffer)
+        public static void NextBytes(byte[] buffer)
         {
             _random.NextBytes(buffer);
         }
@@ -302,8 +354,8 @@ namespace GameFrameX.Utility
         /// 随机获取指定数量的id
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="num"></param>
-        /// <param name="isCanRepeat"></param>
+        /// <param name="num">数量</param>
+        /// <param name="isCanRepeat">是否允许重复</param>
         /// <returns></returns>
         public static List<int[]> Items(int[][] array, int num, bool isCanRepeat = true)
         {
@@ -314,6 +366,8 @@ namespace GameFrameX.Utility
         /// <summary>
         /// 求多个数的最大公约数
         /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static int Gcd(params int[] input)
         {
             if (input.Length == 0)
@@ -338,6 +392,9 @@ namespace GameFrameX.Utility
         /// <summary>
         /// 求两个数的最大公约数
         /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static int Gcd(int a, int b)
         {
             if (a < b)
