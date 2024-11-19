@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Diagnostics;
 
 namespace GameFrameX.Log;
 
@@ -130,7 +130,8 @@ public static class LogHelper
     /// <param name="args">消息的格式参数。</param>
     public static void Error(string msg, params object[] args)
     {
-        Serilog.Log.Error(msg, args);
+        var st = new StackTrace(1, true);
+        Serilog.Log.Error(string.Format(msg, args) + '\n' + st);
         // StackTrace();
     }
 
@@ -156,7 +157,7 @@ public static class LogHelper
     /// <param name="msg">要记录的严重错误消息。</param>
     public static void Fatal(string msg)
     {
-        Serilog.Log.Fatal(msg);
+        Serilog.Log.Fatal($"{msg}\n{new StackTrace(1, true)}");
         // StackTrace();
     }
 
@@ -166,7 +167,7 @@ public static class LogHelper
     /// <param name="msg">要记录的异常对象。</param>
     public static void Fatal(Exception msg)
     {
-        Serilog.Log.Fatal(msg, msg.Message);
+        Serilog.Log.Fatal($"{msg}\n{new StackTrace(1, true)}");
         // StackTrace();
     }
 
