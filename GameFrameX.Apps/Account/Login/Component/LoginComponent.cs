@@ -41,9 +41,9 @@ namespace GameFrameX.Apps.Account.Login.Component
                 Id = ActorIdGenerator.GetActorId(ActorType.Player),
                 AccountId = reqPlayerCreate.Id,
                 Name = reqPlayerCreate.Name,
-                Level = (uint)Random.GetRandom(1, 50),
+                Level = (uint)Random.Next(1, 50),
                 State = 0,
-                Avatar = (uint)Random.GetRandom(1, 50),
+                Avatar = (uint)Random.Next(1, 50),
             };
             MetricsPlayerRegister.CreateCounterOptions.Inc();
             await GameDb.SaveOneAsync<PlayerState>(playerState);
