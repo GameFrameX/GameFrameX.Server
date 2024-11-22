@@ -45,6 +45,9 @@ public sealed class RpcResult : IRpcResult, IDisposable
         Error = error;
     }
 
+    /// <summary>
+    /// 析构函数
+    /// </summary>
     ~RpcResult()
     {
         Dispose();

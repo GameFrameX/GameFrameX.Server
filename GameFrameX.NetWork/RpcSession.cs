@@ -137,6 +137,9 @@ public sealed class RpcSession : IRpcSession, IDisposable
         _rpcHandlingObjects?.Clear();
     }
 
+    /// <summary>
+    /// 析构函数
+    /// </summary>
     ~RpcSession()
     {
         Dispose();

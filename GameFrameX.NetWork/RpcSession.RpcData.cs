@@ -121,6 +121,9 @@ public sealed class RpcData : IDisposable
         get { return _tcs.Task; }
     }
 
+    /// <summary>
+    /// 析构函数
+    /// </summary>
     ~RpcData()
     {
         Dispose();
