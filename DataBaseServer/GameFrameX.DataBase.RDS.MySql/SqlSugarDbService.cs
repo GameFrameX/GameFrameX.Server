@@ -32,23 +32,23 @@ public sealed class SqlSugarDbService : IDatabaseService
         {
             Client =
                 new SqlSugarScope(new ConnectionConfig()
-                                  {
-                                      ConnectionString = url, //连接符字串
-                                      DbType = DbType.MySql, //数据库类型
-                                      IsAutoCloseConnection = true, //不设成true要手动close
-                                      InitKeyType = InitKeyType.Attribute
-                                  },
-                                  db =>
-                                  {
-                                      //(A)全局生效配置点
-                                      //调试SQL事件，可以删掉
-                                      db.Aop.OnLogExecuting = (sql, pars) =>
-                                      {
-                                          Console.WriteLine(sql); //输出sql,查看执行sql
-                                          //5.0.8.2 获取无参数化 SQL 
-                                          //UtilMethods.GetSqlString(DbType.SqlServer,sql,pars)
-                                      };
-                                  });
+                    {
+                        ConnectionString = url, //连接符字串
+                        DbType = DbType.MySql, //数据库类型
+                        IsAutoCloseConnection = true, //不设成true要手动close
+                        InitKeyType = InitKeyType.Attribute
+                    },
+                    db =>
+                    {
+                        //(A)全局生效配置点
+                        //调试SQL事件，可以删掉
+                        db.Aop.OnLogExecuting = (sql, pars) =>
+                        {
+                            Console.WriteLine(sql); //输出sql,查看执行sql
+                            //5.0.8.2 获取无参数化 SQL 
+                            //UtilMethods.GetSqlString(DbType.SqlServer,sql,pars)
+                        };
+                    });
 
             var types = Assembly.GetRuntimeImplementTypeNames<BaseCacheState>();
             foreach (var type in types)
@@ -64,19 +64,6 @@ public sealed class SqlSugarDbService : IDatabaseService
             throw;
         }
     }
-
-
-    /// <summary>
-    /// 获取指定类型的MongoDB集合。
-    /// </summary>
-    /// <param name="collectionName">集合名称。</param>
-    /// <param name="settings">集合的设置。</param>
-    /// <returns>指定类型的MongoDB集合。</returns>
-    // private IMongoCollection<BsonDocument> GetCollection(string collectionName)
-    // {
-    //     var collection = CurrentDatabase.GetCollection<BsonDocument>(collectionName, settings);
-    //     return collection;
-    // }
 
     #region 插入
 
