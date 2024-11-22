@@ -18,7 +18,7 @@ public class UnitTestTime
     {
         long currentTimeMillis = TimeHelper.CurrentTimeMillis();
         long expectedTimeMillis = (long)(DateTime.Now - new DateTime(1970, 1, 1)).TotalMilliseconds;
-        Assert.AreEqual(currentTimeMillis, (expectedTimeMillis));
+        Assert.That((expectedTimeMillis), Is.EqualTo(currentTimeMillis));
     }
 
     [Test]
@@ -26,7 +26,7 @@ public class UnitTestTime
     {
         long unixTimeSeconds = TimeHelper.UnixTimeSeconds();
         long expectedUnixTimeSeconds = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
-        Assert.AreEqual(expectedUnixTimeSeconds, unixTimeSeconds);
+        Assert.That(unixTimeSeconds, Is.EqualTo(expectedUnixTimeSeconds));
     }
 
     [Test]
@@ -34,7 +34,7 @@ public class UnitTestTime
     {
         long unixTimeMilliseconds = TimeHelper.UnixTimeMilliseconds();
         long expectedUnixTimeMilliseconds = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
-        Assert.AreEqual(expectedUnixTimeMilliseconds, unixTimeMilliseconds);
+        Assert.That(unixTimeMilliseconds, Is.EqualTo(expectedUnixTimeMilliseconds));
     }
 
     [Test]
@@ -44,7 +44,7 @@ public class UnitTestTime
         bool utc = false;
         long timeMillis = TimeHelper.TimeMillis(time, utc);
         long expectedTimeMillis = (long)(time - new DateTime(1970, 1, 1)).TotalMilliseconds;
-        Assert.AreEqual(expectedTimeMillis, timeMillis);
+        Assert.That(timeMillis, Is.EqualTo(expectedTimeMillis));
     }
 
     [Test]
@@ -54,7 +54,7 @@ public class UnitTestTime
         bool utc = true;
         DateTime dateTime = TimeHelper.MillisToDateTime(timeMillis, utc);
         DateTime expectedDateTime = new DateTime(2022, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-        Assert.AreEqual(expectedDateTime, dateTime);
+        Assert.That(dateTime, Is.EqualTo(expectedDateTime));
     }
 
     [Test]
@@ -65,7 +65,7 @@ public class UnitTestTime
         int hour = 0;
         int crossDays = TimeHelper.GetCrossDays(begin, after, hour);
         int expectedCrossDays = 1;
-        Assert.AreEqual(expectedCrossDays, crossDays);
+        Assert.That(crossDays, Is.EqualTo(expectedCrossDays));
     }
 
     [Test]
