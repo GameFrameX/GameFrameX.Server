@@ -8,22 +8,37 @@ namespace GameFrameX.Utility;
 /// </summary>
 public static partial class Encryption
 {
+    /// <summary>
+    /// RSA 加密解密
+    /// </summary>
     public sealed class Rsa
     {
         private readonly RSACryptoServiceProvider _rsa = null;
 
+        /// <summary>
+        /// 构建加密解密对象
+        /// </summary>
+        /// <param name="rsa"></param>
         public Rsa(RSACryptoServiceProvider rsa)
         {
             _rsa = rsa;
         }
 
+        /// <summary>
+        /// 构建加密解密对象
+        /// </summary>
+        /// <param name="key"></param>
         public Rsa(string key)
         {
-            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+            var rsa = new RSACryptoServiceProvider();
             rsa.FromXmlString(key);
             this._rsa = rsa;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static Dictionary<string, string> Make()
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
@@ -45,12 +60,23 @@ public static partial class Encryption
             return Convert.ToBase64String(res);
         }
 
+        /// <summary>
+        /// 加密
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
         public string Encrypt(string content)
         {
             byte[] res = Encrypt(Encoding.UTF8.GetBytes(content));
             return Convert.ToBase64String(res);
         }
 
+        /// <summary>
+        /// 加密
+        /// </summary>
+        /// <param name="publicKey"></param>
+        /// <param name="content"></param>
+        /// <returns></returns>
         public static byte[] RSAEncrypt(string publicKey, byte[] content)
         {
             RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
@@ -59,6 +85,11 @@ public static partial class Encryption
             return cipherBytes;
         }
 
+        /// <summary>
+        /// 加密
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
         public byte[] Encrypt(byte[] content)
         {
             byte[] cipherBytes = _rsa.Encrypt(content, false);
@@ -78,6 +109,12 @@ public static partial class Encryption
         }
 
 
+        /// <summary>
+        /// 解密
+        /// </summary>
+        /// <param name="privateKey"></param>
+        /// <param name="content"></param>
+        /// <returns></returns>
         public static byte[] RSADecrypt(string privateKey, byte[] content)
         {
             RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
@@ -86,12 +123,22 @@ public static partial class Encryption
             return cipherBytes;
         }
 
+        /// <summary>
+        /// 解密
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
         public string Decrypt(string content)
         {
             byte[] res = Decrypt(Convert.FromBase64String(content));
             return Encoding.UTF8.GetString(res);
         }
 
+        /// <summary>
+        /// 解密
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
         public byte[] Decrypt(byte[] content)
         {
             byte[] bytes = _rsa.Decrypt(content, false);
@@ -101,6 +148,9 @@ public static partial class Encryption
         /// <summary>
         /// 签名
         /// </summary>
+        /// <param name="dataToSign"></param>
+        /// <param name="privateKey"></param>
+        /// <returns></returns>
         public static byte[] RSASignData(byte[] dataToSign, string privateKey)
         {
             try
@@ -115,12 +165,23 @@ public static partial class Encryption
             }
         }
 
+        /// <summary>
+        /// 签名数据
+        /// </summary>
+        /// <param name="dataToSign"></param>
+        /// <param name="privateKey"></param>
+        /// <returns></returns>
         public static string RSASignData(string dataToSign, string privateKey)
         {
             byte[] res = RSASignData(Encoding.UTF8.GetBytes(dataToSign), privateKey);
             return Convert.ToBase64String(res);
         }
 
+        /// <summary>
+        /// 签名数据
+        /// </summary>
+        /// <param name="dataToSign"></param>
+        /// <returns></returns>
         public byte[] SignData(byte[] dataToSign)
         {
             try
@@ -133,6 +194,11 @@ public static partial class Encryption
             }
         }
 
+        /// <summary>
+        /// 签名数据
+        /// </summary>
+        /// <param name="dataToSign"></param>
+        /// <returns></returns>
         public string SignData(string dataToSign)
         {
             byte[] res = SignData(Encoding.UTF8.GetBytes(dataToSign));
@@ -142,6 +208,10 @@ public static partial class Encryption
         /// <summary>
         /// 验证签名
         /// </summary>
+        /// <param name="dataToVerify"></param>
+        /// <param name="signedData"></param>
+        /// <param name="publicKey"></param>
+        /// <returns></returns>
         public static bool RSAVerifyData(byte[] dataToVerify, byte[] signedData, string publicKey)
         {
             try
@@ -156,12 +226,25 @@ public static partial class Encryption
             }
         }
 
-        public static bool RSAVerifyData(string dataToVerify, string signedData, string publicKey)
+        /// <summary>
+        /// 验证数据是否一致
+        /// </summary>
+        /// <param name="dataToVerify"></param>
+        /// <param name="signedData"></param>
+        /// <param name="publicKey"></param>
+        /// <returns></returns>
+        public static bool RsaVerifyData(string dataToVerify, string signedData, string publicKey)
         {
             return RSAVerifyData(Encoding.UTF8.GetBytes(dataToVerify), Convert.FromBase64String(signedData),
-                                 publicKey);
+                publicKey);
         }
 
+        /// <summary>
+        /// 验证数据是否一致
+        /// </summary>
+        /// <param name="dataToVerify"></param>
+        /// <param name="signedData"></param>
+        /// <returns></returns>
         public bool VerifyData(byte[] dataToVerify, byte[] signedData)
         {
             try
@@ -174,6 +257,12 @@ public static partial class Encryption
             }
         }
 
+        /// <summary>
+        /// 验证数据是否一致
+        /// </summary>
+        /// <param name="dataToVerify"></param>
+        /// <param name="signedData"></param>
+        /// <returns></returns>
         public bool VerifyData(string dataToVerify, string signedData)
         {
             try
