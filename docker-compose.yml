@@ -1,14 +1,30 @@
-﻿services:  
-  server.game:
+﻿services:
+  gameframex:
     image: gameframex/server.launcher:1.0.0
-    container_name: game
-    build:
-      context: .
-      dockerfile: Dockerfile
+    container_name: gameframex
     ports:
-      - "29100:29100"
-      - "29110:29110"
+      # APM 端口
       - "29090:29090"
+      # TCP 端口
+      - "29100:29100"
+      # WebSocket 端口
+      - "29110:29110"
+    environment:
+      - ServerType=Game
+      - ServerId=1000
+      - APMPort=29090
+      - InnerIp=127.0.0.1
+      - InnerPort=29100
+      - OuterIp=127.0.0.1
+      - OuterPort=29100
+      - MinModuleId=10
+      - MaxModuleId=9999
+      - WsPort=29110
+      - DiscoveryCenterIp=127.0.0.1
+      - DiscoveryCenterPort=10001
+      - HttpCode=inner_httpcode
+      - DataBaseUrl=mongodb://gameframex:f9v42aU9DVeFNfAF@47.121.197.120:27017/?authSource=admin
+      - DataBaseName=gameframex
     networks:
       - frontend
       - backend
@@ -18,10 +34,8 @@
       - "./running/logs:/app/logs"
 networks:
   frontend:
-    # Use a custom driver
     name: gameframex-frontend
     driver: bridge
   backend:
-    # Use a custom driver which takes special options
     name: gameframex-backend
     driver: bridge
