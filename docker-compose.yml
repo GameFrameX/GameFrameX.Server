@@ -15,6 +15,7 @@
     volumes:
       - "./running/hotfix:/app/hotfix"
       - "./running/json:/app/json"
+      - "./running/logs:/app/logs"
 networks:
   frontend:
     # Use a custom driver
