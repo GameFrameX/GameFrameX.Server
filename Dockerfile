@@ -1,4 +1,4 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+﻿FROM mcr.microsoft.com/dotnet/runtime:8.0 AS base
 USER $APP_UID
 WORKDIR /app
 
@@ -16,6 +16,7 @@ COPY ["GameFrameX.Setting/GameFrameX.Setting.csproj", "GameFrameX.Setting/"]
 COPY ["GameFrameX.Utility/GameFrameX.Utility.csproj", "GameFrameX.Utility/"]
 COPY ["GameFrameX.Extension/GameFrameX.Extension.csproj", "GameFrameX.Extension/"]
 COPY ["GameFrameX.Log/GameFrameX.Log.csproj", "GameFrameX.Log/"]
+COPY ["DataBaseServer/GameFrameX.DataBase.Abstractions/GameFrameX.DataBase.Abstractions.csproj", "DataBaseServer/GameFrameX.DataBase.Abstractions/"]
 COPY ["GameFrameX.Core.Abstractions/GameFrameX.Core.Abstractions.csproj", "GameFrameX.Core.Abstractions/"]
 COPY ["GameFrameX.NetWork.HTTP/GameFrameX.NetWork.HTTP.csproj", "GameFrameX.NetWork.HTTP/"]
 COPY ["GameFrameX.NetWork/GameFrameX.NetWork.csproj", "GameFrameX.NetWork/"]
@@ -24,7 +25,10 @@ COPY ["GameFrameX.ProtoBuf.Net/GameFrameX.ProtoBuf.Net.csproj", "GameFrameX.Prot
 COPY ["GameFrameX.Monitor/GameFrameX.Monitor.csproj", "GameFrameX.Monitor/"]
 COPY ["GameFrameX.Config/GameFrameX.Config.csproj", "GameFrameX.Config/"]
 COPY ["GameFrameX.Core.Config/GameFrameX.Core.Config.csproj", "GameFrameX.Core.Config/"]
+COPY ["GameFrameX.GameAnalytics/GameFrameX.GameAnalytics.csproj", "GameFrameX.GameAnalytics/"]
+COPY ["GameFrameX.NetWork.ChannelBase/GameFrameX.NetWork.ChannelBase.csproj", "GameFrameX.NetWork.ChannelBase/"]
 COPY ["GameFrameX.NetWork.Message/GameFrameX.NetWork.Message.csproj", "GameFrameX.NetWork.Message/"]
+COPY ["GameFrameX.Proto.BuiltIn/GameFrameX.Proto.BuiltIn.csproj", "GameFrameX.Proto.BuiltIn/"]
 COPY ["GameFrameX.ServerManager/GameFrameX.ServerManager.csproj", "GameFrameX.ServerManager/"]
 COPY ["GameFrameX.StartUp/GameFrameX.StartUp.csproj", "GameFrameX.StartUp/"]
 RUN dotnet restore "GameFrameX.Launcher/GameFrameX.Launcher.csproj"
