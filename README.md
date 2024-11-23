@@ -6,21 +6,13 @@ __设计理念:大道至简，以简化繁__
 
 # 程序集说明
 
-|           程序集名称            |             介绍             |                               用途                               |
-|:--------------------------:|:--------------------------:|:--------------------------------------------------------------:|
-|    GameFrameX.Launcher     |           程序启动入口           |                            用于编写启动逻辑                            |
-|     GameFrameX.Hotfix      | 热更新逻辑和处理程序对象放置区(该部分为热更新内容) |               用于编写逻辑的地方(`主要工作区`,目录和`Apps`目录结构一致)               |
-|      GameFrameX.Apps       |    组件和实体对象放置区(该部分不能热更新)    | 用于编写基础逻辑和数据存储(`功能的添加修改主要工作区`,目录结构按照`ServerType` 划分和`HotFix`对应) |
-|     GameFrameX.Config      |       配置文件对象和配置文件放置区       |                 用于编写配置文件的类和文件的映射(目前由LuBan自动生成)                 |
-|      GameFrameX.Core       |           核心底层逻辑           |                            用于编写核心库                             |
-|    GameFrameX.DBServer     |         数据库操作相关服务          |                         用于编写数据库操作相关的逻辑                         |
-|    GameFrameX.Extension    |           对框架的扩展           |                        用于编写函数或其他工具库的扩展                         |
-| GameFrameX.Google.ProtoBuf |       ProtoBuff协议支持库       |                    ProtoBuff协议库(一般不会更新和修改)                     |
-|       GameFrameX.Log       |         日志配置和操作放置区         |                           用于编写日志配置相关                           |
-|      GameFrameX.Proto      |        数据通讯协议对象放置区         |                           用于编写通讯协议对象                           |
-|    GameFrameX.Serialize    |         序列化器 对象放置区         |                     用于编写通讯协议的序列化和反序列化的帮助类                      |
-|     GameFrameX.Setting     |        设置相关的内容 放置区域        |                        用于编写游戏逻辑配置或常量配置                         |
-|     GameFrameX.Utility     |         工具函数 对象放置区         |                         用于编写一些工具相关的函数                          |
+|        程序集名称        |             介绍             |                               用途                               |
+|:-------------------:|:--------------------------:|:--------------------------------------------------------------:|
+| GameFrameX.Launcher |           程序启动入口           |                            用于编写启动逻辑                            |
+|  GameFrameX.Hotfix  | 热更新逻辑和处理程序对象放置区(该部分为热更新内容) |               用于编写逻辑的地方(`主要工作区`,目录和`Apps`目录结构一致)               |
+|   GameFrameX.Apps   |    组件和实体对象放置区(该部分不能热更新)    | 用于编写基础逻辑和数据存储(`功能的添加修改主要工作区`,目录结构按照`ServerType` 划分和`HotFix`对应) |
+|  GameFrameX.Config  |       配置文件对象和配置文件放置区       |                 用于编写配置文件的类和文件的映射(目前由LuBan自动生成)                 |
+|  GameFrameX.Proto   |        数据通讯协议对象放置区         |                           用于编写通讯协议对象                           |
 
 # GameFrameX功能：
 
@@ -34,16 +26,16 @@ __设计理念:大道至简，以简化繁__
 
 ### 3.TPL(Task Parallel Library) Actor模型
 
-GeekServer的Actor模型构建于强大的TPL DataFlow之上，让Actor模型如虎添翼。（不了解Actor模型，可以搜一下相关资料，Akka，Orleans都是采用的Actor模型）[了解更多](https://github.com/leeveel/GeekServer/blob/main/Docs/1.Actor%E6%A8%A1%E5%9E%8B.md)
+Actor模型构建于强大的TPL DataFlow之上，让Actor模型如虎添翼。（不了解Actor模型，可以搜一下相关资料，Akka，Orleans都是采用的Actor模型）[了解更多](https://github.com/leeveel/GeekServer/blob/main/Docs/1.Actor%E6%A8%A1%E5%9E%8B.md)
 
 ### 4.Actor入队透明化
 
-GeekServer内部会自动处理线程上下文, 编译期间会通过[Source Generator](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/source-generators-overview)自动生成入队代码, 开发人员无需关心多线程以及入队逻辑,
+内部会自动处理线程上下文, 编译期间会通过[Source Generator](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/source-generators-overview)自动生成入队代码, 开发人员无需关心多线程以及入队逻辑,
 只需要像调用普通函数一样书写逻辑。[了解更多](https://github.com/leeveel/GeekServer/blob/main/Docs/Actor%E5%85%A5%E9%98%9F.md)
 
 ### 5.Actor死锁检测
 
-Actor模型本身是存在死锁的情况，且不容易被发现。GeekServer内部可检测环路死锁(即:A->B->C->A)，并采用调用链重入机制消除环路死锁。[了解更多](https://github.com/leeveel/GeekServer/blob/main/Docs/1.Actor%E6%A8%A1%E5%9E%8B.md)
+Actor模型本身是存在死锁的情况，且不容易被发现。内部可检测环路死锁(即:A->B->C->A)，并采用调用链重入机制消除环路死锁。[了解更多](https://github.com/leeveel/GeekServer/blob/main/Docs/1.Actor%E6%A8%A1%E5%9E%8B.md)
 
 ### 6.支持不停服更新
 
@@ -51,7 +43,7 @@ Actor模型本身是存在死锁的情况，且不容易被发现。GeekServer�
 
 ### 7.网络模块
 
-网络模块替换了原来的DotNetty，采用Asp.Net的默认服务器Kestrel，支持协议多（Tcp，udp,Http123,websocket，signalr等），而且性能比dotnetty高很多[了解更多](https://github.com/leeveel/GeekServer/blob/main/Docs/%E7%BD%91%E7%BB%9CNet(tcp%26http).md)
+网络模块采用SuperSocket的默认服务器Kestrel，支持协议多（Tcp，udp,Http123,websocket，signalr等），而且性能高[了解更多](https://github.com/leeveel/GeekServer/blob/main/Docs/%E7%BD%91%E7%BB%9CNet(tcp%26http).md)
 
 ### 8.持久化透明
 
@@ -65,100 +57,18 @@ Actor模型本身是存在死锁的情况，且不容易被发现。GeekServer�
 
 以功能系统级别的粒度，定期剔除内存中不活跃的玩家数据，尽最大可能减少服务器内存开销。
 
-
 # 运行
 
 1. 安装[.NetCore8.0](https://dotnet.microsoft.com/download/dotnet/6.0)
 2. 安装[mongodb4.x](https://www.mongodb.com/try/download/community)
 3. 打开git clone本项目
-4. 运行Tools/ExcelGen/ExcelToCode.exe 点击[服务器-ALL]导出配置表
-5. 用VisualStudio2022打开GeekServer.sln 启动GeekServer.App
-6. 启动GeekServer.Test (一个1000人登录的demo)
-7. 打开UnityDemo工程，打开SampleScene，运行查看日志(**检查Main Camera上是否有脚本丢失，如果有请挂载GameMain.cs**)
+4. 用VisualStudio 或者Rider打开Server.sln 启动 G`ameFrameX.Launcher`
+5. 打开Unity工程，打开Launcher 场景，运行查看日志
 
 # 文档&例子&Demo
 
-[十分钟上手教程](https://github.com/leeveel/GeekServer/blob/main/Docs/%E5%8D%81%E5%88%86%E9%92%9F.md)  
-[了解更多](https://github.com/leeveel/GeekServer/tree/master/Docs)
+[视频教程](https://www.bilibili.com/video/BV1yrpeepEn7/)
 
-# 代码片段
+[参考文档](https://gameframex.doc.alianblank.com/)
 
-```c#
-//采用注解注册Actor组件
-[Comp(ActorType.Role)]
-public class BagComp : StateComp<BagState>{}
-
-//调用Actor组件函数(就像调用普通函数一样,无需关心多线程或入队)
-var serverComp = await EntityMgr.GetCompAgent<ServerCompAgent>(ActorType.Server);
-await serverComp.CheckCrossDay();
-
-//定义状态(数据)
-public class RoleState : DBState
-{
-    public string RoleName { get; set; }
-    public long RoleId { get; set; }
-    ...
-}
-//绑定组件
-public class RoleComp : StateComponent<RoleState>{}
-//绑定组件Agent(Agent类逻辑可全部热更新)
-public class RoleCompAgent : StateComponentAgent<RoleComp, RoleState>{}
-```
-
-# 最佳实践
-
-GeekServer有严格的书写规范检查，如不符合规范编译直接报错  
-1.CompAgent不能被二次继承，Agent继承的需求理论上很少，如果有请采用组合模式  
-2.为CompAgent中需要被外部提供服务的接口，添加【Api】注解  
-3.CompAgent中非【Threadsafe】的【Api】接口只能是异步函数    
-4.CompAgent中不要书写构造函数,重写Active函数来完成初始化工作  
-5.大部分情况下你都应该使用await等待来书写逻辑，不需要等待的方法请加上【Discard】注解，如：通知全服玩家，就没必要等待一个通知完成后再通知下一个。 同时[Source Generator](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/source-generators-overview)
-在编译期间对标记了【Discard】的函数做了处理，内部直接返回了Task.CompletedTask，所以外部使用下划线丢弃或是用await都是等价的，为了规范统一，可以全部使用await。**这样有个好处，就是可以在编译期间检查所有Agent中的代码，如有发现使用了弃元运算符(_ = DoSomething())
-则提示代码编写不符合规范。**
-
-```c#
-public Task NotifyAllClient()
-{
-   for(int i=0; i<clients.count; i++)
-   {
-     //_ = NotifyOneClient(clients[i].roleId);
-	 //对于标记了[Discard]的函数，等价于上面一行代码
-	 await NotifyOneClient(clients[i].roleId);
-   }
-}
-
-[Api]
-[Discard]
-public virtual Task NotifyOneClient(long roleId)
-{
-   //...
-   //...
-}
-```
-
-5.CompAgent中为需要提供给外部访问接口，标记[Api]注解，如果不加外部又有访问，**则会有线程安全问题**，除非此接口本身就是线程安全的(标记了[ThreadSafe]注解)。
-
-```c#
-public class ServerCompAgent : StateCompAgent<ServerComp, ServerState>
-{
-    private Task TestScheduleTimer()
-    {
-        LOGGER.Debug("ServerCompAgent.TestSchedueTimer.延时1秒执行.每隔3秒执行");
-        return Task.CompletedTask;
-    }
-
-    /// <summary>
-    /// 由于此接口会提供给其他Actor访问，所以需要标记为[Api]
-    /// </summary>[GameFrameX.Client.csproj](GameFrameX.Client%2FGameFrameX.Client.csproj)
-    /// <returns></returns>
-    [Api]
-    public virtual Task<int> GetWorldLevel()
-    {
-        return Task.FromResult(State.WorldLevel);
-    }
-
-}
-```
-
-更多异步书写规范请参考微软官方文档[AsyncGuidance.md](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md)
 
