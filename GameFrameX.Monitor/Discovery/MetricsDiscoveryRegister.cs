@@ -2,6 +2,9 @@ using Prometheus;
 
 namespace GameFrameX.Monitor.Discovery;
 
+/// <summary>
+/// 发现中心监控帮助类
+/// </summary>
 public static class MetricsDiscoveryRegister
 {
     private static Gauge _serviceCounterOptions;

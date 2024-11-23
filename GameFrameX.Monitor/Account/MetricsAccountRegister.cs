@@ -2,6 +2,9 @@ using Prometheus;
 
 namespace GameFrameX.Monitor.Account;
 
+/// <summary>
+/// 账号监控帮助类
+/// </summary>
 public static class MetricsAccountRegister
 {
     static Counter _loginCounterOptions;

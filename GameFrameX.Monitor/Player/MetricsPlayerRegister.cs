@@ -2,6 +2,9 @@ using Prometheus;
 
 namespace GameFrameX.Monitor.Player;
 
+/// <summary>
+/// 玩家监控帮助类
+/// </summary>
 public static class MetricsPlayerRegister
 {
     static Counter _getPlayerListCounterOptions;

@@ -2,6 +2,9 @@ using Prometheus;
 
 namespace GameFrameX.Monitor.DataBase;
 
+/// <summary>
+/// 数据库监控帮助类
+/// </summary>
 public static class MetricsDataBaseRegister
 {
     static Counter _findCounterOptions;
