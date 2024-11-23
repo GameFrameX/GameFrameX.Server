@@ -54,9 +54,9 @@ public static partial class Encryption
         /// <param name="publicKey">公钥</param>
         /// <param name="content">所加密的内容</param>
         /// <returns>加密后的内容</returns>
-        public static string RSAEncrypt(string publicKey, string content)
+        public static string Encrypt(string publicKey, string content)
         {
-            byte[] res = RSAEncrypt(publicKey, Encoding.UTF8.GetBytes(content));
+            byte[] res = Encrypt(publicKey, Encoding.UTF8.GetBytes(content));
             return Convert.ToBase64String(res);
         }
 
@@ -77,7 +77,7 @@ public static partial class Encryption
         /// <param name="publicKey"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        public static byte[] RSAEncrypt(string publicKey, byte[] content)
+        public static byte[] Encrypt(string publicKey, byte[] content)
         {
             RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
             rsa.FromXmlString(publicKey);
@@ -102,9 +102,9 @@ public static partial class Encryption
         /// <param name="privateKey">私钥</param>
         /// <param name="content">加密后的内容</param>
         /// <returns>解密后的内容</returns>
-        public static string RSADecrypt(string privateKey, string content)
+        public static string Decrypt(string privateKey, string content)
         {
-            byte[] res = RSADecrypt(privateKey, Convert.FromBase64String(content));
+            byte[] res = Decrypt(privateKey, Convert.FromBase64String(content));
             return Encoding.UTF8.GetString(res);
         }
 
@@ -115,7 +115,7 @@ public static partial class Encryption
         /// <param name="privateKey"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        public static byte[] RSADecrypt(string privateKey, byte[] content)
+        public static byte[] Decrypt(string privateKey, byte[] content)
         {
             RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
             rsa.FromXmlString(privateKey);
@@ -151,11 +151,11 @@ public static partial class Encryption
         /// <param name="dataToSign"></param>
         /// <param name="privateKey"></param>
         /// <returns></returns>
-        public static byte[] RSASignData(byte[] dataToSign, string privateKey)
+        public static byte[] SignData(byte[] dataToSign, string privateKey)
         {
             try
             {
-                RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+                var rsa = new RSACryptoServiceProvider();
                 rsa.FromXmlString(privateKey);
                 return rsa.SignData(dataToSign, new SHA1CryptoServiceProvider());
             }
@@ -171,9 +171,9 @@ public static partial class Encryption
         /// <param name="dataToSign"></param>
         /// <param name="privateKey"></param>
         /// <returns></returns>
-        public static string RSASignData(string dataToSign, string privateKey)
+        public static string SignData(string dataToSign, string privateKey)
         {
-            byte[] res = RSASignData(Encoding.UTF8.GetBytes(dataToSign), privateKey);
+            byte[] res = SignData(Encoding.UTF8.GetBytes(dataToSign), privateKey);
             return Convert.ToBase64String(res);
         }
 
@@ -212,7 +212,7 @@ public static partial class Encryption
         /// <param name="signedData"></param>
         /// <param name="publicKey"></param>
         /// <returns></returns>
-        public static bool RSAVerifyData(byte[] dataToVerify, byte[] signedData, string publicKey)
+        public static bool VerifyData(byte[] dataToVerify, byte[] signedData, string publicKey)
         {
             try
             {
@@ -235,7 +235,7 @@ public static partial class Encryption
         /// <returns></returns>
         public static bool RsaVerifyData(string dataToVerify, string signedData, string publicKey)
         {
-            return RSAVerifyData(Encoding.UTF8.GetBytes(dataToVerify), Convert.FromBase64String(signedData),
+            return VerifyData(Encoding.UTF8.GetBytes(dataToVerify), Convert.FromBase64String(signedData),
                 publicKey);
         }
 

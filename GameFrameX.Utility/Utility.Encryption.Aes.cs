@@ -1,5 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
+using GameFrameX.Log;
 
 namespace GameFrameX.Utility;
 
@@ -8,6 +9,9 @@ namespace GameFrameX.Utility;
 /// </summary>
 public static partial class Encryption
 {
+    /// <summary>
+    /// AES 加密解密
+    /// </summary>
     public static class Aes
     {
         #region 加密
@@ -102,7 +106,7 @@ public static partial class Encryption
         /// <param name="DecryptKey">解密密钥</param>
         public static string AESDecrypt(string DecryptString, string DecryptKey)
         {
-            return Encoding.UTF8.GetString((AESDecrypt(Convert.FromBase64String(DecryptString), DecryptKey)));
+            return Encoding.UTF8.GetString((AesDecrypt(Convert.FromBase64String(DecryptString), DecryptKey)));
         }
 
         #endregion
@@ -112,60 +116,49 @@ public static partial class Encryption
         /// <summary>
         /// AES 解密(高级加密标准，是下一代的加密算法标准，速度快，安全级别高，目前 AES 标准的一个实现是 Rijndael 算法)
         /// </summary>
-        /// <param name="DecryptString">待解密密文</param>
-        /// <param name="DecryptKey">解密密钥</param>
-        public static byte[] AESDecrypt(byte[] DecryptByte, string DecryptKey)
+        /// <param name="decryptByte">待解密密文</param>
+        /// <param name="decryptKey">解密密钥</param>
+        public static byte[] AesDecrypt(byte[] decryptByte, string decryptKey)
         {
-            if (DecryptByte.Length == 0)
+            if (decryptByte.Length == 0)
             {
                 throw (new Exception("密文不得为空"));
             }
 
-            if (string.IsNullOrEmpty(DecryptKey))
+            if (string.IsNullOrEmpty(decryptKey))
             {
                 throw (new Exception("密钥不得为空"));
             }
 
-            byte[] m_strDecrypt;
-            byte[] m_btIV = new byte[16] { 224, 131, 122, 101, 37, 254, 33, 17, 19, 28, 212, 130, 45, 65, 43, 32 };
-            byte[] m_salt = new byte[16] { 234, 231, 123, 100, 87, 254, 123, 17, 89, 18, 230, 13, 45, 65, 43, 32 };
-            Rijndael m_AESProvider = Rijndael.Create();
+            byte[] mBtIv = new byte[16] { 224, 131, 122, 101, 37, 254, 33, 17, 19, 28, 212, 130, 45, 65, 43, 32 };
+            byte[] mSalt = new byte[16] { 234, 231, 123, 100, 87, 254, 123, 17, 89, 18, 230, 13, 45, 65, 43, 32 };
+            Rijndael mAesProvider = Rijndael.Create();
             try
             {
-                MemoryStream m_stream = new MemoryStream();
-                PasswordDeriveBytes pdb = new PasswordDeriveBytes(DecryptKey, m_salt);
-                ICryptoTransform transform = m_AESProvider.CreateDecryptor(pdb.GetBytes(32), m_btIV);
-                CryptoStream m_csstream = new CryptoStream(m_stream, transform, CryptoStreamMode.Write);
-                m_csstream.Write(DecryptByte, 0, DecryptByte.Length);
-                m_csstream.FlushFinalBlock();
-                m_strDecrypt = m_stream.ToArray();
-                m_stream.Close();
-                m_stream.Dispose();
-                m_csstream.Close();
-                m_csstream.Dispose();
+                MemoryStream mStream = new MemoryStream();
+                PasswordDeriveBytes pdb = new PasswordDeriveBytes(decryptKey, mSalt);
+                ICryptoTransform transform = mAesProvider.CreateDecryptor(pdb.GetBytes(32), mBtIv);
+                CryptoStream cryptoStream = new CryptoStream(mStream, transform, CryptoStreamMode.Write);
+                cryptoStream.Write(decryptByte, 0, decryptByte.Length);
+                cryptoStream.FlushFinalBlock();
+                var decrypt = mStream.ToArray();
+                mStream.Close();
+                mStream.Dispose();
+                cryptoStream.Close();
+                cryptoStream.Dispose();
+                return decrypt;
             }
-            catch (IOException ex)
-            {
-                throw ex;
-            }
-            catch (CryptographicException ex)
-            {
-                throw ex;
-            }
-            catch (ArgumentException ex)
-            {
-                throw ex;
-            }
+
             catch (Exception ex)
             {
-                throw ex;
+                LogHelper.Error(ex);
             }
             finally
             {
-                m_AESProvider.Clear();
+                mAesProvider.Clear();
             }
 
-            return m_strDecrypt;
+            return default;
         }
 
         #endregion

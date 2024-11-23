@@ -8,15 +8,26 @@ namespace GameFrameX.Utility;
 /// </summary>
 public static partial class Encryption
 {
+    /// <summary>
+    /// DSA 加密解密
+    /// </summary>
     public sealed class Dsa
     {
         private readonly DSACryptoServiceProvider _dsa = null;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dsa"></param>
         public Dsa(DSACryptoServiceProvider dsa)
         {
             _dsa = dsa;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
         public Dsa(string key)
         {
             DSACryptoServiceProvider rsa = new DSACryptoServiceProvider();
@@ -24,6 +35,10 @@ public static partial class Encryption
             this._dsa = rsa;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static Dictionary<string, string> Make()
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
@@ -39,7 +54,7 @@ public static partial class Encryption
         /// <param name="dataToSign"></param>
         /// <param name="privateKey"></param>
         /// <returns></returns>
-        public static byte[] DSASignData(byte[] dataToSign, string privateKey)
+        public static byte[] SignData(byte[] dataToSign, string privateKey)
         {
             try
             {
@@ -53,9 +68,15 @@ public static partial class Encryption
             }
         }
 
-        public static string DSASignData(string dataToSign, string privateKey)
+        /// <summary>
+        /// 签名
+        /// </summary>
+        /// <param name="dataToSign"></param>
+        /// <param name="privateKey"></param>
+        /// <returns></returns>
+        public static string SignData(string dataToSign, string privateKey)
         {
-            byte[] res = DSASignData(Encoding.UTF8.GetBytes(dataToSign), privateKey);
+            byte[] res = SignData(Encoding.UTF8.GetBytes(dataToSign), privateKey);
             return Convert.ToBase64String(res);
         }
 
@@ -77,6 +98,11 @@ public static partial class Encryption
             }
         }
 
+        /// <summary>
+        /// 签名
+        /// </summary>
+        /// <param name="dataToSign"></param>
+        /// <returns></returns>
         public string SignData(string dataToSign)
         {
             byte[] res = SignData(Encoding.UTF8.GetBytes(dataToSign));
@@ -91,7 +117,7 @@ public static partial class Encryption
         /// <param name="signedData"></param>
         /// <param name="privateKey"></param>
         /// <returns></returns>
-        public static bool DSAVerifyData(byte[] dataToVerify, byte[] signedData, string privateKey)
+        public static bool VerifyData(byte[] dataToVerify, byte[] signedData, string privateKey)
         {
             try
             {
@@ -105,12 +131,25 @@ public static partial class Encryption
             }
         }
 
-        public static bool DSAVerifyData(string dataToVerify, string signedData, string privateKey)
+        /// <summary>
+        /// 验证签名
+        /// </summary>
+        /// <param name="dataToVerify"></param>
+        /// <param name="signedData"></param>
+        /// <param name="privateKey"></param>
+        /// <returns></returns>
+        public static bool VerifyData(string dataToVerify, string signedData, string privateKey)
         {
-            return DSAVerifyData(Encoding.UTF8.GetBytes(dataToVerify), Convert.FromBase64String(signedData),
-                                 privateKey);
+            return VerifyData(Encoding.UTF8.GetBytes(dataToVerify), Convert.FromBase64String(signedData),
+                privateKey);
         }
 
+        /// <summary>
+        /// 验证签名
+        /// </summary>
+        /// <param name="dataToVerify"></param>
+        /// <param name="signedData"></param>
+        /// <returns></returns>
         public bool VerifyData(byte[] dataToVerify, byte[] signedData)
         {
             try
@@ -123,6 +162,12 @@ public static partial class Encryption
             }
         }
 
+        /// <summary>
+        /// 验证签名
+        /// </summary>
+        /// <param name="dataToVerify"></param>
+        /// <param name="signedData"></param>
+        /// <returns></returns>
         public bool VerifyData(string dataToVerify, string signedData)
         {
             try
