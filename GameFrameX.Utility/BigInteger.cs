@@ -135,15 +135,16 @@ namespace GameFrameX.Utility;
 /// <summary>
 /// 
 /// </summary>
-public class BigInteger
+public sealed class BigInteger
 {
     // maximum length of the BigInteger in uint (4 bytes)
     // change this to suit the required level of precision.
 
     private const int maxLength = 70;
 
-    // primes smaller than 2000 to test the generated prime number
-
+    /// <summary>
+    /// primes smaller than 2000 to test the generated prime number
+    /// </summary>
     public static readonly int[] primesBelow2000 =
     {
         2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97,
@@ -172,9 +173,9 @@ public class BigInteger
     private uint[] data = null; // stores bytes from the Big Integer
 
     /// <summary>
-    /// 
+    /// number of actual chars used
     /// </summary>
-    public int dataLength; // number of actual chars used
+    public int dataLength;
 
 
     //***********************************************************************
@@ -263,13 +264,8 @@ public class BigInteger
             dataLength = 1;
     }
 
-
-    //***********************************************************************
-    // Constructor (Default value provided by BigInteger)
-    //***********************************************************************
-
     /// <summary>
-    /// 
+    /// Constructor (Default value provided by BigInteger)
     /// </summary>
     /// <param name="bi"></param>
     public BigInteger(BigInteger bi)
@@ -283,31 +279,26 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Constructor (Default value provided by a string of digits of the
-    //              specified base)
-    //
-    // Example (base 10)
-    // -----------------
-    // To initialize "a" with the default value of 1234 in base 10
-    //      BigInteger a = new BigInteger("1234", 10)
-    //
-    // To initialize "a" with the default value of -1234
-    //      BigInteger a = new BigInteger("-1234", 10)
-    //
-    // Example (base 16)
-    // -----------------
-    // To initialize "a" with the default value of 0x1D4F in base 16
-    //      BigInteger a = new BigInteger("1D4F", 16)
-    //
-    // To initialize "a" with the default value of -0x1D4F
-    //      BigInteger a = new BigInteger("-1D4F", 16)
-    //
-    // Note that string values are specified in the <sign><magnitude>
-    // format.
-    //
-    //***********************************************************************
-
+    /// <summary>
+    /// Constructor (Default value provided by a string of digits of the
+    /// specified base)
+    /// Example (base 10)
+    ///     -----------------
+    /// To initialize "a" with the default value of 1234 in base 10
+    /// BigInteger a = new BigInteger("1234", 10)
+    /// To initialize "a" with the default value of -1234
+    /// BigInteger a = new BigInteger("-1234", 10)
+    /// Example (base 16)
+    ///     -----------------
+    /// To initialize "a" with the default value of 0x1D4F in base 16
+    /// BigInteger a = new BigInteger("1D4F", 16)
+    /// To initialize "a" with the default value of -0x1D4F
+    /// BigInteger a = new BigInteger("-1D4F", 16)
+    /// Note that string values are specified in the format.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="radix"></param>
+    /// <exception cref="ArithmeticException"></exception>
     public BigInteger(string value, int radix = 10)
     {
         BigInteger multiplier = new BigInteger(1);
@@ -380,6 +371,11 @@ public class BigInteger
     //
     //***********************************************************************
 
+    /// <summary>
+    /// Constructor (Default value provided by an array of bytes)
+    /// </summary>
+    /// <param name="inData"></param>
+    /// <exception cref="ArithmeticException"></exception>
     public BigInteger(byte[] inData)
     {
         dataLength = inData.Length >> 2;
@@ -416,10 +412,15 @@ public class BigInteger
 
 
     //***********************************************************************
-    // Constructor (Default value provided by an array of bytes of the
-    // specified length.)
+    // Constructor (Default value provided by an array of bytes of the specified length.)
     //***********************************************************************
 
+    /// <summary>
+    /// Constructor (Default value provided by an array of bytes of the specified length.)
+    /// </summary>
+    /// <param name="inData"></param>
+    /// <param name="inLen"></param>
+    /// <exception cref="ArithmeticException"></exception>
     public BigInteger(byte[] inData, int inLen)
     {
         dataLength = inLen >> 2;
@@ -458,10 +459,11 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Constructor (Default value provided by an array of unsigned integers)
-    //*********************************************************************
-
+    /// <summary>
+    /// Constructor (Default value provided by an array of unsigned integers)
+    /// </summary>
+    /// <param name="inData"></param>
+    /// <exception cref="ArithmeticException"></exception>
     public BigInteger(uint[] inData)
     {
         dataLength = inData.Length;
@@ -481,36 +483,54 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Overloading of the typecast operator.
-    // For BigInteger bi = 10;
-    //***********************************************************************
-
+    /// <summary>
+    /// Overloading of the typecast operator. For BigInteger bi = 10;
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static implicit operator BigInteger(long value)
     {
         return (new BigInteger(value));
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static implicit operator BigInteger(ulong value)
     {
         return (new BigInteger(value));
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static implicit operator BigInteger(int value)
     {
         return (new BigInteger((long)value));
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static implicit operator BigInteger(uint value)
     {
         return (new BigInteger((ulong)value));
     }
 
 
-    //***********************************************************************
-    // Overloading of addition operator
-    //***********************************************************************
-
+    /// <summary>
+    /// Overloading of addition operator
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <param name="bi2"></param>
+    /// <returns></returns>
+    /// <exception cref="ArithmeticException"></exception>
     public static BigInteger operator +(BigInteger bi1, BigInteger bi2)
     {
         BigInteger result = new BigInteger();
@@ -547,10 +567,12 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Overloading of the unary ++ operator
-    //***********************************************************************
-
+    /// <summary>
+    /// Overloading of the unary ++ operator
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <returns></returns>
+    /// <exception cref="ArithmeticException"></exception>
     public static BigInteger operator ++(BigInteger bi1)
     {
         BigInteger result = new BigInteger(bi1);
@@ -592,11 +614,13 @@ public class BigInteger
         return result;
     }
 
-
-    //***********************************************************************
-    // Overloading of subtraction operator
-    //***********************************************************************
-
+    /// <summary>
+    /// Overloading of subtraction operator
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <param name="bi2"></param>
+    /// <returns></returns>
+    /// <exception cref="ArithmeticException"></exception>
     public static BigInteger operator -(BigInteger bi1, BigInteger bi2)
     {
         BigInteger result = new BigInteger();
@@ -641,11 +665,12 @@ public class BigInteger
         return result;
     }
 
-
-    //***********************************************************************
-    // Overloading of the unary -- operator
-    //***********************************************************************
-
+    /// <summary>
+    /// Overloading of the unary -- operator
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <returns></returns>
+    /// <exception cref="ArithmeticException"></exception>
     public static BigInteger operator --(BigInteger bi1)
     {
         BigInteger result = new BigInteger(bi1);
@@ -688,11 +713,13 @@ public class BigInteger
         return result;
     }
 
-
-    //***********************************************************************
-    // Overloading of multiplication operator
-    //***********************************************************************
-
+    /// <summary>
+    /// Overloading of multiplication operator
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <param name="bi2"></param>
+    /// <returns></returns>
+    /// <exception cref="ArithmeticException"></exception>
     public static BigInteger operator *(BigInteger bi1, BigInteger bi2)
     {
         int lastPos = maxLength - 1;
@@ -789,10 +816,12 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Overloading of unary << operators
-    //***********************************************************************
-
+    /// <summary>
+    ///  Overloading of unary "<<" operators
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <param name="shiftVal"></param>
+    /// <returns></returns>
     public static BigInteger operator <<(BigInteger bi1, int shiftVal)
     {
         BigInteger result = new BigInteger(bi1);
@@ -802,8 +831,12 @@ public class BigInteger
     }
 
 
-    // least significant bits at lower part of buffer
-
+    /// <summary>
+    /// least significant bits at lower part of buffer
+    /// </summary>
+    /// <param name="buffer"></param>
+    /// <param name="shiftVal"></param>
+    /// <returns></returns>
     private static int shiftLeft(uint[] buffer, int shiftVal)
     {
         int shiftAmount = 32;
@@ -845,10 +878,12 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Overloading of unary >> operators
-    //***********************************************************************
-
+    /// <summary>
+    /// Overloading of unary >> operators
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <param name="shiftVal"></param>
+    /// <returns></returns>
     public static BigInteger operator >> (BigInteger bi1, int shiftVal)
     {
         BigInteger result = new BigInteger(bi1);
@@ -917,11 +952,11 @@ public class BigInteger
         return bufLen;
     }
 
-
-    //***********************************************************************
-    // Overloading of the NOT operator (1's complement)
-    //***********************************************************************
-
+    /// <summary>
+    ///  Overloading of the NOT operator (1's complement)
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <returns></returns>
     public static BigInteger operator ~(BigInteger bi1)
     {
         BigInteger result = new BigInteger(bi1);
@@ -938,10 +973,12 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Overloading of the NEGATE operator (2's complement)
-    //***********************************************************************
-
+    /// <summary>
+    /// Overloading of the NEGATE operator (2's complement)
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <returns></returns>
+    /// <exception cref="ArithmeticException"></exception>
     public static BigInteger operator -(BigInteger bi1)
     {
         // handle neg of zero separately since it'll cause an overflow
@@ -982,15 +1019,22 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Overloading of equality operator
-    //***********************************************************************
-
+    /// <summary>
+    /// Overloading of equality operator
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <param name="bi2"></param>
+    /// <returns></returns>
     public static bool operator ==(BigInteger bi1, BigInteger bi2)
     {
         return bi1.Equals(bi2);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="other"></param>
+    /// <returns></returns>
     public int CompareTo(BigInteger other)
     {
         if (this > other)
@@ -1001,12 +1045,23 @@ public class BigInteger
     }
 
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <param name="bi2"></param>
+    /// <returns></returns>
     public static bool operator !=(BigInteger bi1, BigInteger bi2)
     {
         return !(bi1.Equals(bi2));
     }
 
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="o"></param>
+    /// <returns></returns>
     public override bool Equals(object o)
     {
         BigInteger bi = (BigInteger)o;
@@ -1024,16 +1079,20 @@ public class BigInteger
     }
 
 
+    /// <summary>Serves as the default hash function.</summary>
+    /// <returns>A hash code for the current object.</returns>
     public override int GetHashCode()
     {
         return this.ToString().GetHashCode();
     }
 
 
-    //***********************************************************************
-    // Overloading of inequality operator
-    //***********************************************************************
-
+    /// <summary>
+    /// Overloading of inequality operator
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <param name="bi2"></param>
+    /// <returns></returns>
     public static bool operator >(BigInteger bi1, BigInteger bi2)
     {
         int pos = maxLength - 1;
@@ -1061,6 +1120,12 @@ public class BigInteger
     }
 
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <param name="bi2"></param>
+    /// <returns></returns>
     public static bool operator <(BigInteger bi1, BigInteger bi2)
     {
         int pos = maxLength - 1;
@@ -1088,12 +1153,24 @@ public class BigInteger
     }
 
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <param name="bi2"></param>
+    /// <returns></returns>
     public static bool operator >=(BigInteger bi1, BigInteger bi2)
     {
         return (bi1 == bi2 || bi1 > bi2);
     }
 
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <param name="bi2"></param>
+    /// <returns></returns>
     public static bool operator <=(BigInteger bi1, BigInteger bi2)
     {
         return (bi1 == bi2 || bi1 < bi2);
@@ -1107,7 +1184,7 @@ public class BigInteger
     // Algorithm taken from [1]
     //***********************************************************************
 
-    private static void multiByteDivide(BigInteger bi1, BigInteger bi2,
+    private static void MultiByteDivide(BigInteger bi1, BigInteger bi2,
         BigInteger outQuotient, BigInteger outRemainder)
     {
         uint[] result = new uint[maxLength];
@@ -1239,7 +1316,7 @@ public class BigInteger
     // a divisor that has only 1 digit.
     //***********************************************************************
 
-    private static void singleByteDivide(BigInteger bi1, BigInteger bi2,
+    private static void SingleByteDivide(BigInteger bi1, BigInteger bi2,
         BigInteger outQuotient, BigInteger outRemainder)
     {
         uint[] result = new uint[maxLength];
@@ -1301,10 +1378,12 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Overloading of division operator
-    //***********************************************************************
-
+    /// <summary>
+    /// Overloading of division operator
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <param name="bi2"></param>
+    /// <returns></returns>
     public static BigInteger operator /(BigInteger bi1, BigInteger bi2)
     {
         BigInteger quotient = new BigInteger();
@@ -1333,9 +1412,9 @@ public class BigInteger
         else
         {
             if (bi2.dataLength == 1)
-                singleByteDivide(bi1, bi2, quotient, remainder);
+                SingleByteDivide(bi1, bi2, quotient, remainder);
             else
-                multiByteDivide(bi1, bi2, quotient, remainder);
+                MultiByteDivide(bi1, bi2, quotient, remainder);
 
             if (dividendNeg != divisorNeg)
                 return -quotient;
@@ -1345,10 +1424,12 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Overloading of modulus operator
-    //***********************************************************************
-
+    /// <summary>
+    /// Overloading of modulus operator
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <param name="bi2"></param>
+    /// <returns></returns>
     public static BigInteger operator %(BigInteger bi1, BigInteger bi2)
     {
         BigInteger quotient = new BigInteger();
@@ -1374,9 +1455,9 @@ public class BigInteger
         else
         {
             if (bi2.dataLength == 1)
-                singleByteDivide(bi1, bi2, quotient, remainder);
+                SingleByteDivide(bi1, bi2, quotient, remainder);
             else
-                multiByteDivide(bi1, bi2, quotient, remainder);
+                MultiByteDivide(bi1, bi2, quotient, remainder);
 
             if (dividendNeg)
                 return -remainder;
@@ -1386,10 +1467,12 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Overloading of bitwise AND operator
-    //***********************************************************************
-
+    /// <summary>
+    ///  Overloading of bitwise AND operator
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <param name="bi2"></param>
+    /// <returns></returns>
     public static BigInteger operator &(BigInteger bi1, BigInteger bi2)
     {
         BigInteger result = new BigInteger();
@@ -1411,10 +1494,12 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Overloading of bitwise OR operator
-    //***********************************************************************
-
+    /// <summary>
+    /// Overloading of bitwise OR operator
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <param name="bi2"></param>
+    /// <returns></returns>
     public static BigInteger operator |(BigInteger bi1, BigInteger bi2)
     {
         BigInteger result = new BigInteger();
@@ -1436,10 +1521,12 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Overloading of bitwise XOR operator
-    //***********************************************************************
-
+    /// <summary>
+    /// Overloading of bitwise XOR operator
+    /// </summary>
+    /// <param name="bi1"></param>
+    /// <param name="bi2"></param>
+    /// <returns></returns>
     public static BigInteger operator ^(BigInteger bi1, BigInteger bi2)
     {
         BigInteger result = new BigInteger();
@@ -1461,10 +1548,11 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Returns max(this, bi)
-    //***********************************************************************
-
+    /// <summary>
+    /// Returns max(this, bi)
+    /// </summary>
+    /// <param name="bi"></param>
+    /// <returns></returns>
     public BigInteger max(BigInteger bi)
     {
         if (this > bi)
@@ -1474,10 +1562,11 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Returns min(this, bi)
-    //***********************************************************************
-
+    /// <summary>
+    /// Returns min(this, bi)
+    /// </summary>
+    /// <param name="bi"></param>
+    /// <returns></returns>
     public BigInteger min(BigInteger bi)
     {
         if (this < bi)
@@ -1487,10 +1576,10 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Returns the absolute value
-    //***********************************************************************
-
+    /// <summary>
+    /// Returns the absolute value
+    /// </summary>
+    /// <returns></returns>
     public BigInteger abs()
     {
         if ((this.data[maxLength - 1] & 0x80000000) != 0)
@@ -1500,10 +1589,10 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Returns a string representing the BigInteger in base 10.
-    //***********************************************************************
-
+    /// <summary>
+    /// Returns a string representing the BigInteger in base 10.
+    /// </summary>
+    /// <returns></returns>
     public override string ToString()
     {
         return ToString(10);
@@ -1521,6 +1610,12 @@ public class BigInteger
     //
     //***********************************************************************
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="radix"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
     public string ToString(int radix)
     {
         if (radix < 2 || radix > 36)
@@ -1554,7 +1649,7 @@ public class BigInteger
         {
             while (a.dataLength > 1 || (a.dataLength == 1 && a.data[0] != 0))
             {
-                singleByteDivide(a, biRadix, quotient, remainder);
+                SingleByteDivide(a, biRadix, quotient, remainder);
 
                 if (remainder.data[0] < 10)
                     result = remainder.data[0] + result;
@@ -1586,6 +1681,10 @@ public class BigInteger
     //
     //***********************************************************************
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public string ToHexString()
     {
         string result = data[dataLength - 1].ToString("X");
@@ -1599,11 +1698,14 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Modulo Exponentiation
-    //***********************************************************************
-
-    public BigInteger modPow(BigInteger exp, BigInteger n)
+    /// <summary>
+    /// Modulo Exponentiation
+    /// </summary>
+    /// <param name="exp"></param>
+    /// <param name="n"></param>
+    /// <returns></returns>
+    /// <exception cref="ArithmeticException"></exception>
+    public BigInteger ModPow(BigInteger exp, BigInteger n)
     {
         if ((exp.data[maxLength - 1] & 0x80000000) != 0)
             throw (new ArithmeticException("Positive exponents only."));
@@ -1631,7 +1733,7 @@ public class BigInteger
         constant.dataLength = i + 1;
 
         constant = constant / n;
-        int totalBits = exp.bitCount();
+        int totalBits = exp.BitCount();
         int count = 0;
 
         // perform squaring and multiply exponentiation
@@ -1758,11 +1860,12 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Returns gcd(this, bi)
-    //***********************************************************************
-
-    public BigInteger gcd(BigInteger bi)
+    /// <summary>
+    /// Returns gcd(this, bi)
+    /// </summary>
+    /// <param name="bi"></param>
+    /// <returns></returns>
+    public BigInteger Gcd(BigInteger bi)
     {
         BigInteger x;
         BigInteger y;
@@ -1790,11 +1893,13 @@ public class BigInteger
     }
 
 
-    //***********************************************************************
-    // Populates "this" with the specified amount of random bits
-    //***********************************************************************
-
-    public void genRandomBits(int bits, System.Random rand)
+    /// <summary>
+    /// Populates "this" with the specified amount of random bits
+    /// </summary>
+    /// <param name="bits"></param>
+    /// <param name="rand"></param>
+    /// <exception cref="ArithmeticException"></exception>
+    public void GenRandomBits(int bits, System.Random rand)
     {
         int dwords = bits >> 5;
         int remBits = bits & 0x1F;
@@ -1839,7 +1944,11 @@ public class BigInteger
     //
     //***********************************************************************
 
-    public int bitCount()
+    /// <summary>
+    /// bitCount
+    /// </summary>
+    /// <returns></returns>
+    public int BitCount()
     {
         while (dataLength > 1 && data[dataLength - 1] == 0)
             dataLength--;
@@ -1881,6 +1990,11 @@ public class BigInteger
     //
     //***********************************************************************
 
+    /// <summary>
+    /// 概率素数测试
+    /// </summary>
+    /// <param name="confidence"></param>
+    /// <returns></returns>
     public bool FermatLittleTest(int confidence)
     {
         BigInteger thisVal;
@@ -1901,7 +2015,7 @@ public class BigInteger
         if ((thisVal.data[0] & 0x1) == 0) // even numbers
             return false;
 
-        int bits = thisVal.bitCount();
+        int bits = thisVal.BitCount();
         BigInteger a = new BigInteger();
         BigInteger p_sub1 = thisVal - (new BigInteger(1));
         System.Random rand = new System.Random();
@@ -1918,7 +2032,7 @@ public class BigInteger
                 while (testBits < 2)
                     testBits = (int)(rand.NextDouble() * bits);
 
-                a.genRandomBits(testBits, rand);
+                a.GenRandomBits(testBits, rand);
 
                 int byteLen = a.dataLength;
 
@@ -1928,12 +2042,12 @@ public class BigInteger
             }
 
             // check whether a factor exists (fix for version 1.03)
-            BigInteger gcdTest = a.gcd(thisVal);
+            BigInteger gcdTest = a.Gcd(thisVal);
             if (gcdTest.dataLength == 1 && gcdTest.data[0] != 1)
                 return false;
 
             // calculate a^(p-1) mod p
-            BigInteger expResult = a.modPow(p_sub1, thisVal);
+            BigInteger expResult = a.ModPow(p_sub1, thisVal);
 
             int resultLen = expResult.dataLength;
 
@@ -1971,6 +2085,11 @@ public class BigInteger
     //
     //***********************************************************************
 
+    /// <summary>
+    /// RabinMillerTest
+    /// </summary>
+    /// <param name="confidence"></param>
+    /// <returns></returns>
     public bool RabinMillerTest(int confidence)
     {
         BigInteger thisVal;
@@ -2015,7 +2134,7 @@ public class BigInteger
 
         BigInteger t = p_sub1 >> s;
 
-        int bits = thisVal.bitCount();
+        int bits = thisVal.BitCount();
         BigInteger a = new BigInteger();
         System.Random rand = new System.Random();
 
@@ -2031,7 +2150,7 @@ public class BigInteger
                 while (testBits < 2)
                     testBits = (int)(rand.NextDouble() * bits);
 
-                a.genRandomBits(testBits, rand);
+                a.GenRandomBits(testBits, rand);
 
                 int byteLen = a.dataLength;
 
@@ -2041,11 +2160,11 @@ public class BigInteger
             }
 
             // check whether a factor exists (fix for version 1.03)
-            BigInteger gcdTest = a.gcd(thisVal);
+            BigInteger gcdTest = a.Gcd(thisVal);
             if (gcdTest.dataLength == 1 && gcdTest.data[0] != 1)
                 return false;
 
-            BigInteger b = a.modPow(t, thisVal);
+            BigInteger b = a.ModPow(t, thisVal);
 
             /*
         LogHelper.Info("a = " + a.ToString(10));
@@ -2098,6 +2217,11 @@ public class BigInteger
     //
     //***********************************************************************
 
+    /// <summary>
+    /// Solovay-Strassen
+    /// </summary>
+    /// <param name="confidence"></param>
+    /// <returns></returns>
     public bool SolovayStrassenTest(int confidence)
     {
         BigInteger thisVal;
@@ -2119,7 +2243,7 @@ public class BigInteger
             return false;
 
 
-        int bits = thisVal.bitCount();
+        int bits = thisVal.BitCount();
         BigInteger a = new BigInteger();
         BigInteger p_sub1 = thisVal - 1;
         BigInteger p_sub1_shift = p_sub1 >> 1;
@@ -2138,7 +2262,7 @@ public class BigInteger
                 while (testBits < 2)
                     testBits = (int)(rand.NextDouble() * bits);
 
-                a.genRandomBits(testBits, rand);
+                a.GenRandomBits(testBits, rand);
 
                 int byteLen = a.dataLength;
 
@@ -2148,13 +2272,13 @@ public class BigInteger
             }
 
             // check whether a factor exists (fix for version 1.03)
-            BigInteger gcdTest = a.gcd(thisVal);
+            BigInteger gcdTest = a.Gcd(thisVal);
             if (gcdTest.dataLength == 1 && gcdTest.data[0] != 1)
                 return false;
 
             // calculate a^((p-1)/2) mod p
 
-            BigInteger expResult = a.modPow(p_sub1_shift, thisVal);
+            BigInteger expResult = a.ModPow(p_sub1_shift, thisVal);
             if (expResult == p_sub1)
                 expResult = -1;
 
@@ -2187,6 +2311,10 @@ public class BigInteger
     // Otherwise, returns False indicating that number is composite.
     //***********************************************************************
 
+    /// <summary>
+    /// Implementation of the Lucas Strong Pseudo Prime test
+    /// </summary>
+    /// <returns></returns>
     public bool LucasStrongTest()
     {
         BigInteger thisVal;
@@ -2235,7 +2363,7 @@ public class BigInteger
                 if (dCount == 20)
                 {
                     // check for square
-                    BigInteger root = thisVal.sqrt();
+                    BigInteger root = thisVal.Sqrt();
                     if (root * root == thisVal)
                         return false;
                 }
@@ -2323,7 +2451,7 @@ public class BigInteger
             // If n is prime and gcd(n, Q) == 1, then
             // Q^((n+1)/2) = Q * Q^((n-1)/2) is congruent to (Q * J(Q, n)) mod n
 
-            BigInteger g = thisVal.gcd(Q);
+            BigInteger g = thisVal.Gcd(Q);
             if (g.dataLength == 1 && g.data[0] == 1) // gcd(this, Q) == 1
             {
                 if ((lucas[2].data[maxLength - 1] & 0x80000000) != 0)
@@ -2350,7 +2478,12 @@ public class BigInteger
     // Returns true if number is probably prime.
     //***********************************************************************
 
-    public bool isProbablePrime(int confidence)
+    /// <summary>
+    /// Determines whether a number is probably prime, using the Rabin-Miller's
+    /// </summary>
+    /// <param name="confidence"></param>
+    /// <returns></returns>
+    public bool IsProbablePrime(int confidence)
     {
         BigInteger thisVal;
         if ((this.data[maxLength - 1] & 0x80000000) != 0) // negative
@@ -2410,7 +2543,11 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
     //
     //***********************************************************************
 
-    public bool isProbablePrime()
+    /// <summary>
+    ///   Determines whether this BigInteger is probably prime using a
+    /// </summary>
+    /// <returns></returns>
+    public bool IsProbablePrime()
     {
         BigInteger thisVal;
         if ((this.data[maxLength - 1] & 0x80000000) != 0) // negative
@@ -2474,11 +2611,11 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
         BigInteger t = p_sub1 >> s;
 
-        int bits = thisVal.bitCount();
+        int bits = thisVal.BitCount();
         BigInteger a = 2;
 
         // b = a^t mod p
-        BigInteger b = a.modPow(t, thisVal);
+        BigInteger b = a.ModPow(t, thisVal);
         bool result = false;
 
         if (b.dataLength == 1 && b.data[0] == 1) // a^t mod p = 1
@@ -2503,20 +2640,20 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
     }
 
 
-    //***********************************************************************
-    // Returns the lowest 4 bytes of the BigInteger as an int.
-    //***********************************************************************
-
+    /// <summary>
+    /// Returns the lowest 4 bytes of the BigInteger as an int.
+    /// </summary>
+    /// <returns></returns>
     public int IntValue()
     {
         return (int)data[0];
     }
 
 
-    //***********************************************************************
-    // Returns the lowest 8 bytes of the BigInteger as a long.
-    //***********************************************************************
-
+    /// <summary>
+    /// Returns the lowest 8 bytes of the BigInteger as a long.
+    /// </summary>
+    /// <returns></returns>
     public long LongValue()
     {
         long val = 0;
@@ -2537,11 +2674,13 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
     }
 
 
-    //***********************************************************************
-    // Computes the Jacobi Symbol for a and b.
-    // Algorithm adapted from [3] and [4] with some optimizations
-    //***********************************************************************
-
+    /// <summary>
+    /// Computes the Jacobi Symbol for a and b. Algorithm adapted from [3] and [4] with some optimizations
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
     public static int Jacobi(BigInteger a, BigInteger b)
     {
         // Jacobi defined only for odd integers
@@ -2593,46 +2732,49 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
             return (s * Jacobi(b % a1, a1));
     }
 
-
-    //***********************************************************************
-    // Generates a positive BigInteger that is probably prime.
-    //***********************************************************************
-
-    public static BigInteger genPseudoPrime(int bits, int confidence, System.Random rand)
+    /// <summary>
+    /// Generates a positive BigInteger that is probably prime.
+    /// </summary>
+    /// <param name="bits"></param>
+    /// <param name="confidence"></param>
+    /// <param name="rand"></param>
+    /// <returns></returns>
+    public static BigInteger GenPseudoPrime(int bits, int confidence, System.Random rand)
     {
         BigInteger result = new BigInteger();
         bool done = false;
 
         while (!done)
         {
-            result.genRandomBits(bits, rand);
+            result.GenRandomBits(bits, rand);
             result.data[0] |= 0x01; // make it odd
 
             // prime test
-            done = result.isProbablePrime(confidence);
+            done = result.IsProbablePrime(confidence);
         }
 
         return result;
     }
 
 
-    //***********************************************************************
-    // Generates a random number with the specified number of bits such
-    // that gcd(number, this) = 1
-    //***********************************************************************
-
-    public BigInteger genCoPrime(int bits, System.Random rand)
+    /// <summary>
+    /// Generates a random number with the specified number of bits such that gcd(number, this) = 1
+    /// </summary>
+    /// <param name="bits"></param>
+    /// <param name="rand"></param>
+    /// <returns></returns>
+    public BigInteger GenCoPrime(int bits, System.Random rand)
     {
         bool done = false;
         BigInteger result = new BigInteger();
 
         while (!done)
         {
-            result.genRandomBits(bits, rand);
+            result.GenRandomBits(bits, rand);
             //LogHelper.Info(result.ToString(16));
 
             // gcd test
-            BigInteger g = result.gcd(this);
+            BigInteger g = result.Gcd(this);
             if (g.dataLength == 1 && g.data[0] == 1)
                 done = true;
         }
@@ -2641,12 +2783,13 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
     }
 
 
-    //***********************************************************************
-    // Returns the modulo inverse of this.  Throws ArithmeticException if
-    // the inverse does not exist.  (i.e. gcd(this, modulus) != 1)
-    //***********************************************************************
-
-    public BigInteger modInverse(BigInteger modulus)
+    /// <summary>
+    /// Returns the modulo inverse of this.  Throws ArithmeticException if the inverse does not exist.  (i.e. gcd(this, modulus) != 1)
+    /// </summary>
+    /// <param name="modulus"></param>
+    /// <returns></returns>
+    /// <exception cref="ArithmeticException"></exception>
+    public BigInteger ModInverse(BigInteger modulus)
     {
         BigInteger[] p = { 0, 1 };
         BigInteger[] q = new BigInteger[2]; // quotients
@@ -2670,9 +2813,9 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
             }
 
             if (b.dataLength == 1)
-                singleByteDivide(a, b, quotient, remainder);
+                SingleByteDivide(a, b, quotient, remainder);
             else
-                multiByteDivide(a, b, quotient, remainder);
+                MultiByteDivide(a, b, quotient, remainder);
 
             /*
         LogHelper.Info(quotient.dataLength);
@@ -2704,14 +2847,13 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
     }
 
 
-    //***********************************************************************
-    // Returns the value of the BigInteger as a byte array.  The lowest
-    // index contains the MSB.
-    //***********************************************************************
-
-    public byte[] getBytes()
+    /// <summary>
+    /// Returns the value of the BigInteger as a byte array.  The lowest index contains the MSB.
+    /// </summary>
+    /// <returns></returns>
+    public byte[] GetBytes()
     {
-        int numBits = bitCount();
+        int numBits = BitCount();
 
         int numBytes = numBits >> 3;
         if ((numBits & 0x7) != 0)
@@ -2749,12 +2891,11 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
     }
 
 
-    //***********************************************************************
-    // Sets the value of the specified bit to 1
-    // The Least Significant Bit position is 0.
-    //***********************************************************************
-
-    public void setBit(uint bitNum)
+    /// <summary>
+    /// Sets the value of the specified bit to 1  The Least Significant Bit position is 0.
+    /// </summary>
+    /// <param name="bitNum"></param>
+    public void SetBit(uint bitNum)
     {
         uint bytePos = bitNum >> 5; // divide by 32
         byte bitPos = (byte)(bitNum & 0x1F); // get the lowest 5 bits
@@ -2766,13 +2907,11 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
             this.dataLength = (int)bytePos + 1;
     }
 
-
-    //***********************************************************************
-    // Sets the value of the specified bit to 0
-    // The Least Significant Bit position is 0.
-    //***********************************************************************
-
-    public void unsetBit(uint bitNum)
+    /// <summary>
+    /// Sets the value of the specified bit to 0  The Least Significant Bit position is 0.
+    /// </summary>
+    /// <param name="bitNum"></param>
+    public void UnsetBit(uint bitNum)
     {
         uint bytePos = bitNum >> 5;
 
@@ -2800,9 +2939,13 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
     //
     //***********************************************************************
 
-    public BigInteger sqrt()
+    /// <summary>
+    /// Returns a value that is equivalent to the integer square root
+    /// </summary>
+    /// <returns></returns>
+    public BigInteger Sqrt()
     {
-        uint numBits = (uint)this.bitCount();
+        uint numBits = (uint)this.BitCount();
 
         if ((numBits & 0x1) != 0) // odd number of bits
             numBits = (numBits >> 1) + 1;
@@ -2878,6 +3021,14 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
     //       V(0) = 2 % n, V(1) = P % n
     //***********************************************************************
 
+    /// <summary>
+    /// Returns the k_th number in the Lucas Sequence reduced modulo n
+    /// </summary>
+    /// <param name="P"></param>
+    /// <param name="Q"></param>
+    /// <param name="k"></param>
+    /// <param name="n"></param>
+    /// <returns></returns>
     public static BigInteger[] LucasSequence(BigInteger P, BigInteger Q,
         BigInteger k, BigInteger n)
     {
@@ -2944,7 +3095,7 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
         if ((k.data[0] & 0x00000001) == 0)
             throw (new ArgumentException("Argument k must be odd."));
 
-        int numbits = k.bitCount();
+        int numbits = k.BitCount();
         uint mask = (uint)0x1 << ((numbits & 0x1F) - 1);
 
         // v = v0, v1 = v1, u1 = u1, Q_k = Q^0
