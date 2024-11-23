@@ -3,7 +3,7 @@ using System.Runtime.Loader;
 
 namespace GameFrameX.Core.Hotfix
 {
-    internal class DllLoader
+    internal sealed class DllLoader
     {
         public DllLoader(string dllPath)
         {
