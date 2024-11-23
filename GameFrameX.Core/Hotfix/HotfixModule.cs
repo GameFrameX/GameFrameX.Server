@@ -152,7 +152,7 @@ namespace GameFrameX.Core.Hotfix
                     && !AddTcpHandler(type)
                     && !AddHttpHandler(type))
                 {
-                    if ((HotfixBridge == null && type.GetInterface(fullName) != null))
+                    if ((HotfixBridge.IsNull() && type.GetInterface(fullName) != null))
                     {
                         var bridge = (IHotfixBridge)Activator.CreateInstance(type);
 
@@ -172,7 +172,7 @@ namespace GameFrameX.Core.Hotfix
             }
 
             var attr = (HttpMessageMappingAttribute)type.GetCustomAttribute(typeof(HttpMessageMappingAttribute));
-            if (attr == null)
+            if (attr.IsNull())
             {
                 // 不是最终实现类
                 return true;
@@ -197,7 +197,7 @@ namespace GameFrameX.Core.Hotfix
         private bool AddRpcHandler(Type type)
         {
             var attribute = (MessageRpcMappingAttribute)type.GetCustomAttribute(typeof(MessageRpcMappingAttribute), true);
-            if (attribute == null)
+            if (attribute.IsNull())
             {
                 return false;
             }
@@ -217,13 +217,13 @@ namespace GameFrameX.Core.Hotfix
         private bool AddTcpHandler(Type type)
         {
             var attribute = (MessageMappingAttribute)type.GetCustomAttribute(typeof(MessageMappingAttribute), true);
-            if (attribute == null)
+            if (attribute.IsNull())
             {
                 return false;
             }
 
             var msgIdField = (MessageTypeHandlerAttribute)attribute.MessageType.GetCustomAttribute(typeof(MessageTypeHandlerAttribute), true);
-            if (msgIdField == null)
+            if (msgIdField.IsNull())
             {
                 return false;
             }
@@ -348,12 +348,12 @@ namespace GameFrameX.Core.Hotfix
                     }
                 }
 
-                if (agent == null)
+                if (agent.IsNull())
                 {
                     agent = (T)Activator.CreateInstance(agentType);
                 }
 
-                if (agent == null)
+                if (agent.IsNull())
                 {
                     throw new ArgumentNullException(nameof(agent));
                 }
