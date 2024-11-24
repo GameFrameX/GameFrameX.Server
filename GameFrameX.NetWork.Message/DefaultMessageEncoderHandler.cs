@@ -71,9 +71,9 @@ public sealed class DefaultMessageEncoderHandler : IMessageEncoderHandler, IPack
         writer.WriteBytesWithoutLength(messageHeaderData, ref offset);
         // 消息体
         writer.WriteBytesWithoutLength(messageBodyData, ref offset);
-
+        var result = writer.ToArray();
         ArrayPool<byte>.Shared.Return(buffer);
-        return writer.ToArray();
+        return result;
     }
 
     /// <summary>
