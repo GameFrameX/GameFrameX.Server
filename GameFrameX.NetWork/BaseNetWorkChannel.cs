@@ -119,7 +119,8 @@ public class BaseNetWorkChannel : INetWorkChannel
         }
         else
         {
-            if (((IAppSession)GameAppSession).State == SessionState.Connected)
+            var appSession = (IAppSession)GameAppSession;
+            if (appSession.Connection.IsClosed == false && appSession.State == SessionState.Connected)
             {
                 try
                 {
