@@ -1,5 +1,8 @@
 ﻿namespace GameFrameX.Proto;
 
-public class MessageProtoHandler
+/// <summary>
+/// 协议消息处理器
+/// </summary>
+public static class MessageProtoHandler
 {
 }
