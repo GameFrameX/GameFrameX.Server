@@ -266,6 +266,12 @@ public static class GameApp
             {
                 if (appStartUp.ServerType == serverTypeValue && appStartUp.Setting.APMPort is > 0 and < ushort.MaxValue)
                 {
+                    if (!Net.PortIsAvailable(appStartUp.Setting.APMPort))
+                    {
+                        LogHelper.ErrorConsole("APM端口已被占用!=>" + appStartUp.Setting.APMPort);
+                        return;
+                    }
+
                     MetricsHelper.Start(appStartUp.Setting.APMPort);
                     return;
                 }
