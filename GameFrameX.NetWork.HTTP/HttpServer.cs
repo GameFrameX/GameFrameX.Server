@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using GameFrameX.Log;
 using GameFrameX.Utility;
+using Microsoft.Extensions.Hosting;
 
 namespace GameFrameX.NetWork.HTTP
 {
@@ -67,28 +68,29 @@ namespace GameFrameX.NetWork.HTTP
 
             ApiRootPath = apiRootPath;
             var builder = WebApplication.CreateBuilder();
-            builder.WebHost.UseKestrel(options =>
-                   {
-                       // HTTP 
-                       if (httpPort > 0)
-                       {
-                           options.ListenAnyIP(httpPort);
-                       }
+            builder.Host.UseSerilog()
+                .ConfigureWebHost(hostBuilder =>
+                {
+                    hostBuilder.UseKestrel(options =>
+                    {
+                        // HTTP 
+                        if (httpPort > 0 && Net.PortIsAvailable(httpPort))
+                        {
+                            options.ListenAnyIP(httpPort);
+                        }
 
-                       // HTTPS
-                       if (httpsPort > 0)
-                       {
-                           options.ListenAnyIP(httpsPort, listenOptions => { listenOptions.UseHttps(); });
-                       }
-                   })
-                   .ConfigureLogging(logging =>
-                   {
-                       logging.ClearProviders();
-                       logging.AddSerilog();
-                       logging.SetMinimumLevel(minimumLevelLogLevel);
-                   })
-                   .UseSerilog();
-
+                        // HTTPS
+                        if (httpsPort > 0 && Net.PortIsAvailable(httpPort))
+                        {
+                            options.ListenAnyIP(httpsPort, listenOptions => { listenOptions.UseHttps(); });
+                        }
+                    });
+                }).ConfigureLogging(logging =>
+                {
+                    logging.ClearProviders();
+                    logging.AddSerilog();
+                    logging.SetMinimumLevel(minimumLevelLogLevel);
+                });
             App = builder.Build();
             App.UseExceptionHandler((errorContext) =>
             {
