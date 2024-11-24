@@ -113,6 +113,13 @@ jobs:
           VERSION_FILE_PATH: Version.props
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
 
+      - name: Publish GameFrameX.NetWork.ChannelBase
+        uses: AlianBlank/publish-nuget@v1.0.2
+        with:
+          PROJECT_FILE_PATH: GameFrameX.NetWork.ChannelBase/GameFrameX.NetWork.ChannelBase.csproj
+          VERSION_FILE_PATH: Version.props
+          NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
+
       - name: Publish GameFrameX.Log
         uses: AlianBlank/publish-nuget@v1.0.2
         with:
