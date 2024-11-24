@@ -92,8 +92,9 @@ public sealed class OuterNetworkMessage : IOuterNetworkMessage
         // 向下的箭头
         stringBuilder.AppendLine($"{'\u2193'.RepeatChar(120)}");
         // 消息的头部信息
+        var messageObject = DeserializeMessageObject();
         // 消息类型
-        stringBuilder.Append($"---MessageType:[{GetType().Name.CenterAlignedText(20)}]");
+        stringBuilder.Append($"---MessageType:[{messageObject.GetType().Name.CenterAlignedText(20)}]");
 
         // 消息ID
         stringBuilder.Append($"--MsgId:[{Header.MessageId.ToString().CenterAlignedText(10)}]({MessageIdUtility.GetMainId(Header.MessageId).ToString().CenterAlignedText(5)},{MessageIdUtility.GetSubId(Header.MessageId).ToString().CenterAlignedText(5)})");
@@ -105,7 +106,7 @@ public sealed class OuterNetworkMessage : IOuterNetworkMessage
         // 消息的内容 分割
         stringBuilder.AppendLine();
         // 消息内容
-        stringBuilder.AppendLine($"{DeserializeMessageObject().ToJsonString()}");
+        stringBuilder.AppendLine($"{messageObject.ToJsonString()}");
         // 向上的箭头
         stringBuilder.AppendLine($"{'\u2191'.RepeatChar(120)}");
         stringBuilder.AppendLine();
