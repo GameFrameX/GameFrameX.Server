@@ -48,7 +48,6 @@ internal partial class AppStartUpHotfixGame
         await StartAsync();
     }
 
-   
 
     protected override ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
     {
@@ -67,60 +66,52 @@ internal partial class AppStartUpHotfixGame
         return ValueTask.CompletedTask;
     }
 
-    
-
     /// <summary>
     /// 处理收到的消息结果
     /// </summary>
     /// <param name="appSession"></param>
     /// <param name="message"></param>
-    protected override ValueTask PackageHandler(IAppSession appSession, IMessage message)
+    protected override async ValueTask PackageHandler(IAppSession appSession, IMessage message)
     {
-        if (message is MessageObject messageObject)
+        if (message is OuterNetworkMessage outerNetworkMessage)
         {
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
-                LogHelper.Debug($"---收到{message.ToFormatMessageString()}");
+                LogHelper.Debug($"---收到{outerNetworkMessage.ToFormatMessageString()}");
             }
 
             var netWorkChannel = SessionManager.GetChannel(appSession.SessionID);
-            if (messageObject.OperationType == MessageOperationType.HeartBeat)
+            if (outerNetworkMessage.Header.OperationType == MessageOperationType.HeartBeat)
             {
                 // LogHelper.Info("收到心跳请求:" + req.Timestamp);
-                ReplyHeartBeat(netWorkChannel, messageObject);
+                ReplyHeartBeat(netWorkChannel, (MessageObject)outerNetworkMessage.DeserializeMessageObject());
                 // 心跳消息
-                return ValueTask.CompletedTask;
+                await ValueTask.CompletedTask;
+                return;
             }
 
-            var handler = HotfixManager.GetTcpHandler(messageObject.MessageId);
+            var handler = HotfixManager.GetTcpHandler(outerNetworkMessage.Header.MessageId);
             if (handler == null)
             {
-                LogHelper.Error($"找不到[{messageObject.MessageId}][{message.GetType()}]对应的handler");
-                return ValueTask.CompletedTask;
+                LogHelper.Error($"找不到[{outerNetworkMessage.Header.MessageId}][{message.GetType()}]对应的handler");
+                await ValueTask.CompletedTask;
+                return;
             }
 
             async void InvokeAction()
             {
-                await handler.Init(messageObject, netWorkChannel);
+                await handler.Init((MessageObject)outerNetworkMessage.DeserializeMessageObject(), netWorkChannel);
                 await handler.InnerAction();
             }
 
-            Task.Run(InvokeAction);
+            await Task.Run(InvokeAction);
         }
 
-        return ValueTask.CompletedTask;
-    }
-
-    private void ConfigureWebServer(HostBuilderContext context, IConfigurationBuilder builder)
-    {
-        builder.AddInMemoryCollection(new Dictionary<string, string>()
-                                          { { "serverOptions:name", "GameServer" }, { "serverOptions:listeners:0:ip", "Any" }, { "serverOptions:listeners:0:port", Setting.WsPort.ToString() } });
+        await ValueTask.CompletedTask;
     }
 
     public override async Task StopAsync(string message = "")
     {
-
-
         await base.StopAsync(message);
 
         await HttpServer.Stop();
