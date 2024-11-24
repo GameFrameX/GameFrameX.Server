@@ -61,17 +61,17 @@ public sealed class DefaultMessageEncoderHandler : IMessageEncoderHandler, IPack
         var totalLength = (ushort)(PackageLength + messageBodyData.Length + messageHeaderData.Length);
 
         var buffer = ArrayPool<byte>.Shared.Rent(totalLength);
-        var writer = buffer.AsSpan(0, totalLength);
+        
         int offset = 0;
         // 总长度
-        writer.WriteUInt(totalLength, ref offset);
+        buffer.WriteUInt(totalLength, ref offset);
         // 消息头长度
-        writer.WriteUShort((ushort)messageHeaderData.Length, ref offset);
+        buffer.WriteUShort((ushort)messageHeaderData.Length, ref offset);
         // 消息头
-        writer.WriteBytesWithoutLength(messageHeaderData, ref offset);
+        buffer.WriteBytesWithoutLength(messageHeaderData, ref offset);
         // 消息体
-        writer.WriteBytesWithoutLength(messageBodyData, ref offset);
-        var result = writer.ToArray();
+        buffer.WriteBytesWithoutLength(messageBodyData, ref offset);
+        var result = buffer.AsSpan(0, totalLength).ToArray();
         ArrayPool<byte>.Shared.Return(buffer);
         return result;
     }
@@ -100,16 +100,19 @@ public sealed class DefaultMessageEncoderHandler : IMessageEncoderHandler, IPack
     /// <param name="bytes">压缩前的数据</param>
     /// <param name="zipFlag">压缩标记</param>
     /// <returns></returns>
-    private byte[] BytesCompressHandler(ref byte[] bytes, ref byte zipFlag)
+    private void BytesCompressHandler(ref byte[] bytes, ref byte zipFlag)
     {
+        ArgumentOutOfRangeException.ThrowIfNegative(zipFlag);
         if (CompressHandler != null && bytes.Length > LimitCompressLength)
         {
             zipFlag = 1;
             // 压缩
             bytes = CompressHandler.Handler(bytes);
         }
-
-        return bytes;
+        else
+        {
+            zipFlag = 0;
+        }
     }
 
 
@@ -128,7 +131,7 @@ public sealed class DefaultMessageEncoderHandler : IMessageEncoderHandler, IPack
     }
 
     /// <summary>
-    /// len +cmdType + zipFlag+uniqueId + msgId + bytes.length
+    /// totalLength + headerLength
     /// </summary>
     public ushort PackageLength { get; } = 4 + 2;
 
