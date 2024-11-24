@@ -47,7 +47,7 @@
 
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
-        <PackageReference Include="Quartz" Version="3.4.0"/>
+        <PackageReference Include="Quartz" Version="3.13.1" />
     </ItemGroup>
 
     <ItemGroup>
