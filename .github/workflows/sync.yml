@@ -50,7 +50,7 @@ jobs:
 
       # 拉取
       - name: pull and push
-        run: |
+        run: | 
           if [ "${{ github.ref_name }}" ]; then
           git checkout ${{ github.ref_name }}
           git pull --progress -v --no-rebase gitlink ${{ github.ref_name }} --tags --verbose || echo 远端不存在${{ github.ref_name }}分支;
@@ -96,7 +96,7 @@ jobs:
 
       # 拉取
       - name: pull and push
-        run: |
+        run: | 
           if [ "${{ github.ref_name }}" ]; then
           git checkout ${{ github.ref_name }}
           git pull --progress -v --no-rebase gitlab ${{ github.ref_name }} --tags --verbose || echo 远端不存在${{ github.ref_name }}分支;
@@ -142,7 +142,7 @@ jobs:
 
       # 拉取
       - name: pull and push
-        run: |
+        run: | 
           if [ "${{ github.ref_name }}" ]; then
           git checkout ${{ github.ref_name }}
           git pull --progress -v --no-rebase gitee ${{ github.ref_name }} --tags --verbose || echo 远端不存在${{ github.ref_name }}分支;
@@ -188,7 +188,7 @@ jobs:
 
       # 拉取
       - name: pull and push
-        run: |
+        run: | 
           if [ "${{ github.ref_name }}" ]; then
           git checkout ${{ github.ref_name }}
           git pull --progress -v --no-rebase atomgit ${{ github.ref_name }} --tags --verbose || echo 远端不存在${{ github.ref_name }}分支;
@@ -234,7 +234,7 @@ jobs:
 
       # 拉取
       - name: pull and push
-        run: |
+        run: | 
           if [ "${{ github.ref_name }}" ]; then
           git checkout ${{ github.ref_name }}
           git pull --progress -v --no-rebase gitcode ${{ github.ref_name }} --tags --verbose || echo 远端不存在${{ github.ref_name }}分支;
@@ -280,7 +280,7 @@ jobs:
 
       # 拉取
       - name: pull and push
-        run: |
+        run: | 
           if [ "${{ github.ref_name }}" ]; then
           git checkout ${{ github.ref_name }}
           git pull --progress -v --no-rebase framagit ${{ github.ref_name }} --tags --verbose || echo 远端不存在${{ github.ref_name }}分支;
