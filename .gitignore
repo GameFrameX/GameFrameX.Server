@@ -6,4 +6,6 @@ bin
 **/obj
 **/bin
 .DS_Store
-.idea
+*.user
+docs/_site
+running
