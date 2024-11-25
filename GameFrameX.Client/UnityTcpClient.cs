@@ -32,7 +32,7 @@ public class UnityTcpClient
             if (!_tcpClient.IsConnected)
             {
                 Console.WriteLine("未链接到服务器,开启重连");
-                _tcpClient.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 23110));
+                _tcpClient.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 29100));
                 continue;
                 // Console.WriteLine("链接到服务器结果：" + result);
                 // if (result.ResultCode != ResultCode.Success)
@@ -50,16 +50,16 @@ public class UnityTcpClient
                 };
                 SendToServer(req);
 
-                if (_count % 2 == 0)
-                {
-                    ReqLogin reqLogin = new ReqLogin
-                    {
-                        UserName = "admin",
-                        Password = "123456",
-                        UniqueId = _count
-                    };
-                    SendToServer(reqLogin);
-                }
+                // if (_count % 2 == 0)
+                // {
+                //     ReqLogin reqLogin = new ReqLogin
+                //     {
+                //         UserName = "admin",
+                //         Password = "123456",
+                //         UniqueId = _count
+                //     };
+                //     SendToServer(reqLogin);
+                // }
             }
         }
     }
