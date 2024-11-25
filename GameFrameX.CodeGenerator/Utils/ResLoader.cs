@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GameFrameX.CodeGenerator.Utils;
 
-public class ResLoader
+public static class ResLoader
 {
     public static string LoadTemplate(string resourceName)
     {
@@ -17,7 +17,7 @@ public class ResLoader
             if (stream != null)
             {
                 var assemblyData = new byte[stream.Length];
-                stream.Read(assemblyData, 0, assemblyData.Length);
+                _ = stream.Read(assemblyData, 0, assemblyData.Length);
                 return Encoding.UTF8.GetString(assemblyData);
             }
         }

@@ -1,13 +1,11 @@
-﻿
+﻿using GameFrameX.Core.Abstractions.Events;
 
-using GameFrameX.Core.Abstractions.Events;
-
-namespace GameFrameX.Launcher.Common.Event
+namespace GameFrameX.Apps.Common.Event
 {
     /// <summary>
     /// 表示事件的特性。
     /// </summary>
-    public class EventAttribute : EventInfoAttribute
+    public sealed class EventAttribute : EventInfoAttribute
     {
         /// <summary>
         /// 使用指定的事件ID初始化 <see cref="EventAttribute"/> 类的新实例。

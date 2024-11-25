@@ -1,4 +1,6 @@
-﻿namespace GameFrameX.Apps
+﻿using GameFrameX.Log;
+
+namespace GameFrameX.Apps
 {
     public class DictionaryRepresentationConvention : ConventionBase, IMemberMapConvention
     {
@@ -36,11 +38,12 @@
                         {
                             return list != null && list.Count > 0;
                         }
+
                         return true;
                     });
-                } 
-                 
-                else if (genType == typeof(ConcurrentDictionary<,>) || genType == typeof(Dictionary<,>) )
+                }
+
+                else if (genType == typeof(ConcurrentDictionary<,>) || genType == typeof(Dictionary<,>))
                 {
                     memberMap.SetShouldSerializeMethod(o =>
                     {
@@ -57,6 +60,7 @@
                                 }
                             }
                         }
+
                         return true;
                     });
                 }
@@ -66,17 +70,20 @@
 
     public static class BsonClassMapHelper
     {
-        static public void SetConvention()
+        public static void SetConvention()
         {
             ConventionRegistry.Register(nameof(DictionaryRepresentationConvention),
-                new ConventionPack { new DictionaryRepresentationConvention(DictionaryRepresentation.ArrayOfDocuments) }, _ => true);
+                                        new ConventionPack { new DictionaryRepresentationConvention(DictionaryRepresentation.ArrayOfDocuments) }, _ => true);
 
             ConventionRegistry.Register(nameof(EmptyContainerSerializeMethodConvention),
-                new ConventionPack { new EmptyContainerSerializeMethodConvention() }, _ => true);
+                                        new ConventionPack { new EmptyContainerSerializeMethodConvention() }, _ => true);
         }
 
-        //提前注册,简化多态类型处理
-        static public void RegisterAllClass(Assembly assembly)
+        /// <summary>
+        /// 提前注册,简化多态类型处理
+        /// </summary>
+        /// <param name="assembly"></param>
+        public static void RegisterAllClass(System.Reflection.Assembly assembly)
         {
             var types = assembly.GetTypes();
             foreach (var t in types)
@@ -90,7 +97,7 @@
                 }
                 catch (Exception e)
                 {
-                    //LOGGER.Error(e);
+                    LogHelper.Error(e);
                 }
             }
         }

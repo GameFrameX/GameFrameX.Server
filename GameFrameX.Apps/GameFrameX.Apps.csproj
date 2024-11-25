@@ -4,21 +4,6 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>disable</Nullable>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <AssemblyVersion>1.0.0</AssemblyVersion>
-        <FileVersion>1.0.0</FileVersion>
-        <PublicSign>false</PublicSign>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Title>GameFrameX.Apps</Title>
-        <Description>GameFrameX.Apps</Description>
-        <Copyright>AlianBlank</Copyright>
-        <PackageProjectUrl>https://github.com/AlianBlank/GameFrameX</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/AlianBlank/GameFrameX/blob/main/LICENSE.md</PackageLicenseUrl>
-        <RepositoryUrl>https://github.com/AlianBlank/GameFrameX</RepositoryUrl>
-        <RepositoryType>Apps</RepositoryType>
-        <PackageTags>GameFrameX,Lib,Apps,Server,GameServer</PackageTags>
-        <PackageReleaseNotes>https://gameframex.doc.alianblank.com/</PackageReleaseNotes>
-        <Authors>AlianBlank</Authors>
     </PropertyGroup>
 
     <ItemGroup>
@@ -32,7 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.Core" Version="1.2.0-beta1" />
-      <PackageReference Include="GameFrameX.Monitor" Version="1.2.0-beta1" />
+      <PackageReference Include="GameFrameX.Core" Version="1.2.0-beta7" />
+      <PackageReference Include="GameFrameX.Monitor" Version="1.2.0-beta7" />
     </ItemGroup>
 </Project>
