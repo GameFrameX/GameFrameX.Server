@@ -1,7 +1,7 @@
-﻿using GameFrameX.Apps.Player.Role.Bag.Component;
+﻿using GameFrameX.Apps.Common.Event;
+using GameFrameX.Apps.Player.Role.Bag.Component;
 using GameFrameX.Apps.Player.Role.Bag.Entity;
 using GameFrameX.Hotfix.Common.Events;
-using GameFrameX.Launcher.Common.Event;
 
 namespace GameFrameX.Hotfix.Logic.Role.Bag
 {

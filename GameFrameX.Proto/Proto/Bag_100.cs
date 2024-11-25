@@ -47,6 +47,7 @@ namespace GameFrameX.Proto.Proto
 		/// 
 		/// </summary>
 		[ProtoMember(1)]
+		[ProtoMap(DisableMap = true)]
 		public Dictionary<int, long> ItemDic { get; set; } = new Dictionary<int, long>();
 
 		/// <summary>
@@ -68,6 +69,7 @@ namespace GameFrameX.Proto.Proto
 		/// 变化的道具，key:道具id，value:数量
 		/// </summary>
 		[ProtoMember(1)]
+		[ProtoMap(DisableMap = true)]
 		public Dictionary<int, long> ItemDic { get; set; } = new Dictionary<int, long>();
 
 	}
@@ -149,6 +151,7 @@ namespace GameFrameX.Proto.Proto
 		/// 变化的道具
 		/// </summary>
 		[ProtoMember(1)]
+		[ProtoMap(DisableMap = true)]
 		public Dictionary<int, long> ItemDic { get; set; } = new Dictionary<int, long>();
 
 		/// <summary>

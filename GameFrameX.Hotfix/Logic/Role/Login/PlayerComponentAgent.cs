@@ -1,15 +1,14 @@
-﻿using GameFrameX.Apps.Player.Player.Component;
+﻿using GameFrameX.Apps.Common.Event;
+using GameFrameX.Apps.Common.Session;
+using GameFrameX.Apps.Player.Player.Component;
 using GameFrameX.Apps.Player.Player.Entity;
 using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Hotfix.Logic.Server.Server;
-using GameFrameX.Launcher.Common.Event;
-using GameFrameX.Launcher.Common.Session;
 
 namespace GameFrameX.Hotfix.Logic.Role.Login
 {
     public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerState>
     {
-        
         [Event(EventId.SessionRemove)]
         private class EL : EventListener<PlayerComponentAgent>
         {
@@ -18,6 +17,7 @@ namespace GameFrameX.Hotfix.Logic.Role.Login
                 return agent.OnLogout();
             }
         }
+
         public async Task OnLogout()
         {
             //移除在线玩家

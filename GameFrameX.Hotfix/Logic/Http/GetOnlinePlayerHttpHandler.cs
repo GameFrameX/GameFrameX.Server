@@ -1,11 +1,11 @@
-using GameFrameX.Launcher.Common.Session;
+using GameFrameX.Apps.Common.Session;
 using GameFrameX.NetWork.HTTP;
 
 namespace GameFrameX.Hotfix.Logic.Http
 {
     /// <summary>
     /// 获取在线人数
-    /// http://localhost:20001/game/api?command=GetOnlinePlayer
+    /// http://localhost:20001/game/api/GetOnlinePlayer
     /// </summary>
     [HttpMessageMapping(typeof(GetOnlinePlayerHttpHandler))]
     public sealed class GetOnlinePlayerHttpHandler : BaseHttpHandler
@@ -22,7 +22,7 @@ namespace GameFrameX.Hotfix.Logic.Http
         /// <param name="url"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public override Task<string> Action(string ip, string url, Dictionary<string, string> parameters)
+        public override Task<string> Action(string ip, string url, Dictionary<string, object> parameters)
         {
             GetOnlinePlayerResponse response = new GetOnlinePlayerResponse();
             response.Count = SessionManager.Count();
