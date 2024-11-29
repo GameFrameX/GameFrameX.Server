@@ -22,7 +22,6 @@ public static class SequenceReaderExtension
         }
 
         value = num1;
-        reader.Advance(sizeof(byte));
         return true;
     }
 
