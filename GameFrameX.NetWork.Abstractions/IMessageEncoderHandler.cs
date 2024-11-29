@@ -33,5 +33,5 @@ public interface IMessageEncoderHandler
     /// <summary>
     /// 消息包头长度
     /// </summary>
-    ushort PackageLength { get; }
+    ushort PackageHeaderLength { get; }
 }
