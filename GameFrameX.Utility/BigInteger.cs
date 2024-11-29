@@ -2357,7 +2357,7 @@ public sealed class BigInteger
                 done = true; // J(D, this) = 1
             else
             {
-                if (Jresult == 0 && Math.Abs(D) < thisVal) // divisor found
+                if (Jresult == 0 && System.Math.Abs(D) < thisVal) // divisor found
                     return false;
 
                 if (dCount == 20)
@@ -2369,7 +2369,7 @@ public sealed class BigInteger
                 }
 
                 //LogHelper.Info(D);
-                D = (Math.Abs(D) + 2) * sign;
+                D = (System.Math.Abs(D) + 2) * sign;
                 sign = -sign;
             }
 

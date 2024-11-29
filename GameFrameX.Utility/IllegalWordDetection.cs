@@ -181,7 +181,7 @@ namespace GameFrameX.Utility
                 string strBadWord = OriginalToLower(word);
                 //求得单个的敏感词汇的长度
                 var wordLength = strBadWord.Length;
-                maxWordLength = Math.Max(wordLength, maxWordLength);
+                maxWordLength = System.Math.Max(wordLength, maxWordLength);
 
                 fixed (char* pWordStart = strBadWord)
                 {
@@ -199,7 +199,7 @@ namespace GameFrameX.Utility
                     }
 
                     //缓存敏感词汇的长度
-                    int cachedWordsLength = Math.Min(8, wordLength);
+                    int cachedWordsLength = System.Math.Min(8, wordLength);
                     char firstWord = *pWordStart;
                     //记录敏感词汇的“大致长度（超出8个字的敏感词汇会被截取成8的长度）”，“key”值为敏感词汇的第一个词
                     FastLength[firstWord] |= (byte)(1 << (cachedWordsLength - 1));
@@ -256,7 +256,7 @@ namespace GameFrameX.Utility
                 string strBadWord = OriginalToLower(badwords[stringIndex]);
                 //求得单个的敏感词汇的长度
                 wordLength = strBadWord.Length;
-                maxWordLength = Math.Max(wordLength, maxWordLength);
+                maxWordLength = System.Math.Max(wordLength, maxWordLength);
 
                 fixed (char* pWordStart = strBadWord)
                 {
@@ -274,7 +274,7 @@ namespace GameFrameX.Utility
                     }
 
                     //缓存敏感词汇的长度
-                    int cachedWordsLength = Math.Min(8, wordLength);
+                    int cachedWordsLength = System.Math.Min(8, wordLength);
                     char firstWord = *pWordStart;
                     //记录敏感词汇的“大致长度（超出8个字的敏感词汇会被截取成8的长度）”，“key”值为敏感词汇的第一个词
                     FastLength[firstWord] |= (byte)(1 << (cachedWordsLength - 1));
@@ -528,14 +528,14 @@ namespace GameFrameX.Utility
                         }
 
                         //如果检测到当前的词在所有敏感词中的位置信息中没有处在第i位的，则马上跳出遍历
-                        if ((FastCheck[*subItor] >> Math.Min(i - skipCount, 7)) == 0)
+                        if ((FastCheck[*subItor] >> System.Math.Min(i - skipCount, 7)) == 0)
                         {
                             break;
                         }
 
                         *strItor++ = *subItor;
                         //如果有检测到敏感词的最后一个词，并且此时的“检测到的敏感词汇”的长度也符合要求，则才进一步查看检测到的敏感词汇是否是真的敏感
-                        if ((FastLength[*itor] >> Math.Min(i - 1 - skipCount, 7)) > 0 && EndCache[*subItor])
+                        if ((FastLength[*itor] >> System.Math.Min(i - 1 - skipCount, 7)) > 0 && EndCache[*subItor])
                         {
                             //如果此子字符串在敏感词字典中存在，则记录。做此判断是避免敏感词中夹杂了其他敏感词的单词，而上面的算法无法剔除，故先用hash数组来剔除
                             //上述算法是用于减少大部分的比较消耗
