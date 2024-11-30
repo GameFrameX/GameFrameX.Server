@@ -107,8 +107,8 @@ public sealed class InnerNetworkMessage : IInnerNetworkMessage
     public static IInnerNetworkMessage Create(INetworkMessage message, INetworkMessageHeader messageObjectHeader)
     {
         var networkMessage = new InnerNetworkMessage();
-        messageObjectHeader.OperationType = MessageProtoHelper.GetMessageOperationType(message.GetType());
-        messageObjectHeader.MessageId = MessageProtoHelper.GetMessageIdByType(message.GetType());
+        messageObjectHeader.OperationType = MessageProtoHelper.GetMessageOperationType(message);
+        messageObjectHeader.MessageId = MessageProtoHelper.GetMessageIdByType(message);
         messageObjectHeader.UniqueId = message.UniqueId;
 
         networkMessage.SetMessageType(message.GetType());
