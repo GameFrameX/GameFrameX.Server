@@ -414,6 +414,12 @@ public sealed class LauncherOptions
     public ushort DBPort { get; set; }
 
     /// <summary>
+    /// 标签名称
+    /// </summary>
+    [Option("TagName", HelpText = "标签名称")]
+    public string TagName { get; set; }
+
+    /// <summary>
     /// 检查数据库服务连接端口
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>

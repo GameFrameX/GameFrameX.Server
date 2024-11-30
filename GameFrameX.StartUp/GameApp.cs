@@ -130,7 +130,8 @@ public static class GameApp
                         DataBaseUrl = launcherOptions.DataBaseUrl,
                         DataBaseName = launcherOptions.DataBaseName,
                         MinModuleId = launcherOptions.MinModuleId,
-                        MaxModuleId = launcherOptions.MaxModuleId
+                        MaxModuleId = launcherOptions.MaxModuleId,
+                        TagName = launcherOptions.TagName
                     };
                 }
 

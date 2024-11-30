@@ -112,6 +112,11 @@ public sealed class AppSetting
     public string ServerName { get; set; }
 
     /// <summary>
+    /// 标记名称
+    /// </summary>
+    public string TagName { get; set; }
+
+    /// <summary>
     /// 保存数据间隔
     /// </summary>
     public int SaveDataInterval { get; set; } = 5000;
