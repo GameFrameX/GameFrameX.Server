@@ -2,17 +2,26 @@ using System.Net;
 using System.Timers;
 using GameFrameX.Extension;
 using GameFrameX.Log;
+using GameFrameX.NetWork.Abstractions;
+using GameFrameX.NetWork.Message;
 using GameFrameX.Setting;
 using GameFrameX.StartUp.Abstractions;
+using GameFrameX.SuperSocket.ProtoBase;
 using GameFrameX.SuperSocket.Server;
 using GameFrameX.SuperSocket.Server.Abstractions;
+using GameFrameX.SuperSocket.Server.Abstractions.Session;
+using GameFrameX.SuperSocket.Server.Host;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace GameFrameX.StartUp;
 
 /// <summary>
 /// 程序启动器基类
 /// </summary>
-public abstract class AppStartUpBase : IAppStartUp
+public abstract partial class AppStartUpBase : IAppStartUp
 {
     /// <summary>
     /// 服务器类型
@@ -64,24 +73,6 @@ public abstract class AppStartUpBase : IAppStartUp
     }
 
     /// <summary>
-    /// 心跳定时器回调
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected virtual void HeartBeatTimerOnElapsed(object sender, ElapsedEventArgs e)
-    {
-    }
-
-    /// <summary>
-    /// 重连定时器回调
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected virtual void ReconnectionTimerOnElapsed(object sender, ElapsedEventArgs e)
-    {
-    }
-
-    /// <summary>
     /// 监听配置
     /// 当InnerIp为空时.将使用Any
     /// 当InnerPort小于1000时.将抛出异常
@@ -122,6 +113,7 @@ public abstract class AppStartUpBase : IAppStartUp
     {
         GlobalSettings.IsAppRunning = false;
         LogHelper.ErrorConsole($"服务器类型:{Setting.ServerType} 停止! 终止原因：{message}  配置信息: {Setting.ToFormatString()}");
+        StopServer();
         AppExitSource?.TrySetResult(message);
         await Task.CompletedTask;
     }
