@@ -36,6 +36,7 @@ public abstract class AppStartUpService : AppStartUpBase
             _discoveryCenterChannelHelper?.Start(Setting.DiscoveryCenterIp, Setting.DiscoveryCenterPort);
         }
 
+        GlobalSettings.IsAppRunning = true;
         return Task.CompletedTask;
     }
 
@@ -63,8 +64,7 @@ public abstract class AppStartUpService : AppStartUpBase
 
     protected async void StartServer()
     {
-        // _discoveryCenterChannelHelper = new ConnectChannelHelper(Setting, MessageEncoderHandler, MessageDecoderHandler, DiscoveryCenterMessageHandler);
-        GlobalSettings.IsAppRunning = true;
+        _discoveryCenterChannelHelper = new ConnectChannelHelper(Setting, MessageEncoderHandler, MessageDecoderHandler, DiscoveryCenterMessageHandler);
     }
 
     private void DiscoveryCenterMessageHandler(IMessage message)

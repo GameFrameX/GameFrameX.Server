@@ -22,7 +22,6 @@ internal partial class AppStartUpHotfixGame
     {
         // 启动网络服务
         await StartServerAsync<ClientMessageDecoderHandler, ClientMessageEncoderHandler>(new DefaultMessageCompressHandler(), new DefaultMessageDecompressHandler());
-        StartServer();
         // 启动Http服务
         // await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetHttpHandler);
         await base.StartAsync();
