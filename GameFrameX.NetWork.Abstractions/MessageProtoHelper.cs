@@ -19,6 +19,18 @@ namespace GameFrameX.NetWork.Abstractions
         /// <summary>
         /// 获取消息ID,如果没有找到则返回 -1
         /// </summary>
+        /// <param name="message">消息对象</param>
+        /// <returns></returns>
+        public static int GetMessageIdByType(INetworkMessage message)
+        {
+            message.CheckNotNull(nameof(message));
+            var messageType = message.GetType();
+            return GetMessageIdByType(messageType);
+        }
+
+        /// <summary>
+        /// 获取消息ID,如果没有找到则返回 -1
+        /// </summary>
         /// <param name="type">消息类型</param>
         /// <returns></returns>
         public static int GetMessageIdByType(Type type)
@@ -40,6 +52,18 @@ namespace GameFrameX.NetWork.Abstractions
         {
             AllMessageDictionary.TryGetValue(messageId, out var value);
             return value;
+        }
+
+        /// <summary>
+        /// 获取消息操作类型
+        /// </summary>
+        /// <param name="message">消息对象</param>
+        /// <returns></returns>
+        public static MessageOperationType GetMessageOperationType(INetworkMessage message)
+        {
+            message.CheckNotNull(nameof(message));
+            var messageType = message.GetType();
+            return GetMessageOperationType(messageType);
         }
 
         /// <summary>
@@ -71,6 +95,18 @@ namespace GameFrameX.NetWork.Abstractions
             message.CheckNotNull(nameof(message));
             var messageType = message.GetType();
             message.SetMessageId(GetMessageIdByType(messageType));
+        }
+
+        /// <summary>
+        /// 获取消息类型是否是心跳类型
+        /// </summary>
+        /// <param name="message">消息对象</param>
+        /// <returns></returns>
+        public static bool IsHeartbeat(INetworkMessage message)
+        {
+            message.CheckNotNull(nameof(message));
+            var messageType = message.GetType();
+            return IsHeartbeat(messageType);
         }
 
         /// <summary>
