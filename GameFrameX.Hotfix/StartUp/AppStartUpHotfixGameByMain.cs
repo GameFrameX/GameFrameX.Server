@@ -7,12 +7,7 @@ using GameFrameX.NetWork.Message;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.SuperSocket.Connection;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
-using GameFrameX.SuperSocket.Server.Host;
-using GameFrameX.SuperSocket.WebSocket;
 using GameFrameX.SuperSocket.WebSocket.Server;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using CloseReason = GameFrameX.SuperSocket.Connection.CloseReason;
 
 namespace GameFrameX.Hotfix.StartUp;
 
@@ -26,10 +21,8 @@ internal partial class AppStartUpHotfixGame
     public override async Task StartAsync()
     {
         // 启动网络服务
+        await StartServerAsync<ClientMessageDecoderHandler, ClientMessageEncoderHandler>(new DefaultMessageCompressHandler(), new DefaultMessageDecompressHandler());
         StartServer();
-        // 设置压缩和解压缩
-        // MessageEncoderHandler.SetCompressionHandler(new DefaultMessageCompressHandler());
-        // MessageDecoderHandler.SetDecompressionHandler(new DefaultMessageDecompressHandler());
         // 启动Http服务
         // await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetHttpHandler);
         await base.StartAsync();
