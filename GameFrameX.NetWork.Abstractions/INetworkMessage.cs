@@ -6,11 +6,6 @@
 public interface INetworkMessage : IMessage
 {
     /// <summary>
-    /// 消息ID
-    /// </summary>
-    int MessageId { get; }
-
-    /// <summary>
     /// 设置消息ID
     /// </summary>
     /// <param name="messageId"></param>
@@ -20,17 +15,6 @@ public interface INetworkMessage : IMessage
     /// 消息的唯一ID
     /// </summary>
     int UniqueId { get; }
-
-    /// <summary>
-    /// 消息业务类型
-    /// </summary>
-    MessageOperationType OperationType { get; }
-
-    /// <summary>
-    /// 设置消息业务类型
-    /// </summary>
-    /// <param name="messageOperationType">消息业务类型 </param>
-    void SetOperationType(MessageOperationType messageOperationType);
 
     /// <summary>
     /// 更新唯一消息ID

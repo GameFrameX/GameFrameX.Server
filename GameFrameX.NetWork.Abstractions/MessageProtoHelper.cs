@@ -2,9 +2,8 @@
 using System.Reflection;
 using GameFrameX.Extension;
 using GameFrameX.Log;
-using GameFrameX.NetWork.Abstractions;
 
-namespace GameFrameX.NetWork.Message
+namespace GameFrameX.NetWork.Abstractions
 {
     /// <summary>
     /// 协议消息处理器
@@ -72,7 +71,6 @@ namespace GameFrameX.NetWork.Message
             message.CheckNotNull(nameof(message));
             var messageType = message.GetType();
             message.SetMessageId(GetMessageIdByType(messageType));
-            message.SetOperationType(GetMessageOperationType(messageType));
         }
 
         /// <summary>

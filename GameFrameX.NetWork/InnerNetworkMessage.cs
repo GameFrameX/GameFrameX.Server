@@ -106,16 +106,16 @@ public sealed class InnerNetworkMessage : IInnerNetworkMessage
     /// <returns></returns>
     public static IInnerNetworkMessage Create(INetworkMessage message, INetworkMessageHeader messageObjectHeader)
     {
-        var innerMessage = new InnerNetworkMessage();
-        messageObjectHeader.OperationType = message.OperationType;
-        messageObjectHeader.MessageId = message.MessageId;
+        var networkMessage = new InnerNetworkMessage();
+        messageObjectHeader.OperationType = MessageProtoHelper.GetMessageOperationType(message.GetType());
+        messageObjectHeader.MessageId = MessageProtoHelper.GetMessageIdByType(message.GetType());
         messageObjectHeader.UniqueId = message.UniqueId;
-        
-        innerMessage.SetMessageType(message.GetType());
+
+        networkMessage.SetMessageType(message.GetType());
         var buffer = ProtoBufSerializerHelper.Serialize(message);
-        innerMessage.SetMessageData(buffer);
-        innerMessage.SetMessageHeader(messageObjectHeader);
-        return innerMessage;
+        networkMessage.SetMessageData(buffer);
+        networkMessage.SetMessageHeader(messageObjectHeader);
+        return networkMessage;
     }
 
     private readonly ConcurrentDictionary<string, object> _data = new ConcurrentDictionary<string, object>();

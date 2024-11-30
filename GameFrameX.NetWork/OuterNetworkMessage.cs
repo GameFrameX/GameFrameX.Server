@@ -52,7 +52,9 @@ public sealed class OuterNetworkMessage : IOuterNetworkMessage
     /// <returns></returns>
     public INetworkMessage DeserializeMessageObject()
     {
-        return (INetworkMessage)ProtoBufSerializerHelper.Deserialize(MessageData, MessageType);
+        var value = (INetworkMessage)ProtoBufSerializerHelper.Deserialize(MessageData, MessageType);
+        value.SetUniqueId(Header.UniqueId);
+        return value;
     }
 
     /// <summary>
@@ -126,8 +128,8 @@ public sealed class OuterNetworkMessage : IOuterNetworkMessage
         innerMessage.SetUniqueId(message.UniqueId.ToString());
         var buffer = ProtoBufSerializerHelper.Serialize(message);
         innerMessage.SetMessageData(buffer);
-        messageObjectHeader.OperationType = message.OperationType;
-        messageObjectHeader.MessageId = message.MessageId;
+        messageObjectHeader.OperationType = MessageProtoHelper.GetMessageOperationType(message.GetType());
+        messageObjectHeader.MessageId = MessageProtoHelper.GetMessageIdByType(message.GetType());
         messageObjectHeader.UniqueId = message.UniqueId;
         innerMessage.SetMessageHeader(messageObjectHeader);
         return innerMessage;
@@ -191,10 +193,10 @@ public sealed class OuterNetworkMessage : IOuterNetworkMessage
     /// <returns></returns>
     public static OuterNetworkMessage Create(INetworkMessageHeader messageObjectHeader, byte[] messageData, Type messageType)
     {
-        var innerMessage = new OuterNetworkMessage();
-        innerMessage.SetMessageHeader(messageObjectHeader);
-        innerMessage.SetMessageData(messageData);
-        innerMessage.SetMessageType(messageType);
-        return innerMessage;
+        var message = new OuterNetworkMessage();
+        message.SetMessageHeader(messageObjectHeader);
+        message.SetMessageData(messageData);
+        message.SetMessageType(messageType);
+        return message;
     }
 }
