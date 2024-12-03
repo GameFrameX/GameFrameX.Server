@@ -15,17 +15,13 @@ namespace GameFrameX.Hotfix.StartUp;
 /// </summary>
 internal partial class AppStartUpHotfixGame
 {
-    protected override ServerType GetServerType { get; } = ServerType.Gateway;
-
     public override async Task StartAsync()
     {
         // 启动网络服务
-        StartServer();
         // 设置压缩和解压缩
         await StartServerAsync<ClientMessageDecoderHandler, ClientMessageEncoderHandler>(new DefaultMessageCompressHandler(), new DefaultMessageDecompressHandler());
         // 启动Http服务
         await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetHttpHandler);
-        await base.StartAsync();
     }
 
     public async void RunServer(bool reload = false)
