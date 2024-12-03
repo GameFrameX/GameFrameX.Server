@@ -234,8 +234,11 @@ public abstract partial class AppStartUpBase : IAppStartUp
 
     private void ConfigureWebServer(HostBuilderContext context, IConfigurationBuilder builder)
     {
-        builder.AddInMemoryCollection(new Dictionary<string, string>()
-                                          { { "serverOptions:name", Setting.ServerName }, { "serverOptions:listeners:0:ip", Setting.InnerIp }, { "serverOptions:listeners:0:port", Setting.WsPort.ToString() } });
+        var paramsDict = new Dictionary<string, string>();
+        paramsDict.Add("serverOptions:listeners:0:port", Setting.WsPort.ToString());
+        paramsDict.Add("serverOptions:listeners:0:ip", Setting.InnerIp.IsNullOrWhiteSpace() ? "Any" : Setting.InnerIp);
+        paramsDict.Add("serverOptions:name", Setting.ServerName);
+        builder.AddInMemoryCollection(paramsDict);
     }
 
     /// <summary>
