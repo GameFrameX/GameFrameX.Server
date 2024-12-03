@@ -68,7 +68,7 @@ public abstract partial class AppStartUpBase : IAppStartUp
         Init();
         Setting.CheckNotNull(nameof(Setting));
         GlobalSettings.ServerId = Setting.ServerId;
-
+        GlobalSettings.IsDebug = Setting.IsDebug;
         return true;
     }
 

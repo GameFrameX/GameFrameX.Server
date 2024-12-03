@@ -2,6 +2,7 @@ using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Message;
+using GameFrameX.Setting;
 using GameFrameX.StartUp.Abstractions;
 using GameFrameX.SuperSocket.Connection;
 using GameFrameX.SuperSocket.Primitives;
@@ -66,6 +67,9 @@ public abstract partial class AppStartUpBase : IAppStartUp
         {
             MessageEncoderHandler.SetCompressionHandler(messageCompressHandler);
         }
+
+        GlobalSettings.LaunchTime = DateTime.Now;
+        GlobalSettings.IsAppRunning = true;
     }
 
     /// <summary>
@@ -73,6 +77,7 @@ public abstract partial class AppStartUpBase : IAppStartUp
     /// </summary>
     protected void StopServer()
     {
+        GlobalSettings.IsAppRunning = false;
         StopTcpServer();
         StopWebSocketServer();
     }
