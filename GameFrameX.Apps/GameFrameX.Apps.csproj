@@ -17,7 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.Core" Version="1.2.0-beta7" />
-      <PackageReference Include="GameFrameX.Monitor" Version="1.2.0-beta7" />
+      <PackageReference Include="GameFrameX.Core" Version="1.2.0-beta9" />
+      <PackageReference Include="GameFrameX.Monitor" Version="1.2.0-beta9" />
     </ItemGroup>
 </Project>
