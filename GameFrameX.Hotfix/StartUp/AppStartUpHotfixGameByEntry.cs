@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using GameFrameX.Launcher.StartUp;
+﻿using GameFrameX.Launcher.StartUp;
 
 namespace GameFrameX.Hotfix.StartUp
 {
@@ -13,7 +12,7 @@ namespace GameFrameX.Hotfix.StartUp
                 return true;
             }
 
-            
+
             Init(setting.ServerType, setting);
             RunServer();
             // 启动定时器

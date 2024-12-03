@@ -1,10 +1,8 @@
-﻿using GameFrameX.Launcher.StartUp;
-using GameFrameX.NetWork.Abstractions;
-using GameFrameX.NetWork.Messages;
+﻿using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.Hotfix.StartUp
 {
-    internal partial class AppStartUpHotfixGame : AppStartUpService, IHotfixBridge
+    internal partial class AppStartUpHotfixGame
     {
         private readonly NotifyHeartBeat _notifyHeartBeat = new NotifyHeartBeat
         {

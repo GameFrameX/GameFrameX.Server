@@ -1,23 +1,17 @@
 ﻿using GameFrameX.Apps.Common.Session;
 using GameFrameX.Config;
 using GameFrameX.NetWork;
-using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Message;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.SuperSocket.Connection;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
-using GameFrameX.SuperSocket.Server.Host;
-using GameFrameX.SuperSocket.WebSocket;
 using GameFrameX.SuperSocket.WebSocket.Server;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using CloseReason = GameFrameX.SuperSocket.Connection.CloseReason;
 
 namespace GameFrameX.Hotfix.StartUp;
 
 /// <summary>
-/// 路由服务器.最后启动。
+/// 业务服务器.最后启动。
 /// </summary>
 internal partial class AppStartUpHotfixGame
 {
@@ -28,10 +22,9 @@ internal partial class AppStartUpHotfixGame
         // 启动网络服务
         StartServer();
         // 设置压缩和解压缩
-        // MessageEncoderHandler.SetCompressionHandler(new DefaultMessageCompressHandler());
-        // MessageDecoderHandler.SetDecompressionHandler(new DefaultMessageDecompressHandler());
+        await StartServerAsync<ClientMessageDecoderHandler, ClientMessageEncoderHandler>(new DefaultMessageCompressHandler(), new DefaultMessageDecompressHandler());
         // 启动Http服务
-        // await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetHttpHandler);
+        await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetHttpHandler);
         await base.StartAsync();
     }
 
@@ -62,7 +55,6 @@ internal partial class AppStartUpHotfixGame
         var netChannel = new DefaultNetWorkChannel(appSession, Setting, MessageEncoderHandler, null, appSession is WebSocketSession);
         var session = new Session(appSession.SessionID, netChannel);
         SessionManager.Add(session);
-
         return ValueTask.CompletedTask;
     }
 
@@ -78,7 +70,7 @@ internal partial class AppStartUpHotfixGame
         {
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
-                // LogHelper.Debug($"---收到{message.ToFormatMessageString()}");
+                LogHelper.Debug($"---收到{message.ToFormatMessageString()}");
             }
 
             var netWorkChannel = SessionManager.GetChannel(appSession.SessionID);
@@ -107,12 +99,6 @@ internal partial class AppStartUpHotfixGame
         }
 
         return ValueTask.CompletedTask;
-    }
-
-    private void ConfigureWebServer(HostBuilderContext context, IConfigurationBuilder builder)
-    {
-        builder.AddInMemoryCollection(new Dictionary<string, string>()
-            { { "serverOptions:name", "GameServer" }, { "serverOptions:listeners:0:ip", "Any" }, { "serverOptions:listeners:0:port", Setting.WsPort.ToString() } });
     }
 
     public override async Task StopAsync(string message = "")
