@@ -1,4 +1,3 @@
-using System.Reflection;
 using GameFrameX.Extension;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -8,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using GameFrameX.Log;
 using GameFrameX.Utility;
-using Microsoft.Extensions.Hosting;
 
 namespace GameFrameX.NetWork.HTTP
 {
@@ -68,29 +66,25 @@ namespace GameFrameX.NetWork.HTTP
 
             ApiRootPath = apiRootPath;
             var builder = WebApplication.CreateBuilder();
-            builder.Host.UseSerilog()
-                .ConfigureWebHost(hostBuilder =>
+            builder.WebHost.UseKestrel(options =>
+            {
+                // HTTP
+                if (httpPort > 0 && Net.PortIsAvailable(httpPort))
                 {
-                    hostBuilder.UseKestrel(options =>
-                    {
-                        // HTTP 
-                        if (httpPort > 0 && Net.PortIsAvailable(httpPort))
-                        {
-                            options.ListenAnyIP(httpPort);
-                        }
+                    options.ListenAnyIP(httpPort);
+                }
 
-                        // HTTPS
-                        if (httpsPort > 0 && Net.PortIsAvailable(httpPort))
-                        {
-                            options.ListenAnyIP(httpsPort, listenOptions => { listenOptions.UseHttps(); });
-                        }
-                    });
-                }).ConfigureLogging(logging =>
+                // HTTPS
+                if (httpsPort > 0 && Net.PortIsAvailable(httpPort))
                 {
-                    logging.ClearProviders();
-                    logging.AddSerilog();
-                    logging.SetMinimumLevel(minimumLevelLogLevel);
-                });
+                    options.ListenAnyIP(httpsPort, listenOptions => { listenOptions.UseHttps(); });
+                }
+            }).ConfigureLogging(logging =>
+            {
+                logging.ClearProviders();
+                logging.AddSerilog(Serilog.Log.Logger);
+                logging.SetMinimumLevel(minimumLevelLogLevel);
+            });
             App = builder.Build();
             App.UseExceptionHandler((errorContext) =>
             {
