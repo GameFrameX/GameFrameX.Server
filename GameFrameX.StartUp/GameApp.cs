@@ -96,11 +96,11 @@ public static class GameApp
                 var appSetting = appSettings.FirstOrDefault(m => m.ServerType == serverTypeValue);
                 if (appSetting != null)
                 {
-                    LogHelper.InfoConsole("从配置文件中找到对应的服务器类型的启动配置,将以配置启动=>" + startKv.Value.ServerType);
+                    LogHelper.InfoConsole($"从配置文件中找到对应的服务器类型的启动配置,将以配置启动=>{startKv.Value.ServerType}");
                 }
                 else
                 {
-                    LogHelper.ErrorConsole("没有找到对应的服务器类型的启动配置,将以默认配置启动=>" + startKv.Value.ServerType);
+                    LogHelper.WarnConsole($"没有找到对应的服务器类型的启动配置,将以默认配置启动=>{startKv.Value.ServerType}");
                     appSetting = new AppSetting
                     {
                         ServerId = launcherOptions.ServerId,
@@ -156,7 +156,7 @@ public static class GameApp
 
                 if (isFind == false)
                 {
-                    LogHelper.ErrorConsole("没有找到对应的服务器类型的启动配置,将以默认配置启动=>" + keyValuePair.Value.ServerType);
+                    LogHelper.WarnConsole($"没有找到对应的服务器类型的启动配置,将以默认配置启动=>{keyValuePair.Value.ServerType}");
                     Launcher(args, keyValuePair);
                 }
             }
