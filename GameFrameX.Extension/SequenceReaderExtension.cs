@@ -3,16 +3,16 @@
 namespace GameFrameX.Extension;
 
 /// <summary>
-/// 
+/// 提供对 <see cref="SequenceReader{T}"/> 类的扩展方法，用于从只读内存中读取数据。
 /// </summary>
 public static class SequenceReaderExtension
 {
     /// <summary>
-    /// 从只读内存中获取字节数据
+    /// 从只读内存中获取一个字节数据。
     /// </summary>
-    /// <param name="reader">只读内存</param>
-    /// <param name="value">结果值</param>
-    /// <returns>读取成功返回True，否则返回False</returns>
+    /// <param name="reader">只读内存读取器。</param>
+    /// <param name="value">结果值。</param>
+    /// <returns>读取成功返回 True，否则返回 False。</returns>
     public static bool TryReadBigEndian(this ref SequenceReader<byte> reader, out byte value)
     {
         value = 0;
@@ -26,12 +26,12 @@ public static class SequenceReaderExtension
     }
 
     /// <summary>
-    /// 从只读内存中获取字节数据,且移动读取位置
+    /// 从只读内存中获取指定长度的字节数据，并移动读取位置。
     /// </summary>
-    /// <param name="reader">读取器</param>
-    /// <param name="length">读取的长度</param>
-    /// <param name="value">结果值</param>
-    /// <returns>读取成功返回True，否则返回False</returns>
+    /// <param name="reader">读取器。</param>
+    /// <param name="length">读取的长度。</param>
+    /// <param name="value">结果值。</param>
+    /// <returns>读取成功返回 True，否则返回 False。</returns>
     public static bool TryReadBytes(this ref SequenceReader<byte> reader, int length, out byte[] value)
     {
         value = new byte[length];
@@ -45,11 +45,11 @@ public static class SequenceReaderExtension
     }
 
     /// <summary>
-    /// 从只读内存中获取字节数据. 但是不移动读取位置
+    /// 从只读内存中获取一个字节数据，但不移动读取位置。
     /// </summary>
-    /// <param name="reader">读取器</param>
-    /// <param name="value">结果值</param>
-    /// <returns>读取成功返回True，否则返回False</returns>
+    /// <param name="reader">读取器。</param>
+    /// <param name="value">结果值。</param>
+    /// <returns>读取成功返回 True，否则返回 False。</returns>
     public static bool TryPeekBigEndian(ref this SequenceReader<byte> reader, out byte value)
     {
         value = 0;
@@ -63,11 +63,11 @@ public static class SequenceReaderExtension
     }
 
     /// <summary>
-    /// 从只读内存中获取字节数据. 但是不移动读取位置
+    /// 从只读内存中获取一个无符号短整型数据，但不移动读取位置。
     /// </summary>
-    /// <param name="reader">读取器</param>
-    /// <param name="value">结果值</param>
-    /// <returns>读取成功返回True，否则返回False</returns>
+    /// <param name="reader">读取器。</param>
+    /// <param name="value">结果值。</param>
+    /// <returns>读取成功返回 True，否则返回 False。</returns>
     public static bool TryPeekBigEndian(ref this SequenceReader<byte> reader, out ushort value)
     {
         value = 0;
@@ -80,13 +80,12 @@ public static class SequenceReaderExtension
         return true;
     }
 
-
     /// <summary>
-    /// 从只读内存中获取无符号的整型数据, 但是不移动读取位置
+    /// 从只读内存中获取一个无符号整型数据，但不移动读取位置。
     /// </summary>
-    /// <param name="reader">读取器</param>
-    /// <param name="value">结果值</param>
-    /// <returns>读取成功返回True，否则返回False</returns>
+    /// <param name="reader">读取器。</param>
+    /// <param name="value">结果值。</param>
+    /// <returns>读取成功返回 True，否则返回 False。</returns>
     public static bool TryPeekBigEndian(ref this SequenceReader<byte> reader, out uint value)
     {
         value = 0U;
@@ -113,11 +112,11 @@ public static class SequenceReaderExtension
     }
 
     /// <summary>
-    /// 从只读内存中获取无符号的长整型数据, 但是不移动读取位置
+    /// 从只读内存中获取一个无符号长整型数据，但不移动读取位置。
     /// </summary>
-    /// <param name="reader">读取器</param>
-    /// <param name="value">结果值</param>
-    /// <returns></returns>
+    /// <param name="reader">读取器。</param>
+    /// <param name="value">结果值。</param>
+    /// <returns>读取成功返回 True，否则返回 False。</returns>
     public static bool TryPeekBigEndian(ref this SequenceReader<byte> reader, out ulong value)
     {
         value = 0UL;
