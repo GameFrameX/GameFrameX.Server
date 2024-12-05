@@ -11,11 +11,11 @@ public static class StringExtension
     private static readonly StringBuilder NewSentence = new StringBuilder();
 
     /// <summary>
-    /// 替换重复字符
+    /// 重复指定字符。
     /// </summary>
-    /// <param name="c"></param>
-    /// <param name="count">长度</param>
-    /// <returns></returns>
+    /// <param name="c">要重复的字符。</param>
+    /// <param name="count">重复次数。</param>
+    /// <returns>重复后的字符串。</returns>
     public static string RepeatChar(this char c, int count)
     {
         NewSentence.Clear();
@@ -28,11 +28,11 @@ public static class StringExtension
     }
 
     /// <summary>
-    /// 获取居中的字符串的固定长度打印
+    /// 获取居中的字符串，固定长度打印。
     /// </summary>
-    /// <param name="text"></param>
-    /// <param name="width"></param>
-    /// <returns></returns>
+    /// <param name="text">要居中的文本。</param>
+    /// <param name="width">总宽度。</param>
+    /// <returns>居中后的字符串。</returns>
     public static string CenterAlignedText(this string text, int width)
     {
         if (width < text.Length)
@@ -47,11 +47,11 @@ public static class StringExtension
     }
 
     /// <summary>
-    /// 将字符串按指定宽度进行换行
+    /// 将字符串按指定宽度进行换行。
     /// </summary>
-    /// <param name="text"></param>
-    /// <param name="width"></param>
-    /// <returns></returns>
+    /// <param name="text">要换行的文本。</param>
+    /// <param name="width">每行的最大宽度。</param>
+    /// <returns>换行后的字符串。</returns>
     public static string WordWrap(this string text, int width)
     {
         var words = text.Split(' ');
@@ -77,32 +77,32 @@ public static class StringExtension
     }
 
     /// <summary>
-    /// 从当前字符串中移除指定字符结尾的后缀
+    /// 从当前字符串中移除指定字符结尾的后缀。
     /// </summary>
-    /// <param name="self">当前字符串</param>
-    /// <param name="toRemove">要移除的字符</param>
-    /// <returns>移除后的字符串</returns>
+    /// <param name="self">当前字符串。</param>
+    /// <param name="toRemove">要移除的字符。</param>
+    /// <returns>移除后的字符串。</returns>
     public static string RemoveSuffix(this string self, char toRemove)
     {
         return self.IsNullOrEmpty() ? self : (self.EndsWith(toRemove) ? self.Substring(0, self.Length - 1) : self);
     }
 
     /// <summary>
-    /// 从当前字符串中移除指定子字符串结尾的后缀
+    /// 从当前字符串中移除指定子字符串结尾的后缀。
     /// </summary>
-    /// <param name="self">当前字符串</param>
-    /// <param name="toRemove">要移除的子字符串</param>
-    /// <returns>移除后的字符串</returns>
+    /// <param name="self">当前字符串。</param>
+    /// <param name="toRemove">要移除的子字符串。</param>
+    /// <returns>移除后的字符串。</returns>
     public static string RemoveSuffix(this string self, string toRemove)
     {
         return self.IsNullOrEmpty() ? self : (self.EndsWith(toRemove) ? self.Substring(0, self.Length - toRemove.Length) : self);
     }
 
     /// <summary>
-    /// 移除当前字符串中的所有空白字符
+    /// 移除当前字符串中的所有空白字符。
     /// </summary>
-    /// <param name="self">当前字符串</param>
-    /// <returns>移除空白字符后的字符串</returns>
+    /// <param name="self">当前字符串。</param>
+    /// <returns>移除空白字符后的字符串。</returns>
     public static string RemoveWhiteSpace(this string self)
     {
         return self.IsNullOrEmpty() ? self : new string(self.Where(c => !char.IsWhiteSpace(c)).ToArray());
@@ -119,20 +119,20 @@ public static class StringExtension
     }
 
     /// <summary>
-    /// 检查字符串是否为 null 或 空 或 空白字符串
+    /// 检查字符串是否为 null 或 空 或 空白字符串。
     /// </summary>
-    /// <param name="str"></param>
-    /// <returns></returns>
+    /// <param name="str">要检查的字符串。</param>
+    /// <returns>如果字符串为 null 或空或空白字符串，则为 true；否则为 false。</returns>
     public static bool IsNullOrEmptyOrWhiteSpace(this string str)
     {
         return str.IsNullOrEmpty() || str.IsNullOrWhiteSpace();
     }
 
     /// <summary>
-    /// 检查字符串是否 [不] 为 null 或 空 或 空白字符串
+    /// 检查字符串是否不为 null 或 空 或 空白字符串。
     /// </summary>
-    /// <param name="str"></param>
-    /// <returns></returns>
+    /// <param name="str">要检查的字符串。</param>
+    /// <returns>如果字符串不为 null 或空或空白字符串，则为 true；否则为 false。</returns>
     public static bool IsNotNullOrEmptyOrWhiteSpace(this string str)
     {
         return !str.IsNullOrEmptyOrWhiteSpace();
@@ -142,7 +142,7 @@ public static class StringExtension
     /// 检查字符串是否不为 null 或空。
     /// </summary>
     /// <param name="str">要检查的字符串。</param>
-    /// <returns>如果字符串为 null 或空，则为 true；否则为 false。</returns>
+    /// <returns>如果字符串不为 null 或空，则为 true；否则为 false。</returns>
     public static bool IsNotNullOrEmpty(this string str)
     {
         return !str.IsNullOrEmpty();
@@ -152,7 +152,7 @@ public static class StringExtension
     /// 检查字符串是否为 null 或空白字符串。
     /// </summary>
     /// <param name="str">要检查的字符串。</param>
-    /// <returns>如果字符串为 null 或空，则为 true；否则为 false。</returns>
+    /// <returns>如果字符串为 null 或空白字符串，则为 true；否则为 false。</returns>
     public static bool IsNullOrWhiteSpace(this string str)
     {
         return string.IsNullOrWhiteSpace(str);
@@ -162,37 +162,37 @@ public static class StringExtension
     /// 检查字符串是否不为 null 或空白字符串。
     /// </summary>
     /// <param name="str">要检查的字符串。</param>
-    /// <returns>如果字符串为 null 或空，则为 true；否则为 false。</returns>
+    /// <returns>如果字符串不为 null 或空白字符串，则为 true；否则为 false。</returns>
     public static bool IsNotNullOrWhiteSpace(this string str)
     {
         return !str.IsNullOrWhiteSpace();
     }
 
     /// <summary>
-    /// 确保指定的值不为null或空白字符串。
+    /// 确保指定的值不为 null 或空白字符串。
     /// </summary>
     /// <param name="value">要检查的值。</param>
     /// <param name="name">值的名称。</param>
-    /// <exception cref="ArgumentNullException">当值为null或空白字符串时引发。</exception>
+    /// <exception cref="ArgumentNullException">当值为 null 或空白字符串时引发。</exception>
     public static void CheckNotNullOrEmpty(this string value, string name)
     {
         if (value.IsNullOrEmpty())
         {
-            throw new ArgumentNullException(name, " can not be null.");
+            throw new ArgumentNullException(name, "不能为 null。");
         }
     }
 
     /// <summary>
-    /// 确保指定的值不为null或空或空白字符串。
+    /// 确保指定的值不为 null 或空或空白字符串。
     /// </summary>
     /// <param name="value">要检查的值。</param>
     /// <param name="name">值的名称。</param>
-    /// <exception cref="ArgumentNullException">当值为null或空或空白字符串时引发。</exception>
+    /// <exception cref="ArgumentNullException">当值为 null 或空或空白字符串时引发。</exception>
     public static void CheckNotNullOrEmptyOrWhiteSpace(this string value, string name)
     {
         if (value.IsNullOrEmptyOrWhiteSpace())
         {
-            throw new ArgumentNullException(name, " can not be null.");
+            throw new ArgumentNullException(name, "不能为 null 或空白字符串。");
         }
     }
 
@@ -200,7 +200,7 @@ public static class StringExtension
     /// 将字符串按指定的分隔符拆分为整数数组。
     /// </summary>
     /// <param name="str">要拆分的字符串。</param>
-    /// <param name="sep">用于分隔字符串的字符。</param>
+    /// <param name="sep">用于分隔字符串的字符，默认为 '+'。</param>
     /// <returns>拆分得到的整数数组。</returns>
     public static int[] SplitToIntArray(this string str, char sep = '+')
     {
@@ -222,8 +222,8 @@ public static class StringExtension
     /// 将字符串按指定的分隔符拆分为二维整数数组。
     /// </summary>
     /// <param name="str">要拆分的字符串。</param>
-    /// <param name="sep1">用于第一层分隔的字符。</param>
-    /// <param name="sep2">用于第二层分隔的字符。</param>
+    /// <param name="sep1">用于第一层分隔的字符，默认为 ';'。</param>
+    /// <param name="sep2">用于第二层分隔的字符，默认为 '+'。</param>
     /// <returns>拆分得到的二维整数数组。</returns>
     public static int[][] SplitTo2IntArray(this string str, char sep1 = ';', char sep2 = '+')
     {
@@ -245,7 +245,7 @@ public static class StringExtension
     /// 根据字符串创建目录，递归创建。
     /// </summary>
     /// <param name="path">要创建的目录路径。</param>
-    /// <param name="isFile">指示是否为文件路径。</param>
+    /// <param name="isFile">指示是否为文件路径，默认为 false。</param>
     public static void CreateAsDirectory(this string path, bool isFile = false)
     {
         if (isFile)
@@ -260,12 +260,11 @@ public static class StringExtension
         }
     }
 
-
     /// <summary>
-    /// 转换字符串为下划线分割的小写形式，用于命名
+    /// 转换字符串为下划线分割的小写形式，用于命名。
     /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
+    /// <param name="input">要转换的字符串。</param>
+    /// <returns>转换后的字符串。</returns>
     public static string ConvertToSnakeCase(this string input)
     {
         if (string.IsNullOrEmpty(input))
@@ -278,15 +277,15 @@ public static class StringExtension
     }
 
     /// <summary>
-    /// 匹配中文正则表达式
+    /// 匹配中文正则表达式。
     /// </summary>
     private static readonly Regex CnReg = new Regex(@"[\u4e00-\u9fa5]");
 
     /// <summary>
-    /// 替换中文为空字符串
+    /// 替换中文为空字符串。
     /// </summary>
-    /// <param name="self">原始字符串</param>
-    /// <returns></returns>
+    /// <param name="self">原始字符串。</param>
+    /// <returns>替换后的字符串。</returns>
     public static string TrimZhCn(this string self)
     {
         self = CnReg.Replace(self, string.Empty);
