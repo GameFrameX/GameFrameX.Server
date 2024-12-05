@@ -17,7 +17,7 @@ public static class IdGenerator
     /// <summary>
     /// 使用Interlocked.Increment生成唯一ID的方法
     /// </summary>
-    /// <returns></returns>
+    /// <returns>返回下一个唯一的整数ID</returns>
     public static int GetNextUniqueIntId()
     {
         // 原子性地递增值
@@ -27,7 +27,7 @@ public static class IdGenerator
     /// <summary>
     /// 使用Interlocked.Increment生成唯一ID的方法
     /// </summary>
-    /// <returns></returns>
+    /// <returns>返回下一个唯一的长整数ID</returns>
     public static long GetNextUniqueId()
     {
         // 原子性地递增值
@@ -37,7 +37,7 @@ public static class IdGenerator
     /// <summary>
     /// 获取唯一ID字符串
     /// </summary>
-    /// <returns></returns>
+    /// <returns>返回一个全局唯一的字符串ID</returns>
     public static string GetUniqueIdString()
     {
         return Guid.NewGuid().ToString();
