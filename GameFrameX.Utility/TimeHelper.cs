@@ -6,7 +6,7 @@
 public static class TimeHelper
 {
     /// <summary>
-    /// 1970-01-01 00:00:00 本地 时间
+    /// 1970-01-01 00:00:00 本地时间
     /// </summary>
     public static readonly DateTime EpochLocal = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Local);
 
@@ -18,6 +18,7 @@ public static class TimeHelper
     /// <summary>
     /// 返回当前时间的毫秒表示。
     /// </summary>
+    /// <returns>当前时间的毫秒数。</returns>
     public static long CurrentTimeMillis()
     {
         return TimeMillis(DateTime.Now, false);
@@ -26,7 +27,7 @@ public static class TimeHelper
     /// <summary>
     /// 当前UTC 时间 秒时间戳
     /// </summary>
-    /// <returns></returns>
+    /// <returns>当前UTC时间的秒时间戳。</returns>
     public static long UnixTimeSeconds()
     {
         return new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
@@ -35,7 +36,7 @@ public static class TimeHelper
     /// <summary>
     /// 当前UTC 时间 毫秒时间戳 
     /// </summary>
-    /// <returns></returns>
+    /// <returns>当前UTC时间的毫秒时间戳。</returns>
     public static long UnixTimeMilliseconds()
     {
         return new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
@@ -44,7 +45,7 @@ public static class TimeHelper
     /// <summary>
     /// 当前时区时间 秒时间戳
     /// </summary>
-    /// <returns></returns>
+    /// <returns>当前时区时间的秒时间戳。</returns>
     public static long TimeSeconds()
     {
         return new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
@@ -53,7 +54,7 @@ public static class TimeHelper
     /// <summary>
     /// 当前时区时间 毫秒时间戳 
     /// </summary>
-    /// <returns></returns>
+    /// <returns>当前时区时间的毫秒时间戳。</returns>
     public static long TimeMilliseconds()
     {
         return new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds();
@@ -112,9 +113,9 @@ public static class TimeHelper
     /// <summary>
     /// 毫秒转时间
     /// </summary>
-    /// <param name="time"></param>
-    /// <param name="utc"></param>
-    /// <returns></returns>
+    /// <param name="time">毫秒数。</param>
+    /// <param name="utc">是否使用UTC时间。</param>
+    /// <returns>转换后的时间。</returns>
     public static DateTime MillisToDateTime(long time, bool utc = false)
     {
         if (utc)
@@ -124,7 +125,6 @@ public static class TimeHelper
 
         return EpochLocal.AddMilliseconds(time);
     }
-
 
     /// <summary>
     /// 获取从指定日期到当前日期之间跨越的天数。
@@ -181,11 +181,11 @@ public static class TimeHelper
     }
 
     /// <summary>
-    /// 是否同一周
+    /// 判断两个时间是否处于同一周。
     /// </summary>
-    /// <param name="start"></param>
-    /// <param name="end"></param>
-    /// <returns></returns>
+    /// <param name="start">起始时间。</param>
+    /// <param name="end">结束时间。</param>
+    /// <returns>如果两个时间处于同一周，则为 true；否则为 false。</returns>
     public static bool IsSameWeek(DateTime start, DateTime end)
     {
         // 让start是较早的时间
@@ -263,7 +263,7 @@ public static class TimeHelper
     /// <summary>
     /// 当前时区时间的完整字符串
     /// </summary>
-    /// <returns></returns>
+    /// <returns>当前时区时间的完整字符串。</returns>
     public static string CurrentTimeWithFullString()
     {
         return DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss.fff K");
@@ -272,18 +272,17 @@ public static class TimeHelper
     /// <summary>
     /// UTC时区时间的完整字符串
     /// </summary>
-    /// <returns></returns>
+    /// <returns>UTC时区时间的完整字符串。</returns>
     public static string CurrentTimeWithUtcFullString()
     {
         return DateTime.UtcNow.ToString("yyyy-MM-dd-HH-mm-ss.fff K");
     }
 
-
     /// <summary>
     /// UTC 时间戳 转换成UTC时间
     /// </summary>
     /// <param name="utcTimestamp">UTC时间戳,单位秒</param>
-    /// <returns></returns>
+    /// <returns>转换后的UTC时间。</returns>
     public static DateTime UtcToUtcDateTime(long utcTimestamp)
     {
         return DateTimeOffset.FromUnixTimeSeconds(utcTimestamp).UtcDateTime;
@@ -293,7 +292,7 @@ public static class TimeHelper
     /// UTC 时间戳 转换成本地时间
     /// </summary>
     /// <param name="utcTimestamp">UTC时间戳,单位秒</param>
-    /// <returns></returns>
+    /// <returns>转换后的本地时间。</returns>
     public static DateTime UtcToLocalDateTime(long utcTimestamp)
     {
         return DateTimeOffset.FromUnixTimeSeconds(utcTimestamp).LocalDateTime;
