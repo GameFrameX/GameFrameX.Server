@@ -3,17 +3,17 @@
 namespace GameFrameX.Setting;
 
 /// <summary>
-/// App 配置
+/// 应用程序配置类
 /// </summary>
 public sealed class AppSetting
 {
     /// <summary>
-    /// 
+    /// 用于通知应用程序退出的任务完成源
     /// </summary>
     [JsonIgnore] public readonly TaskCompletionSource<bool> AppExitSource = new TaskCompletionSource<bool>();
 
     /// <summary>
-    /// 
+    /// 获取应用程序退出的任务标记
     /// </summary>
     [JsonIgnore]
     public Task<bool> AppExitToken
@@ -22,17 +22,17 @@ public sealed class AppSetting
     }
 
     /// <summary>
-    /// 是否是本地
+    /// 判断指定的服务ID是否为本地服务
     /// </summary>
     /// <param name="serverId">服务ID</param>
-    /// <returns>返回是否是本地</returns>
+    /// <returns>返回是否是本地服务</returns>
     public bool IsLocal(int serverId)
     {
         return serverId == ServerId;
     }
 
     /// <summary>
-    /// 启动时间
+    /// 应用程序启动时间
     /// </summary>
     public DateTime LaunchTime { get; set; }
 
@@ -40,7 +40,7 @@ public sealed class AppSetting
     private ServerType _serverType;
 
     /// <summary>
-    /// 
+    /// 获取或设置应用程序是否正在运行
     /// </summary>
     [JsonIgnore]
     public bool AppRunning
@@ -72,7 +72,7 @@ public sealed class AppSetting
     }
 
     /// <summary>
-    /// 服务器类型
+    /// 获取或设置服务器类型
     /// </summary>
     public ServerType ServerType
     {
@@ -84,20 +84,20 @@ public sealed class AppSetting
         }
     }
 
-    #region from config
+    #region 从配置文件读取的属性
 
     /// <summary>
-    /// 是否是Debug 模式
+    /// 是否是调试模式
     /// </summary>
     public bool IsDebug { get; set; }
 
     /// <summary>
-    /// 是否打印发送数据
+    /// 是否打印发送的数据
     /// </summary>
     public bool IsDebugSend { get; set; }
 
     /// <summary>
-    /// 是否打印接收数据
+    /// 是否打印接收的数据
     /// </summary>
     public bool IsDebugReceive { get; set; }
 
@@ -117,12 +117,12 @@ public sealed class AppSetting
     public string TagName { get; set; }
 
     /// <summary>
-    /// 保存数据间隔
+    /// 保存数据的时间间隔（毫秒）
     /// </summary>
     public int SaveDataInterval { get; set; } = 5000;
 
     /// <summary>
-    /// 内部IP
+    /// 内部IP地址
     /// </summary>
     public string InnerIp { get; set; }
 
@@ -132,7 +132,7 @@ public sealed class AppSetting
     public ushort InnerPort { get; set; }
 
     /// <summary>
-    /// 外部IP
+    /// 外部IP地址
     /// </summary>
     public string OuterIp { get; set; }
 
@@ -142,42 +142,42 @@ public sealed class AppSetting
     public ushort OuterPort { get; set; }
 
     /// <summary>
-    /// HTTP 响应码
+    /// HTTP响应码
     /// </summary>
     public string HttpCode { get; set; }
 
     /// <summary>
-    /// Http 地址
+    /// HTTP地址
     /// </summary>
     public string HttpUrl { get; set; }
 
     /// <summary>
-    /// HTTP 端口
+    /// HTTP端口
     /// </summary>
     public int HttpPort { get; set; }
 
     /// <summary>
-    /// HTTPS 端口
+    /// HTTPS端口
     /// </summary>
     public int HttpsPort { get; set; }
 
     /// <summary>
-    /// WebSocket 端口
+    /// WebSocket端口
     /// </summary>
     public int WsPort { get; set; }
 
     /// <summary>
-    /// WebSocket 加密端口
+    /// WebSocket加密端口
     /// </summary>
     public int WssPort { get; set; }
 
     /// <summary>
-    /// Wss 使用的证书路径
+    /// Wss使用的证书路径
     /// </summary>
     public string WssCertFilePath { get; set; }
 
     /// <summary>
-    /// 数据库 地址
+    /// 数据库地址
     /// </summary>
     public string DataBaseUrl { get; set; }
 
@@ -217,12 +217,12 @@ public sealed class AppSetting
     public ushort DBPort { get; set; }
 
     /// <summary>
-    /// SDK 类型
+    /// SDK类型
     /// </summary>
     public int SDKType { get; set; }
 
     /// <summary>
-    /// Application Performance Monitor (应用性能监控) 端口
+    /// 应用性能监控端口
     /// </summary>
     public int APMPort { get; set; }
 
@@ -244,25 +244,25 @@ public sealed class AppSetting
     #endregion
 
     /// <summary>
-    /// JSON 输出
+    /// 将对象序列化为JSON字符串
     /// </summary>
-    /// <returns></returns>
+    /// <returns>JSON字符串</returns>
     public override string ToString()
     {
         return JsonConvert.SerializeObject(this);
     }
 
     /// <summary>
-    /// 格式化JSON输出
+    /// 将对象序列化为格式化的JSON字符串
     /// </summary>
-    /// <returns></returns>
+    /// <returns>格式化的JSON字符串</returns>
     public string ToFormatString()
     {
         return JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 
     /// <summary>
-    /// 
+    /// 构造函数
     /// </summary>
     public AppSetting()
     {
