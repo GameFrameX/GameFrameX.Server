@@ -42,7 +42,14 @@ public static class EventDispatcher
                 foreach (var listener in listeners)
                 {
                     var comp = await actor.GetComponentAgent(listener.AgentType);
-                    await listener.HandleEvent(comp, evt);
+                    try
+                    {
+                        await listener.HandleEvent(comp, evt);
+                    }
+                    catch (Exception exception)
+                    {
+                        LogHelper.Error(exception);
+                    }
                 }
             }
 
