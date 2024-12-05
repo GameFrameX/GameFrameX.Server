@@ -1,6 +1,5 @@
 ﻿using GameFrameX.GameAnalytics;
 using GameFrameX.NetWork.Abstractions;
-using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 
 namespace GameFrameX.Launcher
