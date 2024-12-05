@@ -8,7 +8,7 @@ namespace GameFrameX.NetWork.Message;
 /// <summary>
 /// 消息对象流水线过滤处理器
 /// </summary>
-public class MessageObjectPipelineFilter : PipelineFilterBase<IMessage>
+public sealed class MessageObjectPipelineFilter : PipelineFilterBase<IMessage>
 {
     /// <summary>
     /// 解析函数
