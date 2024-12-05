@@ -3,7 +3,7 @@ using System.Buffers.Binary;
 namespace GameFrameX.Extension;
 
 /// <summary>
-/// 
+/// 提供对Span<byte>的扩展方法，用于高效地读写基本数据类型。
 /// </summary>
 public static class SpanExtension
 {
@@ -305,8 +305,6 @@ public static class SpanExtension
             return Array.Empty<byte>();
         }
 
-        //var data = new byte[len];
-        //System.Array.Copy(buffer, offset, data, 0, len);
         var data = buffer.Slice(offset, len).ToArray();
         offset += len;
         return data;
