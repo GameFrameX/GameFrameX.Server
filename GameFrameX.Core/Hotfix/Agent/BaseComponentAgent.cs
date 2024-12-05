@@ -16,7 +16,7 @@ namespace GameFrameX.Core.Hotfix.Agent
         /// <summary>
         /// 拥有者
         /// </summary>
-        public IComponent Owner { get; set; }
+        public IComponent Owner { get; private set; }
 
         /// <summary>
         /// 拥有者组件
@@ -56,6 +56,15 @@ namespace GameFrameX.Core.Hotfix.Agent
         public HashSet<long> ScheduleIdSet
         {
             get { return Actor.ScheduleIdSet; }
+        }
+
+        /// <summary>
+        /// 设置组件的所有者
+        /// </summary>
+        /// <param name="owner">所有者</param>
+        public void SetOwner(IComponent owner)
+        {
+            Owner = owner;
         }
 
         /// <summary>

@@ -358,7 +358,7 @@ namespace GameFrameX.Core.Hotfix
                     throw new ArgumentNullException(nameof(agent));
                 }
 
-                agent.Owner = component;
+                agent.SetOwner(component);
                 return agent;
             }
 

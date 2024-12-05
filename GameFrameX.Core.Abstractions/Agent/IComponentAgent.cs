@@ -13,7 +13,13 @@ public interface IComponentAgent : IWorker
     /// <summary>
     /// 获取或设置组件的所有者
     /// </summary>
-    IComponent Owner { get; set; }
+    IComponent Owner { get; }
+
+    /// <summary>
+    /// 设置组件的所有者
+    /// </summary>
+    /// <param name="owner">所有者</param>
+    void SetOwner(IComponent owner);
 
     /// <summary>
     /// 激活组件代理
