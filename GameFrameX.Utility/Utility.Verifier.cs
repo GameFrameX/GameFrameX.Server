@@ -20,8 +20,8 @@ namespace GameFrameX.Utility
         /// <summary>
         /// 计算二进制流的CRC64
         /// </summary>
-        /// <param name="bytes"></param>
-        /// <returns></returns>
+        /// <param name="bytes">指定的二进制流。</param>
+        /// <returns>计算后的 CRC64。</returns>
         public static ulong GetCrc64(byte[] bytes)
         {
             SAlgorithm64.Reset();
@@ -32,8 +32,8 @@ namespace GameFrameX.Utility
         /// <summary>
         /// 计算流的CRC64
         /// </summary>
-        /// <param name="stream"></param>
-        /// <returns></returns>
+        /// <param name="stream">指定的流。</param>
+        /// <returns>计算后的 CRC64。</returns>
         public static ulong GetCrc64(Stream stream)
         {
             SAlgorithm64.Reset();
@@ -82,9 +82,9 @@ namespace GameFrameX.Utility
         }
 
         /// <summary>
-        /// 计算二进制流的 CRC32。
+        /// 计算流的 CRC32。
         /// </summary>
-        /// <param name="stream">指定的二进制流。</param>
+        /// <param name="stream">指定的流。</param>
         /// <returns>计算后的 CRC32。</returns>
         public static int GetCrc32(Stream stream)
         {
@@ -156,6 +156,13 @@ namespace GameFrameX.Utility
             bytes[offset + 3] = (byte)(crc32 & 0xff);
         }
 
+        /// <summary>
+        /// 计算流的 CRC32，使用给定的编码。
+        /// </summary>
+        /// <param name="stream">指定的流。</param>
+        /// <param name="code">用于编码的字节数组。</param>
+        /// <param name="length">要计算的字节数。</param>
+        /// <returns>计算后的 CRC32。</returns>
         internal static int GetCrc32(Stream stream, byte[] code, int length)
         {
             if (stream == null)
