@@ -11,11 +11,11 @@
         public static class MurmurHash3
         {
             /// <summary>
-            /// 
+            /// 使用 MurmurHash3 算法计算字符串的哈希值
             /// </summary>
-            /// <param name="str"></param>
-            /// <param name="seed"></param>
-            /// <returns></returns>
+            /// <param name="str">要计算哈希值的字符串</param>
+            /// <param name="seed">哈希算法的种子值，默认为27</param>
+            /// <returns>字符串的哈希值</returns>
             public static uint Hash(string str, uint seed = 27)
             {
                 var data = System.Text.Encoding.UTF8.GetBytes(str);
@@ -23,12 +23,12 @@
             }
 
             /// <summary>
-            /// 
+            /// 使用 MurmurHash3 算法计算字节数组的哈希值
             /// </summary>
-            /// <param name="data"></param>
-            /// <param name="length"></param>
-            /// <param name="seed"></param>
-            /// <returns></returns>
+            /// <param name="data">要计算哈希值的字节数组</param>
+            /// <param name="length">字节数组的有效长度</param>
+            /// <param name="seed">哈希算法的种子值</param>
+            /// <returns>字节数组的哈希值</returns>
             public static uint Hash(byte[] data, uint length, uint seed)
             {
                 uint nblocks = length >> 2;
@@ -48,12 +48,12 @@
                     uint k1l = BitConverter.ToUInt32(data, i);
 
                     k1l *= c1;
-                    k1l =  rotl32(k1l, 15);
+                    k1l = rotl32(k1l, 15);
                     k1l *= c2;
 
                     h1 ^= k1l;
-                    h1 =  rotl32(h1, 13);
-                    h1 =  h1 * 5 + 0xe6546b64;
+                    h1 = rotl32(h1, 13);
+                    h1 = h1 * 5 + 0xe6546b64;
 
                     i += 4;
                 }
@@ -75,7 +75,7 @@
                 {
                     k1 ^= data[nblocks];
                     k1 *= c1;
-                    k1 =  rotl32(k1, 15);
+                    k1 = rotl32(k1, 15);
                     k1 *= c2;
                     h1 ^= k1;
                 }
@@ -90,6 +90,11 @@
                 return h1;
             }
 
+            /// <summary>
+            /// 对哈希值进行最终混合操作
+            /// </summary>
+            /// <param name="h">要混合的哈希值</param>
+            /// <returns>混合后的哈希值</returns>
             static uint fmix32(uint h)
             {
                 h ^= h >> 16;
@@ -101,6 +106,12 @@
                 return h;
             }
 
+            /// <summary>
+            /// 对32位整数进行循环左移操作
+            /// </summary>
+            /// <param name="x">要进行循环左移的整数</param>
+            /// <param name="r">左移的位数</param>
+            /// <returns>循环左移后的整数</returns>
             static uint rotl32(uint x, byte r)
             {
                 return x << r | x >> 32 - r;
