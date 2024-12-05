@@ -19,9 +19,9 @@ namespace GameFrameX.Utility
         }
 
         /// <summary>
-        /// 获取UInt32范围内的随机数
+        /// 获取UInt32范围内的随机数。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>一个大于等于零且小于 UInt32.MaxValue 的 32 位无符号整数。</returns>
         public static uint NextUInt32()
         {
             var bytes = new byte[4];
@@ -90,9 +90,9 @@ namespace GameFrameX.Utility
         }
 
         /// <summary>
-        /// 获取UInt64范围内的随机数
+        /// 获取UInt64范围内的随机数。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>一个大于等于零且小于 UInt64.MaxValue 的 64 位无符号整数。</returns>
         public static ulong NextUInt64()
         {
             var bytes = new byte[8];
@@ -118,10 +118,13 @@ namespace GameFrameX.Utility
             _random.NextBytes(buffer);
         }
 
-
         /// <summary>
         /// 从1~n中随机选取m个数，m小于n
         /// </summary>
+        /// <param name="m">需要选取的数量</param>
+        /// <param name="n">范围上限</param>
+        /// <returns>包含随机选取的m个数的集合</returns>
+        /// <exception cref="ArgumentOutOfRangeException">当m大于n时抛出此异常</exception>
         public static HashSet<int> RandomSelect(int m, int n)
         {
             if (m == 0)
@@ -144,12 +147,28 @@ namespace GameFrameX.Utility
         /// 根据权重随机选取，如果需求数量超过权重和（除以权重最大公约数后的），那么按照权重比例加入id，剩余数量再进行随机
         /// 不可重复随机num一定小于等于id数量
         /// </summary>
+        /// <param name="weightStr">权重字符串，格式为"id1+weight1;id2+weight2;..."</param>
+        /// <param name="num">需要选取的数量</param>
+        /// <param name="weightIndex">权重索引</param>
+        /// <param name="canRepeat">是否允许重复选取</param>
+        /// <returns>包含随机选取的结果数组列表</returns>
+        /// <exception cref="ArgumentException">当不可重复选取且需求数量大于id数量时抛出此异常</exception>
         private static List<int[]> RandomSelect(string weightStr, int num, int weightIndex, bool canRepeat = true)
         {
             var array = weightStr.SplitTo2IntArray(';', '+');
             return RandomSelect(array, num, weightIndex, canRepeat);
         }
 
+        /// <summary>
+        /// 根据权重随机选取，如果需求数量超过权重和（除以权重最大公约数后的），那么按照权重比例加入id，剩余数量再进行随机
+        /// 不可重复随机num一定小于等于id数量
+        /// </summary>
+        /// <param name="array">权重数组，每个元素为[id, weight]</param>
+        /// <param name="num">需要选取的数量</param>
+        /// <param name="weightIndex">权重索引</param>
+        /// <param name="canRepeat">是否允许重复选取</param>
+        /// <returns>包含随机选取的结果数组列表</returns>
+        /// <exception cref="ArgumentException">当不可重复选取且需求数量大于id数量时抛出此异常</exception>
         private static List<int[]> RandomSelect(int[][] array, int num, int weightIndex, bool canRepeat = true)
         {
             var random = ThreadLocalRandom.Current;
@@ -170,6 +189,14 @@ namespace GameFrameX.Utility
             }
         }
 
+        /// <summary>
+        /// 不可重复随机选取
+        /// </summary>
+        /// <param name="num">需要选取的数量</param>
+        /// <param name="weightIndex">权重索引</param>
+        /// <param name="random">随机数生成器</param>
+        /// <param name="array">权重数组，每个元素为[id, weight]</param>
+        /// <returns>包含随机选取的结果数组列表</returns>
         private static List<int[]> NoRepeatRandom(int num, int weightIndex, System.Random random, int[][] array)
         {
             var results = new List<int[]>();
@@ -208,6 +235,14 @@ namespace GameFrameX.Utility
             return results;
         }
 
+        /// <summary>
+        /// 可重复随机选取
+        /// </summary>
+        /// <param name="array">权重数组，每个元素为[id, weight]</param>
+        /// <param name="num">需要选取的数量</param>
+        /// <param name="weightIndex">权重索引</param>
+        /// <param name="random">随机数生成器</param>
+        /// <returns>包含随机选取的结果数组列表</returns>
         private static List<int[]> CanRepeatRandom(int[][] array, int num, int weightIndex, System.Random random = null)
         {
             if (random == null)
@@ -231,8 +266,13 @@ namespace GameFrameX.Utility
         }
 
         /// <summary>
-        /// 根据权重独立随机
+        /// 根据权重独立随机选取
         /// </summary>
+        /// <param name="weightStr">权重字符串，格式为"id1+weight1;id2+weight2;..."</param>
+        /// <param name="num">需要选取的数量</param>
+        /// <param name="weightIndex">权重索引</param>
+        /// <param name="random">随机数生成器</param>
+        /// <returns>包含随机选取的结果数组列表</returns>
         private static List<int[]> CanRepeatRandom(string weightStr, int num, int weightIndex, System.Random random = null)
         {
             var array = weightStr.SplitTo2IntArray(';', '+');
@@ -240,8 +280,13 @@ namespace GameFrameX.Utility
         }
 
         /// <summary>
-        /// 单次随机
+        /// 单次随机选取
         /// </summary>
+        /// <param name="array">权重数组，每个元素为[id, weight]</param>
+        /// <param name="totalWeight">总权重</param>
+        /// <param name="weightIndex">权重索引</param>
+        /// <param name="random">随机数生成器</param>
+        /// <returns>随机选取的结果数组</returns>
         private static int[] SingleRandom(int[][] array, int totalWeight, int weightIndex, System.Random random)
         {
             int r = random.Next(totalWeight);
@@ -259,10 +304,10 @@ namespace GameFrameX.Utility
         }
 
         /// <summary>
-        /// 根据权重随机
+        /// 根据权重随机选取一个id
         /// </summary>
-        /// <param name="weights">权重</param>
-        /// <returns></returns>
+        /// <param name="weights">权重数组</param>
+        /// <returns>随机选取的id索引</returns>
         public static int Idx(int[] weights)
         {
             int totalWight = weights.Sum();
@@ -281,11 +326,11 @@ namespace GameFrameX.Utility
         }
 
         /// <summary>
-        /// 根据权重随机
+        /// 根据权重随机选取一个id
         /// </summary>
-        /// <param name="array">数据列表</param>
+        /// <param name="array">数据列表，每个元素为[id, weight]</param>
         /// <param name="weightIndex">权重索引</param>
-        /// <returns></returns>
+        /// <returns>随机选取的id索引</returns>
         public static int Idx(int[][] array, int weightIndex = 1)
         {
             var random = ThreadLocalRandom.Current;
@@ -310,64 +355,59 @@ namespace GameFrameX.Utility
             return 0;
         }
 
-
         /// <summary>
         /// 随机获取指定数量的id
         /// </summary>
-        /// <param name="array"></param>
-        /// <param name="num">数量</param>
-        /// <param name="isCanRepeat">是否允许重复</param>
-        /// <returns></returns>
+        /// <param name="array">数据列表，每个元素为[id, weight]</param>
+        /// <param name="num">需要选取的数量</param>
+        /// <param name="isCanRepeat">是否允许重复选取</param>
+        /// <returns>包含随机选取的id列表</returns>
         public static List<int> Ids(int[][] array, int num, bool isCanRepeat = true)
         {
             return RandomSelect(array, num, 1, isCanRepeat).Select(t => t[0]).ToList();
         }
 
-
         /// <summary>
         /// 随机获取指定数量的id
         /// </summary>
-        /// <param name="str"></param>
-        /// <param name="num">数量</param>
-        /// <param name="isCanRepeat">是否允许重复</param>
-        /// <returns></returns>
+        /// <param name="str">权重字符串，格式为"id1+weight1;id2+weight2;..."</param>
+        /// <param name="num">需要选取的数量</param>
+        /// <param name="isCanRepeat">是否允许重复选取</param>
+        /// <returns>包含随机选取的id列表</returns>
         public static List<int> Ids(string str, int num, bool isCanRepeat = true)
         {
             return RandomSelect(str, num, 1, isCanRepeat).Select(t => t[0]).ToList();
         }
 
-
         /// <summary>
-        /// 随机获取指定数量的id
+        /// 随机获取指定数量的项目
         /// </summary>
-        /// <param name="str"></param>
-        /// <param name="num">数量</param>
-        /// <param name="isCanRepeat">是否允许重复</param>
-        /// <returns></returns>
+        /// <param name="str">权重字符串，格式为"id1+weight1;id2+weight2;..."</param>
+        /// <param name="num">需要选取的数量</param>
+        /// <param name="isCanRepeat">是否允许重复选取</param>
+        /// <returns>包含随机选取的项目列表</returns>
         public static List<int[]> Items(string str, int num, bool isCanRepeat = true)
         {
             return RandomSelect(str, num, 2, isCanRepeat);
         }
 
-
         /// <summary>
-        /// 随机获取指定数量的id
+        /// 随机获取指定数量的项目
         /// </summary>
-        /// <param name="array"></param>
-        /// <param name="num">数量</param>
-        /// <param name="isCanRepeat">是否允许重复</param>
-        /// <returns></returns>
+        /// <param name="array">数据列表，每个元素为[id, weight]</param>
+        /// <param name="num">需要选取的数量</param>
+        /// <param name="isCanRepeat">是否允许重复选取</param>
+        /// <returns>包含随机选取的项目列表</returns>
         public static List<int[]> Items(int[][] array, int num, bool isCanRepeat = true)
         {
             return RandomSelect(array, num, 2, isCanRepeat);
         }
 
-
         /// <summary>
         /// 求多个数的最大公约数
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        /// <param name="input">输入的整数数组</param>
+        /// <returns>最大公约数</returns>
         public static int Gcd(params int[] input)
         {
             if (input.Length == 0)
@@ -392,9 +432,9 @@ namespace GameFrameX.Utility
         /// <summary>
         /// 求两个数的最大公约数
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
+        /// <param name="a">第一个整数</param>
+        /// <param name="b">第二个整数</param>
+        /// <returns>最大公约数</returns>
         public static int Gcd(int a, int b)
         {
             if (a < b)
