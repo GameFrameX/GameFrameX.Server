@@ -19,13 +19,15 @@ public static partial class Encryption
         #region 加密字符串
 
         /// <summary>
-        /// AES 加密(高级加密标准，是下一代的加密算法标准，速度快，安全级别高，目前 AES 标准的一个实现是 Rijndael 算法)
+        /// 使用 AES 算法加密字符串（高级加密标准，是下一代的加密算法标准，速度快，安全级别高，目前 AES 标准的一个实现是 Rijndael 算法）
         /// </summary>
-        /// <param name="EncryptString">待加密密文</param>
-        /// <param name="EncryptKey">加密密钥</param>
-        public static string Encrypt(string EncryptString, string EncryptKey)
+        /// <param name="encryptString">待加密的明文字符串</param>
+        /// <param name="encryptKey">加密密钥</param>
+        /// <returns>加密后的 Base64 编码字符串</returns>
+        /// <exception cref="Exception">当明文或密钥为空时抛出异常</exception>
+        public static string Encrypt(string encryptString, string encryptKey)
         {
-            return Convert.ToBase64String(Encrypt(Encoding.UTF8.GetBytes(EncryptString), EncryptKey));
+            return Convert.ToBase64String(Encrypt(Encoding.UTF8.GetBytes(encryptString), encryptKey));
         }
 
         #endregion
@@ -33,50 +35,52 @@ public static partial class Encryption
         #region 加密字节数组
 
         /// <summary>
-        /// AES 加密(高级加密标准，是下一代的加密算法标准，速度快，安全级别高，目前 AES 标准的一个实现是 Rijndael 算法)
+        /// 使用 AES 算法加密字节数组（高级加密标准，是下一代的加密算法标准，速度快，安全级别高，目前 AES 标准的一个实现是 Rijndael 算法）
         /// </summary>
-        /// <param name="encryptByte">待加密密文</param>
+        /// <param name="encryptByte">待加密的明文字节数组</param>
         /// <param name="encryptKey">加密密钥</param>
+        /// <returns>加密后的字节数组</returns>
+        /// <exception cref="Exception">当明文或密钥为空时抛出异常</exception>
         public static byte[] Encrypt(byte[] encryptByte, string encryptKey)
         {
             if (encryptByte.Length == 0)
             {
-                throw (new Exception("明文不得为空"));
+                throw new Exception("明文不得为空");
             }
 
             if (string.IsNullOrEmpty(encryptKey))
             {
-                throw (new Exception("密钥不得为空"));
+                throw new Exception("密钥不得为空");
             }
 
-            byte[] mStrEncrypt = null;
-            byte[] m_btIV = new byte[16] { 224, 131, 122, 101, 37, 254, 33, 17, 19, 28, 212, 130, 45, 65, 43, 32 };
-            byte[] m_salt = new byte[16] { 234, 231, 123, 100, 87, 254, 123, 17, 89, 18, 230, 13, 45, 65, 43, 32 };
-            Rijndael m_AESProvider = Rijndael.Create();
-            try
+            byte[] encryptedBytes = null;
+            byte[] iv = new byte[16] { 224, 131, 122, 101, 37, 254, 33, 17, 19, 28, 212, 130, 45, 65, 43, 32 };
+            byte[] salt = new byte[16] { 234, 231, 123, 100, 87, 254, 123, 17, 89, 18, 230, 13, 45, 65, 43, 32 };
+            using (var aesProvider = Rijndael.Create())
             {
-                MemoryStream m_stream = new MemoryStream();
-                PasswordDeriveBytes pdb = new PasswordDeriveBytes(encryptKey, m_salt);
-                ICryptoTransform transform = m_AESProvider.CreateEncryptor(pdb.GetBytes(32), m_btIV);
-                CryptoStream m_csstream = new CryptoStream(m_stream, transform, CryptoStreamMode.Write);
-                m_csstream.Write(encryptByte, 0, encryptByte.Length);
-                m_csstream.FlushFinalBlock();
-                mStrEncrypt = m_stream.ToArray();
-                m_stream.Close();
-                m_stream.Dispose();
-                m_csstream.Close();
-                m_csstream.Dispose();
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error(ex);
-            }
-            finally
-            {
-                m_AESProvider.Clear();
+                try
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        using (var pdb = new PasswordDeriveBytes(encryptKey, salt))
+                        {
+                            var transform = aesProvider.CreateEncryptor(pdb.GetBytes(32), iv);
+                            using (var cryptoStream = new CryptoStream(memoryStream, transform, CryptoStreamMode.Write))
+                            {
+                                cryptoStream.Write(encryptByte, 0, encryptByte.Length);
+                                cryptoStream.FlushFinalBlock();
+                                encryptedBytes = memoryStream.ToArray();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.Error(ex);
+                }
             }
 
-            return mStrEncrypt;
+            return encryptedBytes;
         }
 
         #endregion
@@ -88,13 +92,15 @@ public static partial class Encryption
         #region 解密字符串
 
         /// <summary>
-        /// AES 解密(高级加密标准，是下一代的加密算法标准，速度快，安全级别高，目前 AES 标准的一个实现是 Rijndael 算法)
+        /// 使用 AES 算法解密字符串（高级加密标准，是下一代的加密算法标准，速度快，安全级别高，目前 AES 标准的一个实现是 Rijndael 算法）
         /// </summary>
-        /// <param name="DecryptString">待解密密文</param>
-        /// <param name="DecryptKey">解密密钥</param>
-        public static string AESDecrypt(string DecryptString, string DecryptKey)
+        /// <param name="decryptString">待解密的 Base64 编码字符串</param>
+        /// <param name="decryptKey">解密密钥</param>
+        /// <returns>解密后的明文字符串</returns>
+        /// <exception cref="Exception">当密文或密钥为空时抛出异常</exception>
+        public static string Decrypt(string decryptString, string decryptKey)
         {
-            return Encoding.UTF8.GetString((AesDecrypt(Convert.FromBase64String(DecryptString), DecryptKey)));
+            return Encoding.UTF8.GetString(AesDecrypt(Convert.FromBase64String(decryptString), decryptKey));
         }
 
         #endregion
@@ -102,51 +108,52 @@ public static partial class Encryption
         #region 解密字节数组
 
         /// <summary>
-        /// AES 解密(高级加密标准，是下一代的加密算法标准，速度快，安全级别高，目前 AES 标准的一个实现是 Rijndael 算法)
+        /// 使用 AES 算法解密字节数组（高级加密标准，是下一代的加密算法标准，速度快，安全级别高，目前 AES 标准的一个实现是 Rijndael 算法）
         /// </summary>
-        /// <param name="decryptByte">待解密密文</param>
+        /// <param name="decryptByte">待解密的密文字节数组</param>
         /// <param name="decryptKey">解密密钥</param>
+        /// <returns>解密后的明文字节数组</returns>
+        /// <exception cref="Exception">当密文或密钥为空时抛出异常</exception>
         public static byte[] AesDecrypt(byte[] decryptByte, string decryptKey)
         {
             if (decryptByte.Length == 0)
             {
-                throw (new Exception("密文不得为空"));
+                throw new Exception("密文不得为空");
             }
 
             if (string.IsNullOrEmpty(decryptKey))
             {
-                throw (new Exception("密钥不得为空"));
+                throw new Exception("密钥不得为空");
             }
 
-            byte[] mBtIv = new byte[16] { 224, 131, 122, 101, 37, 254, 33, 17, 19, 28, 212, 130, 45, 65, 43, 32 };
-            byte[] mSalt = new byte[16] { 234, 231, 123, 100, 87, 254, 123, 17, 89, 18, 230, 13, 45, 65, 43, 32 };
-            Rijndael mAesProvider = Rijndael.Create();
-            try
+            byte[] decryptedBytes = null;
+            byte[] iv = new byte[16] { 224, 131, 122, 101, 37, 254, 33, 17, 19, 28, 212, 130, 45, 65, 43, 32 };
+            byte[] salt = new byte[16] { 234, 231, 123, 100, 87, 254, 123, 17, 89, 18, 230, 13, 45, 65, 43, 32 };
+            using (var aesProvider = Rijndael.Create())
             {
-                MemoryStream mStream = new MemoryStream();
-                PasswordDeriveBytes pdb = new PasswordDeriveBytes(decryptKey, mSalt);
-                ICryptoTransform transform = mAesProvider.CreateDecryptor(pdb.GetBytes(32), mBtIv);
-                CryptoStream cryptoStream = new CryptoStream(mStream, transform, CryptoStreamMode.Write);
-                cryptoStream.Write(decryptByte, 0, decryptByte.Length);
-                cryptoStream.FlushFinalBlock();
-                var decrypt = mStream.ToArray();
-                mStream.Close();
-                mStream.Dispose();
-                cryptoStream.Close();
-                cryptoStream.Dispose();
-                return decrypt;
+                try
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        using (var pdb = new PasswordDeriveBytes(decryptKey, salt))
+                        {
+                            var transform = aesProvider.CreateDecryptor(pdb.GetBytes(32), iv);
+                            using (var cryptoStream = new CryptoStream(memoryStream, transform, CryptoStreamMode.Write))
+                            {
+                                cryptoStream.Write(decryptByte, 0, decryptByte.Length);
+                                cryptoStream.FlushFinalBlock();
+                                decryptedBytes = memoryStream.ToArray();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.Error(ex);
+                }
             }
 
-            catch (Exception ex)
-            {
-                LogHelper.Error(ex);
-            }
-            finally
-            {
-                mAesProvider.Clear();
-            }
-
-            return default;
+            return decryptedBytes;
         }
 
         #endregion
