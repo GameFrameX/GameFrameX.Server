@@ -42,14 +42,6 @@ public static class TimeHelper
         return new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
     }
 
-    /// <summary>
-    /// 当前时区时间 秒时间戳
-    /// </summary>
-    /// <returns>当前时区时间的秒时间戳。</returns>
-    public static long TimeSeconds()
-    {
-        return new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
-    }
 
     /// <summary>
     /// 当前时区时间 毫秒时间戳 
@@ -58,24 +50,6 @@ public static class TimeHelper
     public static long TimeMilliseconds()
     {
         return new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds();
-    }
-
-    /// <summary>
-    /// 获取当前时间距离纪元时间（UTC时间）的毫秒数。
-    /// </summary>
-    /// <returns>距离纪元时间的毫秒数。</returns>
-    public static long CurrentTimeMillisWithUTC()
-    {
-        return TimeMillis(DateTime.UtcNow, true);
-    }
-
-    /// <summary>
-    /// 获取当前时间距离纪元时间（UTC时间）的秒数。
-    /// </summary>
-    /// <returns>距离纪元时间的秒数。</returns>
-    public static int CurrentTimeSecondWithUTC()
-    {
-        return TimeSecond(DateTime.UtcNow, true);
     }
 
     /// <summary>
@@ -108,6 +82,51 @@ public static class TimeHelper
         }
 
         return (int)(time - EpochLocal).TotalSeconds;
+    }
+
+    /// <summary>
+    /// 当前时区时间 秒时间戳
+    /// </summary>
+    /// <returns>当前时区时间的秒时间戳。</returns>
+    public static long TimeSeconds()
+    {
+        return new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 将Unix时间戳转换为自公元1年1月1日以来的刻度数。
+    /// </summary>
+    /// <param name="timestampSeconds">Unix时间戳，从1970年1月1日以来的秒数。</param>
+    /// <returns>自公元1年1月1日以来的刻度数。</returns>
+    public static long TimestampToTicks(long timestampSeconds)
+    {
+        // 将Unix时间戳转换为刻度数，每秒等于10000000刻度
+        // 621355968000000000是公元1年1月1日至1970年1月1日的刻度数差值
+        return timestampSeconds * 10000000L + 621355968000000000L;
+    }
+
+    /// <summary>
+    /// 将Unix毫秒时间戳转换为自公元1年1月1日以来的刻度数。
+    /// </summary>
+    /// <param name="timestampMillisSeconds">Unix毫秒时间戳，从1970年1月1日以来的毫秒数。</param>
+    /// <returns>自公元1年1月1日以来的刻度数。</returns>
+    public static long TimestampMillisToTicks(long timestampMillisSeconds)
+    {
+        // 将Unix毫秒时间戳转换为刻度数，每毫秒等于10000000000刻度
+        // 621355968000000000是公元1年1月1日至1970年1月1日的刻度数差值
+        return timestampMillisSeconds * 10000L + 621355968000000000L;
+    }
+
+    /// <summary>
+    /// 将给定的时间戳转换为相对于当前时间的 TimeSpan 对象。
+    /// </summary>
+    /// <param name="timestamp">自某个固定时间点（通常为1970年1月1日午夜）以来经过的毫秒数。</param>
+    /// <returns>一个 TimeSpan 对象，表示从给定时间戳到当前时间的间隔。</returns>
+    public static TimeSpan TimeSpanWithTimestamp(long timestamp)
+    {
+        // 计算当前时间与给定时间戳表示的时间之间的差值
+        var timeSpan = MillisToDateTime(UnixTimeMilliseconds(), true) - MillisToDateTime(timestamp, true);
+        return timeSpan;
     }
 
     /// <summary>
