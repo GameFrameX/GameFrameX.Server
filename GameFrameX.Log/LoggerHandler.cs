@@ -29,7 +29,7 @@ public static class LoggerHandler
                 logPath = Path.Combine(logPath, logFileName);
             }
 
-            Console.WriteLine("日志系统配置");
+            Console.WriteLine("日志系统配置 开始");
             Console.WriteLine(logOptions);
 
             var logger = new LoggerConfiguration()
