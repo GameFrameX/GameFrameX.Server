@@ -145,7 +145,7 @@ public static class HttpHandler
             var isChecked = handler.CheckSign(paramMap, out var error);
             if (isChecked == false)
             {
-                await context.Response.WriteAsync(HttpResult.CheckFailed);
+                await context.Response.WriteAsync(error);
                 return;
             }
 

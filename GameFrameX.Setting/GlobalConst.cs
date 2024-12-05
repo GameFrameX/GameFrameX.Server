@@ -91,6 +91,21 @@ public static class GlobalConst
     public const int ModuleIdTimestampMask = 19; //19+30 =42
 
 
+    #region HTTP
+
+    /// <summary>
+    /// HTTP 请求的签名字段名称
+    /// </summary>
+    public const string HttpSignKey = "sign";
+
+    /// <summary>
+    /// HTTP 请求的时间戳字段名称
+    /// </summary>
+    public const string HttpTimestampKey = "timestamp";
+
+    #endregion
+
+
     #region GlobalTimer 全局计时器
 
     /// <summary>

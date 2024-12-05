@@ -29,26 +29,43 @@ public sealed class HttpResult
     public static readonly HttpResult CheckFailed = new HttpResult(HttpStatusCode.CheckFailed, HttpStatusMessage.CheckFailedCommand);
 
     /// <summary>
+    /// 参数错误的HTTP结果
+    /// </summary>
+    public static readonly HttpResult ParamError = new HttpResult(HttpStatusCode.Illegal, HttpStatusMessage.ParamErrorMessage);
+
+    /// <summary>
     /// 创建HTTP结果
     /// </summary>
-    /// <param name="statusCode">HTTP状态码</param>
-    /// <param name="retMsg">返回消息</param>
-    /// <param name="extraMap">额外数据</param>
+    /// <param name="code">HTTP状态码</param>
+    /// <param name="message">返回消息</param>
+    /// <param name="data">额外数据</param>
     /// <returns>JSON字符串表示的HTTP结果</returns>
-    public static string Create(HttpStatusCode statusCode = HttpStatusCode.Success, string retMsg = "", object extraMap = null)
+    public static string Create(HttpStatusCode code = HttpStatusCode.Success, string message = "", object data = null)
     {
-        return new HttpResult(statusCode, retMsg, extraMap).ToString();
+        return new HttpResult(code, message, data).ToString();
+    }
+
+    /// <summary>
+    /// 创建HTTP结果
+    /// </summary>
+    /// <param name="code">HTTP状态码</param>
+    /// <param name="message">返回消息</param>
+    /// <param name="data">额外数据</param>
+    /// <returns>JSON字符串表示的HTTP结果</returns>
+    public static string Create(int code = 0, string message = "", object data = null)
+    {
+        return new HttpResult(code, message, data).ToString();
     }
 
     /// <summary>
     /// 创建成功的HTTP结果
     /// </summary>
-    /// <param name="retMsg">返回消息</param>
-    /// <param name="extraMap">额外数据</param>
+    /// <param name="message">返回消息</param>
+    /// <param name="data">额外数据</param>
     /// <returns>JSON字符串表示的成功HTTP结果</returns>
-    public static string CreateOk(string retMsg = "", object extraMap = null)
+    public static string CreateOk(string message = "", object data = null)
     {
-        return new HttpResult(HttpStatusCode.Success, retMsg, extraMap).ToString();
+        return new HttpResult(HttpStatusCode.Success, message, data).ToString();
     }
 
     /// <summary>
@@ -75,7 +92,7 @@ public sealed class HttpResult
     /// HTTP状态码
     /// </summary>
     [JsonProperty(PropertyName = "code")]
-    public HttpStatusCode Code { get; set; }
+    public int Code { get; set; }
 
     /// <summary>
     /// 消息描述
@@ -92,13 +109,26 @@ public sealed class HttpResult
     /// <summary>
     /// 构造函数
     /// </summary>
-    /// <param name="retCode">HTTP状态码</param>
-    /// <param name="retMessage">返回消息</param>
+    /// <param name="code">HTTP状态码</param>
+    /// <param name="message">返回消息</param>
     /// <param name="data">数据体</param>
-    private HttpResult(HttpStatusCode retCode = HttpStatusCode.Success, string retMessage = "ok", object data = null)
+    private HttpResult(HttpStatusCode code = HttpStatusCode.Success, string message = "ok", object data = null)
     {
-        Code = retCode;
-        Message = retMessage;
+        Code = (int)code;
+        Message = message;
+        Data = data;
+    }
+
+    /// <summary>
+    /// 构造函数
+    /// </summary>
+    /// <param name="code">HTTP状态码</param>
+    /// <param name="message">返回消息</param>
+    /// <param name="data">数据体</param>
+    private HttpResult(int code = 0, string message = "ok", object data = null)
+    {
+        Code = code;
+        Message = message;
         Data = data;
     }
 

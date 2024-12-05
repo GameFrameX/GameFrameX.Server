@@ -1,3 +1,5 @@
+using GameFrameX.Setting;
+
 namespace GameFrameX.NetWork.HTTP;
 
 /// <summary>
@@ -29,4 +31,9 @@ public static class HttpStatusMessage
     /// 服务器错误
     /// </summary>
     public const string ServerError = "server error";
+
+    /// <summary>
+    /// 参数错误
+    /// </summary>
+    public const string ParamErrorMessage = $"http命令未包含验证参数{GlobalConst.HttpSignKey} 和 {GlobalConst.HttpTimestampKey}";
 }

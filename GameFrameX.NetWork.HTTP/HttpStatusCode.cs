@@ -8,7 +8,7 @@ public enum HttpStatusCode
     ///<summary>
     /// 成功
     /// </summary>
-    Success = 200,
+    Success = 0,
 
     ///<summary>
     /// 未定义的命令
