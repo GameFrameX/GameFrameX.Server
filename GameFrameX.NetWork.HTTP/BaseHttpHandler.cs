@@ -27,7 +27,7 @@ namespace GameFrameX.NetWork.HTTP
         public static string GetStringSign(string str)
         {
             //取md5
-            string md5 = Hash.MD5.Hash(str);
+            string md5 = Hash.Md5.Hash(str);
 
             int checkCode1 = 0; //校验码
             int checkCode2 = 0;
