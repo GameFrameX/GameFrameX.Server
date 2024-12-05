@@ -3,32 +3,32 @@
 namespace GameFrameX.Core.Abstractions;
 
 /// <summary>
-/// IActor接口定义
+/// IActor 接口定义
 /// </summary>
 public interface IActor : IWorker
 {
     /// <summary>
-    /// IActor唯一标识
+    /// 获取或设置 IActor 的唯一标识
     /// </summary>
     long Id { get; set; }
 
     /// <summary>
-    /// 是否自动回收
+    /// 获取是否自动回收
     /// </summary>
     bool AutoRecycle { get; }
 
     /// <summary>
-    /// 工作Actor
+    /// 获取工作 Actor
     /// </summary>
     IWorkerActor WorkerActor { get; }
 
     /// <summary>
-    /// 订阅哈希列表
+    /// 获取订阅的哈希列表
     /// </summary>
     HashSet<long> ScheduleIdSet { get; }
 
     /// <summary>
-    /// Actor类型
+    /// 获取或设置 Actor 类型
     /// </summary>
     ActorType Type { get; set; }
 
@@ -40,21 +40,21 @@ public interface IActor : IWorker
     /// <summary>
     /// 反激活所有组件
     /// </summary>
-    /// <returns></returns>
+    /// <returns>一个表示异步操作的任务</returns>
     Task Inactive();
 
     /// <summary>
-    /// 根据组件类型获取对应的IComponentAgent
+    /// 根据组件类型获取对应的 IComponentAgent
     /// </summary>
     /// <param name="agentType">组件类型</param>
-    /// <returns></returns>
+    /// <returns>一个表示异步操作的任务，返回 IComponentAgent 实例</returns>
     Task<IComponentAgent> GetComponentAgent(Type agentType);
 
     /// <summary>
-    /// 根据组件类型获取对应的IComponentAgent
+    /// 根据组件类型获取对应的 IComponentAgent
     /// </summary>
     /// <typeparam name="T">组件类型</typeparam>
-    /// <returns></returns>
+    /// <returns>一个表示异步操作的任务，返回指定类型的 IComponentAgent 实例</returns>
     Task<T> GetComponentAgent<T>() where T : IComponentAgent;
 
     /// <summary>
@@ -64,9 +64,9 @@ public interface IActor : IWorker
     void SetAutoRecycle(bool autoRecycle);
 
     /// <summary>
-    /// Actor跨天
+    /// Actor 跨天处理
     /// </summary>
     /// <param name="serverDay">服务器运行天数</param>
-    /// <returns></returns>
+    /// <returns>一个表示异步操作的任务</returns>
     Task CrossDay(int serverDay);
 }
