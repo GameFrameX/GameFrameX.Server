@@ -5,49 +5,48 @@ using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.Utility;
 
-namespace GameFrameX.Core.Events
+namespace GameFrameX.Core.Events;
+
+/// <summary>
+/// 事件分发类
+/// </summary>
+public static class EventDispatcher
 {
     /// <summary>
-    /// 事件分发
+    /// 分发事件
     /// </summary>
-    public static class EventDispatcher
+    /// <param name="actorId">演员ID</param>
+    /// <param name="eventId">事件ID</param>
+    /// <param name="args">参数对象，可以为null</param>
+    public static void Dispatch(long actorId, int eventId, Param args = null)
     {
-        /// <summary>
-        /// 分发事件
-        /// </summary>
-        /// <param name="actorId"></param>
-        /// <param name="eventId">事件ID</param>
-        /// <param name="args">参数对象,可以为null</param>
-        public static void Dispatch(long actorId, int eventId, Param args = null)
+        var actor = ActorManager.GetActor(actorId);
+        if (actor != null)
         {
-            var actor = ActorManager.GetActor(actorId);
-            if (actor != null)
+            var evt = new Event
             {
-                var evt = new Event
-                {
-                    EventId = eventId,
-                    Data = args
-                };
+                EventId = eventId,
+                Data = args
+            };
 
-                async Task Work()
+            async Task Work()
+            {
+                // 事件需要在本actor内执行，不可多线程执行，所以不能使用Task.WhenAll来处理
+                var listeners = HotfixManager.FindListeners(actor.Type, eventId);
+                if (listeners.IsNullOrEmpty())
                 {
-                    // 事件需要在本actor内执行，不可多线程执行，所以不能使用Task.WhenAll来处理
-                    var listeners = HotfixManager.FindListeners(actor.Type, eventId);
-                    if (listeners.IsNullOrEmpty())
-                    {
-                        LogHelper.Warn($"事件：{eventId} 没有找到任何监听者");
-                        return;
-                    }
-
-                    foreach (var listener in listeners)
-                    {
-                        var comp = await actor.GetComponentAgent(listener.AgentType);
-                        await listener.HandleEvent(comp, evt);
-                    }
+                    LogHelper.Warn($"事件：{eventId} 没有找到任何监听者");
+                    return;
                 }
 
-                actor.Tell(Work);
+                foreach (var listener in listeners)
+                {
+                    var comp = await actor.GetComponentAgent(listener.AgentType);
+                    await listener.HandleEvent(comp, evt);
+                }
             }
+
+            actor.Tell(Work);
         }
     }
 }
