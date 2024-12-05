@@ -1,14 +1,13 @@
-﻿namespace GameFrameX.Core.Abstractions
+﻿namespace GameFrameX.Core.Abstractions;
+
+/// <summary>
+/// 状态接口
+/// </summary>
+public interface IState
 {
     /// <summary>
-    /// 状态接口
+    /// 读取状态
     /// </summary>
-    public interface IState
-    {
-        /// <summary>
-        /// 准备状态
-        /// </summary>
-        /// <returns></returns>
-        public Task ReadStateAsync();
-    }
+    /// <returns>一个表示异步操作的任务</returns>
+    public Task ReadStateAsync();
 }
