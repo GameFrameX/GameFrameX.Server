@@ -21,8 +21,8 @@ public static class ActorManager
     /// 根据ActorId获取对应的IComponentAgent对象
     /// </summary>
     /// <param name="actorId">ActorId</param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    /// <typeparam name="T">组件代理类型</typeparam>
+    /// <returns>组件代理任务</returns>
     public static async Task<T> GetComponentAgent<T>(long actorId) where T : IComponentAgent
     {
         var actor = await GetOrNew(actorId);
@@ -33,7 +33,7 @@ public static class ActorManager
     /// 是否存在指定的Actor
     /// </summary>
     /// <param name="actorId">ActorId</param>
-    /// <returns></returns>
+    /// <returns>是否存在</returns>
     public static bool HasActor(long actorId)
     {
         return ActorMap.ContainsKey(actorId);
@@ -43,7 +43,7 @@ public static class ActorManager
     /// 根据ActorId获取对应的Actor
     /// </summary>
     /// <param name="actorId">ActorId</param>
-    /// <returns></returns>
+    /// <returns>Actor对象</returns>
     internal static Actor GetActor(long actorId)
     {
         ActorMap.TryGetValue(actorId, out var actor);
@@ -55,7 +55,7 @@ public static class ActorManager
     /// </summary>
     /// <param name="actorId">ActorId</param>
     /// <param name="agentType">组件类型</param>
-    /// <returns></returns>
+    /// <returns>组件代理任务</returns>
     internal static async Task<IComponentAgent> GetComponentAgent(long actorId, Type agentType)
     {
         var actor = await GetOrNew(actorId);
@@ -65,8 +65,8 @@ public static class ActorManager
     /// <summary>
     /// 根据组件类型获取对应的IComponentAgent数据
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    /// <typeparam name="T">组件代理类型</typeparam>
+    /// <returns>组件代理任务</returns>
     public static Task<T> GetComponentAgent<T>() where T : IComponentAgent
     {
         var compType = HotfixManager.GetCompType(typeof(T));
@@ -79,7 +79,7 @@ public static class ActorManager
     /// 根据actorId获取对应的actor实例，不存在则新生成一个Actor对象
     /// </summary>
     /// <param name="actorId">actorId</param>
-    /// <returns></returns>
+    /// <returns>Actor对象任务</returns>
     internal static async Task<Actor> GetOrNew(long actorId)
     {
         var actorType = ActorIdGenerator.GetActorType(actorId);
@@ -111,7 +111,7 @@ public static class ActorManager
     /// <summary>
     /// 全部完成
     /// </summary>
-    /// <returns></returns>
+    /// <returns>任务集合</returns>
     public static Task AllFinish()
     {
         var tasks = new List<Task>();
@@ -139,16 +139,17 @@ public static class ActorManager
     /// <summary>
     /// 根据ActorId 获取玩家
     /// </summary>
-    /// <param name="actorId"></param>
-    /// <returns></returns>
+    /// <param name="actorId">ActorId</param>
+    /// <returns>WorkerActor对象</returns>
     private static WorkerActor GetLifeActor(long actorId)
     {
         return WorkerActors[(int)(actorId % WorkerCount)];
     }
 
     /// <summary>
-    /// 目前只回收玩家
+    /// 检查并回收空闲的Actor
     /// </summary>
+    /// <returns>任务</returns>
     public static Task CheckIdle()
     {
         foreach (var actor in ActorMap.Values)
@@ -191,10 +192,10 @@ public static class ActorManager
         return Task.CompletedTask;
     }
 
-
     /// <summary>
     /// 保存所有数据
     /// </summary>
+    /// <returns>任务</returns>
     public static async Task SaveAll()
     {
         try
@@ -221,13 +222,12 @@ public static class ActorManager
         }
     }
 
-    //public static readonly StatisticsTool statisticsTool = new();
     private const int OnceSaveCount = 1000;
 
     /// <summary>
     /// 定时回存所有数据
     /// </summary>
-    /// <returns></returns>
+    /// <returns>任务</returns>
     public static async Task TimerSave()
     {
         try
@@ -236,7 +236,7 @@ public static class ActorManager
             var taskList = new List<Task>();
             foreach (var actor in ActorMap.Values)
             {
-                //如果定时回存的过程中关服了，直接终止定时回存，因为关服时会调用SaveAll以保证数据回存
+                // 如果定时回存的过程中关服了，直接终止定时回存，因为关服时会调用SaveAll以保证数据回存
                 if (!GlobalTimer.IsWorking)
                 {
                     return;
@@ -268,12 +268,11 @@ public static class ActorManager
         }
     }
 
-
     /// <summary>
     /// 角色跨天
     /// </summary>
     /// <param name="openServerDay">开服天数</param>
-    /// <returns></returns>
+    /// <returns>任务</returns>
     public static Task RoleCrossDay(int openServerDay)
     {
         foreach (var actor in ActorMap.Values)
@@ -294,7 +293,8 @@ public static class ActorManager
     /// 跨天
     /// </summary>
     /// <param name="openServerDay">开服天数</param>
-    /// <param name="driverActorType">driverActorType</param>
+    /// <param name="driverActorType">驱动Actor类型</param>
+    /// <returns>任务</returns>
     public static async Task CrossDay(int openServerDay, ActorType driverActorType)
     {
         // 驱动actor优先执行跨天
@@ -371,6 +371,7 @@ public static class ActorManager
     /// <summary>
     /// 删除所有actor
     /// </summary>
+    /// <returns>任务</returns>
     public static async Task RemoveAll()
     {
         var tasks = new List<Task>();
@@ -386,7 +387,7 @@ public static class ActorManager
     /// 删除actor
     /// </summary>
     /// <param name="actorId">actorId</param>
-    /// <returns></returns>
+    /// <returns>任务</returns>
     public static Task Remove(long actorId)
     {
         if (ActorMap.Remove(actorId, out var actor))
@@ -401,7 +402,7 @@ public static class ActorManager
     /// 遍历所有actor
     /// </summary>
     /// <param name="func">遍历actor回调</param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">组件代理类型</typeparam>
     public static void ActorForEach<T>(Func<T, Task> func) where T : IComponentAgent
     {
         var agentType = typeof(T);
@@ -426,7 +427,7 @@ public static class ActorManager
     /// 遍历所有actor
     /// </summary>
     /// <param name="action">遍历actor回调</param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">组件代理类型</typeparam>
     public static void ActorForEach<T>(Action<T> action) where T : IComponentAgent
     {
         var agentType = typeof(T);
