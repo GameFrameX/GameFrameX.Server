@@ -5,55 +5,55 @@ using Serilog.Events;
 namespace GameFrameX.Log;
 
 /// <summary>
-/// 日志配置
+/// 日志配置类，用于配置日志的相关选项。
 /// </summary>
 public sealed class LogOptions
 {
     /// <summary>
-    /// 默认配置对象
+    /// 默认配置对象，提供一个默认的日志配置实例。
     /// </summary>
     public static readonly LogOptions Default = new LogOptions();
 
     /// <summary>
-    /// 服务器类型
+    /// 服务器类型，用于标识日志来源的服务器类型。
     /// </summary>
-    public string ServerType = null;
+    public string ServerType { get; set; } = null;
 
     /// <summary>
-    /// 日志存储路径,默认为./logs
+    /// 日志存储路径，默认为 ./logs。
     /// </summary>
-    public string LogSavePath = "./logs/";
+    public string LogSavePath { get; set; } = "./logs/";
 
     /// <summary>
-    /// 是否输出到控制台,默认true
+    /// 是否输出到控制台，默认为 true。
     /// </summary>
-    public bool IsConsole = true;
+    public bool IsConsole { get; set; } = true;
 
     /// <summary>
-    /// 日志滚动间隔,默认为Hour
+    /// 日志滚动间隔，默认为每小时（Hour）。
     /// </summary>
-    public RollingInterval RollingInterval = RollingInterval.Hour;
+    public RollingInterval RollingInterval { get; set; } = RollingInterval.Hour;
 
     /// <summary>
-    /// 日志输出级别,默认为Debug
+    /// 日志输出级别，默认为 Debug。
     /// </summary>
-    public LogEventLevel LogEventLevel = LogEventLevel.Debug;
+    public LogEventLevel LogEventLevel { get; set; } = LogEventLevel.Debug;
 
     /// <summary>
-    /// 是否限制单个文件大小
+    /// 是否限制单个文件大小，默认为 true。
     /// </summary>
-    public bool IsFileSizeLimit = true;
+    public bool IsFileSizeLimit { get; set; } = true;
 
     /// <summary>
-    /// 日志单个文件大小限制,默认为10MB
-    /// 当IsFileSizeLimit为true时有效
+    /// 日志单个文件大小限制，默认为 10MB。
+    /// 当 IsFileSizeLimit 为 true 时有效。
     /// </summary>
-    public int FileSizeLimitBytes = 10 * 1024 * 1024;
+    public int FileSizeLimitBytes { get; set; } = 10 * 1024 * 1024;
 
     /// <summary>
-    /// 
+    /// 返回日志配置对象的 JSON 字符串表示形式。
     /// </summary>
-    /// <returns></returns>
+    /// <returns>JSON 字符串表示形式。</returns>
     public override string ToString()
     {
         return JsonConvert.SerializeObject(this, Formatting.Indented);
