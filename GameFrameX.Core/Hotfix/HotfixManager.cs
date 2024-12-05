@@ -110,7 +110,7 @@ namespace GameFrameX.Core.Hotfix
 
         internal static Type GetCompType(Type agentType)
         {
-            return _module.GetCompType(agentType);
+            return _module.GetComponentType(agentType);
         }
 
         /// <summary>
