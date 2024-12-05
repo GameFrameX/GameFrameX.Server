@@ -4,25 +4,25 @@ using System.Text;
 namespace GameFrameX.Extension
 {
     /// <summary>
-    /// 
+    /// 提供字节和字节数组的扩展方法，用于各种格式的转换和读写操作。
     /// </summary>
     public static class ByteExtension
     {
         /// <summary>
-        /// 将字节转换为16进制字符串
+        /// 将字节转换为16进制字符串。
         /// </summary>
-        /// <param name="b"></param>
-        /// <returns></returns>
+        /// <param name="b">要转换的字节。</param>
+        /// <returns>16进制字符串。</returns>
         public static string ToHex(this byte b)
         {
             return b.ToString("X2");
         }
 
         /// <summary>
-        /// 将字节数组转换为字符串
+        /// 将字节数组转换为字符串，每个字节之间用空格分隔。
         /// </summary>
-        /// <param name="bytes"></param>
-        /// <returns></returns>
+        /// <param name="bytes">要转换的字节数组。</param>
+        /// <returns>字符串表示形式。</returns>
         public static string ToArrayString(this byte[] bytes)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -35,10 +35,10 @@ namespace GameFrameX.Extension
         }
 
         /// <summary>
-        /// 将字节数组转换为16进制字符串
+        /// 将字节数组转换为16进制字符串。
         /// </summary>
-        /// <param name="bytes"></param>
-        /// <returns></returns>
+        /// <param name="bytes">要转换的字节数组。</param>
+        /// <returns>16进制字符串。</returns>
         public static string ToHex(this byte[] bytes)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -51,11 +51,11 @@ namespace GameFrameX.Extension
         }
 
         /// <summary>
-        /// 将字节数组转换为指定格式的字符串
+        /// 将字节数组转换为指定格式的字符串。
         /// </summary>
-        /// <param name="bytes">字节数组</param>
-        /// <param name="format">格式</param>
-        /// <returns></returns>
+        /// <param name="bytes">要转换的字节数组。</param>
+        /// <param name="format">格式化字符串。</param>
+        /// <returns>格式化后的字符串。</returns>
         public static string ToHex(this byte[] bytes, string format)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -68,12 +68,12 @@ namespace GameFrameX.Extension
         }
 
         /// <summary>
-        /// 将字节数组转换为指定范围的16进制字符串
+        /// 将字节数组的指定范围转换为16进制字符串。
         /// </summary>
-        /// <param name="bytes">字节数组</param>
-        /// <param name="offset">偏移量</param>
-        /// <param name="count">长度</param>
-        /// <returns></returns>
+        /// <param name="bytes">要转换的字节数组。</param>
+        /// <param name="offset">起始偏移量。</param>
+        /// <param name="count">要转换的字节数。</param>
+        /// <returns>16进制字符串。</returns>
         public static string ToHex(this byte[] bytes, int offset, int count)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -86,44 +86,44 @@ namespace GameFrameX.Extension
         }
 
         /// <summary>
-        /// 将字节数组转换为默认编码字符串
+        /// 将字节数组转换为默认编码的字符串。
         /// </summary>
-        /// <param name="bytes">字节数组</param>
-        /// <returns></returns>
+        /// <param name="bytes">要转换的字节数组。</param>
+        /// <returns>字符串。</returns>
         public static string ToDefaultString(this byte[] bytes)
         {
             return Encoding.Default.GetString(bytes);
         }
 
         /// <summary>
-        /// 将字节数组转换为指定范围的默认编码字符串
+        /// 将字节数组的指定范围转换为默认编码的字符串。
         /// </summary>
-        /// <param name="bytes">字节数组</param>
-        /// <param name="index">偏移量</param>
-        /// <param name="count">长度</param>
-        /// <returns></returns>
+        /// <param name="bytes">要转换的字节数组。</param>
+        /// <param name="index">起始偏移量。</param>
+        /// <param name="count">要转换的字节数。</param>
+        /// <returns>字符串。</returns>
         public static string ToDefaultString(this byte[] bytes, int index, int count)
         {
             return Encoding.Default.GetString(bytes, index, count);
         }
 
         /// <summary>
-        /// 将字节数组转换为UTF8编码字符串
+        /// 将字节数组转换为UTF8编码的字符串。
         /// </summary>
-        /// <param name="bytes">字节数组</param>
-        /// <returns></returns>
+        /// <param name="bytes">要转换的字节数组。</param>
+        /// <returns>UTF8编码的字符串。</returns>
         public static string ToUtf8String(this byte[] bytes)
         {
             return Encoding.UTF8.GetString(bytes);
         }
 
         /// <summary>
-        /// 将字节数组转换为指定范围的UTF8编码字符串
+        /// 将字节数组的指定范围转换为UTF8编码的字符串。
         /// </summary>
-        /// <param name="bytes">字节数组</param>
-        /// <param name="index">偏移量</param>
-        /// <param name="count">长度</param>
-        /// <returns></returns>
+        /// <param name="bytes">要转换的字节数组。</param>
+        /// <param name="index">起始偏移量。</param>
+        /// <param name="count">要转换的字节数。</param>
+        /// <returns>UTF8编码的字符串。</returns>
         public static string ToUtf8String(this byte[] bytes, int index, int count)
         {
             return Encoding.UTF8.GetString(bytes, index, count);
@@ -201,7 +201,6 @@ namespace GameFrameX.Extension
             offset += ConstSize.ShortSize;
         }
 
-
         /// <summary>
         /// 将一个16位无符号整数写入指定的缓冲区，并更新偏移量。
         /// </summary>
@@ -237,7 +236,6 @@ namespace GameFrameX.Extension
             BinaryPrimitives.WriteInt64BigEndian(buffer.AsSpan()[offset..], value);
             offset += ConstSize.LongSize;
         }
-
 
         /// <summary>
         /// 将一个64位无符号整数写入指定的缓冲区，并更新偏移量。
@@ -334,7 +332,7 @@ namespace GameFrameX.Extension
         /// </summary>
         /// <param name="buffer">要读取的字节数组。</param>
         /// <param name="offset">引用偏移量。</param>
-        /// <returns>返回读取的64位无符号整数。</returns>    
+        /// <returns>返回读取的64位无符号整数。</returns>
         public static ulong ReadULong(this byte[] buffer, ref int offset)
         {
             if (offset > buffer.Length + ConstSize.ULongSize)
@@ -364,7 +362,6 @@ namespace GameFrameX.Extension
             offset += ConstSize.LongSize;
             return value;
         }
-
 
         #region Write
 
