@@ -26,6 +26,6 @@ public class StartUpTagAttribute : Attribute
     public StartUpTagAttribute(ServerType serverType, int priority = 1000)
     {
         ServerType = serverType;
-        Priority   = priority;
+        Priority = priority;
     }
 }
