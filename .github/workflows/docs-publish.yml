@@ -29,7 +29,6 @@ jobs:
       - name: Build Documentation
         run: |
           cd ${{ github.workspace }}/docs
-          pwd | ls
           docfx metadata
           docfx build docfx.json
 
