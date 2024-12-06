@@ -25,11 +25,14 @@ jobs:
         run: |
           dotnet tool install -g docfx
           echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+      - name: Directory Switch
+        run: cd docs
+
+      - name: look for docs
+        run: pwd | ls
 
       - name: Build Documentation
-        run: |
-          cd docs
-          docfx build docfx.json
+        run: docfx build docfx.json
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
