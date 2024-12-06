@@ -53,7 +53,7 @@ public abstract class BaseComponentHandler : BaseMessageHandler
     /// <returns>内部执行任务</returns>
     public override Task InnerAction()
     {
-        CacheComponent.Tell(ActionAsync);
+        CacheComponent.Tell(InnerActionAsync);
         return Task.CompletedTask;
     }
 
