@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TimeHelper | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TimeHelper | GameFrameX.Server ">
+      
+      <meta name="description" content="时间帮助工具类">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/src/apiSpec/new?filename=GameFrameX_Utility_TimeHelper.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.TimeHelper%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.Utility.TimeHelper">
+
+
+
+  <h1 id="GameFrameX_Utility_TimeHelper" data-uid="GameFrameX.Utility.TimeHelper" class="text-break">
+Class TimeHelper  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L6"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Utility.html">Utility</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.Utility.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>时间帮助工具类</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class TimeHelper</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">TimeHelper</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="GameFrameX_Utility_TimeHelper_EpochLocal" data-uid="GameFrameX.Utility.TimeHelper.EpochLocal">
+  EpochLocal
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>1970-01-01 00:00:00 本地时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly DateTime EpochLocal</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_TimeHelper_EpochUtc" data-uid="GameFrameX.Utility.TimeHelper.EpochUtc">
+  EpochUtc
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>1970-01-01 00:00:00 UTC 时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly DateTime EpochUtc</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_Utility_TimeHelper_CurrentTimeMillis_" data-uid="GameFrameX.Utility.TimeHelper.CurrentTimeMillis*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_CurrentTimeMillis" data-uid="GameFrameX.Utility.TimeHelper.CurrentTimeMillis">
+  CurrentTimeMillis()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>返回当前时间的毫秒表示。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long CurrentTimeMillis()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>当前时间的毫秒数。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_CurrentTimeWithFullString_" data-uid="GameFrameX.Utility.TimeHelper.CurrentTimeWithFullString*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_CurrentTimeWithFullString" data-uid="GameFrameX.Utility.TimeHelper.CurrentTimeWithFullString">
+  CurrentTimeWithFullString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L286"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当前时区时间的完整字符串</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string CurrentTimeWithFullString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>当前时区时间的完整字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_CurrentTimeWithUtcFullString_" data-uid="GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcFullString*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_CurrentTimeWithUtcFullString" data-uid="GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcFullString">
+  CurrentTimeWithUtcFullString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L295"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>UTC时区时间的完整字符串</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string CurrentTimeWithUtcFullString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>UTC时区时间的完整字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_GetChinaDayOfWeek_" data-uid="GameFrameX.Utility.TimeHelper.GetChinaDayOfWeek*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_GetChinaDayOfWeek" data-uid="GameFrameX.Utility.TimeHelper.GetChinaDayOfWeek">
+  GetChinaDayOfWeek()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L277"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前星期在中国的对应数字。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int GetChinaDayOfWeek()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>当前星期在中国的对应数字。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_GetChinaDayOfWeek_" data-uid="GameFrameX.Utility.TimeHelper.GetChinaDayOfWeek*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_GetChinaDayOfWeek_System_DayOfWeek_" data-uid="GameFrameX.Utility.TimeHelper.GetChinaDayOfWeek(System.DayOfWeek)">
+  GetChinaDayOfWeek(DayOfWeek)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L262"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定星期在中国的对应数字。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int GetChinaDayOfWeek(DayOfWeek d)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>d</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.dayofweek">DayOfWeek</a></dt>
+    <dd><p>星期几。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>星期在中国的对应数字。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_GetCrossDays_" data-uid="GameFrameX.Utility.TimeHelper.GetCrossDays*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_GetCrossDays_System_DateTime_System_DateTime_System_Int32_" data-uid="GameFrameX.Utility.TimeHelper.GetCrossDays(System.DateTime,System.DateTime,System.Int32)">
+  GetCrossDays(DateTime, DateTime, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取两个日期之间跨越的天数。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int GetCrossDays(DateTime begin, DateTime after, int hour = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>begin</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>起始日期。</p>
+</dd>
+    <dt><code>after</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>结束日期。</p>
+</dd>
+    <dt><code>hour</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>小时。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>跨越的天数。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_GetCrossDays_" data-uid="GameFrameX.Utility.TimeHelper.GetCrossDays*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_GetCrossDays_System_DateTime_System_Int32_" data-uid="GameFrameX.Utility.TimeHelper.GetCrossDays(System.DateTime,System.Int32)">
+  GetCrossDays(DateTime, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取从指定日期到当前日期之间跨越的天数。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int GetCrossDays(DateTime begin, int hour = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>begin</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>起始日期。</p>
+</dd>
+    <dt><code>hour</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>小时。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>跨越的天数。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_GetDayOfWeekTime_" data-uid="GameFrameX.Utility.TimeHelper.GetDayOfWeekTime*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_GetDayOfWeekTime_System_DateTime_System_DayOfWeek_" data-uid="GameFrameX.Utility.TimeHelper.GetDayOfWeekTime(System.DateTime,System.DayOfWeek)">
+  GetDayOfWeekTime(DateTime, DayOfWeek)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L230"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定日期所在星期的时间。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateTime GetDayOfWeekTime(DateTime t, DayOfWeek d)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>t</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>指定日期。</p>
+</dd>
+    <dt><code>d</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.dayofweek">DayOfWeek</a></dt>
+    <dd><p>星期几。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>指定日期所在星期的时间。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_GetDayOfWeekTime_" data-uid="GameFrameX.Utility.TimeHelper.GetDayOfWeekTime*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_GetDayOfWeekTime_System_DayOfWeek_" data-uid="GameFrameX.Utility.TimeHelper.GetDayOfWeekTime(System.DayOfWeek)">
+  GetDayOfWeekTime(DayOfWeek)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L252"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前日期所在星期的时间。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateTime GetDayOfWeekTime(DayOfWeek d)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>d</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.dayofweek">DayOfWeek</a></dt>
+    <dd><p>星期几。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>当前日期所在星期的时间。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_IsLocalSameDay_" data-uid="GameFrameX.Utility.TimeHelper.IsLocalSameDay*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_IsLocalSameDay_System_Int64_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.IsLocalSameDay(System.Int64,System.Int64)">
+  IsLocalSameDay(long, long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L339"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>按照本地时间判断两个时间戳是否是同一天</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsLocalSameDay(long timestamp1, long timestamp2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>timestamp1</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>时间戳1</p>
+</dd>
+    <dt><code>timestamp2</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>时间戳2</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否是同一天</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_IsNowSameWeek_" data-uid="GameFrameX.Utility.TimeHelper.IsNowSameWeek*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_IsNowSameWeek_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.IsNowSameWeek(System.DateTime)">
+  IsNowSameWeek(DateTime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L197"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断当前时间是否与指定时间处于同一周。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsNowSameWeek(DateTime start)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>start</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>指定时间的起始时间。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果当前时间与指定时间处于同一周，则为 true；否则为 false。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_IsNowSameWeek_" data-uid="GameFrameX.Utility.TimeHelper.IsNowSameWeek*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_IsNowSameWeek_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.IsNowSameWeek(System.Int64)">
+  IsNowSameWeek(long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L187"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断当前时间是否与指定时间处于同一周。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsNowSameWeek(long start)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>start</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>指定时间的起始时间。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果当前时间与指定时间处于同一周，则为 true；否则为 false。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_IsSameDay_" data-uid="GameFrameX.Utility.TimeHelper.IsSameDay*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_IsSameDay_System_DateTime_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.IsSameDay(System.DateTime,System.DateTime)">
+  IsSameDay(DateTime, DateTime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L352"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断两个时间是否是同一天</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsSameDay(DateTime time1, DateTime time2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>time1</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>时间1</p>
+</dd>
+    <dt><code>time2</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>时间2</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否是同一天</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_IsSameWeek_" data-uid="GameFrameX.Utility.TimeHelper.IsSameWeek*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_IsSameWeek_System_DateTime_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.IsSameWeek(System.DateTime,System.DateTime)">
+  IsSameWeek(DateTime, DateTime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L208"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断两个时间是否处于同一周。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsSameWeek(DateTime start, DateTime end)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>start</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>起始时间。</p>
+</dd>
+    <dt><code>end</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>结束时间。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果两个时间处于同一周，则为 true；否则为 false。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_IsUnixSameDay_" data-uid="GameFrameX.Utility.TimeHelper.IsUnixSameDay*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_IsUnixSameDay_System_Int64_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.IsUnixSameDay(System.Int64,System.Int64)">
+  IsUnixSameDay(long, long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L326"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>按照UTC时间判断两个时间戳是否是同一天</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsUnixSameDay(long timestamp1, long timestamp2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>timestamp1</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>时间戳1</p>
+</dd>
+    <dt><code>timestamp2</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>时间戳2</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否是同一天</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_MillisToDateTime_" data-uid="GameFrameX.Utility.TimeHelper.MillisToDateTime*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_MillisToDateTime_System_Int64_System_Boolean_" data-uid="GameFrameX.Utility.TimeHelper.MillisToDateTime(System.Int64,System.Boolean)">
+  MillisToDateTime(long, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L138"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>毫秒转时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateTime MillisToDateTime(long time, bool utc = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>time</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>毫秒数。</p>
+</dd>
+    <dt><code>utc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否使用UTC时间。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>转换后的时间。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_TimeMillis_" data-uid="GameFrameX.Utility.TimeHelper.TimeMillis*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_TimeMillis_System_DateTime_System_Boolean_" data-uid="GameFrameX.Utility.TimeHelper.TimeMillis(System.DateTime,System.Boolean)">
+  TimeMillis(DateTime, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定时间距离纪元时间（本地时间或UTC时间）的毫秒数。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long TimeMillis(DateTime time, bool utc = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>time</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>指定时间。</p>
+</dd>
+    <dt><code>utc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否使用UTC时间。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>距离纪元时间的毫秒数。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_TimeMilliseconds_" data-uid="GameFrameX.Utility.TimeHelper.TimeMilliseconds*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_TimeMilliseconds" data-uid="GameFrameX.Utility.TimeHelper.TimeMilliseconds">
+  TimeMilliseconds()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当前时区时间 毫秒时间戳</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long TimeMilliseconds()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>当前时区时间的毫秒时间戳。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_TimeSecond_" data-uid="GameFrameX.Utility.TimeHelper.TimeSecond*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_TimeSecond_System_DateTime_System_Boolean_" data-uid="GameFrameX.Utility.TimeHelper.TimeSecond(System.DateTime,System.Boolean)">
+  TimeSecond(DateTime, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定时间距离纪元时间（本地时间或UTC时间）的秒数。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int TimeSecond(DateTime time, bool utc = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>time</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>指定时间。</p>
+</dd>
+    <dt><code>utc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否使用UTC时间。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>距离纪元时间的秒数。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_TimeSeconds_" data-uid="GameFrameX.Utility.TimeHelper.TimeSeconds*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_TimeSeconds" data-uid="GameFrameX.Utility.TimeHelper.TimeSeconds">
+  TimeSeconds()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当前时区时间 秒时间戳</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long TimeSeconds()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>当前时区时间的秒时间戳。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_TimeSpanWithTimestamp_" data-uid="GameFrameX.Utility.TimeHelper.TimeSpanWithTimestamp*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_TimeSpanWithTimestamp_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.TimeSpanWithTimestamp(System.Int64)">
+  TimeSpanWithTimestamp(long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L125"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将给定的时间戳转换为相对于当前时间的 TimeSpan 对象。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TimeSpan TimeSpanWithTimestamp(long timestamp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>timestamp</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>自某个固定时间点（通常为1970年1月1日午夜）以来经过的毫秒数。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></dt>
+    <dd><p>一个 TimeSpan 对象，表示从给定时间戳到当前时间的间隔。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_TimestampMillisToTicks_" data-uid="GameFrameX.Utility.TimeHelper.TimestampMillisToTicks*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_TimestampMillisToTicks_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.TimestampMillisToTicks(System.Int64)">
+  TimestampMillisToTicks(long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将Unix毫秒时间戳转换为自公元1年1月1日以来的刻度数。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long TimestampMillisToTicks(long timestampMillisSeconds)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>timestampMillisSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>Unix毫秒时间戳，从1970年1月1日以来的毫秒数。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>自公元1年1月1日以来的刻度数。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_TimestampToTicks_" data-uid="GameFrameX.Utility.TimeHelper.TimestampToTicks*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_TimestampToTicks_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.TimestampToTicks(System.Int64)">
+  TimestampToTicks(long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将Unix时间戳转换为自公元1年1月1日以来的刻度数。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long TimestampToTicks(long timestampSeconds)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>timestampSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>Unix时间戳，从1970年1月1日以来的秒数。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>自公元1年1月1日以来的刻度数。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_UnixTimeMilliseconds_" data-uid="GameFrameX.Utility.TimeHelper.UnixTimeMilliseconds*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_UnixTimeMilliseconds" data-uid="GameFrameX.Utility.TimeHelper.UnixTimeMilliseconds">
+  UnixTimeMilliseconds()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当前UTC 时间 毫秒时间戳</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long UnixTimeMilliseconds()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>当前UTC时间的毫秒时间戳。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_UnixTimeSeconds_" data-uid="GameFrameX.Utility.TimeHelper.UnixTimeSeconds*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_UnixTimeSeconds" data-uid="GameFrameX.Utility.TimeHelper.UnixTimeSeconds">
+  UnixTimeSeconds()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当前UTC 时间 秒时间戳</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long UnixTimeSeconds()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>当前UTC时间的秒时间戳。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_UtcToLocalDateTime_" data-uid="GameFrameX.Utility.TimeHelper.UtcToLocalDateTime*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_UtcToLocalDateTime_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.UtcToLocalDateTime(System.Int64)">
+  UtcToLocalDateTime(long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L315"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>UTC 时间戳 转换成本地时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateTime UtcToLocalDateTime(long utcTimestamp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>utcTimestamp</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>UTC时间戳,单位秒</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>转换后的本地时间。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_UtcToUtcDateTime_" data-uid="GameFrameX.Utility.TimeHelper.UtcToUtcDateTime*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_UtcToUtcDateTime_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.UtcToUtcDateTime(System.Int64)">
+  UtcToUtcDateTime(long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L305"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>UTC 时间戳 转换成UTC时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateTime UtcToUtcDateTime(long utcTimestamp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>utcTimestamp</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>UTC时间戳,单位秒</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>转换后的UTC时间。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/TimeHelper.cs/#L6" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

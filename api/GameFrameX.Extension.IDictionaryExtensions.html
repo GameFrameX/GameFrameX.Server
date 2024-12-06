@@ -1,0 +1,3606 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class IDictionaryExtensions | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class IDictionaryExtensions | GameFrameX.Server ">
+      
+      <meta name="description" content="字典扩展">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/src/apiSpec/new?filename=GameFrameX_Extension_IDictionaryExtensions.md&amp;value=---%0Auid%3A%20GameFrameX.Extension.IDictionaryExtensions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.Extension.IDictionaryExtensions">
+
+
+
+  <h1 id="GameFrameX_Extension_IDictionaryExtensions" data-uid="GameFrameX.Extension.IDictionaryExtensions" class="text-break">
+Class IDictionaryExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L8"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Extension.html">Extension</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.Extension.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>字典扩展</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class IDictionaryExtensions</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">IDictionaryExtensions</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync__2_GameFrameX_Extension_NullableConcurrentDictionary___0___1__System_Collections_Generic_IDictionary___0___1__System_Func___0___1_System_Threading_Tasks_Task___1___" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync``2(GameFrameX.Extension.NullableConcurrentDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1},System.Func{``0,``1,System.Threading.Tasks.Task{``1}})">
+  AddOrUpdateAsync&lt;TKey, TValue&gt;(NullableConcurrentDictionary&lt;TKey, TValue&gt;, IDictionary&lt;TKey, TValue&gt;, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L353"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task AddOrUpdateAsync&lt;TKey, TValue&gt;(this NullableConcurrentDictionary&lt;TKey, TValue&gt; self, IDictionary&lt;TKey, TValue&gt; that, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync__2_GameFrameX_Extension_NullableConcurrentDictionary___0___1____0_System_Func___0_System_Threading_Tasks_Task___1___System_Func___0___1_System_Threading_Tasks_Task___1___" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync``2(GameFrameX.Extension.NullableConcurrentDictionary{``0,``1},``0,System.Func{``0,System.Threading.Tasks.Task{``1}},System.Func{``0,``1,System.Threading.Tasks.Task{``1}})">
+  AddOrUpdateAsync&lt;TKey, TValue&gt;(NullableConcurrentDictionary&lt;TKey, TValue&gt;, TKey, Func&lt;TKey, Task&lt;TValue&gt;&gt;, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L405"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;TValue&gt; AddOrUpdateAsync&lt;TKey, TValue&gt;(this NullableConcurrentDictionary&lt;TKey, TValue&gt; self, TKey key, Func&lt;TKey, Task&lt;TValue&gt;&gt; addValueFactory, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd><p>键</p>
+</dd>
+    <dt><code>addValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TKey, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;&gt;</dt>
+    <dd><p>添加时的操作</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync__2_GameFrameX_Extension_NullableConcurrentDictionary___0___1____0___1_System_Func___0___1_System_Threading_Tasks_Task___1___" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync``2(GameFrameX.Extension.NullableConcurrentDictionary{``0,``1},``0,``1,System.Func{``0,``1,System.Threading.Tasks.Task{``1}})">
+  AddOrUpdateAsync&lt;TKey, TValue&gt;(NullableConcurrentDictionary&lt;TKey, TValue&gt;, TKey, TValue, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L309"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;TValue&gt; AddOrUpdateAsync&lt;TKey, TValue&gt;(this NullableConcurrentDictionary&lt;TKey, TValue&gt; self, TKey key, TValue addValue, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd><p>键</p>
+</dd>
+    <dt><code>addValue</code> <span class="xref">TValue</span></dt>
+    <dd><p>添加时的值</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync__2_GameFrameX_Extension_NullableDictionary___0___1__System_Collections_Generic_IDictionary___0___1__System_Func___0___1_System_Threading_Tasks_Task___1___" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync``2(GameFrameX.Extension.NullableDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1},System.Func{``0,``1,System.Threading.Tasks.Task{``1}})">
+  AddOrUpdateAsync&lt;TKey, TValue&gt;(NullableDictionary&lt;TKey, TValue&gt;, IDictionary&lt;TKey, TValue&gt;, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L340"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task AddOrUpdateAsync&lt;TKey, TValue&gt;(this NullableDictionary&lt;TKey, TValue&gt; self, IDictionary&lt;TKey, TValue&gt; that, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync__2_GameFrameX_Extension_NullableDictionary___0___1____0_System_Func___0_System_Threading_Tasks_Task___1___System_Func___0___1_System_Threading_Tasks_Task___1___" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync``2(GameFrameX.Extension.NullableDictionary{``0,``1},``0,System.Func{``0,System.Threading.Tasks.Task{``1}},System.Func{``0,``1,System.Threading.Tasks.Task{``1}})">
+  AddOrUpdateAsync&lt;TKey, TValue&gt;(NullableDictionary&lt;TKey, TValue&gt;, TKey, Func&lt;TKey, Task&lt;TValue&gt;&gt;, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L386"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;TValue&gt; AddOrUpdateAsync&lt;TKey, TValue&gt;(this NullableDictionary&lt;TKey, TValue&gt; self, TKey key, Func&lt;TKey, Task&lt;TValue&gt;&gt; addValueFactory, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd><p>键</p>
+</dd>
+    <dt><code>addValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TKey, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;&gt;</dt>
+    <dd><p>添加时的操作</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync__2_GameFrameX_Extension_NullableDictionary___0___1____0___1_System_Func___0___1_System_Threading_Tasks_Task___1___" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync``2(GameFrameX.Extension.NullableDictionary{``0,``1},``0,``1,System.Func{``0,``1,System.Threading.Tasks.Task{``1}})">
+  AddOrUpdateAsync&lt;TKey, TValue&gt;(NullableDictionary&lt;TKey, TValue&gt;, TKey, TValue, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L290"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;TValue&gt; AddOrUpdateAsync&lt;TKey, TValue&gt;(this NullableDictionary&lt;TKey, TValue&gt; self, TKey key, TValue addValue, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd><p>键</p>
+</dd>
+    <dt><code>addValue</code> <span class="xref">TValue</span></dt>
+    <dd><p>添加时的值</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync__2_System_Collections_Generic_IDictionary___0___1__System_Collections_Generic_IDictionary___0___1__System_Func___0___1_System_Threading_Tasks_Task___1___" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1},System.Func{``0,``1,System.Threading.Tasks.Task{``1}})">
+  AddOrUpdateAsync&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, IDictionary&lt;TKey, TValue&gt;, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L327"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task AddOrUpdateAsync&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; self, IDictionary&lt;TKey, TValue&gt; that, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync__2_System_Collections_Generic_IDictionary___0___1____0_System_Func___0_System_Threading_Tasks_Task___1___System_Func___0___1_System_Threading_Tasks_Task___1___" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,System.Threading.Tasks.Task{``1}},System.Func{``0,``1,System.Threading.Tasks.Task{``1}})">
+  AddOrUpdateAsync&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, TKey, Func&lt;TKey, Task&lt;TValue&gt;&gt;, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L367"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;TValue&gt; AddOrUpdateAsync&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; self, TKey key, Func&lt;TKey, Task&lt;TValue&gt;&gt; addValueFactory, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd><p>键</p>
+</dd>
+    <dt><code>addValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TKey, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;&gt;</dt>
+    <dd><p>添加时的操作</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateAsync__2_System_Collections_Generic_IDictionary___0___1____0___1_System_Func___0___1_System_Threading_Tasks_Task___1___" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateAsync``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1,System.Func{``0,``1,System.Threading.Tasks.Task{``1}})">
+  AddOrUpdateAsync&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, TKey, TValue, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L271"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;TValue&gt; AddOrUpdateAsync&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; self, TKey key, TValue addValue, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd><p>键</p>
+</dd>
+    <dt><code>addValue</code> <span class="xref">TValue</span></dt>
+    <dd><p>添加时的值</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateToAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateToAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateToAsync__2_System_Collections_Generic_IDictionary___0___1__GameFrameX_Extension_NullableConcurrentDictionary___0___1__System_Func___0___1_System_Threading_Tasks_Task___1___" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateToAsync``2(System.Collections.Generic.IDictionary{``0,``1},GameFrameX.Extension.NullableConcurrentDictionary{``0,``1},System.Func{``0,``1,System.Threading.Tasks.Task{``1}})">
+  AddOrUpdateToAsync&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, NullableConcurrentDictionary&lt;TKey, TValue&gt;, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L536"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task AddOrUpdateToAsync&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; self, NullableConcurrentDictionary&lt;TKey, TValue&gt; that, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateToAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateToAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateToAsync__2_System_Collections_Generic_IDictionary___0___1__GameFrameX_Extension_NullableDictionary___0___1__System_Func___0___1_System_Threading_Tasks_Task___1___" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateToAsync``2(System.Collections.Generic.IDictionary{``0,``1},GameFrameX.Extension.NullableDictionary{``0,``1},System.Func{``0,``1,System.Threading.Tasks.Task{``1}})">
+  AddOrUpdateToAsync&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, NullableDictionary&lt;TKey, TValue&gt;, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L523"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task AddOrUpdateToAsync&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; self, NullableDictionary&lt;TKey, TValue&gt; that, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateToAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateToAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateToAsync__2_System_Collections_Generic_IDictionary___0___1__System_Collections_Generic_IDictionary___0___1__System_Func___0___1_System_Threading_Tasks_Task___1___" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateToAsync``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1},System.Func{``0,``1,System.Threading.Tasks.Task{``1}})">
+  AddOrUpdateToAsync&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, IDictionary&lt;TKey, TValue&gt;, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L510"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task AddOrUpdateToAsync&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; self, IDictionary&lt;TKey, TValue&gt; that, Func&lt;TKey, TValue, Task&lt;TValue&gt;&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateTo_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateTo*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateTo__2_GameFrameX_Extension_NullableConcurrentDictionary___0___1__System_Collections_Generic_IDictionary___0___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateTo``2(GameFrameX.Extension.NullableConcurrentDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1})">
+  AddOrUpdateTo&lt;TKey, TValue&gt;(NullableConcurrentDictionary&lt;TKey, TValue&gt;, IDictionary&lt;TKey, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L446"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddOrUpdateTo&lt;TKey, TValue&gt;(this NullableConcurrentDictionary&lt;TKey, TValue&gt; self, IDictionary&lt;TKey, TValue&gt; that)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateTo_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateTo*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateTo__2_GameFrameX_Extension_NullableDictionary___0___1__System_Collections_Generic_IDictionary___0___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateTo``2(GameFrameX.Extension.NullableDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1})">
+  AddOrUpdateTo&lt;TKey, TValue&gt;(NullableDictionary&lt;TKey, TValue&gt;, IDictionary&lt;TKey, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L433"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddOrUpdateTo&lt;TKey, TValue&gt;(this NullableDictionary&lt;TKey, TValue&gt; self, IDictionary&lt;TKey, TValue&gt; that)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateTo_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateTo*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateTo__2_System_Collections_Generic_IDictionary___0___1__GameFrameX_Extension_NullableConcurrentDictionary___0___1__System_Func___0___1___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateTo``2(System.Collections.Generic.IDictionary{``0,``1},GameFrameX.Extension.NullableConcurrentDictionary{``0,``1},System.Func{``0,``1,``1})">
+  AddOrUpdateTo&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, NullableConcurrentDictionary&lt;TKey, TValue&gt;, Func&lt;TKey, TValue, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L494"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddOrUpdateTo&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; self, NullableConcurrentDictionary&lt;TKey, TValue&gt; that, Func&lt;TKey, TValue, TValue&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, TValue&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateTo_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateTo*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateTo__2_System_Collections_Generic_IDictionary___0___1__GameFrameX_Extension_NullableDictionary___0___1__System_Func___0___1___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateTo``2(System.Collections.Generic.IDictionary{``0,``1},GameFrameX.Extension.NullableDictionary{``0,``1},System.Func{``0,``1,``1})">
+  AddOrUpdateTo&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, NullableDictionary&lt;TKey, TValue&gt;, Func&lt;TKey, TValue, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L478"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddOrUpdateTo&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; self, NullableDictionary&lt;TKey, TValue&gt; that, Func&lt;TKey, TValue, TValue&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, TValue&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateTo_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateTo*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateTo__2_System_Collections_Generic_IDictionary___0___1__System_Collections_Generic_IDictionary___0___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateTo``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1})">
+  AddOrUpdateTo&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, IDictionary&lt;TKey, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L420"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddOrUpdateTo&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; self, IDictionary&lt;TKey, TValue&gt; that)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateTo_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateTo*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdateTo__2_System_Collections_Generic_IDictionary___0___1__System_Collections_Generic_IDictionary___0___1__System_Func___0___1___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdateTo``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1},System.Func{``0,``1,``1})">
+  AddOrUpdateTo&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, IDictionary&lt;TKey, TValue&gt;, Func&lt;TKey, TValue, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L462"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddOrUpdateTo&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; self, IDictionary&lt;TKey, TValue&gt; that, Func&lt;TKey, TValue, TValue&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, TValue&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate__2_GameFrameX_Extension_NullableConcurrentDictionary___0___1__System_Collections_Generic_IDictionary___0___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate``2(GameFrameX.Extension.NullableConcurrentDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1})">
+  AddOrUpdate&lt;TKey, TValue&gt;(NullableConcurrentDictionary&lt;TKey, TValue&gt;, IDictionary&lt;TKey, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddOrUpdate&lt;TKey, TValue&gt;(this NullableConcurrentDictionary&lt;TKey, TValue&gt; self, IDictionary&lt;TKey, TValue&gt; that)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate__2_GameFrameX_Extension_NullableConcurrentDictionary___0___1__System_Collections_Generic_IDictionary___0___1__System_Func___0___1___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate``2(GameFrameX.Extension.NullableConcurrentDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1},System.Func{``0,``1,``1})">
+  AddOrUpdate&lt;TKey, TValue&gt;(NullableConcurrentDictionary&lt;TKey, TValue&gt;, IDictionary&lt;TKey, TValue&gt;, Func&lt;TKey, TValue, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L197"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddOrUpdate&lt;TKey, TValue&gt;(this NullableConcurrentDictionary&lt;TKey, TValue&gt; self, IDictionary&lt;TKey, TValue&gt; that, Func&lt;TKey, TValue, TValue&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, TValue&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate__2_GameFrameX_Extension_NullableConcurrentDictionary___0___1____0_System_Func___0___1__System_Func___0___1___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate``2(GameFrameX.Extension.NullableConcurrentDictionary{``0,``1},``0,System.Func{``0,``1},System.Func{``0,``1,``1})">
+  AddOrUpdate&lt;TKey, TValue&gt;(NullableConcurrentDictionary&lt;TKey, TValue&gt;, TKey, Func&lt;TKey, TValue&gt;, Func&lt;TKey, TValue, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L252"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TValue AddOrUpdate&lt;TKey, TValue&gt;(this NullableConcurrentDictionary&lt;TKey, TValue&gt; self, TKey key, Func&lt;TKey, TValue&gt; addValueFactory, Func&lt;TKey, TValue, TValue&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd><p>键</p>
+</dd>
+    <dt><code>addValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>添加时的操作</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, TValue&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate__2_GameFrameX_Extension_NullableConcurrentDictionary___0___1____0___1_System_Func___0___1___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate``2(GameFrameX.Extension.NullableConcurrentDictionary{``0,``1},``0,``1,System.Func{``0,``1,``1})">
+  AddOrUpdate&lt;TKey, TValue&gt;(NullableConcurrentDictionary&lt;TKey, TValue&gt;, TKey, TValue, Func&lt;TKey, TValue, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TValue AddOrUpdate&lt;TKey, TValue&gt;(this NullableConcurrentDictionary&lt;TKey, TValue&gt; self, TKey key, TValue addValue, Func&lt;TKey, TValue, TValue&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd><p>键</p>
+</dd>
+    <dt><code>addValue</code> <span class="xref">TValue</span></dt>
+    <dd><p>添加时的值</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, TValue&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate__2_GameFrameX_Extension_NullableConcurrentDictionary___0___1____0___1___1_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate``2(GameFrameX.Extension.NullableConcurrentDictionary{``0,``1},``0,``1,``1)">
+  AddOrUpdate&lt;TKey, TValue&gt;(NullableConcurrentDictionary&lt;TKey, TValue&gt;, TKey, TValue, TValue)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L147"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TValue AddOrUpdate&lt;TKey, TValue&gt;(this NullableConcurrentDictionary&lt;TKey, TValue&gt; self, TKey key, TValue addValue, TValue updateValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd><p>键</p>
+</dd>
+    <dt><code>addValue</code> <span class="xref">TValue</span></dt>
+    <dd><p>添加时的值</p>
+</dd>
+    <dt><code>updateValue</code> <span class="xref">TValue</span></dt>
+    <dd><p>更新时的值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate__2_GameFrameX_Extension_NullableDictionary___0___1__System_Collections_Generic_IDictionary___0___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate``2(GameFrameX.Extension.NullableDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1})">
+  AddOrUpdate&lt;TKey, TValue&gt;(NullableDictionary&lt;TKey, TValue&gt;, IDictionary&lt;TKey, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddOrUpdate&lt;TKey, TValue&gt;(this NullableDictionary&lt;TKey, TValue&gt; self, IDictionary&lt;TKey, TValue&gt; that)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate__2_GameFrameX_Extension_NullableDictionary___0___1__System_Collections_Generic_IDictionary___0___1__System_Func___0___1___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate``2(GameFrameX.Extension.NullableDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1},System.Func{``0,``1,``1})">
+  AddOrUpdate&lt;TKey, TValue&gt;(NullableDictionary&lt;TKey, TValue&gt;, IDictionary&lt;TKey, TValue&gt;, Func&lt;TKey, TValue, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L181"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddOrUpdate&lt;TKey, TValue&gt;(this NullableDictionary&lt;TKey, TValue&gt; self, IDictionary&lt;TKey, TValue&gt; that, Func&lt;TKey, TValue, TValue&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, TValue&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate__2_GameFrameX_Extension_NullableDictionary___0___1____0_System_Func___0___1__System_Func___0___1___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate``2(GameFrameX.Extension.NullableDictionary{``0,``1},``0,System.Func{``0,``1},System.Func{``0,``1,``1})">
+  AddOrUpdate&lt;TKey, TValue&gt;(NullableDictionary&lt;TKey, TValue&gt;, TKey, Func&lt;TKey, TValue&gt;, Func&lt;TKey, TValue, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L233"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TValue AddOrUpdate&lt;TKey, TValue&gt;(this NullableDictionary&lt;TKey, TValue&gt; self, TKey key, Func&lt;TKey, TValue&gt; addValueFactory, Func&lt;TKey, TValue, TValue&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd><p>键</p>
+</dd>
+    <dt><code>addValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>添加时的操作</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, TValue&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate__2_GameFrameX_Extension_NullableDictionary___0___1____0___1_System_Func___0___1___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate``2(GameFrameX.Extension.NullableDictionary{``0,``1},``0,``1,System.Func{``0,``1,``1})">
+  AddOrUpdate&lt;TKey, TValue&gt;(NullableDictionary&lt;TKey, TValue&gt;, TKey, TValue, Func&lt;TKey, TValue, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TValue AddOrUpdate&lt;TKey, TValue&gt;(this NullableDictionary&lt;TKey, TValue&gt; self, TKey key, TValue addValue, Func&lt;TKey, TValue, TValue&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd><p>键</p>
+</dd>
+    <dt><code>addValue</code> <span class="xref">TValue</span></dt>
+    <dd><p>添加时的值</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, TValue&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate__2_GameFrameX_Extension_NullableDictionary___0___1____0___1___1_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate``2(GameFrameX.Extension.NullableDictionary{``0,``1},``0,``1,``1)">
+  AddOrUpdate&lt;TKey, TValue&gt;(NullableDictionary&lt;TKey, TValue&gt;, TKey, TValue, TValue)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TValue AddOrUpdate&lt;TKey, TValue&gt;(this NullableDictionary&lt;TKey, TValue&gt; self, TKey key, TValue addValue, TValue updateValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd><p>键</p>
+</dd>
+    <dt><code>addValue</code> <span class="xref">TValue</span></dt>
+    <dd><p>添加时的值</p>
+</dd>
+    <dt><code>updateValue</code> <span class="xref">TValue</span></dt>
+    <dd><p>更新时的值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate__2_System_Collections_Generic_IDictionary___0___1__System_Collections_Generic_IDictionary___0___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1})">
+  AddOrUpdate&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, IDictionary&lt;TKey, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddOrUpdate&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; self, IDictionary&lt;TKey, TValue&gt; that)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate__2_System_Collections_Generic_IDictionary___0___1__System_Collections_Generic_IDictionary___0___1__System_Func___0___1___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1},System.Func{``0,``1,``1})">
+  AddOrUpdate&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, IDictionary&lt;TKey, TValue&gt;, Func&lt;TKey, TValue, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L165"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddOrUpdate&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; self, IDictionary&lt;TKey, TValue&gt; that, Func&lt;TKey, TValue, TValue&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>that</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>另一个字典集</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, TValue&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate__2_System_Collections_Generic_IDictionary___0___1____0_System_Func___0___1__System_Func___0___1___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1},System.Func{``0,``1,``1})">
+  AddOrUpdate&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, TKey, Func&lt;TKey, TValue&gt;, Func&lt;TKey, TValue, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L214"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TValue AddOrUpdate&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; self, TKey key, Func&lt;TKey, TValue&gt; addValueFactory, Func&lt;TKey, TValue, TValue&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd><p>键</p>
+</dd>
+    <dt><code>addValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>添加时的操作</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, TValue&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate__2_System_Collections_Generic_IDictionary___0___1____0___1_System_Func___0___1___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1,System.Func{``0,``1,``1})">
+  AddOrUpdate&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, TKey, TValue, Func&lt;TKey, TValue, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TValue AddOrUpdate&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; self, TKey key, TValue addValue, Func&lt;TKey, TValue, TValue&gt; updateValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd><p>键</p>
+</dd>
+    <dt><code>addValue</code> <span class="xref">TValue</span></dt>
+    <dd><p>添加时的值</p>
+</dd>
+    <dt><code>updateValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, TValue&gt;</dt>
+    <dd><p>更新时的操作</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AddOrUpdate__2_System_Collections_Generic_IDictionary___0___1____0___1___1_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1,``1)">
+  AddOrUpdate&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, TKey, TValue, TValue)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L111"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或更新键值对</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TValue AddOrUpdate&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; self, TKey key, TValue addValue, TValue updateValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd><p>键</p>
+</dd>
+    <dt><code>addValue</code> <span class="xref">TValue</span></dt>
+    <dd><p>添加时的值</p>
+</dd>
+    <dt><code>updateValue</code> <span class="xref">TValue</span></dt>
+    <dd><p>更新时的值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AsConcurrentDictionary_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AsConcurrentDictionary*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AsConcurrentDictionary__2_System_Collections_Generic_Dictionary___0___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AsConcurrentDictionary``2(System.Collections.Generic.Dictionary{``0,``1})">
+  AsConcurrentDictionary&lt;TKey, TValue&gt;(Dictionary&lt;TKey, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L1188"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>转换成并发字典集合</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NullableConcurrentDictionary&lt;TKey, TValue&gt; AsConcurrentDictionary&lt;TKey, TValue&gt;(this Dictionary&lt;TKey, TValue&gt; dic)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dic</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AsConcurrentDictionary_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AsConcurrentDictionary*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AsConcurrentDictionary__2_System_Collections_Generic_Dictionary___0___1____1_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AsConcurrentDictionary``2(System.Collections.Generic.Dictionary{``0,``1},``1)">
+  AsConcurrentDictionary&lt;TKey, TValue&gt;(Dictionary&lt;TKey, TValue&gt;, TValue)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L1195"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>转换成并发字典集合</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NullableConcurrentDictionary&lt;TKey, TValue&gt; AsConcurrentDictionary&lt;TKey, TValue&gt;(this Dictionary&lt;TKey, TValue&gt; dic, TValue defaultValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dic</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>defaultValue</code> <span class="xref">TValue</span></dt>
+    <dd><p>键未找到时的默认值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AsDictionary_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AsDictionary*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AsDictionary__2_System_Collections_Concurrent_ConcurrentDictionary___0___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.AsDictionary``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1})">
+  AsDictionary&lt;TKey, TValue&gt;(ConcurrentDictionary&lt;TKey, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L1212"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>转换成普通字典集合</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NullableDictionary&lt;TKey, TValue&gt; AsDictionary&lt;TKey, TValue&gt;(this ConcurrentDictionary&lt;TKey, TValue&gt; dic)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dic</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_AsDictionary_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AsDictionary*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_AsDictionary__2_System_Collections_Concurrent_ConcurrentDictionary___0___1____1_" data-uid="GameFrameX.Extension.IDictionaryExtensions.AsDictionary``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``1)">
+  AsDictionary&lt;TKey, TValue&gt;(ConcurrentDictionary&lt;TKey, TValue&gt;, TValue)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L1219"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>转换成普通字典集合</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NullableDictionary&lt;TKey, TValue&gt; AsDictionary&lt;TKey, TValue&gt;(this ConcurrentDictionary&lt;TKey, TValue&gt; dic, TValue defaultValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dic</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>defaultValue</code> <span class="xref">TValue</span></dt>
+    <dd><p>键未找到时的默认值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ForEachAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ForEachAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ForEachAsync__2_System_Collections_Generic_IDictionary___0___1__System_Func___0___1_System_Threading_Tasks_Task__" data-uid="GameFrameX.Extension.IDictionaryExtensions.ForEachAsync``2(System.Collections.Generic.IDictionary{``0,``1},System.Func{``0,``1,System.Threading.Tasks.Task})">
+  ForEachAsync&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, Func&lt;TKey, TValue, Task&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L618"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>遍历IDictionary</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task ForEachAsync&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; dic, Func&lt;TKey, TValue, Task&gt; action)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dic</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>回调方法</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ForEach_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ForEach*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ForEach__2_System_Collections_Generic_IDictionary___0___1__System_Action___0___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.ForEach``2(System.Collections.Generic.IDictionary{``0,``1},System.Action{``0,``1})">
+  ForEach&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, Action&lt;TKey, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L605"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>遍历IEnumerable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ForEach&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; dic, Action&lt;TKey, TValue&gt; action)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dic</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-2">Action</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>回调方法</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_GetOrAddAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.GetOrAddAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_GetOrAddAsync__2_System_Collections_Generic_IDictionary___0___1____0_System_Func_System_Threading_Tasks_Task___1___" data-uid="GameFrameX.Extension.IDictionaryExtensions.GetOrAddAsync``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{System.Threading.Tasks.Task{``1}})">
+  GetOrAddAsync&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, TKey, Func&lt;Task&lt;TValue&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L580"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或添加</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;TValue&gt; GetOrAddAsync&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; self, TKey key, Func&lt;Task&lt;TValue&gt;&gt; addValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd></dd>
+    <dt><code>addValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TValue&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_GetOrAdd_" data-uid="GameFrameX.Extension.IDictionaryExtensions.GetOrAdd*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_GetOrAdd__2_System_Collections_Generic_Dictionary___0___1____0___1_" data-uid="GameFrameX.Extension.IDictionaryExtensions.GetOrAdd``2(System.Collections.Generic.Dictionary{``0,``1},``0,``1)">
+  GetOrAdd&lt;TKey, TValue&gt;(Dictionary&lt;TKey, TValue&gt;, TKey, TValue)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L567"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或添加</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TValue GetOrAdd&lt;TKey, TValue&gt;(this Dictionary&lt;TKey, TValue&gt; self, TKey key, TValue addValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd></dd>
+    <dt><code>addValue</code> <span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_GetOrAdd_" data-uid="GameFrameX.Extension.IDictionaryExtensions.GetOrAdd*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_GetOrAdd__2_System_Collections_Generic_IDictionary___0___1____0_System_Func___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.GetOrAdd``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``1})">
+  GetOrAdd&lt;TKey, TValue&gt;(IDictionary&lt;TKey, TValue&gt;, TKey, Func&lt;TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L549"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或添加</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TValue GetOrAdd&lt;TKey, TValue&gt;(this IDictionary&lt;TKey, TValue&gt; self, TKey key, Func&lt;TValue&gt; addValueFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd></dd>
+    <dt><code>addValueFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;TValue&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToConcurrentDictionaryAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToConcurrentDictionaryAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToConcurrentDictionaryAsync__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0_System_Threading_Tasks_Task___2___" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToConcurrentDictionaryAsync``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,System.Threading.Tasks.Task{``2}})">
+  ToConcurrentDictionaryAsync&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, Task&lt;TElement&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L968"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;NullableConcurrentDictionary&lt;TKey, TElement&gt;&gt; ToConcurrentDictionaryAsync&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, Task&lt;TElement&gt;&gt; elementSelector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TElement&gt;&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TElement&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToConcurrentDictionaryAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToConcurrentDictionaryAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToConcurrentDictionaryAsync__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0_System_Threading_Tasks_Task___2_____2_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToConcurrentDictionaryAsync``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,System.Threading.Tasks.Task{``2}},``2)">
+  ToConcurrentDictionaryAsync&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, Task&lt;TElement&gt;&gt;, TElement)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L985"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;NullableConcurrentDictionary&lt;TKey, TElement&gt;&gt; ToConcurrentDictionaryAsync&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, Task&lt;TElement&gt;&gt; elementSelector, TElement defaultValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TElement&gt;&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+    <dt><code>defaultValue</code> <span class="xref">TElement</span></dt>
+    <dd><p>键未找到时的默认值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TElement&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToConcurrentDictionary_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToConcurrentDictionary*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToConcurrentDictionary__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToConcurrentDictionary``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+  ToConcurrentDictionary&lt;TSource, TKey&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L882"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NullableConcurrentDictionary&lt;TKey, TSource&gt; ToConcurrentDictionary&lt;TSource, TKey&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TSource&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToConcurrentDictionary_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToConcurrentDictionary*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToConcurrentDictionary__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1____0_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToConcurrentDictionary``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},``0)">
+  ToConcurrentDictionary&lt;TSource, TKey&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, TSource)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L901"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NullableConcurrentDictionary&lt;TKey, TSource&gt; ToConcurrentDictionary&lt;TSource, TKey&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, TSource defaultValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>defaultValue</code> <span class="xref">TSource</span></dt>
+    <dd><p>键未找到时的默认值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TSource&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToConcurrentDictionary_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToConcurrentDictionary*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToConcurrentDictionary__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0___2__" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToConcurrentDictionary``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})">
+  ToConcurrentDictionary&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, TElement&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L924"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NullableConcurrentDictionary&lt;TKey, TElement&gt; ToConcurrentDictionary&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, TElement&gt; elementSelector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TElement&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TElement&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToConcurrentDictionary_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToConcurrentDictionary*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToConcurrentDictionary__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0___2____2_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToConcurrentDictionary``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2},``2)">
+  ToConcurrentDictionary&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, TElement&gt;, TElement)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L945"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NullableConcurrentDictionary&lt;TKey, TElement&gt; ToConcurrentDictionary&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, TElement&gt; elementSelector, TElement defaultValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TElement&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+    <dt><code>defaultValue</code> <span class="xref">TElement</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.NullableConcurrentDictionary-2.html">NullableConcurrentDictionary</a>&lt;TKey, TElement&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDictionarySafetyAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDictionarySafetyAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDictionarySafetyAsync__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0_System_Threading_Tasks_Task___2___" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDictionarySafetyAsync``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,System.Threading.Tasks.Task{``2}})">
+  ToDictionarySafetyAsync&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, Task&lt;TElement&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L720"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;NullableDictionary&lt;TKey, TElement&gt;&gt; ToDictionarySafetyAsync&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, Task&lt;TElement&gt;&gt; elementSelector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TElement&gt;&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TElement&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDictionarySafetyAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDictionarySafetyAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDictionarySafetyAsync__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0_System_Threading_Tasks_Task___2_____2_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDictionarySafetyAsync``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,System.Threading.Tasks.Task{``2}},``2)">
+  ToDictionarySafetyAsync&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, Task&lt;TElement&gt;&gt;, TElement)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L738"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;NullableDictionary&lt;TKey, TElement&gt;&gt; ToDictionarySafetyAsync&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, Task&lt;TElement&gt;&gt; elementSelector, TElement defaultValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TElement&gt;&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+    <dt><code>defaultValue</code> <span class="xref">TElement</span></dt>
+    <dd><p>键未找到时的默认值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TElement&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDictionarySafety_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDictionarySafety*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDictionarySafety__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDictionarySafety``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+  ToDictionarySafety&lt;TSource, TKey&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L630"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NullableDictionary&lt;TKey, TSource&gt; ToDictionarySafety&lt;TSource, TKey&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TSource&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDictionarySafety_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDictionarySafety*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDictionarySafety__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1____0_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDictionarySafety``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},``0)">
+  ToDictionarySafety&lt;TSource, TKey&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, TSource)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L650"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NullableDictionary&lt;TKey, TSource&gt; ToDictionarySafety&lt;TSource, TKey&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, TSource defaultValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>defaultValue</code> <span class="xref">TSource</span></dt>
+    <dd><p>键未找到时的默认值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TSource&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDictionarySafety_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDictionarySafety*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDictionarySafety__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0___2__" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDictionarySafety``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})">
+  ToDictionarySafety&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, TElement&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L674"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NullableDictionary&lt;TKey, TElement&gt; ToDictionarySafety&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, TElement&gt; elementSelector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TElement&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TElement&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDictionarySafety_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDictionarySafety*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDictionarySafety__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0___2____2_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDictionarySafety``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2},``2)">
+  ToDictionarySafety&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, TElement&gt;, TElement)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L696"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static NullableDictionary&lt;TKey, TElement&gt; ToDictionarySafety&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, TElement&gt; elementSelector, TElement defaultValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TElement&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+    <dt><code>defaultValue</code> <span class="xref">TElement</span></dt>
+    <dd><p>键未找到时的默认值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.NullableDictionary-2.html">NullableDictionary</a>&lt;TKey, TElement&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableConcurrentDictionaryAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableConcurrentDictionaryAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableConcurrentDictionaryAsync__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0_System_Threading_Tasks_Task___2___" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableConcurrentDictionaryAsync``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,System.Threading.Tasks.Task{``2}})">
+  ToDisposableConcurrentDictionaryAsync&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, Task&lt;TElement&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L1077"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;DisposableConcurrentDictionary&lt;TKey, TElement&gt;&gt; ToDisposableConcurrentDictionaryAsync&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, Task&lt;TElement&gt;&gt; elementSelector) where TElement : IDisposable</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TElement&gt;&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFrameX.Extension.DisposableConcurrentDictionary-2.html">DisposableConcurrentDictionary</a>&lt;TKey, TElement&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableConcurrentDictionaryAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableConcurrentDictionaryAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableConcurrentDictionaryAsync__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0_System_Threading_Tasks_Task___2_____2_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableConcurrentDictionaryAsync``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,System.Threading.Tasks.Task{``2}},``2)">
+  ToDisposableConcurrentDictionaryAsync&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, Task&lt;TElement&gt;&gt;, TElement)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L1091"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;DisposableConcurrentDictionary&lt;TKey, TElement&gt;&gt; ToDisposableConcurrentDictionaryAsync&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, Task&lt;TElement&gt;&gt; elementSelector, TElement defaultValue) where TElement : IDisposable</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TElement&gt;&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+    <dt><code>defaultValue</code> <span class="xref">TElement</span></dt>
+    <dd><p>键未找到时的默认值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFrameX.Extension.DisposableConcurrentDictionary-2.html">DisposableConcurrentDictionary</a>&lt;TKey, TElement&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableConcurrentDictionary_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableConcurrentDictionary*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableConcurrentDictionary__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableConcurrentDictionary``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+  ToDisposableConcurrentDictionary&lt;TSource, TKey&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L1002"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DisposableConcurrentDictionary&lt;TKey, TSource&gt; ToDisposableConcurrentDictionary&lt;TSource, TKey&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector) where TSource : IDisposable</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.DisposableConcurrentDictionary-2.html">DisposableConcurrentDictionary</a>&lt;TKey, TSource&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableConcurrentDictionary_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableConcurrentDictionary*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableConcurrentDictionary__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1____0_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableConcurrentDictionary``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},``0)">
+  ToDisposableConcurrentDictionary&lt;TSource, TKey&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, TSource)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L1019"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DisposableConcurrentDictionary&lt;TKey, TSource&gt; ToDisposableConcurrentDictionary&lt;TSource, TKey&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, TSource defaultValue) where TSource : IDisposable</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>defaultValue</code> <span class="xref">TSource</span></dt>
+    <dd><p>键未找到时的默认值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.DisposableConcurrentDictionary-2.html">DisposableConcurrentDictionary</a>&lt;TKey, TSource&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableConcurrentDictionary_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableConcurrentDictionary*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableConcurrentDictionary__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0___2__" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableConcurrentDictionary``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})">
+  ToDisposableConcurrentDictionary&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, TElement&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L1039"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DisposableConcurrentDictionary&lt;TKey, TElement&gt; ToDisposableConcurrentDictionary&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, TElement&gt; elementSelector) where TElement : IDisposable</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TElement&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.DisposableConcurrentDictionary-2.html">DisposableConcurrentDictionary</a>&lt;TKey, TElement&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableConcurrentDictionary_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableConcurrentDictionary*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableConcurrentDictionary__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0___2____2_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableConcurrentDictionary``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2},``2)">
+  ToDisposableConcurrentDictionary&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, TElement&gt;, TElement)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L1057"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DisposableConcurrentDictionary&lt;TKey, TElement&gt; ToDisposableConcurrentDictionary&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, TElement&gt; elementSelector, TElement defaultValue) where TElement : IDisposable</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TElement&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+    <dt><code>defaultValue</code> <span class="xref">TElement</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.DisposableConcurrentDictionary-2.html">DisposableConcurrentDictionary</a>&lt;TKey, TElement&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableDictionarySafetyAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableDictionarySafetyAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableDictionarySafetyAsync__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0_System_Threading_Tasks_Task___2___" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableDictionarySafetyAsync``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,System.Threading.Tasks.Task{``2}})">
+  ToDisposableDictionarySafetyAsync&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, Task&lt;TElement&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L846"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;DisposableDictionary&lt;TKey, TElement&gt;&gt; ToDisposableDictionarySafetyAsync&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, Task&lt;TElement&gt;&gt; elementSelector) where TElement : IDisposable</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TElement&gt;&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFrameX.Extension.DisposableDictionary-2.html">DisposableDictionary</a>&lt;TKey, TElement&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableDictionarySafetyAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableDictionarySafetyAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableDictionarySafetyAsync__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0_System_Threading_Tasks_Task___2_____2_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableDictionarySafetyAsync``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,System.Threading.Tasks.Task{``2}},``2)">
+  ToDisposableDictionarySafetyAsync&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, Task&lt;TElement&gt;&gt;, TElement)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L864"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;DisposableDictionary&lt;TKey, TElement&gt;&gt; ToDisposableDictionarySafetyAsync&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, Task&lt;TElement&gt;&gt; elementSelector, TElement defaultValue) where TElement : IDisposable</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TElement&gt;&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+    <dt><code>defaultValue</code> <span class="xref">TElement</span></dt>
+    <dd><p>键未找到时的默认值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFrameX.Extension.DisposableDictionary-2.html">DisposableDictionary</a>&lt;TKey, TElement&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableDictionarySafety_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableDictionarySafety*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableDictionarySafety__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableDictionarySafety``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+  ToDisposableDictionarySafety&lt;TSource, TKey&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L756"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DisposableDictionary&lt;TKey, TSource&gt; ToDisposableDictionarySafety&lt;TSource, TKey&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector) where TSource : IDisposable</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.DisposableDictionary-2.html">DisposableDictionary</a>&lt;TKey, TSource&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableDictionarySafety_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableDictionarySafety*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableDictionarySafety__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1____0_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableDictionarySafety``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},``0)">
+  ToDisposableDictionarySafety&lt;TSource, TKey&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, TSource)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L776"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DisposableDictionary&lt;TKey, TSource&gt; ToDisposableDictionarySafety&lt;TSource, TKey&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, TSource defaultValue) where TSource : IDisposable</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>defaultValue</code> <span class="xref">TSource</span></dt>
+    <dd><p>键未找到时的默认值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.DisposableDictionary-2.html">DisposableDictionary</a>&lt;TKey, TSource&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableDictionarySafety_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableDictionarySafety*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableDictionarySafety__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0___2__" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableDictionarySafety``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})">
+  ToDisposableDictionarySafety&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, TElement&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L800"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DisposableDictionary&lt;TKey, TElement&gt; ToDisposableDictionarySafety&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, TElement&gt; elementSelector) where TElement : IDisposable</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TElement&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.DisposableDictionary-2.html">DisposableDictionary</a>&lt;TKey, TElement&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableDictionarySafety_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableDictionarySafety*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToDisposableDictionarySafety__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0___2____2_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToDisposableDictionarySafety``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2},``2)">
+  ToDisposableDictionarySafety&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, TElement&gt;, TElement)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L822"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全的转换成字典集</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DisposableDictionary&lt;TKey, TElement&gt; ToDisposableDictionarySafety&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, TElement&gt; elementSelector, TElement defaultValue) where TElement : IDisposable</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TElement&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+    <dt><code>defaultValue</code> <span class="xref">TElement</span></dt>
+    <dd><p>键未找到时的默认值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.DisposableDictionary-2.html">DisposableDictionary</a>&lt;TKey, TElement&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToLookupAsync_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToLookupAsync*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToLookupAsync__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0_System_Threading_Tasks_Task___2___" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToLookupAsync``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,System.Threading.Tasks.Task{``2}})">
+  ToLookupAsync&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, Task&lt;TElement&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L1166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>转换为Lookup</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;LookupX&lt;TKey, TElement&gt;&gt; ToLookupAsync&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, Task&lt;TElement&gt;&gt; elementSelector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TElement&gt;&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFrameX.Extension.LookupX-2.html">LookupX</a>&lt;TKey, TElement&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToLookupX_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToLookupX*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToLookupX__2_System_Collections_Generic_IEnumerable___0__System_Func___0___1__" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToLookupX``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+  ToLookupX&lt;TSource, TKey&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L1108"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>转换为Lookup</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static LookupX&lt;TKey, TSource&gt; ToLookupX&lt;TSource, TKey&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.LookupX-2.html">LookupX</a>&lt;TKey, TSource&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_IDictionaryExtensions_ToLookupX_" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToLookupX*"></a>
+
+  <h3 id="GameFrameX_Extension_IDictionaryExtensions_ToLookupX__3_System_Collections_Generic_IEnumerable___0__System_Func___0___1__System_Func___0___2__" data-uid="GameFrameX.Extension.IDictionaryExtensions.ToLookupX``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})">
+  ToLookupX&lt;TSource, TKey, TElement&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, TKey&gt;, Func&lt;TSource, TElement&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L1137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>转换为Lookup</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static LookupX&lt;TKey, TElement&gt; ToLookupX&lt;TSource, TKey, TElement&gt;(this IEnumerable&lt;TSource&gt; source, Func&lt;TSource, TKey&gt; keySelector, Func&lt;TSource, TElement&gt; elementSelector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TSource&gt;</dt>
+    <dd></dd>
+    <dt><code>keySelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TKey&gt;</dt>
+    <dd><p>键选择器</p>
+</dd>
+    <dt><code>elementSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSource, TElement&gt;</dt>
+    <dd><p>值选择器</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Extension.LookupX-2.html">LookupX</a>&lt;TKey, TElement&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSource</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+    <dt><code>TElement</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/IDictionaryExtensions.cs/#L8" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,4158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Struct FP | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Struct FP | GameFrameX.Server ">
+      
+      <meta name="description" content="Represents a Q31.32 fixed-point number.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/src/apiSpec/new?filename=GameFrameX_Utility_Math_FP.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Math.FP%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.Utility.Math.FP">
+
+
+
+  <h1 id="GameFrameX_Utility_Math_FP" data-uid="GameFrameX.Utility.Math.FP" class="text-break">
+Struct FP  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPTanLut.cs/#L3"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Utility.html">Utility</a>.<a class="xref" href="GameFrameX.Utility.Math.html">Math</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.Utility.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a Q31.32 fixed-point number.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct FP : IEquatable&lt;FP&gt;, IComparable&lt;FP&gt;</code></pre>
+  </div>
+
+
+
+
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">IComparable</a>&lt;<a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_IsNotNull_System_Object_">ObjectExtension.IsNotNull(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_IsNull_System_Object_">ObjectExtension.IsNull(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="GameFrameX_Utility_Math_FP__ctor_" data-uid="GameFrameX.Utility.Math.FP.#ctor*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP__ctor_System_Int32_" data-uid="GameFrameX.Utility.Math.FP.#ctor(System.Int32)">
+  FP(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1203"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP(int value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_AcosLut" data-uid="GameFrameX.Utility.Math.FP.AcosLut">
+  AcosLut
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPAcosLut.cs/#L4"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly long[] AcosLut</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_Deg2Rad" data-uid="GameFrameX.Utility.Math.FP.Deg2Rad">
+  Deg2Rad
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP Deg2Rad</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_EN1" data-uid="GameFrameX.Utility.Math.FP.EN1">
+  EN1
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP EN1</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_EN2" data-uid="GameFrameX.Utility.Math.FP.EN2">
+  EN2
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP EN2</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_EN3" data-uid="GameFrameX.Utility.Math.FP.EN3">
+  EN3
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP EN3</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_EN4" data-uid="GameFrameX.Utility.Math.FP.EN4">
+  EN4
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP EN4</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_EN5" data-uid="GameFrameX.Utility.Math.FP.EN5">
+  EN5
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP EN5</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_EN6" data-uid="GameFrameX.Utility.Math.FP.EN6">
+  EN6
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP EN6</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_EN7" data-uid="GameFrameX.Utility.Math.FP.EN7">
+  EN7
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP EN7</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_EN8" data-uid="GameFrameX.Utility.Math.FP.EN8">
+  EN8
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP EN8</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_Epsilon" data-uid="GameFrameX.Utility.Math.FP.Epsilon">
+  Epsilon
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP Epsilon</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_FRACTIONAL_PLACES" data-uid="GameFrameX.Utility.Math.FP.FRACTIONAL_PLACES">
+  FRACTIONAL_PLACES
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int FRACTIONAL_PLACES = 32</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_HALF" data-uid="GameFrameX.Utility.Math.FP.HALF">
+  HALF
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const long HALF = 2147483648</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_Half" data-uid="GameFrameX.Utility.Math.FP.Half">
+  Half
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP Half</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_LN2" data-uid="GameFrameX.Utility.Math.FP.LN2">
+  LN2
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const long LN2 = 2977044471</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_LOG2MAX" data-uid="GameFrameX.Utility.Math.FP.LOG2MAX">
+  LOG2MAX
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const long LOG2MAX = 133143986176</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_LOG2MIN" data-uid="GameFrameX.Utility.Math.FP.LOG2MIN">
+  LOG2MIN
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const long LOG2MIN = -137438953472</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_LUT_SIZE" data-uid="GameFrameX.Utility.Math.FP.LUT_SIZE">
+  LUT_SIZE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int LUT_SIZE = 205887</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_Ln2" data-uid="GameFrameX.Utility.Math.FP.Ln2">
+  Ln2
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP Ln2</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_Log2Max" data-uid="GameFrameX.Utility.Math.FP.Log2Max">
+  Log2Max
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP Log2Max</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_Log2Min" data-uid="GameFrameX.Utility.Math.FP.Log2Min">
+  Log2Min
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP Log2Min</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_LutInterval" data-uid="GameFrameX.Utility.Math.FP.LutInterval">
+  LutInterval
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP LutInterval</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_MAX_VALUE" data-uid="GameFrameX.Utility.Math.FP.MAX_VALUE">
+  MAX_VALUE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const long MAX_VALUE = 9223372036854775807</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_MIN_VALUE" data-uid="GameFrameX.Utility.Math.FP.MIN_VALUE">
+  MIN_VALUE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const long MIN_VALUE = -9223372036854775808</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_MaxValue" data-uid="GameFrameX.Utility.Math.FP.MaxValue">
+  MaxValue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP MaxValue</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_MinValue" data-uid="GameFrameX.Utility.Math.FP.MinValue">
+  MinValue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP MinValue</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_NUM_BITS" data-uid="GameFrameX.Utility.Math.FP.NUM_BITS">
+  NUM_BITS
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int NUM_BITS = 64</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_NaN" data-uid="GameFrameX.Utility.Math.FP.NaN">
+  NaN
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP NaN</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_NegativeInfinity" data-uid="GameFrameX.Utility.Math.FP.NegativeInfinity">
+  NegativeInfinity
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP NegativeInfinity</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_ONE" data-uid="GameFrameX.Utility.Math.FP.ONE">
+  ONE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const long ONE = 4294967296</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_One" data-uid="GameFrameX.Utility.Math.FP.One">
+  One
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP One</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_PI" data-uid="GameFrameX.Utility.Math.FP.PI">
+  PI
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const long PI = 13493037704</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_PI_OVER_2" data-uid="GameFrameX.Utility.Math.FP.PI_OVER_2">
+  PI_OVER_2
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const long PI_OVER_2 = 6746518852</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_PI_TIMES_2" data-uid="GameFrameX.Utility.Math.FP.PI_TIMES_2">
+  PI_TIMES_2
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const long PI_TIMES_2 = 26986075409</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_Pi" data-uid="GameFrameX.Utility.Math.FP.Pi">
+  Pi
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The value of Pi</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP Pi</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_PiInv" data-uid="GameFrameX.Utility.Math.FP.PiInv">
+  PiInv
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP PiInv</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_PiOver2" data-uid="GameFrameX.Utility.Math.FP.PiOver2">
+  PiOver2
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP PiOver2</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_PiOver2Inv" data-uid="GameFrameX.Utility.Math.FP.PiOver2Inv">
+  PiOver2Inv
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP PiOver2Inv</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_PiTimes2" data-uid="GameFrameX.Utility.Math.FP.PiTimes2">
+  PiTimes2
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP PiTimes2</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_PositiveInfinity" data-uid="GameFrameX.Utility.Math.FP.PositiveInfinity">
+  PositiveInfinity
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP PositiveInfinity</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_Precision" data-uid="GameFrameX.Utility.Math.FP.Precision">
+  Precision
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly decimal Precision</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.decimal">decimal</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_Rad2Deg" data-uid="GameFrameX.Utility.Math.FP.Rad2Deg">
+  Rad2Deg
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP Rad2Deg</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_SinLut" data-uid="GameFrameX.Utility.Math.FP.SinLut">
+  SinLut
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPSinLut.cs/#L6"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly long[] SinLut</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_TEN" data-uid="GameFrameX.Utility.Math.FP.TEN">
+  TEN
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const long TEN = 42949672960</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_TanLut" data-uid="GameFrameX.Utility.Math.FP.TanLut">
+  TanLut
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPTanLut.cs/#L4"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly long[] TanLut</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_Ten" data-uid="GameFrameX.Utility.Math.FP.Ten">
+  Ten
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP Ten</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP_Zero" data-uid="GameFrameX.Utility.Math.FP.Zero">
+  Zero
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FP Zero</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FP__serializedValue" data-uid="GameFrameX.Utility.Math.FP._serializedValue">
+  _serializedValue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long _serializedValue</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="GameFrameX_Utility_Math_FP_RawValue_" data-uid="GameFrameX.Utility.Math.FP.RawValue*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_RawValue" data-uid="GameFrameX.Utility.Math.FP.RawValue">
+  RawValue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1189"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The underlying integer representation</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long RawValue { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_Utility_Math_FP_Abs_" data-uid="GameFrameX.Utility.Math.FP.Abs*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Abs_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Abs(GameFrameX.Utility.Math.FP)">
+  Abs(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L213"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the absolute value of a Fix64 number.
+Note: Abs(Fix64.MinValue) == Fix64.MaxValue.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Abs(FP value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Acos_" data-uid="GameFrameX.Utility.Math.FP.Acos*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Acos_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Acos(GameFrameX.Utility.Math.FP)">
+  Acos(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1035"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the arccos of of the specified number, calculated using Atan and Sqrt
+This function has at least 7 decimals of accuracy.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Acos(FP x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_AsDecimal_" data-uid="GameFrameX.Utility.Math.FP.AsDecimal*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_AsDecimal" data-uid="GameFrameX.Utility.Math.FP.AsDecimal">
+  AsDecimal()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1116"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public decimal AsDecimal()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.decimal">decimal</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_AsDouble_" data-uid="GameFrameX.Utility.Math.FP.AsDouble*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_AsDouble" data-uid="GameFrameX.Utility.Math.FP.AsDouble">
+  AsDouble()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1111"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double AsDouble()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_AsFloat_" data-uid="GameFrameX.Utility.Math.FP.AsFloat*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_AsFloat" data-uid="GameFrameX.Utility.Math.FP.AsFloat">
+  AsFloat()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1091"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float AsFloat()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_AsInt_" data-uid="GameFrameX.Utility.Math.FP.AsInt*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_AsInt" data-uid="GameFrameX.Utility.Math.FP.AsInt">
+  AsInt()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1096"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int AsInt()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_AsLong_" data-uid="GameFrameX.Utility.Math.FP.AsLong*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_AsLong" data-uid="GameFrameX.Utility.Math.FP.AsLong">
+  AsLong()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1106"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long AsLong()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_AsUInt_" data-uid="GameFrameX.Utility.Math.FP.AsUInt*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_AsUInt" data-uid="GameFrameX.Utility.Math.FP.AsUInt">
+  AsUInt()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1101"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint AsUInt()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Asin_" data-uid="GameFrameX.Utility.Math.FP.Asin*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Asin_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Asin(GameFrameX.Utility.Math.FP)">
+  Asin(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1026"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Asin(FP value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Atan_" data-uid="GameFrameX.Utility.Math.FP.Atan*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Atan_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Atan(GameFrameX.Utility.Math.FP)">
+  Atan(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L917"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the arctan of of the specified number, calculated using Euler series
+This function has at least 7 decimals of accuracy.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Atan(FP z)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>z</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Atan2_" data-uid="GameFrameX.Utility.Math.FP.Atan2*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Atan2_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Atan2(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  Atan2(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L972"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Atan2(FP y, FP x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Ceiling_" data-uid="GameFrameX.Utility.Math.FP.Ceiling*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Ceiling_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Ceiling(GameFrameX.Utility.Math.FP)">
+  Ceiling(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L258"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the smallest integral value that is greater than or equal to the specified number.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Ceiling(FP value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Clamp_" data-uid="GameFrameX.Utility.Math.FP.Clamp*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Clamp_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Clamp(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  Clamp(FP, FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L299"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Clamp(FP origin, FP min, FP max)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>origin</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>min</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>max</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_ClampSinValue_" data-uid="GameFrameX.Utility.Math.FP.ClampSinValue*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_ClampSinValue_System_Int64_System_Boolean__System_Boolean__" data-uid="GameFrameX.Utility.Math.FP.ClampSinValue(System.Int64,System.Boolean@,System.Boolean@)">
+  ClampSinValue(long, out bool, out bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L821"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long ClampSinValue(long angle, out bool flipHorizontal, out bool flipVertical)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>angle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+    <dt><code>flipHorizontal</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>flipVertical</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_CompareTo_" data-uid="GameFrameX.Utility.Math.FP.CompareTo*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_CompareTo_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.CompareTo(GameFrameX.Utility.Math.FP)">
+  CompareTo(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1161"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CompareTo(FP other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>An object to compare with this instance.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>A value that indicates the relative order of the objects being compared. The return value has these meanings:</p>
+ <table><thead><tr><th class="term"> Value</th><th class="description"> Meaning</th></tr></thead><tbody><tr><td class="term"> Less than zero</td><td class="description"> This instance precedes <code class="paramref">other</code> in the sort order.</td></tr><tr><td class="term"> Zero</td><td class="description"> This instance occurs in the same position in the sort order as <code class="paramref">other</code>.</td></tr><tr><td class="term"> Greater than zero</td><td class="description"> This instance follows <code class="paramref">other</code> in the sort order.</td></tr></tbody></table>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Cos_" data-uid="GameFrameX.Utility.Math.FP.Cos*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Cos_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Cos(GameFrameX.Utility.Math.FP)">
+  Cos(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L855"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the cosine of x.
+See Sin() for more details.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Cos(FP x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_CountLeadingZeroes_" data-uid="GameFrameX.Utility.Math.FP.CountLeadingZeroes*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_CountLeadingZeroes_System_UInt64_" data-uid="GameFrameX.Utility.Math.FP.CountLeadingZeroes(System.UInt64)">
+  CountLeadingZeroes(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L538"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int CountLeadingZeroes(ulong x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Equals_" data-uid="GameFrameX.Utility.Math.FP.Equals*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Equals_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Equals(GameFrameX.Utility.Math.FP)">
+  Equals(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1156"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Indicates whether the current object is equal to another object of the same type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(FP other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>An object to compare with this object.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Equals_" data-uid="GameFrameX.Utility.Math.FP.Equals*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Equals_System_Object_" data-uid="GameFrameX.Utility.Math.FP.Equals(System.Object)">
+  Equals(object)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1146"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Indicates whether this instance and a specified object are equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>The object to compare with the current instance.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_FastAbs_" data-uid="GameFrameX.Utility.Math.FP.FastAbs*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_FastAbs_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.FastAbs(GameFrameX.Utility.Math.FP)">
+  FastAbs(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L232"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the absolute value of a Fix64 number.
+FastAbs(Fix64.MinValue) is undefined.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP FastAbs(FP value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_FastAdd_" data-uid="GameFrameX.Utility.Math.FP.FastAdd*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_FastAdd_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.FastAdd(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  FastAdd(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L339"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds x and y witout performing overflow checking. Should be inlined by the CLR.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP FastAdd(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_FastCos_" data-uid="GameFrameX.Utility.Math.FP.FastCos*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_FastCos_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.FastCos(GameFrameX.Utility.Math.FP)">
+  FastCos(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L867"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a rough approximation of the cosine of x.
+See FastSin for more details.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP FastCos(FP x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_FastMod_" data-uid="GameFrameX.Utility.Math.FP.FastMod*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_FastMod_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.FastMod(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  FastMod(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L634"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Performs modulo as fast as possible; throws if x == MinValue and y == -1.
+Use the operator (%) for a more reliable but slower modulo.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP FastMod(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_FastMul_" data-uid="GameFrameX.Utility.Math.FP.FastMul*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_FastMul_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.FastMul(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  FastMul(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L510"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Performs multiplication without checking for overflow.
+Useful for performance-critical code where the values are guaranteed not to cause overflow</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP FastMul(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_FastSin_" data-uid="GameFrameX.Utility.Math.FP.FastSin*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_FastSin_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.FastSin(GameFrameX.Utility.Math.FP)">
+  FastSin(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L798"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a rough approximation of the Sine of x.
+This is at least 3 times faster than Sin() on x86 and slightly faster than Math.Sin(),
+however its accuracy is limited to 4-5 decimals, for small enough values of x.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP FastSin(FP x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_FastSub_" data-uid="GameFrameX.Utility.Math.FP.FastSub*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_FastSub_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.FastSub(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  FastSub(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L382"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Subtracts y from x witout performing overflow checking. Should be inlined by the CLR.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP FastSub(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Floor_" data-uid="GameFrameX.Utility.Math.FP.Floor*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Floor_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Floor(GameFrameX.Utility.Math.FP)">
+  Floor(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L246"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the largest integer less than or equal to the specified number.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Floor(FP value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_FromRaw_" data-uid="GameFrameX.Utility.Math.FP.FromRaw*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_FromRaw_System_Int64_" data-uid="GameFrameX.Utility.Math.FP.FromRaw(System.Int64)">
+  FromRaw(long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1181"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP FromRaw(long rawValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rawValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_GetHashCode_" data-uid="GameFrameX.Utility.Math.FP.GetHashCode*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_GetHashCode" data-uid="GameFrameX.Utility.Math.FP.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1151"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the hash code for this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>A 32-bit signed integer that is the hash code for this instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_IsInfinity_" data-uid="GameFrameX.Utility.Math.FP.IsInfinity*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_IsInfinity_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.IsInfinity(GameFrameX.Utility.Math.FP)">
+  IsInfinity(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1136"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsInfinity(FP value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_IsNaN_" data-uid="GameFrameX.Utility.Math.FP.IsNaN*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_IsNaN_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.IsNaN(GameFrameX.Utility.Math.FP)">
+  IsNaN(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1141"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsNaN(FP value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Ln_" data-uid="GameFrameX.Utility.Math.FP.Ln*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Ln_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Ln(GameFrameX.Utility.Math.FP)">
+  Ln(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L191"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the natural logarithm of a specified number.
+Provides at least 7 decimals of accuracy.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Ln(FP x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>The argument was non-positive</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Max_" data-uid="GameFrameX.Utility.Math.FP.Max*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Max_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Max(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  Max(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L289"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Max(FP left, FP right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>right</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Min_" data-uid="GameFrameX.Utility.Math.FP.Min*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Min_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Min(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  Min(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L294"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Min(FP left, FP right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>right</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_OverflowAdd_" data-uid="GameFrameX.Utility.Math.FP.OverflowAdd*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_OverflowAdd_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.OverflowAdd(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  OverflowAdd(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L319"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds x and y performing overflow checking. Should be inlined by the CLR.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP OverflowAdd(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_OverflowMul_" data-uid="GameFrameX.Utility.Math.FP.OverflowMul*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_OverflowMul_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.OverflowMul(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  OverflowMul(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L425"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Performs multiplication without checking for overflow.
+Useful for performance-critical code where the values are guaranteed not to cause overflow</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP OverflowMul(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_OverflowSub_" data-uid="GameFrameX.Utility.Math.FP.OverflowSub*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_OverflowSub_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.OverflowSub(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  OverflowSub(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L362"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Subtracts y from x witout performing overflow checking. Should be inlined by the CLR.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP OverflowSub(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Round_" data-uid="GameFrameX.Utility.Math.FP.Round*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Round_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Round(GameFrameX.Utility.Math.FP)">
+  Round(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L268"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Rounds a value to the nearest integral value.
+If the value is halfway between an even and an uneven value, returns the even value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Round(FP value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Sign_" data-uid="GameFrameX.Utility.Math.FP.Sign*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Sign_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Sign(GameFrameX.Utility.Math.FP)">
+  Sign(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L200"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a number indicating the sign of a Fix64 number.
+Returns 1 if the value is positive, 0 if is 0, and -1 if it is negative.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int Sign(FP value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Sin_" data-uid="GameFrameX.Utility.Math.FP.Sin*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Sin_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Sin(GameFrameX.Utility.Math.FP)">
+  Sin(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L768"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the Sine of x.
+This function has about 9 decimals of accuracy for small values of x.
+It may lose accuracy as the value of x grows.
+Performance: about 25% slower than Math.Sin() in x64, and 200% slower in x86.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Sin(FP x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Sqrt_" data-uid="GameFrameX.Utility.Math.FP.Sqrt*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Sqrt_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Sqrt(GameFrameX.Utility.Math.FP)">
+  Sqrt(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L684"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the square root of a specified number.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Sqrt(FP x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>The argument was negative.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_Tan_" data-uid="GameFrameX.Utility.Math.FP.Tan*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_Tan_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.Tan(GameFrameX.Utility.Math.FP)">
+  Tan(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L880"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the tangent of x.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Tan(FP x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="GameFrameX_Utility_Math_FP_Tan_GameFrameX_Utility_Math_FP__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This function is not well-tested. It may be wildly inaccurate.</p>
+</div>
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_ToFloat_" data-uid="GameFrameX.Utility.Math.FP.ToFloat*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_ToFloat_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.ToFloat(GameFrameX.Utility.Math.FP)">
+  ToFloat(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1121"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float ToFloat(FP value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_ToInt_" data-uid="GameFrameX.Utility.Math.FP.ToInt*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_ToInt_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.ToInt(GameFrameX.Utility.Math.FP)">
+  ToInt(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1126"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int ToInt(FP value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_ToString_" data-uid="GameFrameX.Utility.Math.FP.ToString*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_ToString" data-uid="GameFrameX.Utility.Math.FP.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the fully qualified type name of this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The fully qualified type name.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_ToString_" data-uid="GameFrameX.Utility.Math.FP.ToString*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_ToString_System_IFormatProvider_" data-uid="GameFrameX.Utility.Math.FP.ToString(System.IFormatProvider)">
+  ToString(IFormatProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1171"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ToString(IFormatProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_ToString_" data-uid="GameFrameX.Utility.Math.FP.ToString*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_ToString_System_String_" data-uid="GameFrameX.Utility.Math.FP.ToString(System.String)">
+  ToString(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1176"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ToString(string format)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>format</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_ToUInt_" data-uid="GameFrameX.Utility.Math.FP.ToUInt*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_ToUInt_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.ToUInt(GameFrameX.Utility.Math.FP)">
+  ToUInt(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1131"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static uint ToUInt(FP value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_Addition_" data-uid="GameFrameX.Utility.Math.FP.op_Addition*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_Addition_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.op_Addition(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  operator +(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L308"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds x and y. Performs saturating addition, i.e. in case of overflow,
+rounds to MinValue or MaxValue depending on sign of operands.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP operator +(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_Division_" data-uid="GameFrameX.Utility.Math.FP.op_Division*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_Division_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.op_Division(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  operator /(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L556"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP operator /(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_Equality_" data-uid="GameFrameX.Utility.Math.FP.op_Equality*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_Equality_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.op_Equality(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  operator ==(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L647"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_Explicit_" data-uid="GameFrameX.Utility.Math.FP.op_Explicit*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_Explicit_GameFrameX_Utility_Math_FP__System_Decimal" data-uid="GameFrameX.Utility.Math.FP.op_Explicit(GameFrameX.Utility.Math.FP)~System.Decimal">
+  explicit operator decimal(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1086"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static explicit operator decimal(FP value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.decimal">decimal</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_Explicit_" data-uid="GameFrameX.Utility.Math.FP.op_Explicit*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_Explicit_GameFrameX_Utility_Math_FP__System_Int64" data-uid="GameFrameX.Utility.Math.FP.op_Explicit(GameFrameX.Utility.Math.FP)~System.Int64">
+  explicit operator long(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1056"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static explicit operator long(FP value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_Explicit_" data-uid="GameFrameX.Utility.Math.FP.op_Explicit*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_Explicit_GameFrameX_Utility_Math_FP__System_Single" data-uid="GameFrameX.Utility.Math.FP.op_Explicit(GameFrameX.Utility.Math.FP)~System.Single">
+  explicit operator float(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1067"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static explicit operator float(FP value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_Explicit_" data-uid="GameFrameX.Utility.Math.FP.op_Explicit*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_Explicit_System_Decimal__GameFrameX_Utility_Math_FP" data-uid="GameFrameX.Utility.Math.FP.op_Explicit(System.Decimal)~GameFrameX.Utility.Math.FP">
+  explicit operator FP(decimal)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1072"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static explicit operator FP(decimal value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.decimal">decimal</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_GreaterThan_" data-uid="GameFrameX.Utility.Math.FP.op_GreaterThan*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_GreaterThan_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.op_GreaterThan(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  operator &gt;(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L657"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_GreaterThanOrEqual_" data-uid="GameFrameX.Utility.Math.FP.op_GreaterThanOrEqual*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_GreaterThanOrEqual_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.op_GreaterThanOrEqual(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  operator &gt;=(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L667"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;=(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_Implicit_" data-uid="GameFrameX.Utility.Math.FP.op_Implicit*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_Implicit_System_Int32__GameFrameX_Utility_Math_FP" data-uid="GameFrameX.Utility.Math.FP.op_Implicit(System.Int32)~GameFrameX.Utility.Math.FP">
+  implicit operator FP(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1079"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator FP(int value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_Implicit_" data-uid="GameFrameX.Utility.Math.FP.op_Implicit*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_Implicit_System_Int64__GameFrameX_Utility_Math_FP" data-uid="GameFrameX.Utility.Math.FP.op_Implicit(System.Int64)~GameFrameX.Utility.Math.FP">
+  implicit operator FP(long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L1048"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator FP(long value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_Inequality_" data-uid="GameFrameX.Utility.Math.FP.op_Inequality*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_Inequality_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.op_Inequality(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  operator !=(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L652"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_LessThan_" data-uid="GameFrameX.Utility.Math.FP.op_LessThan*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_LessThan_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.op_LessThan(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  operator &lt;(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L662"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_LessThanOrEqual_" data-uid="GameFrameX.Utility.Math.FP.op_LessThanOrEqual*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_LessThanOrEqual_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.op_LessThanOrEqual(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  operator &lt;=(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L672"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;=(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_Modulus_" data-uid="GameFrameX.Utility.Math.FP.op_Modulus*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_Modulus_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.op_Modulus(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  operator %(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L619"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP operator %(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_Multiply_" data-uid="GameFrameX.Utility.Math.FP.op_Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_Multiply_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.op_Multiply(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  operator *(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L395"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP operator *(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_Subtraction_" data-uid="GameFrameX.Utility.Math.FP.op_Subtraction*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_Subtraction_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.op_Subtraction(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  operator -(FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L351"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Subtracts y from x. Performs saturating substraction, i.e. in case of overflow,
+rounds to MinValue or MaxValue depending on sign of operands.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP operator -(FP x, FP y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FP_op_UnaryNegation_" data-uid="GameFrameX.Utility.Math.FP.op_UnaryNegation*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FP_op_UnaryNegation_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FP.op_UnaryNegation(GameFrameX.Utility.Math.FP)">
+  operator -(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FP.cs/#L642"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP operator -(FP x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPTanLut.cs/#L3" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Struct FPQuaternion | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Struct FPQuaternion | GameFrameX.Server ">
+      
+      <meta name="description" content="A Quaternion representing an orientation.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/src/apiSpec/new?filename=GameFrameX_Utility_Math_FPQuaternion.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Math.FPQuaternion%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.Utility.Math.FPQuaternion">
+
+
+
+  <h1 id="GameFrameX_Utility_Math_FPQuaternion" data-uid="GameFrameX.Utility.Math.FPQuaternion" class="text-break">
+Struct FPQuaternion  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Utility.html">Utility</a>.<a class="xref" href="GameFrameX.Utility.Math.html">Math</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.Utility.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A Quaternion representing an orientation.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct FPQuaternion</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_IsNotNull_System_Object_">ObjectExtension.IsNotNull(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_IsNull_System_Object_">ObjectExtension.IsNull(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion__ctor_" data-uid="GameFrameX.Utility.Math.FPQuaternion.#ctor*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion__ctor_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPQuaternion.#ctor(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  FPQuaternion(FP, FP, FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the JQuaternion structure.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FPQuaternion(FP x, FP y, FP z, FP w)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The X component of the quaternion.</p>
+</dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The Y component of the quaternion.</p>
+</dd>
+    <dt><code>z</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The Z component of the quaternion.</p>
+</dd>
+    <dt><code>w</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The W component of the quaternion.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_identity" data-uid="GameFrameX.Utility.Math.FPQuaternion.identity">
+  identity
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FPQuaternion identity</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_w" data-uid="GameFrameX.Utility.Math.FPQuaternion.w">
+  w
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The W component of the quaternion.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP w</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_x" data-uid="GameFrameX.Utility.Math.FPQuaternion.x">
+  x
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The X component of the quaternion.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP x</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_y" data-uid="GameFrameX.Utility.Math.FPQuaternion.y">
+  y
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The Y component of the quaternion.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP y</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_z" data-uid="GameFrameX.Utility.Math.FPQuaternion.z">
+  z
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The Z component of the quaternion.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP z</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_eulerAngles_" data-uid="GameFrameX.Utility.Math.FPQuaternion.eulerAngles*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_eulerAngles" data-uid="GameFrameX.Utility.Math.FPQuaternion.eulerAngles">
+  eulerAngles
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FPVector3 eulerAngles { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_eulerAnglesNew_" data-uid="GameFrameX.Utility.Math.FPQuaternion.eulerAnglesNew*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_eulerAnglesNew" data-uid="GameFrameX.Utility.Math.FPQuaternion.eulerAnglesNew">
+  eulerAnglesNew
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FPVector3 eulerAnglesNew { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Add_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Add*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Add_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPQuaternion_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Add(GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPQuaternion)">
+  Add(FPQuaternion, FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L138"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Quaternions are added.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion Add(FPQuaternion quaternion1, FPQuaternion quaternion2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>quaternion1</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The first quaternion.</p>
+</dd>
+    <dt><code>quaternion2</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The second quaternion.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The sum of both quaternions.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Add_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Add*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Add_GameFrameX_Utility_Math_FPQuaternion__GameFrameX_Utility_Math_FPQuaternion__GameFrameX_Utility_Math_FPQuaternion__" data-uid="GameFrameX.Utility.Math.FPQuaternion.Add(GameFrameX.Utility.Math.FPQuaternion@,GameFrameX.Utility.Math.FPQuaternion@,GameFrameX.Utility.Math.FPQuaternion@)">
+  Add(ref FPQuaternion, ref FPQuaternion, out FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L255"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Quaternions are added.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Add(ref FPQuaternion quaternion1, ref FPQuaternion quaternion2, out FPQuaternion result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>quaternion1</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The first quaternion.</p>
+</dd>
+    <dt><code>quaternion2</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The second quaternion.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The sum of both quaternions.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Angle_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Angle*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Angle_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPQuaternion_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Angle(GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPQuaternion)">
+  Angle(FPQuaternion, FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Angle(FPQuaternion a, FPQuaternion b)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>a</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+    <dt><code>b</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_AngleAxis_" data-uid="GameFrameX.Utility.Math.FPQuaternion.AngleAxis*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_AngleAxis_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPQuaternion.AngleAxis(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPVector3)">
+  AngleAxis(FP, FPVector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L214"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion AngleAxis(FP angle, FPVector3 axis)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>angle</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>axis</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Conjugate_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Conjugate*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Conjugate_GameFrameX_Utility_Math_FPQuaternion_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Conjugate(GameFrameX.Utility.Math.FPQuaternion)">
+  Conjugate(FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L265"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion Conjugate(FPQuaternion value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_CreateFromAxisAngle_" data-uid="GameFrameX.Utility.Math.FPQuaternion.CreateFromAxisAngle*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_CreateFromAxisAngle_GameFrameX_Utility_Math_FPVector3_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPQuaternion.CreateFromAxisAngle(GameFrameX.Utility.Math.FPVector3,GameFrameX.Utility.Math.FP)">
+  CreateFromAxisAngle(FPVector3, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L437"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion CreateFromAxisAngle(FPVector3 axis, FP angle)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>axis</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+    <dt><code>angle</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_CreateFromMatrix_" data-uid="GameFrameX.Utility.Math.FPQuaternion.CreateFromMatrix*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_CreateFromMatrix_GameFrameX_Utility_Math_FPMatrix_" data-uid="GameFrameX.Utility.Math.FPQuaternion.CreateFromMatrix(GameFrameX.Utility.Math.FPMatrix)">
+  CreateFromMatrix(FPMatrix)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L464"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a quaternion from a matrix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion CreateFromMatrix(FPMatrix matrix)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>matrix</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix.html">FPMatrix</a></dt>
+    <dd><p>A matrix representing an orientation.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>JQuaternion representing an orientation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_CreateFromMatrix_" data-uid="GameFrameX.Utility.Math.FPQuaternion.CreateFromMatrix*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_CreateFromMatrix_GameFrameX_Utility_Math_FPMatrix__GameFrameX_Utility_Math_FPQuaternion__" data-uid="GameFrameX.Utility.Math.FPQuaternion.CreateFromMatrix(GameFrameX.Utility.Math.FPMatrix@,GameFrameX.Utility.Math.FPQuaternion@)">
+  CreateFromMatrix(ref FPMatrix, out FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L476"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a quaternion from a matrix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void CreateFromMatrix(ref FPMatrix matrix, out FPQuaternion result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>matrix</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix.html">FPMatrix</a></dt>
+    <dd><p>A matrix representing an orientation.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>JQuaternion representing an orientation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_CreateFromYawPitchRoll_" data-uid="GameFrameX.Utility.Math.FPQuaternion.CreateFromYawPitchRoll*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_CreateFromYawPitchRoll_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPQuaternion__" data-uid="GameFrameX.Utility.Math.FPQuaternion.CreateFromYawPitchRoll(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPQuaternion@)">
+  CreateFromYawPitchRoll(FP, FP, FP, out FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L232"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void CreateFromYawPitchRoll(FP yaw, FP pitch, FP roll, out FPQuaternion result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>yaw</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>pitch</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>roll</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Dot_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Dot*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Dot_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPQuaternion_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Dot(GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPQuaternion)">
+  Dot(FPQuaternion, FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L275"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Dot(FPQuaternion a, FPQuaternion b)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>a</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+    <dt><code>b</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Equals_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Equals*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Equals_System_Object_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Equals(System.Object)">
+  Equals(object)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L619"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Indicates whether this instance and a specified object are equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>The object to compare with the current instance.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Euler_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Euler*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Euler_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Euler(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  Euler(FP, FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L197"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion Euler(FP x, FP y, FP z)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>z</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Euler_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Euler*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Euler_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Euler(GameFrameX.Utility.Math.FPVector3)">
+  Euler(FPVector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L209"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion Euler(FPVector3 eulerAngles)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eulerAngles</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_FromToRotation_" data-uid="GameFrameX.Utility.Math.FPQuaternion.FromToRotation*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_FromToRotation_GameFrameX_Utility_Math_FPVector3_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPQuaternion.FromToRotation(GameFrameX.Utility.Math.FPVector3,GameFrameX.Utility.Math.FPVector3)">
+  FromToRotation(FPVector3, FPVector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L286"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion FromToRotation(FPVector3 fromVector3, FPVector3 toVector3)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fromVector3</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+    <dt><code>toVector3</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_GetHashCode_" data-uid="GameFrameX.Utility.Math.FPQuaternion.GetHashCode*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_GetHashCode" data-uid="GameFrameX.Utility.Math.FPQuaternion.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L627"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the hash code for this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>A 32-bit signed integer that is the hash code for this instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Inverse_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Inverse*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Inverse_GameFrameX_Utility_Math_FPQuaternion_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Inverse(GameFrameX.Utility.Math.FPQuaternion)">
+  Inverse(FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L280"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion Inverse(FPQuaternion rotation)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rotation</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Lerp_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Lerp*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Lerp_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Lerp(GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FP)">
+  Lerp(FPQuaternion, FPQuaternion, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L296"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion Lerp(FPQuaternion a, FPQuaternion b, FP t)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>a</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+    <dt><code>b</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+    <dt><code>t</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_LerpUnclamped_" data-uid="GameFrameX.Utility.Math.FPQuaternion.LerpUnclamped*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_LerpUnclamped_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPQuaternion.LerpUnclamped(GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FP)">
+  LerpUnclamped(FPQuaternion, FPQuaternion, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L303"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion LerpUnclamped(FPQuaternion a, FPQuaternion b, FP t)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>a</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+    <dt><code>b</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+    <dt><code>t</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_LookRotation_" data-uid="GameFrameX.Utility.Math.FPQuaternion.LookRotation*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_LookRotation_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPQuaternion.LookRotation(GameFrameX.Utility.Math.FPVector3)">
+  LookRotation(FPVector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion LookRotation(FPVector3 forward)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>forward</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_LookRotation_" data-uid="GameFrameX.Utility.Math.FPQuaternion.LookRotation*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_LookRotation_GameFrameX_Utility_Math_FPVector3_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPQuaternion.LookRotation(GameFrameX.Utility.Math.FPVector3,GameFrameX.Utility.Math.FPVector3)">
+  LookRotation(FPVector3, FPVector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L150"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion LookRotation(FPVector3 forward, FPVector3 upwards)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>forward</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+    <dt><code>upwards</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Multiply_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Multiply_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Multiply(GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FP)">
+  Multiply(FPQuaternion, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L396"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Scale a quaternion</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion Multiply(FPQuaternion quaternion1, FP scaleFactor)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>quaternion1</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The quaternion to scale.</p>
+</dd>
+    <dt><code>scaleFactor</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>Scale factor.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The scaled quaternion.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Multiply_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Multiply_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPQuaternion_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Multiply(GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPQuaternion)">
+  Multiply(FPQuaternion, FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L352"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Multiply two quaternions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion Multiply(FPQuaternion quaternion1, FPQuaternion quaternion2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>quaternion1</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The first quaternion.</p>
+</dd>
+    <dt><code>quaternion2</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The second quaternion.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The product of both quaternions.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Multiply_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Multiply_GameFrameX_Utility_Math_FPQuaternion__GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPQuaternion__" data-uid="GameFrameX.Utility.Math.FPQuaternion.Multiply(GameFrameX.Utility.Math.FPQuaternion@,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPQuaternion@)">
+  Multiply(ref FPQuaternion, FP, out FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L409"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Scale a quaternion</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Multiply(ref FPQuaternion quaternion1, FP scaleFactor, out FPQuaternion result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>quaternion1</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The quaternion to scale.</p>
+</dd>
+    <dt><code>scaleFactor</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>Scale factor.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The scaled quaternion.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Multiply_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Multiply_GameFrameX_Utility_Math_FPQuaternion__GameFrameX_Utility_Math_FPQuaternion__GameFrameX_Utility_Math_FPQuaternion__" data-uid="GameFrameX.Utility.Math.FPQuaternion.Multiply(GameFrameX.Utility.Math.FPQuaternion@,GameFrameX.Utility.Math.FPQuaternion@,GameFrameX.Utility.Math.FPQuaternion@)">
+  Multiply(ref FPQuaternion, ref FPQuaternion, out FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L365"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Multiply two quaternions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Multiply(ref FPQuaternion quaternion1, ref FPQuaternion quaternion2, out FPQuaternion result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>quaternion1</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The first quaternion.</p>
+</dd>
+    <dt><code>quaternion2</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The second quaternion.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The product of both quaternions.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Normalize_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Normalize*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Normalize" data-uid="GameFrameX.Utility.Math.FPQuaternion.Normalize">
+  Normalize()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L425"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the length of the quaternion to one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Normalize()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_RotateTowards_" data-uid="GameFrameX.Utility.Math.FPQuaternion.RotateTowards*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_RotateTowards_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPQuaternion.RotateTowards(GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FP)">
+  RotateTowards(FPQuaternion, FPQuaternion, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion RotateTowards(FPQuaternion from, FPQuaternion to, FP maxDegreesDelta)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>from</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+    <dt><code>maxDegreesDelta</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Set_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Set*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Set_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Set(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  Set(FP, FP, FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Set(FP new_x, FP new_y, FP new_z, FP new_w)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>new_x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>new_y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>new_z</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>new_w</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_SetFromToRotation_" data-uid="GameFrameX.Utility.Math.FPQuaternion.SetFromToRotation*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_SetFromToRotation_GameFrameX_Utility_Math_FPVector3_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPQuaternion.SetFromToRotation(GameFrameX.Utility.Math.FPVector3,GameFrameX.Utility.Math.FPVector3)">
+  SetFromToRotation(FPVector3, FPVector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetFromToRotation(FPVector3 fromDirection, FPVector3 toDirection)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fromDirection</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+    <dt><code>toDirection</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Slerp_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Slerp*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Slerp_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Slerp(GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FP)">
+  Slerp(FPQuaternion, FPQuaternion, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L155"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion Slerp(FPQuaternion from, FPQuaternion to, FP t)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>from</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+    <dt><code>t</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Subtract_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Subtract*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Subtract_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPQuaternion_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Subtract(GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPQuaternion)">
+  Subtract(FPQuaternion, FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L320"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Quaternions are subtracted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion Subtract(FPQuaternion quaternion1, FPQuaternion quaternion2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>quaternion1</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The first quaternion.</p>
+</dd>
+    <dt><code>quaternion2</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The second quaternion.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The difference of both quaternions.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_Subtract_" data-uid="GameFrameX.Utility.Math.FPQuaternion.Subtract*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_Subtract_GameFrameX_Utility_Math_FPQuaternion__GameFrameX_Utility_Math_FPQuaternion__GameFrameX_Utility_Math_FPQuaternion__" data-uid="GameFrameX.Utility.Math.FPQuaternion.Subtract(GameFrameX.Utility.Math.FPQuaternion@,GameFrameX.Utility.Math.FPQuaternion@,GameFrameX.Utility.Math.FPQuaternion@)">
+  Subtract(ref FPQuaternion, ref FPQuaternion, out FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L333"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Quaternions are subtracted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Subtract(ref FPQuaternion quaternion1, ref FPQuaternion quaternion2, out FPQuaternion result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>quaternion1</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The first quaternion.</p>
+</dd>
+    <dt><code>quaternion2</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The second quaternion.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The difference of both quaternions.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_ToString_" data-uid="GameFrameX.Utility.Math.FPQuaternion.ToString*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_ToString" data-uid="GameFrameX.Utility.Math.FPQuaternion.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L599"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the fully qualified type name of this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The fully qualified type name.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_op_Addition_" data-uid="GameFrameX.Utility.Math.FPQuaternion.op_Addition*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_op_Addition_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPQuaternion_" data-uid="GameFrameX.Utility.Math.FPQuaternion.op_Addition(GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPQuaternion)">
+  operator +(FPQuaternion, FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L546"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Add two quaternions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion operator +(FPQuaternion value1, FPQuaternion value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The first quaternion.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The second quaternion.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The sum of both quaternions.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_op_Equality_" data-uid="GameFrameX.Utility.Math.FPQuaternion.op_Equality*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_op_Equality_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPQuaternion_" data-uid="GameFrameX.Utility.Math.FPQuaternion.op_Equality(GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPQuaternion)">
+  operator ==(FPQuaternion, FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L604"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(FPQuaternion value1, FPQuaternion value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_op_Inequality_" data-uid="GameFrameX.Utility.Math.FPQuaternion.op_Inequality*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_op_Inequality_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPQuaternion_" data-uid="GameFrameX.Utility.Math.FPQuaternion.op_Inequality(GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPQuaternion)">
+  operator !=(FPQuaternion, FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L609"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(FPQuaternion value1, FPQuaternion value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_op_Multiply_" data-uid="GameFrameX.Utility.Math.FPQuaternion.op_Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_op_Multiply_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPQuaternion_" data-uid="GameFrameX.Utility.Math.FPQuaternion.op_Multiply(GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPQuaternion)">
+  operator *(FPQuaternion, FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L528"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Multiply two quaternions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion operator *(FPQuaternion value1, FPQuaternion value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The first quaternion.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The second quaternion.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The product of both quaternions.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_op_Multiply_" data-uid="GameFrameX.Utility.Math.FPQuaternion.op_Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_op_Multiply_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPQuaternion.op_Multiply(GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPVector3)">
+  operator *(FPQuaternion, FPVector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L576"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector3 operator *(FPQuaternion quat, FPVector3 vec)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>quat</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+    <dt><code>vec</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPQuaternion_op_Subtraction_" data-uid="GameFrameX.Utility.Math.FPQuaternion.op_Subtraction*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPQuaternion_op_Subtraction_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPQuaternion_" data-uid="GameFrameX.Utility.Math.FPQuaternion.op_Subtraction(GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPQuaternion)">
+  operator -(FPQuaternion, FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L564"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Subtract two quaternions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPQuaternion operator -(FPQuaternion value1, FPQuaternion value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The first quaternion.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The second quaternion.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The difference of both quaternions.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPQuaternion.cs/#L26" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

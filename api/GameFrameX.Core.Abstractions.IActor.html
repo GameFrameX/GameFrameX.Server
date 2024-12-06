@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IActor | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IActor | GameFrameX.Server ">
+      
+      <meta name="description" content="IActor 接口定义">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/src/apiSpec/new?filename=GameFrameX_Core_Abstractions_IActor.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Abstractions.IActor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.Core.Abstractions.IActor">
+
+
+
+  <h1 id="GameFrameX_Core_Abstractions_IActor" data-uid="GameFrameX.Core.Abstractions.IActor" class="text-break">
+Interface IActor  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Core.Abstractions/IActor.cs/#L8"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Core.html">Core</a>.<a class="xref" href="GameFrameX.Core.Abstractions.html">Abstractions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.Core.Abstractions.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>IActor 接口定义</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IActor : IWorker</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_Tell_System_Action_System_Int32_">IWorker.Tell(Action, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_Tell_System_Func_System_Threading_Tasks_Task__System_Int32_">IWorker.Tell(Func&lt;Task&gt;, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync_System_Action_System_Int32_">IWorker.SendAsync(Action, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync__1_System_Func___0__System_Int32_">IWorker.SendAsync&lt;T&gt;(Func&lt;T&gt;, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync_System_Func_System_Threading_Tasks_Task__System_Int32_System_Boolean_">IWorker.SendAsync(Func&lt;Task&gt;, int, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync__1_System_Func_System_Threading_Tasks_Task___0___System_Int32_">IWorker.SendAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt;, int)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_CheckNotNull__1___0_System_String_">ObjectExtension.CheckNotNull&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_CheckNotNull__1___0_System_String_System_String_">ObjectExtension.CheckNotNull&lt;T&gt;(T, string, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_IsNotNull_System_Object_">ObjectExtension.IsNotNull(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_IsNull_System_Object_">ObjectExtension.IsNull(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="GameFrameX_Core_Abstractions_IActor_AutoRecycle_" data-uid="GameFrameX.Core.Abstractions.IActor.AutoRecycle*"></a>
+
+  <h3 id="GameFrameX_Core_Abstractions_IActor_AutoRecycle" data-uid="GameFrameX.Core.Abstractions.IActor.AutoRecycle">
+  AutoRecycle
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Core.Abstractions/IActor.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取是否自动回收</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool AutoRecycle { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Abstractions_IActor_Id_" data-uid="GameFrameX.Core.Abstractions.IActor.Id*"></a>
+
+  <h3 id="GameFrameX_Core_Abstractions_IActor_Id" data-uid="GameFrameX.Core.Abstractions.IActor.Id">
+  Id
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Core.Abstractions/IActor.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置 IActor 的唯一标识</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">long Id { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Abstractions_IActor_ScheduleIdSet_" data-uid="GameFrameX.Core.Abstractions.IActor.ScheduleIdSet*"></a>
+
+  <h3 id="GameFrameX_Core_Abstractions_IActor_ScheduleIdSet" data-uid="GameFrameX.Core.Abstractions.IActor.ScheduleIdSet">
+  ScheduleIdSet
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Core.Abstractions/IActor.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取订阅的哈希列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">HashSet&lt;long&gt; ScheduleIdSet { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Abstractions_IActor_Type_" data-uid="GameFrameX.Core.Abstractions.IActor.Type*"></a>
+
+  <h3 id="GameFrameX_Core_Abstractions_IActor_Type" data-uid="GameFrameX.Core.Abstractions.IActor.Type">
+  Type
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Core.Abstractions/IActor.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置 Actor 类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ActorType Type { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Core.Abstractions.ActorType.html">ActorType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Abstractions_IActor_WorkerActor_" data-uid="GameFrameX.Core.Abstractions.IActor.WorkerActor*"></a>
+
+  <h3 id="GameFrameX_Core_Abstractions_IActor_WorkerActor" data-uid="GameFrameX.Core.Abstractions.IActor.WorkerActor">
+  WorkerActor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Core.Abstractions/IActor.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取工作 Actor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IWorkerActor WorkerActor { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Core.Abstractions.IWorkerActor.html">IWorkerActor</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_Core_Abstractions_IActor_ClearAgent_" data-uid="GameFrameX.Core.Abstractions.IActor.ClearAgent*"></a>
+
+  <h3 id="GameFrameX_Core_Abstractions_IActor_ClearAgent" data-uid="GameFrameX.Core.Abstractions.IActor.ClearAgent">
+  ClearAgent()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Core.Abstractions/IActor.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>清理全部代理</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ClearAgent()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Abstractions_IActor_CrossDay_" data-uid="GameFrameX.Core.Abstractions.IActor.CrossDay*"></a>
+
+  <h3 id="GameFrameX_Core_Abstractions_IActor_CrossDay_System_Int32_" data-uid="GameFrameX.Core.Abstractions.IActor.CrossDay(System.Int32)">
+  CrossDay(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Core.Abstractions/IActor.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Actor 跨天处理</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task CrossDay(int serverDay)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>serverDay</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>服务器运行天数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>一个表示异步操作的任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Abstractions_IActor_GetComponentAgent_" data-uid="GameFrameX.Core.Abstractions.IActor.GetComponentAgent*"></a>
+
+  <h3 id="GameFrameX_Core_Abstractions_IActor_GetComponentAgent_System_Type_" data-uid="GameFrameX.Core.Abstractions.IActor.GetComponentAgent(System.Type)">
+  GetComponentAgent(Type)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Core.Abstractions/IActor.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据组件类型获取对应的 IComponentAgent</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;IComponentAgent&gt; GetComponentAgent(Type agentType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>agentType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>组件类型</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFrameX.Core.Abstractions.Agent.IComponentAgent.html">IComponentAgent</a>&gt;</dt>
+    <dd><p>一个表示异步操作的任务，返回 IComponentAgent 实例</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Abstractions_IActor_GetComponentAgent_" data-uid="GameFrameX.Core.Abstractions.IActor.GetComponentAgent*"></a>
+
+  <h3 id="GameFrameX_Core_Abstractions_IActor_GetComponentAgent__1" data-uid="GameFrameX.Core.Abstractions.IActor.GetComponentAgent``1">
+  GetComponentAgent&lt;T&gt;()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Core.Abstractions/IActor.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据组件类型获取对应的 IComponentAgent</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;T&gt; GetComponentAgent&lt;T&gt;() where T : IComponentAgent</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
+    <dd><p>一个表示异步操作的任务，返回指定类型的 IComponentAgent 实例</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>组件类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Abstractions_IActor_Inactive_" data-uid="GameFrameX.Core.Abstractions.IActor.Inactive*"></a>
+
+  <h3 id="GameFrameX_Core_Abstractions_IActor_Inactive" data-uid="GameFrameX.Core.Abstractions.IActor.Inactive">
+  Inactive()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Core.Abstractions/IActor.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>反激活所有组件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task Inactive()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>一个表示异步操作的任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Abstractions_IActor_SetAutoRecycle_" data-uid="GameFrameX.Core.Abstractions.IActor.SetAutoRecycle*"></a>
+
+  <h3 id="GameFrameX_Core_Abstractions_IActor_SetAutoRecycle_System_Boolean_" data-uid="GameFrameX.Core.Abstractions.IActor.SetAutoRecycle(System.Boolean)">
+  SetAutoRecycle(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Core.Abstractions/IActor.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置自动回收标记</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void SetAutoRecycle(bool autoRecycle)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>autoRecycle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否自动回收</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Core.Abstractions/IActor.cs/#L8" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

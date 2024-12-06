@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class StringExtension | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class StringExtension | GameFrameX.Server ">
+      
+      <meta name="description" content="提供对  类型的扩展方法。">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/src/apiSpec/new?filename=GameFrameX_Extension_StringExtension.md&amp;value=---%0Auid%3A%20GameFrameX.Extension.StringExtension%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.Extension.StringExtension">
+
+
+
+  <h1 id="GameFrameX_Extension_StringExtension" data-uid="GameFrameX.Extension.StringExtension" class="text-break">
+Class StringExtension  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Extension.html">Extension</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.Extension.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>提供对 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> 类型的扩展方法。</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class StringExtension</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">StringExtension</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_Extension_StringExtension_CenterAlignedText_" data-uid="GameFrameX.Extension.StringExtension.CenterAlignedText*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_CenterAlignedText_System_String_System_Int32_" data-uid="GameFrameX.Extension.StringExtension.CenterAlignedText(System.String,System.Int32)">
+  CenterAlignedText(string, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取居中的字符串，固定长度打印。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string CenterAlignedText(this string text, int width)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要居中的文本。</p>
+</dd>
+    <dt><code>width</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>总宽度。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>居中后的字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_CheckNotNullOrEmpty_" data-uid="GameFrameX.Extension.StringExtension.CheckNotNullOrEmpty*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_CheckNotNullOrEmpty_System_String_System_String_" data-uid="GameFrameX.Extension.StringExtension.CheckNotNullOrEmpty(System.String,System.String)">
+  CheckNotNullOrEmpty(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>确保指定的值不为 null 或空白字符串。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void CheckNotNullOrEmpty(this string value, string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要检查的值。</p>
+</dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>值的名称。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当值为 null 或空白字符串时引发。</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_CheckNotNullOrEmptyOrWhiteSpace_" data-uid="GameFrameX.Extension.StringExtension.CheckNotNullOrEmptyOrWhiteSpace*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_CheckNotNullOrEmptyOrWhiteSpace_System_String_System_String_" data-uid="GameFrameX.Extension.StringExtension.CheckNotNullOrEmptyOrWhiteSpace(System.String,System.String)">
+  CheckNotNullOrEmptyOrWhiteSpace(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L191"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>确保指定的值不为 null 或空或空白字符串。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void CheckNotNullOrEmptyOrWhiteSpace(this string value, string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要检查的值。</p>
+</dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>值的名称。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当值为 null 或空或空白字符串时引发。</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_ConvertToSnakeCase_" data-uid="GameFrameX.Extension.StringExtension.ConvertToSnakeCase*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_ConvertToSnakeCase_System_String_" data-uid="GameFrameX.Extension.StringExtension.ConvertToSnakeCase(System.String)">
+  ConvertToSnakeCase(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L268"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>转换字符串为下划线分割的小写形式，用于命名。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ConvertToSnakeCase(this string input)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>input</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要转换的字符串。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>转换后的字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_CreateAsDirectory_" data-uid="GameFrameX.Extension.StringExtension.CreateAsDirectory*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_CreateAsDirectory_System_String_System_Boolean_" data-uid="GameFrameX.Extension.StringExtension.CreateAsDirectory(System.String,System.Boolean)">
+  CreateAsDirectory(string, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L249"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据字符串创建目录，递归创建。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void CreateAsDirectory(this string path, bool isFile = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要创建的目录路径。</p>
+</dd>
+    <dt><code>isFile</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>指示是否为文件路径，默认为 false。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_IsNotNullOrEmpty_" data-uid="GameFrameX.Extension.StringExtension.IsNotNullOrEmpty*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_IsNotNullOrEmpty_System_String_" data-uid="GameFrameX.Extension.StringExtension.IsNotNullOrEmpty(System.String)">
+  IsNotNullOrEmpty(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L146"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>检查字符串是否不为 null 或空。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsNotNullOrEmpty(this string str)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>str</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要检查的字符串。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果字符串不为 null 或空，则为 true；否则为 false。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_IsNotNullOrEmptyOrWhiteSpace_" data-uid="GameFrameX.Extension.StringExtension.IsNotNullOrEmptyOrWhiteSpace*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_IsNotNullOrEmptyOrWhiteSpace_System_String_" data-uid="GameFrameX.Extension.StringExtension.IsNotNullOrEmptyOrWhiteSpace(System.String)">
+  IsNotNullOrEmptyOrWhiteSpace(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L136"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>检查字符串是否不为 null 或 空 或 空白字符串。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsNotNullOrEmptyOrWhiteSpace(this string str)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>str</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要检查的字符串。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果字符串不为 null 或空或空白字符串，则为 true；否则为 false。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_IsNotNullOrWhiteSpace_" data-uid="GameFrameX.Extension.StringExtension.IsNotNullOrWhiteSpace*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_IsNotNullOrWhiteSpace_System_String_" data-uid="GameFrameX.Extension.StringExtension.IsNotNullOrWhiteSpace(System.String)">
+  IsNotNullOrWhiteSpace(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>检查字符串是否不为 null 或空白字符串。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsNotNullOrWhiteSpace(this string str)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>str</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要检查的字符串。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果字符串不为 null 或空白字符串，则为 true；否则为 false。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_IsNullOrEmpty_" data-uid="GameFrameX.Extension.StringExtension.IsNullOrEmpty*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_IsNullOrEmpty_System_String_" data-uid="GameFrameX.Extension.StringExtension.IsNullOrEmpty(System.String)">
+  IsNullOrEmpty(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>检查字符串是否为 null 或空。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsNullOrEmpty(this string str)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>str</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要检查的字符串。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果字符串为 null 或空，则为 true；否则为 false。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_IsNullOrEmptyOrWhiteSpace_" data-uid="GameFrameX.Extension.StringExtension.IsNullOrEmptyOrWhiteSpace*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_IsNullOrEmptyOrWhiteSpace_System_String_" data-uid="GameFrameX.Extension.StringExtension.IsNullOrEmptyOrWhiteSpace(System.String)">
+  IsNullOrEmptyOrWhiteSpace(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L126"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>检查字符串是否为 null 或 空 或 空白字符串。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsNullOrEmptyOrWhiteSpace(this string str)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>str</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要检查的字符串。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果字符串为 null 或空或空白字符串，则为 true；否则为 false。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_IsNullOrWhiteSpace_" data-uid="GameFrameX.Extension.StringExtension.IsNullOrWhiteSpace*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_IsNullOrWhiteSpace_System_String_" data-uid="GameFrameX.Extension.StringExtension.IsNullOrWhiteSpace(System.String)">
+  IsNullOrWhiteSpace(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L156"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>检查字符串是否为 null 或空白字符串。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsNullOrWhiteSpace(this string str)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>str</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要检查的字符串。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果字符串为 null 或空白字符串，则为 true；否则为 false。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_RemoveSuffix_" data-uid="GameFrameX.Extension.StringExtension.RemoveSuffix*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_RemoveSuffix_System_String_System_Char_" data-uid="GameFrameX.Extension.StringExtension.RemoveSuffix(System.String,System.Char)">
+  RemoveSuffix(string, char)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从当前字符串中移除指定字符结尾的后缀。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string RemoveSuffix(this string self, char toRemove)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>当前字符串。</p>
+</dd>
+    <dt><code>toRemove</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>要移除的字符。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>移除后的字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_RemoveSuffix_" data-uid="GameFrameX.Extension.StringExtension.RemoveSuffix*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_RemoveSuffix_System_String_System_String_" data-uid="GameFrameX.Extension.StringExtension.RemoveSuffix(System.String,System.String)">
+  RemoveSuffix(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从当前字符串中移除指定子字符串结尾的后缀。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string RemoveSuffix(this string self, string toRemove)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>当前字符串。</p>
+</dd>
+    <dt><code>toRemove</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要移除的子字符串。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>移除后的字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_RemoveWhiteSpace_" data-uid="GameFrameX.Extension.StringExtension.RemoveWhiteSpace*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_RemoveWhiteSpace_System_String_" data-uid="GameFrameX.Extension.StringExtension.RemoveWhiteSpace(System.String)">
+  RemoveWhiteSpace(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>移除当前字符串中的所有空白字符。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string RemoveWhiteSpace(this string self)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>当前字符串。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>移除空白字符后的字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_RepeatChar_" data-uid="GameFrameX.Extension.StringExtension.RepeatChar*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_RepeatChar_System_Char_System_Int32_" data-uid="GameFrameX.Extension.StringExtension.RepeatChar(System.Char,System.Int32)">
+  RepeatChar(char, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>重复指定字符。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string RepeatChar(this char c, int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>c</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>要重复的字符。</p>
+</dd>
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>重复次数。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>重复后的字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_SplitTo2IntArray_" data-uid="GameFrameX.Extension.StringExtension.SplitTo2IntArray*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_SplitTo2IntArray_System_String_System_Char_System_Char_" data-uid="GameFrameX.Extension.StringExtension.SplitTo2IntArray(System.String,System.Char,System.Char)">
+  SplitTo2IntArray(string, char, char)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L228"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将字符串按指定的分隔符拆分为二维整数数组。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int[][] SplitTo2IntArray(this string str, char sep1 = &#39;;&#39;, char sep2 = &#39;+&#39;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>str</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要拆分的字符串。</p>
+</dd>
+    <dt><code>sep1</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>用于第一层分隔的字符，默认为 ';'。</p>
+</dd>
+    <dt><code>sep2</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>用于第二层分隔的字符，默认为 '+'。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>[][]</dt>
+    <dd><p>拆分得到的二维整数数组。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_SplitToIntArray_" data-uid="GameFrameX.Extension.StringExtension.SplitToIntArray*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_SplitToIntArray_System_String_System_Char_" data-uid="GameFrameX.Extension.StringExtension.SplitToIntArray(System.String,System.Char)">
+  SplitToIntArray(string, char)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L205"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将字符串按指定的分隔符拆分为整数数组。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int[] SplitToIntArray(this string str, char sep = &#39;+&#39;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>str</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要拆分的字符串。</p>
+</dd>
+    <dt><code>sep</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>用于分隔字符串的字符，默认为 '+'。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>[]</dt>
+    <dd><p>拆分得到的整数数组。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_TrimZhCn_" data-uid="GameFrameX.Extension.StringExtension.TrimZhCn*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_TrimZhCn_System_String_" data-uid="GameFrameX.Extension.StringExtension.TrimZhCn(System.String)">
+  TrimZhCn(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L289"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>替换中文为空字符串。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string TrimZhCn(this string self)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>原始字符串。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>替换后的字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Extension_StringExtension_WordWrap_" data-uid="GameFrameX.Extension.StringExtension.WordWrap*"></a>
+
+  <h3 id="GameFrameX_Extension_StringExtension_WordWrap_System_String_System_Int32_" data-uid="GameFrameX.Extension.StringExtension.WordWrap(System.String,System.Int32)">
+  WordWrap(string, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将字符串按指定宽度进行换行。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string WordWrap(this string text, int width)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要换行的文本。</p>
+</dd>
+    <dt><code>width</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>每行的最大宽度。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>换行后的字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Extension/StringExtensions.cs/#L9" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

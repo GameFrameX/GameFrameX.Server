@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class AppStartUpBase | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class AppStartUpBase | GameFrameX.Server ">
+      
+      <meta name="description" content="程序启动器基类">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/src/apiSpec/new?filename=GameFrameX_StartUp_AppStartUpBase.md&amp;value=---%0Auid%3A%20GameFrameX.StartUp.AppStartUpBase%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.StartUp.AppStartUpBase">
+
+
+
+  <h1 id="GameFrameX_StartUp_AppStartUpBase" data-uid="GameFrameX.StartUp.AppStartUpBase" class="text-break">
+Class AppStartUpBase  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpByServer.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.StartUp.html">StartUp</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.StartUp.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>程序启动器基类</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class AppStartUpBase : IAppStartUp</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">AppStartUpBase</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="GameFrameX.StartUp.Abstractions.IAppStartUp.html">IAppStartUp</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="GameFrameX.Launcher.StartUp.AppStartUpService.html">AppStartUpService</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_CheckNotNull__1___0_System_String_">ObjectExtension.CheckNotNull&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_CheckNotNull__1___0_System_String_System_String_">ObjectExtension.CheckNotNull&lt;T&gt;(T, string, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_IsNotNull_System_Object_">ObjectExtension.IsNotNull(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_IsNull_System_Object_">ObjectExtension.IsNull(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_AppExitSource" data-uid="GameFrameX.StartUp.AppStartUpBase.AppExitSource">
+  AppExitSource
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpBase.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>应用退出</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly TaskCompletionSource&lt;string&gt; AppExitSource</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.taskcompletionsource-1">TaskCompletionSource</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_AppExitToken_" data-uid="GameFrameX.StartUp.AppStartUpBase.AppExitToken*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_AppExitToken" data-uid="GameFrameX.StartUp.AppStartUpBase.AppExitToken">
+  AppExitToken
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpBase.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>应用退出</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; AppExitToken { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_ListenOptions_" data-uid="GameFrameX.StartUp.AppStartUpBase.ListenOptions*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_ListenOptions" data-uid="GameFrameX.StartUp.AppStartUpBase.ListenOptions">
+  ListenOptions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpBase.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>监听配置
+当InnerIp为空时.将使用Any
+当InnerPort小于1000时.将抛出异常
+外部不要修改任何值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ListenOptions ListenOptions { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ListenOptions</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_MessageDecoderHandler_" data-uid="GameFrameX.StartUp.AppStartUpBase.MessageDecoderHandler*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_MessageDecoderHandler" data-uid="GameFrameX.StartUp.AppStartUpBase.MessageDecoderHandler">
+  MessageDecoderHandler
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpByServer.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>消息解码处理器</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IMessageDecoderHandler MessageDecoderHandler { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.NetWork.Abstractions.IMessageDecoderHandler.html">IMessageDecoderHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_MessageEncoderHandler_" data-uid="GameFrameX.StartUp.AppStartUpBase.MessageEncoderHandler*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_MessageEncoderHandler" data-uid="GameFrameX.StartUp.AppStartUpBase.MessageEncoderHandler">
+  MessageEncoderHandler
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpByServer.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>消息编码处理器</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IMessageEncoderHandler MessageEncoderHandler { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.NetWork.Abstractions.IMessageEncoderHandler.html">IMessageEncoderHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_ServerType_" data-uid="GameFrameX.StartUp.AppStartUpBase.ServerType*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_ServerType" data-uid="GameFrameX.StartUp.AppStartUpBase.ServerType">
+  ServerType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpBase.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>服务器类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ServerType ServerType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Setting.ServerType.html">ServerType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_Setting_" data-uid="GameFrameX.StartUp.AppStartUpBase.Setting*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_Setting" data-uid="GameFrameX.StartUp.AppStartUpBase.Setting">
+  Setting
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpBase.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>配置信息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AppSetting Setting { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Setting.AppSetting.html">AppSetting</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_ConfigureSuperSocket_" data-uid="GameFrameX.StartUp.AppStartUpBase.ConfigureSuperSocket*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_ConfigureSuperSocket_GameFrameX_SuperSocket_Server_Abstractions_ServerOptions_" data-uid="GameFrameX.StartUp.AppStartUpBase.ConfigureSuperSocket(GameFrameX.SuperSocket.Server.Abstractions.ServerOptions)">
+  ConfigureSuperSocket(ServerOptions)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpBase.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>配置启动,当InnerIP为空时.将使用Any</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void ConfigureSuperSocket(ServerOptions options)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>options</code> <span class="xref">ServerOptions</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_Init_" data-uid="GameFrameX.StartUp.AppStartUpBase.Init*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_Init" data-uid="GameFrameX.StartUp.AppStartUpBase.Init">
+  Init()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpBase.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>初始化</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Init()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_Init_" data-uid="GameFrameX.StartUp.AppStartUpBase.Init*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_Init_GameFrameX_Setting_ServerType_GameFrameX_Setting_AppSetting_System_String___" data-uid="GameFrameX.StartUp.AppStartUpBase.Init(GameFrameX.Setting.ServerType,GameFrameX.Setting.AppSetting,System.String[])">
+  Init(ServerType, AppSetting, string[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpBase.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>初始化</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Init(ServerType serverType, AppSetting setting, string[] args = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>serverType</code> <a class="xref" href="GameFrameX.Setting.ServerType.html">ServerType</a></dt>
+    <dd><p>服务器类型</p>
+</dd>
+    <dt><code>setting</code> <a class="xref" href="GameFrameX.Setting.AppSetting.html">AppSetting</a></dt>
+    <dd><p>配置信息对象</p>
+</dd>
+    <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
+    <dd><p>参数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_OnConnected_" data-uid="GameFrameX.StartUp.AppStartUpBase.OnConnected*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_OnConnected_GameFrameX_SuperSocket_Server_Abstractions_Session_IAppSession_" data-uid="GameFrameX.StartUp.AppStartUpBase.OnConnected(GameFrameX.SuperSocket.Server.Abstractions.Session.IAppSession)">
+  OnConnected(IAppSession)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpByServer.cs/#L176"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>有连接连上的时候触发</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask OnConnected(IAppSession appSession)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>appSession</code> <span class="xref">IAppSession</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_OnDisconnected_" data-uid="GameFrameX.StartUp.AppStartUpBase.OnDisconnected*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_OnDisconnected_GameFrameX_SuperSocket_Server_Abstractions_Session_IAppSession_GameFrameX_SuperSocket_Connection_CloseEventArgs_" data-uid="GameFrameX.StartUp.AppStartUpBase.OnDisconnected(GameFrameX.SuperSocket.Server.Abstractions.Session.IAppSession,GameFrameX.SuperSocket.Connection.CloseEventArgs)">
+  OnDisconnected(IAppSession, CloseEventArgs)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpByServer.cs/#L165"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>断开连接</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>appSession</code> <span class="xref">IAppSession</span></dt>
+    <dd></dd>
+    <dt><code>disconnectEventArgs</code> <span class="xref">CloseEventArgs</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_PackageErrorHandler_" data-uid="GameFrameX.StartUp.AppStartUpBase.PackageErrorHandler*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_PackageErrorHandler_GameFrameX_SuperSocket_Server_Abstractions_Session_IAppSession_GameFrameX_SuperSocket_Primitives_PackageHandlingException_GameFrameX_NetWork_Abstractions_IMessage__" data-uid="GameFrameX.StartUp.AppStartUpBase.PackageErrorHandler(GameFrameX.SuperSocket.Server.Abstractions.Session.IAppSession,GameFrameX.SuperSocket.Primitives.PackageHandlingException{GameFrameX.NetWork.Abstractions.IMessage})">
+  PackageErrorHandler(IAppSession, PackageHandlingException&lt;IMessage&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpByServer.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>消息处理异常</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask&lt;bool&gt; PackageErrorHandler(IAppSession appSession, PackageHandlingException&lt;IMessage&gt; exception)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>appSession</code> <span class="xref">IAppSession</span></dt>
+    <dd></dd>
+    <dt><code>exception</code> <span class="xref">PackageHandlingException</span>&lt;<a class="xref" href="GameFrameX.NetWork.Abstractions.IMessage.html">IMessage</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_PackageHandler_" data-uid="GameFrameX.StartUp.AppStartUpBase.PackageHandler*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_PackageHandler_GameFrameX_SuperSocket_Server_Abstractions_Session_IAppSession_GameFrameX_NetWork_Abstractions_IMessage_" data-uid="GameFrameX.StartUp.AppStartUpBase.PackageHandler(GameFrameX.SuperSocket.Server.Abstractions.Session.IAppSession,GameFrameX.NetWork.Abstractions.IMessage)">
+  PackageHandler(IAppSession, IMessage)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpByServer.cs/#L188"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>有消息包收到的时候触发</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask PackageHandler(IAppSession session, IMessage message)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>session</code> <span class="xref">IAppSession</span></dt>
+    <dd></dd>
+    <dt><code>message</code> <a class="xref" href="GameFrameX.NetWork.Abstractions.IMessage.html">IMessage</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_StartAsync_" data-uid="GameFrameX.StartUp.AppStartUpBase.StartAsync*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_StartAsync" data-uid="GameFrameX.StartUp.AppStartUpBase.StartAsync">
+  StartAsync()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpBase.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>启动</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract Task StartAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_StartServerAsync_" data-uid="GameFrameX.StartUp.AppStartUpBase.StartServerAsync*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_StartServerAsync__2_GameFrameX_NetWork_Abstractions_IMessageCompressHandler_GameFrameX_NetWork_Abstractions_IMessageDecompressHandler_" data-uid="GameFrameX.StartUp.AppStartUpBase.StartServerAsync``2(GameFrameX.NetWork.Abstractions.IMessageCompressHandler,GameFrameX.NetWork.Abstractions.IMessageDecompressHandler)">
+  StartServerAsync&lt;TMessageDecoderHandler, TMessageEncoderHandler&gt;(IMessageCompressHandler, IMessageDecompressHandler)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpByServer.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>启动服务器</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task StartServerAsync&lt;TMessageDecoderHandler, TMessageEncoderHandler&gt;(IMessageCompressHandler messageCompressHandler = null, IMessageDecompressHandler messageDecompressHandler = null) where TMessageDecoderHandler : class, IMessageDecoderHandler, IPackageDecoder&lt;IMessage&gt;, new() where TMessageEncoderHandler : class, IMessageEncoderHandler, IPackageEncoder&lt;IMessage&gt;, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>messageCompressHandler</code> <a class="xref" href="GameFrameX.NetWork.Abstractions.IMessageCompressHandler.html">IMessageCompressHandler</a></dt>
+    <dd><p>消息编码的时候使用的压缩处理器，如果为空则不处理压缩消息</p>
+</dd>
+    <dt><code>messageDecompressHandler</code> <a class="xref" href="GameFrameX.NetWork.Abstractions.IMessageDecompressHandler.html">IMessageDecompressHandler</a></dt>
+    <dd><p>消息解码的时候使用的解压处理器,如果为空则不处理压缩消息</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TMessageDecoderHandler</code></dt>
+    <dd><p>消息解码处理器类型</p>
+</dd>
+    <dt><code>TMessageEncoderHandler</code></dt>
+    <dd><p>消息编码处理器类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_StartWebSocketServer_" data-uid="GameFrameX.StartUp.AppStartUpBase.StartWebSocketServer*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_StartWebSocketServer" data-uid="GameFrameX.StartUp.AppStartUpBase.StartWebSocketServer">
+  StartWebSocketServer()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpByServer.cs/#L209"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>启动WebSocket</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task StartWebSocketServer()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_StopAsync_" data-uid="GameFrameX.StartUp.AppStartUpBase.StopAsync*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_StopAsync_System_String_" data-uid="GameFrameX.StartUp.AppStartUpBase.StopAsync(System.String)">
+  StopAsync(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpBase.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>终止服务器</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task StopAsync(string message = &quot;&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>终止原因</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_AppStartUpBase_StopServer_" data-uid="GameFrameX.StartUp.AppStartUpBase.StopServer*"></a>
+
+  <h3 id="GameFrameX_StartUp_AppStartUpBase_StopServer" data-uid="GameFrameX.StartUp.AppStartUpBase.StopServer">
+  StopServer()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpByServer.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>停止服务器</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void StopServer()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.StartUp/AppStartUpByServer.cs/#L27" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

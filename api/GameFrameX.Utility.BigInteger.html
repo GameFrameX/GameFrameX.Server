@@ -1,0 +1,2576 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class BigInteger | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class BigInteger | GameFrameX.Server ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/src/apiSpec/new?filename=GameFrameX_Utility_BigInteger.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.BigInteger%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.Utility.BigInteger">
+
+
+
+  <h1 id="GameFrameX_Utility_BigInteger" data-uid="GameFrameX.Utility.BigInteger" class="text-break">
+Class BigInteger  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L138"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Utility.html">Utility</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.Utility.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class BigInteger</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">BigInteger</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_CheckNotNull__1___0_System_String_">ObjectExtension.CheckNotNull&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_CheckNotNull__1___0_System_String_System_String_">ObjectExtension.CheckNotNull&lt;T&gt;(T, string, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_IsNotNull_System_Object_">ObjectExtension.IsNotNull(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_IsNull_System_Object_">ObjectExtension.IsNull(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="GameFrameX_Utility_BigInteger__ctor_" data-uid="GameFrameX.Utility.BigInteger.#ctor*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger__ctor" data-uid="GameFrameX.Utility.BigInteger.#ctor">
+  BigInteger()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L188"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigInteger()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger__ctor_" data-uid="GameFrameX.Utility.BigInteger.#ctor*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger__ctor_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.#ctor(GameFrameX.Utility.BigInteger)">
+  BigInteger(BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L271"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Constructor (Default value provided by BigInteger)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigInteger(BigInteger bi)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger__ctor_" data-uid="GameFrameX.Utility.BigInteger.#ctor*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger__ctor_System_Byte___" data-uid="GameFrameX.Utility.BigInteger.#ctor(System.Byte[])">
+  BigInteger(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L379"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Constructor (Default value provided by an array of bytes)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigInteger(byte[] inData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>inData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arithmeticexception">ArithmeticException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_BigInteger__ctor_" data-uid="GameFrameX.Utility.BigInteger.#ctor*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger__ctor_System_Byte___System_Int32_" data-uid="GameFrameX.Utility.BigInteger.#ctor(System.Byte[],System.Int32)">
+  BigInteger(byte[], int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L424"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Constructor (Default value provided by an array of bytes of the specified length.)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigInteger(byte[] inData, int inLen)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>inData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+    <dt><code>inLen</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arithmeticexception">ArithmeticException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_BigInteger__ctor_" data-uid="GameFrameX.Utility.BigInteger.#ctor*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger__ctor_System_Int64_" data-uid="GameFrameX.Utility.BigInteger.#ctor(System.Int64)">
+  BigInteger(long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L204"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigInteger(long value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arithmeticexception">ArithmeticException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_BigInteger__ctor_" data-uid="GameFrameX.Utility.BigInteger.#ctor*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger__ctor_System_String_System_Int32_" data-uid="GameFrameX.Utility.BigInteger.#ctor(System.String,System.Int32)">
+  BigInteger(string, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L302"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Constructor (Default value provided by a string of digits of the
+specified base)
+Example (base 10)
+-----------------
+To initialize &quot;a&quot; with the default value of 1234 in base 10
+BigInteger a = new BigInteger(&quot;1234&quot;, 10)
+To initialize &quot;a&quot; with the default value of -1234
+BigInteger a = new BigInteger(&quot;-1234&quot;, 10)
+Example (base 16)
+-----------------
+To initialize &quot;a&quot; with the default value of 0x1D4F in base 16
+BigInteger a = new BigInteger(&quot;1D4F&quot;, 16)
+To initialize &quot;a&quot; with the default value of -0x1D4F
+BigInteger a = new BigInteger(&quot;-1D4F&quot;, 16)
+Note that string values are specified in the format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigInteger(string value, int radix = 10)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>radix</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arithmeticexception">ArithmeticException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_BigInteger__ctor_" data-uid="GameFrameX.Utility.BigInteger.#ctor*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger__ctor_System_UInt32___" data-uid="GameFrameX.Utility.BigInteger.#ctor(System.UInt32[])">
+  BigInteger(uint[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L467"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Constructor (Default value provided by an array of unsigned integers)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigInteger(uint[] inData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>inData</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arithmeticexception">ArithmeticException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_BigInteger__ctor_" data-uid="GameFrameX.Utility.BigInteger.#ctor*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger__ctor_System_UInt64_" data-uid="GameFrameX.Utility.BigInteger.#ctor(System.UInt64)">
+  BigInteger(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L245"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigInteger(ulong value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arithmeticexception">ArithmeticException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="GameFrameX_Utility_BigInteger_dataLength" data-uid="GameFrameX.Utility.BigInteger.dataLength">
+  dataLength
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L178"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>number of actual chars used</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int dataLength</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_BigInteger_primesBelow2000" data-uid="GameFrameX.Utility.BigInteger.primesBelow2000">
+  primesBelow2000
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L148"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>primes smaller than 2000 to test the generated prime number</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int[] primesBelow2000</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_Utility_BigInteger_BitCount_" data-uid="GameFrameX.Utility.BigInteger.BitCount*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_BitCount" data-uid="GameFrameX.Utility.BigInteger.BitCount">
+  BitCount()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1951"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>bitCount</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int BitCount()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_CompareTo_" data-uid="GameFrameX.Utility.BigInteger.CompareTo*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_CompareTo_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.CompareTo(GameFrameX.Utility.BigInteger)">
+  CompareTo(BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1038"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CompareTo(BigInteger other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_Equals_" data-uid="GameFrameX.Utility.BigInteger.Equals*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_Equals_System_Object_" data-uid="GameFrameX.Utility.BigInteger.Equals(System.Object)">
+  Equals(object)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1065"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object o)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>o</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_FermatLittleTest_" data-uid="GameFrameX.Utility.BigInteger.FermatLittleTest*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_FermatLittleTest_System_Int32_" data-uid="GameFrameX.Utility.BigInteger.FermatLittleTest(System.Int32)">
+  FermatLittleTest(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1998"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>概率素数测试</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool FermatLittleTest(int confidence)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>confidence</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_Gcd_" data-uid="GameFrameX.Utility.BigInteger.Gcd*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_Gcd_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.Gcd(GameFrameX.Utility.BigInteger)">
+  Gcd(BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1868"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns gcd(this, bi)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigInteger Gcd(BigInteger bi)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_GenCoPrime_" data-uid="GameFrameX.Utility.BigInteger.GenCoPrime*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_GenCoPrime_System_Int32_System_Random_" data-uid="GameFrameX.Utility.BigInteger.GenCoPrime(System.Int32,System.Random)">
+  GenCoPrime(int, Random)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L2766"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates a random number with the specified number of bits such that gcd(number, this) = 1</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigInteger GenCoPrime(int bits, Random rand)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bits</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>rand</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.random">Random</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_GenPseudoPrime_" data-uid="GameFrameX.Utility.BigInteger.GenPseudoPrime*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_GenPseudoPrime_System_Int32_System_Int32_System_Random_" data-uid="GameFrameX.Utility.BigInteger.GenPseudoPrime(System.Int32,System.Int32,System.Random)">
+  GenPseudoPrime(int, int, Random)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L2742"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates a positive BigInteger that is probably prime.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BigInteger GenPseudoPrime(int bits, int confidence, Random rand)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bits</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>confidence</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>rand</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.random">Random</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_GenRandomBits_" data-uid="GameFrameX.Utility.BigInteger.GenRandomBits*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_GenRandomBits_System_Int32_System_Random_" data-uid="GameFrameX.Utility.BigInteger.GenRandomBits(System.Int32,System.Random)">
+  GenRandomBits(int, Random)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1902"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Populates &quot;this&quot; with the specified amount of random bits</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GenRandomBits(int bits, Random rand)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bits</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>rand</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.random">Random</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arithmeticexception">ArithmeticException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_GetBytes_" data-uid="GameFrameX.Utility.BigInteger.GetBytes*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_GetBytes" data-uid="GameFrameX.Utility.BigInteger.GetBytes">
+  GetBytes()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L2854"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the value of the BigInteger as a byte array.  The lowest index contains the MSB.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] GetBytes()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_GetHashCode_" data-uid="GameFrameX.Utility.BigInteger.GetHashCode*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_GetHashCode" data-uid="GameFrameX.Utility.BigInteger.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1084"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Serves as the default hash function.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>A hash code for the current object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_IntValue_" data-uid="GameFrameX.Utility.BigInteger.IntValue*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_IntValue" data-uid="GameFrameX.Utility.BigInteger.IntValue">
+  IntValue()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L2647"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the lowest 4 bytes of the BigInteger as an int.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int IntValue()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_IsProbablePrime_" data-uid="GameFrameX.Utility.BigInteger.IsProbablePrime*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_IsProbablePrime" data-uid="GameFrameX.Utility.BigInteger.IsProbablePrime">
+  IsProbablePrime()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L2550"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether this BigInteger is probably prime using a</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsProbablePrime()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_IsProbablePrime_" data-uid="GameFrameX.Utility.BigInteger.IsProbablePrime*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_IsProbablePrime_System_Int32_" data-uid="GameFrameX.Utility.BigInteger.IsProbablePrime(System.Int32)">
+  IsProbablePrime(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L2486"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether a number is probably prime, using the Rabin-Miller's</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsProbablePrime(int confidence)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>confidence</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_Jacobi_" data-uid="GameFrameX.Utility.BigInteger.Jacobi*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_Jacobi_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.Jacobi(GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger)">
+  Jacobi(BigInteger, BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L2684"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Computes the Jacobi Symbol for a and b. Algorithm adapted from [3] and [4] with some optimizations</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int Jacobi(BigInteger a, BigInteger b)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>a</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>b</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_LongValue_" data-uid="GameFrameX.Utility.BigInteger.LongValue*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_LongValue" data-uid="GameFrameX.Utility.BigInteger.LongValue">
+  LongValue()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L2657"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the lowest 8 bytes of the BigInteger as a long.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long LongValue()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_LucasSequence_" data-uid="GameFrameX.Utility.BigInteger.LucasSequence*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_LucasSequence_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.LucasSequence(GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger)">
+  LucasSequence(BigInteger, BigInteger, BigInteger, BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L3032"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the k_th number in the Lucas Sequence reduced modulo n</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BigInteger[] LucasSequence(BigInteger P, BigInteger Q, BigInteger k, BigInteger n)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>P</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>Q</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>k</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>n</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_LucasStrongTest_" data-uid="GameFrameX.Utility.BigInteger.LucasStrongTest*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_LucasStrongTest" data-uid="GameFrameX.Utility.BigInteger.LucasStrongTest">
+  LucasStrongTest()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L2318"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Implementation of the Lucas Strong Pseudo Prime test</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool LucasStrongTest()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_ModInverse_" data-uid="GameFrameX.Utility.BigInteger.ModInverse*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_ModInverse_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.ModInverse(GameFrameX.Utility.BigInteger)">
+  ModInverse(BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L2792"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the modulo inverse of this.  Throws ArithmeticException if the inverse does not exist.  (i.e. gcd(this, modulus) != 1)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigInteger ModInverse(BigInteger modulus)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modulus</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arithmeticexception">ArithmeticException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_ModPow_" data-uid="GameFrameX.Utility.BigInteger.ModPow*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_ModPow_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.ModPow(GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger)">
+  ModPow(BigInteger, BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1708"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Modulo Exponentiation</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigInteger ModPow(BigInteger exp, BigInteger n)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>exp</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>n</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arithmeticexception">ArithmeticException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_RabinMillerTest_" data-uid="GameFrameX.Utility.BigInteger.RabinMillerTest*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_RabinMillerTest_System_Int32_" data-uid="GameFrameX.Utility.BigInteger.RabinMillerTest(System.Int32)">
+  RabinMillerTest(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L2093"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RabinMillerTest</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RabinMillerTest(int confidence)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>confidence</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_SetBit_" data-uid="GameFrameX.Utility.BigInteger.SetBit*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_SetBit_System_UInt32_" data-uid="GameFrameX.Utility.BigInteger.SetBit(System.UInt32)">
+  SetBit(uint)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L2898"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the value of the specified bit to 1  The Least Significant Bit position is 0.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetBit(uint bitNum)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bitNum</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_SolovayStrassenTest_" data-uid="GameFrameX.Utility.BigInteger.SolovayStrassenTest*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_SolovayStrassenTest_System_Int32_" data-uid="GameFrameX.Utility.BigInteger.SolovayStrassenTest(System.Int32)">
+  SolovayStrassenTest(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L2225"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Solovay-Strassen</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SolovayStrassenTest(int confidence)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>confidence</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_Sqrt_" data-uid="GameFrameX.Utility.BigInteger.Sqrt*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_Sqrt" data-uid="GameFrameX.Utility.BigInteger.Sqrt">
+  Sqrt()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L2946"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a value that is equivalent to the integer square root</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigInteger Sqrt()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_ToHexString_" data-uid="GameFrameX.Utility.BigInteger.ToHexString*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_ToHexString" data-uid="GameFrameX.Utility.BigInteger.ToHexString">
+  ToHexString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1688"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ToHexString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_ToString_" data-uid="GameFrameX.Utility.BigInteger.ToString*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_ToString" data-uid="GameFrameX.Utility.BigInteger.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1596"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a string representing the BigInteger in base 10.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_ToString_" data-uid="GameFrameX.Utility.BigInteger.ToString*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_ToString_System_Int32_" data-uid="GameFrameX.Utility.BigInteger.ToString(System.Int32)">
+  ToString(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1619"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ToString(int radix)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>radix</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_UnsetBit_" data-uid="GameFrameX.Utility.BigInteger.UnsetBit*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_UnsetBit_System_UInt32_" data-uid="GameFrameX.Utility.BigInteger.UnsetBit(System.UInt32)">
+  UnsetBit(uint)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L2914"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the value of the specified bit to 0  The Least Significant Bit position is 0.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UnsetBit(uint bitNum)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bitNum</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_abs_" data-uid="GameFrameX.Utility.BigInteger.abs*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_abs" data-uid="GameFrameX.Utility.BigInteger.abs">
+  abs()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1583"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the absolute value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigInteger abs()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_max_" data-uid="GameFrameX.Utility.BigInteger.max*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_max_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.max(GameFrameX.Utility.BigInteger)">
+  max(BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1556"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns max(this, bi)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigInteger max(BigInteger bi)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_min_" data-uid="GameFrameX.Utility.BigInteger.min*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_min_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.min(GameFrameX.Utility.BigInteger)">
+  min(BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1570"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns min(this, bi)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BigInteger min(BigInteger bi)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_Addition_" data-uid="GameFrameX.Utility.BigInteger.op_Addition*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_Addition_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_Addition(GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger)">
+  operator +(BigInteger, BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L534"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Overloading of addition operator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BigInteger operator +(BigInteger bi1, BigInteger bi2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>bi2</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arithmeticexception">ArithmeticException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_BitwiseAnd_" data-uid="GameFrameX.Utility.BigInteger.op_BitwiseAnd*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_BitwiseAnd_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_BitwiseAnd(GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger)">
+  operator &amp;(BigInteger, BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1476"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Overloading of bitwise AND operator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BigInteger operator &amp;(BigInteger bi1, BigInteger bi2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>bi2</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_BitwiseOr_" data-uid="GameFrameX.Utility.BigInteger.op_BitwiseOr*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_BitwiseOr_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_BitwiseOr(GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger)">
+  operator |(BigInteger, BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1503"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Overloading of bitwise OR operator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BigInteger operator |(BigInteger bi1, BigInteger bi2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>bi2</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_Decrement_" data-uid="GameFrameX.Utility.BigInteger.op_Decrement*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_Decrement_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_Decrement(GameFrameX.Utility.BigInteger)">
+  operator --(BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L674"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Overloading of the unary -- operator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BigInteger operator --(BigInteger bi1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arithmeticexception">ArithmeticException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_Division_" data-uid="GameFrameX.Utility.BigInteger.op_Division*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_Division_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_Division(GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger)">
+  operator /(BigInteger, BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1387"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Overloading of division operator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BigInteger operator /(BigInteger bi1, BigInteger bi2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>bi2</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_Equality_" data-uid="GameFrameX.Utility.BigInteger.op_Equality*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_Equality_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_Equality(GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger)">
+  operator ==(BigInteger, BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1028"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Overloading of equality operator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(BigInteger bi1, BigInteger bi2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>bi2</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_ExclusiveOr_" data-uid="GameFrameX.Utility.BigInteger.op_ExclusiveOr*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_ExclusiveOr_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_ExclusiveOr(GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger)">
+  operator ^(BigInteger, BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1530"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Overloading of bitwise XOR operator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BigInteger operator ^(BigInteger bi1, BigInteger bi2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>bi2</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_GreaterThan_" data-uid="GameFrameX.Utility.BigInteger.op_GreaterThan*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_GreaterThan_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_GreaterThan(GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger)">
+  operator &gt;(BigInteger, BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1096"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Overloading of inequality operator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;(BigInteger bi1, BigInteger bi2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>bi2</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_GreaterThanOrEqual_" data-uid="GameFrameX.Utility.BigInteger.op_GreaterThanOrEqual*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_GreaterThanOrEqual_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_GreaterThanOrEqual(GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger)">
+  operator &gt;=(BigInteger, BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1162"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;=(BigInteger bi1, BigInteger bi2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>bi2</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_Implicit_" data-uid="GameFrameX.Utility.BigInteger.op_Implicit*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_Implicit_System_Int32__GameFrameX_Utility_BigInteger" data-uid="GameFrameX.Utility.BigInteger.op_Implicit(System.Int32)~GameFrameX.Utility.BigInteger">
+  implicit operator BigInteger(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L511"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator BigInteger(int value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_Implicit_" data-uid="GameFrameX.Utility.BigInteger.op_Implicit*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_Implicit_System_Int64__GameFrameX_Utility_BigInteger" data-uid="GameFrameX.Utility.BigInteger.op_Implicit(System.Int64)~GameFrameX.Utility.BigInteger">
+  implicit operator BigInteger(long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L491"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Overloading of the typecast operator. For BigInteger bi = 10;</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator BigInteger(long value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_Implicit_" data-uid="GameFrameX.Utility.BigInteger.op_Implicit*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_Implicit_System_UInt32__GameFrameX_Utility_BigInteger" data-uid="GameFrameX.Utility.BigInteger.op_Implicit(System.UInt32)~GameFrameX.Utility.BigInteger">
+  implicit operator BigInteger(uint)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L521"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator BigInteger(uint value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_Implicit_" data-uid="GameFrameX.Utility.BigInteger.op_Implicit*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_Implicit_System_UInt64__GameFrameX_Utility_BigInteger" data-uid="GameFrameX.Utility.BigInteger.op_Implicit(System.UInt64)~GameFrameX.Utility.BigInteger">
+  implicit operator BigInteger(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L501"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator BigInteger(ulong value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_Increment_" data-uid="GameFrameX.Utility.BigInteger.op_Increment*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_Increment_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_Increment(GameFrameX.Utility.BigInteger)">
+  operator ++(BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L576"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Overloading of the unary ++ operator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BigInteger operator ++(BigInteger bi1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arithmeticexception">ArithmeticException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_Inequality_" data-uid="GameFrameX.Utility.BigInteger.op_Inequality*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_Inequality_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_Inequality(GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger)">
+  operator !=(BigInteger, BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1054"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(BigInteger bi1, BigInteger bi2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>bi2</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_LeftShift_" data-uid="GameFrameX.Utility.BigInteger.op_LeftShift*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_LeftShift_GameFrameX_Utility_BigInteger_System_Int32_" data-uid="GameFrameX.Utility.BigInteger.op_LeftShift(GameFrameX.Utility.BigInteger,System.Int32)">
+  operator &lt;&lt;(BigInteger, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L825"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BigInteger operator &lt;&lt;(BigInteger bi1, int shiftVal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>shiftVal</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_LessThan_" data-uid="GameFrameX.Utility.BigInteger.op_LessThan*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_LessThan_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_LessThan(GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger)">
+  operator &lt;(BigInteger, BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1129"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;(BigInteger bi1, BigInteger bi2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>bi2</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_LessThanOrEqual_" data-uid="GameFrameX.Utility.BigInteger.op_LessThanOrEqual*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_LessThanOrEqual_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_LessThanOrEqual(GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger)">
+  operator &lt;=(BigInteger, BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1174"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;=(BigInteger bi1, BigInteger bi2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>bi2</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_Modulus_" data-uid="GameFrameX.Utility.BigInteger.op_Modulus*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_Modulus_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_Modulus(GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger)">
+  operator %(BigInteger, BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L1433"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Overloading of modulus operator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BigInteger operator %(BigInteger bi1, BigInteger bi2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>bi2</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_Multiply_" data-uid="GameFrameX.Utility.BigInteger.op_Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_Multiply_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_Multiply(GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger)">
+  operator *(BigInteger, BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L723"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Overloading of multiplication operator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BigInteger operator *(BigInteger bi1, BigInteger bi2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>bi2</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arithmeticexception">ArithmeticException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_OnesComplement_" data-uid="GameFrameX.Utility.BigInteger.op_OnesComplement*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_OnesComplement_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_OnesComplement(GameFrameX.Utility.BigInteger)">
+  operator ~(BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L960"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Overloading of the NOT operator (1's complement)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BigInteger operator ~(BigInteger bi1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_RightShift_" data-uid="GameFrameX.Utility.BigInteger.op_RightShift*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_RightShift_GameFrameX_Utility_BigInteger_System_Int32_" data-uid="GameFrameX.Utility.BigInteger.op_RightShift(GameFrameX.Utility.BigInteger,System.Int32)">
+  operator &gt;&gt;(BigInteger, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L887"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Overloading of unary &gt;&gt; operators</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BigInteger operator &gt;&gt;(BigInteger bi1, int shiftVal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>shiftVal</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_Subtraction_" data-uid="GameFrameX.Utility.BigInteger.op_Subtraction*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_Subtraction_GameFrameX_Utility_BigInteger_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_Subtraction(GameFrameX.Utility.BigInteger,GameFrameX.Utility.BigInteger)">
+  operator -(BigInteger, BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L624"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Overloading of subtraction operator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BigInteger operator -(BigInteger bi1, BigInteger bi2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+    <dt><code>bi2</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arithmeticexception">ArithmeticException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_BigInteger_op_UnaryNegation_" data-uid="GameFrameX.Utility.BigInteger.op_UnaryNegation*"></a>
+
+  <h3 id="GameFrameX_Utility_BigInteger_op_UnaryNegation_GameFrameX_Utility_BigInteger_" data-uid="GameFrameX.Utility.BigInteger.op_UnaryNegation(GameFrameX.Utility.BigInteger)">
+  operator -(BigInteger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L982"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Overloading of the NEGATE operator (2's complement)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BigInteger operator -(BigInteger bi1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bi1</code> <a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.BigInteger.html">BigInteger</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.arithmeticexception">ArithmeticException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/BigInteger.cs/#L138" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

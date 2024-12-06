@@ -1,0 +1,2433 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Struct FPMatrix4x4 | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Struct FPMatrix4x4 | GameFrameX.Server ">
+      
+      <meta name="description" content="3x3 Matrix.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/src/apiSpec/new?filename=GameFrameX_Utility_Math_FPMatrix4x4.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Math.FPMatrix4x4%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.Utility.Math.FPMatrix4x4">
+
+
+
+  <h1 id="GameFrameX_Utility_Math_FPMatrix4x4" data-uid="GameFrameX.Utility.Math.FPMatrix4x4" class="text-break">
+Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Utility.html">Utility</a>.<a class="xref" href="GameFrameX.Utility.Math.html">Math</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.Utility.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>3x3 Matrix.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public struct FPMatrix4x4</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_IsNotNull_System_Object_">ObjectExtension.IsNotNull(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_IsNull_System_Object_">ObjectExtension.IsNull(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4__ctor_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.#ctor*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4__ctor_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.#ctor(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  FPMatrix4x4(FP, FP, FP, FP, FP, FP, FP, FP, FP, FP, FP, FP, FP, FP, FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L148"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the matrix structure.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FPMatrix4x4(FP m11, FP m12, FP m13, FP m14, FP m21, FP m22, FP m23, FP m24, FP m31, FP m32, FP m33, FP m34, FP m41, FP m42, FP m43, FP m44)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>m11</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>m11</p>
+</dd>
+    <dt><code>m12</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>m12</p>
+</dd>
+    <dt><code>m13</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>m13</p>
+</dd>
+    <dt><code>m14</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>m14</p>
+</dd>
+    <dt><code>m21</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>m21</p>
+</dd>
+    <dt><code>m22</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>m22</p>
+</dd>
+    <dt><code>m23</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>m23</p>
+</dd>
+    <dt><code>m24</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>m24</p>
+</dd>
+    <dt><code>m31</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>m31</p>
+</dd>
+    <dt><code>m32</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>m32</p>
+</dd>
+    <dt><code>m33</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>m33</p>
+</dd>
+    <dt><code>m34</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>m34</p>
+</dd>
+    <dt><code>m41</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>m41</p>
+</dd>
+    <dt><code>m42</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>m42</p>
+</dd>
+    <dt><code>m43</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>m43</p>
+</dd>
+    <dt><code>m44</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>m44</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Identity" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Identity">
+  Identity
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Identity matrix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FPMatrix4x4 Identity</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M11" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M11">
+  M11
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>M11</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP M11</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M12" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M12">
+  M12
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>M12</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP M12</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M13" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M13">
+  M13
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>M13</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP M13</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M14" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M14">
+  M14
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>M14</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP M14</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M21" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M21">
+  M21
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>M21</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP M21</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M22" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M22">
+  M22
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>M22</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP M22</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M23" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M23">
+  M23
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>M23</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP M23</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M24" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M24">
+  M24
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>M24</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP M24</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M31" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M31">
+  M31
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>M31</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP M31</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M32" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M32">
+  M32
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>M32</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP M32</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M33" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M33">
+  M33
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>M33</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP M33</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M34" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M34">
+  M34
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>M34</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP M34</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M41" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M41">
+  M41
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>M41</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP M41</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M42" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M42">
+  M42
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>M42</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP M42</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M43" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M43">
+  M43
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>M43</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP M43</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M44" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M44">
+  M44
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>M44</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP M44</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Zero" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Zero">
+  Zero
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FPMatrix4x4 Zero</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_determinant_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.determinant*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_determinant" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.determinant">
+  determinant
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L271"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP determinant { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Add_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Add*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Add_GameFrameX_Utility_Math_FPMatrix4x4_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Add(GameFrameX.Utility.Math.FPMatrix4x4,GameFrameX.Utility.Math.FPMatrix4x4)">
+  Add(FPMatrix4x4, FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L223"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Matrices are added.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 Add(FPMatrix4x4 matrix1, FPMatrix4x4 matrix2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>matrix1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The first matrix.</p>
+</dd>
+    <dt><code>matrix2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The second matrix.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The sum of both matrices.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Add_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Add*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Add_GameFrameX_Utility_Math_FPMatrix4x4__GameFrameX_Utility_Math_FPMatrix4x4__GameFrameX_Utility_Math_FPMatrix4x4__" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Add(GameFrameX.Utility.Math.FPMatrix4x4@,GameFrameX.Utility.Math.FPMatrix4x4@,GameFrameX.Utility.Math.FPMatrix4x4@)">
+  Add(ref FPMatrix4x4, ref FPMatrix4x4, out FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L236"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Matrices are added.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Add(ref FPMatrix4x4 matrix1, ref FPMatrix4x4 matrix2, out FPMatrix4x4 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>matrix1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The first matrix.</p>
+</dd>
+    <dt><code>matrix2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The second matrix.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The sum of both matrices.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_AngleAxis_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.AngleAxis*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_AngleAxis_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.AngleAxis(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPVector3)">
+  AngleAxis(FP, FPVector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1220"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a matrix which rotates around the given axis by the given angle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 AngleAxis(FP angle, FPVector3 axis)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>angle</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The angle.</p>
+</dd>
+    <dt><code>axis</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd><p>The axis.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The resulting rotation matrix</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_AxisAngle_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.AxisAngle*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_AxisAngle_GameFrameX_Utility_Math_FPVector3__GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPMatrix4x4__" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.AxisAngle(GameFrameX.Utility.Math.FPVector3@,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPMatrix4x4@)">
+  AxisAngle(ref FPVector3, FP, out FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1164"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a matrix which rotates around the given axis by the given angle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AxisAngle(ref FPVector3 axis, FP angle, out FPMatrix4x4 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>axis</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd><p>The axis.</p>
+</dd>
+    <dt><code>angle</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The angle.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The resulting rotation matrix</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Equals_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Equals*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Equals_System_Object_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Equals(System.Object)">
+  Equals(object)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L742"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Indicates whether this instance and a specified object are equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>The object to compare with the current instance.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_GetHashCode_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.GetHashCode*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_GetHashCode" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L765"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the hash code for this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>A 32-bit signed integer that is the hash code for this instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Inverse_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Inverse*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Inverse_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Inverse(GameFrameX.Utility.Math.FPMatrix4x4)">
+  Inverse(FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L264"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calculates the inverse of a give matrix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 Inverse(FPMatrix4x4 matrix)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>matrix</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The matrix to invert.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The inverted JMatrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Inverse_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Inverse*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Inverse_GameFrameX_Utility_Math_FPMatrix4x4__GameFrameX_Utility_Math_FPMatrix4x4__" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Inverse(GameFrameX.Utility.Math.FPMatrix4x4@,GameFrameX.Utility.Math.FPMatrix4x4@)">
+  Inverse(ref FPMatrix4x4, out FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L326"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calculates the inverse of a give matrix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Inverse(ref FPMatrix4x4 matrix, out FPMatrix4x4 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>matrix</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The matrix to invert.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The inverted JMatrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Multiply_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Multiply_GameFrameX_Utility_Math_FPMatrix4x4_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Multiply(GameFrameX.Utility.Math.FPMatrix4x4,GameFrameX.Utility.Math.FP)">
+  Multiply(FPMatrix4x4, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L504"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Multiply a matrix by a scalefactor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 Multiply(FPMatrix4x4 matrix1, FP scaleFactor)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>matrix1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The matrix.</p>
+</dd>
+    <dt><code>scaleFactor</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The scale factor.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>A JMatrix multiplied by the scale factor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Multiply_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Multiply_GameFrameX_Utility_Math_FPMatrix4x4_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Multiply(GameFrameX.Utility.Math.FPMatrix4x4,GameFrameX.Utility.Math.FPMatrix4x4)">
+  Multiply(FPMatrix4x4, FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Multiply two matrices. Notice: matrix multiplication is not commutative.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 Multiply(FPMatrix4x4 matrix1, FPMatrix4x4 matrix2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>matrix1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The first matrix.</p>
+</dd>
+    <dt><code>matrix2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The second matrix.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The product of both matrices.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Multiply_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Multiply_GameFrameX_Utility_Math_FPMatrix4x4__GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPMatrix4x4__" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Multiply(GameFrameX.Utility.Math.FPMatrix4x4@,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPMatrix4x4@)">
+  Multiply(ref FPMatrix4x4, FP, out FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L517"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Multiply a matrix by a scalefactor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Multiply(ref FPMatrix4x4 matrix1, FP scaleFactor, out FPMatrix4x4 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>matrix1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The matrix.</p>
+</dd>
+    <dt><code>scaleFactor</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The scale factor.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>A JMatrix multiplied by the scale factor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Multiply_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Multiply_GameFrameX_Utility_Math_FPMatrix4x4__GameFrameX_Utility_Math_FPMatrix4x4__GameFrameX_Utility_Math_FPMatrix4x4__" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Multiply(GameFrameX.Utility.Math.FPMatrix4x4@,GameFrameX.Utility.Math.FPMatrix4x4@,GameFrameX.Utility.Math.FPMatrix4x4@)">
+  Multiply(ref FPMatrix4x4, ref FPMatrix4x4, out FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L190"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Multiply two matrices. Notice: matrix multiplication is not commutative.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Multiply(ref FPMatrix4x4 matrix1, ref FPMatrix4x4 matrix2, out FPMatrix4x4 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>matrix1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The first matrix.</p>
+</dd>
+    <dt><code>matrix2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The second matrix.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The product of both matrices.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Rotate_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Rotate*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Rotate_GameFrameX_Utility_Math_FPQuaternion_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Rotate(GameFrameX.Utility.Math.FPQuaternion)">
+  Rotate(FPQuaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L542"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 Rotate(FPQuaternion quaternion)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>quaternion</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Rotate_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Rotate*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Rotate_GameFrameX_Utility_Math_FPQuaternion__GameFrameX_Utility_Math_FPMatrix4x4__" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Rotate(GameFrameX.Utility.Math.FPQuaternion@,GameFrameX.Utility.Math.FPMatrix4x4@)">
+  Rotate(ref FPQuaternion, out FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L554"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a JMatrix representing an orientation from a quaternion.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Rotate(ref FPQuaternion quaternion, out FPMatrix4x4 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>quaternion</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd><p>The quaternion the matrix should be created from.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>JMatrix representing an orientation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_RotateX_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateX*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_RotateX_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateX(GameFrameX.Utility.Math.FP)">
+  RotateX(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L935"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a matrix for rotating points around the X-axis.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 RotateX(FP radians)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>radians</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The amount, in radians, by which to rotate around the X-axis.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The rotation matrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_RotateX_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateX*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_RotateX_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateX(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPVector3)">
+  RotateX(FP, FPVector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L972"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a matrix for rotating points around the X-axis, from a center point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 RotateX(FP radians, FPVector3 centerPoint)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>radians</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The amount, in radians, by which to rotate around the X-axis.</p>
+</dd>
+    <dt><code>centerPoint</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd><p>The center point.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The rotation matrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_RotateY_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateY*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_RotateY_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateY(GameFrameX.Utility.Math.FP)">
+  RotateY(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1011"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a matrix for rotating points around the Y-axis.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 RotateY(FP radians)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>radians</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The amount, in radians, by which to rotate around the Y-axis.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The rotation matrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_RotateY_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateY*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_RotateY_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateY(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPVector3)">
+  RotateY(FP, FPVector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1048"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a matrix for rotating points around the Y-axis, from a center point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 RotateY(FP radians, FPVector3 centerPoint)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>radians</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The amount, in radians, by which to rotate around the Y-axis.</p>
+</dd>
+    <dt><code>centerPoint</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd><p>The center point.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The rotation matrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_RotateZ_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateZ*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_RotateZ_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateZ(GameFrameX.Utility.Math.FP)">
+  RotateZ(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1087"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a matrix for rotating points around the Z-axis.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 RotateZ(FP radians)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>radians</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The amount, in radians, by which to rotate around the Z-axis.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The rotation matrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_RotateZ_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateZ*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_RotateZ_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateZ(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPVector3)">
+  RotateZ(FP, FPVector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1124"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a matrix for rotating points around the Z-axis, from a center point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 RotateZ(FP radians, FPVector3 centerPoint)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>radians</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The amount, in radians, by which to rotate around the Z-axis.</p>
+</dd>
+    <dt><code>centerPoint</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd><p>The center point.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The rotation matrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale(GameFrameX.Utility.Math.FP)">
+  Scale(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L914"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a uniform scaling matrix that scales equally on each axis.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 Scale(FP scale)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>scale</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The uniform scaling factor.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The scaling matrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  Scale(FP, FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L828"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a scaling matrix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 Scale(FP xScale, FP yScale, FP zScale)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>xScale</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>Value to scale by on the X-axis.</p>
+</dd>
+    <dt><code>yScale</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>Value to scale by on the Y-axis.</p>
+</dd>
+    <dt><code>zScale</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>Value to scale by on the Z-axis.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The scaling matrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPVector3)">
+  Scale(FP, FP, FP, FPVector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L860"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a scaling matrix with a center point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 Scale(FP xScale, FP yScale, FP zScale, FPVector3 centerPoint)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>xScale</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>Value to scale by on the X-axis.</p>
+</dd>
+    <dt><code>yScale</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>Value to scale by on the Y-axis.</p>
+</dd>
+    <dt><code>zScale</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>Value to scale by on the Z-axis.</p>
+</dd>
+    <dt><code>centerPoint</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd><p>The center point.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The scaling matrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPVector3)">
+  Scale(FP, FPVector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L925"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a uniform scaling matrix that scales equally on each axis with a center point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 Scale(FP scale, FPVector3 centerPoint)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>scale</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The uniform scaling factor.</p>
+</dd>
+    <dt><code>centerPoint</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd><p>The center point.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The scaling matrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale(GameFrameX.Utility.Math.FPVector3)">
+  Scale(FPVector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L893"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a scaling matrix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 Scale(FPVector3 scales)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>scales</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd><p>The vector containing the amount to scale by on each axis.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The scaling matrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_GameFrameX_Utility_Math_FPVector3_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale(GameFrameX.Utility.Math.FPVector3,GameFrameX.Utility.Math.FPVector3)">
+  Scale(FPVector3, FPVector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L904"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a scaling matrix with a center point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 Scale(FPVector3 scales, FPVector3 centerPoint)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>scales</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd><p>The vector containing the amount to scale by on each axis.</p>
+</dd>
+    <dt><code>centerPoint</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd><p>The center point.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The scaling matrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_TRS_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.TRS*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_TRS_GameFrameX_Utility_Math_FPVector3_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.TRS(GameFrameX.Utility.Math.FPVector3,GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPVector3)">
+  TRS(FPVector3, FPQuaternion, FPVector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1241"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 TRS(FPVector3 translation, FPQuaternion rotation, FPVector3 scale)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>translation</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+    <dt><code>rotation</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+    <dt><code>scale</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_TRS_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.TRS*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_TRS_GameFrameX_Utility_Math_FPVector3_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPVector3_GameFrameX_Utility_Math_FPMatrix4x4__" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.TRS(GameFrameX.Utility.Math.FPVector3,GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPVector3,GameFrameX.Utility.Math.FPMatrix4x4@)">
+  TRS(FPVector3, FPQuaternion, FPVector3, out FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1236"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void TRS(FPVector3 translation, FPQuaternion rotation, FPVector3 scale, out FPMatrix4x4 matrix)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>translation</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+    <dt><code>rotation</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
+    <dd></dd>
+    <dt><code>scale</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+    <dt><code>matrix</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_ToString_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.ToString*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_ToString" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1227"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the fully qualified type name of this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The fully qualified type name.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Trace_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Trace*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Trace" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Trace">
+  Trace()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L641"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP Trace()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Translate_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Translate*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Translate_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Translate(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  Translate(FP, FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L792"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a translation matrix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 Translate(FP xPosition, FP yPosition, FP zPosition)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>xPosition</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The amount to translate on the X-axis.</p>
+</dd>
+    <dt><code>yPosition</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The amount to translate on the Y-axis.</p>
+</dd>
+    <dt><code>zPosition</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The amount to translate on the Z-axis.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The translation matrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Translate_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Translate*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Translate_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Translate(GameFrameX.Utility.Math.FPVector3)">
+  Translate(FPVector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L816"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 Translate(FPVector3 translation)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>translation</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Transpose_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Transpose*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Transpose_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Transpose(GameFrameX.Utility.Math.FPMatrix4x4)">
+  Transpose(FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L594"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates the transposed matrix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 Transpose(FPMatrix4x4 matrix)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>matrix</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The matrix which should be transposed.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The transposed JMatrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_Transpose_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Transpose*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Transpose_GameFrameX_Utility_Math_FPMatrix4x4__GameFrameX_Utility_Math_FPMatrix4x4__" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Transpose(GameFrameX.Utility.Math.FPMatrix4x4@,GameFrameX.Utility.Math.FPMatrix4x4@)">
+  Transpose(ref FPMatrix4x4, out FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L606"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates the transposed matrix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Transpose(ref FPMatrix4x4 matrix, out FPMatrix4x4 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>matrix</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The matrix which should be transposed.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The transposed JMatrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_op_Addition_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_Addition*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_op_Addition_GameFrameX_Utility_Math_FPMatrix4x4_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_Addition(GameFrameX.Utility.Math.FPMatrix4x4,GameFrameX.Utility.Math.FPMatrix4x4)">
+  operator +(FPMatrix4x4, FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L652"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds two matrices.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 operator +(FPMatrix4x4 value1, FPMatrix4x4 value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The first matrix.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The second matrix.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The sum of both values.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_op_Equality_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_Equality*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_op_Equality_GameFrameX_Utility_Math_FPMatrix4x4_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_Equality(GameFrameX.Utility.Math.FPMatrix4x4,GameFrameX.Utility.Math.FPMatrix4x4)">
+  operator ==(FPMatrix4x4, FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L702"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(FPMatrix4x4 value1, FPMatrix4x4 value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd></dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_op_Inequality_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_Inequality*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_op_Inequality_GameFrameX_Utility_Math_FPMatrix4x4_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_Inequality(GameFrameX.Utility.Math.FPMatrix4x4,GameFrameX.Utility.Math.FPMatrix4x4)">
+  operator !=(FPMatrix4x4, FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L722"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(FPMatrix4x4 value1, FPMatrix4x4 value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd></dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_op_Multiply_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_op_Multiply_GameFrameX_Utility_Math_FPMatrix4x4_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_Multiply(GameFrameX.Utility.Math.FPMatrix4x4,GameFrameX.Utility.Math.FPMatrix4x4)">
+  operator *(FPMatrix4x4, FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L633"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Multiplies two matrices.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 operator *(FPMatrix4x4 value1, FPMatrix4x4 value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The first matrix.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The second matrix.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The product of both values.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_op_Subtraction_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_Subtraction*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_op_Subtraction_GameFrameX_Utility_Math_FPMatrix4x4_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_Subtraction(GameFrameX.Utility.Math.FPMatrix4x4,GameFrameX.Utility.Math.FPMatrix4x4)">
+  operator -(FPMatrix4x4, FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L694"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Subtracts two matrices.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 operator -(FPMatrix4x4 value1, FPMatrix4x4 value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The first matrix.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The second matrix.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The difference of both values.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPMatrix4x4_op_UnaryNegation_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_UnaryNegation*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_op_UnaryNegation_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_UnaryNegation(GameFrameX.Utility.Math.FPMatrix4x4)">
+  operator -(FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L664"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a new matrix with the negated elements of the given matrix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPMatrix4x4 operator -(FPMatrix4x4 value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The source matrix.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The negated matrix.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L25" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

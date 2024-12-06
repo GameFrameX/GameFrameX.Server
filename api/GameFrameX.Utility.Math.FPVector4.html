@@ -1,0 +1,2521 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Struct FPVector4 | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Struct FPVector4 | GameFrameX.Server ">
+      
+      <meta name="description" content="A vector structure.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/src/apiSpec/new?filename=GameFrameX_Utility_Math_FPVector4.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Math.FPVector4%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.Utility.Math.FPVector4">
+
+
+
+  <h1 id="GameFrameX_Utility_Math_FPVector4" data-uid="GameFrameX.Utility.Math.FPVector4" class="text-break">
+Struct FPVector4  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Utility.html">Utility</a>.<a class="xref" href="GameFrameX.Utility.Math.html">Math</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.Utility.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A vector structure.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct FPVector4</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_IsNotNull_System_Object_">ObjectExtension.IsNotNull(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_IsNull_System_Object_">ObjectExtension.IsNull(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4__ctor_" data-uid="GameFrameX.Utility.Math.FPVector4.#ctor*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4__ctor_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPVector4.#ctor(GameFrameX.Utility.Math.FP)">
+  FPVector4(FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L208"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Constructor initializing a new instance of the structure</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FPVector4(FP xyzw)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>xyzw</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>All components of the vector are set to xyz</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4__ctor_" data-uid="GameFrameX.Utility.Math.FPVector4.#ctor*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4__ctor_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPVector4.#ctor(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  FPVector4(FP, FP, FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L170"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Constructor initializing a new instance of the structure</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FPVector4(FP x, FP y, FP z, FP w)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>z</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+    <dt><code>w</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4__ctor_" data-uid="GameFrameX.Utility.Math.FPVector4.#ctor*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4__ctor_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="GameFrameX.Utility.Math.FPVector4.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+  FPVector4(int, int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L155"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Constructor initializing a new instance of the structure</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FPVector4(int x, int y, int z, int w)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The X component of the vector.</p>
+</dd>
+    <dt><code>y</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The Y component of the vector.</p>
+</dd>
+    <dt><code>z</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The Z component of the vector.</p>
+</dd>
+    <dt><code>w</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The W component of the vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_MaxValue" data-uid="GameFrameX.Utility.Math.FPVector4.MaxValue">
+  MaxValue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A vector with components
+(FP.MaxValue,FP.MaxValue,FP.MaxValue);</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FPVector4 MaxValue</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_MinValue" data-uid="GameFrameX.Utility.Math.FPVector4.MinValue">
+  MinValue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A vector with components
+(FP.MinValue,FP.MinValue,FP.MinValue);</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FPVector4 MinValue</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_one" data-uid="GameFrameX.Utility.Math.FPVector4.one">
+  one
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A vector with components (1,1,1,1);</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FPVector4 one</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_w" data-uid="GameFrameX.Utility.Math.FPVector4.w">
+  w
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The W component of the vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP w</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_x" data-uid="GameFrameX.Utility.Math.FPVector4.x">
+  x
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The X component of the vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP x</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_y" data-uid="GameFrameX.Utility.Math.FPVector4.y">
+  y
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The Y component of the vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP y</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_z" data-uid="GameFrameX.Utility.Math.FPVector4.z">
+  z
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The Z component of the vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP z</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_zero" data-uid="GameFrameX.Utility.Math.FPVector4.zero">
+  zero
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A vector with components (0,0,0,0);</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly FPVector4 zero</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_magnitude_" data-uid="GameFrameX.Utility.Math.FPVector4.magnitude*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_magnitude" data-uid="GameFrameX.Utility.Math.FPVector4.magnitude">
+  magnitude
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the length of the vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP magnitude { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>Returns the length of the vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_normalized_" data-uid="GameFrameX.Utility.Math.FPVector4.normalized*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_normalized" data-uid="GameFrameX.Utility.Math.FPVector4.normalized">
+  normalized
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a normalized version of the vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FPVector4 normalized { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>Returns a normalized version of the vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_sqrMagnitude_" data-uid="GameFrameX.Utility.Math.FPVector4.sqrMagnitude*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_sqrMagnitude" data-uid="GameFrameX.Utility.Math.FPVector4.sqrMagnitude">
+  sqrMagnitude
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the squared length of the vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FP sqrMagnitude { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>Returns the squared length of the vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Abs_" data-uid="GameFrameX.Utility.Math.FPVector4.Abs*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Abs_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.Abs(GameFrameX.Utility.Math.FPVector4)">
+  Abs(FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the absolute value of a vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 Abs(FPVector4 other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Add_" data-uid="GameFrameX.Utility.Math.FPVector4.Add*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Add_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.Add(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FPVector4)">
+  Add(FPVector4, FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L532"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds two vectors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 Add(FPVector4 value1, FPVector4 value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The first vector.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The second vector.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The sum of both vectors.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Add_" data-uid="GameFrameX.Utility.Math.FPVector4.Add*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Add_GameFrameX_Utility_Math_FPVector4__GameFrameX_Utility_Math_FPVector4__GameFrameX_Utility_Math_FPVector4__" data-uid="GameFrameX.Utility.Math.FPVector4.Add(GameFrameX.Utility.Math.FPVector4@,GameFrameX.Utility.Math.FPVector4@,GameFrameX.Utility.Math.FPVector4@)">
+  Add(ref FPVector4, ref FPVector4, out FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L544"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds to vectors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Add(ref FPVector4 value1, ref FPVector4 value2, out FPVector4 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The first vector.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The second vector.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The sum of both vectors.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_ClampMagnitude_" data-uid="GameFrameX.Utility.Math.FPVector4.ClampMagnitude*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_ClampMagnitude_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPVector4.ClampMagnitude(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FP)">
+  ClampMagnitude(FPVector4, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clamps the magnitude of the vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 ClampMagnitude(FPVector4 vector, FP maxLength)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>vector</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+    <dt><code>maxLength</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Distance_" data-uid="GameFrameX.Utility.Math.FPVector4.Distance*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Distance_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.Distance(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FPVector4)">
+  Distance(FPVector4, FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L378"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a vector with the maximum x,y and z values of both vectors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Distance(FPVector4 v1, FPVector4 v2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>v1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+    <dt><code>v2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Divide_" data-uid="GameFrameX.Utility.Math.FPVector4.Divide*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Divide_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPVector4.Divide(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FP)">
+  Divide(FPVector4, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L560"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Divides a vector by a factor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 Divide(FPVector4 value1, FP scaleFactor)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The vector to divide.</p>
+</dd>
+    <dt><code>scaleFactor</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The scale factor.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>Returns the scaled vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Divide_" data-uid="GameFrameX.Utility.Math.FPVector4.Divide*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Divide_GameFrameX_Utility_Math_FPVector4__GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPVector4__" data-uid="GameFrameX.Utility.Math.FPVector4.Divide(GameFrameX.Utility.Math.FPVector4@,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPVector4@)">
+  Divide(ref FPVector4, FP, out FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L572"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Divides a vector by a factor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Divide(ref FPVector4 value1, FP scaleFactor, out FPVector4 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The vector to divide.</p>
+</dd>
+    <dt><code>scaleFactor</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The scale factor.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>Returns the scaled vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Dot_" data-uid="GameFrameX.Utility.Math.FPVector4.Dot*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Dot_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.Dot(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FPVector4)">
+  Dot(FPVector4, FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L504"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calculates the dot product of two vectors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Dot(FPVector4 vector1, FPVector4 vector2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>vector1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The first vector.</p>
+</dd>
+    <dt><code>vector2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The second vector.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>Returns the dot product of both vectors.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Dot_" data-uid="GameFrameX.Utility.Math.FPVector4.Dot*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Dot_GameFrameX_Utility_Math_FPVector4__GameFrameX_Utility_Math_FPVector4__" data-uid="GameFrameX.Utility.Math.FPVector4.Dot(GameFrameX.Utility.Math.FPVector4@,GameFrameX.Utility.Math.FPVector4@)">
+  Dot(ref FPVector4, ref FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L516"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calculates the dot product of both vectors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP Dot(ref FPVector4 vector1, ref FPVector4 vector2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>vector1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The first vector.</p>
+</dd>
+    <dt><code>vector2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The second vector.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>Returns the dot product of both vectors.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Equals_" data-uid="GameFrameX.Utility.Math.FPVector4.Equals*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Equals_System_Object_" data-uid="GameFrameX.Utility.Math.FPVector4.Equals(System.Object)">
+  Equals(object)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L250"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tests if an object is equal to this vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>The object to test.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Returns true if they are euqal, otherwise false.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_GetHashCode_" data-uid="GameFrameX.Utility.Math.FPVector4.GetHashCode*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_GetHashCode" data-uid="GameFrameX.Utility.Math.FPVector4.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L618"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the hashcode of the vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Returns the hashcode of the vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_IsNearlyZero_" data-uid="GameFrameX.Utility.Math.FPVector4.IsNearlyZero*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_IsNearlyZero" data-uid="GameFrameX.Utility.Math.FPVector4.IsNearlyZero">
+  IsNearlyZero()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L431"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Checks if the length of the vector is nearly zero.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsNearlyZero()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Returns true if the vector is nearly zero, otherwise false.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_IsZero_" data-uid="GameFrameX.Utility.Math.FPVector4.IsZero*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_IsZero" data-uid="GameFrameX.Utility.Math.FPVector4.IsZero">
+  IsZero()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L422"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Checks if the length of the vector is zero.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsZero()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Returns true if the vector is zero, otherwise false.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Lerp_" data-uid="GameFrameX.Utility.Math.FPVector4.Lerp*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Lerp_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPVector4.Lerp(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FP)">
+  Lerp(FPVector4, FPVector4, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L223"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Linearly interpolates between two vectors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 Lerp(FPVector4 from, FPVector4 to, FP percent)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>from</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+    <dt><code>to</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+    <dt><code>percent</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_MakeZero_" data-uid="GameFrameX.Utility.Math.FPVector4.MakeZero*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_MakeZero" data-uid="GameFrameX.Utility.Math.FPVector4.MakeZero">
+  MakeZero()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L405"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the length of the vector to zero.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MakeZero()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Max_" data-uid="GameFrameX.Utility.Math.FPVector4.Max*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Max_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.Max(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FPVector4)">
+  Max(FPVector4, FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L366"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a vector with the maximum x,y and z values of both vectors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 Max(FPVector4 value1, FPVector4 value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The first value.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The second value.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>A vector with the maximum x,y and z values of both vectors.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Max_" data-uid="GameFrameX.Utility.Math.FPVector4.Max*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Max_GameFrameX_Utility_Math_FPVector4__GameFrameX_Utility_Math_FPVector4__GameFrameX_Utility_Math_FPVector4__" data-uid="GameFrameX.Utility.Math.FPVector4.Max(GameFrameX.Utility.Math.FPVector4@,GameFrameX.Utility.Math.FPVector4@,GameFrameX.Utility.Math.FPVector4@)">
+  Max(ref FPVector4, ref FPVector4, out FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L389"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a vector with the maximum x,y and z values of both vectors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Max(ref FPVector4 value1, ref FPVector4 value2, out FPVector4 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The first value.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The second value.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>A vector with the maximum x,y and z values of both vectors.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Min_" data-uid="GameFrameX.Utility.Math.FPVector4.Min*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Min_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.Min(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FPVector4)">
+  Min(FPVector4, FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L335"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a vector with the minimum x,y and z values of both vectors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 Min(FPVector4 value1, FPVector4 value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The first value.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The second value.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>A vector with the minimum x,y and z values of both vectors.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Min_" data-uid="GameFrameX.Utility.Math.FPVector4.Min*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Min_GameFrameX_Utility_Math_FPVector4__GameFrameX_Utility_Math_FPVector4__GameFrameX_Utility_Math_FPVector4__" data-uid="GameFrameX.Utility.Math.FPVector4.Min(GameFrameX.Utility.Math.FPVector4@,GameFrameX.Utility.Math.FPVector4@,GameFrameX.Utility.Math.FPVector4@)">
+  Min(ref FPVector4, ref FPVector4, out FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L347"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a vector with the minimum x,y and z values of both vectors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Min(ref FPVector4 value1, ref FPVector4 value2, out FPVector4 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The first value.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The second value.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>A vector with the minimum x,y and z values of both vectors.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Multiply_" data-uid="GameFrameX.Utility.Math.FPVector4.Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Multiply_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPVector4.Multiply(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FP)">
+  Multiply(FPVector4, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L746"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Multiply a vector with a factor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 Multiply(FPVector4 value1, FP scaleFactor)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The vector to multiply.</p>
+</dd>
+    <dt><code>scaleFactor</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The scale factor.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>Returns the multiplied vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Multiply_" data-uid="GameFrameX.Utility.Math.FPVector4.Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Multiply_GameFrameX_Utility_Math_FPVector4__GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPVector4__" data-uid="GameFrameX.Utility.Math.FPVector4.Multiply(GameFrameX.Utility.Math.FPVector4@,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPVector4@)">
+  Multiply(ref FPVector4, FP, out FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L758"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Multiply a vector with a factor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Multiply(ref FPVector4 value1, FP scaleFactor, out FPVector4 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The vector to multiply.</p>
+</dd>
+    <dt><code>scaleFactor</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The scale factor.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>Returns the multiplied vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Negate_" data-uid="GameFrameX.Utility.Math.FPVector4.Negate*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Negate" data-uid="GameFrameX.Utility.Math.FPVector4.Negate">
+  Negate()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L631"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Inverses the direction of the vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Negate()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Negate_" data-uid="GameFrameX.Utility.Math.FPVector4.Negate*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Negate_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.Negate(GameFrameX.Utility.Math.FPVector4)">
+  Negate(FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L644"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Inverses the direction of a vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 Negate(FPVector4 value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The vector to inverse.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The negated vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Negate_" data-uid="GameFrameX.Utility.Math.FPVector4.Negate*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Negate_GameFrameX_Utility_Math_FPVector4__GameFrameX_Utility_Math_FPVector4__" data-uid="GameFrameX.Utility.Math.FPVector4.Negate(GameFrameX.Utility.Math.FPVector4@,GameFrameX.Utility.Math.FPVector4@)">
+  Negate(ref FPVector4, out FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L655"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Inverses the direction of a vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Negate(ref FPVector4 value, out FPVector4 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The vector to inverse.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The negated vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Normalize_" data-uid="GameFrameX.Utility.Math.FPVector4.Normalize*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Normalize" data-uid="GameFrameX.Utility.Math.FPVector4.Normalize">
+  Normalize()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L682"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Normalizes this vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Normalize()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Normalize_" data-uid="GameFrameX.Utility.Math.FPVector4.Normalize*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Normalize_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.Normalize(GameFrameX.Utility.Math.FPVector4)">
+  Normalize(FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L673"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Normalizes the given vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 Normalize(FPVector4 value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The vector which should be normalized.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>A normalized vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Normalize_" data-uid="GameFrameX.Utility.Math.FPVector4.Normalize*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Normalize_GameFrameX_Utility_Math_FPVector4__GameFrameX_Utility_Math_FPVector4__" data-uid="GameFrameX.Utility.Math.FPVector4.Normalize(GameFrameX.Utility.Math.FPVector4@,GameFrameX.Utility.Math.FPVector4@)">
+  Normalize(ref FPVector4, out FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L697"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Normalizes the given vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Normalize(ref FPVector4 value, out FPVector4 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The vector which should be normalized.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>A normalized vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Scale_" data-uid="GameFrameX.Utility.Math.FPVector4.Scale*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Scale_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.Scale(GameFrameX.Utility.Math.FPVector4)">
+  Scale(FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L181"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Multiplies each component of the vector by the same components of the provided vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Scale(FPVector4 other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Scale_" data-uid="GameFrameX.Utility.Math.FPVector4.Scale*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Scale_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.Scale(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FPVector4)">
+  Scale(FPVector4, FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L263"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Multiplies each component of the vector by the same components of the provided vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 Scale(FPVector4 vecA, FPVector4 vecB)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>vecA</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+    <dt><code>vecB</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Set_" data-uid="GameFrameX.Utility.Math.FPVector4.Set*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Set_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPVector4.Set(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
+  Set(FP, FP, FP, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L196"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets all vector component to specific values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Set(FP x, FP y, FP z, FP w)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The X component of the vector.</p>
+</dd>
+    <dt><code>y</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The Y component of the vector.</p>
+</dd>
+    <dt><code>z</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The Z component of the vector.</p>
+</dd>
+    <dt><code>w</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The W component of the vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Subtract_" data-uid="GameFrameX.Utility.Math.FPVector4.Subtract*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Subtract_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.Subtract(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FPVector4)">
+  Subtract(FPVector4, FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L589"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Subtracts two vectors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 Subtract(FPVector4 value1, FPVector4 value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The first vector.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The second vector.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The difference of both vectors.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Subtract_" data-uid="GameFrameX.Utility.Math.FPVector4.Subtract*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Subtract_GameFrameX_Utility_Math_FPVector4__GameFrameX_Utility_Math_FPVector4__GameFrameX_Utility_Math_FPVector4__" data-uid="GameFrameX.Utility.Math.FPVector4.Subtract(GameFrameX.Utility.Math.FPVector4@,GameFrameX.Utility.Math.FPVector4@,GameFrameX.Utility.Math.FPVector4@)">
+  Subtract(ref FPVector4, ref FPVector4, out FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L601"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Subtracts to vectors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Subtract(ref FPVector4 value1, ref FPVector4 value2, out FPVector4 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The first vector.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The second vector.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The difference of both vectors.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Swap_" data-uid="GameFrameX.Utility.Math.FPVector4.Swap*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Swap_GameFrameX_Utility_Math_FPVector4__GameFrameX_Utility_Math_FPVector4__" data-uid="GameFrameX.Utility.Math.FPVector4.Swap(GameFrameX.Utility.Math.FPVector4@,GameFrameX.Utility.Math.FPVector4@)">
+  Swap(ref FPVector4, ref FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L716"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Swaps the components of both vectors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Swap(ref FPVector4 vector1, ref FPVector4 vector2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>vector1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The first vector to swap with the second.</p>
+</dd>
+    <dt><code>vector2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The second vector to swap with the first.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_ToFPVector_" data-uid="GameFrameX.Utility.Math.FPVector4.ToFPVector*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_ToFPVector" data-uid="GameFrameX.Utility.Math.FPVector4.ToFPVector">
+  ToFPVector()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L877"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts the vector to a FPVector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FPVector3 ToFPVector()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_ToFPVector2_" data-uid="GameFrameX.Utility.Math.FPVector4.ToFPVector2*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_ToFPVector2" data-uid="GameFrameX.Utility.Math.FPVector4.ToFPVector2">
+  ToFPVector2()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L868"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts the vector to a FPVector2.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FPVector2 ToFPVector2()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector2.html">FPVector2</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_ToString_" data-uid="GameFrameX.Utility.Math.FPVector4.ToString*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_ToString" data-uid="GameFrameX.Utility.Math.FPVector4.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L235"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Builds a string from the JVector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>A string containing all three components.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Transform_" data-uid="GameFrameX.Utility.Math.FPVector4.Transform*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Transform_GameFrameX_Utility_Math_FPVector3_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPVector4.Transform(GameFrameX.Utility.Math.FPVector3,GameFrameX.Utility.Math.FPMatrix4x4)">
+  Transform(FPVector3, FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L459"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Transforms a vector by the given matrix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 Transform(FPVector3 position, FPMatrix4x4 matrix)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>position</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd></dd>
+    <dt><code>matrix</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Transform_" data-uid="GameFrameX.Utility.Math.FPVector4.Transform*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Transform_GameFrameX_Utility_Math_FPVector3__GameFrameX_Utility_Math_FPMatrix4x4__GameFrameX_Utility_Math_FPVector4__" data-uid="GameFrameX.Utility.Math.FPVector4.Transform(GameFrameX.Utility.Math.FPVector3@,GameFrameX.Utility.Math.FPMatrix4x4@,GameFrameX.Utility.Math.FPVector4@)">
+  Transform(ref FPVector3, ref FPMatrix4x4, out FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L471"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Transforms a vector by the given matrix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Transform(ref FPVector3 vector3, ref FPMatrix4x4 matrix, out FPVector4 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>vector3</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
+    <dd><p>The vector to transform.</p>
+</dd>
+    <dt><code>matrix</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The transform matrix.</p>
+</dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The transformed vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Transform_" data-uid="GameFrameX.Utility.Math.FPVector4.Transform*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Transform_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPVector4.Transform(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FPMatrix4x4)">
+  Transform(FPVector4, FPMatrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L447"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Transforms a vector by the given matrix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 Transform(FPVector4 position, FPMatrix4x4 matrix)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>position</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The vector to transform.</p>
+</dd>
+    <dt><code>matrix</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd><p>The transform matrix.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The transformed vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_Transform_" data-uid="GameFrameX.Utility.Math.FPVector4.Transform*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_Transform_GameFrameX_Utility_Math_FPVector4__GameFrameX_Utility_Math_FPMatrix4x4__GameFrameX_Utility_Math_FPVector4__" data-uid="GameFrameX.Utility.Math.FPVector4.Transform(GameFrameX.Utility.Math.FPVector4@,GameFrameX.Utility.Math.FPMatrix4x4@,GameFrameX.Utility.Math.FPVector4@)">
+  Transform(ref FPVector4, ref FPMatrix4x4, out FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L485"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Transforms a vector by the given matrix.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Transform(ref FPVector4 vector, ref FPMatrix4x4 matrix, out FPVector4 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>vector</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+    <dt><code>matrix</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
+    <dd></dd>
+    <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_op_Addition_" data-uid="GameFrameX.Utility.Math.FPVector4.op_Addition*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_op_Addition_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.op_Addition(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FPVector4)">
+  operator +(FPVector4, FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L844"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds two vectors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 operator +(FPVector4 value1, FPVector4 value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The first vector.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The second vector.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The sum of both vectors.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_op_Division_" data-uid="GameFrameX.Utility.Math.FPVector4.op_Division*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_op_Division_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPVector4.op_Division(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FP)">
+  operator /(FPVector4, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L858"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Divides a vector by a factor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 operator /(FPVector4 value1, FP scaleFactor)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The vector to divide.</p>
+</dd>
+    <dt><code>scaleFactor</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The scale factor.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>Returns the scaled vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_op_Equality_" data-uid="GameFrameX.Utility.Math.FPVector4.op_Equality*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_op_Equality_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.op_Equality(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FPVector4)">
+  operator ==(FPVector4, FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L298"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tests if two JVector are equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(FPVector4 value1, FPVector4 value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The first value.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The second value.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Returns true if both values are equal, otherwise false.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_op_Inequality_" data-uid="GameFrameX.Utility.Math.FPVector4.op_Inequality*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_op_Inequality_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.op_Inequality(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FPVector4)">
+  operator !=(FPVector4, FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L314"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tests if two JVector are not equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(FPVector4 value1, FPVector4 value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The first value.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The second value.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Returns false if both values are equal, otherwise true.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_op_Multiply_" data-uid="GameFrameX.Utility.Math.FPVector4.op_Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_op_Multiply_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.op_Multiply(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPVector4)">
+  operator *(FP, FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L810"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Multiplies a vector by a scale factor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 operator *(FP value1, FPVector4 value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The scale factor.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The vector to scale.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>Returns the scaled vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_op_Multiply_" data-uid="GameFrameX.Utility.Math.FPVector4.op_Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_op_Multiply_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPVector4.op_Multiply(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FP)">
+  operator *(FPVector4, FP)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L793"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Multiplies a vector by a scale factor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 operator *(FPVector4 value1, FP value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The vector to scale.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>The scale factor.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>Returns the scaled vector.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_op_Multiply_" data-uid="GameFrameX.Utility.Math.FPVector4.op_Multiply*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_op_Multiply_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.op_Multiply(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FPVector4)">
+  operator *(FPVector4, FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L777"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calculates the dot product of two vectors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FP operator *(FPVector4 value1, FPVector4 value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The first vector.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The second vector.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
+    <dd><p>Returns the dot product of both.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_op_Subtraction_" data-uid="GameFrameX.Utility.Math.FPVector4.op_Subtraction*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_op_Subtraction_GameFrameX_Utility_Math_FPVector4_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.op_Subtraction(GameFrameX.Utility.Math.FPVector4,GameFrameX.Utility.Math.FPVector4)">
+  operator -(FPVector4, FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L827"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Subtracts two vectors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 operator -(FPVector4 value1, FPVector4 value2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The first vector.</p>
+</dd>
+    <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The second vector.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd><p>The difference of both vectors.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Math_FPVector4_op_UnaryNegation_" data-uid="GameFrameX.Utility.Math.FPVector4.op_UnaryNegation*"></a>
+
+  <h3 id="GameFrameX_Utility_Math_FPVector4_op_UnaryNegation_GameFrameX_Utility_Math_FPVector4_" data-uid="GameFrameX.Utility.Math.FPVector4.op_UnaryNegation(GameFrameX.Utility.Math.FPVector4)">
+  operator -(FPVector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L279"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Inverses the direction of a vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FPVector4 operator -(FPVector4 value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Math.FPVector4.html">FPVector4</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Math/FPVector4.cs/#L25" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

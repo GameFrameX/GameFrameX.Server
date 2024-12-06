@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class Verifier.Crc64 | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class Verifier.Crc64 | GameFrameX.Server ">
+      
+      <meta name="description" content="Provides an implementation of the CRC-64 algorithm as described in ECMA-182, Annex B.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/src/apiSpec/new?filename=GameFrameX_Utility_Verifier_Crc64.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Verifier.Crc64%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.Utility.Verifier.Crc64">
+
+
+
+  <h1 id="GameFrameX_Utility_Verifier_Crc64" data-uid="GameFrameX.Utility.Verifier.Crc64" class="text-break">
+Class Verifier.Crc64  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Utility.Verifier.Crc64.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Utility.html">Utility</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.Utility.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides an implementation of the CRC-64 algorithm as described in ECMA-182, Annex B.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class Verifier.Crc64 : Verifier.NonCryptographicHashAlgorithm</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="GameFrameX.Utility.Verifier.html">Verifier</a>.<a class="xref" href="GameFrameX.Utility.Verifier.NonCryptographicHashAlgorithm.html">NonCryptographicHashAlgorithm</a></div>
+      <div><span class="xref">Verifier.Crc64</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="GameFrameX.Utility.Verifier.NonCryptographicHashAlgorithm.html#GameFrameX_Utility_Verifier_NonCryptographicHashAlgorithm_HashLengthInBytes">Verifier.NonCryptographicHashAlgorithm.HashLengthInBytes</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Utility.Verifier.NonCryptographicHashAlgorithm.html#GameFrameX_Utility_Verifier_NonCryptographicHashAlgorithm_Append_System_Byte___">Verifier.NonCryptographicHashAlgorithm.Append(byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Utility.Verifier.NonCryptographicHashAlgorithm.html#GameFrameX_Utility_Verifier_NonCryptographicHashAlgorithm_Append_System_IO_Stream_">Verifier.NonCryptographicHashAlgorithm.Append(Stream)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Utility.Verifier.NonCryptographicHashAlgorithm.html#GameFrameX_Utility_Verifier_NonCryptographicHashAlgorithm_GetCurrentHash">Verifier.NonCryptographicHashAlgorithm.GetCurrentHash()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Utility.Verifier.NonCryptographicHashAlgorithm.html#GameFrameX_Utility_Verifier_NonCryptographicHashAlgorithm_TryGetCurrentHash_System_Span_System_Byte__System_Int32__">Verifier.NonCryptographicHashAlgorithm.TryGetCurrentHash(Span&lt;byte&gt;, out int)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Utility.Verifier.NonCryptographicHashAlgorithm.html#GameFrameX_Utility_Verifier_NonCryptographicHashAlgorithm_GetCurrentHash_System_Span_System_Byte__">Verifier.NonCryptographicHashAlgorithm.GetCurrentHash(Span&lt;byte&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Utility.Verifier.NonCryptographicHashAlgorithm.html#GameFrameX_Utility_Verifier_NonCryptographicHashAlgorithm_GetHashAndReset">Verifier.NonCryptographicHashAlgorithm.GetHashAndReset()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Utility.Verifier.NonCryptographicHashAlgorithm.html#GameFrameX_Utility_Verifier_NonCryptographicHashAlgorithm_TryGetHashAndReset_System_Span_System_Byte__System_Int32__">Verifier.NonCryptographicHashAlgorithm.TryGetHashAndReset(Span&lt;byte&gt;, out int)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Utility.Verifier.NonCryptographicHashAlgorithm.html#GameFrameX_Utility_Verifier_NonCryptographicHashAlgorithm_GetHashAndReset_System_Span_System_Byte__">Verifier.NonCryptographicHashAlgorithm.GetHashAndReset(Span&lt;byte&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_CheckNotNull__1___0_System_String_">ObjectExtension.CheckNotNull&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_CheckNotNull__1___0_System_String_System_String_">ObjectExtension.CheckNotNull&lt;T&gt;(T, string, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_IsNotNull_System_Object_">ObjectExtension.IsNotNull(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Extension.ObjectExtension.html#GameFrameX_Extension_ObjectExtension_IsNull_System_Object_">ObjectExtension.IsNull(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="GameFrameX_Utility_Verifier_Crc64_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>
+    For methods that return byte arrays or that write into spans of bytes,
+    this implementation emits the answer in the Big Endian byte order so that
+    the CRC residue relationship (CRC(message concat CRC(message))) is a fixed value) holds.
+    For CRC-64 this stable output is the byte sequence
+    <code>{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }</code>.
+  </p>
+<p>
+    There are multiple, incompatible, definitions of a 64-bit cyclic redundancy
+    check (CRC) algorithm. When interoperating with another system, ensure that you
+    are using the same definition. The definition used by this implementation is not
+    compatible with the cyclic redundancy check described in ISO 3309.
+  </p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="GameFrameX_Utility_Verifier_Crc64__ctor_" data-uid="GameFrameX.Utility.Verifier.Crc64.#ctor*"></a>
+
+  <h3 id="GameFrameX_Utility_Verifier_Crc64__ctor" data-uid="GameFrameX.Utility.Verifier.Crc64.#ctor">
+  Crc64()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Utility.Verifier.Crc64.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="GameFrameX.Utility.Verifier.Crc64.html">Verifier.Crc64</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Crc64()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_Utility_Verifier_Crc64_Append_" data-uid="GameFrameX.Utility.Verifier.Crc64.Append*"></a>
+
+  <h3 id="GameFrameX_Utility_Verifier_Crc64_Append_System_ReadOnlySpan_System_Byte__" data-uid="GameFrameX.Utility.Verifier.Crc64.Append(System.ReadOnlySpan{System.Byte})">
+  Append(ReadOnlySpan&lt;byte&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Utility.Verifier.Crc64.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends the contents of <code class="paramref">source</code> to the data already
+processed for the current hash computation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Append(ReadOnlySpan&lt;byte&gt; source)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>The data to process.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Verifier_Crc64_GetCurrentHashAsUInt64_" data-uid="GameFrameX.Utility.Verifier.Crc64.GetCurrentHashAsUInt64*"></a>
+
+  <h3 id="GameFrameX_Utility_Verifier_Crc64_GetCurrentHashAsUInt64" data-uid="GameFrameX.Utility.Verifier.Crc64.GetCurrentHashAsUInt64">
+  GetCurrentHashAsUInt64()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Utility.Verifier.Crc64.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the current computed hash value without modifying accumulated state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong GetCurrentHashAsUInt64()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>The hash value for the data already provided.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Verifier_Crc64_GetCurrentHashCore_" data-uid="GameFrameX.Utility.Verifier.Crc64.GetCurrentHashCore*"></a>
+
+  <h3 id="GameFrameX_Utility_Verifier_Crc64_GetCurrentHashCore_System_Span_System_Byte__" data-uid="GameFrameX.Utility.Verifier.Crc64.GetCurrentHashCore(System.Span{System.Byte})">
+  GetCurrentHashCore(Span&lt;byte&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Utility.Verifier.Crc64.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes the computed hash value to <code class="paramref">destination</code>
+without modifying accumulated state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void GetCurrentHashCore(Span&lt;byte&gt; destination)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>destination</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>The buffer that receives the computed hash value.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Verifier_Crc64_GetHashAndResetCore_" data-uid="GameFrameX.Utility.Verifier.Crc64.GetHashAndResetCore*"></a>
+
+  <h3 id="GameFrameX_Utility_Verifier_Crc64_GetHashAndResetCore_System_Span_System_Byte__" data-uid="GameFrameX.Utility.Verifier.Crc64.GetHashAndResetCore(System.Span{System.Byte})">
+  GetHashAndResetCore(Span&lt;byte&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Utility.Verifier.Crc64.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes the computed hash value to <code class="paramref">destination</code>
+then clears the accumulated state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void GetHashAndResetCore(Span&lt;byte&gt; destination)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>destination</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Verifier_Crc64_Hash_" data-uid="GameFrameX.Utility.Verifier.Crc64.Hash*"></a>
+
+  <h3 id="GameFrameX_Utility_Verifier_Crc64_Hash_System_Byte___" data-uid="GameFrameX.Utility.Verifier.Crc64.Hash(System.Byte[])">
+  Hash(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Utility.Verifier.Crc64.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Computes the CRC-64 hash of the provided data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] Hash(byte[] source)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>The data to hash.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>The CRC-64 hash of the provided data.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p><code class="paramref">source</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_Verifier_Crc64_Hash_" data-uid="GameFrameX.Utility.Verifier.Crc64.Hash*"></a>
+
+  <h3 id="GameFrameX_Utility_Verifier_Crc64_Hash_System_ReadOnlySpan_System_Byte__" data-uid="GameFrameX.Utility.Verifier.Crc64.Hash(System.ReadOnlySpan{System.Byte})">
+  Hash(ReadOnlySpan&lt;byte&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Utility.Verifier.Crc64.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Computes the CRC-64 hash of the provided data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] Hash(ReadOnlySpan&lt;byte&gt; source)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>The data to hash.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>The CRC-64 hash of the provided data.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Verifier_Crc64_Hash_" data-uid="GameFrameX.Utility.Verifier.Crc64.Hash*"></a>
+
+  <h3 id="GameFrameX_Utility_Verifier_Crc64_Hash_System_ReadOnlySpan_System_Byte__System_Span_System_Byte__" data-uid="GameFrameX.Utility.Verifier.Crc64.Hash(System.ReadOnlySpan{System.Byte},System.Span{System.Byte})">
+  Hash(ReadOnlySpan&lt;byte&gt;, Span&lt;byte&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Utility.Verifier.Crc64.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Computes the CRC-64 hash of the provided data into the provided destination.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int Hash(ReadOnlySpan&lt;byte&gt; source, Span&lt;byte&gt; destination)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>The data to hash.</p>
+</dd>
+    <dt><code>destination</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>The buffer that receives the computed hash value.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of bytes written to <code class="paramref">destination</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Verifier_Crc64_HashToUInt64_" data-uid="GameFrameX.Utility.Verifier.Crc64.HashToUInt64*"></a>
+
+  <h3 id="GameFrameX_Utility_Verifier_Crc64_HashToUInt64_System_ReadOnlySpan_System_Byte__" data-uid="GameFrameX.Utility.Verifier.Crc64.HashToUInt64(System.ReadOnlySpan{System.Byte})">
+  HashToUInt64(ReadOnlySpan&lt;byte&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Utility.Verifier.Crc64.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Computes the CRC-64 hash of the provided data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ulong HashToUInt64(ReadOnlySpan&lt;byte&gt; source)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>The data to hash.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>The computed CRC-64 hash.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Verifier_Crc64_Reset_" data-uid="GameFrameX.Utility.Verifier.Crc64.Reset*"></a>
+
+  <h3 id="GameFrameX_Utility_Verifier_Crc64_Reset" data-uid="GameFrameX.Utility.Verifier.Crc64.Reset">
+  Reset()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Utility.Verifier.Crc64.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Resets the hash computation to the initial state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Reset()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Verifier_Crc64_TryHash_" data-uid="GameFrameX.Utility.Verifier.Crc64.TryHash*"></a>
+
+  <h3 id="GameFrameX_Utility_Verifier_Crc64_TryHash_System_ReadOnlySpan_System_Byte__System_Span_System_Byte__System_Int32__" data-uid="GameFrameX.Utility.Verifier.Crc64.TryHash(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Int32@)">
+  TryHash(ReadOnlySpan&lt;byte&gt;, Span&lt;byte&gt;, out int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Utility.Verifier.Crc64.cs/#L127"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Attempts to compute the CRC-64 hash of the provided data into the provided destination.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryHash(ReadOnlySpan&lt;byte&gt; source, Span&lt;byte&gt; destination, out int bytesWritten)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>The data to hash.</p>
+</dd>
+    <dt><code>destination</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>The buffer that receives the computed hash value.</p>
+</dd>
+    <dt><code>bytesWritten</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>On success, receives the number of bytes written to <code class="paramref">destination</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">destination</code> is long enough to receive
+the computed hash value (8 bytes); otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/src/GameFrameX.Utility/Utility.Verifier.Crc64.cs/#L27" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
