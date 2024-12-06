@@ -30,6 +30,7 @@ jobs:
         run: |
           cd ${{ github.workspace }}/docs
           pwd | ls
+          docfx metadata
           docfx build docfx.json
 
       - name: Deploy to GitHub Pages
