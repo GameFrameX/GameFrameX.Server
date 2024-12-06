@@ -15409,123 +15409,123 @@ references:
   commentId: N:GameFrameX.Utility
   fullName: GameFrameX.Utility
   nameWithType: GameFrameX.Utility
-- uid: GameFrameX.Utility.Assembly
-  name: Assembly
-  href: api/GameFrameX.Utility.Assembly.html
-  commentId: T:GameFrameX.Utility.Assembly
-  fullName: GameFrameX.Utility.Assembly
-  nameWithType: Assembly
-- uid: GameFrameX.Utility.Assembly.GetAssemblies
+- uid: GameFrameX.Utility.AssemblyHelper
+  name: AssemblyHelper
+  href: api/GameFrameX.Utility.AssemblyHelper.html
+  commentId: T:GameFrameX.Utility.AssemblyHelper
+  fullName: GameFrameX.Utility.AssemblyHelper
+  nameWithType: AssemblyHelper
+- uid: GameFrameX.Utility.AssemblyHelper.GetAssemblies
   name: GetAssemblies()
-  href: api/GameFrameX.Utility.Assembly.html#GameFrameX_Utility_Assembly_GetAssemblies
-  commentId: M:GameFrameX.Utility.Assembly.GetAssemblies
-  fullName: GameFrameX.Utility.Assembly.GetAssemblies()
-  nameWithType: Assembly.GetAssemblies()
-- uid: GameFrameX.Utility.Assembly.GetAssemblies*
+  href: api/GameFrameX.Utility.AssemblyHelper.html#GameFrameX_Utility_AssemblyHelper_GetAssemblies
+  commentId: M:GameFrameX.Utility.AssemblyHelper.GetAssemblies
+  fullName: GameFrameX.Utility.AssemblyHelper.GetAssemblies()
+  nameWithType: AssemblyHelper.GetAssemblies()
+- uid: GameFrameX.Utility.AssemblyHelper.GetAssemblies*
   name: GetAssemblies
-  href: api/GameFrameX.Utility.Assembly.html#GameFrameX_Utility_Assembly_GetAssemblies_
-  commentId: Overload:GameFrameX.Utility.Assembly.GetAssemblies
+  href: api/GameFrameX.Utility.AssemblyHelper.html#GameFrameX_Utility_AssemblyHelper_GetAssemblies_
+  commentId: Overload:GameFrameX.Utility.AssemblyHelper.GetAssemblies
   isSpec: "True"
-  fullName: GameFrameX.Utility.Assembly.GetAssemblies
-  nameWithType: Assembly.GetAssemblies
-- uid: GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNames(System.Type)
+  fullName: GameFrameX.Utility.AssemblyHelper.GetAssemblies
+  nameWithType: AssemblyHelper.GetAssemblies
+- uid: GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNames(System.Type)
   name: GetRuntimeImplementTypeNames(Type)
-  href: api/GameFrameX.Utility.Assembly.html#GameFrameX_Utility_Assembly_GetRuntimeImplementTypeNames_System_Type_
-  commentId: M:GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNames(System.Type)
-  fullName: GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNames(System.Type)
-  nameWithType: Assembly.GetRuntimeImplementTypeNames(Type)
-- uid: GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNames*
+  href: api/GameFrameX.Utility.AssemblyHelper.html#GameFrameX_Utility_AssemblyHelper_GetRuntimeImplementTypeNames_System_Type_
+  commentId: M:GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNames(System.Type)
+  fullName: GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNames(System.Type)
+  nameWithType: AssemblyHelper.GetRuntimeImplementTypeNames(Type)
+- uid: GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNames*
   name: GetRuntimeImplementTypeNames
-  href: api/GameFrameX.Utility.Assembly.html#GameFrameX_Utility_Assembly_GetRuntimeImplementTypeNames_
-  commentId: Overload:GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNames
+  href: api/GameFrameX.Utility.AssemblyHelper.html#GameFrameX_Utility_AssemblyHelper_GetRuntimeImplementTypeNames_
+  commentId: Overload:GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNames
   isSpec: "True"
-  fullName: GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNames
-  nameWithType: Assembly.GetRuntimeImplementTypeNames
-- uid: GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNamesInstance*
+  fullName: GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNames
+  nameWithType: AssemblyHelper.GetRuntimeImplementTypeNames
+- uid: GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNamesInstance*
   name: GetRuntimeImplementTypeNamesInstance
-  href: api/GameFrameX.Utility.Assembly.html#GameFrameX_Utility_Assembly_GetRuntimeImplementTypeNamesInstance_
-  commentId: Overload:GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNamesInstance
+  href: api/GameFrameX.Utility.AssemblyHelper.html#GameFrameX_Utility_AssemblyHelper_GetRuntimeImplementTypeNamesInstance_
+  commentId: Overload:GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNamesInstance
   isSpec: "True"
-  fullName: GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNamesInstance
-  nameWithType: Assembly.GetRuntimeImplementTypeNamesInstance
-- uid: GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNamesInstance``1
+  fullName: GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNamesInstance
+  nameWithType: AssemblyHelper.GetRuntimeImplementTypeNamesInstance
+- uid: GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNamesInstance``1
   name: GetRuntimeImplementTypeNamesInstance<T>()
-  href: api/GameFrameX.Utility.Assembly.html#GameFrameX_Utility_Assembly_GetRuntimeImplementTypeNamesInstance__1
-  commentId: M:GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNamesInstance``1
+  href: api/GameFrameX.Utility.AssemblyHelper.html#GameFrameX_Utility_AssemblyHelper_GetRuntimeImplementTypeNamesInstance__1
+  commentId: M:GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNamesInstance``1
   name.vb: GetRuntimeImplementTypeNamesInstance(Of T)()
-  fullName: GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNamesInstance<T>()
-  fullName.vb: GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNamesInstance(Of T)()
-  nameWithType: Assembly.GetRuntimeImplementTypeNamesInstance<T>()
-  nameWithType.vb: Assembly.GetRuntimeImplementTypeNamesInstance(Of T)()
-- uid: GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNames``1
+  fullName: GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNamesInstance<T>()
+  fullName.vb: GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNamesInstance(Of T)()
+  nameWithType: AssemblyHelper.GetRuntimeImplementTypeNamesInstance<T>()
+  nameWithType.vb: AssemblyHelper.GetRuntimeImplementTypeNamesInstance(Of T)()
+- uid: GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNames``1
   name: GetRuntimeImplementTypeNames<T>()
-  href: api/GameFrameX.Utility.Assembly.html#GameFrameX_Utility_Assembly_GetRuntimeImplementTypeNames__1
-  commentId: M:GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNames``1
+  href: api/GameFrameX.Utility.AssemblyHelper.html#GameFrameX_Utility_AssemblyHelper_GetRuntimeImplementTypeNames__1
+  commentId: M:GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNames``1
   name.vb: GetRuntimeImplementTypeNames(Of T)()
-  fullName: GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNames<T>()
-  fullName.vb: GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNames(Of T)()
-  nameWithType: Assembly.GetRuntimeImplementTypeNames<T>()
-  nameWithType.vb: Assembly.GetRuntimeImplementTypeNames(Of T)()
-- uid: GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNames``2
+  fullName: GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNames<T>()
+  fullName.vb: GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNames(Of T)()
+  nameWithType: AssemblyHelper.GetRuntimeImplementTypeNames<T>()
+  nameWithType.vb: AssemblyHelper.GetRuntimeImplementTypeNames(Of T)()
+- uid: GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNames``2
   name: GetRuntimeImplementTypeNames<T, TAttribute>()
-  href: api/GameFrameX.Utility.Assembly.html#GameFrameX_Utility_Assembly_GetRuntimeImplementTypeNames__2
-  commentId: M:GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNames``2
+  href: api/GameFrameX.Utility.AssemblyHelper.html#GameFrameX_Utility_AssemblyHelper_GetRuntimeImplementTypeNames__2
+  commentId: M:GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNames``2
   name.vb: GetRuntimeImplementTypeNames(Of T, TAttribute)()
-  fullName: GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNames<T, TAttribute>()
-  fullName.vb: GameFrameX.Utility.Assembly.GetRuntimeImplementTypeNames(Of T, TAttribute)()
-  nameWithType: Assembly.GetRuntimeImplementTypeNames<T, TAttribute>()
-  nameWithType.vb: Assembly.GetRuntimeImplementTypeNames(Of T, TAttribute)()
-- uid: GameFrameX.Utility.Assembly.GetRuntimeTypeNames(System.Type)
+  fullName: GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNames<T, TAttribute>()
+  fullName.vb: GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNames(Of T, TAttribute)()
+  nameWithType: AssemblyHelper.GetRuntimeImplementTypeNames<T, TAttribute>()
+  nameWithType.vb: AssemblyHelper.GetRuntimeImplementTypeNames(Of T, TAttribute)()
+- uid: GameFrameX.Utility.AssemblyHelper.GetRuntimeTypeNames(System.Type)
   name: GetRuntimeTypeNames(Type)
-  href: api/GameFrameX.Utility.Assembly.html#GameFrameX_Utility_Assembly_GetRuntimeTypeNames_System_Type_
-  commentId: M:GameFrameX.Utility.Assembly.GetRuntimeTypeNames(System.Type)
-  fullName: GameFrameX.Utility.Assembly.GetRuntimeTypeNames(System.Type)
-  nameWithType: Assembly.GetRuntimeTypeNames(Type)
-- uid: GameFrameX.Utility.Assembly.GetRuntimeTypeNames*
+  href: api/GameFrameX.Utility.AssemblyHelper.html#GameFrameX_Utility_AssemblyHelper_GetRuntimeTypeNames_System_Type_
+  commentId: M:GameFrameX.Utility.AssemblyHelper.GetRuntimeTypeNames(System.Type)
+  fullName: GameFrameX.Utility.AssemblyHelper.GetRuntimeTypeNames(System.Type)
+  nameWithType: AssemblyHelper.GetRuntimeTypeNames(Type)
+- uid: GameFrameX.Utility.AssemblyHelper.GetRuntimeTypeNames*
   name: GetRuntimeTypeNames
-  href: api/GameFrameX.Utility.Assembly.html#GameFrameX_Utility_Assembly_GetRuntimeTypeNames_
-  commentId: Overload:GameFrameX.Utility.Assembly.GetRuntimeTypeNames
+  href: api/GameFrameX.Utility.AssemblyHelper.html#GameFrameX_Utility_AssemblyHelper_GetRuntimeTypeNames_
+  commentId: Overload:GameFrameX.Utility.AssemblyHelper.GetRuntimeTypeNames
   isSpec: "True"
-  fullName: GameFrameX.Utility.Assembly.GetRuntimeTypeNames
-  nameWithType: Assembly.GetRuntimeTypeNames
-- uid: GameFrameX.Utility.Assembly.GetType(System.String)
+  fullName: GameFrameX.Utility.AssemblyHelper.GetRuntimeTypeNames
+  nameWithType: AssemblyHelper.GetRuntimeTypeNames
+- uid: GameFrameX.Utility.AssemblyHelper.GetType(System.String)
   name: GetType(string)
-  href: api/GameFrameX.Utility.Assembly.html#GameFrameX_Utility_Assembly_GetType_System_String_
-  commentId: M:GameFrameX.Utility.Assembly.GetType(System.String)
+  href: api/GameFrameX.Utility.AssemblyHelper.html#GameFrameX_Utility_AssemblyHelper_GetType_System_String_
+  commentId: M:GameFrameX.Utility.AssemblyHelper.GetType(System.String)
   name.vb: GetType(String)
-  fullName: GameFrameX.Utility.Assembly.GetType(string)
-  fullName.vb: GameFrameX.Utility.Assembly.GetType(String)
-  nameWithType: Assembly.GetType(string)
-  nameWithType.vb: Assembly.GetType(String)
-- uid: GameFrameX.Utility.Assembly.GetType*
+  fullName: GameFrameX.Utility.AssemblyHelper.GetType(string)
+  fullName.vb: GameFrameX.Utility.AssemblyHelper.GetType(String)
+  nameWithType: AssemblyHelper.GetType(string)
+  nameWithType.vb: AssemblyHelper.GetType(String)
+- uid: GameFrameX.Utility.AssemblyHelper.GetType*
   name: GetType
-  href: api/GameFrameX.Utility.Assembly.html#GameFrameX_Utility_Assembly_GetType_
-  commentId: Overload:GameFrameX.Utility.Assembly.GetType
+  href: api/GameFrameX.Utility.AssemblyHelper.html#GameFrameX_Utility_AssemblyHelper_GetType_
+  commentId: Overload:GameFrameX.Utility.AssemblyHelper.GetType
   isSpec: "True"
-  fullName: GameFrameX.Utility.Assembly.GetType
-  nameWithType: Assembly.GetType
-- uid: GameFrameX.Utility.Assembly.GetTypes
+  fullName: GameFrameX.Utility.AssemblyHelper.GetType
+  nameWithType: AssemblyHelper.GetType
+- uid: GameFrameX.Utility.AssemblyHelper.GetTypes
   name: GetTypes()
-  href: api/GameFrameX.Utility.Assembly.html#GameFrameX_Utility_Assembly_GetTypes
-  commentId: M:GameFrameX.Utility.Assembly.GetTypes
-  fullName: GameFrameX.Utility.Assembly.GetTypes()
-  nameWithType: Assembly.GetTypes()
-- uid: GameFrameX.Utility.Assembly.GetTypes(System.Collections.Generic.List{System.Type})
+  href: api/GameFrameX.Utility.AssemblyHelper.html#GameFrameX_Utility_AssemblyHelper_GetTypes
+  commentId: M:GameFrameX.Utility.AssemblyHelper.GetTypes
+  fullName: GameFrameX.Utility.AssemblyHelper.GetTypes()
+  nameWithType: AssemblyHelper.GetTypes()
+- uid: GameFrameX.Utility.AssemblyHelper.GetTypes(System.Collections.Generic.List{System.Type})
   name: GetTypes(List<Type>)
-  href: api/GameFrameX.Utility.Assembly.html#GameFrameX_Utility_Assembly_GetTypes_System_Collections_Generic_List_System_Type__
-  commentId: M:GameFrameX.Utility.Assembly.GetTypes(System.Collections.Generic.List{System.Type})
+  href: api/GameFrameX.Utility.AssemblyHelper.html#GameFrameX_Utility_AssemblyHelper_GetTypes_System_Collections_Generic_List_System_Type__
+  commentId: M:GameFrameX.Utility.AssemblyHelper.GetTypes(System.Collections.Generic.List{System.Type})
   name.vb: GetTypes(List(Of Type))
-  fullName: GameFrameX.Utility.Assembly.GetTypes(System.Collections.Generic.List<System.Type>)
-  fullName.vb: GameFrameX.Utility.Assembly.GetTypes(System.Collections.Generic.List(Of System.Type))
-  nameWithType: Assembly.GetTypes(List<Type>)
-  nameWithType.vb: Assembly.GetTypes(List(Of Type))
-- uid: GameFrameX.Utility.Assembly.GetTypes*
+  fullName: GameFrameX.Utility.AssemblyHelper.GetTypes(System.Collections.Generic.List<System.Type>)
+  fullName.vb: GameFrameX.Utility.AssemblyHelper.GetTypes(System.Collections.Generic.List(Of System.Type))
+  nameWithType: AssemblyHelper.GetTypes(List<Type>)
+  nameWithType.vb: AssemblyHelper.GetTypes(List(Of Type))
+- uid: GameFrameX.Utility.AssemblyHelper.GetTypes*
   name: GetTypes
-  href: api/GameFrameX.Utility.Assembly.html#GameFrameX_Utility_Assembly_GetTypes_
-  commentId: Overload:GameFrameX.Utility.Assembly.GetTypes
+  href: api/GameFrameX.Utility.AssemblyHelper.html#GameFrameX_Utility_AssemblyHelper_GetTypes_
+  commentId: Overload:GameFrameX.Utility.AssemblyHelper.GetTypes
   isSpec: "True"
-  fullName: GameFrameX.Utility.Assembly.GetTypes
-  nameWithType: Assembly.GetTypes
+  fullName: GameFrameX.Utility.AssemblyHelper.GetTypes
+  nameWithType: AssemblyHelper.GetTypes
 - uid: GameFrameX.Utility.BigInteger
   name: BigInteger
   href: api/GameFrameX.Utility.BigInteger.html

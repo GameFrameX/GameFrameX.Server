@@ -1632,10 +1632,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.Assembly.yml",
+      "source_relative_path": "api/GameFrameX.Utility.AssemblyHelper.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.Utility.Assembly.html"
+          "relative_path": "api/GameFrameX.Utility.AssemblyHelper.html"
         }
       },
       "version": ""
