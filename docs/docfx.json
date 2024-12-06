@@ -46,6 +46,8 @@
       "modern"
     ],
     "globalMetadata": {
+      "_appLogoPath": "images/logo.png",
+      "_appFaviconPath": "images/favicon.ico",
       "_appName": "GameFrameX.Server",
       "_appTitle": "GameFrameX.Server",
       "_enableSearch": true,
