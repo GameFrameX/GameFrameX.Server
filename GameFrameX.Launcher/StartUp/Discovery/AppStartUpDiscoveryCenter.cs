@@ -20,7 +20,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
             _namingServiceManager.AddSelf(Setting);
 
             StartServer();
-            var aopHandlerTypes = Assembly.GetRuntimeImplementTypeNamesInstance<IHttpAopHandler>();
+            var aopHandlerTypes = AssemblyHelper.GetRuntimeImplementTypeNamesInstance<IHttpAopHandler>();
             aopHandlerTypes.Sort((handlerX, handlerY) => handlerX.Priority.CompareTo(handlerY.Priority));
             // 启动Http服务
             await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetHttpHandler, aopHandlerTypes);

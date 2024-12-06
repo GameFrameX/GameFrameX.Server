@@ -6,12 +6,12 @@ namespace GameFrameX.Utility;
 /// <summary>
 /// 程序集辅助器
 /// </summary>
-public static class Assembly
+public static class AssemblyHelper
 {
     private static readonly System.Reflection.Assembly[] Assemblies;
     private static readonly Dictionary<string, Type> CachedTypes = new Dictionary<string, Type>(StringComparer.Ordinal);
 
-    static Assembly()
+    static AssemblyHelper()
     {
         Assemblies = AppDomain.CurrentDomain.GetAssemblies();
     }

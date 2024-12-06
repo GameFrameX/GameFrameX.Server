@@ -30,7 +30,7 @@ internal static class AppExitHandler
         _isKill = false;
         _setting = setting;
         _existCallBack = existCallBack;
-        var fetalExceptionExitHandlers = Assembly.GetRuntimeImplementTypeNames<IFetalExceptionExitHandler>();
+        var fetalExceptionExitHandlers = AssemblyHelper.GetRuntimeImplementTypeNames<IFetalExceptionExitHandler>();
         foreach (var exceptionExitHandler in fetalExceptionExitHandlers)
         {
             var handler = (IFetalExceptionExitHandler)Activator.CreateInstance(exceptionExitHandler);

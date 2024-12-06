@@ -71,7 +71,7 @@ public static class GameApp
         GlobalSettings.Load("Configs/app_config.json");
         initAction?.Invoke();
 
-        var types = Utility.Assembly.GetTypes();
+        var types = Utility.AssemblyHelper.GetTypes();
         if (types != null)
         {
             foreach (var type in types)
