@@ -47,7 +47,6 @@ public sealed class ClientMessageEncoderHandler : BaseMessageEncoderHandler
             buffer.WriteBytesWithoutLength(messageBodyData, ref offset);
             var result = buffer.AsSpan(0, totalLength).ToArray();
             ArrayPool<byte>.Shared.Return(buffer);
-            LogHelper.Console(result.ToArrayString());
             return result;
         }
 
