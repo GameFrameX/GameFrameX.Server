@@ -19,12 +19,12 @@ namespace GameFrameX.Hotfix.Common.Events
             // 自己处理
             SelfHandle(agent, evtId, evt);
 
-            if ((EventId)evtId > EventId.RoleSeparator && agent.OwnerType > ActorType.Separator)
+            if ((EventId)evtId > EventId.RoleSeparator && agent.OwnerType > (ushort)ActorType.Separator)
             {
                 // 全局非玩家事件，抛给所有玩家
                 agent.Tell(()
-                    => ServerComponentAgent.OnlineRoleForeach(role
-                        => role.Dispatch(evtId, args)));
+                               => ServerComponentAgent.OnlineRoleForeach(role
+                                                                             => role.Dispatch(evtId, args)));
             }
 
             static void SelfHandle(IComponentAgent agent, int evtId, Event evt)
