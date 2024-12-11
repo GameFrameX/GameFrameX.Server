@@ -26,8 +26,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.Core" Version="1.2.0-beta9" />
-      <PackageReference Include="GameFrameX.Core.Abstractions" Version="1.2.0-beta9" />
+      <PackageReference Include="GameFrameX.Core" Version="1.2.0-beta10" />
+      <PackageReference Include="GameFrameX.Core.Abstractions" Version="1.2.0-beta10" />
       <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.0.1" />
     </ItemGroup>
 
