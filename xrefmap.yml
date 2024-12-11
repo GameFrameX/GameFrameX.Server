@@ -518,6 +518,15 @@ references:
   fullName.vb: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.New(GameFrameX.Core.Abstractions.ActorType)
   nameWithType: ComponentTypeAttribute.ComponentTypeAttribute(ActorType)
   nameWithType.vb: ComponentTypeAttribute.New(ActorType)
+- uid: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.#ctor(System.UInt16)
+  name: ComponentTypeAttribute(ushort)
+  href: api/GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.html#GameFrameX_Core_Abstractions_Attribute_ComponentTypeAttribute__ctor_System_UInt16_
+  commentId: M:GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.#ctor(System.UInt16)
+  name.vb: New(UShort)
+  fullName: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.ComponentTypeAttribute(ushort)
+  fullName.vb: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.New(UShort)
+  nameWithType: ComponentTypeAttribute.ComponentTypeAttribute(ushort)
+  nameWithType.vb: ComponentTypeAttribute.New(UShort)
 - uid: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.#ctor*
   name: ComponentTypeAttribute
   href: api/GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.html#GameFrameX_Core_Abstractions_Attribute_ComponentTypeAttribute__ctor_
@@ -528,19 +537,19 @@ references:
   fullName.vb: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.New
   nameWithType: ComponentTypeAttribute.ComponentTypeAttribute
   nameWithType.vb: ComponentTypeAttribute.New
-- uid: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.ActorType
-  name: ActorType
-  href: api/GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.html#GameFrameX_Core_Abstractions_Attribute_ComponentTypeAttribute_ActorType
-  commentId: P:GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.ActorType
-  fullName: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.ActorType
-  nameWithType: ComponentTypeAttribute.ActorType
-- uid: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.ActorType*
-  name: ActorType
-  href: api/GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.html#GameFrameX_Core_Abstractions_Attribute_ComponentTypeAttribute_ActorType_
-  commentId: Overload:GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.ActorType
+- uid: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.Type
+  name: Type
+  href: api/GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.html#GameFrameX_Core_Abstractions_Attribute_ComponentTypeAttribute_Type
+  commentId: P:GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.Type
+  fullName: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.Type
+  nameWithType: ComponentTypeAttribute.Type
+- uid: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.Type*
+  name: Type
+  href: api/GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.html#GameFrameX_Core_Abstractions_Attribute_ComponentTypeAttribute_Type_
+  commentId: Overload:GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.Type
   isSpec: "True"
-  fullName: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.ActorType
-  nameWithType: ComponentTypeAttribute.ActorType
+  fullName: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.Type
+  nameWithType: ComponentTypeAttribute.Type
 - uid: GameFrameX.Core.Abstractions.Attribute.DiscardAttribute
   name: DiscardAttribute
   href: api/GameFrameX.Core.Abstractions.Attribute.DiscardAttribute.html
@@ -22093,6 +22102,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Math.FPVector2.LerpUnclamped
   nameWithType: FPVector2.LerpUnclamped
+- uid: GameFrameX.Utility.Math.FPVector2.Magnitude
+  name: Magnitude
+  href: api/GameFrameX.Utility.Math.FPVector2.html#GameFrameX_Utility_Math_FPVector2_Magnitude
+  commentId: P:GameFrameX.Utility.Math.FPVector2.Magnitude
+  fullName: GameFrameX.Utility.Math.FPVector2.Magnitude
+  nameWithType: FPVector2.Magnitude
+- uid: GameFrameX.Utility.Math.FPVector2.Magnitude*
+  name: Magnitude
+  href: api/GameFrameX.Utility.Math.FPVector2.html#GameFrameX_Utility_Math_FPVector2_Magnitude_
+  commentId: Overload:GameFrameX.Utility.Math.FPVector2.Magnitude
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Math.FPVector2.Magnitude
+  nameWithType: FPVector2.Magnitude
 - uid: GameFrameX.Utility.Math.FPVector2.Max(GameFrameX.Utility.Math.FPVector2,GameFrameX.Utility.Math.FPVector2)
   name: Max(FPVector2, FPVector2)
   href: api/GameFrameX.Utility.Math.FPVector2.html#GameFrameX_Utility_Math_FPVector2_Max_GameFrameX_Utility_Math_FPVector2_GameFrameX_Utility_Math_FPVector2_
@@ -22224,6 +22246,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Math.FPVector2.Normalize
   nameWithType: FPVector2.Normalize
+- uid: GameFrameX.Utility.Math.FPVector2.Normalized
+  name: Normalized
+  href: api/GameFrameX.Utility.Math.FPVector2.html#GameFrameX_Utility_Math_FPVector2_Normalized
+  commentId: P:GameFrameX.Utility.Math.FPVector2.Normalized
+  fullName: GameFrameX.Utility.Math.FPVector2.Normalized
+  nameWithType: FPVector2.Normalized
+- uid: GameFrameX.Utility.Math.FPVector2.Normalized*
+  name: Normalized
+  href: api/GameFrameX.Utility.Math.FPVector2.html#GameFrameX_Utility_Math_FPVector2_Normalized_
+  commentId: Overload:GameFrameX.Utility.Math.FPVector2.Normalized
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Math.FPVector2.Normalized
+  nameWithType: FPVector2.Normalized
 - uid: GameFrameX.Utility.Math.FPVector2.Reflect(GameFrameX.Utility.Math.FPVector2,GameFrameX.Utility.Math.FPVector2)
   name: Reflect(FPVector2, FPVector2)
   href: api/GameFrameX.Utility.Math.FPVector2.html#GameFrameX_Utility_Math_FPVector2_Reflect_GameFrameX_Utility_Math_FPVector2_GameFrameX_Utility_Math_FPVector2_
@@ -22387,32 +22422,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Math.FPVector2.left
   nameWithType: FPVector2.left
-- uid: GameFrameX.Utility.Math.FPVector2.magnitude
-  name: magnitude
-  href: api/GameFrameX.Utility.Math.FPVector2.html#GameFrameX_Utility_Math_FPVector2_magnitude
-  commentId: P:GameFrameX.Utility.Math.FPVector2.magnitude
-  fullName: GameFrameX.Utility.Math.FPVector2.magnitude
-  nameWithType: FPVector2.magnitude
-- uid: GameFrameX.Utility.Math.FPVector2.magnitude*
-  name: magnitude
-  href: api/GameFrameX.Utility.Math.FPVector2.html#GameFrameX_Utility_Math_FPVector2_magnitude_
-  commentId: Overload:GameFrameX.Utility.Math.FPVector2.magnitude
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Math.FPVector2.magnitude
-  nameWithType: FPVector2.magnitude
-- uid: GameFrameX.Utility.Math.FPVector2.normalized
-  name: normalized
-  href: api/GameFrameX.Utility.Math.FPVector2.html#GameFrameX_Utility_Math_FPVector2_normalized
-  commentId: P:GameFrameX.Utility.Math.FPVector2.normalized
-  fullName: GameFrameX.Utility.Math.FPVector2.normalized
-  nameWithType: FPVector2.normalized
-- uid: GameFrameX.Utility.Math.FPVector2.normalized*
-  name: normalized
-  href: api/GameFrameX.Utility.Math.FPVector2.html#GameFrameX_Utility_Math_FPVector2_normalized_
-  commentId: Overload:GameFrameX.Utility.Math.FPVector2.normalized
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Math.FPVector2.normalized
-  nameWithType: FPVector2.normalized
 - uid: GameFrameX.Utility.Math.FPVector2.one
   name: one
   href: api/GameFrameX.Utility.Math.FPVector2.html#GameFrameX_Utility_Math_FPVector2_one
