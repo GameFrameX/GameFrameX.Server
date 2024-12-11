@@ -69,7 +69,6 @@ public static class GameDb
         return _dbServiceImplementation.CountAsync<TState>(filter);
     }
 
-
     /// <summary>
     /// 以升序方式查找符合条件的第一个元素。
     /// </summary>
@@ -122,7 +121,6 @@ public static class GameDb
         return _dbServiceImplementation.FindSortAscendingAsync<TState>(filter, sortExpression, pageIndex, pageSize);
     }
 
-
     /// <summary>
     /// 加载指定id的文档
     /// </summary>
@@ -166,6 +164,60 @@ public static class GameDb
     public static Task<long> SaveOneAsync<TState>(TState state) where TState : class, ICacheState, new()
     {
         return _dbServiceImplementation.AddAsync<TState>(state);
+    }
+
+    /// <summary>
+    /// 增加或更新数据
+    /// </summary>
+    /// <param name="state">数据对象</param>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <returns>修改的条数</returns>
+    public static Task<long> AddOrUpdateAsync<TState>(TState state) where TState : class, ICacheState, new()
+    {
+        return _dbServiceImplementation.AddOrUpdateAsync<TState>(state);
+    }
+
+    /// <summary>
+    /// 保存多条数据
+    /// </summary>
+    /// <param name="states">数据对象</param>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <returns></returns>
+    public static Task AddListAsync<TState>(IEnumerable<TState> states) where TState : class, ICacheState, new()
+    {
+        return _dbServiceImplementation.AddListAsync<TState>(states);
+    }
+
+    /// <summary>
+    /// 更新多条数据
+    /// </summary>
+    /// <param name="stateList">数据列表对象</param>
+    /// <returns>返回更新成功的数量</returns>
+    public static Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList) where TState : class, ICacheState, new()
+    {
+        return _dbServiceImplementation.UpdateAsync<TState>(stateList);
+    }
+
+    /// <summary>
+    /// 查询符合条件的数据是否存在
+    /// </summary>
+    /// <param name="filter">查询条件</param>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <returns>返回是否存在值,true表示存在，false表示不存在</returns>
+    public static bool Any<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
+    {
+        return _dbServiceImplementation.Any<TState>(filter);
+    }
+
+    /// <summary>
+    /// 查询符合条件的数据是否存在
+    /// </summary>
+    /// <param name="filter">查询条件</param>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <returns>返回是否存在值,true表示存在，false表示不存在</returns>
+    public static Task<bool> AnyAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
+    {
+        return _dbServiceImplementation.AnyAsync<TState>(filter);
     }
 
     /// <summary>
