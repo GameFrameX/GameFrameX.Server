@@ -2,6 +2,7 @@
 using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Abstractions.Events;
+using GameFrameX.Hotfix.Logic.Server.Server;
 
 namespace GameFrameX.Hotfix.Common.Events
 {
@@ -18,12 +19,18 @@ namespace GameFrameX.Hotfix.Common.Events
             // 自己处理
             SelfHandle(agent, evtId, evt);
 
-            if ((EventId)evtId > EventId.RoleSeparator && agent.OwnerType > ActorType.Separator)
+            if ((EventId)evtId > EventId.RoleSeparator && agent.OwnerType > (ushort)ActorType.Separator)
             {
                 // 全局非玩家事件，抛给所有玩家
-                /*agent.Tell(()
-                    => ServerComponentAgent.OnlineRoleForeach(role
-                        => role.Dispatch(evtId, args)));*/
+                agent.Tell(()
+                               =>
+                           {
+                               return ServerComponentAgent.OnlineRoleForeach(role
+                                                                                 =>
+                                                                             {
+                                                                                 role.Dispatch(evtId, args);
+                                                                             });
+                           });
             }
         }
 
