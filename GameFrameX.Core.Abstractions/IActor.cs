@@ -30,7 +30,7 @@ public interface IActor : IWorker
     /// <summary>
     /// 获取或设置 Actor 类型
     /// </summary>
-    ActorType Type { get; set; }
+    ushort Type { get; set; }
 
     /// <summary>
     /// 清理全部代理

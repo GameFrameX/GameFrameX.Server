@@ -163,7 +163,7 @@ namespace GameFrameX.Core.Hotfix
         /// <param name="actorType"></param>
         /// <param name="evtId"></param>
         /// <returns></returns>
-        public static List<IEventListener> FindListeners(ActorType actorType, int evtId)
+        public static List<IEventListener> FindListeners(ushort actorType, int evtId)
         {
             return _module.FindListeners(actorType, evtId) ?? EmptyListenerList;
         }

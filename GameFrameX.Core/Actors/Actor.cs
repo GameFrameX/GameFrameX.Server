@@ -28,7 +28,7 @@ public sealed class Actor : IActor
     /// <summary>
     /// Actor类型
     /// </summary>
-    public ActorType Type { get; set; }
+    public ushort Type { get; set; }
 
     /// <summary>
     /// 工作Actor
@@ -104,13 +104,13 @@ public sealed class Actor : IActor
     /// </summary>
     /// <param name="id"></param>
     /// <param name="type"></param>
-    public Actor(long id, ActorType type)
+    public Actor(long id, ushort type)
     {
         Id = id;
         Type = type;
         WorkerActor = new WorkerActor(id);
 
-        if (type < ActorType.Separator)
+        if (type < (ushort)ActorType.Separator)
         {
             Tell(() => SetAutoRecycle(true));
         }

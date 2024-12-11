@@ -14,12 +14,12 @@ public class ActorIdGeneratorTest
     [Test]
     public void compress()
     {
-        var actorId = ActorIdGenerator.GetActorId(ActorType.World, 1000);
+        var actorId = ActorIdGenerator.GetActorId((ushort)ActorType.World, 1000);
 
-        var type     = ActorIdGenerator.GetActorType(actorId);
+        var type = ActorIdGenerator.GetActorType(actorId);
         var serverId = ActorIdGenerator.GetServerId(actorId);
 
-        Assert.That(type == ActorType.World, Is.EqualTo(true));
+        Assert.That(type == (ushort)ActorType.World, Is.EqualTo(true));
         Assert.That(serverId == 1000, Is.EqualTo(true));
     }
 }

@@ -35,7 +35,7 @@ public interface IComponentAgent : IWorker
     /// <summary>
     /// 获取所有者的类型
     /// </summary>
-    ActorType OwnerType { get; }
+    ushort OwnerType { get; }
 
     /// <summary>
     /// 根据代理类型获取代理组件

@@ -77,7 +77,7 @@ namespace GameFrameX.Core.Utility
         /// <param name="actorId"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public static ActorType GetActorType(long actorId)
+        public static ushort GetActorType(long actorId)
         {
             if (actorId < GlobalConst.MinServerId)
             {
@@ -87,10 +87,10 @@ namespace GameFrameX.Core.Utility
             if (actorId < GlobalConst.MaxGlobalId)
             {
                 // 全局actor
-                return (ActorType)(actorId % 1000);
+                return (ushort)(actorId % 1000);
             }
 
-            return (ActorType)((actorId >> GlobalConst.ActorTypeMask) & 0xFF);
+            return (ushort)((actorId >> GlobalConst.ActorTypeMask) & 0xFF);
         }
 
 
@@ -101,9 +101,9 @@ namespace GameFrameX.Core.Utility
         /// <param name="serverId"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public static long GetActorId(ActorType type, int serverId = 0)
+        public static long GetActorId(ushort type, int serverId = 0)
         {
-            if (type == ActorType.Separator)
+            if (type == (ushort)ActorType.Separator)
             {
                 throw new ArgumentException($"input actor type error: {type}");
             }
@@ -118,7 +118,7 @@ namespace GameFrameX.Core.Utility
                 serverId = GlobalSettings.ServerId;
             }
 
-            if (type < ActorType.Separator)
+            if (type < (ushort)ActorType.Separator)
             {
                 return GetMultiActorId(type, serverId);
             }
@@ -132,14 +132,14 @@ namespace GameFrameX.Core.Utility
         /// <param name="actorType"></param>
         /// <param name="serverId">服务器ID</param>
         /// <returns></returns>
-        private static long GetGlobalActorId(ActorType actorType, int serverId)
+        private static long GetGlobalActorId(ushort actorType, int serverId)
         {
             if (serverId <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(serverId), "serverId is less than 0");
             }
 
-            if (actorType >= ActorType.Max || actorType == ActorType.Separator || actorType == ActorType.None)
+            if (actorType >= (ushort)ActorType.Max || actorType == (ushort)ActorType.Separator || actorType == (ushort)ActorType.None)
             {
                 throw new ArgumentOutOfRangeException(nameof(actorType), "type is invalid");
             }
@@ -147,8 +147,7 @@ namespace GameFrameX.Core.Utility
             return serverId * 1000 + (int)actorType;
         }
 
-
-        private static long GetMultiActorId(ActorType type, int serverId)
+        private static long GetMultiActorId(ushort type, int serverId)
         {
             long second = (long)(DateTime.UtcNow - IdGenerator.UtcTimeStart).TotalSeconds;
             lock (LockObj)

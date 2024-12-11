@@ -78,7 +78,7 @@ internal class HotfixModule
     /// <summary>
     /// 角色类型到事件ID到监听者的映射。
     /// </summary>
-    private readonly Dictionary<ActorType, Dictionary<int, List<IEventListener>>> _actorEvtListeners = new Dictionary<ActorType, Dictionary<int, List<IEventListener>>>(512);
+    private readonly Dictionary<ushort, Dictionary<int, List<IEventListener>>> _actorEvtListeners = new Dictionary<ushort, Dictionary<int, List<IEventListener>>>(512);
 
     /// <summary>
     /// 是否使用代理包装。
@@ -464,7 +464,7 @@ internal class HotfixModule
     /// <param name="actorType">角色类型。</param>
     /// <param name="evtId">事件ID。</param>
     /// <returns>事件监听者列表。</returns>
-    internal List<IEventListener> FindListeners(ActorType actorType, int evtId)
+    internal List<IEventListener> FindListeners(ushort actorType, int evtId)
     {
         if (_actorEvtListeners.TryGetValue(actorType, out var evtListeners)
             && evtListeners.TryGetValue(evtId, out var listeners))

@@ -23,7 +23,7 @@ public abstract class PlayerComponentHandler : BaseComponentHandler
 
         if (ActorId <= 0)
         {
-            ActorId = ActorIdGenerator.GetActorId(ActorType.Player);
+            ActorId = ActorIdGenerator.GetActorId((ushort)ActorType.Player);
         }
 
         return Task.CompletedTask;

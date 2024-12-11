@@ -83,7 +83,7 @@ public static class ActorManager
     internal static async Task<Actor> GetOrNew(long actorId)
     {
         var actorType = ActorIdGenerator.GetActorType(actorId);
-        if (actorType < ActorType.Separator)
+        if (actorType < (ushort)ActorType.Separator)
         {
             var now = DateTime.Now;
             if (ActiveTimeDic.TryGetValue(actorId, out var activeTime)
@@ -277,7 +277,7 @@ public static class ActorManager
     {
         foreach (var actor in ActorMap.Values)
         {
-            if (actor.Type < ActorType.Separator)
+            if (actor.Type < (ushort)ActorType.Separator)
             {
                 actor.Tell(() => actor.CrossDay(openServerDay));
             }
@@ -295,7 +295,7 @@ public static class ActorManager
     /// <param name="openServerDay">开服天数</param>
     /// <param name="driverActorType">驱动Actor类型</param>
     /// <returns>任务</returns>
-    public static async Task CrossDay(int openServerDay, ActorType driverActorType)
+    public static async Task CrossDay(int openServerDay, ushort driverActorType)
     {
         // 驱动actor优先执行跨天
         var id = ActorIdGenerator.GetActorId(driverActorType);
@@ -307,7 +307,7 @@ public static class ActorManager
         int b = 0;
         foreach (var actor in ActorMap.Values)
         {
-            if (actor.Type > ActorType.Separator && actor.Type != driverActorType)
+            if (actor.Type > (ushort)ActorType.Separator && actor.Type != driverActorType)
             {
                 b++;
 
@@ -339,7 +339,7 @@ public static class ActorManager
         b = 0;
         foreach (var actor in ActorMap.Values)
         {
-            if (actor.Type > ActorType.Separator)
+            if (actor.Type > (ushort)ActorType.Separator)
             {
                 b++;
 

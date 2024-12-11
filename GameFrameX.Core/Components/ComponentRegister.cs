@@ -18,12 +18,12 @@ public static class ComponentRegister
     /// <summary>
     /// ActorType 到 CompTypeList 的映射
     /// </summary>
-    private static readonly Dictionary<ActorType, HashSet<Type>> ActorComponentDic = new();
+    private static readonly Dictionary<ushort, HashSet<Type>> ActorComponentDic = new();
 
     /// <summary>
     /// CompType 到 ActorType 的映射
     /// </summary>
-    internal static readonly Dictionary<Type, ActorType> ComponentActorDic = new();
+    internal static readonly Dictionary<Type, ushort> ComponentActorDic = new();
 
     /// <summary>
     /// 功能码到 CompTypes 的映射
@@ -40,7 +40,7 @@ public static class ComponentRegister
     /// </summary>
     /// <param name="componentType">组件类型</param>
     /// <returns>ActorType 类型</returns>
-    public static ActorType GetActorType(Type componentType)
+    public static ushort GetActorType(Type componentType)
     {
         ComponentActorDic.TryGetValue(componentType, out var actorType);
         return actorType;
@@ -51,7 +51,7 @@ public static class ComponentRegister
     /// </summary>
     /// <param name="actorType">ActorType 类型</param>
     /// <returns>CompTypes 列表</returns>
-    public static IEnumerable<Type> GetComponents(ActorType actorType)
+    public static IEnumerable<Type> GetComponents(ushort actorType)
     {
         ActorComponentDic.TryGetValue(actorType, out var comps);
         return comps;
@@ -82,13 +82,13 @@ public static class ComponentRegister
 
             if (type.GetCustomAttribute(typeof(ComponentTypeAttribute)) is ComponentTypeAttribute compAttr)
             {
-                var actorType = compAttr.ActorType;
+                var actorType = compAttr.Type;
                 var compTypes = ActorComponentDic.GetOrAdd(actorType);
                 compTypes.Add(type);
 
                 ComponentActorDic[type] = actorType;
 
-                if (actorType < ActorType.Separator)
+                if (actorType < (ushort)ActorType.Separator)
                 {
                     if (type.GetCustomAttribute(typeof(FuncAttribute)) is FuncAttribute funcAttr)
                     {
@@ -133,7 +133,7 @@ public static class ComponentRegister
                     }*/
                 }
 
-                if (actorType > ActorType.Separator)
+                if (actorType > (ushort)ActorType.Separator)
                 {
                     LogHelper.Info($"激活全局Actor: {actorType}");
                     await ActorManager.GetOrNew(ActorIdGenerator.GetActorId(actorType));

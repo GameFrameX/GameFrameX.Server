@@ -45,7 +45,7 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// <summary>
     /// 所有者的类型
     /// </summary>
-    public ActorType OwnerType
+    public ushort OwnerType
     {
         get { return Actor.Type; }
     }

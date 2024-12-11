@@ -5,7 +5,7 @@
 /// 最大id应当小于999
 /// Id一旦定义了不应该修改
 /// </summary>
-public enum ActorType
+public enum ActorType : ushort
 {
     /// <summary>
     /// 空将会被判断为无效值

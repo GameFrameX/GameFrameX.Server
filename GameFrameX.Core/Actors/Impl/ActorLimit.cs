@@ -38,7 +38,7 @@ public static class ActorLimit
 
 
     private static IRule _rule;
-    private static readonly Dictionary<ActorType, int> LevelDic = new Dictionary<ActorType, int>(128);
+    private static readonly Dictionary<ushort, int> LevelDic = new Dictionary<ushort, int>(128);
 
     /// <summary>
     /// 初始化
@@ -55,7 +55,7 @@ public static class ActorLimit
                 {
                     foreach (ActorTypeLevel foo in Enum.GetValues(typeof(ActorTypeLevel)))
                     {
-                        ActorType actorType = (ActorType)Enum.Parse(typeof(ActorType), foo.ToString());
+                        var actorType = (ushort)foo;
                         LevelDic.Add(actorType, (int)foo);
                     }
                 }

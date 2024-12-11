@@ -38,7 +38,7 @@ namespace GameFrameX.Apps.Account.Login.Component
         {
             PlayerState playerState = new PlayerState
             {
-                Id = ActorIdGenerator.GetActorId(ActorType.Player),
+                Id = ActorIdGenerator.GetActorId((ushort)ActorType.Player),
                 AccountId = reqPlayerCreate.Id,
                 Name = reqPlayerCreate.Name,
                 Level = (uint)Random.Next(1, 50),
@@ -49,7 +49,5 @@ namespace GameFrameX.Apps.Account.Login.Component
             await GameDb.SaveOneAsync<PlayerState>(playerState);
             return playerState;
         }
-
-
     }
 }

@@ -43,9 +43,9 @@ public interface IWorkerActor : IWorker
     Task Enqueue(Func<Task> work, long callChainId, bool discard = false, int timeOut = int.MaxValue);
 
     /// <summary>
-    /// 将返回Task<T>的委托入队
+    /// 将返回Task<T>的委托入队</T>
     /// </summary>
-    /// <param name="work">返回Task<T>的委托</param>
+    /// <param name="work">返回Task<T>的委托</T></param>
     /// <param name="callChainId">调用链ID</param>
     /// <param name="discard">是否强制入队</param>
     /// <param name="timeOut">超时时间</param>
