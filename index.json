@@ -74,6 +74,16 @@
     "title": "Namespace GameFrameX.Core.Abstractions.Events | GameFrameX.Server",
     "keywords": "Namespace GameFrameX.Core.Abstractions.Events Classes EventInfoAttribute 事件监听器 Structs Event 事件参数 Interfaces IEventListener 每个实例其实都是单例的"
   },
+  "api/GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.html": {
+    "href": "api/GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.html",
+    "title": "Class AssertionArgumentException | GameFrameX.Server",
+    "keywords": "Class AssertionArgumentException Namespace GameFrameX.Core.Abstractions.Exception Assembly GameFrameX.Core.Abstractions.dll 断言异常 public abstract class AssertionArgumentException : Exception, ISerializable Inheritance object Exception AssertionArgumentException Implements ISerializable Inherited Members Exception.GetBaseException() Exception.GetType() Exception.ToString() Exception.Data Exception.HelpLink Exception.HResult Exception.InnerException Exception.Message Exception.Source Exception.StackTrace Exception.TargetSite Exception.SerializeObjectState object.Equals(object) object.Equals(object, object) object.GetHashCode() object.MemberwiseClone() object.ReferenceEquals(object, object) Extension Methods ObjectExtension.CheckNotNull<T>(T, string) ObjectExtension.CheckNotNull<T>(T, string, string) ObjectExtension.IsNotNull(object) ObjectExtension.IsNull(object) Constructors AssertionArgumentException(int, string) 构造 protected AssertionArgumentException(int errorCode, string message) Parameters errorCode int 错误码 message string 错误信息 Properties ErrorCode 错误码 public int ErrorCode { get; } Property Value int"
+  },
+  "api/GameFrameX.Core.Abstractions.Exception.html": {
+    "href": "api/GameFrameX.Core.Abstractions.Exception.html",
+    "title": "Namespace GameFrameX.Core.Abstractions.Exception | GameFrameX.Server",
+    "keywords": "Namespace GameFrameX.Core.Abstractions.Exception Classes AssertionArgumentException 断言异常"
+  },
   "api/GameFrameX.Core.Abstractions.IActor.html": {
     "href": "api/GameFrameX.Core.Abstractions.IActor.html",
     "title": "Interface IActor | GameFrameX.Server",

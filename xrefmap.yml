@@ -746,6 +746,50 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Abstractions.Events.IEventListener.HandleEvent
   nameWithType: IEventListener.HandleEvent
+- uid: GameFrameX.Core.Abstractions.Exception
+  name: GameFrameX.Core.Abstractions.Exception
+  href: api/GameFrameX.Core.Abstractions.Exception.html
+  commentId: N:GameFrameX.Core.Abstractions.Exception
+  fullName: GameFrameX.Core.Abstractions.Exception
+  nameWithType: GameFrameX.Core.Abstractions.Exception
+- uid: GameFrameX.Core.Abstractions.Exception.AssertionArgumentException
+  name: AssertionArgumentException
+  href: api/GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.html
+  commentId: T:GameFrameX.Core.Abstractions.Exception.AssertionArgumentException
+  fullName: GameFrameX.Core.Abstractions.Exception.AssertionArgumentException
+  nameWithType: AssertionArgumentException
+- uid: GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.#ctor(System.Int32,System.String)
+  name: AssertionArgumentException(int, string)
+  href: api/GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.html#GameFrameX_Core_Abstractions_Exception_AssertionArgumentException__ctor_System_Int32_System_String_
+  commentId: M:GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.#ctor(System.Int32,System.String)
+  name.vb: New(Integer, String)
+  fullName: GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.AssertionArgumentException(int, string)
+  fullName.vb: GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.New(Integer, String)
+  nameWithType: AssertionArgumentException.AssertionArgumentException(int, string)
+  nameWithType.vb: AssertionArgumentException.New(Integer, String)
+- uid: GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.#ctor*
+  name: AssertionArgumentException
+  href: api/GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.html#GameFrameX_Core_Abstractions_Exception_AssertionArgumentException__ctor_
+  commentId: Overload:GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.AssertionArgumentException
+  fullName.vb: GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.New
+  nameWithType: AssertionArgumentException.AssertionArgumentException
+  nameWithType.vb: AssertionArgumentException.New
+- uid: GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.ErrorCode
+  name: ErrorCode
+  href: api/GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.html#GameFrameX_Core_Abstractions_Exception_AssertionArgumentException_ErrorCode
+  commentId: P:GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.ErrorCode
+  fullName: GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.ErrorCode
+  nameWithType: AssertionArgumentException.ErrorCode
+- uid: GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.ErrorCode*
+  name: ErrorCode
+  href: api/GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.html#GameFrameX_Core_Abstractions_Exception_AssertionArgumentException_ErrorCode_
+  commentId: Overload:GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.ErrorCode
+  isSpec: "True"
+  fullName: GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.ErrorCode
+  nameWithType: AssertionArgumentException.ErrorCode
 - uid: GameFrameX.Core.Abstractions.IActor
   name: IActor
   href: api/GameFrameX.Core.Abstractions.IActor.html

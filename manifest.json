@@ -162,6 +162,26 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Abstractions.Exception.AssertionArgumentException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Abstractions.Exception.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Abstractions.Exception.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.Core.Abstractions.IActor.yml",
       "output": {
         ".html": {
