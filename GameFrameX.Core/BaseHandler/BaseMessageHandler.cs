@@ -62,7 +62,7 @@ namespace GameFrameX.Core.BaseHandler
                 _stopwatch.Restart();
                 var result = ActionAsync();
                 _stopwatch.Stop();
-                LogHelper.Debug($"消息处理器：{GetType().Name} 执行耗时：{_stopwatch.ElapsedMilliseconds} ms");
+                LogHelper.Debug($"消息处理器：{GetType().Name},UniqueId：{Message.UniqueId} 执行耗时：{_stopwatch.ElapsedMilliseconds} ms");
                 return result;
             }
 
