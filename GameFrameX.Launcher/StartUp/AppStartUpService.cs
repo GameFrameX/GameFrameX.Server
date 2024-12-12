@@ -62,7 +62,7 @@ public abstract class AppStartUpService : AppStartUpBase
     }
     // private ConnectChannelHelper connectTargetServerChannelHelper;
 
-    protected async void StartServer()
+    protected void StartServer()
     {
         _discoveryCenterChannelHelper = new ConnectChannelHelper(Setting, MessageEncoderHandler, MessageDecoderHandler, DiscoveryCenterMessageHandler);
     }
