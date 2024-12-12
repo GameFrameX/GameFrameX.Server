@@ -34,7 +34,7 @@ namespace GameFrameX.Hotfix.Logic.Server.Server
             {
                 LogHelper.Debug($"ServerCompAgent.CrossDayTimeHandler.跨天定时器执行{TimeHelper.CurrentTimeWithFullString()}");
                 await ActorManager.RoleCrossDay(1);
-                await ActorManager.CrossDay(1, (ushort)ActorType.Server);
+                await ActorManager.CrossDay(1, GlobalConst.ActorTypeServer);
             }
         }
 
