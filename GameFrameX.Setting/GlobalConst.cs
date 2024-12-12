@@ -90,6 +90,35 @@ public static class GlobalConst
     /// </summary>
     public const int ModuleIdTimestampMask = 19; //19+30 =42
 
+    #region ActorType
+
+    /// <summary>
+    /// 空将会被判断为无效值
+    /// </summary>
+    public const ushort ActorTypeNone = 0;
+
+    /// <summary>
+    /// 角色
+    /// </summary>
+    public const ushort ActorTypePlayer = 1;
+
+    /// <summary>
+    /// 分割线(勿调整,勿用于业务逻辑)
+    /// </summary>
+    public const int ActorTypeSeparator = 128;
+
+    /// <summary>
+    /// 服务类型
+    /// </summary>
+    public const int ActorTypeServer = 129;
+
+    /// <summary>
+    /// 最大值
+    /// </summary>
+    public const int ActorTypeMax = 999;
+
+    #endregion
+
 
     #region HTTP
 

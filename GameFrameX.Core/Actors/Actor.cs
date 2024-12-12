@@ -5,6 +5,7 @@ using GameFrameX.Core.Abstractions.Timer;
 using GameFrameX.Core.Actors.Impl;
 using GameFrameX.Core.Components;
 using GameFrameX.Log;
+using GameFrameX.Setting;
 
 namespace GameFrameX.Core.Actors;
 
@@ -110,7 +111,7 @@ public sealed class Actor : IActor
         Type = type;
         WorkerActor = new WorkerActor(id);
 
-        if (type < (ushort)ActorType.Separator)
+        if (type < GlobalConst.ActorTypeSeparator)
         {
             Tell(() => SetAutoRecycle(true));
         }

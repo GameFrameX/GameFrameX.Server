@@ -7,6 +7,7 @@ using GameFrameX.Core.Hotfix;
 using GameFrameX.Core.Utility;
 using GameFrameX.Extension;
 using GameFrameX.Log;
+using GameFrameX.Setting;
 
 namespace GameFrameX.Core.Components;
 
@@ -88,7 +89,7 @@ public static class ComponentRegister
 
                 ComponentActorDic[type] = actorType;
 
-                if (actorType < (ushort)ActorType.Separator)
+                if (actorType < GlobalConst.ActorTypeSeparator)
                 {
                     if (type.GetCustomAttribute(typeof(FuncAttribute)) is FuncAttribute funcAttr)
                     {
@@ -133,7 +134,7 @@ public static class ComponentRegister
                     }*/
                 }
 
-                if (actorType > (ushort)ActorType.Separator)
+                if (actorType > GlobalConst.ActorTypeSeparator)
                 {
                     LogHelper.Info($"激活全局Actor: {actorType}");
                     await ActorManager.GetOrNew(ActorIdGenerator.GetActorId(actorType));

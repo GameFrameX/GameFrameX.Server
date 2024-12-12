@@ -7,6 +7,7 @@ using GameFrameX.Core.Hotfix;
 using GameFrameX.Core.Timer;
 using GameFrameX.Core.Utility;
 using GameFrameX.Log;
+using GameFrameX.Setting;
 
 namespace GameFrameX.Core.Actors;
 
@@ -83,7 +84,7 @@ public static class ActorManager
     internal static async Task<Actor> GetOrNew(long actorId)
     {
         var actorType = ActorIdGenerator.GetActorType(actorId);
-        if (actorType < (ushort)ActorType.Separator)
+        if (actorType < GlobalConst.ActorTypeSeparator)
         {
             var now = DateTime.Now;
             if (ActiveTimeDic.TryGetValue(actorId, out var activeTime)
@@ -277,7 +278,7 @@ public static class ActorManager
     {
         foreach (var actor in ActorMap.Values)
         {
-            if (actor.Type < (ushort)ActorType.Separator)
+            if (actor.Type < GlobalConst.ActorTypeSeparator)
             {
                 actor.Tell(() => actor.CrossDay(openServerDay));
             }
@@ -307,7 +308,7 @@ public static class ActorManager
         int b = 0;
         foreach (var actor in ActorMap.Values)
         {
-            if (actor.Type > (ushort)ActorType.Separator && actor.Type != driverActorType)
+            if (actor.Type > GlobalConst.ActorTypeSeparator && actor.Type != driverActorType)
             {
                 b++;
 
@@ -339,7 +340,7 @@ public static class ActorManager
         b = 0;
         foreach (var actor in ActorMap.Values)
         {
-            if (actor.Type > (ushort)ActorType.Separator)
+            if (actor.Type > GlobalConst.ActorTypeSeparator)
             {
                 b++;
 

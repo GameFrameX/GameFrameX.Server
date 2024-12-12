@@ -21,11 +21,6 @@ public static class ActorLimit
         None,
 
         /// <summary>
-        /// 分等级(高等级不能【等待】调用低等级)
-        /// </summary>
-        ByLevel,
-
-        /// <summary>
         /// 禁止双向调用
         /// </summary>
         NoBidirectionCall
@@ -48,7 +43,7 @@ public static class ActorLimit
     {
         switch (type)
         {
-            case RuleType.ByLevel:
+            /*case RuleType.ByLevel:
             {
                 _rule = new ByLevelRule();
                 try
@@ -65,7 +60,7 @@ public static class ActorLimit
                     throw;
                 }
             }
-                break;
+                break;*/
             case RuleType.NoBidirectionCall:
             {
                 _rule = new NoBidirectionCallRule();

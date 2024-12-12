@@ -1,4 +1,5 @@
-﻿using GameFrameX.Apps.Server.Server.Component;
+﻿using GameFrameX.Apps;
+using GameFrameX.Apps.Server.Server.Component;
 using GameFrameX.Apps.Server.Server.Entity;
 using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Attribute;
@@ -34,7 +35,7 @@ namespace GameFrameX.Hotfix.Logic.Server.Server
             {
                 LogHelper.Debug($"ServerCompAgent.CrossDayTimeHandler.跨天定时器执行{TimeHelper.CurrentTimeWithFullString()}");
                 await ActorManager.RoleCrossDay(1);
-                await ActorManager.CrossDay(1, (ushort)ActorType.Server);
+                await ActorManager.CrossDay(1, GlobalConst.ActorTypeServer);
             }
         }
 
