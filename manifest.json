@@ -12,26 +12,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Core.Abstractions.ActorType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Core.Abstractions.ActorType.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Core.Abstractions.ActorTypeLevel.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Core.Abstractions.ActorTypeLevel.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.Core.Abstractions.Agent.IComponentAgent.yml",
       "output": {
         ".html": {

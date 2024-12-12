@@ -7,72 +7,6 @@ references:
   commentId: N:GameFrameX.Core.Abstractions
   fullName: GameFrameX.Core.Abstractions
   nameWithType: GameFrameX.Core.Abstractions
-- uid: GameFrameX.Core.Abstractions.ActorType
-  name: ActorType
-  href: api/GameFrameX.Core.Abstractions.ActorType.html
-  commentId: T:GameFrameX.Core.Abstractions.ActorType
-  fullName: GameFrameX.Core.Abstractions.ActorType
-  nameWithType: ActorType
-- uid: GameFrameX.Core.Abstractions.ActorType.Account
-  name: Account
-  href: api/GameFrameX.Core.Abstractions.ActorType.html#GameFrameX_Core_Abstractions_ActorType_Account
-  commentId: F:GameFrameX.Core.Abstractions.ActorType.Account
-  fullName: GameFrameX.Core.Abstractions.ActorType.Account
-  nameWithType: ActorType.Account
-- uid: GameFrameX.Core.Abstractions.ActorType.Max
-  name: Max
-  href: api/GameFrameX.Core.Abstractions.ActorType.html#GameFrameX_Core_Abstractions_ActorType_Max
-  commentId: F:GameFrameX.Core.Abstractions.ActorType.Max
-  fullName: GameFrameX.Core.Abstractions.ActorType.Max
-  nameWithType: ActorType.Max
-- uid: GameFrameX.Core.Abstractions.ActorType.None
-  name: None
-  href: api/GameFrameX.Core.Abstractions.ActorType.html#GameFrameX_Core_Abstractions_ActorType_None
-  commentId: F:GameFrameX.Core.Abstractions.ActorType.None
-  fullName: GameFrameX.Core.Abstractions.ActorType.None
-  nameWithType: ActorType.None
-- uid: GameFrameX.Core.Abstractions.ActorType.Player
-  name: Player
-  href: api/GameFrameX.Core.Abstractions.ActorType.html#GameFrameX_Core_Abstractions_ActorType_Player
-  commentId: F:GameFrameX.Core.Abstractions.ActorType.Player
-  fullName: GameFrameX.Core.Abstractions.ActorType.Player
-  nameWithType: ActorType.Player
-- uid: GameFrameX.Core.Abstractions.ActorType.Separator
-  name: Separator
-  href: api/GameFrameX.Core.Abstractions.ActorType.html#GameFrameX_Core_Abstractions_ActorType_Separator
-  commentId: F:GameFrameX.Core.Abstractions.ActorType.Separator
-  fullName: GameFrameX.Core.Abstractions.ActorType.Separator
-  nameWithType: ActorType.Separator
-- uid: GameFrameX.Core.Abstractions.ActorType.Server
-  name: Server
-  href: api/GameFrameX.Core.Abstractions.ActorType.html#GameFrameX_Core_Abstractions_ActorType_Server
-  commentId: F:GameFrameX.Core.Abstractions.ActorType.Server
-  fullName: GameFrameX.Core.Abstractions.ActorType.Server
-  nameWithType: ActorType.Server
-- uid: GameFrameX.Core.Abstractions.ActorTypeLevel
-  name: ActorTypeLevel
-  href: api/GameFrameX.Core.Abstractions.ActorTypeLevel.html
-  commentId: T:GameFrameX.Core.Abstractions.ActorTypeLevel
-  fullName: GameFrameX.Core.Abstractions.ActorTypeLevel
-  nameWithType: ActorTypeLevel
-- uid: GameFrameX.Core.Abstractions.ActorTypeLevel.Guild
-  name: Guild
-  href: api/GameFrameX.Core.Abstractions.ActorTypeLevel.html#GameFrameX_Core_Abstractions_ActorTypeLevel_Guild
-  commentId: F:GameFrameX.Core.Abstractions.ActorTypeLevel.Guild
-  fullName: GameFrameX.Core.Abstractions.ActorTypeLevel.Guild
-  nameWithType: ActorTypeLevel.Guild
-- uid: GameFrameX.Core.Abstractions.ActorTypeLevel.Role
-  name: Role
-  href: api/GameFrameX.Core.Abstractions.ActorTypeLevel.html#GameFrameX_Core_Abstractions_ActorTypeLevel_Role
-  commentId: F:GameFrameX.Core.Abstractions.ActorTypeLevel.Role
-  fullName: GameFrameX.Core.Abstractions.ActorTypeLevel.Role
-  nameWithType: ActorTypeLevel.Role
-- uid: GameFrameX.Core.Abstractions.ActorTypeLevel.Server
-  name: Server
-  href: api/GameFrameX.Core.Abstractions.ActorTypeLevel.html#GameFrameX_Core_Abstractions_ActorTypeLevel_Server
-  commentId: F:GameFrameX.Core.Abstractions.ActorTypeLevel.Server
-  fullName: GameFrameX.Core.Abstractions.ActorTypeLevel.Server
-  nameWithType: ActorTypeLevel.Server
 - uid: GameFrameX.Core.Abstractions.Agent
   name: GameFrameX.Core.Abstractions.Agent
   href: api/GameFrameX.Core.Abstractions.Agent.html
@@ -197,15 +131,6 @@ references:
   commentId: T:GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute
   fullName: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute
   nameWithType: ComponentTypeAttribute
-- uid: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.#ctor(GameFrameX.Core.Abstractions.ActorType)
-  name: ComponentTypeAttribute(ActorType)
-  href: api/GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.html#GameFrameX_Core_Abstractions_Attribute_ComponentTypeAttribute__ctor_GameFrameX_Core_Abstractions_ActorType_
-  commentId: M:GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.#ctor(GameFrameX.Core.Abstractions.ActorType)
-  name.vb: New(ActorType)
-  fullName: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.ComponentTypeAttribute(GameFrameX.Core.Abstractions.ActorType)
-  fullName.vb: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.New(GameFrameX.Core.Abstractions.ActorType)
-  nameWithType: ComponentTypeAttribute.ComponentTypeAttribute(ActorType)
-  nameWithType.vb: ComponentTypeAttribute.New(ActorType)
 - uid: GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.#ctor(System.UInt16)
   name: ComponentTypeAttribute(ushort)
   href: api/GameFrameX.Core.Abstractions.Attribute.ComponentTypeAttribute.html#GameFrameX_Core_Abstractions_Attribute_ComponentTypeAttribute__ctor_System_UInt16_
@@ -13657,6 +13582,36 @@ references:
   commentId: F:GameFrameX.Setting.GlobalConst.ActorTypeMask
   fullName: GameFrameX.Setting.GlobalConst.ActorTypeMask
   nameWithType: GlobalConst.ActorTypeMask
+- uid: GameFrameX.Setting.GlobalConst.ActorTypeMax
+  name: ActorTypeMax
+  href: api/GameFrameX.Setting.GlobalConst.html#GameFrameX_Setting_GlobalConst_ActorTypeMax
+  commentId: F:GameFrameX.Setting.GlobalConst.ActorTypeMax
+  fullName: GameFrameX.Setting.GlobalConst.ActorTypeMax
+  nameWithType: GlobalConst.ActorTypeMax
+- uid: GameFrameX.Setting.GlobalConst.ActorTypeNone
+  name: ActorTypeNone
+  href: api/GameFrameX.Setting.GlobalConst.html#GameFrameX_Setting_GlobalConst_ActorTypeNone
+  commentId: F:GameFrameX.Setting.GlobalConst.ActorTypeNone
+  fullName: GameFrameX.Setting.GlobalConst.ActorTypeNone
+  nameWithType: GlobalConst.ActorTypeNone
+- uid: GameFrameX.Setting.GlobalConst.ActorTypePlayer
+  name: ActorTypePlayer
+  href: api/GameFrameX.Setting.GlobalConst.html#GameFrameX_Setting_GlobalConst_ActorTypePlayer
+  commentId: F:GameFrameX.Setting.GlobalConst.ActorTypePlayer
+  fullName: GameFrameX.Setting.GlobalConst.ActorTypePlayer
+  nameWithType: GlobalConst.ActorTypePlayer
+- uid: GameFrameX.Setting.GlobalConst.ActorTypeSeparator
+  name: ActorTypeSeparator
+  href: api/GameFrameX.Setting.GlobalConst.html#GameFrameX_Setting_GlobalConst_ActorTypeSeparator
+  commentId: F:GameFrameX.Setting.GlobalConst.ActorTypeSeparator
+  fullName: GameFrameX.Setting.GlobalConst.ActorTypeSeparator
+  nameWithType: GlobalConst.ActorTypeSeparator
+- uid: GameFrameX.Setting.GlobalConst.ActorTypeServer
+  name: ActorTypeServer
+  href: api/GameFrameX.Setting.GlobalConst.html#GameFrameX_Setting_GlobalConst_ActorTypeServer
+  commentId: F:GameFrameX.Setting.GlobalConst.ActorTypeServer
+  fullName: GameFrameX.Setting.GlobalConst.ActorTypeServer
+  nameWithType: GlobalConst.ActorTypeServer
 - uid: GameFrameX.Setting.GlobalConst.ComponentAgentNameSuffix
   name: ComponentAgentNameSuffix
   href: api/GameFrameX.Setting.GlobalConst.html#GameFrameX_Setting_GlobalConst_ComponentAgentNameSuffix
