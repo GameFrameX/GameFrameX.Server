@@ -1,14 +1,14 @@
 ﻿using GameFrameX.Apps.Server.Server.Entity;
 using GameFrameX.Core.Abstractions;
+using GameFrameX.Setting;
 
-namespace GameFrameX.Apps.Server.Server.Component
+namespace GameFrameX.Apps.Server.Server.Component;
+
+[ComponentType(GlobalConst.ActorTypeServer)]
+public class ServerComponent : StateComponent<ServerState>
 {
-    [ComponentType(ActorType.Server)]
-    public class ServerComponent : StateComponent<ServerState>
-    {
-        /// <summary>
-        /// 存放在此处的数据不会回存到数据库
-        /// </summary>
-        public HashSet<long> OnlineSet = new();
-    }
+    /// <summary>
+    /// 存放在此处的数据不会回存到数据库
+    /// </summary>
+    public HashSet<long> OnlineSet = new();
 }

@@ -7,11 +7,12 @@ using GameFrameX.Core.Components;
 using GameFrameX.DataBase;
 using GameFrameX.Monitor.Account;
 using GameFrameX.Monitor.Player;
+using GameFrameX.Setting;
 using Random = GameFrameX.Utility.Random;
 
 namespace GameFrameX.Apps.Account.Login.Component
 {
-    [ComponentType(ActorType.Account)]
+    [ComponentType((ushort)ActorType.Account)]
     public sealed class LoginComponent : StateComponent<LoginState>
     {
         public async Task<LoginState> OnLogin(ReqLogin reqLogin)
@@ -38,7 +39,7 @@ namespace GameFrameX.Apps.Account.Login.Component
         {
             PlayerState playerState = new PlayerState
             {
-                Id = ActorIdGenerator.GetActorId((ushort)ActorType.Player),
+                Id = ActorIdGenerator.GetActorId(GlobalConst.ActorTypePlayer),
                 AccountId = reqPlayerCreate.Id,
                 Name = reqPlayerCreate.Name,
                 Level = (uint)Random.Next(1, 50),
