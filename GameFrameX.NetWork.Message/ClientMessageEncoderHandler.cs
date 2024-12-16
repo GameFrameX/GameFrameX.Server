@@ -26,7 +26,8 @@ public sealed class ClientMessageEncoderHandler : BaseMessageEncoderHandler
     {
         if (message is MessageObject messageObject)
         {
-            MessageProtoHelper.SetMessageIdAndOperationType(messageObject);
+            MessageProtoHelper.SetMessageId(messageObject);
+            messageObject.SetOperationType(MessageProtoHelper.GetMessageOperationType(messageObject));
             var messageBodyData = ProtoBufSerializerHelper.Serialize(messageObject);
             bool isHeartbeat = MessageProtoHelper.IsHeartbeat(messageObject.GetType());
             byte zipFlag = 0;

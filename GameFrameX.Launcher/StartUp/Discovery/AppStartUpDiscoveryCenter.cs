@@ -48,7 +48,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
             return;
         }
 
-        MessageProtoHelper.SetMessageIdAndOperationType(message);
+        MessageProtoHelper.SetMessageId(message);
         var messageObjectHeader = new InnerMessageObjectHeader()
         {
             ServerId = Setting.ServerId,

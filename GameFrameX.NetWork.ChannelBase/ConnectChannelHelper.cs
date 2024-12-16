@@ -88,7 +88,7 @@ public sealed class ConnectChannelHelper
         _reconnectionTimer.Elapsed += ReconnectionTimerOnElapsed;
         _reqActorHeartBeat = new ReqActorHeartBeat();
         _innerMessageObjectHeader = new DefaultObjectPoolProvider().Create<InnerMessageObjectHeader>();
-        MessageProtoHelper.SetMessageIdAndOperationType(_reqActorHeartBeat);
+        MessageProtoHelper.SetMessageId(_reqActorHeartBeat);
         _connectClient = new AsyncTcpSession();
         _connectClient.Closed += ConnectClientOnClosed;
         _connectClient.DataReceived += ConnectClientOnDataReceived;
@@ -118,7 +118,7 @@ public sealed class ConnectChannelHelper
                 continue;
             }
 
-            MessageProtoHelper.SetMessageIdAndOperationType(message.RequestMessage);
+            MessageProtoHelper.SetMessageId(message.RequestMessage);
             InnerMessageObjectHeader messageObjectHeader = _innerMessageObjectHeader.Get();
             messageObjectHeader.ServerId = _setting.ServerId;
             var innerNetworkMessage = InnerNetworkMessage.Create(message.RequestMessage, messageObjectHeader);

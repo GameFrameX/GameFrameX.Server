@@ -29,7 +29,7 @@ internal partial class AppStartUpDiscoveryCenter
             ServerName = serverInfo.ServerName,
             ServerId = serverInfo.ServerId
         };
-        MessageProtoHelper.SetMessageIdAndOperationType(respServerOnlineServer);
+        MessageProtoHelper.SetMessageId(respServerOnlineServer);
         foreach (var serverInfo1 in serverList)
         {
             var info = (ServiceInfo)serverInfo1;
@@ -54,7 +54,7 @@ internal partial class AppStartUpDiscoveryCenter
             ServerName = serverInfo.ServerName,
             ServerId = serverInfo.ServerId,
         };
-        MessageProtoHelper.SetMessageIdAndOperationType(respServerOnlineServer);
+        MessageProtoHelper.SetMessageId(respServerOnlineServer);
         foreach (var serverInfo1 in serverList)
         {
             var info = (ServiceInfo)serverInfo1;

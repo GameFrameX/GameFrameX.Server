@@ -30,7 +30,8 @@ public sealed class DefaultMessageEncoderHandler : BaseMessageEncoderHandler
     {
         if (message is MessageObject messageObject)
         {
-            MessageProtoHelper.SetMessageIdAndOperationType(messageObject);
+            MessageProtoHelper.SetMessageId(messageObject);
+            messageObject.SetOperationType(MessageProtoHelper.GetMessageOperationType(messageObject));
             var messageBodyData = ProtoBufSerializerHelper.Serialize(messageObject);
             byte zipFlag = 0;
             BytesCompressHandler(ref messageBodyData, ref zipFlag);

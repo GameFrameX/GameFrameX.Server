@@ -90,7 +90,7 @@ namespace GameFrameX.NetWork.Abstractions
         /// 设置消息ID和操作类型
         /// </summary>
         /// <param name="message">消息对象</param>
-        public static void SetMessageIdAndOperationType(INetworkMessage message)
+        public static void SetMessageId(INetworkMessage message)
         {
             message.CheckNotNull(nameof(message));
             var messageType = message.GetType();
