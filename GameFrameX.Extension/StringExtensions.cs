@@ -18,13 +18,14 @@ public static class StringExtension
     /// <returns>重复后的字符串。</returns>
     public static string RepeatChar(this char c, int count)
     {
-        NewSentence.Clear();
+        var stringBuilder = new StringBuilder();
+        stringBuilder.Clear();
         for (int i = 0; i < count; i++)
         {
-            NewSentence.Append(c);
+            stringBuilder.Append(c);
         }
 
-        return NewSentence.ToString();
+        return stringBuilder.ToString();
     }
 
     /// <summary>
