@@ -101,23 +101,27 @@ public class UnityTcpClient
         int offset = 0;
 
         // 消息总长度
-        var totalLength = data.ReadUInt(ref offset);
+        var totalLength = data.ReadInt(ref offset);
         // 消息头长度
-        ushort headerLength = data.ReadUShort(ref offset);
+        byte operationType = data.ReadByte(ref offset);
+        byte zipFlag = data.ReadByte(ref offset);
+        var UniqueId = data.ReadInt(ref offset);
+        var MessageId = data.ReadInt(ref offset);
+        // ushort headerLength = data.ReadByte(ref offset);
         // 消息头字节数组
-        var messageHeaderData = data.ReadBytes(ref offset, headerLength);
+        // var messageHeaderData = data.ReadBytes(ref offset, headerLength);
         // 消息对象头
-        var messageObjectHeader = DecodeHeaderNetworkMessage(messageHeaderData);
+        // var messageObjectHeader = DecodeHeaderNetworkMessage(messageHeaderData);
         // 消息内容
-        var messageData = data.ReadBytes(ref offset, (int)(totalLength - headerLength - 6));
-        var messageType = MessageProtoHelper.GetMessageTypeById(messageObjectHeader.MessageId);
+        var messageData = data.ReadBytes(ref offset, (int)(totalLength - 14));
+        var messageType = MessageProtoHelper.GetMessageTypeById(MessageId);
         if (messageType != null)
         {
             var messageObject = (MessageObject)ProtoBufSerializerHelper.Deserialize(messageData, messageType);
-            messageObject.SetMessageId(messageObjectHeader.MessageId);
-            messageObject.SetOperationType((MessageOperationType)messageObjectHeader.OperationType);
-            messageObject.SetUniqueId(messageObjectHeader.UniqueId);
-            Console.WriteLine($"客户端接收到信息：{messageObject.ToFormatMessageString()}");
+            messageObject.SetMessageId(MessageId);
+            messageObject.SetOperationType((MessageOperationType)operationType);
+            messageObject.SetUniqueId(UniqueId);
+            // Console.WriteLine($"客户端接收到信息：{messageObject.ToFormatMessageString()}");
         }
     }
 
@@ -127,8 +131,8 @@ public class UnityTcpClient
     {
         _count++;
 
-        MessageProtoHelper.SetMessageIdAndOperationType(message);
-
+        MessageProtoHelper.SetMessageId(message);
+        message.SetOperationType(MessageProtoHelper.GetMessageOperationType(message));
 
         MessageObjectHeader messageObjectHeader = new MessageObjectHeader
         {
@@ -138,16 +142,19 @@ public class UnityTcpClient
         };
         var header = ProtoBufSerializerHelper.Serialize(messageObjectHeader);
         var messageData = ProtoBufSerializerHelper.Serialize(message);
-        var totalLength = (uint)(header.Length + messageData.Length + InnerPackageHeaderLength);
+        var totalLength = messageData.Length + InnerPackageHeaderLength;
         var buffer = new byte[totalLength];
         var offset = 0;
-        buffer.WriteUInt(totalLength, ref offset);
-        buffer.WriteUShort((ushort)header.Length, ref offset);
-        buffer.WriteBytesWithoutLength(header, ref offset);
+        buffer.WriteInt(totalLength, ref offset);
+        buffer.WriteByte((byte)messageObjectHeader.OperationType, ref offset);
+        buffer.WriteByte((byte)messageObjectHeader.ZipFlag, ref offset);
+        buffer.WriteInt(messageObjectHeader.UniqueId, ref offset);
+        buffer.WriteInt(messageObjectHeader.MessageId, ref offset);
+        // buffer.WriteBytesWithoutLength(header, ref offset);
         buffer.WriteBytesWithoutLength(messageData, ref offset);
-        Console.WriteLine($"客户端接发送信息：{message.ToFormatMessageString()}");
+        // Console.WriteLine($"客户端接发送信息：{message.ToFormatMessageString()}");
         return buffer;
     }
 
-    const ushort InnerPackageHeaderLength = 4 + 2;
+    const ushort InnerPackageHeaderLength = 14;
 }
