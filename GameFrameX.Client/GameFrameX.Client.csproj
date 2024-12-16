@@ -9,11 +9,11 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <OutputPath>..\bin\app_debug\</OutputPath>
+      <OutputPath>..\bin\app_client_debug\</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <OutputPath>..\bin\app\</OutputPath>
+      <OutputPath>..\bin\app_client\</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>
