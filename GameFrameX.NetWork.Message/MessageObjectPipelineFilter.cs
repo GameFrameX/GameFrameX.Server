@@ -32,7 +32,7 @@ public sealed class MessageObjectPipelineFilter : PipelineFilterBase<IMessage>
         }
         else
         {
-            reader.AdvanceToEnd();
+            reader.Advance(totalLength);
         }
 
         return Decoder.Decode(ref readBuffer, Context);
