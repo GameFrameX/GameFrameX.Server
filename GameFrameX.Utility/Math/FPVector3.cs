@@ -81,13 +81,13 @@ public struct FPVector3
     public static readonly FPVector3 one;
 
     /// <summary>
-    /// A vector with components 
+    /// A vector with components
     /// (FP.MinValue,FP.MinValue,FP.MinValue);
     /// </summary>
     public static readonly FPVector3 MinValue;
 
     /// <summary>
-    /// A vector with components 
+    /// A vector with components
     /// (FP.MaxValue,FP.MaxValue,FP.MaxValue);
     /// </summary>
     public static readonly FPVector3 MaxValue;
@@ -130,7 +130,7 @@ public struct FPVector3
     /// <returns>Returns the squared length of the vector.</returns>
     public FP sqrMagnitude
     {
-        get { return (((x * x) + (y * y)) + (z * z)); }
+        get { return x * x + y * y + z * z; }
     }
 
     /// <summary>
@@ -141,7 +141,7 @@ public struct FPVector3
     {
         get
         {
-            FP num = ((x * x) + (y * y)) + (z * z);
+            var num = x * x + y * y + z * z;
             return FP.Sqrt(num);
         }
     }
@@ -165,7 +165,7 @@ public struct FPVector3
     {
         get
         {
-            FPVector3 result = new FPVector3(x, y, z);
+            var result = new FPVector3(x, y, z);
             result.Normalize();
 
             return result;
@@ -268,10 +268,14 @@ public struct FPVector3
 
     public override bool Equals(object obj)
     {
-        if (!(obj is FPVector3)) return false;
-        FPVector3 other = (FPVector3)obj;
+        if (!(obj is FPVector3))
+        {
+            return false;
+        }
 
-        return (((x == other.x) && (y == other.y)) && (z == other.z));
+        var other = (FPVector3)obj;
+
+        return x == other.x && y == other.y && z == other.z;
     }
 
     #endregion
@@ -313,7 +317,7 @@ public struct FPVector3
 
     public static bool operator ==(FPVector3 value1, FPVector3 value2)
     {
-        return (((value1.x == value2.x) && (value1.y == value2.y)) && (value1.z == value2.z));
+        return value1.x == value2.x && value1.y == value2.y && value1.z == value2.z;
     }
 
     #endregion
@@ -329,9 +333,9 @@ public struct FPVector3
 
     public static bool operator !=(FPVector3 value1, FPVector3 value2)
     {
-        if ((value1.x == value2.x) && (value1.y == value2.y))
+        if (value1.x == value2.x && value1.y == value2.y)
         {
-            return (value1.z != value2.z);
+            return value1.z != value2.z;
         }
 
         return true;
@@ -362,9 +366,9 @@ public struct FPVector3
     /// <param name="result">A vector with the minimum x,y and z values of both vectors.</param>
     public static void Min(ref FPVector3 value1, ref FPVector3 value2, out FPVector3 result)
     {
-        result.x = (value1.x < value2.x) ? value1.x : value2.x;
-        result.y = (value1.y < value2.y) ? value1.y : value2.y;
-        result.z = (value1.z < value2.z) ? value1.z : value2.z;
+        result.x = value1.x < value2.x ? value1.x : value2.x;
+        result.y = value1.y < value2.y ? value1.y : value2.y;
+        result.z = value1.z < value2.z ? value1.z : value2.z;
     }
 
     #endregion
@@ -404,9 +408,9 @@ public struct FPVector3
     /// <param name="result">A vector with the maximum x,y and z values of both vectors.</param>
     public static void Max(ref FPVector3 value1, ref FPVector3 value2, out FPVector3 result)
     {
-        result.x = (value1.x > value2.x) ? value1.x : value2.x;
-        result.y = (value1.y > value2.y) ? value1.y : value2.y;
-        result.z = (value1.z > value2.z) ? value1.z : value2.z;
+        result.x = value1.x > value2.x ? value1.x : value2.x;
+        result.y = value1.y > value2.y ? value1.y : value2.y;
+        result.z = value1.z > value2.z ? value1.z : value2.z;
     }
 
     #endregion
@@ -435,7 +439,7 @@ public struct FPVector3
 
     public bool IsZero()
     {
-        return (sqrMagnitude == FP.Zero);
+        return sqrMagnitude == FP.Zero;
     }
 
     /// <summary>
@@ -444,7 +448,7 @@ public struct FPVector3
     /// <returns>Returns true if the vector is nearly zero, otherwise false.</returns>
     public bool IsNearlyZero()
     {
-        return (sqrMagnitude < ZeroEpsilonSq);
+        return sqrMagnitude < ZeroEpsilonSq;
     }
 
     #endregion
@@ -473,9 +477,9 @@ public struct FPVector3
     /// <param name="result">The transformed vector.</param>
     public static void Transform(ref FPVector3 position, ref FPMatrix matrix, out FPVector3 result)
     {
-        FP num0 = ((position.x * matrix.M11) + (position.y * matrix.M21)) + (position.z * matrix.M31);
-        FP num1 = ((position.x * matrix.M12) + (position.y * matrix.M22)) + (position.z * matrix.M32);
-        FP num2 = ((position.x * matrix.M13) + (position.y * matrix.M23)) + (position.z * matrix.M33);
+        var num0 = position.x * matrix.M11 + position.y * matrix.M21 + position.z * matrix.M31;
+        var num1 = position.x * matrix.M12 + position.y * matrix.M22 + position.z * matrix.M32;
+        var num2 = position.x * matrix.M13 + position.y * matrix.M23 + position.z * matrix.M33;
 
         result.x = num0;
         result.y = num1;
@@ -490,9 +494,9 @@ public struct FPVector3
     /// <param name="result">The transformed vector.</param>
     public static void TransposedTransform(ref FPVector3 position, ref FPMatrix matrix, out FPVector3 result)
     {
-        FP num0 = ((position.x * matrix.M11) + (position.y * matrix.M12)) + (position.z * matrix.M13);
-        FP num1 = ((position.x * matrix.M21) + (position.y * matrix.M22)) + (position.z * matrix.M23);
-        FP num2 = ((position.x * matrix.M31) + (position.y * matrix.M32)) + (position.z * matrix.M33);
+        var num0 = position.x * matrix.M11 + position.y * matrix.M12 + position.z * matrix.M13;
+        var num1 = position.x * matrix.M21 + position.y * matrix.M22 + position.z * matrix.M23;
+        var num2 = position.x * matrix.M31 + position.y * matrix.M32 + position.z * matrix.M33;
 
         result.x = num0;
         result.y = num1;
@@ -524,7 +528,7 @@ public struct FPVector3
     /// <returns>Returns the dot product of both vectors.</returns>
     public static FP Dot(ref FPVector3 vector1, ref FPVector3 vector2)
     {
-        return ((vector1.x * vector2.x) + (vector1.y * vector2.y)) + (vector1.z * vector2.z);
+        return vector1.x * vector2.x + vector1.y * vector2.y + vector1.z * vector2.z;
     }
 
     #endregion
@@ -538,9 +542,12 @@ public struct FPVector3
     /// <returns></returns>
     public static FPVector3 Project(FPVector3 vector3, FPVector3 onNormal)
     {
-        FP sqrtMag = Dot(onNormal, onNormal);
+        var sqrtMag = Dot(onNormal, onNormal);
         if (sqrtMag < FPMath.Epsilon)
+        {
             return zero;
+        }
+
         return onNormal * Dot(vector3, onNormal) / sqrtMag;
     }
 
@@ -582,7 +589,7 @@ public struct FPVector3
     public static FP SignedAngle(FPVector3 from, FPVector3 to, FPVector3 axis)
     {
         FPVector3 fromNorm = from.normalized, toNorm = to.normalized;
-        FP unsignedAngle = FPMath.Acos(FPMath.Clamp(Dot(fromNorm, toNorm), -FP.One, FP.One)) * FPMath.Rad2Deg;
+        var unsignedAngle = FPMath.Acos(FPMath.Clamp(Dot(fromNorm, toNorm), -FP.One, FP.One)) * FPMath.Rad2Deg;
         FP sign = FPMath.Sign(Dot(axis, Cross(fromNorm, toNorm)));
         return unsignedAngle * sign;
     }
@@ -611,9 +618,9 @@ public struct FPVector3
     /// <param name="result">The sum of both vectors.</param>
     public static void Add(ref FPVector3 value1, ref FPVector3 value2, out FPVector3 result)
     {
-        FP num0 = value1.x + value2.x;
-        FP num1 = value1.y + value2.y;
-        FP num2 = value1.z + value2.z;
+        var num0 = value1.x + value2.x;
+        var num1 = value1.y + value2.y;
+        var num2 = value1.z + value2.z;
 
         result.x = num0;
         result.y = num1;
@@ -672,9 +679,9 @@ public struct FPVector3
     /// <param name="result">The difference of both vectors.</param>
     public static void Subtract(ref FPVector3 value1, ref FPVector3 value2, out FPVector3 result)
     {
-        FP num0 = value1.x - value2.x;
-        FP num1 = value1.y - value2.y;
-        FP num2 = value1.z - value2.z;
+        var num0 = value1.x - value2.x;
+        var num1 = value1.y - value2.y;
+        var num2 = value1.z - value2.z;
 
         result.x = num0;
         result.y = num1;
@@ -707,9 +714,9 @@ public struct FPVector3
     /// <param name="result">The cross product of both vectors.</param>
     public static void Cross(ref FPVector3 vector1, ref FPVector3 vector2, out FPVector3 result)
     {
-        FP num3 = (vector1.y * vector2.z) - (vector1.z * vector2.y);
-        FP num2 = (vector1.z * vector2.x) - (vector1.x * vector2.z);
-        FP num = (vector1.x * vector2.y) - (vector1.y * vector2.x);
+        var num3 = vector1.y * vector2.z - vector1.z * vector2.y;
+        var num2 = vector1.z * vector2.x - vector1.x * vector2.z;
+        var num = vector1.x * vector2.y - vector1.y * vector2.x;
         result.x = num3;
         result.y = num2;
         result.z = num;
@@ -763,9 +770,9 @@ public struct FPVector3
     /// <param name="result">The negated vector.</param>
     public static void Negate(ref FPVector3 value, out FPVector3 result)
     {
-        FP num0 = -value.x;
-        FP num1 = -value.y;
-        FP num2 = -value.z;
+        var num0 = -value.x;
+        var num1 = -value.y;
+        var num2 = -value.z;
 
         result.x = num0;
         result.y = num1;
@@ -794,8 +801,8 @@ public struct FPVector3
     /// </summary>
     public void Normalize()
     {
-        FP num2 = ((x * x) + (y * y)) + (z * z);
-        FP num = FP.One / FP.Sqrt(num2);
+        var num2 = x * x + y * y + z * z;
+        var num = FP.One / FP.Sqrt(num2);
         x *= num;
         y *= num;
         z *= num;
@@ -808,8 +815,8 @@ public struct FPVector3
     /// <param name="result">A normalized vector.</param>
     public static void Normalize(ref FPVector3 value, out FPVector3 result)
     {
-        FP num2 = ((value.x * value.x) + (value.y * value.y)) + (value.z * value.z);
-        FP num = FP.One / FP.Sqrt(num2);
+        var num2 = value.x * value.x + value.y * value.y + value.z * value.z;
+        var num = FP.One / FP.Sqrt(num2);
         result.x = value.x * num;
         result.y = value.y * num;
         result.z = value.z * num;
@@ -1000,7 +1007,7 @@ public struct FPVector3
     /// <returns></returns>
     public static FPVector3 operator ^(FPVector3 value1, FPVector3 value2)
     {
-        FPVector3 v = new FPVector3
+        var v = new FPVector3
         {
             x = value1.y * value2.z - value1.z * value2.y,
             y = value1.z * value2.x - value1.x * value2.z,

@@ -3,7 +3,7 @@
 namespace GameFrameX.Extension;
 
 /// <summary>
-/// 提供对 <see cref="SequenceReader{T}"/> 类的扩展方法，用于从只读内存中读取数据。
+/// 提供对 <see cref="SequenceReader{T}" /> 类的扩展方法，用于从只读内存中读取数据。
 /// </summary>
 public static class SequenceReaderExtension
 {
@@ -94,9 +94,9 @@ public static class SequenceReaderExtension
             return false;
         }
 
-        int num1 = 0;
-        int num2 = (int)Math.Pow(256.0, 3.0);
-        for (int index = 0; index < 4; ++index)
+        var num1 = 0;
+        var num2 = (int)Math.Pow(256.0, 3.0);
+        for (var index = 0; index < 4; ++index)
         {
             if (!reader.TryPeek(index, out var num3))
             {
@@ -126,8 +126,8 @@ public static class SequenceReaderExtension
         }
 
         long num1 = 0;
-        long num2 = (long)Math.Pow(256.0, 7.0);
-        for (int index = 0; index < 8; ++index)
+        var num2 = (long)Math.Pow(256.0, 7.0);
+        for (var index = 0; index < 8; ++index)
         {
             if (!reader.TryPeek(index, out var num3))
             {

@@ -12,7 +12,7 @@ public static class IdGenerator
 
     // 共享计数器
     private static long _longCounter = (long)(DateTime.UtcNow - UtcTimeStart).TotalSeconds;
-    private static int  _intCounter  = (int)(DateTime.UtcNow - UtcTimeStart).TotalSeconds;
+    private static int _intCounter = (int)(DateTime.UtcNow - UtcTimeStart).TotalSeconds;
 
     /// <summary>
     /// 使用Interlocked.Increment生成唯一ID的方法

@@ -4,11 +4,16 @@ using System.Text.RegularExpressions;
 namespace GameFrameX.Extension;
 
 /// <summary>
-/// 提供对 <see cref="string"/> 类型的扩展方法。
+/// 提供对 <see cref="string" /> 类型的扩展方法。
 /// </summary>
 public static class StringExtension
 {
-    private static readonly StringBuilder NewSentence = new StringBuilder();
+    private static readonly StringBuilder NewSentence = new();
+
+    /// <summary>
+    /// 匹配中文正则表达式。
+    /// </summary>
+    private static readonly Regex CnReg = new(@"[\u4e00-\u9fa5]");
 
     /// <summary>
     /// 重复指定字符。
@@ -20,7 +25,7 @@ public static class StringExtension
     {
         var stringBuilder = new StringBuilder();
         stringBuilder.Clear();
-        for (int i = 0; i < count; i++)
+        for (var i = 0; i < count; i++)
         {
             stringBuilder.Append(c);
         }
@@ -42,8 +47,8 @@ public static class StringExtension
             // throw new IndexOutOfRangeException(nameof(width));
         }
 
-        int spaces = (width - text.Length) / 2;
-        string paddedText = new string(' ', spaces) + text + new string(' ', spaces);
+        var spaces = (width - text.Length) / 2;
+        var paddedText = new string(' ', spaces) + text + new string(' ', spaces);
         return paddedText;
     }
 
@@ -57,7 +62,7 @@ public static class StringExtension
     {
         var words = text.Split(' ');
         NewSentence.Clear();
-        string line = "";
+        var line = "";
         foreach (var word in words)
         {
             if ((line + word).Length > width)
@@ -85,7 +90,7 @@ public static class StringExtension
     /// <returns>移除后的字符串。</returns>
     public static string RemoveSuffix(this string self, char toRemove)
     {
-        return self.IsNullOrEmpty() ? self : (self.EndsWith(toRemove) ? self.Substring(0, self.Length - 1) : self);
+        return self.IsNullOrEmpty() ? self : self.EndsWith(toRemove) ? self.Substring(0, self.Length - 1) : self;
     }
 
     /// <summary>
@@ -96,7 +101,7 @@ public static class StringExtension
     /// <returns>移除后的字符串。</returns>
     public static string RemoveSuffix(this string self, string toRemove)
     {
-        return self.IsNullOrEmpty() ? self : (self.EndsWith(toRemove) ? self.Substring(0, self.Length - toRemove.Length) : self);
+        return self.IsNullOrEmpty() ? self : self.EndsWith(toRemove) ? self.Substring(0, self.Length - toRemove.Length) : self;
     }
 
     /// <summary>
@@ -206,14 +211,18 @@ public static class StringExtension
     public static int[] SplitToIntArray(this string str, char sep = '+')
     {
         if (string.IsNullOrEmpty(str))
+        {
             return Array.Empty<int>();
+        }
 
         var arr = str.Split(sep);
-        int[] ret = new int[arr.Length];
-        for (int i = 0; i < arr.Length; ++i)
+        var ret = new int[arr.Length];
+        for (var i = 0; i < arr.Length; ++i)
         {
             if (int.TryParse(arr[i], out var t))
+            {
                 ret[i] = t;
+            }
         }
 
         return ret;
@@ -229,16 +238,23 @@ public static class StringExtension
     public static int[][] SplitTo2IntArray(this string str, char sep1 = ';', char sep2 = '+')
     {
         if (string.IsNullOrEmpty(str))
+        {
             return Array.Empty<int[]>();
+        }
 
         var arr = str.Split(sep1);
         if (arr.Length <= 0)
+        {
             return Array.Empty<int[]>();
+        }
 
-        int[][] ret = new int[arr.Length][];
+        var ret = new int[arr.Length][];
 
-        for (int i = 0; i < arr.Length; ++i)
+        for (var i = 0; i < arr.Length; ++i)
+        {
             ret[i] = arr[i].SplitToIntArray(sep2);
+        }
+
         return ret;
     }
 
@@ -276,11 +292,6 @@ public static class StringExtension
         var startUnderscores = Regex.Match(input, @"^_+");
         return startUnderscores + Regex.Replace(input, @"([a-z0-9])([A-Z])", "$1_$2").ToLower();
     }
-
-    /// <summary>
-    /// 匹配中文正则表达式。
-    /// </summary>
-    private static readonly Regex CnReg = new Regex(@"[\u4e00-\u9fa5]");
 
     /// <summary>
     /// 替换中文为空字符串。

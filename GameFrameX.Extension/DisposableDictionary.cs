@@ -10,11 +10,35 @@ public class DisposableDictionary<TKey, TValue> : NullableDictionary<TKey, TValu
     private bool _isDisposed;
 
     /// <summary>
-    /// 终结器，确保未释放的资源在对象被垃圾回收时被释放。
+    /// 初始化一个新的 <see cref="DisposableDictionary{TKey, TValue}" /> 实例。
     /// </summary>
-    ~DisposableDictionary()
+    public DisposableDictionary()
     {
-        Dispose(false);
+    }
+
+    /// <summary>
+    /// 使用指定的默认值初始化一个新的 <see cref="DisposableDictionary{TKey, TValue}" /> 实例。
+    /// </summary>
+    /// <param name="fallbackValue">当键不存在时返回的默认值。</param>
+    public DisposableDictionary(TValue fallbackValue)
+    {
+        FallbackValue = fallbackValue;
+    }
+
+    /// <summary>
+    /// 使用指定的初始容量初始化一个新的 <see cref="DisposableDictionary{TKey, TValue}" /> 实例。
+    /// </summary>
+    /// <param name="capacity">字典的初始容量。</param>
+    public DisposableDictionary(int capacity) : base(capacity)
+    {
+    }
+
+    /// <summary>
+    /// 使用指定的字典初始化一个新的 <see cref="DisposableDictionary{TKey, TValue}" /> 实例。
+    /// </summary>
+    /// <param name="dictionary">用于初始化的字典。</param>
+    public DisposableDictionary(IDictionary<NullObject<TKey>, TValue> dictionary) : base(dictionary)
+    {
     }
 
     /// <summary>
@@ -33,35 +57,11 @@ public class DisposableDictionary<TKey, TValue> : NullableDictionary<TKey, TValu
     }
 
     /// <summary>
-    /// 初始化一个新的 <see cref="DisposableDictionary{TKey, TValue}"/> 实例。
+    /// 终结器，确保未释放的资源在对象被垃圾回收时被释放。
     /// </summary>
-    public DisposableDictionary()
+    ~DisposableDictionary()
     {
-    }
-
-    /// <summary>
-    /// 使用指定的默认值初始化一个新的 <see cref="DisposableDictionary{TKey, TValue}"/> 实例。
-    /// </summary>
-    /// <param name="fallbackValue">当键不存在时返回的默认值。</param>
-    public DisposableDictionary(TValue fallbackValue)
-    {
-        FallbackValue = fallbackValue;
-    }
-
-    /// <summary>
-    /// 使用指定的初始容量初始化一个新的 <see cref="DisposableDictionary{TKey, TValue}"/> 实例。
-    /// </summary>
-    /// <param name="capacity">字典的初始容量。</param>
-    public DisposableDictionary(int capacity) : base(capacity)
-    {
-    }
-
-    /// <summary>
-    /// 使用指定的字典初始化一个新的 <see cref="DisposableDictionary{TKey, TValue}"/> 实例。
-    /// </summary>
-    /// <param name="dictionary">用于初始化的字典。</param>
-    public DisposableDictionary(IDictionary<NullObject<TKey>, TValue> dictionary) : base(dictionary)
-    {
+        Dispose(false);
     }
 
     /// <summary>

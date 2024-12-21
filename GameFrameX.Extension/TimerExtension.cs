@@ -1,7 +1,8 @@
-﻿namespace GameFrameX.Extension;
+﻿using Timer = System.Timers.Timer;
+
+namespace GameFrameX.Extension;
 
 /// <summary>
-/// 
 /// </summary>
 public static class TimerExtension
 {
@@ -9,7 +10,7 @@ public static class TimerExtension
     /// 重置计时器
     /// </summary>
     /// <param name="timer"></param>
-    public static void Reset(this System.Timers.Timer timer)
+    public static void Reset(this Timer timer)
     {
         timer.Stop();
         timer.Start();

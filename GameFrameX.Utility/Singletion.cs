@@ -1,34 +1,33 @@
-﻿namespace GameFrameX.Utility
-{
-    /// <summary>
-    /// 单例类
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public abstract class Singleton<T> where T : Singleton<T>, new()
-    {
-        private static T _instance;
-        private static readonly object LockObject = new object();
+﻿namespace GameFrameX.Utility;
 
-        /// <summary>
-        /// 单例对象
-        /// </summary>
-        public static T Instance
+/// <summary>
+/// 单例类
+/// </summary>
+/// <typeparam name="T"></typeparam>
+public abstract class Singleton<T> where T : Singleton<T>, new()
+{
+    private static T _instance;
+    private static readonly object LockObject = new();
+
+    /// <summary>
+    /// 单例对象
+    /// </summary>
+    public static T Instance
+    {
+        get
         {
-            get
+            if (_instance == null)
             {
-                if (_instance == null)
+                lock (LockObject)
                 {
-                    lock (LockObject)
+                    if (_instance == null)
                     {
-                        if (_instance == null)
-                        {
-                            _instance = new T();
-                        }
+                        _instance = new T();
                     }
                 }
-
-                return _instance;
             }
+
+            return _instance;
         }
     }
 }

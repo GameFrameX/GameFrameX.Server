@@ -94,7 +94,7 @@ public struct FPMatrix
     {
         get
         {
-            FPVector3 result = new FPVector3();
+            var result = new FPVector3();
 
             result.x = FPMath.Atan2(M32, M33) * FP.Rad2Deg;
             result.y = FPMath.Atan2(-M31, FPMath.Sqrt(M32 * M32 + M33 * M33)) * FP.Rad2Deg;
@@ -116,8 +116,8 @@ public struct FPMatrix
     public static FPMatrix CreateRotationX(FP radians)
     {
         FPMatrix matrix;
-        FP num2 = FP.Cos(radians);
-        FP num = FP.Sin(radians);
+        var num2 = FP.Cos(radians);
+        var num = FP.Sin(radians);
         matrix.M11 = FP.One;
         matrix.M12 = FP.Zero;
         matrix.M13 = FP.Zero;
@@ -132,8 +132,8 @@ public struct FPMatrix
 
     public static void CreateRotationX(FP radians, out FPMatrix result)
     {
-        FP num2 = FP.Cos(radians);
-        FP num = FP.Sin(radians);
+        var num2 = FP.Cos(radians);
+        var num = FP.Sin(radians);
         result.M11 = FP.One;
         result.M12 = FP.Zero;
         result.M13 = FP.Zero;
@@ -148,8 +148,8 @@ public struct FPMatrix
     public static FPMatrix CreateRotationY(FP radians)
     {
         FPMatrix matrix;
-        FP num2 = FP.Cos(radians);
-        FP num = FP.Sin(radians);
+        var num2 = FP.Cos(radians);
+        var num = FP.Sin(radians);
         matrix.M11 = num2;
         matrix.M12 = FP.Zero;
         matrix.M13 = -num;
@@ -164,8 +164,8 @@ public struct FPMatrix
 
     public static void CreateRotationY(FP radians, out FPMatrix result)
     {
-        FP num2 = FP.Cos(radians);
-        FP num = FP.Sin(radians);
+        var num2 = FP.Cos(radians);
+        var num = FP.Sin(radians);
         result.M11 = num2;
         result.M12 = FP.Zero;
         result.M13 = -num;
@@ -180,8 +180,8 @@ public struct FPMatrix
     public static FPMatrix CreateRotationZ(FP radians)
     {
         FPMatrix matrix;
-        FP num2 = FP.Cos(radians);
-        FP num = FP.Sin(radians);
+        var num2 = FP.Cos(radians);
+        var num = FP.Sin(radians);
         matrix.M11 = num2;
         matrix.M12 = num;
         matrix.M13 = FP.Zero;
@@ -197,8 +197,8 @@ public struct FPMatrix
 
     public static void CreateRotationZ(FP radians, out FPMatrix result)
     {
-        FP num2 = FP.Cos(radians);
-        FP num = FP.Sin(radians);
+        var num2 = FP.Cos(radians);
+        var num = FP.Sin(radians);
         result.M11 = num2;
         result.M12 = num;
         result.M13 = FP.Zero;
@@ -278,15 +278,15 @@ public struct FPMatrix
     /// <param name="result">The product of both matrices.</param>
     public static void Multiply(ref FPMatrix matrix1, ref FPMatrix matrix2, out FPMatrix result)
     {
-        FP num0 = ((matrix1.M11 * matrix2.M11) + (matrix1.M12 * matrix2.M21)) + (matrix1.M13 * matrix2.M31);
-        FP num1 = ((matrix1.M11 * matrix2.M12) + (matrix1.M12 * matrix2.M22)) + (matrix1.M13 * matrix2.M32);
-        FP num2 = ((matrix1.M11 * matrix2.M13) + (matrix1.M12 * matrix2.M23)) + (matrix1.M13 * matrix2.M33);
-        FP num3 = ((matrix1.M21 * matrix2.M11) + (matrix1.M22 * matrix2.M21)) + (matrix1.M23 * matrix2.M31);
-        FP num4 = ((matrix1.M21 * matrix2.M12) + (matrix1.M22 * matrix2.M22)) + (matrix1.M23 * matrix2.M32);
-        FP num5 = ((matrix1.M21 * matrix2.M13) + (matrix1.M22 * matrix2.M23)) + (matrix1.M23 * matrix2.M33);
-        FP num6 = ((matrix1.M31 * matrix2.M11) + (matrix1.M32 * matrix2.M21)) + (matrix1.M33 * matrix2.M31);
-        FP num7 = ((matrix1.M31 * matrix2.M12) + (matrix1.M32 * matrix2.M22)) + (matrix1.M33 * matrix2.M32);
-        FP num8 = ((matrix1.M31 * matrix2.M13) + (matrix1.M32 * matrix2.M23)) + (matrix1.M33 * matrix2.M33);
+        var num0 = matrix1.M11 * matrix2.M11 + matrix1.M12 * matrix2.M21 + matrix1.M13 * matrix2.M31;
+        var num1 = matrix1.M11 * matrix2.M12 + matrix1.M12 * matrix2.M22 + matrix1.M13 * matrix2.M32;
+        var num2 = matrix1.M11 * matrix2.M13 + matrix1.M12 * matrix2.M23 + matrix1.M13 * matrix2.M33;
+        var num3 = matrix1.M21 * matrix2.M11 + matrix1.M22 * matrix2.M21 + matrix1.M23 * matrix2.M31;
+        var num4 = matrix1.M21 * matrix2.M12 + matrix1.M22 * matrix2.M22 + matrix1.M23 * matrix2.M32;
+        var num5 = matrix1.M21 * matrix2.M13 + matrix1.M22 * matrix2.M23 + matrix1.M23 * matrix2.M33;
+        var num6 = matrix1.M31 * matrix2.M11 + matrix1.M32 * matrix2.M21 + matrix1.M33 * matrix2.M31;
+        var num7 = matrix1.M31 * matrix2.M12 + matrix1.M32 * matrix2.M22 + matrix1.M33 * matrix2.M32;
+        var num8 = matrix1.M31 * matrix2.M13 + matrix1.M32 * matrix2.M23 + matrix1.M33 * matrix2.M33;
 
         result.M11 = num0;
         result.M12 = num1;
@@ -361,18 +361,18 @@ public struct FPMatrix
 
     public static void Invert(ref FPMatrix matrix, out FPMatrix result)
     {
-        FP determinantInverse = 1 / matrix.Determinant();
-        FP m11 = (matrix.M22 * matrix.M33 - matrix.M23 * matrix.M32) * determinantInverse;
-        FP m12 = (matrix.M13 * matrix.M32 - matrix.M33 * matrix.M12) * determinantInverse;
-        FP m13 = (matrix.M12 * matrix.M23 - matrix.M22 * matrix.M13) * determinantInverse;
+        var determinantInverse = 1 / matrix.Determinant();
+        var m11 = (matrix.M22 * matrix.M33 - matrix.M23 * matrix.M32) * determinantInverse;
+        var m12 = (matrix.M13 * matrix.M32 - matrix.M33 * matrix.M12) * determinantInverse;
+        var m13 = (matrix.M12 * matrix.M23 - matrix.M22 * matrix.M13) * determinantInverse;
 
-        FP m21 = (matrix.M23 * matrix.M31 - matrix.M21 * matrix.M33) * determinantInverse;
-        FP m22 = (matrix.M11 * matrix.M33 - matrix.M13 * matrix.M31) * determinantInverse;
-        FP m23 = (matrix.M13 * matrix.M21 - matrix.M11 * matrix.M23) * determinantInverse;
+        var m21 = (matrix.M23 * matrix.M31 - matrix.M21 * matrix.M33) * determinantInverse;
+        var m22 = (matrix.M11 * matrix.M33 - matrix.M13 * matrix.M31) * determinantInverse;
+        var m23 = (matrix.M13 * matrix.M21 - matrix.M11 * matrix.M23) * determinantInverse;
 
-        FP m31 = (matrix.M21 * matrix.M32 - matrix.M22 * matrix.M31) * determinantInverse;
-        FP m32 = (matrix.M12 * matrix.M31 - matrix.M11 * matrix.M32) * determinantInverse;
-        FP m33 = (matrix.M11 * matrix.M22 - matrix.M12 * matrix.M21) * determinantInverse;
+        var m31 = (matrix.M21 * matrix.M32 - matrix.M22 * matrix.M31) * determinantInverse;
+        var m32 = (matrix.M12 * matrix.M31 - matrix.M11 * matrix.M32) * determinantInverse;
+        var m33 = (matrix.M11 * matrix.M22 - matrix.M12 * matrix.M21) * determinantInverse;
 
         result.M11 = m11;
         result.M12 = m12;
@@ -394,24 +394,24 @@ public struct FPMatrix
     /// <param name="result">The inverted JMatrix.</param>
     public static void Inverse(ref FPMatrix matrix, out FPMatrix result)
     {
-        FP det = 1024 * matrix.M11 * matrix.M22 * matrix.M33 -
-                 1024 * matrix.M11 * matrix.M23 * matrix.M32 -
-                 1024 * matrix.M12 * matrix.M21 * matrix.M33 +
-                 1024 * matrix.M12 * matrix.M23 * matrix.M31 +
-                 1024 * matrix.M13 * matrix.M21 * matrix.M32 -
-                 1024 * matrix.M13 * matrix.M22 * matrix.M31;
+        var det = 1024 * matrix.M11 * matrix.M22 * matrix.M33 -
+                  1024 * matrix.M11 * matrix.M23 * matrix.M32 -
+                  1024 * matrix.M12 * matrix.M21 * matrix.M33 +
+                  1024 * matrix.M12 * matrix.M23 * matrix.M31 +
+                  1024 * matrix.M13 * matrix.M21 * matrix.M32 -
+                  1024 * matrix.M13 * matrix.M22 * matrix.M31;
 
-        FP num11 = 1024 * matrix.M22 * matrix.M33 - 1024 * matrix.M23 * matrix.M32;
-        FP num12 = 1024 * matrix.M13 * matrix.M32 - 1024 * matrix.M12 * matrix.M33;
-        FP num13 = 1024 * matrix.M12 * matrix.M23 - 1024 * matrix.M22 * matrix.M13;
+        var num11 = 1024 * matrix.M22 * matrix.M33 - 1024 * matrix.M23 * matrix.M32;
+        var num12 = 1024 * matrix.M13 * matrix.M32 - 1024 * matrix.M12 * matrix.M33;
+        var num13 = 1024 * matrix.M12 * matrix.M23 - 1024 * matrix.M22 * matrix.M13;
 
-        FP num21 = 1024 * matrix.M23 * matrix.M31 - 1024 * matrix.M33 * matrix.M21;
-        FP num22 = 1024 * matrix.M11 * matrix.M33 - 1024 * matrix.M31 * matrix.M13;
-        FP num23 = 1024 * matrix.M13 * matrix.M21 - 1024 * matrix.M23 * matrix.M11;
+        var num21 = 1024 * matrix.M23 * matrix.M31 - 1024 * matrix.M33 * matrix.M21;
+        var num22 = 1024 * matrix.M11 * matrix.M33 - 1024 * matrix.M31 * matrix.M13;
+        var num23 = 1024 * matrix.M13 * matrix.M21 - 1024 * matrix.M23 * matrix.M11;
 
-        FP num31 = 1024 * matrix.M21 * matrix.M32 - 1024 * matrix.M31 * matrix.M22;
-        FP num32 = 1024 * matrix.M12 * matrix.M31 - 1024 * matrix.M32 * matrix.M11;
-        FP num33 = 1024 * matrix.M11 * matrix.M22 - 1024 * matrix.M21 * matrix.M12;
+        var num31 = 1024 * matrix.M21 * matrix.M32 - 1024 * matrix.M31 * matrix.M22;
+        var num32 = 1024 * matrix.M12 * matrix.M31 - 1024 * matrix.M32 * matrix.M11;
+        var num33 = 1024 * matrix.M11 * matrix.M22 - 1024 * matrix.M21 * matrix.M12;
 
         if (det == 0)
         {
@@ -465,7 +465,7 @@ public struct FPMatrix
     /// <param name="result">A JMatrix multiplied by the scale factor.</param>
     public static void Multiply(ref FPMatrix matrix1, FP scaleFactor, out FPMatrix result)
     {
-        FP num = scaleFactor;
+        var num = scaleFactor;
         result.M11 = matrix1.M11 * num;
         result.M12 = matrix1.M12 * num;
         result.M13 = matrix1.M13 * num;
@@ -504,11 +504,11 @@ public struct FPMatrix
 
     public static void LookAt(FPVector3 forward, FPVector3 upwards, out FPMatrix result)
     {
-        FPVector3 zaxis = forward;
+        var zaxis = forward;
         zaxis.Normalize();
-        FPVector3 xaxis = FPVector3.Cross(upwards, zaxis);
+        var xaxis = FPVector3.Cross(upwards, zaxis);
         xaxis.Normalize();
-        FPVector3 yaxis = FPVector3.Cross(zaxis, xaxis);
+        var yaxis = FPVector3.Cross(zaxis, xaxis);
 
         result.M11 = xaxis.x;
         result.M21 = yaxis.x;
@@ -535,24 +535,24 @@ public struct FPMatrix
     /// <param name="result">JMatrix representing an orientation.</param>
     public static void CreateFromQuaternion(ref FPQuaternion quaternion, out FPMatrix result)
     {
-        FP num9 = quaternion.x * quaternion.x;
-        FP num8 = quaternion.y * quaternion.y;
-        FP num7 = quaternion.z * quaternion.z;
-        FP num6 = quaternion.x * quaternion.y;
-        FP num5 = quaternion.z * quaternion.w;
-        FP num4 = quaternion.z * quaternion.x;
-        FP num3 = quaternion.y * quaternion.w;
-        FP num2 = quaternion.y * quaternion.z;
-        FP num = quaternion.x * quaternion.w;
-        result.M11 = FP.One - (2 * (num8 + num7));
+        var num9 = quaternion.x * quaternion.x;
+        var num8 = quaternion.y * quaternion.y;
+        var num7 = quaternion.z * quaternion.z;
+        var num6 = quaternion.x * quaternion.y;
+        var num5 = quaternion.z * quaternion.w;
+        var num4 = quaternion.z * quaternion.x;
+        var num3 = quaternion.y * quaternion.w;
+        var num2 = quaternion.y * quaternion.z;
+        var num = quaternion.x * quaternion.w;
+        result.M11 = FP.One - 2 * (num8 + num7);
         result.M12 = 2 * (num6 + num5);
         result.M13 = 2 * (num4 - num3);
         result.M21 = 2 * (num6 - num5);
-        result.M22 = FP.One - (2 * (num7 + num9));
+        result.M22 = FP.One - 2 * (num7 + num9);
         result.M23 = 2 * (num2 + num);
         result.M31 = 2 * (num4 + num3);
         result.M32 = 2 * (num2 - num);
-        result.M33 = FP.One - (2 * (num8 + num9));
+        result.M33 = FP.One - 2 * (num8 + num9);
     }
 
     #endregion
@@ -681,8 +681,12 @@ public struct FPMatrix
 
     public override bool Equals(object obj)
     {
-        if (!(obj is FPMatrix)) return false;
-        FPMatrix other = (FPMatrix)obj;
+        if (!(obj is FPMatrix))
+        {
+            return false;
+        }
+
+        var other = (FPMatrix)obj;
 
         return M11 == other.M11 &&
                M12 == other.M12 &&
@@ -719,26 +723,26 @@ public struct FPMatrix
 
     public static void CreateFromAxisAngle(ref FPVector3 axis, FP angle, out FPMatrix result)
     {
-        FP x = axis.x;
-        FP y = axis.y;
-        FP z = axis.z;
-        FP num2 = FP.Sin(angle);
-        FP num = FP.Cos(angle);
-        FP num11 = x * x;
-        FP num10 = y * y;
-        FP num9 = z * z;
-        FP num8 = x * y;
-        FP num7 = x * z;
-        FP num6 = y * z;
-        result.M11 = num11 + (num * (FP.One - num11));
-        result.M12 = (num8 - (num * num8)) + (num2 * z);
-        result.M13 = (num7 - (num * num7)) - (num2 * y);
-        result.M21 = (num8 - (num * num8)) - (num2 * z);
-        result.M22 = num10 + (num * (FP.One - num10));
-        result.M23 = (num6 - (num * num6)) + (num2 * x);
-        result.M31 = (num7 - (num * num7)) + (num2 * y);
-        result.M32 = (num6 - (num * num6)) - (num2 * x);
-        result.M33 = num9 + (num * (FP.One - num9));
+        var x = axis.x;
+        var y = axis.y;
+        var z = axis.z;
+        var num2 = FP.Sin(angle);
+        var num = FP.Cos(angle);
+        var num11 = x * x;
+        var num10 = y * y;
+        var num9 = z * z;
+        var num8 = x * y;
+        var num7 = x * z;
+        var num6 = y * z;
+        result.M11 = num11 + num * (FP.One - num11);
+        result.M12 = num8 - num * num8 + num2 * z;
+        result.M13 = num7 - num * num7 - num2 * y;
+        result.M21 = num8 - num * num8 - num2 * z;
+        result.M22 = num10 + num * (FP.One - num10);
+        result.M23 = num6 - num * num6 + num2 * x;
+        result.M31 = num7 - num * num7 + num2 * y;
+        result.M32 = num6 - num * num6 - num2 * x;
+        result.M33 = num9 + num * (FP.One - num9);
     }
 
     /// <summary>

@@ -5,217 +5,216 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-namespace GameFrameX.Utility
+namespace GameFrameX.Utility;
+
+/// <summary>
+/// 校验相关的实用函数。
+/// </summary>
+public static partial class Verifier
 {
+    private const int CachedBytesLength = 0x1000;
+    private static readonly byte[] SCachedBytes = new byte[CachedBytesLength];
+    private static readonly Crc32 SAlgorithm = new();
+    private static readonly Crc64 SAlgorithm64 = new();
+
     /// <summary>
-    /// 校验相关的实用函数。
+    /// 计算二进制流的CRC64
     /// </summary>
-    public static partial class Verifier
+    /// <param name="bytes">指定的二进制流。</param>
+    /// <returns>计算后的 CRC64。</returns>
+    public static ulong GetCrc64(byte[] bytes)
     {
-        private const int CachedBytesLength = 0x1000;
-        private static readonly byte[] SCachedBytes = new byte[CachedBytesLength];
-        private static readonly Verifier.Crc32 SAlgorithm = new Verifier.Crc32();
-        private static readonly Verifier.Crc64 SAlgorithm64 = new Verifier.Crc64();
+        SAlgorithm64.Reset();
+        SAlgorithm64.Append(bytes);
+        return SAlgorithm64.GetCurrentHashAsUInt64();
+    }
 
-        /// <summary>
-        /// 计算二进制流的CRC64
-        /// </summary>
-        /// <param name="bytes">指定的二进制流。</param>
-        /// <returns>计算后的 CRC64。</returns>
-        public static ulong GetCrc64(byte[] bytes)
+    /// <summary>
+    /// 计算流的CRC64
+    /// </summary>
+    /// <param name="stream">指定的流。</param>
+    /// <returns>计算后的 CRC64。</returns>
+    public static ulong GetCrc64(Stream stream)
+    {
+        SAlgorithm64.Reset();
+        SAlgorithm64.Append(stream);
+        return SAlgorithm64.GetCurrentHashAsUInt64();
+    }
+
+    /// <summary>
+    /// 计算二进制流的 CRC32。
+    /// </summary>
+    /// <param name="bytes">指定的二进制流。</param>
+    /// <returns>计算后的 CRC32。</returns>
+    public static int GetCrc32(byte[] bytes)
+    {
+        if (bytes == null)
         {
-            SAlgorithm64.Reset();
-            SAlgorithm64.Append(bytes);
-            return SAlgorithm64.GetCurrentHashAsUInt64();
+            throw new ArgumentNullException(nameof(bytes), "Bytes is invalid.");
         }
 
-        /// <summary>
-        /// 计算流的CRC64
-        /// </summary>
-        /// <param name="stream">指定的流。</param>
-        /// <returns>计算后的 CRC64。</returns>
-        public static ulong GetCrc64(Stream stream)
+        return GetCrc32(bytes, 0, bytes.Length);
+    }
+
+    /// <summary>
+    /// 计算二进制流的 CRC32。
+    /// </summary>
+    /// <param name="bytes">指定的二进制流。</param>
+    /// <param name="offset">二进制流的偏移。</param>
+    /// <param name="length">二进制流的长度。</param>
+    /// <returns>计算后的 CRC32。</returns>
+    public static int GetCrc32(byte[] bytes, int offset, int length)
+    {
+        if (bytes == null)
         {
-            SAlgorithm64.Reset();
-            SAlgorithm64.Append(stream);
-            return SAlgorithm64.GetCurrentHashAsUInt64();
+            throw new ArgumentNullException(nameof(bytes), "Bytes is invalid.");
         }
 
-        /// <summary>
-        /// 计算二进制流的 CRC32。
-        /// </summary>
-        /// <param name="bytes">指定的二进制流。</param>
-        /// <returns>计算后的 CRC32。</returns>
-        public static int GetCrc32(byte[] bytes)
+        if (offset < 0 || length < 0 || offset + length > bytes.Length)
         {
-            if (bytes == null)
-            {
-                throw new ArgumentNullException(nameof(bytes), "Bytes is invalid.");
-            }
-
-            return GetCrc32(bytes, 0, bytes.Length);
+            throw new ArgumentException("Offset or length is invalid.", nameof(offset));
         }
 
-        /// <summary>
-        /// 计算二进制流的 CRC32。
-        /// </summary>
-        /// <param name="bytes">指定的二进制流。</param>
-        /// <param name="offset">二进制流的偏移。</param>
-        /// <param name="length">二进制流的长度。</param>
-        /// <returns>计算后的 CRC32。</returns>
-        public static int GetCrc32(byte[] bytes, int offset, int length)
+        SAlgorithm.HashCore(bytes, offset, length);
+        var result = (int)SAlgorithm.HashFinal();
+        SAlgorithm.Initialize();
+        return result;
+    }
+
+    /// <summary>
+    /// 计算流的 CRC32。
+    /// </summary>
+    /// <param name="stream">指定的流。</param>
+    /// <returns>计算后的 CRC32。</returns>
+    public static int GetCrc32(Stream stream)
+    {
+        if (stream == null)
         {
-            if (bytes == null)
-            {
-                throw new ArgumentNullException(nameof(bytes), "Bytes is invalid.");
-            }
-
-            if (offset < 0 || length < 0 || offset + length > bytes.Length)
-            {
-                throw new ArgumentException("Offset or length is invalid.", nameof(offset));
-            }
-
-            SAlgorithm.HashCore(bytes, offset, length);
-            int result = (int)SAlgorithm.HashFinal();
-            SAlgorithm.Initialize();
-            return result;
+            throw new ArgumentNullException(nameof(stream), "Stream is invalid.");
         }
 
-        /// <summary>
-        /// 计算流的 CRC32。
-        /// </summary>
-        /// <param name="stream">指定的流。</param>
-        /// <returns>计算后的 CRC32。</returns>
-        public static int GetCrc32(Stream stream)
+        while (true)
         {
-            if (stream == null)
+            var bytesRead = stream.Read(SCachedBytes, 0, CachedBytesLength);
+            if (bytesRead > 0)
             {
-                throw new ArgumentNullException(nameof(stream), "Stream is invalid.");
+                SAlgorithm.HashCore(SCachedBytes, 0, bytesRead);
             }
-
-            while (true)
+            else
             {
-                int bytesRead = stream.Read(SCachedBytes, 0, CachedBytesLength);
-                if (bytesRead > 0)
+                break;
+            }
+        }
+
+        var result = (int)SAlgorithm.HashFinal();
+        SAlgorithm.Initialize();
+        Array.Clear(SCachedBytes, 0, CachedBytesLength);
+        return result;
+    }
+
+    /// <summary>
+    /// 获取 CRC32 数值的二进制数组。
+    /// </summary>
+    /// <param name="crc32">CRC32 数值。</param>
+    /// <returns>CRC32 数值的二进制数组。</returns>
+    public static byte[] GetCrc32Bytes(int crc32)
+    {
+        return new[] { (byte)((crc32 >> 24) & 0xff), (byte)((crc32 >> 16) & 0xff), (byte)((crc32 >> 8) & 0xff), (byte)(crc32 & 0xff), };
+    }
+
+    /// <summary>
+    /// 获取 CRC32 数值的二进制数组。
+    /// </summary>
+    /// <param name="crc32">CRC32 数值。</param>
+    /// <param name="bytes">要存放结果的数组。</param>
+    public static void GetCrc32Bytes(int crc32, byte[] bytes)
+    {
+        GetCrc32Bytes(crc32, bytes, 0);
+    }
+
+    /// <summary>
+    /// 获取 CRC32 数值的二进制数组。
+    /// </summary>
+    /// <param name="crc32">CRC32 数值。</param>
+    /// <param name="bytes">要存放结果的数组。</param>
+    /// <param name="offset">CRC32 数值的二进制数组在结果数组内的起始位置。</param>
+    public static void GetCrc32Bytes(int crc32, byte[] bytes, int offset)
+    {
+        if (bytes == null)
+        {
+            throw new ArgumentNullException(nameof(bytes), "Result is invalid.");
+        }
+
+        if (offset < 0 || offset + 4 > bytes.Length)
+        {
+            throw new ArgumentException("Offset or length is invalid.", nameof(offset));
+        }
+
+        bytes[offset] = (byte)((crc32 >> 24) & 0xff);
+        bytes[offset + 1] = (byte)((crc32 >> 16) & 0xff);
+        bytes[offset + 2] = (byte)((crc32 >> 8) & 0xff);
+        bytes[offset + 3] = (byte)(crc32 & 0xff);
+    }
+
+    /// <summary>
+    /// 计算流的 CRC32，使用给定的编码。
+    /// </summary>
+    /// <param name="stream">指定的流。</param>
+    /// <param name="code">用于编码的字节数组。</param>
+    /// <param name="length">要计算的字节数。</param>
+    /// <returns>计算后的 CRC32。</returns>
+    internal static int GetCrc32(Stream stream, byte[] code, int length)
+    {
+        if (stream == null)
+        {
+            throw new ArgumentNullException(nameof(stream), "Stream is invalid.");
+        }
+
+        if (code == null)
+        {
+            throw new ArgumentNullException(nameof(code), "Code is invalid.");
+        }
+
+        var codeLength = code.Length;
+        if (codeLength <= 0)
+        {
+            throw new ArgumentException("Code length is invalid.", nameof(codeLength));
+        }
+
+        var bytesLength = (int)stream.Length;
+        if (length < 0 || length > bytesLength)
+        {
+            length = bytesLength;
+        }
+
+        var codeIndex = 0;
+        while (true)
+        {
+            var bytesRead = stream.Read(SCachedBytes, 0, CachedBytesLength);
+            if (bytesRead > 0)
+            {
+                if (length > 0)
                 {
-                    SAlgorithm.HashCore(SCachedBytes, 0, bytesRead);
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            int result = (int)SAlgorithm.HashFinal();
-            SAlgorithm.Initialize();
-            Array.Clear(SCachedBytes, 0, CachedBytesLength);
-            return result;
-        }
-
-        /// <summary>
-        /// 获取 CRC32 数值的二进制数组。
-        /// </summary>
-        /// <param name="crc32">CRC32 数值。</param>
-        /// <returns>CRC32 数值的二进制数组。</returns>
-        public static byte[] GetCrc32Bytes(int crc32)
-        {
-            return new byte[] { (byte)((crc32 >> 24) & 0xff), (byte)((crc32 >> 16) & 0xff), (byte)((crc32 >> 8) & 0xff), (byte)(crc32 & 0xff) };
-        }
-
-        /// <summary>
-        /// 获取 CRC32 数值的二进制数组。
-        /// </summary>
-        /// <param name="crc32">CRC32 数值。</param>
-        /// <param name="bytes">要存放结果的数组。</param>
-        public static void GetCrc32Bytes(int crc32, byte[] bytes)
-        {
-            GetCrc32Bytes(crc32, bytes, 0);
-        }
-
-        /// <summary>
-        /// 获取 CRC32 数值的二进制数组。
-        /// </summary>
-        /// <param name="crc32">CRC32 数值。</param>
-        /// <param name="bytes">要存放结果的数组。</param>
-        /// <param name="offset">CRC32 数值的二进制数组在结果数组内的起始位置。</param>
-        public static void GetCrc32Bytes(int crc32, byte[] bytes, int offset)
-        {
-            if (bytes == null)
-            {
-                throw new ArgumentNullException(nameof(bytes), "Result is invalid.");
-            }
-
-            if (offset < 0 || offset + 4 > bytes.Length)
-            {
-                throw new ArgumentException("Offset or length is invalid.", nameof(offset));
-            }
-
-            bytes[offset] = (byte)((crc32 >> 24) & 0xff);
-            bytes[offset + 1] = (byte)((crc32 >> 16) & 0xff);
-            bytes[offset + 2] = (byte)((crc32 >> 8) & 0xff);
-            bytes[offset + 3] = (byte)(crc32 & 0xff);
-        }
-
-        /// <summary>
-        /// 计算流的 CRC32，使用给定的编码。
-        /// </summary>
-        /// <param name="stream">指定的流。</param>
-        /// <param name="code">用于编码的字节数组。</param>
-        /// <param name="length">要计算的字节数。</param>
-        /// <returns>计算后的 CRC32。</returns>
-        internal static int GetCrc32(Stream stream, byte[] code, int length)
-        {
-            if (stream == null)
-            {
-                throw new ArgumentNullException(nameof(stream), "Stream is invalid.");
-            }
-
-            if (code == null)
-            {
-                throw new ArgumentNullException(nameof(code), "Code is invalid.");
-            }
-
-            int codeLength = code.Length;
-            if (codeLength <= 0)
-            {
-                throw new ArgumentException("Code length is invalid.", nameof(codeLength));
-            }
-
-            int bytesLength = (int)stream.Length;
-            if (length < 0 || length > bytesLength)
-            {
-                length = bytesLength;
-            }
-
-            int codeIndex = 0;
-            while (true)
-            {
-                int bytesRead = stream.Read(SCachedBytes, 0, CachedBytesLength);
-                if (bytesRead > 0)
-                {
-                    if (length > 0)
+                    for (var i = 0; i < bytesRead && i < length; i++)
                     {
-                        for (int i = 0; i < bytesRead && i < length; i++)
-                        {
-                            SCachedBytes[i] ^= code[codeIndex++];
-                            codeIndex %= codeLength;
-                        }
-
-                        length -= bytesRead;
+                        SCachedBytes[i] ^= code[codeIndex++];
+                        codeIndex %= codeLength;
                     }
 
-                    SAlgorithm.HashCore(SCachedBytes, 0, bytesRead);
+                    length -= bytesRead;
                 }
-                else
-                {
-                    break;
-                }
-            }
 
-            int result = (int)SAlgorithm.HashFinal();
-            SAlgorithm.Initialize();
-            Array.Clear(SCachedBytes, 0, CachedBytesLength);
-            return result;
+                SAlgorithm.HashCore(SCachedBytes, 0, bytesRead);
+            }
+            else
+            {
+                break;
+            }
         }
+
+        var result = (int)SAlgorithm.HashFinal();
+        SAlgorithm.Initialize();
+        Array.Clear(SCachedBytes, 0, CachedBytesLength);
+        return result;
     }
 }

@@ -40,32 +40,32 @@ public struct FPVector2 : IEquatable<FPVector2>
     /// <summary>
     /// 零向量 (0, 0) 的私有静态实例。
     /// </summary>
-    private static FPVector2 zeroVector = new FPVector2(0, 0);
+    private static FPVector2 zeroVector = new(0, 0);
 
     /// <summary>
     /// 单位向量 (1, 1) 的私有静态实例。
     /// </summary>
-    private static FPVector2 oneVector = new FPVector2(1, 1);
+    private static FPVector2 oneVector = new(1, 1);
 
     /// <summary>
     /// 右方向向量 (1, 0) 的私有静态实例。
     /// </summary>
-    private static FPVector2 rightVector = new FPVector2(1, 0);
+    private static FPVector2 rightVector = new(1, 0);
 
     /// <summary>
     /// 左方向向量 (-1, 0) 的私有静态实例。
     /// </summary>
-    private static FPVector2 leftVector = new FPVector2(-1, 0);
+    private static FPVector2 leftVector = new(-1, 0);
 
     /// <summary>
     /// 上方向向量 (0, 1) 的私有静态实例。
     /// </summary>
-    private static FPVector2 upVector = new FPVector2(0, 1);
+    private static FPVector2 upVector = new(0, 1);
 
     /// <summary>
     /// 下方向向量 (0, -1) 的私有静态实例。
     /// </summary>
-    private static FPVector2 downVector = new FPVector2(0, -1);
+    private static FPVector2 downVector = new(0, -1);
 
     #endregion Private Fields
 
@@ -174,9 +174,9 @@ public struct FPVector2 : IEquatable<FPVector2>
     /// <param name="result">反射向量。</param>
     public static void Reflect(ref FPVector2 vector, ref FPVector2 normal, out FPVector2 result)
     {
-        FP dot = Dot(vector, normal);
-        result.x = vector.x - ((2 * FP.One * dot) * normal.x);
-        result.y = vector.y - ((2 * FP.One * dot) * normal.y);
+        var dot = Dot(vector, normal);
+        result.x = vector.x - 2 * FP.One * dot * normal.x;
+        result.y = vector.y - 2 * FP.One * dot * normal.y;
     }
 
     /// <summary>
@@ -391,7 +391,7 @@ public struct FPVector2 : IEquatable<FPVector2>
     /// <returns>向量与标量的除法结果。</returns>
     public static FPVector2 Divide(FPVector2 value1, FP divider)
     {
-        FP factor = 1 / divider;
+        var factor = 1 / divider;
         value1.x *= factor;
         value1.y *= factor;
         return value1;
@@ -405,7 +405,7 @@ public struct FPVector2 : IEquatable<FPVector2>
     /// <param name="result">向量与标量的除法结果。</param>
     public static void Divide(ref FPVector2 value1, FP divider, out FPVector2 result)
     {
-        FP factor = 1 / divider;
+        var factor = 1 / divider;
         result.x = value1.x * factor;
         result.y = value1.y * factor;
     }
@@ -439,7 +439,7 @@ public struct FPVector2 : IEquatable<FPVector2>
     /// <returns>如果对象等于当前实例，则返回 true；否则返回 false。</returns>
     public override bool Equals(object obj)
     {
-        return (obj is FPVector2) ? this == ((FPVector2)obj) : false;
+        return obj is FPVector2 ? this == (FPVector2)obj : false;
     }
 
     /// <summary>
@@ -984,7 +984,7 @@ public struct FPVector2 : IEquatable<FPVector2>
     /// <returns>新的 FPVector2。</returns>
     public static FPVector2 operator /(FPVector2 value1, FP divider)
     {
-        FP factor = 1 / divider;
+        var factor = 1 / divider;
         value1.x *= factor;
         value1.y *= factor;
         return value1;

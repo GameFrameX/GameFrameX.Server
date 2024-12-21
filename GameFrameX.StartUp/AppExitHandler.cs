@@ -10,18 +10,16 @@ using GameFrameX.Utility;
 namespace GameFrameX.StartUp;
 
 /// <summary>
-/// 
 /// </summary>
 internal static class AppExitHandler
 {
     private static Action<string> _existCallBack;
     private static AppSetting _setting;
     private static PosixSignalRegistration _exitSignalRegistration;
-    private static bool _isKill = false;
-    private static readonly List<IFetalExceptionExitHandler> FetalExceptionExitHandlers = new List<IFetalExceptionExitHandler>();
+    private static bool _isKill;
+    private static readonly List<IFetalExceptionExitHandler> FetalExceptionExitHandlers = new();
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="existCallBack">退出回调</param>
     /// <param name="setting">启动设置</param>

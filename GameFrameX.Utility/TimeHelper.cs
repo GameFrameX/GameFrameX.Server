@@ -21,7 +21,7 @@ public static class TimeHelper
     /// <returns>当前时间的毫秒数。</returns>
     public static long CurrentTimeMillis()
     {
-        return TimeMillis(DateTime.Now, false);
+        return TimeMillis(DateTime.Now);
     }
 
     /// <summary>
@@ -34,7 +34,7 @@ public static class TimeHelper
     }
 
     /// <summary>
-    /// 当前UTC 时间 毫秒时间戳 
+    /// 当前UTC 时间 毫秒时间戳
     /// </summary>
     /// <returns>当前UTC时间的毫秒时间戳。</returns>
     public static long UnixTimeMilliseconds()
@@ -44,7 +44,7 @@ public static class TimeHelper
 
 
     /// <summary>
-    /// 当前时区时间 毫秒时间戳 
+    /// 当前时区时间 毫秒时间戳
     /// </summary>
     /// <returns>当前时区时间的毫秒时间戳。</returns>
     public static long TimeMilliseconds()
@@ -165,7 +165,7 @@ public static class TimeHelper
     /// <returns>跨越的天数。</returns>
     public static int GetCrossDays(DateTime begin, DateTime after, int hour = 0)
     {
-        int days = (int)(after.Date - begin.Date).TotalDays;
+        var days = (int)(after.Date - begin.Date).TotalDays;
         if (begin.Hour < hour)
         {
             days++;
@@ -213,8 +213,12 @@ public static class TimeHelper
             (start, end) = (end, start);
         }
 
-        int dayOfWeek = (int)start.DayOfWeek;
-        if (dayOfWeek == (int)DayOfWeek.Sunday) dayOfWeek = 7;
+        var dayOfWeek = (int)start.DayOfWeek;
+        if (dayOfWeek == (int)DayOfWeek.Sunday)
+        {
+            dayOfWeek = 7;
+        }
+
         // 获取较早时间所在星期的星期天的0点
         var startsWeekLastDate = start.AddDays(7 - dayOfWeek).Date;
         // 判断end是否在start所在周
@@ -229,7 +233,7 @@ public static class TimeHelper
     /// <returns>指定日期所在星期的时间。</returns>
     public static DateTime GetDayOfWeekTime(DateTime t, DayOfWeek d)
     {
-        int dd = (int)d;
+        var dd = (int)d;
         if (dd == 0)
         {
             dd = 7;
@@ -261,7 +265,7 @@ public static class TimeHelper
     /// <returns>星期在中国的对应数字。</returns>
     public static int GetChinaDayOfWeek(DayOfWeek d)
     {
-        int dayOfWeek = (int)d;
+        var dayOfWeek = (int)d;
         if (dayOfWeek == 0)
         {
             dayOfWeek = 7;

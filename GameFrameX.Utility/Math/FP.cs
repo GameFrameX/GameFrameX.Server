@@ -25,17 +25,17 @@ namespace GameFrameX.Utility.Math
         public const int LUT_SIZE = (int)(PI_OVER_2 >> 15);
 
         // Precision of this type is 2^-32, that is 2,3283064365386962890625E-10
-        public static readonly decimal Precision = (decimal)(new FP(1L)); //0.00000000023283064365386962890625m;
-        public static readonly FP MaxValue = new FP(MAX_VALUE - 1);
-        public static readonly FP MinValue = new FP(MIN_VALUE + 2);
-        public static readonly FP One = new FP(ONE);
-        public static readonly FP Ten = new FP(TEN);
-        public static readonly FP Half = new FP(HALF);
+        public static readonly decimal Precision = (decimal)new FP(1L); //0.00000000023283064365386962890625m;
+        public static readonly FP MaxValue = new(MAX_VALUE - 1);
+        public static readonly FP MinValue = new(MIN_VALUE + 2);
+        public static readonly FP One = new(ONE);
+        public static readonly FP Ten = new(TEN);
+        public static readonly FP Half = new(HALF);
 
-        public static readonly FP Zero = new FP();
-        public static readonly FP PositiveInfinity = new FP(MAX_VALUE);
-        public static readonly FP NegativeInfinity = new FP(MIN_VALUE + 1);
-        public static readonly FP NaN = new FP(MIN_VALUE);
+        public static readonly FP Zero = new();
+        public static readonly FP PositiveInfinity = new(MAX_VALUE);
+        public static readonly FP NegativeInfinity = new(MIN_VALUE + 1);
+        public static readonly FP NaN = new(MIN_VALUE);
 
         public static readonly FP EN1 = One / 10;
         public static readonly FP EN2 = One / 100;
@@ -50,10 +50,10 @@ namespace GameFrameX.Utility.Math
         /// <summary>
         /// The value of Pi
         /// </summary>
-        public static readonly FP Pi = new FP(PI);
+        public static readonly FP Pi = new(PI);
 
-        public static readonly FP PiOver2 = new FP(PI_OVER_2);
-        public static readonly FP PiTimes2 = new FP(PI_TIMES_2);
+        public static readonly FP PiOver2 = new(PI_OVER_2);
+        public static readonly FP PiTimes2 = new(PI_TIMES_2);
         public static readonly FP PiInv = (FP)0.3183098861837906715377675267M;
         public static readonly FP PiOver2Inv = (FP)0.6366197723675813430755350535M;
 
@@ -63,9 +63,9 @@ namespace GameFrameX.Utility.Math
 
         public static readonly FP LutInterval = (LUT_SIZE - 1) / PiOver2;
 
-        public static readonly FP Log2Max = new FP(LOG2MAX);
-        public static readonly FP Log2Min = new FP(LOG2MIN);
-        public static readonly FP Ln2 = new FP(LN2);
+        public static readonly FP Log2Max = new(LOG2MAX);
+        public static readonly FP Log2Min = new(LOG2MIN);
+        public static readonly FP Ln2 = new(LN2);
 
         /// <summary>
         /// Returns 2 raised to the specified power.
@@ -75,29 +75,29 @@ namespace GameFrameX.Utility.Math
         {
             if (x.RawValue == 0)
             {
-                return FP.One;
+                return One;
             }
 
             // Avoid negative arguments by exploiting that exp(-x) = 1/exp(x).
-            bool neg = x.RawValue < 0;
+            var neg = x.RawValue < 0;
             if (neg)
             {
                 x = -x;
             }
 
-            if (x == FP.One)
+            if (x == One)
             {
-                return neg ? FP.One / 2 : 2;
+                return neg ? One / 2 : 2;
             }
 
-            if (x >= FP.Log2Max)
+            if (x >= Log2Max)
             {
-                return neg ? FP.One / FP.MaxValue : FP.MaxValue;
+                return neg ? One / MaxValue : MaxValue;
             }
 
-            if (x <= FP.Log2Min)
+            if (x <= Log2Min)
             {
-                return neg ? FP.MaxValue : FP.Zero;
+                return neg ? MaxValue : Zero;
             }
 
             /* The algorithm is based on the power series for exp(x):
@@ -107,24 +107,24 @@ namespace GameFrameX.Utility.Math
              * When the sum term drops to zero, we can stop summing.
              */
 
-            int integerPart = (int)Floor(x);
+            var integerPart = (int)Floor(x);
             // Take fractional part of exponent
-            x = FP.FromRaw(x.RawValue & 0x00000000FFFFFFFF);
+            x = FromRaw(x.RawValue & 0x00000000FFFFFFFF);
 
-            var result = FP.One;
-            var term = FP.One;
-            int i = 1;
+            var result = One;
+            var term = One;
+            var i = 1;
             while (term.RawValue != 0)
             {
-                term = FP.FastMul(FP.FastMul(x, term), FP.Ln2) / i;
+                term = FastMul(FastMul(x, term), Ln2) / i;
                 result += term;
                 i++;
             }
 
-            result = FP.FromRaw(result.RawValue << integerPart);
+            result = FromRaw(result.RawValue << integerPart);
             if (neg)
             {
-                result = FP.One / result;
+                result = One / result;
             }
 
             return result;
@@ -148,37 +148,37 @@ namespace GameFrameX.Utility.Math
             // algorithm (C. S. Turner,  "A Fast Binary Logarithm Algorithm", IEEE Signal
             //     Processing Mag., pp. 124,140, Sep. 2010.)
 
-            long b = 1U << (FP.FRACTIONAL_PLACES - 1);
+            long b = 1U << (FRACTIONAL_PLACES - 1);
             long y = 0;
 
-            long rawX = x.RawValue;
-            while (rawX < FP.ONE)
+            var rawX = x.RawValue;
+            while (rawX < ONE)
             {
                 rawX <<= 1;
-                y -= FP.ONE;
+                y -= ONE;
             }
 
-            while (rawX >= (FP.ONE << 1))
+            while (rawX >= ONE << 1)
             {
                 rawX >>= 1;
-                y += FP.ONE;
+                y += ONE;
             }
 
-            var z = FP.FromRaw(rawX);
+            var z = FromRaw(rawX);
 
-            for (int i = 0; i < FP.FRACTIONAL_PLACES; i++)
+            for (var i = 0; i < FRACTIONAL_PLACES; i++)
             {
-                z = FP.FastMul(z, z);
-                if (z.RawValue >= (FP.ONE << 1))
+                z = FastMul(z, z);
+                if (z.RawValue >= ONE << 1)
                 {
-                    z = FP.FromRaw(z.RawValue >> 1);
+                    z = FromRaw(z.RawValue >> 1);
                     y += b;
                 }
 
                 b >>= 1;
             }
 
-            return FP.FromRaw(y);
+            return FromRaw(y);
         }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace GameFrameX.Utility.Math
         /// </exception>
         public static FP Ln(FP x)
         {
-            return FP.FastMul(Log2(x), FP.Ln2);
+            return FastMul(Log2(x), Ln2);
         }
 
         /// <summary>
@@ -302,7 +302,7 @@ namespace GameFrameX.Utility.Math
         }
 
         /// <summary>
-        /// Adds x and y. Performs saturating addition, i.e. in case of overflow, 
+        /// Adds x and y. Performs saturating addition, i.e. in case of overflow,
         /// rounds to MinValue or MaxValue depending on sign of operands.
         /// </summary>
         public static FP operator +(FP x, FP y)
@@ -322,7 +322,7 @@ namespace GameFrameX.Utility.Math
             var yl = y._serializedValue;
             var sum = xl + yl;
             // if signs of operands are equal and signs of sum and x are different
-            if (((~(xl ^ yl) & (xl ^ sum)) & MIN_VALUE) != 0)
+            if ((~(xl ^ yl) & (xl ^ sum) & MIN_VALUE) != 0)
             {
                 sum = xl > 0 ? MAX_VALUE : MIN_VALUE;
             }
@@ -345,7 +345,7 @@ namespace GameFrameX.Utility.Math
         }
 
         /// <summary>
-        /// Subtracts y from x. Performs saturating substraction, i.e. in case of overflow, 
+        /// Subtracts y from x. Performs saturating substraction, i.e. in case of overflow,
         /// rounds to MinValue or MaxValue depending on sign of operands.
         /// </summary>
         public static FP operator -(FP x, FP y)
@@ -365,7 +365,7 @@ namespace GameFrameX.Utility.Math
             var yl = y._serializedValue;
             var diff = xl - yl;
             // if signs of operands are different and signs of sum and x are different
-            if ((((xl ^ yl) & (xl ^ diff)) & MIN_VALUE) != 0)
+            if (((xl ^ yl) & (xl ^ diff) & MIN_VALUE) != 0)
             {
                 diff = xl < 0 ? MIN_VALUE : MAX_VALUE;
             }
@@ -384,7 +384,7 @@ namespace GameFrameX.Utility.Math
             return new FP(x._serializedValue - y._serializedValue);
         }
 
-        static long AddOverflowHelper(long x, long y, ref bool overflow)
+        private static long AddOverflowHelper(long x, long y, ref bool overflow)
         {
             var sum = x + y;
             // x + y overflows if sign(x) ^ sign(y) != sign(sum)
@@ -442,12 +442,12 @@ namespace GameFrameX.Utility.Math
             var midResult2 = hilo;
             var hiResult = hihi << FRACTIONAL_PLACES;
 
-            bool overflow = false;
+            var overflow = false;
             var sum = AddOverflowHelper((long)loResult, midResult1, ref overflow);
             sum = AddOverflowHelper(sum, midResult2, ref overflow);
             sum = AddOverflowHelper(sum, hiResult, ref overflow);
 
-            bool opSignsEqual = ((xl ^ yl) & MIN_VALUE) == 0;
+            var opSignsEqual = ((xl ^ yl) & MIN_VALUE) == 0;
 
             // if signs of operands are equal and sign of result is negative,
             // then multiplication overflowed positively
@@ -537,7 +537,7 @@ namespace GameFrameX.Utility.Math
         //[MethodImplAttribute(MethodImplOptions.AggressiveInlining)] 
         public static int CountLeadingZeroes(ulong x)
         {
-            int result = 0;
+            var result = 0;
             while ((x & 0xF000000000000000) == 0)
             {
                 result += 4;
@@ -579,7 +579,7 @@ namespace GameFrameX.Utility.Math
 
             while (remainder != 0 && bitPos >= 0)
             {
-                int shift = CountLeadingZeroes(remainder);
+                var shift = CountLeadingZeroes(remainder);
                 if (shift > bitPos)
                 {
                     shift = bitPos;
@@ -619,7 +619,7 @@ namespace GameFrameX.Utility.Math
         public static FP operator %(FP x, FP y)
         {
             FP result;
-            result._serializedValue = x._serializedValue == MIN_VALUE & y._serializedValue == -1 ? 0 : x._serializedValue % y._serializedValue;
+            result._serializedValue = (x._serializedValue == MIN_VALUE) & (y._serializedValue == -1) ? 0 : x._serializedValue % y._serializedValue;
             return result;
             //return new FP(
             //    x._serializedValue == MIN_VALUE & y._serializedValue == -1 ?
@@ -739,8 +739,8 @@ namespace GameFrameX.Utility.Math
                     }
                     else
                     {
-                        num <<= (NUM_BITS / 2);
-                        result <<= (NUM_BITS / 2);
+                        num <<= NUM_BITS / 2;
+                        result <<= NUM_BITS / 2;
                     }
 
                     bit = 1UL << (NUM_BITS / 2 - 2);
@@ -856,7 +856,7 @@ namespace GameFrameX.Utility.Math
         {
             var xl = x._serializedValue;
             var rawAngle = xl + (xl > 0 ? -PI - PI_OVER_2 : PI_OVER_2);
-            FP a2 = Sin(new FP(rawAngle));
+            var a2 = Sin(new FP(rawAngle));
             return a2;
         }
 
@@ -906,7 +906,7 @@ namespace GameFrameX.Utility.Math
             var delta = FastMul(indexError, FastAbs(FastSub(nearestValue, secondNearestValue)))._serializedValue;
             var interpolatedValue = nearestValue._serializedValue + delta;
             var finalValue = flip ? -interpolatedValue : interpolatedValue;
-            FP a2 = new FP(finalValue);
+            var a2 = new FP(finalValue);
             return a2;
         }
 
@@ -916,7 +916,10 @@ namespace GameFrameX.Utility.Math
         /// </summary>
         public static FP Atan(FP z)
         {
-            if (z.RawValue == 0) return Zero;
+            if (z.RawValue == 0)
+            {
+                return Zero;
+            }
 
             // Force positive values for argument
             // Atan(-z) = -Atan(z).
@@ -930,8 +933,11 @@ namespace GameFrameX.Utility.Math
             var two = (FP)2;
             var three = (FP)3;
 
-            bool invert = z > One;
-            if (invert) z = One / z;
+            var invert = z > One;
+            if (invert)
+            {
+                z = One / z;
+            }
 
             result = One;
             var term = One;
@@ -951,7 +957,10 @@ namespace GameFrameX.Utility.Math
                 dividend += zSq2;
                 divisor += zSq12;
 
-                if (term.RawValue == 0) break;
+                if (term.RawValue == 0)
+                {
+                    break;
+                }
             }
 
             result = result * z / zSqPlusOne;
@@ -991,7 +1000,7 @@ namespace GameFrameX.Utility.Math
             FP atan;
             var z = y / x;
 
-            FP sm = EN2 * 28;
+            var sm = EN2 * 28;
             // Deal with overflow
             if (One + sm * z * z == MaxValue)
             {
@@ -1039,7 +1048,10 @@ namespace GameFrameX.Utility.Math
                 throw new ArgumentOutOfRangeException("Must between -FP.One and FP.One", "x");
             }
 
-            if (x.RawValue == 0) return PiOver2;
+            if (x.RawValue == 0)
+            {
+                return PiOver2;
+            }
 
             var result = Atan(Sqrt(One - x * x) / x);
             return x.RawValue < 0 ? result + Pi : result;
@@ -1195,7 +1207,7 @@ namespace GameFrameX.Utility.Math
         /// This is the constructor from raw value; it can only be used interally.
         /// </summary>
         /// <param name="rawValue"></param>
-        FP(long rawValue)
+        private FP(long rawValue)
         {
             _serializedValue = rawValue;
         }
@@ -1206,4 +1218,4 @@ namespace GameFrameX.Utility.Math
         }
     }
 }
-#endif 
+#endif

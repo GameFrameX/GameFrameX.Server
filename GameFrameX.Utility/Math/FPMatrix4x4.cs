@@ -27,82 +27,82 @@ public struct FPMatrix4x4
     /// <summary>
     /// M11
     /// </summary>
-    public GameFrameX.Utility.Math.FP M11; // 1st row vector
+    public FP M11; // 1st row vector
 
     /// <summary>
     /// M12
     /// </summary>
-    public GameFrameX.Utility.Math.FP M12;
+    public FP M12;
 
     /// <summary>
     /// M13
     /// </summary>
-    public GameFrameX.Utility.Math.FP M13;
+    public FP M13;
 
     /// <summary>
     /// M14
     /// </summary>
-    public GameFrameX.Utility.Math.FP M14;
+    public FP M14;
 
     /// <summary>
     /// M21
     /// </summary>
-    public GameFrameX.Utility.Math.FP M21; // 2nd row vector
+    public FP M21; // 2nd row vector
 
     /// <summary>
     /// M22
     /// </summary>
-    public GameFrameX.Utility.Math.FP M22;
+    public FP M22;
 
     /// <summary>
     /// M23
     /// </summary>
-    public GameFrameX.Utility.Math.FP M23;
+    public FP M23;
 
     /// <summary>
     /// M24
     /// </summary>
-    public GameFrameX.Utility.Math.FP M24;
+    public FP M24;
 
     /// <summary>
     /// M31
     /// </summary>
-    public GameFrameX.Utility.Math.FP M31; // 3rd row vector
+    public FP M31; // 3rd row vector
 
     /// <summary>
     /// M32
     /// </summary>
-    public GameFrameX.Utility.Math.FP M32;
+    public FP M32;
 
     /// <summary>
     /// M33
     /// </summary>
-    public GameFrameX.Utility.Math.FP M33;
+    public FP M33;
 
     /// <summary>
     /// M34
     /// </summary>
-    public GameFrameX.Utility.Math.FP M34;
+    public FP M34;
 
     /// <summary>
     /// M41
     /// </summary>
-    public GameFrameX.Utility.Math.FP M41; // 4rd row vector
+    public FP M41; // 4rd row vector
 
     /// <summary>
     /// M42
     /// </summary>
-    public GameFrameX.Utility.Math.FP M42;
+    public FP M42;
 
     /// <summary>
     /// M43
     /// </summary>
-    public GameFrameX.Utility.Math.FP M43;
+    public FP M43;
 
     /// <summary>
     /// M44
     /// </summary>
-    public GameFrameX.Utility.Math.FP M44;
+    public FP M44;
 
     internal static FPMatrix4x4 InternalIdentity;
 
@@ -118,10 +118,10 @@ public struct FPMatrix4x4
         Zero = new FPMatrix4x4();
 
         Identity = new FPMatrix4x4();
-        Identity.M11 = GameFrameX.Utility.Math.FP.One;
-        Identity.M22 = GameFrameX.Utility.Math.FP.One;
-        Identity.M33 = GameFrameX.Utility.Math.FP.One;
-        Identity.M44 = GameFrameX.Utility.Math.FP.One;
+        Identity.M11 = FP.One;
+        Identity.M22 = FP.One;
+        Identity.M33 = FP.One;
+        Identity.M44 = FP.One;
 
         InternalIdentity = Identity;
     }
@@ -145,10 +145,10 @@ public struct FPMatrix4x4
     /// <param name="m42">m42</param>
     /// <param name="m43">m43</param>
     /// <param name="m44">m44</param>
-    public FPMatrix4x4(GameFrameX.Utility.Math.FP m11, GameFrameX.Utility.Math.FP m12, GameFrameX.Utility.Math.FP m13, GameFrameX.Utility.Math.FP m14,
-        GameFrameX.Utility.Math.FP m21, GameFrameX.Utility.Math.FP m22, GameFrameX.Utility.Math.FP m23, GameFrameX.Utility.Math.FP m24,
-        GameFrameX.Utility.Math.FP m31, GameFrameX.Utility.Math.FP m32, GameFrameX.Utility.Math.FP m33, GameFrameX.Utility.Math.FP m34,
-        GameFrameX.Utility.Math.FP m41, GameFrameX.Utility.Math.FP m42, GameFrameX.Utility.Math.FP m43, GameFrameX.Utility.Math.FP m44)
+    public FPMatrix4x4(FP m11, FP m12, FP m13, FP m14,
+        FP m21, FP m22, FP m23, FP m24,
+        FP m31, FP m32, FP m33, FP m34,
+        FP m41, FP m42, FP m43, FP m44)
     {
         M11 = m11;
         M12 = m12;
@@ -268,7 +268,7 @@ public struct FPMatrix4x4
         return result;
     }
 
-    public GameFrameX.Utility.Math.FP determinant
+    public FP determinant
     {
         get
         {
@@ -299,17 +299,17 @@ public struct FPMatrix4x4
             // add: 6 + 8 + 3 = 17
             // mul: 12 + 16 = 28
 
-            GameFrameX.Utility.Math.FP a = M11, b = M12, c = M13, d = M14;
-            GameFrameX.Utility.Math.FP e = M21, f = M22, g = M23, h = M24;
-            GameFrameX.Utility.Math.FP i = M31, j = M32, k = M33, l = M34;
-            GameFrameX.Utility.Math.FP m = M41, n = M42, o = M43, p = M44;
+            FP a = M11, b = M12, c = M13, d = M14;
+            FP e = M21, f = M22, g = M23, h = M24;
+            FP i = M31, j = M32, k = M33, l = M34;
+            FP m = M41, n = M42, o = M43, p = M44;
 
-            GameFrameX.Utility.Math.FP kp_lo = k * p - l * o;
-            GameFrameX.Utility.Math.FP jp_ln = j * p - l * n;
-            GameFrameX.Utility.Math.FP jo_kn = j * o - k * n;
-            GameFrameX.Utility.Math.FP ip_lm = i * p - l * m;
-            GameFrameX.Utility.Math.FP io_km = i * o - k * m;
-            GameFrameX.Utility.Math.FP in_jm = i * n - j * m;
+            var kp_lo = k * p - l * o;
+            var jp_ln = j * p - l * n;
+            var jo_kn = j * o - k * n;
+            var ip_lm = i * p - l * m;
+            var io_km = i * o - k * m;
+            var in_jm = i * n - j * m;
 
             return a * (f * kp_lo - g * jp_ln + h * jo_kn) -
                    b * (e * kp_lo - g * ip_lm + h * io_km) +
@@ -417,47 +417,47 @@ public struct FPMatrix4x4
         //
         // Cost of operation
         // 53 adds, 104 muls, and 1 div.
-        GameFrameX.Utility.Math.FP a = matrix.M11, b = matrix.M12, c = matrix.M13, d = matrix.M14;
-        GameFrameX.Utility.Math.FP e = matrix.M21, f = matrix.M22, g = matrix.M23, h = matrix.M24;
-        GameFrameX.Utility.Math.FP i = matrix.M31, j = matrix.M32, k = matrix.M33, l = matrix.M34;
-        GameFrameX.Utility.Math.FP m = matrix.M41, n = matrix.M42, o = matrix.M43, p = matrix.M44;
+        FP a = matrix.M11, b = matrix.M12, c = matrix.M13, d = matrix.M14;
+        FP e = matrix.M21, f = matrix.M22, g = matrix.M23, h = matrix.M24;
+        FP i = matrix.M31, j = matrix.M32, k = matrix.M33, l = matrix.M34;
+        FP m = matrix.M41, n = matrix.M42, o = matrix.M43, p = matrix.M44;
 
-        GameFrameX.Utility.Math.FP kp_lo = k * p - l * o;
-        GameFrameX.Utility.Math.FP jp_ln = j * p - l * n;
-        GameFrameX.Utility.Math.FP jo_kn = j * o - k * n;
-        GameFrameX.Utility.Math.FP ip_lm = i * p - l * m;
-        GameFrameX.Utility.Math.FP io_km = i * o - k * m;
-        GameFrameX.Utility.Math.FP in_jm = i * n - j * m;
+        var kp_lo = k * p - l * o;
+        var jp_ln = j * p - l * n;
+        var jo_kn = j * o - k * n;
+        var ip_lm = i * p - l * m;
+        var io_km = i * o - k * m;
+        var in_jm = i * n - j * m;
 
-        GameFrameX.Utility.Math.FP a11 = (f * kp_lo - g * jp_ln + h * jo_kn);
-        GameFrameX.Utility.Math.FP a12 = -(e * kp_lo - g * ip_lm + h * io_km);
-        GameFrameX.Utility.Math.FP a13 = (e * jp_ln - f * ip_lm + h * in_jm);
-        GameFrameX.Utility.Math.FP a14 = -(e * jo_kn - f * io_km + g * in_jm);
+        var a11 = f * kp_lo - g * jp_ln + h * jo_kn;
+        var a12 = -(e * kp_lo - g * ip_lm + h * io_km);
+        var a13 = e * jp_ln - f * ip_lm + h * in_jm;
+        var a14 = -(e * jo_kn - f * io_km + g * in_jm);
 
-        GameFrameX.Utility.Math.FP det = a * a11 + b * a12 + c * a13 + d * a14;
+        var det = a * a11 + b * a12 + c * a13 + d * a14;
 
-        if (det == GameFrameX.Utility.Math.FP.Zero)
+        if (det == FP.Zero)
         {
-            result.M11 = GameFrameX.Utility.Math.FP.PositiveInfinity;
-            result.M12 = GameFrameX.Utility.Math.FP.PositiveInfinity;
-            result.M13 = GameFrameX.Utility.Math.FP.PositiveInfinity;
-            result.M14 = GameFrameX.Utility.Math.FP.PositiveInfinity;
-            result.M21 = GameFrameX.Utility.Math.FP.PositiveInfinity;
-            result.M22 = GameFrameX.Utility.Math.FP.PositiveInfinity;
-            result.M23 = GameFrameX.Utility.Math.FP.PositiveInfinity;
-            result.M24 = GameFrameX.Utility.Math.FP.PositiveInfinity;
-            result.M31 = GameFrameX.Utility.Math.FP.PositiveInfinity;
-            result.M32 = GameFrameX.Utility.Math.FP.PositiveInfinity;
-            result.M33 = GameFrameX.Utility.Math.FP.PositiveInfinity;
-            result.M34 = GameFrameX.Utility.Math.FP.PositiveInfinity;
-            result.M41 = GameFrameX.Utility.Math.FP.PositiveInfinity;
-            result.M42 = GameFrameX.Utility.Math.FP.PositiveInfinity;
-            result.M43 = GameFrameX.Utility.Math.FP.PositiveInfinity;
-            result.M44 = GameFrameX.Utility.Math.FP.PositiveInfinity;
+            result.M11 = FP.PositiveInfinity;
+            result.M12 = FP.PositiveInfinity;
+            result.M13 = FP.PositiveInfinity;
+            result.M14 = FP.PositiveInfinity;
+            result.M21 = FP.PositiveInfinity;
+            result.M22 = FP.PositiveInfinity;
+            result.M23 = FP.PositiveInfinity;
+            result.M24 = FP.PositiveInfinity;
+            result.M31 = FP.PositiveInfinity;
+            result.M32 = FP.PositiveInfinity;
+            result.M33 = FP.PositiveInfinity;
+            result.M34 = FP.PositiveInfinity;
+            result.M41 = FP.PositiveInfinity;
+            result.M42 = FP.PositiveInfinity;
+            result.M43 = FP.PositiveInfinity;
+            result.M44 = FP.PositiveInfinity;
         }
         else
         {
-            GameFrameX.Utility.Math.FP invDet = GameFrameX.Utility.Math.FP.One / det;
+            var invDet = FP.One / det;
 
             result.M11 = a11 * invDet;
             result.M21 = a12 * invDet;
@@ -469,24 +469,24 @@ public struct FPMatrix4x4
             result.M32 = -(a * jp_ln - b * ip_lm + d * in_jm) * invDet;
             result.M42 = (a * jo_kn - b * io_km + c * in_jm) * invDet;
 
-            GameFrameX.Utility.Math.FP gp_ho = g * p - h * o;
-            GameFrameX.Utility.Math.FP fp_hn = f * p - h * n;
-            GameFrameX.Utility.Math.FP fo_gn = f * o - g * n;
-            GameFrameX.Utility.Math.FP ep_hm = e * p - h * m;
-            GameFrameX.Utility.Math.FP eo_gm = e * o - g * m;
-            GameFrameX.Utility.Math.FP en_fm = e * n - f * m;
+            var gp_ho = g * p - h * o;
+            var fp_hn = f * p - h * n;
+            var fo_gn = f * o - g * n;
+            var ep_hm = e * p - h * m;
+            var eo_gm = e * o - g * m;
+            var en_fm = e * n - f * m;
 
             result.M13 = (b * gp_ho - c * fp_hn + d * fo_gn) * invDet;
             result.M23 = -(a * gp_ho - c * ep_hm + d * eo_gm) * invDet;
             result.M33 = (a * fp_hn - b * ep_hm + d * en_fm) * invDet;
             result.M43 = -(a * fo_gn - b * eo_gm + c * en_fm) * invDet;
 
-            GameFrameX.Utility.Math.FP gl_hk = g * l - h * k;
-            GameFrameX.Utility.Math.FP fl_hj = f * l - h * j;
-            GameFrameX.Utility.Math.FP fk_gj = f * k - g * j;
-            GameFrameX.Utility.Math.FP el_hi = e * l - h * i;
-            GameFrameX.Utility.Math.FP ek_gi = e * k - g * i;
-            GameFrameX.Utility.Math.FP ej_fi = e * j - f * i;
+            var gl_hk = g * l - h * k;
+            var fl_hj = f * l - h * j;
+            var fk_gj = f * k - g * j;
+            var el_hi = e * l - h * i;
+            var ek_gi = e * k - g * i;
+            var ej_fi = e * j - f * i;
 
             result.M14 = -(b * gl_hk - c * fl_hj + d * fk_gj) * invDet;
             result.M24 = (a * gl_hk - c * el_hi + d * ek_gi) * invDet;
@@ -501,7 +501,7 @@ public struct FPMatrix4x4
     /// <param name="matrix1">The matrix.</param>
     /// <param name="scaleFactor">The scale factor.</param>
     /// <returns>A JMatrix multiplied by the scale factor.</returns>
-    public static FPMatrix4x4 Multiply(FPMatrix4x4 matrix1, GameFrameX.Utility.Math.FP scaleFactor)
+    public static FPMatrix4x4 Multiply(FPMatrix4x4 matrix1, FP scaleFactor)
     {
         FPMatrix4x4 result;
         Multiply(ref matrix1, scaleFactor, out result);
@@ -514,9 +514,9 @@ public struct FPMatrix4x4
     /// <param name="matrix1">The matrix.</param>
     /// <param name="scaleFactor">The scale factor.</param>
     /// <param name="result">A JMatrix multiplied by the scale factor.</param>
-    public static void Multiply(ref FPMatrix4x4 matrix1, GameFrameX.Utility.Math.FP scaleFactor, out FPMatrix4x4 result)
+    public static void Multiply(ref FPMatrix4x4 matrix1, FP scaleFactor, out FPMatrix4x4 result)
     {
-        GameFrameX.Utility.Math.FP num = scaleFactor;
+        var num = scaleFactor;
         result.M11 = matrix1.M11 * num;
         result.M12 = matrix1.M12 * num;
         result.M13 = matrix1.M13 * num;
@@ -554,36 +554,36 @@ public struct FPMatrix4x4
     public static void Rotate(ref FPQuaternion quaternion, out FPMatrix4x4 result)
     {
         // Precalculate coordinate products
-        GameFrameX.Utility.Math.FP x = quaternion.x * 2;
-        GameFrameX.Utility.Math.FP y = quaternion.y * 2;
-        GameFrameX.Utility.Math.FP z = quaternion.z * 2;
-        GameFrameX.Utility.Math.FP xx = quaternion.x * x;
-        GameFrameX.Utility.Math.FP yy = quaternion.y * y;
-        GameFrameX.Utility.Math.FP zz = quaternion.z * z;
-        GameFrameX.Utility.Math.FP xy = quaternion.x * y;
-        GameFrameX.Utility.Math.FP xz = quaternion.x * z;
-        GameFrameX.Utility.Math.FP yz = quaternion.y * z;
-        GameFrameX.Utility.Math.FP wx = quaternion.w * x;
-        GameFrameX.Utility.Math.FP wy = quaternion.w * y;
-        GameFrameX.Utility.Math.FP wz = quaternion.w * z;
+        var x = quaternion.x * 2;
+        var y = quaternion.y * 2;
+        var z = quaternion.z * 2;
+        var xx = quaternion.x * x;
+        var yy = quaternion.y * y;
+        var zz = quaternion.z * z;
+        var xy = quaternion.x * y;
+        var xz = quaternion.x * z;
+        var yz = quaternion.y * z;
+        var wx = quaternion.w * x;
+        var wy = quaternion.w * y;
+        var wz = quaternion.w * z;
 
         // Calculate 3x3 matrix from orthonormal basis
-        result.M11 = GameFrameX.Utility.Math.FP.One - (yy + zz);
+        result.M11 = FP.One - (yy + zz);
         result.M21 = xy + wz;
         result.M31 = xz - wy;
-        result.M41 = GameFrameX.Utility.Math.FP.Zero;
+        result.M41 = FP.Zero;
         result.M12 = xy - wz;
-        result.M22 = GameFrameX.Utility.Math.FP.One - (xx + zz);
+        result.M22 = FP.One - (xx + zz);
         result.M32 = yz + wx;
-        result.M42 = GameFrameX.Utility.Math.FP.Zero;
+        result.M42 = FP.Zero;
         result.M13 = xz + wy;
         result.M23 = yz - wx;
-        result.M33 = GameFrameX.Utility.Math.FP.One - (xx + yy);
-        result.M43 = GameFrameX.Utility.Math.FP.Zero;
-        result.M14 = GameFrameX.Utility.Math.FP.Zero;
-        result.M24 = GameFrameX.Utility.Math.FP.Zero;
-        result.M34 = GameFrameX.Utility.Math.FP.Zero;
-        result.M44 = GameFrameX.Utility.Math.FP.One;
+        result.M33 = FP.One - (xx + yy);
+        result.M43 = FP.Zero;
+        result.M14 = FP.Zero;
+        result.M24 = FP.Zero;
+        result.M34 = FP.Zero;
+        result.M44 = FP.One;
     }
 
     /// <summary>
@@ -638,7 +638,7 @@ public struct FPMatrix4x4
     }
 
 
-    public GameFrameX.Utility.Math.FP Trace()
+    public FP Trace()
     {
         return M11 + M22 + M33 + M44;
     }
@@ -694,7 +694,7 @@ public struct FPMatrix4x4
     public static FPMatrix4x4 operator -(FPMatrix4x4 value1, FPMatrix4x4 value2)
     {
         FPMatrix4x4 result;
-        Multiply(ref value2, -GameFrameX.Utility.Math.FP.One, out value2);
+        Multiply(ref value2, -FP.One, out value2);
         Add(ref value1, ref value2, out result);
         return result;
     }
@@ -741,8 +741,12 @@ public struct FPMatrix4x4
 
     public override bool Equals(object obj)
     {
-        if (!(obj is FPMatrix4x4)) return false;
-        FPMatrix4x4 other = (FPMatrix4x4)obj;
+        if (!(obj is FPMatrix4x4))
+        {
+            return false;
+        }
+
+        var other = (FPMatrix4x4)obj;
 
         return M11 == other.M11 &&
                M12 == other.M12 &&
@@ -789,26 +793,26 @@ public struct FPMatrix4x4
     /// <param name="yPosition">The amount to translate on the Y-axis.</param>
     /// <param name="zPosition">The amount to translate on the Z-axis.</param>
     /// <returns>The translation matrix.</returns>
-    public static FPMatrix4x4 Translate(GameFrameX.Utility.Math.FP xPosition, GameFrameX.Utility.Math.FP yPosition, GameFrameX.Utility.Math.FP zPosition)
+    public static FPMatrix4x4 Translate(FP xPosition, FP yPosition, FP zPosition)
     {
         FPMatrix4x4 result;
 
-        result.M11 = GameFrameX.Utility.Math.FP.One;
-        result.M12 = GameFrameX.Utility.Math.FP.Zero;
-        result.M13 = GameFrameX.Utility.Math.FP.Zero;
+        result.M11 = FP.One;
+        result.M12 = FP.Zero;
+        result.M13 = FP.Zero;
         result.M14 = xPosition;
-        result.M21 = GameFrameX.Utility.Math.FP.Zero;
-        result.M22 = GameFrameX.Utility.Math.FP.One;
-        result.M23 = GameFrameX.Utility.Math.FP.Zero;
+        result.M21 = FP.Zero;
+        result.M22 = FP.One;
+        result.M23 = FP.Zero;
         result.M24 = yPosition;
-        result.M31 = GameFrameX.Utility.Math.FP.Zero;
-        result.M32 = GameFrameX.Utility.Math.FP.Zero;
-        result.M33 = GameFrameX.Utility.Math.FP.One;
+        result.M31 = FP.Zero;
+        result.M32 = FP.Zero;
+        result.M33 = FP.One;
         result.M34 = zPosition;
-        result.M41 = GameFrameX.Utility.Math.FP.Zero;
-        result.M42 = GameFrameX.Utility.Math.FP.Zero;
-        result.M43 = GameFrameX.Utility.Math.FP.Zero;
-        result.M44 = GameFrameX.Utility.Math.FP.One;
+        result.M41 = FP.Zero;
+        result.M42 = FP.Zero;
+        result.M43 = FP.Zero;
+        result.M44 = FP.One;
 
         return result;
     }
@@ -825,26 +829,26 @@ public struct FPMatrix4x4
     /// <param name="yScale">Value to scale by on the Y-axis.</param>
     /// <param name="zScale">Value to scale by on the Z-axis.</param>
     /// <returns>The scaling matrix.</returns>
-    public static FPMatrix4x4 Scale(GameFrameX.Utility.Math.FP xScale, GameFrameX.Utility.Math.FP yScale, GameFrameX.Utility.Math.FP zScale)
+    public static FPMatrix4x4 Scale(FP xScale, FP yScale, FP zScale)
     {
         FPMatrix4x4 result;
 
         result.M11 = xScale;
-        result.M12 = GameFrameX.Utility.Math.FP.Zero;
-        result.M13 = GameFrameX.Utility.Math.FP.Zero;
-        result.M14 = GameFrameX.Utility.Math.FP.Zero;
-        result.M21 = GameFrameX.Utility.Math.FP.Zero;
+        result.M12 = FP.Zero;
+        result.M13 = FP.Zero;
+        result.M14 = FP.Zero;
+        result.M21 = FP.Zero;
         result.M22 = yScale;
-        result.M23 = GameFrameX.Utility.Math.FP.Zero;
-        result.M24 = GameFrameX.Utility.Math.FP.Zero;
-        result.M31 = GameFrameX.Utility.Math.FP.Zero;
-        result.M32 = GameFrameX.Utility.Math.FP.Zero;
+        result.M23 = FP.Zero;
+        result.M24 = FP.Zero;
+        result.M31 = FP.Zero;
+        result.M32 = FP.Zero;
         result.M33 = zScale;
-        result.M34 = GameFrameX.Utility.Math.FP.Zero;
-        result.M41 = GameFrameX.Utility.Math.FP.Zero;
-        result.M42 = GameFrameX.Utility.Math.FP.Zero;
-        result.M43 = GameFrameX.Utility.Math.FP.Zero;
-        result.M44 = GameFrameX.Utility.Math.FP.One;
+        result.M34 = FP.Zero;
+        result.M41 = FP.Zero;
+        result.M42 = FP.Zero;
+        result.M43 = FP.Zero;
+        result.M44 = FP.One;
 
         return result;
     }
@@ -857,30 +861,30 @@ public struct FPMatrix4x4
     /// <param name="zScale">Value to scale by on the Z-axis.</param>
     /// <param name="centerPoint">The center point.</param>
     /// <returns>The scaling matrix.</returns>
-    public static FPMatrix4x4 Scale(GameFrameX.Utility.Math.FP xScale, GameFrameX.Utility.Math.FP yScale, GameFrameX.Utility.Math.FP zScale, FPVector3 centerPoint)
+    public static FPMatrix4x4 Scale(FP xScale, FP yScale, FP zScale, FPVector3 centerPoint)
     {
         FPMatrix4x4 result;
 
-        GameFrameX.Utility.Math.FP tx = centerPoint.x * (GameFrameX.Utility.Math.FP.One - xScale);
-        GameFrameX.Utility.Math.FP ty = centerPoint.y * (GameFrameX.Utility.Math.FP.One - yScale);
-        GameFrameX.Utility.Math.FP tz = centerPoint.z * (GameFrameX.Utility.Math.FP.One - zScale);
+        var tx = centerPoint.x * (FP.One - xScale);
+        var ty = centerPoint.y * (FP.One - yScale);
+        var tz = centerPoint.z * (FP.One - zScale);
 
         result.M11 = xScale;
-        result.M12 = GameFrameX.Utility.Math.FP.Zero;
-        result.M13 = GameFrameX.Utility.Math.FP.Zero;
-        result.M14 = GameFrameX.Utility.Math.FP.Zero;
-        result.M21 = GameFrameX.Utility.Math.FP.Zero;
+        result.M12 = FP.Zero;
+        result.M13 = FP.Zero;
+        result.M14 = FP.Zero;
+        result.M21 = FP.Zero;
         result.M22 = yScale;
-        result.M23 = GameFrameX.Utility.Math.FP.Zero;
-        result.M24 = GameFrameX.Utility.Math.FP.Zero;
-        result.M31 = GameFrameX.Utility.Math.FP.Zero;
-        result.M32 = GameFrameX.Utility.Math.FP.Zero;
+        result.M23 = FP.Zero;
+        result.M24 = FP.Zero;
+        result.M31 = FP.Zero;
+        result.M32 = FP.Zero;
         result.M33 = zScale;
-        result.M34 = GameFrameX.Utility.Math.FP.Zero;
+        result.M34 = FP.Zero;
         result.M41 = tx;
         result.M42 = ty;
         result.M43 = tz;
-        result.M44 = GameFrameX.Utility.Math.FP.One;
+        result.M44 = FP.One;
 
         return result;
     }
@@ -911,7 +915,7 @@ public struct FPMatrix4x4
     /// </summary>
     /// <param name="scale">The uniform scaling factor.</param>
     /// <returns>The scaling matrix.</returns>
-    public static FPMatrix4x4 Scale(GameFrameX.Utility.Math.FP scale)
+    public static FPMatrix4x4 Scale(FP scale)
     {
         return Scale(scale, scale, scale);
     }
@@ -922,7 +926,7 @@ public struct FPMatrix4x4
     /// <param name="scale">The uniform scaling factor.</param>
     /// <param name="centerPoint">The center point.</param>
     /// <returns>The scaling matrix.</returns>
-    public static FPMatrix4x4 Scale(GameFrameX.Utility.Math.FP scale, FPVector3 centerPoint)
+    public static FPMatrix4x4 Scale(FP scale, FPVector3 centerPoint)
     {
         return Scale(scale, scale, scale, centerPoint);
     }
@@ -932,33 +936,33 @@ public struct FPMatrix4x4
     /// </summary>
     /// <param name="radians">The amount, in radians, by which to rotate around the X-axis.</param>
     /// <returns>The rotation matrix.</returns>
-    public static FPMatrix4x4 RotateX(GameFrameX.Utility.Math.FP radians)
+    public static FPMatrix4x4 RotateX(FP radians)
     {
         FPMatrix4x4 result;
 
-        GameFrameX.Utility.Math.FP c = FPMath.Cos(radians);
-        GameFrameX.Utility.Math.FP s = FPMath.Sin(radians);
+        var c = FPMath.Cos(radians);
+        var s = FPMath.Sin(radians);
 
         // [  1  0  0  0 ]
         // [  0  c  s  0 ]
         // [  0 -s  c  0 ]
         // [  0  0  0  1 ]
-        result.M11 = GameFrameX.Utility.Math.FP.One;
-        result.M12 = GameFrameX.Utility.Math.FP.Zero;
-        result.M13 = GameFrameX.Utility.Math.FP.Zero;
-        result.M14 = GameFrameX.Utility.Math.FP.Zero;
-        result.M21 = GameFrameX.Utility.Math.FP.Zero;
+        result.M11 = FP.One;
+        result.M12 = FP.Zero;
+        result.M13 = FP.Zero;
+        result.M14 = FP.Zero;
+        result.M21 = FP.Zero;
         result.M22 = c;
         result.M23 = s;
-        result.M24 = GameFrameX.Utility.Math.FP.Zero;
-        result.M31 = GameFrameX.Utility.Math.FP.Zero;
+        result.M24 = FP.Zero;
+        result.M31 = FP.Zero;
         result.M32 = -s;
         result.M33 = c;
-        result.M34 = GameFrameX.Utility.Math.FP.Zero;
-        result.M41 = GameFrameX.Utility.Math.FP.Zero;
-        result.M42 = GameFrameX.Utility.Math.FP.Zero;
-        result.M43 = GameFrameX.Utility.Math.FP.Zero;
-        result.M44 = GameFrameX.Utility.Math.FP.One;
+        result.M34 = FP.Zero;
+        result.M41 = FP.Zero;
+        result.M42 = FP.Zero;
+        result.M43 = FP.Zero;
+        result.M44 = FP.One;
 
         return result;
     }
@@ -969,36 +973,36 @@ public struct FPMatrix4x4
     /// <param name="radians">The amount, in radians, by which to rotate around the X-axis.</param>
     /// <param name="centerPoint">The center point.</param>
     /// <returns>The rotation matrix.</returns>
-    public static FPMatrix4x4 RotateX(GameFrameX.Utility.Math.FP radians, FPVector3 centerPoint)
+    public static FPMatrix4x4 RotateX(FP radians, FPVector3 centerPoint)
     {
         FPMatrix4x4 result;
 
-        GameFrameX.Utility.Math.FP c = FPMath.Cos(radians);
-        GameFrameX.Utility.Math.FP s = FPMath.Sin(radians);
+        var c = FPMath.Cos(radians);
+        var s = FPMath.Sin(radians);
 
-        GameFrameX.Utility.Math.FP y = centerPoint.y * (GameFrameX.Utility.Math.FP.One - c) + centerPoint.z * s;
-        GameFrameX.Utility.Math.FP z = centerPoint.z * (GameFrameX.Utility.Math.FP.One - c) - centerPoint.y * s;
+        var y = centerPoint.y * (FP.One - c) + centerPoint.z * s;
+        var z = centerPoint.z * (FP.One - c) - centerPoint.y * s;
 
         // [  1  0  0  0 ]
         // [  0  c  s  0 ]
         // [  0 -s  c  0 ]
         // [  0  y  z  1 ]
-        result.M11 = GameFrameX.Utility.Math.FP.One;
-        result.M12 = GameFrameX.Utility.Math.FP.Zero;
-        result.M13 = GameFrameX.Utility.Math.FP.Zero;
-        result.M14 = GameFrameX.Utility.Math.FP.Zero;
-        result.M21 = GameFrameX.Utility.Math.FP.Zero;
+        result.M11 = FP.One;
+        result.M12 = FP.Zero;
+        result.M13 = FP.Zero;
+        result.M14 = FP.Zero;
+        result.M21 = FP.Zero;
         result.M22 = c;
         result.M23 = s;
-        result.M24 = GameFrameX.Utility.Math.FP.Zero;
-        result.M31 = GameFrameX.Utility.Math.FP.Zero;
+        result.M24 = FP.Zero;
+        result.M31 = FP.Zero;
         result.M32 = -s;
         result.M33 = c;
-        result.M34 = GameFrameX.Utility.Math.FP.Zero;
-        result.M41 = GameFrameX.Utility.Math.FP.Zero;
+        result.M34 = FP.Zero;
+        result.M41 = FP.Zero;
         result.M42 = y;
         result.M43 = z;
-        result.M44 = GameFrameX.Utility.Math.FP.One;
+        result.M44 = FP.One;
 
         return result;
     }
@@ -1008,33 +1012,33 @@ public struct FPMatrix4x4
     /// </summary>
     /// <param name="radians">The amount, in radians, by which to rotate around the Y-axis.</param>
     /// <returns>The rotation matrix.</returns>
-    public static FPMatrix4x4 RotateY(GameFrameX.Utility.Math.FP radians)
+    public static FPMatrix4x4 RotateY(FP radians)
     {
         FPMatrix4x4 result;
 
-        GameFrameX.Utility.Math.FP c = FPMath.Cos(radians);
-        GameFrameX.Utility.Math.FP s = FPMath.Sin(radians);
+        var c = FPMath.Cos(radians);
+        var s = FPMath.Sin(radians);
 
         // [  c  0 -s  0 ]
         // [  0  1  0  0 ]
         // [  s  0  c  0 ]
         // [  0  0  0  1 ]
         result.M11 = c;
-        result.M12 = GameFrameX.Utility.Math.FP.Zero;
+        result.M12 = FP.Zero;
         result.M13 = -s;
-        result.M14 = GameFrameX.Utility.Math.FP.Zero;
-        result.M21 = GameFrameX.Utility.Math.FP.Zero;
-        result.M22 = GameFrameX.Utility.Math.FP.One;
-        result.M23 = GameFrameX.Utility.Math.FP.Zero;
-        result.M24 = GameFrameX.Utility.Math.FP.Zero;
+        result.M14 = FP.Zero;
+        result.M21 = FP.Zero;
+        result.M22 = FP.One;
+        result.M23 = FP.Zero;
+        result.M24 = FP.Zero;
         result.M31 = s;
-        result.M32 = GameFrameX.Utility.Math.FP.Zero;
+        result.M32 = FP.Zero;
         result.M33 = c;
-        result.M34 = GameFrameX.Utility.Math.FP.Zero;
-        result.M41 = GameFrameX.Utility.Math.FP.Zero;
-        result.M42 = GameFrameX.Utility.Math.FP.Zero;
-        result.M43 = GameFrameX.Utility.Math.FP.Zero;
-        result.M44 = GameFrameX.Utility.Math.FP.One;
+        result.M34 = FP.Zero;
+        result.M41 = FP.Zero;
+        result.M42 = FP.Zero;
+        result.M43 = FP.Zero;
+        result.M44 = FP.One;
 
         return result;
     }
@@ -1045,36 +1049,36 @@ public struct FPMatrix4x4
     /// <param name="radians">The amount, in radians, by which to rotate around the Y-axis.</param>
     /// <param name="centerPoint">The center point.</param>
     /// <returns>The rotation matrix.</returns>
-    public static FPMatrix4x4 RotateY(GameFrameX.Utility.Math.FP radians, FPVector3 centerPoint)
+    public static FPMatrix4x4 RotateY(FP radians, FPVector3 centerPoint)
     {
         FPMatrix4x4 result;
 
-        GameFrameX.Utility.Math.FP c = FPMath.Cos(radians);
-        GameFrameX.Utility.Math.FP s = FPMath.Sin(radians);
+        var c = FPMath.Cos(radians);
+        var s = FPMath.Sin(radians);
 
-        GameFrameX.Utility.Math.FP x = centerPoint.x * (GameFrameX.Utility.Math.FP.One - c) - centerPoint.z * s;
-        GameFrameX.Utility.Math.FP z = centerPoint.x * (GameFrameX.Utility.Math.FP.One - c) + centerPoint.x * s;
+        var x = centerPoint.x * (FP.One - c) - centerPoint.z * s;
+        var z = centerPoint.x * (FP.One - c) + centerPoint.x * s;
 
         // [  c  0 -s  0 ]
         // [  0  1  0  0 ]
         // [  s  0  c  0 ]
         // [  x  0  z  1 ]
         result.M11 = c;
-        result.M12 = GameFrameX.Utility.Math.FP.Zero;
+        result.M12 = FP.Zero;
         result.M13 = -s;
-        result.M14 = GameFrameX.Utility.Math.FP.Zero;
-        result.M21 = GameFrameX.Utility.Math.FP.Zero;
-        result.M22 = GameFrameX.Utility.Math.FP.One;
-        result.M23 = GameFrameX.Utility.Math.FP.Zero;
-        result.M24 = GameFrameX.Utility.Math.FP.Zero;
+        result.M14 = FP.Zero;
+        result.M21 = FP.Zero;
+        result.M22 = FP.One;
+        result.M23 = FP.Zero;
+        result.M24 = FP.Zero;
         result.M31 = s;
-        result.M32 = GameFrameX.Utility.Math.FP.Zero;
+        result.M32 = FP.Zero;
         result.M33 = c;
-        result.M34 = GameFrameX.Utility.Math.FP.Zero;
+        result.M34 = FP.Zero;
         result.M41 = x;
-        result.M42 = GameFrameX.Utility.Math.FP.Zero;
+        result.M42 = FP.Zero;
         result.M43 = z;
-        result.M44 = GameFrameX.Utility.Math.FP.One;
+        result.M44 = FP.One;
 
         return result;
     }
@@ -1084,12 +1088,12 @@ public struct FPMatrix4x4
     /// </summary>
     /// <param name="radians">The amount, in radians, by which to rotate around the Z-axis.</param>
     /// <returns>The rotation matrix.</returns>
-    public static FPMatrix4x4 RotateZ(GameFrameX.Utility.Math.FP radians)
+    public static FPMatrix4x4 RotateZ(FP radians)
     {
         FPMatrix4x4 result;
 
-        GameFrameX.Utility.Math.FP c = FPMath.Cos(radians);
-        GameFrameX.Utility.Math.FP s = FPMath.Sin(radians);
+        var c = FPMath.Cos(radians);
+        var s = FPMath.Sin(radians);
 
         // [  c  s  0  0 ]
         // [ -s  c  0  0 ]
@@ -1097,20 +1101,20 @@ public struct FPMatrix4x4
         // [  0  0  0  1 ]
         result.M11 = c;
         result.M12 = s;
-        result.M13 = GameFrameX.Utility.Math.FP.Zero;
-        result.M14 = GameFrameX.Utility.Math.FP.Zero;
+        result.M13 = FP.Zero;
+        result.M14 = FP.Zero;
         result.M21 = -s;
         result.M22 = c;
-        result.M23 = GameFrameX.Utility.Math.FP.Zero;
-        result.M24 = GameFrameX.Utility.Math.FP.Zero;
-        result.M31 = GameFrameX.Utility.Math.FP.Zero;
-        result.M32 = GameFrameX.Utility.Math.FP.Zero;
-        result.M33 = GameFrameX.Utility.Math.FP.One;
-        result.M34 = GameFrameX.Utility.Math.FP.Zero;
-        result.M41 = GameFrameX.Utility.Math.FP.Zero;
-        result.M42 = GameFrameX.Utility.Math.FP.Zero;
-        result.M43 = GameFrameX.Utility.Math.FP.Zero;
-        result.M44 = GameFrameX.Utility.Math.FP.One;
+        result.M23 = FP.Zero;
+        result.M24 = FP.Zero;
+        result.M31 = FP.Zero;
+        result.M32 = FP.Zero;
+        result.M33 = FP.One;
+        result.M34 = FP.Zero;
+        result.M41 = FP.Zero;
+        result.M42 = FP.Zero;
+        result.M43 = FP.Zero;
+        result.M44 = FP.One;
 
         return result;
     }
@@ -1121,15 +1125,15 @@ public struct FPMatrix4x4
     /// <param name="radians">The amount, in radians, by which to rotate around the Z-axis.</param>
     /// <param name="centerPoint">The center point.</param>
     /// <returns>The rotation matrix.</returns>
-    public static FPMatrix4x4 RotateZ(GameFrameX.Utility.Math.FP radians, FPVector3 centerPoint)
+    public static FPMatrix4x4 RotateZ(FP radians, FPVector3 centerPoint)
     {
         FPMatrix4x4 result;
 
-        GameFrameX.Utility.Math.FP c = FPMath.Cos(radians);
-        GameFrameX.Utility.Math.FP s = FPMath.Sin(radians);
+        var c = FPMath.Cos(radians);
+        var s = FPMath.Sin(radians);
 
-        GameFrameX.Utility.Math.FP x = centerPoint.x * (1 - c) + centerPoint.y * s;
-        GameFrameX.Utility.Math.FP y = centerPoint.y * (1 - c) - centerPoint.x * s;
+        var x = centerPoint.x * (1 - c) + centerPoint.y * s;
+        var y = centerPoint.y * (1 - c) - centerPoint.x * s;
 
         // [  c  s  0  0 ]
         // [ -s  c  0  0 ]
@@ -1137,20 +1141,20 @@ public struct FPMatrix4x4
         // [  x  y  0  1 ]
         result.M11 = c;
         result.M12 = s;
-        result.M13 = GameFrameX.Utility.Math.FP.Zero;
-        result.M14 = GameFrameX.Utility.Math.FP.Zero;
+        result.M13 = FP.Zero;
+        result.M14 = FP.Zero;
         result.M21 = -s;
         result.M22 = c;
-        result.M23 = GameFrameX.Utility.Math.FP.Zero;
-        result.M24 = GameFrameX.Utility.Math.FP.Zero;
-        result.M31 = GameFrameX.Utility.Math.FP.Zero;
-        result.M32 = GameFrameX.Utility.Math.FP.Zero;
-        result.M33 = GameFrameX.Utility.Math.FP.One;
-        result.M34 = GameFrameX.Utility.Math.FP.Zero;
-        result.M41 = GameFrameX.Utility.Math.FP.Zero;
-        result.M42 = GameFrameX.Utility.Math.FP.Zero;
-        result.M43 = GameFrameX.Utility.Math.FP.Zero;
-        result.M44 = GameFrameX.Utility.Math.FP.One;
+        result.M23 = FP.Zero;
+        result.M24 = FP.Zero;
+        result.M31 = FP.Zero;
+        result.M32 = FP.Zero;
+        result.M33 = FP.One;
+        result.M34 = FP.Zero;
+        result.M41 = FP.Zero;
+        result.M42 = FP.Zero;
+        result.M43 = FP.Zero;
+        result.M44 = FP.One;
 
         return result;
     }
@@ -1161,7 +1165,7 @@ public struct FPMatrix4x4
     /// <param name="axis">The axis.</param>
     /// <param name="angle">The angle.</param>
     /// <param name="result">The resulting rotation matrix</param>
-    public static void AxisAngle(ref FPVector3 axis, GameFrameX.Utility.Math.FP angle, out FPMatrix4x4 result)
+    public static void AxisAngle(ref FPVector3 axis, FP angle, out FPMatrix4x4 result)
     {
         // a: angle
         // x, y, z: unit vector for axis.
@@ -1188,27 +1192,27 @@ public struct FPMatrix4x4
         // M = [ xy-cosa*yx+sina*z    yy+cosa(1-yy)  yz-cosa*yz-sina*x ]
         //     [ zx-cosa*zx-sina*y zy-cosa*zy+sina*x   zz+cosa*(1-zz)  ]
         //
-        GameFrameX.Utility.Math.FP x = axis.x, y = axis.y, z = axis.z;
-        GameFrameX.Utility.Math.FP sa = FPMath.Sin(angle), ca = FPMath.Cos(angle);
-        GameFrameX.Utility.Math.FP xx = x * x, yy = y * y, zz = z * z;
-        GameFrameX.Utility.Math.FP xy = x * y, xz = x * z, yz = y * z;
+        FP x = axis.x, y = axis.y, z = axis.z;
+        FP sa = FPMath.Sin(angle), ca = FPMath.Cos(angle);
+        FP xx = x * x, yy = y * y, zz = z * z;
+        FP xy = x * y, xz = x * z, yz = y * z;
 
-        result.M11 = xx + ca * (GameFrameX.Utility.Math.FP.One - xx);
+        result.M11 = xx + ca * (FP.One - xx);
         result.M12 = xy - ca * xy + sa * z;
         result.M13 = xz - ca * xz - sa * y;
-        result.M14 = GameFrameX.Utility.Math.FP.Zero;
+        result.M14 = FP.Zero;
         result.M21 = xy - ca * xy - sa * z;
-        result.M22 = yy + ca * (GameFrameX.Utility.Math.FP.One - yy);
+        result.M22 = yy + ca * (FP.One - yy);
         result.M23 = yz - ca * yz + sa * x;
-        result.M24 = GameFrameX.Utility.Math.FP.Zero;
+        result.M24 = FP.Zero;
         result.M31 = xz - ca * xz + sa * y;
         result.M32 = yz - ca * yz - sa * x;
-        result.M33 = zz + ca * (GameFrameX.Utility.Math.FP.One - zz);
-        result.M34 = GameFrameX.Utility.Math.FP.Zero;
-        result.M41 = GameFrameX.Utility.Math.FP.Zero;
-        result.M42 = GameFrameX.Utility.Math.FP.Zero;
-        result.M43 = GameFrameX.Utility.Math.FP.Zero;
-        result.M44 = GameFrameX.Utility.Math.FP.One;
+        result.M33 = zz + ca * (FP.One - zz);
+        result.M34 = FP.Zero;
+        result.M41 = FP.Zero;
+        result.M42 = FP.Zero;
+        result.M43 = FP.Zero;
+        result.M44 = FP.One;
     }
 
     /// <summary>
@@ -1217,7 +1221,7 @@ public struct FPMatrix4x4
     /// <param name="axis">The axis.</param>
     /// <param name="angle">The angle.</param>
     /// <returns>The resulting rotation matrix</returns>
-    public static FPMatrix4x4 AngleAxis(GameFrameX.Utility.Math.FP angle, FPVector3 axis)
+    public static FPMatrix4x4 AngleAxis(FP angle, FPVector3 axis)
     {
         FPMatrix4x4 result;
         AxisAngle(ref axis, angle, out result);

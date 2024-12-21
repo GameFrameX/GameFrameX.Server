@@ -1,7 +1,7 @@
 ﻿namespace GameFrameX.Extension;
 
 /// <summary>
-/// 提供对 <see cref="DateTime"/> 类型的扩展方法。
+/// 提供对 <see cref="DateTime" /> 类型的扩展方法。
 /// </summary>
 public static class DateTimeExtensions
 {

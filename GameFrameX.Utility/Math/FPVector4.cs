@@ -61,13 +61,13 @@ public struct FPVector4
     public static readonly FPVector4 one;
 
     /// <summary>
-    /// A vector with components 
+    /// A vector with components
     /// (FP.MinValue,FP.MinValue,FP.MinValue);
     /// </summary>
     public static readonly FPVector4 MinValue;
 
     /// <summary>
-    /// A vector with components 
+    /// A vector with components
     /// (FP.MaxValue,FP.MaxValue,FP.MaxValue);
     /// </summary>
     public static readonly FPVector4 MaxValue;
@@ -103,7 +103,7 @@ public struct FPVector4
     /// <returns>Returns the squared length of the vector.</returns>
     public FP sqrMagnitude
     {
-        get { return (((x * x) + (y * y)) + (z * z) + (w * w)); }
+        get { return x * x + y * y + z * z + w * w; }
     }
 
     /// <summary>
@@ -114,7 +114,7 @@ public struct FPVector4
     {
         get
         {
-            FP num = sqrMagnitude;
+            var num = sqrMagnitude;
             return FP.Sqrt(num);
         }
     }
@@ -138,7 +138,7 @@ public struct FPVector4
     {
         get
         {
-            FPVector4 result = new FPVector4(x, y, z, w);
+            var result = new FPVector4(x, y, z, w);
             result.Normalize();
 
             return result;
@@ -249,10 +249,14 @@ public struct FPVector4
 
     public override bool Equals(object obj)
     {
-        if (!(obj is FPVector4)) return false;
-        FPVector4 other = (FPVector4)obj;
+        if (!(obj is FPVector4))
+        {
+            return false;
+        }
 
-        return (((x == other.x) && (y == other.y)) && (z == other.z) && (w == other.w));
+        var other = (FPVector4)obj;
+
+        return x == other.x && y == other.y && z == other.z && w == other.w;
     }
 
     #endregion
@@ -297,7 +301,7 @@ public struct FPVector4
 
     public static bool operator ==(FPVector4 value1, FPVector4 value2)
     {
-        return (((value1.x == value2.x) && (value1.y == value2.y)) && (value1.z == value2.z) && (value1.w == value2.w));
+        return value1.x == value2.x && value1.y == value2.y && value1.z == value2.z && value1.w == value2.w;
     }
 
     #endregion
@@ -313,9 +317,9 @@ public struct FPVector4
 
     public static bool operator !=(FPVector4 value1, FPVector4 value2)
     {
-        if ((value1.x == value2.x) && (value1.y == value2.y) && (value1.z == value2.z))
+        if (value1.x == value2.x && value1.y == value2.y && value1.z == value2.z)
         {
-            return (value1.w != value2.w);
+            return value1.w != value2.w;
         }
 
         return true;
@@ -346,10 +350,10 @@ public struct FPVector4
     /// <param name="result">A vector with the minimum x,y and z values of both vectors.</param>
     public static void Min(ref FPVector4 value1, ref FPVector4 value2, out FPVector4 result)
     {
-        result.x = (value1.x < value2.x) ? value1.x : value2.x;
-        result.y = (value1.y < value2.y) ? value1.y : value2.y;
-        result.z = (value1.z < value2.z) ? value1.z : value2.z;
-        result.w = (value1.w < value2.w) ? value1.w : value2.w;
+        result.x = value1.x < value2.x ? value1.x : value2.x;
+        result.y = value1.y < value2.y ? value1.y : value2.y;
+        result.z = value1.z < value2.z ? value1.z : value2.z;
+        result.w = value1.w < value2.w ? value1.w : value2.w;
     }
 
     #endregion
@@ -388,10 +392,10 @@ public struct FPVector4
     /// <param name="result">A vector with the maximum x,y and z values of both vectors.</param>
     public static void Max(ref FPVector4 value1, ref FPVector4 value2, out FPVector4 result)
     {
-        result.x = (value1.x > value2.x) ? value1.x : value2.x;
-        result.y = (value1.y > value2.y) ? value1.y : value2.y;
-        result.z = (value1.z > value2.z) ? value1.z : value2.z;
-        result.w = (value1.w > value2.w) ? value1.w : value2.w;
+        result.x = value1.x > value2.x ? value1.x : value2.x;
+        result.y = value1.y > value2.y ? value1.y : value2.y;
+        result.z = value1.z > value2.z ? value1.z : value2.z;
+        result.w = value1.w > value2.w ? value1.w : value2.w;
     }
 
     #endregion
@@ -421,7 +425,7 @@ public struct FPVector4
 
     public bool IsZero()
     {
-        return (sqrMagnitude == FP.Zero);
+        return sqrMagnitude == FP.Zero;
     }
 
     /// <summary>
@@ -430,7 +434,7 @@ public struct FPVector4
     /// <returns>Returns true if the vector is nearly zero, otherwise false.</returns>
     public bool IsNearlyZero()
     {
-        return (sqrMagnitude < ZeroEpsilonSq);
+        return sqrMagnitude < ZeroEpsilonSq;
     }
 
     #endregion
@@ -515,7 +519,7 @@ public struct FPVector4
     /// <returns>Returns the dot product of both vectors.</returns>
     public static FP Dot(ref FPVector4 vector1, ref FPVector4 vector2)
     {
-        return ((vector1.x * vector2.x) + (vector1.y * vector2.y)) + (vector1.z * vector2.z) + (vector1.w * vector2.w);
+        return vector1.x * vector2.x + vector1.y * vector2.y + vector1.z * vector2.z + vector1.w * vector2.w;
     }
 
     #endregion
@@ -681,8 +685,8 @@ public struct FPVector4
     /// </summary>
     public void Normalize()
     {
-        FP num2 = ((x * x) + (y * y)) + (z * z) + (w * w);
-        FP num = FP.One / FP.Sqrt(num2);
+        var num2 = x * x + y * y + z * z + w * w;
+        var num = FP.One / FP.Sqrt(num2);
         x *= num;
         y *= num;
         z *= num;
@@ -696,8 +700,8 @@ public struct FPVector4
     /// <param name="result">A normalized vector.</param>
     public static void Normalize(ref FPVector4 value, out FPVector4 result)
     {
-        FP num2 = ((value.x * value.x) + (value.y * value.y)) + (value.z * value.z) + (value.w * value.w);
-        FP num = FP.One / FP.Sqrt(num2);
+        var num2 = value.x * value.x + value.y * value.y + value.z * value.z + value.w * value.w;
+        var num = FP.One / FP.Sqrt(num2);
         result.x = value.x * num;
         result.y = value.y * num;
         result.z = value.z * num;

@@ -74,8 +74,8 @@ public static partial class Encryption
             return null;
         }
 
-        int bytesLength = bytes.Length;
-        byte[] results = new byte[bytesLength];
+        var bytesLength = bytes.Length;
+        var results = new byte[bytesLength];
         Array.Copy(bytes, 0, results, 0, bytesLength);
         GetSelfXorBytes(results, startIndex, length, code);
         return results;
@@ -100,7 +100,7 @@ public static partial class Encryption
             throw new Exception("Code is invalid.");
         }
 
-        int codeLength = code.Length;
+        var codeLength = code.Length;
         if (codeLength <= 0)
         {
             throw new Exception("Code length is invalid.");
@@ -111,8 +111,8 @@ public static partial class Encryption
             throw new Exception("Start index or length is invalid.");
         }
 
-        int codeIndex = startIndex % codeLength;
-        for (int i = startIndex; i < length; i++)
+        var codeIndex = startIndex % codeLength;
+        for (var i = startIndex; i < length; i++)
         {
             bytes[i] ^= code[codeIndex++];
             codeIndex %= codeLength;

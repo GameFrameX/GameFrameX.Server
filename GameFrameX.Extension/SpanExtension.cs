@@ -1,4 +1,6 @@
 using System.Buffers.Binary;
+using System.Net;
+using System.Text;
 
 namespace GameFrameX.Extension;
 
@@ -61,7 +63,7 @@ public static class SpanExtension
 
         fixed (byte* ptr = buffer)
         {
-            *(int*)(ptr + offset) = System.Net.IPAddress.HostToNetworkOrder(value);
+            *(int*)(ptr + offset) = IPAddress.HostToNetworkOrder(value);
             offset += ConstSize.IntSize;
         }
     }
@@ -82,7 +84,7 @@ public static class SpanExtension
 
         fixed (byte* ptr = buffer)
         {
-            *(long*)(ptr + offset) = System.Net.IPAddress.HostToNetworkOrder(value);
+            *(long*)(ptr + offset) = IPAddress.HostToNetworkOrder(value);
             offset += ConstSize.LongSize;
         }
     }
@@ -136,7 +138,7 @@ public static class SpanExtension
         {
             var value = *(int*)(ptr + offset);
             offset += ConstSize.IntSize;
-            return System.Net.IPAddress.NetworkToHostOrder(value);
+            return IPAddress.NetworkToHostOrder(value);
         }
     }
 
@@ -158,7 +160,7 @@ public static class SpanExtension
         {
             var value = *(short*)(ptr + offset);
             offset += ConstSize.ShortSize;
-            return System.Net.IPAddress.NetworkToHostOrder(value);
+            return IPAddress.NetworkToHostOrder(value);
         }
     }
 
@@ -218,7 +220,7 @@ public static class SpanExtension
         {
             var value = *(long*)(ptr + offset);
             offset += ConstSize.LongSize;
-            return System.Net.IPAddress.NetworkToHostOrder(value);
+            return IPAddress.NetworkToHostOrder(value);
         }
     }
 
@@ -238,7 +240,7 @@ public static class SpanExtension
 
         fixed (byte* ptr = buffer)
         {
-            *(int*)(ptr + offset) = System.Net.IPAddress.NetworkToHostOrder(*(int*)(ptr + offset));
+            *(int*)(ptr + offset) = IPAddress.NetworkToHostOrder(*(int*)(ptr + offset));
             var value = *(float*)(ptr + offset);
             offset += ConstSize.FloatSize;
             return value;
@@ -261,7 +263,7 @@ public static class SpanExtension
 
         fixed (byte* ptr = buffer)
         {
-            *(long*)(ptr + offset) = System.Net.IPAddress.NetworkToHostOrder(*(long*)(ptr + offset));
+            *(long*)(ptr + offset) = IPAddress.NetworkToHostOrder(*(long*)(ptr + offset));
             var value = *(double*)(ptr + offset);
             offset += ConstSize.DoubleSize;
             return value;
@@ -296,7 +298,7 @@ public static class SpanExtension
     /// <param name="buffer">字节跨度。</param>
     /// <param name="offset">开始读取的偏移量，读取后会增加对应的字节数组的长度。</param>
     /// <returns>读取的字节数组。如果长度小于或等于0，返回空数组。</returns>
-    public static unsafe byte[] ReadBytes(this Span<byte> buffer, ref int offset)
+    public static byte[] ReadBytes(this Span<byte> buffer, ref int offset)
     {
         var len = ReadInt(buffer, ref offset);
 
@@ -349,7 +351,7 @@ public static class SpanExtension
 
         fixed (byte* ptr = buffer)
         {
-            var value = System.Text.Encoding.UTF8.GetString(ptr + offset, len);
+            var value = Encoding.UTF8.GetString(ptr + offset, len);
             offset += len;
             return value;
         }

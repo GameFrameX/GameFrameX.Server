@@ -1,4 +1,5 @@
 ﻿using GameFrameX.Extension;
+using Newtonsoft.Json;
 
 namespace GameFrameX.Utility;
 
@@ -15,7 +16,7 @@ public static class JsonHelper
     public static string Serialize(object obj)
     {
         obj.CheckNotNull(nameof(obj));
-        string json = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+        var json = JsonConvert.SerializeObject(obj);
         return json;
     }
 
@@ -27,7 +28,7 @@ public static class JsonHelper
     public static string SerializeFormat(object obj)
     {
         obj.CheckNotNull(nameof(obj));
-        string json = Newtonsoft.Json.JsonConvert.SerializeObject(obj, Newtonsoft.Json.Formatting.Indented);
+        var json = JsonConvert.SerializeObject(obj, Formatting.Indented);
         return json;
     }
 
@@ -40,7 +41,7 @@ public static class JsonHelper
     public static T Deserialize<T>(string json) where T : class, new()
     {
         json.CheckNotNullOrEmpty(nameof(json));
-        return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
+        return JsonConvert.DeserializeObject<T>(json);
     }
 
     /// <summary>
@@ -53,6 +54,6 @@ public static class JsonHelper
     {
         json.CheckNotNullOrEmpty(nameof(json));
         type.CheckNotNull(nameof(type));
-        return Newtonsoft.Json.JsonConvert.DeserializeObject(json, type);
+        return JsonConvert.DeserializeObject(json, type);
     }
 }

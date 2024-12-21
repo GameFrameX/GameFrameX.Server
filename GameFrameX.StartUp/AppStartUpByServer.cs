@@ -18,6 +18,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using CloseReason = GameFrameX.SuperSocket.WebSocket.CloseReason;
 
 namespace GameFrameX.StartUp;
 
@@ -80,6 +81,56 @@ public abstract partial class AppStartUpBase : IAppStartUp
         GlobalSettings.IsAppRunning = false;
         StopTcpServer();
         StopWebSocketServer();
+    }
+
+    /// <summary>
+    /// 消息处理异常
+    /// </summary>
+    /// <param name="appSession"></param>
+    /// <param name="exception"></param>
+    /// <returns></returns>
+    protected virtual ValueTask<bool> PackageErrorHandler(IAppSession appSession, PackageHandlingException<IMessage> exception)
+    {
+        return ValueTask.FromResult(true);
+    }
+
+    /// <summary>
+    /// 断开连接
+    /// </summary>
+    /// <param name="appSession"></param>
+    /// <param name="disconnectEventArgs"></param>
+    /// <returns></returns>
+    protected virtual ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
+    {
+        LogHelper.Info("有外部客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
+        return ValueTask.CompletedTask;
+    }
+
+    /// <summary>
+    /// 有连接连上的时候触发
+    /// </summary>
+    /// <param name="appSession"></param>
+    /// <returns></returns>
+    protected virtual ValueTask OnConnected(IAppSession appSession)
+    {
+        LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
+        return ValueTask.CompletedTask;
+    }
+
+    /// <summary>
+    /// 有消息包收到的时候触发
+    /// </summary>
+    /// <param name="session"></param>
+    /// <param name="message"></param>
+    /// <returns></returns>
+    protected virtual ValueTask PackageHandler(IAppSession session, IMessage message)
+    {
+        if (Setting.IsDebug && Setting.IsDebugReceive)
+        {
+            LogHelper.Debug($"---收到外部发给[{ServerType}]的消息  {message.ToFormatMessageString()}");
+        }
+
+        return ValueTask.CompletedTask;
     }
 
     #region TCP Server
@@ -145,56 +196,6 @@ public abstract partial class AppStartUpBase : IAppStartUp
 
     #endregion
 
-    /// <summary>
-    /// 消息处理异常
-    /// </summary>
-    /// <param name="appSession"></param>
-    /// <param name="exception"></param>
-    /// <returns></returns>
-    protected virtual ValueTask<bool> PackageErrorHandler(IAppSession appSession, PackageHandlingException<IMessage> exception)
-    {
-        return ValueTask.FromResult(true);
-    }
-
-    /// <summary>
-    /// 断开连接
-    /// </summary>
-    /// <param name="appSession"></param>
-    /// <param name="disconnectEventArgs"></param>
-    /// <returns></returns>
-    protected virtual ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
-    {
-        LogHelper.Info("有外部客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
-        return ValueTask.CompletedTask;
-    }
-
-    /// <summary>
-    /// 有连接连上的时候触发
-    /// </summary>
-    /// <param name="appSession"></param>
-    /// <returns></returns>
-    protected virtual ValueTask OnConnected(IAppSession appSession)
-    {
-        LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-        return ValueTask.CompletedTask;
-    }
-
-    /// <summary>
-    /// 有消息包收到的时候触发
-    /// </summary>
-    /// <param name="session"></param>
-    /// <param name="message"></param>
-    /// <returns></returns>
-    protected virtual ValueTask PackageHandler(IAppSession session, IMessage message)
-    {
-        if (Setting.IsDebug && Setting.IsDebugReceive)
-        {
-            LogHelper.Debug($"---收到外部发给[{ServerType}]的消息  {message.ToFormatMessageString()}");
-        }
-
-        return ValueTask.CompletedTask;
-    }
-
 
     #region WebSocket
 
@@ -213,7 +214,7 @@ public abstract partial class AppStartUpBase : IAppStartUp
             LogHelper.Info("启动 WebSocket 服务器开始...");
             _webSocketServer = WebSocketHostBuilder.Create()
                                                    .UseWebSocketMessageHandler(WebSocketMessageHandler)
-                                                   .UseSessionHandler(OnConnected, OnDisconnected).ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)(ConfigureWebServer)).Build();
+                                                   .UseSessionHandler(OnConnected, OnDisconnected).ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)ConfigureWebServer).Build();
             await _webSocketServer.StartAsync();
             LogHelper.Info("启动 WebSocket 服务器完成...");
         }
@@ -256,7 +257,7 @@ public abstract partial class AppStartUpBase : IAppStartUp
         if (messagePackage.OpCode != OpCode.Binary)
         {
             // 不是二进制消息，直接关闭网络隧道
-            await session.CloseAsync(SuperSocket.WebSocket.CloseReason.ProtocolError);
+            await session.CloseAsync(CloseReason.ProtocolError);
             return;
         }
 

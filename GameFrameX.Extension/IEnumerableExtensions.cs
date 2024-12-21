@@ -5,7 +5,6 @@ using System.Linq.Expressions;
 namespace GameFrameX.Extension;
 
 /// <summary>
-///
 /// </summary>
 public static class IEnumerableExtensions
 {
@@ -150,8 +149,16 @@ public static class IEnumerableExtensions
     /// <returns>返回去重后的集合</returns>
     public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
     {
-        if (source == null) throw new ArgumentNullException(nameof(source));
-        if (keySelector == null) throw new ArgumentNullException(nameof(keySelector));
+        if (source == null)
+        {
+            throw new ArgumentNullException(nameof(source));
+        }
+
+        if (keySelector == null)
+        {
+            throw new ArgumentNullException(nameof(keySelector));
+        }
+
         var set = new HashSet<TKey>();
         return source.Where(item => set.Add(keySelector(item)));
     }
@@ -366,7 +373,7 @@ public static class IEnumerableExtensions
     /// <param name="values">要添加的元素数组</param>
     public static void AddRangeIfNotContains<T>(this ICollection<T> self, params T[] values)
     {
-        foreach (T obj in values)
+        foreach (var obj in values)
         {
             if (!self.Contains(obj))
             {
@@ -381,7 +388,7 @@ public static class IEnumerableExtensions
     /// <typeparam name="T">集合中的元素类型</typeparam>
     /// <param name="self">要移除元素的集合</param>
     /// <param name="where">用于筛选要移除的元素的条件函数</param>
-    public static void RemoveWhere<T>(this ICollection<T> self, Func<T, bool> @where)
+    public static void RemoveWhere<T>(this ICollection<T> self, Func<T, bool> where)
     {
         foreach (var obj in self.Where(where).ToList())
         {
@@ -401,7 +408,7 @@ public static class IEnumerableExtensions
         var list = self.Select((item, index) => new
         {
             item,
-            index
+            index,
         }).Where(p => condition(p.item)).OrderByDescending(p => p.index).Select(t => t.index);
         foreach (var index in list)
         {
@@ -428,7 +435,7 @@ public static class IEnumerableExtensions
         var src = list.Select((v, i) => new
         {
             Value = v,
-            Index = i
+            Index = i,
         }).Where(p => p.Index == index).OrderByDescending(p => p.Index).Select(t => t.Index);
         foreach (var i in src)
         {
@@ -598,7 +605,7 @@ public static class IEnumerableExtensions
     {
         var results = new List<TResult>();
         var tasks = new List<Task<TResult>>();
-        int index = 0;
+        var index = 0;
         foreach (var item in source)
         {
             var task = selector(item, index);
@@ -628,7 +635,7 @@ public static class IEnumerableExtensions
     /// <returns>一个任务，表示异步操作。</returns>
     public static async Task ForAsync<T>(this IEnumerable<T> source, Func<T, int, Task> selector, int maxParallelCount, CancellationToken cancellationToken = default)
     {
-        int index = 0;
+        var index = 0;
         if (Debugger.IsAttached)
         {
             foreach (var item in source)
@@ -687,7 +694,10 @@ public static class IEnumerableExtensions
     /// <param name="source">要查询的集合。</param>
     /// <param name="selector">用于从每个元素中提取值的函数。</param>
     /// <returns>集合中的最大值，如果集合为空则返回默认值。</returns>
-    public static TResult MaxOrDefault<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector) => source.Select(selector).DefaultIfEmpty().Max();
+    public static TResult MaxOrDefault<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector)
+    {
+        return source.Select(selector).DefaultIfEmpty().Max();
+    }
 
     /// <summary>
     /// 获取集合中的最大值，如果集合为空则返回指定的默认值。
@@ -698,7 +708,10 @@ public static class IEnumerableExtensions
     /// <param name="selector">用于从每个元素中提取值的函数。</param>
     /// <param name="defaultValue">集合为空时返回的默认值。</param>
     /// <returns>集合中的最大值，如果集合为空则返回指定的默认值。</returns>
-    public static TResult MaxOrDefault<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector, TResult defaultValue) => source.Select(selector).DefaultIfEmpty(defaultValue).Max();
+    public static TResult MaxOrDefault<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector, TResult defaultValue)
+    {
+        return source.Select(selector).DefaultIfEmpty(defaultValue).Max();
+    }
 
     /// <summary>
     /// 获取集合中的最大值，如果集合为空则返回默认值。
@@ -706,7 +719,10 @@ public static class IEnumerableExtensions
     /// <typeparam name="TSource">集合中元素的类型。</typeparam>
     /// <param name="source">要查询的集合。</param>
     /// <returns>集合中的最大值，如果集合为空则返回默认值。</returns>
-    public static TSource MaxOrDefault<TSource>(this IQueryable<TSource> source) => source.DefaultIfEmpty().Max();
+    public static TSource MaxOrDefault<TSource>(this IQueryable<TSource> source)
+    {
+        return source.DefaultIfEmpty().Max();
+    }
 
     /// <summary>
     /// 获取集合中的最大值，如果集合为空则返回指定的默认值。
@@ -715,7 +731,10 @@ public static class IEnumerableExtensions
     /// <param name="source">要查询的集合。</param>
     /// <param name="defaultValue">集合为空时返回的默认值。</param>
     /// <returns>集合中的最大值，如果集合为空则返回指定的默认值。</returns>
-    public static TSource MaxOrDefault<TSource>(this IQueryable<TSource> source, TSource defaultValue) => source.DefaultIfEmpty(defaultValue).Max();
+    public static TSource MaxOrDefault<TSource>(this IQueryable<TSource> source, TSource defaultValue)
+    {
+        return source.DefaultIfEmpty(defaultValue).Max();
+    }
 
     /// <summary>
     /// 获取集合中的最大值，如果集合为空则返回指定的默认值。
@@ -726,7 +745,10 @@ public static class IEnumerableExtensions
     /// <param name="selector">用于从每个元素中提取值的函数。</param>
     /// <param name="defaultValue">集合为空时返回的默认值。</param>
     /// <returns>集合中的最大值，如果集合为空则返回指定的默认值。</returns>
-    public static TResult MaxOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector, TResult defaultValue) => source.Select(selector).DefaultIfEmpty(defaultValue).Max();
+    public static TResult MaxOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector, TResult defaultValue)
+    {
+        return source.Select(selector).DefaultIfEmpty(defaultValue).Max();
+    }
 
     /// <summary>
     /// 获取集合中的最大值，如果集合为空则返回默认值。
@@ -736,7 +758,10 @@ public static class IEnumerableExtensions
     /// <param name="source">要查询的集合。</param>
     /// <param name="selector">用于从每个元素中提取值的函数。</param>
     /// <returns>集合中的最大值，如果集合为空则返回默认值。</returns>
-    public static TResult MaxOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector) => source.Select(selector).DefaultIfEmpty().Max();
+    public static TResult MaxOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
+    {
+        return source.Select(selector).DefaultIfEmpty().Max();
+    }
 
     /// <summary>
     /// 获取集合中的最大值，如果集合为空则返回默认值。
@@ -744,7 +769,10 @@ public static class IEnumerableExtensions
     /// <typeparam name="TSource">集合中元素的类型。</typeparam>
     /// <param name="source">要查询的集合。</param>
     /// <returns>集合中的最大值，如果集合为空则返回默认值。</returns>
-    public static TSource MaxOrDefault<TSource>(this IEnumerable<TSource> source) => source.DefaultIfEmpty().Max();
+    public static TSource MaxOrDefault<TSource>(this IEnumerable<TSource> source)
+    {
+        return source.DefaultIfEmpty().Max();
+    }
 
     /// <summary>
     /// 获取集合中的最大值，如果集合为空则返回指定的默认值。
@@ -753,7 +781,10 @@ public static class IEnumerableExtensions
     /// <param name="source">要查询的集合。</param>
     /// <param name="defaultValue">集合为空时返回的默认值。</param>
     /// <returns>集合中的最大值，如果集合为空则返回指定的默认值。</returns>
-    public static TSource MaxOrDefault<TSource>(this IEnumerable<TSource> source, TSource defaultValue) => source.DefaultIfEmpty(defaultValue).Max();
+    public static TSource MaxOrDefault<TSource>(this IEnumerable<TSource> source, TSource defaultValue)
+    {
+        return source.DefaultIfEmpty(defaultValue).Max();
+    }
 
     /// <summary>
     /// 获取集合中的最小值，如果集合为空则返回默认值。
@@ -763,7 +794,10 @@ public static class IEnumerableExtensions
     /// <param name="source">要查询的集合。</param>
     /// <param name="selector">用于从每个元素中提取值的函数。</param>
     /// <returns>集合中的最小值，如果集合为空则返回默认值。</returns>
-    public static TResult MinOrDefault<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector) => source.Select(selector).DefaultIfEmpty().Min();
+    public static TResult MinOrDefault<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector)
+    {
+        return source.Select(selector).DefaultIfEmpty().Min();
+    }
 
     /// <summary>
     /// 获取集合中的最小值，如果集合为空则返回指定的默认值。
@@ -774,7 +808,10 @@ public static class IEnumerableExtensions
     /// <param name="selector">用于从每个元素中提取值的函数。</param>
     /// <param name="defaultValue">集合为空时返回的默认值。</param>
     /// <returns>集合中的最小值，如果集合为空则返回指定的默认值。</returns>
-    public static TResult MinOrDefault<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector, TResult defaultValue) => source.Select(selector).DefaultIfEmpty(defaultValue).Min();
+    public static TResult MinOrDefault<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector, TResult defaultValue)
+    {
+        return source.Select(selector).DefaultIfEmpty(defaultValue).Min();
+    }
 
     /// <summary>
     /// 获取集合中的最小值，如果集合为空则返回默认值。
@@ -782,7 +819,10 @@ public static class IEnumerableExtensions
     /// <typeparam name="TSource">集合中元素的类型。</typeparam>
     /// <param name="source">要查询的集合。</param>
     /// <returns>集合中的最小值，如果集合为空则返回默认值。</returns>
-    public static TSource MinOrDefault<TSource>(this IQueryable<TSource> source) => source.DefaultIfEmpty().Min();
+    public static TSource MinOrDefault<TSource>(this IQueryable<TSource> source)
+    {
+        return source.DefaultIfEmpty().Min();
+    }
 
     /// <summary>
     /// 获取集合中的最小值，如果集合为空则返回指定的默认值。
@@ -791,7 +831,10 @@ public static class IEnumerableExtensions
     /// <param name="source">要查询的集合。</param>
     /// <param name="defaultValue">集合为空时返回的默认值。</param>
     /// <returns>集合中的最小值，如果集合为空则返回指定的默认值。</returns>
-    public static TSource MinOrDefault<TSource>(this IQueryable<TSource> source, TSource defaultValue) => source.DefaultIfEmpty(defaultValue).Min();
+    public static TSource MinOrDefault<TSource>(this IQueryable<TSource> source, TSource defaultValue)
+    {
+        return source.DefaultIfEmpty(defaultValue).Min();
+    }
 
     /// <summary>
     /// 获取集合中的最小值，如果集合为空则返回默认值。
@@ -801,7 +844,10 @@ public static class IEnumerableExtensions
     /// <param name="source">要查询的集合。</param>
     /// <param name="selector">用于从每个元素中提取值的函数。</param>
     /// <returns>集合中的最小值，如果集合为空则返回默认值。</returns>
-    public static TResult MinOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector) => source.Select(selector).DefaultIfEmpty().Min();
+    public static TResult MinOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
+    {
+        return source.Select(selector).DefaultIfEmpty().Min();
+    }
 
     /// <summary>
     /// 获取集合中的最小值，如果集合为空则返回指定的默认值。
@@ -812,7 +858,10 @@ public static class IEnumerableExtensions
     /// <param name="selector">用于从每个元素中提取值的函数。</param>
     /// <param name="defaultValue">集合为空时返回的默认值。</param>
     /// <returns>集合中的最小值，如果集合为空则返回指定的默认值。</returns>
-    public static TResult MinOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector, TResult defaultValue) => source.Select(selector).DefaultIfEmpty(defaultValue).Min();
+    public static TResult MinOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector, TResult defaultValue)
+    {
+        return source.Select(selector).DefaultIfEmpty(defaultValue).Min();
+    }
 
     /// <summary>
     /// 获取序列中的最小值，如果序列为空，则返回默认值。
@@ -820,7 +869,10 @@ public static class IEnumerableExtensions
     /// <typeparam name="TSource">序列中元素的类型。</typeparam>
     /// <param name="source">要从中获取最小值的序列。</param>
     /// <returns>序列中的最小值，如果序列为空则返回默认值。</returns>
-    public static TSource MinOrDefault<TSource>(this IEnumerable<TSource> source) => source.DefaultIfEmpty().Min();
+    public static TSource MinOrDefault<TSource>(this IEnumerable<TSource> source)
+    {
+        return source.DefaultIfEmpty().Min();
+    }
 
     /// <summary>
     /// 获取序列中的最小值，如果序列为空，则返回指定的默认值。
@@ -829,7 +881,10 @@ public static class IEnumerableExtensions
     /// <param name="source">要从中获取最小值的序列。</param>
     /// <param name="defaultValue">如果序列为空时返回的默认值。</param>
     /// <returns>序列中的最小值，如果序列为空则返回指定的默认值。</returns>
-    public static TSource MinOrDefault<TSource>(this IEnumerable<TSource> source, TSource defaultValue) => source.DefaultIfEmpty(defaultValue).Min();
+    public static TSource MinOrDefault<TSource>(this IEnumerable<TSource> source, TSource defaultValue)
+    {
+        return source.DefaultIfEmpty(defaultValue).Min();
+    }
 
     /// <summary>
     /// 计算序列的标准差。
@@ -840,7 +895,7 @@ public static class IEnumerableExtensions
     {
         double result = 0;
         var list = source as ICollection<double> ?? source.ToList();
-        int count = list.Count;
+        var count = list.Count;
         if (count > 1)
         {
             var avg = list.Average();
@@ -881,8 +936,8 @@ public static class IEnumerableExtensions
 
             if (source1 is IList<T> list1 && source2 is IList<T> list2)
             {
-                int count = source1.Count;
-                for (int index = 0; index < count; ++index)
+                var count = source1.Count;
+                for (var index = 0; index < count; ++index)
                 {
                     if (!condition(list1[index], list2[index]))
                     {
@@ -894,8 +949,8 @@ public static class IEnumerableExtensions
             }
         }
 
-        using IEnumerator<T> enumerator1 = first.GetEnumerator();
-        using IEnumerator<T> enumerator2 = second.GetEnumerator();
+        using var enumerator1 = first.GetEnumerator();
+        using var enumerator2 = second.GetEnumerator();
         while (enumerator1.MoveNext())
         {
             if (!enumerator2.MoveNext() || !condition(enumerator1.Current, enumerator2.Current))
@@ -927,8 +982,8 @@ public static class IEnumerableExtensions
 
             if (source1 is IList<T1> list1 && source2 is IList<T2> list2)
             {
-                int count = source1.Count;
-                for (int index = 0; index < count; ++index)
+                var count = source1.Count;
+                for (var index = 0; index < count; ++index)
                 {
                     if (!condition(list1[index], list2[index]))
                     {
@@ -940,8 +995,8 @@ public static class IEnumerableExtensions
             }
         }
 
-        using IEnumerator<T1> enumerator1 = first.GetEnumerator();
-        using IEnumerator<T2> enumerator2 = second.GetEnumerator();
+        using var enumerator1 = first.GetEnumerator();
+        using var enumerator2 = second.GetEnumerator();
         while (enumerator1.MoveNext())
         {
             if (!enumerator2.MoveNext() || !condition(enumerator1.Current, enumerator2.Current))

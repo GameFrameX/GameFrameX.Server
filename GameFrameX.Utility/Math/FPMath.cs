@@ -30,30 +30,30 @@ public sealed class FPMath
     public static FP Pi = FP.Pi;
 
     /**
-    *  @brief PI over 2 constant.
-    **/
+     * @brief PI over 2 constant.
+     */
     public static FP PiOver2 = FP.PiOver2;
 
     /// <summary>
-    /// A small value often used to decide if numeric 
+    /// A small value often used to decide if numeric
     /// results are zero.
     /// </summary>
     public static FP Epsilon = FP.Epsilon;
 
     /**
-    *  @brief Degree to radians constant.
-    **/
+     * @brief Degree to radians constant.
+     */
     public static FP Deg2Rad = FP.Deg2Rad;
 
     /**
-    *  @brief Radians to degree constant.
-    **/
+     * @brief Radians to degree constant.
+     */
     public static FP Rad2Deg = FP.Rad2Deg;
 
 
     /**
      * @brief FP infinity.
-     * */
+     */
     public static FP Infinity = FP.MaxValue;
 
     /// <summary>
@@ -82,7 +82,7 @@ public sealed class FPMath
 
     public static FP Max(FP val1, FP val2)
     {
-        return (val1 > val2) ? val1 : val2;
+        return val1 > val2 ? val1 : val2;
     }
 
     #endregion
@@ -98,7 +98,7 @@ public sealed class FPMath
 
     public static FP Min(FP val1, FP val2)
     {
-        return (val1 < val2) ? val1 : val2;
+        return val1 < val2 ? val1 : val2;
     }
 
     #endregion
@@ -115,8 +115,8 @@ public sealed class FPMath
 
     public static FP Max(FP val1, FP val2, FP val3)
     {
-        FP max12 = (val1 > val2) ? val1 : val2;
-        return (max12 > val3) ? max12 : val3;
+        var max12 = val1 > val2 ? val1 : val2;
+        return max12 > val3 ? max12 : val3;
     }
 
     #endregion
@@ -157,10 +157,14 @@ public sealed class FPMath
     public static FP Clamp01(FP value)
     {
         if (value < FP.Zero)
+        {
             return FP.Zero;
+        }
 
         if (value > FP.One)
+        {
             return FP.One;
+        }
 
         return value;
     }
@@ -314,8 +318,8 @@ public sealed class FPMath
     {
         // Using formula from http://www.mvps.org/directx/articles/catmull/
         // Internally using FPs not to lose precission
-        FP amountSquared = amount * amount;
-        FP amountCubed = amountSquared * amount;
+        var amountSquared = amount * amount;
+        var amountCubed = amountSquared * amount;
         return FP.Half * (2 * FP.One * value2 +
                           (value3 - value1) * amount +
                           (2 * FP.One * value1 - 5 * FP.One * value2 + 4 * FP.One * value3 - value4) * amountSquared +
@@ -347,18 +351,25 @@ public sealed class FPMath
         // All transformed to FP not to lose precission
         // Otherwise, for high numbers of param:amount the result is NaN instead of Infinity
         FP v1 = value1, v2 = value2, t1 = tangent1, t2 = tangent2, s = amount, result;
-        FP sCubed = s * s * s;
-        FP sSquared = s * s;
+        var sCubed = s * s * s;
+        var sSquared = s * s;
 
         if (amount == FP.Zero)
+        {
             result = value1;
+        }
         else if (amount == FP.One)
+        {
             result = value2;
+        }
         else
+        {
             result = (2 * v1 - 2 * v2 + t2 + t1) * sCubed +
                      (3 * v2 - 3 * v1 - 2 * t1 - t2) * sSquared +
                      t1 * s +
                      v1;
+        }
+
         return result;
     }
 
@@ -384,7 +395,10 @@ public sealed class FPMath
     public static FP InverseLerp(FP value1, FP value2, FP amount)
     {
         if (value1 != value2)
+        {
             return Clamp01((amount - value1) / (value2 - value1));
+        }
+
         return FP.Zero;
     }
 
@@ -400,7 +414,7 @@ public sealed class FPMath
         // It is expected that 0 < amount < 1
         // If amount < 0, return value1
         // If amount > 1, return value2
-        FP result = Clamp(amount, FP.Zero, FP.One);
+        var result = Clamp(amount, FP.Zero, FP.One);
         result = Hermite(value1, FP.Zero, value2, FP.Zero, result);
         return result;
     }
@@ -460,7 +474,7 @@ public sealed class FPMath
             return FP.Zero;
         }
 
-        FP log2 = Log2(b);
+        var log2 = Log2(b);
         return Pow2(exp * log2);
     }
 
@@ -474,8 +488,11 @@ public sealed class FPMath
     public static FP MoveTowards(FP current, FP target, FP maxDelta)
     {
         if (Abs(target - current) <= maxDelta)
+        {
             return target;
-        return (current + (Sign(target - current)) * maxDelta);
+        }
+
+        return current + Sign(target - current) * maxDelta;
     }
 
     /// <summary>
@@ -486,7 +503,7 @@ public sealed class FPMath
     /// <returns></returns>
     public static FP Repeat(FP t, FP length)
     {
-        return (t - (Floor(t / length) * length));
+        return t - Floor(t / length) * length;
     }
 
     /// <summary>
@@ -497,7 +514,7 @@ public sealed class FPMath
     /// <returns></returns>
     public static FP DeltaAngle(FP current, FP target)
     {
-        FP num = Repeat(target - current, 360 * FP.One);
+        var num = Repeat(target - current, 360 * FP.One);
         if (num > 180 * FP.One)
         {
             num -= 360 * FP.One;
@@ -530,7 +547,7 @@ public sealed class FPMath
     /// <returns></returns>
     public static FP SmoothDamp(FP current, FP target, ref FP currentVelocity, FP smoothTime, FP maxSpeed)
     {
-        FP deltaTime = FP.EN2;
+        var deltaTime = FP.EN2;
         return SmoothDamp(current, target, ref currentVelocity, smoothTime, maxSpeed, deltaTime);
     }
 
@@ -544,8 +561,8 @@ public sealed class FPMath
     /// <returns></returns>
     public static FP SmoothDamp(FP current, FP target, ref FP currentVelocity, FP smoothTime)
     {
-        FP deltaTime = FP.EN2;
-        FP positiveInfinity = -FP.MaxValue;
+        var deltaTime = FP.EN2;
+        var positiveInfinity = -FP.MaxValue;
         return SmoothDamp(current, target, ref currentVelocity, smoothTime, positiveInfinity, deltaTime);
     }
 
@@ -562,18 +579,18 @@ public sealed class FPMath
     public static FP SmoothDamp(FP current, FP target, ref FP currentVelocity, FP smoothTime, FP maxSpeed, FP deltaTime)
     {
         smoothTime = Max(FP.EN4, smoothTime);
-        FP num = 2 * FP.One / smoothTime;
-        FP num2 = num * deltaTime;
-        FP num3 = FP.One / (((FP.One + num2) + ((48 * FP.EN2 * num2) * num2)) + (((235 * FP.EN3 * num2) * num2) * num2));
-        FP num4 = current - target;
-        FP num5 = target;
-        FP max = maxSpeed * smoothTime;
+        var num = 2 * FP.One / smoothTime;
+        var num2 = num * deltaTime;
+        var num3 = FP.One / (FP.One + num2 + 48 * FP.EN2 * num2 * num2 + 235 * FP.EN3 * num2 * num2 * num2);
+        var num4 = current - target;
+        var num5 = target;
+        var max = maxSpeed * smoothTime;
         num4 = Clamp(num4, -max, max);
         target = current - num4;
-        FP num7 = (currentVelocity + (num * num4)) * deltaTime;
-        currentVelocity = (currentVelocity - (num * num7)) * num3;
-        FP num8 = target + ((num4 + num7) * num3);
-        if (((num5 - current) > FP.Zero) == (num8 > num5))
+        var num7 = (currentVelocity + num * num4) * deltaTime;
+        currentVelocity = (currentVelocity - num * num7) * num3;
+        var num8 = target + (num4 + num7) * num3;
+        if (num5 - current > FP.Zero == num8 > num5)
         {
             num8 = num5;
             currentVelocity = (num8 - num5) / deltaTime;

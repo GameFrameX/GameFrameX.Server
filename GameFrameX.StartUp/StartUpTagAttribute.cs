@@ -9,14 +9,14 @@ namespace GameFrameX.StartUp;
 public class StartUpTagAttribute : Attribute
 {
     /// <summary>
-    /// 服务器类型
-    /// </summary>
-    public readonly ServerType ServerType;
-
-    /// <summary>
     /// 启动优先级。值越小优先级越高
     /// </summary>
     public readonly int Priority;
+
+    /// <summary>
+    /// 服务器类型
+    /// </summary>
+    public readonly ServerType ServerType;
 
     /// <summary>
     /// 构建启动属性

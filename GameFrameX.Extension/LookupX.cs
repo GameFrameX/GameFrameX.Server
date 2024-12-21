@@ -13,7 +13,7 @@ public class LookupX<TKey, TElement> : IEnumerable<List<TElement>>
     private readonly IDictionary<TKey, List<TElement>> _dictionary;
 
     /// <summary>
-    /// 使用指定的字典初始化一个新的 <see cref="LookupX{TKey, TElement}"/> 实例。
+    /// 使用指定的字典初始化一个新的 <see cref="LookupX{TKey, TElement}" /> 实例。
     /// </summary>
     /// <param name="dic">用于存储键和元素列表的字典。</param>
     public LookupX(IDictionary<TKey, List<TElement>> dic)
@@ -22,12 +22,31 @@ public class LookupX<TKey, TElement> : IEnumerable<List<TElement>>
     }
 
     /// <summary>
-    /// 使用指定的并发字典初始化一个新的 <see cref="LookupX{TKey, TElement}"/> 实例。
+    /// 使用指定的并发字典初始化一个新的 <see cref="LookupX{TKey, TElement}" /> 实例。
     /// </summary>
     /// <param name="dic">用于存储键和元素列表的并发字典。</param>
     public LookupX(ConcurrentDictionary<TKey, List<TElement>> dic)
     {
         _dictionary = dic;
+    }
+
+    /// <summary>
+    /// 获取集合中的键值对数量。
+    /// </summary>
+    public int Count
+    {
+        get { return _dictionary.Count; }
+    }
+
+    /// <summary>
+    /// 获取与指定键关联的元素列表。
+    /// 如果键不存在，则返回一个空的元素列表。
+    /// </summary>
+    /// <param name="key">要查找的键。</param>
+    /// <returns>与指定键关联的元素列表。</returns>
+    public List<TElement> this[TKey key]
+    {
+        get { return _dictionary.TryGetValue(key, out var value) ? value : new List<TElement>(); }
     }
 
     /// <summary>
@@ -56,24 +75,5 @@ public class LookupX<TKey, TElement> : IEnumerable<List<TElement>>
     public bool Contains(TKey key)
     {
         return _dictionary.ContainsKey(key);
-    }
-
-    /// <summary>
-    /// 获取集合中的键值对数量。
-    /// </summary>
-    public int Count
-    {
-        get { return _dictionary.Count; }
-    }
-
-    /// <summary>
-    /// 获取与指定键关联的元素列表。
-    /// 如果键不存在，则返回一个空的元素列表。
-    /// </summary>
-    /// <param name="key">要查找的键。</param>
-    /// <returns>与指定键关联的元素列表。</returns>
-    public List<TElement> this[TKey key]
-    {
-        get { return _dictionary.TryGetValue(key, out var value) ? value : new List<TElement>(); }
     }
 }

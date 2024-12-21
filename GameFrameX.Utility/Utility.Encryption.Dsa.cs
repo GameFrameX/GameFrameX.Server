@@ -30,7 +30,7 @@ public static partial class Encryption
         /// <param name="key">XML 格式的密钥字符串</param>
         public Dsa(string key)
         {
-            DSACryptoServiceProvider dsa = new DSACryptoServiceProvider();
+            var dsa = new DSACryptoServiceProvider();
             dsa.FromXmlString(key);
             _dsa = dsa;
         }
@@ -41,8 +41,8 @@ public static partial class Encryption
         /// <returns>包含私钥和公钥的字典</returns>
         public static Dictionary<string, string> Make()
         {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            DSACryptoServiceProvider dsa = new DSACryptoServiceProvider();
+            var dic = new Dictionary<string, string>();
+            var dsa = new DSACryptoServiceProvider();
             dic["privatekey"] = dsa.ToXmlString(true);
             dic["publickey"] = dsa.ToXmlString(false);
             return dic;
@@ -58,7 +58,7 @@ public static partial class Encryption
         {
             try
             {
-                DSACryptoServiceProvider dsa = new DSACryptoServiceProvider();
+                var dsa = new DSACryptoServiceProvider();
                 dsa.FromXmlString(privateKey);
                 return dsa.SignData(dataToSign);
             }
@@ -76,7 +76,7 @@ public static partial class Encryption
         /// <returns>Base64 编码的签名字符串</returns>
         public static string SignData(string dataToSign, string privateKey)
         {
-            byte[] res = SignData(Encoding.UTF8.GetBytes(dataToSign), privateKey);
+            var res = SignData(Encoding.UTF8.GetBytes(dataToSign), privateKey);
             return Convert.ToBase64String(res);
         }
 
@@ -104,7 +104,7 @@ public static partial class Encryption
         /// <returns>Base64 编码的签名字符串</returns>
         public string SignData(string dataToSign)
         {
-            byte[] res = SignData(Encoding.UTF8.GetBytes(dataToSign));
+            var res = SignData(Encoding.UTF8.GetBytes(dataToSign));
             return Convert.ToBase64String(res);
         }
 
@@ -119,7 +119,7 @@ public static partial class Encryption
         {
             try
             {
-                DSACryptoServiceProvider dsa = new DSACryptoServiceProvider();
+                var dsa = new DSACryptoServiceProvider();
                 dsa.FromXmlString(privateKey);
                 return dsa.VerifyData(dataToVerify, signedData);
             }

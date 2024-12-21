@@ -20,18 +20,6 @@ public sealed class LauncherOptions
     public int APMPort { get; set; }
 
     /// <summary>
-    /// 检查APM监控端口
-    /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckAPMPort()
-    {
-        if (APMPort <= 10000 || APMPort >= ushort.MaxValue)
-        {
-            throw new ArgumentOutOfRangeException(nameof(APMPort), "APMPort必须大于10000且小于等于65535");
-        }
-    }
-
-    /// <summary>
     /// 是否是Debug 模式
     /// </summary>
     [Option("IsDebug", Default = false, HelpText = "是否是Debug 模式")]
@@ -56,18 +44,6 @@ public sealed class LauncherOptions
     public int ServerId { get; set; }
 
     /// <summary>
-    /// 检查ServerId
-    /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckServerId()
-    {
-        if (ServerId <= 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(ServerId), "ServerId必须大于0");
-        }
-    }
-
-    /// <summary>
     /// 保存数据间隔
     /// </summary>
     [Option("SaveDataInterval", Default = 5000, HelpText = "保存数据间隔，单位毫秒")]
@@ -80,34 +56,10 @@ public sealed class LauncherOptions
     public string InnerIp { get; set; }
 
     /// <summary>
-    /// 检查InnerIp
-    /// </summary>
-    /// <exception cref="ArgumentNullException"></exception>
-    public void CheckInnerIp()
-    {
-        if (string.IsNullOrWhiteSpace(InnerIp))
-        {
-            throw new ArgumentNullException(nameof(InnerIp), "内部IP不能为空");
-        }
-    }
-
-    /// <summary>
     /// 内部端口
     /// </summary>
     [Option("InnerPort", HelpText = "内部端口")]
     public ushort InnerPort { get; set; }
-
-    /// <summary>
-    /// 检查内部端口
-    /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckInnerPort()
-    {
-        if (InnerPort <= 10000 || InnerPort >= ushort.MaxValue)
-        {
-            throw new ArgumentOutOfRangeException(nameof(InnerPort), "内部端口必须大于10000且小于等于65535");
-        }
-    }
 
     /// <summary>
     /// 外部IP
@@ -116,34 +68,10 @@ public sealed class LauncherOptions
     public string OuterIp { get; set; }
 
     /// <summary>
-    /// 检查OuterIp
-    /// </summary>
-    /// <exception cref="ArgumentNullException"></exception>
-    public void CheckOuterIp()
-    {
-        if (string.IsNullOrWhiteSpace(OuterIp))
-        {
-            throw new ArgumentNullException(nameof(OuterIp), "外部IP不能为空");
-        }
-    }
-
-    /// <summary>
     /// 外部端口
     /// </summary>
     [Option("OuterPort", HelpText = "外部端口")]
     public ushort OuterPort { get; set; }
-
-    /// <summary>
-    /// 检查外部端口
-    /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckOuterPort()
-    {
-        if (OuterPort <= 10000 || OuterPort >= ushort.MaxValue)
-        {
-            throw new ArgumentOutOfRangeException(nameof(OuterPort), "外部端口必须大于10000且小于等于65535");
-        }
-    }
 
     /// <summary>
     /// HTTP 响应码
@@ -152,34 +80,10 @@ public sealed class LauncherOptions
     public string HttpCode { get; set; }
 
     /// <summary>
-    /// 检查HttpCode
-    /// </summary>
-    /// <exception cref="ArgumentNullException"></exception>
-    public void CheckHttpCode()
-    {
-        if (string.IsNullOrWhiteSpace(HttpCode))
-        {
-            throw new ArgumentNullException(nameof(HttpCode), "HTTP 响应码不能为空");
-        }
-    }
-
-    /// <summary>
     /// Http 地址
     /// </summary>
     [Option("HttpUrl", HelpText = "Http 地址")]
     public string HttpUrl { get; set; }
-
-    /// <summary>
-    /// 检查HttpUrl
-    /// </summary>
-    /// <exception cref="ArgumentNullException"></exception>
-    public void CheckHttpUrl()
-    {
-        if (string.IsNullOrWhiteSpace(HttpUrl))
-        {
-            throw new ArgumentNullException(nameof(HttpUrl), "Http 地址不能为空");
-        }
-    }
 
     /// <summary>
     /// HTTP 端口
@@ -188,34 +92,10 @@ public sealed class LauncherOptions
     public int HttpPort { get; set; }
 
     /// <summary>
-    /// 检查HttpPort
-    /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckHttpPort()
-    {
-        if (HttpPort <= 10000 || HttpPort >= ushort.MaxValue)
-        {
-            throw new ArgumentOutOfRangeException(nameof(HttpPort), "Http 端口必须大于10000且小于等于65535");
-        }
-    }
-
-    /// <summary>
     /// HTTPS 端口
     /// </summary>
     [Option("HttpsPort", HelpText = "HTTPS 端口")]
     public int HttpsPort { get; set; }
-
-    /// <summary>
-    /// 检查HttpsPort
-    /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckHttpsPort()
-    {
-        if (HttpsPort <= 10000 || HttpsPort >= ushort.MaxValue)
-        {
-            throw new ArgumentOutOfRangeException(nameof(HttpsPort), "Https 端口必须大于10000且小于等于65535");
-        }
-    }
 
     /// <summary>
     /// WebSocket 端口
@@ -224,34 +104,10 @@ public sealed class LauncherOptions
     public int WsPort { get; set; }
 
     /// <summary>
-    /// 检查WsPort
-    /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckWsPort()
-    {
-        if (WsPort <= 10000 || WsPort >= ushort.MaxValue)
-        {
-            throw new ArgumentOutOfRangeException(nameof(WsPort), "Ws 端口必须大于10000且小于等于65535");
-        }
-    }
-
-    /// <summary>
     /// 游戏逻辑服务器的处理最小模块ID
     /// </summary>
     [Option("MinModuleId", HelpText = "游戏逻辑服务器的处理最小模块ID")]
     public short MinModuleId { get; set; }
-
-    /// <summary>
-    /// 检查MinModuleId
-    /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckMinModuleId()
-    {
-        if (MinModuleId <= 0 || MinModuleId >= short.MaxValue - 10)
-        {
-            throw new ArgumentOutOfRangeException(nameof(MinModuleId), "游戏逻辑服务器的处理最小模块ID必须大于0且小于等于" + (short.MaxValue - 10));
-        }
-    }
 
     /// <summary>
     /// 游戏逻辑服务器的处理最大模块ID
@@ -260,34 +116,10 @@ public sealed class LauncherOptions
     public short MaxModuleId { get; set; }
 
     /// <summary>
-    /// 检查MaxModuleId
-    /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckMaxModuleId()
-    {
-        if (MaxModuleId <= 0 || MaxModuleId >= short.MaxValue - 10)
-        {
-            throw new ArgumentOutOfRangeException(nameof(MaxModuleId), "游戏逻辑服务器的处理最小模块ID必须大于0且小于等于" + (short.MaxValue - 10));
-        }
-    }
-
-    /// <summary>
     /// WebSocket 加密端口
     /// </summary>
     [Option("WssPort", HelpText = "WebSocket 加密端口")]
     public int WssPort { get; set; }
-
-    /// <summary>
-    /// 检查WssPort
-    /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckWssPort()
-    {
-        if (WssPort <= 10000 || WssPort >= ushort.MaxValue)
-        {
-            throw new ArgumentOutOfRangeException(nameof(WssPort), "Wss 端口必须大于10000且小于等于65535");
-        }
-    }
 
     /// <summary>
     /// Wss 使用的证书路径
@@ -296,52 +128,16 @@ public sealed class LauncherOptions
     public string WssCertFilePath { get; set; }
 
     /// <summary>
-    /// 检查WssCertFilePath
-    /// </summary>
-    /// <exception cref="ArgumentNullException"></exception>
-    public void CheckWssCertFilePath()
-    {
-        if (string.IsNullOrWhiteSpace(WssCertFilePath))
-        {
-            throw new ArgumentNullException(nameof(WssCertFilePath), "Wss 使用的证书路径不能为空");
-        }
-    }
-
-    /// <summary>
     /// 数据库 地址
     /// </summary>
     [Option("DataBaseUrl", HelpText = "数据库 地址")]
     public string DataBaseUrl { get; set; }
 
     /// <summary>
-    /// 检查DataBaseUrl
-    /// </summary>
-    /// <exception cref="ArgumentNullException"></exception>
-    public void CheckDataBaseUrl()
-    {
-        if (string.IsNullOrWhiteSpace(DataBaseUrl))
-        {
-            throw new ArgumentNullException(nameof(DataBaseUrl), "数据库 地址不能为空");
-        }
-    }
-
-    /// <summary>
     /// 数据库名称
     /// </summary>
     [Option("DataBaseName", HelpText = "数据库名称")]
     public string DataBaseName { get; set; }
-
-    /// <summary>
-    /// 检查DataBaseName
-    /// </summary>
-    /// <exception cref="ArgumentNullException"></exception>
-    public void CheckDataBaseName()
-    {
-        if (string.IsNullOrWhiteSpace(DataBaseName))
-        {
-            throw new ArgumentNullException(nameof(DataBaseName), "数据库名称不能为空");
-        }
-    }
 
     /// <summary>
     /// 语言
@@ -360,6 +156,234 @@ public sealed class LauncherOptions
     public string DiscoveryCenterIp { get; set; }
 
     /// <summary>
+    /// 发现中心端口
+    /// </summary>
+    [Option("DiscoveryCenterPort", HelpText = "发现中心端口")]
+    public ushort DiscoveryCenterPort { get; set; }
+
+    /// <summary>
+    /// 数据库服务连接地址
+    /// </summary>
+    [Option("DBIp", HelpText = "数据库服务连接地址")]
+    public string DBIp { get; set; }
+
+    /// <summary>
+    /// 数据库服务连接端口
+    /// </summary>
+    [Option("DBPort", HelpText = "数据库服务连接端口")]
+    public ushort DBPort { get; set; }
+
+    /// <summary>
+    /// 标签名称
+    /// </summary>
+    [Option("TagName", HelpText = "标签名称")]
+    public string TagName { get; set; }
+
+    /// <summary>
+    /// 检查APM监控端口
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public void CheckAPMPort()
+    {
+        if (APMPort <= 10000 || APMPort >= ushort.MaxValue)
+        {
+            throw new ArgumentOutOfRangeException(nameof(APMPort), "APMPort必须大于10000且小于等于65535");
+        }
+    }
+
+    /// <summary>
+    /// 检查ServerId
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public void CheckServerId()
+    {
+        if (ServerId <= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(ServerId), "ServerId必须大于0");
+        }
+    }
+
+    /// <summary>
+    /// 检查InnerIp
+    /// </summary>
+    /// <exception cref="ArgumentNullException"></exception>
+    public void CheckInnerIp()
+    {
+        if (string.IsNullOrWhiteSpace(InnerIp))
+        {
+            throw new ArgumentNullException(nameof(InnerIp), "内部IP不能为空");
+        }
+    }
+
+    /// <summary>
+    /// 检查内部端口
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public void CheckInnerPort()
+    {
+        if (InnerPort <= 10000 || InnerPort >= ushort.MaxValue)
+        {
+            throw new ArgumentOutOfRangeException(nameof(InnerPort), "内部端口必须大于10000且小于等于65535");
+        }
+    }
+
+    /// <summary>
+    /// 检查OuterIp
+    /// </summary>
+    /// <exception cref="ArgumentNullException"></exception>
+    public void CheckOuterIp()
+    {
+        if (string.IsNullOrWhiteSpace(OuterIp))
+        {
+            throw new ArgumentNullException(nameof(OuterIp), "外部IP不能为空");
+        }
+    }
+
+    /// <summary>
+    /// 检查外部端口
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public void CheckOuterPort()
+    {
+        if (OuterPort <= 10000 || OuterPort >= ushort.MaxValue)
+        {
+            throw new ArgumentOutOfRangeException(nameof(OuterPort), "外部端口必须大于10000且小于等于65535");
+        }
+    }
+
+    /// <summary>
+    /// 检查HttpCode
+    /// </summary>
+    /// <exception cref="ArgumentNullException"></exception>
+    public void CheckHttpCode()
+    {
+        if (string.IsNullOrWhiteSpace(HttpCode))
+        {
+            throw new ArgumentNullException(nameof(HttpCode), "HTTP 响应码不能为空");
+        }
+    }
+
+    /// <summary>
+    /// 检查HttpUrl
+    /// </summary>
+    /// <exception cref="ArgumentNullException"></exception>
+    public void CheckHttpUrl()
+    {
+        if (string.IsNullOrWhiteSpace(HttpUrl))
+        {
+            throw new ArgumentNullException(nameof(HttpUrl), "Http 地址不能为空");
+        }
+    }
+
+    /// <summary>
+    /// 检查HttpPort
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public void CheckHttpPort()
+    {
+        if (HttpPort <= 10000 || HttpPort >= ushort.MaxValue)
+        {
+            throw new ArgumentOutOfRangeException(nameof(HttpPort), "Http 端口必须大于10000且小于等于65535");
+        }
+    }
+
+    /// <summary>
+    /// 检查HttpsPort
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public void CheckHttpsPort()
+    {
+        if (HttpsPort <= 10000 || HttpsPort >= ushort.MaxValue)
+        {
+            throw new ArgumentOutOfRangeException(nameof(HttpsPort), "Https 端口必须大于10000且小于等于65535");
+        }
+    }
+
+    /// <summary>
+    /// 检查WsPort
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public void CheckWsPort()
+    {
+        if (WsPort <= 10000 || WsPort >= ushort.MaxValue)
+        {
+            throw new ArgumentOutOfRangeException(nameof(WsPort), "Ws 端口必须大于10000且小于等于65535");
+        }
+    }
+
+    /// <summary>
+    /// 检查MinModuleId
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public void CheckMinModuleId()
+    {
+        if (MinModuleId <= 0 || MinModuleId >= short.MaxValue - 10)
+        {
+            throw new ArgumentOutOfRangeException(nameof(MinModuleId), "游戏逻辑服务器的处理最小模块ID必须大于0且小于等于" + (short.MaxValue - 10));
+        }
+    }
+
+    /// <summary>
+    /// 检查MaxModuleId
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public void CheckMaxModuleId()
+    {
+        if (MaxModuleId <= 0 || MaxModuleId >= short.MaxValue - 10)
+        {
+            throw new ArgumentOutOfRangeException(nameof(MaxModuleId), "游戏逻辑服务器的处理最小模块ID必须大于0且小于等于" + (short.MaxValue - 10));
+        }
+    }
+
+    /// <summary>
+    /// 检查WssPort
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public void CheckWssPort()
+    {
+        if (WssPort <= 10000 || WssPort >= ushort.MaxValue)
+        {
+            throw new ArgumentOutOfRangeException(nameof(WssPort), "Wss 端口必须大于10000且小于等于65535");
+        }
+    }
+
+    /// <summary>
+    /// 检查WssCertFilePath
+    /// </summary>
+    /// <exception cref="ArgumentNullException"></exception>
+    public void CheckWssCertFilePath()
+    {
+        if (string.IsNullOrWhiteSpace(WssCertFilePath))
+        {
+            throw new ArgumentNullException(nameof(WssCertFilePath), "Wss 使用的证书路径不能为空");
+        }
+    }
+
+    /// <summary>
+    /// 检查DataBaseUrl
+    /// </summary>
+    /// <exception cref="ArgumentNullException"></exception>
+    public void CheckDataBaseUrl()
+    {
+        if (string.IsNullOrWhiteSpace(DataBaseUrl))
+        {
+            throw new ArgumentNullException(nameof(DataBaseUrl), "数据库 地址不能为空");
+        }
+    }
+
+    /// <summary>
+    /// 检查DataBaseName
+    /// </summary>
+    /// <exception cref="ArgumentNullException"></exception>
+    public void CheckDataBaseName()
+    {
+        if (string.IsNullOrWhiteSpace(DataBaseName))
+        {
+            throw new ArgumentNullException(nameof(DataBaseName), "数据库名称不能为空");
+        }
+    }
+
+    /// <summary>
     /// 检查DiscoveryCenterIp
     /// </summary>
     /// <exception cref="ArgumentNullException"></exception>
@@ -370,12 +394,6 @@ public sealed class LauncherOptions
             throw new ArgumentNullException(nameof(DiscoveryCenterIp), "发现中心地址不能为空");
         }
     }
-
-    /// <summary>
-    /// 发现中心端口
-    /// </summary>
-    [Option("DiscoveryCenterPort", HelpText = "发现中心端口")]
-    public ushort DiscoveryCenterPort { get; set; }
 
     /// <summary>
     /// 检查DiscoveryCenterPort
@@ -390,12 +408,6 @@ public sealed class LauncherOptions
     }
 
     /// <summary>
-    /// 数据库服务连接地址
-    /// </summary>
-    [Option("DBIp", HelpText = "数据库服务连接地址")]
-    public string DBIp { get; set; }
-
-    /// <summary>
     /// 检查DBIp
     /// </summary>
     /// <exception cref="ArgumentNullException"></exception>
@@ -406,18 +418,6 @@ public sealed class LauncherOptions
             throw new ArgumentNullException(nameof(DBIp), "数据库服务连接地址不能为空");
         }
     }
-
-    /// <summary>
-    /// 数据库服务连接端口
-    /// </summary>
-    [Option("DBPort", HelpText = "数据库服务连接端口")]
-    public ushort DBPort { get; set; }
-
-    /// <summary>
-    /// 标签名称
-    /// </summary>
-    [Option("TagName", HelpText = "标签名称")]
-    public string TagName { get; set; }
 
     /// <summary>
     /// 检查数据库服务连接端口

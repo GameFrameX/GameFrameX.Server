@@ -27,7 +27,7 @@ public static class Net
     /// <returns>第一个可用的端口号，如果没有可用端口号则返回-1</returns>
     public static int GetFirstAvailablePort(int startPort = 667, int maxPort = 65535)
     {
-        for (int i = startPort; i < maxPort; i++)
+        for (var i = startPort; i < maxPort; i++)
         {
             if (PortIsAvailable(i))
             {

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Concurrent;
-using System.Collections.Generic;
 
 namespace GameFrameX.Extension;
 
@@ -10,12 +9,7 @@ namespace GameFrameX.Extension;
 public class ConcurrentLimitedQueue<T> : ConcurrentQueue<T>
 {
     /// <summary>
-    /// 队列的最大长度。
-    /// </summary>
-    public int Limit { get; set; }
-
-    /// <summary>
-    /// 初始化一个新的 <see cref="ConcurrentLimitedQueue{T}"/> 实例，指定队列的最大长度。
+    /// 初始化一个新的 <see cref="ConcurrentLimitedQueue{T}" /> 实例，指定队列的最大长度。
     /// </summary>
     /// <param name="limit">队列的最大长度。</param>
     public ConcurrentLimitedQueue(int limit)
@@ -24,7 +18,7 @@ public class ConcurrentLimitedQueue<T> : ConcurrentQueue<T>
     }
 
     /// <summary>
-    /// 使用指定的集合初始化一个新的 <see cref="ConcurrentLimitedQueue{T}"/> 实例，并设置队列的最大长度为集合的元素数量。
+    /// 使用指定的集合初始化一个新的 <see cref="ConcurrentLimitedQueue{T}" /> 实例，并设置队列的最大长度为集合的元素数量。
     /// </summary>
     /// <param name="list">用于初始化队列的集合。</param>
     public ConcurrentLimitedQueue(IEnumerable<T> list) : base(list)
@@ -33,10 +27,15 @@ public class ConcurrentLimitedQueue<T> : ConcurrentQueue<T>
     }
 
     /// <summary>
-    /// 将一个列表隐式转换为 <see cref="ConcurrentLimitedQueue{T}"/>。
+    /// 队列的最大长度。
+    /// </summary>
+    public int Limit { get; set; }
+
+    /// <summary>
+    /// 将一个列表隐式转换为 <see cref="ConcurrentLimitedQueue{T}" />。
     /// </summary>
     /// <param name="list">要转换的列表。</param>
-    /// <returns>一个新的 <see cref="ConcurrentLimitedQueue{T}"/> 实例。</returns>
+    /// <returns>一个新的 <see cref="ConcurrentLimitedQueue{T}" /> 实例。</returns>
     public static implicit operator ConcurrentLimitedQueue<T>(List<T> list)
     {
         return new ConcurrentLimitedQueue<T>(list);

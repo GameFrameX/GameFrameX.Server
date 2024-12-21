@@ -3,33 +3,28 @@ using GameFrameX.Log;
 namespace GameFrameX.Utility;
 
 /// <summary>
-/// 
 /// </summary>
 public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
 {
     /// <summary>
-    /// 
     /// </summary>
     public const int FRACTION_BITS = 14; // 小数位位数 14
 
     private const int INTEGER_BITS = sizeof(long) * 8 - FRACTION_BITS; // 整数位位数 50
 
     private const int FRACTION_MASK = (int)(uint.MaxValue >> INTEGER_BITS); // 2^14-1 = 16384-1 =16383 == 01111111111111
-    private const int INTEGER_MASK = (int)(-1 & ~FRACTION_MASK); // -16384
+    private const int INTEGER_MASK = -1 & ~FRACTION_MASK; // -16384
     private const int FRACTION_RANGE = FRACTION_MASK + 1; // 16384 == 10000000000000
 
     /// <summary>
-    /// 
     /// </summary>
     public const long Max = 562949953421311; // 2^50 = 1125899906842624 - 1
 
     /// <summary>
-    /// 
     /// </summary>
     public const long FMax = 9999; //  2^14-1 = 16384-1 =16383 == 01111111111111
 
     /// <summary>
-    /// 
     /// </summary>
     public static readonly LNumber MaxValue = Create_Row(Max);
 
@@ -61,12 +56,11 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
     /// <summary>
     /// 0
     /// </summary>
-    public static readonly LNumber Zero = new LNumber();
+    public static readonly LNumber Zero = new();
 
     private const int Muti_FACTOR = 16384;
 
     /// <summary>
-    /// 
     /// </summary>
     public long Raw;
 
@@ -99,7 +93,6 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="i"></param>
     /// <param name="f"></param>
@@ -111,10 +104,17 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
             Debug.LogError("Xnumber 创建失败！ " + i + "." + f);
 #endif
 
-        int sign = (i ^ f) >= 0 ? 1 : -1;
+        var sign = (i ^ f) >= 0 ? 1 : -1;
 
-        if (i < 0) i = -i;
-        if (f < 0) f = -f;
+        if (i < 0)
+        {
+            i = -i;
+        }
+
+        if (f < 0)
+        {
+            f = -f;
+        }
 
         i = i << FRACTION_BITS;
         f = (f << FRACTION_BITS) / 10000;
@@ -125,7 +125,6 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="i"></param>
     /// <returns></returns>
@@ -138,8 +137,23 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
 
     /// <summary>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.</summary>
     /// <param name="other">An object to compare with this instance.</param>
-    /// <returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
-    /// <list type="table"><listheader><term> Value</term><description> Meaning</description></listheader><item><term> Less than zero</term><description> This instance precedes <paramref name="other" /> in the sort order.</description></item><item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="other" />.</description></item><item><term> Greater than zero</term><description> This instance follows <paramref name="other" /> in the sort order.</description></item></list></returns>
+    /// <returns>
+    /// A value that indicates the relative order of the objects being compared. The return value has these meanings:
+    /// <list type="table">
+    ///     <listheader>
+    ///         <term> Value</term><description> Meaning</description>
+    ///     </listheader>
+    ///     <item>
+    ///         <term> Less than zero</term><description> This instance precedes <paramref name="other" /> in the sort order.</description>
+    ///     </item>
+    ///     <item>
+    ///         <term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="other" />.</description>
+    ///     </item>
+    ///     <item>
+    ///         <term> Greater than zero</term><description> This instance follows <paramref name="other" /> in the sort order.</description>
+    ///     </item>
+    /// </list>
+    /// </returns>
     public int CompareTo(LNumber other)
     {
         return CompareTo(other.Raw);
@@ -163,10 +177,11 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
     /// <summary>Indicates whether this instance and a specified object are equal.</summary>
     /// <param name="obj">The object to compare with the current instance.</param>
     /// <returns>
-    /// <see langword="true" /> if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, <see langword="false" />.</returns>
+    /// <see langword="true" /> if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, <see langword="false" />.
+    /// </returns>
     public override bool Equals(object obj)
     {
-        return (obj is LNumber && ((LNumber)obj) == this);
+        return obj is LNumber && (LNumber)obj == this;
     }
 
     /// <summary>
@@ -245,18 +260,20 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
             //可能越界
             BigInteger a = lhs.Raw;
             BigInteger b = rhs.Raw;
-            BigInteger c = (a * b + (FRACTION_RANGE >> 1)) >> FRACTION_BITS;
+            var c = (a * b + (FRACTION_RANGE >> 1)) >> FRACTION_BITS;
 
             if (c > long.MinValue && c < long.MaxValue)
+            {
                 r.Raw = long.Parse(c.ToString()); //未越界
+            }
             else if ((lhs > 0 && rhs > 0) || (lhs < 0 && rhs < 0))
             {
-                LogHelper.Error("LNumber*已越界>" + c.ToString());
+                LogHelper.Error("LNumber*已越界>" + c);
                 r.Raw = long.MaxValue;
             }
             else
             {
-                LogHelper.Error("LNumber*已越界>" + c.ToString());
+                LogHelper.Error("LNumber*已越界>" + c);
                 r.Raw = long.MinValue;
             }
         }
@@ -283,7 +300,9 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
 
         var factor = 1;
         if (rhs.Raw < 0)
+        {
             factor = -1;
+        }
 
         if ((rhs.Raw + factor) >> 1 == 0)
         {
@@ -292,23 +311,25 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
         }
 
         LNumber r;
-        if (lhs.Raw > (1L << (62 - FRACTION_BITS)))
+        if (lhs.Raw > 1L << (62 - FRACTION_BITS))
         {
             //可能越界了
             BigInteger a = lhs.Raw;
             BigInteger b = rhs.Raw;
-            BigInteger c = ((a << (FRACTION_BITS + 1)) / b + factor) >> 1;
+            var c = ((a << (FRACTION_BITS + 1)) / b + factor) >> 1;
 
             if (c > long.MinValue && c < long.MaxValue)
+            {
                 r.Raw = long.Parse(c.ToString()); //未越界
+            }
             else if ((lhs > 0 && rhs > 0) || (lhs < 0 && rhs < 0))
             {
-                LogHelper.Error("LNumber/已越界>" + c.ToString());
+                LogHelper.Error("LNumber/已越界>" + c);
                 r.Raw = long.MaxValue;
             }
             else
             {
-                LogHelper.Error("LNumber/已越界>" + c.ToString());
+                LogHelper.Error("LNumber/已越界>" + c);
                 r.Raw = long.MinValue;
             }
         }
@@ -421,9 +442,11 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
     public static explicit operator long(LNumber number)
     {
         if (number.Raw > 0)
+        {
             return number.Raw >> FRACTION_BITS;
-        else
-            return (number.Raw + FRACTION_MASK) >> FRACTION_BITS;
+        }
+
+        return (number.Raw + FRACTION_MASK) >> FRACTION_BITS;
     }
 
     /// <summary>

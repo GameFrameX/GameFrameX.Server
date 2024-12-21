@@ -1,8 +1,8 @@
 ﻿namespace GameFrameX.Utility.Math;
 
 /**
- *  @brief Generates random numbers based on a deterministic approach.
- **/
+ * @brief Generates random numbers based on a deterministic approach.
+ */
 public sealed class FPRandom
 {
     // From http://www.codeproject.com/Articles/164087/Random-Number-Generation
@@ -15,32 +15,15 @@ public sealed class FPRandom
     private const uint UPPER_MASK = 0x80000000U;
     private const uint LOWER_MASK = 0x7fffffffU;
     private const int MAX_RAND_INT = 0x7fffffff;
-    private uint[] mag01 = { 0x0U, MATRIX_A };
-    private uint[] mt = new uint[N];
-    private int mti = N + 1;
 
     /**
-     *  @brief Static instance of {@link TSRandom} with seed 1.
-     **/
+     * @brief Static instance of {@link TSRandom} with seed 1.
+     */
     public static FPRandom instance;
 
-    internal static void Init()
-    {
-        instance = New(1);
-    }
-
-    /**
-     *  @brief Generates a new instance based on a given seed.
-     **/
-    public static FPRandom New(int seed)
-    {
-        FPRandom r = new FPRandom(seed);
-
-        // StateTracker.AddTracking(r, "mt");
-        // StateTracker.AddTracking(r, "mti");
-
-        return r;
-    }
+    private readonly uint[] mag01 = { 0x0U, MATRIX_A, };
+    private readonly uint[] mt = new uint[N];
+    private int mti = N + 1;
 
     private FPRandom()
     {
@@ -54,9 +37,12 @@ public sealed class FPRandom
 
     private FPRandom(int[] init)
     {
-        uint[] initArray = new uint[init.Length];
-        for (int i = 0; i < init.Length; ++i)
+        var initArray = new uint[init.Length];
+        for (var i = 0; i < init.Length; ++i)
+        {
             initArray[i] = (uint)init[i];
+        }
+
         init_by_array(initArray, (uint)initArray.Length);
     }
 
@@ -66,24 +52,58 @@ public sealed class FPRandom
     }
 
     /**
-     *  @brief Returns a random integer.
-     **/
+     * @brief Returns a {@link FP} between 0.0 [inclusive] and 1.0 [inclusive].
+     */
+    public static FP value
+    {
+        get { return instance.NextFP(); }
+    }
+
+    /**
+     * @brief Returns a random {@link TSVector} representing a point inside a sphere with radius 1.
+     */
+    public static FPVector3 insideUnitSphere
+    {
+        get { return new FPVector3(value, value, value); }
+    }
+
+    internal static void Init()
+    {
+        instance = New(1);
+    }
+
+    /**
+     * @brief Generates a new instance based on a given seed.
+     */
+    public static FPRandom New(int seed)
+    {
+        var r = new FPRandom(seed);
+
+        // StateTracker.AddTracking(r, "mt");
+        // StateTracker.AddTracking(r, "mti");
+
+        return r;
+    }
+
+    /**
+     * @brief Returns a random integer.
+     */
     public int Next()
     {
         return genrand_int31();
     }
 
     /**
-     *  @brief Returns a random integer.
-     **/
+     * @brief Returns a random integer.
+     */
     public static int CallNext()
     {
         return instance.Next();
     }
 
     /**
-     *  @brief Returns a integer between a min value [inclusive] and a max value [exclusive].
-     **/
+     * @brief Returns a integer between a min value [inclusive] and a max value [exclusive].
+     */
     public int Next(int minValue, int maxValue)
     {
         if (minValue > maxValue)
@@ -91,15 +111,15 @@ public sealed class FPRandom
             (maxValue, minValue) = (minValue, maxValue);
         }
 
-        int range = maxValue - minValue;
+        var range = maxValue - minValue;
 
         return minValue + Next() % range;
     }
 
     /**
-     *  @brief Returns a {@link FP} between a min value [inclusive] and a max value [inclusive].
-     **/
-    public GameFrameX.Utility.Math.FP Next(float minValue, float maxValue)
+     * @brief Returns a {@link FP} between a min value [inclusive] and a max value [inclusive].
+     */
+    public FP Next(float minValue, float maxValue)
     {
         int minValueInt = (int)(minValue * 1000), maxValueInt = (int)(maxValue * 1000);
 
@@ -108,48 +128,32 @@ public sealed class FPRandom
             (maxValueInt, minValueInt) = (minValueInt, maxValueInt);
         }
 
-        return (GameFrameX.Utility.Math.FP.Floor((maxValueInt - minValueInt + 1) * NextFP() +
-                                                 minValueInt)) / 1000;
+        return FP.Floor((maxValueInt - minValueInt + 1) * NextFP() +
+                        minValueInt) / 1000;
     }
 
     /**
-     *  @brief Returns a integer between a min value [inclusive] and a max value [exclusive].
-     **/
+     * @brief Returns a integer between a min value [inclusive] and a max value [exclusive].
+     */
     public static int Range(int minValue, int maxValue)
     {
         return instance.Next(minValue, maxValue);
     }
 
     /**
-     *  @brief Returns a {@link FP} between a min value [inclusive] and a max value [inclusive].
-     **/
-    public static GameFrameX.Utility.Math.FP Range(float minValue, float maxValue)
+     * @brief Returns a {@link FP} between a min value [inclusive] and a max value [inclusive].
+     */
+    public static FP Range(float minValue, float maxValue)
     {
         return instance.Next(minValue, maxValue);
     }
 
     /**
-     *  @brief Returns a {@link FP} between 0.0 [inclusive] and 1.0 [inclusive].
-     **/
-    public GameFrameX.Utility.Math.FP NextFP()
+     * @brief Returns a {@link FP} between 0.0 [inclusive] and 1.0 [inclusive].
+     */
+    public FP NextFP()
     {
-        return ((GameFrameX.Utility.Math.FP)Next()) / (MaxRandomInt);
-    }
-
-    /**
-     *  @brief Returns a {@link FP} between 0.0 [inclusive] and 1.0 [inclusive].
-     **/
-    public static GameFrameX.Utility.Math.FP value
-    {
-        get { return instance.NextFP(); }
-    }
-
-    /**
-     *  @brief Returns a random {@link TSVector} representing a point inside a sphere with radius 1.
-     **/
-    public static FPVector3 insideUnitSphere
-    {
-        get { return new FPVector3(value, value, value); }
+        return (FP)Next() / MaxRandomInt;
     }
 
     private float NextFloat()
@@ -209,9 +213,12 @@ public sealed class FPRandom
 
     public void Initialize(int[] init)
     {
-        uint[] initArray = new uint[init.Length];
-        for (int i = 0; i < init.Length; ++i)
+        var initArray = new uint[init.Length];
+        for (var i = 0; i < init.Length; ++i)
+        {
             initArray[i] = (uint)init[i];
+        }
+
         init_by_array(initArray, (uint)initArray.Length);
     }
 
@@ -245,7 +252,9 @@ public sealed class FPRandom
             }
 
             if (j >= key_length)
+            {
                 j = 0;
+            }
         }
 
         for (k = N - 1; k > 0; k--)
@@ -264,14 +273,17 @@ public sealed class FPRandom
         mt[0] = 0x80000000U;
     }
 
-    uint genrand_int32()
+    private uint genrand_int32()
     {
         uint y;
         if (mti >= N)
         {
             int kk;
             if (mti == N + 1)
+            {
                 init_genrand(5489U);
+            }
+
             for (kk = 0; kk < N - M; kk++)
             {
                 y = (mt[kk] & UPPER_MASK) | (mt[kk + 1] & LOWER_MASK);
@@ -290,10 +302,10 @@ public sealed class FPRandom
         }
 
         y = mt[mti++];
-        y ^= (y >> 11);
+        y ^= y >> 11;
         y ^= (y << 7) & 0x9d2c5680U;
         y ^= (y << 15) & 0xefc60000U;
-        y ^= (y >> 18);
+        y ^= y >> 18;
         return y;
     }
 
@@ -302,27 +314,27 @@ public sealed class FPRandom
         return (int)(genrand_int32() >> 1);
     }
 
-    GameFrameX.Utility.Math.FP genrand_FP()
+    private FP genrand_FP()
     {
-        return genrand_int32() * (GameFrameX.Utility.Math.FP.One / 4294967295);
+        return genrand_int32() * (FP.One / 4294967295);
     }
 
-    double genrand_real1()
+    private double genrand_real1()
     {
         return genrand_int32() * (1.0 / 4294967295.0);
     }
 
-    double genrand_real2()
+    private double genrand_real2()
     {
         return genrand_int32() * (1.0 / 4294967296.0);
     }
 
-    double genrand_real3()
+    private double genrand_real3()
     {
         return (genrand_int32() + 0.5) * (1.0 / 4294967296.0);
     }
 
-    double genrand_res53()
+    private double genrand_res53()
     {
         uint a = genrand_int32() >> 5, b = genrand_int32() >> 6;
         return (a * 67108864.0 + b) * (1.0 / 9007199254740992.0);

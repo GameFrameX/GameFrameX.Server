@@ -33,7 +33,7 @@ public static class Compression
         var decompressed = new MemoryStream();
         var deflateStream = new DeflateStream(compressed, CompressionMode.Decompress); // 注意：这里第一个参数同样是填写压缩的数据，但是这次是作为输入的数据
         deflateStream.CopyTo(decompressed);
-        byte[] result = decompressed.ToArray();
+        var result = decompressed.ToArray();
         return result;
     }
 }

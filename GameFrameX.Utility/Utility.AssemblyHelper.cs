@@ -8,8 +8,8 @@ namespace GameFrameX.Utility;
 /// </summary>
 public static class AssemblyHelper
 {
-    private static readonly System.Reflection.Assembly[] Assemblies;
-    private static readonly Dictionary<string, Type> CachedTypes = new Dictionary<string, Type>(StringComparer.Ordinal);
+    private static readonly Assembly[] Assemblies;
+    private static readonly Dictionary<string, Type> CachedTypes = new(StringComparer.Ordinal);
 
     static AssemblyHelper()
     {
@@ -20,7 +20,7 @@ public static class AssemblyHelper
     /// 获取已加载的程序集。
     /// </summary>
     /// <returns>已加载的程序集数组。</returns>
-    public static System.Reflection.Assembly[] GetAssemblies()
+    public static Assembly[] GetAssemblies()
     {
         return Assemblies;
     }
@@ -31,7 +31,7 @@ public static class AssemblyHelper
     /// <returns>已加载的程序集中的所有类型数组。</returns>
     public static Type[] GetTypes()
     {
-        List<Type> results = new List<Type>();
+        var results = new List<Type>();
         foreach (var assembly in Assemblies)
         {
             results.AddRange(assembly.GetTypes());
@@ -52,7 +52,7 @@ public static class AssemblyHelper
         }
 
         results.Clear();
-        foreach (System.Reflection.Assembly assembly in Assemblies)
+        foreach (var assembly in Assemblies)
         {
             results.AddRange(assembly.GetTypes());
         }
@@ -104,7 +104,7 @@ public static class AssemblyHelper
     {
         var types = GetRuntimeImplementTypeNames(typeof(T));
 
-        List<T> results = new List<T>(types.Count);
+        var results = new List<T>(types.Count);
         foreach (var type in types)
         {
             results.Add((T)Activator.CreateInstance(type));
@@ -143,7 +143,7 @@ public static class AssemblyHelper
     /// <returns>指定类型的子类列表的全名。</returns>
     public static List<string> GetRuntimeTypeNames(Type type)
     {
-        List<string> results = new List<string>();
+        var results = new List<string>();
         var types = GetRuntimeImplementTypeNames(type);
         foreach (var t in types)
         {
@@ -161,7 +161,7 @@ public static class AssemblyHelper
     public static List<Type> GetRuntimeImplementTypeNames(Type type)
     {
         var types = GetTypes();
-        List<Type> results = new List<Type>();
+        var results = new List<Type>();
         foreach (var t in types)
         {
             if (t.IsAbstract || !t.IsClass)

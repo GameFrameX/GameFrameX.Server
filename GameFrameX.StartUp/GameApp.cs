@@ -19,8 +19,8 @@ namespace GameFrameX.StartUp;
 public static class GameApp
 {
     private static readonly Dictionary<Type, StartUpTagAttribute> StartUpTypes = new();
-    private static readonly List<Task> AppStartUpTasks = new List<Task>();
-    private static readonly List<IAppStartUp> AppStartUps = new List<IAppStartUp>();
+    private static readonly List<Task> AppStartUpTasks = new();
+    private static readonly List<IAppStartUp> AppStartUps = new();
 
     /// <summary>
     /// 启动入口函数
@@ -31,7 +31,7 @@ public static class GameApp
     public static async Task Entry(string[] args, Action initAction, Action<LogOptions> logConfiguration = null)
     {
         JsonSetting();
-        List<string> environmentVariablesList = new List<string>(args);
+        var environmentVariablesList = new List<string>(args);
         LogHelper.Console("启动参数：" + string.Join(" ", args));
         LogHelper.Console("当前环境变量START---------------------");
         var environmentVariables = Environment.GetEnvironmentVariables();
@@ -57,7 +57,7 @@ public static class GameApp
         LogHelper.Console(string.Empty);
         var commandLineParser = new Parser(configuration => { configuration.IgnoreUnknownArguments = true; });
 
-        var launcherOptions = commandLineParser.ParseArguments<LauncherOptions>(environmentVariablesList).WithParsed((LauncherOptionsValidate))?.Value;
+        var launcherOptions = commandLineParser.ParseArguments<LauncherOptions>(environmentVariablesList).WithParsed(LauncherOptionsValidate)?.Value;
         var serverType = launcherOptions?.ServerType;
         if (!serverType.IsNullOrEmpty())
         {
@@ -71,7 +71,7 @@ public static class GameApp
         GlobalSettings.Load("Configs/app_config.json");
         initAction?.Invoke();
 
-        var types = Utility.AssemblyHelper.GetTypes();
+        var types = AssemblyHelper.GetTypes();
         if (types != null)
         {
             foreach (var type in types)
@@ -86,7 +86,7 @@ public static class GameApp
 
         var sortedStartUpTypes = StartUpTypes.OrderBy(m => m.Value.Priority);
 
-        LogHelper.InfoConsole($"----------------------------开始启动服务器啦------------------------------");
+        LogHelper.InfoConsole("----------------------------开始启动服务器啦------------------------------");
         var appSettings = GlobalSettings.GetSettings();
         if (serverType != null && Enum.TryParse(serverType, out ServerType serverTypeValue))
         {
@@ -131,7 +131,7 @@ public static class GameApp
                         DataBaseName = launcherOptions.DataBaseName,
                         MinModuleId = launcherOptions.MinModuleId,
                         MaxModuleId = launcherOptions.MaxModuleId,
-                        TagName = launcherOptions.TagName
+                        TagName = launcherOptions.TagName,
                     };
                 }
 
@@ -142,7 +142,7 @@ public static class GameApp
         {
             foreach (var keyValuePair in sortedStartUpTypes)
             {
-                bool isFind = false;
+                var isFind = false;
 
                 foreach (var appSetting in appSettings)
                 {
@@ -162,7 +162,7 @@ public static class GameApp
             }
         }
 
-        LogHelper.InfoConsole($"----------------------------启动服务器结束啦------------------------------");
+        LogHelper.InfoConsole("----------------------------启动服务器结束啦------------------------------");
         ApplicationPerformanceMonitorStart(serverType);
         ConsoleHelper.ConsoleLogo();
 
@@ -296,8 +296,8 @@ public static class GameApp
             // MissingMemberHandling = MissingMemberHandling.Ignore, // 忽略缺失的成员
             Converters = new List<JsonConverter>
             {
-                new StringEnumConverter() // 将枚举转换为字符串
-            }
+                new StringEnumConverter(), // 将枚举转换为字符串
+            },
         };
     }
 
@@ -306,13 +306,13 @@ public static class GameApp
         startUp = (IAppStartUp)Activator.CreateInstance(appStartUpType);
         if (startUp != null)
         {
-            bool isSuccess = startUp.Init(serverType, setting, args);
+            var isSuccess = startUp.Init(serverType, setting, args);
             if (isSuccess)
             {
                 LogHelper.InfoConsole($"----------------------------START-----{serverType}------------------------------");
-                LogHelper.InfoConsole($"----------------------------配置信息----------------------------------------------");
+                LogHelper.InfoConsole("----------------------------配置信息----------------------------------------------");
                 LogHelper.InfoConsole($"{startUp.Setting.ToFormatString()}");
-                LogHelper.InfoConsole($"--------------------------------------------------------------------------------");
+                LogHelper.InfoConsole("--------------------------------------------------------------------------------");
                 var task = AppEnter.Entry(startUp);
                 LogHelper.InfoConsole($"-----------------------------END------{serverType}------------------------------");
                 return task;

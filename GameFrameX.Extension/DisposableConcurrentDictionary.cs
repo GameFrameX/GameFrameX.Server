@@ -10,22 +10,14 @@ public class DisposableConcurrentDictionary<TKey, TValue> : NullableConcurrentDi
     private bool _isDisposed;
 
     /// <summary>
-    /// 终结器，确保未释放的资源在对象被垃圾回收时被释放。
-    /// </summary>
-    ~DisposableConcurrentDictionary()
-    {
-        Dispose(false);
-    }
-
-    /// <summary>
-    /// 初始化一个新的 <see cref="DisposableConcurrentDictionary{TKey, TValue}"/> 实例。
+    /// 初始化一个新的 <see cref="DisposableConcurrentDictionary{TKey, TValue}" /> 实例。
     /// </summary>
     public DisposableConcurrentDictionary()
     {
     }
 
     /// <summary>
-    /// 使用指定的默认值初始化一个新的 <see cref="DisposableConcurrentDictionary{TKey, TValue}"/> 实例。
+    /// 使用指定的默认值初始化一个新的 <see cref="DisposableConcurrentDictionary{TKey, TValue}" /> 实例。
     /// </summary>
     /// <param name="fallbackValue">当键不存在时返回的默认值。</param>
     public DisposableConcurrentDictionary(TValue fallbackValue)
@@ -34,7 +26,7 @@ public class DisposableConcurrentDictionary<TKey, TValue> : NullableConcurrentDi
     }
 
     /// <summary>
-    /// 使用指定的并发级别和初始容量初始化一个新的 <see cref="DisposableConcurrentDictionary{TKey, TValue}"/> 实例。
+    /// 使用指定的并发级别和初始容量初始化一个新的 <see cref="DisposableConcurrentDictionary{TKey, TValue}" /> 实例。
     /// </summary>
     /// <param name="concurrencyLevel">并发级别，即字典可以同时支持的线程数。</param>
     /// <param name="capacity">字典的初始容量。</param>
@@ -43,7 +35,7 @@ public class DisposableConcurrentDictionary<TKey, TValue> : NullableConcurrentDi
     }
 
     /// <summary>
-    /// 使用指定的比较器初始化一个新的 <see cref="DisposableConcurrentDictionary{TKey, TValue}"/> 实例。
+    /// 使用指定的比较器初始化一个新的 <see cref="DisposableConcurrentDictionary{TKey, TValue}" /> 实例。
     /// </summary>
     /// <param name="comparer">用于比较键的比较器。</param>
     public DisposableConcurrentDictionary(IEqualityComparer<NullObject<TKey>> comparer) : base(comparer)
@@ -63,6 +55,14 @@ public class DisposableConcurrentDictionary<TKey, TValue> : NullableConcurrentDi
         Dispose(true);
         _isDisposed = true;
         GC.SuppressFinalize(this);
+    }
+
+    /// <summary>
+    /// 终结器，确保未释放的资源在对象被垃圾回收时被释放。
+    /// </summary>
+    ~DisposableConcurrentDictionary()
+    {
+        Dispose(false);
     }
 
     /// <summary>

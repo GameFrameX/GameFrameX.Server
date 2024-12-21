@@ -1,34 +1,33 @@
 using System.Linq.Expressions;
 
-namespace GameFrameX.Extension
+namespace GameFrameX.Extension;
+
+/// <summary>
+/// 表达式访问器的自定义实现。
+/// </summary>
+public class ExpressionVisitorCustom : ExpressionVisitor
 {
     /// <summary>
-    /// 表达式访问器的自定义实现。
+    /// 初始化 <see cref="ExpressionVisitorCustom" /> 类的新实例。
     /// </summary>
-    public class ExpressionVisitorCustom : ExpressionVisitor
+    /// <param name="param">访问器中的参数表达式。</param>
+    public ExpressionVisitorCustom(ParameterExpression param)
     {
-        /// <summary>
-        /// 获取或设置访问器中的参数表达式。
-        /// </summary>
-        public ParameterExpression Parameter { get; }
+        Parameter = param;
+    }
 
-        /// <summary>
-        /// 初始化 <see cref="ExpressionVisitorCustom"/> 类的新实例。
-        /// </summary>
-        /// <param name="param">访问器中的参数表达式。</param>
-        public ExpressionVisitorCustom(ParameterExpression param)
-        {
-            Parameter = param;
-        }
+    /// <summary>
+    /// 获取或设置访问器中的参数表达式。
+    /// </summary>
+    public ParameterExpression Parameter { get; }
 
-        /// <summary>
-        /// 访问参数表达式。
-        /// </summary>
-        /// <param name="node">要访问的参数表达式。</param>
-        /// <returns>返回访问后的表达式。</returns>
-        protected override Expression VisitParameter(ParameterExpression node)
-        {
-            return Parameter;
-        }
+    /// <summary>
+    /// 访问参数表达式。
+    /// </summary>
+    /// <param name="node">要访问的参数表达式。</param>
+    /// <returns>返回访问后的表达式。</returns>
+    protected override Expression VisitParameter(ParameterExpression node)
+    {
+        return Parameter;
     }
 }

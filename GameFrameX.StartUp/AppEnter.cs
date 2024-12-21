@@ -62,14 +62,14 @@ internal static class AppEnter
         }
 
         _exitCalled = true;
-        LogHelper.InfoConsole($"监听到退出程序消息");
+        LogHelper.InfoConsole("监听到退出程序消息");
 
         void Function()
         {
             GlobalSettings.IsAppRunning = false;
             _appStartUp.StopAsync(message);
             AppExitHandler.Kill();
-            LogHelper.InfoConsole($"退出程序");
+            LogHelper.InfoConsole("退出程序");
             _gameLoopTask?.Wait();
             Process.GetCurrentProcess().Kill();
         }

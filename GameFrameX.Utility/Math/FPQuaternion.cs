@@ -27,16 +27,16 @@ namespace GameFrameX.Utility.Math;
 public struct FPQuaternion
 {
     /// <summary>四元数的 X 分量。</summary>
-    public GameFrameX.Utility.Math.FP x;
+    public FP x;
 
     /// <summary>四元数的 Y 分量。</summary>
-    public GameFrameX.Utility.Math.FP y;
+    public FP y;
 
     /// <summary>四元数的 Z 分量。</summary>
-    public GameFrameX.Utility.Math.FP z;
+    public FP z;
 
     /// <summary>四元数的 W 分量。</summary>
-    public GameFrameX.Utility.Math.FP w;
+    public FP w;
 
     /// <summary>表示单位四元数的静态只读字段。</summary>
     public static readonly FPQuaternion identity;
@@ -54,7 +54,7 @@ public struct FPQuaternion
     /// <param name="y">四元数的 Y 分量。</param>
     /// <param name="z">四元数的 Z 分量。</param>
     /// <param name="w">四元数的 W 分量。</param>
-    public FPQuaternion(GameFrameX.Utility.Math.FP x, GameFrameX.Utility.Math.FP y, GameFrameX.Utility.Math.FP z, GameFrameX.Utility.Math.FP w)
+    public FPQuaternion(FP x, FP y, FP z, FP w)
     {
         this.x = x;
         this.y = y;
@@ -69,7 +69,7 @@ public struct FPQuaternion
     /// <param name="new_y">新的 Y 分量。</param>
     /// <param name="new_z">新的 Z 分量。</param>
     /// <param name="new_w">新的 W 分量。</param>
-    public void Set(GameFrameX.Utility.Math.FP new_x, GameFrameX.Utility.Math.FP new_y, GameFrameX.Utility.Math.FP new_z, GameFrameX.Utility.Math.FP new_w)
+    public void Set(FP new_x, FP new_y, FP new_z, FP new_w)
     {
         x = new_x;
         y = new_y;
@@ -84,7 +84,7 @@ public struct FPQuaternion
     /// <param name="toDirection">目标方向。</param>
     public void SetFromToRotation(FPVector3 fromDirection, FPVector3 toDirection)
     {
-        FPQuaternion targetRotation = FromToRotation(fromDirection, toDirection);
+        var targetRotation = FromToRotation(fromDirection, toDirection);
         Set(targetRotation.x, targetRotation.y, targetRotation.z, targetRotation.w);
     }
 
@@ -96,21 +96,21 @@ public struct FPQuaternion
     {
         get
         {
-            FPVector3 result = new FPVector3();
+            var result = new FPVector3();
 
-            GameFrameX.Utility.Math.FP ysqr = y * y;
-            GameFrameX.Utility.Math.FP t0 = -2 * GameFrameX.Utility.Math.FP.One * (ysqr + z * z) + GameFrameX.Utility.Math.FP.One;
-            GameFrameX.Utility.Math.FP t1 = +2 * GameFrameX.Utility.Math.FP.One * (x * y - w * z);
-            GameFrameX.Utility.Math.FP t2 = -2 * GameFrameX.Utility.Math.FP.One * (x * z + w * y);
-            GameFrameX.Utility.Math.FP t3 = +2 * GameFrameX.Utility.Math.FP.One * (y * z - w * x);
-            GameFrameX.Utility.Math.FP t4 = -2 * GameFrameX.Utility.Math.FP.One * (x * x + ysqr) + GameFrameX.Utility.Math.FP.One;
+            var ysqr = y * y;
+            var t0 = -2 * FP.One * (ysqr + z * z) + FP.One;
+            var t1 = +2 * FP.One * (x * y - w * z);
+            var t2 = -2 * FP.One * (x * z + w * y);
+            var t3 = +2 * FP.One * (y * z - w * x);
+            var t4 = -2 * FP.One * (x * x + ysqr) + FP.One;
 
-            t2 = t2 > GameFrameX.Utility.Math.FP.One ? GameFrameX.Utility.Math.FP.One : t2;
-            t2 = t2 < -GameFrameX.Utility.Math.FP.One ? -GameFrameX.Utility.Math.FP.One : t2;
+            t2 = t2 > FP.One ? FP.One : t2;
+            t2 = t2 < -FP.One ? -FP.One : t2;
 
-            result.x = GameFrameX.Utility.Math.FP.Atan2(t3, t4) * GameFrameX.Utility.Math.FP.Rad2Deg;
-            result.y = GameFrameX.Utility.Math.FP.Asin(t2) * GameFrameX.Utility.Math.FP.Rad2Deg;
-            result.z = GameFrameX.Utility.Math.FP.Atan2(t1, t0) * GameFrameX.Utility.Math.FP.Rad2Deg;
+            result.x = FP.Atan2(t3, t4) * FP.Rad2Deg;
+            result.y = FP.Asin(t2) * FP.Rad2Deg;
+            result.z = FP.Atan2(t1, t0) * FP.Rad2Deg;
 
             return result * -1;
         }
@@ -124,12 +124,12 @@ public struct FPQuaternion
     {
         get
         {
-            GameFrameX.Utility.Math.FP r11 = 2 * (x * z + w * y);
-            GameFrameX.Utility.Math.FP r12 = w * w - x * x - y * y + z * z;
-            GameFrameX.Utility.Math.FP r21 = -2 * (y * z - w * x);
-            GameFrameX.Utility.Math.FP r31 = 2 * (x * y + w * z);
-            GameFrameX.Utility.Math.FP r32 = w * w - x * x + y * y - z * z;
-            return new FPVector3(GameFrameX.Utility.Math.FP.Atan2(r11, r12), GameFrameX.Utility.Math.FP.Asin(r21), GameFrameX.Utility.Math.FP.Atan2(r31, r32));
+            var r11 = 2 * (x * z + w * y);
+            var r12 = w * w - x * x - y * y + z * z;
+            var r21 = -2 * (y * z - w * x);
+            var r31 = 2 * (x * y + w * z);
+            var r32 = w * w - x * x + y * y - z * z;
+            return new FPVector3(FP.Atan2(r11, r12), FP.Asin(r21), FP.Atan2(r31, r32));
         }
     }
 
@@ -139,12 +139,12 @@ public struct FPQuaternion
     /// <param name="a">第一个四元数。</param>
     /// <param name="b">第二个四元数。</param>
     /// <returns>两个四元数之间的夹角（以度为单位）。</returns>
-    public static GameFrameX.Utility.Math.FP Angle(FPQuaternion a, FPQuaternion b)
+    public static FP Angle(FPQuaternion a, FPQuaternion b)
     {
-        FPQuaternion aInv = Inverse(a);
-        FPQuaternion f = b * aInv;
+        var aInv = Inverse(a);
+        var f = b * aInv;
 
-        GameFrameX.Utility.Math.FP angle = GameFrameX.Utility.Math.FP.Acos(f.w) * 2 * GameFrameX.Utility.Math.FP.Rad2Deg;
+        var angle = FP.Acos(f.w) * 2 * FP.Rad2Deg;
 
         if (angle > 180)
         {
@@ -201,7 +201,7 @@ public struct FPQuaternion
     {
         t = FPMath.Clamp(t, 0, 1);
 
-        FP dot = Dot(from, to);
+        var dot = Dot(from, to);
 
         if (dot < FP.Zero)
         {
@@ -209,9 +209,9 @@ public struct FPQuaternion
             dot = -dot;
         }
 
-        FP halfTheta = FP.Acos(dot);
+        var halfTheta = FP.Acos(dot);
 
-        return Multiply(Multiply(from, FP.Sin((1 - t) * halfTheta)) + Multiply(to, FP.Sin(t * halfTheta)), 1 / GameFrameX.Utility.Math.FP.Sin(halfTheta));
+        return Multiply(Multiply(from, FP.Sin((1 - t) * halfTheta)) + Multiply(to, FP.Sin(t * halfTheta)), 1 / FP.Sin(halfTheta));
     }
 
     /// <summary>
@@ -223,7 +223,7 @@ public struct FPQuaternion
     /// <returns>旋转后的四元数。</returns>
     public static FPQuaternion RotateTowards(FPQuaternion from, FPQuaternion to, FP maxDegreesDelta)
     {
-        FP dot = Dot(from, to);
+        var dot = Dot(from, to);
 
         if (dot < FP.Zero)
         {
@@ -231,8 +231,8 @@ public struct FPQuaternion
             dot = -dot;
         }
 
-        FP halfTheta = FP.Acos(dot);
-        FP theta = halfTheta * 2;
+        var halfTheta = FP.Acos(dot);
+        var theta = halfTheta * 2;
 
         maxDegreesDelta *= FP.Deg2Rad;
 
@@ -243,7 +243,7 @@ public struct FPQuaternion
 
         maxDegreesDelta /= theta;
 
-        return Multiply(Multiply(from, FP.Sin((1 - maxDegreesDelta) * halfTheta)) + Multiply(to, FP.Sin(maxDegreesDelta * halfTheta)), 1 / GameFrameX.Utility.Math.FP.Sin(halfTheta));
+        return Multiply(Multiply(from, FP.Sin((1 - maxDegreesDelta) * halfTheta)) + Multiply(to, FP.Sin(maxDegreesDelta * halfTheta)), 1 / FP.Sin(halfTheta));
     }
 
     /// <summary>
@@ -316,10 +316,10 @@ public struct FPQuaternion
         var num7 = yaw * FP.Half;
         var num2 = FP.Sin(num7);
         var num = FP.Cos(num7);
-        result.x = ((num * num4) * num5) + ((num2 * num3) * num6);
-        result.y = ((num2 * num3) * num5) - ((num * num4) * num6);
-        result.z = ((num * num3) * num6) - ((num2 * num4) * num5);
-        result.w = ((num * num3) * num5) + ((num2 * num4) * num6);
+        result.x = num * num4 * num5 + num2 * num3 * num6;
+        result.y = num2 * num3 * num5 - num * num4 * num6;
+        result.z = num * num3 * num6 - num2 * num4 * num5;
+        result.w = num * num3 * num5 + num2 * num4 * num6;
     }
 
     /// <summary>
@@ -371,7 +371,7 @@ public struct FPQuaternion
     /// <returns>四元数的逆。</returns>
     public static FPQuaternion Inverse(FPQuaternion rotation)
     {
-        FP invNorm = FP.One / ((rotation.x * rotation.x) + (rotation.y * rotation.y) + (rotation.z * rotation.z) + (rotation.w * rotation.w));
+        var invNorm = FP.One / (rotation.x * rotation.x + rotation.y * rotation.y + rotation.z * rotation.z + rotation.w * rotation.w);
         return Multiply(Conjugate(rotation), invNorm);
     }
 
@@ -383,8 +383,8 @@ public struct FPQuaternion
     /// <returns>表示从一个向量到另一个向量的旋转的四元数。</returns>
     public static FPQuaternion FromToRotation(FPVector3 fromVector3, FPVector3 toVector3)
     {
-        FPVector3 w = FPVector3.Cross(fromVector3, toVector3);
-        FPQuaternion q = new FPQuaternion(w.x, w.y, w.z, FPVector3.Dot(fromVector3, toVector3));
+        var w = FPVector3.Cross(fromVector3, toVector3);
+        var q = new FPQuaternion(w.x, w.y, w.z, FPVector3.Dot(fromVector3, toVector3));
         q.w += FP.Sqrt(fromVector3.sqrMagnitude * toVector3.sqrMagnitude);
         q.Normalize();
 
@@ -414,7 +414,7 @@ public struct FPQuaternion
     /// <returns>插值结果四元数。</returns>
     public static FPQuaternion LerpUnclamped(FPQuaternion a, FPQuaternion b, FP t)
     {
-        FPQuaternion result = Multiply(a, (1 - t)) + Multiply(b, t);
+        var result = Multiply(a, 1 - t) + Multiply(b, t);
         result.Normalize();
 
         return result;
@@ -472,22 +472,22 @@ public struct FPQuaternion
     /// <param name="result">两个四元数的乘积。</param>
     public static void Multiply(ref FPQuaternion quaternion1, ref FPQuaternion quaternion2, out FPQuaternion result)
     {
-        FP x = quaternion1.x;
-        FP y = quaternion1.y;
-        FP z = quaternion1.z;
-        FP w = quaternion1.w;
-        FP num4 = quaternion2.x;
-        FP num3 = quaternion2.y;
-        FP num2 = quaternion2.z;
-        FP num = quaternion2.w;
-        FP num12 = (y * num2) - (z * num3);
-        FP num11 = (z * num4) - (x * num2);
-        FP num10 = (x * num3) - (y * num4);
-        FP num9 = ((x * num4) + (y * num3)) + (z * num2);
-        result.x = ((x * num) + (num4 * w)) + num12;
-        result.y = ((y * num) + (num3 * w)) + num11;
-        result.z = ((z * num) + (num2 * w)) + num10;
-        result.w = (w * num) - num9;
+        var x = quaternion1.x;
+        var y = quaternion1.y;
+        var z = quaternion1.z;
+        var w = quaternion1.w;
+        var num4 = quaternion2.x;
+        var num3 = quaternion2.y;
+        var num2 = quaternion2.z;
+        var num = quaternion2.w;
+        var num12 = y * num2 - z * num3;
+        var num11 = z * num4 - x * num2;
+        var num10 = x * num3 - y * num4;
+        var num9 = x * num4 + y * num3 + z * num2;
+        result.x = x * num + num4 * w + num12;
+        result.y = y * num + num3 * w + num11;
+        result.z = z * num + num2 * w + num10;
+        result.w = w * num - num9;
     }
 
     #endregion
@@ -533,8 +533,8 @@ public struct FPQuaternion
     /// </remarks>
     public void Normalize()
     {
-        FP num2 = (((x * x) + (y * y)) + (z * z)) + (w * w);
-        FP num = 1 / (FP.Sqrt(num2));
+        var num2 = x * x + y * y + z * z + w * w;
+        var num = 1 / FP.Sqrt(num2);
         x *= num;
         y *= num;
         z *= num;
@@ -555,9 +555,9 @@ public struct FPQuaternion
         axis = axis.normalized;
 
         // 将角度减半并计算正弦和余弦值
-        FP halfAngle = angle * FP.Half;
-        FP sinHalfAngle = FPMath.Sin(halfAngle);
-        FP cosHalfAngle = FPMath.Cos(halfAngle);
+        var halfAngle = angle * FP.Half;
+        var sinHalfAngle = FPMath.Sin(halfAngle);
+        var cosHalfAngle = FPMath.Cos(halfAngle);
 
         // 使用公式生成四元数
         return new FPQuaternion(
@@ -589,19 +589,19 @@ public struct FPQuaternion
     /// <param name="result">表示方向的 FPQuaternion。</param>
     public static void CreateFromMatrix(ref FPMatrix matrix, out FPQuaternion result)
     {
-        FP num8 = (matrix.M11 + matrix.M22) + matrix.M33;
+        var num8 = matrix.M11 + matrix.M22 + matrix.M33;
         if (num8 > FP.Zero)
         {
-            var num = FP.Sqrt((num8 + FP.One));
+            var num = FP.Sqrt(num8 + FP.One);
             result.w = num * FP.Half;
             num = FP.Half / num;
             result.x = (matrix.M23 - matrix.M32) * num;
             result.y = (matrix.M31 - matrix.M13) * num;
             result.z = (matrix.M12 - matrix.M21) * num;
         }
-        else if ((matrix.M11 >= matrix.M22) && (matrix.M11 >= matrix.M33))
+        else if (matrix.M11 >= matrix.M22 && matrix.M11 >= matrix.M33)
         {
-            var num7 = FP.Sqrt((((FP.One + matrix.M11) - matrix.M22) - matrix.M33));
+            var num7 = FP.Sqrt(FP.One + matrix.M11 - matrix.M22 - matrix.M33);
             var num4 = FP.Half / num7;
             result.x = FP.Half * num7;
             result.y = (matrix.M12 + matrix.M21) * num4;
@@ -610,7 +610,7 @@ public struct FPQuaternion
         }
         else if (matrix.M22 > matrix.M33)
         {
-            var num6 = FP.Sqrt((((FP.One + matrix.M22) - matrix.M11) - matrix.M33));
+            var num6 = FP.Sqrt(FP.One + matrix.M22 - matrix.M11 - matrix.M33);
             var num3 = FP.Half / num6;
             result.x = (matrix.M21 + matrix.M12) * num3;
             result.y = FP.Half * num6;
@@ -619,7 +619,7 @@ public struct FPQuaternion
         }
         else
         {
-            FP num5 = FP.Sqrt((((FP.One + matrix.M33) - matrix.M11) - matrix.M22));
+            var num5 = FP.Sqrt(FP.One + matrix.M33 - matrix.M11 - matrix.M22);
             var num2 = FP.Half / num5;
             result.x = (matrix.M31 + matrix.M13) * num2;
             result.y = (matrix.M32 + matrix.M23) * num2;
@@ -686,18 +686,18 @@ public struct FPQuaternion
     /// <returns></returns>
     public static FPVector3 operator *(FPQuaternion quat, FPVector3 vec)
     {
-        FP num = quat.x * 2 * FP.One;
-        FP num2 = quat.y * 2 * FP.One;
-        FP num3 = quat.z * 2 * FP.One;
-        FP num4 = quat.x * num;
-        FP num5 = quat.y * num2;
-        FP num6 = quat.z * num3;
-        FP num7 = quat.x * num2;
-        FP num8 = quat.x * num3;
-        FP num9 = quat.y * num3;
-        FP num10 = quat.w * num;
-        FP num11 = quat.w * num2;
-        FP num12 = quat.w * num3;
+        var num = quat.x * 2 * FP.One;
+        var num2 = quat.y * 2 * FP.One;
+        var num3 = quat.z * 2 * FP.One;
+        var num4 = quat.x * num;
+        var num5 = quat.y * num2;
+        var num6 = quat.z * num3;
+        var num7 = quat.x * num2;
+        var num8 = quat.x * num3;
+        var num9 = quat.y * num3;
+        var num10 = quat.w * num;
+        var num11 = quat.w * num2;
+        var num12 = quat.w * num3;
 
         FPVector3 result;
         result.x = (FP.One - (num5 + num6)) * vec.x + (num7 - num12) * vec.y + (num8 + num11) * vec.z;
@@ -724,7 +724,7 @@ public struct FPQuaternion
     /// <returns>如果两个四元数相等，则返回 true；否则返回 false。</returns>
     public static bool operator ==(FPQuaternion value1, FPQuaternion value2)
     {
-        return (((value1.x == value2.x) && (value1.y == value2.y)) && (value1.z == value2.z) && (value1.w == value2.w));
+        return value1.x == value2.x && value1.y == value2.y && value1.z == value2.z && value1.w == value2.w;
     }
 
     /// <summary>
@@ -735,9 +735,9 @@ public struct FPQuaternion
     /// <returns>如果两个四元数不相等，则返回 true；否则返回 false。</returns>
     public static bool operator !=(FPQuaternion value1, FPQuaternion value2)
     {
-        if ((value1.x == value2.x) && (value1.y == value2.y))
+        if (value1.x == value2.x && value1.y == value2.y)
         {
-            return (value1.z != value2.z) && (value1.w != value2.w);
+            return value1.z != value2.z && value1.w != value2.w;
         }
 
         return true;
@@ -750,10 +750,14 @@ public struct FPQuaternion
     /// <returns>如果当前四元数与指定对象相等，则返回 true；否则返回 false。</returns>
     public override bool Equals(object obj)
     {
-        if (!(obj is FPQuaternion)) return false;
+        if (!(obj is FPQuaternion))
+        {
+            return false;
+        }
+
         var other = (FPQuaternion)obj;
 
-        return (((x == other.x) && (y == other.y)) && (z == other.z) && (w == other.w));
+        return x == other.x && y == other.y && z == other.z && w == other.w;
     }
 
     /// <summary>

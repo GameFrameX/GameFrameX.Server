@@ -95,7 +95,7 @@ public static class StringBuilderCache
     /// <returns>返回其生成的字符串</returns>
     public static string GetStringAndRelease(StringBuilder sb)
     {
-        string result = sb.ToString();
+        var result = sb.ToString();
         Release(sb);
         return result;
     }

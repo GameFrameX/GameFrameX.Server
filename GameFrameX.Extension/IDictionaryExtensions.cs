@@ -590,9 +590,15 @@ public static class IDictionaryExtensions
     private static bool TryAdd<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue value) where TKey : notnull
     {
         if (dictionary == null)
+        {
             throw new ArgumentNullException(nameof(dictionary));
+        }
+
         if (dictionary.IsReadOnly || dictionary.ContainsKey(key))
+        {
             return false;
+        }
+
         dictionary.Add(key, value);
         return true;
     }
@@ -652,7 +658,7 @@ public static class IDictionaryExtensions
         var items = source as IList<TSource> ?? source.ToList();
         var dic = new NullableDictionary<TKey, TSource>(items.Count)
         {
-            FallbackValue = defaultValue
+            FallbackValue = defaultValue,
         };
         foreach (var item in items)
         {
@@ -698,7 +704,7 @@ public static class IDictionaryExtensions
         var items = source as IList<TSource> ?? source.ToList();
         var dic = new NullableDictionary<TKey, TElement>(items.Count)
         {
-            FallbackValue = defaultValue
+            FallbackValue = defaultValue,
         };
         foreach (var item in items)
         {
@@ -740,7 +746,7 @@ public static class IDictionaryExtensions
         var items = source as IList<TSource> ?? source.ToList();
         var dic = new NullableDictionary<TKey, TElement>(items.Count)
         {
-            FallbackValue = defaultValue
+            FallbackValue = defaultValue,
         };
         await items.ForeachAsync(async item => dic[keySelector(item)] = await elementSelector(item));
         return dic;
@@ -778,7 +784,7 @@ public static class IDictionaryExtensions
         var items = source as IList<TSource> ?? source.ToList();
         var dic = new DisposableDictionary<TKey, TSource>(items.Count)
         {
-            FallbackValue = defaultValue
+            FallbackValue = defaultValue,
         };
         foreach (var item in items)
         {
@@ -824,7 +830,7 @@ public static class IDictionaryExtensions
         var items = source as IList<TSource> ?? source.ToList();
         var dic = new DisposableDictionary<TKey, TElement>(items.Count)
         {
-            FallbackValue = defaultValue
+            FallbackValue = defaultValue,
         };
         foreach (var item in items)
         {
@@ -866,7 +872,7 @@ public static class IDictionaryExtensions
         var items = source as IList<TSource> ?? source.ToList();
         var dic = new DisposableDictionary<TKey, TElement>(items.Count)
         {
-            FallbackValue = defaultValue
+            FallbackValue = defaultValue,
         };
         await items.ForeachAsync(async item => dic[keySelector(item)] = await elementSelector(item));
         return dic;
@@ -900,9 +906,9 @@ public static class IDictionaryExtensions
     /// <param name="defaultValue">键未找到时的默认值</param>
     public static NullableConcurrentDictionary<TKey, TSource> ToConcurrentDictionary<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, TSource defaultValue)
     {
-        var dic = new NullableConcurrentDictionary<TKey, TSource>()
+        var dic = new NullableConcurrentDictionary<TKey, TSource>
         {
-            FallbackValue = defaultValue
+            FallbackValue = defaultValue,
         };
         foreach (var item in source)
         {
@@ -944,9 +950,9 @@ public static class IDictionaryExtensions
     /// <param name="defaultValue"></param>
     public static NullableConcurrentDictionary<TKey, TElement> ToConcurrentDictionary<TSource, TKey, TElement>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector, TElement defaultValue)
     {
-        var dic = new NullableConcurrentDictionary<TKey, TElement>()
+        var dic = new NullableConcurrentDictionary<TKey, TElement>
         {
-            FallbackValue = defaultValue
+            FallbackValue = defaultValue,
         };
         foreach (var item in source)
         {
@@ -986,7 +992,7 @@ public static class IDictionaryExtensions
     {
         var dic = new NullableConcurrentDictionary<TKey, TElement>
         {
-            FallbackValue = defaultValue
+            FallbackValue = defaultValue,
         };
         await source.ForeachAsync(async item => dic[keySelector(item)] = await elementSelector(item));
         return dic;
@@ -1020,7 +1026,7 @@ public static class IDictionaryExtensions
     {
         var dic = new DisposableConcurrentDictionary<TKey, TSource>
         {
-            FallbackValue = defaultValue
+            FallbackValue = defaultValue,
         };
         foreach (var item in source)
         {
@@ -1056,9 +1062,9 @@ public static class IDictionaryExtensions
     /// <param name="defaultValue"></param>
     public static DisposableConcurrentDictionary<TKey, TElement> ToDisposableConcurrentDictionary<TSource, TKey, TElement>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector, TElement defaultValue) where TElement : IDisposable
     {
-        var dic = new DisposableConcurrentDictionary<TKey, TElement>()
+        var dic = new DisposableConcurrentDictionary<TKey, TElement>
         {
-            FallbackValue = defaultValue
+            FallbackValue = defaultValue,
         };
         foreach (var item in source)
         {
@@ -1090,9 +1096,9 @@ public static class IDictionaryExtensions
     /// <param name="defaultValue">键未找到时的默认值</param>
     public static async Task<DisposableConcurrentDictionary<TKey, TElement>> ToDisposableConcurrentDictionaryAsync<TSource, TKey, TElement>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, Task<TElement>> elementSelector, TElement defaultValue) where TElement : IDisposable
     {
-        var dic = new DisposableConcurrentDictionary<TKey, TElement>()
+        var dic = new DisposableConcurrentDictionary<TKey, TElement>
         {
-            FallbackValue = defaultValue
+            FallbackValue = defaultValue,
         };
         await source.ForeachAsync(async item => dic[keySelector(item)] = await elementSelector(item));
         return dic;
@@ -1118,7 +1124,7 @@ public static class IDictionaryExtensions
             }
             else
             {
-                dic.Add(key, new List<TSource> { item });
+                dic.Add(key, new List<TSource> { item, });
             }
         }
 
@@ -1147,7 +1153,7 @@ public static class IDictionaryExtensions
             }
             else
             {
-                dic.Add(key, new List<TElement> { elementSelector(item) });
+                dic.Add(key, new List<TElement> { elementSelector(item), });
             }
         }
 
@@ -1176,7 +1182,7 @@ public static class IDictionaryExtensions
             }
             else
             {
-                dic.TryAdd(key, new List<TElement> { await elementSelector(item) });
+                dic.TryAdd(key, new List<TElement> { await elementSelector(item), });
             }
         });
         return new LookupX<TKey, TElement>(dic);
@@ -1185,7 +1191,10 @@ public static class IDictionaryExtensions
     /// <summary>
     /// 转换成并发字典集合
     /// </summary>
-    public static NullableConcurrentDictionary<TKey, TValue> AsConcurrentDictionary<TKey, TValue>(this Dictionary<TKey, TValue> dic) => dic;
+    public static NullableConcurrentDictionary<TKey, TValue> AsConcurrentDictionary<TKey, TValue>(this Dictionary<TKey, TValue> dic)
+    {
+        return dic;
+    }
 
     /// <summary>
     /// 转换成并发字典集合
@@ -1194,9 +1203,9 @@ public static class IDictionaryExtensions
     /// <param name="defaultValue">键未找到时的默认值</param>
     public static NullableConcurrentDictionary<TKey, TValue> AsConcurrentDictionary<TKey, TValue>(this Dictionary<TKey, TValue> dic, TValue defaultValue)
     {
-        var nullableDictionary = new NullableConcurrentDictionary<TKey, TValue>()
+        var nullableDictionary = new NullableConcurrentDictionary<TKey, TValue>
         {
-            FallbackValue = defaultValue
+            FallbackValue = defaultValue,
         };
         foreach (var p in dic)
         {
@@ -1209,7 +1218,10 @@ public static class IDictionaryExtensions
     /// <summary>
     /// 转换成普通字典集合
     /// </summary>
-    public static NullableDictionary<TKey, TValue> AsDictionary<TKey, TValue>(this ConcurrentDictionary<TKey, TValue> dic) => dic;
+    public static NullableDictionary<TKey, TValue> AsDictionary<TKey, TValue>(this ConcurrentDictionary<TKey, TValue> dic)
+    {
+        return dic;
+    }
 
     /// <summary>
     /// 转换成普通字典集合
@@ -1218,9 +1230,9 @@ public static class IDictionaryExtensions
     /// <param name="defaultValue">键未找到时的默认值</param>
     public static NullableDictionary<TKey, TValue> AsDictionary<TKey, TValue>(this ConcurrentDictionary<TKey, TValue> dic, TValue defaultValue)
     {
-        var nullableDictionary = new NullableDictionary<TKey, TValue>()
+        var nullableDictionary = new NullableDictionary<TKey, TValue>
         {
-            FallbackValue = defaultValue
+            FallbackValue = defaultValue,
         };
         foreach (var p in dic)
         {
