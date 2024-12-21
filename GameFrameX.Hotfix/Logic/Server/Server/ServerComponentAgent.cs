@@ -59,7 +59,7 @@ namespace GameFrameX.Hotfix.Logic.Server.Server
             OwnerComponent.OnlineSet.Remove(roleId);
             return ValueTask.CompletedTask;
         }
-        
+
         public static async Task OnlineRoleForeach(Action<PlayerComponentAgent> func)
         {
             var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
@@ -118,7 +118,9 @@ namespace GameFrameX.Hotfix.Logic.Server.Server
             foreach (var id in OwnerComponent.OnlineSet)
             {
                 if (id == roleId)
+                {
                     return Task.FromResult(true);
+                }
             }
 
             return Task.FromResult(false);
