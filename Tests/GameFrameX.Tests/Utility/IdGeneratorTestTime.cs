@@ -13,7 +13,7 @@ public class IdGeneratorTestTime
     public void GetNextUniqueIntId()
     {
         HashSet<int> set = new();
-        for (int i = 0; i < 10000; i++)
+        for (var i = 0; i < 10000; i++)
         {
             Task.Run(() =>
             {
@@ -32,7 +32,7 @@ public class IdGeneratorTestTime
     public void GetNextUniqueId()
     {
         HashSet<long> set = new();
-        for (int i = 0; i < 10000; i++)
+        for (var i = 0; i < 10000; i++)
         {
             Task.Run(() =>
             {

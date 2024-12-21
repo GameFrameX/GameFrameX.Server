@@ -33,7 +33,7 @@ public abstract class AppStartUpService : AppStartUpBase
 
         if (IsConnectDiscoveryServer)
         {
-            _discoveryCenterChannelHelper?.Start(Setting.DiscoveryCenterIp, Setting.DiscoveryCenterPort);
+            DiscoveryCenterChannelHelper?.Start(Setting.DiscoveryCenterIp, Setting.DiscoveryCenterPort);
         }
 
         GlobalSettings.IsAppRunning = true;
@@ -48,23 +48,18 @@ public abstract class AppStartUpService : AppStartUpBase
     public override Task StopAsync(string message = "")
     {
         // connectTargetServerChannelHelper?.Stop();
-        _discoveryCenterChannelHelper?.Stop();
+        DiscoveryCenterChannelHelper?.Stop();
         return base.StopAsync(message);
     }
 
     #region Server
 
-    private ConnectChannelHelper _discoveryCenterChannelHelper;
-
-    protected ConnectChannelHelper DiscoveryCenterChannelHelper
-    {
-        get { return _discoveryCenterChannelHelper; }
-    }
+    protected ConnectChannelHelper DiscoveryCenterChannelHelper { get; private set; }
     // private ConnectChannelHelper connectTargetServerChannelHelper;
 
     protected void StartServer()
     {
-        _discoveryCenterChannelHelper = new ConnectChannelHelper(Setting, MessageEncoderHandler, MessageDecoderHandler, DiscoveryCenterMessageHandler);
+        DiscoveryCenterChannelHelper = new ConnectChannelHelper(Setting, MessageEncoderHandler, MessageDecoderHandler, DiscoveryCenterMessageHandler);
     }
 
     private void DiscoveryCenterMessageHandler(IMessage message)

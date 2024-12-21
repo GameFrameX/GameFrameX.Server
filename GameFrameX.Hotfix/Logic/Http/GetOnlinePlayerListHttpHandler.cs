@@ -11,7 +11,6 @@ namespace GameFrameX.Hotfix.Logic.Http;
 public sealed class GetOnlinePlayerListHttpHandler : BaseHttpHandler
 {
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="ip"></param>
     /// <param name="url"></param>
@@ -25,7 +24,7 @@ public sealed class GetOnlinePlayerListHttpHandler : BaseHttpHandler
         var pageIndex = string.IsNullOrEmpty(pageIndexStr?.ToString()) ? 0 : Convert.ToInt32(pageIndexStr);
 
         var response = SessionManager.GetPageList(pageSize, pageIndex);
-        var res = HttpResult.CreateOk($"当前在线玩家", response);
+        var res = HttpResult.CreateOk("当前在线玩家", response);
         return Task.FromResult(res);
     }
 }

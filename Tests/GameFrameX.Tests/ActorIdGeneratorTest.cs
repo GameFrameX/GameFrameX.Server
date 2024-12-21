@@ -1,8 +1,4 @@
-﻿using System.Text;
-using GameFrameX.Core.Abstractions;
-using GameFrameX.Core.Utility;
-
-namespace GameFrameX.Tests;
+﻿namespace GameFrameX.Tests;
 
 public class ActorIdGeneratorTest
 {

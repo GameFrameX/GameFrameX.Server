@@ -16,55 +16,55 @@ public class UnitTestTime
     [Test]
     public void test_current_time_millis()
     {
-        long currentTimeMillis = TimeHelper.CurrentTimeMillis();
-        long expectedTimeMillis = (long)(DateTime.Now - new DateTime(1970, 1, 1)).TotalMilliseconds;
-        Assert.That((expectedTimeMillis), Is.EqualTo(currentTimeMillis));
+        var currentTimeMillis = TimeHelper.CurrentTimeMillis();
+        var expectedTimeMillis = (long)(DateTime.Now - new DateTime(1970, 1, 1)).TotalMilliseconds;
+        Assert.That(expectedTimeMillis, Is.EqualTo(currentTimeMillis));
     }
 
     [Test]
     public void test_unix_time_seconds()
     {
-        long unixTimeSeconds = TimeHelper.UnixTimeSeconds();
-        long expectedUnixTimeSeconds = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+        var unixTimeSeconds = TimeHelper.UnixTimeSeconds();
+        var expectedUnixTimeSeconds = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
         Assert.That(unixTimeSeconds, Is.EqualTo(expectedUnixTimeSeconds));
     }
 
     [Test]
     public void test_unix_time_milliseconds()
     {
-        long unixTimeMilliseconds = TimeHelper.UnixTimeMilliseconds();
-        long expectedUnixTimeMilliseconds = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
+        var unixTimeMilliseconds = TimeHelper.UnixTimeMilliseconds();
+        var expectedUnixTimeMilliseconds = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
         Assert.That(unixTimeMilliseconds, Is.EqualTo(expectedUnixTimeMilliseconds));
     }
 
     [Test]
     public void test_time_millis()
     {
-        DateTime time = new DateTime(2022, 1, 1, 12, 0, 0);
-        bool utc = false;
-        long timeMillis = TimeHelper.TimeMillis(time, utc);
-        long expectedTimeMillis = (long)(time - new DateTime(1970, 1, 1)).TotalMilliseconds;
+        var time = new DateTime(2022, 1, 1, 12, 0, 0);
+        var utc = false;
+        var timeMillis = TimeHelper.TimeMillis(time, utc);
+        var expectedTimeMillis = (long)(time - new DateTime(1970, 1, 1)).TotalMilliseconds;
         Assert.That(timeMillis, Is.EqualTo(expectedTimeMillis));
     }
 
     [Test]
     public void test_millis_to_date_time()
     {
-        long timeMillis = 1641024000000;
-        bool utc = true;
-        DateTime dateTime = TimeHelper.MillisToDateTime(timeMillis, utc);
-        DateTime expectedDateTime = new DateTime(2022, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        var timeMillis = 1641024000000;
+        var utc = true;
+        var dateTime = TimeHelper.MillisToDateTime(timeMillis, utc);
+        var expectedDateTime = new DateTime(2022, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         Assert.That(dateTime, Is.EqualTo(expectedDateTime));
     }
 
     [Test]
     public void test_get_cross_days()
     {
-        DateTime begin = new DateTime(2022, 3, 12, 1, 0, 0);
-        DateTime after = new DateTime(2022, 3, 13, 23, 0, 0);
-        int hour = 0;
-        int crossDays = TimeHelper.GetCrossDays(begin, after, hour);
-        int expectedCrossDays = 1;
+        var begin = new DateTime(2022, 3, 12, 1, 0, 0);
+        var after = new DateTime(2022, 3, 13, 23, 0, 0);
+        var hour = 0;
+        var crossDays = TimeHelper.GetCrossDays(begin, after, hour);
+        var expectedCrossDays = 1;
         Assert.That(crossDays, Is.EqualTo(expectedCrossDays));
     }
 

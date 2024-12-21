@@ -8,8 +8,16 @@ namespace GameFrameX.Launcher.StartUp.Router;
 /// 路由服务器.最后启动。
 /// </summary>
 [StartUpTag(ServerType.Router, int.MaxValue)]
-internal partial class AppStartUpRouter : AppStartUpService
+internal class AppStartUpRouter : AppStartUpService
 {
+    /// <summary>
+    /// 从发现中心请求的目标服务器类型
+    /// </summary>
+    protected override ServerType GetServerType
+    {
+        get { return ServerType.Gateway; }
+    }
+
     public override async Task StartAsync()
     {
         try
@@ -63,10 +71,10 @@ internal partial class AppStartUpRouter : AppStartUpService
             if (outerMessage.Header.OperationType == MessageOperationType.HeartBeat)
             {
                 var reqHeartBeat = (ReqHeartBeat)outerMessage.DeserializeMessageObject();
-                var response = new NotifyHeartBeat()
+                var response = new NotifyHeartBeat
                 {
                     UniqueId = reqHeartBeat.UniqueId,
-                    Timestamp = TimeHelper.UnixTimeMilliseconds()
+                    Timestamp = TimeHelper.UnixTimeMilliseconds(),
                 };
                 SendToClient(appSession, response);
                 await ValueTask.CompletedTask;
@@ -80,7 +88,7 @@ internal partial class AppStartUpRouter : AppStartUpService
                     LogHelper.Debug($"转发到[{ServerType.Gateway}] {outerMessage.ToFormatMessageString()}");
                 }
 
-                ReqConnectServer reqConnectServer = new ReqConnectServer()
+                var reqConnectServer = new ReqConnectServer
                 {
                     //ServerId = Setting.ServerId,
                     ServerType = ServerType.Gateway,
@@ -146,13 +154,5 @@ internal partial class AppStartUpRouter : AppStartUpService
         }
 
         base.Init();
-    }
-
-    /// <summary>
-    /// 从发现中心请求的目标服务器类型
-    /// </summary>
-    protected override ServerType GetServerType
-    {
-        get { return ServerType.Gateway; }
     }
 }

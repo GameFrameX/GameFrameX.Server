@@ -1,15 +1,13 @@
 ﻿using GameFrameX.Core.BaseHandler;
 using GameFrameX.NetWork.Abstractions;
-using GameFrameX.NetWork.Messages;
 
-namespace GameFrameX.Hotfix.Logic.Role.Login
+namespace GameFrameX.Hotfix.Logic.Role.Login;
+
+[MessageMapping(typeof(ReqPlayerLogin))]
+internal class ReqPlayerLoginHandler : PlayerComponentHandler<PlayerComponentAgent>
 {
-    [MessageMapping(typeof(ReqPlayerLogin))]
-    internal class ReqPlayerLoginHandler : PlayerComponentHandler<PlayerComponentAgent>
+    protected override async Task ActionAsync()
     {
-        protected override async Task ActionAsync()
-        {
-            await ComponentAgent.OnPlayerLogin(NetWorkChannel, Message as ReqPlayerLogin);
-        }
+        await ComponentAgent.OnPlayerLogin(NetWorkChannel, Message as ReqPlayerLogin);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using GameFrameX.Utility;
 
 namespace GameFrameX.Tests;
 
@@ -16,15 +17,15 @@ public class CompressTest
     [Test]
     public void compress()
     {
-        var comData = GameFrameX.Utility.Compression.Compress(bytes);
+        var comData = Compression.Compress(bytes);
         Console.WriteLine(comData);
     }
 
     [Test]
     public void decompress()
     {
-        comData = GameFrameX.Utility.Compression.Compress(bytes);
-        var data = GameFrameX.Utility.Compression.Decompress(comData);
+        comData = Compression.Compress(bytes);
+        var data = Compression.Decompress(comData);
         var x = Encoding.UTF8.GetString(data);
         Console.WriteLine(x);
     }

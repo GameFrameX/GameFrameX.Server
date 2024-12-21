@@ -8,7 +8,7 @@ namespace GameFrameX.GameAnalytics;
 /// </summary>
 public static class GameAnalyticsHelper
 {
-    private static bool _isInit = false;
+    private static bool _isInit;
 
     /// <summary>
     /// 初始化,
@@ -96,7 +96,7 @@ public static class GameAnalyticsHelper
             return;
         }
 
-        EGAProgressionStatus status = EGAProgressionStatus.Undefined;
+        var status = EGAProgressionStatus.Undefined;
         switch (progressionStatus)
         {
             case ProgressionStatus.Start:
@@ -130,7 +130,7 @@ public static class GameAnalyticsHelper
             return;
         }
 
-        EGAResourceFlowType flowType = EGAResourceFlowType.Undefined;
+        var flowType = EGAResourceFlowType.Undefined;
         switch (resourceFlowType)
         {
             case ResourceFlowType.Source:

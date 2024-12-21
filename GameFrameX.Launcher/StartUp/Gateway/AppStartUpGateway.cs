@@ -1,19 +1,13 @@
 ﻿using GameFrameX.Apps.Common.Session;
-using GameFrameX.Launcher.StartUp.Discovery;
 using GameFrameX.NetWork.Abstractions;
-using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 using GameFrameX.ServerManager;
-using GameFrameX.SuperSocket.Primitives;
-using GameFrameX.SuperSocket.ProtoBase;
-using Microsoft.Extensions.DependencyInjection;
-
 
 /// <summary>
 /// 网关服务器
 /// </summary>
 [StartUpTag(ServerType.Gateway)]
-internal sealed partial class AppStartUpGateway : AppStartUpService
+internal sealed class AppStartUpGateway : AppStartUpService
 {
     /// <summary>
     /// 是否请求其他服务信息
@@ -38,90 +32,6 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
             await StopAsync(e.Message);
         }
     }
-
-
-    #region Server
-
-    protected override ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
-    {
-        LogHelper.Info("有客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
-        // if (_namingServiceManager.TrySessionRemove(appSession.SessionID))
-        {
-            LogHelper.Info("有游戏业务客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
-        }
-
-        return ValueTask.CompletedTask;
-    }
-
-    protected override ValueTask OnConnected(IAppSession appSession)
-    {
-        LogHelper.Info("有客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-        var netChannel = new DefaultNetWorkChannel(appSession, Setting, MessageEncoderHandler, null);
-        var session = new Session(appSession.SessionID, netChannel);
-        SessionManager.Add(session);
-        return ValueTask.CompletedTask;
-    }
-
-    protected override ValueTask PackageHandler(IAppSession session, IMessage message)
-    {
-        if (message is MessageObject messageObject)
-        {
-            if (Setting.IsDebug && Setting.IsDebugReceive && !MessageProtoHelper.IsHeartbeat(message.GetType()))
-            {
-                LogHelper.Debug($"---收到[{ServerType}] {messageObject.ToFormatMessageString()}");
-            }
-
-            if (message is ReqHeartBeat reqActorHeartBeat)
-            {
-                var respActorHeartBeat = new NotifyHeartBeat()
-                {
-                    UniqueId = reqActorHeartBeat.UniqueId,
-                    Timestamp = TimeHelper.UnixTimeSeconds()
-                };
-                SendMessage(session, respActorHeartBeat);
-                return ValueTask.CompletedTask;
-            }
-
-            if (message is NotifyHeartBeat discoveryCenterRespActorHeartBeat)
-            {
-                // 发现中心的心跳返回
-                return ValueTask.CompletedTask;
-            }
-
-            if (message is ReqRegisterGameServer reqRegisterGameServer)
-            {
-                GameServiceInfo gameServiceInfo = new GameServiceInfo(reqRegisterGameServer.ServerType,
-                                                                      session,
-                                                                      session.SessionID,
-                                                                      reqRegisterGameServer.ServerName,
-                                                                      reqRegisterGameServer.ServerId,
-                                                                      reqRegisterGameServer.MinModuleMessageId,
-                                                                      reqRegisterGameServer.MaxModuleMessageId
-                );
-
-                // _namingServiceManager.Add(gameServiceInfo);
-                return ValueTask.CompletedTask;
-            }
-
-            var mainId = MessageIdUtility.GetMainId(messageObject.MessageId);
-            // var serviceInfos = _namingServiceManager.GetNodesByType(ServerType.Game);
-            // foreach (var serviceInfo in serviceInfos)
-            // {
-            //     if (serviceInfo is GameServiceInfo gameServiceInfo)
-            //     {
-            //         if (mainId >= gameServiceInfo.MinModuleMessageId && mainId <= gameServiceInfo.MaxModuleMessageId)
-            //         {
-            //             SendMessage((IAppSession)gameServiceInfo.Session, messageObject);
-            //             break;
-            //         }
-            //     }
-            // }
-        }
-
-        return ValueTask.CompletedTask;
-    }
-
-    #endregion
 
     private async void SendMessage(IAppSession session, INetworkMessage message)
     {
@@ -168,6 +78,90 @@ internal sealed partial class AppStartUpGateway : AppStartUpService
 
         base.Init();
     }
+
+
+    #region Server
+
+    protected override ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
+    {
+        LogHelper.Info("有客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
+        // if (_namingServiceManager.TrySessionRemove(appSession.SessionID))
+        {
+            LogHelper.Info("有游戏业务客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
+        }
+
+        return ValueTask.CompletedTask;
+    }
+
+    protected override ValueTask OnConnected(IAppSession appSession)
+    {
+        LogHelper.Info("有客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
+        var netChannel = new DefaultNetWorkChannel(appSession, Setting, MessageEncoderHandler);
+        var session = new Session(appSession.SessionID, netChannel);
+        SessionManager.Add(session);
+        return ValueTask.CompletedTask;
+    }
+
+    protected override ValueTask PackageHandler(IAppSession session, IMessage message)
+    {
+        if (message is MessageObject messageObject)
+        {
+            if (Setting.IsDebug && Setting.IsDebugReceive && !MessageProtoHelper.IsHeartbeat(message.GetType()))
+            {
+                LogHelper.Debug($"---收到[{ServerType}] {messageObject.ToFormatMessageString()}");
+            }
+
+            if (message is ReqHeartBeat reqActorHeartBeat)
+            {
+                var respActorHeartBeat = new NotifyHeartBeat
+                {
+                    UniqueId = reqActorHeartBeat.UniqueId,
+                    Timestamp = TimeHelper.UnixTimeSeconds(),
+                };
+                SendMessage(session, respActorHeartBeat);
+                return ValueTask.CompletedTask;
+            }
+
+            if (message is NotifyHeartBeat discoveryCenterRespActorHeartBeat)
+            {
+                // 发现中心的心跳返回
+                return ValueTask.CompletedTask;
+            }
+
+            if (message is ReqRegisterGameServer reqRegisterGameServer)
+            {
+                var gameServiceInfo = new GameServiceInfo(reqRegisterGameServer.ServerType,
+                                                          session,
+                                                          session.SessionID,
+                                                          reqRegisterGameServer.ServerName,
+                                                          reqRegisterGameServer.ServerId,
+                                                          reqRegisterGameServer.MinModuleMessageId,
+                                                          reqRegisterGameServer.MaxModuleMessageId
+                );
+
+                // _namingServiceManager.Add(gameServiceInfo);
+                return ValueTask.CompletedTask;
+            }
+
+            var mainId = MessageIdUtility.GetMainId(messageObject.MessageId);
+            // var serviceInfos = _namingServiceManager.GetNodesByType(ServerType.Game);
+            // foreach (var serviceInfo in serviceInfos)
+            // {
+            //     if (serviceInfo is GameServiceInfo gameServiceInfo)
+            //     {
+            //         if (mainId >= gameServiceInfo.MinModuleMessageId && mainId <= gameServiceInfo.MaxModuleMessageId)
+            //         {
+            //             SendMessage((IAppSession)gameServiceInfo.Session, messageObject);
+            //             break;
+            //         }
+            //     }
+            // }
+        }
+
+        return ValueTask.CompletedTask;
+    }
+
+    #endregion
 
 
     // private NamingServiceManager _namingServiceManager;

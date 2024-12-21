@@ -1,8 +1,6 @@
 using GameFrameX.NetWork.Abstractions;
-using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 using GameFrameX.ServerManager;
-
 
 namespace GameFrameX.Launcher.StartUp.Discovery;
 
@@ -11,7 +9,7 @@ namespace GameFrameX.Launcher.StartUp.Discovery;
 /// </summary>
 internal partial class AppStartUpDiscoveryCenter
 {
-    readonly NamingServiceManager _namingServiceManager;
+    private readonly NamingServiceManager _namingServiceManager;
 
     public AppStartUpDiscoveryCenter()
     {
@@ -23,11 +21,11 @@ internal partial class AppStartUpDiscoveryCenter
     {
         var serverList = _namingServiceManager.GetAllNodes().Where(m => m.ServerId != 0 && m.ServerId != serverInfo.ServerId).ToList();
 
-        var respServerOnlineServer = new RespServerOfflineServer()
+        var respServerOnlineServer = new RespServerOfflineServer
         {
             ServerType = serverInfo.Type,
             ServerName = serverInfo.ServerName,
-            ServerId = serverInfo.ServerId
+            ServerId = serverInfo.ServerId,
         };
         MessageProtoHelper.SetMessageId(respServerOnlineServer);
         foreach (var serverInfo1 in serverList)
@@ -48,7 +46,7 @@ internal partial class AppStartUpDiscoveryCenter
     {
         var serverList = _namingServiceManager.GetOuterNodes().Where(m => m.ServerId != serverInfo.ServerId).ToList();
 
-        var respServerOnlineServer = new RespServerOnlineServer()
+        var respServerOnlineServer = new RespServerOnlineServer
         {
             ServerType = serverInfo.Type,
             ServerName = serverInfo.ServerName,

@@ -1,5 +1,5 @@
 ﻿global using GameFrameX.Proto;
-global using MongoDB.Bson;  
+global using MongoDB.Bson;
 global using MongoDB.Driver;
 global using MongoDB.Bson.Serialization;
 global using MongoDB.Bson.Serialization.Attributes;

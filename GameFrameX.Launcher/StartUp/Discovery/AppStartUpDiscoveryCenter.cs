@@ -1,9 +1,7 @@
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
-using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 using GameFrameX.ServerManager;
-
 
 namespace GameFrameX.Launcher.StartUp.Discovery;
 
@@ -49,7 +47,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
         }
 
         MessageProtoHelper.SetMessageId(message);
-        var messageObjectHeader = new InnerMessageObjectHeader()
+        var messageObjectHeader = new InnerMessageObjectHeader
         {
             ServerId = Setting.ServerId,
         };
@@ -92,7 +90,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
                 {
                     // 心跳响应
                     var reqHeartBeat = messageObject.DeserializeMessageObject();
-                    var response = new NotifyHeartBeat()
+                    var response = new NotifyHeartBeat
                     {
                         UniqueId = reqHeartBeat.UniqueId,
                         Timestamp = TimeHelper.UnixTimeMilliseconds(),
@@ -106,7 +104,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
                     break;
                 case MessageOperationType.Game:
                 {
-                    ReqConnectServer reqConnectServer = (ReqConnectServer)messageObject.DeserializeMessageObject();
+                    var reqConnectServer = (ReqConnectServer)messageObject.DeserializeMessageObject();
                     var serverList = _namingServiceManager.GetNodesByType(reqConnectServer.ServerType);
                     if (reqConnectServer.ServerId > 0)
                     {
@@ -117,14 +115,14 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
                     {
                         var serverInfo = (ServiceInfo)serverList.Random();
 
-                        RespConnectServer respConnectServer = new RespConnectServer
+                        var respConnectServer = new RespConnectServer
                         {
                             UniqueId = reqConnectServer.UniqueId,
                             ServerType = serverInfo.Type,
                             ServerName = serverInfo.ServerName,
                             ServerId = serverInfo.ServerId,
                             TargetIp = serverInfo.OuterIp,
-                            TargetPort = serverInfo.OuterPort
+                            TargetPort = serverInfo.OuterPort,
                         };
                         SendMessage(session, respConnectServer);
                     }
@@ -150,16 +148,16 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
                     break;
                 case MessageOperationType.Register:
                 {
-                    ReqRegisterServer reqRegisterServer = (ReqRegisterServer)messageObject.DeserializeMessageObject();
+                    var reqRegisterServer = (ReqRegisterServer)messageObject.DeserializeMessageObject();
                     // 注册服务
-                    ServiceInfo serviceInfo = new ServiceInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerId, reqRegisterServer.InnerIp, reqRegisterServer.InnerPort, reqRegisterServer.OuterIp, reqRegisterServer.OuterPort);
+                    var serviceInfo = new ServiceInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerId, reqRegisterServer.InnerIp, reqRegisterServer.InnerPort, reqRegisterServer.OuterIp, reqRegisterServer.OuterPort);
                     _namingServiceManager.Add(serviceInfo);
                     LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
                     return ValueTask.CompletedTask;
                 }
                 case MessageOperationType.RequestConnectServer:
                 {
-                    ReqConnectServer reqConnectServer = (ReqConnectServer)messageObject.DeserializeMessageObject();
+                    var reqConnectServer = (ReqConnectServer)messageObject.DeserializeMessageObject();
                     var serverList = _namingServiceManager.GetNodesByType(reqConnectServer.ServerType);
                     if (reqConnectServer.ServerId > 0)
                     {
@@ -224,7 +222,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
                 HttpPort = 21011,
                 IsDebug = true,
                 IsDebugReceive = true,
-                IsDebugSend = true
+                IsDebugSend = true,
             };
         }
 
