@@ -12,7 +12,7 @@ public sealed class LogOptions
     /// <summary>
     /// 默认配置对象，提供一个默认的日志配置实例。
     /// </summary>
-    public static readonly LogOptions Default = new LogOptions();
+    public static readonly LogOptions Default = new();
 
     /// <summary>
     /// 服务器类型，用于标识日志来源的服务器类型。

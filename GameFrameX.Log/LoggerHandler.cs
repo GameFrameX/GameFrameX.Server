@@ -18,8 +18,8 @@ public static class LoggerHandler
         try
         {
             // 日志文件存储的路径
-            string logPath = "./logs/";
-            string logFileName = $"{logOptions.ServerType ?? "Server"}_log_.log";
+            var logPath = "./logs/";
+            var logFileName = $"{logOptions.ServerType ?? "Server"}_log_.log";
             if (logOptions.LogSavePath != null)
             {
                 logPath = Path.Combine(logOptions.LogSavePath, logFileName);
@@ -78,7 +78,7 @@ public static class LoggerHandler
             }
 
             Serilog.Log.Logger = logger.CreateLogger();
-            Console.WriteLine($"日志系统配置 结束");
+            Console.WriteLine("日志系统配置 结束");
         }
         catch (Exception e)
         {

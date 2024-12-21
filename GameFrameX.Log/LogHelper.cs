@@ -70,7 +70,7 @@ public static class LogHelper
     public static void Console(string message, params object[] args)
     {
         var time = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}]";
-        if (args is { Length: > 0 })
+        if (args is { Length: > 0, })
         {
             System.Console.WriteLine(time + message, args);
         }
