@@ -1,348 +1,454 @@
 ﻿#if !NO_RUNTIME
-using System;
+using System.Reflection;
 using ProtoBuf.Meta;
 #if FEAT_COMPILER
-
 #endif
 
-using System.Reflection;
+namespace ProtoBuf.Serializers;
 
-namespace ProtoBuf.Serializers
+internal sealed class TypeSerializer : IProtoTypeSerializer
 {
-    sealed class TypeSerializer : IProtoTypeSerializer
+    public bool HasCallbacks(TypeModel.CallbackType callbackType)
     {
-        public bool HasCallbacks(TypeModel.CallbackType callbackType)
+        if (callbacks != null && callbacks[callbackType] != null)
         {
-            if (callbacks != null && callbacks[callbackType] != null) return true;
-            for (int i = 0; i < serializers.Length; i++)
-            {
-                if (serializers[i].ExpectedType != forType && ((IProtoTypeSerializer)serializers[i]).HasCallbacks(callbackType)) return true;
-            }
-            return false;
+            return true;
         }
-        private readonly Type forType, constructType;
+
+        for (var i = 0; i < serializers.Length; i++)
+        {
+            if (serializers[i].ExpectedType != ExpectedType && ((IProtoTypeSerializer)serializers[i]).HasCallbacks(callbackType))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private readonly Type constructType;
 #if COREFX || PROFILE259
 		private readonly TypeInfo typeInfo;
 #endif
-        public Type ExpectedType { get { return forType; } }
-        private readonly IProtoSerializer[] serializers;
-        private readonly int[] fieldNumbers;
-        private readonly bool isRootType, useConstructor, isExtensible, hasConstructor;
-        private readonly CallbackSet callbacks;
-        private readonly MethodInfo[] baseCtorCallbacks;
-        private readonly MethodInfo factory;
-        public TypeSerializer(TypeModel model, Type forType, int[] fieldNumbers, IProtoSerializer[] serializers, MethodInfo[] baseCtorCallbacks, bool isRootType, bool useConstructor, CallbackSet callbacks, Type constructType, MethodInfo factory)
-        {
-            Helpers.DebugAssert(forType != null);
-            Helpers.DebugAssert(fieldNumbers != null);
-            Helpers.DebugAssert(serializers != null);
-            Helpers.DebugAssert(fieldNumbers.Length == serializers.Length);
+    public Type ExpectedType { get; }
+    private readonly IProtoSerializer[] serializers;
+    private readonly int[] fieldNumbers;
+    private readonly bool isRootType, useConstructor, isExtensible, hasConstructor;
+    private readonly CallbackSet callbacks;
+    private readonly MethodInfo[] baseCtorCallbacks;
+    private readonly MethodInfo factory;
+    public TypeSerializer(TypeModel model, Type forType, int[] fieldNumbers, IProtoSerializer[] serializers, MethodInfo[] baseCtorCallbacks, bool isRootType, bool useConstructor, CallbackSet callbacks, Type constructType, MethodInfo factory)
+    {
+        Helpers.DebugAssert(forType != null);
+        Helpers.DebugAssert(fieldNumbers != null);
+        Helpers.DebugAssert(serializers != null);
+        Helpers.DebugAssert(fieldNumbers.Length == serializers.Length);
 
-            Helpers.Sort(fieldNumbers, serializers);
-            bool hasSubTypes = false;
-            for (int i = 0; i < fieldNumbers.Length; i++)
+        Helpers.Sort(fieldNumbers, serializers);
+        var hasSubTypes = false;
+        for (var i = 0; i < fieldNumbers.Length; i++)
+        {
+            if (i != 0 && fieldNumbers[i] == fieldNumbers[i - 1])
             {
-                if (i != 0 && fieldNumbers[i] == fieldNumbers[i - 1]) throw new InvalidOperationException("Duplicate field-number detected; " +
-                            fieldNumbers[i].ToString() + " on: " + forType.FullName);
-                if (!hasSubTypes && serializers[i].ExpectedType != forType)
-                {
-                    hasSubTypes = true;
-                }
+                throw new InvalidOperationException("Duplicate field-number detected; " +
+                                                    fieldNumbers[i] + " on: " + forType.FullName);
             }
-            this.forType = forType;
-            this.factory = factory;
+
+            if (!hasSubTypes && serializers[i].ExpectedType != forType)
+            {
+                hasSubTypes = true;
+            }
+        }
+
+        ExpectedType = forType;
+        this.factory = factory;
 #if COREFX || PROFILE259
 			this.typeInfo = forType.GetTypeInfo();
 #endif
-            if (constructType == null)
-            {
-                constructType = forType;
-            }
-            else
-            {
+        if (constructType == null)
+        {
+            constructType = forType;
+        }
+        else
+        {
 #if COREFX || PROFILE259
 				if (!typeInfo.IsAssignableFrom(constructType.GetTypeInfo()))
 #else
-                if (!forType.IsAssignableFrom(constructType))
+            if (!forType.IsAssignableFrom(constructType))
 #endif
-                {
-                    throw new InvalidOperationException(forType.FullName + " cannot be assigned from " + constructType.FullName);
-                }
-            }
-            this.constructType = constructType;
-            this.serializers = serializers;
-            this.fieldNumbers = fieldNumbers;
-            this.callbacks = callbacks;
-            this.isRootType = isRootType;
-            this.useConstructor = useConstructor;
-
-            if (baseCtorCallbacks != null && baseCtorCallbacks.Length == 0) baseCtorCallbacks = null;
-            this.baseCtorCallbacks = baseCtorCallbacks;
-
-            if (Helpers.GetUnderlyingType(forType) != null)
             {
-                throw new ArgumentException("Cannot create a TypeSerializer for nullable types", "forType");
+                throw new InvalidOperationException(forType.FullName + " cannot be assigned from " + constructType.FullName);
             }
+        }
+
+        this.constructType = constructType;
+        this.serializers = serializers;
+        this.fieldNumbers = fieldNumbers;
+        this.callbacks = callbacks;
+        this.isRootType = isRootType;
+        this.useConstructor = useConstructor;
+
+        if (baseCtorCallbacks != null && baseCtorCallbacks.Length == 0)
+        {
+            baseCtorCallbacks = null;
+        }
+
+        this.baseCtorCallbacks = baseCtorCallbacks;
+
+        if (Helpers.GetUnderlyingType(forType) != null)
+        {
+            throw new ArgumentException("Cannot create a TypeSerializer for nullable types", "forType");
+        }
 
 #if COREFX || PROFILE259
 			if (iextensible.IsAssignableFrom(typeInfo))
             {
                 if (typeInfo.IsValueType || !isRootType || hasSubTypes)
 #else
-            if (model.MapType(iextensible).IsAssignableFrom(forType))
-            {
-                if (forType.IsValueType || !isRootType || hasSubTypes)
+        if (model.MapType(iextensible).IsAssignableFrom(forType))
+        {
+            if (forType.IsValueType || !isRootType || hasSubTypes)
 #endif
-                {
-                    throw new NotSupportedException("IExtensible is not supported in structs or classes with inheritance");
-                }
-                isExtensible = true;
+            {
+                throw new NotSupportedException("IExtensible is not supported in structs or classes with inheritance");
             }
+
+            isExtensible = true;
+        }
 #if COREFX || PROFILE259
 			TypeInfo constructTypeInfo = constructType.GetTypeInfo();
             hasConstructor = !constructTypeInfo.IsAbstract && Helpers.GetConstructor(constructTypeInfo, Helpers.EmptyTypes, true) != null;
 #else
-            hasConstructor = !constructType.IsAbstract && Helpers.GetConstructor(constructType, Helpers.EmptyTypes, true) != null;
+        hasConstructor = !constructType.IsAbstract && Helpers.GetConstructor(constructType, Helpers.EmptyTypes, true) != null;
 #endif
-            if (constructType != forType && useConstructor && !hasConstructor)
-            {
-                throw new ArgumentException("The supplied default implementation cannot be created: " + constructType.FullName, "constructType");
-            }
+        if (constructType != forType && useConstructor && !hasConstructor)
+        {
+            throw new ArgumentException("The supplied default implementation cannot be created: " + constructType.FullName, "constructType");
         }
+    }
 #if COREFX || PROFILE259
 		private static readonly TypeInfo iextensible = typeof(IExtensible).GetTypeInfo();
 #else
-        private static readonly System.Type iextensible = typeof(IExtensible);
+    private static readonly Type iextensible = typeof(IExtensible);
 #endif
 
-        private bool CanHaveInheritance
+    private bool CanHaveInheritance
+    {
+        get
         {
-            get
-            {
 #if COREFX || PROFILE259
 				return (typeInfo.IsClass || typeInfo.IsInterface) && !typeInfo.IsSealed;
 #else
-                return (forType.IsClass || forType.IsInterface) && !forType.IsSealed;
+            return (ExpectedType.IsClass || ExpectedType.IsInterface) && !ExpectedType.IsSealed;
 #endif
-            }
+        }
+    }
+
+    bool IProtoTypeSerializer.CanCreateInstance()
+    {
+        return true;
+    }
+
+    object IProtoTypeSerializer.CreateInstance(ProtoReader source)
+    {
+        return CreateInstance(source, false);
+    }
+
+    public void Callback(object value, TypeModel.CallbackType callbackType, SerializationContext context)
+    {
+        if (callbacks != null)
+        {
+            InvokeCallback(callbacks[callbackType], value, context);
         }
 
-        bool IProtoTypeSerializer.CanCreateInstance() { return true; }
-
-        object IProtoTypeSerializer.CreateInstance(ProtoReader source)
+        var ser = (IProtoTypeSerializer)GetMoreSpecificSerializer(value);
+        if (ser != null)
         {
-            return CreateInstance(source, false);
+            ser.Callback(value, callbackType, context);
         }
-        public void Callback(object value, TypeModel.CallbackType callbackType, SerializationContext context)
-        {
-            if (callbacks != null) InvokeCallback(callbacks[callbackType], value, context);
-            IProtoTypeSerializer ser = (IProtoTypeSerializer)GetMoreSpecificSerializer(value);
-            if (ser != null) ser.Callback(value, callbackType, context);
-        }
-        private IProtoSerializer GetMoreSpecificSerializer(object value)
-        {
-            if (!CanHaveInheritance) return null;
-            Type actualType = value.GetType();
-            if (actualType == forType) return null;
+    }
 
-            for (int i = 0; i < serializers.Length; i++)
-            {
-                IProtoSerializer ser = serializers[i];
-                if (ser.ExpectedType != forType && Helpers.IsAssignableFrom(ser.ExpectedType, actualType))
-                {
-                    return ser;
-                }
-            }
-            if (actualType == constructType) return null; // needs to be last in case the default concrete type is also a known sub-type
-            TypeModel.ThrowUnexpectedSubtype(forType, actualType); // might throw (if not a proxy)
+    private IProtoSerializer GetMoreSpecificSerializer(object value)
+    {
+        if (!CanHaveInheritance)
+        {
             return null;
         }
 
-        public void Write(object value, ProtoWriter dest)
+        var actualType = value.GetType();
+        if (actualType == ExpectedType)
         {
-            if (isRootType) Callback(value, TypeModel.CallbackType.BeforeSerialize, dest.Context);
-            // write inheritance first
-            IProtoSerializer next = GetMoreSpecificSerializer(value);
-            if (next != null) next.Write(value, dest);
-
-            // write all actual fields
-            //Helpers.DebugWriteLine(">> Writing fields for " + forType.FullName);
-            for (int i = 0; i < serializers.Length; i++)
-            {
-                IProtoSerializer ser = serializers[i];
-                if (ser.ExpectedType == forType)
-                {
-                    //Helpers.DebugWriteLine(": " + ser.ToString());
-                    ser.Write(value, dest);
-                }
-            }
-            //Helpers.DebugWriteLine("<< Writing fields for " + forType.FullName);
-            if (isExtensible) ProtoWriter.AppendExtensionData((IExtensible)value, dest);
-            if (isRootType) Callback(value, TypeModel.CallbackType.AfterSerialize, dest.Context);
+            return null;
         }
 
-        public object Read(object value, ProtoReader source)
+        for (var i = 0; i < serializers.Length; i++)
         {
-            if (isRootType && value != null) { Callback(value, TypeModel.CallbackType.BeforeDeserialize, source.Context); }
-            int fieldNumber, lastFieldNumber = 0, lastFieldIndex = 0;
-            bool fieldHandled;
-
-            //Helpers.DebugWriteLine(">> Reading fields for " + forType.FullName);
-            while ((fieldNumber = source.ReadFieldHeader()) > 0)
+            var ser = serializers[i];
+            if (ser.ExpectedType != ExpectedType && Helpers.IsAssignableFrom(ser.ExpectedType, actualType))
             {
-                fieldHandled = false;
-                if (fieldNumber < lastFieldNumber)
-                {
-                    lastFieldNumber = lastFieldIndex = 0;
-                }
-                for (int i = lastFieldIndex; i < fieldNumbers.Length; i++)
-                {
-                    if (fieldNumbers[i] == fieldNumber)
-                    {
-                        IProtoSerializer ser = serializers[i];
-                        //Helpers.DebugWriteLine(": " + ser.ToString());
-                        Type serType = ser.ExpectedType;
-                        if (value == null)
-                        {
-                            if (serType == forType) value = CreateInstance(source, true);
-                        }
-                        else
-                        {
-                            if (serType != forType && ((IProtoTypeSerializer)ser).CanCreateInstance()
-                                && serType
-#if COREFX || PROFILE259
-								.GetTypeInfo()
-#endif
-                                .IsSubclassOf(value.GetType()))
-                            {
-                                value = ProtoReader.Merge(source, value, ((IProtoTypeSerializer)ser).CreateInstance(source));
-                            }
-                        }
+                return ser;
+            }
+        }
 
-                        if (ser.ReturnsValue)
-                        {
-                            value = ser.Read(value, source);
-                        }
-                        else
-                        { // pop
-                            ser.Read(value, source);
-                        }
+        if (actualType == constructType)
+        {
+            return null; // needs to be last in case the default concrete type is also a known sub-type
+        }
 
-                        lastFieldIndex = i;
-                        lastFieldNumber = fieldNumber;
-                        fieldHandled = true;
-                        break;
-                    }
-                }
-                if (!fieldHandled)
+        TypeModel.ThrowUnexpectedSubtype(ExpectedType, actualType); // might throw (if not a proxy)
+        return null;
+    }
+
+    public void Write(object value, ProtoWriter dest)
+    {
+        if (isRootType)
+        {
+            Callback(value, TypeModel.CallbackType.BeforeSerialize, dest.Context);
+        }
+
+        // write inheritance first
+        var next = GetMoreSpecificSerializer(value);
+        if (next != null)
+        {
+            next.Write(value, dest);
+        }
+
+        // write all actual fields
+        //Helpers.DebugWriteLine(">> Writing fields for " + forType.FullName);
+        for (var i = 0; i < serializers.Length; i++)
+        {
+            var ser = serializers[i];
+            if (ser.ExpectedType == ExpectedType)
+            {
+                //Helpers.DebugWriteLine(": " + ser.ToString());
+                ser.Write(value, dest);
+            }
+        }
+
+        //Helpers.DebugWriteLine("<< Writing fields for " + forType.FullName);
+        if (isExtensible)
+        {
+            ProtoWriter.AppendExtensionData((IExtensible)value, dest);
+        }
+
+        if (isRootType)
+        {
+            Callback(value, TypeModel.CallbackType.AfterSerialize, dest.Context);
+        }
+    }
+
+    public object Read(object value, ProtoReader source)
+    {
+        if (isRootType && value != null)
+        {
+            Callback(value, TypeModel.CallbackType.BeforeDeserialize, source.Context);
+        }
+
+        int fieldNumber, lastFieldNumber = 0, lastFieldIndex = 0;
+        bool fieldHandled;
+
+        //Helpers.DebugWriteLine(">> Reading fields for " + forType.FullName);
+        while ((fieldNumber = source.ReadFieldHeader()) > 0)
+        {
+            fieldHandled = false;
+            if (fieldNumber < lastFieldNumber)
+            {
+                lastFieldNumber = lastFieldIndex = 0;
+            }
+
+            for (var i = lastFieldIndex; i < fieldNumbers.Length; i++)
+            {
+                if (fieldNumbers[i] == fieldNumber)
                 {
-                    //Helpers.DebugWriteLine(": [" + fieldNumber + "] (unknown)");
-                    if (value == null) value = CreateInstance(source, true);
-                    if (isExtensible)
+                    var ser = serializers[i];
+                    //Helpers.DebugWriteLine(": " + ser.ToString());
+                    var serType = ser.ExpectedType;
+                    if (value == null)
                     {
-                        source.AppendExtensionData((IExtensible)value);
+                        if (serType == ExpectedType)
+                        {
+                            value = CreateInstance(source, true);
+                        }
                     }
                     else
                     {
-                        source.SkipField();
+                        if (serType != ExpectedType && ((IProtoTypeSerializer)ser).CanCreateInstance()
+                                                    && serType
+#if COREFX || PROFILE259
+								.GetTypeInfo()
+#endif
+                                                        .IsSubclassOf(value.GetType()))
+                        {
+                            value = ProtoReader.Merge(source, value, ((IProtoTypeSerializer)ser).CreateInstance(source));
+                        }
                     }
+
+                    if (ser.ReturnsValue)
+                    {
+                        value = ser.Read(value, source);
+                    }
+                    else
+                    {
+                        // pop
+                        ser.Read(value, source);
+                    }
+
+                    lastFieldIndex = i;
+                    lastFieldNumber = fieldNumber;
+                    fieldHandled = true;
+                    break;
                 }
             }
-            //Helpers.DebugWriteLine("<< Reading fields for " + forType.FullName);
-            if (value == null) value = CreateInstance(source, true);
-            if (isRootType) { Callback(value, TypeModel.CallbackType.AfterDeserialize, source.Context); }
-            return value;
-        }
 
-        private object InvokeCallback(MethodInfo method, object obj, SerializationContext context)
-        {
-            object result = null;
-            object[] args;
-            if (method != null)
-            {   // pass in a streaming context if one is needed, else null
-                bool handled;
-                ParameterInfo[] parameters = method.GetParameters();
-                switch (parameters.Length)
+            if (!fieldHandled)
+            {
+                //Helpers.DebugWriteLine(": [" + fieldNumber + "] (unknown)");
+                if (value == null)
                 {
-                    case 0:
-                        args = null;
-                        handled = true;
-                        break;
-                    default:
-                        args = new object[parameters.Length];
-                        handled = true;
-                        for (int i = 0; i < args.Length; i++)
-                        {
-                            object val;
-                            Type paramType = parameters[i].ParameterType;
-                            if (paramType == typeof(SerializationContext)) val = context;
-                            else if (paramType == typeof(System.Type)) val = constructType;
-#if PLAT_BINARYFORMATTER
-                            else if (paramType == typeof(System.Runtime.Serialization.StreamingContext)) val = (System.Runtime.Serialization.StreamingContext)context;
-#endif
-                            else
-                            {
-                                val = null;
-                                handled = false;
-                            }
-                            args[i] = val;
-                        }
-                        break;
+                    value = CreateInstance(source, true);
                 }
-                if (handled)
+
+                if (isExtensible)
                 {
-                    result = method.Invoke(obj, args);
+                    source.AppendExtensionData((IExtensible)value);
                 }
                 else
                 {
-                    throw Meta.CallbackSet.CreateInvalidCallbackSignature(method);
+                    source.SkipField();
                 }
-
             }
-            return result;
         }
-        object CreateInstance(ProtoReader source, bool includeLocalCallback)
+
+        //Helpers.DebugWriteLine("<< Reading fields for " + forType.FullName);
+        if (value == null)
         {
-            //Helpers.DebugWriteLine("* creating : " + forType.FullName);
-            object obj;
-            if (factory != null)
+            value = CreateInstance(source, true);
+        }
+
+        if (isRootType)
+        {
+            Callback(value, TypeModel.CallbackType.AfterDeserialize, source.Context);
+        }
+
+        return value;
+    }
+
+    private object InvokeCallback(MethodInfo method, object obj, SerializationContext context)
+    {
+        object result = null;
+        object[] args;
+        if (method != null)
+        {
+            // pass in a streaming context if one is needed, else null
+            bool handled;
+            var parameters = method.GetParameters();
+            switch (parameters.Length)
             {
-                obj = InvokeCallback(factory, null, source.Context);
+                case 0:
+                    args = null;
+                    handled = true;
+                    break;
+                default:
+                    args = new object[parameters.Length];
+                    handled = true;
+                    for (var i = 0; i < args.Length; i++)
+                    {
+                        object val;
+                        var paramType = parameters[i].ParameterType;
+                        if (paramType == typeof(SerializationContext))
+                        {
+                            val = context;
+                        }
+                        else if (paramType == typeof(Type))
+                        {
+                            val = constructType;
+                        }
+#if PLAT_BINARYFORMATTER
+                            else if (paramType == typeof(System.Runtime.Serialization.StreamingContext)) val = (System.Runtime.Serialization.StreamingContext)context;
+#endif
+                        else
+                        {
+                            val = null;
+                            handled = false;
+                        }
+
+                        args[i] = val;
+                    }
+
+                    break;
             }
-            else if (useConstructor)
+
+            if (handled)
             {
-                if (!hasConstructor) TypeModel.ThrowCannotCreateInstance(constructType);
+                result = method.Invoke(obj, args);
+            }
+            else
+            {
+                throw CallbackSet.CreateInvalidCallbackSignature(method);
+            }
+        }
+
+        return result;
+    }
+
+    private object CreateInstance(ProtoReader source, bool includeLocalCallback)
+    {
+        //Helpers.DebugWriteLine("* creating : " + forType.FullName);
+        object obj;
+        if (factory != null)
+        {
+            obj = InvokeCallback(factory, null, source.Context);
+        }
+        else if (useConstructor)
+        {
+            if (!hasConstructor)
+            {
+                TypeModel.ThrowCannotCreateInstance(constructType);
+            }
 #if PROFILE259
 	            ConstructorInfo constructorInfo = System.Linq.Enumerable.First(
                     constructType.GetTypeInfo().DeclaredConstructors, c => c.GetParameters().Length == 0);
 	            obj = constructorInfo.Invoke(new object[] {});
 
 #else
-                obj = Activator.CreateInstance(constructType
-#if !(CF || PORTABLE  || NETSTANDARD1_3 || NETSTANDARD1_4 || UAP)
-                    , nonPublic: true
+            obj = Activator.CreateInstance(constructType
+#if !(CF || PORTABLE || NETSTANDARD1_3 || NETSTANDARD1_4 || UAP)
+                                           , true
 #endif
-                    );
+            );
 #endif
-            }
-            else
-            {
-                obj = BclHelpers.GetUninitializedObject(constructType);
-            }
-            ProtoReader.NoteObject(obj, source);
-            if (baseCtorCallbacks != null)
-            {
-                for (int i = 0; i < baseCtorCallbacks.Length; i++)
-                {
-                    InvokeCallback(baseCtorCallbacks[i], obj, source.Context);
-                }
-            }
-            if (includeLocalCallback && callbacks != null) InvokeCallback(callbacks.BeforeDeserialize, obj, source.Context);
-            return obj;
+        }
+        else
+        {
+            obj = BclHelpers.GetUninitializedObject(constructType);
         }
 
-        bool IProtoSerializer.RequiresOldValue { get { return true; } }
-        bool IProtoSerializer.ReturnsValue { get { return false; } } // updates field directly
+        ProtoReader.NoteObject(obj, source);
+        if (baseCtorCallbacks != null)
+        {
+            for (var i = 0; i < baseCtorCallbacks.Length; i++)
+            {
+                InvokeCallback(baseCtorCallbacks[i], obj, source.Context);
+            }
+        }
+
+        if (includeLocalCallback && callbacks != null)
+        {
+            InvokeCallback(callbacks.BeforeDeserialize, obj, source.Context);
+        }
+
+        return obj;
+    }
+
+    bool IProtoSerializer.RequiresOldValue
+    {
+        get { return true; }
+    }
+
+    bool IProtoSerializer.ReturnsValue
+    {
+        get { return false; }
+    } // updates field directly
 #if FEAT_COMPILER
         void IProtoSerializer.EmitWrite(Compiler.CompilerContext ctx, Compiler.Local valueFrom)
         {
@@ -792,7 +898,6 @@ namespace ProtoBuf.Serializers
             }
         }
 #endif
-    }
-
 }
+
 #endif

@@ -1,118 +1,183 @@
 ﻿#if !NO_RUNTIME
-using System;
 using System.Collections;
-using ProtoBuf.Meta;
 using System.Reflection;
+using ProtoBuf.Meta;
 
-namespace ProtoBuf.Serializers
+namespace ProtoBuf.Serializers;
+
+internal class ListDecorator : ProtoDecoratorBase
 {
-    class ListDecorator : ProtoDecoratorBase
+    internal static bool CanPack(WireType wireType)
     {
-        internal static bool CanPack(WireType wireType)
+        switch (wireType)
         {
-            switch (wireType)
-            {
-                case WireType.Fixed32:
-                case WireType.Fixed64:
-                case WireType.SignedVariant:
-                case WireType.Variant:
-                    return true;
-                default:
-                    return false;
-            }
+            case WireType.Fixed32:
+            case WireType.Fixed64:
+            case WireType.SignedVariant:
+            case WireType.Variant:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private readonly byte options;
+
+    private const byte OPTIONS_IsList = 1,
+                       OPTIONS_SuppressIList = 2,
+                       OPTIONS_WritePacked = 4,
+                       OPTIONS_ReturnList = 8,
+                       OPTIONS_OverwriteList = 16,
+                       OPTIONS_SupportNull = 32;
+
+    private readonly Type concreteType;
+
+    private readonly MethodInfo add;
+
+    private readonly int fieldNumber;
+
+    private bool IsList
+    {
+        get { return (options & OPTIONS_IsList) != 0; }
+    }
+
+    private bool SuppressIList
+    {
+        get { return (options & OPTIONS_SuppressIList) != 0; }
+    }
+
+    private bool WritePacked
+    {
+        get { return (options & OPTIONS_WritePacked) != 0; }
+    }
+
+    private bool SupportNull
+    {
+        get { return (options & OPTIONS_SupportNull) != 0; }
+    }
+
+    private bool ReturnList
+    {
+        get { return (options & OPTIONS_ReturnList) != 0; }
+    }
+
+    protected readonly WireType packedWireType;
+
+    internal static ListDecorator Create(TypeModel model, Type declaredType, Type concreteType, IProtoSerializer tail, int fieldNumber, bool writePacked, WireType packedWireType, bool returnList, bool overwriteList, bool supportNull)
+    {
+        if (returnList && ImmutableCollectionDecorator.IdentifyImmutable(model, declaredType,
+                                                                         out var builderFactory,
+                                                                         out var isEmpty,
+                                                                         out var length,
+                                                                         out var add,
+                                                                         out var addRange,
+                                                                         out var finish))
+        {
+            return new ImmutableCollectionDecorator(
+                model, declaredType, concreteType, tail, fieldNumber, writePacked, packedWireType, returnList, overwriteList, supportNull,
+                builderFactory, isEmpty, length, add, addRange, finish);
         }
 
-        private readonly byte options;
+        return new ListDecorator(model, declaredType, concreteType, tail, fieldNumber, writePacked, packedWireType, returnList, overwriteList, supportNull);
+    }
 
-        private const byte OPTIONS_IsList = 1,
-                           OPTIONS_SuppressIList = 2,
-                           OPTIONS_WritePacked = 4,
-                           OPTIONS_ReturnList = 8,
-                           OPTIONS_OverwriteList = 16,
-                           OPTIONS_SupportNull = 32;
-
-        private readonly Type declaredType, concreteType;
-
-        private readonly MethodInfo add;
-
-        private readonly int fieldNumber;
-
-        private bool IsList { get { return (options & OPTIONS_IsList) != 0; } }
-        private bool SuppressIList { get { return (options & OPTIONS_SuppressIList) != 0; } }
-        private bool WritePacked { get { return (options & OPTIONS_WritePacked) != 0; } }
-        private bool SupportNull { get { return (options & OPTIONS_SupportNull) != 0; } }
-        private bool ReturnList { get { return (options & OPTIONS_ReturnList) != 0; } }
-        protected readonly WireType packedWireType;
-
-        internal static ListDecorator Create(TypeModel model, Type declaredType, Type concreteType, IProtoSerializer tail, int fieldNumber, bool writePacked, WireType packedWireType, bool returnList, bool overwriteList, bool supportNull)
+    protected ListDecorator(TypeModel model, Type declaredType, Type concreteType, IProtoSerializer tail, int fieldNumber, bool writePacked, WireType packedWireType, bool returnList, bool overwriteList, bool supportNull)
+        : base(tail)
+    {
+        if (returnList)
         {
-            if (returnList && ImmutableCollectionDecorator.IdentifyImmutable(model, declaredType,
-                out MethodInfo builderFactory,
-                out PropertyInfo isEmpty,
-                out PropertyInfo length,
-                out MethodInfo add,
-                out MethodInfo addRange,
-                out MethodInfo finish))
-            {
-                return new ImmutableCollectionDecorator(
-                    model, declaredType, concreteType, tail, fieldNumber, writePacked, packedWireType, returnList, overwriteList, supportNull,
-                    builderFactory, isEmpty, length, add, addRange, finish);
-            }
-
-            return new ListDecorator(model, declaredType, concreteType, tail, fieldNumber, writePacked, packedWireType, returnList, overwriteList, supportNull);
+            options |= OPTIONS_ReturnList;
         }
 
-        protected ListDecorator(TypeModel model, Type declaredType, Type concreteType, IProtoSerializer tail, int fieldNumber, bool writePacked, WireType packedWireType, bool returnList, bool overwriteList, bool supportNull)
-            : base(tail)
+        if (overwriteList)
         {
-            if (returnList) options |= OPTIONS_ReturnList;
-            if (overwriteList) options |= OPTIONS_OverwriteList;
-            if (supportNull) options |= OPTIONS_SupportNull;
-            if ((writePacked || packedWireType != WireType.None) && fieldNumber <= 0) throw new ArgumentOutOfRangeException("fieldNumber");
-            if (!CanPack(packedWireType))
+            options |= OPTIONS_OverwriteList;
+        }
+
+        if (supportNull)
+        {
+            options |= OPTIONS_SupportNull;
+        }
+
+        if ((writePacked || packedWireType != WireType.None) && fieldNumber <= 0)
+        {
+            throw new ArgumentOutOfRangeException("fieldNumber");
+        }
+
+        if (!CanPack(packedWireType))
+        {
+            if (writePacked)
             {
-                if (writePacked) throw new InvalidOperationException("Only simple data-types can use packed encoding");
-                packedWireType = WireType.None;
+                throw new InvalidOperationException("Only simple data-types can use packed encoding");
             }
 
-            this.fieldNumber = fieldNumber;
-            if (writePacked) options |= OPTIONS_WritePacked;
-            this.packedWireType = packedWireType;
-            if (declaredType == null) throw new ArgumentNullException("declaredType");
-            if (declaredType.IsArray) throw new ArgumentException("Cannot treat arrays as lists", "declaredType");
-            this.declaredType = declaredType;
-            this.concreteType = concreteType;
+            packedWireType = WireType.None;
+        }
 
-            // look for a public list.Add(typedObject) method
-            if (RequireAdd)
+        this.fieldNumber = fieldNumber;
+        if (writePacked)
+        {
+            options |= OPTIONS_WritePacked;
+        }
+
+        this.packedWireType = packedWireType;
+        if (declaredType == null)
+        {
+            throw new ArgumentNullException("declaredType");
+        }
+
+        if (declaredType.IsArray)
+        {
+            throw new ArgumentException("Cannot treat arrays as lists", "declaredType");
+        }
+
+        ExpectedType = declaredType;
+        this.concreteType = concreteType;
+
+        // look for a public list.Add(typedObject) method
+        if (RequireAdd)
+        {
+            bool isList;
+            add = TypeModel.ResolveListAdd(model, declaredType, tail.ExpectedType, out isList);
+            if (isList)
             {
-                bool isList;
-                add = TypeModel.ResolveListAdd(model, declaredType, tail.ExpectedType, out isList);
-                if (isList)
+                options |= OPTIONS_IsList;
+                var fullName = declaredType.FullName;
+                if (fullName != null && fullName.StartsWith("System.Data.Linq.EntitySet`1[["))
                 {
-                    options |= OPTIONS_IsList;
-                    string fullName = declaredType.FullName;
-                    if (fullName != null && fullName.StartsWith("System.Data.Linq.EntitySet`1[["))
-                    { // see http://stackoverflow.com/questions/6194639/entityset-is-there-a-sane-reason-that-ilist-add-doesnt-set-assigned
-                        options |= OPTIONS_SuppressIList;
-                    }
+                    // see http://stackoverflow.com/questions/6194639/entityset-is-there-a-sane-reason-that-ilist-add-doesnt-set-assigned
+                    options |= OPTIONS_SuppressIList;
                 }
-                if (add == null) throw new InvalidOperationException("Unable to resolve a suitable Add method for " + declaredType.FullName);
             }
 
+            if (add == null)
+            {
+                throw new InvalidOperationException("Unable to resolve a suitable Add method for " + declaredType.FullName);
+            }
         }
-        protected virtual bool RequireAdd => true;
+    }
 
-        public override Type ExpectedType => declaredType;
+    protected virtual bool RequireAdd
+    {
+        get { return true; }
+    }
 
-        public override bool RequiresOldValue => AppendToCollection;
+    public override Type ExpectedType { get; }
 
-        public override bool ReturnsValue => ReturnList;
+    public override bool RequiresOldValue
+    {
+        get { return AppendToCollection; }
+    }
 
-        protected bool AppendToCollection
-        {
-            get { return (options & OPTIONS_OverwriteList) == 0; }
-        }
+    public override bool ReturnsValue
+    {
+        get { return ReturnList; }
+    }
+
+    protected bool AppendToCollection
+    {
+        get { return (options & OPTIONS_OverwriteList) == 0; }
+    }
 
 #if FEAT_COMPILER
         protected override void EmitRead(ProtoBuf.Compiler.CompilerContext ctx, ProtoBuf.Compiler.Local valueFrom)
@@ -308,101 +373,107 @@ namespace ProtoBuf.Serializers
 #if COREFX
         private static readonly TypeInfo ienumeratorType = typeof(IEnumerator).GetTypeInfo(), ienumerableType = typeof (IEnumerable).GetTypeInfo();
 #else
-        private static readonly System.Type ienumeratorType = typeof(IEnumerator), ienumerableType = typeof(IEnumerable);
+    private static readonly Type ienumeratorType = typeof(IEnumerator), ienumerableType = typeof(IEnumerable);
 #endif
-        protected MethodInfo GetEnumeratorInfo(TypeModel model, out MethodInfo moveNext, out MethodInfo current)
-            => GetEnumeratorInfo(model, ExpectedType, Tail.ExpectedType, out moveNext, out current);
-        internal static MethodInfo GetEnumeratorInfo(TypeModel model, Type expectedType, Type itemType, out MethodInfo moveNext, out MethodInfo current)
-        {
+    protected MethodInfo GetEnumeratorInfo(TypeModel model, out MethodInfo moveNext, out MethodInfo current)
+    {
+        return GetEnumeratorInfo(model, ExpectedType, Tail.ExpectedType, out moveNext, out current);
+    }
 
+    internal static MethodInfo GetEnumeratorInfo(TypeModel model, Type expectedType, Type itemType, out MethodInfo moveNext, out MethodInfo current)
+    {
 #if COREFX
             TypeInfo enumeratorType = null, iteratorType;
 #else
-            Type enumeratorType = null, iteratorType;
+        Type enumeratorType = null, iteratorType;
 #endif
 
-            // try a custom enumerator
-            MethodInfo getEnumerator = Helpers.GetInstanceMethod(expectedType, "GetEnumerator", null);
+        // try a custom enumerator
+        var getEnumerator = Helpers.GetInstanceMethod(expectedType, "GetEnumerator", null);
 
-            Type getReturnType = null;
-            if (getEnumerator != null)
-            {
-                getReturnType = getEnumerator.ReturnType;
-                iteratorType = getReturnType
+        Type getReturnType = null;
+        if (getEnumerator != null)
+        {
+            getReturnType = getEnumerator.ReturnType;
+            iteratorType = getReturnType
 #if COREFX || COREFX
                     .GetTypeInfo()
 #endif
-                    ;
-                moveNext = Helpers.GetInstanceMethod(iteratorType, "MoveNext", null);
-                PropertyInfo prop = Helpers.GetProperty(iteratorType, "Current", false);
-                current = prop == null ? null : Helpers.GetGetMethod(prop, false, false);
+                ;
+            moveNext = Helpers.GetInstanceMethod(iteratorType, "MoveNext", null);
+            var prop = Helpers.GetProperty(iteratorType, "Current", false);
+            current = prop == null ? null : Helpers.GetGetMethod(prop, false, false);
 #if PROFILE259
 				if (moveNext == null && (model.MapType(ienumeratorType).GetTypeInfo().IsAssignableFrom(iteratorType.GetTypeInfo())))
 #else
-                if (moveNext == null && (model.MapType(ienumeratorType).IsAssignableFrom(iteratorType)))
+            if (moveNext == null && model.MapType(ienumeratorType).IsAssignableFrom(iteratorType))
 #endif
-                {
-                    moveNext = Helpers.GetInstanceMethod(model.MapType(ienumeratorType), "MoveNext", null);
-                }
-                // fully typed
-                if (moveNext != null && moveNext.ReturnType == model.MapType(typeof(bool))
-                    && current != null && current.ReturnType == itemType)
-                {
-                    return getEnumerator;
-                }
-                moveNext = current = getEnumerator = null;
+            {
+                moveNext = Helpers.GetInstanceMethod(model.MapType(ienumeratorType), "MoveNext", null);
             }
 
-            // try IEnumerable<T>
-            Type tmp = model.MapType(typeof(System.Collections.Generic.IEnumerable<>), false);
-
-            if (tmp != null)
+            // fully typed
+            if (moveNext != null && moveNext.ReturnType == model.MapType(typeof(bool))
+                                 && current != null && current.ReturnType == itemType)
             {
-                tmp = tmp.MakeGenericType(itemType);
+                return getEnumerator;
+            }
+
+            moveNext = current = getEnumerator = null;
+        }
+
+        // try IEnumerable<T>
+        var tmp = model.MapType(typeof(IEnumerable<>), false);
+
+        if (tmp != null)
+        {
+            tmp = tmp.MakeGenericType(itemType);
 
 #if COREFX
                 enumeratorType = tmp.GetTypeInfo();
 #else
-                enumeratorType = tmp;
+            enumeratorType = tmp;
 #endif
-            }
-;
+        }
+
+        ;
 #if PROFILE259
 			if (enumeratorType != null && enumeratorType.GetTypeInfo().IsAssignableFrom(expectedType
 #else
-            if (enumeratorType != null && enumeratorType.IsAssignableFrom(expectedType
+        if (enumeratorType != null && enumeratorType.IsAssignableFrom(expectedType
 #endif
 #if COREFX || PROFILE259
                 .GetTypeInfo()
 #endif
-                ))
-            {
-                getEnumerator = Helpers.GetInstanceMethod(enumeratorType, "GetEnumerator");
-                getReturnType = getEnumerator.ReturnType;
+            ))
+        {
+            getEnumerator = Helpers.GetInstanceMethod(enumeratorType, "GetEnumerator");
+            getReturnType = getEnumerator.ReturnType;
 
 #if COREFX
                 iteratorType = getReturnType.GetTypeInfo();
 #else
-                iteratorType = getReturnType;
+            iteratorType = getReturnType;
 #endif
 
-                moveNext = Helpers.GetInstanceMethod(model.MapType(ienumeratorType), "MoveNext");
-                current = Helpers.GetGetMethod(Helpers.GetProperty(iteratorType, "Current", false), false, false);
-                return getEnumerator;
-            }
-            // give up and fall-back to non-generic IEnumerable
-            enumeratorType = model.MapType(ienumerableType);
-            getEnumerator = Helpers.GetInstanceMethod(enumeratorType, "GetEnumerator");
-            getReturnType = getEnumerator.ReturnType;
-            iteratorType = getReturnType
-#if COREFX
-                .GetTypeInfo()
-#endif
-                ;
-            moveNext = Helpers.GetInstanceMethod(iteratorType, "MoveNext");
+            moveNext = Helpers.GetInstanceMethod(model.MapType(ienumeratorType), "MoveNext");
             current = Helpers.GetGetMethod(Helpers.GetProperty(iteratorType, "Current", false), false, false);
             return getEnumerator;
         }
+
+        // give up and fall-back to non-generic IEnumerable
+        enumeratorType = model.MapType(ienumerableType);
+        getEnumerator = Helpers.GetInstanceMethod(enumeratorType, "GetEnumerator");
+        getReturnType = getEnumerator.ReturnType;
+        iteratorType = getReturnType
+#if COREFX
+                .GetTypeInfo()
+#endif
+            ;
+        moveNext = Helpers.GetInstanceMethod(iteratorType, "MoveNext");
+        current = Helpers.GetGetMethod(Helpers.GetProperty(iteratorType, "Current", false), false, false);
+        return getEnumerator;
+    }
 #if FEAT_COMPILER
         protected override void EmitWrite(ProtoBuf.Compiler.CompilerContext ctx, ProtoBuf.Compiler.Local valueFrom)
         {
@@ -453,7 +524,7 @@ namespace ProtoBuf.Serializers
                         }
                         Tail.EmitWrite(ctx, null);
 
-                        ctx.MarkLabel(@next);
+                        ctx.MarkLabel(next);
                         ctx.LoadAddress(iter, enumeratorType);
                         ctx.EmitCall(moveNext, enumeratorType);
                         ctx.BranchIfTrue(body, false);
@@ -470,110 +541,127 @@ namespace ProtoBuf.Serializers
         }
 #endif
 
-        public override void Write(object value, ProtoWriter dest)
+    public override void Write(object value, ProtoWriter dest)
+    {
+        SubItemToken token;
+        var writePacked = WritePacked;
+        var fixedSizePacked = writePacked & CanUsePackedPrefix(value) && value is ICollection;
+        if (writePacked)
         {
-            SubItemToken token;
-            bool writePacked = WritePacked;
-            bool fixedSizePacked = writePacked & CanUsePackedPrefix(value) && value is ICollection;
-            if (writePacked)
+            ProtoWriter.WriteFieldHeader(fieldNumber, WireType.String, dest);
+            if (fixedSizePacked)
             {
-                ProtoWriter.WriteFieldHeader(fieldNumber, WireType.String, dest);
-                if (fixedSizePacked)
-                {
-                    ProtoWriter.WritePackedPrefix(((ICollection)value).Count, packedWireType, dest);
-                    token = default(SubItemToken);
-                }
-                else
-                {
-                    token = ProtoWriter.StartSubItem(value, dest);
-                }
-                ProtoWriter.SetPackedField(fieldNumber, dest);
+                ProtoWriter.WritePackedPrefix(((ICollection)value).Count, packedWireType, dest);
+                token = default;
             }
             else
             {
-                token = new SubItemToken(); // default
+                token = ProtoWriter.StartSubItem(value, dest);
             }
-            bool checkForNull = !SupportNull;
-            foreach (object subItem in (IEnumerable)value)
-            {
-                if (checkForNull && subItem == null) { throw new NullReferenceException(); }
-                Tail.Write(subItem, dest);
-            }
-            if (writePacked)
-            {
-                if (fixedSizePacked)
-                {
-                    ProtoWriter.ClearPackedField(fieldNumber, dest);
-                }
-                else
-                {
-                    ProtoWriter.EndSubItem(token, dest);
-                }
-            }
+
+            ProtoWriter.SetPackedField(fieldNumber, dest);
         }
-
-        private bool CanUsePackedPrefix(object obj) =>
-            ArrayDecorator.CanUsePackedPrefix(packedWireType, Tail.ExpectedType);
-
-        public override object Read(object value, ProtoReader source)
+        else
         {
-            try
+            token = new SubItemToken(); // default
+        }
+
+        var checkForNull = !SupportNull;
+        foreach (var subItem in (IEnumerable)value)
+        {
+            if (checkForNull && subItem == null)
             {
-                int field = source.FieldNumber;
-                object origValue = value;
-                if (value == null) value = Activator.CreateInstance(concreteType);
-                bool isList = IsList && !SuppressIList;
-                if (packedWireType != WireType.None && source.WireType == WireType.String)
+                throw new NullReferenceException();
+            }
+
+            Tail.Write(subItem, dest);
+        }
+
+        if (writePacked)
+        {
+            if (fixedSizePacked)
+            {
+                ProtoWriter.ClearPackedField(fieldNumber, dest);
+            }
+            else
+            {
+                ProtoWriter.EndSubItem(token, dest);
+            }
+        }
+    }
+
+    private bool CanUsePackedPrefix(object obj)
+    {
+        return ArrayDecorator.CanUsePackedPrefix(packedWireType, Tail.ExpectedType);
+    }
+
+    public override object Read(object value, ProtoReader source)
+    {
+        try
+        {
+            var field = source.FieldNumber;
+            var origValue = value;
+            if (value == null)
+            {
+                value = Activator.CreateInstance(concreteType);
+            }
+
+            var isList = IsList && !SuppressIList;
+            if (packedWireType != WireType.None && source.WireType == WireType.String)
+            {
+                var token = ProtoReader.StartSubItem(source);
+                if (isList)
                 {
-                    SubItemToken token = ProtoReader.StartSubItem(source);
-                    if (isList)
+                    var list = (IList)value;
+                    while (ProtoReader.HasSubValue(packedWireType, source))
                     {
-                        IList list = (IList)value;
-                        while (ProtoReader.HasSubValue(packedWireType, source))
-                        {
-                            list.Add(Tail.Read(null, source));
-                        }
+                        list.Add(Tail.Read(null, source));
                     }
-                    else
-                    {
-                        object[] args = new object[1];
-                        while (ProtoReader.HasSubValue(packedWireType, source))
-                        {
-                            args[0] = Tail.Read(null, source);
-                            add.Invoke(value, args);
-                        }
-                    }
-                    ProtoReader.EndSubItem(token, source);
                 }
                 else
                 {
-                    if (isList)
+                    var args = new object[1];
+                    while (ProtoReader.HasSubValue(packedWireType, source))
                     {
-                        IList list = (IList)value;
-                        do
-                        {
-                            list.Add(Tail.Read(null, source));
-                        } while (source.TryReadFieldHeader(field));
-                    }
-                    else
-                    {
-                        object[] args = new object[1];
-                        do
-                        {
-                            args[0] = Tail.Read(null, source);
-                            add.Invoke(value, args);
-                        } while (source.TryReadFieldHeader(field));
+                        args[0] = Tail.Read(null, source);
+                        add.Invoke(value, args);
                     }
                 }
-                return origValue == value ? null : value;
-            }
-            catch (TargetInvocationException tie)
-            {
-                if (tie.InnerException != null) throw tie.InnerException;
-                throw;
-            }
-        }
 
+                ProtoReader.EndSubItem(token, source);
+            }
+            else
+            {
+                if (isList)
+                {
+                    var list = (IList)value;
+                    do
+                    {
+                        list.Add(Tail.Read(null, source));
+                    } while (source.TryReadFieldHeader(field));
+                }
+                else
+                {
+                    var args = new object[1];
+                    do
+                    {
+                        args[0] = Tail.Read(null, source);
+                        add.Invoke(value, args);
+                    } while (source.TryReadFieldHeader(field));
+                }
+            }
+
+            return origValue == value ? null : value;
+        }
+        catch (TargetInvocationException tie)
+        {
+            if (tie.InnerException != null)
+            {
+                throw tie.InnerException;
+            }
+
+            throw;
+        }
     }
 }
 #endif

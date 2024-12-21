@@ -72,15 +72,15 @@ namespace ProtoBuf.Serializers
         {
             Tail.EmitRead(ctx, valueFrom);
             ctx.CopyValue();
-            Compiler.CodeLabel @nonEmpty = ctx.DefineLabel(), @end = ctx.DefineLabel();
+            Compiler.CodeLabel nonEmpty = ctx.DefineLabel(), end = ctx.DefineLabel();
             ctx.LoadValue(typeof(string).GetProperty("Length"));
-            ctx.BranchIfTrue(@nonEmpty, true);
+            ctx.BranchIfTrue(nonEmpty, true);
             ctx.DiscardValue();
             ctx.LoadNullRef();
-            ctx.Branch(@end, true);
-            ctx.MarkLabel(@nonEmpty);
+            ctx.Branch(end, true);
+            ctx.MarkLabel(nonEmpty);
             ctx.EmitCtor(expectedType, ctx.MapType(typeof(string)));
-            ctx.MarkLabel(@end);
+            ctx.MarkLabel(end);
             
         }
 #endif

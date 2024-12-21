@@ -576,12 +576,12 @@ namespace ProtoBuf.Compiler
                     {
                         LoadAddress(valOrNull, type);
                         LoadValue(type.GetProperty("HasValue"));
-                        CodeLabel @end = DefineLabel();
-                        BranchIfFalse(@end, false);
+                        CodeLabel end = DefineLabel();
+                        BranchIfFalse(end, false);
                         LoadAddress(valOrNull, type);
                         EmitCall(type.GetMethod("GetValueOrDefault", Helpers.EmptyTypes));
                         tail.EmitWrite(this, null);
-                        MarkLabel(@end);
+                        MarkLabel(end);
                     }
                 }
             }
@@ -589,13 +589,13 @@ namespace ProtoBuf.Compiler
             { // ref-type; do a null-check
                 LoadValue(valueFrom);
                 CopyValue();
-                CodeLabel hasVal = DefineLabel(), @end = DefineLabel();
+                CodeLabel hasVal = DefineLabel(), end = DefineLabel();
                 BranchIfTrue(hasVal, true);
                 DiscardValue();
-                Branch(@end, false);
+                Branch(end, false);
                 MarkLabel(hasVal);
                 tail.EmitWrite(this, null);
-                MarkLabel(@end);
+                MarkLabel(end);
             }
         }
 

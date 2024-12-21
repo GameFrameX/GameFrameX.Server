@@ -1,428 +1,466 @@
 ﻿#if !NO_RUNTIME
-using System;
 using System.Collections;
-using System.Text;
 using System.Reflection;
+using System.Text;
+using ProtoBuf.Serializers;
 #if FEAT_COMPILER
 using System.Reflection.Emit;
 #endif
 
-using ProtoBuf.Serializers;
-using System.Threading;
-using System.IO;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
+namespace ProtoBuf.Meta;
 
-namespace ProtoBuf.Meta
+/// <summary>
+/// Provides protobuf serialization support for a number of types that can be defined at runtime
+/// </summary>
+public sealed class RuntimeTypeModel : TypeModel
 {
-    /// <summary>
-    /// Provides protobuf serialization support for a number of types that can be defined at runtime
-    /// </summary>
-    public sealed class RuntimeTypeModel : TypeModel
-    {
-        private ushort options;
+    private ushort options;
 
-        private const ushort
-            OPTIONS_InferTagFromNameDefault = 1,
-            OPTIONS_IsDefaultModel = 2,
-            OPTIONS_Frozen = 4,
-            OPTIONS_AutoAddMissingTypes = 8,
+    private const ushort
+        OPTIONS_InferTagFromNameDefault = 1,
+        OPTIONS_IsDefaultModel = 2,
+        OPTIONS_Frozen = 4,
+        OPTIONS_AutoAddMissingTypes = 8,
 #if FEAT_COMPILER
            OPTIONS_AutoCompile = 16,
 #endif
-            OPTIONS_UseImplicitZeroDefaults = 32,
-            OPTIONS_AllowParseableTypes = 64,
-            OPTIONS_AutoAddProtoContractTypesOnly = 128,
-            OPTIONS_IncludeDateTimeKind = 256,
-            OPTIONS_DoNotInternStrings = 512;
+        OPTIONS_UseImplicitZeroDefaults = 32,
+        OPTIONS_AllowParseableTypes = 64,
+        OPTIONS_AutoAddProtoContractTypesOnly = 128,
+        OPTIONS_IncludeDateTimeKind = 256,
+        OPTIONS_DoNotInternStrings = 512;
 
-        private bool GetOption(ushort option)
+    private bool GetOption(ushort option)
+    {
+        return (options & option) == option;
+    }
+
+    private void SetOption(ushort option, bool value)
+    {
+        if (value)
         {
-            return (options & option) == option;
+            options |= option;
         }
-
-        private void SetOption(ushort option, bool value)
+        else
         {
-            if (value) options |= option;
-            else options &= (ushort)~option;
+            options &= (ushort)~option;
         }
+    }
 
-        /// <summary>
-        /// Global default that
-        /// enables/disables automatic tag generation based on the existing name / order
-        /// of the defined members. See <seealso cref="ProtoContractAttribute.InferTagFromName"/>
-        /// for usage and <b>important warning</b> / explanation.
-        /// You must set the global default before attempting to serialize/deserialize any
-        /// impacted type.
-        /// </summary>
-        public bool InferTagFromNameDefault
-        {
-            get { return GetOption(OPTIONS_InferTagFromNameDefault); }
-            set { SetOption(OPTIONS_InferTagFromNameDefault, value); }
-        }
+    /// <summary>
+    /// Global default that
+    /// enables/disables automatic tag generation based on the existing name / order
+    /// of the defined members. See <seealso cref="ProtoContractAttribute.InferTagFromName" />
+    /// for usage and <b>important warning</b> / explanation.
+    /// You must set the global default before attempting to serialize/deserialize any
+    /// impacted type.
+    /// </summary>
+    public bool InferTagFromNameDefault
+    {
+        get { return GetOption(OPTIONS_InferTagFromNameDefault); }
+        set { SetOption(OPTIONS_InferTagFromNameDefault, value); }
+    }
 
-        /// <summary>
-        /// Global default that determines whether types are considered serializable
-        /// if they have [DataContract] / [XmlType]. With this enabled, <b>ONLY</b>
-        /// types marked as [ProtoContract] are added automatically.
-        /// </summary>
-        public bool AutoAddProtoContractTypesOnly
-        {
-            get { return GetOption(OPTIONS_AutoAddProtoContractTypesOnly); }
-            set { SetOption(OPTIONS_AutoAddProtoContractTypesOnly, value); }
-        }
+    /// <summary>
+    /// Global default that determines whether types are considered serializable
+    /// if they have [DataContract] / [XmlType]. With this enabled, <b>ONLY</b>
+    /// types marked as [ProtoContract] are added automatically.
+    /// </summary>
+    public bool AutoAddProtoContractTypesOnly
+    {
+        get { return GetOption(OPTIONS_AutoAddProtoContractTypesOnly); }
+        set { SetOption(OPTIONS_AutoAddProtoContractTypesOnly, value); }
+    }
 
-        /// <summary>
-        /// Global switch that enables or disables the implicit
-        /// handling of "zero defaults"; meanning: if no other default is specified,
-        /// it assumes bools always default to false, integers to zero, etc.
-        /// 
-        /// If this is disabled, no such assumptions are made and only *explicit*
-        /// default values are processed. This is enabled by default to 
-        /// preserve similar logic to v1.
-        /// </summary>
-        public bool UseImplicitZeroDefaults
+    /// <summary>
+    /// Global switch that enables or disables the implicit
+    /// handling of "zero defaults"; meanning: if no other default is specified,
+    /// it assumes bools always default to false, integers to zero, etc.
+    /// If this is disabled, no such assumptions are made and only *explicit*
+    /// default values are processed. This is enabled by default to
+    /// preserve similar logic to v1.
+    /// </summary>
+    public bool UseImplicitZeroDefaults
+    {
+        get { return GetOption(OPTIONS_UseImplicitZeroDefaults); }
+        set
         {
-            get { return GetOption(OPTIONS_UseImplicitZeroDefaults); }
-            set
+            if (!value && GetOption(OPTIONS_IsDefaultModel))
             {
-                if (!value && GetOption(OPTIONS_IsDefaultModel))
-                {
-                    throw new InvalidOperationException("UseImplicitZeroDefaults cannot be disabled on the default model");
-                }
-
-                SetOption(OPTIONS_UseImplicitZeroDefaults, value);
-            }
-        }
-
-        /// <summary>
-        /// Global switch that determines whether types with a <c>.ToString()</c> and a <c>Parse(string)</c>
-        /// should be serialized as strings.
-        /// </summary>
-        public bool AllowParseableTypes
-        {
-            get { return GetOption(OPTIONS_AllowParseableTypes); }
-            set { SetOption(OPTIONS_AllowParseableTypes, value); }
-        }
-
-        /// <summary>
-        /// Global switch that determines whether DateTime serialization should include the <c>Kind</c> of the date/time.
-        /// </summary>
-        public bool IncludeDateTimeKind
-        {
-            get { return GetOption(OPTIONS_IncludeDateTimeKind); }
-            set { SetOption(OPTIONS_IncludeDateTimeKind, value); }
-        }
-
-        /// <summary>
-        /// Global switch that determines whether a single instance of the same string should be used during deserialization.
-        /// </summary>
-        /// <remarks>Note this does not use the global .NET string interner</remarks>
-        public bool InternStrings
-        {
-            get { return !GetOption(OPTIONS_DoNotInternStrings); }
-            set { SetOption(OPTIONS_DoNotInternStrings, !value); }
-        }
-
-        /// <summary>
-        /// Should the <c>Kind</c> be included on date/time values?
-        /// </summary>
-        protected internal override bool SerializeDateTimeKind()
-        {
-            return GetOption(OPTIONS_IncludeDateTimeKind);
-        }
-
-        private sealed class Singleton
-        {
-            private Singleton()
-            {
+                throw new InvalidOperationException("UseImplicitZeroDefaults cannot be disabled on the default model");
             }
 
-            internal static readonly RuntimeTypeModel Value = new RuntimeTypeModel(true);
+            SetOption(OPTIONS_UseImplicitZeroDefaults, value);
         }
+    }
 
-        /// <summary>
-        /// The default model, used to support ProtoBuf.Serializer
-        /// </summary>
-        public static RuntimeTypeModel Default => Singleton.Value;
+    /// <summary>
+    /// Global switch that determines whether types with a <c>.ToString()</c> and a <c>Parse(string)</c>
+    /// should be serialized as strings.
+    /// </summary>
+    public bool AllowParseableTypes
+    {
+        get { return GetOption(OPTIONS_AllowParseableTypes); }
+        set { SetOption(OPTIONS_AllowParseableTypes, value); }
+    }
 
-        /// <summary>
-        /// Returns a sequence of the Type instances that can be
-        /// processed by this model.
-        /// </summary>
-        public IEnumerable GetTypes() => types;
+    /// <summary>
+    /// Global switch that determines whether DateTime serialization should include the <c>Kind</c> of the date/time.
+    /// </summary>
+    public bool IncludeDateTimeKind
+    {
+        get { return GetOption(OPTIONS_IncludeDateTimeKind); }
+        set { SetOption(OPTIONS_IncludeDateTimeKind, value); }
+    }
 
-        /// <summary>
-        /// Suggest a .proto definition for the given type
-        /// </summary>
-        /// <param name="type">The type to generate a .proto definition for, or <c>null</c> to generate a .proto that represents the entire model</param>
-        /// <returns>The .proto definition as a string</returns>
-        /// <param name="syntax">The .proto syntax to use</param>
-        public override string GetSchema(Type type, ProtoSyntax syntax)
+    /// <summary>
+    /// Global switch that determines whether a single instance of the same string should be used during deserialization.
+    /// </summary>
+    /// <remarks>Note this does not use the global .NET string interner</remarks>
+    public bool InternStrings
+    {
+        get { return !GetOption(OPTIONS_DoNotInternStrings); }
+        set { SetOption(OPTIONS_DoNotInternStrings, !value); }
+    }
+
+    /// <summary>
+    /// Should the <c>Kind</c> be included on date/time values?
+    /// </summary>
+    protected internal override bool SerializeDateTimeKind()
+    {
+        return GetOption(OPTIONS_IncludeDateTimeKind);
+    }
+
+    private sealed class Singleton
+    {
+        internal static readonly RuntimeTypeModel Value = new(true);
+
+        private Singleton()
         {
-            BasicList requiredTypes = new BasicList();
-            MetaType primaryType = null;
-            bool isInbuiltType = false;
-            if (type == null)
-            {
-                // generate for the entire model
-                foreach (MetaType meta in types)
-                {
-                    MetaType tmp = meta.GetSurrogateOrBaseOrSelf(false);
-                    if (!requiredTypes.Contains(tmp))
-                    {
-                        // ^^^ note that the type might have been added as a descendent
-                        requiredTypes.Add(tmp);
-                        CascadeDependents(requiredTypes, tmp);
-                    }
-                }
-            }
-            else
-            {
-                Type tmp = Helpers.GetUnderlyingType(type);
-                if (tmp != null) type = tmp;
+        }
+    }
 
-                WireType defaultWireType;
-                isInbuiltType = (ValueMember.TryGetCoreSerializer(this, DataFormat.Default, type, out defaultWireType, false, false, false, false) != null);
-                if (!isInbuiltType)
-                {
-                    //Agenerate just relative to the supplied type
-                    int index = FindOrAddAuto(type, false, false, false);
-                    if (index < 0) throw new ArgumentException("The type specified is not a contract-type", "type");
+    /// <summary>
+    /// The default model, used to support ProtoBuf.Serializer
+    /// </summary>
+    public static RuntimeTypeModel Default
+    {
+        get { return Singleton.Value; }
+    }
 
-                    // get the required types
-                    primaryType = ((MetaType)types[index]).GetSurrogateOrBaseOrSelf(false);
-                    requiredTypes.Add(primaryType);
-                    CascadeDependents(requiredTypes, primaryType);
+    /// <summary>
+    /// Returns a sequence of the Type instances that can be
+    /// processed by this model.
+    /// </summary>
+    public IEnumerable GetTypes()
+    {
+        return types;
+    }
+
+    /// <summary>
+    /// Suggest a .proto definition for the given type
+    /// </summary>
+    /// <param name="type">The type to generate a .proto definition for, or <c>null</c> to generate a .proto that represents the entire model</param>
+    /// <returns>The .proto definition as a string</returns>
+    /// <param name="syntax">The .proto syntax to use</param>
+    public override string GetSchema(Type type, ProtoSyntax syntax)
+    {
+        var requiredTypes = new BasicList();
+        MetaType primaryType = null;
+        var isInbuiltType = false;
+        if (type == null)
+        {
+            // generate for the entire model
+            foreach (MetaType meta in types)
+            {
+                var tmp = meta.GetSurrogateOrBaseOrSelf(false);
+                if (!requiredTypes.Contains(tmp))
+                {
+                    // ^^^ note that the type might have been added as a descendent
+                    requiredTypes.Add(tmp);
+                    CascadeDependents(requiredTypes, tmp);
                 }
             }
+        }
+        else
+        {
+            var tmp = Helpers.GetUnderlyingType(type);
+            if (tmp != null)
+            {
+                type = tmp;
+            }
 
-            // use the provided type's namespace for the "package"
-            StringBuilder headerBuilder = new StringBuilder();
-            string package = null;
-
+            WireType defaultWireType;
+            isInbuiltType = ValueMember.TryGetCoreSerializer(this, DataFormat.Default, type, out defaultWireType, false, false, false, false) != null;
             if (!isInbuiltType)
             {
-                IEnumerable typesForNamespace = primaryType == null ? types : requiredTypes;
-                foreach (MetaType meta in typesForNamespace)
+                //Agenerate just relative to the supplied type
+                var index = FindOrAddAuto(type, false, false);
+                if (index < 0)
                 {
-                    if (meta.IsList) continue;
-                    string tmp = meta.Type.Namespace;
-                    if (!string.IsNullOrEmpty(tmp))
+                    throw new ArgumentException("The type specified is not a contract-type", "type");
+                }
+
+                // get the required types
+                primaryType = ((MetaType)types[index]).GetSurrogateOrBaseOrSelf(false);
+                requiredTypes.Add(primaryType);
+                CascadeDependents(requiredTypes, primaryType);
+            }
+        }
+
+        // use the provided type's namespace for the "package"
+        var headerBuilder = new StringBuilder();
+        string package = null;
+
+        if (!isInbuiltType)
+        {
+            IEnumerable typesForNamespace = primaryType == null ? types : requiredTypes;
+            foreach (MetaType meta in typesForNamespace)
+            {
+                if (meta.IsList)
+                {
+                    continue;
+                }
+
+                var tmp = meta.Type.Namespace;
+                if (!string.IsNullOrEmpty(tmp))
+                {
+                    if (tmp.StartsWith("System."))
                     {
-                        if (tmp.StartsWith("System.")) continue;
-                        if (package == null)
-                        {
-                            // haven't seen any suggestions yet
-                            package = tmp;
-                        }
-                        else if (package == tmp)
-                        {
-                            // that's fine; a repeat of the one we already saw
-                        }
-                        else
-                        {
-                            // something else; have confliucting suggestions; abort
-                            package = null;
-                            break;
-                        }
+                        continue;
+                    }
+
+                    if (package == null)
+                    {
+                        // haven't seen any suggestions yet
+                        package = tmp;
+                    }
+                    else if (package == tmp)
+                    {
+                        // that's fine; a repeat of the one we already saw
+                    }
+                    else
+                    {
+                        // something else; have confliucting suggestions; abort
+                        package = null;
+                        break;
                     }
                 }
             }
+        }
 
-            switch (syntax)
-            {
-                case ProtoSyntax.Proto2:
-                    headerBuilder.AppendLine(@"syntax = ""proto2"";");
-                    break;
-                case ProtoSyntax.Proto3:
-                    headerBuilder.AppendLine(@"syntax = ""proto3"";");
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(syntax));
-            }
+        switch (syntax)
+        {
+            case ProtoSyntax.Proto2:
+                headerBuilder.AppendLine(@"syntax = ""proto2"";");
+                break;
+            case ProtoSyntax.Proto3:
+                headerBuilder.AppendLine(@"syntax = ""proto3"";");
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(syntax));
+        }
 
-            if (!string.IsNullOrEmpty(package))
-            {
-                headerBuilder.Append("package ").Append(package).Append(';');
-                Helpers.AppendLine(headerBuilder);
-            }
+        if (!string.IsNullOrEmpty(package))
+        {
+            headerBuilder.Append("package ").Append(package).Append(';');
+            Helpers.AppendLine(headerBuilder);
+        }
 
-            var imports = CommonImports.None;
-            StringBuilder bodyBuilder = new StringBuilder();
-            // sort them by schema-name
-            MetaType[] metaTypesArr = new MetaType[requiredTypes.Count];
-            requiredTypes.CopyTo(metaTypesArr, 0);
-            Array.Sort(metaTypesArr, MetaType.Comparer.Default);
+        var imports = CommonImports.None;
+        var bodyBuilder = new StringBuilder();
+        // sort them by schema-name
+        var metaTypesArr = new MetaType[requiredTypes.Count];
+        requiredTypes.CopyTo(metaTypesArr, 0);
+        Array.Sort(metaTypesArr, MetaType.Comparer.Default);
 
-            // write the messages
-            if (isInbuiltType)
-            {
-                Helpers.AppendLine(bodyBuilder).Append("message ").Append(type.Name).Append(" {");
-                MetaType.NewLine(bodyBuilder, 1).Append(syntax == ProtoSyntax.Proto2 ? "optional " : "").Append(GetSchemaTypeName(type, DataFormat.Default, false, false, ref imports))
+        // write the messages
+        if (isInbuiltType)
+        {
+            Helpers.AppendLine(bodyBuilder).Append("message ").Append(type.Name).Append(" {");
+            MetaType.NewLine(bodyBuilder, 1).Append(syntax == ProtoSyntax.Proto2 ? "optional " : "").Append(GetSchemaTypeName(type, DataFormat.Default, false, false, ref imports))
                     .Append(" value = 1;");
-                Helpers.AppendLine(bodyBuilder).Append('}');
-            }
-            else
+            Helpers.AppendLine(bodyBuilder).Append('}');
+        }
+        else
+        {
+            for (var i = 0; i < metaTypesArr.Length; i++)
             {
-                for (int i = 0; i < metaTypesArr.Length; i++)
+                var tmp = metaTypesArr[i];
+                if (tmp.IsList && tmp != primaryType)
                 {
-                    MetaType tmp = metaTypesArr[i];
-                    if (tmp.IsList && tmp != primaryType) continue;
-                    tmp.WriteSchema(bodyBuilder, 0, ref imports, syntax);
+                    continue;
                 }
-            }
 
-            if ((imports & CommonImports.Bcl) != 0)
-            {
-                headerBuilder.Append("import \"protobuf-net/bcl.proto\"; // schema for protobuf-net's handling of core .NET types");
-                Helpers.AppendLine(headerBuilder);
+                tmp.WriteSchema(bodyBuilder, 0, ref imports, syntax);
             }
-
-            if ((imports & CommonImports.Protogen) != 0)
-            {
-                headerBuilder.Append("import \"protobuf-net/protogen.proto\"; // custom protobuf-net options");
-                Helpers.AppendLine(headerBuilder);
-            }
-
-            if ((imports & CommonImports.Timestamp) != 0)
-            {
-                headerBuilder.Append("import \"google/protobuf/timestamp.proto\";");
-                Helpers.AppendLine(headerBuilder);
-            }
-
-            if ((imports & CommonImports.Duration) != 0)
-            {
-                headerBuilder.Append("import \"google/protobuf/duration.proto\";");
-                Helpers.AppendLine(headerBuilder);
-            }
-
-            return Helpers.AppendLine(headerBuilder.Append(bodyBuilder)).ToString();
         }
 
-        [Flags]
-        internal enum CommonImports
+        if ((imports & CommonImports.Bcl) != 0)
         {
-            None = 0,
-            Bcl = 1,
-            Timestamp = 2,
-            Duration = 4,
-            Protogen = 8
+            headerBuilder.Append("import \"protobuf-net/bcl.proto\"; // schema for protobuf-net's handling of core .NET types");
+            Helpers.AppendLine(headerBuilder);
         }
 
-        private void CascadeDependents(BasicList list, MetaType metaType)
+        if ((imports & CommonImports.Protogen) != 0)
         {
-            MetaType tmp;
-            if (metaType.IsList)
+            headerBuilder.Append("import \"protobuf-net/protogen.proto\"; // custom protobuf-net options");
+            Helpers.AppendLine(headerBuilder);
+        }
+
+        if ((imports & CommonImports.Timestamp) != 0)
+        {
+            headerBuilder.Append("import \"google/protobuf/timestamp.proto\";");
+            Helpers.AppendLine(headerBuilder);
+        }
+
+        if ((imports & CommonImports.Duration) != 0)
+        {
+            headerBuilder.Append("import \"google/protobuf/duration.proto\";");
+            Helpers.AppendLine(headerBuilder);
+        }
+
+        return Helpers.AppendLine(headerBuilder.Append(bodyBuilder)).ToString();
+    }
+
+    [Flags]
+    internal enum CommonImports
+    {
+        None = 0,
+        Bcl = 1,
+        Timestamp = 2,
+        Duration = 4,
+        Protogen = 8,
+    }
+
+    private void CascadeDependents(BasicList list, MetaType metaType)
+    {
+        MetaType tmp;
+        if (metaType.IsList)
+        {
+            var itemType = GetListItemType(this, metaType.Type);
+            TryGetCoreSerializer(list, itemType);
+        }
+        else
+        {
+            if (metaType.IsAutoTuple)
             {
-                Type itemType = TypeModel.GetListItemType(this, metaType.Type);
-                TryGetCoreSerializer(list, itemType);
-            }
-            else
-            {
-                if (metaType.IsAutoTuple)
+                MemberInfo[] mapping;
+                if (MetaType.ResolveTupleConstructor(metaType.Type, out mapping) != null)
                 {
-                    MemberInfo[] mapping;
-                    if (MetaType.ResolveTupleConstructor(metaType.Type, out mapping) != null)
+                    for (var i = 0; i < mapping.Length; i++)
                     {
-                        for (int i = 0; i < mapping.Length; i++)
+                        Type type = null;
+                        if (mapping[i] is PropertyInfo)
                         {
-                            Type type = null;
-                            if (mapping[i] is PropertyInfo) type = ((PropertyInfo)mapping[i]).PropertyType;
-                            else if (mapping[i] is FieldInfo) type = ((FieldInfo)mapping[i]).FieldType;
-                            TryGetCoreSerializer(list, type);
+                            type = ((PropertyInfo)mapping[i]).PropertyType;
                         }
-                    }
-                }
-                else
-                {
-                    foreach (ValueMember member in metaType.Fields)
-                    {
-                        Type type = member.ItemType;
-                        if (member.IsMap)
+                        else if (mapping[i] is FieldInfo)
                         {
-                            member.ResolveMapTypes(out _, out _, out type); // don't need key-type
+                            type = ((FieldInfo)mapping[i]).FieldType;
                         }
 
-                        if (type == null) type = member.MemberType;
                         TryGetCoreSerializer(list, type);
                     }
                 }
-
-                foreach (var genericArgument in metaType.GetAllGenericArguments())
+            }
+            else
+            {
+                foreach (ValueMember member in metaType.Fields)
                 {
-                    TryGetCoreSerializer(list, genericArgument);
-                }
-
-                if (metaType.HasSubtypes)
-                {
-                    foreach (SubType subType in metaType.GetSubtypes())
+                    var type = member.ItemType;
+                    if (member.IsMap)
                     {
-                        tmp = subType.DerivedType.GetSurrogateOrSelf(); // note: exclude base-types!
-                        if (!list.Contains(tmp))
-                        {
-                            list.Add(tmp);
-                            CascadeDependents(list, tmp);
-                        }
+                        member.ResolveMapTypes(out _, out _, out type); // don't need key-type
+                    }
+
+                    if (type == null)
+                    {
+                        type = member.MemberType;
+                    }
+
+                    TryGetCoreSerializer(list, type);
+                }
+            }
+
+            foreach (var genericArgument in metaType.GetAllGenericArguments())
+            {
+                TryGetCoreSerializer(list, genericArgument);
+            }
+
+            if (metaType.HasSubtypes)
+            {
+                foreach (var subType in metaType.GetSubtypes())
+                {
+                    tmp = subType.DerivedType.GetSurrogateOrSelf(); // note: exclude base-types!
+                    if (!list.Contains(tmp))
+                    {
+                        list.Add(tmp);
+                        CascadeDependents(list, tmp);
                     }
                 }
+            }
 
-                tmp = metaType.BaseType;
-                if (tmp != null) tmp = tmp.GetSurrogateOrSelf(); // note: already walking base-types; exclude base
-                if (tmp != null && !list.Contains(tmp))
-                {
-                    list.Add(tmp);
-                    CascadeDependents(list, tmp);
-                }
+            tmp = metaType.BaseType;
+            if (tmp != null)
+            {
+                tmp = tmp.GetSurrogateOrSelf(); // note: already walking base-types; exclude base
+            }
+
+            if (tmp != null && !list.Contains(tmp))
+            {
+                list.Add(tmp);
+                CascadeDependents(list, tmp);
             }
         }
+    }
 
-        private void TryGetCoreSerializer(BasicList list, Type itemType)
+    private void TryGetCoreSerializer(BasicList list, Type itemType)
+    {
+        var coreSerializer = ValueMember.TryGetCoreSerializer(this, DataFormat.Default, itemType, out _, false, false, false, false);
+        if (coreSerializer != null)
         {
-            var coreSerializer = ValueMember.TryGetCoreSerializer(this, DataFormat.Default, itemType, out _, false, false, false, false);
-            if (coreSerializer != null)
-            {
-                return;
-            }
-
-            int index = FindOrAddAuto(itemType, false, false, false);
-            if (index < 0)
-            {
-                return;
-            }
-
-            var temp = ((MetaType)types[index]).GetSurrogateOrBaseOrSelf(false);
-            if (list.Contains(temp))
-            {
-                return;
-            }
-
-            // could perhaps also implement as a queue, but this should work OK for sane models
-            list.Add(temp);
-            CascadeDependents(list, temp);
+            return;
         }
+
+        var index = FindOrAddAuto(itemType, false, false);
+        if (index < 0)
+        {
+            return;
+        }
+
+        var temp = ((MetaType)types[index]).GetSurrogateOrBaseOrSelf(false);
+        if (list.Contains(temp))
+        {
+            return;
+        }
+
+        // could perhaps also implement as a queue, but this should work OK for sane models
+        list.Add(temp);
+        CascadeDependents(list, temp);
+    }
 
 #if !NO_RUNTIME
-        /// <summary>
-        /// Creates a new runtime model, to which the caller
-        /// can add support for a range of types. A model
-        /// can be used "as is", or can be compiled for
-        /// optimal performance.
-        /// </summary>
-        /// <param name="name">not used currently; this is for compatibility with v3</param>
+    /// <summary>
+    /// Creates a new runtime model, to which the caller
+    /// can add support for a range of types. A model
+    /// can be used "as is", or can be compiled for
+    /// optimal performance.
+    /// </summary>
+    /// <param name="name">not used currently; this is for compatibility with v3</param>
 #pragma warning disable IDE0060 // Remove unused parameter
-        public static RuntimeTypeModel Create(string name = null)
+    public static RuntimeTypeModel Create(string name = null)
 #pragma warning restore IDE0060 // Remove unused parameter
-        {
-            return new RuntimeTypeModel(false);
-        }
+    {
+        return new RuntimeTypeModel(false);
+    }
 #endif
 
-        private RuntimeTypeModel(bool isDefault)
-        {
-            AutoAddMissingTypes = true;
-            UseImplicitZeroDefaults = true;
-            SetOption(OPTIONS_IsDefaultModel, isDefault);
+    private RuntimeTypeModel(bool isDefault)
+    {
+        AutoAddMissingTypes = true;
+        UseImplicitZeroDefaults = true;
+        SetOption(OPTIONS_IsDefaultModel, isDefault);
 #if FEAT_COMPILER && !DEBUG
             try
             {
@@ -430,7 +468,7 @@ namespace ProtoBuf.Meta
             }
             catch { } // this is all kinds of brittle on things like UWP
 #endif
-        }
+    }
 
 #if FEAT_COMPILER
         [MethodImpl(MethodImplOptions.NoInlining)]
@@ -455,301 +493,343 @@ namespace ProtoBuf.Meta
         }
 #endif
 
-        /// <summary>
-        /// Obtains the MetaType associated with a given Type for the current model,
-        /// allowing additional configuration.
-        /// </summary>
-        public MetaType this[Type type]
-        {
-            get { return (MetaType)types[FindOrAddAuto(type, true, false, false)]; }
-        }
+    /// <summary>
+    /// Obtains the MetaType associated with a given Type for the current model,
+    /// allowing additional configuration.
+    /// </summary>
+    public MetaType this[Type type]
+    {
+        get { return (MetaType)types[FindOrAddAuto(type, true, false)]; }
+    }
 
-        internal MetaType FindWithoutAdd(Type type)
+    internal MetaType FindWithoutAdd(Type type)
+    {
+        // this list is thread-safe for reading
+        foreach (MetaType metaType in types)
         {
-            // this list is thread-safe for reading
-            foreach (MetaType metaType in types)
+            if (metaType.Type == type)
             {
-                if (metaType.Type == type)
-                {
-                    if (metaType.Pending) WaitOnLock(metaType);
-                    return metaType;
-                }
-            }
-
-            // if that failed, check for a proxy
-            Type underlyingType = ResolveProxies(type);
-            return underlyingType == null ? null : FindWithoutAdd(underlyingType);
-        }
-
-        static readonly BasicList.MatchPredicate
-            MetaTypeFinder = new BasicList.MatchPredicate(MetaTypeFinderImpl),
-            BasicTypeFinder = new BasicList.MatchPredicate(BasicTypeFinderImpl);
-
-        static bool MetaTypeFinderImpl(object value, object ctx)
-        {
-            return ((MetaType)value).Type == (Type)ctx;
-        }
-
-        static bool BasicTypeFinderImpl(object value, object ctx)
-        {
-            return ((BasicType)value).Type == (Type)ctx;
-        }
-
-        private void WaitOnLock(MetaType type)
-        {
-            int opaqueToken = 0;
-            try
-            {
-                TakeLock(ref opaqueToken);
-            }
-            finally
-            {
-                ReleaseLock(opaqueToken);
-            }
-        }
-
-        BasicList basicTypes = new BasicList();
-
-        sealed class BasicType
-        {
-            private readonly Type type;
-            public Type Type => type;
-            private readonly IProtoSerializer serializer;
-            public IProtoSerializer Serializer => serializer;
-
-            public BasicType(Type type, IProtoSerializer serializer)
-            {
-                this.type = type;
-                this.serializer = serializer;
-            }
-        }
-
-        internal IProtoSerializer TryGetBasicTypeSerializer(Type type)
-        {
-            int idx = basicTypes.IndexOf(BasicTypeFinder, type);
-
-            if (idx >= 0) return ((BasicType)basicTypes[idx]).Serializer;
-
-            lock (basicTypes)
-            {
-                // don't need a full model lock for this
-
-                // double-checked
-                idx = basicTypes.IndexOf(BasicTypeFinder, type);
-                if (idx >= 0) return ((BasicType)basicTypes[idx]).Serializer;
-
-                MetaType.AttributeFamily family = MetaType.GetContractFamily(this, type, null);
-                IProtoSerializer ser = family == MetaType.AttributeFamily.None
-                    ? ValueMember.TryGetCoreSerializer(this, DataFormat.Default, type, out WireType defaultWireType, false, false, false, false)
-                    : null;
-
-                if (ser != null) basicTypes.Add(new BasicType(type, ser));
-                return ser;
-            }
-        }
-
-        internal int FindOrAddAuto(Type type, bool demand, bool addWithContractOnly, bool addEvenIfAutoDisabled = false)
-        {
-            int key = types.IndexOf(MetaTypeFinder, type);
-            MetaType metaType;
-
-            // the fast happy path: meta-types we've already seen
-            if (key >= 0)
-            {
-                metaType = (MetaType)types[key];
                 if (metaType.Pending)
                 {
                     WaitOnLock(metaType);
                 }
 
-                return key;
+                return metaType;
+            }
+        }
+
+        // if that failed, check for a proxy
+        var underlyingType = ResolveProxies(type);
+        return underlyingType == null ? null : FindWithoutAdd(underlyingType);
+    }
+
+    private static readonly BasicList.MatchPredicate
+        MetaTypeFinder = MetaTypeFinderImpl,
+        BasicTypeFinder = BasicTypeFinderImpl;
+
+    private static bool MetaTypeFinderImpl(object value, object ctx)
+    {
+        return ((MetaType)value).Type == (Type)ctx;
+    }
+
+    private static bool BasicTypeFinderImpl(object value, object ctx)
+    {
+        return ((BasicType)value).Type == (Type)ctx;
+    }
+
+    private void WaitOnLock(MetaType type)
+    {
+        var opaqueToken = 0;
+        try
+        {
+            TakeLock(ref opaqueToken);
+        }
+        finally
+        {
+            ReleaseLock(opaqueToken);
+        }
+    }
+
+    private readonly BasicList basicTypes = new();
+
+    private sealed class BasicType
+    {
+        public BasicType(Type type, IProtoSerializer serializer)
+        {
+            Type = type;
+            Serializer = serializer;
+        }
+
+        public Type Type { get; }
+
+        public IProtoSerializer Serializer { get; }
+    }
+
+    internal IProtoSerializer TryGetBasicTypeSerializer(Type type)
+    {
+        var idx = basicTypes.IndexOf(BasicTypeFinder, type);
+
+        if (idx >= 0)
+        {
+            return ((BasicType)basicTypes[idx]).Serializer;
+        }
+
+        lock (basicTypes)
+        {
+            // don't need a full model lock for this
+
+            // double-checked
+            idx = basicTypes.IndexOf(BasicTypeFinder, type);
+            if (idx >= 0)
+            {
+                return ((BasicType)basicTypes[idx]).Serializer;
             }
 
-            // the fast fail path: types that will never have a meta-type
-            bool shouldAdd = AutoAddMissingTypes || addEvenIfAutoDisabled;
+            var family = MetaType.GetContractFamily(this, type, null);
+            var ser = family == MetaType.AttributeFamily.None
+                          ? ValueMember.TryGetCoreSerializer(this, DataFormat.Default, type, out var defaultWireType, false, false, false, false)
+                          : null;
 
-            if (!Helpers.IsEnum(type) && TryGetBasicTypeSerializer(type) != null)
+            if (ser != null)
             {
-                if (shouldAdd && !addWithContractOnly) throw MetaType.InbuiltType(type);
-                return -1; // this will never be a meta-type
+                basicTypes.Add(new BasicType(type, ser));
             }
 
-            // otherwise: we don't yet know
+            return ser;
+        }
+    }
 
-            // check for proxy types
-            Type underlyingType = ResolveProxies(type);
-            if (underlyingType != null && underlyingType != type)
+    internal int FindOrAddAuto(Type type, bool demand, bool addWithContractOnly, bool addEvenIfAutoDisabled = false)
+    {
+        var key = types.IndexOf(MetaTypeFinder, type);
+        MetaType metaType;
+
+        // the fast happy path: meta-types we've already seen
+        if (key >= 0)
+        {
+            metaType = (MetaType)types[key];
+            if (metaType.Pending)
             {
-                key = types.IndexOf(MetaTypeFinder, underlyingType);
-                type = underlyingType; // if new added, make it reflect the underlying type
-            }
-
-            if (key < 0)
-            {
-                int opaqueToken = 0;
-                Type origType = type;
-                bool weAdded = false;
-                try
-                {
-                    TakeLock(ref opaqueToken);
-                    // try to recognise a few familiar patterns...
-                    if ((metaType = RecogniseCommonTypes(type)) == null)
-                    {
-                        // otherwise, check if it is a contract
-                        MetaType.AttributeFamily family = MetaType.GetContractFamily(this, type, null);
-                        if (family == MetaType.AttributeFamily.AutoTuple)
-                        {
-                            shouldAdd = addEvenIfAutoDisabled = true; // always add basic tuples, such as KeyValuePair
-                        }
-
-                        if (!shouldAdd || (
-                                !Helpers.IsEnum(type) && addWithContractOnly && family == MetaType.AttributeFamily.None)
-                           )
-                        {
-                            if (demand) ThrowUnexpectedType(type);
-                            return key;
-                        }
-
-                        metaType = Create(type);
-                    }
-
-                    metaType.Pending = true;
-
-                    // double-checked
-                    int winner = types.IndexOf(MetaTypeFinder, type);
-                    if (winner < 0)
-                    {
-                        ThrowIfFrozen();
-                        key = types.Add(metaType);
-                        weAdded = true;
-                    }
-                    else
-                    {
-                        key = winner;
-                    }
-
-                    if (weAdded)
-                    {
-                        metaType.ApplyDefaultBehaviour();
-                        metaType.Pending = false;
-                    }
-                }
-                finally
-                {
-                    ReleaseLock(opaqueToken);
-                    if (weAdded)
-                    {
-                        ResetKeyCache();
-                    }
-                }
+                WaitOnLock(metaType);
             }
 
             return key;
         }
 
-        private MetaType RecogniseCommonTypes(Type type)
+        // the fast fail path: types that will never have a meta-type
+        var shouldAdd = AutoAddMissingTypes || addEvenIfAutoDisabled;
+
+        if (!Helpers.IsEnum(type) && TryGetBasicTypeSerializer(type) != null)
         {
-            //            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(System.Collections.Generic.KeyValuePair<,>))
-            //            {
-            //                MetaType mt = new MetaType(this, type);
+            if (shouldAdd && !addWithContractOnly)
+            {
+                throw MetaType.InbuiltType(type);
+            }
 
-            //                Type surrogate = typeof (KeyValuePairSurrogate<,>).MakeGenericType(type.GetGenericArguments());
-
-            //                mt.SetSurrogate(surrogate);
-            //                mt.IncludeSerializerMethod = false;
-            //                mt.Freeze();
-
-            //                MetaType surrogateMeta = (MetaType)types[FindOrAddAuto(surrogate, true, true, true)]; // this forcibly adds it if needed
-            //                if(surrogateMeta.IncludeSerializerMethod)
-            //                { // don't blindly set - it might be frozen
-            //                    surrogateMeta.IncludeSerializerMethod = false;
-            //                }
-            //                surrogateMeta.Freeze();
-            //                return mt;
-            //            }
-            return null;
+            return -1; // this will never be a meta-type
         }
 
-        private MetaType Create(Type type)
+        // otherwise: we don't yet know
+
+        // check for proxy types
+        var underlyingType = ResolveProxies(type);
+        if (underlyingType != null && underlyingType != type)
         {
-            ThrowIfFrozen();
-            return new MetaType(this, type, defaultFactory);
+            key = types.IndexOf(MetaTypeFinder, underlyingType);
+            type = underlyingType; // if new added, make it reflect the underlying type
         }
 
-        /// <summary>
-        /// Adds support for an additional type in this model, optionally
-        /// applying inbuilt patterns. If the type is already known to the
-        /// model, the existing type is returned **without** applying
-        /// any additional behaviour.
-        /// </summary>
-        /// <remarks>Inbuilt patterns include:
-        /// [ProtoContract]/[ProtoMember(n)]
-        /// [DataContract]/[DataMember(Order=n)]
-        /// [XmlType]/[XmlElement(Order=n)]
-        /// [On{Des|S}erializ{ing|ed}]
-        /// ShouldSerialize*/*Specified
-        /// </remarks>
-        /// <param name="type">The type to be supported</param>
-        /// <param name="applyDefaultBehaviour">Whether to apply the inbuilt configuration patterns (via attributes etc), or
-        /// just add the type with no additional configuration (the type must then be manually configured).</param>
-        /// <returns>The MetaType representing this type, allowing
-        /// further configuration.</returns>
-        public MetaType Add(Type type, bool applyDefaultBehaviour)
+        if (key < 0)
         {
-            if (type == null) throw new ArgumentNullException("type");
-            MetaType newType = FindWithoutAdd(type);
-            if (newType != null) return newType; // return existing
-            int opaqueToken = 0;
+            var opaqueToken = 0;
+            var origType = type;
+            var weAdded = false;
+            try
+            {
+                TakeLock(ref opaqueToken);
+                // try to recognise a few familiar patterns...
+                if ((metaType = RecogniseCommonTypes(type)) == null)
+                {
+                    // otherwise, check if it is a contract
+                    var family = MetaType.GetContractFamily(this, type, null);
+                    if (family == MetaType.AttributeFamily.AutoTuple)
+                    {
+                        shouldAdd = addEvenIfAutoDisabled = true; // always add basic tuples, such as KeyValuePair
+                    }
+
+                    if (!shouldAdd || (
+                                          !Helpers.IsEnum(type) && addWithContractOnly && family == MetaType.AttributeFamily.None)
+                       )
+                    {
+                        if (demand)
+                        {
+                            ThrowUnexpectedType(type);
+                        }
+
+                        return key;
+                    }
+
+                    metaType = Create(type);
+                }
+
+                metaType.Pending = true;
+
+                // double-checked
+                var winner = types.IndexOf(MetaTypeFinder, type);
+                if (winner < 0)
+                {
+                    ThrowIfFrozen();
+                    key = types.Add(metaType);
+                    weAdded = true;
+                }
+                else
+                {
+                    key = winner;
+                }
+
+                if (weAdded)
+                {
+                    metaType.ApplyDefaultBehaviour();
+                    metaType.Pending = false;
+                }
+            }
+            finally
+            {
+                ReleaseLock(opaqueToken);
+                if (weAdded)
+                {
+                    ResetKeyCache();
+                }
+            }
+        }
+
+        return key;
+    }
+
+    private MetaType RecogniseCommonTypes(Type type)
+    {
+        //            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(System.Collections.Generic.KeyValuePair<,>))
+        //            {
+        //                MetaType mt = new MetaType(this, type);
+
+        //                Type surrogate = typeof (KeyValuePairSurrogate<,>).MakeGenericType(type.GetGenericArguments());
+
+        //                mt.SetSurrogate(surrogate);
+        //                mt.IncludeSerializerMethod = false;
+        //                mt.Freeze();
+
+        //                MetaType surrogateMeta = (MetaType)types[FindOrAddAuto(surrogate, true, true, true)]; // this forcibly adds it if needed
+        //                if(surrogateMeta.IncludeSerializerMethod)
+        //                { // don't blindly set - it might be frozen
+        //                    surrogateMeta.IncludeSerializerMethod = false;
+        //                }
+        //                surrogateMeta.Freeze();
+        //                return mt;
+        //            }
+        return null;
+    }
+
+    private MetaType Create(Type type)
+    {
+        ThrowIfFrozen();
+        return new MetaType(this, type, defaultFactory);
+    }
+
+    /// <summary>
+    /// Adds support for an additional type in this model, optionally
+    /// applying inbuilt patterns. If the type is already known to the
+    /// model, the existing type is returned **without** applying
+    /// any additional behaviour.
+    /// </summary>
+    /// <remarks>
+    /// Inbuilt patterns include:
+    /// [ProtoContract]/[ProtoMember(n)]
+    /// [DataContract]/[DataMember(Order=n)]
+    /// [XmlType]/[XmlElement(Order=n)]
+    /// [On{Des|S}erializ{ing|ed}]
+    /// ShouldSerialize*/*Specified
+    /// </remarks>
+    /// <param name="type">The type to be supported</param>
+    /// <param name="applyDefaultBehaviour">
+    /// Whether to apply the inbuilt configuration patterns (via attributes etc), or
+    /// just add the type with no additional configuration (the type must then be manually configured).
+    /// </param>
+    /// <returns>
+    /// The MetaType representing this type, allowing
+    /// further configuration.
+    /// </returns>
+    public MetaType Add(Type type, bool applyDefaultBehaviour)
+    {
+        if (type == null)
+        {
+            throw new ArgumentNullException("type");
+        }
+
+        var newType = FindWithoutAdd(type);
+        if (newType != null)
+        {
+            return newType; // return existing
+        }
+
+        var opaqueToken = 0;
 
 #if COREFX || PROFILE259
             TypeInfo typeInfo = IntrospectionExtensions.GetTypeInfo(type);
             if (typeInfo.IsInterface && MetaType.ienumerable.IsAssignableFrom(typeInfo)
 #else
-            if (type.IsInterface && MapType(MetaType.ienumerable).IsAssignableFrom(type)
+        if (type.IsInterface && MapType(MetaType.ienumerable).IsAssignableFrom(type)
 #endif
-                                 && GetListItemType(this, type) == null)
-            {
-                throw new ArgumentException("IEnumerable[<T>] data cannot be used as a meta-type unless an Add method can be resolved");
-            }
-
-            try
-            {
-                newType = RecogniseCommonTypes(type);
-                if (newType != null)
-                {
-                    if (!applyDefaultBehaviour)
-                    {
-                        throw new ArgumentException(
-                            "Default behaviour must be observed for certain types with special handling; " + type.FullName,
-                            "applyDefaultBehaviour");
-                    }
-
-                    // we should assume that type is fully configured, though; no need to re-run:
-                    applyDefaultBehaviour = false;
-                }
-
-                if (newType == null) newType = Create(type);
-                newType.Pending = true;
-                TakeLock(ref opaqueToken);
-                // double checked
-                if (FindWithoutAdd(type) != null) throw new ArgumentException("Duplicate type", "type");
-                ThrowIfFrozen();
-                types.Add(newType);
-                if (applyDefaultBehaviour)
-                {
-                    newType.ApplyDefaultBehaviour();
-                }
-
-                newType.Pending = false;
-            }
-            finally
-            {
-                ReleaseLock(opaqueToken);
-                ResetKeyCache();
-            }
-
-            return newType;
+                             && GetListItemType(this, type) == null)
+        {
+            throw new ArgumentException("IEnumerable[<T>] data cannot be used as a meta-type unless an Add method can be resolved");
         }
+
+        try
+        {
+            newType = RecogniseCommonTypes(type);
+            if (newType != null)
+            {
+                if (!applyDefaultBehaviour)
+                {
+                    throw new ArgumentException(
+                        "Default behaviour must be observed for certain types with special handling; " + type.FullName,
+                        "applyDefaultBehaviour");
+                }
+
+                // we should assume that type is fully configured, though; no need to re-run:
+                applyDefaultBehaviour = false;
+            }
+
+            if (newType == null)
+            {
+                newType = Create(type);
+            }
+
+            newType.Pending = true;
+            TakeLock(ref opaqueToken);
+            // double checked
+            if (FindWithoutAdd(type) != null)
+            {
+                throw new ArgumentException("Duplicate type", "type");
+            }
+
+            ThrowIfFrozen();
+            types.Add(newType);
+            if (applyDefaultBehaviour)
+            {
+                newType.ApplyDefaultBehaviour();
+            }
+
+            newType.Pending = false;
+        }
+        finally
+        {
+            ReleaseLock(opaqueToken);
+            ResetKeyCache();
+        }
+
+        return newType;
+    }
 
 #if FEAT_COMPILER
         /// <summary>
@@ -762,117 +842,132 @@ namespace ProtoBuf.Meta
             set { SetOption(OPTIONS_AutoCompile, value); }
         }
 #endif
-        /// <summary>
-        /// Should support for unexpected types be added automatically?
-        /// If false, an exception is thrown when unexpected types
-        /// are encountered.
-        /// </summary>
-        public bool AutoAddMissingTypes
+    /// <summary>
+    /// Should support for unexpected types be added automatically?
+    /// If false, an exception is thrown when unexpected types
+    /// are encountered.
+    /// </summary>
+    public bool AutoAddMissingTypes
+    {
+        get { return GetOption(OPTIONS_AutoAddMissingTypes); }
+        set
         {
-            get { return GetOption(OPTIONS_AutoAddMissingTypes); }
-            set
+            if (!value && GetOption(OPTIONS_IsDefaultModel))
             {
-                if (!value && GetOption(OPTIONS_IsDefaultModel))
+                throw new InvalidOperationException("The default model must allow missing types");
+            }
+
+            ThrowIfFrozen();
+            SetOption(OPTIONS_AutoAddMissingTypes, value);
+        }
+    }
+
+    /// <summary>
+    /// Verifies that the model is still open to changes; if not, an exception is thrown
+    /// </summary>
+    private void ThrowIfFrozen()
+    {
+        if (GetOption(OPTIONS_Frozen))
+        {
+            throw new InvalidOperationException("The model cannot be changed once frozen");
+        }
+    }
+
+    /// <summary>
+    /// Prevents further changes to this model
+    /// </summary>
+    public void Freeze()
+    {
+        if (GetOption(OPTIONS_IsDefaultModel))
+        {
+            throw new InvalidOperationException("The default model cannot be frozen");
+        }
+
+        SetOption(OPTIONS_Frozen, true);
+    }
+
+    private readonly BasicList types = new();
+
+    /// <summary>
+    /// Provides the key that represents a given type in the current model.
+    /// </summary>
+    protected override int GetKeyImpl(Type type)
+    {
+        return GetKey(type, false, true);
+    }
+
+    internal int GetKey(Type type, bool demand, bool getBaseKey)
+    {
+        Helpers.DebugAssert(type != null);
+        try
+        {
+            var typeIndex = FindOrAddAuto(type, demand, false);
+            if (typeIndex >= 0)
+            {
+                var mt = (MetaType)types[typeIndex];
+                if (getBaseKey)
                 {
-                    throw new InvalidOperationException("The default model must allow missing types");
+                    mt = MetaType.GetRootType(mt);
+                    typeIndex = FindOrAddAuto(mt.Type, true, true);
                 }
-
-                ThrowIfFrozen();
-                SetOption(OPTIONS_AutoAddMissingTypes, value);
             }
+
+            return typeIndex;
         }
-
-        /// <summary>
-        /// Verifies that the model is still open to changes; if not, an exception is thrown
-        /// </summary>
-        private void ThrowIfFrozen()
+        catch (NotSupportedException)
         {
-            if (GetOption(OPTIONS_Frozen)) throw new InvalidOperationException("The model cannot be changed once frozen");
+            throw; // re-surface "as-is"
         }
-
-        /// <summary>
-        /// Prevents further changes to this model
-        /// </summary>
-        public void Freeze()
+        catch (Exception ex)
         {
-            if (GetOption(OPTIONS_IsDefaultModel)) throw new InvalidOperationException("The default model cannot be frozen");
-            SetOption(OPTIONS_Frozen, true);
-        }
-
-        private readonly BasicList types = new BasicList();
-
-        /// <summary>
-        /// Provides the key that represents a given type in the current model.
-        /// </summary>
-        protected override int GetKeyImpl(Type type)
-        {
-            return GetKey(type, false, true);
-        }
-
-        internal int GetKey(Type type, bool demand, bool getBaseKey)
-        {
-            Helpers.DebugAssert(type != null);
-            try
+            if (ex.Message.IndexOf(type.FullName) >= 0)
             {
-                int typeIndex = FindOrAddAuto(type, demand, false);
-                if (typeIndex >= 0)
-                {
-                    MetaType mt = (MetaType)types[typeIndex];
-                    if (getBaseKey)
-                    {
-                        mt = MetaType.GetRootType(mt);
-                        typeIndex = FindOrAddAuto(mt.Type, true, true);
-                    }
-                }
+                throw; // already enough info
+            }
 
-                return typeIndex;
-            }
-            catch (NotSupportedException)
-            {
-                throw; // re-surface "as-is"
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message.IndexOf(type.FullName) >= 0) throw; // already enough info
-                throw new ProtoException(ex.Message + " (" + type.FullName + ")", ex);
-            }
+            throw new ProtoException(ex.Message + " (" + type.FullName + ")", ex);
         }
+    }
 
-        /// <summary>
-        /// Writes a protocol-buffer representation of the given instance to the supplied stream.
-        /// </summary>
-        /// <param name="key">Represents the type (including inheritance) to consider.</param>
-        /// <param name="value">The existing instance to be serialized (cannot be null).</param>
-        /// <param name="dest">The destination stream to write to.</param>
-        protected internal override void Serialize(int key, object value, ProtoWriter dest)
+    /// <summary>
+    /// Writes a protocol-buffer representation of the given instance to the supplied stream.
+    /// </summary>
+    /// <param name="key">Represents the type (including inheritance) to consider.</param>
+    /// <param name="value">The existing instance to be serialized (cannot be null).</param>
+    /// <param name="dest">The destination stream to write to.</param>
+    protected internal override void Serialize(int key, object value, ProtoWriter dest)
+    {
+        //Helpers.DebugWriteLine("Serialize", value);
+        ((MetaType)types[key]).Serializer.Write(value, dest);
+    }
+
+    /// <summary>
+    /// Applies a protocol-buffer stream to an existing instance (which may be null).
+    /// </summary>
+    /// <param name="key">Represents the type (including inheritance) to consider.</param>
+    /// <param name="value">The existing instance to be modified (can be null).</param>
+    /// <param name="source">The binary stream to apply to the instance (cannot be null).</param>
+    /// <returns>
+    /// The updated instance; this may be different to the instance argument if
+    /// either the original instance was null, or the stream defines a known sub-type of the
+    /// original instance.
+    /// </returns>
+    protected internal override object Deserialize(int key, object value, ProtoReader source)
+    {
+        //Helpers.DebugWriteLine("Deserialize", value);
+        IProtoSerializer ser = ((MetaType)types[key]).Serializer;
+        if (value == null && Helpers.IsValueType(ser.ExpectedType))
         {
-            //Helpers.DebugWriteLine("Serialize", value);
-            ((MetaType)types[key]).Serializer.Write(value, dest);
+            if (ser.RequiresOldValue)
+            {
+                value = Activator.CreateInstance(ser.ExpectedType);
+            }
+
+            return ser.Read(value, source);
         }
 
-        /// <summary>
-        /// Applies a protocol-buffer stream to an existing instance (which may be null).
-        /// </summary>
-        /// <param name="key">Represents the type (including inheritance) to consider.</param>
-        /// <param name="value">The existing instance to be modified (can be null).</param>
-        /// <param name="source">The binary stream to apply to the instance (cannot be null).</param>
-        /// <returns>The updated instance; this may be different to the instance argument if
-        /// either the original instance was null, or the stream defines a known sub-type of the
-        /// original instance.</returns>
-        protected internal override object Deserialize(int key, object value, ProtoReader source)
-        {
-            //Helpers.DebugWriteLine("Deserialize", value);
-            IProtoSerializer ser = ((MetaType)types[key]).Serializer;
-            if (value == null && Helpers.IsValueType(ser.ExpectedType))
-            {
-                if (ser.RequiresOldValue) value = Activator.CreateInstance(ser.ExpectedType);
-                return ser.Read(value, source);
-            }
-            else
-            {
-                return ser.Read(value, source);
-            }
-        }
+        return ser.Read(value, source);
+    }
 
 #if FEAT_COMPILER
         // this is used by some unit-tests; do not remove
@@ -900,17 +995,17 @@ namespace ProtoBuf.Meta
         }
 
 #endif
-        //internal override IProtoSerializer GetTypeSerializer(Type type)
-        //{   // this list is thread-safe for reading
-        //    .Serializer;
-        //}
-        //internal override IProtoSerializer GetTypeSerializer(int key)
-        //{   // this list is thread-safe for reading
-        //    MetaType type = (MetaType)types.TryGet(key);
-        //    if (type != null) return type.Serializer;
-        //    throw new KeyNotFoundException();
+    //internal override IProtoSerializer GetTypeSerializer(Type type)
+    //{   // this list is thread-safe for reading
+    //    .Serializer;
+    //}
+    //internal override IProtoSerializer GetTypeSerializer(int key)
+    //{   // this list is thread-safe for reading
+    //    MetaType type = (MetaType)types.TryGet(key);
+    //    if (type != null) return type.Serializer;
+    //    throw new KeyNotFoundException();
 
-        //}
+    //}
 
 #if FEAT_COMPILER
         private void BuildAllSerializers()
@@ -1693,54 +1788,54 @@ namespace ProtoBuf.Meta
         }
 
 #endif
-        //internal bool IsDefined(Type type, int fieldNumber)
-        //{
-        //    return FindWithoutAdd(type).IsDefined(fieldNumber);
-        //}
+    //internal bool IsDefined(Type type, int fieldNumber)
+    //{
+    //    return FindWithoutAdd(type).IsDefined(fieldNumber);
+    //}
 
-        // note that this is used by some of the unit tests
-        internal bool IsPrepared(Type type)
+    // note that this is used by some of the unit tests
+    internal bool IsPrepared(Type type)
+    {
+        var meta = FindWithoutAdd(type);
+        return meta != null && meta.IsPrepared();
+    }
+
+    internal EnumSerializer.EnumPair[] GetEnumMap(Type type)
+    {
+        var index = FindOrAddAuto(type, false, false);
+        return index < 0 ? null : ((MetaType)types[index]).GetEnumMap();
+    }
+
+    private int metadataTimeoutMilliseconds = 5000;
+
+    /// <summary>
+    /// The amount of time to wait if there are concurrent metadata access operations
+    /// </summary>
+    public int MetadataTimeoutMilliseconds
+    {
+        get { return metadataTimeoutMilliseconds; }
+        set
         {
-            MetaType meta = FindWithoutAdd(type);
-            return meta != null && meta.IsPrepared();
-        }
-
-        internal EnumSerializer.EnumPair[] GetEnumMap(Type type)
-        {
-            int index = FindOrAddAuto(type, false, false, false);
-            return index < 0 ? null : ((MetaType)types[index]).GetEnumMap();
-        }
-
-        private int metadataTimeoutMilliseconds = 5000;
-
-        /// <summary>
-        /// The amount of time to wait if there are concurrent metadata access operations
-        /// </summary>
-        public int MetadataTimeoutMilliseconds
-        {
-            get { return metadataTimeoutMilliseconds; }
-            set
+            if (value <= 0)
             {
-                if (value <= 0) throw new ArgumentOutOfRangeException("MetadataTimeoutMilliseconds");
-                metadataTimeoutMilliseconds = value;
+                throw new ArgumentOutOfRangeException("MetadataTimeoutMilliseconds");
             }
+
+            metadataTimeoutMilliseconds = value;
         }
+    }
 
 #if DEBUG
-        int lockCount;
-        /// <summary>
-        /// Gets how many times a model lock was taken
-        /// </summary>
-        public int LockCount
-        {
-            get { return lockCount; }
-        }
+    /// <summary>
+    /// Gets how many times a model lock was taken
+    /// </summary>
+    public int LockCount { get; private set; }
 #endif
-        internal void TakeLock(ref int opaqueToken)
-        {
-            const string message =
-                "Timeout while inspecting metadata; this may indicate a deadlock. This can often be avoided by preparing necessary serializers during application initialization, rather than allowing multiple threads to perform the initial metadata inspection; please also see the LockContended event";
-            opaqueToken = 0;
+    internal void TakeLock(ref int opaqueToken)
+    {
+        const string message =
+            "Timeout while inspecting metadata; this may indicate a deadlock. This can often be avoided by preparing necessary serializers during application initialization, rather than allowing multiple threads to perform the initial metadata inspection; please also see the LockContended event";
+        opaqueToken = 0;
 #if PORTABLE
             if(!Monitor.TryEnter(types, metadataTimeoutMilliseconds)) throw new TimeoutException(message);
             opaqueToken = Interlocked.CompareExchange(ref contentionCounter, 0, 0); // just fetch current value (starts at 1)
@@ -1758,351 +1853,391 @@ namespace ProtoBuf.Meta
             } while(!lockTaken);
             opaqueToken = Interlocked.CompareExchange(ref contentionCounter, 0, 0); // just fetch current value (starts at 1)
 #else
-            if (Monitor.TryEnter(types, metadataTimeoutMilliseconds))
-            {
-                opaqueToken = GetContention(); // just fetch current value (starts at 1)
-            }
-            else
-            {
-                AddContention();
+        if (Monitor.TryEnter(types, metadataTimeoutMilliseconds))
+        {
+            opaqueToken = GetContention(); // just fetch current value (starts at 1)
+        }
+        else
+        {
+            AddContention();
 
-                throw new TimeoutException(message);
-            }
+            throw new TimeoutException(message);
+        }
 #endif
 
 #if DEBUG // note that here, through all code-paths: we have the lock
-            lockCount++;
+        LockCount++;
 #endif
-        }
+    }
 
-        private int contentionCounter = 1;
+    private int contentionCounter = 1;
 #if PLAT_NO_INTERLOCKED
         private readonly object contentionLock = new object();
 #endif
-        private int GetContention()
-        {
+    private int GetContention()
+    {
 #if PLAT_NO_INTERLOCKED
             lock(contentionLock)
             {
                 return contentionCounter;
             }
 #else
-            return Interlocked.CompareExchange(ref contentionCounter, 0, 0);
+        return Interlocked.CompareExchange(ref contentionCounter, 0, 0);
 #endif
-        }
+    }
 
-        private void AddContention()
-        {
+    private void AddContention()
+    {
 #if PLAT_NO_INTERLOCKED
             lock(contentionLock)
             {
                 contentionCounter++;
             }
 #else
-            Interlocked.Increment(ref contentionCounter);
+        Interlocked.Increment(ref contentionCounter);
 #endif
-        }
+    }
 
-        internal void ReleaseLock(int opaqueToken)
+    internal void ReleaseLock(int opaqueToken)
+    {
+        if (opaqueToken != 0)
         {
-            if (opaqueToken != 0)
+            Monitor.Exit(types);
+            if (opaqueToken != GetContention()) // contention-count changes since we looked!
             {
-                Monitor.Exit(types);
-                if (opaqueToken != GetContention()) // contention-count changes since we looked!
+                var handler = LockContended;
+                if (handler != null)
                 {
-                    LockContentedEventHandler handler = LockContended;
-                    if (handler != null)
+                    // not hugely elegant, but this is such a far-corner-case that it doesn't need to be slick - I'll settle for cross-platform
+                    string stackTrace;
+                    try
                     {
-                        // not hugely elegant, but this is such a far-corner-case that it doesn't need to be slick - I'll settle for cross-platform
-                        string stackTrace;
-                        try
-                        {
-                            throw new ProtoException();
-                        }
-                        catch (Exception ex)
-                        {
-                            stackTrace = ex.StackTrace;
-                        }
-
-                        handler(this, new LockContentedEventArgs(stackTrace));
+                        throw new ProtoException();
                     }
+                    catch (Exception ex)
+                    {
+                        stackTrace = ex.StackTrace;
+                    }
+
+                    handler(this, new LockContentedEventArgs(stackTrace));
                 }
             }
         }
+    }
 
-        /// <summary>
-        /// If a lock-contention is detected, this event signals the *owner* of the lock responsible for the blockage, indicating
-        /// what caused the problem; this is only raised if the lock-owning code successfully completes.
-        /// </summary>
-        public event LockContentedEventHandler LockContended;
+    /// <summary>
+    /// If a lock-contention is detected, this event signals the *owner* of the lock responsible for the blockage, indicating
+    /// what caused the problem; this is only raised if the lock-owning code successfully completes.
+    /// </summary>
+    public event LockContentedEventHandler LockContended;
 
-        internal void ResolveListTypes(Type type, ref Type itemType, ref Type defaultType)
+    internal void ResolveListTypes(Type type, ref Type itemType, ref Type defaultType)
+    {
+        if (type == null)
         {
-            if (type == null) return;
-            if (Helpers.GetTypeCode(type) != ProtoTypeCode.Unknown) return; // don't try this[type] for inbuilts
+            return;
+        }
 
-            // handle arrays
-            if (type.IsArray)
+        if (Helpers.GetTypeCode(type) != ProtoTypeCode.Unknown)
+        {
+            return; // don't try this[type] for inbuilts
+        }
+
+        // handle arrays
+        if (type.IsArray)
+        {
+            if (type.GetArrayRank() != 1)
             {
-                if (type.GetArrayRank() != 1)
-                {
-                    throw new NotSupportedException("Multi-dimension arrays are supported");
-                }
+                throw new NotSupportedException("Multi-dimension arrays are supported");
+            }
 
-                itemType = type.GetElementType();
-                if (itemType == MapType(typeof(byte)))
-                {
-                    defaultType = itemType = null;
-                }
-                else
-                {
-                    defaultType = type;
-                }
+            itemType = type.GetElementType();
+            if (itemType == MapType(typeof(byte)))
+            {
+                defaultType = itemType = null;
             }
             else
             {
-                // if not an array, first check it isn't explicitly opted out
-                if (this[type].IgnoreListHandling) return;
+                defaultType = type;
             }
-
-            // handle lists 
-            if (itemType == null)
+        }
+        else
+        {
+            // if not an array, first check it isn't explicitly opted out
+            if (this[type].IgnoreListHandling)
             {
-                itemType = TypeModel.GetListItemType(this, type);
+                return;
             }
+        }
 
-            // check for nested data (not allowed)
-            if (itemType != null)
+        // handle lists 
+        if (itemType == null)
+        {
+            itemType = GetListItemType(this, type);
+        }
+
+        // check for nested data (not allowed)
+        if (itemType != null)
+        {
+            Type nestedItemType = null, nestedDefaultType = null;
+            ResolveListTypes(itemType, ref nestedItemType, ref nestedDefaultType);
+            if (nestedItemType != null)
             {
-                Type nestedItemType = null, nestedDefaultType = null;
-                ResolveListTypes(itemType, ref nestedItemType, ref nestedDefaultType);
-                if (nestedItemType != null)
-                {
-                    throw TypeModel.CreateNestedListsNotSupported(type);
-                }
+                throw CreateNestedListsNotSupported(type);
             }
+        }
 
-            if (itemType != null && defaultType == null)
-            {
+        if (itemType != null && defaultType == null)
+        {
 #if COREFX || PROFILE259
 				TypeInfo typeInfo = IntrospectionExtensions.GetTypeInfo(type);
                 if (typeInfo.IsClass && !typeInfo.IsAbstract && Helpers.GetConstructor(typeInfo, Helpers.EmptyTypes, true) != null)
 #else
-                if (type.IsClass && !type.IsAbstract && Helpers.GetConstructor(type, Helpers.EmptyTypes, true) != null)
+            if (type.IsClass && !type.IsAbstract && Helpers.GetConstructor(type, Helpers.EmptyTypes, true) != null)
 #endif
-                {
-                    defaultType = type;
-                }
+            {
+                defaultType = type;
+            }
 
-                if (defaultType == null)
-                {
+            if (defaultType == null)
+            {
 #if COREFX || PROFILE259
 					if (typeInfo.IsInterface)
 #else
-                    if (type.IsInterface)
+                if (type.IsInterface)
 #endif
-                    {
-                        Type[] genArgs;
+                {
+                    Type[] genArgs;
 #if COREFX || PROFILE259
                         if (typeInfo.IsGenericType && typeInfo.GetGenericTypeDefinition() == typeof(System.Collections.Generic.IDictionary<,>)
                             && itemType == typeof(System.Collections.Generic.KeyValuePair<,>).MakeGenericType(genArgs = typeInfo.GenericTypeArguments))
 #else
-                        if (type.IsGenericType && type.GetGenericTypeDefinition() == MapType(typeof(System.Collections.Generic.IDictionary<,>))
-                                               && itemType == MapType(typeof(System.Collections.Generic.KeyValuePair<,>)).MakeGenericType(genArgs = type.GetGenericArguments()))
+                    if (type.IsGenericType && type.GetGenericTypeDefinition() == MapType(typeof(IDictionary<,>))
+                                           && itemType == MapType(typeof(KeyValuePair<,>)).MakeGenericType(genArgs = type.GetGenericArguments()))
 #endif
-                        {
-                            defaultType = MapType(typeof(System.Collections.Generic.Dictionary<,>)).MakeGenericType(genArgs);
-                        }
-                        else
-                        {
-                            defaultType = MapType(typeof(System.Collections.Generic.List<>)).MakeGenericType(itemType);
-                        }
+                    {
+                        defaultType = MapType(typeof(Dictionary<,>)).MakeGenericType(genArgs);
+                    }
+                    else
+                    {
+                        defaultType = MapType(typeof(List<>)).MakeGenericType(itemType);
                     }
                 }
+            }
 
-                // verify that the default type is appropriate
-                if (defaultType != null && !Helpers.IsAssignableFrom(type, defaultType))
-                {
-                    defaultType = null;
-                }
+            // verify that the default type is appropriate
+            if (defaultType != null && !Helpers.IsAssignableFrom(type, defaultType))
+            {
+                defaultType = null;
             }
         }
+    }
 
-        internal string GetSchemaTypeName(Type effectiveType, DataFormat dataFormat, bool asReference, bool dynamicType, ref CommonImports imports)
+    internal string GetSchemaTypeName(Type effectiveType, DataFormat dataFormat, bool asReference, bool dynamicType, ref CommonImports imports)
+    {
+        var tmp = Helpers.GetUnderlyingType(effectiveType);
+        if (tmp != null)
         {
-            Type tmp = Helpers.GetUnderlyingType(effectiveType);
-            if (tmp != null) effectiveType = tmp;
+            effectiveType = tmp;
+        }
 
-            if (effectiveType == this.MapType(typeof(byte[]))) return "bytes";
+        if (effectiveType == MapType(typeof(byte[])))
+        {
+            return "bytes";
+        }
 
-            WireType wireType;
-            IProtoSerializer ser = ValueMember.TryGetCoreSerializer(this, dataFormat, effectiveType, out wireType, false, false, false, false);
-            if (ser == null)
+        WireType wireType;
+        var ser = ValueMember.TryGetCoreSerializer(this, dataFormat, effectiveType, out wireType, false, false, false, false);
+        if (ser == null)
+        {
+            // model type
+            if (asReference || dynamicType)
             {
-                // model type
-                if (asReference || dynamicType)
+                imports |= CommonImports.Bcl;
+                return ".bcl.NetObjectProxy";
+            }
+
+            return this[effectiveType].GetSurrogateOrBaseOrSelf(true).GetSchemaTypeName();
+        }
+
+        if (ser is ParseableSerializer)
+        {
+            if (asReference)
+            {
+                imports |= CommonImports.Bcl;
+            }
+
+            return asReference ? ".bcl.NetObjectProxy" : "string";
+        }
+
+        switch (Helpers.GetTypeCode(effectiveType))
+        {
+            case ProtoTypeCode.Boolean: return "bool";
+            case ProtoTypeCode.Single:  return "float";
+            case ProtoTypeCode.Double:  return "double";
+            case ProtoTypeCode.String:
+                if (asReference)
                 {
                     imports |= CommonImports.Bcl;
-                    return ".bcl.NetObjectProxy";
                 }
 
-                return this[effectiveType].GetSurrogateOrBaseOrSelf(true).GetSchemaTypeName();
-            }
-            else
-            {
-                if (ser is ParseableSerializer)
+                return asReference ? ".bcl.NetObjectProxy" : "string";
+            case ProtoTypeCode.Byte:
+            case ProtoTypeCode.Char:
+            case ProtoTypeCode.UInt16:
+            case ProtoTypeCode.UInt32:
+                switch (dataFormat)
                 {
-                    if (asReference) imports |= CommonImports.Bcl;
-                    return asReference ? ".bcl.NetObjectProxy" : "string";
+                    case DataFormat.FixedSize: return "fixed32";
+                    default:                   return "uint32";
                 }
-
-                switch (Helpers.GetTypeCode(effectiveType))
+            case ProtoTypeCode.SByte:
+            case ProtoTypeCode.Int16:
+            case ProtoTypeCode.Int32:
+                switch (dataFormat)
                 {
-                    case ProtoTypeCode.Boolean: return "bool";
-                    case ProtoTypeCode.Single: return "float";
-                    case ProtoTypeCode.Double: return "double";
-                    case ProtoTypeCode.String:
-                        if (asReference) imports |= CommonImports.Bcl;
-                        return asReference ? ".bcl.NetObjectProxy" : "string";
-                    case ProtoTypeCode.Byte:
-                    case ProtoTypeCode.Char:
-                    case ProtoTypeCode.UInt16:
-                    case ProtoTypeCode.UInt32:
-                        switch (dataFormat)
-                        {
-                            case DataFormat.FixedSize: return "fixed32";
-                            default: return "uint32";
-                        }
-                    case ProtoTypeCode.SByte:
-                    case ProtoTypeCode.Int16:
-                    case ProtoTypeCode.Int32:
-                        switch (dataFormat)
-                        {
-                            case DataFormat.ZigZag: return "sint32";
-                            case DataFormat.FixedSize: return "sfixed32";
-                            default: return "int32";
-                        }
-                    case ProtoTypeCode.UInt64:
-                        switch (dataFormat)
-                        {
-                            case DataFormat.FixedSize: return "fixed64";
-                            default: return "uint64";
-                        }
-                    case ProtoTypeCode.Int64:
-                        switch (dataFormat)
-                        {
-                            case DataFormat.ZigZag: return "sint64";
-                            case DataFormat.FixedSize: return "sfixed64";
-                            default: return "int64";
-                        }
-                    case ProtoTypeCode.DateTime:
-                        switch (dataFormat)
-                        {
-                            case DataFormat.FixedSize: return "sint64";
-                            case DataFormat.WellKnown:
-                                imports |= CommonImports.Timestamp;
-                                return ".google.protobuf.Timestamp";
-                            default:
-                                imports |= CommonImports.Bcl;
-                                return ".bcl.DateTime";
-                        }
-                    case ProtoTypeCode.TimeSpan:
-                        switch (dataFormat)
-                        {
-                            case DataFormat.FixedSize: return "sint64";
-                            case DataFormat.WellKnown:
-                                imports |= CommonImports.Duration;
-                                return ".google.protobuf.Duration";
-                            default:
-                                imports |= CommonImports.Bcl;
-                                return ".bcl.TimeSpan";
-                        }
-                    case ProtoTypeCode.Decimal:
-                        imports |= CommonImports.Bcl;
-                        return ".bcl.Decimal";
-                    case ProtoTypeCode.Guid:
-                        imports |= CommonImports.Bcl;
-                        return ".bcl.Guid";
-                    case ProtoTypeCode.Type: return "string";
-                    default: throw new NotSupportedException("No .proto map found for: " + effectiveType.FullName);
+                    case DataFormat.ZigZag:    return "sint32";
+                    case DataFormat.FixedSize: return "sfixed32";
+                    default:                   return "int32";
                 }
-            }
-        }
-
-        /// <summary>
-        /// Designate a factory-method to use to create instances of any type; note that this only affect types seen by the serializer *after* setting the factory.
-        /// </summary>
-        public void SetDefaultFactory(MethodInfo methodInfo)
-        {
-            VerifyFactory(methodInfo, null);
-            defaultFactory = methodInfo;
-        }
-
-        private MethodInfo defaultFactory;
-
-        internal void VerifyFactory(MethodInfo factory, Type type)
-        {
-            if (factory != null)
-            {
-                if (type != null && Helpers.IsValueType(type)) throw new InvalidOperationException();
-                if (!factory.IsStatic) throw new ArgumentException("A factory-method must be static", "factory");
-                if ((type != null && factory.ReturnType != type) && factory.ReturnType != MapType(typeof(object)))
-                    throw new ArgumentException("The factory-method must return object" + (type == null ? "" : (" or " + type.FullName)), "factory");
-
-                if (!CallbackSet.CheckCallbackParameters(this, factory)) throw new ArgumentException("Invalid factory signature in " + factory.DeclaringType.FullName + "." + factory.Name, "factory");
-            }
-        }
-
-        /// <summary>
-        /// Raised before a type is auto-configured; this allows the auto-configuration to be electively suppressed
-        /// </summary>
-        /// <remarks>This callback should be fast and not involve complex external calls, as it may block the model</remarks>
-        public event EventHandler<TypeAddedEventArgs> BeforeApplyDefaultBehaviour;
-
-        /// <summary>
-        /// Raised after a type is auto-configured; this allows additional external customizations
-        /// </summary>
-        /// <remarks>This callback should be fast and not involve complex external calls, as it may block the model</remarks>
-        public event EventHandler<TypeAddedEventArgs> AfterApplyDefaultBehaviour;
-
-        internal static void OnBeforeApplyDefaultBehaviour(MetaType metaType, ref TypeAddedEventArgs args)
-            => OnApplyDefaultBehaviour((metaType?.Model as RuntimeTypeModel)?.BeforeApplyDefaultBehaviour, metaType, ref args);
-
-        internal static void OnAfterApplyDefaultBehaviour(MetaType metaType, ref TypeAddedEventArgs args)
-            => OnApplyDefaultBehaviour((metaType?.Model as RuntimeTypeModel)?.AfterApplyDefaultBehaviour, metaType, ref args);
-
-        private static void OnApplyDefaultBehaviour(
-            EventHandler<TypeAddedEventArgs> handler, MetaType metaType, ref TypeAddedEventArgs args)
-        {
-            if (handler != null)
-            {
-                if (args == null) args = new TypeAddedEventArgs(metaType);
-                handler(metaType.Model, args);
-            }
+            case ProtoTypeCode.UInt64:
+                switch (dataFormat)
+                {
+                    case DataFormat.FixedSize: return "fixed64";
+                    default:                   return "uint64";
+                }
+            case ProtoTypeCode.Int64:
+                switch (dataFormat)
+                {
+                    case DataFormat.ZigZag:    return "sint64";
+                    case DataFormat.FixedSize: return "sfixed64";
+                    default:                   return "int64";
+                }
+            case ProtoTypeCode.DateTime:
+                switch (dataFormat)
+                {
+                    case DataFormat.FixedSize: return "sint64";
+                    case DataFormat.WellKnown:
+                        imports |= CommonImports.Timestamp;
+                        return ".google.protobuf.Timestamp";
+                    default:
+                        imports |= CommonImports.Bcl;
+                        return ".bcl.DateTime";
+                }
+            case ProtoTypeCode.TimeSpan:
+                switch (dataFormat)
+                {
+                    case DataFormat.FixedSize: return "sint64";
+                    case DataFormat.WellKnown:
+                        imports |= CommonImports.Duration;
+                        return ".google.protobuf.Duration";
+                    default:
+                        imports |= CommonImports.Bcl;
+                        return ".bcl.TimeSpan";
+                }
+            case ProtoTypeCode.Decimal:
+                imports |= CommonImports.Bcl;
+                return ".bcl.Decimal";
+            case ProtoTypeCode.Guid:
+                imports |= CommonImports.Bcl;
+                return ".bcl.Guid";
+            case ProtoTypeCode.Type: return "string";
+            default:                 throw new NotSupportedException("No .proto map found for: " + effectiveType.FullName);
         }
     }
 
     /// <summary>
-    /// Contains the stack-trace of the owning code when a lock-contention scenario is detected
+    /// Designate a factory-method to use to create instances of any type; note that this only affect types seen by the serializer *after* setting the factory.
     /// </summary>
-    public sealed class LockContentedEventArgs : EventArgs
+    public void SetDefaultFactory(MethodInfo methodInfo)
     {
-        private readonly string ownerStackTrace;
+        VerifyFactory(methodInfo, null);
+        defaultFactory = methodInfo;
+    }
 
-        internal LockContentedEventArgs(string ownerStackTrace)
+    private MethodInfo defaultFactory;
+
+    internal void VerifyFactory(MethodInfo factory, Type type)
+    {
+        if (factory != null)
         {
-            this.ownerStackTrace = ownerStackTrace;
-        }
+            if (type != null && Helpers.IsValueType(type))
+            {
+                throw new InvalidOperationException();
+            }
 
-        /// <summary>
-        /// The stack-trace of the code that owned the lock when a lock-contention scenario occurred
-        /// </summary>
-        public string OwnerStackTrace => ownerStackTrace;
+            if (!factory.IsStatic)
+            {
+                throw new ArgumentException("A factory-method must be static", "factory");
+            }
+
+            if (type != null && factory.ReturnType != type && factory.ReturnType != MapType(typeof(object)))
+            {
+                throw new ArgumentException("The factory-method must return object" + (type == null ? "" : " or " + type.FullName), "factory");
+            }
+
+            if (!CallbackSet.CheckCallbackParameters(this, factory))
+            {
+                throw new ArgumentException("Invalid factory signature in " + factory.DeclaringType.FullName + "." + factory.Name, "factory");
+            }
+        }
     }
 
     /// <summary>
-    /// Event-type that is raised when a lock-contention scenario is detected
+    /// Raised before a type is auto-configured; this allows the auto-configuration to be electively suppressed
     /// </summary>
-    public delegate void LockContentedEventHandler(object sender, LockContentedEventArgs args);
+    /// <remarks>This callback should be fast and not involve complex external calls, as it may block the model</remarks>
+    public event EventHandler<TypeAddedEventArgs> BeforeApplyDefaultBehaviour;
+
+    /// <summary>
+    /// Raised after a type is auto-configured; this allows additional external customizations
+    /// </summary>
+    /// <remarks>This callback should be fast and not involve complex external calls, as it may block the model</remarks>
+    public event EventHandler<TypeAddedEventArgs> AfterApplyDefaultBehaviour;
+
+    internal static void OnBeforeApplyDefaultBehaviour(MetaType metaType, ref TypeAddedEventArgs args)
+    {
+        OnApplyDefaultBehaviour((metaType?.Model as RuntimeTypeModel)?.BeforeApplyDefaultBehaviour, metaType, ref args);
+    }
+
+    internal static void OnAfterApplyDefaultBehaviour(MetaType metaType, ref TypeAddedEventArgs args)
+    {
+        OnApplyDefaultBehaviour((metaType?.Model as RuntimeTypeModel)?.AfterApplyDefaultBehaviour, metaType, ref args);
+    }
+
+    private static void OnApplyDefaultBehaviour(
+        EventHandler<TypeAddedEventArgs> handler, MetaType metaType, ref TypeAddedEventArgs args)
+    {
+        if (handler != null)
+        {
+            if (args == null)
+            {
+                args = new TypeAddedEventArgs(metaType);
+            }
+
+            handler(metaType.Model, args);
+        }
+    }
 }
+
+/// <summary>
+/// Contains the stack-trace of the owning code when a lock-contention scenario is detected
+/// </summary>
+public sealed class LockContentedEventArgs : EventArgs
+{
+    internal LockContentedEventArgs(string ownerStackTrace)
+    {
+        OwnerStackTrace = ownerStackTrace;
+    }
+
+    /// <summary>
+    /// The stack-trace of the code that owned the lock when a lock-contention scenario occurred
+    /// </summary>
+    public string OwnerStackTrace { get; }
+}
+
+/// <summary>
+/// Event-type that is raised when a lock-contention scenario is detected
+/// </summary>
+public delegate void LockContentedEventHandler(object sender, LockContentedEventArgs args);
 #endif

@@ -1,40 +1,57 @@
 ﻿#if !NO_RUNTIME
-using System;
 using System.Reflection;
 
-namespace ProtoBuf.Serializers
+namespace ProtoBuf.Serializers;
+
+internal sealed class MemberSpecifiedDecorator : ProtoDecoratorBase
 {
-    sealed class MemberSpecifiedDecorator : ProtoDecoratorBase
+    public override Type ExpectedType
     {
-        public override Type ExpectedType => Tail.ExpectedType;
+        get { return Tail.ExpectedType; }
+    }
 
-        public override bool RequiresOldValue => Tail.RequiresOldValue;
+    public override bool RequiresOldValue
+    {
+        get { return Tail.RequiresOldValue; }
+    }
 
-        public override bool ReturnsValue => Tail.ReturnsValue;
+    public override bool ReturnsValue
+    {
+        get { return Tail.ReturnsValue; }
+    }
 
-        private readonly MethodInfo getSpecified, setSpecified;
-        public MemberSpecifiedDecorator(MethodInfo getSpecified, MethodInfo setSpecified, IProtoSerializer tail)
-            : base(tail)
+    private readonly MethodInfo getSpecified, setSpecified;
+
+    public MemberSpecifiedDecorator(MethodInfo getSpecified, MethodInfo setSpecified, IProtoSerializer tail)
+        : base(tail)
+    {
+        if (getSpecified == null && setSpecified == null)
         {
-            if (getSpecified == null && setSpecified == null) throw new InvalidOperationException();
-            this.getSpecified = getSpecified;
-            this.setSpecified = setSpecified;
+            throw new InvalidOperationException();
         }
 
-        public override void Write(object value, ProtoWriter dest)
+        this.getSpecified = getSpecified;
+        this.setSpecified = setSpecified;
+    }
+
+    public override void Write(object value, ProtoWriter dest)
+    {
+        if (getSpecified == null || (bool)getSpecified.Invoke(value, null))
         {
-            if (getSpecified == null || (bool)getSpecified.Invoke(value, null))
-            {
-                Tail.Write(value, dest);
-            }
+            Tail.Write(value, dest);
+        }
+    }
+
+    public override object Read(object value, ProtoReader source)
+    {
+        var result = Tail.Read(value, source);
+        if (setSpecified != null)
+        {
+            setSpecified.Invoke(value, new object[] { true, });
         }
 
-        public override object Read(object value, ProtoReader source)
-        {
-            object result = Tail.Read(value, source);
-            if (setSpecified != null) setSpecified.Invoke(value, new object[] { true });
-            return result;
-        }
+        return result;
+    }
 
 #if FEAT_COMPILER
         protected override void EmitWrite(Compiler.CompilerContext ctx, Compiler.Local valueFrom)
@@ -71,6 +88,5 @@ namespace ProtoBuf.Serializers
             }
         }
 #endif
-    }
 }
 #endif

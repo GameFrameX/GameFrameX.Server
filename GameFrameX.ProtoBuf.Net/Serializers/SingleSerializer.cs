@@ -1,33 +1,41 @@
 ﻿#if !NO_RUNTIME
-using System;
 using ProtoBuf.Meta;
 
-namespace ProtoBuf.Serializers
+namespace ProtoBuf.Serializers;
+
+internal sealed class SingleSerializer : IProtoSerializer
 {
-    sealed class SingleSerializer : IProtoSerializer
+    private static readonly Type expectedType = typeof(float);
+
+    public Type ExpectedType
     {
-        static readonly Type expectedType = typeof(float);
+        get { return expectedType; }
+    }
 
-        public Type ExpectedType { get { return expectedType; } }
+    public SingleSerializer(TypeModel model)
+    {
+    }
 
-        public SingleSerializer(TypeModel model)
-        {
-        }
+    bool IProtoSerializer.RequiresOldValue
+    {
+        get { return false; }
+    }
 
-        bool IProtoSerializer.RequiresOldValue => false;
+    bool IProtoSerializer.ReturnsValue
+    {
+        get { return true; }
+    }
 
-        bool IProtoSerializer.ReturnsValue => true;
+    public object Read(object value, ProtoReader source)
+    {
+        Helpers.DebugAssert(value == null); // since replaces
+        return source.ReadSingle();
+    }
 
-        public object Read(object value, ProtoReader source)
-        {
-            Helpers.DebugAssert(value == null); // since replaces
-            return source.ReadSingle();
-        }
-
-        public void Write(object value, ProtoWriter dest)
-        {
-            ProtoWriter.WriteSingle((float)value, dest);
-        }
+    public void Write(object value, ProtoWriter dest)
+    {
+        ProtoWriter.WriteSingle((float)value, dest);
+    }
 
 
 #if FEAT_COMPILER
@@ -40,6 +48,5 @@ namespace ProtoBuf.Serializers
             ctx.EmitBasicRead("ReadSingle", ExpectedType);
         }
 #endif
-    }
 }
 #endif

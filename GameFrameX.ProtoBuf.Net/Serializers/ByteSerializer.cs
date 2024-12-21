@@ -1,30 +1,41 @@
 ﻿#if !NO_RUNTIME
-using System;
+using ProtoBuf.Meta;
 
-namespace ProtoBuf.Serializers
+namespace ProtoBuf.Serializers;
+
+internal sealed class ByteSerializer : IProtoSerializer
 {
-    sealed class ByteSerializer : IProtoSerializer
+    public Type ExpectedType
     {
-        public Type ExpectedType { get { return expectedType; } }
+        get { return expectedType; }
+    }
 
-        static readonly Type expectedType = typeof(byte);
+    private static readonly Type expectedType = typeof(byte);
 
-        public ByteSerializer(ProtoBuf.Meta.TypeModel model) { }
+    public ByteSerializer(TypeModel model)
+    {
+    }
 
-        bool IProtoSerializer.RequiresOldValue => false;
+    bool IProtoSerializer.RequiresOldValue
+    {
+        get { return false; }
+    }
 
-        bool IProtoSerializer.ReturnsValue => true;
+    bool IProtoSerializer.ReturnsValue
+    {
+        get { return true; }
+    }
 
-        public void Write(object value, ProtoWriter dest)
-        {
-            ProtoWriter.WriteByte((byte)value, dest);
-        }
+    public void Write(object value, ProtoWriter dest)
+    {
+        ProtoWriter.WriteByte((byte)value, dest);
+    }
 
-        public object Read(object value, ProtoReader source)
-        {
-            Helpers.DebugAssert(value == null); // since replaces
-            return source.ReadByte();
-        }
+    public object Read(object value, ProtoReader source)
+    {
+        Helpers.DebugAssert(value == null); // since replaces
+        return source.ReadByte();
+    }
 
 #if FEAT_COMPILER
         void IProtoSerializer.EmitWrite(Compiler.CompilerContext ctx, Compiler.Local valueFrom)
@@ -37,6 +48,5 @@ namespace ProtoBuf.Serializers
             ctx.EmitBasicRead("ReadByte", ExpectedType);
         }
 #endif
-    }
 }
 #endif

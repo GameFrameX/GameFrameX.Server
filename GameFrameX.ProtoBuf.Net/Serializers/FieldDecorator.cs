@@ -1,38 +1,53 @@
 ﻿#if !NO_RUNTIME
-using System;
 using System.Reflection;
 
-namespace ProtoBuf.Serializers
+namespace ProtoBuf.Serializers;
+
+internal sealed class FieldDecorator : ProtoDecoratorBase
 {
-    sealed class FieldDecorator : ProtoDecoratorBase
+    public override Type ExpectedType { get; }
+
+    private readonly FieldInfo field;
+
+    public override bool RequiresOldValue
     {
-        public override Type ExpectedType => forType;
-        private readonly FieldInfo field;
-        private readonly Type forType;
-        public override bool RequiresOldValue => true;
-        public override bool ReturnsValue => false;
-        public FieldDecorator(Type forType, FieldInfo field, IProtoSerializer tail) : base(tail)
+        get { return true; }
+    }
+
+    public override bool ReturnsValue
+    {
+        get { return false; }
+    }
+
+    public FieldDecorator(Type forType, FieldInfo field, IProtoSerializer tail) : base(tail)
+    {
+        Helpers.DebugAssert(forType != null);
+        Helpers.DebugAssert(field != null);
+        ExpectedType = forType;
+        this.field = field;
+    }
+
+    public override void Write(object value, ProtoWriter dest)
+    {
+        Helpers.DebugAssert(value != null);
+        value = field.GetValue(value);
+        if (value != null)
         {
-            Helpers.DebugAssert(forType != null);
-            Helpers.DebugAssert(field != null);
-            this.forType = forType;
-            this.field = field;
+            Tail.Write(value, dest);
+        }
+    }
+
+    public override object Read(object value, ProtoReader source)
+    {
+        Helpers.DebugAssert(value != null);
+        var newValue = Tail.Read(Tail.RequiresOldValue ? field.GetValue(value) : null, source);
+        if (newValue != null)
+        {
+            field.SetValue(value, newValue);
         }
 
-        public override void Write(object value, ProtoWriter dest)
-        {
-            Helpers.DebugAssert(value != null);
-            value = field.GetValue(value);
-            if (value != null) Tail.Write(value, dest);
-        }
-
-        public override object Read(object value, ProtoReader source)
-        {
-            Helpers.DebugAssert(value != null);
-            object newValue = Tail.Read((Tail.RequiresOldValue ? field.GetValue(value) : null), source);
-            if (newValue != null) field.SetValue(value, newValue);
-            return null;
-        }
+        return null;
+    }
 
 
 #if FEAT_COMPILER
@@ -99,6 +114,5 @@ namespace ProtoBuf.Serializers
             }
         }
 #endif
-    }
 }
 #endif

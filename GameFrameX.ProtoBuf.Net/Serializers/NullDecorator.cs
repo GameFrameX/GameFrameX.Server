@@ -1,36 +1,42 @@
 ﻿#if !NO_RUNTIME
-using System;
-using System.Reflection;
 
 using ProtoBuf.Meta;
 
-namespace ProtoBuf.Serializers
-{
-    sealed class NullDecorator : ProtoDecoratorBase
-    {
-        private readonly Type expectedType;
-        public const int Tag = 1;
-        public NullDecorator(TypeModel model, IProtoSerializer tail) : base(tail)
-        {
-            if (!tail.ReturnsValue)
-                throw new NotSupportedException("NullDecorator only supports implementations that return values");
+namespace ProtoBuf.Serializers;
 
-            Type tailType = tail.ExpectedType;
-            if (Helpers.IsValueType(tailType))
-            {
-                expectedType = model.MapType(typeof(Nullable<>)).MakeGenericType(tailType);
-            }
-            else
-            {
-                expectedType = tailType;
-            }
+internal sealed class NullDecorator : ProtoDecoratorBase
+{
+    public const int Tag = 1;
+
+    public NullDecorator(TypeModel model, IProtoSerializer tail) : base(tail)
+    {
+        if (!tail.ReturnsValue)
+        {
+            throw new NotSupportedException("NullDecorator only supports implementations that return values");
         }
 
-        public override Type ExpectedType => expectedType;
+        var tailType = tail.ExpectedType;
+        if (Helpers.IsValueType(tailType))
+        {
+            ExpectedType = model.MapType(typeof(Nullable<>)).MakeGenericType(tailType);
+        }
+        else
+        {
+            ExpectedType = tailType;
+        }
+    }
 
-        public override bool ReturnsValue => true;
+    public override Type ExpectedType { get; }
 
-        public override bool RequiresOldValue => true;
+    public override bool ReturnsValue
+    {
+        get { return true; }
+    }
+
+    public override bool RequiresOldValue
+    {
+        get { return true; }
+    }
 
 #if FEAT_COMPILER
         protected override void EmitRead(Compiler.CompilerContext ctx, Compiler.Local valueFrom)
@@ -112,8 +118,8 @@ namespace ProtoBuf.Serializers
                 {
                     ctx.LoadValue(valOrNull);
                 }
-                Compiler.CodeLabel @end = ctx.DefineLabel();
-                ctx.BranchIfFalse(@end, false);
+                Compiler.CodeLabel end = ctx.DefineLabel();
+                ctx.BranchIfFalse(end, false);
                 if (Helpers.IsValueType(expectedType))
                 {
                     ctx.LoadAddress(valOrNull, expectedType);
@@ -125,7 +131,7 @@ namespace ProtoBuf.Serializers
                 }
                 Tail.EmitWrite(ctx, null);
 
-                ctx.MarkLabel(@end);
+                ctx.MarkLabel(end);
 
                 ctx.LoadValue(token);
                 ctx.LoadReaderWriter();
@@ -134,34 +140,35 @@ namespace ProtoBuf.Serializers
         }
 #endif
 
-        public override object Read(object value, ProtoReader source)
+    public override object Read(object value, ProtoReader source)
+    {
+        var tok = ProtoReader.StartSubItem(source);
+        int field;
+        while ((field = source.ReadFieldHeader()) > 0)
         {
-            SubItemToken tok = ProtoReader.StartSubItem(source);
-            int field;
-            while ((field = source.ReadFieldHeader()) > 0)
+            if (field == Tag)
             {
-                if (field == Tag)
-                {
-                    value = Tail.Read(value, source);
-                }
-                else
-                {
-                    source.SkipField();
-                }
+                value = Tail.Read(value, source);
             }
-            ProtoReader.EndSubItem(tok, source);
-            return value;
+            else
+            {
+                source.SkipField();
+            }
         }
 
-        public override void Write(object value, ProtoWriter dest)
+        ProtoReader.EndSubItem(tok, source);
+        return value;
+    }
+
+    public override void Write(object value, ProtoWriter dest)
+    {
+        var token = ProtoWriter.StartSubItem(null, dest);
+        if (value != null)
         {
-            SubItemToken token = ProtoWriter.StartSubItem(null, dest);
-            if (value != null)
-            {
-                Tail.Write(value, dest);
-            }
-            ProtoWriter.EndSubItem(token, dest);
+            Tail.Write(value, dest);
         }
+
+        ProtoWriter.EndSubItem(token, dest);
     }
 }
 #endif

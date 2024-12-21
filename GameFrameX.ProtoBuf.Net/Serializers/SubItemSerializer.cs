@@ -1,24 +1,22 @@
 ﻿#if !NO_RUNTIME
-using System;
 using ProtoBuf.Meta;
-
 #if FEAT_COMPILER
 using System.Reflection.Emit;
 #endif
 
-namespace ProtoBuf.Serializers
-{
-    sealed class SubItemSerializer : IProtoTypeSerializer
-    {
-        bool IProtoTypeSerializer.HasCallbacks(TypeModel.CallbackType callbackType)
-        {
-            return ((IProtoTypeSerializer)proxy.Serializer).HasCallbacks(callbackType);
-        }
+namespace ProtoBuf.Serializers;
 
-        bool IProtoTypeSerializer.CanCreateInstance()
-        {
-            return ((IProtoTypeSerializer)proxy.Serializer).CanCreateInstance();
-        }
+internal sealed class SubItemSerializer : IProtoTypeSerializer
+{
+    bool IProtoTypeSerializer.HasCallbacks(TypeModel.CallbackType callbackType)
+    {
+        return ((IProtoTypeSerializer)proxy.Serializer).HasCallbacks(callbackType);
+    }
+
+    bool IProtoTypeSerializer.CanCreateInstance()
+    {
+        return ((IProtoTypeSerializer)proxy.Serializer).CanCreateInstance();
+    }
 
 #if FEAT_COMPILER
         void IProtoTypeSerializer.EmitCallback(Compiler.CompilerContext ctx, Compiler.Local valueFrom, TypeModel.CallbackType callbackType)
@@ -32,50 +30,60 @@ namespace ProtoBuf.Serializers
         }
 #endif
 
-        void IProtoTypeSerializer.Callback(object value, TypeModel.CallbackType callbackType, SerializationContext context)
+    void IProtoTypeSerializer.Callback(object value, TypeModel.CallbackType callbackType, SerializationContext context)
+    {
+        ((IProtoTypeSerializer)proxy.Serializer).Callback(value, callbackType, context);
+    }
+
+    object IProtoTypeSerializer.CreateInstance(ProtoReader source)
+    {
+        return ((IProtoTypeSerializer)proxy.Serializer).CreateInstance(source);
+    }
+
+    private readonly int key;
+    private readonly Type type;
+    private readonly ISerializerProxy proxy;
+    private readonly bool recursionCheck;
+
+    public SubItemSerializer(Type type, int key, ISerializerProxy proxy, bool recursionCheck)
+    {
+        this.type = type ?? throw new ArgumentNullException(nameof(type));
+        this.proxy = proxy ?? throw new ArgumentNullException(nameof(proxy));
+        this.key = key;
+        this.recursionCheck = recursionCheck;
+    }
+
+    Type IProtoSerializer.ExpectedType
+    {
+        get { return type; }
+    }
+
+    bool IProtoSerializer.RequiresOldValue
+    {
+        get { return true; }
+    }
+
+    bool IProtoSerializer.ReturnsValue
+    {
+        get { return true; }
+    }
+
+    void IProtoSerializer.Write(object value, ProtoWriter dest)
+    {
+        if (recursionCheck)
         {
-            ((IProtoTypeSerializer)proxy.Serializer).Callback(value, callbackType, context);
+            ProtoWriter.WriteObject(value, key, dest);
         }
-
-        object IProtoTypeSerializer.CreateInstance(ProtoReader source)
+        else
         {
-            return ((IProtoTypeSerializer)proxy.Serializer).CreateInstance(source);
+            ProtoWriter.WriteRecursionSafeObject(value, key, dest);
         }
+    }
 
-        private readonly int key;
-        private readonly Type type;
-        private readonly ISerializerProxy proxy;
-        private readonly bool recursionCheck;
-        public SubItemSerializer(Type type, int key, ISerializerProxy proxy, bool recursionCheck)
-        {
-            this.type = type ?? throw new ArgumentNullException(nameof(type));
-            this.proxy = proxy ?? throw new ArgumentNullException(nameof(proxy));
-            this.key = key;
-            this.recursionCheck = recursionCheck;
-        }
-
-        Type IProtoSerializer.ExpectedType => type;
-
-        bool IProtoSerializer.RequiresOldValue => true;
-
-        bool IProtoSerializer.ReturnsValue => true;
-
-        void IProtoSerializer.Write(object value, ProtoWriter dest)
-        {
-            if (recursionCheck)
-            {
-                ProtoWriter.WriteObject(value, key, dest);
-            }
-            else
-            {
-                ProtoWriter.WriteRecursionSafeObject(value, key, dest);
-            }
-        }
-
-        object IProtoSerializer.Read(object value, ProtoReader source)
-        {
-            return ProtoReader.ReadObject(value, key, source);
-        }
+    object IProtoSerializer.Read(object value, ProtoReader source)
+    {
+        return ProtoReader.ReadObject(value, key, source);
+    }
 
 #if FEAT_COMPILER
         bool EmitDedicatedMethod(Compiler.CompilerContext ctx, Compiler.Local valueFrom, bool read)
@@ -133,6 +141,5 @@ namespace ProtoBuf.Serializers
             }
         }
 #endif
-    }
 }
 #endif

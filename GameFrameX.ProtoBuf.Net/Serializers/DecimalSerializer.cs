@@ -1,30 +1,41 @@
 ﻿#if !NO_RUNTIME
-using System;
+using ProtoBuf.Meta;
 
-namespace ProtoBuf.Serializers
+namespace ProtoBuf.Serializers;
+
+internal sealed class DecimalSerializer : IProtoSerializer
 {
-    sealed class DecimalSerializer : IProtoSerializer
+    private static readonly Type expectedType = typeof(decimal);
+
+    public DecimalSerializer(TypeModel model)
     {
-        static readonly Type expectedType = typeof(decimal);
+    }
 
-        public DecimalSerializer(ProtoBuf.Meta.TypeModel model) { }
+    public Type ExpectedType
+    {
+        get { return expectedType; }
+    }
 
-        public Type ExpectedType => expectedType;
+    bool IProtoSerializer.RequiresOldValue
+    {
+        get { return false; }
+    }
 
-        bool IProtoSerializer.RequiresOldValue => false;
+    bool IProtoSerializer.ReturnsValue
+    {
+        get { return true; }
+    }
 
-        bool IProtoSerializer.ReturnsValue => true;
+    public object Read(object value, ProtoReader source)
+    {
+        Helpers.DebugAssert(value == null); // since replaces
+        return BclHelpers.ReadDecimal(source);
+    }
 
-        public object Read(object value, ProtoReader source)
-        {
-            Helpers.DebugAssert(value == null); // since replaces
-            return BclHelpers.ReadDecimal(source);
-        }
-
-        public void Write(object value, ProtoWriter dest)
-        {
-            BclHelpers.WriteDecimal((decimal)value, dest);
-        }
+    public void Write(object value, ProtoWriter dest)
+    {
+        BclHelpers.WriteDecimal((decimal)value, dest);
+    }
 
 #if FEAT_COMPILER
         void IProtoSerializer.EmitWrite(Compiler.CompilerContext ctx, Compiler.Local valueFrom)
@@ -36,7 +47,5 @@ namespace ProtoBuf.Serializers
             ctx.EmitBasicRead(ctx.MapType(typeof(BclHelpers)), "ReadDecimal", ExpectedType);
         }
 #endif
-
-    }
 }
 #endif

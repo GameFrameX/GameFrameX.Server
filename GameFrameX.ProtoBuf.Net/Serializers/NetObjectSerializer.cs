@@ -1,40 +1,43 @@
 ﻿#if !NO_RUNTIME
-using System;
-using System.Reflection;
 using ProtoBuf.Meta;
 
-namespace ProtoBuf.Serializers
+namespace ProtoBuf.Serializers;
+
+internal sealed class NetObjectSerializer : IProtoSerializer
 {
-    sealed class NetObjectSerializer : IProtoSerializer
+    private readonly int key;
+
+    private readonly BclHelpers.NetObjectOptions options;
+
+    public NetObjectSerializer(TypeModel model, Type type, int key, BclHelpers.NetObjectOptions options)
     {
-        private readonly int key;
-        private readonly Type type;
+        var dynamicType = (options & BclHelpers.NetObjectOptions.DynamicType) != 0;
+        this.key = dynamicType ? -1 : key;
+        this.ExpectedType = dynamicType ? model.MapType(typeof(object)) : type;
+        this.options = options;
+    }
 
-        private readonly BclHelpers.NetObjectOptions options;
+    public Type ExpectedType { get; }
 
-        public NetObjectSerializer(TypeModel model, Type type, int key, BclHelpers.NetObjectOptions options)
-        {
-            bool dynamicType = (options & BclHelpers.NetObjectOptions.DynamicType) != 0;
-            this.key = dynamicType ? -1 : key;
-            this.type = dynamicType ? model.MapType(typeof(object)) : type;
-            this.options = options;
-        }
+    public bool ReturnsValue
+    {
+        get { return true; }
+    }
 
-        public Type ExpectedType => type;
+    public bool RequiresOldValue
+    {
+        get { return true; }
+    }
 
-        public bool ReturnsValue => true;
+    public object Read(object value, ProtoReader source)
+    {
+        return BclHelpers.ReadNetObject(value, source, key, ExpectedType == typeof(object) ? null : ExpectedType, options);
+    }
 
-        public bool RequiresOldValue => true;
-
-        public object Read(object value, ProtoReader source)
-        {
-            return BclHelpers.ReadNetObject(value, source, key, type == typeof(object) ? null : type, options);
-        }
-
-        public void Write(object value, ProtoWriter dest)
-        {
-            BclHelpers.WriteNetObject(value, dest, key, options);
-        }
+    public void Write(object value, ProtoWriter dest)
+    {
+        BclHelpers.WriteNetObject(value, dest, key, options);
+    }
 
 #if FEAT_COMPILER
         public void EmitRead(Compiler.CompilerContext ctx, Compiler.Local valueFrom)
@@ -59,6 +62,5 @@ namespace ProtoBuf.Serializers
             ctx.EmitCall(ctx.MapType(typeof(BclHelpers)).GetMethod("WriteNetObject"));
         }
 #endif
-    }
 }
 #endif

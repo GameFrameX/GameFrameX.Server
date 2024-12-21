@@ -1,30 +1,41 @@
 ﻿#if !NO_RUNTIME
-using System;
+using ProtoBuf.Meta;
 
-namespace ProtoBuf.Serializers
+namespace ProtoBuf.Serializers;
+
+internal sealed class GuidSerializer : IProtoSerializer
 {
-    sealed class GuidSerializer : IProtoSerializer
+    private static readonly Type expectedType = typeof(Guid);
+
+    public GuidSerializer(TypeModel model)
     {
-        static readonly Type expectedType = typeof(Guid);
+    }
 
-        public GuidSerializer(ProtoBuf.Meta.TypeModel model) { }
+    public Type ExpectedType
+    {
+        get { return expectedType; }
+    }
 
-        public Type ExpectedType { get { return expectedType; } }
+    bool IProtoSerializer.RequiresOldValue
+    {
+        get { return false; }
+    }
 
-        bool IProtoSerializer.RequiresOldValue => false;
+    bool IProtoSerializer.ReturnsValue
+    {
+        get { return true; }
+    }
 
-        bool IProtoSerializer.ReturnsValue => true;
+    public void Write(object value, ProtoWriter dest)
+    {
+        BclHelpers.WriteGuid((Guid)value, dest);
+    }
 
-        public void Write(object value, ProtoWriter dest)
-        {
-            BclHelpers.WriteGuid((Guid)value, dest);
-        }
-
-        public object Read(object value, ProtoReader source)
-        {
-            Helpers.DebugAssert(value == null); // since replaces
-            return BclHelpers.ReadGuid(source);
-        }
+    public object Read(object value, ProtoReader source)
+    {
+        Helpers.DebugAssert(value == null); // since replaces
+        return BclHelpers.ReadGuid(source);
+    }
 
 #if FEAT_COMPILER
         void IProtoSerializer.EmitWrite(Compiler.CompilerContext ctx, Compiler.Local valueFrom)
@@ -37,7 +48,5 @@ namespace ProtoBuf.Serializers
             ctx.EmitBasicRead(ctx.MapType(typeof(BclHelpers)), "ReadGuid", ExpectedType);
         }
 #endif
-
-    }
 }
 #endif

@@ -1,42 +1,40 @@
 ﻿#if !NO_RUNTIME
-using System;
+namespace ProtoBuf.Serializers;
 
-
-namespace ProtoBuf.Serializers
+internal interface IProtoSerializer
 {
-    interface IProtoSerializer
-    {
-        /// <summary>
-        /// The type that this serializer is intended to work for.
-        /// </summary>
-        Type ExpectedType { get; }
+    /// <summary>
+    /// The type that this serializer is intended to work for.
+    /// </summary>
+    Type ExpectedType { get; }
 
-        /// <summary>
-        /// Perform the steps necessary to serialize this data.
-        /// </summary>
-        /// <param name="value">The value to be serialized.</param>
-        /// <param name="dest">The writer entity that is accumulating the output data.</param>
-        void Write(object value, ProtoWriter dest);
+    /// <summary>
+    /// Perform the steps necessary to serialize this data.
+    /// </summary>
+    /// <param name="value">The value to be serialized.</param>
+    /// <param name="dest">The writer entity that is accumulating the output data.</param>
+    void Write(object value, ProtoWriter dest);
 
-        /// <summary>
-        /// Perform the steps necessary to deserialize this data.
-        /// </summary>
-        /// <param name="value">The current value, if appropriate.</param>
-        /// <param name="source">The reader providing the input data.</param>
-        /// <returns>The updated / replacement value.</returns>
-        object Read(object value, ProtoReader source);
+    /// <summary>
+    /// Perform the steps necessary to deserialize this data.
+    /// </summary>
+    /// <param name="value">The current value, if appropriate.</param>
+    /// <param name="source">The reader providing the input data.</param>
+    /// <returns>The updated / replacement value.</returns>
+    object Read(object value, ProtoReader source);
 
-        /// <summary>
-        /// Indicates whether a Read operation <em>replaces</em> the existing value, or
-        /// <em>extends</em> the value. If false, the "value" parameter to Read is
-        /// discarded, and should be passed in as null.
-        /// </summary>
-        bool RequiresOldValue { get; }
-        /// <summary>
-        /// Now all Read operations return a value (although most do); if false no
-        /// value should be expected.
-        /// </summary>
-        bool ReturnsValue { get; }
+    /// <summary>
+    /// Indicates whether a Read operation <em>replaces</em> the existing value, or
+    /// <em>extends</em> the value. If false, the "value" parameter to Read is
+    /// discarded, and should be passed in as null.
+    /// </summary>
+    bool RequiresOldValue { get; }
+
+    /// <summary>
+    /// Now all Read operations return a value (although most do); if false no
+    /// value should be expected.
+    /// </summary>
+    bool ReturnsValue { get; }
 
 #if FEAT_COMPILER
         /// <summary>Emit the IL necessary to perform the given actions
@@ -59,6 +57,5 @@ namespace ProtoBuf.Serializers
         /// a variable or argument, it is not necessary to consume this value.</param>
         void EmitRead(Compiler.CompilerContext ctx, Compiler.Local entity);
 #endif
-    }
 }
 #endif

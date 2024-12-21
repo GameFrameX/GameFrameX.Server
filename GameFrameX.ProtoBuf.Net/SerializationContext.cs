@@ -1,38 +1,54 @@
-﻿using System;
+﻿namespace ProtoBuf;
 
-namespace ProtoBuf
+/// <summary>
+/// Additional information about a serialization operation
+/// </summary>
+public sealed class SerializationContext
 {
-    /// <summary>
-    /// Additional information about a serialization operation
-    /// </summary>
-    public sealed class SerializationContext
+    private bool frozen;
+
+    internal void Freeze()
     {
-        private bool frozen;
-        internal void Freeze() { frozen = true; }
-        private void ThrowIfFrozen() { if (frozen) throw new InvalidOperationException("The serialization-context cannot be changed once it is in use"); }
-        private object context;
-        /// <summary>
-        /// Gets or sets a user-defined object containing additional information about this serialization/deserialization operation.
-        /// </summary>
-        public object Context
-        {
-            get { return context; }
-            set { if (context != value) { ThrowIfFrozen(); context = value; } }
-        }
+        frozen = true;
+    }
 
-        private static readonly SerializationContext @default;
-
-        static SerializationContext()
+    private void ThrowIfFrozen()
+    {
+        if (frozen)
         {
-            @default = new SerializationContext();
-            @default.Freeze();
+            throw new InvalidOperationException("The serialization-context cannot be changed once it is in use");
         }
-        /// <summary>
-        /// A default SerializationContext, with minimal information.
-        /// </summary>
-        internal static SerializationContext Default => @default;
+    }
+
+    private object context;
+
+    /// <summary>
+    /// Gets or sets a user-defined object containing additional information about this serialization/deserialization operation.
+    /// </summary>
+    public object Context
+    {
+        get { return context; }
+        set
+        {
+            if (context != value)
+            {
+                ThrowIfFrozen();
+                context = value;
+            }
+        }
+    }
+
+    static SerializationContext()
+    {
+        Default = new SerializationContext();
+        Default.Freeze();
+    }
+
+    /// <summary>
+    /// A default SerializationContext, with minimal information.
+    /// </summary>
+    internal static SerializationContext Default { get; }
 #if PLAT_BINARYFORMATTER
-
 #if !(COREFX || PROFILE259)
         private System.Runtime.Serialization.StreamingContextStates state = System.Runtime.Serialization.StreamingContextStates.Persistence;
         /// <summary>
@@ -71,6 +87,4 @@ namespace ProtoBuf
 			return result;
         }
 #endif
-    }
-
 }

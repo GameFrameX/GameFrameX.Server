@@ -1,39 +1,50 @@
 ﻿#if !NO_RUNTIME
-using System;
+using ProtoBuf.Meta;
 #if COREFX
 using System.Reflection;
 #endif
+
 #if FEAT_COMPILER
 using System.Reflection.Emit;
 #endif
 
-namespace ProtoBuf.Serializers
+namespace ProtoBuf.Serializers;
+
+internal sealed class BlobSerializer : IProtoSerializer
 {
-    sealed class BlobSerializer : IProtoSerializer
+    public Type ExpectedType
     {
-        public Type ExpectedType { get { return expectedType; } }
+        get { return expectedType; }
+    }
 
-        static readonly Type expectedType = typeof(byte[]);
+    private static readonly Type expectedType = typeof(byte[]);
 
-        public BlobSerializer(ProtoBuf.Meta.TypeModel model, bool overwriteList)
-        {
-            this.overwriteList = overwriteList;
-        }
+    public BlobSerializer(TypeModel model, bool overwriteList)
+    {
+        this.overwriteList = overwriteList;
+    }
 
-        private readonly bool overwriteList;
+    private readonly bool overwriteList;
 
-        public object Read(object value, ProtoReader source)
-        {
-            return ProtoReader.AppendBytes(overwriteList ? null : (byte[])value, source);
-        }
+    public object Read(object value, ProtoReader source)
+    {
+        return ProtoReader.AppendBytes(overwriteList ? null : (byte[])value, source);
+    }
 
-        public void Write(object value, ProtoWriter dest)
-        {
-            ProtoWriter.WriteBytes((byte[])value, dest);
-        }
+    public void Write(object value, ProtoWriter dest)
+    {
+        ProtoWriter.WriteBytes((byte[])value, dest);
+    }
 
-        bool IProtoSerializer.RequiresOldValue { get { return !overwriteList; } }
-        bool IProtoSerializer.ReturnsValue { get { return true; } }
+    bool IProtoSerializer.RequiresOldValue
+    {
+        get { return !overwriteList; }
+    }
+
+    bool IProtoSerializer.ReturnsValue
+    {
+        get { return true; }
+    }
 #if FEAT_COMPILER
         void IProtoSerializer.EmitWrite(Compiler.CompilerContext ctx, Compiler.Local valueFrom)
         {
@@ -54,6 +65,5 @@ namespace ProtoBuf.Serializers
                .GetMethod("AppendBytes"));
         }
 #endif
-    }
 }
 #endif

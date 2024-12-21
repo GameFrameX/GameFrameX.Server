@@ -1,37 +1,35 @@
 ﻿#if !NO_RUNTIME
-using System;
-using System.Reflection;
 
 using ProtoBuf.Meta;
 
-namespace ProtoBuf.Serializers
+namespace ProtoBuf.Serializers;
+
+internal sealed class TagDecorator : ProtoDecoratorBase, IProtoTypeSerializer
 {
-    sealed class TagDecorator : ProtoDecoratorBase, IProtoTypeSerializer
+    public bool HasCallbacks(TypeModel.CallbackType callbackType)
     {
-        public bool HasCallbacks(TypeModel.CallbackType callbackType)
-        {
-            IProtoTypeSerializer pts = Tail as IProtoTypeSerializer;
-            return pts != null && pts.HasCallbacks(callbackType);
-        }
+        var pts = Tail as IProtoTypeSerializer;
+        return pts != null && pts.HasCallbacks(callbackType);
+    }
 
-        public bool CanCreateInstance()
-        {
-            IProtoTypeSerializer pts = Tail as IProtoTypeSerializer;
-            return pts != null && pts.CanCreateInstance();
-        }
+    public bool CanCreateInstance()
+    {
+        var pts = Tail as IProtoTypeSerializer;
+        return pts != null && pts.CanCreateInstance();
+    }
 
-        public object CreateInstance(ProtoReader source)
-        {
-            return ((IProtoTypeSerializer)Tail).CreateInstance(source);
-        }
+    public object CreateInstance(ProtoReader source)
+    {
+        return ((IProtoTypeSerializer)Tail).CreateInstance(source);
+    }
 
-        public void Callback(object value, TypeModel.CallbackType callbackType, SerializationContext context)
+    public void Callback(object value, TypeModel.CallbackType callbackType, SerializationContext context)
+    {
+        if (Tail is IProtoTypeSerializer pts)
         {
-            if (Tail is IProtoTypeSerializer pts)
-            {
-                pts.Callback(value, callbackType, context);
-            }
+            pts.Callback(value, callbackType, context);
         }
+    }
 
 #if FEAT_COMPILER
         public void EmitCallback(Compiler.CompilerContext ctx, Compiler.Local valueFrom, TypeModel.CallbackType callbackType)
@@ -46,39 +44,58 @@ namespace ProtoBuf.Serializers
             ((IProtoTypeSerializer)Tail).EmitCreateInstance(ctx);
         }
 #endif
-        public override Type ExpectedType => Tail.ExpectedType;
+    public override Type ExpectedType
+    {
+        get { return Tail.ExpectedType; }
+    }
 
-        public TagDecorator(int fieldNumber, WireType wireType, bool strict, IProtoSerializer tail)
-            : base(tail)
+    public TagDecorator(int fieldNumber, WireType wireType, bool strict, IProtoSerializer tail)
+        : base(tail)
+    {
+        this.fieldNumber = fieldNumber;
+        this.wireType = wireType;
+        this.strict = strict;
+    }
+
+    public override bool RequiresOldValue
+    {
+        get { return Tail.RequiresOldValue; }
+    }
+
+    public override bool ReturnsValue
+    {
+        get { return Tail.ReturnsValue; }
+    }
+
+    private readonly bool strict;
+    private readonly int fieldNumber;
+    private readonly WireType wireType;
+
+    private bool NeedsHint
+    {
+        get { return ((int)wireType & ~7) != 0; }
+    }
+
+    public override object Read(object value, ProtoReader source)
+    {
+        Helpers.DebugAssert(fieldNumber == source.FieldNumber);
+        if (strict)
         {
-            this.fieldNumber = fieldNumber;
-            this.wireType = wireType;
-            this.strict = strict;
+            source.Assert(wireType);
+        }
+        else if (NeedsHint)
+        {
+            source.Hint(wireType);
         }
 
-        public override bool RequiresOldValue => Tail.RequiresOldValue;
+        return Tail.Read(value, source);
+    }
 
-        public override bool ReturnsValue => Tail.ReturnsValue;
-
-        private readonly bool strict;
-        private readonly int fieldNumber;
-        private readonly WireType wireType;
-
-        private bool NeedsHint => ((int)wireType & ~7) != 0;
-
-        public override object Read(object value, ProtoReader source)
-        {
-            Helpers.DebugAssert(fieldNumber == source.FieldNumber);
-            if (strict) { source.Assert(wireType); }
-            else if (NeedsHint) { source.Hint(wireType); }
-            return Tail.Read(value, source);
-        }
-
-        public override void Write(object value, ProtoWriter dest)
-        {
-            ProtoWriter.WriteFieldHeader(fieldNumber, wireType, dest);
-            Tail.Write(value, dest);
-        }
+    public override void Write(object value, ProtoWriter dest)
+    {
+        ProtoWriter.WriteFieldHeader(fieldNumber, wireType, dest);
+        Tail.Write(value, dest);
+    }
 
 
 #if FEAT_COMPILER
@@ -102,7 +119,6 @@ namespace ProtoBuf.Serializers
             Tail.EmitRead(ctx, valueFrom);
         }
 #endif
-    }
-
 }
+
 #endif

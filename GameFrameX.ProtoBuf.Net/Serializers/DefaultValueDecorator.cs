@@ -1,42 +1,55 @@
 ﻿#if !NO_RUNTIME
-using System;
-using System.Reflection;
 using ProtoBuf.Meta;
 
-namespace ProtoBuf.Serializers
+namespace ProtoBuf.Serializers;
+
+internal sealed class DefaultValueDecorator : ProtoDecoratorBase
 {
-    sealed class DefaultValueDecorator : ProtoDecoratorBase
+    public override Type ExpectedType
     {
-        public override Type ExpectedType => Tail.ExpectedType;
+        get { return Tail.ExpectedType; }
+    }
 
-        public override bool RequiresOldValue => Tail.RequiresOldValue;
+    public override bool RequiresOldValue
+    {
+        get { return Tail.RequiresOldValue; }
+    }
 
-        public override bool ReturnsValue => Tail.ReturnsValue;
+    public override bool ReturnsValue
+    {
+        get { return Tail.ReturnsValue; }
+    }
 
-        private readonly object defaultValue;
-        public DefaultValueDecorator(TypeModel model, object defaultValue, IProtoSerializer tail) : base(tail)
+    private readonly object defaultValue;
+
+    public DefaultValueDecorator(TypeModel model, object defaultValue, IProtoSerializer tail) : base(tail)
+    {
+        if (defaultValue == null)
         {
-            if (defaultValue == null) throw new ArgumentNullException(nameof(defaultValue));
-            Type type = model.MapType(defaultValue.GetType());
-            if (type != tail.ExpectedType)
-            {
-                throw new ArgumentException("Default value is of incorrect type", "defaultValue");
-            }
-            this.defaultValue = defaultValue;
+            throw new ArgumentNullException(nameof(defaultValue));
         }
 
-        public override void Write(object value, ProtoWriter dest)
+        var type = model.MapType(defaultValue.GetType());
+        if (type != tail.ExpectedType)
         {
-            if (!object.Equals(value, defaultValue))
-            {
-                Tail.Write(value, dest);
-            }
+            throw new ArgumentException("Default value is of incorrect type", "defaultValue");
         }
 
-        public override object Read(object value, ProtoReader source)
+        this.defaultValue = defaultValue;
+    }
+
+    public override void Write(object value, ProtoWriter dest)
+    {
+        if (!Equals(value, defaultValue))
         {
-            return Tail.Read(value, source);
+            Tail.Write(value, dest);
         }
+    }
+
+    public override object Read(object value, ProtoReader source)
+    {
+        return Tail.Read(value, source);
+    }
 
 #if FEAT_COMPILER
         protected override void EmitWrite(Compiler.CompilerContext ctx, Compiler.Local valueFrom)
@@ -254,6 +267,5 @@ namespace ProtoBuf.Serializers
             Tail.EmitRead(ctx, valueFrom);
         }
 #endif
-    }
 }
 #endif

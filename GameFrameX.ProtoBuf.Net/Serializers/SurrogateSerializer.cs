@@ -1,49 +1,66 @@
 ﻿#if !NO_RUNTIME
-using System;
-using ProtoBuf.Meta;
 using System.Reflection;
+using ProtoBuf.Meta;
 
-namespace ProtoBuf.Serializers
+namespace ProtoBuf.Serializers;
+
+internal sealed class SurrogateSerializer : IProtoTypeSerializer
 {
-    sealed class SurrogateSerializer : IProtoTypeSerializer
+    bool IProtoTypeSerializer.HasCallbacks(TypeModel.CallbackType callbackType)
     {
-        bool IProtoTypeSerializer.HasCallbacks(ProtoBuf.Meta.TypeModel.CallbackType callbackType) { return false; }
+        return false;
+    }
 #if FEAT_COMPILER
         void IProtoTypeSerializer.EmitCallback(Compiler.CompilerContext ctx, Compiler.Local valueFrom, ProtoBuf.Meta.TypeModel.CallbackType callbackType) { }
         void IProtoTypeSerializer.EmitCreateInstance(Compiler.CompilerContext ctx) { throw new NotSupportedException(); }
 #endif
-        bool IProtoTypeSerializer.CanCreateInstance() => false;
+    bool IProtoTypeSerializer.CanCreateInstance()
+    {
+        return false;
+    }
 
-        object IProtoTypeSerializer.CreateInstance(ProtoReader source) => throw new NotSupportedException();
+    object IProtoTypeSerializer.CreateInstance(ProtoReader source)
+    {
+        throw new NotSupportedException();
+    }
 
-        void IProtoTypeSerializer.Callback(object value, ProtoBuf.Meta.TypeModel.CallbackType callbackType, SerializationContext context) { }
+    void IProtoTypeSerializer.Callback(object value, TypeModel.CallbackType callbackType, SerializationContext context)
+    {
+    }
 
-        public bool ReturnsValue => false;
+    public bool ReturnsValue
+    {
+        get { return false; }
+    }
 
-        public bool RequiresOldValue => true;
+    public bool RequiresOldValue
+    {
+        get { return true; }
+    }
 
-        public Type ExpectedType => forType;
+    public Type ExpectedType { get; }
 
-        private readonly Type forType, declaredType;
-        private readonly MethodInfo toTail, fromTail;
-        IProtoTypeSerializer rootTail;
+    private readonly Type declaredType;
+    private readonly MethodInfo toTail, fromTail;
+    private readonly IProtoTypeSerializer rootTail;
 
-        public SurrogateSerializer(TypeModel model, Type forType, Type declaredType, IProtoTypeSerializer rootTail)
-        {
-            Helpers.DebugAssert(forType != null, "forType");
-            Helpers.DebugAssert(declaredType != null, "declaredType");
-            Helpers.DebugAssert(rootTail != null, "rootTail");
-            Helpers.DebugAssert(rootTail.RequiresOldValue, "RequiresOldValue");
-            Helpers.DebugAssert(!rootTail.ReturnsValue, "ReturnsValue");
-            Helpers.DebugAssert(declaredType == rootTail.ExpectedType || Helpers.IsSubclassOf(declaredType, rootTail.ExpectedType));
-            this.forType = forType;
-            this.declaredType = declaredType;
-            this.rootTail = rootTail;
-            toTail = GetConversion(model, true);
-            fromTail = GetConversion(model, false);
-        }
-        private static bool HasCast(TypeModel model, Type type, Type from, Type to, out MethodInfo op)
-        {
+    public SurrogateSerializer(TypeModel model, Type forType, Type declaredType, IProtoTypeSerializer rootTail)
+    {
+        Helpers.DebugAssert(forType != null, "forType");
+        Helpers.DebugAssert(declaredType != null, "declaredType");
+        Helpers.DebugAssert(rootTail != null, "rootTail");
+        Helpers.DebugAssert(rootTail.RequiresOldValue, "RequiresOldValue");
+        Helpers.DebugAssert(!rootTail.ReturnsValue, "ReturnsValue");
+        Helpers.DebugAssert(declaredType == rootTail.ExpectedType || Helpers.IsSubclassOf(declaredType, rootTail.ExpectedType));
+        this.ExpectedType = forType;
+        this.declaredType = declaredType;
+        this.rootTail = rootTail;
+        toTail = GetConversion(model, true);
+        fromTail = GetConversion(model, false);
+    }
+
+    private static bool HasCast(TypeModel model, Type type, Type from, Type to, out MethodInfo op)
+    {
 #if PROFILE259
 			System.Collections.Generic.List<MethodInfo> list = new System.Collections.Generic.List<MethodInfo>();
             foreach (var item in type.GetRuntimeMethods())
@@ -52,80 +69,89 @@ namespace ProtoBuf.Serializers
             }
             MethodInfo[] found = list.ToArray();
 #else
-            const BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
-            MethodInfo[] found = type.GetMethods(flags);
+        const BindingFlags flags = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
+        var found = type.GetMethods(flags);
 #endif
-            ParameterInfo[] paramTypes;
-            Type convertAttributeType = null;
-            for (int i = 0; i < found.Length; i++)
+        ParameterInfo[] paramTypes;
+        Type convertAttributeType = null;
+        for (var i = 0; i < found.Length; i++)
+        {
+            var m = found[i];
+            if (m.ReturnType != to)
             {
-                MethodInfo m = found[i];
-                if (m.ReturnType != to) continue;
-                paramTypes = m.GetParameters();
-                if (paramTypes.Length == 1 && paramTypes[0].ParameterType == from)
-                {
-                    if (convertAttributeType == null)
-                    {
-                        convertAttributeType = model.MapType(typeof(ProtoConverterAttribute), false);
-                        if (convertAttributeType == null)
-                        { // attribute isn't defined in the source assembly: stop looking
-                            break;
-                        }
-                    }
-                    if (m.IsDefined(convertAttributeType, true))
-                    {
-                        op = m;
-                        return true;
-                    }
-                }
+                continue;
             }
 
-            for (int i = 0; i < found.Length; i++)
+            paramTypes = m.GetParameters();
+            if (paramTypes.Length == 1 && paramTypes[0].ParameterType == from)
             {
-                MethodInfo m = found[i];
-                if ((m.Name != "op_Implicit" && m.Name != "op_Explicit") || m.ReturnType != to)
+                if (convertAttributeType == null)
                 {
-                    continue;
+                    convertAttributeType = model.MapType(typeof(ProtoConverterAttribute), false);
+                    if (convertAttributeType == null)
+                    {
+                        // attribute isn't defined in the source assembly: stop looking
+                        break;
+                    }
                 }
-                paramTypes = m.GetParameters();
-                if (paramTypes.Length == 1 && paramTypes[0].ParameterType == from)
+
+                if (m.IsDefined(convertAttributeType, true))
                 {
                     op = m;
                     return true;
                 }
             }
-            op = null;
-            return false;
         }
 
-        public MethodInfo GetConversion(TypeModel model, bool toTail)
+        for (var i = 0; i < found.Length; i++)
         {
-            Type to = toTail ? declaredType : forType;
-            Type from = toTail ? forType : declaredType;
-            MethodInfo op;
-            if (HasCast(model, declaredType, from, to, out op) || HasCast(model, forType, from, to, out op))
+            var m = found[i];
+            if ((m.Name != "op_Implicit" && m.Name != "op_Explicit") || m.ReturnType != to)
             {
-                return op;
+                continue;
             }
-            throw new InvalidOperationException("No suitable conversion operator found for surrogate: " +
-                forType.FullName + " / " + declaredType.FullName);
+
+            paramTypes = m.GetParameters();
+            if (paramTypes.Length == 1 && paramTypes[0].ParameterType == from)
+            {
+                op = m;
+                return true;
+            }
         }
 
-        public void Write(object value, ProtoWriter writer)
+        op = null;
+        return false;
+    }
+
+    public MethodInfo GetConversion(TypeModel model, bool toTail)
+    {
+        var to = toTail ? declaredType : ExpectedType;
+        var from = toTail ? ExpectedType : declaredType;
+        MethodInfo op;
+        if (HasCast(model, declaredType, from, to, out op) || HasCast(model, ExpectedType, from, to, out op))
         {
-            rootTail.Write(toTail.Invoke(null, new object[] { value }), writer);
+            return op;
         }
 
-        public object Read(object value, ProtoReader source)
-        {
-            // convert the incoming value
-            object[] args = { value };
-            value = toTail.Invoke(null, args);
+        throw new InvalidOperationException("No suitable conversion operator found for surrogate: " +
+                                            ExpectedType.FullName + " / " + declaredType.FullName);
+    }
 
-            // invoke the tail and convert the outgoing value
-            args[0] = rootTail.Read(value, source);
-            return fromTail.Invoke(null, args);
-        }
+    public void Write(object value, ProtoWriter writer)
+    {
+        rootTail.Write(toTail.Invoke(null, new[] { value, }), writer);
+    }
+
+    public object Read(object value, ProtoReader source)
+    {
+        // convert the incoming value
+        object[] args = { value, };
+        value = toTail.Invoke(null, args);
+
+        // invoke the tail and convert the outgoing value
+        args[0] = rootTail.Read(value, source);
+        return fromTail.Invoke(null, args);
+    }
 
 #if FEAT_COMPILER
         void IProtoSerializer.EmitRead(Compiler.CompilerContext ctx, Compiler.Local valueFrom)
@@ -152,6 +178,5 @@ namespace ProtoBuf.Serializers
             rootTail.EmitWrite(ctx, null);
         }
 #endif
-    }
 }
 #endif

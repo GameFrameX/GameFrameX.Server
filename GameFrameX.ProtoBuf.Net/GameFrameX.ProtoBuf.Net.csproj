@@ -31,10 +31,10 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <NoWarn>1701;1702;CS8625;CS8600;CS8601;CS8602;CS8603;CS8605;CS8769;CS8604;CS8618;CS8767</NoWarn>
+        <NoWarn>1701;1702;CS8625;CS8600;CS8601;CS8602;CS8603;CS8605;CS8769;CS8604;CS8618;CS8767</NoWarn>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <NoWarn>1701;1702;CS8625;CS8600;CS8601;CS8602;CS8603;CS8605;CS8769;CS8604;CS8618;CS8767</NoWarn>
+        <NoWarn>1701;1702;CS8625;CS8600;CS8601;CS8602;CS8603;CS8605;CS8769;CS8604;CS8618;CS8767</NoWarn>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
         <OutputPath>..\bin\app_debug</OutputPath>
@@ -44,7 +44,7 @@
         <OutputPath>..\bin\app</OutputPath>
     </PropertyGroup>
     <ItemGroup>
-      <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.1" />
+        <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.1"/>
     </ItemGroup>
     <ItemGroup>
         <None Include="..\logo.png">

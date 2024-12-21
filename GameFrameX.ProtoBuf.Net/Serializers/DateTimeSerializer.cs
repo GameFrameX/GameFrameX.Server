@@ -1,48 +1,61 @@
 ﻿#if !NO_RUNTIME
-using System;
-using System.Reflection;
+using ProtoBuf.Meta;
 
-namespace ProtoBuf.Serializers
+namespace ProtoBuf.Serializers;
+
+internal sealed class DateTimeSerializer : IProtoSerializer
 {
-    internal sealed class DateTimeSerializer : IProtoSerializer
+    private static readonly Type expectedType = typeof(DateTime);
+
+    public Type ExpectedType
     {
-        private static readonly Type expectedType = typeof(DateTime);
+        get { return expectedType; }
+    }
 
-        public Type ExpectedType => expectedType;
+    bool IProtoSerializer.RequiresOldValue
+    {
+        get { return false; }
+    }
 
-        bool IProtoSerializer.RequiresOldValue => false;
-        bool IProtoSerializer.ReturnsValue => true;
+    bool IProtoSerializer.ReturnsValue
+    {
+        get { return true; }
+    }
 
-        private readonly bool includeKind, wellKnown;
+    private readonly bool includeKind, wellKnown;
 
-        public DateTimeSerializer(DataFormat dataFormat, ProtoBuf.Meta.TypeModel model)
+    public DateTimeSerializer(DataFormat dataFormat, TypeModel model)
+    {
+        wellKnown = dataFormat == DataFormat.WellKnown;
+        includeKind = model?.SerializeDateTimeKind() == true;
+    }
+
+    public object Read(object value, ProtoReader source)
+    {
+        if (wellKnown)
         {
-            wellKnown = dataFormat == DataFormat.WellKnown;
-            includeKind = model?.SerializeDateTimeKind() == true;
+            return BclHelpers.ReadTimestamp(source);
         }
 
-        public object Read(object value, ProtoReader source)
-        {
-            if (wellKnown)
-            {
-                return BclHelpers.ReadTimestamp(source);
-            }
-            else
-            {
-                Helpers.DebugAssert(value == null); // since replaces
-                return BclHelpers.ReadDateTime(source);
-            }
-        }
+        Helpers.DebugAssert(value == null); // since replaces
+        return BclHelpers.ReadDateTime(source);
+    }
 
-        public void Write(object value, ProtoWriter dest)
+    public void Write(object value, ProtoWriter dest)
+    {
+        if (wellKnown)
         {
-            if (wellKnown)
-                BclHelpers.WriteTimestamp((DateTime)value, dest);
-            else if (includeKind)
-                BclHelpers.WriteDateTimeWithKind((DateTime)value, dest);
-            else
-                BclHelpers.WriteDateTime((DateTime)value, dest);
+            BclHelpers.WriteTimestamp((DateTime)value, dest);
         }
+        else if (includeKind)
+        {
+            BclHelpers.WriteDateTimeWithKind((DateTime)value, dest);
+        }
+        else
+        {
+            BclHelpers.WriteDateTime((DateTime)value, dest);
+        }
+    }
 #if FEAT_COMPILER
         void IProtoSerializer.EmitWrite(Compiler.CompilerContext ctx, Compiler.Local valueFrom)
         {
@@ -59,7 +72,5 @@ namespace ProtoBuf.Serializers
                 ExpectedType);
         }
 #endif
-
-    }
 }
 #endif

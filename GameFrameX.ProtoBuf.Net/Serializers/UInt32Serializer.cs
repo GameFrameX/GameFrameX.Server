@@ -1,33 +1,41 @@
 ﻿#if !NO_RUNTIME
-using System;
+using ProtoBuf.Meta;
 
-namespace ProtoBuf.Serializers
+namespace ProtoBuf.Serializers;
+
+internal sealed class UInt32Serializer : IProtoSerializer
 {
-    sealed class UInt32Serializer : IProtoSerializer
+    private static readonly Type expectedType = typeof(uint);
+
+    public UInt32Serializer(TypeModel model)
     {
-        static readonly Type expectedType = typeof(uint);
+    }
 
-        public UInt32Serializer(ProtoBuf.Meta.TypeModel model)
-        {
+    public Type ExpectedType
+    {
+        get { return expectedType; }
+    }
 
-        }
+    bool IProtoSerializer.RequiresOldValue
+    {
+        get { return false; }
+    }
 
-        public Type ExpectedType => expectedType;
+    bool IProtoSerializer.ReturnsValue
+    {
+        get { return true; }
+    }
 
-        bool IProtoSerializer.RequiresOldValue => false;
+    public object Read(object value, ProtoReader source)
+    {
+        Helpers.DebugAssert(value == null); // since replaces
+        return source.ReadUInt32();
+    }
 
-        bool IProtoSerializer.ReturnsValue => true;
-
-        public object Read(object value, ProtoReader source)
-        {
-            Helpers.DebugAssert(value == null); // since replaces
-            return source.ReadUInt32();
-        }
-
-        public void Write(object value, ProtoWriter dest)
-        {
-            ProtoWriter.WriteUInt32((uint)value, dest);
-        }
+    public void Write(object value, ProtoWriter dest)
+    {
+        ProtoWriter.WriteUInt32((uint)value, dest);
+    }
 #if FEAT_COMPILER
         void IProtoSerializer.EmitWrite(Compiler.CompilerContext ctx, Compiler.Local valueFrom)
         {
@@ -38,6 +46,5 @@ namespace ProtoBuf.Serializers
             ctx.EmitBasicRead("ReadUInt32", ctx.MapType(typeof(uint)));
         }
 #endif
-    }
 }
 #endif

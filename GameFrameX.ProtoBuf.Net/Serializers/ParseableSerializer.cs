@@ -1,17 +1,19 @@
 ﻿#if !NO_RUNTIME
-using System;
-using System.Net;
-using ProtoBuf.Meta;
 using System.Reflection;
+using ProtoBuf.Meta;
 
-namespace ProtoBuf.Serializers
+namespace ProtoBuf.Serializers;
+
+internal sealed class ParseableSerializer : IProtoSerializer
 {
-    sealed class ParseableSerializer : IProtoSerializer
+    private readonly MethodInfo parse;
+
+    public static ParseableSerializer TryCreate(Type type, TypeModel model)
     {
-        private readonly MethodInfo parse;
-        public static ParseableSerializer TryCreate(Type type, TypeModel model)
+        if (type == null)
         {
-            if (type == null) throw new ArgumentNullException("type");
+            throw new ArgumentNullException("type");
+        }
 #if PORTABLE || COREFX || PROFILE259
 			MethodInfo method = null;
 
@@ -29,54 +31,70 @@ namespace ProtoBuf.Serializers
                 }
             }
 #else
-            MethodInfo method = type.GetMethod("Parse",
-                BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly,
-                null, new Type[] { model.MapType(typeof(string)) }, null);
+        var method = type.GetMethod("Parse",
+                                    BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly,
+                                    null, new[] { model.MapType(typeof(string)), }, null);
 #endif
-            if (method != null && method.ReturnType == type)
-            {
-                if (Helpers.IsValueType(type))
-                {
-                    MethodInfo toString = GetCustomToString(type);
-                    if (toString == null || toString.ReturnType != model.MapType(typeof(string))) return null; // need custom ToString, fools
-                }
-                return new ParseableSerializer(method);
-            }
-            return null;
-        }
-        private static MethodInfo GetCustomToString(Type type)
+        if (method != null && method.ReturnType == type)
         {
+            if (Helpers.IsValueType(type))
+            {
+                var toString = GetCustomToString(type);
+                if (toString == null || toString.ReturnType != model.MapType(typeof(string)))
+                {
+                    return null; // need custom ToString, fools
+                }
+            }
+
+            return new ParseableSerializer(method);
+        }
+
+        return null;
+    }
+
+    private static MethodInfo GetCustomToString(Type type)
+    {
 #if PORTABLE || COREFX || PROFILE259
 			MethodInfo method = Helpers.GetInstanceMethod(type, "ToString", Helpers.EmptyTypes);
             if (method == null || !method.IsPublic || method.IsStatic || method.DeclaringType != type) return null;
             return method;
 #else
 
-            return type.GetMethod("ToString", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly,
-                        null, Helpers.EmptyTypes, null);
+        return type.GetMethod("ToString", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly,
+                              null, Helpers.EmptyTypes, null);
 #endif
-        }
+    }
 
-        private ParseableSerializer(MethodInfo parse)
-        {
-            this.parse = parse;
-        }
+    private ParseableSerializer(MethodInfo parse)
+    {
+        this.parse = parse;
+    }
 
-        public Type ExpectedType => parse.DeclaringType;
+    public Type ExpectedType
+    {
+        get { return parse.DeclaringType; }
+    }
 
-        bool IProtoSerializer.RequiresOldValue { get { return false; } }
-        bool IProtoSerializer.ReturnsValue { get { return true; } }
+    bool IProtoSerializer.RequiresOldValue
+    {
+        get { return false; }
+    }
 
-        public object Read(object value, ProtoReader source)
-        {
-            Helpers.DebugAssert(value == null); // since replaces
-            return parse.Invoke(null, new object[] { source.ReadString() });
-        }
+    bool IProtoSerializer.ReturnsValue
+    {
+        get { return true; }
+    }
 
-        public void Write(object value, ProtoWriter dest)
-        {
-            ProtoWriter.WriteString(value.ToString(), dest);
-        }
+    public object Read(object value, ProtoReader source)
+    {
+        Helpers.DebugAssert(value == null); // since replaces
+        return parse.Invoke(null, new object[] { source.ReadString(), });
+    }
+
+    public void Write(object value, ProtoWriter dest)
+    {
+        ProtoWriter.WriteString(value.ToString(), dest);
+    }
 
 #if FEAT_COMPILER
         void IProtoSerializer.EmitWrite(Compiler.CompilerContext ctx, Compiler.Local valueFrom)
@@ -105,7 +123,5 @@ namespace ProtoBuf.Serializers
             ctx.EmitCall(parse);
         }
 #endif
-
-    }
 }
 #endif
