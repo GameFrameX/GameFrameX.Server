@@ -1,10 +1,8 @@
-﻿using GameFrameX.DataBase.Abstractions;
-
-namespace GameFrameX.Apps;
+﻿namespace GameFrameX.Apps;
 
 public static class CacheStateTypeManager
 {
-    private static readonly ConcurrentDictionary<long, Type> HashMap = new ConcurrentDictionary<long, Type>();
+    private static readonly ConcurrentDictionary<long, Type> HashMap = new();
 
     /// <summary>
     /// 初始化对象实体集的扫描
