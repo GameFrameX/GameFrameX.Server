@@ -7,23 +7,23 @@ namespace GameFrameX.Monitor.Account;
 /// </summary>
 public static class MetricsAccountRegister
 {
-    static Counter _loginCounterOptions;
+    private static Counter _loginCounterOptions;
+
+    private static Counter _registerCounterOptions;
 
     /// <summary>
     /// 账号登录次数
     /// </summary>
     public static Counter LoginCounterOptions
     {
-        get { return _loginCounterOptions ??= Prometheus.Metrics.CreateCounter("account_login", "账号登录次数"); }
+        get { return _loginCounterOptions ??= Metrics.CreateCounter("account_login", "账号登录次数"); }
     }
-
-    static Counter _registerCounterOptions;
 
     /// <summary>
     /// 账号注册次数
     /// </summary>
     public static Counter RegisterCounterOptions
     {
-        get { return _registerCounterOptions ??= Prometheus.Metrics.CreateCounter("account_register", "账号注册次数"); }
+        get { return _registerCounterOptions ??= Metrics.CreateCounter("account_register", "账号注册次数"); }
     }
 }

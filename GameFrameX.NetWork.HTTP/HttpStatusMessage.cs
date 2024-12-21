@@ -7,7 +7,7 @@ namespace GameFrameX.NetWork.HTTP;
 /// </summary>
 public static class HttpStatusMessage
 {
-    ///<summary>
+    /// <summary>
     /// 成功
     /// </summary>
     public const string Success = "ok";

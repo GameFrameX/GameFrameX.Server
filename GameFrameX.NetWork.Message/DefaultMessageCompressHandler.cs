@@ -1,4 +1,5 @@
 using GameFrameX.NetWork.Abstractions;
+using GameFrameX.Utility;
 
 namespace GameFrameX.NetWork.Message;
 
@@ -14,6 +15,6 @@ public sealed class DefaultMessageCompressHandler : IMessageCompressHandler
     /// <returns></returns>
     public byte[] Handler(byte[] message)
     {
-        return Utility.Compression.Compress(message);
+        return Compression.Compress(message);
     }
 }

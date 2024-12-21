@@ -8,21 +8,6 @@ namespace GameFrameX.NetWork.Messages;
 public sealed class CommandInfo : ICommandInfo
 {
     /// <summary>
-    /// 合并后的消息ID
-    /// </summary>
-    public int MessageId { get; }
-
-    /// <summary>
-    /// 主消息ID
-    /// </summary>
-    public int MainId { get; }
-
-    /// <summary>
-    /// 次消息ID
-    /// </summary>
-    public int SubId { get; }
-
-    /// <summary>
     /// 创建指令对象
     /// </summary>
     /// <param name="messageId"></param>
@@ -44,6 +29,21 @@ public sealed class CommandInfo : ICommandInfo
         MainId = mainId;
         SubId = subId;
     }
+
+    /// <summary>
+    /// 合并后的消息ID
+    /// </summary>
+    public int MessageId { get; }
+
+    /// <summary>
+    /// 主消息ID
+    /// </summary>
+    public int MainId { get; }
+
+    /// <summary>
+    /// 次消息ID
+    /// </summary>
+    public int SubId { get; }
 
     /// <summary>
     /// 创建指令对象

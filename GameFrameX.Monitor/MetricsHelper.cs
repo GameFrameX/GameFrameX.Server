@@ -33,12 +33,12 @@ public static class MetricsHelper
         {
             SuppressEventCounters = true,
             SuppressMeters = true,
-            SuppressProcessMetrics = true
+            SuppressProcessMetrics = true,
         });
         _server = new KestrelMetricServer(port);
         _server.Start();
 
-        var totalSleepTime = Prometheus.Metrics.CreateCounter("sample_sleep_seconds_total", "Total amount of time spent sleeping.");
+        var totalSleepTime = Metrics.CreateCounter("sample_sleep_seconds_total", "Total amount of time spent sleeping.");
 
         _ = Task.Run(async delegate
         {

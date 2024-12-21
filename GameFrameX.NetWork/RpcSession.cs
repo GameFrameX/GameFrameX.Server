@@ -9,19 +9,52 @@ namespace GameFrameX.NetWork;
 public sealed class RpcSession : IRpcSession, IDisposable
 {
     /// <summary>
-    /// 等待队列
-    /// </summary>
-    private readonly ConcurrentQueue<RpcData> _waitingObjects = new ConcurrentQueue<RpcData>();
-
-    /// <summary>
     /// 删除列表
     /// </summary>
-    private readonly HashSet<long> _removeUniqueIds = new HashSet<long>();
+    private readonly HashSet<long> _removeUniqueIds = new();
 
     /// <summary>
     /// RPC处理队列
     /// </summary>
-    private readonly ConcurrentDictionary<long, RpcData> _rpcHandlingObjects = new ConcurrentDictionary<long, RpcData>();
+    private readonly ConcurrentDictionary<long, RpcData> _rpcHandlingObjects = new();
+
+    /// <summary>
+    /// 等待队列
+    /// </summary>
+    private readonly ConcurrentQueue<RpcData> _waitingObjects = new();
+
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
+    public void Dispose()
+    {
+        Stop();
+        GC.SuppressFinalize(this);
+    }
+
+
+    /// <summary>
+    /// 异步调用,且等待返回
+    /// </summary>
+    /// <param name="message">调用消息对象</param>
+    /// <param name="timeOutMillisecond">调用超时,单位毫秒,默认10秒</param>
+    /// <returns>返回消息对象</returns>
+    public Task<IRpcResult> Call(IRequestMessage message, int timeOutMillisecond = 10000)
+    {
+        var rpcData = RpcData.Create(message, true, timeOutMillisecond);
+        _waitingObjects.Enqueue(rpcData);
+        return rpcData.Task;
+    }
+
+    /// <summary>
+    /// 异步发送,不等待结果
+    /// </summary>
+    /// <param name="message">调用消息对象</param>
+    public void Send(IRequestMessage message)
+    {
+        var actorObject = RpcData.Create(message, false);
+        _waitingObjects.Enqueue(actorObject);
+    }
 
     /// <summary>
     /// 处理消息队列
@@ -72,30 +105,6 @@ public sealed class RpcSession : IRpcSession, IDisposable
         return false;
     }
 
-
-    /// <summary>
-    /// 异步调用,且等待返回
-    /// </summary>
-    /// <param name="message">调用消息对象</param>
-    /// <param name="timeOutMillisecond">调用超时,单位毫秒,默认10秒</param>
-    /// <returns>返回消息对象</returns>
-    public Task<IRpcResult> Call(IRequestMessage message, int timeOutMillisecond = 10000)
-    {
-        var rpcData = RpcData.Create(message, true, timeOutMillisecond);
-        _waitingObjects.Enqueue(rpcData);
-        return rpcData.Task;
-    }
-
-    /// <summary>
-    /// 异步发送,不等待结果
-    /// </summary>
-    /// <param name="message">调用消息对象</param>
-    public void Send(IRequestMessage message)
-    {
-        var actorObject = RpcData.Create(message, false);
-        _waitingObjects.Enqueue(actorObject);
-    }
-
     /// <summary>
     /// 计时器
     /// </summary>
@@ -143,14 +152,5 @@ public sealed class RpcSession : IRpcSession, IDisposable
     ~RpcSession()
     {
         Dispose();
-    }
-
-    /// <summary>
-    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-    /// </summary>
-    public void Dispose()
-    {
-        Stop();
-        GC.SuppressFinalize(this);
     }
 }

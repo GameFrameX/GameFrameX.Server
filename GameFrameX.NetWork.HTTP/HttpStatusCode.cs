@@ -5,37 +5,37 @@ namespace GameFrameX.NetWork.HTTP;
 /// </summary>
 public enum HttpStatusCode
 {
-    ///<summary>
+    /// <summary>
     /// 成功
     /// </summary>
     Success = 0,
 
-    ///<summary>
+    /// <summary>
     /// 未定义的命令
     /// </summary>
     Undefined = 11,
 
-    ///<summary>
+    /// <summary>
     /// 非法
     /// </summary>
     Illegal = 12,
 
-    ///<summary>
+    /// <summary>
     /// 参数错误
     /// </summary>
     ParamErr = 13,
 
-    ///<summary>
+    /// <summary>
     /// 验证失败
     /// </summary>
     CheckFailed = 14,
 
-    ///<summary>
+    /// <summary>
     /// 操作失败
     /// </summary>
     ActionFailed = 15,
 
-    ///<summary>
+    /// <summary>
     /// 未找到的命令
     /// </summary>
     NotFound = 16,

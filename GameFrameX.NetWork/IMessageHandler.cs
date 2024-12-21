@@ -1,5 +1,4 @@
 using GameFrameX.NetWork.Abstractions;
-using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.NetWork;
 
@@ -8,6 +7,16 @@ namespace GameFrameX.NetWork;
 /// </summary>
 public interface IMessageHandler
 {
+    /// <summary>
+    /// 消息对象
+    /// </summary>
+    INetworkMessage Message { get; }
+
+    /// <summary>
+    /// 网络频道对象
+    /// </summary>
+    INetWorkChannel NetWorkChannel { get; }
+
     /// <summary>
     /// 初始化
     /// 子类实现必须调用
@@ -22,14 +31,4 @@ public interface IMessageHandler
     /// </summary>
     /// <returns></returns>
     Task InnerAction();
-
-    /// <summary>
-    /// 消息对象
-    /// </summary>
-    INetworkMessage Message { get; }
-
-    /// <summary>
-    /// 网络频道对象
-    /// </summary>
-    INetWorkChannel NetWorkChannel { get; }
 }

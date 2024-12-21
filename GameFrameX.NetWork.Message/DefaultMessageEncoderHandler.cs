@@ -14,7 +14,7 @@ public sealed class DefaultMessageEncoderHandler : BaseMessageEncoderHandler
     private readonly ObjectPool<MessageObjectHeader> _messageObjectHeaderObjectPool;
 
     /// <summary>
-    /// 
+    /// 默认消息编码处理器
     /// </summary>
     public DefaultMessageEncoderHandler()
     {

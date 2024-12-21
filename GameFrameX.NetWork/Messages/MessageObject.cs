@@ -1,5 +1,4 @@
-﻿using System.Text;
-using GameFrameX.Extension;
+﻿using GameFrameX.Extension;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Utility;
 using Newtonsoft.Json;
@@ -13,6 +12,12 @@ namespace GameFrameX.NetWork.Messages;
 [ProtoContract]
 public abstract class MessageObject : INetworkMessage
 {
+    /// <summary>
+    /// </summary>
+    protected MessageObject()
+    {
+        UpdateUniqueId();
+    }
     /*/// <summary>
     /// 单位id
     /// </summary>
@@ -24,6 +29,12 @@ public abstract class MessageObject : INetworkMessage
     /// </summary>
     [JsonIgnore]
     public int MessageId { get; private set; }
+
+    /// <summary>
+    /// 消息业务类型
+    /// </summary>
+    [JsonIgnore]
+    public MessageOperationType OperationType { get; private set; }
 
     /// <summary>
     /// 设置消息ID
@@ -39,29 +50,6 @@ public abstract class MessageObject : INetworkMessage
     /// </summary>
     [JsonIgnore]
     public int UniqueId { get; set; }
-
-    /// <summary>
-    /// 消息业务类型
-    /// </summary>
-    [JsonIgnore]
-    public MessageOperationType OperationType { get; private set; }
-
-    /// <summary>
-    /// 设置消息业务类型
-    /// </summary>
-    /// <param name="messageOperationType">消息业务类型 </param>
-    public void SetOperationType(MessageOperationType messageOperationType)
-    {
-        OperationType = messageOperationType;
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    protected MessageObject()
-    {
-        UpdateUniqueId();
-    }
 
 
     /// <summary>
@@ -87,7 +75,7 @@ public abstract class MessageObject : INetworkMessage
     /// <returns></returns>
     public string ToFormatMessageString()
     {
-        StringBuilder stringBuilder = StringBuilderCache.Acquire();
+        var stringBuilder = StringBuilderCache.Acquire();
         stringBuilder.Clear();
         stringBuilder.AppendLine();
         // 向下的箭头
@@ -118,6 +106,15 @@ public abstract class MessageObject : INetworkMessage
     public string ToJsonString()
     {
         return JsonHelper.SerializeFormat(this);
+    }
+
+    /// <summary>
+    /// 设置消息业务类型
+    /// </summary>
+    /// <param name="messageOperationType">消息业务类型 </param>
+    public void SetOperationType(MessageOperationType messageOperationType)
+    {
+        OperationType = messageOperationType;
     }
 
     /// <summary>

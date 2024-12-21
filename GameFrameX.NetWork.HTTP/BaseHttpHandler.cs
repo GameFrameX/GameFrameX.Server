@@ -9,14 +9,6 @@ namespace GameFrameX.NetWork.HTTP;
 public abstract class BaseHttpHandler : IHttpHandler
 {
     /// <summary>
-    /// 是否需要校验签名，默认为不需要校验。
-    /// </summary>
-    public virtual bool IsCheckSign
-    {
-        get { return false; }
-    }
-
-    /// <summary>
     /// 校验时间差，用于生成签名时的时间偏移量。
     /// </summary>
     protected virtual int CheckCodeTime { get; } = 38848;
@@ -32,6 +24,23 @@ public abstract class BaseHttpHandler : IHttpHandler
     protected virtual ushort CheckCodeEnd { get; } = 66;
 
     /// <summary>
+    /// 是否需要校验签名，默认为不需要校验。
+    /// </summary>
+    public virtual bool IsCheckSign
+    {
+        get { return false; }
+    }
+
+    /// <summary>
+    /// 执行具体的HTTP请求处理逻辑。
+    /// </summary>
+    /// <param name="ip">客户端IP地址。</param>
+    /// <param name="url">请求的URL。</param>
+    /// <param name="paramMap">请求参数字典。</param>
+    /// <returns>处理结果的字符串。</returns>
+    public abstract Task<string> Action(string ip, string url, Dictionary<string, object> paramMap);
+
+    /// <summary>
     /// 获取签名字符串。
     /// </summary>
     /// <param name="str">待签名的字符串。</param>
@@ -39,7 +48,7 @@ public abstract class BaseHttpHandler : IHttpHandler
     public string GetStringSign(string str)
     {
         // 计算MD5哈希值
-        string md5 = Hash.Md5.Hash(str);
+        var md5 = Hash.Md5.Hash(str);
 
         var checkCode1 = CheckCodeStart; // 头校验码
         var checkCode2 = CheckCodeEnd; // 尾校验码
@@ -102,13 +111,4 @@ public abstract class BaseHttpHandler : IHttpHandler
         error = HttpResult.CheckFailed;
         return false;
     }
-
-    /// <summary>
-    /// 执行具体的HTTP请求处理逻辑。
-    /// </summary>
-    /// <param name="ip">客户端IP地址。</param>
-    /// <param name="url">请求的URL。</param>
-    /// <param name="paramMap">请求参数字典。</param>
-    /// <returns>处理结果的字符串。</returns>
-    public abstract Task<string> Action(string ip, string url, Dictionary<string, object> paramMap);
 }

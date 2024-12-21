@@ -10,6 +10,11 @@ namespace GameFrameX.NetWork.Message;
 public abstract class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder<IMessage>
 {
     /// <summary>
+    /// 解压消息处理器
+    /// </summary>
+    protected IMessageDecompressHandler DecompressHandler { get; private set; }
+
+    /// <summary>
     /// 消息头长度
     /// </summary>
     public virtual int PackageHeaderLength { get; } = 6;
@@ -21,7 +26,7 @@ public abstract class BaseMessageDecoderHandler : IMessageDecoderHandler, IPacka
     /// <returns></returns>
     public IMessage Handler(byte[] data)
     {
-        ReadOnlySequence<byte> sequence = new ReadOnlySequence<byte>(data);
+        var sequence = new ReadOnlySequence<byte>(data);
         return Handler(ref sequence);
     }
 
@@ -31,11 +36,6 @@ public abstract class BaseMessageDecoderHandler : IMessageDecoderHandler, IPacka
     /// <param name="sequence"></param>
     /// <returns></returns>
     public abstract IMessage Handler(ref ReadOnlySequence<byte> sequence);
-
-    /// <summary>
-    /// 解压消息处理器
-    /// </summary>
-    protected IMessageDecompressHandler DecompressHandler { get; private set; }
 
     /// <summary>
     /// 设置解压消息处理器

@@ -6,15 +6,15 @@
 public interface INetworkMessage : IMessage
 {
     /// <summary>
+    /// 消息的唯一ID
+    /// </summary>
+    int UniqueId { get; }
+
+    /// <summary>
     /// 设置消息ID
     /// </summary>
     /// <param name="messageId"></param>
     void SetMessageId(int messageId);
-
-    /// <summary>
-    /// 消息的唯一ID
-    /// </summary>
-    int UniqueId { get; }
 
     /// <summary>
     /// 更新唯一消息ID

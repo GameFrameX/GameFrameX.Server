@@ -9,16 +9,6 @@ namespace GameFrameX.NetWork.HTTP;
 public sealed class HttpMessageMappingAttribute : Attribute
 {
     /// <summary>
-    /// 原始命令名称
-    /// </summary>
-    public string OriginalCmd { get; }
-
-    /// <summary>
-    /// 标准化后的命令名称
-    /// </summary>
-    public string StandardCmd { get; }
-
-    /// <summary>
     /// 处理器命名前缀
     /// </summary>
     public const string HTTPprefix = "";
@@ -56,4 +46,14 @@ public sealed class HttpMessageMappingAttribute : Attribute
         OriginalCmd = className.Substring(HTTPprefix.Length, className.Length - HTTPprefix.Length - HTTPsuffix.Length);
         StandardCmd = OriginalCmd.ConvertToSnakeCase();
     }
+
+    /// <summary>
+    /// 原始命令名称
+    /// </summary>
+    public string OriginalCmd { get; }
+
+    /// <summary>
+    /// 标准化后的命令名称
+    /// </summary>
+    public string StandardCmd { get; }
 }

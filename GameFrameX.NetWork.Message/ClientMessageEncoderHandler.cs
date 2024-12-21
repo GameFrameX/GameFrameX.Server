@@ -29,12 +29,12 @@ public sealed class ClientMessageEncoderHandler : BaseMessageEncoderHandler
             MessageProtoHelper.SetMessageId(messageObject);
             messageObject.SetOperationType(MessageProtoHelper.GetMessageOperationType(messageObject));
             var messageBodyData = ProtoBufSerializerHelper.Serialize(messageObject);
-            bool isHeartbeat = MessageProtoHelper.IsHeartbeat(messageObject.GetType());
+            var isHeartbeat = MessageProtoHelper.IsHeartbeat(messageObject.GetType());
             byte zipFlag = 0;
             BytesCompressHandler(ref messageBodyData, ref zipFlag);
             var totalLength = (ushort)(PackageHeaderLength + messageBodyData.Length);
             var buffer = ArrayPool<byte>.Shared.Rent(totalLength);
-            int offset = 0;
+            var offset = 0;
             // 总长度
             buffer.WriteUInt(totalLength, ref offset);
             // operationType

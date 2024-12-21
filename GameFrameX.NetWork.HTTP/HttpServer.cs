@@ -1,12 +1,12 @@
 using GameFrameX.Extension;
+using GameFrameX.Log;
+using GameFrameX.Utility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using GameFrameX.Log;
-using GameFrameX.Utility;
 
 namespace GameFrameX.NetWork.HTTP;
 
@@ -15,12 +15,12 @@ namespace GameFrameX.NetWork.HTTP;
 /// </summary>
 public static class HttpServer
 {
-    private static WebApplication App { get; set; }
-
     /// <summary>
     /// 游戏API根地址
     /// </summary>
     private const string GameApiPath = "/game/api/";
+
+    private static WebApplication App { get; set; }
 
     /// <summary>
     /// API根地址
@@ -87,7 +87,7 @@ public static class HttpServer
         });
         App = builder.Build();
         App.UseExceptionHandler(ExceptionHandler);
-        string routePath = $"{ApiRootPath}{{text}}";
+        var routePath = $"{ApiRootPath}{{text}}";
         App.MapGet(routePath, context => HttpHandler.HandleRequest(context, baseHandler, aopHandlerTypes));
         App.MapPost(routePath, context => HttpHandler.HandleRequest(context, baseHandler, aopHandlerTypes));
         var task = App.StartAsync();
@@ -97,7 +97,7 @@ public static class HttpServer
 
     private static void ExceptionHandler(IApplicationBuilder errorContext)
     {
-        errorContext.Run(async (context) =>
+        errorContext.Run(async context =>
         {
             // 获取异常信息
             var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();

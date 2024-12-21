@@ -1,9 +1,9 @@
 ﻿using System.Text;
 using System.Text.Json;
-using Microsoft.AspNetCore.Http;
 using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.Setting;
+using Microsoft.AspNetCore.Http;
 
 namespace GameFrameX.NetWork.HTTP;
 
@@ -22,15 +22,15 @@ public static class HttpHandler
     /// <param name="aopHandlerTypes">AOP处理器列表，可选</param>
     public static async Task HandleRequest(HttpContext context, Func<string, BaseHttpHandler> baseHandler, List<IHttpAopHandler> aopHandlerTypes = null)
     {
-        string ip = context.Connection.RemoteIpAddress?.ToString();
+        var ip = context.Connection.RemoteIpAddress?.ToString();
         string url = context.Request.PathBase + context.Request.Path;
-        string command = context.Request.Path.ToString().Substring(HttpServer.ApiRootPath.Length);
-        string logHeader = $"[HTTPServer] TraceIdentifier:[{context.TraceIdentifier}], 来源[{ip}], url:[{url}]";
+        var command = context.Request.Path.ToString().Substring(HttpServer.ApiRootPath.Length);
+        var logHeader = $"[HTTPServer] TraceIdentifier:[{context.TraceIdentifier}], 来源[{ip}], url:[{url}]";
         LogHelper.Info($"{logHeader}，请求方式:[{context.Request.Method}]");
 
         try
         {
-            Dictionary<string, object> paramMap = new Dictionary<string, object>();
+            var paramMap = new Dictionary<string, object>();
 
             // 从查询字符串中提取参数
             foreach (var keyValuePair in context.Request.Query)
@@ -55,7 +55,7 @@ public static class HttpHandler
 
                 if (isJson)
                 {
-                    JsonElement json = await context.Request.ReadFromJsonAsync<JsonElement>();
+                    var json = await context.Request.ReadFromJsonAsync<JsonElement>();
                     foreach (var keyValuePair in json.EnumerateObject())
                     {
                         if (!paramMap.TryAdd(keyValuePair.Name, keyValuePair.Value))
@@ -119,7 +119,7 @@ public static class HttpHandler
             #region AOP
 
             // 执行AOP处理器
-            if (aopHandlerTypes is { Count: > 0 })
+            if (aopHandlerTypes is { Count: > 0, })
             {
                 foreach (var httpAopHandler in aopHandlerTypes)
                 {

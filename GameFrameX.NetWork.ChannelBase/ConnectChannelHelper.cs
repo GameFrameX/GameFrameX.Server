@@ -3,13 +3,13 @@ using System.Timers;
 using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.NetWork.Abstractions;
-using GameFrameX.NetWork.Message;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Proto.BuiltIn;
 using GameFrameX.Setting;
 using GameFrameX.SuperSocket.ClientEngine;
 using GameFrameX.Utility;
 using Microsoft.Extensions.ObjectPool;
+using ErrorEventArgs = GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs;
 using Timer = System.Timers.Timer;
 
 namespace GameFrameX.NetWork.ChannelBase;
@@ -22,25 +22,26 @@ public sealed class ConnectChannelHelper
     /// <summary>
     /// 链接到其他服务器的客户端
     /// </summary>
-    readonly AsyncTcpSession _connectClient;
-
-    /// <summary>
-    /// 配置信息
-    /// </summary>
-    private readonly AppSetting _setting;
-
-    /// <summary>
-    /// RPC会话 对象
-    /// </summary>
-    private readonly RpcSession _rpcSession;
-
-    private readonly IMessageEncoderHandler _messageEncoderHandler;
-    private readonly IMessageDecoderHandler _messageDecoderHandler;
+    private readonly AsyncTcpSession _connectClient;
 
     /// <summary>
     /// 心跳计时器
     /// </summary>
     private readonly Timer _heartBeatTimer;
+
+    /// <summary>
+    /// 消息头的对象池
+    /// </summary>
+    private readonly ObjectPool<InnerMessageObjectHeader> _innerMessageObjectHeader;
+
+    private readonly IMessageDecoderHandler _messageDecoderHandler;
+
+    private readonly IMessageEncoderHandler _messageEncoderHandler;
+
+    /// <summary>
+    /// 非RPC消息处理回调
+    /// </summary>
+    private readonly Action<IMessage> _messageHandler;
 
     /// <summary>
     /// 重连计时器
@@ -53,17 +54,16 @@ public sealed class ConnectChannelHelper
     private readonly ReqActorHeartBeat _reqActorHeartBeat;
 
     /// <summary>
-    /// 消息头的对象池
+    /// RPC会话 对象
     /// </summary>
-    private readonly ObjectPool<InnerMessageObjectHeader> _innerMessageObjectHeader;
+    private readonly RpcSession _rpcSession;
 
     /// <summary>
-    /// 非RPC消息处理回调
+    /// 配置信息
     /// </summary>
-    private readonly Action<IMessage> _messageHandler;
+    private readonly AppSetting _setting;
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="setting">设置</param>
     /// <param name="messageEncoderHandler">消息编码器</param>
@@ -97,6 +97,20 @@ public sealed class ConnectChannelHelper
         _ = Task.Run(RpcHandler);
     }
 
+
+    /// <summary>
+    /// 是否已经链接状态
+    /// </summary>
+    public bool IsConnected
+    {
+        get { return _connectClient.IsConnected; }
+    }
+
+    /// <summary>
+    /// 链接到目标服务器地址
+    /// </summary>
+    public EndPoint TargetEndPoint { get; private set; }
+
     private void RpcHandler()
     {
         var lastDateTimeOffset = DateTimeOffset.Now;
@@ -119,7 +133,7 @@ public sealed class ConnectChannelHelper
             }
 
             MessageProtoHelper.SetMessageId(message.RequestMessage);
-            InnerMessageObjectHeader messageObjectHeader = _innerMessageObjectHeader.Get();
+            var messageObjectHeader = _innerMessageObjectHeader.Get();
             messageObjectHeader.ServerId = _setting.ServerId;
             var innerNetworkMessage = InnerNetworkMessage.Create(message.RequestMessage, messageObjectHeader);
             var isSuccess = Send(innerNetworkMessage);
@@ -137,7 +151,7 @@ public sealed class ConnectChannelHelper
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    void HeartBeatTimerOnElapsed(object sender, ElapsedEventArgs e)
+    private void HeartBeatTimerOnElapsed(object sender, ElapsedEventArgs e)
     {
         _reqActorHeartBeat.UpdateUniqueId();
         _reqActorHeartBeat.Timestamp = TimeHelper.UnixTimeMilliseconds();
@@ -149,12 +163,12 @@ public sealed class ConnectChannelHelper
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    void ReconnectionTimerOnElapsed(object sender, ElapsedEventArgs e)
+    private void ReconnectionTimerOnElapsed(object sender, ElapsedEventArgs e)
     {
         ConnectToDiscoveryCenter();
     }
 
-    private void ConnectClientOnError(object sender, SuperSocket.ClientEngine.ErrorEventArgs errorEventArgs)
+    private void ConnectClientOnError(object sender, ErrorEventArgs errorEventArgs)
     {
         LogHelper.Info($"[{_setting.ServerType}]和服务器{TargetEndPoint}链接链接发生错误!{errorEventArgs.Exception.Message}");
         ConnectClientOnClosed(_connectClient, errorEventArgs);
@@ -215,7 +229,7 @@ public sealed class ConnectChannelHelper
             messageObject.SetUniqueId(innerNetworkMessage.Header.UniqueId);
             if (messageObject is IResponseMessage responseMessage)
             {
-                bool result = _rpcSession.Reply(responseMessage);
+                var result = _rpcSession.Reply(responseMessage);
                 if (result)
                 {
                     return;
@@ -311,20 +325,6 @@ public sealed class ConnectChannelHelper
 
         _connectClient.Connect(TargetEndPoint);
     }
-
-
-    /// <summary>
-    /// 是否已经链接状态
-    /// </summary>
-    public bool IsConnected
-    {
-        get { return _connectClient.IsConnected; }
-    }
-
-    /// <summary>
-    /// 链接到目标服务器地址
-    /// </summary>
-    public EndPoint TargetEndPoint { get; private set; }
 
     /// <summary>
     /// 开始链接

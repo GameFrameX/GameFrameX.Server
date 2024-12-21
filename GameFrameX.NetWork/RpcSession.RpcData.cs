@@ -8,6 +8,23 @@ namespace GameFrameX.NetWork;
 /// </summary>
 public sealed class RpcData : IDisposable
 {
+    private readonly TaskCompletionSource<IRpcResult> _tcs;
+
+    /// <summary>
+    /// 创建
+    /// </summary>
+    /// <param name="requestMessage">请求消息</param>
+    /// <param name="isReply">是否需要回复</param>
+    /// <param name="timeout">超时时间,单位毫秒,默认10秒</param>
+    private RpcData(IRequestMessage requestMessage, bool isReply = true, int timeout = 10000)
+    {
+        CreatedTime = TimeHelper.UnixTimeMilliseconds();
+        RequestMessage = requestMessage;
+        IsReply = isReply;
+        Timeout = timeout;
+        _tcs = new TaskCompletionSource<IRpcResult>();
+    }
+
     /// <summary>
     /// 消息的唯一ID
     /// 从RequestMessage中获得
@@ -54,6 +71,26 @@ public sealed class RpcData : IDisposable
     public long Time { get; private set; }
 
     /// <summary>
+    /// RPC 回复任务
+    /// </summary>
+    public Task<IRpcResult> Task
+    {
+        get { return _tcs.Task; }
+    }
+
+    /// <summary>
+    /// </summary>
+    public void Dispose()
+    {
+        ElapseTime = 0;
+        RequestMessage = null;
+        ResponseMessage = null;
+        Time = 0;
+        _tcs?.TrySetCanceled();
+        GC.SuppressFinalize(this);
+    }
+
+    /// <summary>
     /// RPC 回复
     /// </summary>
     /// <param name="responseMessage"></param>
@@ -79,21 +116,6 @@ public sealed class RpcData : IDisposable
     }
 
     /// <summary>
-    /// 创建
-    /// </summary>
-    /// <param name="requestMessage">请求消息</param>
-    /// <param name="isReply">是否需要回复</param>
-    /// <param name="timeout">超时时间,单位毫秒,默认10秒</param>
-    private RpcData(IRequestMessage requestMessage, bool isReply = true, int timeout = 10000)
-    {
-        CreatedTime = TimeHelper.UnixTimeMilliseconds();
-        RequestMessage = requestMessage;
-        IsReply = isReply;
-        Timeout = timeout;
-        _tcs = new TaskCompletionSource<IRpcResult>();
-    }
-
-    /// <summary>
     /// 增加时间。如果超时返回true
     /// </summary>
     /// <param name="millisecondsTime">流逝时间.单位毫秒</param>
@@ -103,22 +125,12 @@ public sealed class RpcData : IDisposable
         ElapseTime += millisecondsTime;
         if (ElapseTime >= Timeout)
         {
-            string error = "Rpc call timeout! Message is :" + RequestMessage;
+            var error = "Rpc call timeout! Message is :" + RequestMessage;
             _tcs.TrySetResult(new RpcResult(error));
             return true;
         }
 
         return false;
-    }
-
-    private readonly TaskCompletionSource<IRpcResult> _tcs;
-
-    /// <summary>
-    /// RPC 回复任务
-    /// </summary>
-    public Task<IRpcResult> Task
-    {
-        get { return _tcs.Task; }
     }
 
     /// <summary>
@@ -127,18 +139,5 @@ public sealed class RpcData : IDisposable
     ~RpcData()
     {
         Dispose();
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public void Dispose()
-    {
-        ElapseTime = 0;
-        RequestMessage = null;
-        ResponseMessage = null;
-        Time = 0;
-        _tcs?.TrySetCanceled();
-        GC.SuppressFinalize(this);
     }
 }

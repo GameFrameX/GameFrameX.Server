@@ -11,27 +11,71 @@ public sealed class HttpResult
     /// <summary>
     /// 成功的HTTP结果
     /// </summary>
-    public static readonly HttpResult Success = new HttpResult(HttpStatusCode.Success, HttpStatusMessage.Success);
+    public static readonly HttpResult Success = new(HttpStatusCode.Success);
 
     /// <summary>
     /// 未定义的命令的HTTP结果
     /// </summary>
-    public static readonly HttpResult Undefined = new HttpResult(HttpStatusCode.Undefined, HttpStatusMessage.UndefinedCommand);
+    public static readonly HttpResult Undefined = new(HttpStatusCode.Undefined, HttpStatusMessage.UndefinedCommand);
 
     /// <summary>
     /// 未找到的命令的HTTP结果
     /// </summary>
-    public static readonly HttpResult NotFound = new HttpResult(HttpStatusCode.NotFound, HttpStatusMessage.NotFoundCommand);
+    public static readonly HttpResult NotFound = new(HttpStatusCode.NotFound, HttpStatusMessage.NotFoundCommand);
 
     /// <summary>
     /// 验证失败的命令的HTTP结果
     /// </summary>
-    public static readonly HttpResult CheckFailed = new HttpResult(HttpStatusCode.CheckFailed, HttpStatusMessage.CheckFailedCommand);
+    public static readonly HttpResult CheckFailed = new(HttpStatusCode.CheckFailed, HttpStatusMessage.CheckFailedCommand);
 
     /// <summary>
     /// 参数错误的HTTP结果
     /// </summary>
-    public static readonly HttpResult ParamError = new HttpResult(HttpStatusCode.Illegal, HttpStatusMessage.ParamErrorMessage);
+    public static readonly HttpResult ParamError = new(HttpStatusCode.Illegal, HttpStatusMessage.ParamErrorMessage);
+
+    /// <summary>
+    /// 构造函数
+    /// </summary>
+    /// <param name="code">HTTP状态码</param>
+    /// <param name="message">返回消息</param>
+    /// <param name="data">数据体</param>
+    private HttpResult(HttpStatusCode code = HttpStatusCode.Success, string message = "ok", object data = null)
+    {
+        Code = (int)code;
+        Message = message;
+        Data = data;
+    }
+
+    /// <summary>
+    /// 构造函数
+    /// </summary>
+    /// <param name="code">HTTP状态码</param>
+    /// <param name="message">返回消息</param>
+    /// <param name="data">数据体</param>
+    private HttpResult(int code = 0, string message = "ok", object data = null)
+    {
+        Code = code;
+        Message = message;
+        Data = data;
+    }
+
+    /// <summary>
+    /// HTTP状态码
+    /// </summary>
+    [JsonProperty(PropertyName = "code")]
+    public int Code { get; set; }
+
+    /// <summary>
+    /// 消息描述
+    /// </summary>
+    [JsonProperty(PropertyName = "message")]
+    public string Message { get; set; }
+
+    /// <summary>
+    /// 数据体
+    /// </summary>
+    [JsonProperty(PropertyName = "data")]
+    public object Data { get; set; }
 
     /// <summary>
     /// 创建HTTP结果
@@ -86,50 +130,6 @@ public sealed class HttpResult
     public static string CreateActionFailed(string errorMessage = "")
     {
         return new HttpResult(HttpStatusCode.ActionFailed, errorMessage).ToString();
-    }
-
-    /// <summary>
-    /// HTTP状态码
-    /// </summary>
-    [JsonProperty(PropertyName = "code")]
-    public int Code { get; set; }
-
-    /// <summary>
-    /// 消息描述
-    /// </summary>
-    [JsonProperty(PropertyName = "message")]
-    public string Message { get; set; }
-
-    /// <summary>
-    /// 数据体
-    /// </summary>
-    [JsonProperty(PropertyName = "data")]
-    public object Data { get; set; }
-
-    /// <summary>
-    /// 构造函数
-    /// </summary>
-    /// <param name="code">HTTP状态码</param>
-    /// <param name="message">返回消息</param>
-    /// <param name="data">数据体</param>
-    private HttpResult(HttpStatusCode code = HttpStatusCode.Success, string message = "ok", object data = null)
-    {
-        Code = (int)code;
-        Message = message;
-        Data = data;
-    }
-
-    /// <summary>
-    /// 构造函数
-    /// </summary>
-    /// <param name="code">HTTP状态码</param>
-    /// <param name="message">返回消息</param>
-    /// <param name="data">数据体</param>
-    private HttpResult(int code = 0, string message = "ok", object data = null)
-    {
-        Code = code;
-        Message = message;
-        Data = data;
     }
 
     /// <summary>

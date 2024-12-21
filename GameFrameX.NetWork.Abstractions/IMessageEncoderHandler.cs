@@ -11,6 +11,11 @@ public interface IMessageEncoderHandler
     uint LimitCompressLength { get; }
 
     /// <summary>
+    /// 消息包头长度
+    /// </summary>
+    ushort PackageHeaderLength { get; }
+
+    /// <summary>
     /// 消息编码,当压缩消息处理器存在的时候将会被调用
     /// </summary>
     /// <param name="message">消息对象</param>
@@ -29,9 +34,4 @@ public interface IMessageEncoderHandler
     /// </summary>
     /// <param name="compressHandler">压缩消息处理器</param>
     void SetCompressionHandler(IMessageCompressHandler compressHandler = null);
-
-    /// <summary>
-    /// 消息包头长度
-    /// </summary>
-    ushort PackageHeaderLength { get; }
 }

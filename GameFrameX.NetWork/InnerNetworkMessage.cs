@@ -1,8 +1,6 @@
 ﻿using System.Collections.Concurrent;
-using System.Text;
 using GameFrameX.Extension;
 using GameFrameX.NetWork.Abstractions;
-using GameFrameX.NetWork.Messages;
 using GameFrameX.ProtoBuf.Net;
 using Newtonsoft.Json;
 
@@ -13,6 +11,14 @@ namespace GameFrameX.NetWork;
 /// </summary>
 public sealed class InnerNetworkMessage : IInnerNetworkMessage
 {
+    private readonly ConcurrentDictionary<string, object> _data = new();
+
+    /// <summary>
+    /// 消息类型
+    /// </summary>
+    [JsonIgnore]
+    public Type MessageType { get; private set; }
+
     /// <summary>
     /// 消息数据
     /// </summary>
@@ -24,36 +30,12 @@ public sealed class InnerNetworkMessage : IInnerNetworkMessage
     public INetworkMessageHeader Header { get; private set; }
 
     /// <summary>
-    /// 设置消息头
-    /// </summary>
-    /// <param name="header"></param>
-    public void SetMessageHeader(INetworkMessageHeader header)
-    {
-        Header = header;
-    }
-
-    /// <summary>
     /// 转换消息数据为消息对象
     /// </summary>
     /// <returns></returns>
     public INetworkMessage DeserializeMessageObject()
     {
         return (INetworkMessage)ProtoBufSerializerHelper.Deserialize(MessageData, MessageType);
-    }
-
-    /// <summary>
-    /// 消息类型
-    /// </summary>
-    [JsonIgnore]
-    public Type MessageType { get; private set; }
-
-    /// <summary>
-    /// 设置消息类型
-    /// </summary>
-    /// <param name="messageType"></param>
-    public void SetMessageType(Type messageType)
-    {
-        MessageType = messageType;
     }
 
     /// <summary>
@@ -97,37 +79,6 @@ public sealed class InnerNetworkMessage : IInnerNetworkMessage
     }
 
     /// <summary>
-    /// 创建内部消息
-    /// </summary>
-    /// <param name="message"></param>
-    /// <param name="messageObjectHeader"></param>
-    /// <returns></returns>
-    public static IInnerNetworkMessage Create(INetworkMessage message, INetworkMessageHeader messageObjectHeader)
-    {
-        var networkMessage = new InnerNetworkMessage();
-        messageObjectHeader.OperationType = MessageProtoHelper.GetMessageOperationType(message);
-        messageObjectHeader.MessageId = MessageProtoHelper.GetMessageIdByType(message);
-        messageObjectHeader.UniqueId = message.UniqueId;
-
-        networkMessage.SetMessageType(message.GetType());
-        var buffer = ProtoBufSerializerHelper.Serialize(message);
-        networkMessage.SetMessageData(buffer);
-        networkMessage.SetMessageHeader(messageObjectHeader);
-        return networkMessage;
-    }
-
-    private readonly ConcurrentDictionary<string, object> _data = new ConcurrentDictionary<string, object>();
-
-    /// <summary>
-    /// 获取自定义数据
-    /// </summary>
-    /// <returns></returns>
-    public Dictionary<string, object> GetData()
-    {
-        return _data.ToDictionary();
-    }
-
-    /// <summary>
     /// 设置自定义数据
     /// </summary>
     /// <param name="key"></param>
@@ -149,20 +100,67 @@ public sealed class InnerNetworkMessage : IInnerNetworkMessage
     }
 
     /// <summary>
+    /// 清除自定义数据
+    /// </summary>
+    public void ClearData()
+    {
+        _data.Clear();
+    }
+
+    /// <summary>
+    /// 设置消息头
+    /// </summary>
+    /// <param name="header"></param>
+    public void SetMessageHeader(INetworkMessageHeader header)
+    {
+        Header = header;
+    }
+
+    /// <summary>
+    /// 设置消息类型
+    /// </summary>
+    /// <param name="messageType"></param>
+    public void SetMessageType(Type messageType)
+    {
+        MessageType = messageType;
+    }
+
+    /// <summary>
+    /// 创建内部消息
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="messageObjectHeader"></param>
+    /// <returns></returns>
+    public static IInnerNetworkMessage Create(INetworkMessage message, INetworkMessageHeader messageObjectHeader)
+    {
+        var networkMessage = new InnerNetworkMessage();
+        messageObjectHeader.OperationType = MessageProtoHelper.GetMessageOperationType(message);
+        messageObjectHeader.MessageId = MessageProtoHelper.GetMessageIdByType(message);
+        messageObjectHeader.UniqueId = message.UniqueId;
+
+        networkMessage.SetMessageType(message.GetType());
+        var buffer = ProtoBufSerializerHelper.Serialize(message);
+        networkMessage.SetMessageData(buffer);
+        networkMessage.SetMessageHeader(messageObjectHeader);
+        return networkMessage;
+    }
+
+    /// <summary>
+    /// 获取自定义数据
+    /// </summary>
+    /// <returns></returns>
+    public Dictionary<string, object> GetData()
+    {
+        return _data.ToDictionary();
+    }
+
+    /// <summary>
     /// 删除自定义数据
     /// </summary>
     /// <param name="key"></param>
     public bool RemoveData(string key)
     {
         return _data.Remove(key, out _);
-    }
-
-    /// <summary>
-    /// 清除自定义数据
-    /// </summary>
-    public void ClearData()
-    {
-        _data.Clear();
     }
 
     /// <summary>

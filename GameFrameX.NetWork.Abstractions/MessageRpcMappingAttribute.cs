@@ -9,16 +9,6 @@ namespace GameFrameX.NetWork.Abstractions;
 public class MessageRpcMappingAttribute : Attribute
 {
     /// <summary>
-    /// 请求消息
-    /// </summary>
-    public IRequestMessage RequestMessage { get; }
-
-    /// <summary>
-    /// 响应消息
-    /// </summary>
-    public IResponseMessage ResponseMessage { get; }
-
-    /// <summary>
     /// 构建RPC 消息
     /// </summary>
     /// <param name="requestMessage">请求消息类型</param>
@@ -30,4 +20,14 @@ public class MessageRpcMappingAttribute : Attribute
         RequestMessage = requestMessage;
         ResponseMessage = responseMessage;
     }
+
+    /// <summary>
+    /// 请求消息
+    /// </summary>
+    public IRequestMessage RequestMessage { get; }
+
+    /// <summary>
+    /// 响应消息
+    /// </summary>
+    public IResponseMessage ResponseMessage { get; }
 }

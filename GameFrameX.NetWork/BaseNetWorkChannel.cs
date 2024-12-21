@@ -14,39 +14,19 @@ namespace GameFrameX.NetWork;
 public class BaseNetWorkChannel : INetWorkChannel
 {
     /// <summary>
-    /// 关闭源
-    /// </summary>
-    protected readonly CancellationTokenSource CancellationTokenSource = new CancellationTokenSource();
-
-    /// <summary>
-    /// 会话
-    /// </summary>
-    public IGameAppSession GameAppSession { get; }
-
-    /// <summary>
-    /// Rpc会话
-    /// </summary>
-    public IRpcSession RpcSession { get; }
-
-    /// <summary>
     /// 消息编码器
     /// </summary>
     private readonly IMessageEncoderHandler _messageEncoder;
 
     /// <summary>
-    /// 是否是WebSocket
-    /// </summary>
-    public bool IsWebSocket { get; }
-
-    /// <summary>
-    /// 设置
-    /// </summary>
-    public AppSetting Setting { get; }
-
-    /// <summary>
     /// WebSocket会话
     /// </summary>
     private readonly WebSocketSession _webSocketSession;
+
+    /// <summary>
+    /// 关闭源
+    /// </summary>
+    protected readonly CancellationTokenSource CancellationTokenSource = new();
 
     /// <summary>
     /// 初始化
@@ -70,6 +50,26 @@ public class BaseNetWorkChannel : INetWorkChannel
             _webSocketSession = (WebSocketSession)session;
         }
     }
+
+    /// <summary>
+    /// 是否是WebSocket
+    /// </summary>
+    public bool IsWebSocket { get; }
+
+    /// <summary>
+    /// 设置
+    /// </summary>
+    public AppSetting Setting { get; }
+
+    /// <summary>
+    /// 会话
+    /// </summary>
+    public IGameAppSession GameAppSession { get; }
+
+    /// <summary>
+    /// Rpc会话
+    /// </summary>
+    public IRpcSession RpcSession { get; }
 
     /// <summary>
     /// 写入消息
@@ -154,7 +154,7 @@ public class BaseNetWorkChannel : INetWorkChannel
 
     #region Data
 
-    private readonly ConcurrentDictionary<string, object> _userDataKv = new ConcurrentDictionary<string, object>();
+    private readonly ConcurrentDictionary<string, object> _userDataKv = new();
 
 
     /// <summary>

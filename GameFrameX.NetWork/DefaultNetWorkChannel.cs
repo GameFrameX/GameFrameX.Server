@@ -17,7 +17,7 @@ public class DefaultNetWorkChannel : BaseNetWorkChannel
     /// <param name="messageEncoder"></param>
     /// <param name="rpcSession"></param>
     /// <param name="isWebSocket"></param>
-    public DefaultNetWorkChannel(IGameAppSession session, AppSetting setting, IMessageEncoderHandler messageEncoder, IRpcSession rpcSession = null, bool isWebSocket = false) : base(session,setting, messageEncoder, rpcSession, isWebSocket)
+    public DefaultNetWorkChannel(IGameAppSession session, AppSetting setting, IMessageEncoderHandler messageEncoder, IRpcSession rpcSession = null, bool isWebSocket = false) : base(session, setting, messageEncoder, rpcSession, isWebSocket)
     {
     }
 }
