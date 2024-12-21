@@ -16,12 +16,10 @@ public enum IdModule
     Pet = 101,
 
     /// <summary>
-    /// 
     /// </summary>
     Equip = 102,
 
     /// <summary>
-    /// 
     /// </summary>
     WorkerActor = 103,
 
@@ -33,5 +31,5 @@ public enum IdModule
     /// <summary>
     /// 最大值
     /// </summary>
-    Max = 999
+    Max = 999,
 }

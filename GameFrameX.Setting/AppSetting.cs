@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Serilog;
 
 namespace GameFrameX.Setting;
 
@@ -10,7 +11,22 @@ public sealed class AppSetting
     /// <summary>
     /// 用于通知应用程序退出的任务完成源
     /// </summary>
-    [JsonIgnore] public readonly TaskCompletionSource<bool> AppExitSource = new TaskCompletionSource<bool>();
+    [JsonIgnore] public readonly TaskCompletionSource<bool> AppExitSource = new();
+
+    private bool _appRunning;
+    private ServerType _serverType;
+
+    /// <summary>
+    /// 构造函数
+    /// </summary>
+    public AppSetting()
+    {
+#if DEBUG
+        IsDebug = true;
+        IsDebugReceive = true;
+        IsDebugSend = true;
+#endif
+    }
 
     /// <summary>
     /// 获取应用程序退出的任务标记
@@ -22,22 +38,9 @@ public sealed class AppSetting
     }
 
     /// <summary>
-    /// 判断指定的服务ID是否为本地服务
-    /// </summary>
-    /// <param name="serverId">服务ID</param>
-    /// <returns>返回是否是本地服务</returns>
-    public bool IsLocal(int serverId)
-    {
-        return serverId == ServerId;
-    }
-
-    /// <summary>
     /// 应用程序启动时间
     /// </summary>
     public DateTime LaunchTime { get; set; }
-
-    private bool _appRunning;
-    private ServerType _serverType;
 
     /// <summary>
     /// 获取或设置应用程序是否正在运行
@@ -54,7 +57,7 @@ public sealed class AppSetting
                 {
                     if (value)
                     {
-                        Serilog.Log.Error("AppRunning已经被设置为退出，不能再次开启...");
+                        Log.Error("AppRunning已经被设置为退出，不能再次开启...");
                     }
 
                     _appRunning = false;
@@ -64,7 +67,7 @@ public sealed class AppSetting
                 _appRunning = value;
                 if (!value && !AppExitSource.Task.IsCompleted)
                 {
-                    Serilog.Log.Information("Set AppRunning false...");
+                    Log.Information("Set AppRunning false...");
                     AppExitSource.TrySetCanceled();
                 }
             }
@@ -82,6 +85,34 @@ public sealed class AppSetting
             _serverType = value;
             ServerName = value.ToString();
         }
+    }
+
+    /// <summary>
+    /// 判断指定的服务ID是否为本地服务
+    /// </summary>
+    /// <param name="serverId">服务ID</param>
+    /// <returns>返回是否是本地服务</returns>
+    public bool IsLocal(int serverId)
+    {
+        return serverId == ServerId;
+    }
+
+    /// <summary>
+    /// 将对象序列化为JSON字符串
+    /// </summary>
+    /// <returns>JSON字符串</returns>
+    public override string ToString()
+    {
+        return JsonConvert.SerializeObject(this);
+    }
+
+    /// <summary>
+    /// 将对象序列化为格式化的JSON字符串
+    /// </summary>
+    /// <returns>格式化的JSON字符串</returns>
+    public string ToFormatString()
+    {
+        return JsonConvert.SerializeObject(this, Formatting.Indented);
     }
 
     #region 从配置文件读取的属性
@@ -242,34 +273,4 @@ public sealed class AppSetting
     public short MaxModuleId { get; set; }
 
     #endregion
-
-    /// <summary>
-    /// 将对象序列化为JSON字符串
-    /// </summary>
-    /// <returns>JSON字符串</returns>
-    public override string ToString()
-    {
-        return JsonConvert.SerializeObject(this);
-    }
-
-    /// <summary>
-    /// 将对象序列化为格式化的JSON字符串
-    /// </summary>
-    /// <returns>格式化的JSON字符串</returns>
-    public string ToFormatString()
-    {
-        return JsonConvert.SerializeObject(this, Formatting.Indented);
-    }
-
-    /// <summary>
-    /// 构造函数
-    /// </summary>
-    public AppSetting()
-    {
-#if DEBUG
-        IsDebug = true;
-        IsDebugReceive = true;
-        IsDebugSend = true;
-#endif
-    }
 }

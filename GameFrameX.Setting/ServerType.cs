@@ -53,7 +53,7 @@ public enum ServerType
     /// </summary>
     DiscoveryCenter = Router << 1,
 
-    ///<summary>
+    /// <summary>
     /// 远程备份
     /// </summary>
     Backup = DiscoveryCenter << 1,
@@ -65,17 +65,17 @@ public enum ServerType
     /// </summary>
     Login = Backup << 1,
 
-    ///<summary>
+    /// <summary>
     /// 游戏服
     /// </summary>
     Game = Login << 1,
 
-    ///<summary>
+    /// <summary>
     /// 匹配服
     /// </summary>
     Match = Game << 1,
 
-    ///<summary>
+    /// <summary>
     /// 充值服
     /// </summary>
     Recharge = Match << 1,

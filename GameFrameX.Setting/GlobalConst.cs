@@ -143,7 +143,6 @@ public static class GlobalConst
     public const int SaveIntervalInMilliSeconds = 300_000; //300_000;
 
     /// <summary>
-    /// 
     /// </summary>
     public const int MAGIC = 60;
 

@@ -42,6 +42,18 @@ public sealed class GameServiceInfo : IServiceInfo
     public short MinModuleMessageId { get; }
 
     /// <summary>
+    /// 会话
+    /// </summary>
+    [JsonIgnore]
+    public object Session { get; }
+
+
+    /// <summary>
+    /// 服务器状态
+    /// </summary>
+    public ServiceStatusInfo StatusInfo { get; set; }
+
+    /// <summary>
     /// 会话ID
     /// </summary>
     public string SessionId { get; }
@@ -52,12 +64,6 @@ public sealed class GameServiceInfo : IServiceInfo
     public ServerType Type { get; }
 
     /// <summary>
-    /// 会话
-    /// </summary>
-    [JsonIgnore]
-    public object Session { get; }
-
-    /// <summary>
     /// 服务器名称
     /// </summary>
     public string ServerName { get; }
@@ -66,12 +72,6 @@ public sealed class GameServiceInfo : IServiceInfo
     /// 服务器ID
     /// </summary>
     public long ServerId { get; }
-
-
-    /// <summary>
-    /// 服务器状态
-    /// </summary>
-    public ServiceStatusInfo StatusInfo { get; set; }
 
     /// <summary>
     /// 转换为字符串

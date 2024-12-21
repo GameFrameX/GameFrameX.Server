@@ -36,30 +36,10 @@ public sealed class ServiceInfo : IServiceInfo
     }
 
     /// <summary>
-    /// 会话ID
-    /// </summary>
-    public string SessionId { get; }
-
-    /// <summary>
-    /// 服务器类型
-    /// </summary>
-    public ServerType Type { get; }
-
-    /// <summary>
     /// 会话
     /// </summary>
     [JsonIgnore]
     public object Session { get; }
-
-    /// <summary>
-    /// 服务器名称
-    /// </summary>
-    public string ServerName { get; }
-
-    /// <summary>
-    /// 服务器ID
-    /// </summary>
-    public long ServerId { get; }
 
     /// <summary>
     /// 内部IP
@@ -85,6 +65,26 @@ public sealed class ServiceInfo : IServiceInfo
     /// 服务器状态
     /// </summary>
     public ServiceStatusInfo StatusInfo { get; set; }
+
+    /// <summary>
+    /// 会话ID
+    /// </summary>
+    public string SessionId { get; }
+
+    /// <summary>
+    /// 服务器类型
+    /// </summary>
+    public ServerType Type { get; }
+
+    /// <summary>
+    /// 服务器名称
+    /// </summary>
+    public string ServerName { get; }
+
+    /// <summary>
+    /// 服务器ID
+    /// </summary>
+    public long ServerId { get; }
 
     /// <summary>
     /// 转换为字符串

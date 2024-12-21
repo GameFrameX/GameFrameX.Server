@@ -10,6 +10,16 @@ namespace GameFrameX.ServerManager;
 public sealed class ServiceStatusInfo
 {
     /// <summary>
+    /// 构造
+    /// </summary>
+    public ServiceStatusInfo()
+    {
+        Status = ServiceStatus.Online;
+        MaxLoad = 5000;
+        CurrentLoad = 0;
+    }
+
+    /// <summary>
     /// 服务器状态
     /// </summary>
     public ServiceStatus Status { get; set; }
@@ -22,17 +32,7 @@ public sealed class ServiceStatusInfo
     /// <summary>
     /// 当前承载
     /// </summary>
-    public int CurrentLoad { get; set; } = 0;
-
-    /// <summary>
-    /// 构造
-    /// </summary>
-    public ServiceStatusInfo()
-    {
-        Status = ServiceStatus.Online;
-        MaxLoad = 5000;
-        CurrentLoad = 0;
-    }
+    public int CurrentLoad { get; set; }
 
     /// <summary>
     /// 转换为字符串

@@ -10,7 +10,7 @@ public static class GlobalSettings
     /// <summary>
     /// 存储应用设置的列表
     /// </summary>
-    private static readonly List<AppSetting> Settings = new List<AppSetting>(16);
+    private static readonly List<AppSetting> Settings = new(16);
 
     /// <summary>
     /// 是否运行中

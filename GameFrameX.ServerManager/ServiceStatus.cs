@@ -6,7 +6,7 @@ namespace GameFrameX.ServerManager;
 public enum ServiceStatus
 {
     /// <summary>
-    /// 未知  
+    /// 未知
     /// </summary>
     Unknown,
 
