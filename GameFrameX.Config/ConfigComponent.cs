@@ -6,7 +6,6 @@ namespace GameFrameX.Config;
 
 public class ConfigComponent
 {
-    public static ConfigComponent Instance { get; } = new ConfigComponent();
     private readonly ConfigManager _configManager;
 
     private ConfigComponent()
@@ -15,22 +14,24 @@ public class ConfigComponent
         Tables = new TablesComponent();
     }
 
-    private TablesComponent Tables { get; set; }
+    public static ConfigComponent Instance { get; } = new();
+
+    private TablesComponent Tables { get; }
 
     public async void LoadConfig()
     {
         Tables.Init(Instance);
-        LogHelper.Info($"Load Config Start...");
+        LogHelper.Info("Load Config Start...");
         Instance.RemoveAllConfigs();
         await Tables.LoadAsync(Loader);
-        LogHelper.Info($"Load Config End...");
+        LogHelper.Info("Load Config End...");
         LogHelper.Info("== load success ==");
     }
 
     private static async Task<JsonElement> Loader(string file)
     {
         var configJson = await File.ReadAllTextAsync($"json/{file}.json");
-        JsonElement jsonElement = JsonDocument.Parse(configJson).RootElement;
+        var jsonElement = JsonDocument.Parse(configJson).RootElement;
         return jsonElement;
     }
 

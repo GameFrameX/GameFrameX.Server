@@ -6,7 +6,7 @@ namespace GameFrameX.Config;
 /// <summary>
 /// 全局配置管理器。
 /// </summary>
-public sealed partial class ConfigManager : IConfigManager
+public sealed class ConfigManager : IConfigManager
 {
     private readonly ConcurrentDictionary<string, IDataTable> m_ConfigDatas;
 
@@ -45,7 +45,7 @@ public sealed partial class ConfigManager : IConfigManager
     /// <returns>是否增加全局配置项成功。</returns>
     public void AddConfig(string configName, IDataTable configValue)
     {
-        bool isExist = m_ConfigDatas.TryGetValue(configName, out var value);
+        var isExist = m_ConfigDatas.TryGetValue(configName, out var value);
         if (isExist)
         {
             return;
