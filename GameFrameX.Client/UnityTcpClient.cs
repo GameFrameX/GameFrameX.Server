@@ -1,10 +1,7 @@
 using System.Net;
 using GameFrameX.Extension;
-using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
-using GameFrameX.NetWork.Message;
-using GameFrameX.Proto;
 using GameFrameX.Proto.Proto;
 using GameFrameX.ProtoBuf.Net;
 using GameFrameX.SuperSocket.ClientEngine;
@@ -15,6 +12,9 @@ namespace GameFrameX.Client;
 
 public class UnityTcpClient
 {
+    private const ushort InnerPackageHeaderLength = 14;
+
+    private static int _count;
     private AsyncTcpSession _tcpClient;
 
     public void Entry(string[] args)
@@ -44,7 +44,7 @@ public class UnityTcpClient
             Console.WriteLine("--------------------------------");
             // for (int i = 0; i < 10; i++)
             {
-                ReqHeartBeat req = new ReqHeartBeat
+                var req = new ReqHeartBeat
                 {
                     Timestamp = TimeHelper.UnixTimeMilliseconds(),
                 };
@@ -98,13 +98,13 @@ public class UnityTcpClient
 
     private static void DecodeMessage(byte[] data)
     {
-        int offset = 0;
+        var offset = 0;
 
         // 消息总长度
         var totalLength = data.ReadInt(ref offset);
         // 消息头长度
-        byte operationType = data.ReadByte(ref offset);
-        byte zipFlag = data.ReadByte(ref offset);
+        var operationType = data.ReadByte(ref offset);
+        var zipFlag = data.ReadByte(ref offset);
         var UniqueId = data.ReadInt(ref offset);
         var MessageId = data.ReadInt(ref offset);
         // ushort headerLength = data.ReadByte(ref offset);
@@ -113,7 +113,7 @@ public class UnityTcpClient
         // 消息对象头
         // var messageObjectHeader = DecodeHeaderNetworkMessage(messageHeaderData);
         // 消息内容
-        var messageData = data.ReadBytes(ref offset, (int)(totalLength - 14));
+        var messageData = data.ReadBytes(ref offset, totalLength - 14);
         var messageType = MessageProtoHelper.GetMessageTypeById(MessageId);
         if (messageType != null)
         {
@@ -125,8 +125,6 @@ public class UnityTcpClient
         }
     }
 
-    private static int _count;
-
     private static byte[] Handler(MessageObject message)
     {
         _count++;
@@ -134,7 +132,7 @@ public class UnityTcpClient
         MessageProtoHelper.SetMessageId(message);
         message.SetOperationType(MessageProtoHelper.GetMessageOperationType(message));
 
-        MessageObjectHeader messageObjectHeader = new MessageObjectHeader
+        var messageObjectHeader = new MessageObjectHeader
         {
             OperationType = message.OperationType,
             UniqueId = message.UniqueId,
@@ -147,7 +145,7 @@ public class UnityTcpClient
         var offset = 0;
         buffer.WriteInt(totalLength, ref offset);
         buffer.WriteByte((byte)messageObjectHeader.OperationType, ref offset);
-        buffer.WriteByte((byte)messageObjectHeader.ZipFlag, ref offset);
+        buffer.WriteByte(messageObjectHeader.ZipFlag, ref offset);
         buffer.WriteInt(messageObjectHeader.UniqueId, ref offset);
         buffer.WriteInt(messageObjectHeader.MessageId, ref offset);
         // buffer.WriteBytesWithoutLength(header, ref offset);
@@ -155,6 +153,4 @@ public class UnityTcpClient
         // Console.WriteLine($"客户端接发送信息：{message.ToFormatMessageString()}");
         return buffer;
     }
-
-    const ushort InnerPackageHeaderLength = 14;
 }
