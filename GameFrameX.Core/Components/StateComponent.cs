@@ -18,7 +18,12 @@ namespace GameFrameX.Core.Components;
 /// </summary>
 public sealed class StateComponent
 {
-    private static readonly ConcurrentBag<Func<bool, bool, Task>> SaveFuncMap = new ConcurrentBag<Func<bool, bool, Task>>();
+    private static readonly ConcurrentBag<Func<bool, bool, Task>> SaveFuncMap = new();
+
+    /// <summary>
+    /// 统计工具
+    /// </summary>
+    public static readonly StatisticsTool StatisticsTool = new();
 
     /// <summary>
     /// 注册回存
@@ -77,11 +82,6 @@ public sealed class StateComponent
             LogHelper.Error(e.ToString());
         }
     }
-
-    /// <summary>
-    /// 统计工具
-    /// </summary>
-    public static readonly StatisticsTool StatisticsTool = new();
 }
 
 /// <summary>
@@ -90,16 +90,34 @@ public sealed class StateComponent
 /// <typeparam name="TState"></typeparam>
 public abstract class StateComponent<TState> : BaseComponent, IState where TState : class, ICacheState, new()
 {
-    private static readonly ConcurrentDictionary<long, TState> StateDic = new ConcurrentDictionary<long, TState>();
+    private static readonly ConcurrentDictionary<long, TState> StateDic = new();
+
+    static StateComponent()
+    {
+        StateComponent.AddShutdownSaveFunc(SaveAll);
+    }
 
     /// <summary>
     /// 数据对象
     /// </summary>
     public TState State { get; private set; }
 
-    static StateComponent()
+
+    internal override bool ReadyToInactive
     {
-        StateComponent.AddShutdownSaveFunc(SaveAll);
+        get { return State == null || !State.IsModify(); }
+    }
+
+    /// <summary>
+    /// 准备状态
+    /// </summary>
+    /// <returns></returns>
+    public async Task ReadStateAsync()
+    {
+        State = await GameDb.FindAsync<TState>(ActorId);
+
+        StateDic.TryRemove(State.Id, out _);
+        StateDic.TryAdd(State.Id, State);
     }
 
     /// <summary>
@@ -126,12 +144,6 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
         return base.Inactive();
     }
 
-
-    internal override bool ReadyToInactive
-    {
-        get { return State == null || !State.IsModify(); }
-    }
-
     internal override async Task SaveState()
     {
         try
@@ -142,18 +154,6 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
         {
             LogHelper.Fatal($"StateComp.SaveState.Failed.StateId:{State.Id},{e}");
         }
-    }
-
-    /// <summary>
-    /// 准备状态
-    /// </summary>
-    /// <returns></returns>
-    public async Task ReadStateAsync()
-    {
-        State = await GameDb.FindAsync<TState>(ActorId);
-
-        StateDic.TryRemove(State.Id, out _);
-        StateDic.TryAdd(State.Id, State);
     }
 
     /// <summary>
@@ -168,7 +168,7 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
 
     #region 仅DBModel.Mongodb调用
 
-    const int ONCE_SAVE_COUNT = 500;
+    private const int ONCE_SAVE_COUNT = 500;
 
     /// <summary>
     /// 保存全部数据
@@ -178,7 +178,7 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     public static async Task SaveAll(bool shutdown, bool force = false)
     {
         var idList = new List<long>();
-        var writeList = new List<ReplaceOneModel<MongoDB.Bson.BsonDocument>>();
+        var writeList = new List<ReplaceOneModel<BsonDocument>>();
         if (shutdown)
         {
             foreach (var state in StateDic.Values)
@@ -188,8 +188,8 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
                     var bsonDoc = state.ToBsonDocument();
                     lock (writeList)
                     {
-                        var filter = Builders<MongoDB.Bson.BsonDocument>.Filter.Eq("_id", state.Id);
-                        writeList.Add(new ReplaceOneModel<MongoDB.Bson.BsonDocument>(filter, bsonDoc) { IsUpsert = true });
+                        var filter = Builders<BsonDocument>.Filter.Eq("_id", state.Id);
+                        writeList.Add(new ReplaceOneModel<BsonDocument>(filter, bsonDoc) { IsUpsert = true, });
                         idList.Add(state.Id);
                     }
                 }
@@ -214,8 +214,8 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
                         var bsonDoc = state.ToBsonDocument();
                         lock (writeList)
                         {
-                            var filter = Builders<MongoDB.Bson.BsonDocument>.Filter.Eq("_id", state.Id);
-                            writeList.Add(new ReplaceOneModel<MongoDB.Bson.BsonDocument>(filter, bsonDoc) { IsUpsert = true });
+                            var filter = Builders<BsonDocument>.Filter.Eq("_id", state.Id);
+                            writeList.Add(new ReplaceOneModel<BsonDocument>(filter, bsonDoc) { IsUpsert = true, });
                             idList.Add(state.Id);
                         }
                     }));
@@ -231,13 +231,13 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
             StateComponent.StatisticsTool.Count(stateName, writeList.Count);
             LogHelper.Debug($"[StateComp] 状态回存 {stateName} count:{writeList.Count}");
             var currentDatabase = GameDb.As<MongoDbService>().CurrentDatabase;
-            var collection = currentDatabase.GetCollection<MongoDB.Bson.BsonDocument>(stateName);
-            for (int idx = 0; idx < writeList.Count; idx += ONCE_SAVE_COUNT)
+            var collection = currentDatabase.GetCollection<BsonDocument>(stateName);
+            for (var idx = 0; idx < writeList.Count; idx += ONCE_SAVE_COUNT)
             {
                 var docs = writeList.GetRange(idx, Math.Min(ONCE_SAVE_COUNT, writeList.Count - idx));
                 var ids = idList.GetRange(idx, docs.Count);
 
-                bool save = false;
+                var save = false;
                 try
                 {
                     var result = await collection.BulkWriteAsync(docs, MongoDbService.BulkWriteOptions);
@@ -247,7 +247,10 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
                         {
                             StateDic.TryGetValue(id, out var state);
                             if (state == null)
+                            {
                                 continue;
+                            }
+
                             state.SaveToDbPostHandler();
                         }
 

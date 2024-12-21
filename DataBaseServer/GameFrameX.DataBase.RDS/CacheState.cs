@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Text;
 using GameFrameX.Utility;
 
 namespace GameFrameX.DataBase.RDS;
@@ -57,8 +58,8 @@ public class CacheState : BaseCacheState
     /// <returns></returns>
     public override byte[] ToBytes()
     {
-        var json  = JsonHelper.Serialize(this);
-        var bytes = System.Text.Encoding.UTF8.GetBytes(json);
+        var json = JsonHelper.Serialize(this);
+        var bytes = Encoding.UTF8.GetBytes(json);
         return bytes;
     }
 }

@@ -1,6 +1,6 @@
 namespace GameFrameX.Core.Abstractions.Attribute;
 
-///<summary>
+/// <summary>
 /// 此方法线程安全
 /// </summary>
 [AttributeUsage(AttributeTargets.Method)]

@@ -21,16 +21,16 @@ public abstract class EventListener<T> : IEventListener where T : IComponentAgen
     }
 
     /// <summary>
+    /// 获取事件代理类型
+    /// </summary>
+    /// <returns>事件代理类型</returns>
+    public Type AgentType { get; } = typeof(T);
+
+    /// <summary>
     /// 事件处理函数
     /// </summary>
     /// <param name="agent">组件代理</param>
     /// <param name="evt">事件</param>
     /// <returns>异步任务</returns>
     protected abstract Task HandleEvent(T agent, Event evt);
-
-    /// <summary>
-    /// 获取事件代理类型
-    /// </summary>
-    /// <returns>事件代理类型</returns>
-    public Type AgentType { get; } = typeof(T);
 }

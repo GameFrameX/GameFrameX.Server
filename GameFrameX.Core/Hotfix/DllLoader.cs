@@ -41,7 +41,7 @@ internal sealed class DllLoader
     /// <summary>
     /// 主机程序集加载上下文，用于管理DLL的加载和卸载。
     /// </summary>
-    class HostAssemblyLoadContext : AssemblyLoadContext
+    private class HostAssemblyLoadContext : AssemblyLoadContext
     {
         /// <summary>
         /// 构造函数，初始化加载上下文。

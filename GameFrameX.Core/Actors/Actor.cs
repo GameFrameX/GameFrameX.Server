@@ -14,7 +14,37 @@ namespace GameFrameX.Core.Actors;
 /// </summary>
 public sealed class Actor : IActor
 {
-    private readonly ConcurrentDictionary<Type, BaseComponent> _componentsMap = new ConcurrentDictionary<Type, BaseComponent>();
+    /// <summary>
+    /// 默认超时时长
+    /// </summary>
+    public const int TimeOut = int.MaxValue;
+
+    private readonly ConcurrentDictionary<Type, BaseComponent> _componentsMap = new();
+
+    /// <summary>
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="type"></param>
+    public Actor(long id, ushort type)
+    {
+        Id = id;
+        Type = type;
+        WorkerActor = new WorkerActor(id);
+
+        if (type < GlobalConst.ActorTypeSeparator)
+        {
+            Tell(() => SetAutoRecycle(true));
+        }
+        else
+        {
+            Tell(() => ComponentRegister.ActiveComponents(this));
+        }
+    }
+
+    internal bool ReadyToDeActive
+    {
+        get { return _componentsMap.Values.All(item => item.ReadyToInactive); }
+    }
 
     /// <summary>
     /// IActor唯一标识
@@ -24,7 +54,7 @@ public sealed class Actor : IActor
     /// <summary>
     /// 订阅哈希列表
     /// </summary>
-    public HashSet<long> ScheduleIdSet { get; } = new HashSet<long>();
+    public HashSet<long> ScheduleIdSet { get; } = new();
 
     /// <summary>
     /// Actor类型
@@ -39,7 +69,7 @@ public sealed class Actor : IActor
     /// <summary>
     /// 是否自动回收
     /// </summary>
-    public bool AutoRecycle { get; private set; } = false;
+    public bool AutoRecycle { get; private set; }
 
 
     /// <summary>
@@ -86,42 +116,6 @@ public sealed class Actor : IActor
     }
 
     /// <summary>
-    /// 获取或添加组件类型
-    /// </summary>
-    /// <param name="type">类型</param>
-    /// <returns></returns>
-    private BaseComponent GetOrAddFactory(Type type)
-    {
-        return ComponentRegister.CreateComponent(this, type);
-    }
-
-    /// <summary>
-    /// 默认超时时长
-    /// </summary>
-    public const int TimeOut = int.MaxValue;
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="id"></param>
-    /// <param name="type"></param>
-    public Actor(long id, ushort type)
-    {
-        Id = id;
-        Type = type;
-        WorkerActor = new WorkerActor(id);
-
-        if (type < GlobalConst.ActorTypeSeparator)
-        {
-            Tell(() => SetAutoRecycle(true));
-        }
-        else
-        {
-            Tell(() => ComponentRegister.ActiveComponents(this));
-        }
-    }
-
-    /// <summary>
     /// 跨天
     /// </summary>
     /// <param name="openServerDay">开服天数</param>
@@ -146,9 +140,36 @@ public sealed class Actor : IActor
         }
     }
 
-    internal bool ReadyToDeActive
+    /// <summary>
+    /// 反激活所有组件
+    /// </summary>
+    public async Task Inactive()
     {
-        get { return _componentsMap.Values.All(item => item.ReadyToInactive); }
+        foreach (var item in _componentsMap.Values)
+        {
+            await item.Inactive();
+        }
+    }
+
+    /// <summary>
+    /// 清理全部代理
+    /// </summary>
+    public void ClearAgent()
+    {
+        foreach (var comp in _componentsMap.Values)
+        {
+            comp.ClearCacheAgent();
+        }
+    }
+
+    /// <summary>
+    /// 获取或添加组件类型
+    /// </summary>
+    /// <param name="type">类型</param>
+    /// <returns></returns>
+    private BaseComponent GetOrAddFactory(Type type)
+    {
+        return ComponentRegister.CreateComponent(this, type);
     }
 
     /// <summary>
@@ -163,14 +184,11 @@ public sealed class Actor : IActor
     }
 
     /// <summary>
-    /// 反激活所有组件
     /// </summary>
-    public async Task Inactive()
+    /// <returns></returns>
+    public override string ToString()
     {
-        foreach (var item in _componentsMap.Values)
-        {
-            await item.Inactive();
-        }
+        return $"{base.ToString()}_{Type}_{Id}";
     }
 
     #region actor 入队
@@ -202,7 +220,7 @@ public sealed class Actor : IActor
     /// <returns></returns>
     public Task SendAsync(Action work)
     {
-        return WorkerActor.SendAsync(work, int.MaxValue);
+        return WorkerActor.SendAsync(work);
     }
 
     /// <summary>
@@ -265,24 +283,4 @@ public sealed class Actor : IActor
     }
 
     #endregion
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
-    public override string ToString()
-    {
-        return $"{base.ToString()}_{Type}_{Id}";
-    }
-
-    /// <summary>
-    /// 清理全部代理
-    /// </summary>
-    public void ClearAgent()
-    {
-        foreach (var comp in _componentsMap.Values)
-        {
-            comp.ClearCacheAgent();
-        }
-    }
 }

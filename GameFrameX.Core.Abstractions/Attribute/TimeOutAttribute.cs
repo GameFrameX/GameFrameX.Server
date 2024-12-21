@@ -9,11 +9,6 @@ public sealed class TimeOutAttribute : System.Attribute
     /// <summary>
     /// 超时时间
     /// </summary>
-    public int TimeOut { get; }
-
-    /// <summary>
-    /// 超时时间
-    /// </summary>
     /// <param name="timeOut">时间.单位毫秒</param>
     public TimeOutAttribute(int timeOut)
     {
@@ -27,4 +22,9 @@ public sealed class TimeOutAttribute : System.Attribute
     public TimeOutAttribute(TimeSpan timeOut) : this(timeOut.Milliseconds)
     {
     }
+
+    /// <summary>
+    /// 超时时间
+    /// </summary>
+    public int TimeOut { get; }
 }

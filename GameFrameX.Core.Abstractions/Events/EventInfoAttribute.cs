@@ -7,11 +7,6 @@
 public class EventInfoAttribute : System.Attribute
 {
     /// <summary>
-    /// 事件id
-    /// </summary>
-    public int EventId { get; }
-
-    /// <summary>
     /// 事件监听器
     /// </summary>
     /// <param name="eventId">事件id</param>
@@ -19,4 +14,9 @@ public class EventInfoAttribute : System.Attribute
     {
         EventId = eventId;
     }
+
+    /// <summary>
+    /// 事件id
+    /// </summary>
+    public int EventId { get; }
 }

@@ -16,6 +16,11 @@ public interface IComponentAgent : IWorker
     IComponent Owner { get; }
 
     /// <summary>
+    /// 获取所有者的类型
+    /// </summary>
+    ushort OwnerType { get; }
+
+    /// <summary>
     /// 设置组件的所有者
     /// </summary>
     /// <param name="owner">所有者</param>
@@ -31,11 +36,6 @@ public interface IComponentAgent : IWorker
     /// </summary>
     /// <returns>一个表示异步操作的任务</returns>
     Task Inactive();
-
-    /// <summary>
-    /// 获取所有者的类型
-    /// </summary>
-    ushort OwnerType { get; }
 
     /// <summary>
     /// 根据代理类型获取代理组件

@@ -8,16 +8,6 @@ namespace GameFrameX.Core.Actors.Impl;
 public class ActionWrapper : WorkWrapper
 {
     /// <summary>
-    /// 工作对象
-    /// </summary>
-    public Action Work { private set; get; }
-
-    /// <summary>
-    /// 工作等待
-    /// </summary>
-    public TaskCompletionSource<bool> Tcs { private set; get; }
-
-    /// <summary>
     /// 构建无返回值的包装器
     /// </summary>
     /// <param name="work">工作函数</param>
@@ -26,6 +16,16 @@ public class ActionWrapper : WorkWrapper
         Work = work;
         Tcs = new TaskCompletionSource<bool>();
     }
+
+    /// <summary>
+    /// 工作对象
+    /// </summary>
+    public Action Work { get; }
+
+    /// <summary>
+    /// 工作等待
+    /// </summary>
+    public TaskCompletionSource<bool> Tcs { get; }
 
     /// <summary>
     /// 执行

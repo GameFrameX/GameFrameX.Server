@@ -2,9 +2,6 @@
 using System.Linq.Expressions;
 using System.Reflection;
 using GameFrameX.DataBase.Abstractions;
-using GameFrameX.Extension;
-using GameFrameX.Log;
-using GameFrameX.Utility;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -19,20 +16,7 @@ namespace GameFrameX.DataBase.Mongo;
 /// </summary>
 public sealed partial class MongoDbService
 {
-    sealed class MongoIndexModel
-    {
-        public MongoIndexModel(bool unique, string name)
-        {
-            Unique = unique;
-            Name = name;
-        }
-
-        public string Name { get; set; }
-        public bool Unique { get; set; }
-        public List<BsonDocument> Keys { get; set; }
-    }
-
-    readonly ConcurrentDictionary<string, List<MongoIndexModel>> _indexCache = new ConcurrentDictionary<string, List<MongoIndexModel>>();
+    private readonly ConcurrentDictionary<string, List<MongoIndexModel>> _indexCache = new();
 
     private static bool AreIndexesConsistent<T>(List<CreateIndexModel<T>> toBeCreatedIndexes, List<BsonDocument> createdIndexes)
     {
@@ -114,6 +98,19 @@ public sealed partial class MongoDbService
         {
             collection.Indexes.CreateMany(indexModels);
         }
+    }
+
+    private sealed class MongoIndexModel
+    {
+        public MongoIndexModel(bool unique, string name)
+        {
+            Unique = unique;
+            Name = name;
+        }
+
+        public string Name { get; set; }
+        public bool Unique { get; set; }
+        public List<BsonDocument> Keys { get; set; }
     }
 
     #region 索引

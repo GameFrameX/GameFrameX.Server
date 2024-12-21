@@ -20,7 +20,7 @@ public static class GlobalTimer
     /// <summary>
     /// 是否正在工作
     /// </summary>
-    public static volatile bool IsWorking = false;
+    public static volatile bool IsWorking;
 
     /// <summary>
     /// 开始全局定时
@@ -86,12 +86,12 @@ public static class GlobalTimer
             t = t.AddMilliseconds(GlobalConst.SaveIntervalInMilliSeconds);
         }
 
-        int serverId = GlobalSettings.ServerId;
-        int a = serverId % 1000;
-        int b = a % GlobalConst.MAGIC;
-        int c = GlobalConst.SaveIntervalInMilliSeconds / GlobalConst.MAGIC;
-        int r = ThreadLocalRandom.Current.Next(0, c);
-        int delay = b * c + r;
+        var serverId = GlobalSettings.ServerId;
+        var a = serverId % 1000;
+        var b = a % GlobalConst.MAGIC;
+        var c = GlobalConst.SaveIntervalInMilliSeconds / GlobalConst.MAGIC;
+        var r = ThreadLocalRandom.Current.Next(0, c);
+        var delay = b * c + r;
         t = t.AddMilliseconds(delay);
 
         if ((t - now).TotalMilliseconds > GlobalConst.SaveIntervalInMilliSeconds)
@@ -107,11 +107,11 @@ public static class GlobalTimer
     /// </summary>
     public static async Task Stop()
     {
-        LogHelper.Info($"停止全局定时开始...");
+        LogHelper.Info("停止全局定时开始...");
         IsWorking = false;
         await _loopTask;
         await StateComponent.SaveAll(true);
         GameDb.Close();
-        LogHelper.Info($"停止全局定时完成...");
+        LogHelper.Info("停止全局定时完成...");
     }
 }

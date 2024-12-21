@@ -6,11 +6,6 @@ namespace GameFrameX.Core.Abstractions.Exception;
 public abstract class AssertionArgumentException : System.Exception
 {
     /// <summary>
-    /// 错误码
-    /// </summary>
-    public int ErrorCode { get; private set; }
-
-    /// <summary>
     /// 构造
     /// </summary>
     /// <param name="errorCode">错误码</param>
@@ -19,4 +14,9 @@ public abstract class AssertionArgumentException : System.Exception
     {
         ErrorCode = errorCode;
     }
+
+    /// <summary>
+    /// 错误码
+    /// </summary>
+    public int ErrorCode { get; private set; }
 }

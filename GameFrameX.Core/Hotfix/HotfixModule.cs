@@ -1,16 +1,13 @@
 ﻿using System.Collections.Concurrent;
 using System.Reflection;
-using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Core.BaseHandler;
 using GameFrameX.Core.Components;
-using GameFrameX.Core.Events;
 using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
-using GameFrameX.NetWork.Messages;
 using GameFrameX.Setting;
 
 namespace GameFrameX.Core.Hotfix;
@@ -21,54 +18,44 @@ namespace GameFrameX.Core.Hotfix;
 internal class HotfixModule
 {
     /// <summary>
-    /// DLL加载器。
+    /// 角色类型到事件ID到监听者的映射。
     /// </summary>
-    private DllLoader _dllLoader = null;
-
-    /// <summary>
-    /// DLL路径。
-    /// </summary>
-    readonly string _dllPath;
-
-    /// <summary>
-    /// 热更桥接接口。
-    /// </summary>
-    internal IHotfixBridge HotfixBridge { get; private set; }
-
-    /// <summary>
-    /// 热更程序集。
-    /// </summary>
-    internal Assembly HotfixAssembly = null;
-
-    /// <summary>
-    /// 组件类型到代理类型的映射。
-    /// </summary>
-    private readonly Dictionary<Type, Type> _agentCompMap = new Dictionary<Type, Type>(512);
-
-    /// <summary>
-    /// 组件类型到代理类型的映射。
-    /// </summary>
-    readonly Dictionary<Type, Type> _compAgentMap = new Dictionary<Type, Type>(512);
+    private readonly Dictionary<ushort, Dictionary<int, List<IEventListener>>> _actorEvtListeners = new(512);
 
     /// <summary>
     /// 代理类型到代理包装类型的映射。
     /// </summary>
-    private readonly Dictionary<Type, Type> _agentAgentWrapperMap = new Dictionary<Type, Type>(512);
+    private readonly Dictionary<Type, Type> _agentAgentWrapperMap = new(512);
+
+    /// <summary>
+    /// 组件类型到代理类型的映射。
+    /// </summary>
+    private readonly Dictionary<Type, Type> _agentCompMap = new(512);
+
+    /// <summary>
+    /// 组件类型到代理类型的映射。
+    /// </summary>
+    private readonly Dictionary<Type, Type> _compAgentMap = new(512);
+
+    /// <summary>
+    /// DLL路径。
+    /// </summary>
+    private readonly string _dllPath;
 
     /// <summary>
     /// HTTP命令到处理器的映射。
     /// </summary>
-    private readonly Dictionary<string, BaseHttpHandler> _httpHandlerMap = new Dictionary<string, BaseHttpHandler>(512);
-
-    /// <summary>
-    /// 消息ID到处理器类型的映射。
-    /// </summary>
-    private readonly Dictionary<int, Type> _tcpHandlerMap = new Dictionary<int, Type>(512);
+    private readonly Dictionary<string, BaseHttpHandler> _httpHandlerMap = new(512);
 
     /// <summary>
     /// RPC请求类型到响应类型的映射。
     /// </summary>
-    private readonly Dictionary<Type, Type> _rpcHandlerMap = new Dictionary<Type, Type>();
+    private readonly Dictionary<Type, Type> _rpcHandlerMap = new();
+
+    /// <summary>
+    /// 消息ID到处理器类型的映射。
+    /// </summary>
+    private readonly Dictionary<int, Type> _tcpHandlerMap = new(512);
 
     /// <summary>
     /// 类型缓存。
@@ -76,14 +63,19 @@ internal class HotfixModule
     private readonly ConcurrentDictionary<string, object> _typeCacheMap = new();
 
     /// <summary>
-    /// 角色类型到事件ID到监听者的映射。
-    /// </summary>
-    private readonly Dictionary<ushort, Dictionary<int, List<IEventListener>>> _actorEvtListeners = new Dictionary<ushort, Dictionary<int, List<IEventListener>>>(512);
-
-    /// <summary>
     /// 是否使用代理包装。
     /// </summary>
-    readonly bool _useAgentWrapper = true;
+    private readonly bool _useAgentWrapper = true;
+
+    /// <summary>
+    /// DLL加载器。
+    /// </summary>
+    private DllLoader _dllLoader;
+
+    /// <summary>
+    /// 热更程序集。
+    /// </summary>
+    internal Assembly HotfixAssembly;
 
     /// <summary>
     /// 构造函数，接受DLL路径。
@@ -104,13 +96,18 @@ internal class HotfixModule
     }
 
     /// <summary>
+    /// 热更桥接接口。
+    /// </summary>
+    internal IHotfixBridge HotfixBridge { get; private set; }
+
+    /// <summary>
     /// 初始化热更模块。
     /// </summary>
     /// <param name="reload">是否重新加载。</param>
     /// <returns>初始化是否成功。</returns>
     internal bool Init(bool reload)
     {
-        bool success = false;
+        var success = false;
         try
         {
             _dllLoader = new DllLoader(_dllPath);
@@ -153,7 +150,7 @@ internal class HotfixModule
                 // 检查热更DLL是否已经释放
                 Task.Run(async () =>
                 {
-                    int tryCount = 0;
+                    var tryCount = 0;
                     while (weak.IsAlive && tryCount++ < 10)
                     {
                         await Task.Delay(100);
@@ -204,7 +201,7 @@ internal class HotfixModule
                 && !AddTcpHandler(type)
                 && !AddHttpHandler(type))
             {
-                if ((HotfixBridge.IsNull() && type.GetInterface(fullName) != null))
+                if (HotfixBridge.IsNull() && type.GetInterface(fullName) != null)
                 {
                     var bridge = (IHotfixBridge)Activator.CreateInstance(type);
 
@@ -264,7 +261,7 @@ internal class HotfixModule
             return false;
         }
 
-        bool isHas = _rpcHandlerMap.TryGetValue(attribute.RequestMessage.GetType(), out var requestHandler);
+        var isHas = _rpcHandlerMap.TryGetValue(attribute.RequestMessage.GetType(), out var requestHandler);
         if (isHas && requestHandler?.GetType() == attribute.ResponseMessage.GetType())
         {
             LogHelper.Error($"重复注册消息RPC处理器:[{attribute.RequestMessage}] 消息:[{attribute.ResponseMessage}]");
@@ -295,7 +292,7 @@ internal class HotfixModule
             return false;
         }
 
-        int msgId = msgIdField.MessageId;
+        var msgId = msgIdField.MessageId;
         if (!_tcpHandlerMap.TryAdd(msgId, type))
         {
             LogHelper.Error("重复注册消息TCP处理器:[{}] 消息:[{}]", msgId, type);
@@ -321,7 +318,7 @@ internal class HotfixModule
         var actorType = ComponentRegister.ComponentActorDic[compType];
         var evtListenersDic = _actorEvtListeners.GetOrAdd(actorType);
 
-        bool find = false;
+        var find = false;
         foreach (var attr in type.GetCustomAttributes())
         {
             if (attr is EventInfoAttribute evt)

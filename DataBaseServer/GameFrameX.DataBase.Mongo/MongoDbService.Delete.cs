@@ -15,6 +15,38 @@ namespace GameFrameX.DataBase.Mongo;
 /// </summary>
 public sealed partial class MongoDbService
 {
+    /// <summary>
+    /// 删除数据
+    /// </summary>
+    /// <param name="filter">查询条件</param>
+    /// <typeparam name="TState"></typeparam>
+    /// <returns></returns>
+    public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
+    {
+        var collection = GetCollection<TState>();
+        var state = await FindAsync(filter);
+        var newFilter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
+        state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
+        state.IsDeleted = true;
+        var result = await collection.ReplaceOneAsync(newFilter, state, ReplaceOptions);
+        return result.ModifiedCount;
+    }
+
+    /// <summary>
+    /// 删除一条数据
+    /// </summary>
+    /// <param name="state"></param>
+    /// <typeparam name="TState"></typeparam>
+    public async Task<long> DeleteAsync<TState>(TState state) where TState : class, ICacheState, new()
+    {
+        var filter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
+        var collection = GetCollection<TState>();
+        state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
+        state.IsDeleted = true;
+        var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
+        return result.ModifiedCount;
+    }
+
     #region 删除
 
     /// <summary>
@@ -25,7 +57,7 @@ public sealed partial class MongoDbService
     /// <returns></returns>
     public long Delete<TState>(string collectionName, BsonDocument document)
     {
-        DeleteResult result = CurrentDatabase.GetCollection<TState>(collectionName).DeleteOne(document);
+        var result = CurrentDatabase.GetCollection<TState>(collectionName).DeleteOne(document);
         return result.DeletedCount;
     }
 
@@ -36,7 +68,7 @@ public sealed partial class MongoDbService
     /// <returns></returns>
     public long DeleteMany<TState>(BsonDocument document) where TState : class, ICacheState, new()
     {
-        DeleteResult result = GetCollection<TState>().DeleteMany(document);
+        var result = GetCollection<TState>().DeleteMany(document);
         return result.DeletedCount;
     }
 
@@ -48,7 +80,7 @@ public sealed partial class MongoDbService
     /// <returns></returns>
     public long Delete(string collectionName, BsonDocument document)
     {
-        DeleteResult result = GetCollection(collectionName).DeleteOne(document);
+        var result = GetCollection(collectionName).DeleteOne(document);
         return result.DeletedCount;
     }
 
@@ -60,7 +92,7 @@ public sealed partial class MongoDbService
     /// <returns></returns>
     public long DeleteMany(string collectionName, BsonDocument document)
     {
-        DeleteResult result = GetCollection(collectionName).DeleteMany(document);
+        var result = GetCollection(collectionName).DeleteMany(document);
         return result.DeletedCount;
     }
 
@@ -71,7 +103,7 @@ public sealed partial class MongoDbService
     /// <returns></returns>
     public async Task<long> DeleteAsync<TState>(BsonDocument document) where TState : class, ICacheState, new()
     {
-        DeleteResult result = await GetCollection<TState>().DeleteOneAsync(document);
+        var result = await GetCollection<TState>().DeleteOneAsync(document);
         return result.DeletedCount;
     }
 
@@ -82,7 +114,7 @@ public sealed partial class MongoDbService
     /// <returns></returns>
     public async Task<long> DeleteManyAsync<TState>(BsonDocument document) where TState : class, ICacheState, new()
     {
-        DeleteResult result = await GetCollection<TState>().DeleteManyAsync(document);
+        var result = await GetCollection<TState>().DeleteManyAsync(document);
         return result.DeletedCount;
     }
 
@@ -94,7 +126,7 @@ public sealed partial class MongoDbService
     /// <returns></returns>
     public async Task<long> DeleteAsync(string collectionName, BsonDocument document)
     {
-        DeleteResult result = await GetCollection(collectionName).DeleteOneAsync(document);
+        var result = await GetCollection(collectionName).DeleteOneAsync(document);
         return result.DeletedCount;
     }
 
@@ -106,7 +138,7 @@ public sealed partial class MongoDbService
     /// <returns></returns>
     public async Task<long> DeleteManyAsync(string collectionName, BsonDocument document)
     {
-        DeleteResult result = await GetCollection(collectionName).DeleteManyAsync(document);
+        var result = await GetCollection(collectionName).DeleteManyAsync(document);
         return result.DeletedCount;
     }
 
@@ -417,7 +449,7 @@ public sealed partial class MongoDbService
     /// <returns></returns>
     public async Task<TState> DeleteOneAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
     {
-        TState result = await GetCollection<TState>().FindOneAndDeleteAsync(filter);
+        var result = await GetCollection<TState>().FindOneAndDeleteAsync(filter);
         return result;
     }
 
@@ -434,36 +466,4 @@ public sealed partial class MongoDbService
     }
 
     #endregion 删除
-
-    /// <summary>
-    /// 删除数据
-    /// </summary>
-    /// <param name="filter">查询条件</param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns></returns>
-    public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
-    {
-        var collection = GetCollection<TState>();
-        var state = await FindAsync(filter);
-        var newFilter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
-        state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
-        state.IsDeleted = true;
-        var result = await collection.ReplaceOneAsync(newFilter, state, ReplaceOptions);
-        return result.ModifiedCount;
-    }
-
-    /// <summary>
-    /// 删除一条数据
-    /// </summary>
-    /// <param name="state"></param>
-    /// <typeparam name="TState"></typeparam>
-    public async Task<long> DeleteAsync<TState>(TState state) where TState : class, ICacheState, new()
-    {
-        var filter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
-        var collection = GetCollection<TState>();
-        state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
-        state.IsDeleted = true;
-        var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
-        return result.ModifiedCount;
-    }
 }

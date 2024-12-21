@@ -1,10 +1,5 @@
-﻿using System.Collections.Concurrent;
-using System.Linq.Expressions;
-using System.Reflection;
-using GameFrameX.DataBase.Abstractions;
-using GameFrameX.Extension;
+﻿using GameFrameX.DataBase.Abstractions;
 using GameFrameX.Log;
-using GameFrameX.Utility;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -51,6 +46,14 @@ public sealed partial class MongoDbService : IDatabaseService
     }
 
     /// <summary>
+    /// 关闭MongoDB连接。
+    /// </summary>
+    public void Close()
+    {
+        Client.Cluster.Dispose();
+    }
+
+    /// <summary>
     /// 获取指定类型的MongoDB集合。
     /// </summary>
     /// <typeparam name="TState">文档的类型。</typeparam>
@@ -74,13 +77,5 @@ public sealed partial class MongoDbService : IDatabaseService
     {
         var collection = CurrentDatabase.GetCollection<BsonDocument>(collectionName, settings);
         return collection;
-    }
-
-    /// <summary>
-    /// 关闭MongoDB连接。
-    /// </summary>
-    public void Close()
-    {
-        Client.Cluster.Dispose();
     }
 }

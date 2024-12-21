@@ -105,7 +105,7 @@ public static class ComponentRegister
             }
         }
 
-        LogHelper.Info($"初始化组件注册完成");
+        LogHelper.Info("初始化组件注册完成");
         return Task.CompletedTask;
     }
 
@@ -141,11 +141,11 @@ public static class ComponentRegister
                 }
             }
 
-            LogHelper.Info($"激活全局组件并检测组件是否都包含Agent实现完成");
+            LogHelper.Info("激活全局组件并检测组件是否都包含Agent实现完成");
         }
         catch (Exception)
         {
-            LogHelper.Error($"激活全局组件并检测组件是否都包含Agent实现失败");
+            LogHelper.Error("激活全局组件并检测组件是否都包含Agent实现失败");
             throw;
         }
     }

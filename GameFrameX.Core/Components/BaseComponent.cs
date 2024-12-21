@@ -9,8 +9,35 @@ namespace GameFrameX.Core.Components;
 /// </summary>
 public abstract class BaseComponent : IComponent
 {
-    private IComponentAgent _cacheAgent = null;
     private readonly object _cacheAgentLock = new();
+    private IComponentAgent _cacheAgent;
+
+    /// <summary>
+    /// ActorId
+    /// </summary>
+    internal long ActorId
+    {
+        get { return Actor.Id; }
+    }
+
+    /// <summary>
+    /// 是否是激活状态
+    /// </summary>
+    public bool IsActive { get; private set; }
+
+    /// <summary>
+    /// 是否准备完毕
+    /// </summary>
+    /// <returns>是否准备完毕</returns>
+    internal virtual bool ReadyToInactive
+    {
+        get { return true; }
+    }
+
+    /// <summary>
+    /// Actor 对象
+    /// </summary>
+    public IActor Actor { get; set; }
 
     /// <summary>
     /// 根据组件类型获取对应的 IComponentAgent 数据
@@ -39,24 +66,6 @@ public abstract class BaseComponent : IComponent
     {
         _cacheAgent = null;
     }
-
-    /// <summary>
-    /// Actor 对象
-    /// </summary>
-    public IActor Actor { get; set; }
-
-    /// <summary>
-    /// ActorId
-    /// </summary>
-    internal long ActorId
-    {
-        get { return Actor.Id; }
-    }
-
-    /// <summary>
-    /// 是否是激活状态
-    /// </summary>
-    public bool IsActive { get; private set; }
 
     /// <summary>
     /// 激活组件
@@ -90,14 +99,5 @@ public abstract class BaseComponent : IComponent
     internal virtual Task SaveState()
     {
         return Task.CompletedTask;
-    }
-
-    /// <summary>
-    /// 是否准备完毕
-    /// </summary>
-    /// <returns>是否准备完毕</returns>
-    internal virtual bool ReadyToInactive
-    {
-        get { return true; }
     }
 }

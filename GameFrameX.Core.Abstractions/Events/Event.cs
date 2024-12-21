@@ -10,7 +10,7 @@ public struct Event
     /// <summary>
     /// 空
     /// </summary>
-    public static Event Null = new Event();
+    public static Event Null = new();
 
     /// <summary>
     /// 事件id

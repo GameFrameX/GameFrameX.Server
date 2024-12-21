@@ -18,6 +18,11 @@ public abstract class WorkWrapper
     public int TimeOut { get; set; }
 
     /// <summary>
+    /// 调用链ID
+    /// </summary>
+    public long CallChainId { get; set; }
+
+    /// <summary>
     /// 执行
     /// </summary>
     /// <returns></returns>
@@ -33,11 +38,6 @@ public abstract class WorkWrapper
     /// 强制设置结果
     /// </summary>
     public abstract void ForceSetResult();
-
-    /// <summary>
-    /// 调用链ID
-    /// </summary>
-    public long CallChainId { get; set; }
 
     /// <summary>
     /// 设置上下文

@@ -31,24 +31,24 @@ public sealed class SqlSugarDbService : IDatabaseService
         try
         {
             Client =
-                new SqlSugarScope(new ConnectionConfig()
-                    {
-                        ConnectionString = url, //连接符字串
-                        DbType = DbType.MySql, //数据库类型
-                        IsAutoCloseConnection = true, //不设成true要手动close
-                        InitKeyType = InitKeyType.Attribute
-                    },
-                    db =>
-                    {
-                        //(A)全局生效配置点
-                        //调试SQL事件，可以删掉
-                        db.Aop.OnLogExecuting = (sql, pars) =>
-                        {
-                            Console.WriteLine(sql); //输出sql,查看执行sql
-                            //5.0.8.2 获取无参数化 SQL 
-                            //UtilMethods.GetSqlString(DbType.SqlServer,sql,pars)
-                        };
-                    });
+                new SqlSugarScope(new ConnectionConfig
+                                  {
+                                      ConnectionString = url, //连接符字串
+                                      DbType = DbType.MySql, //数据库类型
+                                      IsAutoCloseConnection = true, //不设成true要手动close
+                                      InitKeyType = InitKeyType.Attribute,
+                                  },
+                                  db =>
+                                  {
+                                      //(A)全局生效配置点
+                                      //调试SQL事件，可以删掉
+                                      db.Aop.OnLogExecuting = (sql, pars) =>
+                                      {
+                                          Console.WriteLine(sql); //输出sql,查看执行sql
+                                          //5.0.8.2 获取无参数化 SQL 
+                                          //UtilMethods.GetSqlString(DbType.SqlServer,sql,pars)
+                                      };
+                                  });
 
             var types = AssemblyHelper.GetRuntimeImplementTypeNames<BaseCacheState>();
             foreach (var type in types)
@@ -63,6 +63,323 @@ public sealed class SqlSugarDbService : IDatabaseService
             LogHelper.Error($"初始化FreeSql服务失败 Url:{url} DbName:{dbName}");
             throw;
         }
+    }
+
+    /// <summary>
+    /// 加载指定ID的缓存状态。
+    /// </summary>
+    /// <typeparam name="TState">缓存状态的类型。</typeparam>
+    /// <param name="id">要加载的缓存状态的ID。</param>
+    /// <param name="defaultGetter">默认值获取器。</param>
+    /// <returns>加载的缓存状态。</returns>
+    public async Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> defaultGetter = null) where TState : class, ICacheState, new()
+    {
+        var filter = GetDefaultFindExpression<TState>(m => m.Id == id);
+        if (defaultGetter != null)
+        {
+            filter = filter.And(defaultGetter);
+        }
+
+        var state = await Client.Queryable<TState>().Where(filter).SingleAsync();
+        var isNew = state == null;
+
+        if (state == null)
+        {
+            state = new TState { Id = id, };
+        }
+
+        state.LoadFromDbPostHandler(isNew);
+        return state;
+    }
+
+    /// <summary>
+    /// 异步查找满足指定条件的缓存状态列表。
+    /// </summary>
+    /// <typeparam name="TState">缓存状态的类型。</typeparam>
+    /// <param name="filter">查询条件。</param>
+    /// <returns>满足条件的缓存状态列表。</returns>
+    public async Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
+    {
+        var findExpression = GetDefaultFindExpression(filter);
+        var result = await Client.Queryable<TState>().Where(findExpression).ToListAsync();
+        if (result == null)
+        {
+            result = new List<TState>();
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// 异步查找满足指定条件的缓存状态。
+    /// </summary>
+    /// <typeparam name="TState">缓存状态的类型。</typeparam>
+    /// <param name="filter">查询条件。</param>
+    /// <returns>满足条件的缓存状态。</returns>
+    public async Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
+    {
+        var findExpression = GetDefaultFindExpression(filter);
+        var state = await Client.Queryable<TState>().Where(findExpression).SingleAsync();
+        return state;
+    }
+
+    /// <summary>
+    /// 以升序方式查找符合条件的第一个元素。
+    /// </summary>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <param name="filter">过滤表达式。</param>
+    /// <param name="sortExpression">排序字段表达式。</param>
+    /// <returns>符合条件的第一个元素。</returns>
+    public async Task<TState> FindSortAscendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : class, ICacheState, new()
+    {
+        var findExpression = GetDefaultFindExpression(filter);
+        var state = await Client.Queryable<TState>().Where(findExpression).OrderBy(sortExpression).Take(1).SingleAsync();
+        return state;
+    }
+
+    /// <summary>
+    /// 以降序方式查找符合条件的第一个元素。
+    /// </summary>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <param name="filter">过滤表达式。</param>
+    /// <param name="sortExpression">排序字段表达式。</param>
+    /// <returns>符合条件的第一个元素。</returns>
+    public async Task<TState> FindSortDescendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : class, ICacheState, new()
+    {
+        var findExpression = GetDefaultFindExpression(filter);
+        var state = await Client.Queryable<TState>().Where(findExpression).OrderByDescending(sortExpression).Take(1).SingleAsync();
+        return state;
+    }
+
+    /// <summary>
+    /// 以降序方式查找符合条件的元素并进行分页。
+    /// </summary>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <param name="filter">过滤表达式。</param>
+    /// <param name="sortExpression">排序字段表达式。</param>
+    /// <param name="pageIndex">页码，从0开始。</param>
+    /// <param name="pageSize">每页数量，默认为10。</param>
+    /// <returns>符合条件的元素列表。</returns>
+    public async Task<List<TState>> FindSortDescendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : class, ICacheState, new()
+    {
+        if (pageIndex < 0)
+        {
+            pageIndex = 0;
+        }
+
+        if (pageSize <= 0)
+        {
+            pageSize = 10;
+        }
+
+
+        var findExpression = GetDefaultFindExpression(filter);
+        var result = await Client.Queryable<TState>().Where(findExpression).OrderByDescending(sortExpression).ToPageListAsync(pageIndex, pageSize);
+        if (result == null)
+        {
+            result = new List<TState>();
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// 以升序方式查找符合条件的元素并进行分页。
+    /// </summary>
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
+    /// <param name="filter">过滤表达式。</param>
+    /// <param name="sortExpression">排序字段表达式。</param>
+    /// <param name="pageIndex">页码，从0开始。</param>
+    /// <param name="pageSize">每页数量，默认为10。</param>
+    /// <returns>符合条件的元素列表。</returns>
+    public async Task<List<TState>> FindSortAscendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : class, ICacheState, new()
+    {
+        if (pageIndex < 0)
+        {
+            pageIndex = 0;
+        }
+
+        if (pageSize <= 0)
+        {
+            pageSize = 10;
+        }
+
+        var findExpression = GetDefaultFindExpression(filter);
+        var result = await Client.Queryable<TState>().Where(findExpression).OrderBy(sortExpression).ToPageListAsync(pageIndex, pageSize);
+
+        if (result == null)
+        {
+            result = new List<TState>();
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// 查询数据长度
+    /// </summary>
+    /// <param name="filter">查询条件</param>
+    /// <typeparam name="TState"></typeparam>
+    /// <returns></returns>
+    public async Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
+    {
+        var newFilter = GetDefaultFindExpression(filter);
+        var count = await Client.Queryable<TState>().Where(newFilter).CountAsync();
+        return count;
+    }
+
+    /// <summary>
+    /// 删除数据
+    /// </summary>
+    /// <param name="filter">查询条件</param>
+    /// <typeparam name="TState"></typeparam>
+    /// <returns></returns>
+    public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
+    {
+        var state = await FindAsync(filter);
+        state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
+        state.IsDeleted = true;
+        var result = await Client.Updateable(state).ExecuteCommandAsync();
+        return result;
+    }
+
+    /// <summary>
+    /// 删除一条数据
+    /// </summary>
+    /// <param name="state"></param>
+    /// <typeparam name="TState"></typeparam>
+    public async Task<long> DeleteAsync<TState>(TState state) where TState : class, ICacheState, new()
+    {
+        state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
+        state.IsDeleted = true;
+        var result = await Client.Updateable(state).ExecuteCommandAsync();
+        return result;
+    }
+
+
+    /// <summary>
+    /// 保存数据
+    /// </summary>
+    /// <param name="state"></param>
+    /// <typeparam name="TState"></typeparam>
+    /// <returns></returns>
+    public async Task<TState> UpdateAsync<TState>(TState state) where TState : class, ICacheState, new()
+    {
+        var isChanged = state.IsModify();
+        if (isChanged)
+        {
+            state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
+            state.UpdateCount++;
+            var result = await Client.Updateable(state).ExecuteCommandAsync();
+            if (result > 0)
+            {
+                state.SaveToDbPostHandler();
+            }
+        }
+
+        return state;
+    }
+
+    /// <summary>
+    /// 保存多条数据
+    /// </summary>
+    /// <param name="stateList">数据列表对象</param>
+    /// <returns>返回更新成功的数量</returns>
+    public async Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList) where TState : class, ICacheState, new()
+    {
+        var count = 0;
+        foreach (var cacheState in stateList)
+        {
+            cacheState.UpdateTime = TimeHelper.UnixTimeMilliseconds();
+            cacheState.UpdateCount++;
+            var result = await Client.Updateable(cacheState).ExecuteCommandAsync();
+            if (result > 0)
+            {
+                count++;
+                cacheState.SaveToDbPostHandler();
+            }
+        }
+
+        return count;
+    }
+
+    /*
+    /// <summary>
+    /// 替换选项，用于替换文档。设置 <see cref="IsUpsert"/> 属性为 true 可以在找不到匹配的文档时插入新文档。
+    /// </summary>
+    public static readonly ReplaceOptions ReplaceOptions = new() { IsUpsert = true };
+
+    /// <summary>
+    /// 更新选项，用于更新文档。设置 <see cref="IsUpsert"/> 属性为 true 可以在找不到匹配的文档时插入新文档。
+    /// </summary>
+    public static readonly UpdateOptions UpdateOptions = new() { IsUpsert = true };
+
+    /// <summary>
+    /// 批量写入选项，用于批量写入文档。设置 <see cref="IsOrdered"/> 属性为 false 可以并行执行写入操作。
+    /// </summary>
+    public static readonly BulkWriteOptions BulkWriteOptions = new() { IsOrdered = false };
+
+    /// <summary>
+    /// 创建指定字段的索引。
+    /// </summary>
+    /// <typeparam name="TState">缓存状态的类型。</typeparam>
+    /// <param name="indexKey">要创建索引的字段。</param>
+    /// <returns>表示异步操作的任务。</returns>
+    public Task CreateIndex<TState>(string indexKey) where TState : CacheState, new()
+    {
+        var collection = GetCollection<TState>();
+        var key        = Builders<TState>.IndexKeys.Ascending(indexKey);
+        var model      = new CreateIndexModel<TState>(key);
+        return collection.Indexes.CreateOneAsync(model);
+    }*/
+
+    /// <summary>
+    /// 关闭MongoDB连接。
+    /// </summary>
+    public void Close()
+    {
+        Client.Dispose();
+    }
+
+    /// <summary>
+    /// 获取默认的查询表达式。
+    /// </summary>
+    /// <typeparam name="TState">缓存状态的类型。</typeparam>
+    /// <param name="filter">自定义查询表达式。</param>
+    /// <returns>默认的查询表达式。</returns>
+    private static Expression<Func<TState, bool>> GetDefaultFindExpression<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new()
+    {
+        Expression<Func<TState, bool>> expression = m => m.IsDeleted == false;
+        if (filter != null)
+        {
+            expression = expression.And(filter);
+        }
+
+        return expression;
+    }
+
+    /// <summary>
+    /// 保存数据
+    /// </summary>
+    /// <param name="state"></param>
+    /// <typeparam name="TState"></typeparam>
+    /// <returns></returns>
+    public async Task<long> UpdateCountAsync<TState>(TState state) where TState : class, ICacheState, new()
+    {
+        var isChanged = state.IsModify();
+        if (isChanged)
+        {
+            state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
+            state.UpdateCount++;
+            var result = await Client.Updateable(state).ExecuteCommandAsync();
+            if (result > 0)
+            {
+                state.SaveToDbPostHandler();
+                return result;
+            }
+        }
+
+        return 0;
     }
 
     #region 插入
@@ -1209,321 +1526,4 @@ public sealed class SqlSugarDbService : IDatabaseService
     }*/
 
     #endregion 索引
-
-    /// <summary>
-    /// 加载指定ID的缓存状态。
-    /// </summary>
-    /// <typeparam name="TState">缓存状态的类型。</typeparam>
-    /// <param name="id">要加载的缓存状态的ID。</param>
-    /// <param name="defaultGetter">默认值获取器。</param>
-    /// <returns>加载的缓存状态。</returns>
-    public async Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> defaultGetter = null) where TState : class, ICacheState, new()
-    {
-        var filter = GetDefaultFindExpression<TState>(m => m.Id == id);
-        if (defaultGetter != null)
-        {
-            filter = filter.And(defaultGetter);
-        }
-
-        var state = await Client.Queryable<TState>().Where(filter).SingleAsync();
-        var isNew = state == null;
-
-        if (state == null)
-        {
-            state = new TState { Id = id };
-        }
-
-        state.LoadFromDbPostHandler(isNew);
-        return state;
-    }
-
-    /// <summary>
-    /// 获取默认的查询表达式。
-    /// </summary>
-    /// <typeparam name="TState">缓存状态的类型。</typeparam>
-    /// <param name="filter">自定义查询表达式。</param>
-    /// <returns>默认的查询表达式。</returns>
-    private static Expression<Func<TState, bool>> GetDefaultFindExpression<TState>(Expression<Func<TState, bool>> filter) where TState : ICacheState, new()
-    {
-        Expression<Func<TState, bool>> expression = m => m.IsDeleted == false;
-        if (filter != null)
-        {
-            expression = expression.And(filter);
-        }
-
-        return expression;
-    }
-
-    /// <summary>
-    /// 异步查找满足指定条件的缓存状态列表。
-    /// </summary>
-    /// <typeparam name="TState">缓存状态的类型。</typeparam>
-    /// <param name="filter">查询条件。</param>
-    /// <returns>满足条件的缓存状态列表。</returns>
-    public async Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
-    {
-        var findExpression = GetDefaultFindExpression(filter);
-        var result = await Client.Queryable<TState>().Where(findExpression).ToListAsync();
-        if (result == null)
-        {
-            result = new List<TState>();
-        }
-
-        return result;
-    }
-
-    /// <summary>
-    /// 异步查找满足指定条件的缓存状态。
-    /// </summary>
-    /// <typeparam name="TState">缓存状态的类型。</typeparam>
-    /// <param name="filter">查询条件。</param>
-    /// <returns>满足条件的缓存状态。</returns>
-    public async Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
-    {
-        var findExpression = GetDefaultFindExpression(filter);
-        var state = await Client.Queryable<TState>().Where(findExpression).SingleAsync();
-        return state;
-    }
-
-    /// <summary>
-    /// 以升序方式查找符合条件的第一个元素。
-    /// </summary>
-    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
-    /// <param name="filter">过滤表达式。</param>
-    /// <param name="sortExpression">排序字段表达式。</param>
-    /// <returns>符合条件的第一个元素。</returns>
-    public async Task<TState> FindSortAscendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : class, ICacheState, new()
-    {
-        var findExpression = GetDefaultFindExpression(filter);
-        var state = await Client.Queryable<TState>().Where(findExpression).OrderBy(sortExpression).Take(1).SingleAsync();
-        return state;
-    }
-
-    /// <summary>
-    /// 以降序方式查找符合条件的第一个元素。
-    /// </summary>
-    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
-    /// <param name="filter">过滤表达式。</param>
-    /// <param name="sortExpression">排序字段表达式。</param>
-    /// <returns>符合条件的第一个元素。</returns>
-    public async Task<TState> FindSortDescendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : class, ICacheState, new()
-    {
-        var findExpression = GetDefaultFindExpression(filter);
-        var state = await Client.Queryable<TState>().Where(findExpression).OrderByDescending(sortExpression).Take(1).SingleAsync();
-        return state;
-    }
-
-    /// <summary>
-    /// 以降序方式查找符合条件的元素并进行分页。
-    /// </summary>
-    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
-    /// <param name="filter">过滤表达式。</param>
-    /// <param name="sortExpression">排序字段表达式。</param>
-    /// <param name="pageIndex">页码，从0开始。</param>
-    /// <param name="pageSize">每页数量，默认为10。</param>
-    /// <returns>符合条件的元素列表。</returns>
-    public async Task<List<TState>> FindSortDescendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : class, ICacheState, new()
-    {
-        if (pageIndex < 0)
-        {
-            pageIndex = 0;
-        }
-
-        if (pageSize <= 0)
-        {
-            pageSize = 10;
-        }
-
-
-        var findExpression = GetDefaultFindExpression(filter);
-        var result = await Client.Queryable<TState>().Where(findExpression).OrderByDescending(sortExpression).ToPageListAsync(pageIndex, pageSize);
-        if (result == null)
-        {
-            result = new List<TState>();
-        }
-
-        return result;
-    }
-
-    /// <summary>
-    /// 以升序方式查找符合条件的元素并进行分页。
-    /// </summary>
-    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
-    /// <param name="filter">过滤表达式。</param>
-    /// <param name="sortExpression">排序字段表达式。</param>
-    /// <param name="pageIndex">页码，从0开始。</param>
-    /// <param name="pageSize">每页数量，默认为10。</param>
-    /// <returns>符合条件的元素列表。</returns>
-    public async Task<List<TState>> FindSortAscendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : class, ICacheState, new()
-    {
-        if (pageIndex < 0)
-        {
-            pageIndex = 0;
-        }
-
-        if (pageSize <= 0)
-        {
-            pageSize = 10;
-        }
-
-        var findExpression = GetDefaultFindExpression(filter);
-        var result = await Client.Queryable<TState>().Where(findExpression).OrderBy(sortExpression).ToPageListAsync(pageIndex, pageSize);
-
-        if (result == null)
-        {
-            result = new List<TState>();
-        }
-
-        return result;
-    }
-
-    /// <summary>
-    /// 查询数据长度
-    /// </summary>
-    /// <param name="filter">查询条件</param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns></returns>
-    public async Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
-    {
-        var newFilter = GetDefaultFindExpression(filter);
-        var count = await Client.Queryable<TState>().Where(newFilter).CountAsync();
-        return count;
-    }
-
-    /// <summary>
-    /// 删除数据
-    /// </summary>
-    /// <param name="filter">查询条件</param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns></returns>
-    public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
-    {
-        var state = await FindAsync(filter);
-        state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
-        state.IsDeleted = true;
-        var result = await Client.Updateable(state).ExecuteCommandAsync();
-        return result;
-    }
-
-    /// <summary>
-    /// 删除一条数据
-    /// </summary>
-    /// <param name="state"></param>
-    /// <typeparam name="TState"></typeparam>
-    public async Task<long> DeleteAsync<TState>(TState state) where TState : class, ICacheState, new()
-    {
-        state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
-        state.IsDeleted = true;
-        var result = await Client.Updateable(state).ExecuteCommandAsync();
-        return result;
-    }
-
-
-    /// <summary>
-    /// 保存数据
-    /// </summary>
-    /// <param name="state"></param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns></returns>
-    public async Task<TState> UpdateAsync<TState>(TState state) where TState : class, ICacheState, new()
-    {
-        var isChanged = state.IsModify();
-        if (isChanged)
-        {
-            state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
-            state.UpdateCount++;
-            var result = await Client.Updateable(state).ExecuteCommandAsync();
-            if (result > 0)
-            {
-                state.SaveToDbPostHandler();
-            }
-        }
-
-        return state;
-    }
-
-    /// <summary>
-    /// 保存数据
-    /// </summary>
-    /// <param name="state"></param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns></returns>
-    public async Task<long> UpdateCountAsync<TState>(TState state) where TState : class, ICacheState, new()
-    {
-        var isChanged = state.IsModify();
-        if (isChanged)
-        {
-            state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
-            state.UpdateCount++;
-            var result = await Client.Updateable(state).ExecuteCommandAsync();
-            if (result > 0)
-            {
-                state.SaveToDbPostHandler();
-                return result;
-            }
-        }
-
-        return 0;
-    }
-
-    /// <summary>
-    /// 保存多条数据
-    /// </summary>
-    /// <param name="stateList">数据列表对象</param>
-    /// <returns>返回更新成功的数量</returns>
-    public async Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList) where TState : class, ICacheState, new()
-    {
-        var count = 0;
-        foreach (var cacheState in stateList)
-        {
-            cacheState.UpdateTime = TimeHelper.UnixTimeMilliseconds();
-            cacheState.UpdateCount++;
-            var result = await Client.Updateable(cacheState).ExecuteCommandAsync();
-            if (result > 0)
-            {
-                count++;
-                cacheState.SaveToDbPostHandler();
-            }
-        }
-
-        return count;
-    }
-
-    /*
-    /// <summary>
-    /// 替换选项，用于替换文档。设置 <see cref="IsUpsert"/> 属性为 true 可以在找不到匹配的文档时插入新文档。
-    /// </summary>
-    public static readonly ReplaceOptions ReplaceOptions = new() { IsUpsert = true };
-
-    /// <summary>
-    /// 更新选项，用于更新文档。设置 <see cref="IsUpsert"/> 属性为 true 可以在找不到匹配的文档时插入新文档。
-    /// </summary>
-    public static readonly UpdateOptions UpdateOptions = new() { IsUpsert = true };
-
-    /// <summary>
-    /// 批量写入选项，用于批量写入文档。设置 <see cref="IsOrdered"/> 属性为 false 可以并行执行写入操作。
-    /// </summary>
-    public static readonly BulkWriteOptions BulkWriteOptions = new() { IsOrdered = false };
-
-    /// <summary>
-    /// 创建指定字段的索引。
-    /// </summary>
-    /// <typeparam name="TState">缓存状态的类型。</typeparam>
-    /// <param name="indexKey">要创建索引的字段。</param>
-    /// <returns>表示异步操作的任务。</returns>
-    public Task CreateIndex<TState>(string indexKey) where TState : CacheState, new()
-    {
-        var collection = GetCollection<TState>();
-        var key        = Builders<TState>.IndexKeys.Ascending(indexKey);
-        var model      = new CreateIndexModel<TState>(key);
-        return collection.Indexes.CreateOneAsync(model);
-    }*/
-
-    /// <summary>
-    /// 关闭MongoDB连接。
-    /// </summary>
-    public void Close()
-    {
-        Client.Dispose();
-    }
 }

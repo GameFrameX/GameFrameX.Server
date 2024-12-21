@@ -23,17 +23,12 @@ public static class ActorLimit
         /// <summary>
         /// 禁止双向调用
         /// </summary>
-        NoBidirectionCall
-    }
-
-    interface IRule
-    {
-        bool AllowCall(long target);
+        NoBidirectionCall,
     }
 
 
     private static IRule _rule;
-    private static readonly Dictionary<ushort, int> LevelDic = new Dictionary<ushort, int>(128);
+    private static readonly Dictionary<ushort, int> LevelDic = new(128);
 
     /// <summary>
     /// 初始化
@@ -89,10 +84,15 @@ public static class ActorLimit
         return true;
     }
 
+    private interface IRule
+    {
+        bool AllowCall(long target);
+    }
+
 
     #region ByLevelRule
 
-    class ByLevelRule : IRule
+    private class ByLevelRule : IRule
     {
         /// <summary>
         /// 判断是否允许调用
@@ -129,9 +129,27 @@ public static class ActorLimit
 
     #region NoBidirectionCallRule
 
-    class NoBidirectionCallRule : IRule
+    private class NoBidirectionCallRule : IRule
     {
         private readonly ConcurrentDictionary<long, ConcurrentDictionary<long, bool>> _crossDic = new();
+
+        /// <summary>
+        /// 是否允许调用
+        /// </summary>
+        /// <param name="target">目标</param>
+        /// <returns>返回是否调用</returns>
+        public bool AllowCall(long target)
+        {
+            var actorId = RuntimeContext.CurrentActor;
+            // 从IO线程抛到actor，不涉及入队行为
+            if (actorId == 0)
+            {
+                return true;
+            }
+
+            // Actor会在入队成功之后进行设置，这种属于Actor入队
+            return AllowCall(actorId, target);
+        }
 
         private bool AllowCall(long self, long target)
         {
@@ -151,21 +169,6 @@ public static class ActorLimit
             selfSet.TryAdd(target, false);
 
             return true;
-        }
-
-        /// <summary>
-        /// 是否允许调用
-        /// </summary>
-        /// <param name="target">目标</param>
-        /// <returns>返回是否调用</returns>
-        public bool AllowCall(long target)
-        {
-            var actorId = RuntimeContext.CurrentActor;
-            // 从IO线程抛到actor，不涉及入队行为
-            if (actorId == 0)
-                return true;
-            // Actor会在入队成功之后进行设置，这种属于Actor入队
-            return AllowCall(actorId, target);
         }
     }
 

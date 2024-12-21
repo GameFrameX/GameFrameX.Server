@@ -1,5 +1,4 @@
 ﻿using System.Text.Json;
-using System.Linq;
 
 namespace GameFrameX.Core.Config;
 
@@ -10,24 +9,24 @@ namespace GameFrameX.Core.Config;
 public abstract class BaseDataTable<T> : IDataTable<T>
 {
     /// <summary>
-    /// 长整型键的数据表
+    /// 异步加载器
     /// </summary>
-    protected readonly SortedDictionary<long, T> LongDataMaps = new SortedDictionary<long, T>();
-
-    /// <summary>
-    /// 字符串键的数据表
-    /// </summary>
-    protected readonly SortedDictionary<string, T> StringDataMaps = new SortedDictionary<string, T>();
+    protected readonly Func<Task<JsonElement>> _loadFunc;
 
     /// <summary>
     /// 数据列表
     /// </summary>
-    protected readonly List<T> DataList = new List<T>();
+    protected readonly List<T> DataList = new();
 
     /// <summary>
-    /// 异步加载器
+    /// 长整型键的数据表
     /// </summary>
-    protected readonly System.Func<System.Threading.Tasks.Task<JsonElement>> _loadFunc;
+    protected readonly SortedDictionary<long, T> LongDataMaps = new();
+
+    /// <summary>
+    /// 字符串键的数据表
+    /// </summary>
+    protected readonly SortedDictionary<string, T> StringDataMaps = new();
 
     /// <summary>
     /// 初始化基础数据表

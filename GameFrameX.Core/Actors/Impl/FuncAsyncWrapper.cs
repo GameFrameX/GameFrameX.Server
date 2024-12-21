@@ -9,24 +9,24 @@ namespace GameFrameX.Core.Actors.Impl;
 public class FuncAsyncWrapper<T> : WorkWrapper
 {
     /// <summary>
-    /// 工作对象
-    /// </summary>
-    public Func<Task<T>> Work { private set; get; }
-
-    /// <summary>
-    /// 工作等待
-    /// </summary>
-    public TaskCompletionSource<T> Tcs { private set; get; }
-
-    /// <summary>
     /// 构建有返回值的泛型包装器
     /// </summary>
     /// <param name="work"></param>
     public FuncAsyncWrapper(Func<Task<T>> work)
     {
         Work = work;
-        Tcs  = new TaskCompletionSource<T>();
+        Tcs = new TaskCompletionSource<T>();
     }
+
+    /// <summary>
+    /// 工作对象
+    /// </summary>
+    public Func<Task<T>> Work { get; }
+
+    /// <summary>
+    /// 工作等待
+    /// </summary>
+    public TaskCompletionSource<T> Tcs { get; }
 
     /// <summary>
     /// 执行

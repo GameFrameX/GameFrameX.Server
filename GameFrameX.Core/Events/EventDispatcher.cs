@@ -26,7 +26,7 @@ public static class EventDispatcher
             var evt = new Event
             {
                 EventId = eventId,
-                Data = args
+                Data = args,
             };
 
             async Task Work()

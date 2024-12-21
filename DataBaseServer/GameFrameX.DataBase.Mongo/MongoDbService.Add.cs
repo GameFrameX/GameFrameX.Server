@@ -13,6 +13,15 @@ namespace GameFrameX.DataBase.Mongo;
 /// </summary>
 public sealed partial class MongoDbService
 {
+    /// <summary>
+    /// 批量写入选项，用于批量写入文档。设置
+    /// <see>
+    ///     <cref>IsOrdered</cref>
+    /// </see>
+    /// 属性为 false 可以并行执行写入操作。
+    /// </summary>
+    public static readonly BulkWriteOptions BulkWriteOptions = new() { IsOrdered = false, };
+
     #region 插入
 
     /// <summary>
@@ -186,13 +195,4 @@ public sealed partial class MongoDbService
     }*/
 
     #endregion 插入
-
-    /// <summary>
-    /// 批量写入选项，用于批量写入文档。设置
-    /// <see>
-    ///     <cref>IsOrdered</cref>
-    /// </see>
-    /// 属性为 false 可以并行执行写入操作。
-    /// </summary>
-    public static readonly BulkWriteOptions BulkWriteOptions = new() { IsOrdered = false };
 }

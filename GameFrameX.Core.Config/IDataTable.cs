@@ -6,16 +6,16 @@
 public interface IDataTable
 {
     /// <summary>
-    /// 异步加载数据表。
-    /// </summary>
-    /// <returns>一个任务表示异步操作。</returns>
-    Task LoadAsync();
-
-    /// <summary>
     /// 获取数据表中对象的数量。
     /// </summary>
     /// <returns>数据表中对象的数量。</returns>
     int Count { get; }
+
+    /// <summary>
+    /// 异步加载数据表。
+    /// </summary>
+    /// <returns>一个任务表示异步操作。</returns>
+    Task LoadAsync();
 }
 
 /// <summary>
@@ -24,20 +24,6 @@ public interface IDataTable
 /// <typeparam name="T">数据表中对象的类型。</typeparam>
 public interface IDataTable<out T> : IDataTable
 {
-    /// <summary>
-    /// 根据ID获取对象。
-    /// </summary>
-    /// <param name="id">表唯一主键ID。</param>
-    /// <returns>指定ID的对象。</returns>
-    T Get(int id);
-
-    /// <summary>
-    /// 根据ID获取对象。
-    /// </summary>
-    /// <param name="id">表唯一主键ID。</param>
-    /// <returns>指定ID的对象。</returns>
-    T Get(string id);
-
     /// <summary>
     /// 根据ID获取对象。
     /// </summary>
@@ -71,6 +57,20 @@ public interface IDataTable<out T> : IDataTable
     T[] All { get; }
 
     /// <summary>
+    /// 根据ID获取对象。
+    /// </summary>
+    /// <param name="id">表唯一主键ID。</param>
+    /// <returns>指定ID的对象。</returns>
+    T Get(int id);
+
+    /// <summary>
+    /// 根据ID获取对象。
+    /// </summary>
+    /// <param name="id">表唯一主键ID。</param>
+    /// <returns>指定ID的对象。</returns>
+    T Get(string id);
+
+    /// <summary>
     /// 获取数据表中所有对象。
     /// </summary>
     /// <returns>数据表中的所有对象数组。</returns>
@@ -81,12 +81,12 @@ public interface IDataTable<out T> : IDataTable
     /// </summary>
     /// <param name="func">查询条件表达式。</param>
     /// <returns>第一个满足条件的对象。</returns>
-    T Find(System.Func<T, bool> func);
+    T Find(Func<T, bool> func);
 
     /// <summary>
     /// 根据条件查找，返回所有满足条件的对象。
     /// </summary>
     /// <param name="func">查询条件表达式。</param>
     /// <returns>所有满足条件的对象数组。</returns>
-    T[] FindList(System.Func<T, bool> func);
+    T[] FindList(Func<T, bool> func);
 }

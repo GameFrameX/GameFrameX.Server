@@ -1,5 +1,4 @@
 ﻿using System.Collections.Concurrent;
-using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Actors.Impl;
 using GameFrameX.Core.Components;
@@ -16,7 +15,25 @@ namespace GameFrameX.Core.Actors;
 /// </summary>
 public static class ActorManager
 {
-    private static readonly ConcurrentDictionary<long, Actor> ActorMap = new ConcurrentDictionary<long, Actor>();
+    private const int WorkerCount = 10;
+
+    private const int OnceSaveCount = 1000;
+
+    private const int CrossDayGlobalWaitSeconds = 60;
+    private const int CrossDayNotRoleWaitSeconds = 120;
+    private static readonly ConcurrentDictionary<long, Actor> ActorMap = new();
+
+    private static readonly ConcurrentDictionary<long, DateTime> ActiveTimeDic = new();
+
+    private static readonly List<WorkerActor> WorkerActors = new();
+
+    static ActorManager()
+    {
+        for (var i = 0; i < WorkerCount; i++)
+        {
+            WorkerActors.Add(new WorkerActor());
+        }
+    }
 
     /// <summary>
     /// 根据ActorId获取对应的IComponentAgent对象
@@ -94,19 +111,15 @@ public static class ActorManager
                 ActiveTimeDic[actorId] = now;
                 return actor;
             }
-            else
+
+            return await GetLifeActor(actorId).SendAsync(() =>
             {
-                return await GetLifeActor(actorId).SendAsync(() =>
-                {
-                    ActiveTimeDic[actorId] = now;
-                    return ActorMap.GetOrAdd(actorId, k => new Actor(k, ActorIdGenerator.GetActorType(k)));
-                });
-            }
+                ActiveTimeDic[actorId] = now;
+                return ActorMap.GetOrAdd(actorId, k => new Actor(k, ActorIdGenerator.GetActorType(k)));
+            });
         }
-        else
-        {
-            return ActorMap.GetOrAdd(actorId, k => new Actor(k, ActorIdGenerator.GetActorType(k)));
-        }
+
+        return ActorMap.GetOrAdd(actorId, k => new Actor(k, ActorIdGenerator.GetActorType(k)));
     }
 
     /// <summary>
@@ -122,19 +135,6 @@ public static class ActorManager
         }
 
         return Task.WhenAll(tasks);
-    }
-
-    private static readonly ConcurrentDictionary<long, DateTime> ActiveTimeDic = new();
-
-    private static readonly List<WorkerActor> WorkerActors = new();
-    private const int WorkerCount = 10;
-
-    static ActorManager()
-    {
-        for (var i = 0; i < WorkerCount; i++)
-        {
-            WorkerActors.Add(new WorkerActor());
-        }
     }
 
     /// <summary>
@@ -223,8 +223,6 @@ public static class ActorManager
         }
     }
 
-    private const int OnceSaveCount = 1000;
-
     /// <summary>
     /// 定时回存所有数据
     /// </summary>
@@ -233,7 +231,7 @@ public static class ActorManager
     {
         try
         {
-            int count = 0;
+            var count = 0;
             var taskList = new List<Task>();
             foreach (var actor in ActorMap.Values)
             {
@@ -287,9 +285,6 @@ public static class ActorManager
         return Task.CompletedTask;
     }
 
-    private const int CrossDayGlobalWaitSeconds = 60;
-    private const int CrossDayNotRoleWaitSeconds = 120;
-
     /// <summary>
     /// 跨天
     /// </summary>
@@ -304,8 +299,8 @@ public static class ActorManager
         await driverActor.CrossDay(openServerDay);
 
         var begin = DateTime.Now;
-        int a = 0;
-        int b = 0;
+        var a = 0;
+        var b = 0;
         foreach (var actor in ActorMap.Values)
         {
             if (actor.Type > GlobalConst.ActorTypeSeparator && actor.Type != driverActorType)

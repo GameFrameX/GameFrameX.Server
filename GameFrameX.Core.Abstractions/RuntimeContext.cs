@@ -8,6 +8,16 @@ namespace GameFrameX.Core.Abstractions;
 public static class RuntimeContext
 {
     /// <summary>
+    /// 当前链上下文
+    /// </summary>
+    private static readonly AsyncLocal<long> ChainContext = new();
+
+    /// <summary>
+    /// 当前Actor上下文
+    /// </summary>
+    private static readonly AsyncLocal<long> ActorContext = new();
+
+    /// <summary>
     /// 当前链ID
     /// </summary>
     public static long CurrentChainId
@@ -22,16 +32,6 @@ public static class RuntimeContext
     {
         get { return ActorContext.Value; }
     }
-
-    /// <summary>
-    /// 当前链上下文
-    /// </summary>
-    private static readonly AsyncLocal<long> ChainContext = new AsyncLocal<long>();
-
-    /// <summary>
-    /// 当前Actor上下文
-    /// </summary>
-    private static readonly AsyncLocal<long> ActorContext = new AsyncLocal<long>();
 
 
     /// <summary>

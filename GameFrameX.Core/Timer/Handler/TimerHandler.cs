@@ -6,7 +6,7 @@ namespace GameFrameX.Core.Timer.Handler;
 /// <summary>
 /// 热更新程序集的计时器处理器
 /// </summary>
-/// <typeparam name="TAgent">组件类型，必须实现 <see cref="IComponentAgent"/> 接口</typeparam>
+/// <typeparam name="TAgent">组件类型，必须实现 <see cref="IComponentAgent" /> 接口</typeparam>
 public abstract class TimerHandler<TAgent> : ITimerHandler where TAgent : IComponentAgent
 {
     /// <summary>

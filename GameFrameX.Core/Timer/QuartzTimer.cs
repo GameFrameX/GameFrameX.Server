@@ -2,11 +2,11 @@
 using GameFrameX.Core.Hotfix;
 using GameFrameX.Core.Timer.Handler;
 using GameFrameX.Core.Utility;
+using GameFrameX.Log;
+using GameFrameX.Utility;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Logging;
-using GameFrameX.Log;
-using GameFrameX.Utility;
 
 namespace GameFrameX.Core.Timer;
 
@@ -348,7 +348,7 @@ public static class QuartzTimer
 
     #region 调度
 
-    private static IScheduler _scheduler = null;
+    private static IScheduler _scheduler;
 
     /// <summary>
     /// 可防止反复初始化
@@ -362,7 +362,7 @@ public static class QuartzTimer
     /// <summary>
     /// 初始化
     /// </summary>
-    static async Task Init()
+    private static async Task Init()
     {
         LogProvider.SetCurrentLogProvider(new ConsoleLogProvider());
         var factory = new StdSchedulerFactory();
@@ -426,19 +426,16 @@ public static class QuartzTimer
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public const string ParamKey = "param";
 
     /// <summary>
-    /// 
     /// </summary>
-    const string ActorIdKey = "actor_id";
+    private const string ActorIdKey = "actor_id";
 
     /// <summary>
-    /// 
     /// </summary>
-    const string TimerKey = "timer";
+    private const string TimerKey = "timer";
 
     private static IJobDetail GetJobDetail<T>(long id, long actorId, Param param) where T : ITimerHandler
     {

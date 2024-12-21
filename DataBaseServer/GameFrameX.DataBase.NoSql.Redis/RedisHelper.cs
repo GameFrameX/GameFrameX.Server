@@ -17,7 +17,7 @@ public partial class RedisHelper : INoSqlHelper
     /// <param name="connectionStrings">链接字符串</param>
     public void Init(params string[] connectionStrings)
     {
-        ConnectionStringBuilder[] connectionStringBuilders = new ConnectionStringBuilder[connectionStrings.Length];
+        var connectionStringBuilders = new ConnectionStringBuilder[connectionStrings.Length];
         for (var index = 0; index < connectionStrings.Length; index++)
         {
             var connectionString = connectionStrings[index];

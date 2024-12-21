@@ -14,11 +14,6 @@ namespace GameFrameX.Core.Hotfix.Agent;
 public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TComponent : BaseComponent
 {
     /// <summary>
-    /// 组件的所有者
-    /// </summary>
-    public IComponent Owner { get; private set; }
-
-    /// <summary>
     /// 所有者的组件实例
     /// </summary>
     public TComponent OwnerComponent
@@ -35,6 +30,19 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     }
 
     /// <summary>
+    /// 订阅的定时任务ID集合
+    /// </summary>
+    public HashSet<long> ScheduleIdSet
+    {
+        get { return Actor.ScheduleIdSet; }
+    }
+
+    /// <summary>
+    /// 组件的所有者
+    /// </summary>
+    public IComponent Owner { get; private set; }
+
+    /// <summary>
     /// 所有者的Actor ID
     /// </summary>
     public long ActorId
@@ -48,14 +56,6 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     public ushort OwnerType
     {
         get { return Actor.Type; }
-    }
-
-    /// <summary>
-    /// 订阅的定时任务ID集合
-    /// </summary>
-    public HashSet<long> ScheduleIdSet
-    {
-        get { return Actor.ScheduleIdSet; }
     }
 
     /// <summary>
@@ -75,31 +75,12 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     }
 
     /// <summary>
-    /// 设置组件是否自动回收
-    /// </summary>
-    /// <param name="autoRecycle">是否自动回收</param>
-    protected void SetAutoRecycle(bool autoRecycle)
-    {
-        Actor.SetAutoRecycle(autoRecycle);
-    }
-
-    /// <summary>
     /// 反激活组件
     /// </summary>
     /// <returns>一个已完成的任务</returns>
     public virtual Task Inactive()
     {
         return Task.CompletedTask;
-    }
-
-    /// <summary>
-    /// 处理Actor跨天事件
-    /// </summary>
-    /// <param name="serverDay">服务器运行天数</param>
-    /// <returns>一个任务</returns>
-    public Task ActorCrossDay(int serverDay)
-    {
-        return Actor.CrossDay(serverDay);
     }
 
     /// <summary>
@@ -188,6 +169,25 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     }
 
     /// <summary>
+    /// 设置组件是否自动回收
+    /// </summary>
+    /// <param name="autoRecycle">是否自动回收</param>
+    protected void SetAutoRecycle(bool autoRecycle)
+    {
+        Actor.SetAutoRecycle(autoRecycle);
+    }
+
+    /// <summary>
+    /// 处理Actor跨天事件
+    /// </summary>
+    /// <param name="serverDay">服务器运行天数</param>
+    /// <returns>一个任务</returns>
+    public Task ActorCrossDay(int serverDay)
+    {
+        return Actor.CrossDay(serverDay);
+    }
+
+    /// <summary>
     /// 取消订阅定时任务
     /// </summary>
     /// <param name="id">定时任务ID</param>
@@ -208,7 +208,7 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     public long Delay<T>(DateTime time, Param param = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
-        long scheduleId = QuartzTimer.Delay<T>(ActorId, time - DateTime.Now, param);
+        var scheduleId = QuartzTimer.Delay<T>(ActorId, time - DateTime.Now, param);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }
@@ -224,7 +224,7 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     public long Delay<T>(long time, Param param = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
-        long scheduleId = QuartzTimer.Delay<T>(ActorId, new DateTime(time) - DateTime.Now, param);
+        var scheduleId = QuartzTimer.Delay<T>(ActorId, new DateTime(time) - DateTime.Now, param);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }
@@ -240,7 +240,7 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     public long Delay<T>(TimeSpan delay, Param param = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
-        long scheduleId = QuartzTimer.Delay<T>(ActorId, delay, param);
+        var scheduleId = QuartzTimer.Delay<T>(ActorId, delay, param);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }
@@ -258,7 +258,7 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     public long Schedule<T>(TimeSpan delay, TimeSpan interval, Param param = null, int repeatCount = -1, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
-        long scheduleId = QuartzTimer.Schedule<T>(ActorId, delay, interval, param, repeatCount);
+        var scheduleId = QuartzTimer.Schedule<T>(ActorId, delay, interval, param, repeatCount);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }
@@ -275,7 +275,7 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     public long Daily<T>(int hour = 0, int minute = 0, Param param = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
-        long scheduleId = QuartzTimer.Daily<T>(ActorId, hour, minute, param);
+        var scheduleId = QuartzTimer.Daily<T>(ActorId, hour, minute, param);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }
@@ -293,7 +293,7 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     public long Weekly<T>(DayOfWeek dayOfWeek, int hour = 0, int minute = 0, Param param = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
-        long scheduleId = QuartzTimer.Weekly<T>(ActorId, dayOfWeek, hour, minute, param);
+        var scheduleId = QuartzTimer.Weekly<T>(ActorId, dayOfWeek, hour, minute, param);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }
@@ -309,7 +309,7 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// <returns>定时任务ID</returns>
     public long WithDayOfWeeks<T>(int hour, int minute, Param param, params DayOfWeek[] dayOfWeeks) where T : ITimerHandler
     {
-        long scheduleId = QuartzTimer.WithDayOfWeeks<T>(ActorId, hour, minute, param, dayOfWeeks);
+        var scheduleId = QuartzTimer.WithDayOfWeeks<T>(ActorId, hour, minute, param, dayOfWeeks);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }
@@ -327,7 +327,7 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     public long Monthly<T>(int dayOfMonth, int hour = 0, int minute = 0, Param param = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
-        long scheduleId = QuartzTimer.Monthly<T>(ActorId, dayOfMonth, hour, minute, param);
+        var scheduleId = QuartzTimer.Monthly<T>(ActorId, dayOfMonth, hour, minute, param);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }
@@ -343,7 +343,7 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     public long WithCronExpression<T>(string cronExpression, Param param = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
-        long scheduleId = QuartzTimer.WithCronExpression<T>(ActorId, cronExpression, param);
+        var scheduleId = QuartzTimer.WithCronExpression<T>(ActorId, cronExpression, param);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }

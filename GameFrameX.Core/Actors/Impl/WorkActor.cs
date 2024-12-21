@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks.Dataflow;
 using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Utility;
-using Serilog;
 using GameFrameX.Setting;
+using Serilog;
 
 namespace GameFrameX.Core.Actors.Impl;
 
@@ -11,11 +11,10 @@ namespace GameFrameX.Core.Actors.Impl;
 /// </summary>
 public class WorkerActor : IWorkerActor
 {
+    private const int TimeOut = 13000;
     private static readonly ILogger Log = Serilog.Log.ForContext<WorkWrapper>();
 
-    internal long CurrentChainId { get; set; }
-    internal long Id { get; init; }
-    private const int TimeOut = 13000;
+    private static long _chainId = DateTime.Now.Ticks;
 
     /// <summary>
     /// 构造函数
@@ -29,7 +28,29 @@ public class WorkerActor : IWorkerActor
         }
 
         Id = id;
-        ActionBlock = new ActionBlock<WorkWrapper>(InnerRun, new ExecutionDataflowBlockOptions() { MaxDegreeOfParallelism = 1 });
+        ActionBlock = new ActionBlock<WorkWrapper>(InnerRun, new ExecutionDataflowBlockOptions { MaxDegreeOfParallelism = 1, });
+    }
+
+    internal long CurrentChainId { get; set; }
+    internal long Id { get; init; }
+
+    private ActionBlock<WorkWrapper> ActionBlock { get; }
+
+    /// <summary>
+    /// chainId == 0说明是新的异步环境
+    /// chainId相等说明是一直await下去的（一种特殊情况是自己入自己的队）
+    /// </summary>
+    /// <returns></returns>
+    public (bool needEnqueue, long chainId) IsNeedEnqueue()
+    {
+        var chainId = RuntimeContext.CurrentChainId;
+        var needEnqueue = chainId == 0 || chainId != CurrentChainId;
+        if (needEnqueue && chainId == 0)
+        {
+            chainId = NextChainId();
+        }
+
+        return (needEnqueue, chainId);
     }
 
     private static async Task InnerRun(WorkWrapper wrapper)
@@ -41,25 +62,24 @@ public class WorkerActor : IWorkerActor
         }
         catch (TimeoutException)
         {
-            WorkerActor.Log.Fatal("wrapper执行超时:" + wrapper.GetTrace());
+            Log.Fatal("wrapper执行超时:" + wrapper.GetTrace());
             //强制设状态-取消该操作
             wrapper.ForceSetResult();
         }
     }
 
-    private ActionBlock<WorkWrapper> ActionBlock { get; init; }
-
     /// <summary>
-    /// chainId == 0说明是新的异步环境
-    /// chainId相等说明是一直await下去的（一种特殊情况是自己入自己的队）
+    /// 调用链生成
     /// </summary>
-    /// <returns></returns>
-    public (bool needEnqueue, long chainId) IsNeedEnqueue()
+    public static long NextChainId()
     {
-        var chainId = RuntimeContext.CurrentChainId;
-        bool needEnqueue = chainId == 0 || chainId != CurrentChainId;
-        if (needEnqueue && chainId == 0) chainId = NextChainId();
-        return (needEnqueue, chainId);
+        var id = Interlocked.Increment(ref _chainId);
+        if (id == 0)
+        {
+            id = Interlocked.Increment(ref _chainId);
+        }
+
+        return id;
     }
 
     #region 勿调用(仅供代码生成器调用)
@@ -75,12 +95,15 @@ public class WorkerActor : IWorkerActor
     public Task Enqueue(Action work, long callChainId, bool discard = false, int timeOut = TimeOut)
     {
         if (!discard && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
+        {
             return default;
+        }
+
         var at = new ActionWrapper(work)
         {
             Owner = this,
             TimeOut = timeOut,
-            CallChainId = callChainId
+            CallChainId = callChainId,
         };
         ActionBlock.SendAsync(at);
         return at.Tcs.Task;
@@ -97,12 +120,15 @@ public class WorkerActor : IWorkerActor
     public Task<T> Enqueue<T>(Func<T> work, long callChainId, bool discard = false, int timeOut = TimeOut)
     {
         if (!discard && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
+        {
             return default;
+        }
+
         var at = new FuncWrapper<T>(work)
         {
             Owner = this,
             TimeOut = timeOut,
-            CallChainId = callChainId
+            CallChainId = callChainId,
         };
         ActionBlock.SendAsync(at);
         return at.Tcs.Task;
@@ -119,12 +145,15 @@ public class WorkerActor : IWorkerActor
     public Task Enqueue(Func<Task> work, long callChainId, bool discard = false, int timeOut = TimeOut)
     {
         if (!discard && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
+        {
             return default;
+        }
+
         var at = new ActionAsyncWrapper(work)
         {
             Owner = this,
             TimeOut = timeOut,
-            CallChainId = callChainId
+            CallChainId = callChainId,
         };
         ActionBlock.SendAsync(at);
         return at.Tcs.Task;
@@ -142,12 +171,15 @@ public class WorkerActor : IWorkerActor
     public Task<T> Enqueue<T>(Func<Task<T>> work, long callChainId, bool discard = false, int timeOut = TimeOut)
     {
         if (!discard && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
+        {
             return default;
+        }
+
         var at = new FuncAsyncWrapper<T>(work)
         {
             Owner = this,
             TimeOut = timeOut,
-            CallChainId = callChainId
+            CallChainId = callChainId,
         };
         ActionBlock.SendAsync(at);
         return at.Tcs.Task;
@@ -194,11 +226,13 @@ public class WorkerActor : IWorkerActor
     /// </summary>
     public Task SendAsync(Action work, int timeOut = Actor.TimeOut)
     {
-        (bool needEnqueue, long chainId) = IsNeedEnqueue();
+        (var needEnqueue, var chainId) = IsNeedEnqueue();
         if (needEnqueue)
         {
             if (GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
+            {
                 return default;
+            }
 
             var at = new ActionWrapper(work)
             {
@@ -209,11 +243,9 @@ public class WorkerActor : IWorkerActor
             ActionBlock.SendAsync(at);
             return at.Tcs.Task;
         }
-        else
-        {
-            work();
-            return Task.CompletedTask;
-        }
+
+        work();
+        return Task.CompletedTask;
     }
 
     /// <summary>
@@ -224,11 +256,13 @@ public class WorkerActor : IWorkerActor
     /// <returns></returns>
     public Task<T> SendAsync<T>(Func<T> work, int timeOut = Actor.TimeOut)
     {
-        (bool needEnqueue, long chainId) = IsNeedEnqueue();
+        (var needEnqueue, var chainId) = IsNeedEnqueue();
         if (needEnqueue)
         {
             if (GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
+            {
                 return default;
+            }
 
             var at = new FuncWrapper<T>(work)
             {
@@ -239,10 +273,8 @@ public class WorkerActor : IWorkerActor
             ActionBlock.SendAsync(at);
             return at.Tcs.Task;
         }
-        else
-        {
-            return Task.FromResult(work());
-        }
+
+        return Task.FromResult(work());
     }
 
     /// <summary>
@@ -265,11 +297,13 @@ public class WorkerActor : IWorkerActor
     /// <returns></returns>
     public Task SendAsync(Func<Task> work, int timeOut = Actor.TimeOut, bool checkLock = true)
     {
-        (bool needEnqueue, long chainId) = IsNeedEnqueue();
+        (var needEnqueue, var chainId) = IsNeedEnqueue();
         if (needEnqueue)
         {
             if (checkLock && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
+            {
                 return default;
+            }
 
             var wrapper = new ActionAsyncWrapper(work)
             {
@@ -280,10 +314,8 @@ public class WorkerActor : IWorkerActor
             ActionBlock.SendAsync(wrapper);
             return wrapper.Tcs.Task;
         }
-        else
-        {
-            return work();
-        }
+
+        return work();
     }
 
     /// <summary>
@@ -294,11 +326,13 @@ public class WorkerActor : IWorkerActor
     /// <returns></returns>
     public Task<T> SendAsync<T>(Func<Task<T>> work, int timeOut = Actor.TimeOut)
     {
-        (bool needEnqueue, long chainId) = IsNeedEnqueue();
+        (var needEnqueue, var chainId) = IsNeedEnqueue();
         if (needEnqueue)
         {
             if (GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
+            {
                 return default;
+            }
 
             var wrapper = new FuncAsyncWrapper<T>(work)
             {
@@ -309,27 +343,9 @@ public class WorkerActor : IWorkerActor
             ActionBlock.SendAsync(wrapper);
             return wrapper.Tcs.Task;
         }
-        else
-        {
-            return work();
-        }
+
+        return work();
     }
 
     #endregion
-
-    private static long _chainId = DateTime.Now.Ticks;
-
-    /// <summary>
-    /// 调用链生成
-    /// </summary>
-    public static long NextChainId()
-    {
-        var id = Interlocked.Increment(ref _chainId);
-        if (id == 0)
-        {
-            id = Interlocked.Increment(ref _chainId);
-        }
-
-        return id;
-    }
 }

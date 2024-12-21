@@ -11,11 +11,6 @@ public class ComponentTypeAttribute : System.Attribute
     /// <summary>
     /// 组件类型
     /// </summary>
-    public ushort Type { get; }
-
-    /// <summary>
-    /// 组件类型
-    /// </summary>
     /// <param name="type">组件类型,值应大于0且小于ActorType.Max并且不为ActorType.Separator</param>
     public ComponentTypeAttribute(ushort type)
     {
@@ -26,4 +21,9 @@ public class ComponentTypeAttribute : System.Attribute
 
         Type = type;
     }
+
+    /// <summary>
+    /// 组件类型
+    /// </summary>
+    public ushort Type { get; }
 }

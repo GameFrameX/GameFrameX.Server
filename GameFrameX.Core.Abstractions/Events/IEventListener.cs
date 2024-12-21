@@ -8,16 +8,16 @@ namespace GameFrameX.Core.Abstractions.Events;
 public interface IEventListener
 {
     /// <summary>
+    /// 获取事件代理类型
+    /// </summary>
+    /// <returns>事件代理的类型</returns>
+    Type AgentType { get; }
+
+    /// <summary>
     /// 事件处理函数
     /// </summary>
     /// <param name="agent">组件代理</param>
     /// <param name="evt">事件</param>
     /// <returns>一个表示异步操作的任务</returns>
     Task HandleEvent(IComponentAgent agent, Event evt);
-
-    /// <summary>
-    /// 获取事件代理类型
-    /// </summary>
-    /// <returns>事件代理的类型</returns>
-    Type AgentType { get; }
 }

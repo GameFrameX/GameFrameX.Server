@@ -1,5 +1,4 @@
 ﻿using GameFrameX.DataBase.Abstractions;
-using GameFrameX.Utility;
 using MongoDB.Driver;
 
 namespace GameFrameX.DataBase.Mongo;
