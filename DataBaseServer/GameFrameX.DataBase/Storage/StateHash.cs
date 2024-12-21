@@ -1,5 +1,6 @@
 using GameFrameX.Log;
 using GameFrameX.Utility;
+using Standart.Hash.xxHash;
 
 namespace GameFrameX.DataBase.Storage;
 
@@ -8,8 +9,6 @@ namespace GameFrameX.DataBase.Storage;
 /// </summary>
 internal sealed class StateHash
 {
-    private BaseCacheState State { get; }
-
     public StateHash(BaseCacheState state, bool isNew)
     {
         State = state;
@@ -19,15 +18,17 @@ internal sealed class StateHash
         }
     }
 
+    private BaseCacheState State { get; }
+
     /// <summary>
     /// 缓存的Hash
     /// </summary>
-    private Standart.Hash.xxHash.uint128 CacheHash { get; set; }
+    private uint128 CacheHash { get; set; }
 
     /// <summary>
     /// 保存的Hash
     /// </summary>
-    private Standart.Hash.xxHash.uint128 ToSaveHash { get; set; }
+    private uint128 ToSaveHash { get; set; }
 
     /// <summary>
     /// 判断是否需要保存
@@ -53,7 +54,7 @@ internal sealed class StateHash
         CacheHash = ToSaveHash;
     }
 
-    private static (Standart.Hash.xxHash.uint128 md5, byte[] data) GetHashAndData(BaseCacheState state)
+    private static (uint128 md5, byte[] data) GetHashAndData(BaseCacheState state)
     {
         var data = state.ToBytes();
         var uint128 = Hash.XXHash.Hash128(data);
