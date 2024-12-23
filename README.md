@@ -62,13 +62,24 @@ Actor模型本身是存在死锁的情况，且不容易被发现。内部可检
 1. 安装[.NetCore8.0](https://dotnet.microsoft.com/download/dotnet/6.0)
 2. 安装[mongodb4.x](https://www.mongodb.com/try/download/community)
 3. 打开git clone本项目
-4. 用VisualStudio 或者Rider打开Server.sln 启动 G`ameFrameX.Launcher`
+4. 用VisualStudio 或者Rider打开Server.sln 启动 `GameFrameX.Launcher`
 5. 打开Unity工程，打开Launcher 场景，运行查看日志
+
+# Doc (已经在写了,别催了!-_-!)
+
+`所有站点内容一致，不存在内容不一致的情况`
+
+文档地址 : https://gameframex.doc.alianblank.com
+
+备用文档地址 : https://gameframex-docs.pages.dev
+
+备用文档地址 : https://gameframex.doc.cloudflare.alianblank.com
+
+备用文档地址 : https://gameframex.doc.vercel.alianblank.com
 
 # 文档&例子&Demo
 
 [视频教程](https://www.bilibili.com/video/BV1yrpeepEn7/)
 
-[参考文档](https://gameframex.doc.alianblank.com/)
 
 
