@@ -28,7 +28,7 @@ public static class QuartzTimer
             return;
         }
 
-        _scheduler.DeleteJob(JobKey.Create(id + ""));
+        _scheduler.DeleteJob(JobKey.Create(id.ToString()));
     }
 
     /// <summary>
@@ -39,10 +39,7 @@ public static class QuartzTimer
     {
         foreach (var id in set)
         {
-            if (id > 0)
-            {
-                _scheduler.DeleteJob(JobKey.Create(id + ""));
-            }
+            UnSchedule(id);
         }
     }
 
@@ -360,8 +357,11 @@ public static class QuartzTimer
     }
 
     /// <summary>
-    /// 初始化
+    /// 初始化定时任务调度器
     /// </summary>
+    /// <remarks>
+    /// 设置日志提供程序并创建调度器实例。
+    /// </remarks>
     private static async Task Init()
     {
         LogProvider.SetCurrentLogProvider(new ConsoleLogProvider());
@@ -370,18 +370,24 @@ public static class QuartzTimer
     }
 
     /// <summary>
-    /// 开始
+    /// 启动定时任务调度器
     /// </summary>
-    /// <returns></returns>
+    /// <returns>一个表示异步操作的任务。</returns>
+    /// <remarks>
+    /// 开始调度器，使其可以触发已安排的任务。
+    /// </remarks>
     public static async Task Start()
     {
         await _scheduler.Start();
     }
 
     /// <summary>
-    /// 停止
+    /// 停止定时任务调度器
     /// </summary>
-    /// <returns></returns>
+    /// <returns>一个表示异步操作的任务。</returns>
+    /// <remarks>
+    /// 关闭调度器，停止所有正在运行的任务，并防止新的任务被触发。
+    /// </remarks>
     public static Task Stop()
     {
         return _scheduler.Shutdown();
