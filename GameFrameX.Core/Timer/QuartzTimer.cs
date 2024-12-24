@@ -471,14 +471,14 @@ public static class QuartzTimer
                 {
                     if (level < LogLevel.Warn)
                     {
-                        if (level == LogLevel.Debug)
-                        {
-                            LogHelper.Debug(func(), parameters);
-                        }
-                        else
-                        {
-                            LogHelper.Info(func(), parameters);
-                        }
+                        // if (level == LogLevel.Debug)
+                        // {
+                        //     LogHelper.Debug(func(), parameters);
+                        // }
+                        // else
+                        // {
+                        //     LogHelper.Info(func(), parameters);
+                        // }
                     }
                     else if (level == LogLevel.Warn)
                     {
