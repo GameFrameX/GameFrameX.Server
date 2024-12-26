@@ -150,8 +150,16 @@ public static class HttpHandler
             }
 
             // 执行处理器逻辑
-            var result = await Task.Run(() => { return handler.Action(ip, url, paramMap); });
-            LogHelper.Warn($"{logHeader}, 结果: {result}");
+            var result = await Task.Run(() =>
+            {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                var result = handler.Action(ip, url, paramMap);
+                stopwatch.Stop();
+                LogHelper.Info($"{logHeader}, 执行时间：{stopwatch.ElapsedMilliseconds}ms");
+                return result;
+            });
+            LogHelper.Info($"{logHeader}, 结果: {result}");
             await context.Response.WriteAsync(result);
         }
         catch (Exception e)
