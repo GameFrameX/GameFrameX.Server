@@ -11551,33 +11551,33 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.HTTP.HttpResult.Code
   nameWithType: HttpResult.Code
-- uid: GameFrameX.NetWork.HTTP.HttpResult.Create(GameFrameX.NetWork.HTTP.HttpStatusCode,System.String,System.Object)
-  name: Create(HttpStatusCode, string, object)
-  href: api/GameFrameX.NetWork.HTTP.HttpResult.html#GameFrameX_NetWork_HTTP_HttpResult_Create_GameFrameX_NetWork_HTTP_HttpStatusCode_System_String_System_Object_
-  commentId: M:GameFrameX.NetWork.HTTP.HttpResult.Create(GameFrameX.NetWork.HTTP.HttpStatusCode,System.String,System.Object)
-  name.vb: Create(HttpStatusCode, String, Object)
-  fullName: GameFrameX.NetWork.HTTP.HttpResult.Create(GameFrameX.NetWork.HTTP.HttpStatusCode, string, object)
-  fullName.vb: GameFrameX.NetWork.HTTP.HttpResult.Create(GameFrameX.NetWork.HTTP.HttpStatusCode, String, Object)
-  nameWithType: HttpResult.Create(HttpStatusCode, string, object)
-  nameWithType.vb: HttpResult.Create(HttpStatusCode, String, Object)
-- uid: GameFrameX.NetWork.HTTP.HttpResult.Create(System.Int32,System.String,System.Object)
-  name: Create(int, string, object)
-  href: api/GameFrameX.NetWork.HTTP.HttpResult.html#GameFrameX_NetWork_HTTP_HttpResult_Create_System_Int32_System_String_System_Object_
-  commentId: M:GameFrameX.NetWork.HTTP.HttpResult.Create(System.Int32,System.String,System.Object)
-  name.vb: Create(Integer, String, Object)
-  fullName: GameFrameX.NetWork.HTTP.HttpResult.Create(int, string, object)
-  fullName.vb: GameFrameX.NetWork.HTTP.HttpResult.Create(Integer, String, Object)
-  nameWithType: HttpResult.Create(int, string, object)
-  nameWithType.vb: HttpResult.Create(Integer, String, Object)
-- uid: GameFrameX.NetWork.HTTP.HttpResult.Create(System.Object)
-  name: Create(object)
-  href: api/GameFrameX.NetWork.HTTP.HttpResult.html#GameFrameX_NetWork_HTTP_HttpResult_Create_System_Object_
-  commentId: M:GameFrameX.NetWork.HTTP.HttpResult.Create(System.Object)
-  name.vb: Create(Object)
-  fullName: GameFrameX.NetWork.HTTP.HttpResult.Create(object)
-  fullName.vb: GameFrameX.NetWork.HTTP.HttpResult.Create(Object)
-  nameWithType: HttpResult.Create(object)
-  nameWithType.vb: HttpResult.Create(Object)
+- uid: GameFrameX.NetWork.HTTP.HttpResult.Create(GameFrameX.NetWork.HTTP.HttpStatusCode,System.String,System.String)
+  name: Create(HttpStatusCode, string, string)
+  href: api/GameFrameX.NetWork.HTTP.HttpResult.html#GameFrameX_NetWork_HTTP_HttpResult_Create_GameFrameX_NetWork_HTTP_HttpStatusCode_System_String_System_String_
+  commentId: M:GameFrameX.NetWork.HTTP.HttpResult.Create(GameFrameX.NetWork.HTTP.HttpStatusCode,System.String,System.String)
+  name.vb: Create(HttpStatusCode, String, String)
+  fullName: GameFrameX.NetWork.HTTP.HttpResult.Create(GameFrameX.NetWork.HTTP.HttpStatusCode, string, string)
+  fullName.vb: GameFrameX.NetWork.HTTP.HttpResult.Create(GameFrameX.NetWork.HTTP.HttpStatusCode, String, String)
+  nameWithType: HttpResult.Create(HttpStatusCode, string, string)
+  nameWithType.vb: HttpResult.Create(HttpStatusCode, String, String)
+- uid: GameFrameX.NetWork.HTTP.HttpResult.Create(System.Int32,System.String,System.String)
+  name: Create(int, string, string)
+  href: api/GameFrameX.NetWork.HTTP.HttpResult.html#GameFrameX_NetWork_HTTP_HttpResult_Create_System_Int32_System_String_System_String_
+  commentId: M:GameFrameX.NetWork.HTTP.HttpResult.Create(System.Int32,System.String,System.String)
+  name.vb: Create(Integer, String, String)
+  fullName: GameFrameX.NetWork.HTTP.HttpResult.Create(int, string, string)
+  fullName.vb: GameFrameX.NetWork.HTTP.HttpResult.Create(Integer, String, String)
+  nameWithType: HttpResult.Create(int, string, string)
+  nameWithType.vb: HttpResult.Create(Integer, String, String)
+- uid: GameFrameX.NetWork.HTTP.HttpResult.Create(System.String)
+  name: Create(string)
+  href: api/GameFrameX.NetWork.HTTP.HttpResult.html#GameFrameX_NetWork_HTTP_HttpResult_Create_System_String_
+  commentId: M:GameFrameX.NetWork.HTTP.HttpResult.Create(System.String)
+  name.vb: Create(String)
+  fullName: GameFrameX.NetWork.HTTP.HttpResult.Create(string)
+  fullName.vb: GameFrameX.NetWork.HTTP.HttpResult.Create(String)
+  nameWithType: HttpResult.Create(string)
+  nameWithType.vb: HttpResult.Create(String)
 - uid: GameFrameX.NetWork.HTTP.HttpResult.Create*
   name: Create
   href: api/GameFrameX.NetWork.HTTP.HttpResult.html#GameFrameX_NetWork_HTTP_HttpResult_Create_
@@ -11617,15 +11617,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.HTTP.HttpResult.CreateErrorParam
   nameWithType: HttpResult.CreateErrorParam
-- uid: GameFrameX.NetWork.HTTP.HttpResult.CreateOk(System.String,System.Object)
-  name: CreateOk(string, object)
-  href: api/GameFrameX.NetWork.HTTP.HttpResult.html#GameFrameX_NetWork_HTTP_HttpResult_CreateOk_System_String_System_Object_
-  commentId: M:GameFrameX.NetWork.HTTP.HttpResult.CreateOk(System.String,System.Object)
-  name.vb: CreateOk(String, Object)
-  fullName: GameFrameX.NetWork.HTTP.HttpResult.CreateOk(string, object)
-  fullName.vb: GameFrameX.NetWork.HTTP.HttpResult.CreateOk(String, Object)
-  nameWithType: HttpResult.CreateOk(string, object)
-  nameWithType.vb: HttpResult.CreateOk(String, Object)
+- uid: GameFrameX.NetWork.HTTP.HttpResult.CreateOk(System.String,System.String)
+  name: CreateOk(string, string)
+  href: api/GameFrameX.NetWork.HTTP.HttpResult.html#GameFrameX_NetWork_HTTP_HttpResult_CreateOk_System_String_System_String_
+  commentId: M:GameFrameX.NetWork.HTTP.HttpResult.CreateOk(System.String,System.String)
+  name.vb: CreateOk(String, String)
+  fullName: GameFrameX.NetWork.HTTP.HttpResult.CreateOk(string, string)
+  fullName.vb: GameFrameX.NetWork.HTTP.HttpResult.CreateOk(String, String)
+  nameWithType: HttpResult.CreateOk(string, string)
+  nameWithType.vb: HttpResult.CreateOk(String, String)
 - uid: GameFrameX.NetWork.HTTP.HttpResult.CreateOk*
   name: CreateOk
   href: api/GameFrameX.NetWork.HTTP.HttpResult.html#GameFrameX_NetWork_HTTP_HttpResult_CreateOk_
