@@ -39,7 +39,7 @@ public sealed class HttpResult
     /// <param name="code">HTTP状态码</param>
     /// <param name="message">返回消息</param>
     /// <param name="data">数据体</param>
-    private HttpResult(HttpStatusCode code = HttpStatusCode.Success, string message = "ok", object data = null)
+    private HttpResult(HttpStatusCode code = HttpStatusCode.Success, string message = "ok", string data = null)
     {
         Code = (int)code;
         Message = message;
@@ -52,7 +52,7 @@ public sealed class HttpResult
     /// <param name="code">HTTP状态码</param>
     /// <param name="message">返回消息</param>
     /// <param name="data">数据体</param>
-    private HttpResult(int code = 0, string message = "ok", object data = null)
+    private HttpResult(int code = 0, string message = "ok", string data = null)
     {
         Code = code;
         Message = message;
@@ -75,7 +75,7 @@ public sealed class HttpResult
     /// 数据体
     /// </summary>
     [JsonProperty(PropertyName = "data")]
-    public object Data { get; set; }
+    public string Data { get; set; }
 
     /// <summary>
     /// 创建HTTP结果
@@ -84,7 +84,7 @@ public sealed class HttpResult
     /// <param name="message">返回消息</param>
     /// <param name="data">额外数据</param>
     /// <returns>JSON字符串表示的HTTP结果</returns>
-    public static string Create(HttpStatusCode code = HttpStatusCode.Success, string message = "", object data = null)
+    public static string Create(HttpStatusCode code = HttpStatusCode.Success, string message = "", string data = null)
     {
         return new HttpResult(code, message, data).ToString();
     }
@@ -96,7 +96,7 @@ public sealed class HttpResult
     /// <param name="message">返回消息</param>
     /// <param name="data">额外数据</param>
     /// <returns>JSON字符串表示的HTTP结果</returns>
-    public static string Create(int code = 0, string message = "", object data = null)
+    public static string Create(int code = 0, string message = "", string data = null)
     {
         return new HttpResult(code, message, data).ToString();
     }
@@ -107,7 +107,7 @@ public sealed class HttpResult
     /// <param name="message">返回消息</param>
     /// <param name="data">额外数据</param>
     /// <returns>JSON字符串表示的成功HTTP结果</returns>
-    public static string CreateOk(string message = "", object data = null)
+    public static string CreateOk(string message = "", string data = null)
     {
         return new HttpResult(HttpStatusCode.Success, message, data).ToString();
     }
@@ -156,7 +156,7 @@ public sealed class HttpResult
     /// </summary>
     /// <param name="data">数据体</param>
     /// <returns>JSON字符串表示的成功HTTP结果</returns>
-    public static string Create(object data)
+    public static string Create(string data)
     {
         return new HttpResult(HttpStatusCode.Success, HttpStatusMessage.Success, data).ToString();
     }
