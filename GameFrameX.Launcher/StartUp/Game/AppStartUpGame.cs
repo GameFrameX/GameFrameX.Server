@@ -66,7 +66,7 @@ namespace GameFrameX.Launcher.StartUp.Game
                     ServerType = ServerType.Game,
                     InnerPort = 29100,
                     APMPort = 29090,
-                    HttpPort = 29001,
+                    HttpPort = 28080,
                     WsPort = 29110,
                     MinModuleId = 10,
                     MaxModuleId = short.MaxValue,

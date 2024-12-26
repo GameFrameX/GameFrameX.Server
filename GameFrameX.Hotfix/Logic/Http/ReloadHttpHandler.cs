@@ -10,7 +10,6 @@ namespace GameFrameX.Hotfix.Logic.Http;
 public sealed class ReloadHttpHandler : BaseHttpHandler
 {
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="ip"></param>
     /// <param name="url"></param>
