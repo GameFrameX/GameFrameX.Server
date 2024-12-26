@@ -25,7 +25,7 @@ public sealed class TestHttpHandler : BaseHttpHandler
         };
         response.TestInfo.Age = 18;
         response.TestInfo.Name = "leeveel";
-        return Task.FromResult(HttpResult.Create(response));
+        return Task.FromResult(HttpResult.Create(JsonHelper.Serialize(response)));
     }
 
     public class HttpTestRes

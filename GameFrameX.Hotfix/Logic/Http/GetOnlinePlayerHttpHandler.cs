@@ -20,7 +20,7 @@ public sealed class GetOnlinePlayerHttpHandler : BaseHttpHandler
     {
         var response = new GetOnlinePlayerResponse();
         response.Count = SessionManager.Count();
-        var res = HttpResult.CreateOk($"当前在线人数:{response.Count}", response);
+        var res = HttpResult.CreateOk($"当前在线人数:{response.Count}", JsonHelper.Serialize(response));
         return Task.FromResult(res);
     }
 
