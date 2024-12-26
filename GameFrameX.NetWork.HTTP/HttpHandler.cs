@@ -1,8 +1,8 @@
-﻿using System.Text;
-using System.Text.Json;
+﻿using System.Diagnostics;
 using GameFrameX.Extension;
 using GameFrameX.Log;
 using GameFrameX.Setting;
+using GameFrameX.Utility;
 using Microsoft.AspNetCore.Http;
 
 namespace GameFrameX.NetWork.HTTP;
@@ -12,7 +12,8 @@ namespace GameFrameX.NetWork.HTTP;
 /// </summary>
 public static class HttpHandler
 {
-    private const string ContentType = "application/json; charset=utf-8";
+    private const string JsonContentType = "application/json; charset=utf-8";
+    private const string ProtoBufContentType = "application/x-protobuf";
 
     /// <summary>
     /// 处理HTTP请求
@@ -38,10 +39,10 @@ public static class HttpHandler
                 paramMap.Add(keyValuePair.Key, keyValuePair.Value.ToString());
             }
 
-            context.Response.Headers.ContentType = ContentType;
+            context.Response.Headers.ContentType = JsonContentType;
 
             // 处理POST请求
-            if (string.Equals(context.Request.Method, HttpMethod.Post.Method, StringComparison.OrdinalIgnoreCase))
+            // if (string.Equals(context.Request.Method, HttpMethod.Post.Method, StringComparison.OrdinalIgnoreCase))
             {
                 var headContentType = context.Request.ContentType;
                 if (headContentType.IsNullOrWhiteSpace())
@@ -51,26 +52,15 @@ public static class HttpHandler
                 }
 
                 var isJson = context.Request.HasJsonContentType();
-                var isForm = context.Request.HasFormContentType;
 
                 if (isJson)
                 {
-                    var json = await context.Request.ReadFromJsonAsync<JsonElement>();
-                    foreach (var keyValuePair in json.EnumerateObject())
+                    StreamReader streamReader = new StreamReader(context.Request.Body);
+                    var jsonBody = await streamReader.ReadToEndAsync();
+                    var jsonKv = JsonHelper.Deserialize<Dictionary<string, object>>(jsonBody);
+                    foreach (var keyValuePair in jsonKv)
                     {
-                        if (!paramMap.TryAdd(keyValuePair.Name, keyValuePair.Value))
-                        {
-                            // 参数Key发生重复
-                            await context.Response.WriteAsync(HttpResult.CreateErrorParam("参数重复了:" + keyValuePair.Name));
-                            return;
-                        }
-                    }
-                }
-                else if (isForm)
-                {
-                    foreach (var keyValuePair in context.Request.Form)
-                    {
-                        if (!paramMap.TryAdd(keyValuePair.Key, keyValuePair.Value.ToString()))
+                        if (!paramMap.TryAdd(keyValuePair.Key, keyValuePair.Value))
                         {
                             // 参数Key发生重复
                             await context.Response.WriteAsync(HttpResult.CreateErrorParam("参数重复了:" + keyValuePair.Key));
@@ -88,19 +78,7 @@ public static class HttpHandler
             // 记录请求参数
             if (paramMap.Count > 0)
             {
-                var str = new StringBuilder();
-                str.Append("请求参数:");
-                foreach (var parameter in paramMap)
-                {
-                    if (parameter.Key.IsNullOrEmptyOrWhiteSpace())
-                    {
-                        continue;
-                    }
-
-                    str.Append('\'').Append(parameter.Key).Append("'='").Append(parameter.Value).Append("'  ");
-                }
-
-                LogHelper.Info(str.ToString());
+                LogHelper.Info("请求参数:" + JsonHelper.Serialize(paramMap));
             }
 
             // 检查指令是否有效
