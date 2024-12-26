@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿/*using System.Threading.Tasks;
 using GameFrameX.Apps.Account.Login.Entity;
 using GameFrameX.Apps.Player.Player.Entity;
 using GameFrameX.Core.Abstractions.Attribute;
@@ -48,4 +48,4 @@ public sealed class LoginComponent : StateComponent<LoginState>
         await GameDb.SaveOneAsync(playerState);
         return playerState;
     }
-}
+}*/

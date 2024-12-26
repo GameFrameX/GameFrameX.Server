@@ -1,4 +1,4 @@
-﻿using GameFrameX.Core.BaseHandler;
+﻿/*using GameFrameX.Core.BaseHandler;
 using GameFrameX.NetWork.Abstractions;
 
 namespace GameFrameX.Hotfix.Logic.Account.Login;
@@ -10,4 +10,4 @@ internal class ReqLoginHandler : GlobalComponentHandler<LoginComponentAgent>
     {
         await ComponentAgent.OnLogin(NetWorkChannel, Message as ReqLogin);
     }
-}
+}*/
