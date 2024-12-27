@@ -36,10 +36,10 @@
 
     <ItemGroup>
       <PackageReference Include="CommandLineParser" Version="2.9.1" />
-      <PackageReference Include="GameFrameX.Core" Version="1.2.0-beta14" />
-      <PackageReference Include="GameFrameX.NetWork.Message" Version="1.2.0-beta14" />
-      <PackageReference Include="GameFrameX.NetWork.ChannelBase" Version="1.2.0-beta14" />
-      <PackageReference Include="GameFrameX.StartUp" Version="1.2.0-beta14" />
+      <PackageReference Include="GameFrameX.Core" Version="1.2.0-beta15" />
+      <PackageReference Include="GameFrameX.NetWork.Message" Version="1.2.0-beta15" />
+      <PackageReference Include="GameFrameX.NetWork.ChannelBase" Version="1.2.0-beta15" />
+      <PackageReference Include="GameFrameX.StartUp" Version="1.2.0-beta15" />
       <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.0.1" />
     </ItemGroup>
 </Project>
