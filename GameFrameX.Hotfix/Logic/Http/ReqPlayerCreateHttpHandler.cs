@@ -5,6 +5,7 @@ using GameFrameX.Hotfix.Common;
 using GameFrameX.Monitor.Account;
 using GameFrameX.Monitor.Player;
 using GameFrameX.NetWork.HTTP;
+using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.Hotfix.Logic.Http;
 
@@ -14,9 +15,9 @@ namespace GameFrameX.Hotfix.Logic.Http;
 [HttpMessageMapping(typeof(ReqPlayerCreateHttpHandler))]
 public sealed class ReqPlayerCreateHttpHandler : BaseHttpHandler
 {
-    public override async Task<string> Action(string ip, string url, Dictionary<string, object> paramMap)
+    public override async Task<MessageObject> Action(string ip, string url, Dictionary<string, object> paramMap, MessageObject messageObject)
     {
-        var reqPlayerCreate = JsonHelper.Deserialize<ReqPlayerCreate>(JsonHelper.Serialize(paramMap));
+        var reqPlayerCreate = messageObject as ReqPlayerCreate;
 
         var playerState = await OnPlayerCreate(reqPlayerCreate);
         var respPlayerCreate = new RespPlayerCreate
@@ -31,7 +32,7 @@ public sealed class ReqPlayerCreateHttpHandler : BaseHttpHandler
                 Avatar = playerState.Avatar,
             },
         };
-        return HttpResult.Create(JsonHelper.Serialize(respPlayerCreate));
+        return respPlayerCreate;
     }
 
     private async Task<PlayerState> OnPlayerCreate(ReqPlayerCreate reqPlayerCreate)
