@@ -2,6 +2,7 @@ using GameFrameX.Apps.Player.Player.Entity;
 using GameFrameX.DataBase;
 using GameFrameX.Monitor.Player;
 using GameFrameX.NetWork.HTTP;
+using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.Hotfix.Logic.Http;
 
@@ -11,22 +12,22 @@ namespace GameFrameX.Hotfix.Logic.Http;
 [HttpMessageMapping(typeof(ReqPlayerListHttpHandler))]
 public sealed class ReqPlayerListHttpHandler : BaseHttpHandler
 {
-    public override async Task<string> Action(string ip, string url, Dictionary<string, object> paramMap)
+    public override async Task<MessageObject> Action(string ip, string url, Dictionary<string, object> paramMap, MessageObject messageObject)
     {
-        ReqPlayerList reqPlayerList = JsonHelper.Deserialize<ReqPlayerList>(JsonHelper.Serialize(paramMap));
-
-        if (reqPlayerList.Id == default)
-        {
-            return HttpResult.Create(HttpStatusCode.NotFound, "账号不存在");
-        }
-
-        var playerList = await GetPlayerList(reqPlayerList);
+        ReqPlayerList reqPlayerList = messageObject as ReqPlayerList;
 
         var respPlayerList = new RespPlayerList
         {
             UniqueId = reqPlayerList.UniqueId,
             PlayerList = new List<PlayerInfo>(),
         };
+        if (reqPlayerList.Id == default)
+        {
+            return respPlayerList;
+        }
+
+        var playerList = await GetPlayerList(reqPlayerList);
+
         if (playerList != null)
         {
             foreach (var playerState in playerList)
@@ -35,15 +36,15 @@ public sealed class ReqPlayerListHttpHandler : BaseHttpHandler
                 {
                     Id = playerState.Id,
                     Name = playerState.Name,
+                    Level = playerState.Level,
+                    State = playerState.State,
+                    Avatar = playerState.Avatar,
                 };
-                playerInfo.Level = playerState.Level;
-                playerInfo.State = playerState.State;
-                playerInfo.Avatar = playerState.Avatar;
                 respPlayerList.PlayerList.Add(playerInfo);
             }
         }
 
-        return HttpResult.Create(JsonHelper.Serialize(respPlayerList));
+        return respPlayerList;
     }
 
     private async Task<List<PlayerState>> GetPlayerList(ReqPlayerList reqPlayerList)

@@ -3,6 +3,7 @@ using GameFrameX.DataBase;
 using GameFrameX.Hotfix.Common;
 using GameFrameX.Monitor.Account;
 using GameFrameX.NetWork.HTTP;
+using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.Hotfix.Logic.Http;
 
@@ -12,13 +13,14 @@ namespace GameFrameX.Hotfix.Logic.Http;
 [HttpMessageMapping(typeof(ReqLoginHttpHandler))]
 public sealed class ReqLoginHttpHandler : BaseHttpHandler
 {
-    public override async Task<string> Action(string ip, string url, Dictionary<string, object> paramMap)
+    public override async Task<MessageObject> Action(string ip, string url, Dictionary<string, object> parameters, MessageObject messageObject)
     {
-        ReqLogin reqLogin = JsonHelper.Deserialize<ReqLogin>(JsonHelper.Serialize(paramMap));
-
+        ReqLogin reqLogin = messageObject as ReqLogin;
+        var respLogin = new RespLogin();
         if (reqLogin.UserName.IsNullOrEmpty() || reqLogin.Password.IsNullOrEmpty())
         {
-            return HttpResult.Create((int)ResultCode.Failed);
+            respLogin.ErrorCode = (int)ResultCode.Failed;
+            return null;
         }
 
         MetricsAccountRegister.LoginCounterOptions.Inc();
@@ -31,15 +33,12 @@ public sealed class ReqLoginHttpHandler : BaseHttpHandler
         }
 
         // 构建账号登录返回信息
-        var respLogin = new RespLogin
-        {
-            Code = loginState.State,
-            CreateTime = loginState.CreateTime,
-            Level = loginState.Level,
-            Id = loginState.Id,
-            RoleName = loginState.NickName,
-        };
-        return HttpResult.Create(JsonHelper.Serialize(respLogin));
+        respLogin.Code = loginState.State;
+        respLogin.CreateTime = loginState.CreateTime;
+        respLogin.Level = loginState.Level;
+        respLogin.Id = loginState.Id;
+        respLogin.RoleName = loginState.NickName;
+        return respLogin;
     }
 
     public async Task<LoginState> OnLogin(ReqLogin reqLogin)
