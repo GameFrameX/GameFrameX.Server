@@ -42,9 +42,9 @@ public static class SessionManager
         var roleSession = Get(m => m.RoleId == roleId);
         if (roleSession != null)
         {
-            if (SessionMap.TryRemove(roleSession.Id, out var value) && ActorManager.HasActor(roleSession.ActorId))
+            if (SessionMap.TryRemove(roleSession.Id, out var value) && ActorManager.HasActor(roleSession.RoleId))
             {
-                EventDispatcher.Dispatch(roleSession.ActorId, (int)EventId.SessionRemove);
+                EventDispatcher.Dispatch(roleSession.RoleId, (int)EventId.SessionRemove);
             }
         }
     }
@@ -57,23 +57,7 @@ public static class SessionManager
     public static Session GetByRoleId(long roleId)
     {
         var roleSession = Get(m => m.RoleId == roleId);
-        if (roleSession != null && ActorManager.HasActor(roleSession.ActorId))
-        {
-            return roleSession;
-        }
-
-        return roleSession;
-    }
-
-    /// <summary>
-    /// 根据角色ID获取会话对象.且会话对象必须已经存在才会返回
-    /// </summary>
-    /// <param name="actorId"></param>
-    /// <returns>会话对象</returns>
-    public static Session GetByActorId(long actorId)
-    {
-        var roleSession = Get(m => m.ActorId == actorId);
-        if (roleSession != null && ActorManager.HasActor(roleSession.ActorId))
+        if (roleSession != null && ActorManager.HasActor(roleSession.RoleId))
         {
             return roleSession;
         }
@@ -117,9 +101,9 @@ public static class SessionManager
     /// <param name="sessionId">链接ID</param>
     public static Session Remove(string sessionId)
     {
-        if (SessionMap.TryRemove(sessionId, out var value) && ActorManager.HasActor(value.ActorId))
+        if (SessionMap.TryRemove(sessionId, out var value) && ActorManager.HasActor(value.RoleId))
         {
-            EventDispatcher.Dispatch(value.ActorId, (int)EventId.SessionRemove);
+            EventDispatcher.Dispatch(value.RoleId, (int)EventId.SessionRemove);
         }
 
         return value;
@@ -133,9 +117,9 @@ public static class SessionManager
     {
         foreach (var session in SessionMap.Values)
         {
-            if (ActorManager.HasActor(session.ActorId))
+            if (ActorManager.HasActor(session.RoleId))
             {
-                EventDispatcher.Dispatch(session.ActorId, (int)EventId.SessionRemove);
+                EventDispatcher.Dispatch(session.RoleId, (int)EventId.SessionRemove);
             }
         }
 

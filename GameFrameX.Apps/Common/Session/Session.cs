@@ -23,12 +23,6 @@ public sealed class Session
     /// </summary>
     public string Id { get; }
 
-    public long ActorId
-    {
-        get { return WorkChannel.GetData<long>(GlobalConst.ActorIdKey); }
-        private set { WorkChannel.SetData(GlobalConst.ActorIdKey, value); }
-    }
-
     /// <summary>
     /// 角色ID
     /// </summary>
@@ -56,15 +50,6 @@ public sealed class Session
     public void SetRoleId(long roleId)
     {
         RoleId = roleId;
-    }
-
-    /// <summary>
-    /// 设置ActorId
-    /// </summary>
-    /// <param name="actorId"></param>
-    public void SetActorId(long actorId)
-    {
-        ActorId = actorId;
     }
 
     /// <summary>

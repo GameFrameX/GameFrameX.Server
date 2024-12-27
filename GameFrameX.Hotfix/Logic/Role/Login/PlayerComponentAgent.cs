@@ -38,7 +38,6 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         var session = SessionManager.Get(workChannel.GameAppSession.SessionID);
         session.SetRoleId(playerState.Id);
         session.SetSign(playerState.Id.ToString());
-        session.SetActorId(ActorId);
 
         var respPlayerLogin = new RespPlayerLogin
         {
