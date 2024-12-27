@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class CacheState | GameFrameX.Server </title>
+      <title>Class MessageHttpObject | GameFrameX.Server </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class CacheState | GameFrameX.Server ">
+      <meta name="title" content="Class MessageHttpObject | GameFrameX.Server ">
       
-      <meta name="description" content="缓存数据对象">
+      <meta name="description" content="HTTP消息包装基类">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.2.0-beta15/apiSpec/new?filename=GameFrameX_DataBase_Mongo_CacheState.md&amp;value=---%0Auid%3A%20GameFrameX.DataBase.Mongo.CacheState%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.2.0-beta15/apiSpec/new?filename=GameFrameX_NetWork_HTTP_MessageHttpObject.md&amp;value=---%0Auid%3A%20GameFrameX.NetWork.HTTP.MessageHttpObject%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,26 +84,25 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="GameFrameX.DataBase.Mongo.CacheState">
+        <article data-uid="GameFrameX.NetWork.HTTP.MessageHttpObject">
 
 
 
-  <h1 id="GameFrameX_DataBase_Mongo_CacheState" data-uid="GameFrameX.DataBase.Mongo.CacheState" class="text-break">
-Class CacheState  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta15/DataBaseServer/GameFrameX.DataBase.Mongo/CacheState.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  <h1 id="GameFrameX_NetWork_HTTP_MessageHttpObject" data-uid="GameFrameX.NetWork.HTTP.MessageHttpObject" class="text-break">
+Class MessageHttpObject  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta15/GameFrameX.NetWork.HTTP/MessageHttpObject.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.DataBase.html">DataBase</a>.<a class="xref" href="GameFrameX.DataBase.Mongo.html">Mongo</a></dd></dl>
-  <dl><dt>Assembly</dt><dd>GameFrameX.DataBase.Mongo.dll</dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.NetWork.html">NetWork</a>.<a class="xref" href="GameFrameX.NetWork.HTTP.html">HTTP</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.NetWork.HTTP.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>缓存数据对象</p>
+  <div class="markdown summary"><p>HTTP消息包装基类</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[BsonIgnoreExtraElements(true, Inherited = true)]
-public class CacheState : BaseCacheState, ICacheState, ISafeDelete, ISafeCreate, ISafeUpdate</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class MessageHttpObject</code></pre>
   </div>
 
 
@@ -113,70 +112,15 @@ public class CacheState : BaseCacheState, ICacheState, ISafeDelete, ISafeCreate,
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">BaseCacheState</span></div>
-      <div><span class="xref">CacheState</span></div>
+      <div><span class="xref">MessageHttpObject</span></div>
     </dd>
   </dl>
 
-  <dl class="typelist implements">
-    <dt>Implements</dt>
-    <dd>
-      <div><a class="xref" href="GameFrameX.DataBase.Abstractions.ICacheState.html">ICacheState</a></div>
-      <div><a class="xref" href="GameFrameX.DataBase.Abstractions.ISafeDelete.html">ISafeDelete</a></div>
-      <div><a class="xref" href="GameFrameX.DataBase.Abstractions.ISafeCreate.html">ISafeCreate</a></div>
-      <div><a class="xref" href="GameFrameX.DataBase.Abstractions.ISafeUpdate.html">ISafeUpdate</a></div>
-    </dd>
-  </dl>
 
 
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
-    <div>
-      <span class="xref">BaseCacheState.UniqueId</span>
-    </div>
-    <div>
-      <span class="xref">BaseCacheState.Id</span>
-    </div>
-    <div>
-      <span class="xref">BaseCacheState.IsModify()</span>
-    </div>
-    <div>
-      <span class="xref">BaseCacheState.IsDeleted</span>
-    </div>
-    <div>
-      <span class="xref">BaseCacheState.DeleteTime</span>
-    </div>
-    <div>
-      <span class="xref">BaseCacheState.CreateId</span>
-    </div>
-    <div>
-      <span class="xref">BaseCacheState.CreateTime</span>
-    </div>
-    <div>
-      <span class="xref">BaseCacheState.UpdateCount</span>
-    </div>
-    <div>
-      <span class="xref">BaseCacheState.UpdateTime</span>
-    </div>
-    <div>
-      <span class="xref">BaseCacheState.ToString()</span>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">BaseCacheState.LoadFromDbPostHandler(bool)</a>
-    </div>
-    <div>
-      <span class="xref">BaseCacheState.IsChanged()</span>
-    </div>
-    <div>
-      <span class="xref">BaseCacheState.IsChangedWithId()</span>
-    </div>
-    <div>
-      <span class="xref">BaseCacheState.BeforeSaveToDb()</span>
-    </div>
-    <div>
-      <span class="xref">BaseCacheState.SaveToDbPostHandler()</span>
-    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -188,9 +132,6 @@ public class CacheState : BaseCacheState, ICacheState, ISafeDelete, ISafeCreate,
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
@@ -218,29 +159,133 @@ public class CacheState : BaseCacheState, ICacheState, ISafeDelete, ISafeCreate,
 
 
 
-  <h2 class="section" id="methods">Methods
+  <h2 class="section" id="properties">Properties
 </h2>
 
 
-  <a id="GameFrameX_DataBase_Mongo_CacheState_ToBytes_" data-uid="GameFrameX.DataBase.Mongo.CacheState.ToBytes*"></a>
+  <a id="GameFrameX_NetWork_HTTP_MessageHttpObject_Body_" data-uid="GameFrameX.NetWork.HTTP.MessageHttpObject.Body*"></a>
 
-  <h3 id="GameFrameX_DataBase_Mongo_CacheState_ToBytes" data-uid="GameFrameX.DataBase.Mongo.CacheState.ToBytes">
-  ToBytes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta15/DataBaseServer/GameFrameX.DataBase.Mongo/CacheState.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_NetWork_HTTP_MessageHttpObject_Body" data-uid="GameFrameX.NetWork.HTTP.MessageHttpObject.Body">
+  Body
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta15/GameFrameX.NetWork.HTTP/MessageHttpObject.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>将对象序列化转换为字节数组</p>
+  <div class="markdown level1 summary"><p>消息体</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override byte[] ToBytes()</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+[ProtoMember(3)]
+public byte[] Body { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_HTTP_MessageHttpObject_Id_" data-uid="GameFrameX.NetWork.HTTP.MessageHttpObject.Id*"></a>
+
+  <h3 id="GameFrameX_NetWork_HTTP_MessageHttpObject_Id" data-uid="GameFrameX.NetWork.HTTP.MessageHttpObject.Id">
+  Id
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta15/GameFrameX.NetWork.HTTP/MessageHttpObject.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>消息ID</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ProtoMember(1)]
+public int Id { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_HTTP_MessageHttpObject_UniqueId_" data-uid="GameFrameX.NetWork.HTTP.MessageHttpObject.UniqueId*"></a>
+
+  <h3 id="GameFrameX_NetWork_HTTP_MessageHttpObject_UniqueId" data-uid="GameFrameX.NetWork.HTTP.MessageHttpObject.UniqueId">
+  UniqueId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta15/GameFrameX.NetWork.HTTP/MessageHttpObject.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>消息序列号</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ProtoMember(2)]
+public int UniqueId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_NetWork_HTTP_MessageHttpObject_ToString_" data-uid="GameFrameX.NetWork.HTTP.MessageHttpObject.ToString*"></a>
+
+  <h3 id="GameFrameX_NetWork_HTTP_MessageHttpObject_ToString" data-uid="GameFrameX.NetWork.HTTP.MessageHttpObject.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta15/GameFrameX.NetWork.HTTP/MessageHttpObject.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>转换为字符串</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
   </div>
 
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
 
@@ -258,7 +303,7 @@ public class CacheState : BaseCacheState, ICacheState, ISafeDelete, ISafeCreate,
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta15/DataBaseServer/GameFrameX.DataBase.Mongo/CacheState.cs/#L9" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta15/GameFrameX.NetWork.HTTP/MessageHttpObject.cs/#L10" class="edit-link">Edit this page</a>
         </div>
 
 

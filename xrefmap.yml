@@ -11350,6 +11350,15 @@ references:
   fullName.vb: GameFrameX.NetWork.HTTP.BaseHttpHandler.Action(String, String, System.Collections.Generic.Dictionary(Of String, Object))
   nameWithType: BaseHttpHandler.Action(string, string, Dictionary<string, object>)
   nameWithType.vb: BaseHttpHandler.Action(String, String, Dictionary(Of String, Object))
+- uid: GameFrameX.NetWork.HTTP.BaseHttpHandler.Action(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},GameFrameX.NetWork.Messages.MessageObject)
+  name: Action(string, string, Dictionary<string, object>, MessageObject)
+  href: api/GameFrameX.NetWork.HTTP.BaseHttpHandler.html#GameFrameX_NetWork_HTTP_BaseHttpHandler_Action_System_String_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__GameFrameX_NetWork_Messages_MessageObject_
+  commentId: M:GameFrameX.NetWork.HTTP.BaseHttpHandler.Action(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},GameFrameX.NetWork.Messages.MessageObject)
+  name.vb: Action(String, String, Dictionary(Of String, Object), MessageObject)
+  fullName: GameFrameX.NetWork.HTTP.BaseHttpHandler.Action(string, string, System.Collections.Generic.Dictionary<string, object>, GameFrameX.NetWork.Messages.MessageObject)
+  fullName.vb: GameFrameX.NetWork.HTTP.BaseHttpHandler.Action(String, String, System.Collections.Generic.Dictionary(Of String, Object), GameFrameX.NetWork.Messages.MessageObject)
+  nameWithType: BaseHttpHandler.Action(string, string, Dictionary<string, object>, MessageObject)
+  nameWithType.vb: BaseHttpHandler.Action(String, String, Dictionary(Of String, Object), MessageObject)
 - uid: GameFrameX.NetWork.HTTP.BaseHttpHandler.Action*
   name: Action
   href: api/GameFrameX.NetWork.HTTP.BaseHttpHandler.html#GameFrameX_NetWork_HTTP_BaseHttpHandler_Action_
@@ -11909,6 +11918,15 @@ references:
   fullName.vb: GameFrameX.NetWork.HTTP.IHttpHandler.Action(String, String, System.Collections.Generic.Dictionary(Of String, Object))
   nameWithType: IHttpHandler.Action(string, string, Dictionary<string, object>)
   nameWithType.vb: IHttpHandler.Action(String, String, Dictionary(Of String, Object))
+- uid: GameFrameX.NetWork.HTTP.IHttpHandler.Action(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},GameFrameX.NetWork.Messages.MessageObject)
+  name: Action(string, string, Dictionary<string, object>, MessageObject)
+  href: api/GameFrameX.NetWork.HTTP.IHttpHandler.html#GameFrameX_NetWork_HTTP_IHttpHandler_Action_System_String_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__GameFrameX_NetWork_Messages_MessageObject_
+  commentId: M:GameFrameX.NetWork.HTTP.IHttpHandler.Action(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},GameFrameX.NetWork.Messages.MessageObject)
+  name.vb: Action(String, String, Dictionary(Of String, Object), MessageObject)
+  fullName: GameFrameX.NetWork.HTTP.IHttpHandler.Action(string, string, System.Collections.Generic.Dictionary<string, object>, GameFrameX.NetWork.Messages.MessageObject)
+  fullName.vb: GameFrameX.NetWork.HTTP.IHttpHandler.Action(String, String, System.Collections.Generic.Dictionary(Of String, Object), GameFrameX.NetWork.Messages.MessageObject)
+  nameWithType: IHttpHandler.Action(string, string, Dictionary<string, object>, MessageObject)
+  nameWithType.vb: IHttpHandler.Action(String, String, Dictionary(Of String, Object), MessageObject)
 - uid: GameFrameX.NetWork.HTTP.IHttpHandler.Action*
   name: Action
   href: api/GameFrameX.NetWork.HTTP.IHttpHandler.html#GameFrameX_NetWork_HTTP_IHttpHandler_Action_
@@ -11929,6 +11947,64 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.HTTP.IHttpHandler.IsCheckSign
   nameWithType: IHttpHandler.IsCheckSign
+- uid: GameFrameX.NetWork.HTTP.MessageHttpObject
+  name: MessageHttpObject
+  href: api/GameFrameX.NetWork.HTTP.MessageHttpObject.html
+  commentId: T:GameFrameX.NetWork.HTTP.MessageHttpObject
+  fullName: GameFrameX.NetWork.HTTP.MessageHttpObject
+  nameWithType: MessageHttpObject
+- uid: GameFrameX.NetWork.HTTP.MessageHttpObject.Body
+  name: Body
+  href: api/GameFrameX.NetWork.HTTP.MessageHttpObject.html#GameFrameX_NetWork_HTTP_MessageHttpObject_Body
+  commentId: P:GameFrameX.NetWork.HTTP.MessageHttpObject.Body
+  fullName: GameFrameX.NetWork.HTTP.MessageHttpObject.Body
+  nameWithType: MessageHttpObject.Body
+- uid: GameFrameX.NetWork.HTTP.MessageHttpObject.Body*
+  name: Body
+  href: api/GameFrameX.NetWork.HTTP.MessageHttpObject.html#GameFrameX_NetWork_HTTP_MessageHttpObject_Body_
+  commentId: Overload:GameFrameX.NetWork.HTTP.MessageHttpObject.Body
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.HTTP.MessageHttpObject.Body
+  nameWithType: MessageHttpObject.Body
+- uid: GameFrameX.NetWork.HTTP.MessageHttpObject.Id
+  name: Id
+  href: api/GameFrameX.NetWork.HTTP.MessageHttpObject.html#GameFrameX_NetWork_HTTP_MessageHttpObject_Id
+  commentId: P:GameFrameX.NetWork.HTTP.MessageHttpObject.Id
+  fullName: GameFrameX.NetWork.HTTP.MessageHttpObject.Id
+  nameWithType: MessageHttpObject.Id
+- uid: GameFrameX.NetWork.HTTP.MessageHttpObject.Id*
+  name: Id
+  href: api/GameFrameX.NetWork.HTTP.MessageHttpObject.html#GameFrameX_NetWork_HTTP_MessageHttpObject_Id_
+  commentId: Overload:GameFrameX.NetWork.HTTP.MessageHttpObject.Id
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.HTTP.MessageHttpObject.Id
+  nameWithType: MessageHttpObject.Id
+- uid: GameFrameX.NetWork.HTTP.MessageHttpObject.ToString
+  name: ToString()
+  href: api/GameFrameX.NetWork.HTTP.MessageHttpObject.html#GameFrameX_NetWork_HTTP_MessageHttpObject_ToString
+  commentId: M:GameFrameX.NetWork.HTTP.MessageHttpObject.ToString
+  fullName: GameFrameX.NetWork.HTTP.MessageHttpObject.ToString()
+  nameWithType: MessageHttpObject.ToString()
+- uid: GameFrameX.NetWork.HTTP.MessageHttpObject.ToString*
+  name: ToString
+  href: api/GameFrameX.NetWork.HTTP.MessageHttpObject.html#GameFrameX_NetWork_HTTP_MessageHttpObject_ToString_
+  commentId: Overload:GameFrameX.NetWork.HTTP.MessageHttpObject.ToString
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.HTTP.MessageHttpObject.ToString
+  nameWithType: MessageHttpObject.ToString
+- uid: GameFrameX.NetWork.HTTP.MessageHttpObject.UniqueId
+  name: UniqueId
+  href: api/GameFrameX.NetWork.HTTP.MessageHttpObject.html#GameFrameX_NetWork_HTTP_MessageHttpObject_UniqueId
+  commentId: P:GameFrameX.NetWork.HTTP.MessageHttpObject.UniqueId
+  fullName: GameFrameX.NetWork.HTTP.MessageHttpObject.UniqueId
+  nameWithType: MessageHttpObject.UniqueId
+- uid: GameFrameX.NetWork.HTTP.MessageHttpObject.UniqueId*
+  name: UniqueId
+  href: api/GameFrameX.NetWork.HTTP.MessageHttpObject.html#GameFrameX_NetWork_HTTP_MessageHttpObject_UniqueId_
+  commentId: Overload:GameFrameX.NetWork.HTTP.MessageHttpObject.UniqueId
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.HTTP.MessageHttpObject.UniqueId
+  nameWithType: MessageHttpObject.UniqueId
 - uid: GameFrameX.NetWork.Message
   name: GameFrameX.NetWork.Message
   href: api/GameFrameX.NetWork.Message.html

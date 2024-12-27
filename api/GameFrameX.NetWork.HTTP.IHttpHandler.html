@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.2.0-beta14/apiSpec/new?filename=GameFrameX_NetWork_HTTP_IHttpHandler.md&amp;value=---%0Auid%3A%20GameFrameX.NetWork.HTTP.IHttpHandler%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.2.0-beta15/apiSpec/new?filename=GameFrameX_NetWork_HTTP_IHttpHandler.md&amp;value=---%0Auid%3A%20GameFrameX.NetWork.HTTP.IHttpHandler%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_NetWork_HTTP_IHttpHandler" data-uid="GameFrameX.NetWork.HTTP.IHttpHandler" class="text-break">
-Interface IHttpHandler  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta14/GameFrameX.NetWork.HTTP/IHttpHandler.cs/#L6"><i class="bi bi-code-slash"></i></a>
+Interface IHttpHandler  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta15/GameFrameX.NetWork.HTTP/IHttpHandler.cs/#L8"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -141,7 +141,7 @@ Interface IHttpHandler  <a class="header-action link-secondary" title="View sour
 
   <h3 id="GameFrameX_NetWork_HTTP_IHttpHandler_IsCheckSign" data-uid="GameFrameX.NetWork.HTTP.IHttpHandler.IsCheckSign">
   IsCheckSign
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta14/GameFrameX.NetWork.HTTP/IHttpHandler.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta15/GameFrameX.NetWork.HTTP/IHttpHandler.cs/#L13"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>是否校验签名</p>
@@ -177,10 +177,10 @@ Interface IHttpHandler  <a class="header-action link-secondary" title="View sour
 
   <h3 id="GameFrameX_NetWork_HTTP_IHttpHandler_Action_System_String_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="GameFrameX.NetWork.HTTP.IHttpHandler.Action(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
   Action(string, string, Dictionary&lt;string, object&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta14/GameFrameX.NetWork.HTTP/IHttpHandler.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta15/GameFrameX.NetWork.HTTP/IHttpHandler.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>执行</p>
+  <div class="markdown level1 summary"><p>处理HTTP请求的异步操作，返回字符串结果。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -191,20 +191,69 @@ Interface IHttpHandler  <a class="header-action link-secondary" title="View sour
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>ip</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>来源ID</p>
+    <dd><p>客户端IP地址。</p>
 </dd>
     <dt><code>url</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>请求URL</p>
+    <dd><p>请求的URL。</p>
 </dd>
     <dt><code>paramMap</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
-    <dd><p>参数字典</p>
+    <dd><p>请求参数字典，键为参数名，值为参数值。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>返回处理结果的字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_HTTP_IHttpHandler_Action_" data-uid="GameFrameX.NetWork.HTTP.IHttpHandler.Action*"></a>
+
+  <h3 id="GameFrameX_NetWork_HTTP_IHttpHandler_Action_System_String_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__GameFrameX_NetWork_Messages_MessageObject_" data-uid="GameFrameX.NetWork.HTTP.IHttpHandler.Action(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},GameFrameX.NetWork.Messages.MessageObject)">
+  Action(string, string, Dictionary&lt;string, object&gt;, MessageObject)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta15/GameFrameX.NetWork.HTTP/IHttpHandler.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>处理HTTP请求的异步操作，返回MessageObject对象。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;MessageObject&gt; Action(string ip, string url, Dictionary&lt;string, object&gt; paramMap, MessageObject messageObject)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ip</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>客户端IP地址。</p>
+</dd>
+    <dt><code>url</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>请求的URL。</p>
+</dd>
+    <dt><code>paramMap</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd><p>请求参数字典，键为参数名，值为参数值。</p>
+</dd>
+    <dt><code>messageObject</code> <span class="xref">MessageObject</span></dt>
+    <dd><p>消息对象，包含更多信息。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<span class="xref">MessageObject</span>&gt;</dt>
+    <dd><p>返回处理结果的MessageObject对象。</p>
+</dd>
   </dl>
 
 
@@ -221,7 +270,7 @@ Interface IHttpHandler  <a class="header-action link-secondary" title="View sour
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta14/GameFrameX.NetWork.HTTP/IHttpHandler.cs/#L6" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta15/GameFrameX.NetWork.HTTP/IHttpHandler.cs/#L8" class="edit-link">Edit this page</a>
         </div>
 
 
