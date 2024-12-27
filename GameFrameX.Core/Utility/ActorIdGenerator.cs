@@ -89,7 +89,7 @@ public static class ActorIdGenerator
             return (ushort)(actorId % 1000);
         }
 
-        return (ushort)((actorId >> GlobalConst.ActorTypeMask) & 0xFF);
+        return (ushort)((actorId >> GlobalConst.ActorTypeMask) & 0xF);
     }
 
 
