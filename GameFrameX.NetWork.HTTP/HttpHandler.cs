@@ -1,6 +1,10 @@
-﻿using System.Diagnostics;
+﻿using System.Buffers;
+using System.Diagnostics;
 using GameFrameX.Extension;
 using GameFrameX.Log;
+using GameFrameX.NetWork.Abstractions;
+using GameFrameX.NetWork.Messages;
+using GameFrameX.ProtoBuf.Net;
 using GameFrameX.Setting;
 using GameFrameX.Utility;
 using Microsoft.AspNetCore.Http;
@@ -40,17 +44,34 @@ public static class HttpHandler
             }
 
             context.Response.Headers.ContentType = JsonContentType;
-
+            MessageObject message = null;
             // 处理POST请求
             // if (string.Equals(context.Request.Method, HttpMethod.Post.Method, StringComparison.OrdinalIgnoreCase))
+            // {
+            var headContentType = context.Request.ContentType;
+            if (headContentType.IsNullOrWhiteSpace())
             {
-                var headContentType = context.Request.ContentType;
-                if (headContentType.IsNullOrWhiteSpace())
-                {
-                    await context.Response.WriteAsync("http header content type is null");
-                    return;
-                }
+                await context.Response.WriteAsync("http header content type is null");
+                return;
+            }
 
+            bool isProtoBuf = headContentType.Equals(ProtoBufContentType, StringComparison.OrdinalIgnoreCase);
+
+            if (isProtoBuf)
+            {
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    await context.Request.Body.CopyToAsync(memoryStream);
+                    var buffer = memoryStream.ToArray();
+                    var messageObjectHttp = ProtoBufSerializerHelper.Deserialize<MessageHttpObject>(buffer);
+                    var messageType = MessageProtoHelper.GetMessageTypeById(messageObjectHttp.Id);
+                    message = (MessageObject)ProtoBufSerializerHelper.Deserialize(messageObjectHttp.Body, messageType);
+                    message.SetMessageId(messageObjectHttp.Id);
+                    message.SetUniqueId(messageObjectHttp.UniqueId);
+                }
+            }
+            else
+            {
                 var isJson = context.Request.HasJsonContentType();
 
                 if (isJson)
@@ -74,6 +95,7 @@ public static class HttpHandler
                     return;
                 }
             }
+            // }
 
             // 记录请求参数
             if (paramMap.Count > 0)
@@ -128,17 +150,31 @@ public static class HttpHandler
             }
 
             // 执行处理器逻辑
-            var result = await Task.Run(() =>
+            if (isProtoBuf)
             {
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
-                var result = handler.Action(ip, url, paramMap);
+                var result = await handler.Action(ip, url, paramMap, message);
                 stopwatch.Stop();
-                LogHelper.Info($"{logHeader}, 执行时间：{stopwatch.ElapsedMilliseconds}ms");
-                return result;
-            });
-            LogHelper.Info($"{logHeader}, 结果: {result}");
-            await context.Response.WriteAsync(result);
+                LogHelper.Info($"{logHeader},执行时间：{stopwatch.ElapsedMilliseconds}ms, 结果: {result}");
+                if (result.IsNotNull())
+                {
+                    ReadOnlyMemory<byte> body = ProtoBufSerializerHelper.Serialize(result);
+                    MessageHttpObject messageHttpObject = new MessageHttpObject { Id = MessageProtoHelper.GetMessageIdByType(result), UniqueId = message.UniqueId, Body = body.ToArray(), };
+                    var resultResponse = ProtoBufSerializerHelper.Serialize(messageHttpObject);
+                    context.Response.ContentLength = resultResponse.Length;
+                    await context.Response.BodyWriter.WriteAsync(resultResponse);
+                }
+            }
+            else
+            {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                var result = await handler.Action(ip, url, paramMap);
+                stopwatch.Stop();
+                LogHelper.Info($"{logHeader}, 执行时间：{stopwatch.ElapsedMilliseconds}ms, 结果: {result}");
+                await context.Response.WriteAsync(result);
+            }
         }
         catch (Exception e)
         {

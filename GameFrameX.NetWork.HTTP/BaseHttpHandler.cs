@@ -1,4 +1,5 @@
-﻿using GameFrameX.Setting;
+﻿using GameFrameX.NetWork.Messages;
+using GameFrameX.Setting;
 using GameFrameX.Utility;
 
 namespace GameFrameX.NetWork.HTTP;
@@ -31,14 +32,32 @@ public abstract class BaseHttpHandler : IHttpHandler
         get { return false; }
     }
 
+
     /// <summary>
-    /// 执行具体的HTTP请求处理逻辑。
+    /// 处理HTTP请求的异步操作，返回字符串结果。
     /// </summary>
     /// <param name="ip">客户端IP地址。</param>
     /// <param name="url">请求的URL。</param>
-    /// <param name="paramMap">请求参数字典。</param>
-    /// <returns>处理结果的字符串。</returns>
-    public abstract Task<string> Action(string ip, string url, Dictionary<string, object> paramMap);
+    /// <param name="paramMap">请求参数字典，键为参数名，值为参数值。</param>
+    /// <returns>返回处理结果的字符串。</returns>
+    public virtual Task<string> Action(string ip, string url, Dictionary<string, object> paramMap)
+    {
+        throw new NotImplementedException();
+    }
+
+
+    /// <summary>
+    /// 处理HTTP请求的异步操作，返回MessageObject对象。
+    /// </summary>
+    /// <param name="ip">客户端IP地址。</param>
+    /// <param name="url">请求的URL。</param>
+    /// <param name="paramMap">请求参数字典，键为参数名，值为参数值。</param>
+    /// <param name="messageObject">消息对象，包含更多信息。</param>
+    /// <returns>返回处理结果的MessageObject对象。</returns>
+    public virtual Task<MessageObject> Action(string ip, string url, Dictionary<string, object> paramMap, MessageObject messageObject)
+    {
+        throw new NotImplementedException();
+    }
 
     /// <summary>
     /// 获取签名字符串。
