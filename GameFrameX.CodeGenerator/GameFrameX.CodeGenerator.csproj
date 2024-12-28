@@ -17,8 +17,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GameFrameX.Core.Abstractions" Version="1.2.0-beta15" />
-    <PackageReference Include="GameFrameX.Setting" Version="1.2.0-beta15" />
+    <PackageReference Include="GameFrameX.Core.Abstractions" Version="1.2.0-beta16" />
+    <PackageReference Include="GameFrameX.Setting" Version="1.2.0-beta16" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
