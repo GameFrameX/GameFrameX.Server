@@ -146,7 +146,7 @@ public abstract partial class AppStartUpBase : IAppStartUp
     {
         if (Setting.InnerPort > 0 && Net.PortIsAvailable(Setting.InnerPort))
         {
-            LogHelper.InfoConsole($"启动服务器{ServerType} 开始! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
+            LogHelper.InfoConsole($"启动 TCP 服务器{ServerType} 开始! address: {Setting.InnerIp}  port: {Setting.InnerPort}");
             var hostBuilder = SuperSocketHostBuilder
                               .Create<IMessage, MessageObjectPipelineFilter>()
                               .ConfigureSuperSocket(ConfigureSuperSocket)
@@ -172,11 +172,11 @@ public abstract partial class AppStartUpBase : IAppStartUp
 
             await _tcpService.StartAsync();
 
-            LogHelper.InfoConsole($"启动服务器 {ServerType} 端口: {Setting.InnerPort} 结束!");
+            LogHelper.InfoConsole($"启动 TCP 服务器 {ServerType} 端口: {Setting.InnerPort} 结束!");
         }
         else
         {
-            LogHelper.Error("启动服务器失败，内网端口不能小于0,且内网端口不能大于65535 或者 端口被占用,检查端口值是否正确");
+            LogHelper.WarnConsole("启动 TCP 服务器失败，内网端口不能小于0,且内网端口不能大于65535 或者 端口被占用,检查端口值是否正确");
         }
     }
 
