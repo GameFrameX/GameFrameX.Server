@@ -22,19 +22,19 @@ public sealed class LauncherOptions
     /// <summary>
     /// 是否是Debug 模式
     /// </summary>
-    [Option(nameof(IsDebug), Default = false, HelpText = "是否是Debug 模式")]
+    [Option(nameof(IsDebug), HelpText = "是否是Debug 模式")]
     public bool IsDebug { get; set; }
 
     /// <summary>
     /// 是否打印发送数据
     /// </summary>
-    [Option(nameof(IsDebugSend), Default = false, HelpText = "是否打印发送数据")]
+    [Option(nameof(IsDebugSend), HelpText = "是否打印发送数据")]
     public bool IsDebugSend { get; set; }
 
     /// <summary>
     /// 是否打印接收数据
     /// </summary>
-    [Option(nameof(IsDebugReceive), Default = false, HelpText = "是否打印接收数据")]
+    [Option(nameof(IsDebugReceive), HelpText = "是否打印接收数据")]
     public bool IsDebugReceive { get; set; }
 
     /// <summary>
@@ -58,7 +58,7 @@ public sealed class LauncherOptions
     /// <summary>
     /// 内部端口
     /// </summary>
-    [Option(nameof(InnerPort), Required = true, HelpText = "内部端口")]
+    [Option(nameof(InnerPort), HelpText = "内部端口")]
     public ushort InnerPort { get; set; }
 
     /// <summary>
@@ -70,7 +70,7 @@ public sealed class LauncherOptions
     /// <summary>
     /// 外部端口
     /// </summary>
-    [Option(nameof(OuterPort), Required = true, HelpText = "外部端口")]
+    [Option(nameof(OuterPort), HelpText = "外部端口")]
     public ushort OuterPort { get; set; }
 
     /// <summary>
