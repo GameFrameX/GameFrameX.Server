@@ -177,8 +177,6 @@ public static class GameApp
 
             options.CheckServerId();
 
-            options.CheckInnerPort();
-
             switch (serverTypeValue)
             {
                 case ServerType.Log:
@@ -199,7 +197,6 @@ public static class GameApp
                 case ServerType.Gateway:
                 {
                     options.CheckOuterIp();
-
                     options.CheckOuterPort();
                 }
                     break;
@@ -226,12 +223,14 @@ public static class GameApp
                     break;
                 case ServerType.Game:
                 {
-                    options.CheckMinModuleId();
-                    options.CheckMaxModuleId();
-                    options.CheckOuterIp();
-                    options.CheckOuterPort();
-                    options.CheckDiscoveryCenterIp();
-                    options.CheckDiscoveryCenterPort();
+                    // options.CheckMinModuleId();
+                    // options.CheckMaxModuleId();
+                    // options.CheckOuterIp();
+                    // options.CheckOuterPort();
+                    // options.CheckDiscoveryCenterIp();
+                    // options.CheckDiscoveryCenterPort();
+                    options.CheckDataBaseUrl();
+                    options.CheckDataBaseName();
                 }
                     break;
                 case ServerType.Recharge:
