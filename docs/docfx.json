@@ -5,10 +5,13 @@
         {
           "src": "../",
           "files": [
+            "**/GameFrameX.NetWork.csproj",
             "**/GameFrameX.NetWork.*.csproj",
             "**/GameFrameX.DataBase.*.csproj",
+            "**/GameFrameX.Core.csproj",
             "**/GameFrameX.Core.*.csproj",
             "**/GameFrameX.Extension.csproj",
+            "**/GameFrameX.NetWork.csproj",
             "**/GameFrameX.Log.csproj",
             "**/GameFrameX.Setting.csproj",
             "**/GameFrameX.StartUp.csproj",
