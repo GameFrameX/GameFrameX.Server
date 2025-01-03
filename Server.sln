@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.CodeGenerator", "GameFrameX.CodeGenerator\GameFrameX.CodeGenerator.csproj", "{136B1385-A2C7-4974-BF08-2236B023C568}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestFastMapper", "TestFastMapper\TestFastMapper.csproj", "{34A33EED-CB9A-4D33-BCC3-D07896738E3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{136B1385-A2C7-4974-BF08-2236B023C568}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{136B1385-A2C7-4974-BF08-2236B023C568}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{136B1385-A2C7-4974-BF08-2236B023C568}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34A33EED-CB9A-4D33-BCC3-D07896738E3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34A33EED-CB9A-4D33-BCC3-D07896738E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34A33EED-CB9A-4D33-BCC3-D07896738E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34A33EED-CB9A-4D33-BCC3-D07896738E3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
