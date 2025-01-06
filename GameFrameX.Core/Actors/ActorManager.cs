@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Actors.Impl;
 using GameFrameX.Core.Components;
@@ -392,6 +393,25 @@ public static class ActorManager
         }
 
         return Task.CompletedTask;
+    }
+
+    /// <summary>
+    /// 遍历所有actor
+    /// </summary>
+    /// <param name="action">遍历回调</param>
+    public static void ActorForEach(Action<IActor> action)
+    {
+        foreach (var actor in ActorMap.Values)
+        {
+            try
+            {
+                action.Invoke(actor);
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error(e);
+            }
+        }
     }
 
     /// <summary>
