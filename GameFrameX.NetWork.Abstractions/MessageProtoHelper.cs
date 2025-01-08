@@ -122,64 +122,64 @@ public static class MessageProtoHelper
     /// <summary>
     /// 初始化所有协议对象
     /// </summary>
-    /// <param name="assembly">协议所在程序集.将在此程序集中查找所有的类型进行识别</param>
-    /// <param name="isClear">是否清理之前存在的缓存,默认为true</param>
+    /// <param name="assemblies">协议所在程序集集合.将在集合中查找所有的类型进行识别</param>
     /// <exception cref="Exception">如果ID重复将会触发异常</exception>
-    public static void Init(Assembly assembly, bool isClear = true)
+    public static void Init(params Assembly[] assemblies)
     {
-        assembly.CheckNotNull(nameof(assembly));
-        if (isClear)
-        {
-            AllMessageDictionary.Clear();
-            RequestDictionary.Clear();
-            ResponseDictionary.Clear();
-            HeartBeatList.Clear();
-            OperationType.Clear();
-        }
+        assemblies.CheckNotNull(nameof(assemblies));
 
-        var types = assembly.GetTypes();
-        foreach (var type in types)
-        {
-            var messageTypeHandlerAttribute = type.GetCustomAttribute(typeof(MessageTypeHandlerAttribute));
+        AllMessageDictionary.Clear();
+        RequestDictionary.Clear();
+        ResponseDictionary.Clear();
+        HeartBeatList.Clear();
+        OperationType.Clear();
 
-            if (messageTypeHandlerAttribute is MessageTypeHandlerAttribute messageTypeHandler)
+        foreach (var assembly in assemblies)
+        {
+            var types = assembly.GetTypes();
+            foreach (var type in types)
             {
-                if (!AllMessageDictionary.TryAdd(messageTypeHandler.MessageId, type))
-                {
-                    RequestDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
-                    throw new AlreadyArgumentException($"消息Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
-                }
+                var messageTypeHandlerAttribute = type.GetCustomAttribute(typeof(MessageTypeHandlerAttribute));
 
-                OperationType.TryAdd(type, messageTypeHandler.OperationType);
-
-                if (type.IsImplWithInterface(typeof(IHeartBeatMessage)))
+                if (messageTypeHandlerAttribute is MessageTypeHandlerAttribute messageTypeHandler)
                 {
-                    if (HeartBeatList.Contains(type))
-                    {
-                        LogHelper.Error($"心跳消息重复==>类型:{type.FullName}");
-                    }
-                    else
-                    {
-                        HeartBeatList.Add(type);
-                    }
-                }
-
-                if (type.IsImplWithInterface(typeof(IRequestMessage)))
-                {
-                    // 请求
-                    if (!RequestDictionary.TryAdd(messageTypeHandler.MessageId, type))
+                    if (!AllMessageDictionary.TryAdd(messageTypeHandler.MessageId, type))
                     {
                         RequestDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
-                        throw new AlreadyArgumentException($"请求Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
+                        throw new AlreadyArgumentException($"消息Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
                     }
-                }
-                else if (type.IsImplWithInterface(typeof(IResponseMessage)) || type.IsImplWithInterface(typeof(INotifyMessage)))
-                {
-                    // 返回
-                    if (!ResponseDictionary.TryAdd(messageTypeHandler.MessageId, type))
+
+                    OperationType.TryAdd(type, messageTypeHandler.OperationType);
+
+                    if (type.IsImplWithInterface(typeof(IHeartBeatMessage)))
                     {
-                        ResponseDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
-                        throw new AlreadyArgumentException($"返回Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
+                        if (HeartBeatList.Contains(type))
+                        {
+                            LogHelper.Error($"心跳消息重复==>类型:{type.FullName}");
+                        }
+                        else
+                        {
+                            HeartBeatList.Add(type);
+                        }
+                    }
+
+                    if (type.IsImplWithInterface(typeof(IRequestMessage)))
+                    {
+                        // 请求
+                        if (!RequestDictionary.TryAdd(messageTypeHandler.MessageId, type))
+                        {
+                            RequestDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
+                            throw new AlreadyArgumentException($"请求Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
+                        }
+                    }
+                    else if (type.IsImplWithInterface(typeof(IResponseMessage)) || type.IsImplWithInterface(typeof(INotifyMessage)))
+                    {
+                        // 返回
+                        if (!ResponseDictionary.TryAdd(messageTypeHandler.MessageId, type))
+                        {
+                            ResponseDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
+                            throw new AlreadyArgumentException($"返回Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
+                        }
                     }
                 }
             }

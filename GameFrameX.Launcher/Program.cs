@@ -13,8 +13,7 @@ internal static class Program
         await GameApp.Entry(args, () =>
         {
             CacheStateTypeManager.Init();
-            MessageProtoHelper.Init(typeof(MessageProtoBuildInTag).Assembly);
-            MessageProtoHelper.Init(typeof(MessageProtoHandler).Assembly, false);
+            MessageProtoHelper.Init(typeof(MessageProtoBuildInTag).Assembly, typeof(MessageProtoHandler).Assembly);
         }, LogAction);
     }
 
