@@ -39,7 +39,7 @@ public static class GlobalTimer
     private static async Task Loop()
     {
         var nextSaveTime = NextSaveTime();
-        var saveInterval = TimeSpan.FromMilliseconds(GlobalConst.SaveIntervalInMilliSeconds);
+        var saveInterval = TimeSpan.FromMilliseconds(GlobalSettings.SaveIntervalInMilliSeconds);
         var onceDelay = TimeSpan.FromMilliseconds(200);
 
         while (IsWorking)
@@ -83,20 +83,20 @@ public static class GlobalTimer
 
         while (t < now)
         {
-            t = t.AddMilliseconds(GlobalConst.SaveIntervalInMilliSeconds);
+            t = t.AddMilliseconds(GlobalSettings.SaveIntervalInMilliSeconds);
         }
 
         var serverId = GlobalSettings.ServerId;
         var a = serverId % 1000;
         var b = a % GlobalConst.MAGIC;
-        var c = GlobalConst.SaveIntervalInMilliSeconds / GlobalConst.MAGIC;
+        var c = GlobalSettings.SaveIntervalInMilliSeconds / GlobalConst.MAGIC;
         var r = ThreadLocalRandom.Current.Next(0, c);
         var delay = b * c + r;
         t = t.AddMilliseconds(delay);
 
-        if ((t - now).TotalMilliseconds > GlobalConst.SaveIntervalInMilliSeconds)
+        if ((t - now).TotalMilliseconds > GlobalSettings.SaveIntervalInMilliSeconds)
         {
-            t = t.AddMilliseconds(-GlobalConst.SaveIntervalInMilliSeconds);
+            t = t.AddMilliseconds(-GlobalSettings.SaveIntervalInMilliSeconds);
         }
 
         return t;

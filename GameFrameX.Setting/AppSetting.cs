@@ -150,7 +150,7 @@ public sealed class AppSetting
     /// <summary>
     /// 保存数据的时间间隔（毫秒）
     /// </summary>
-    public int SaveDataInterval { get; set; } = 5000;
+    public int SaveDataInterval { get; set; } = 300_000;
 
     /// <summary>
     /// 内部IP地址

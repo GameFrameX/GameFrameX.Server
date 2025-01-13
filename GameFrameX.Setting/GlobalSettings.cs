@@ -12,6 +12,8 @@ public static class GlobalSettings
     /// </summary>
     private static readonly List<AppSetting> Settings = new(16);
 
+    private static int _saveIntervalInMilliSeconds;
+
     /// <summary>
     /// 是否运行中
     /// </summary>
@@ -31,6 +33,24 @@ public static class GlobalSettings
     /// 服务器ID
     /// </summary>
     public static int ServerId { get; set; }
+
+    /// <summary>
+    /// 数据存储间隔 单位 毫秒,默认5分钟，最小1秒
+    /// </summary>
+    public static int SaveIntervalInMilliSeconds
+    {
+        get { return _saveIntervalInMilliSeconds; }
+        set
+        {
+            if (value < 1000)
+            {
+                _saveIntervalInMilliSeconds = GlobalConst.SaveIntervalInMilliSeconds;
+                return;
+            }
+
+            _saveIntervalInMilliSeconds = value;
+        }
+    }
 
     /// <summary>
     /// 加载启动配置

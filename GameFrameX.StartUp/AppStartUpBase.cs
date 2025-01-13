@@ -58,6 +58,7 @@ public abstract partial class AppStartUpBase : IAppStartUp
         ListenOptions = new ListenOptions();
         Init();
         Setting.CheckNotNull(nameof(Setting));
+        GlobalSettings.SaveIntervalInMilliSeconds = Setting.SaveDataInterval;
         GlobalSettings.ServerId = Setting.ServerId;
         GlobalSettings.IsDebug = Setting.IsDebug;
         return true;

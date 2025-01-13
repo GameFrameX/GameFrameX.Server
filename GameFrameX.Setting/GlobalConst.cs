@@ -140,7 +140,7 @@ public static class GlobalConst
     /// <summary>
     /// 数据存储间隔 单位 毫秒
     /// </summary>
-    public const int SaveIntervalInMilliSeconds = 300_000; //300_000;
+    internal const int SaveIntervalInMilliSeconds = 300_000; //300_000;
 
     /// <summary>
     /// </summary>
