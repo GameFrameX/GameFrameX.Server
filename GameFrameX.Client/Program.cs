@@ -1,17 +1,32 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-
-using GameFrameX.Client;
+using GameFrameX.Bot;
+using GameFrameX.Log;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Proto;
 
-Console.WriteLine("模拟客户端启动成功!!!");
-MessageProtoHelper.Init(typeof(MessageProtoHandler).Assembly);
+internal static class Program
+{
+    private const int m_BotCount = 1;
 
-new UnityTcpClient().Entry(args);
-// for (int i = 0; i < 20; i++)
-// {
-//     Task.Run(() => { new UnityTcpClient().Entry(args); });
-// }
+    static async Task Main(string[] args)
+    {
+        var logOption = LogOptions.Default;
+        logOption.IsConsole = true;
+        logOption.LogEventLevel = Serilog.Events.LogEventLevel.Information;
+        LoggerHandler.Start(logOption);
+        MessageProtoHelper.Init(typeof(MessageProtoHandler).Assembly);
 
-Console.ReadKey();
+        for (int k = 0; k < m_BotCount; k++)
+        {
+            string botName = $"BotClient_{k + 1}";
+            await Task.Run(() =>
+            {
+                var client = new BotClient(botName);
+                _ = client.EntryAsync();
+            });
+        }
+
+        Console.ReadKey();
+    }
+}

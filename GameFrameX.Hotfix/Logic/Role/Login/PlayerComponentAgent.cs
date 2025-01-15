@@ -3,7 +3,9 @@ using GameFrameX.Apps.Common.Session;
 using GameFrameX.Apps.Player.Player.Component;
 using GameFrameX.Apps.Player.Player.Entity;
 using GameFrameX.Core.Abstractions.Events;
+using GameFrameX.DataBase;
 using GameFrameX.Hotfix.Logic.Server.Server;
+using GameFrameX.Monitor.Player;
 using GameFrameX.NetWork.Abstractions;
 
 namespace GameFrameX.Hotfix.Logic.Role.Login;
@@ -30,8 +32,7 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         var playerState = await OwnerComponent.OnPlayerLogin(reqLogin);
         if (playerState == null)
         {
-            //角色找不到？
-            return;
+            playerState = await OnPlayerCreate(reqLogin);
         }
 
         // 更新连接会话数据
@@ -58,6 +59,22 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         //加入在线玩家
         var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
         await serverComp.AddOnlineRole(ActorId);
+    }
+
+    private async Task<PlayerState> OnPlayerCreate(ReqPlayerLogin reqPlayerLogin)
+    {
+        var playerState = new PlayerState
+        {
+            Id = reqPlayerLogin.Id,
+            AccountId = reqPlayerLogin.Id,
+            Name = reqPlayerLogin.Id.ToString(),
+            Level = (uint)Utility.Random.Next(1, 50),
+            State = 0,
+            Avatar = (uint)Utility.Random.Next(1, 50),
+        };
+        MetricsPlayerRegister.CreateCounterOptions.Inc();
+        await GameDb.SaveOneAsync(playerState);
+        return playerState;
     }
 
     [Event(EventId.SessionRemove)]
