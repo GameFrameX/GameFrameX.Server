@@ -1,3 +1,5 @@
+using GameFrameX.DataBase.Mongo;
+
 namespace GameFrameX.Apps.Account.Login.Entity;
 
 public class LoginState : CacheState

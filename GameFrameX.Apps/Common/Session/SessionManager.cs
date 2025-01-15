@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using GameFrameX.Apps.Common.Event;
 using GameFrameX.NetWork.Abstractions;
-using GameFrameX.Setting;
+using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Apps.Common.Session;
 

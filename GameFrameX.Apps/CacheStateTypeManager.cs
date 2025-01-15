@@ -1,6 +1,4 @@
-﻿
-
-using GameFrameX.DataBase.Abstractions;
+﻿using GameFrameX.Utility.Extensions;
 
 namespace GameFrameX.Apps;
 

@@ -1,6 +1,5 @@
 ﻿using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
-using GameFrameX.Setting;
 
 namespace GameFrameX.Apps.Common.Session;
 

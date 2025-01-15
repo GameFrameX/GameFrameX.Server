@@ -1,8 +1,13 @@
+using GameFrameX.DataBase.Mongo;
+
 namespace GameFrameX.Apps.Player.Player.Entity;
 
 public class PlayerState : CacheState
 {
-    public long RoleId => Id;
+    public long RoleId
+    {
+        get { return Id; }
+    }
 
     /// <summary>
     /// 账号ID

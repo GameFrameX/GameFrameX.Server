@@ -3,6 +3,8 @@ using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Hotfix.Logic.Server.Server;
+using GameFrameX.Utility.Extensions;
+using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Hotfix.Common.Events
 {

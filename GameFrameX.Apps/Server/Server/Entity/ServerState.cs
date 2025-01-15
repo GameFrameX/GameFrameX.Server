@@ -1,3 +1,5 @@
+using GameFrameX.DataBase.Mongo;
+
 namespace GameFrameX.Apps.Server.Server.Entity;
 
 public class ServerState : CacheState
