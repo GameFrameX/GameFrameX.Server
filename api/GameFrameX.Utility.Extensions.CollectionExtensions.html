@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CollectionExtensions | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CollectionExtensions | GameFrameX.Server ">
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.2.0-beta17/apiSpec/new?filename=GameFrameX_Utility_Extensions_CollectionExtensions.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Extensions.CollectionExtensions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.Utility.Extensions.CollectionExtensions">
+
+
+
+  <h1 id="GameFrameX_Utility_Extensions_CollectionExtensions" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions" class="text-break">
+Class CollectionExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/CollectionExtensions.cs/#L5"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Utility.html">Utility</a>.<a class="xref" href="GameFrameX.Utility.Extensions.html">Extensions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.Utility.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class CollectionExtensions</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">CollectionExtensions</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_Utility_Extensions_CollectionExtensions_AddRange_" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.AddRange*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_CollectionExtensions_AddRange__1_System_Collections_Generic_HashSet___0__System_Collections_Generic_IEnumerable___0__" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.AddRange``1(System.Collections.Generic.HashSet{``0},System.Collections.Generic.IEnumerable{``0})">
+  AddRange&lt;T&gt;(HashSet&lt;T&gt;, IEnumerable&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/CollectionExtensions.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将一个可枚举集合的元素添加到哈希集合中。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddRange&lt;T&gt;(this HashSet&lt;T&gt; c, IEnumerable&lt;T&gt; e)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>c</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;T&gt;</dt>
+    <dd><p>要添加元素的哈希集合。</p>
+</dd>
+    <dt><code>e</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</dt>
+    <dd><p>要添加的元素的可枚举集合。</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>哈希集合元素的类型。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_CollectionExtensions_GetOrAdd_" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.GetOrAdd*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_CollectionExtensions_GetOrAdd__2_System_Collections_Generic_Dictionary___0___1____0_" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.GetOrAdd``2(System.Collections.Generic.Dictionary{``0,``1},``0)">
+  GetOrAdd&lt;TKey, TValue&gt;(Dictionary&lt;TKey, TValue&gt;, TKey)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/CollectionExtensions.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定键的值，如果字典中不存在该键，则使用无参构造函数创建一个新的值并添加到字典中。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TValue GetOrAdd&lt;TKey, TValue&gt;(this Dictionary&lt;TKey, TValue&gt; self, TKey key) where TValue : new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>要操作的字典。</p>
+</dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd><p>要获取值的键。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd><p>指定键的值。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd><p>键的类型。</p>
+</dd>
+    <dt><code>TValue</code></dt>
+    <dd><p>值的类型。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_CollectionExtensions_GetOrAdd_" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.GetOrAdd*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_CollectionExtensions_GetOrAdd__2_System_Collections_Generic_Dictionary___0___1____0_System_Func___0___1__" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.GetOrAdd``2(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``0,``1})">
+  GetOrAdd&lt;TKey, TValue&gt;(Dictionary&lt;TKey, TValue&gt;, TKey, Func&lt;TKey, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/CollectionExtensions.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定键的值，如果字典中不存在该键，则使用指定的函数获取值并添加到字典中。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TValue GetOrAdd&lt;TKey, TValue&gt;(this Dictionary&lt;TKey, TValue&gt; self, TKey key, Func&lt;TKey, TValue&gt; valueGetter)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>要操作的字典。</p>
+</dd>
+    <dt><code>key</code> <span class="xref">TKey</span></dt>
+    <dd><p>要获取值的键。</p>
+</dd>
+    <dt><code>valueGetter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>用于获取值的函数。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd><p>指定键的值。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd><p>键的类型。</p>
+</dd>
+    <dt><code>TValue</code></dt>
+    <dd><p>值的类型。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_CollectionExtensions_IsNullOrEmpty_" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.IsNullOrEmpty*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_CollectionExtensions_IsNullOrEmpty__1_System_Collections_Generic_ICollection___0__" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.IsNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
+  IsNullOrEmpty&lt;T&gt;(ICollection&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/CollectionExtensions.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>检查集合是否为 null 或空。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsNullOrEmpty&lt;T&gt;(this ICollection&lt;T&gt; self)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</dt>
+    <dd><p>要检查的集合。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果集合为 null 或空，则为 true；否则为 false。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>集合元素的类型。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_CollectionExtensions_Merge_" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.Merge*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_CollectionExtensions_Merge__2_System_Collections_Generic_Dictionary___0___1____0___1_System_Func___1___1___1__" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.Merge``2(System.Collections.Generic.Dictionary{``0,``1},``0,``1,System.Func{``1,``1,``1})">
+  Merge&lt;TKey, TValue&gt;(Dictionary&lt;TKey, TValue&gt;, TKey, TValue, Func&lt;TValue, TValue, TValue&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/CollectionExtensions.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>合并字典中的键值对。如果字典中已存在指定的键，则使用指定的函数对原有值和新值进行合并；否则直接添加键值对。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Merge&lt;TKey, TValue&gt;(this Dictionary&lt;TKey, TValue&gt; self, TKey k, TValue v, Func&lt;TValue, TValue, TValue&gt; func)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>要合并的字典。</p>
+</dd>
+    <dt><code>k</code> <span class="xref">TKey</span></dt>
+    <dd><p>要添加或合并的键。</p>
+</dd>
+    <dt><code>v</code> <span class="xref">TValue</span></dt>
+    <dd><p>要添加或合并的值。</p>
+</dd>
+    <dt><code>func</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TValue, TValue, TValue&gt;</dt>
+    <dd><p>用于合并值的函数。</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd><p>键的类型。</p>
+</dd>
+    <dt><code>TValue</code></dt>
+    <dd><p>值的类型。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_CollectionExtensions_Random_" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.Random*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_CollectionExtensions_Random__1_System_Collections_Generic_List___0__" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.Random``1(System.Collections.Generic.List{``0})">
+  Random&lt;T&gt;(List&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/CollectionExtensions.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从列表中随机获取一个对象。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T Random&lt;T&gt;(this List&lt;T&gt; list)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>list</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</dt>
+    <dd><p>要随机的列表。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>列表元素的类型。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_CollectionExtensions_RemoveIf_" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.RemoveIf*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_CollectionExtensions_RemoveIf__1_System_Collections_Generic_List___0__System_Predicate___0__" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.RemoveIf``1(System.Collections.Generic.List{``0},System.Predicate{``0})">
+  RemoveIf&lt;T&gt;(List&lt;T&gt;, Predicate&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/CollectionExtensions.cs/#L147"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从列表中移除满足条件的元素。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RemoveIf&lt;T&gt;(this List&lt;T&gt; list, Predicate&lt;T&gt; condition)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>list</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</dt>
+    <dd><p>要操作的列表。</p>
+</dd>
+    <dt><code>condition</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;T&gt;</dt>
+    <dd><p>用于判断元素是否满足移除条件的委托。</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>列表元素的类型。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_CollectionExtensions_RemoveIf_" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.RemoveIf*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_CollectionExtensions_RemoveIf__2_System_Collections_Generic_Dictionary___0___1__System_Func___0___1_System_Boolean__" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.RemoveIf``2(System.Collections.Generic.Dictionary{``0,``1},System.Func{``0,``1,System.Boolean})">
+  RemoveIf&lt;TKey, TValue&gt;(Dictionary&lt;TKey, TValue&gt;, Func&lt;TKey, TValue, bool&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/CollectionExtensions.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据指定条件从字典中移除键值对。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int RemoveIf&lt;TKey, TValue&gt;(this Dictionary&lt;TKey, TValue&gt; self, Func&lt;TKey, TValue, bool&gt; predict)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;TKey, TValue&gt;</dt>
+    <dd><p>要操作的字典。</p>
+</dd>
+    <dt><code>predict</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TKey, TValue, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>判断是否移除键值对的条件。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>移除的键值对数量。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TKey</code></dt>
+    <dd><p>键的类型。</p>
+</dd>
+    <dt><code>TValue</code></dt>
+    <dd><p>值的类型。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_CollectionExtensions_Shuffer_" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.Shuffer*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_CollectionExtensions_Shuffer__1_System_Collections_Generic_List___0__" data-uid="GameFrameX.Utility.Extensions.CollectionExtensions.Shuffer``1(System.Collections.Generic.List{``0})">
+  Shuffer&lt;T&gt;(List&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/CollectionExtensions.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>打乱列表中的元素顺序。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Shuffer&lt;T&gt;(this List&lt;T&gt; list)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>list</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</dt>
+    <dd><p>要打乱顺序的列表。</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>列表元素的类型。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/CollectionExtensions.cs/#L5" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

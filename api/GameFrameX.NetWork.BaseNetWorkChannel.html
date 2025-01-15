@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class BaseNetWorkChannel | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class BaseNetWorkChannel | GameFrameX.Server ">
+      
+      <meta name="description" content="基础网络通道">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.2.0-beta17/apiSpec/new?filename=GameFrameX_NetWork_BaseNetWorkChannel.md&amp;value=---%0Auid%3A%20GameFrameX.NetWork.BaseNetWorkChannel%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.NetWork.BaseNetWorkChannel">
+
+
+
+  <h1 id="GameFrameX_NetWork_BaseNetWorkChannel" data-uid="GameFrameX.NetWork.BaseNetWorkChannel" class="text-break">
+Class BaseNetWorkChannel  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.NetWork.html">NetWork</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.NetWork.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>基础网络通道</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class BaseNetWorkChannel : INetWorkChannel</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">BaseNetWorkChannel</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="GameFrameX.NetWork.Abstractions.INetWorkChannel.html">INetWorkChannel</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="GameFrameX.NetWork.DefaultNetWorkChannel.html">DefaultNetWorkChannel</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="GameFrameX.Utility.Extensions.ObjectExtension.html#GameFrameX_Utility_Extensions_ObjectExtension_CheckNotNull__1___0_System_String_">ObjectExtension.CheckNotNull&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Utility.Extensions.ObjectExtension.html#GameFrameX_Utility_Extensions_ObjectExtension_CheckNotNull__1___0_System_String_System_String_">ObjectExtension.CheckNotNull&lt;T&gt;(T, string, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Utility.Extensions.ObjectExtension.html#GameFrameX_Utility_Extensions_ObjectExtension_IsNotNull_System_Object_">ObjectExtension.IsNotNull(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Utility.Extensions.ObjectExtension.html#GameFrameX_Utility_Extensions_ObjectExtension_IsNull_System_Object_">ObjectExtension.IsNull(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="GameFrameX_NetWork_BaseNetWorkChannel__ctor_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.#ctor*"></a>
+
+  <h3 id="GameFrameX_NetWork_BaseNetWorkChannel__ctor_GameFrameX_SuperSocket_Server_Abstractions_Session_IGameAppSession_GameFrameX_Utility_Setting_AppSetting_GameFrameX_NetWork_Abstractions_IMessageEncoderHandler_GameFrameX_NetWork_Abstractions_IRpcSession_System_Boolean_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.#ctor(GameFrameX.SuperSocket.Server.Abstractions.Session.IGameAppSession,GameFrameX.Utility.Setting.AppSetting,GameFrameX.NetWork.Abstractions.IMessageEncoderHandler,GameFrameX.NetWork.Abstractions.IRpcSession,System.Boolean)">
+  BaseNetWorkChannel(IGameAppSession, AppSetting, IMessageEncoderHandler, IRpcSession, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>初始化</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BaseNetWorkChannel(IGameAppSession session, AppSetting setting, IMessageEncoderHandler messageEncoder, IRpcSession rpcSession, bool isWebSocket)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>session</code> <span class="xref">IGameAppSession</span></dt>
+    <dd></dd>
+    <dt><code>setting</code> <a class="xref" href="GameFrameX.Utility.Setting.AppSetting.html">AppSetting</a></dt>
+    <dd></dd>
+    <dt><code>messageEncoder</code> <a class="xref" href="GameFrameX.NetWork.Abstractions.IMessageEncoderHandler.html">IMessageEncoderHandler</a></dt>
+    <dd></dd>
+    <dt><code>rpcSession</code> <a class="xref" href="GameFrameX.NetWork.Abstractions.IRpcSession.html">IRpcSession</a></dt>
+    <dd></dd>
+    <dt><code>isWebSocket</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="GameFrameX_NetWork_BaseNetWorkChannel_CancellationTokenSource" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.CancellationTokenSource">
+  CancellationTokenSource
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>关闭源</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly CancellationTokenSource CancellationTokenSource</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtokensource">CancellationTokenSource</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="GameFrameX_NetWork_BaseNetWorkChannel_GameAppSession_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.GameAppSession*"></a>
+
+  <h3 id="GameFrameX_NetWork_BaseNetWorkChannel_GameAppSession" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.GameAppSession">
+  GameAppSession
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>会话</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IGameAppSession GameAppSession { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">IGameAppSession</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_BaseNetWorkChannel_IsWebSocket_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.IsWebSocket*"></a>
+
+  <h3 id="GameFrameX_NetWork_BaseNetWorkChannel_IsWebSocket" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.IsWebSocket">
+  IsWebSocket
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>是否是WebSocket</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsWebSocket { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_BaseNetWorkChannel_RpcSession_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.RpcSession*"></a>
+
+  <h3 id="GameFrameX_NetWork_BaseNetWorkChannel_RpcSession" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.RpcSession">
+  RpcSession
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Rpc会话</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IRpcSession RpcSession { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.NetWork.Abstractions.IRpcSession.html">IRpcSession</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_BaseNetWorkChannel_Setting_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.Setting*"></a>
+
+  <h3 id="GameFrameX_NetWork_BaseNetWorkChannel_Setting" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.Setting">
+  Setting
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AppSetting Setting { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Setting.AppSetting.html">AppSetting</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_NetWork_BaseNetWorkChannel_ClearData_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.ClearData*"></a>
+
+  <h3 id="GameFrameX_NetWork_BaseNetWorkChannel_ClearData" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.ClearData">
+  ClearData()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L181"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>清除自定义数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearData()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_BaseNetWorkChannel_Close_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.Close*"></a>
+
+  <h3 id="GameFrameX_NetWork_BaseNetWorkChannel_Close" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.Close">
+  Close()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>关闭</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Close()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_BaseNetWorkChannel_GetData_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.GetData*"></a>
+
+  <h3 id="GameFrameX_NetWork_BaseNetWorkChannel_GetData__1_System_String_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.GetData``1(System.String)">
+  GetData&lt;T&gt;(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L168"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取用户数据对象.
+可能会发生转换失败的异常。
+如果数据不存在则返回null</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetData&lt;T&gt;(string key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>数据Key</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>用户数据对象</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>将要获取的数据类型。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_BaseNetWorkChannel_GetLastMessageTimeSecond_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.GetLastMessageTimeSecond*"></a>
+
+  <h3 id="GameFrameX_NetWork_BaseNetWorkChannel_GetLastMessageTimeSecond_System_DateTime__" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.GetLastMessageTimeSecond(System.DateTime@)">
+  GetLastMessageTimeSecond(in DateTime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L225"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取最后接收消息到现在的时间。单位秒</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long GetLastMessageTimeSecond(in DateTime utcTime)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>utcTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_BaseNetWorkChannel_IsClosed_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.IsClosed*"></a>
+
+  <h3 id="GameFrameX_NetWork_BaseNetWorkChannel_IsClosed" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.IsClosed">
+  IsClosed()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L150"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>是否关闭</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool IsClosed()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_BaseNetWorkChannel_RemoveData_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.RemoveData*"></a>
+
+  <h3 id="GameFrameX_NetWork_BaseNetWorkChannel_RemoveData_System_String_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.RemoveData(System.String)">
+  RemoveData(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L190"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>删除自定义数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveData(string key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_BaseNetWorkChannel_SetData_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.SetData*"></a>
+
+  <h3 id="GameFrameX_NetWork_BaseNetWorkChannel_SetData_System_String_System_Object_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.SetData(System.String,System.Object)">
+  SetData(string, object)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L200"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置自定义数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetData(string key, object value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_BaseNetWorkChannel_UpdateReceiveMessageTime_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.UpdateReceiveMessageTime*"></a>
+
+  <h3 id="GameFrameX_NetWork_BaseNetWorkChannel_UpdateReceiveMessageTime_System_Int64_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.UpdateReceiveMessageTime(System.Int64)">
+  UpdateReceiveMessageTime(long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L215"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新接收消息的时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateReceiveMessageTime(long offsetTicks = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>offsetTicks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_BaseNetWorkChannel_Write_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.Write*"></a>
+
+  <h3 id="GameFrameX_NetWork_BaseNetWorkChannel_Write_GameFrameX_NetWork_Abstractions_INetworkMessage_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.Write(GameFrameX.NetWork.Abstractions.INetworkMessage)">
+  Write(INetworkMessage)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入消息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Write(INetworkMessage messageObject)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>messageObject</code> <a class="xref" href="GameFrameX.NetWork.Abstractions.INetworkMessage.html">INetworkMessage</a></dt>
+    <dd><p>消息对象</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_BaseNetWorkChannel_WriteAsync_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.WriteAsync*"></a>
+
+  <h3 id="GameFrameX_NetWork_BaseNetWorkChannel_WriteAsync_GameFrameX_NetWork_Abstractions_INetworkMessage_System_Int32_" data-uid="GameFrameX.NetWork.BaseNetWorkChannel.WriteAsync(GameFrameX.NetWork.Abstractions.INetworkMessage,System.Int32)">
+  WriteAsync(INetworkMessage, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步写入消息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task WriteAsync(INetworkMessage messageObject, int errorCode = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>messageObject</code> <a class="xref" href="GameFrameX.NetWork.Abstractions.INetworkMessage.html">INetworkMessage</a></dt>
+    <dd><p>消息对象</p>
+</dd>
+    <dt><code>errorCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>错误码</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.NetWork/BaseNetWorkChannel.cs/#L14" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class BaseComponentAgent&lt;TComponent&gt; | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class BaseComponentAgent&lt;TComponent&gt; | GameFrameX.Server ">
+      
+      <meta name="description" content="基础组件代理类，用于管理组件与Actor之间的交互">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.2.0-beta17/apiSpec/new?filename=GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Hotfix.Agent.BaseComponentAgent%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1">
+
+
+
+  <h1 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1" class="text-break">
+Class BaseComponentAgent&lt;TComponent&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Core.html">Core</a>.<a class="xref" href="GameFrameX.Core.Hotfix.html">Hotfix</a>.<a class="xref" href="GameFrameX.Core.Hotfix.Agent.html">Agent</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>基础组件代理类，用于管理组件与Actor之间的交互</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class BaseComponentAgent&lt;TComponent&gt; : IComponentAgent, IWorker where TComponent : BaseComponent</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TComponent</code></dt>
+    <dd><p>具体的组件类型</p>
+</dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">BaseComponentAgent&lt;TComponent&gt;</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="GameFrameX.Core.Abstractions.Agent.IComponentAgent.html">IComponentAgent</a></div>
+      <div><a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html">IWorker</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="GameFrameX.Core.Hotfix.Agent.FuncComponentAgent-1.html">FuncComponentAgent&lt;TComponent&gt;</a></div>
+      <div><a class="xref" href="GameFrameX.Core.Hotfix.Agent.StateComponentAgent-2.html">StateComponentAgent&lt;TComponent, TState&gt;</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="GameFrameX.Utility.Extensions.ObjectExtension.html#GameFrameX_Utility_Extensions_ObjectExtension_CheckNotNull__1___0_System_String_">ObjectExtension.CheckNotNull&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Utility.Extensions.ObjectExtension.html#GameFrameX_Utility_Extensions_ObjectExtension_CheckNotNull__1___0_System_String_System_String_">ObjectExtension.CheckNotNull&lt;T&gt;(T, string, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Utility.Extensions.ObjectExtension.html#GameFrameX_Utility_Extensions_ObjectExtension_IsNotNull_System_Object_">ObjectExtension.IsNotNull(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Utility.Extensions.ObjectExtension.html#GameFrameX_Utility_Extensions_ObjectExtension_IsNull_System_Object_">ObjectExtension.IsNull(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Actor_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Actor*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Actor" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Actor">
+  Actor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>所有者的Actor实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IActor Actor { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Core.Abstractions.IActor.html">IActor</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_ActorId_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.ActorId*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_ActorId" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.ActorId">
+  ActorId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>所有者的Actor ID</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long ActorId { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Owner_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Owner*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Owner" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Owner">
+  Owner
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>组件的所有者</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IComponent Owner { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Core.Abstractions.IComponent.html">IComponent</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_OwnerComponent_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.OwnerComponent*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_OwnerComponent" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.OwnerComponent">
+  OwnerComponent
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>所有者的组件实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TComponent OwnerComponent { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TComponent</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_OwnerType_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.OwnerType*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_OwnerType" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.OwnerType">
+  OwnerType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>所有者的类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ushort OwnerType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_ScheduleIdSet_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.ScheduleIdSet*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_ScheduleIdSet" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.ScheduleIdSet">
+  ScheduleIdSet
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>订阅的定时任务ID集合</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HashSet&lt;long&gt; ScheduleIdSet { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Active_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Active*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Active" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Active">
+  Active()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>激活组件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Active()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_ActorCrossDay_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.ActorCrossDay*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_ActorCrossDay_System_Int32_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.ActorCrossDay(System.Int32)">
+  ActorCrossDay(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L185"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>处理Actor跨天事件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ActorCrossDay(int serverDay)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>serverDay</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>服务器运行天数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>一个任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Daily_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Daily*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Daily__1_System_Int32_System_Int32_GameFrameX_Utility_Param_System_Int64_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Daily``1(System.Int32,System.Int32,GameFrameX.Utility.Param,System.Int64)">
+  Daily&lt;T&gt;(int, int, Param, long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L275"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>基于每天的定时任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long Daily&lt;T&gt;(int hour = 0, int minute = 0, Param param = null, long unScheduleId = 0) where T : ITimerHandler</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>hour</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>小时</p>
+</dd>
+    <dt><code>minute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>分钟</p>
+</dd>
+    <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
+    <dd><p>参数</p>
+</dd>
+    <dt><code>unScheduleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>取消订阅的ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>定时任务ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>定时任务处理器类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Delay_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Delay__1_System_DateTime_GameFrameX_Utility_Param_System_Int64_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay``1(System.DateTime,GameFrameX.Utility.Param,System.Int64)">
+  Delay&lt;T&gt;(DateTime, Param, long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L208"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>延迟执行定时任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long Delay&lt;T&gt;(DateTime time, Param param = null, long unScheduleId = 0) where T : ITimerHandler</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>time</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>延迟的具体时间</p>
+</dd>
+    <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
+    <dd><p>参数</p>
+</dd>
+    <dt><code>unScheduleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>取消订阅的ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>定时任务ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>定时任务处理器类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Delay_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Delay__1_System_Int64_GameFrameX_Utility_Param_System_Int64_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay``1(System.Int64,GameFrameX.Utility.Param,System.Int64)">
+  Delay&lt;T&gt;(long, Param, long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L224"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>延迟执行定时任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long Delay&lt;T&gt;(long time, Param param = null, long unScheduleId = 0) where T : ITimerHandler</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>time</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>延迟的时间</p>
+</dd>
+    <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
+    <dd><p>参数</p>
+</dd>
+    <dt><code>unScheduleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>取消订阅的ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>定时任务ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>定时任务处理器类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Delay_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Delay__1_System_TimeSpan_GameFrameX_Utility_Param_System_Int64_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay``1(System.TimeSpan,GameFrameX.Utility.Param,System.Int64)">
+  Delay&lt;T&gt;(TimeSpan, Param, long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L240"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>延迟执行定时任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long Delay&lt;T&gt;(TimeSpan delay, Param param = null, long unScheduleId = 0) where T : ITimerHandler</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>delay</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></dt>
+    <dd><p>延迟多久的时间差</p>
+</dd>
+    <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
+    <dd><p>参数</p>
+</dd>
+    <dt><code>unScheduleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>取消订阅的ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>定时任务ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>定时任务处理器类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_GetComponentAgent_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.GetComponentAgent*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_GetComponentAgent_System_Type_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.GetComponentAgent(System.Type)">
+  GetComponentAgent(Type)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据代理类型获取组件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;IComponentAgent&gt; GetComponentAgent(Type agentType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>agentType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>代理类型</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="GameFrameX.Core.Abstractions.Agent.IComponentAgent.html">IComponentAgent</a>&gt;</dt>
+    <dd><p>一个任务，返回组件代理实例</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_GetComponentAgent_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.GetComponentAgent*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_GetComponentAgent__1" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.GetComponentAgent``1">
+  GetComponentAgent&lt;T&gt;()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据代理类型获取组件代理</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;T&gt; GetComponentAgent&lt;T&gt;() where T : IComponentAgent</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
+    <dd><p>一个任务，返回指定类型的组件代理实例</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>代理类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Inactive_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Inactive*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Inactive" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Inactive">
+  Inactive()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>反激活组件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task Inactive()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>一个已完成的任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Monthly_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Monthly*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Monthly__1_System_Int32_System_Int32_System_Int32_GameFrameX_Utility_Param_System_Int64_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Monthly``1(System.Int32,System.Int32,System.Int32,GameFrameX.Utility.Param,System.Int64)">
+  Monthly&lt;T&gt;(int, int, int, Param, long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L327"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>基于每月某天的定时任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long Monthly&lt;T&gt;(int dayOfMonth, int hour = 0, int minute = 0, Param param = null, long unScheduleId = 0) where T : ITimerHandler</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dayOfMonth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>具体哪天</p>
+</dd>
+    <dt><code>hour</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>小时</p>
+</dd>
+    <dt><code>minute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>分钟</p>
+</dd>
+    <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
+    <dd><p>参数</p>
+</dd>
+    <dt><code>unScheduleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>取消订阅ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>定时任务ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>定时任务处理器类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Schedule_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Schedule*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Schedule__1_System_TimeSpan_System_TimeSpan_GameFrameX_Utility_Param_System_Int32_System_Int64_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Schedule``1(System.TimeSpan,System.TimeSpan,GameFrameX.Utility.Param,System.Int32,System.Int64)">
+  Schedule&lt;T&gt;(TimeSpan, TimeSpan, Param, int, long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L258"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>订阅定时任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long Schedule&lt;T&gt;(TimeSpan delay, TimeSpan interval, Param param = null, int repeatCount = -1, long unScheduleId = 0) where T : ITimerHandler</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>delay</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></dt>
+    <dd><p>延迟时间差</p>
+</dd>
+    <dt><code>interval</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></dt>
+    <dd><p>间隔时间差</p>
+</dd>
+    <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
+    <dd><p>参数</p>
+</dd>
+    <dt><code>repeatCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>调用次数，如果小于0，则一直循环</p>
+</dd>
+    <dt><code>unScheduleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>取消订阅的ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>定时任务ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>定时任务处理器类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync_System_Action_System_Int32_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync(System.Action,System.Int32)">
+  SendAsync(Action, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步发送无返回值的工作指令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task SendAsync(Action work, int timeout = 2147483647)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>work</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd><p>工作内容</p>
+</dd>
+    <dt><code>timeout</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>超时时间，默认为int.MaxValue</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>一个任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync_System_Func_System_Threading_Tasks_Task__System_Int32_System_Boolean_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean)">
+  SendAsync(Func&lt;Task&gt;, int, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L155"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步发送有返回值的工作指令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task SendAsync(Func&lt;Task&gt; work, int timeout = 2147483647, bool checkLock = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>work</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>工作内容</p>
+</dd>
+    <dt><code>timeout</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>超时时间，默认为int.MaxValue</p>
+</dd>
+    <dt><code>checkLock</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否检查锁</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>一个任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync__1_System_Func_System_Threading_Tasks_Task___0___System_Int32_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32)">
+  SendAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt;, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步发送有返回值的工作指令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;T&gt; SendAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; work, int timeOut = 2147483647)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>work</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;&gt;</dt>
+    <dd><p>工作内容</p>
+</dd>
+    <dt><code>timeOut</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>超时时间，默认为int.MaxValue</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
+    <dd><p>一个任务，返回工作结果</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync__1_System_Func___0__System_Int32_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync``1(System.Func{``0},System.Int32)">
+  SendAsync&lt;T&gt;(Func&lt;T&gt;, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L143"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步发送有返回值的工作指令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;T&gt; SendAsync&lt;T&gt;(Func&lt;T&gt; work, int timeout = 2147483647)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>work</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;T&gt;</dt>
+    <dd><p>工作内容</p>
+</dd>
+    <dt><code>timeout</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>超时时间，默认为int.MaxValue</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
+    <dd><p>一个任务，返回工作结果</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SetAutoRecycle_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SetAutoRecycle*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SetAutoRecycle_System_Boolean_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SetAutoRecycle(System.Boolean)">
+  SetAutoRecycle(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L175"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置组件是否自动回收</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void SetAutoRecycle(bool autoRecycle)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>autoRecycle</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否自动回收</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SetOwner_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SetOwner*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SetOwner_GameFrameX_Core_Abstractions_IComponent_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SetOwner(GameFrameX.Core.Abstractions.IComponent)">
+  SetOwner(IComponent)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置组件的所有者</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetOwner(IComponent owner)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>owner</code> <a class="xref" href="GameFrameX.Core.Abstractions.IComponent.html">IComponent</a></dt>
+    <dd><p>所有者实例</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Tell_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Tell*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Tell_System_Action_System_Int32_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Tell(System.Action,System.Int32)">
+  Tell(Action, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L111"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>发送无返回值的工作指令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Tell(Action work, int timeout = 2147483647)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>work</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd><p>工作内容</p>
+</dd>
+    <dt><code>timeout</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>超时时间，默认为int.MaxValue</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Tell_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Tell*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Tell_System_Func_System_Threading_Tasks_Task__System_Int32_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Tell(System.Func{System.Threading.Tasks.Task},System.Int32)">
+  Tell(Func&lt;Task&gt;, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L121"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>发送有返回值的工作指令</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Tell(Func&lt;Task&gt; work, int timeout = 2147483647)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>work</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>工作内容</p>
+</dd>
+    <dt><code>timeout</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>超时时间，默认为int.MaxValue</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Unscheduled_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Unscheduled*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Unscheduled_System_Int64_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Unscheduled(System.Int64)">
+  Unscheduled(long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L194"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>取消订阅定时任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Unscheduled(long id)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>定时任务ID</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Weekly_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Weekly*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Weekly__1_System_DayOfWeek_System_Int32_System_Int32_GameFrameX_Utility_Param_System_Int64_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Weekly``1(System.DayOfWeek,System.Int32,System.Int32,GameFrameX.Utility.Param,System.Int64)">
+  Weekly&lt;T&gt;(DayOfWeek, int, int, Param, long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L293"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>基于每周某天的定时任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long Weekly&lt;T&gt;(DayOfWeek dayOfWeek, int hour = 0, int minute = 0, Param param = null, long unScheduleId = 0) where T : ITimerHandler</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dayOfWeek</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.dayofweek">DayOfWeek</a></dt>
+    <dd><p>具体是哪天</p>
+</dd>
+    <dt><code>hour</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>小时</p>
+</dd>
+    <dt><code>minute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>分钟</p>
+</dd>
+    <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
+    <dd><p>参数</p>
+</dd>
+    <dt><code>unScheduleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>取消订阅的ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>定时任务ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>定时任务处理器类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_WithCronExpression_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.WithCronExpression*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_WithCronExpression__1_System_String_GameFrameX_Utility_Param_System_Int64_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.WithCronExpression``1(System.String,GameFrameX.Utility.Param,System.Int64)">
+  WithCronExpression&lt;T&gt;(string, Param, long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L343"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>基于Cron表达式的定时任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long WithCronExpression&lt;T&gt;(string cronExpression, Param param = null, long unScheduleId = 0) where T : ITimerHandler</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cronExpression</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>cron表达式</p>
+</dd>
+    <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
+    <dd><p>参数</p>
+</dd>
+    <dt><code>unScheduleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>取消订阅ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>定时任务ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>定时任务处理器类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_WithDayOfWeeks_" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.WithDayOfWeeks*"></a>
+
+  <h3 id="GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_WithDayOfWeeks__1_System_Int32_System_Int32_GameFrameX_Utility_Param_System_DayOfWeek___" data-uid="GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.WithDayOfWeeks``1(System.Int32,System.Int32,GameFrameX.Utility.Param,System.DayOfWeek[])">
+  WithDayOfWeeks&lt;T&gt;(int, int, Param, params DayOfWeek[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L310"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>基于每周某天的定时任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long WithDayOfWeeks&lt;T&gt;(int hour, int minute, Param param, params DayOfWeek[] dayOfWeeks) where T : ITimerHandler</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>hour</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>小时</p>
+</dd>
+    <dt><code>minute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>分钟</p>
+</dd>
+    <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
+    <dd><p>参数</p>
+</dd>
+    <dt><code>dayOfWeeks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.dayofweek">DayOfWeek</a>[]</dt>
+    <dd><p>某天的参数列表</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>定时任务ID</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>定时任务处理器类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Core/Hotfix/Agent/BaseComponentAgent.cs/#L14" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

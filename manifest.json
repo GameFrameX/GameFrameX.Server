@@ -262,6 +262,246 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Actors.Actor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Actors.Actor.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Actors.ActorManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Actors.ActorManager.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Actors.Impl.ActionAsyncWrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Actors.Impl.ActionAsyncWrapper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Actors.Impl.ActionWrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Actors.Impl.ActionWrapper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Actors.Impl.ActorLimit.RuleType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Actors.Impl.ActorLimit.RuleType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Actors.Impl.ActorLimit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Actors.Impl.ActorLimit.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Actors.Impl.FuncAsyncWrapper-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Actors.Impl.FuncAsyncWrapper-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Actors.Impl.FuncWrapper-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Actors.Impl.FuncWrapper-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Actors.Impl.WorkWrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Actors.Impl.WorkWrapper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Actors.Impl.WorkerActor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Actors.Impl.WorkerActor.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Actors.Impl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Actors.Impl.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Actors.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Actors.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.BaseComponentHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.BaseMessageHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.GlobalComponentHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.BaseHandler.GlobalComponentHandler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.PlayerComponentHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.BaseHandler.PlayerComponentHandler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.BaseHandler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Components.BaseComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Components.BaseComponent.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Components.ComponentRegister.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Components.ComponentRegister.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Components.StateComponent-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Components.StateComponent-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Components.StateComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Components.StateComponent.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Components.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Components.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.Core.Config.BaseDataTable-1.yml",
       "output": {
         ".html": {
@@ -346,6 +586,226 @@
       "output": {
         ".html": {
           "relative_path": "api/GameFrameX.Core.Config.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Events.EventDispatcher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Events.EventDispatcher.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Events.EventListener-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Events.EventListener-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Events.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Events.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Hotfix.Agent.FuncComponentAgent-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Hotfix.Agent.FuncComponentAgent-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Hotfix.Agent.StateComponentAgent-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Hotfix.Agent.StateComponentAgent-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Hotfix.Agent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Hotfix.Agent.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Hotfix.HotfixManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Hotfix.HotfixManager.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Hotfix.IHotfixBridge.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Hotfix.IHotfixBridge.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Hotfix.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Hotfix.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Timer.GlobalTimer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Timer.GlobalTimer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Timer.Handler.ITimerHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Timer.Handler.ITimerHandler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Timer.Handler.NotHotfixTimerHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Timer.Handler.NotHotfixTimerHandler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Timer.Handler.TimerHandler-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Timer.Handler.TimerHandler-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Timer.Handler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Timer.Handler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Timer.QuartzTimer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Timer.QuartzTimer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Timer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Timer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Utility.ActorIdGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Utility.ActorIdGenerator.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Utility.AgentCallback-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Utility.AgentCallback-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Utility.IAgentCallback.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Utility.IAgentCallback.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Utility.StatisticsTool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Utility.StatisticsTool.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Utility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Utility.html"
         }
       },
       "version": ""
@@ -452,386 +912,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.DataBase.NoSql.INoSqlHelper.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.DataBase.NoSql.INoSqlHelper.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.DataBase.NoSql.KeyValue.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.DataBase.NoSql.KeyValue.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.DataBase.NoSql.NoSqlHelper.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.DataBase.NoSql.NoSqlHelper.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.DataBase.NoSql.Redis.RedisHelper.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.DataBase.NoSql.Redis.RedisHelper.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.DataBase.NoSql.Redis.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.DataBase.NoSql.Redis.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.DataBase.NoSql.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.DataBase.NoSql.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.DataBase.RDS.CacheState.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.DataBase.RDS.CacheState.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.DataBase.RDS.MySql.SqlSugarDbService.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.DataBase.RDS.MySql.SqlSugarDbService.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.DataBase.RDS.MySql.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.DataBase.RDS.MySql.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.DataBase.RDS.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.DataBase.RDS.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.AlreadyArgumentException.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.AlreadyArgumentException.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.BidirectionalDictionary-2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.BidirectionalDictionary-2.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.ByteExtension.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.ByteExtension.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.CollectionExtensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.CollectionExtensions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.ConcurrentLimitedQueue-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.ConcurrentLimitedQueue-1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.ConstSize.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.ConstSize.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.DateTimeExtensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.DateTimeExtensions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.DisposableConcurrentDictionary-2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.DisposableConcurrentDictionary-2.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.DisposableDictionary-2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.DisposableDictionary-2.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.ExpressionExtension.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.ExpressionExtension.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.ExpressionVisitorCustom.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.ExpressionVisitorCustom.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.IDictionaryExtensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.IDictionaryExtensions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.IEnumerableExtensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.IEnumerableExtensions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.LookupX-2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.LookupX-2.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.NullObject-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.NullObject-1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.NullableConcurrentDictionary-2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.NullableConcurrentDictionary-2.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.NullableDictionary-2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.NullableDictionary-2.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.ObjectExtension.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.ObjectExtension.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.ReadOnlyMemoryExtension.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.ReadOnlyMemoryExtension.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.ReadOnlySpanExtension.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.ReadOnlySpanExtension.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.SequenceReaderExtension.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.SequenceReaderExtension.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.SpanExtension.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.SpanExtension.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.StringBuilderCache.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.StringBuilderCache.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.StringExtension.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.StringExtension.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.ThreadLocalRandom.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.ThreadLocalRandom.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.TimerExtension.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.TimerExtension.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.TypeExtensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.TypeExtensions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Extension.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Extension.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.GameAnalytics.ErrorLevel.yml",
       "output": {
         ".html": {
@@ -896,46 +976,6 @@
       "output": {
         ".html": {
           "relative_path": "api/GameFrameX.Launcher.StartUp.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Log.LogHelper.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Log.LogHelper.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Log.LogOptions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Log.LogOptions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Log.LoggerHandler.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Log.LoggerHandler.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Log.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Log.html"
         }
       },
       "version": ""
@@ -1192,20 +1232,20 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.NetWork.ChannelBase.ConnectChannelHelper.yml",
+      "source_relative_path": "api/GameFrameX.NetWork.BaseNetWorkChannel.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.NetWork.ChannelBase.ConnectChannelHelper.html"
+          "relative_path": "api/GameFrameX.NetWork.BaseNetWorkChannel.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.NetWork.ChannelBase.yml",
+      "source_relative_path": "api/GameFrameX.NetWork.DefaultNetWorkChannel.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.NetWork.ChannelBase.html"
+          "relative_path": "api/GameFrameX.NetWork.DefaultNetWorkChannel.html"
         }
       },
       "version": ""
@@ -1322,6 +1362,26 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.IMessageHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.IMessageHandler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.InnerNetworkMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.InnerNetworkMessage.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.NetWork.Message.BaseMessageDecoderHandler.yml",
       "output": {
         ".html": {
@@ -1422,130 +1482,100 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.ServerManager.GameServiceInfo.yml",
+      "source_relative_path": "api/GameFrameX.NetWork.Messages.CommandInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.ServerManager.GameServiceInfo.html"
+          "relative_path": "api/GameFrameX.NetWork.Messages.CommandInfo.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.ServerManager.IServiceInfo.yml",
+      "source_relative_path": "api/GameFrameX.NetWork.Messages.InnerMessageObjectHeader.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.ServerManager.IServiceInfo.html"
+          "relative_path": "api/GameFrameX.NetWork.Messages.InnerMessageObjectHeader.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.ServerManager.NamingServiceManager.yml",
+      "source_relative_path": "api/GameFrameX.NetWork.Messages.MessageObject.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.ServerManager.NamingServiceManager.html"
+          "relative_path": "api/GameFrameX.NetWork.Messages.MessageObject.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.ServerManager.ServiceInfo.yml",
+      "source_relative_path": "api/GameFrameX.NetWork.Messages.MessageObjectHeader.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.ServerManager.ServiceInfo.html"
+          "relative_path": "api/GameFrameX.NetWork.Messages.MessageObjectHeader.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.ServerManager.ServiceStatus.yml",
+      "source_relative_path": "api/GameFrameX.NetWork.Messages.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.ServerManager.ServiceStatus.html"
+          "relative_path": "api/GameFrameX.NetWork.Messages.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.ServerManager.ServiceStatusInfo.yml",
+      "source_relative_path": "api/GameFrameX.NetWork.OuterNetworkMessage.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.ServerManager.ServiceStatusInfo.html"
+          "relative_path": "api/GameFrameX.NetWork.OuterNetworkMessage.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.ServerManager.yml",
+      "source_relative_path": "api/GameFrameX.NetWork.RpcData.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.ServerManager.html"
+          "relative_path": "api/GameFrameX.NetWork.RpcData.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Setting.AppSetting.yml",
+      "source_relative_path": "api/GameFrameX.NetWork.RpcResult.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.Setting.AppSetting.html"
+          "relative_path": "api/GameFrameX.NetWork.RpcResult.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Setting.GlobalConst.yml",
+      "source_relative_path": "api/GameFrameX.NetWork.RpcSession.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.Setting.GlobalConst.html"
+          "relative_path": "api/GameFrameX.NetWork.RpcSession.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Setting.GlobalSettings.yml",
+      "source_relative_path": "api/GameFrameX.NetWork.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.Setting.GlobalSettings.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Setting.IdModule.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Setting.IdModule.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Setting.ServerType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Setting.ServerType.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Setting.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Setting.html"
+          "relative_path": "api/GameFrameX.NetWork.html"
         }
       },
       "version": ""
@@ -1722,6 +1752,286 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.AlreadyArgumentException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.AlreadyArgumentException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.BidirectionalDictionary-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.BidirectionalDictionary-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.ByteExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.ByteExtension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.CollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.CollectionExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.ConcurrentLimitedQueue-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.ConcurrentLimitedQueue-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.ConstSize.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.ConstSize.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.DateTimeExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.DateTimeExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.DisposableConcurrentDictionary-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.DisposableConcurrentDictionary-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.DisposableDictionary-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.DisposableDictionary-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.ExpressionExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.ExpressionExtension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.ExpressionVisitorCustom.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.ExpressionVisitorCustom.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.IDictionaryExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.IDictionaryExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.IEnumerableExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.IEnumerableExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.LookupX-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.LookupX-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.NullObject-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.NullObject-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.NullableConcurrentDictionary-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.NullableConcurrentDictionary-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.NullableDictionary-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.NullableDictionary-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.ObjectExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.ObjectExtension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.ReadOnlyMemoryExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.ReadOnlyMemoryExtension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.ReadOnlySpanExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.ReadOnlySpanExtension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.SequenceReaderExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.SequenceReaderExtension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.SpanExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.SpanExtension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.StringBuilderCache.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.StringBuilderCache.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.StringExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.StringExtension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.ThreadLocalRandom.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.ThreadLocalRandom.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.TimerExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.TimerExtension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.TypeExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.TypeExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Extensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.Utility.FiveParam-5.yml",
       "output": {
         ".html": {
@@ -1826,6 +2136,46 @@
       "output": {
         ".html": {
           "relative_path": "api/GameFrameX.Utility.LNumber.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Log.LogHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Log.LogHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Log.LogOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Log.LogOptions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Log.LoggerHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Log.LoggerHandler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Log.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Log.html"
         }
       },
       "version": ""
@@ -1982,6 +2332,66 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Setting.AppSetting.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Setting.AppSetting.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Setting.GlobalConst.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Setting.GlobalConst.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Setting.GlobalSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Setting.GlobalSettings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Setting.IdModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Setting.IdModule.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Setting.ServerType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Setting.ServerType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.Setting.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.Setting.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.Utility.Singleton-1.yml",
       "output": {
         ".html": {
@@ -2064,11 +2474,11 @@
       "type": "Toc",
       "source_relative_path": "api/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "api/toc.json"
-        },
         ".html": {
           "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
         }
       },
       "version": ""
@@ -2107,11 +2517,11 @@
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "toc.json"
-        },
         ".html": {
           "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
         }
       },
       "version": ""

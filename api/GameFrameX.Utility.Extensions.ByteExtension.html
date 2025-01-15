@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ByteExtension | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ByteExtension | GameFrameX.Server ">
+      
+      <meta name="description" content="提供字节和字节数组的扩展方法，用于各种格式的转换和读写操作。">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.2.0-beta17/apiSpec/new?filename=GameFrameX_Utility_Extensions_ByteExtension.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Extensions.ByteExtension%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.Utility.Extensions.ByteExtension">
+
+
+
+  <h1 id="GameFrameX_Utility_Extensions_ByteExtension" data-uid="GameFrameX.Utility.Extensions.ByteExtension" class="text-break">
+Class ByteExtension  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Utility.html">Utility</a>.<a class="xref" href="GameFrameX.Utility.Extensions.html">Extensions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.Utility.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>提供字节和字节数组的扩展方法，用于各种格式的转换和读写操作。</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ByteExtension</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ByteExtension</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ReadBool_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadBool*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ReadBool_System_Byte___System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadBool(System.Byte[],System.Int32@)">
+  ReadBool(byte[], ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L724"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从字节数组中以指定偏移量读取布尔值。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool ReadBool(this byte[] buffer, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要从中读取数据的字节数组。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>读取数据的起始偏移量，此偏移量在读取后会自动增加。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>读取的布尔值。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>当偏移量超过数组长度时，将抛出异常。</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ReadByte_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadByte*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ReadByte_System_Byte___System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadByte(System.Byte[],System.Int32@)">
+  ReadByte(byte[], ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L597"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从指定偏移量读取 byte 类型数据。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte ReadByte(this byte[] buffer, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要操作的字节缓冲区。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>操作的起始偏移量，操作完成后，会自动累加字节的字节数。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd><p>返回从缓冲区读取的 byte 类型数据。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ReadBytes_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadBytes*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ReadBytes_System_Byte___System_Int32_System_Int32_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadBytes(System.Byte[],System.Int32,System.Int32)">
+  ReadBytes(byte[], int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L619"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从指定偏移量开始读取指定长度的字节数组。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] ReadBytes(this byte[] buffer, int offset, int len)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要操作的字节缓冲区。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>操作的起始偏移量。</p>
+</dd>
+    <dt><code>len</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>需要读取的字节数组长度。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>返回从缓冲区读取的 byte[] 类型数据。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ReadBytes_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadBytes*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ReadBytes_System_Byte___System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadBytes(System.Byte[],System.Int32@)">
+  ReadBytes(byte[], ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L657"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从指定偏移量开始读取指定长度的字节数组，长度作为 int 类型数据在字节数组的开头。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] ReadBytes(this byte[] buffer, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要操作的字节缓冲区。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>操作的起始偏移量，操作完成后，会自动累加读取的字节长度以及 int 类型长度。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>返回从缓冲区读取的 byte[] 类型数据。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ReadBytes_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadBytes*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ReadBytes_System_Byte___System_Int32__System_Int32_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadBytes(System.Byte[],System.Int32@,System.Int32)">
+  ReadBytes(byte[], ref int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L638"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从指定偏移量开始读取指定长度的字节数组。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] ReadBytes(this byte[] buffer, ref int offset, int len)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要操作的字节缓冲区。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>操作的起始偏移量。</p>
+</dd>
+    <dt><code>len</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>需要读取的字节数组长度。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>返回从缓冲区读取的 byte[] 类型数据。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ReadDouble_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadDouble*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ReadDouble_System_Byte___System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadDouble(System.Byte[],System.Int32@)">
+  ReadDouble(byte[], ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L575"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从指定偏移量读取 double 类型数据。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static double ReadDouble(this byte[] buffer, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要操作的字节缓冲区。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>操作的起始偏移量，操作完成后，会自动累加双精度浮点数的字节数。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>返回从缓冲区读取的 double 类型数据。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ReadFloat_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadFloat*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ReadFloat_System_Byte___System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadFloat(System.Byte[],System.Int32@)">
+  ReadFloat(byte[], ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L553"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从给定的字节缓冲区中读取浮点数，并更新偏移量。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float ReadFloat(this byte[] buffer, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>包含了要读取数据的字节缓冲区。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>读取数据的起始位置，该方法会更新该值。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>从字节缓冲区中读取的浮点数。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>当尝试读取的位置超出了缓冲区的边界时，会抛出此异常。</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ReadInt_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadInt*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ReadInt_System_Byte___System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadInt(System.Byte[],System.Int32@)">
+  ReadInt(byte[], ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L319"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从字节数组中读取32位有符号整数，并将偏移量向前移动。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int ReadInt(this byte[] buffer, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要读取的字节数组。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>引用偏移量。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>返回读取的32位有符号整数。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ReadLong_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadLong*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ReadLong_System_Byte___System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadLong(System.Byte[],System.Int32@)">
+  ReadLong(byte[], ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L355"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从字节数组中读取64位有符号整数，并将偏移量向前移动。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long ReadLong(this byte[] buffer, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要读取的字节数组。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>引用偏移量。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>返回读取的64位有符号整数。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ReadSByte_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadSByte*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ReadSByte_System_Byte___System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadSByte(System.Byte[],System.Int32@)">
+  ReadSByte(byte[], ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L679"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从字节数组中以指定偏移量读取有符号字节。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static sbyte ReadSByte(this byte[] buffer, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要从中读取数据的字节数组。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>读取数据的起始偏移量，此偏移量在读取后会自动增加。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.sbyte">sbyte</a></dt>
+    <dd><p>读取的有符号字节。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>当偏移量超过数组长度时，将抛出异常。</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ReadShort_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadShort*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ReadShort_System_Byte___System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadShort(System.Byte[],System.Int32@)">
+  ReadShort(byte[], ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L283"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从字节数组读取16位有符号整数，并将偏移量前移。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static short ReadShort(this byte[] buffer, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要读取的字节数组。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>引用偏移量。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
+    <dd><p>返回读取的16位有符号整数。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ReadString_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadString*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ReadString_System_Byte___System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadString(System.Byte[],System.Int32@)">
+  ReadString(byte[], ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L700"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从字节数组中以指定偏移量读取字符串。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ReadString(this byte[] buffer, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要从中读取数据的字节数组。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>读取数据的起始偏移量，此偏移量在读取后会自动增加。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>读取的字符串，若读取长度小于等于0或偏移量超出数组长度，返回空字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ReadUInt_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadUInt*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ReadUInt_System_Byte___System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadUInt(System.Byte[],System.Int32@)">
+  ReadUInt(byte[], ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L301"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从字节数组中读取32位无符号整数，并将偏移量向前移动。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static uint ReadUInt(this byte[] buffer, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要读取的字节数组。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>引用偏移量。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>返回读取的32位无符号整数。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ReadULong_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadULong*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ReadULong_System_Byte___System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadULong(System.Byte[],System.Int32@)">
+  ReadULong(byte[], ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L337"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从字节数组中读取64位无符号整数，并将偏移量向前移动。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ulong ReadULong(this byte[] buffer, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要读取的字节数组。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>引用偏移量。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>返回读取的64位无符号整数。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ReadUShort_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadUShort*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ReadUShort_System_Byte___System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ReadUShort(System.Byte[],System.Int32@)">
+  ReadUShort(byte[], ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L265"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从字节数组中读取16位无符号整数，并将偏移量向前移动。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ushort ReadUShort(this byte[] buffer, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要读取的字节数组。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>引用偏移量。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd><p>返回读取的16位无符号整数。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ToArrayString_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToArrayString*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ToArrayString_System_Byte___" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToArrayString(System.Byte[])">
+  ToArrayString(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将字节数组转换为字符串，每个字节之间用空格分隔。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToArrayString(this byte[] bytes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要转换的字节数组。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字符串表示形式。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ToDefaultString_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToDefaultString*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ToDefaultString_System_Byte___" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToDefaultString(System.Byte[])">
+  ToDefaultString(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将字节数组转换为默认编码的字符串。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToDefaultString(this byte[] bytes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要转换的字节数组。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ToDefaultString_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToDefaultString*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ToDefaultString_System_Byte___System_Int32_System_Int32_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToDefaultString(System.Byte[],System.Int32,System.Int32)">
+  ToDefaultString(byte[], int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将字节数组的指定范围转换为默认编码的字符串。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToDefaultString(this byte[] bytes, int index, int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要转换的字节数组。</p>
+</dd>
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>起始偏移量。</p>
+</dd>
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要转换的字节数。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ToHex_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToHex*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ToHex_System_Byte_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToHex(System.Byte)">
+  ToHex(byte)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将字节转换为16进制字符串。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToHex(this byte b)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>b</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd><p>要转换的字节。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>16进制字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ToHex_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToHex*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ToHex_System_Byte___" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToHex(System.Byte[])">
+  ToHex(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将字节数组转换为16进制字符串。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToHex(this byte[] bytes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要转换的字节数组。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>16进制字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ToHex_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToHex*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ToHex_System_Byte___System_Int32_System_Int32_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToHex(System.Byte[],System.Int32,System.Int32)">
+  ToHex(byte[], int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将字节数组的指定范围转换为16进制字符串。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToHex(this byte[] bytes, int offset, int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要转换的字节数组。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>起始偏移量。</p>
+</dd>
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要转换的字节数。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>16进制字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ToHex_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToHex*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ToHex_System_Byte___System_String_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToHex(System.Byte[],System.String)">
+  ToHex(byte[], string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将字节数组转换为指定格式的字符串。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToHex(this byte[] bytes, string format)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要转换的字节数组。</p>
+</dd>
+    <dt><code>format</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>格式化字符串。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>格式化后的字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ToUtf8String_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToUtf8String*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ToUtf8String_System_Byte___" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToUtf8String(System.Byte[])">
+  ToUtf8String(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将字节数组转换为UTF8编码的字符串。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToUtf8String(this byte[] bytes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要转换的字节数组。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>UTF8编码的字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_ToUtf8String_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToUtf8String*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_ToUtf8String_System_Byte___System_Int32_System_Int32_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.ToUtf8String(System.Byte[],System.Int32,System.Int32)">
+  ToUtf8String(byte[], int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将字节数组的指定范围转换为UTF8编码的字符串。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToUtf8String(this byte[] bytes, int index, int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要转换的字节数组。</p>
+</dd>
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>起始偏移量。</p>
+</dd>
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要转换的字节数。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>UTF8编码的字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_WriteBool_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteBool*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_WriteBool_System_Byte___System_Boolean_System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteBool(System.Byte[],System.Boolean,System.Int32@)">
+  WriteBool(byte[], bool, ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L527"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将一个布尔值写入指定的缓冲区，并更新偏移量。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteBool(this byte[] buffer, bool value, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的缓冲区。</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>要写入的值。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入值的缓冲区中的偏移量。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_WriteByte_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteByte*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_WriteByte_System_Byte___System_Byte_System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteByte(System.Byte[],System.Byte,System.Int32@)">
+  WriteByte(byte[], byte, ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L175"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将一个8位整数写入指定的缓冲区，并更新偏移量。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteByte(this byte[] buffer, byte value, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的缓冲区。</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd><p>要写入的值。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入值的缓冲区中的偏移量。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_WriteBytes_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteBytes*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_WriteBytes_System_Byte___System_Byte___System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteBytes(System.Byte[],System.Byte[],System.Int32@)">
+  WriteBytes(byte[], byte[], ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L420"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将一个字节数组写入指定的缓冲区，并更新偏移量。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteBytes(this byte[] buffer, byte[] value, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的缓冲区。</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的值。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入值的缓冲区中的偏移量。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_WriteBytesWithoutLength_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteBytesWithoutLength*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_WriteBytesWithoutLength_System_Byte___System_Byte___System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteBytesWithoutLength(System.Byte[],System.Byte[],System.Int32@)">
+  WriteBytesWithoutLength(byte[], byte[], ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L445"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将一个字节数组写入指定的缓冲区，并更新偏移量。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteBytesWithoutLength(this byte[] buffer, byte[] value, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的缓冲区。</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的值。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入值的缓冲区中的偏移量。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_WriteDouble_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteDouble*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_WriteDouble_System_Byte___System_Double_System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteDouble(System.Byte[],System.Double,System.Int32@)">
+  WriteDouble(byte[], double, ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L397"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将一个双精度浮点数写入指定的缓冲区，并更新偏移量。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteDouble(this byte[] buffer, double value, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的缓冲区。</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>要写入的值。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入值的缓冲区中的偏移量。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_WriteFloat_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteFloat*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_WriteFloat_System_Byte___System_Single_System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteFloat(System.Byte[],System.Single,System.Int32@)">
+  WriteFloat(byte[], float, ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L375"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将一个单精度浮点数写入指定的缓冲区，并更新偏移量。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteFloat(this byte[] buffer, float value, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的缓冲区。</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>要写入的值。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入值的缓冲区中的偏移量。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_WriteInt_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteInt*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_WriteInt_System_Byte___System_Int32_System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteInt(System.Byte[],System.Int32,System.Int32@)">
+  WriteInt(byte[], int, ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L157"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将一个32位整数写入指定的缓冲区，并更新偏移量。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteInt(this byte[] buffer, int value, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的缓冲区。</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入的值。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入值的缓冲区中的偏移量。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_WriteLong_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteLong*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_WriteLong_System_Byte___System_Int64_System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteLong(System.Byte[],System.Int64,System.Int32@)">
+  WriteLong(byte[], long, ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L229"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将一个64位整数写入指定的缓冲区，并更新偏移量。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteLong(this byte[] buffer, long value, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的缓冲区。</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>要写入的值。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入值的缓冲区中的偏移量。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_WriteSByte_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteSByte*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_WriteSByte_System_Byte___System_SByte_System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteSByte(System.Byte[],System.SByte,System.Int32@)">
+  WriteSByte(byte[], sbyte, ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L471"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将一个字节写入指定的缓冲区，并更新偏移量。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteSByte(this byte[] buffer, sbyte value, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的缓冲区。</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.sbyte">sbyte</a></dt>
+    <dd><p>要写入的值。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入值的缓冲区中的偏移量。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_WriteShort_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteShort*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_WriteShort_System_Byte___System_Int16_System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteShort(System.Byte[],System.Int16,System.Int32@)">
+  WriteShort(byte[], short, ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L193"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将一个16位整数写入指定的缓冲区，并更新偏移量。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteShort(this byte[] buffer, short value, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的缓冲区。</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
+    <dd><p>要写入的值。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入值的缓冲区中的偏移量。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_WriteString_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteString*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_WriteString_System_Byte___System_String_System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteString(System.Byte[],System.String,System.Int32@)">
+  WriteString(byte[], string, ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L492"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将一个字符串写入指定的缓冲区，并更新偏移量。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteString(this byte[] buffer, string value, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的缓冲区。</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要写入的值。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入值的缓冲区中的偏移量。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_WriteUInt_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteUInt*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_WriteUInt_System_Byte___System_UInt32_System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteUInt(System.Byte[],System.UInt32,System.Int32@)">
+  WriteUInt(byte[], uint, ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L139"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将一个32位无符号整数写入指定的缓冲区，并更新偏移量。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteUInt(this byte[] buffer, uint value, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的缓冲区。</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>要写入的值。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入值的缓冲区中的偏移量。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_WriteULong_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteULong*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_WriteULong_System_Byte___System_UInt64_System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteULong(System.Byte[],System.UInt64,System.Int32@)">
+  WriteULong(byte[], ulong, ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L247"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将一个64位无符号整数写入指定的缓冲区，并更新偏移量。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteULong(this byte[] buffer, ulong value, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的缓冲区。</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>要写入的值。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入值的缓冲区中的偏移量。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ByteExtension_WriteUShort_" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteUShort*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ByteExtension_WriteUShort_System_Byte___System_UInt16_System_Int32__" data-uid="GameFrameX.Utility.Extensions.ByteExtension.WriteUShort(System.Byte[],System.UInt16,System.Int32@)">
+  WriteUShort(byte[], ushort, ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L211"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将一个16位无符号整数写入指定的缓冲区，并更新偏移量。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteUShort(this byte[] buffer, ushort value, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的缓冲区。</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd><p>要写入的值。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入值的缓冲区中的偏移量。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta17/GameFrameX.Utility/Extensions/ByteExtension.cs/#L10" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
