@@ -4,6 +4,7 @@ using GameFrameX.Hotfix.Common;
 using GameFrameX.Monitor.Account;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Messages;
+using GameFrameX.Utility.Extensions;
 
 namespace GameFrameX.Hotfix.Logic.Http;
 

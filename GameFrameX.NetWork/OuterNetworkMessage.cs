@@ -1,7 +1,7 @@
 ﻿using System.Collections.Concurrent;
-using GameFrameX.Extension;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.ProtoBuf.Net;
+using GameFrameX.Utility.Extensions;
 using Newtonsoft.Json;
 
 namespace GameFrameX.NetWork;

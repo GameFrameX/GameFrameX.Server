@@ -1,6 +1,6 @@
 ﻿using GameFrameX.NetWork.Messages;
-using GameFrameX.Setting;
 using GameFrameX.Utility;
+using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.NetWork.HTTP;
 

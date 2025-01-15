@@ -1,4 +1,4 @@
-﻿using GameFrameX.Setting;
+﻿using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Core.Abstractions.Attribute;
 

@@ -1,6 +1,6 @@
 ﻿using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
-using GameFrameX.Setting;
+using GameFrameX.Utility.Setting;
 using ProtoBuf;
 
 namespace GameFrameX.Proto.BuiltIn;

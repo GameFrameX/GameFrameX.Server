@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GameFrameX.CodeGenerator.Utils;
 using GameFrameX.Core.Abstractions.Attribute;
-using GameFrameX.Setting;
+using GameFrameX.Utility.Setting;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;

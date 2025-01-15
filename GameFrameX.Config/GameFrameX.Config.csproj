@@ -9,7 +9,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\GameFrameX.Core.Config\GameFrameX.Core.Config.csproj"/>
-        <ProjectReference Include="..\GameFrameX.Log\GameFrameX.Log.csproj"/>
+        <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
     </ItemGroup>
 
     <ItemGroup>

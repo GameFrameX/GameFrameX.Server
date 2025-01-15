@@ -1,6 +1,6 @@
 ﻿using GameFrameX.NetWork.Abstractions;
-using GameFrameX.Setting;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
+using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.NetWork;
 

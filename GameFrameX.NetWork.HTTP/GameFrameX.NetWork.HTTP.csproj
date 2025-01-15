@@ -41,12 +41,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GameFrameX.Extension\GameFrameX.Extension.csproj" />
-      <ProjectReference Include="..\GameFrameX.Log\GameFrameX.Log.csproj" />
       <ProjectReference Include="..\GameFrameX.NetWork.Abstractions\GameFrameX.NetWork.Abstractions.csproj" />
       <ProjectReference Include="..\GameFrameX.NetWork\GameFrameX.NetWork.csproj" />
       <ProjectReference Include="..\GameFrameX.ProtoBuf.Net\GameFrameX.ProtoBuf.Net.csproj" />
-      <ProjectReference Include="..\GameFrameX.Setting\GameFrameX.Setting.csproj" />
       <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
     </ItemGroup>
     <ItemGroup>

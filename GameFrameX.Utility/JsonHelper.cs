@@ -1,4 +1,4 @@
-﻿using GameFrameX.Extension;
+﻿using GameFrameX.Utility.Extensions;
 using Newtonsoft.Json;
 
 namespace GameFrameX.Utility;

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Reflection;
-using GameFrameX.Extension;
-using GameFrameX.Log;
+using GameFrameX.Utility.Extensions;
+using GameFrameX.Utility.Log;
 
 namespace GameFrameX.NetWork.Abstractions;
 

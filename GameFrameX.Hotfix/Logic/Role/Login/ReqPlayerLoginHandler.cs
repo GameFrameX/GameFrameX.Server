@@ -1,5 +1,6 @@
 ﻿using GameFrameX.Core.BaseHandler;
 using GameFrameX.NetWork.Abstractions;
+using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Hotfix.Logic.Role.Login;
 

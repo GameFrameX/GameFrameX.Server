@@ -6,8 +6,8 @@ using GameFrameX.Core.Utility;
 using GameFrameX.DataBase;
 using GameFrameX.DataBase.Abstractions;
 using GameFrameX.DataBase.Mongo;
-using GameFrameX.Extension;
-using GameFrameX.Log;
+using GameFrameX.Utility.Extensions;
+using GameFrameX.Utility.Log;
 using MongoDB.Bson;
 using MongoDB.Driver;
 

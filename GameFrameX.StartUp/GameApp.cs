@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Reflection;
 using CommandLine;
-using GameFrameX.Extension;
-using GameFrameX.Log;
 using GameFrameX.Monitor;
-using GameFrameX.Setting;
 using GameFrameX.StartUp.Abstractions;
 using GameFrameX.StartUp.Options;
 using GameFrameX.Utility;
+using GameFrameX.Utility.Extensions;
+using GameFrameX.Utility.Log;
+using GameFrameX.Utility.Setting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 

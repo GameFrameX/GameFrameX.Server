@@ -1,4 +1,4 @@
-﻿using GameFrameX.Log;
+﻿using GameFrameX.Utility.Log;
 
 namespace GameFrameX.Core.Actors.Impl;
 

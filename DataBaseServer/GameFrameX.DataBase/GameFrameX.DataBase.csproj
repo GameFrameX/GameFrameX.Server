@@ -42,7 +42,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\GameFrameX.Setting\GameFrameX.Setting.csproj"/>
         <ProjectReference Include="..\..\GameFrameX.Utility\GameFrameX.Utility.csproj"/>
         <ProjectReference Include="..\GameFrameX.DataBase.Abstractions\GameFrameX.DataBase.Abstractions.csproj" />
     </ItemGroup>

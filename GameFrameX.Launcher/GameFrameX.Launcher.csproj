@@ -40,9 +40,7 @@
         <ProjectReference Include="..\GameFrameX.Core\GameFrameX.Core.csproj" />
         <ProjectReference Include="..\DataBaseServer\GameFrameX.DataBase\GameFrameX.DataBase.csproj" />
         <ProjectReference Include="..\GameFrameX.GameAnalytics\GameFrameX.GameAnalytics.csproj" />
-        <ProjectReference Include="..\GameFrameX.Log\GameFrameX.Log.csproj" />
         <ProjectReference Include="..\GameFrameX.Monitor\GameFrameX.Monitor.csproj" />
-        <ProjectReference Include="..\GameFrameX.NetWork.ChannelBase\GameFrameX.NetWork.ChannelBase.csproj" />
         <ProjectReference Include="..\GameFrameX.NetWork.Message\GameFrameX.NetWork.Message.csproj" />
         <ProjectReference Include="..\GameFrameX.Proto.BuiltIn\GameFrameX.Proto.BuiltIn.csproj" />
         <ProjectReference Include="..\GameFrameX.Proto\GameFrameX.Proto.csproj" />

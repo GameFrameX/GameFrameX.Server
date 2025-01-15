@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
-using GameFrameX.Log;
+using GameFrameX.Utility.Log;
 
 namespace GameFrameX.Utility;
 

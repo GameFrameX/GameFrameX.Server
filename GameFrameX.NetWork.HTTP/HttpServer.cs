@@ -1,6 +1,6 @@
-using GameFrameX.Extension;
-using GameFrameX.Log;
 using GameFrameX.Utility;
+using GameFrameX.Utility.Extensions;
+using GameFrameX.Utility.Log;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;

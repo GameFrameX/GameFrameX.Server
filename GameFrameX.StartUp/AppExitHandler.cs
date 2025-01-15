@@ -2,10 +2,10 @@
 using System.Runtime.InteropServices;
 using System.Runtime.Loader;
 using System.Text;
-using GameFrameX.Log;
-using GameFrameX.Setting;
 using GameFrameX.StartUp.Abstractions;
 using GameFrameX.Utility;
+using GameFrameX.Utility.Log;
+using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.StartUp;
 

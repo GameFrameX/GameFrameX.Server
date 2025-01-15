@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks.Dataflow;
 using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Utility;
-using GameFrameX.Setting;
+using GameFrameX.Utility.Setting;
 using Serilog;
 
 namespace GameFrameX.Core.Actors.Impl;

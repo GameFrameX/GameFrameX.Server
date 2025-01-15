@@ -1,7 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Utility;
-using GameFrameX.Log;
+using GameFrameX.Utility.Log;
 
 namespace GameFrameX.Core.Actors.Impl;
 

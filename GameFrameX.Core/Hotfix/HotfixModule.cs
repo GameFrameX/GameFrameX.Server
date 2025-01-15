@@ -4,11 +4,11 @@ using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Core.BaseHandler;
 using GameFrameX.Core.Components;
-using GameFrameX.Extension;
-using GameFrameX.Log;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
-using GameFrameX.Setting;
+using GameFrameX.Utility.Extensions;
+using GameFrameX.Utility.Log;
+using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Core.Hotfix;
 

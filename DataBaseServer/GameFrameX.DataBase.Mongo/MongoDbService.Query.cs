@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 using GameFrameX.DataBase.Abstractions;
-using GameFrameX.Extension;
+using GameFrameX.Utility.Extensions;
 using MongoDB.Driver;
 
 namespace GameFrameX.DataBase.Mongo;

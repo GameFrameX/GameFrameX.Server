@@ -13,7 +13,6 @@ global using GameFrameX.Core.Timer;
 global using GameFrameX.Proto.Proto;
 global using GameFrameX.DataBase;
 global using GameFrameX.DataBase.Abstractions;
-global using GameFrameX.Extension;
 global using GameFrameX.Utility;
 global using System.Collections;
 global using System.Collections.Concurrent;

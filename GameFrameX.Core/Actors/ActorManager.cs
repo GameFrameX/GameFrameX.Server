@@ -6,8 +6,8 @@ using GameFrameX.Core.Components;
 using GameFrameX.Core.Hotfix;
 using GameFrameX.Core.Timer;
 using GameFrameX.Core.Utility;
-using GameFrameX.Log;
-using GameFrameX.Setting;
+using GameFrameX.Utility.Log;
+using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Core.Actors;
 

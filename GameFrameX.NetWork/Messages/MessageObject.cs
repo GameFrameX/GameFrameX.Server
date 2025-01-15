@@ -1,6 +1,6 @@
-﻿using GameFrameX.Extension;
-using GameFrameX.NetWork.Abstractions;
+﻿using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Utility;
+using GameFrameX.Utility.Extensions;
 using Newtonsoft.Json;
 using ProtoBuf;
 

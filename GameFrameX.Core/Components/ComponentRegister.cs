@@ -5,9 +5,9 @@ using GameFrameX.Core.Abstractions.Attribute;
 using GameFrameX.Core.Actors;
 using GameFrameX.Core.Hotfix;
 using GameFrameX.Core.Utility;
-using GameFrameX.Extension;
-using GameFrameX.Log;
-using GameFrameX.Setting;
+using GameFrameX.Utility.Extensions;
+using GameFrameX.Utility.Log;
+using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Core.Components;
 

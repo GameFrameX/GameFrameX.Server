@@ -1,5 +1,5 @@
 using System.Reflection;
-using GameFrameX.Extension;
+using GameFrameX.Utility.Extensions;
 
 namespace GameFrameX.Utility;
 

@@ -1,8 +1,8 @@
 ﻿using System.Linq.Expressions;
 using GameFrameX.DataBase.Abstractions;
-using GameFrameX.Extension;
-using GameFrameX.Log;
 using GameFrameX.Utility;
+using GameFrameX.Utility.Extensions;
+using GameFrameX.Utility.Log;
 using SqlSugar;
 
 namespace GameFrameX.DataBase.RDS.MySql;

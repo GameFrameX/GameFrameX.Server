@@ -53,8 +53,4 @@
       <PackageReference Include="GameAnalytics.Net.Core.SDK" Version="3.3.5" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\GameFrameX.Extension\GameFrameX.Extension.csproj" />
-    </ItemGroup>
-
 </Project>

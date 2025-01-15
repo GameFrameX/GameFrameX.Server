@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Text;
-using GameFrameX.Extension;
-using GameFrameX.Log;
+using GameFrameX.Utility.Extensions;
+using GameFrameX.Utility.Log;
 
 namespace GameFrameX.Utility;
 

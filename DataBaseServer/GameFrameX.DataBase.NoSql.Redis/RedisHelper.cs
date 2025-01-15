@@ -1,5 +1,5 @@
 ﻿using FreeRedis;
-using GameFrameX.Extension;
+using GameFrameX.Utility.Extensions;
 
 namespace GameFrameX.DataBase.NoSql.Redis;
 

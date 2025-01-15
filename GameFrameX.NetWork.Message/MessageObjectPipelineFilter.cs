@@ -1,7 +1,7 @@
 ﻿using System.Buffers;
-using GameFrameX.Extension;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.SuperSocket.ProtoBase;
+using GameFrameX.Utility.Extensions;
 
 namespace GameFrameX.NetWork.Message;
 

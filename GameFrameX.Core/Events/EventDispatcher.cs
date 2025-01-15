@@ -1,9 +1,9 @@
 ﻿using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Core.Actors;
 using GameFrameX.Core.Hotfix;
-using GameFrameX.Extension;
-using GameFrameX.Log;
 using GameFrameX.Utility;
+using GameFrameX.Utility.Extensions;
+using GameFrameX.Utility.Log;
 
 namespace GameFrameX.Core.Events;
 

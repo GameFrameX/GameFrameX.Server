@@ -8,6 +8,8 @@ using GameFrameX.NetWork.Messages;
 using GameFrameX.SuperSocket.Connection;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
 using GameFrameX.SuperSocket.WebSocket.Server;
+using GameFrameX.Utility.Log;
+using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Hotfix.StartUp;
 
@@ -16,8 +18,6 @@ namespace GameFrameX.Hotfix.StartUp;
 /// </summary>
 internal partial class AppStartUpHotfixGame
 {
-    protected override ServerType GetServerType { get; } = ServerType.Gateway;
-
     public override async Task StartAsync()
     {
         // 启动网络服务

@@ -3,7 +3,7 @@ using GameFrameX.Apps.Player.Player.Entity;
 using GameFrameX.Core.Abstractions.Attribute;
 using GameFrameX.Core.Components;
 using GameFrameX.Monitor.Player;
-using GameFrameX.Setting;
+using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Apps.Player.Player.Component;
 

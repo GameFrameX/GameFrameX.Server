@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Text;
-using GameFrameX.Extension;
-using GameFrameX.Log;
-using GameFrameX.Setting;
 using GameFrameX.StartUp.Abstractions;
+using GameFrameX.Utility.Extensions;
+using GameFrameX.Utility.Log;
+using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.StartUp;
 

@@ -1,5 +1,4 @@
 ﻿using GameAnalyticsSDK.Net;
-using GameFrameX.Extension;
 
 namespace GameFrameX.GameAnalytics;
 
@@ -19,9 +18,9 @@ public static class GameAnalyticsHelper
     /// <param name="version">程序集版本</param>
     public static void Init(string gameKey, string gameSecret, string version)
     {
-        gameKey.CheckNotNullOrEmptyOrWhiteSpace(nameof(gameKey));
-        gameSecret.CheckNotNullOrEmptyOrWhiteSpace(nameof(gameSecret));
-        version.CheckNotNullOrEmptyOrWhiteSpace(nameof(version));
+        ArgumentNullException.ThrowIfNull(gameKey);
+        ArgumentNullException.ThrowIfNull(gameSecret);
+        ArgumentNullException.ThrowIfNull(version);
 
         GameAnalyticsSDK.Net.GameAnalytics.ConfigureBuild("game_frame_x server " + version);
         GameAnalyticsSDK.Net.GameAnalytics.Initialize(gameKey, gameSecret);
@@ -39,7 +38,8 @@ public static class GameAnalyticsHelper
             return;
         }
 
-        customFields.CheckNotNull(nameof(customFields));
+        ArgumentNullException.ThrowIfNull(customFields);
+
         GameAnalyticsSDK.Net.GameAnalytics.SetGlobalCustomEventFields(customFields);
     }
 
@@ -55,7 +55,7 @@ public static class GameAnalyticsHelper
             return;
         }
 
-        eventId.CheckNotNullOrEmptyOrWhiteSpace(nameof(eventId));
+        ArgumentNullException.ThrowIfNull(eventId);
         GameAnalyticsSDK.Net.GameAnalytics.AddDesignEvent(eventId, customFields);
     }
 

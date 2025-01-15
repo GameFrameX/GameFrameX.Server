@@ -1,11 +1,11 @@
 using System.Net;
-using GameFrameX.Extension;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Proto.Proto;
 using GameFrameX.ProtoBuf.Net;
 using GameFrameX.SuperSocket.ClientEngine;
 using GameFrameX.Utility;
+using GameFrameX.Utility.Extensions;
 using ErrorEventArgs = GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs;
 
 namespace GameFrameX.Client;

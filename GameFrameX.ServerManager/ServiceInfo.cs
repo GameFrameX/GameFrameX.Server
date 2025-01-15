@@ -1,5 +1,5 @@
-using GameFrameX.Setting;
 using GameFrameX.Utility;
+using GameFrameX.Utility.Setting;
 using Newtonsoft.Json;
 
 namespace GameFrameX.ServerManager;

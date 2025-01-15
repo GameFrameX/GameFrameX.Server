@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using GameFrameX.Core.Actors.Impl;
-using GameFrameX.Extension;
+using GameFrameX.Utility.Extensions;
 
 namespace GameFrameX.Core.Utility;
 

@@ -1,9 +1,9 @@
 using System.Buffers;
-using GameFrameX.Extension;
-using GameFrameX.Log;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.ProtoBuf.Net;
+using GameFrameX.Utility.Extensions;
+using GameFrameX.Utility.Log;
 
 namespace GameFrameX.NetWork.Message;
 
