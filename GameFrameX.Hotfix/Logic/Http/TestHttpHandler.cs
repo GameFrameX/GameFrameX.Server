@@ -1,3 +1,4 @@
+using GameFrameX.Foundation.Http.Normalization;
 using GameFrameX.NetWork.HTTP;
 
 namespace GameFrameX.Hotfix.Logic.Http;
@@ -25,7 +26,7 @@ public sealed class TestHttpHandler : BaseHttpHandler
         };
         response.TestInfo.Age = 18;
         response.TestInfo.Name = "leeveel";
-        return Task.FromResult(HttpResult.Create(JsonHelper.Serialize(response)));
+        return Task.FromResult(HttpJsonResult.SuccessString(response));
     }
 
     public class HttpTestRes
