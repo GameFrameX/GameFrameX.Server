@@ -1,5 +1,6 @@
 ﻿using System.Buffers;
 using System.Diagnostics;
+using GameFrameX.Foundation.Http.Normalization;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.ProtoBuf.Net;
@@ -84,14 +85,14 @@ public static class HttpHandler
                         if (!paramMap.TryAdd(keyValuePair.Key, keyValuePair.Value))
                         {
                             // 参数Key发生重复
-                            await context.Response.WriteAsync(HttpResult.CreateErrorParam("参数重复了:" + keyValuePair.Key));
+                            await context.Response.WriteAsync(HttpJsonResult.ErrorString(HttpStatusCode.ParamErr, "参数重复了:" + keyValuePair.Key));
                             return;
                         }
                     }
                 }
                 else
                 {
-                    await context.Response.WriteAsync(HttpResult.CreateErrorParam("不支持的Content Type: " + headContentType));
+                    await context.Response.WriteAsync(HttpJsonResult.ErrorString(HttpStatusCode.ParamErr, "不支持的Content Type: " + headContentType));
                     return;
                 }
             }
@@ -106,13 +107,13 @@ public static class HttpHandler
             // 检查指令是否有效
             if (command.IsNullOrEmptyOrWhiteSpace())
             {
-                await context.Response.WriteAsync(HttpResult.Undefined);
+                await context.Response.WriteAsync(HttpJsonResult.ErrorString(HttpStatusCode.Undefined, HttpStatusMessage.UndefinedCommand));
                 return;
             }
 
             if (!GlobalSettings.IsAppRunning)
             {
-                await context.Response.WriteAsync(HttpResult.CreateActionFailed("服务器状态错误[正在起/关服]"));
+                await context.Response.WriteAsync(HttpJsonResult.ErrorString(HttpStatusCode.ActionFailed, "服务器状态错误[正在起/关服]"));
                 return;
             }
 
@@ -137,7 +138,7 @@ public static class HttpHandler
             if (handler == null)
             {
                 LogHelper.Warn($"http cmd handler 不存在：{command}");
-                await context.Response.WriteAsync(HttpResult.NotFound);
+                await context.Response.WriteAsync(HttpJsonResult.NotFoundString());
                 return;
             }
 
@@ -179,7 +180,7 @@ public static class HttpHandler
         catch (Exception e)
         {
             LogHelper.Error($"{logHeader}, 发生异常. {{0}} {{1}}", e.Message, e.StackTrace);
-            await context.Response.WriteAsync(HttpResult.Create(HttpStatusCode.ServerError, e.Message));
+            await context.Response.WriteAsync(HttpJsonResult.ServerErrorString());
         }
     }
 }

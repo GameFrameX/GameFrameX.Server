@@ -1,4 +1,5 @@
-﻿using GameFrameX.NetWork.Messages;
+﻿using GameFrameX.Foundation.Http.Normalization;
+using GameFrameX.NetWork.Messages;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Setting;
 
@@ -106,7 +107,7 @@ public abstract class BaseHttpHandler : IHttpHandler
         // 内部验证
         if (!paramMap.ContainsKey(GlobalConst.HttpSignKey) || !paramMap.ContainsKey(GlobalConst.HttpTimestampKey))
         {
-            error = HttpResult.ParamError;
+            error = HttpJsonResult.ValidationErrorString();
             return false;
         }
 
@@ -117,7 +118,7 @@ public abstract class BaseHttpHandler : IHttpHandler
         // 5分钟内有效
         if (span.TotalMinutes > 5)
         {
-            error = HttpResult.Create(HttpStatusCode.Illegal, "http命令已过期");
+            error = HttpJsonResult.IllegalString();
             return false;
         }
 
@@ -127,7 +128,7 @@ public abstract class BaseHttpHandler : IHttpHandler
             return true;
         }
 
-        error = HttpResult.CheckFailed;
+        error = HttpJsonResult.ValidationErrorString();
         return false;
     }
 }
