@@ -1,14 +1,12 @@
 ﻿using GameFrameX.DataBase.Abstractions;
 using GameFrameX.DataBase.Storage;
 using GameFrameX.Utility;
-using SqlSugar;
 
 namespace GameFrameX.DataBase;
 
 /// <summary>
 /// 缓存数据对象
 /// </summary>
-[SugarTable]
 public abstract class BaseCacheState : ICacheState
 {
     /// <summary>
@@ -19,7 +17,6 @@ public abstract class BaseCacheState : ICacheState
     /// <summary>
     /// 唯一ID
     /// </summary>
-    [SugarColumn(IsPrimaryKey = true, IsIdentity = true, ColumnDescription = "唯一ID")]
     public virtual long Id { get; set; }
 
     /// <summary>
@@ -33,37 +30,31 @@ public abstract class BaseCacheState : ICacheState
     /// <summary>
     /// 是否删除
     /// </summary>
-    [SugarColumn(ColumnDescription = "是否删除标记")]
     public virtual bool IsDeleted { get; set; }
 
     /// <summary>
     /// 删除时间
     /// </summary>
-    [SugarColumn(ColumnDescription = "删除时间")]
     public virtual long DeleteTime { get; set; }
 
     /// <summary>
     /// 创建人
     /// </summary>
-    [SugarColumn(ColumnDescription = "创建人")]
     public virtual long CreateId { get; set; }
 
     /// <summary>
     /// 创建时间
     /// </summary>
-    [SugarColumn(ColumnDescription = "创建时间", InsertServerTime = true)]
     public virtual long CreateTime { get; set; }
 
     /// <summary>
     /// 更新次数
     /// </summary>
-    [SugarColumn(ColumnDescription = "修改次数", IsEnableUpdateVersionValidation = true)]
     public virtual int UpdateCount { get; set; }
 
     /// <summary>
     /// 更新时间
     /// </summary>
-    [SugarColumn(ColumnDescription = "修改时间", UpdateServerTime = true)]
     public virtual long UpdateTime { get; set; }
 
     /// <summary>
