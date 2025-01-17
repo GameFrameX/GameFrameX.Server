@@ -1,4 +1,5 @@
-﻿using GameFrameX.Utility.Extensions;
+﻿using GameFrameX.Foundation.Hash;
+using GameFrameX.Utility.Extensions;
 
 namespace GameFrameX.Apps;
 
@@ -20,7 +21,7 @@ public static class CacheStateTypeManager
             var isImplWithInterface = type.IsImplWithInterface(typeof(ICacheState));
             if (isImplWithInterface)
             {
-                HashMap.TryAdd(Hash.XXHash.Hash32(type.ToString()), type);
+                HashMap.TryAdd(XxHashHelper.Hash32(type.ToString()), type);
                 BsonClassMapHelper.RegisterClass(type);
             }
         }

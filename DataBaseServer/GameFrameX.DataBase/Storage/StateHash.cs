@@ -1,3 +1,4 @@
+using GameFrameX.Foundation.Hash;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Log;
 using Standart.Hash.xxHash;
@@ -38,7 +39,7 @@ internal sealed class StateHash
     {
         var (toSaveHash, data) = GetHashAndData(State);
         ToSaveHash = toSaveHash;
-        return (Hash.XXHash.IsDefault(CacheHash) || !toSaveHash.Equals(CacheHash), data);
+        return (XxHashHelper.IsDefault(CacheHash) || !toSaveHash.Equals(CacheHash), data);
     }
 
     /// <summary>
@@ -57,7 +58,7 @@ internal sealed class StateHash
     private static (uint128 md5, byte[] data) GetHashAndData(BaseCacheState state)
     {
         var data = state.ToBytes();
-        var uint128 = Hash.XXHash.Hash128(data);
+        var uint128 = XxHashHelper.Hash128(data);
         return (uint128, data);
     }
 }

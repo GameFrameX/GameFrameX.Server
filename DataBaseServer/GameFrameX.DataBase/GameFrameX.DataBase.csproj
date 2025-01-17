@@ -38,6 +38,7 @@
         <OutputPath>..\..\bin\app</OutputPath>
     </PropertyGroup>
     <ItemGroup>
+        <PackageReference Include="GameFrameX.Foundation.Hash" Version="1.0.3" />
         <PackageReference Include="SqlSugarCore" Version="5.1.4.169" />
     </ItemGroup>
 

@@ -1,4 +1,5 @@
-﻿using GameFrameX.Foundation.Http.Normalization;
+﻿using GameFrameX.Foundation.Hash;
+using GameFrameX.Foundation.Http.Normalization;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Setting;
@@ -68,7 +69,7 @@ public abstract class BaseHttpHandler : IHttpHandler
     public string GetStringSign(string str)
     {
         // 计算MD5哈希值
-        var md5 = Hash.Md5.Hash(str);
+        var md5 = Md5Helper.Hash(str);
 
         var checkCode1 = CheckCodeStart; // 头校验码
         var checkCode2 = CheckCodeEnd; // 尾校验码

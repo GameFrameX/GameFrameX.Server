@@ -32,4 +32,8 @@
       <Folder Include="Player\" />
       <Folder Include="Server\" />
     </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="GameFrameX.Foundation.Hash" Version="1.0.3" />
+    </ItemGroup>
 </Project>
