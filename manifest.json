@@ -1282,16 +1282,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.NetWork.HTTP.HttpResult.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.NetWork.HTTP.HttpResult.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.NetWork.HTTP.HttpServer.yml",
       "output": {
         ".html": {
