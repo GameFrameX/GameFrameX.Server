@@ -1,19 +1,17 @@
-
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Proto.Proto;
 using GameFrameX.Utility.Log;
-
 using ErrorEventArgs = GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs;
 
 namespace GameFrameX.Bot;
 
-public class BotClient 
+public class BotClient
 {
     private readonly BotTcpClient m_TcpClient;
     private readonly BotHttpClient m_HttpClient;
     private readonly string m_BotName;
     private readonly BotTcpClientEvent m_BotTcpClientEvent;
-    private const string m_LoginUrl = "http://127.0.0.1:29001/game/api/";
+    private const string m_LoginUrl = "http://127.0.0.1:29120/game/api/";
 
     public BotClient(string botName)
     {
@@ -30,7 +28,6 @@ public class BotClient
     {
         try
         {
-   
             await m_TcpClient.EntryAsync();
         }
         catch (Exception e)
@@ -72,7 +69,6 @@ public class BotClient
     #endregion
 
     #region 消息发送
-    
 
     private async void SendLoginMessage()
     {
@@ -95,7 +91,7 @@ public class BotClient
                 return;
             }
 
-            LogHelper.Info($"机器人-{m_BotName}账号验证成功,id:{ respLogin.Id}");
+            LogHelper.Info($"机器人-{m_BotName}账号验证成功,id:{respLogin.Id}");
 
             //请求角色列表
             var reqPlayerList = new ReqPlayerList();
@@ -120,7 +116,7 @@ public class BotClient
 
                 string reqCreatePlayerUrl = $"{m_LoginUrl}{nameof(ReqPlayerCreate)}";
                 var respPlayerCreator = await m_HttpClient.Post<RespPlayerCreate>(reqCreatePlayerUrl,
-                    reqCreatePlayer);
+                                                                                  reqCreatePlayer);
                 if (respPlayerCreator.ErrorCode != 0)
                 {
                     LogHelper.Error("请求创建角色，错误信息:" + respPlayerCreator.ErrorCode);
@@ -146,9 +142,9 @@ public class BotClient
             LogHelper.Error($"SendLoginMessage Error: {e.Message}| Thread ID:{Thread.CurrentThread.ManagedThreadId} ");
         }
     }
-    
+
     #endregion
-    
+
 
     #region 消息接收
 
@@ -156,6 +152,6 @@ public class BotClient
     {
         LogHelper.Info($"机器人-{m_BotName}登录成功,id:{msg.PlayerInfo.Id}");
     }
-    
+
     #endregion
 }
