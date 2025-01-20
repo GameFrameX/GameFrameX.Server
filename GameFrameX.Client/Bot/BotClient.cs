@@ -11,7 +11,7 @@ public class BotClient
     private readonly BotHttpClient m_HttpClient;
     private readonly string m_BotName;
     private readonly BotTcpClientEvent m_BotTcpClientEvent;
-    private const string m_LoginUrl = "http://127.0.0.1:29120/game/api/";
+    private const string m_LoginUrl = "http://127.0.0.1:29200/game/api/";
 
     public BotClient(string botName)
     {
@@ -79,8 +79,7 @@ public class BotClient
             {
                 UserName = m_BotName,
                 Password = "12312",
-                // Platform = LoginPlatform.Custom,
-                // PlatformLoginMethod = LoginVerificationMethod.Password
+                Platform ="LoginPlatform.Custom",
             };
 
             string respLoginUrl = $"{m_LoginUrl}{nameof(ReqLogin)}";
