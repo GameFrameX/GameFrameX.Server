@@ -44,8 +44,22 @@ public sealed class ReqLoginHttpHandler : BaseHttpHandler
 
     public async Task<LoginState> OnLogin(ReqLogin reqLogin)
     {
+        
         MetricsAccountRegister.LoginCounterOptions.Inc();
-        return await GameDb.FindAsync<LoginState>(m => m.UserName == reqLogin.UserName && m.Password == reqLogin.Password);
+        if (reqLogin.Platform == "LoginPlatform.Custom")
+        {
+            return await GameDb.FindAsync<LoginState>(m => m.PlatformList != null && m.PlatformList.Count > 0 &&
+                                                           m.PlatformList.Any(p =>
+                                                               p.Platform == reqLogin.Platform &&
+                                                               p.PlatformAccount == reqLogin.UserName &&
+                                                               p.PlatformPassword == reqLogin.Password));
+        }
+        
+        return null!;
+        
+        
+        // MetricsAccountRegister.LoginCounterOptions.Inc();
+        // return await GameDb.FindAsync<LoginState>(m => m.UserName == reqLogin.UserName && m.Password == reqLogin.Password);
     }
 
     public async Task<LoginState> Register(long accountId, ReqLogin reqLogin)

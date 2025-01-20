@@ -7,7 +7,7 @@ using GameFrameX.Utility.Log;
 
 internal static class Program
 {
-    private const int m_BotCount = 100;
+    private const int m_BotCount = 1;
 
     static async Task Main(string[] args)
     {
