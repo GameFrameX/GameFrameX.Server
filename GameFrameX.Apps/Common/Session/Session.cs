@@ -1,5 +1,6 @@
 ﻿using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
+using Newtonsoft.Json;
 
 namespace GameFrameX.Apps.Common.Session;
 
@@ -35,6 +36,7 @@ public sealed class Session
     /// <summary>
     /// 连接上下文
     /// </summary>
+    [JsonIgnore]
     public INetWorkChannel WorkChannel { get; }
 
     /// <summary>
