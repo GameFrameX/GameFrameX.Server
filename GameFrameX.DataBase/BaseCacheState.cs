@@ -140,6 +140,6 @@ public abstract class BaseCacheState : ICacheState, IEntity
 
     public bool HasDefaultID()
     {
-        throw new NotImplementedException();
+        return Id == 0;
     }
 }
