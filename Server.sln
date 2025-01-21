@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameFrameX.Hotfix", "GameFr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Config", "GameFrameX.Config\GameFrameX.Config.csproj", "{08B73D90-AB00-4B9D-AE3C-AB19E6D594F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DataBase", "DataBaseServer\GameFrameX.DataBase\GameFrameX.DataBase.csproj", "{CA28CC8F-B0CB-4343-8097-959625C98E9D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Utility", "GameFrameX.Utility\GameFrameX.Utility.csproj", "{4ACAEF41-C6E5-49FB-A5DB-8F5FF924E5EA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Proto", "GameFrameX.Proto\GameFrameX.Proto.csproj", "{12AA7D1B-E3EB-4DC4-BEAA-0C7BC5047B0C}"
@@ -44,13 +42,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B2F95E64
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Monitor", "GameFrameX.Monitor\GameFrameX.Monitor.csproj", "{54542BB2-5C6C-4A4F-9235-C37BFF6048A7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBaseServer", "DataBaseServer", "{71D7AB99-1CB2-435D-9D70-05FE9FE05E84}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.NetWork.Abstractions", "GameFrameX.NetWork.Abstractions\GameFrameX.NetWork.Abstractions.csproj", "{2B602D60-BD35-4B29-941A-2155F2B198B4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.NetWork.Message", "GameFrameX.NetWork.Message\GameFrameX.NetWork.Message.csproj", "{377E0DA0-61E6-4D85-B3FE-C1DFD0FF703B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DataBase.Mongo", "DataBaseServer\GameFrameX.DataBase.Mongo\GameFrameX.DataBase.Mongo.csproj", "{B68E1E74-0CB9-465D-BC71-87B29B8C2C03}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.StartUp", "GameFrameX.StartUp\GameFrameX.StartUp.csproj", "{E854CA8B-8A84-4213-8F0C-3BD6E763C80F}"
 EndProject
@@ -62,7 +56,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.GameAnalytics", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Proto.BuiltIn", "GameFrameX.Proto.BuiltIn\GameFrameX.Proto.BuiltIn.csproj", "{4E950BB2-27B9-4442-BA8C-D75C7ACD15E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DataBase.Abstractions", "DataBaseServer\GameFrameX.DataBase.Abstractions\GameFrameX.DataBase.Abstractions.csproj", "{C2E46615-D251-4D10-9B44-8C4AA1B9EA64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DataBase", "GameFrameX.DataBase\GameFrameX.DataBase.csproj", "{5E98F1F4-EC21-42E1-A324-15C8D274E9A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,10 +80,6 @@ Global
 		{08B73D90-AB00-4B9D-AE3C-AB19E6D594F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08B73D90-AB00-4B9D-AE3C-AB19E6D594F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08B73D90-AB00-4B9D-AE3C-AB19E6D594F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CA28CC8F-B0CB-4343-8097-959625C98E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA28CC8F-B0CB-4343-8097-959625C98E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA28CC8F-B0CB-4343-8097-959625C98E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA28CC8F-B0CB-4343-8097-959625C98E9D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4ACAEF41-C6E5-49FB-A5DB-8F5FF924E5EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4ACAEF41-C6E5-49FB-A5DB-8F5FF924E5EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ACAEF41-C6E5-49FB-A5DB-8F5FF924E5EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -134,10 +124,6 @@ Global
 		{377E0DA0-61E6-4D85-B3FE-C1DFD0FF703B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{377E0DA0-61E6-4D85-B3FE-C1DFD0FF703B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{377E0DA0-61E6-4D85-B3FE-C1DFD0FF703B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B68E1E74-0CB9-465D-BC71-87B29B8C2C03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B68E1E74-0CB9-465D-BC71-87B29B8C2C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B68E1E74-0CB9-465D-BC71-87B29B8C2C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B68E1E74-0CB9-465D-BC71-87B29B8C2C03}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E854CA8B-8A84-4213-8F0C-3BD6E763C80F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E854CA8B-8A84-4213-8F0C-3BD6E763C80F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E854CA8B-8A84-4213-8F0C-3BD6E763C80F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -158,10 +144,10 @@ Global
 		{4E950BB2-27B9-4442-BA8C-D75C7ACD15E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E950BB2-27B9-4442-BA8C-D75C7ACD15E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E950BB2-27B9-4442-BA8C-D75C7ACD15E7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C2E46615-D251-4D10-9B44-8C4AA1B9EA64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2E46615-D251-4D10-9B44-8C4AA1B9EA64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2E46615-D251-4D10-9B44-8C4AA1B9EA64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C2E46615-D251-4D10-9B44-8C4AA1B9EA64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E98F1F4-EC21-42E1-A324-15C8D274E9A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E98F1F4-EC21-42E1-A324-15C8D274E9A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E98F1F4-EC21-42E1-A324-15C8D274E9A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E98F1F4-EC21-42E1-A324-15C8D274E9A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -171,8 +157,5 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{762F0E9F-813B-40BD-B488-A7A6919A534E} = {B2F95E64-146A-4FDE-BB8D-DE49972FA4B0}
-		{CA28CC8F-B0CB-4343-8097-959625C98E9D} = {71D7AB99-1CB2-435D-9D70-05FE9FE05E84}
-		{B68E1E74-0CB9-465D-BC71-87B29B8C2C03} = {71D7AB99-1CB2-435D-9D70-05FE9FE05E84}
-		{C2E46615-D251-4D10-9B44-8C4AA1B9EA64} = {71D7AB99-1CB2-435D-9D70-05FE9FE05E84}
 	EndGlobalSection
 EndGlobal

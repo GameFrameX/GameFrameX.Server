@@ -1,6 +1,7 @@
 ﻿using GameFrameX.DataBase.Abstractions;
 using GameFrameX.Utility;
 using MongoDB.Driver;
+using MongoDB.Entities;
 
 namespace GameFrameX.DataBase.Mongo;
 
@@ -30,14 +31,11 @@ public sealed partial class MongoDbService
     /// <param name="state"></param>
     /// <typeparam name="TState"></typeparam>
     /// <returns>返回修改的条数</returns>
-    public async Task<long> AddAsync<TState>(TState state) where TState : class, ICacheState, new()
+    public async Task AddAsync<TState>(TState state) where TState : BaseCacheState
     {
-        var collection = GetCollection<TState>();
         state.CreateTime = TimeHelper.UnixTimeMilliseconds();
         state.UpdateTime = state.CreateTime;
-        var filter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
-        var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
-        return result.ModifiedCount;
+        await _mongoDbContext.SaveAsync(state);
     }
 
     /// <summary>
@@ -45,9 +43,8 @@ public sealed partial class MongoDbService
     /// </summary>
     /// <param name="states"></param>
     /// <typeparam name="TState"></typeparam>
-    public async Task AddListAsync<TState>(IEnumerable<TState> states) where TState : class, ICacheState, new()
+    public async Task AddListAsync<TState>(IEnumerable<TState> states) where TState : BaseCacheState
     {
-        var collection = GetCollection<TState>();
         var cacheStates = states.ToList();
         foreach (var cacheState in cacheStates)
         {
@@ -55,7 +52,7 @@ public sealed partial class MongoDbService
             cacheState.UpdateTime = cacheState.CreateTime;
         }
 
-        await collection.InsertManyAsync(cacheStates);
+        await _mongoDbContext.SaveAsync(cacheStates);
     }
 
 

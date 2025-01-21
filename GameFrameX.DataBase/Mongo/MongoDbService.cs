@@ -2,6 +2,7 @@
 using GameFrameX.Utility.Log;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Entities;
 
 namespace GameFrameX.DataBase.Mongo;
 
@@ -24,18 +25,21 @@ public sealed partial class MongoDbService : IDatabaseService
     /// </summary>
     public IMongoDatabase CurrentDatabase { get; private set; }
 
+    public MongoDbContext _mongoDbContext { get; private set; }
+
     /// <summary>
     /// 打开MongoDB连接并指定URL和数据库名称。
     /// </summary>
     /// <param name="url">MongoDB连接URL。</param>
     /// <param name="dbName">要使用的数据库名称。</param>
-    public void Open(string url, string dbName)
+    public async void Open(string url, string dbName)
     {
         try
         {
             var settings = MongoClientSettings.FromConnectionString(url);
-            Client = new MongoClient(settings);
-            CurrentDatabase = Client.GetDatabase(dbName);
+            await DB.InitAsync(dbName, settings);
+            _mongoDbContext = new MongoDbContext();
+            CurrentDatabase = DB.Database(dbName);
             LogHelper.Info($"初始化MongoDB服务完成 Url:{url} DbName:{dbName}");
         }
         catch (Exception)

@@ -1,8 +1,5 @@
-﻿using System.Linq.Expressions;
-using GameFrameX.DataBase.Abstractions;
+﻿using GameFrameX.DataBase.Abstractions;
 using GameFrameX.Utility;
-using MongoDB.Bson;
-using MongoDB.Driver;
 
 namespace GameFrameX.DataBase.Mongo;
 
@@ -16,40 +13,19 @@ namespace GameFrameX.DataBase.Mongo;
 public sealed partial class MongoDbService : IDatabaseService
 {
     /// <summary>
-    /// 替换选项，用于替换文档。设置
-    /// <see>
-    ///     <cref>IsUpsert</cref>
-    /// </see>
-    /// 属性为 true 可以在找不到匹配的文档时插入新文档。
-    /// </summary>
-    public static readonly ReplaceOptions ReplaceOptions = new() { IsUpsert = true, };
-
-    /// <summary>
-    /// 更新选项，用于更新文档。设置
-    /// <see>
-    ///     <cref>IsUpsert</cref>
-    /// </see>
-    /// 属性为 true 可以在找不到匹配的文档时插入新文档。
-    /// </summary>
-    public static readonly UpdateOptions UpdateOptions = new() { IsUpsert = true, };
-
-    /// <summary>
     /// 保存数据
     /// </summary>
     /// <param name="state"></param>
     /// <typeparam name="TState"></typeparam>
     /// <returns></returns>
-    public async Task<TState> UpdateAsync<TState>(TState state) where TState : class, ICacheState, new()
+    public async Task<TState> UpdateAsync<TState>(TState state) where TState : BaseCacheState
     {
         var isChanged = state.IsModify();
         if (isChanged)
         {
             state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
             state.UpdateCount++;
-
-            var filter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
-            var collection = GetCollection<TState>();
-            var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
+            var result = await _mongoDbContext.Update<TState>().ModifyWith(state).ExecuteAsync();
             if (result.IsAcknowledged)
             {
                 state.SaveToDbPostHandler();
@@ -64,24 +40,29 @@ public sealed partial class MongoDbService : IDatabaseService
     /// </summary>
     /// <param name="stateList">数据列表对象</param>
     /// <returns>返回更新成功的数量</returns>
-    public async Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList) where TState : class, ICacheState, new()
+    public async Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList) where TState : BaseCacheState
     {
         long resultCount = 0;
-        foreach (var state in stateList)
+        var bulkUpdate = _mongoDbContext.Update<TState>();
+        var cacheStates = stateList as TState[] ?? stateList.ToArray();
+        foreach (var state in cacheStates)
         {
             var isChanged = state.IsModify();
             if (isChanged)
             {
                 state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
                 state.UpdateCount++;
-                var filter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
-                var collection = GetCollection<TState>();
-                var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
-                if (result.IsAcknowledged)
-                {
-                    resultCount++;
-                    state.SaveToDbPostHandler();
-                }
+                bulkUpdate.ModifyWith(state).AddToQueue();
+                resultCount++;
+            }
+        }
+
+        var result = await bulkUpdate.ExecuteAsync();
+        if (result.IsAcknowledged)
+        {
+            foreach (var state in cacheStates)
+            {
+                state.SaveToDbPostHandler();
             }
         }
 
@@ -93,17 +74,14 @@ public sealed partial class MongoDbService : IDatabaseService
     /// <param name="state"></param>
     /// <typeparam name="TState"></typeparam>
     /// <returns></returns>
-    public async Task<long> UpdateCountAsync<TState>(TState state) where TState : class, ICacheState, new()
+    public async Task<long> UpdateCountAsync<TState>(TState state) where TState : BaseCacheState
     {
         var isChanged = state.IsModify();
         if (isChanged)
         {
             state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
             state.UpdateCount++;
-
-            var filter = Builders<TState>.Filter.Eq(BaseCacheState.UniqueId, state.Id);
-            var collection = GetCollection<TState>();
-            var result = await collection.ReplaceOneAsync(filter, state, ReplaceOptions);
+            var result = await _mongoDbContext.Update<TState>().ModifyWith(state).ExecuteAsync();
             if (result.IsAcknowledged)
             {
                 state.SaveToDbPostHandler();
@@ -116,6 +94,7 @@ public sealed partial class MongoDbService : IDatabaseService
 
     #region 更新
 
+    /*
     /// <summary>
     /// 修改一条数据
     /// </summary>
@@ -124,7 +103,7 @@ public sealed partial class MongoDbService : IDatabaseService
     /// <param name="update">更新的数据</param>
     /// <param name="upsert">如果它不存在是否插入文档</param>
     /// <returns></returns>
-    public UpdateResult UpdateOne<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert = true) where TState : class, ICacheState, new()
+    public UpdateResult UpdateOne<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert = true) where TState : BaseCacheState
     {
         return GetCollection<TState>().UpdateOne(filter, update, new UpdateOptions
         {
@@ -156,7 +135,7 @@ public sealed partial class MongoDbService : IDatabaseService
     /// <param name="update">更新的数据</param>
     /// <param name="upsert">如果它不存在是否插入文档</param>
     /// <returns></returns>
-    public async Task<UpdateResult> UpdateOneAsync<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert) where TState : class, ICacheState, new()
+    public async Task<UpdateResult> UpdateOneAsync<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert) where TState : BaseCacheState
     {
         return await GetCollection<TState>().UpdateOneAsync(filter, update, new UpdateOptions
         {
@@ -187,7 +166,7 @@ public sealed partial class MongoDbService : IDatabaseService
     /// <param name="update">修改结果</param>
     /// <param name="upsert">是否插入新文档（filter条件满足就更新，否则插入新文档）</param>
     /// <returns></returns>
-    public long UpdateMany<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert = false) where TState : class, ICacheState, new()
+    public long UpdateMany<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert = false) where TState : BaseCacheState
     {
         var result = GetCollection<TState>().UpdateMany(filter, update, new UpdateOptions
         {
@@ -221,7 +200,7 @@ public sealed partial class MongoDbService : IDatabaseService
     /// <param name="update">修改结果</param>
     /// <param name="upsert">是否插入新文档（filter条件满足就更新，否则插入新文档）</param>
     /// <returns></returns>
-    public async Task<long> UpdateManyAsync<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert = false) where TState : class, ICacheState, new()
+    public async Task<long> UpdateManyAsync<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update, bool upsert = false) where TState : BaseCacheState
     {
         var result = await GetCollection<TState>().UpdateManyAsync(filter, update, new UpdateOptions
         {
@@ -246,7 +225,9 @@ public sealed partial class MongoDbService : IDatabaseService
         });
         return result.ModifiedCount;
     }
+    */
 
+    /*
     /// <summary>
     /// 修改文档
     /// </summary>
@@ -255,7 +236,7 @@ public sealed partial class MongoDbService : IDatabaseService
     /// <param name="filter">条件</param>
     /// <param name="update">更新后的数据</param>
     /// <returns></returns>
-    public TState UpdateOne<TState>(string collName, Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update) where TState : class, ICacheState, new()
+    public TState UpdateOne<TState>(string collName, Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update) where TState : BaseCacheState
     {
         var result = GetCollection<TState>().FindOneAndUpdate(filter, update);
         return result;
@@ -281,7 +262,7 @@ public sealed partial class MongoDbService : IDatabaseService
     /// <param name="filter">条件</param>
     /// <param name="update">更新后的数据</param>
     /// <returns></returns>
-    public async Task<TState> UpdateOneAsync<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update) where TState : class, ICacheState, new()
+    public async Task<TState> UpdateOneAsync<TState>(Expression<Func<TState, bool>> filter, UpdateDefinition<TState> update) where TState : BaseCacheState
     {
         var result = await GetCollection<TState>().FindOneAndUpdateAsync(filter, update);
         return result;
@@ -298,7 +279,7 @@ public sealed partial class MongoDbService : IDatabaseService
     {
         var result = await GetCollection(collName).FindOneAndUpdateAsync(filter, update);
         return result;
-    }
+    }*/
 
     #endregion 更新
 }

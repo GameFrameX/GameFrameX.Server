@@ -53,7 +53,7 @@ public static class GameDb
     /// <typeparam name="TState">文档的类型</typeparam>
     /// <param name="filter">过滤器表达式</param>
     /// <returns>表示异步操作的任务。任务结果包含文档列表</returns>
-    public static Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
+    public static Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
     {
         return _dbServiceImplementation.FindListAsync(filter);
     }
@@ -64,7 +64,7 @@ public static class GameDb
     /// <typeparam name="TState">文档的类型</typeparam>
     /// <param name="filter">过滤器表达式</param>
     /// <returns>表示异步操作的任务。任务结果包含文档数量</returns>
-    public static Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
+    public static Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
     {
         return _dbServiceImplementation.CountAsync(filter);
     }
@@ -76,7 +76,7 @@ public static class GameDb
     /// <param name="filter">过滤表达式。</param>
     /// <param name="sortExpression">排序字段表达式。</param>
     /// <returns>符合条件的第一个元素。</returns>
-    public static Task<TState> FindSortAscendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : class, ICacheState, new()
+    public static Task<TState> FindSortAscendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : BaseCacheState
     {
         return _dbServiceImplementation.FindSortAscendingFirstOneAsync(filter, sortExpression);
     }
@@ -88,7 +88,7 @@ public static class GameDb
     /// <param name="filter">过滤表达式。</param>
     /// <param name="sortExpression">排序字段表达式。</param>
     /// <returns>符合条件的第一个元素。</returns>
-    public static Task<TState> FindSortDescendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : class, ICacheState, new()
+    public static Task<TState> FindSortDescendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : BaseCacheState
     {
         return _dbServiceImplementation.FindSortDescendingFirstOneAsync(filter, sortExpression);
     }
@@ -102,7 +102,7 @@ public static class GameDb
     /// <param name="pageIndex">页码，从0开始。</param>
     /// <param name="pageSize">每页数量，默认为10。</param>
     /// <returns>符合条件的元素列表。</returns>
-    public static Task<List<TState>> FindSortDescendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : class, ICacheState, new()
+    public static Task<List<TState>> FindSortDescendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : BaseCacheState
     {
         return _dbServiceImplementation.FindSortDescendingAsync(filter, sortExpression, pageIndex, pageSize);
     }
@@ -116,7 +116,7 @@ public static class GameDb
     /// <param name="pageIndex">页码，从0开始。</param>
     /// <param name="pageSize">每页数量，默认为10。</param>
     /// <returns>符合条件的元素列表。</returns>
-    public static Task<List<TState>> FindSortAscendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : class, ICacheState, new()
+    public static Task<List<TState>> FindSortAscendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : BaseCacheState
     {
         return _dbServiceImplementation.FindSortAscendingAsync(filter, sortExpression, pageIndex, pageSize);
     }
@@ -128,7 +128,7 @@ public static class GameDb
     /// <param name="id">文档的id</param>
     /// <param name="filter">一个用于获取默认值的函数，如果指定的文档不存在</param>
     /// <returns>表示异步操作的任务。任务结果包含文档</returns>
-    public static Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null) where TState : class, ICacheState, new()
+    public static Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null) where TState : BaseCacheState, new()
     {
         return _dbServiceImplementation.FindAsync(id, filter);
     }
@@ -139,7 +139,7 @@ public static class GameDb
     /// <typeparam name="TState">文档的类型</typeparam>
     /// <param name="filter">过滤器表达式</param>
     /// <returns>表示异步操作的任务。任务结果包含文档</returns>
-    public static Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
+    public static Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
     {
         return _dbServiceImplementation.FindAsync(filter);
     }
@@ -150,7 +150,7 @@ public static class GameDb
     /// <typeparam name="TState">文档的类型</typeparam>
     /// <param name="state">要更新的文档</param>
     /// <returns>表示异步操作的任务。任务结果包含更新后的文档</returns>
-    public static Task<TState> UpdateAsync<TState>(TState state) where TState : class, ICacheState, new()
+    public static Task<TState> UpdateAsync<TState>(TState state) where TState : BaseCacheState
     {
         return _dbServiceImplementation.UpdateAsync(state);
     }
@@ -161,7 +161,7 @@ public static class GameDb
     /// <typeparam name="TState">文档的类型</typeparam>
     /// <param name="state">要保存的文档</param>
     /// <returns>返回增加成功的条数</returns>
-    public static Task<long> SaveOneAsync<TState>(TState state) where TState : class, ICacheState, new()
+    public static Task SaveOneAsync<TState>(TState state) where TState : BaseCacheState
     {
         return _dbServiceImplementation.AddAsync(state);
     }
@@ -172,7 +172,7 @@ public static class GameDb
     /// <param name="state">数据对象</param>
     /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
     /// <returns>修改的条数</returns>
-    public static Task<long> AddOrUpdateAsync<TState>(TState state) where TState : class, ICacheState, new()
+    public static Task<TState> AddOrUpdateAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
         return _dbServiceImplementation.AddOrUpdateAsync(state);
     }
@@ -183,7 +183,7 @@ public static class GameDb
     /// <param name="states">数据对象</param>
     /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
     /// <returns></returns>
-    public static Task AddListAsync<TState>(IEnumerable<TState> states) where TState : class, ICacheState, new()
+    public static Task AddListAsync<TState>(IEnumerable<TState> states) where TState : BaseCacheState
     {
         return _dbServiceImplementation.AddListAsync(states);
     }
@@ -193,7 +193,7 @@ public static class GameDb
     /// </summary>
     /// <param name="stateList">数据列表对象</param>
     /// <returns>返回更新成功的数量</returns>
-    public static Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList) where TState : class, ICacheState, new()
+    public static Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList) where TState : BaseCacheState
     {
         return _dbServiceImplementation.UpdateAsync(stateList);
     }
@@ -204,18 +204,7 @@ public static class GameDb
     /// <param name="filter">查询条件</param>
     /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
     /// <returns>返回是否存在值,true表示存在，false表示不存在</returns>
-    public static bool Any<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
-    {
-        return _dbServiceImplementation.Any(filter);
-    }
-
-    /// <summary>
-    /// 查询符合条件的数据是否存在
-    /// </summary>
-    /// <param name="filter">查询条件</param>
-    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
-    /// <returns>返回是否存在值,true表示存在，false表示不存在</returns>
-    public static Task<bool> AnyAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
+    public static Task<bool> AnyAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
     {
         return _dbServiceImplementation.AnyAsync(filter);
     }
@@ -226,7 +215,7 @@ public static class GameDb
     /// <typeparam name="TState">文档的类型</typeparam>
     /// <param name="filter">过滤器表达式</param>
     /// <returns>表示异步操作的任务。任务结果包含删除的文档数量</returns>
-    public static Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : class, ICacheState, new()
+    public static Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
     {
         return _dbServiceImplementation.DeleteAsync(filter);
     }
@@ -237,7 +226,7 @@ public static class GameDb
     /// <typeparam name="TState">文档的类型</typeparam>
     /// <param name="state">要删除的文档</param>
     /// <returns>表示异步操作的任务。任务结果包含删除的文档数量</returns>
-    public static Task<long> DeleteAsync<TState>(TState state) where TState : class, ICacheState, new()
+    public static Task<long> DeleteAsync<TState>(TState state) where TState : BaseCacheState
     {
         return _dbServiceImplementation.DeleteAsync(state);
     }
