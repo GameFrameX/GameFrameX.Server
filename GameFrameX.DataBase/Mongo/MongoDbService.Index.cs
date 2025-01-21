@@ -102,7 +102,7 @@ public sealed partial class MongoDbService
 
     private sealed class MongoIndexModel
     {
-        public MongoIndexModel(bool unique, string name)
+        internal MongoIndexModel(bool unique, string name)
         {
             Unique = unique;
             Name = name;
@@ -110,7 +110,6 @@ public sealed partial class MongoDbService
 
         public string Name { get; set; }
         public bool Unique { get; set; }
-        public List<BsonDocument> Keys { get; set; }
     }
 
     #region 索引
