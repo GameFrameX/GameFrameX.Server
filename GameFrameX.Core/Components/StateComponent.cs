@@ -88,7 +88,7 @@ public sealed class StateComponent
 /// 数据状态组件
 /// </summary>
 /// <typeparam name="TState"></typeparam>
-public abstract class StateComponent<TState> : BaseComponent, IState where TState : class, ICacheState, new()
+public abstract class StateComponent<TState> : BaseComponent, IState where TState : BaseCacheState, new()
 {
     private static readonly ConcurrentDictionary<long, TState> StateDic = new();
 
