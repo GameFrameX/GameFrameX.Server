@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.2.0-beta19/apiSpec/new?filename=GameFrameX_Utility_Extensions_StringExtension.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Extensions.StringExtension%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.2.0-beta20/apiSpec/new?filename=GameFrameX_Utility_Extensions_StringExtension.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Extensions.StringExtension%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_Utility_Extensions_StringExtension" data-uid="GameFrameX.Utility.Extensions.StringExtension" class="text-break">
-Class StringExtension  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L9"><i class="bi bi-code-slash"></i></a>
+Class StringExtension  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -157,10 +157,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_CenterAlignedText_System_String_System_Int32_" data-uid="GameFrameX.Utility.Extensions.StringExtension.CenterAlignedText(System.String,System.Int32)">
   CenterAlignedText(string, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L46"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取居中的字符串，固定长度打印。</p>
+  <div class="markdown level1 summary"><p>获取在指定宽度内居中对齐的文本。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -171,7 +171,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>要居中的文本。</p>
+    <dd><p>要居中对齐的文本。</p>
 </dd>
     <dt><code>width</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>总宽度。</p>
@@ -181,7 +181,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>居中后的字符串。</p>
+    <dd><p>居中对齐后的文本，两侧填充空格。</p>
 </dd>
   </dl>
 
@@ -191,6 +191,9 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_Extensions_StringExtension_CenterAlignedText_System_String_System_Int32__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>如果指定宽度小于文本长度，将使用文本长度作为宽度。</p>
+</div>
 
 
 
@@ -199,10 +202,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_CheckNotNullOrEmpty_System_String_System_String_" data-uid="GameFrameX.Utility.Extensions.StringExtension.CheckNotNullOrEmpty(System.String,System.String)">
   CheckNotNullOrEmpty(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L183"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L187"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>确保指定的值不为 null 或空白字符串。</p>
+  <div class="markdown level1 summary"><p>验证字符串不为 null 或空字符串，否则抛出异常。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -213,10 +216,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>要检查的值。</p>
+    <dd><p>要验证的字符串。</p>
 </dd>
     <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>值的名称。</p>
+    <dd><p>参数名称，用于异常消息。</p>
 </dd>
   </dl>
 
@@ -231,7 +234,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
-    <dd><p>当值为 null 或空白字符串时引发。</p>
+    <dd><p>当字符串为 null 或空字符串时抛出。</p>
 </dd>
   </dl>
 
@@ -241,10 +244,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_CheckNotNullOrEmptyOrWhiteSpace_System_String_System_String_" data-uid="GameFrameX.Utility.Extensions.StringExtension.CheckNotNullOrEmptyOrWhiteSpace(System.String,System.String)">
   CheckNotNullOrEmptyOrWhiteSpace(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L197"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L201"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>确保指定的值不为 null 或空或空白字符串。</p>
+  <div class="markdown level1 summary"><p>验证字符串不为 null、空字符串或仅包含空白字符，否则抛出异常。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -255,10 +258,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>要检查的值。</p>
+    <dd><p>要验证的字符串。</p>
 </dd>
     <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>值的名称。</p>
+    <dd><p>参数名称，用于异常消息。</p>
 </dd>
   </dl>
 
@@ -273,7 +276,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
-    <dd><p>当值为 null 或空或空白字符串时引发。</p>
+    <dd><p>当字符串为 null、空字符串或仅包含空白字符时抛出。</p>
 </dd>
   </dl>
 
@@ -283,10 +286,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_ConvertToSnakeCase_System_String_" data-uid="GameFrameX.Utility.Extensions.StringExtension.ConvertToSnakeCase(System.String)">
   ConvertToSnakeCase(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L285"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L289"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>转换字符串为下划线分割的小写形式，用于命名。</p>
+  <div class="markdown level1 summary"><p>将驼峰命名的字符串转换为下划线分隔的小写形式（蛇形命名）。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -304,7 +307,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>转换后的字符串。</p>
+    <dd><p>转换后的蛇形命名字符串。如果输入为null或空，则返回原字符串。</p>
 </dd>
   </dl>
 
@@ -322,10 +325,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_CreateAsDirectory_System_String_System_Boolean_" data-uid="GameFrameX.Utility.Extensions.StringExtension.CreateAsDirectory(System.String,System.Boolean)">
   CreateAsDirectory(string, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L266"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L270"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>根据字符串创建目录，递归创建。</p>
+  <div class="markdown level1 summary"><p>根据路径创建目录，支持递归创建。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -336,10 +339,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>要创建的目录路径。</p>
+    <dd><p>目录路径。</p>
 </dd>
     <dt><code>isFile</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>指示是否为文件路径，默认为 false。</p>
+    <dd><p>是否为文件路径，如果为true，则创建文件所在的目录。默认为false。</p>
 </dd>
   </dl>
 
@@ -354,14 +357,104 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
 
 
+  <a id="GameFrameX_Utility_Extensions_StringExtension_EndsWithFast_" data-uid="GameFrameX.Utility.Extensions.StringExtension.EndsWithFast*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_StringExtension_EndsWithFast_System_String_System_String_" data-uid="GameFrameX.Utility.Extensions.StringExtension.EndsWithFast(System.String,System.String)">
+  EndsWithFast(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L353"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>快速检查字符串是否以指定字符串结尾，从末尾开始比较。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool EndsWithFast(this string self, string target)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>当前字符串。</p>
+</dd>
+    <dt><code>target</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要检查的结尾字符串。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果字符串以指定字符串结尾则返回true，否则返回false。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_StringExtension_EqualsFast_" data-uid="GameFrameX.Utility.Extensions.StringExtension.EqualsFast*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_StringExtension_EqualsFast_System_String_System_String_" data-uid="GameFrameX.Utility.Extensions.StringExtension.EqualsFast(System.String,System.String)">
+  EqualsFast(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L318"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>快速比较两个字符串是否相等，从末尾开始比较。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool EqualsFast(this string self, string target)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>当前字符串。</p>
+</dd>
+    <dt><code>target</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要比较的目标字符串。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果两个字符串相等则返回true，否则返回false。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当前字符串为null时抛出。</p>
+</dd>
+  </dl>
+
+
+
   <a id="GameFrameX_Utility_Extensions_StringExtension_IsNotNullOrEmpty_" data-uid="GameFrameX.Utility.Extensions.StringExtension.IsNotNullOrEmpty*"></a>
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_IsNotNullOrEmpty_System_String_" data-uid="GameFrameX.Utility.Extensions.StringExtension.IsNotNullOrEmpty(System.String)">
   IsNotNullOrEmpty(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L152"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L156"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>检查字符串是否不为 null 或空。</p>
+  <div class="markdown level1 summary"><p>检查字符串是否不为 null 且不为空字符串。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -379,7 +472,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果字符串不为 null 或空，则为 true；否则为 false。</p>
+    <dd><p>如果字符串不为 null 且不为空字符串，则返回 true；否则返回 false。</p>
 </dd>
   </dl>
 
@@ -397,10 +490,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_IsNotNullOrEmptyOrWhiteSpace_System_String_" data-uid="GameFrameX.Utility.Extensions.StringExtension.IsNotNullOrEmptyOrWhiteSpace(System.String)">
   IsNotNullOrEmptyOrWhiteSpace(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L142"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L146"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>检查字符串是否不为 null 或 空 或 空白字符串。</p>
+  <div class="markdown level1 summary"><p>检查字符串是否不为 null、空字符串且不仅包含空白字符。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -418,7 +511,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果字符串不为 null 或空或空白字符串，则为 true；否则为 false。</p>
+    <dd><p>如果字符串不为 null、不为空字符串且不仅包含空白字符，则返回 true；否则返回 false。</p>
 </dd>
   </dl>
 
@@ -436,10 +529,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_IsNotNullOrWhiteSpace_System_String_" data-uid="GameFrameX.Utility.Extensions.StringExtension.IsNotNullOrWhiteSpace(System.String)">
   IsNotNullOrWhiteSpace(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L176"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>检查字符串是否不为 null 或空白字符串。</p>
+  <div class="markdown level1 summary"><p>检查字符串是否不为 null 且不仅包含空白字符。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -457,7 +550,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果字符串不为 null 或空白字符串，则为 true；否则为 false。</p>
+    <dd><p>如果字符串不为 null 且不仅包含空白字符，则返回 true；否则返回 false。</p>
 </dd>
   </dl>
 
@@ -475,10 +568,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_IsNullOrEmpty_System_String_" data-uid="GameFrameX.Utility.Extensions.StringExtension.IsNullOrEmpty(System.String)">
   IsNullOrEmpty(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L126"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>检查字符串是否为 null 或空。</p>
+  <div class="markdown level1 summary"><p>检查字符串是否为 null 或空字符串。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -496,7 +589,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果字符串为 null 或空，则为 true；否则为 false。</p>
+    <dd><p>如果字符串为 null 或空字符串，则返回 true；否则返回 false。</p>
 </dd>
   </dl>
 
@@ -514,10 +607,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_IsNullOrEmptyOrWhiteSpace_System_String_" data-uid="GameFrameX.Utility.Extensions.StringExtension.IsNullOrEmptyOrWhiteSpace(System.String)">
   IsNullOrEmptyOrWhiteSpace(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L136"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>检查字符串是否为 null 或 空 或 空白字符串。</p>
+  <div class="markdown level1 summary"><p>检查字符串是否为 null、空字符串或仅包含空白字符。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -535,7 +628,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果字符串为 null 或空或空白字符串，则为 true；否则为 false。</p>
+    <dd><p>如果字符串为 null、空字符串或仅包含空白字符，则返回 true；否则返回 false。</p>
 </dd>
   </dl>
 
@@ -553,10 +646,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_IsNullOrWhiteSpace_System_String_" data-uid="GameFrameX.Utility.Extensions.StringExtension.IsNullOrWhiteSpace(System.String)">
   IsNullOrWhiteSpace(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L162"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L166"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>检查字符串是否为 null 或空白字符串。</p>
+  <div class="markdown level1 summary"><p>检查字符串是否为 null 或仅包含空白字符。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -574,7 +667,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果字符串为 null 或空白字符串，则为 true；否则为 false。</p>
+    <dd><p>如果字符串为 null 或仅包含空白字符，则返回 true；否则返回 false。</p>
 </dd>
   </dl>
 
@@ -592,10 +685,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_RemoveSuffix_System_String_System_Char_" data-uid="GameFrameX.Utility.Extensions.StringExtension.RemoveSuffix(System.String,System.Char)">
   RemoveSuffix(string, char)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L95"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>从当前字符串中移除指定字符结尾的后缀。</p>
+  <div class="markdown level1 summary"><p>从字符串末尾移除指定字符（如果存在）。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -606,7 +699,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>当前字符串。</p>
+    <dd><p>要处理的字符串。</p>
 </dd>
     <dt><code>toRemove</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
     <dd><p>要移除的字符。</p>
@@ -616,7 +709,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>移除后的字符串。</p>
+    <dd><p>移除指定字符后的字符串。如果字符串为null或空，或不以指定字符结尾，则返回原字符串。</p>
 </dd>
   </dl>
 
@@ -634,10 +727,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_RemoveSuffix_System_String_System_String_" data-uid="GameFrameX.Utility.Extensions.StringExtension.RemoveSuffix(System.String,System.String)">
   RemoveSuffix(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L106"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>从当前字符串中移除指定子字符串结尾的后缀。</p>
+  <div class="markdown level1 summary"><p>从字符串末尾移除指定的子字符串（如果存在）。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -648,7 +741,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>当前字符串。</p>
+    <dd><p>要处理的字符串。</p>
 </dd>
     <dt><code>toRemove</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>要移除的子字符串。</p>
@@ -658,7 +751,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>移除后的字符串。</p>
+    <dd><p>移除指定子字符串后的字符串。如果字符串为null或空，或不以指定子字符串结尾，则返回原字符串。</p>
 </dd>
   </dl>
 
@@ -676,10 +769,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_RemoveWhiteSpace_System_String_" data-uid="GameFrameX.Utility.Extensions.StringExtension.RemoveWhiteSpace(System.String)">
   RemoveWhiteSpace(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L116"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>移除当前字符串中的所有空白字符。</p>
+  <div class="markdown level1 summary"><p>移除字符串中的所有空白字符。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -690,14 +783,14 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>当前字符串。</p>
+    <dd><p>要处理的字符串。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>移除空白字符后的字符串。</p>
+    <dd><p>移除所有空白字符后的字符串。如果输入为null或空，则返回原字符串。</p>
 </dd>
   </dl>
 
@@ -715,10 +808,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_RepeatChar_System_Char_System_Int32_" data-uid="GameFrameX.Utility.Extensions.StringExtension.RepeatChar(System.Char,System.Int32)">
   RepeatChar(char, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>重复指定字符。</p>
+  <div class="markdown level1 summary"><p>重复指定字符指定次数。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -739,7 +832,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>重复后的字符串。</p>
+    <dd><p>由指定字符重复指定次数组成的新字符串。</p>
 </dd>
   </dl>
 
@@ -757,10 +850,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_SplitTo2IntArray_System_String_System_Char_System_Char_" data-uid="GameFrameX.Utility.Extensions.StringExtension.SplitTo2IntArray(System.String,System.Char,System.Char)">
   SplitTo2IntArray(string, char, char)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L238"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L242"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>将字符串按指定的分隔符拆分为二维整数数组。</p>
+  <div class="markdown level1 summary"><p>将字符串按两级分隔符拆分为二维整数数组。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -774,17 +867,17 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
     <dd><p>要拆分的字符串。</p>
 </dd>
     <dt><code>sep1</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
-    <dd><p>用于第一层分隔的字符，默认为 ';'。</p>
+    <dd><p>第一级分隔符，默认为 ';'。</p>
 </dd>
     <dt><code>sep2</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
-    <dd><p>用于第二层分隔的字符，默认为 '+'。</p>
+    <dd><p>第二级分隔符，默认为 '+'。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>[][]</dt>
-    <dd><p>拆分得到的二维整数数组。</p>
+    <dd><p>拆分并转换后的二维整数数组。如果字符串为null或空，则返回空数组。</p>
 </dd>
   </dl>
 
@@ -802,10 +895,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_SplitToIntArray_System_String_System_Char_" data-uid="GameFrameX.Utility.Extensions.StringExtension.SplitToIntArray(System.String,System.Char)">
   SplitToIntArray(string, char)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L211"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L215"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>将字符串按指定的分隔符拆分为整数数组。</p>
+  <div class="markdown level1 summary"><p>将字符串按指定分隔符拆分为整数数组。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -819,14 +912,56 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
     <dd><p>要拆分的字符串。</p>
 </dd>
     <dt><code>sep</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
-    <dd><p>用于分隔字符串的字符，默认为 '+'。</p>
+    <dd><p>分隔符，默认为 '+'。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>[]</dt>
-    <dd><p>拆分得到的整数数组。</p>
+    <dd><p>拆分并转换后的整数数组。如果字符串为null或空，则返回空数组。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_StringExtension_StartsWithFast_" data-uid="GameFrameX.Utility.Extensions.StringExtension.StartsWithFast*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_StringExtension_StartsWithFast_System_String_System_String_" data-uid="GameFrameX.Utility.Extensions.StringExtension.StartsWithFast(System.String,System.String)">
+  StartsWithFast(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L373"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>快速检查字符串是否以指定字符串开头，从开头开始比较。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool StartsWithFast(this string self, string target)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>当前字符串。</p>
+</dd>
+    <dt><code>target</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要检查的开头字符串。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果字符串以指定字符串开头则返回true，否则返回false。</p>
 </dd>
   </dl>
 
@@ -844,10 +979,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_TrimZhCn_System_String_" data-uid="GameFrameX.Utility.Extensions.StringExtension.TrimZhCn(System.String)">
   TrimZhCn(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L301"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L305"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>替换中文为空字符串。</p>
+  <div class="markdown level1 summary"><p>移除字符串中的所有中文字符。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -858,14 +993,14 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>原始字符串。</p>
+    <dd><p>要处理的字符串。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>替换后的字符串。</p>
+    <dd><p>移除所有中文字符后的字符串。</p>
 </dd>
   </dl>
 
@@ -883,10 +1018,10 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Utility_Extensions_StringExtension_WordWrap_System_String_System_Int32_" data-uid="GameFrameX.Utility.Extensions.StringExtension.WordWrap(System.String,System.Int32)">
   WordWrap(string, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L65"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>将字符串按指定宽度进行换行。</p>
+  <div class="markdown level1 summary"><p>将文本按指定宽度自动换行。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -907,7 +1042,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>换行后的字符串。</p>
+    <dd><p>按指定宽度换行后的文本。</p>
 </dd>
   </dl>
 
@@ -925,7 +1060,7 @@ Class StringExtension  <a class="header-action link-secondary" title="View sourc
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta19/GameFrameX.Utility/Extensions/StringExtensions.cs/#L9" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta20/GameFrameX.Utility/Extensions/StringExtensions.cs/#L9" class="edit-link">Edit this page</a>
         </div>
 
 
