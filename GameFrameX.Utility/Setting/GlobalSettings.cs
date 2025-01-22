@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
 
 namespace GameFrameX.Utility.Setting;
 
@@ -72,7 +72,7 @@ public static class GlobalSettings
         }
 
         var configJson = File.ReadAllText(path);
-        var settings = JsonConvert.DeserializeObject<List<AppSetting>>(configJson) ?? throw new InvalidOperationException();
+        var settings = JsonHelper.Deserialize<List<AppSetting>>(configJson) ?? throw new InvalidOperationException();
 
         foreach (var setting in settings)
         {

@@ -1,7 +1,7 @@
-﻿using GameFrameX.NetWork.Abstractions;
+﻿using System.Text.Json.Serialization;
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Extensions;
-using Newtonsoft.Json;
 using ProtoBuf;
 
 namespace GameFrameX.NetWork.Messages;

@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Serilog;
+﻿using Serilog;
 using Serilog.Events;
 
 namespace GameFrameX.Utility.Log;
@@ -56,6 +55,6 @@ public sealed class LogOptions
     /// <returns>JSON 字符串表示形式。</returns>
     public override string ToString()
     {
-        return JsonConvert.SerializeObject(this, Formatting.Indented);
+        return JsonHelper.SerializeFormat(this);
     }
 }

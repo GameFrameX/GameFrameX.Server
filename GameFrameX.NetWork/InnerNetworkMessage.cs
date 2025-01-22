@@ -1,8 +1,8 @@
 ﻿using System.Collections.Concurrent;
+using System.Text.Json.Serialization;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.ProtoBuf.Net;
 using GameFrameX.Utility.Extensions;
-using Newtonsoft.Json;
 
 namespace GameFrameX.NetWork;
 

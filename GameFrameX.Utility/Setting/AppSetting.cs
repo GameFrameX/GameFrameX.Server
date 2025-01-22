@@ -1,5 +1,6 @@
-﻿using GameFrameX.Utility.Log;
-using Newtonsoft.Json;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using GameFrameX.Utility.Log;
 
 namespace GameFrameX.Utility.Setting;
 
@@ -103,7 +104,7 @@ public sealed class AppSetting
     /// <returns>JSON字符串</returns>
     public override string ToString()
     {
-        return JsonConvert.SerializeObject(this);
+        return JsonHelper.Serialize(this);
     }
 
     /// <summary>
@@ -112,7 +113,7 @@ public sealed class AppSetting
     /// <returns>格式化的JSON字符串</returns>
     public string ToFormatString()
     {
-        return JsonConvert.SerializeObject(this, Formatting.Indented);
+        return JsonHelper.SerializeFormat(this);
     }
 
     #region 从配置文件读取的属性

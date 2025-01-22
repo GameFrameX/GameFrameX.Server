@@ -1,5 +1,5 @@
-﻿using GameFrameX.Utility;
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using GameFrameX.Utility;
 using ProtoBuf;
 
 namespace GameFrameX.NetWork.HTTP

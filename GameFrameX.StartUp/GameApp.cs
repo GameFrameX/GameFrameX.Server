@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Reflection;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using CommandLine;
 using GameFrameX.Monitor;
 using GameFrameX.StartUp.Abstractions;
@@ -8,8 +10,6 @@ using GameFrameX.Utility;
 using GameFrameX.Utility.Extensions;
 using GameFrameX.Utility.Log;
 using GameFrameX.Utility.Setting;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace GameFrameX.StartUp;
 
@@ -30,7 +30,6 @@ public static class GameApp
     /// <param name="logConfiguration">初始化日志系统之前回调,可以重写参数</param>
     public static async Task Entry(string[] args, Action initAction, Action<LogOptions> logConfiguration = null)
     {
-        JsonSetting();
         var environmentVariablesList = new List<string>(args);
         LogHelper.Console("启动参数：" + string.Join(" ", args));
         LogHelper.Console("当前环境变量START---------------------");
@@ -281,24 +280,6 @@ public static class GameApp
         MetricsHelper.Start();
     }
 
-    /// <summary>
-    /// Json 配置
-    /// </summary>
-    private static void JsonSetting()
-    {
-        JsonConvert.DefaultSettings = () => new JsonSerializerSettings
-        {
-            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-
-            NullValueHandling = NullValueHandling.Ignore, // 忽略 null 值
-            // Formatting = Formatting.Indented, // 生成格式化的 JSON
-            // MissingMemberHandling = MissingMemberHandling.Ignore, // 忽略缺失的成员
-            Converters = new List<JsonConverter>
-            {
-                new StringEnumConverter(), // 将枚举转换为字符串
-            },
-        };
-    }
 
     private static Task Start(string[] args, Type appStartUpType, ServerType serverType, AppSetting setting, out IAppStartUp startUp)
     {

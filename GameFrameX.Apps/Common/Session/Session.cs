@@ -1,6 +1,6 @@
-﻿using GameFrameX.NetWork.Abstractions;
+﻿using System.Text.Json.Serialization;
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
-using Newtonsoft.Json;
 
 namespace GameFrameX.Apps.Common.Session;
 
