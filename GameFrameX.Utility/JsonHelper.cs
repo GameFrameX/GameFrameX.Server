@@ -1,5 +1,6 @@
-﻿using GameFrameX.Utility.Extensions;
-using Newtonsoft.Json;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using GameFrameX.Utility.Extensions;
 
 namespace GameFrameX.Utility;
 
@@ -9,6 +10,41 @@ namespace GameFrameX.Utility;
 public static class JsonHelper
 {
     /// <summary>
+    /// 默认序列化配置
+    /// </summary>
+    public readonly static JsonSerializerOptions DefaultOptions = new JsonSerializerOptions
+    {
+        // 忽略 null 值
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        // 忽略循环引用
+        ReferenceHandler = ReferenceHandler.IgnoreCycles,
+        // 添加自定义转换器，类似于 StringEnumConverter
+        Converters =
+        {
+            new JsonStringEnumConverter() // 处理枚举为字符串
+        },
+    };
+
+    /// <summary>
+    /// 格式化序列化配置
+    /// </summary>
+    public readonly static JsonSerializerOptions FormatOptions = new JsonSerializerOptions
+    {
+        // 忽略 null 值
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        // 忽略循环引用
+        ReferenceHandler = ReferenceHandler.IgnoreCycles,
+        // 格式化 JSON
+        WriteIndented = true,
+        // 添加自定义转换器，类似于 StringEnumConverter
+        Converters =
+        {
+            new JsonStringEnumConverter() // 处理枚举为字符串
+        },
+    };
+
+
+    /// <summary>
     /// 序列化对象
     /// </summary>
     /// <param name="obj">需要序列化的对象</param>
@@ -16,7 +52,7 @@ public static class JsonHelper
     public static string Serialize(object obj)
     {
         obj.CheckNotNull(nameof(obj));
-        var json = JsonConvert.SerializeObject(obj);
+        var json = JsonSerializer.Serialize(obj, DefaultOptions);
         return json;
     }
 
@@ -28,7 +64,7 @@ public static class JsonHelper
     public static string SerializeFormat(object obj)
     {
         obj.CheckNotNull(nameof(obj));
-        var json = JsonConvert.SerializeObject(obj, Formatting.Indented);
+        var json = JsonSerializer.Serialize(obj, FormatOptions);
         return json;
     }
 
@@ -41,7 +77,7 @@ public static class JsonHelper
     public static T Deserialize<T>(string json) where T : class, new()
     {
         json.CheckNotNullOrEmpty(nameof(json));
-        return JsonConvert.DeserializeObject<T>(json);
+        return JsonSerializer.Deserialize<T>(json, DefaultOptions);
     }
 
     /// <summary>
@@ -54,6 +90,6 @@ public static class JsonHelper
     {
         json.CheckNotNullOrEmpty(nameof(json));
         type.CheckNotNull(nameof(type));
-        return JsonConvert.DeserializeObject(json, type);
+        return JsonSerializer.Deserialize(json, type, DefaultOptions);
     }
 }
