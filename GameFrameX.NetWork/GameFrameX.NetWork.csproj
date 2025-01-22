@@ -55,7 +55,7 @@
         </None>
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="GameFrameX.SuperSocket.Server.Abstractions" Version="1.0.1" />
-      <PackageReference Include="GameFrameX.SuperSocket.WebSocket.Server" Version="1.0.1" />
+      <PackageReference Include="GameFrameX.SuperSocket.Server.Abstractions" Version="1.0.3" />
+      <PackageReference Include="GameFrameX.SuperSocket.WebSocket.Server" Version="1.0.3" />
     </ItemGroup>
 </Project>

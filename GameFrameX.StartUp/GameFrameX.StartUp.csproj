@@ -45,9 +45,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.0.1" />
-      <PackageReference Include="GameFrameX.SuperSocket.Server" Version="1.0.1" />
-      <PackageReference Include="GameFrameX.SuperSocket.Server.Abstractions" Version="1.0.1" />
+      <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.0.3" />
+      <PackageReference Include="GameFrameX.SuperSocket.Server" Version="1.0.3" />
+      <PackageReference Include="GameFrameX.SuperSocket.Server.Abstractions" Version="1.0.3" />
       <PackageReference Include="CommandLineParser" Version="2.9.1" />
     </ItemGroup>
     <ItemGroup>
