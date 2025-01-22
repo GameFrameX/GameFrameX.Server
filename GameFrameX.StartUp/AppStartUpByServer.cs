@@ -211,12 +211,12 @@ public abstract partial class AppStartUpBase : IAppStartUp
     {
         if (Setting.WsPort is > 0 and < ushort.MaxValue && Net.PortIsAvailable(Setting.WsPort))
         {
-            LogHelper.Info("启动 WebSocket 服务器开始...");
+            LogHelper.InfoConsole("启动 WebSocket 服务器开始...");
             _webSocketServer = WebSocketHostBuilder.Create()
                                                    .UseWebSocketMessageHandler(WebSocketMessageHandler)
                                                    .UseSessionHandler(OnConnected, OnDisconnected).ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)ConfigureWebServer).Build();
             await _webSocketServer.StartAsync();
-            LogHelper.Info("启动 WebSocket 服务器完成...");
+            LogHelper.InfoConsole($"启动 WebSocket 服务器完成...端口:{Setting.WsPort}");
         }
         else
         {

@@ -38,7 +38,7 @@ public static class HttpServer
     /// <param name="minimumLevelLogLevel">日志记录最小级别</param>
     public static Task Start(int httpPort, int httpsPort, Func<string, BaseHttpHandler> baseHandler, List<IHttpAopHandler> aopHandlerTypes = null, string apiRootPath = GameApiPath, LogLevel minimumLevelLogLevel = LogLevel.Debug)
     {
-        LogHelper.Info("开始启动 HTTP 服务器...");
+        LogHelper.InfoConsole("开始启动 HTTP 服务器...");
         baseHandler.CheckNotNull(nameof(baseHandler));
 
         // 如果没有指定端口，则默认为28080
@@ -91,7 +91,7 @@ public static class HttpServer
         App.MapGet(routePath, context => HttpHandler.HandleRequest(context, baseHandler, aopHandlerTypes));
         App.MapPost(routePath, context => HttpHandler.HandleRequest(context, baseHandler, aopHandlerTypes));
         var task = App.StartAsync();
-        LogHelper.Info("启动 HTTP 服务器完成...");
+        LogHelper.InfoConsole($"启动 HTTP 服务器完成...端口号:{httpPort}");
         return task;
     }
 
@@ -112,7 +112,7 @@ public static class HttpServer
     /// </summary>
     public static Task Stop()
     {
-        LogHelper.Info("停止http服务...");
+        LogHelper.InfoConsole("停止http服务...");
         if (App == null)
         {
             return Task.CompletedTask;

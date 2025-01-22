@@ -15,47 +15,45 @@ internal sealed class AppStartUpGame : AppStartUpBase
     {
         try
         {
-            LogHelper.Info($"开始启动服务器{Setting.ServerType}");
+            LogHelper.InfoConsole($"开始启动服务器{Setting.ServerType}");
             var hotfixPath = Directory.GetCurrentDirectory() + "/hotfix";
             if (!Directory.Exists(hotfixPath))
             {
                 Directory.CreateDirectory(hotfixPath);
             }
 
-
-            LogHelper.Info("actor limit logic start...");
+            LogHelper.InfoConsole("开始配置Actor限制逻辑...");
             ActorLimit.Init(ActorLimit.RuleType.None);
-            LogHelper.Info("actor limit logic end...");
+            LogHelper.InfoConsole("配置Actor限制逻辑结束...");
 
-            LogHelper.Info("launch db service start...");
+            LogHelper.InfoConsole("开始启动数据库服务...");
             var mongoDbService = new MongoDbService();
             GameDb.Init(mongoDbService);
             GameDb.Open(Setting.DataBaseUrl, Setting.DataBaseName);
-            LogHelper.Info("launch db service end...");
+            LogHelper.InfoConsole("启动数据库服务 结束...");
 
-            LogHelper.Info("register comps start...");
+            LogHelper.InfoConsole("注册组件开始...");
             await ComponentRegister.Init(typeof(AppsHandler).Assembly);
-            LogHelper.Info("register comps end...");
+            LogHelper.InfoConsole("注册组件结束...");
 
-            LogHelper.Info("load hotfix module start");
+            LogHelper.InfoConsole("开始加载热更新模块...");
             await HotfixManager.LoadHotfixModule(Setting);
-            LogHelper.Info("load hotfix module end");
+            LogHelper.InfoConsole("加载热更新模块结束...");
 
-            LogHelper.Info("进入游戏主循环...");
-            LogHelper.Info("***进入游戏主循环***");
+            LogHelper.InfoConsole("进入游戏主循环...");
             GlobalSettings.LaunchTime = DateTime.Now;
             GlobalSettings.IsAppRunning = true;
             await AppExitToken;
         }
         catch (Exception e)
         {
-            LogHelper.Info($"服务器执行异常，e:{e}");
+            LogHelper.InfoConsole($"服务器执行异常，e:{e}");
             LogHelper.Fatal(e);
         }
 
-        LogHelper.Info("退出服务器开始");
+        LogHelper.InfoConsole("退出服务器开始");
         await HotfixManager.Stop();
-        LogHelper.Info("退出服务器成功");
+        LogHelper.InfoConsole("退出服务器成功");
     }
 
     protected override void Init()
