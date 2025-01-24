@@ -72,16 +72,6 @@ public class BaseNetWorkChannel : INetWorkChannel
     public IRpcSession RpcSession { get; }
 
     /// <summary>
-    /// 写入消息
-    /// </summary>
-    /// <param name="messageObject">消息对象</param>
-    public virtual async void Write(INetworkMessage messageObject)
-    {
-        await WriteAsync(messageObject);
-    }
-
-
-    /// <summary>
     /// 异步写入消息
     /// </summary>
     /// <param name="messageObject">消息对象</param>
