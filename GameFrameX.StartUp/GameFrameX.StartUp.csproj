@@ -14,7 +14,7 @@
         <RepositoryUrl>https://github.com/GameFrameX/GameFrameX</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-        <Description>GameFrameX.Setting</Description>
+        <Description>GameFrameX.Setting,GameFrameX 框架的基础设施框架库.框架文档主页: https://gameframex.doc.alianblank.com</Description>
         <PackageTags>GameFrameX,Lib,Setting,Server,GameServer</PackageTags>
         <PackageReleaseNotes>https://gameframex.doc.alianblank.com/</PackageReleaseNotes>
         <PackageIcon>logo.png</PackageIcon>

@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
         <LangVersion>10</LangVersion>
-        <Description>GameFrameX.NetWork.Message</Description>
+        <Description>GameFrameX.NetWork.Message,GameFrameX 框架的基础设施框架库.框架文档主页: https://gameframex.doc.alianblank.com</Description>
         <PackageTags>GameFrameX,Lib,NetWork.Message,Server,GameServer</PackageTags>
         <PublicSign>true</PublicSign>
         <SignAssembly>true</SignAssembly>

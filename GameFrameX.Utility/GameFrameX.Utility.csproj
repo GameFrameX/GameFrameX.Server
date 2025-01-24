@@ -8,7 +8,7 @@
         <SignAssembly>true</SignAssembly>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>$(AssemblyName)</Title>
-        <Description>GameFrameX.Utility</Description>
+        <Description>GameFrameX.Utility,GameFrameX 框架的基础设施框架库.框架文档主页: https://gameframex.doc.alianblank.com</Description>
         <Copyright>AlianBlank;GameFrameX;Blank</Copyright>
         <PackageProjectUrl>https://github.com/GameFrameX/GameFrameX</PackageProjectUrl>
         <RepositoryUrl>https://github.com/GameFrameX/GameFrameX</RepositoryUrl>

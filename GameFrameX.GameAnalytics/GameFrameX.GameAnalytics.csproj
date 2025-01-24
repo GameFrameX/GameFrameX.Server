@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <Description>GameFrameX.GameAnalytics</Description>
+        <Description>GameFrameX.GameAnalytics,GameFrameX 框架的基础设施框架库.框架文档主页: https://gameframex.doc.alianblank.com</Description>
         <LangVersion>10</LangVersion>
         <PublicSign>true</PublicSign>
         <SignAssembly>true</SignAssembly>

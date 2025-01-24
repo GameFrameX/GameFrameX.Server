@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
-        <Description>GameFrameX.NetWork</Description>
+        <Description>GameFrameX.NetWork,GameFrameX 框架的基础设施框架库.框架文档主页: https://gameframex.doc.alianblank.com</Description>
         <PackageTags>GameFrameX,Lib,NetWork,Server,GameServer</PackageTags>
         <PublicSign>true</PublicSign>
         <SignAssembly>true</SignAssembly>
