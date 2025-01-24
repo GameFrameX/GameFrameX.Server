@@ -937,7 +937,7 @@
   "api/GameFrameX.Utility.IdGenerator.html": {
     "href": "api/GameFrameX.Utility.IdGenerator.html",
     "title": "Class IdGenerator | GameFrameX.Server",
-    "keywords": "Class IdGenerator Namespace GameFrameX.Utility Assembly GameFrameX.Utility.dll ID生成器，生成唯一ID public static class IdGenerator Inheritance object IdGenerator Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Fields UtcTimeStart 全局UTC 开始时间 public static readonly DateTime UtcTimeStart Field Value DateTime Methods GetNextUniqueId() 使用Interlocked.Increment生成唯一ID的方法 public static long GetNextUniqueId() Returns long 返回下一个唯一的长整数ID GetNextUniqueIntId() 使用Interlocked.Increment生成唯一ID的方法 public static int GetNextUniqueIntId() Returns int 返回下一个唯一的整数ID GetUniqueIdString() 获取唯一ID字符串 public static string GetUniqueIdString() Returns string 返回一个全局唯一的字符串ID"
+    "keywords": "Class IdGenerator Namespace GameFrameX.Utility Assembly GameFrameX.Utility.dll ID生成器，提供多种生成唯一标识符的方法，包括整数ID、长整数ID和字符串ID public static class IdGenerator Inheritance object IdGenerator Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Fields UtcTimeStart 全局UTC起始时间，用作计数器的基准时间点 设置为2020年1月1日0时0分0秒(UTC) public static readonly DateTime UtcTimeStart Field Value DateTime Methods GetNextUniqueId() 使用雪花算法生成唯一的长整数ID 基于Yitter.IdGenerator实现，提供分布式环境下的唯一ID生成 public static long GetNextUniqueId() Returns long 返回下一个唯一的长整数ID，保证全局唯一性 GetNextUniqueIntId() 使用Interlocked.Increment生成唯一的整数ID 通过原子操作确保线程安全 public static int GetNextUniqueIntId() Returns int 返回下一个唯一的整数ID，保证递增且不重复 GetUniqueIdString() 生成一个全局唯一的GUID字符串 移除了GUID中的连字符，返回32位的十六进制字符串 public static string GetUniqueIdString() Returns string 返回一个32位的十六进制字符串格式的GUID，不包含连字符"
   },
   "api/GameFrameX.Utility.IllegalWordDetection.html": {
     "href": "api/GameFrameX.Utility.IllegalWordDetection.html",
@@ -1102,7 +1102,7 @@
   "api/GameFrameX.Utility.html": {
     "href": "api/GameFrameX.Utility.html",
     "title": "Namespace GameFrameX.Utility | GameFrameX.Server",
-    "keywords": "Namespace GameFrameX.Utility Classes AssemblyHelper 程序集辅助器 BigInteger Compression 压缩解压缩辅助器。 ConsoleHelper 控制台辅助器 FiveParam<T1, T2, T3, T4, T5> 五个参数 FourParam<T1, T2, T3, T4> 四个参数 IdGenerator ID生成器，生成唯一ID IllegalWordDetection 此算法思想来源于“http://www.cnblogs.com/sumtec/archive/2008/02/01/1061742.html”,经测试，检测\"屄defg东正教dsa SofU ckd臺灣青年獨\"这个字符串并替换掉敏感词平均花费2.7ms JsonHelper Json 帮助类 Net 网络端口帮助类 OneParam<T> 单个参数 Param 参数 PlatformRuntimeHelper 平台运行时帮助类 Random 随机相关的实用函数。 Singleton<T> 单例类 ThreeParam<T1, T2, T3> 三个参数 TimeHelper 时间帮助工具类 TwoParam<T1, T2> 两个参数 Structs LNumber"
+    "keywords": "Namespace GameFrameX.Utility Classes AssemblyHelper 程序集辅助器 BigInteger Compression 压缩解压缩辅助器。 ConsoleHelper 控制台辅助器 FiveParam<T1, T2, T3, T4, T5> 五个参数 FourParam<T1, T2, T3, T4> 四个参数 IdGenerator ID生成器，提供多种生成唯一标识符的方法，包括整数ID、长整数ID和字符串ID IllegalWordDetection 此算法思想来源于“http://www.cnblogs.com/sumtec/archive/2008/02/01/1061742.html”,经测试，检测\"屄defg东正教dsa SofU ckd臺灣青年獨\"这个字符串并替换掉敏感词平均花费2.7ms JsonHelper Json 帮助类 Net 网络端口帮助类 OneParam<T> 单个参数 Param 参数 PlatformRuntimeHelper 平台运行时帮助类 Random 随机相关的实用函数。 Singleton<T> 单例类 ThreeParam<T1, T2, T3> 三个参数 TimeHelper 时间帮助工具类 TwoParam<T1, T2> 两个参数 Structs LNumber"
   },
   "index.html": {
     "href": "index.html",
