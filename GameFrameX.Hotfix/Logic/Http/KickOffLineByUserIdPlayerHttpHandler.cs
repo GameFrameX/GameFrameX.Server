@@ -1,4 +1,5 @@
 using GameFrameX.Apps.Common.Session;
+using GameFrameX.Foundation.Http.Normalization;
 using GameFrameX.NetWork.HTTP;
 
 namespace GameFrameX.Hotfix.Logic.Http;
@@ -22,10 +23,10 @@ public sealed class KickOffLineByUserIdPlayerHttpHandler : BaseHttpHandler
         {
             SessionManager.KickOffLineByUserId(Convert.ToInt64(roleId));
 
-            return Task.FromResult(HttpResult.CreateOk());
+            return Task.FromResult(HttpJsonResult.SuccessString());
         }
 
-        var res = HttpResult.CreateErrorParam("角色ID异常");
+        var res = HttpJsonResult.ParamErrorString();
         return Task.FromResult(res);
     }
 }

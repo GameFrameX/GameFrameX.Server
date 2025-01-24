@@ -1,3 +1,4 @@
+using GameFrameX.Foundation.Http.Normalization;
 using GameFrameX.NetWork.HTTP;
 
 namespace GameFrameX.Hotfix.Logic.Http;
@@ -20,11 +21,9 @@ public sealed class ReloadHttpHandler : BaseHttpHandler
         if (parameters.TryGetValue("version", out var version))
         {
             await HotfixManager.LoadHotfixModule(null, version.ToString());
-            return Task.FromResult(HttpResult.CreateOk()).Result;
+            return HttpJsonResult.SuccessString();
         }
 
-        var result = HttpResult.CreateErrorParam($"参数错误 {nameof(version)}");
-
-        return Task.FromResult(result).Result;
+        return HttpJsonResult.ParamErrorString();
     }
 }

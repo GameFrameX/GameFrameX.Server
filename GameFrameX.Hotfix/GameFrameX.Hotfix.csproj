@@ -21,13 +21,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\GameFrameX.CodeGenerator\GameFrameX.CodeGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+        <ProjectReference Include="..\GameFrameX.Apps\GameFrameX.Apps.csproj" />
         <ProjectReference Include="..\GameFrameX.Launcher\GameFrameX.Launcher.csproj" />
+        <ProjectReference Include="..\GameFrameX.CodeGenerator\GameFrameX.CodeGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.Core" Version="1.2.0-beta18" />
-      <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.0.1" />
+      <PackageReference Include="GameFrameX.Core" Version="1.2.0-beta21" />
+      <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.0.3" />
     </ItemGroup>
 
     <ItemGroup>

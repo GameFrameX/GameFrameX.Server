@@ -1,4 +1,5 @@
 using GameFrameX.Apps.Common.Session;
+using GameFrameX.Foundation.Http.Normalization;
 using GameFrameX.NetWork.HTTP;
 
 namespace GameFrameX.Hotfix.Logic.Http;
@@ -24,7 +25,7 @@ public sealed class GetOnlinePlayerListHttpHandler : BaseHttpHandler
         var pageIndex = string.IsNullOrEmpty(pageIndexStr?.ToString()) ? 0 : Convert.ToInt32(pageIndexStr);
 
         var response = SessionManager.GetPageList(pageSize, pageIndex);
-        var res = HttpResult.CreateOk("当前在线玩家", JsonHelper.Serialize(response));
+        var res = HttpJsonResult.SuccessString("当前在线玩家", JsonHelper.Serialize(response));
         return Task.FromResult(res);
     }
 }

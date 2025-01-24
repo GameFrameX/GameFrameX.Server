@@ -1,4 +1,5 @@
 using GameFrameX.Apps.Common.Session;
+using GameFrameX.Foundation.Http.Normalization;
 using GameFrameX.NetWork.HTTP;
 
 namespace GameFrameX.Hotfix.Logic.Http;
@@ -20,7 +21,7 @@ public sealed class GetOnlinePlayerHttpHandler : BaseHttpHandler
     {
         var response = new GetOnlinePlayerResponse();
         response.Count = SessionManager.Count();
-        var res = HttpResult.CreateOk($"当前在线人数:{response.Count}", JsonHelper.Serialize(response));
+        var res = HttpJsonResult.SuccessString($"当前在线人数:{response.Count}", JsonHelper.Serialize(response));
         return Task.FromResult(res);
     }
 
