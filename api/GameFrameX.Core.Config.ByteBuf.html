@@ -1,0 +1,3472 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ByteBuf | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ByteBuf | GameFrameX.Server ">
+      
+      <meta name="description" content="字节缓冲区类,用于二进制数据的读写操作">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.2.0-beta22/apiSpec/new?filename=GameFrameX_Core_Config_ByteBuf.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Config.ByteBuf%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.Core.Config.ByteBuf">
+
+
+
+  <h1 id="GameFrameX_Core_Config_ByteBuf" data-uid="GameFrameX.Core.Config.ByteBuf" class="text-break">
+Class ByteBuf  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Core.html">Core</a>.<a class="xref" href="GameFrameX.Core.Config.html">Config</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.Core.Config.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>字节缓冲区类,用于二进制数据的读写操作</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class ByteBuf : ICloneable, IEquatable&lt;ByteBuf&gt;</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ByteBuf</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icloneable">ICloneable</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="GameFrameX.Core.Config.ByteBuf.html">ByteBuf</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="GameFrameX.Utility.Extensions.ObjectExtension.html#GameFrameX_Utility_Extensions_ObjectExtension_CheckNotNull__1___0_System_String_">ObjectExtension.CheckNotNull&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Utility.Extensions.ObjectExtension.html#GameFrameX_Utility_Extensions_ObjectExtension_CheckNotNull__1___0_System_String_System_String_">ObjectExtension.CheckNotNull&lt;T&gt;(T, string, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Utility.Extensions.ObjectExtension.html#GameFrameX_Utility_Extensions_ObjectExtension_IsNotNull_System_Object_">ObjectExtension.IsNotNull(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="GameFrameX.Utility.Extensions.ObjectExtension.html#GameFrameX_Utility_Extensions_ObjectExtension_IsNull_System_Object_">ObjectExtension.IsNull(object)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf__ctor_" data-uid="GameFrameX.Core.Config.ByteBuf.#ctor*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf__ctor" data-uid="GameFrameX.Core.Config.ByteBuf.#ctor">
+  ByteBuf()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>默认构造函数,创建一个空的字节缓冲区</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ByteBuf()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf__ctor_" data-uid="GameFrameX.Core.Config.ByteBuf.#ctor*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf__ctor_System_Byte___" data-uid="GameFrameX.Core.Config.ByteBuf.#ctor(System.Byte[])">
+  ByteBuf(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用指定字节数组创建字节缓冲区</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ByteBuf(byte[] bytes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>字节数组</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf__ctor_" data-uid="GameFrameX.Core.Config.ByteBuf.#ctor*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf__ctor_System_Byte___System_Int32_System_Int32_" data-uid="GameFrameX.Core.Config.ByteBuf.#ctor(System.Byte[],System.Int32,System.Int32)">
+  ByteBuf(byte[], int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用指定字节数组和读写位置创建字节缓冲区</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ByteBuf(byte[] bytes, int readIndex, int writeIndex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>字节数组</p>
+</dd>
+    <dt><code>readIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>读取位置</p>
+</dd>
+    <dt><code>writeIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>写入位置</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf__ctor_" data-uid="GameFrameX.Core.Config.ByteBuf.#ctor*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf__ctor_System_Int32_" data-uid="GameFrameX.Core.Config.ByteBuf.#ctor(System.Int32)">
+  ByteBuf(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用指定容量创建字节缓冲区</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ByteBuf(int capacity)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>capacity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>初始容量</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf__ctor_" data-uid="GameFrameX.Core.Config.ByteBuf.#ctor*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf__ctor_System_Int32_System_Action_GameFrameX_Core_Config_ByteBuf__" data-uid="GameFrameX.Core.Config.ByteBuf.#ctor(System.Int32,System.Action{GameFrameX.Core.Config.ByteBuf})">
+  ByteBuf(int, Action&lt;ByteBuf&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用指定容量和释放器创建字节缓冲区</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ByteBuf(int capacity, Action&lt;ByteBuf&gt; releaser)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>capacity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>初始容量</p>
+</dd>
+    <dt><code>releaser</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="GameFrameX.Core.Config.ByteBuf.html">ByteBuf</a>&gt;</dt>
+    <dd><p>释放器委托</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_Bytes_" data-uid="GameFrameX.Core.Config.ByteBuf.Bytes*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_Bytes" data-uid="GameFrameX.Core.Config.ByteBuf.Bytes">
+  Bytes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L157"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>内部字节数组</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] Bytes { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_Capacity_" data-uid="GameFrameX.Core.Config.ByteBuf.Capacity*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_Capacity" data-uid="GameFrameX.Core.Config.ByteBuf.Capacity">
+  Capacity
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>缓冲区容量</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Capacity { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_Empty_" data-uid="GameFrameX.Core.Config.ByteBuf.Empty*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_Empty" data-uid="GameFrameX.Core.Config.ByteBuf.Empty">
+  Empty
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>缓冲区是否为空</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Empty { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_NotCompactWritable_" data-uid="GameFrameX.Core.Config.ByteBuf.NotCompactWritable*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_NotCompactWritable" data-uid="GameFrameX.Core.Config.ByteBuf.NotCompactWritable">
+  NotCompactWritable
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L200"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>未压缩的可写入字节数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int NotCompactWritable { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_NotEmpty_" data-uid="GameFrameX.Core.Config.ByteBuf.NotEmpty*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_NotEmpty" data-uid="GameFrameX.Core.Config.ByteBuf.NotEmpty">
+  NotEmpty
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L133"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>缓冲区是否非空</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool NotEmpty { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReaderIndex_" data-uid="GameFrameX.Core.Config.ByteBuf.ReaderIndex*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReaderIndex" data-uid="GameFrameX.Core.Config.ByteBuf.ReaderIndex">
+  ReaderIndex
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L103"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当前读取位置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ReaderIndex { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_Remaining_" data-uid="GameFrameX.Core.Config.ByteBuf.Remaining*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_Remaining" data-uid="GameFrameX.Core.Config.ByteBuf.Remaining">
+  Remaining
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L182"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>剩余可读取的字节数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Remaining { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_Size_" data-uid="GameFrameX.Core.Config.ByteBuf.Size*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_Size" data-uid="GameFrameX.Core.Config.ByteBuf.Size">
+  Size
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当前数据大小</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Size { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_StringCacheFinder_" data-uid="GameFrameX.Core.Config.ByteBuf.StringCacheFinder*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_StringCacheFinder" data-uid="GameFrameX.Core.Config.ByteBuf.StringCacheFinder">
+  StringCacheFinder
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1251"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>字符串缓存查找器</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Func&lt;byte[], int, int, string&gt; StringCacheFinder { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[], <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriterIndex_" data-uid="GameFrameX.Core.Config.ByteBuf.WriterIndex*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriterIndex" data-uid="GameFrameX.Core.Config.ByteBuf.WriterIndex">
+  WriterIndex
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当前写入位置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int WriterIndex { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_AddReadIndex_" data-uid="GameFrameX.Core.Config.ByteBuf.AddReadIndex*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_AddReadIndex_System_Int32_" data-uid="GameFrameX.Core.Config.ByteBuf.AddReadIndex(System.Int32)">
+  AddReadIndex(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L148"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>增加读取位置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddReadIndex(int add)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>add</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>增加的值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_AddWriteIndex_" data-uid="GameFrameX.Core.Config.ByteBuf.AddWriteIndex*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_AddWriteIndex_System_Int32_" data-uid="GameFrameX.Core.Config.ByteBuf.AddWriteIndex(System.Int32)">
+  AddWriteIndex(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L139"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>增加写入位置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddWriteIndex(int add)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>add</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>增加的值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_Append_" data-uid="GameFrameX.Core.Config.ByteBuf.Append*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_Append_System_Byte_" data-uid="GameFrameX.Core.Config.ByteBuf.Append(System.Byte)">
+  Append(byte)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L303"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>追加一个字节</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(byte x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd><p>要追加的字节</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_BeginWriteSegment_" data-uid="GameFrameX.Core.Config.ByteBuf.BeginWriteSegment*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_BeginWriteSegment_System_Int32__" data-uid="GameFrameX.Core.Config.ByteBuf.BeginWriteSegment(System.Int32@)">
+  BeginWriteSegment(out int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1677"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>开始写入段</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void BeginWriteSegment(out int oldSize)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>oldSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>旧大小</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_Clear_" data-uid="GameFrameX.Core.Config.ByteBuf.Clear*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_Clear" data-uid="GameFrameX.Core.Config.ByteBuf.Clear">
+  Clear()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L230"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>清空缓冲区</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_Clone_" data-uid="GameFrameX.Core.Config.ByteBuf.Clone*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_Clone" data-uid="GameFrameX.Core.Config.ByteBuf.Clone">
+  Clone()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1889"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>克隆</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object Clone()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>克隆的对象</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_CopyData_" data-uid="GameFrameX.Core.Config.ByteBuf.CopyData*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_CopyData" data-uid="GameFrameX.Core.Config.ByteBuf.CopyData">
+  CopyData()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>复制当前数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] CopyData()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>复制的字节数组</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_DiscardReadBytes_" data-uid="GameFrameX.Core.Config.ByteBuf.DiscardReadBytes*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_DiscardReadBytes" data-uid="GameFrameX.Core.Config.ByteBuf.DiscardReadBytes">
+  DiscardReadBytes()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L190"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>丢弃已读取的字节</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DiscardReadBytes()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_EndWriteSegment_" data-uid="GameFrameX.Core.Config.ByteBuf.EndWriteSegment*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_EndWriteSegment_System_Int32_" data-uid="GameFrameX.Core.Config.ByteBuf.EndWriteSegment(System.Int32)">
+  EndWriteSegment(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1688"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>结束写入段</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EndWriteSegment(int oldSize)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>oldSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>旧大小</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_EnsureWrite_" data-uid="GameFrameX.Core.Config.ByteBuf.EnsureWrite*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_EnsureWrite_System_Int32_" data-uid="GameFrameX.Core.Config.ByteBuf.EnsureWrite(System.Int32)">
+  EnsureWrite(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L275"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>确保有足够的写入空间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnsureWrite(int size)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>size</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>需要的空间大小</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_EnterSegment_" data-uid="GameFrameX.Core.Config.ByteBuf.EnterSegment*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_EnterSegment_GameFrameX_Core_Config_SegmentSaveState__" data-uid="GameFrameX.Core.Config.ByteBuf.EnterSegment(GameFrameX.Core.Config.SegmentSaveState@)">
+  EnterSegment(out SegmentSaveState)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1811"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>进入段</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnterSegment(out SegmentSaveState saveState)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>saveState</code> <a class="xref" href="GameFrameX.Core.Config.SegmentSaveState.html">SegmentSaveState</a></dt>
+    <dd><p>段保存状态</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_Equals_" data-uid="GameFrameX.Core.Config.ByteBuf.Equals*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_Equals_GameFrameX_Core_Config_ByteBuf_" data-uid="GameFrameX.Core.Config.ByteBuf.Equals(GameFrameX.Core.Config.ByteBuf)">
+  Equals(ByteBuf)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1862"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>比较是否相等</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(ByteBuf other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="GameFrameX.Core.Config.ByteBuf.html">ByteBuf</a></dt>
+    <dd><p>要比较的对象</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否相等</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_Equals_" data-uid="GameFrameX.Core.Config.ByteBuf.Equals*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_Equals_System_Object_" data-uid="GameFrameX.Core.Config.ByteBuf.Equals(System.Object)">
+  Equals(object)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1852"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>比较是否相等</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>要比较的对象</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否相等</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_FromString_" data-uid="GameFrameX.Core.Config.ByteBuf.FromString*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_FromString_System_String_" data-uid="GameFrameX.Core.Config.ByteBuf.FromString(System.String)">
+  FromString(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1900"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从字符串创建字节缓冲区</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ByteBuf FromString(string value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要创建的字符串</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Core.Config.ByteBuf.html">ByteBuf</a></dt>
+    <dd><p>字节缓冲区</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_GetHashCode_" data-uid="GameFrameX.Core.Config.ByteBuf.GetHashCode*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_GetHashCode" data-uid="GameFrameX.Core.Config.ByteBuf.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1916"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取哈希码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>哈希码</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_LeaveSegment_" data-uid="GameFrameX.Core.Config.ByteBuf.LeaveSegment*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_LeaveSegment_GameFrameX_Core_Config_SegmentSaveState_" data-uid="GameFrameX.Core.Config.ByteBuf.LeaveSegment(GameFrameX.Core.Config.SegmentSaveState)">
+  LeaveSegment(SegmentSaveState)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1824"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>离开段</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LeaveSegment(SegmentSaveState saveState)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>saveState</code> <a class="xref" href="GameFrameX.Core.Config.SegmentSaveState.html">SegmentSaveState</a></dt>
+    <dd><p>段保存状态</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadBool_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadBool*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadBool" data-uid="GameFrameX.Core.Config.ByteBuf.ReadBool">
+  ReadBool()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L323"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取布尔值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ReadBool()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>读取的布尔值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadByte_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadByte*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadByte" data-uid="GameFrameX.Core.Config.ByteBuf.ReadByte">
+  ReadByte()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L343"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取字节</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte ReadByte()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd><p>读取的字节</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadBytes_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadBytes*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadBytes" data-uid="GameFrameX.Core.Config.ByteBuf.ReadBytes">
+  ReadBytes()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1304"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取字节数组</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] ReadBytes()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>读取的字节数组</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadComplex_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadComplex*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadComplex" data-uid="GameFrameX.Core.Config.ByteBuf.ReadComplex">
+  ReadComplex()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1335"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取复数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Complex ReadComplex()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.numerics.complex">Complex</a></dt>
+    <dd><p>读取的复数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadDouble_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadDouble*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadDouble" data-uid="GameFrameX.Core.Config.ByteBuf.ReadDouble">
+  ReadDouble()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1142"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取双精度浮点数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double ReadDouble()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>读取的双精度浮点数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadFint_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadFint*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadFint" data-uid="GameFrameX.Core.Config.ByteBuf.ReadFint">
+  ReadFint()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L684"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取固定长度的整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ReadFint()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>读取的整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadFint_Safe_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadFint_Safe*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadFint_Safe" data-uid="GameFrameX.Core.Config.ByteBuf.ReadFint_Safe">
+  ReadFint_Safe()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L732"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全地读取固定长度的整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ReadFint_Safe()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>读取的整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadFloat_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadFloat*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadFloat" data-uid="GameFrameX.Core.Config.ByteBuf.ReadFloat">
+  ReadFloat()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1074"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取浮点数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float ReadFloat()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>读取的浮点数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadFlong_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadFlong*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadFlong" data-uid="GameFrameX.Core.Config.ByteBuf.ReadFlong">
+  ReadFlong()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L996"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取长整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long ReadFlong()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>读取的长整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadFshort_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadFshort*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadFshort" data-uid="GameFrameX.Core.Config.ByteBuf.ReadFshort">
+  ReadFshort()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L417"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取固定长度的短整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public short ReadFshort()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
+    <dd><p>读取的短整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadInt_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadInt*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadInt" data-uid="GameFrameX.Core.Config.ByteBuf.ReadInt">
+  ReadInt()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L473"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ReadInt()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>读取的整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadLong_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadLong*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadLong" data-uid="GameFrameX.Core.Config.ByteBuf.ReadLong">
+  ReadLong()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L770"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取长整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long ReadLong()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>读取的长整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadLongAsNumber_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadLongAsNumber*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadLongAsNumber" data-uid="GameFrameX.Core.Config.ByteBuf.ReadLongAsNumber">
+  ReadLongAsNumber()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L788"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取长整型并转换为浮点数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double ReadLongAsNumber()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>读取的浮点数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadMatrix4x4_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadMatrix4x4*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadMatrix4x4" data-uid="GameFrameX.Core.Config.ByteBuf.ReadMatrix4x4">
+  ReadMatrix4x4()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1466"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取4x4矩阵</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Matrix4x4 ReadMatrix4x4()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.numerics.matrix4x4">Matrix4x4</a></dt>
+    <dd><p>读取的4x4矩阵</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadQuaternion_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadQuaternion*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadQuaternion" data-uid="GameFrameX.Core.Config.ByteBuf.ReadQuaternion">
+  ReadQuaternion()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1428"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取四元数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Quaternion ReadQuaternion()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.numerics.quaternion">Quaternion</a></dt>
+    <dd><p>读取的四元数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadSegment_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadSegment*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadSegment_GameFrameX_Core_Config_ByteBuf_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadSegment(GameFrameX.Core.Config.ByteBuf)">
+  ReadSegment(ByteBuf)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1799"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取段</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReadSegment(ByteBuf buf)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buf</code> <a class="xref" href="GameFrameX.Core.Config.ByteBuf.html">ByteBuf</a></dt>
+    <dd><p>要读取的段</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadSegment_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadSegment*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadSegment_System_Int32__System_Int32__" data-uid="GameFrameX.Core.Config.ByteBuf.ReadSegment(System.Int32@,System.Int32@)">
+  ReadSegment(out int, out int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1745"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取段</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReadSegment(out int startIndex, out int segmentSize)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>startIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>开始索引</p>
+</dd>
+    <dt><code>segmentSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>段大小</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadShort_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadShort*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadShort" data-uid="GameFrameX.Core.Config.ByteBuf.ReadShort">
+  ReadShort()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L384"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取短整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public short ReadShort()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
+    <dd><p>读取的短整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadSint_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadSint*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadSint" data-uid="GameFrameX.Core.Config.ByteBuf.ReadSint">
+  ReadSint()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1206"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取有符号整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ReadSint()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>读取的有符号整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadSize_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadSize*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadSize" data-uid="GameFrameX.Core.Config.ByteBuf.ReadSize">
+  ReadSize()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1188"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取大小</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ReadSize()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>读取的大小</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadSlong_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadSlong*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadSlong" data-uid="GameFrameX.Core.Config.ByteBuf.ReadSlong">
+  ReadSlong()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1226"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取长整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long ReadSlong()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>读取的长整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadString_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadString*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadString" data-uid="GameFrameX.Core.Config.ByteBuf.ReadString">
+  ReadString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1257"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取字符串</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ReadString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>读取的字符串</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadUint_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadUint*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadUint" data-uid="GameFrameX.Core.Config.ByteBuf.ReadUint">
+  ReadUint()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L532"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取无符号整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint ReadUint()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>读取的无符号整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadUint_Unsafe_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadUint_Unsafe*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadUint_Unsafe" data-uid="GameFrameX.Core.Config.ByteBuf.ReadUint_Unsafe">
+  ReadUint_Unsafe()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L632"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用不安全代码读取无符号整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint ReadUint_Unsafe()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>读取的无符号整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadUlong_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadUlong*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadUlong" data-uid="GameFrameX.Core.Config.ByteBuf.ReadUlong">
+  ReadUlong()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L891"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取无符号长整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong ReadUlong()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>读取的无符号长整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadVector2_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadVector2*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadVector2" data-uid="GameFrameX.Core.Config.ByteBuf.ReadVector2">
+  ReadVector2()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1356"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取二维向量</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 ReadVector2()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.numerics.vector2">Vector2</a></dt>
+    <dd><p>读取的二维向量</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadVector3_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadVector3*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadVector3" data-uid="GameFrameX.Core.Config.ByteBuf.ReadVector3">
+  ReadVector3()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1378"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取三维向量</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector3 ReadVector3()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.numerics.vector3">Vector3</a></dt>
+    <dd><p>读取的三维向量</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ReadVector4_" data-uid="GameFrameX.Core.Config.ByteBuf.ReadVector4*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ReadVector4" data-uid="GameFrameX.Core.Config.ByteBuf.ReadVector4">
+  ReadVector4()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1402"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取四维向量</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector4 ReadVector4()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.numerics.vector4">Vector4</a></dt>
+    <dd><p>读取的四维向量</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_Release_" data-uid="GameFrameX.Core.Config.ByteBuf.Release*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_Release" data-uid="GameFrameX.Core.Config.ByteBuf.Release">
+  Release()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1930"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>释放</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Release()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_Replace_" data-uid="GameFrameX.Core.Config.ByteBuf.Replace*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_Replace_System_Byte___" data-uid="GameFrameX.Core.Config.ByteBuf.Replace(System.Byte[])">
+  Replace(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>替换内部字节数组</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Replace(byte[] bytes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>新的字节数组</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_Replace_" data-uid="GameFrameX.Core.Config.ByteBuf.Replace*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_Replace_System_Byte___System_Int32_System_Int32_" data-uid="GameFrameX.Core.Config.ByteBuf.Replace(System.Byte[],System.Int32,System.Int32)">
+  Replace(byte[], int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>替换内部字节数组并指定读写位置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Replace(byte[] bytes, int beginPos, int endPos)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>新的字节数组</p>
+</dd>
+    <dt><code>beginPos</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>起始位置</p>
+</dd>
+    <dt><code>endPos</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>结束位置</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_ToString_" data-uid="GameFrameX.Core.Config.ByteBuf.ToString*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_ToString" data-uid="GameFrameX.Core.Config.ByteBuf.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1836"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>转换为字符串</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字符串</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_TryDeserializeInplaceByteBuf_" data-uid="GameFrameX.Core.Config.ByteBuf.TryDeserializeInplaceByteBuf*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_TryDeserializeInplaceByteBuf_System_Int32_GameFrameX_Core_Config_ByteBuf_" data-uid="GameFrameX.Core.Config.ByteBuf.TryDeserializeInplaceByteBuf(System.Int32,GameFrameX.Core.Config.ByteBuf)">
+  TryDeserializeInplaceByteBuf(int, ByteBuf)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1557"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>尝试反序列化字节缓冲区</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EDeserializeError TryDeserializeInplaceByteBuf(int maxSize, ByteBuf inplaceTempBody)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>maxSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>最大大小</p>
+</dd>
+    <dt><code>inplaceTempBody</code> <a class="xref" href="GameFrameX.Core.Config.ByteBuf.html">ByteBuf</a></dt>
+    <dd><p>临时字节缓冲区</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Core.Config.EDeserializeError.html">EDeserializeError</a></dt>
+    <dd><p>反序列化错误</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_TryReadByte_" data-uid="GameFrameX.Core.Config.ByteBuf.TryReadByte*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_TryReadByte_System_Byte__" data-uid="GameFrameX.Core.Config.ByteBuf.TryReadByte(System.Byte@)">
+  TryReadByte(out byte)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1537"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>尝试读取字节</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryReadByte(out byte x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd><p>要读取的字节</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否成功读取</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_Wrap_" data-uid="GameFrameX.Core.Config.ByteBuf.Wrap*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_Wrap_System_Byte___" data-uid="GameFrameX.Core.Config.ByteBuf.Wrap(System.Byte[])">
+  Wrap(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>包装字节数组为ByteBuf</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ByteBuf Wrap(byte[] bytes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要包装的字节数组</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Core.Config.ByteBuf.html">ByteBuf</a></dt>
+    <dd><p>包装后的ByteBuf对象</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteBool_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteBool*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteBool_System_Boolean_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteBool(System.Boolean)">
+  WriteBool(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L313"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入布尔值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteBool(bool b)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>b</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>要写入的布尔值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteByte_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteByte*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteByte_System_Byte_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteByte(System.Byte)">
+  WriteByte(byte)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L333"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入字节</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteByte(byte x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd><p>要写入的字节</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteByteBufWithSize_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteByteBufWithSize*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteByteBufWithSize_GameFrameX_Core_Config_ByteBuf_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteByteBufWithSize(GameFrameX.Core.Config.ByteBuf)">
+  WriteByteBufWithSize(ByteBuf)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1505"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入字节缓冲区</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteByteBufWithSize(ByteBuf o)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>o</code> <a class="xref" href="GameFrameX.Core.Config.ByteBuf.html">ByteBuf</a></dt>
+    <dd><p>要写入的字节缓冲区</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteByteBufWithoutSize_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteByteBufWithoutSize*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteByteBufWithoutSize_GameFrameX_Core_Config_ByteBuf_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteByteBufWithoutSize(GameFrameX.Core.Config.ByteBuf)">
+  WriteByteBufWithoutSize(ByteBuf)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1523"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入字节缓冲区</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteByteBufWithoutSize(ByteBuf o)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>o</code> <a class="xref" href="GameFrameX.Core.Config.ByteBuf.html">ByteBuf</a></dt>
+    <dd><p>要写入的字节缓冲区</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteBytes_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteBytes*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteBytes_System_Byte___" data-uid="GameFrameX.Core.Config.ByteBuf.WriteBytes(System.Byte[])">
+  WriteBytes(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1288"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入字节数组</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteBytes(byte[] x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的字节数组</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteBytesWithoutSize_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteBytesWithoutSize*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteBytesWithoutSize_System_Byte___" data-uid="GameFrameX.Core.Config.ByteBuf.WriteBytesWithoutSize(System.Byte[])">
+  WriteBytesWithoutSize(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L209"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入字节数组(不写入大小)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteBytesWithoutSize(byte[] bs)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bs</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的字节数组</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteBytesWithoutSize_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteBytesWithoutSize*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteBytesWithoutSize_System_Byte___System_Int32_System_Int32_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteBytesWithoutSize(System.Byte[],System.Int32,System.Int32)">
+  WriteBytesWithoutSize(byte[], int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L220"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入字节数组的指定部分(不写入大小)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteBytesWithoutSize(byte[] bs, int offset, int len)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bs</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要写入的字节数组</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>起始偏移</p>
+</dd>
+    <dt><code>len</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>长度</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteComplex_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteComplex*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteComplex_System_Numerics_Complex_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteComplex(System.Numerics.Complex)">
+  WriteComplex(Complex)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1325"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入复数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteComplex(Complex x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.numerics.complex">Complex</a></dt>
+    <dd><p>要写入的复数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteDouble_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteDouble*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteDouble_System_Double_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteDouble(System.Double)">
+  WriteDouble(double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1109"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入双精度浮点数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteDouble(double x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>要写入的双精度浮点数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteFint_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteFint*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteFint_System_Int32_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteFint(System.Int32)">
+  WriteFint(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L708"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入固定长度的整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteFint(int x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入的整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteFint_Safe_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteFint_Safe*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteFint_Safe_System_Int32_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteFint_Safe(System.Int32)">
+  WriteFint_Safe(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L747"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>安全地写入固定长度的整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteFint_Safe(int x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入的整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteFloat_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteFloat*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteFloat_System_Single_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteFloat(System.Single)">
+  WriteFloat(float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1041"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入浮点数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteFloat(float x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>要写入的浮点数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteFlong_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteFlong*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteFlong_System_Int64_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteFlong(System.Int64)">
+  WriteFlong(long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L967"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入长整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteFlong(long x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>要写入的长整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteFshort_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteFshort*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteFshort_System_Int16_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteFshort(System.Int16)">
+  WriteFshort(short)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L441"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入固定长度的短整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteFshort(short x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
+    <dd><p>要写入的短整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteInt_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteInt*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteInt_System_Int32_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteInt(System.Int32)">
+  WriteInt(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L463"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteInt(int x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入的整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteLong_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteLong*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteLong_System_Int64_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteLong(System.Int64)">
+  WriteLong(long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L761"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入长整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteLong(long x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>要写入的长整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteMatrix4x4_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteMatrix4x4*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteMatrix4x4_System_Numerics_Matrix4x4_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteMatrix4x4(System.Numerics.Matrix4x4)">
+  WriteMatrix4x4(Matrix4x4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1442"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入4x4矩阵</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteMatrix4x4(Matrix4x4 x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.numerics.matrix4x4">Matrix4x4</a></dt>
+    <dd><p>要写入的4x4矩阵</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteNumberAsLong_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteNumberAsLong*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteNumberAsLong_System_Double_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteNumberAsLong(System.Double)">
+  WriteNumberAsLong(double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L779"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将浮点数作为长整型写入</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteNumberAsLong(double x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>要写入的浮点数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteQuaternion_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteQuaternion*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteQuaternion_System_Numerics_Quaternion_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteQuaternion(System.Numerics.Quaternion)">
+  WriteQuaternion(Quaternion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1416"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入四元数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteQuaternion(Quaternion x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.numerics.quaternion">Quaternion</a></dt>
+    <dd><p>要写入的四元数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteRawTag_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteRawTag*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteRawTag_System_Byte_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteRawTag(System.Byte)">
+  WriteRawTag(byte)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1637"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入原始标签</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteRawTag(byte b1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>b1</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd><p>要写入的标签</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteRawTag_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteRawTag*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteRawTag_System_Byte_System_Byte_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteRawTag(System.Byte,System.Byte)">
+  WriteRawTag(byte, byte)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1648"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入原始标签</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteRawTag(byte b1, byte b2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>b1</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd><p>要写入的标签</p>
+</dd>
+    <dt><code>b2</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd><p>要写入的标签</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteRawTag_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteRawTag*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteRawTag_System_Byte_System_Byte_System_Byte_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteRawTag(System.Byte,System.Byte,System.Byte)">
+  WriteRawTag(byte, byte, byte)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1662"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入原始标签</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteRawTag(byte b1, byte b2, byte b3)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>b1</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd><p>要写入的标签</p>
+</dd>
+    <dt><code>b2</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd><p>要写入的标签</p>
+</dd>
+    <dt><code>b3</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd><p>要写入的标签</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteShort_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteShort*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteShort_System_Int16_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteShort(System.Int16)">
+  WriteShort(short)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L353"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入短整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteShort(short x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
+    <dd><p>要写入的短整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteSint_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteSint*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteSint_System_Int32_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteSint(System.Int32)">
+  WriteSint(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1197"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入有符号整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteSint(int x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入的有符号整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteSize_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteSize*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteSize_System_Int32_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteSize(System.Int32)">
+  WriteSize(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1179"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入大小</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteSize(int n)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>n</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要写入的大小</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteSlong_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteSlong*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteSlong_System_Int64_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteSlong(System.Int64)">
+  WriteSlong(long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1217"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入长整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteSlong(long x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>要写入的长整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteString_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteString*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteString_System_String_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteString(System.String)">
+  WriteString(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1236"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入字符串</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteString(string x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要写入的字符串</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteUint_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteUint*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteUint_System_UInt32_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteUint(System.UInt32)">
+  WriteUint(uint)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L483"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入无符号整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteUint(uint x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>要写入的无符号整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteUint_Unsafe_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteUint_Unsafe*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteUint_Unsafe_System_UInt32_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteUint_Unsafe(System.UInt32)">
+  WriteUint_Unsafe(uint)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L576"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用不安全代码写入无符号整型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteUint_Unsafe(uint x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>要写入的无符号整型值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteVector2_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteVector2*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteVector2_System_Numerics_Vector2_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteVector2(System.Numerics.Vector2)">
+  WriteVector2(Vector2)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1346"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入二维向量</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteVector2(Vector2 x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.numerics.vector2">Vector2</a></dt>
+    <dd><p>要写入的二维向量</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteVector3_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteVector3*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteVector3_System_Numerics_Vector3_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteVector3(System.Numerics.Vector3)">
+  WriteVector3(Vector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1367"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入三维向量</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteVector3(Vector3 x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.numerics.vector3">Vector3</a></dt>
+    <dd><p>要写入的三维向量</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Config_ByteBuf_WriteVector4_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteVector4*"></a>
+
+  <h3 id="GameFrameX_Core_Config_ByteBuf_WriteVector4_System_Numerics_Vector4_" data-uid="GameFrameX.Core.Config.ByteBuf.WriteVector4(System.Numerics.Vector4)">
+  WriteVector4(Vector4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L1390"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>写入四维向量</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteVector4(Vector4 x)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.numerics.vector4">Vector4</a></dt>
+    <dd><p>要写入的四维向量</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.Core.Config/ByteBuf.cs/#L10" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

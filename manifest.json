@@ -522,6 +522,26 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Config.ByteBuf.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Config.ByteBuf.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Config.EDeserializeError.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Config.EDeserializeError.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.Core.Config.IConfigManager.yml",
       "output": {
         ".html": {
@@ -556,6 +576,16 @@
       "output": {
         ".html": {
           "relative_path": "api/GameFrameX.Core.Config.ITypeId.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Config.SegmentSaveState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Config.SegmentSaveState.html"
         }
       },
       "version": ""
