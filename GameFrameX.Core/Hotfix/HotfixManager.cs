@@ -161,6 +161,15 @@ public static class HotfixManager
     }
 
     /// <summary>
+    /// 获取HTTP消息处理器
+    /// </summary>
+    /// <returns></returns>
+    public static List<BaseHttpHandler> GetListHttpHandler()
+    {
+        return _module.GetListHttpHandler();
+    }
+
+    /// <summary>
     /// 获取事件监听器列表
     /// </summary>
     /// <param name="actorType"></param>

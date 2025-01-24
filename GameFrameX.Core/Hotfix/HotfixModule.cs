@@ -419,6 +419,27 @@ internal class HotfixModule
     }
 
     /// <summary>
+    /// 获取HTTP处理器列表。
+    /// </summary>
+    /// <returns>HTTP处理器列表。</returns>
+    internal List<BaseHttpHandler> GetListHttpHandler()
+    {
+        var values = _httpHandlerMap.Values;
+        List<BaseHttpHandler> list = new List<BaseHttpHandler>(values.Count / 2);
+        foreach (var handler in values)
+        {
+            if (list.Contains(handler))
+            {
+                continue;
+            }
+
+            list.Add(handler);
+        }
+
+        return list;
+    }
+
+    /// <summary>
     /// 获取组件代理。
     /// </summary>
     /// <param name="component">组件实例。</param>
