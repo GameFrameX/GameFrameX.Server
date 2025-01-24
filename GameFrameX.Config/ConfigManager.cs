@@ -6,7 +6,7 @@ namespace GameFrameX.Config;
 /// <summary>
 /// 全局配置管理器。
 /// </summary>
-public sealed partial class ConfigManager : IConfigManager
+internal sealed partial class ConfigManager : IConfigManager
 {
     private readonly ConcurrentDictionary<string, IDataTable> m_ConfigDatas;
 
