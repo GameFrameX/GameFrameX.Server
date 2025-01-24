@@ -27,6 +27,12 @@ public class ConfigComponent
         LogHelper.Info("== load success ==");
     }
 
+    private static async Task<ByteBuf> Loader(string file, bool tag)
+    {
+        var configBytes = await File.ReadAllBytesAsync($"json/{file}.bytes");
+        return ByteBuf.Wrap(configBytes);
+    }
+
     private static async Task<JsonElement> Loader(string file)
     {
         var configJson = await File.ReadAllTextAsync($"json/{file}.json");
