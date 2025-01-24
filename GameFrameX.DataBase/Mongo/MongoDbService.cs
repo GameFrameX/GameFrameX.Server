@@ -16,16 +16,11 @@ namespace GameFrameX.DataBase.Mongo;
 public sealed partial class MongoDbService : IDatabaseService
 {
     /// <summary>
-    /// 获取或设置MongoDB客户端。
-    /// </summary>
-    public MongoClient Client { get; private set; }
-
-    /// <summary>
     /// 获取或设置当前使用的MongoDB数据库。
     /// </summary>
     public IMongoDatabase CurrentDatabase { get; private set; }
 
-    public MongoDbContext _mongoDbContext { get; private set; }
+    private MongoDbContext _mongoDbContext;
 
     /// <summary>
     /// 打开MongoDB连接并指定URL和数据库名称。
@@ -54,7 +49,8 @@ public sealed partial class MongoDbService : IDatabaseService
     /// </summary>
     public void Close()
     {
-        Client.Cluster.Dispose();
+        _mongoDbContext?.Session?.Dispose();
+        // _client.Cluster.Dispose();
     }
 
     /// <summary>

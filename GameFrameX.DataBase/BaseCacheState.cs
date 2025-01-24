@@ -11,11 +11,6 @@ namespace GameFrameX.DataBase;
 public abstract class BaseCacheState : ICacheState, IEntity
 {
     /// <summary>
-    /// 唯一ID。给DB用的
-    /// </summary>
-    public const string UniqueId = nameof(Id);
-
-    /// <summary>
     /// 唯一ID
     /// </summary>
     public virtual long Id { get; set; }
@@ -133,11 +128,22 @@ public abstract class BaseCacheState : ICacheState, IEntity
 
     #endregion
 
+    /// <summary>
+    /// Generate and return a new ID from this method. It will be used when saving new entities that don't have their ID set.
+    /// I.e. if an entity has a default ID value (determined by calling <see cref="M:MongoDB.Entities.IEntity.HasDefaultID" /> method),
+    /// this method will be called for obtaining a new ID value. If you're not doing custom ID generation, simply do
+    /// <c>return ObjectId.GenerateNewId().ToString()</c>
+    /// </summary>
     public object GenerateNewID()
     {
         throw new NotImplementedException();
     }
 
+    /// <summary>
+    /// When saving entities, this method will be called in order to determine if <see cref="M:MongoDB.Entities.IEntity.GenerateNewID" /> needs to be called.
+    /// If this method returns <c>'true'</c>, <see cref="M:MongoDB.Entities.IEntity.GenerateNewID" /> method is called and the ID (primary key) of the entity is populated.
+    /// If <c>'false'</c> is returned, it is assumed that ID generation is not required and the entity already has a non-default ID value.
+    /// </summary>
     public bool HasDefaultID()
     {
         return Id == 0;

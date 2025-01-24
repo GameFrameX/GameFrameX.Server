@@ -8,7 +8,7 @@ using MongoDB.Entities;
 
 namespace GameFrameX.DataBase.Mongo;
 
-public class MongoDbContext : DBContext
+internal sealed class MongoDbContext : DBContext
 {
     public MongoDbContext()
     {

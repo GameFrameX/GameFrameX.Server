@@ -1,5 +1,4 @@
 ﻿using System.Linq.Expressions;
-using GameFrameX.DataBase.Abstractions;
 using GameFrameX.Utility.Extensions;
 using MongoDB.Driver.Linq;
 using MongoDB.Entities;
@@ -13,7 +12,7 @@ namespace GameFrameX.DataBase.Mongo;
 /// </see>
 /// 接口。
 /// </summary>
-public sealed partial class MongoDbService : IDatabaseService
+public sealed partial class MongoDbService
 {
     /// <summary>
     /// 加载指定ID的缓存状态。

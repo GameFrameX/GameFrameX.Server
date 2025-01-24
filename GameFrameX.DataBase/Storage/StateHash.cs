@@ -1,5 +1,4 @@
 using GameFrameX.Foundation.Hash;
-using GameFrameX.Utility;
 using GameFrameX.Utility.Log;
 using Standart.Hash.xxHash;
 

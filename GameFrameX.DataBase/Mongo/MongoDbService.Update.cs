@@ -1,5 +1,4 @@
-﻿using GameFrameX.DataBase.Abstractions;
-using GameFrameX.Utility;
+﻿using GameFrameX.Utility;
 
 namespace GameFrameX.DataBase.Mongo;
 
@@ -10,7 +9,7 @@ namespace GameFrameX.DataBase.Mongo;
 /// </see>
 /// 接口。
 /// </summary>
-public sealed partial class MongoDbService : IDatabaseService
+public sealed partial class MongoDbService
 {
     /// <summary>
     /// 保存数据
