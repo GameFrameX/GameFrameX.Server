@@ -1,13 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using GameFrameX.Bot;
+﻿using GameFrameX.Client.Bot;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Proto.Proto;
 using GameFrameX.Utility.Log;
 
 internal static class Program
 {
-    private const int m_BotCount = 1;
+    private const int m_BotCount = 100;
 
     static async Task Main(string[] args)
     {
@@ -15,7 +13,7 @@ internal static class Program
         logOption.IsConsole = true;
         logOption.LogEventLevel = Serilog.Events.LogEventLevel.Information;
         LoggerHandler.Start(logOption);
- 
+
         MessageProtoHelper.Init(typeof(ReqLogin).Assembly);
 
         for (int k = 0; k < m_BotCount; k++)

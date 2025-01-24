@@ -7,9 +7,9 @@ using GameFrameX.ProtoBuf.Net;
 using GameFrameX.Utility.Extensions;
 using GameFrameX.Utility.Log;
 
-namespace GameFrameX.Bot;
+namespace GameFrameX.Client.Bot;
 
-public class BotHttpClient
+public sealed class BotHttpClient
 {
     private readonly HttpClient m_HttpClient = new();
 

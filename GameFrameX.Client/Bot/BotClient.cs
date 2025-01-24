@@ -3,9 +3,12 @@ using GameFrameX.Proto.Proto;
 using GameFrameX.Utility.Log;
 using ErrorEventArgs = GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs;
 
-namespace GameFrameX.Bot;
+namespace GameFrameX.Client.Bot;
 
-public class BotClient
+/// <summary>
+/// 机器人客户端类,用于模拟玩家行为进行测试
+/// </summary>
+public sealed class BotClient
 {
     private readonly BotTcpClient m_TcpClient;
     private readonly BotHttpClient m_HttpClient;
@@ -13,6 +16,10 @@ public class BotClient
     private readonly BotTcpClientEvent m_BotTcpClientEvent;
     private const string m_LoginUrl = "http://127.0.0.1:29200/game/api/";
 
+    /// <summary>
+    /// 初始化机器人客户端
+    /// </summary>
+    /// <param name="botName">机器人名称</param>
     public BotClient(string botName)
     {
         m_BotName = botName;
@@ -24,6 +31,10 @@ public class BotClient
         m_HttpClient = new BotHttpClient();
     }
 
+    /// <summary>
+    /// 启动机器人客户端
+    /// </summary>
+    /// <returns>异步任务</returns>
     public async Task EntryAsync()
     {
         try
@@ -36,6 +47,10 @@ public class BotClient
         }
     }
 
+    /// <summary>
+    /// 处理接收到的消息
+    /// </summary>
+    /// <param name="messageObject">接收到的消息对象</param>
     private void OnReceiveMsg(MessageObject messageObject)
     {
         switch (messageObject)
@@ -48,19 +63,33 @@ public class BotClient
 
     #region 连接状态回调
 
+    /// <summary>
+    /// 客户端连接成功的回调
+    /// </summary>
     private void ClientConnectedCallback()
     {
         SendLoginMessage();
     }
 
+    /// <summary>
+    /// 客户端连接关闭的回调
+    /// </summary>
     private void ClientClosedCallback()
     {
     }
 
+    /// <summary>
+    /// 客户端发生错误的回调
+    /// </summary>
+    /// <param name="error">错误信息</param>
     private void ClientErrorCallback(ErrorEventArgs error)
     {
     }
 
+    /// <summary>
+    /// 客户端接收消息的回调
+    /// </summary>
+    /// <param name="outerMsg">接收到的消息</param>
     private void ClientReceiveCallback(MessageObject outerMsg)
     {
         OnReceiveMsg(outerMsg);
@@ -70,6 +99,9 @@ public class BotClient
 
     #region 消息发送
 
+    /// <summary>
+    /// 发送登录消息并处理登录流程
+    /// </summary>
     private async void SendLoginMessage()
     {
         try
@@ -79,7 +111,7 @@ public class BotClient
             {
                 UserName = m_BotName,
                 Password = "12312",
-                Platform ="LoginPlatform.Custom",
+                Platform = "LoginPlatform.Custom",
             };
 
             string respLoginUrl = $"{m_LoginUrl}{nameof(ReqLogin)}";
@@ -147,6 +179,10 @@ public class BotClient
 
     #region 消息接收
 
+    /// <summary>
+    /// 处理玩家登录成功的响应
+    /// </summary>
+    /// <param name="msg">登录成功的响应消息</param>
     private void OnPlayerLoginSuccess(RespPlayerLogin msg)
     {
         LogHelper.Info($"机器人-{m_BotName}登录成功,id:{msg.PlayerInfo.Id}");
