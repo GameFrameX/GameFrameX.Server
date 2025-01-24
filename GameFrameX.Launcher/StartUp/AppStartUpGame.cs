@@ -27,9 +27,7 @@ internal sealed class AppStartUpGame : AppStartUpBase
             LogHelper.InfoConsole("配置Actor限制逻辑结束...");
 
             LogHelper.InfoConsole("开始启动数据库服务...");
-            var mongoDbService = new MongoDbService();
-            GameDb.Init(mongoDbService);
-            GameDb.Open(Setting.DataBaseUrl, Setting.DataBaseName);
+            GameDb.Init<MongoDbService>(Setting.DataBaseUrl, Setting.DataBaseName);
             LogHelper.InfoConsole("启动数据库服务 结束...");
 
             LogHelper.InfoConsole("注册组件开始...");
