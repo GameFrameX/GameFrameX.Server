@@ -47,9 +47,7 @@ public sealed class SwaggerOperationFilter : IOperationFilter
         operation.Parameters.Clear();
 
         // 找到匹配的处理器
-        var handler = _handlers.FirstOrDefault(h =>
-                                                   routeTemplate.EndsWith(h.GetType().GetCustomAttribute<HttpMessageMappingAttribute>()?.StandardCmd ?? "",
-                                                                          StringComparison.OrdinalIgnoreCase));
+        var handler = _handlers.FirstOrDefault(h => routeTemplate.EndsWith(h.GetType().GetCustomAttribute<HttpMessageMappingAttribute>()?.StandardCmd ?? "", StringComparison.OrdinalIgnoreCase));
 
         if (handler == null)
         {
@@ -65,6 +63,30 @@ public sealed class SwaggerOperationFilter : IOperationFilter
         // 设置请求体
         if (requestAttr?.MessageType != null)
         {
+            var requestSchema = context.SchemaGenerator.GenerateSchema(requestAttr.MessageType, context.SchemaRepository);
+
+            // 修正请求Schema中的属性名称
+            if (requestSchema.Properties != null)
+            {
+                var properties = requestAttr.MessageType.GetProperties();
+                var correctedProperties = new Dictionary<string, OpenApiSchema>();
+
+                foreach (var property in properties)
+                {
+                    var lowercaseKey = property.Name.ToLowerInvariant();
+                    if (requestSchema.Properties.TryGetValue(lowercaseKey, out var schemaProperty))
+                    {
+                        correctedProperties[property.Name] = schemaProperty;
+                    }
+                }
+
+                requestSchema.Properties.Clear();
+                foreach (var prop in correctedProperties)
+                {
+                    requestSchema.Properties[prop.Key] = prop.Value;
+                }
+            }
+
             operation.RequestBody = new OpenApiRequestBody
             {
                 Required = true,
@@ -73,7 +95,7 @@ public sealed class SwaggerOperationFilter : IOperationFilter
                 {
                     ["application/json"] = new OpenApiMediaType
                     {
-                        Schema = context.SchemaGenerator.GenerateSchema(requestAttr.MessageType, context.SchemaRepository)
+                        Schema = requestSchema
                     }
                 }
             };
@@ -94,8 +116,8 @@ public sealed class SwaggerOperationFilter : IOperationFilter
             };
         }
 
-        // 设置响应体
-        var responseSchema = new OpenApiSchema
+        // 设置成功响应体
+        var successResponseSchema = new OpenApiSchema
         {
             Type = "object",
             Properties = new Dictionary<string, OpenApiSchema>
@@ -118,11 +140,11 @@ public sealed class SwaggerOperationFilter : IOperationFilter
         // 如果有响应类型，添加到 data 字段
         if (responseAttr?.MessageType != null)
         {
-            responseSchema.Properties["data"] = context.SchemaGenerator.GenerateSchema(responseAttr.MessageType, context.SchemaRepository);
+            successResponseSchema.Properties["data"] = context.SchemaGenerator.GenerateSchema(responseAttr.MessageType, context.SchemaRepository);
         }
         else
         {
-            responseSchema.Properties["data"] = new OpenApiSchema { Type = "object" };
+            successResponseSchema.Properties["data"] = new OpenApiSchema { Type = "object", };
         }
 
         operation.Responses = new OpenApiResponses
@@ -134,10 +156,10 @@ public sealed class SwaggerOperationFilter : IOperationFilter
                 {
                     ["application/json"] = new OpenApiMediaType
                     {
-                        Schema = responseSchema
-                    }
-                }
-            }
+                        Schema = successResponseSchema
+                    },
+                },
+            },
         };
         // 添加操作描述
         var descriptionAttr = handlerType.GetCustomAttribute<DescriptionAttribute>();
