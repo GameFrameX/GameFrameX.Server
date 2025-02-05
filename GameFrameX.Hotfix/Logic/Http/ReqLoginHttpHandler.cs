@@ -12,6 +12,7 @@ namespace GameFrameX.Hotfix.Logic.Http;
 /// 账号登录
 /// </summary>
 [HttpMessageMapping(typeof(ReqLoginHttpHandler))]
+[Description("账号登录,仅限前端调用")]
 public sealed class ReqLoginHttpHandler : BaseHttpHandler
 {
     public override async Task<MessageObject> Action(string ip, string url, Dictionary<string, object> parameters, MessageObject messageObject)
