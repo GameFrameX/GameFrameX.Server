@@ -18,6 +18,8 @@ public static class JsonHelper
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         // 忽略循环引用
         ReferenceHandler = ReferenceHandler.IgnoreCycles,
+        // 大小写判断
+        PropertyNameCaseInsensitive = true,
         // 添加自定义转换器，类似于 StringEnumConverter
         Converters =
         {
@@ -34,6 +36,8 @@ public static class JsonHelper
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         // 忽略循环引用
         ReferenceHandler = ReferenceHandler.IgnoreCycles,
+        // 大小写判断
+        PropertyNameCaseInsensitive = true,
         // 格式化 JSON
         WriteIndented = true,
         // 添加自定义转换器，类似于 StringEnumConverter
