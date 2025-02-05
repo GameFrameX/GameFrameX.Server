@@ -8,6 +8,7 @@ namespace GameFrameX.Hotfix.Logic.Http;
 /// http://localhost:20001/game/api/Reload?version=1.0.0
 /// </summary>
 [HttpMessageMapping(typeof(ReloadHttpHandler))]
+[Description("热更新")]
 public sealed class ReloadHttpHandler : BaseHttpHandler
 {
     /// <summary>
@@ -21,9 +22,11 @@ public sealed class ReloadHttpHandler : BaseHttpHandler
         if (parameters.TryGetValue("version", out var version))
         {
             await HotfixManager.LoadHotfixModule(null, version.ToString());
-            return HttpJsonResult.SuccessString();
+            return Task.FromResult(HttpJsonResult.SuccessString(null)).Result;
         }
 
-        return HttpJsonResult.ParamErrorString();
+        var result = HttpJsonResult.ParamErrorString();
+
+        return Task.FromResult(result).Result;
     }
 }

@@ -10,6 +10,7 @@ namespace GameFrameX.Hotfix.Logic.Http;
 /// 获取角色列表
 /// </summary>
 [HttpMessageMapping(typeof(ReqPlayerListHttpHandler))]
+[Description("获取角色列表,仅限前端调用")]
 public sealed class ReqPlayerListHttpHandler : BaseHttpHandler
 {
     public override async Task<MessageObject> Action(string ip, string url, Dictionary<string, object> paramMap, MessageObject messageObject)

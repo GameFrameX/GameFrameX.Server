@@ -4,7 +4,7 @@ namespace GameFrameX.CodeGenerator.Agent;
 
 public static class AgentTemplate
 {
-    private static readonly StringBuilder TemplateStringBuilder = new StringBuilder();
+    private static readonly StringBuilder TemplateStringBuilder = new();
 
     public static string Run(AgentInfo info)
     {
@@ -43,7 +43,7 @@ public static class AgentTemplate
             else
             {
                 TemplateStringBuilder.AppendLine("\t\t\t(bool needEnqueue, long chainId)= base.Actor.WorkerActor.IsNeedEnqueue();");
-                TemplateStringBuilder.AppendLine($"\t\t\tif (!needEnqueue)");
+                TemplateStringBuilder.AppendLine("\t\t\tif (!needEnqueue)");
                 TemplateStringBuilder.AppendLine("\t\t\t{");
                 TemplateStringBuilder.AppendLine($"\t\t\t\treturn {(infoMethod.IsAsync ? "await " : string.Empty)} base.{infoMethod.Name}{infoMethod.Typeparams}({infoMethod.ParamString});");
                 TemplateStringBuilder.AppendLine("\t\t\t}");

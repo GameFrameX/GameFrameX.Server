@@ -45,7 +45,7 @@ internal sealed partial class ConfigManager : IConfigManager
     /// <returns>是否增加全局配置项成功。</returns>
     public void AddConfig(string configName, IDataTable configValue)
     {
-        bool isExist = m_ConfigDatas.TryGetValue(configName, out var value);
+        var isExist = m_ConfigDatas.TryGetValue(configName, out var value);
         if (isExist)
         {
             return;

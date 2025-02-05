@@ -8,6 +8,8 @@ namespace GameFrameX.Hotfix.Logic.Http;
 /// http://localhost:20001/game/api/test
 /// </summary>
 [HttpMessageMapping(typeof(TestHttpHandler))]
+[HttpMessageResponse(typeof(HttpTestResponse))]
+[Description("测试通讯接口。没有实际用途")]
 public sealed class TestHttpHandler : BaseHttpHandler
 {
     /// <summary>
@@ -18,28 +20,15 @@ public sealed class TestHttpHandler : BaseHttpHandler
     /// <returns></returns>
     public override Task<string> Action(string ip, string url, Dictionary<string, object> parameters)
     {
-        var response = new HttpTestRes
+        var response = new HttpTestResponse
         {
-            A = 100,
-            B = "hello",
-            TestInfo = new HttpTestRes.Info(),
+            Message = "hello",
         };
-        response.TestInfo.Age = 18;
-        response.TestInfo.Name = "leeveel";
         return Task.FromResult(HttpJsonResult.SuccessString(response));
     }
+}
 
-    public class HttpTestRes
-    {
-        public int A { get; set; }
-        public string B { get; set; }
-
-        public Info TestInfo { get; set; }
-
-        public class Info
-        {
-            public int Age { get; set; }
-            public string Name { get; set; }
-        }
-    }
+public sealed class HttpTestResponse : HttpMessageResponseBase
+{
+    [Description("返回信息")] public string Message { get; set; }
 }

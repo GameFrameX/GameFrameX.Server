@@ -1,4 +1,6 @@
-﻿using GameFrameX.NetWork.Abstractions;
+﻿using System.Text.Json.Serialization;
+using System.Threading.Tasks;
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.Apps.Common.Session;
@@ -35,6 +37,7 @@ public sealed class Session
     /// <summary>
     /// 连接上下文
     /// </summary>
+    [JsonIgnore]
     public INetWorkChannel WorkChannel { get; }
 
     /// <summary>
@@ -64,17 +67,8 @@ public sealed class Session
     /// 发送消息
     /// </summary>
     /// <param name="messageObject">消息对象</param>
-    public void Write(MessageObject messageObject)
-    {
-        WorkChannel?.Write(messageObject);
-    }
-
-    /// <summary>
-    /// 发送消息
-    /// </summary>
-    /// <param name="messageObject">消息对象</param>
     /// <param name="errorCode">消息错误码</param>
-    public async void WriteAsync(MessageObject messageObject, int errorCode = 0)
+    public async Task WriteAsync(MessageObject messageObject, int errorCode = 0)
     {
         if (WorkChannel != null)
         {

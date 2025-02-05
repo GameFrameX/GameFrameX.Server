@@ -9,6 +9,9 @@ namespace GameFrameX.Hotfix.Logic.Http;
 /// http://localhost:20001/game/api/GetOnlinePlayer
 /// </summary>
 [HttpMessageMapping(typeof(GetOnlinePlayerHttpHandler))]
+[HttpMessageRequest(typeof(GetOnlinePlayerRequest))]
+[HttpMessageResponse(typeof(GetOnlinePlayerResponse))]
+[Description("获取在线人数")]
 public sealed class GetOnlinePlayerHttpHandler : BaseHttpHandler
 {
     /// <summary>
@@ -21,12 +24,27 @@ public sealed class GetOnlinePlayerHttpHandler : BaseHttpHandler
     {
         var response = new GetOnlinePlayerResponse();
         response.Count = SessionManager.Count();
-        var res = HttpJsonResult.SuccessString($"当前在线人数:{response.Count}", JsonHelper.Serialize(response));
+        var res = HttpJsonResult.SuccessString(response);
         return Task.FromResult(res);
     }
+}
 
-    private class GetOnlinePlayerResponse
-    {
-        public int Count { get; set; }
-    }
+/// <summary>
+/// 获取在线人数请求
+/// </summary>
+public sealed class GetOnlinePlayerRequest : HttpMessageRequestBase
+{
+    // 空请求
+}
+
+/// <summary>
+/// 获取在线人数响应
+/// </summary>
+public sealed class GetOnlinePlayerResponse : HttpMessageResponseBase
+{
+    /// <summary>
+    /// 在线人数
+    /// </summary>
+    [Description("当前在线玩家数量")]
+    public int Count { get; set; }
 }

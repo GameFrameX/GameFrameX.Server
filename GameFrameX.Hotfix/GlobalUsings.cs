@@ -17,3 +17,4 @@ global using GameFrameX.Utility.Setting;
 global using GameFrameX.Utility.Extensions;
 global using GameFrameX.Utility.Log;
 global using GameFrameX.NetWork.Abstractions;
+global using System.ComponentModel;

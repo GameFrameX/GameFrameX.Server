@@ -21,7 +21,7 @@ internal partial class AppStartUpHotfixGame
         // 设置压缩和解压缩
         await StartServerAsync<ClientMessageDecoderHandler, ClientMessageEncoderHandler>(new DefaultMessageCompressHandler(), new DefaultMessageDecompressHandler());
         // 启动Http服务
-        await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetHttpHandler);
+        await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetListHttpHandler(), HotfixManager.GetHttpHandler);
     }
 
     public async void RunServer(bool reload = false)
@@ -51,22 +51,22 @@ internal partial class AppStartUpHotfixGame
         var netChannel = new DefaultNetWorkChannel(appSession, Setting, MessageEncoderHandler, null, appSession is WebSocketSession);
         var session = new Session(appSession.SessionID, netChannel);
         SessionManager.Add(session);
+
         return ValueTask.CompletedTask;
     }
-
 
     /// <summary>
     /// 处理收到的消息结果
     /// </summary>
     /// <param name="appSession"></param>
     /// <param name="message"></param>
-    protected override ValueTask PackageHandler(IAppSession appSession, IMessage message)
+    protected override async ValueTask PackageHandler(IAppSession appSession, IMessage message)
     {
         if (message is OuterNetworkMessage outerNetworkMessage)
         {
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
-                LogHelper.Debug($"---收到{message.ToFormatMessageString()}");
+                LogHelper.Debug($"---收到{outerNetworkMessage.ToFormatMessageString()}");
             }
 
             var netWorkChannel = SessionManager.GetChannel(appSession.SessionID);
@@ -75,26 +75,28 @@ internal partial class AppStartUpHotfixGame
                 // LogHelper.Info("收到心跳请求:" + req.Timestamp);
                 ReplyHeartBeat(netWorkChannel, (MessageObject)outerNetworkMessage.DeserializeMessageObject());
                 // 心跳消息
-                return ValueTask.CompletedTask;
+                await ValueTask.CompletedTask;
+                return;
             }
 
             var handler = HotfixManager.GetTcpHandler(outerNetworkMessage.Header.MessageId);
             if (handler == null)
             {
                 LogHelper.Error($"找不到[{outerNetworkMessage.Header.MessageId}][{message.GetType()}]对应的handler");
-                return ValueTask.CompletedTask;
+                await ValueTask.CompletedTask;
+                return;
             }
 
             async void InvokeAction()
             {
-                await handler.Init(outerNetworkMessage.DeserializeMessageObject(), netWorkChannel);
+                await handler.Init((MessageObject)outerNetworkMessage.DeserializeMessageObject(), netWorkChannel);
                 await handler.InnerAction();
             }
 
-            Task.Run(InvokeAction);
+            await Task.Run(InvokeAction);
         }
 
-        return ValueTask.CompletedTask;
+        await ValueTask.CompletedTask;
     }
 
     public override async Task StopAsync(string message = "")
