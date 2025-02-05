@@ -144,10 +144,15 @@ public static class HttpServer
                 continue;
             }
 
-            var route = App.MapPost($"{ApiRootPath}{mappingAttribute.StandardCmd}", async context => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
+            var route = App.MapPost($"{ApiRootPath}{mappingAttribute.StandardCmd}", async (HttpContext context, string text) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
             if (isDevelopment)
             {
-                route.WithOpenApi();
+                route.WithOpenApi(operation =>
+                {
+                    operation.Summary = "处理 POST 请求";
+                    operation.Description = "处理来自游戏客户端的 POST 请求";
+                    return operation;
+                });
             }
         }
 
