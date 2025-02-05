@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.2.0-beta22/apiSpec/new?filename=GameFrameX_NetWork_HTTP_HttpServer.md&amp;value=---%0Auid%3A%20GameFrameX.NetWork.HTTP.HttpServer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.3.0-beta1/apiSpec/new?filename=GameFrameX_NetWork_HTTP_HttpServer.md&amp;value=---%0Auid%3A%20GameFrameX.NetWork.HTTP.HttpServer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_NetWork_HTTP_HttpServer" data-uid="GameFrameX.NetWork.HTTP.HttpServer" class="text-break">
-Class HttpServer  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.NetWork.HTTP/HttpServer.cs/#L16"><i class="bi bi-code-slash"></i></a>
+Class HttpServer  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.3.0-beta1/GameFrameX.NetWork.HTTP/HttpServer.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -157,7 +157,7 @@ Class HttpServer  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_NetWork_HTTP_HttpServer_ApiRootPath" data-uid="GameFrameX.NetWork.HTTP.HttpServer.ApiRootPath">
   ApiRootPath
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.NetWork.HTTP/HttpServer.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.3.0-beta1/GameFrameX.NetWork.HTTP/HttpServer.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>API根地址</p>
@@ -191,17 +191,17 @@ Class HttpServer  <a class="header-action link-secondary" title="View source" hr
 
   <a id="GameFrameX_NetWork_HTTP_HttpServer_Start_" data-uid="GameFrameX.NetWork.HTTP.HttpServer.Start*"></a>
 
-  <h3 id="GameFrameX_NetWork_HTTP_HttpServer_Start_System_Int32_System_Int32_System_Func_System_String_GameFrameX_NetWork_HTTP_BaseHttpHandler__System_Collections_Generic_List_GameFrameX_NetWork_HTTP_IHttpAopHandler__System_String_Microsoft_Extensions_Logging_LogLevel_" data-uid="GameFrameX.NetWork.HTTP.HttpServer.Start(System.Int32,System.Int32,System.Func{System.String,GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Collections.Generic.List{GameFrameX.NetWork.HTTP.IHttpAopHandler},System.String,Microsoft.Extensions.Logging.LogLevel)">
-  Start(int, int, Func&lt;string, BaseHttpHandler&gt;, List&lt;IHttpAopHandler&gt;, string, LogLevel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.NetWork.HTTP/HttpServer.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_NetWork_HTTP_HttpServer_Start_System_Int32_System_Int32_System_Collections_Generic_List_GameFrameX_NetWork_HTTP_BaseHttpHandler__System_Func_System_String_GameFrameX_NetWork_HTTP_BaseHttpHandler__System_Collections_Generic_List_GameFrameX_NetWork_HTTP_IHttpAopHandler__System_String_Microsoft_Extensions_Logging_LogLevel_Microsoft_OpenApi_Models_OpenApiInfo_" data-uid="GameFrameX.NetWork.HTTP.HttpServer.Start(System.Int32,System.Int32,System.Collections.Generic.List{GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Func{System.String,GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Collections.Generic.List{GameFrameX.NetWork.HTTP.IHttpAopHandler},System.String,Microsoft.Extensions.Logging.LogLevel,Microsoft.OpenApi.Models.OpenApiInfo)">
+  Start(int, int, List&lt;BaseHttpHandler&gt;, Func&lt;string, BaseHttpHandler&gt;, List&lt;IHttpAopHandler&gt;, string, LogLevel, OpenApiInfo)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.3.0-beta1/GameFrameX.NetWork.HTTP/HttpServer.cs/#L48"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>启动</p>
+  <div class="markdown level1 summary"><p>启动HTTP服务器</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task Start(int httpPort, int httpsPort, Func&lt;string, BaseHttpHandler&gt; baseHandler, List&lt;IHttpAopHandler&gt; aopHandlerTypes = null, string apiRootPath = &quot;/game/api/&quot;, LogLevel minimumLevelLogLevel = LogLevel.Debug)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task Start(int httpPort, int httpsPort, List&lt;BaseHttpHandler&gt; baseHandler, Func&lt;string, BaseHttpHandler&gt; httpFactory, List&lt;IHttpAopHandler&gt; aopHandlerTypes = null, string apiRootPath = &quot;/game/api/&quot;, LogLevel minimumLevelLogLevel = LogLevel.Debug, OpenApiInfo openApiInfo = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -212,24 +212,31 @@ Class HttpServer  <a class="header-action link-secondary" title="View source" hr
     <dt><code>httpsPort</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>HTTPS端口,如果没有指定端口，则不监听HTTPS</p>
 </dd>
-    <dt><code>baseHandler</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="GameFrameX.NetWork.HTTP.BaseHttpHandler.html">BaseHttpHandler</a>&gt;</dt>
-    <dd><p>根据命令Id获得处理器</p>
+    <dt><code>baseHandler</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="GameFrameX.NetWork.HTTP.BaseHttpHandler.html">BaseHttpHandler</a>&gt;</dt>
+    <dd><p>HTTP处理器列表,用于处理不同的HTTP请求</p>
+</dd>
+    <dt><code>httpFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="GameFrameX.NetWork.HTTP.BaseHttpHandler.html">BaseHttpHandler</a>&gt;</dt>
+    <dd><p>HTTP处理器工厂,根据命令标识符创建对应的处理器实例</p>
 </dd>
     <dt><code>aopHandlerTypes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="GameFrameX.NetWork.HTTP.IHttpAopHandler.html">IHttpAopHandler</a>&gt;</dt>
-    <dd><p>Aop处理器列表</p>
+    <dd><p>AOP处理器列表,用于在HTTP请求处理前后执行额外的逻辑</p>
 </dd>
     <dt><code>apiRootPath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>接口根路径,必须以 / 开头和以 / 结尾,默认为 [/game/api]</p>
+    <dd><p>API接口根路径,必须以/开头和以/结尾,默认为[/game/api/]</p>
 </dd>
     <dt><code>minimumLevelLogLevel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.loglevel">LogLevel</a></dt>
-    <dd><p>日志记录最小级别</p>
+    <dd><p>日志记录的最小级别,用于控制日志输出</p>
+</dd>
+    <dt><code>openApiInfo</code> <a class="xref" href="https://github.com/microsoft/OpenAPI.NET/blob/1.3.0-beta1/src/Microsoft.OpenApi/Models/OpenApiInfo.cs">OpenApiInfo</a></dt>
+    <dd><p>Swagger API文档信息配置,包含API标题、版本、描述等</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd></dd>
+    <dd><p>表示异步操作的Task</p>
+</dd>
   </dl>
 
 
@@ -246,7 +253,7 @@ Class HttpServer  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_NetWork_HTTP_HttpServer_Stop" data-uid="GameFrameX.NetWork.HTTP.HttpServer.Stop">
   Stop()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.NetWork.HTTP/HttpServer.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.3.0-beta1/GameFrameX.NetWork.HTTP/HttpServer.cs/#L185"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>停止</p>
@@ -278,7 +285,7 @@ Class HttpServer  <a class="header-action link-secondary" title="View source" hr
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.2.0-beta22/GameFrameX.NetWork.HTTP/HttpServer.cs/#L16" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.3.0-beta1/GameFrameX.NetWork.HTTP/HttpServer.cs/#L22" class="edit-link">Edit this page</a>
         </div>
 
 

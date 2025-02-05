@@ -1192,6 +1192,46 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.HTTP.HttpMessageRequestBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.HTTP.HttpMessageRequestBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.HTTP.HttpMessageResponseBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.HTTP.HttpMessageResponseBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.NetWork.HTTP.HttpServer.yml",
       "output": {
         ".html": {
@@ -1246,6 +1286,26 @@
       "output": {
         ".html": {
           "relative_path": "api/GameFrameX.NetWork.HTTP.MessageHttpObject.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.HTTP.PreservePropertyCasingSchemaFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.HTTP.PreservePropertyCasingSchemaFilter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.HTTP.SwaggerOperationFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.HTTP.SwaggerOperationFilter.html"
         }
       },
       "version": ""

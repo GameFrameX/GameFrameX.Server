@@ -5518,6 +5518,19 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.HotfixManager.GetInstance(Of T)(String, System.Type)
   nameWithType: HotfixManager.GetInstance<T>(string, Type)
   nameWithType.vb: HotfixManager.GetInstance(Of T)(String, Type)
+- uid: GameFrameX.Core.Hotfix.HotfixManager.GetListHttpHandler
+  name: GetListHttpHandler()
+  href: api/GameFrameX.Core.Hotfix.HotfixManager.html#GameFrameX_Core_Hotfix_HotfixManager_GetListHttpHandler
+  commentId: M:GameFrameX.Core.Hotfix.HotfixManager.GetListHttpHandler
+  fullName: GameFrameX.Core.Hotfix.HotfixManager.GetListHttpHandler()
+  nameWithType: HotfixManager.GetListHttpHandler()
+- uid: GameFrameX.Core.Hotfix.HotfixManager.GetListHttpHandler*
+  name: GetListHttpHandler
+  href: api/GameFrameX.Core.Hotfix.HotfixManager.html#GameFrameX_Core_Hotfix_HotfixManager_GetListHttpHandler_
+  commentId: Overload:GameFrameX.Core.Hotfix.HotfixManager.GetListHttpHandler
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.HotfixManager.GetListHttpHandler
+  nameWithType: HotfixManager.GetListHttpHandler
 - uid: GameFrameX.Core.Hotfix.HotfixManager.GetTcpHandler(System.Int32)
   name: GetTcpHandler(int)
   href: api/GameFrameX.Core.Hotfix.HotfixManager.html#GameFrameX_Core_Hotfix_HotfixManager_GetTcpHandler_System_Int32_
@@ -6908,19 +6921,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.Abstractions.INetWorkChannel.UpdateReceiveMessageTime
   nameWithType: INetWorkChannel.UpdateReceiveMessageTime
-- uid: GameFrameX.NetWork.Abstractions.INetWorkChannel.Write(GameFrameX.NetWork.Abstractions.INetworkMessage)
-  name: Write(INetworkMessage)
-  href: api/GameFrameX.NetWork.Abstractions.INetWorkChannel.html#GameFrameX_NetWork_Abstractions_INetWorkChannel_Write_GameFrameX_NetWork_Abstractions_INetworkMessage_
-  commentId: M:GameFrameX.NetWork.Abstractions.INetWorkChannel.Write(GameFrameX.NetWork.Abstractions.INetworkMessage)
-  fullName: GameFrameX.NetWork.Abstractions.INetWorkChannel.Write(GameFrameX.NetWork.Abstractions.INetworkMessage)
-  nameWithType: INetWorkChannel.Write(INetworkMessage)
-- uid: GameFrameX.NetWork.Abstractions.INetWorkChannel.Write*
-  name: Write
-  href: api/GameFrameX.NetWork.Abstractions.INetWorkChannel.html#GameFrameX_NetWork_Abstractions_INetWorkChannel_Write_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.INetWorkChannel.Write
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Abstractions.INetWorkChannel.Write
-  nameWithType: INetWorkChannel.Write
 - uid: GameFrameX.NetWork.Abstractions.INetWorkChannel.WriteAsync(GameFrameX.NetWork.Abstractions.INetworkMessage,System.Int32)
   name: WriteAsync(INetworkMessage, int)
   href: api/GameFrameX.NetWork.Abstractions.INetWorkChannel.html#GameFrameX_NetWork_Abstractions_INetWorkChannel_WriteAsync_GameFrameX_NetWork_Abstractions_INetworkMessage_System_Int32_
@@ -7972,19 +7972,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.BaseNetWorkChannel.UpdateReceiveMessageTime
   nameWithType: BaseNetWorkChannel.UpdateReceiveMessageTime
-- uid: GameFrameX.NetWork.BaseNetWorkChannel.Write(GameFrameX.NetWork.Abstractions.INetworkMessage)
-  name: Write(INetworkMessage)
-  href: api/GameFrameX.NetWork.BaseNetWorkChannel.html#GameFrameX_NetWork_BaseNetWorkChannel_Write_GameFrameX_NetWork_Abstractions_INetworkMessage_
-  commentId: M:GameFrameX.NetWork.BaseNetWorkChannel.Write(GameFrameX.NetWork.Abstractions.INetworkMessage)
-  fullName: GameFrameX.NetWork.BaseNetWorkChannel.Write(GameFrameX.NetWork.Abstractions.INetworkMessage)
-  nameWithType: BaseNetWorkChannel.Write(INetworkMessage)
-- uid: GameFrameX.NetWork.BaseNetWorkChannel.Write*
-  name: Write
-  href: api/GameFrameX.NetWork.BaseNetWorkChannel.html#GameFrameX_NetWork_BaseNetWorkChannel_Write_
-  commentId: Overload:GameFrameX.NetWork.BaseNetWorkChannel.Write
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.BaseNetWorkChannel.Write
-  nameWithType: BaseNetWorkChannel.Write
 - uid: GameFrameX.NetWork.BaseNetWorkChannel.WriteAsync(GameFrameX.NetWork.Abstractions.INetworkMessage,System.Int32)
   name: WriteAsync(INetworkMessage, int)
   href: api/GameFrameX.NetWork.BaseNetWorkChannel.html#GameFrameX_NetWork_BaseNetWorkChannel_WriteAsync_GameFrameX_NetWork_Abstractions_INetworkMessage_System_Int32_
@@ -8038,6 +8025,15 @@ references:
   commentId: T:GameFrameX.NetWork.HTTP.BaseHttpHandler
   fullName: GameFrameX.NetWork.HTTP.BaseHttpHandler
   nameWithType: BaseHttpHandler
+- uid: GameFrameX.NetWork.HTTP.BaseHttpHandler.Action(System.String,System.String,GameFrameX.NetWork.HTTP.HttpMessageRequestBase)
+  name: Action(string, string, HttpMessageRequestBase)
+  href: api/GameFrameX.NetWork.HTTP.BaseHttpHandler.html#GameFrameX_NetWork_HTTP_BaseHttpHandler_Action_System_String_System_String_GameFrameX_NetWork_HTTP_HttpMessageRequestBase_
+  commentId: M:GameFrameX.NetWork.HTTP.BaseHttpHandler.Action(System.String,System.String,GameFrameX.NetWork.HTTP.HttpMessageRequestBase)
+  name.vb: Action(String, String, HttpMessageRequestBase)
+  fullName: GameFrameX.NetWork.HTTP.BaseHttpHandler.Action(string, string, GameFrameX.NetWork.HTTP.HttpMessageRequestBase)
+  fullName.vb: GameFrameX.NetWork.HTTP.BaseHttpHandler.Action(String, String, GameFrameX.NetWork.HTTP.HttpMessageRequestBase)
+  nameWithType: BaseHttpHandler.Action(string, string, HttpMessageRequestBase)
+  nameWithType.vb: BaseHttpHandler.Action(String, String, HttpMessageRequestBase)
 - uid: GameFrameX.NetWork.HTTP.BaseHttpHandler.Action(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   name: Action(string, string, Dictionary<string, object>)
   href: api/GameFrameX.NetWork.HTTP.BaseHttpHandler.html#GameFrameX_NetWork_HTTP_BaseHttpHandler_Action_System_String_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
@@ -8232,6 +8228,94 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.HTTP.HttpMessageMappingAttribute.StandardCmd
   nameWithType: HttpMessageMappingAttribute.StandardCmd
+- uid: GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute
+  name: HttpMessageRequestAttribute
+  href: api/GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.html
+  commentId: T:GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute
+  fullName: GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute
+  nameWithType: HttpMessageRequestAttribute
+- uid: GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.#ctor(System.Type)
+  name: HttpMessageRequestAttribute(Type)
+  href: api/GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.html#GameFrameX_NetWork_HTTP_HttpMessageRequestAttribute__ctor_System_Type_
+  commentId: M:GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.#ctor(System.Type)
+  name.vb: New(Type)
+  fullName: GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.HttpMessageRequestAttribute(System.Type)
+  fullName.vb: GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.New(System.Type)
+  nameWithType: HttpMessageRequestAttribute.HttpMessageRequestAttribute(Type)
+  nameWithType.vb: HttpMessageRequestAttribute.New(Type)
+- uid: GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.#ctor*
+  name: HttpMessageRequestAttribute
+  href: api/GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.html#GameFrameX_NetWork_HTTP_HttpMessageRequestAttribute__ctor_
+  commentId: Overload:GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.HttpMessageRequestAttribute
+  fullName.vb: GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.New
+  nameWithType: HttpMessageRequestAttribute.HttpMessageRequestAttribute
+  nameWithType.vb: HttpMessageRequestAttribute.New
+- uid: GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.MessageType
+  name: MessageType
+  href: api/GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.html#GameFrameX_NetWork_HTTP_HttpMessageRequestAttribute_MessageType
+  commentId: P:GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.MessageType
+  fullName: GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.MessageType
+  nameWithType: HttpMessageRequestAttribute.MessageType
+- uid: GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.MessageType*
+  name: MessageType
+  href: api/GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.html#GameFrameX_NetWork_HTTP_HttpMessageRequestAttribute_MessageType_
+  commentId: Overload:GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.MessageType
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.HTTP.HttpMessageRequestAttribute.MessageType
+  nameWithType: HttpMessageRequestAttribute.MessageType
+- uid: GameFrameX.NetWork.HTTP.HttpMessageRequestBase
+  name: HttpMessageRequestBase
+  href: api/GameFrameX.NetWork.HTTP.HttpMessageRequestBase.html
+  commentId: T:GameFrameX.NetWork.HTTP.HttpMessageRequestBase
+  fullName: GameFrameX.NetWork.HTTP.HttpMessageRequestBase
+  nameWithType: HttpMessageRequestBase
+- uid: GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute
+  name: HttpMessageResponseAttribute
+  href: api/GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.html
+  commentId: T:GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute
+  fullName: GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute
+  nameWithType: HttpMessageResponseAttribute
+- uid: GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.#ctor(System.Type)
+  name: HttpMessageResponseAttribute(Type)
+  href: api/GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.html#GameFrameX_NetWork_HTTP_HttpMessageResponseAttribute__ctor_System_Type_
+  commentId: M:GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.#ctor(System.Type)
+  name.vb: New(Type)
+  fullName: GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.HttpMessageResponseAttribute(System.Type)
+  fullName.vb: GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.New(System.Type)
+  nameWithType: HttpMessageResponseAttribute.HttpMessageResponseAttribute(Type)
+  nameWithType.vb: HttpMessageResponseAttribute.New(Type)
+- uid: GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.#ctor*
+  name: HttpMessageResponseAttribute
+  href: api/GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.html#GameFrameX_NetWork_HTTP_HttpMessageResponseAttribute__ctor_
+  commentId: Overload:GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.HttpMessageResponseAttribute
+  fullName.vb: GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.New
+  nameWithType: HttpMessageResponseAttribute.HttpMessageResponseAttribute
+  nameWithType.vb: HttpMessageResponseAttribute.New
+- uid: GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.MessageType
+  name: MessageType
+  href: api/GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.html#GameFrameX_NetWork_HTTP_HttpMessageResponseAttribute_MessageType
+  commentId: P:GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.MessageType
+  fullName: GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.MessageType
+  nameWithType: HttpMessageResponseAttribute.MessageType
+- uid: GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.MessageType*
+  name: MessageType
+  href: api/GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.html#GameFrameX_NetWork_HTTP_HttpMessageResponseAttribute_MessageType_
+  commentId: Overload:GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.MessageType
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.HTTP.HttpMessageResponseAttribute.MessageType
+  nameWithType: HttpMessageResponseAttribute.MessageType
+- uid: GameFrameX.NetWork.HTTP.HttpMessageResponseBase
+  name: HttpMessageResponseBase
+  href: api/GameFrameX.NetWork.HTTP.HttpMessageResponseBase.html
+  commentId: T:GameFrameX.NetWork.HTTP.HttpMessageResponseBase
+  fullName: GameFrameX.NetWork.HTTP.HttpMessageResponseBase
+  nameWithType: HttpMessageResponseBase
 - uid: GameFrameX.NetWork.HTTP.HttpServer
   name: HttpServer
   href: api/GameFrameX.NetWork.HTTP.HttpServer.html
@@ -8251,15 +8335,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.HTTP.HttpServer.ApiRootPath
   nameWithType: HttpServer.ApiRootPath
-- uid: GameFrameX.NetWork.HTTP.HttpServer.Start(System.Int32,System.Int32,System.Func{System.String,GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Collections.Generic.List{GameFrameX.NetWork.HTTP.IHttpAopHandler},System.String,Microsoft.Extensions.Logging.LogLevel)
-  name: Start(int, int, Func<string, BaseHttpHandler>, List<IHttpAopHandler>, string, LogLevel)
-  href: api/GameFrameX.NetWork.HTTP.HttpServer.html#GameFrameX_NetWork_HTTP_HttpServer_Start_System_Int32_System_Int32_System_Func_System_String_GameFrameX_NetWork_HTTP_BaseHttpHandler__System_Collections_Generic_List_GameFrameX_NetWork_HTTP_IHttpAopHandler__System_String_Microsoft_Extensions_Logging_LogLevel_
-  commentId: M:GameFrameX.NetWork.HTTP.HttpServer.Start(System.Int32,System.Int32,System.Func{System.String,GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Collections.Generic.List{GameFrameX.NetWork.HTTP.IHttpAopHandler},System.String,Microsoft.Extensions.Logging.LogLevel)
-  name.vb: Start(Integer, Integer, Func(Of String, BaseHttpHandler), List(Of IHttpAopHandler), String, LogLevel)
-  fullName: GameFrameX.NetWork.HTTP.HttpServer.Start(int, int, System.Func<string, GameFrameX.NetWork.HTTP.BaseHttpHandler>, System.Collections.Generic.List<GameFrameX.NetWork.HTTP.IHttpAopHandler>, string, Microsoft.Extensions.Logging.LogLevel)
-  fullName.vb: GameFrameX.NetWork.HTTP.HttpServer.Start(Integer, Integer, System.Func(Of String, GameFrameX.NetWork.HTTP.BaseHttpHandler), System.Collections.Generic.List(Of GameFrameX.NetWork.HTTP.IHttpAopHandler), String, Microsoft.Extensions.Logging.LogLevel)
-  nameWithType: HttpServer.Start(int, int, Func<string, BaseHttpHandler>, List<IHttpAopHandler>, string, LogLevel)
-  nameWithType.vb: HttpServer.Start(Integer, Integer, Func(Of String, BaseHttpHandler), List(Of IHttpAopHandler), String, LogLevel)
+- uid: GameFrameX.NetWork.HTTP.HttpServer.Start(System.Int32,System.Int32,System.Collections.Generic.List{GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Func{System.String,GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Collections.Generic.List{GameFrameX.NetWork.HTTP.IHttpAopHandler},System.String,Microsoft.Extensions.Logging.LogLevel,Microsoft.OpenApi.Models.OpenApiInfo)
+  name: Start(int, int, List<BaseHttpHandler>, Func<string, BaseHttpHandler>, List<IHttpAopHandler>, string, LogLevel, OpenApiInfo)
+  href: api/GameFrameX.NetWork.HTTP.HttpServer.html#GameFrameX_NetWork_HTTP_HttpServer_Start_System_Int32_System_Int32_System_Collections_Generic_List_GameFrameX_NetWork_HTTP_BaseHttpHandler__System_Func_System_String_GameFrameX_NetWork_HTTP_BaseHttpHandler__System_Collections_Generic_List_GameFrameX_NetWork_HTTP_IHttpAopHandler__System_String_Microsoft_Extensions_Logging_LogLevel_Microsoft_OpenApi_Models_OpenApiInfo_
+  commentId: M:GameFrameX.NetWork.HTTP.HttpServer.Start(System.Int32,System.Int32,System.Collections.Generic.List{GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Func{System.String,GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Collections.Generic.List{GameFrameX.NetWork.HTTP.IHttpAopHandler},System.String,Microsoft.Extensions.Logging.LogLevel,Microsoft.OpenApi.Models.OpenApiInfo)
+  name.vb: Start(Integer, Integer, List(Of BaseHttpHandler), Func(Of String, BaseHttpHandler), List(Of IHttpAopHandler), String, LogLevel, OpenApiInfo)
+  fullName: GameFrameX.NetWork.HTTP.HttpServer.Start(int, int, System.Collections.Generic.List<GameFrameX.NetWork.HTTP.BaseHttpHandler>, System.Func<string, GameFrameX.NetWork.HTTP.BaseHttpHandler>, System.Collections.Generic.List<GameFrameX.NetWork.HTTP.IHttpAopHandler>, string, Microsoft.Extensions.Logging.LogLevel, Microsoft.OpenApi.Models.OpenApiInfo)
+  fullName.vb: GameFrameX.NetWork.HTTP.HttpServer.Start(Integer, Integer, System.Collections.Generic.List(Of GameFrameX.NetWork.HTTP.BaseHttpHandler), System.Func(Of String, GameFrameX.NetWork.HTTP.BaseHttpHandler), System.Collections.Generic.List(Of GameFrameX.NetWork.HTTP.IHttpAopHandler), String, Microsoft.Extensions.Logging.LogLevel, Microsoft.OpenApi.Models.OpenApiInfo)
+  nameWithType: HttpServer.Start(int, int, List<BaseHttpHandler>, Func<string, BaseHttpHandler>, List<IHttpAopHandler>, string, LogLevel, OpenApiInfo)
+  nameWithType.vb: HttpServer.Start(Integer, Integer, List(Of BaseHttpHandler), Func(Of String, BaseHttpHandler), List(Of IHttpAopHandler), String, LogLevel, OpenApiInfo)
 - uid: GameFrameX.NetWork.HTTP.HttpServer.Start*
   name: Start
   href: api/GameFrameX.NetWork.HTTP.HttpServer.html#GameFrameX_NetWork_HTTP_HttpServer_Start_
@@ -8489,6 +8573,63 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.HTTP.MessageHttpObject.UniqueId
   nameWithType: MessageHttpObject.UniqueId
+- uid: GameFrameX.NetWork.HTTP.PreservePropertyCasingSchemaFilter
+  name: PreservePropertyCasingSchemaFilter
+  href: api/GameFrameX.NetWork.HTTP.PreservePropertyCasingSchemaFilter.html
+  commentId: T:GameFrameX.NetWork.HTTP.PreservePropertyCasingSchemaFilter
+  fullName: GameFrameX.NetWork.HTTP.PreservePropertyCasingSchemaFilter
+  nameWithType: PreservePropertyCasingSchemaFilter
+- uid: GameFrameX.NetWork.HTTP.PreservePropertyCasingSchemaFilter.Apply(Microsoft.OpenApi.Models.OpenApiSchema,Swashbuckle.AspNetCore.SwaggerGen.SchemaFilterContext)
+  name: Apply(OpenApiSchema, SchemaFilterContext)
+  href: api/GameFrameX.NetWork.HTTP.PreservePropertyCasingSchemaFilter.html#GameFrameX_NetWork_HTTP_PreservePropertyCasingSchemaFilter_Apply_Microsoft_OpenApi_Models_OpenApiSchema_Swashbuckle_AspNetCore_SwaggerGen_SchemaFilterContext_
+  commentId: M:GameFrameX.NetWork.HTTP.PreservePropertyCasingSchemaFilter.Apply(Microsoft.OpenApi.Models.OpenApiSchema,Swashbuckle.AspNetCore.SwaggerGen.SchemaFilterContext)
+  fullName: GameFrameX.NetWork.HTTP.PreservePropertyCasingSchemaFilter.Apply(Microsoft.OpenApi.Models.OpenApiSchema, Swashbuckle.AspNetCore.SwaggerGen.SchemaFilterContext)
+  nameWithType: PreservePropertyCasingSchemaFilter.Apply(OpenApiSchema, SchemaFilterContext)
+- uid: GameFrameX.NetWork.HTTP.PreservePropertyCasingSchemaFilter.Apply*
+  name: Apply
+  href: api/GameFrameX.NetWork.HTTP.PreservePropertyCasingSchemaFilter.html#GameFrameX_NetWork_HTTP_PreservePropertyCasingSchemaFilter_Apply_
+  commentId: Overload:GameFrameX.NetWork.HTTP.PreservePropertyCasingSchemaFilter.Apply
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.HTTP.PreservePropertyCasingSchemaFilter.Apply
+  nameWithType: PreservePropertyCasingSchemaFilter.Apply
+- uid: GameFrameX.NetWork.HTTP.SwaggerOperationFilter
+  name: SwaggerOperationFilter
+  href: api/GameFrameX.NetWork.HTTP.SwaggerOperationFilter.html
+  commentId: T:GameFrameX.NetWork.HTTP.SwaggerOperationFilter
+  fullName: GameFrameX.NetWork.HTTP.SwaggerOperationFilter
+  nameWithType: SwaggerOperationFilter
+- uid: GameFrameX.NetWork.HTTP.SwaggerOperationFilter.#ctor(System.Collections.Generic.List{GameFrameX.NetWork.HTTP.BaseHttpHandler})
+  name: SwaggerOperationFilter(List<BaseHttpHandler>)
+  href: api/GameFrameX.NetWork.HTTP.SwaggerOperationFilter.html#GameFrameX_NetWork_HTTP_SwaggerOperationFilter__ctor_System_Collections_Generic_List_GameFrameX_NetWork_HTTP_BaseHttpHandler__
+  commentId: M:GameFrameX.NetWork.HTTP.SwaggerOperationFilter.#ctor(System.Collections.Generic.List{GameFrameX.NetWork.HTTP.BaseHttpHandler})
+  name.vb: New(List(Of BaseHttpHandler))
+  fullName: GameFrameX.NetWork.HTTP.SwaggerOperationFilter.SwaggerOperationFilter(System.Collections.Generic.List<GameFrameX.NetWork.HTTP.BaseHttpHandler>)
+  fullName.vb: GameFrameX.NetWork.HTTP.SwaggerOperationFilter.New(System.Collections.Generic.List(Of GameFrameX.NetWork.HTTP.BaseHttpHandler))
+  nameWithType: SwaggerOperationFilter.SwaggerOperationFilter(List<BaseHttpHandler>)
+  nameWithType.vb: SwaggerOperationFilter.New(List(Of BaseHttpHandler))
+- uid: GameFrameX.NetWork.HTTP.SwaggerOperationFilter.#ctor*
+  name: SwaggerOperationFilter
+  href: api/GameFrameX.NetWork.HTTP.SwaggerOperationFilter.html#GameFrameX_NetWork_HTTP_SwaggerOperationFilter__ctor_
+  commentId: Overload:GameFrameX.NetWork.HTTP.SwaggerOperationFilter.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFrameX.NetWork.HTTP.SwaggerOperationFilter.SwaggerOperationFilter
+  fullName.vb: GameFrameX.NetWork.HTTP.SwaggerOperationFilter.New
+  nameWithType: SwaggerOperationFilter.SwaggerOperationFilter
+  nameWithType.vb: SwaggerOperationFilter.New
+- uid: GameFrameX.NetWork.HTTP.SwaggerOperationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)
+  name: Apply(OpenApiOperation, OperationFilterContext)
+  href: api/GameFrameX.NetWork.HTTP.SwaggerOperationFilter.html#GameFrameX_NetWork_HTTP_SwaggerOperationFilter_Apply_Microsoft_OpenApi_Models_OpenApiOperation_Swashbuckle_AspNetCore_SwaggerGen_OperationFilterContext_
+  commentId: M:GameFrameX.NetWork.HTTP.SwaggerOperationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)
+  fullName: GameFrameX.NetWork.HTTP.SwaggerOperationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation, Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)
+  nameWithType: SwaggerOperationFilter.Apply(OpenApiOperation, OperationFilterContext)
+- uid: GameFrameX.NetWork.HTTP.SwaggerOperationFilter.Apply*
+  name: Apply
+  href: api/GameFrameX.NetWork.HTTP.SwaggerOperationFilter.html#GameFrameX_NetWork_HTTP_SwaggerOperationFilter_Apply_
+  commentId: Overload:GameFrameX.NetWork.HTTP.SwaggerOperationFilter.Apply
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.HTTP.SwaggerOperationFilter.Apply
+  nameWithType: SwaggerOperationFilter.Apply
 - uid: GameFrameX.NetWork.IMessageHandler
   name: IMessageHandler
   href: api/GameFrameX.NetWork.IMessageHandler.html
