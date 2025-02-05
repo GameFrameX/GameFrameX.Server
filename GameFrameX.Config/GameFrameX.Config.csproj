@@ -14,8 +14,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.Core.Config" Version="1.3.0-beta1" />
-      <PackageReference Include="GameFrameX.Utility" Version="1.3.0-beta1" />
+      <PackageReference Include="GameFrameX.Core.Config" Version="1.3.0-beta2" />
+      <PackageReference Include="GameFrameX.Utility" Version="1.3.0-beta2" />
     </ItemGroup>
 
 </Project>
