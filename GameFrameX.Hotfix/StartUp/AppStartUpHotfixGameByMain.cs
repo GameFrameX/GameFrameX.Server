@@ -1,26 +1,24 @@
 ﻿using GameFrameX.Apps.Common.Session;
 using GameFrameX.Config;
 using GameFrameX.NetWork;
-using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Message;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.SuperSocket.Connection;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
 using GameFrameX.SuperSocket.WebSocket.Server;
-using GameFrameX.Utility.Log;
-using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Hotfix.StartUp;
 
 /// <summary>
-/// 路由服务器.最后启动。
+/// 业务服务器.最后启动。
 /// </summary>
 internal partial class AppStartUpHotfixGame
 {
     public override async Task StartAsync()
     {
         // 启动网络服务
+        // 设置压缩和解压缩
         await StartServerAsync<ClientMessageDecoderHandler, ClientMessageEncoderHandler>(new DefaultMessageCompressHandler(), new DefaultMessageDecompressHandler());
         // 启动Http服务
         await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetListHttpHandler(), HotfixManager.GetHttpHandler);
