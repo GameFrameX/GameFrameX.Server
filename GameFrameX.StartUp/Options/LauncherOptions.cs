@@ -44,9 +44,9 @@ public sealed class LauncherOptions
     public int ServerId { get; set; }
 
     /// <summary>
-    /// 保存数据间隔
+    /// 保存数据间隔, 单位毫秒，默认300秒/5分钟
     /// </summary>
-    [Option(nameof(SaveDataInterval), Default = 5000, HelpText = "保存数据间隔，单位毫秒")]
+    [Option(nameof(SaveDataInterval), Default = 300_000, HelpText = "保存数据间隔，单位毫秒,默认300秒/5分钟")]
     public int SaveDataInterval { get; set; }
 
     /// <summary>
