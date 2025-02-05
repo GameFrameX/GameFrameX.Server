@@ -1,9 +1,4 @@
-﻿using GameFrameX.Core.Components;
-using GameFrameX.DataBase.Mongo;
-using GameFrameX.Utility.Log;
-using GameFrameX.Utility.Setting;
-
-namespace GameFrameX.Launcher.StartUp;
+﻿namespace GameFrameX.Launcher.StartUp;
 
 /// <summary>
 /// 游戏服务器
