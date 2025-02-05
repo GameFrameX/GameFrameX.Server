@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using GameFrameX.Foundation.Http.Normalization;
 using Microsoft.Extensions.Hosting;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace GameFrameX.NetWork.HTTP;
 
@@ -90,6 +91,9 @@ public static class HttpServer
                 };
 
                 options.SwaggerDoc(openApiInfo.Version, openApiInfo);
+
+                // 使用自定义的 SchemaFilter 来保持属性名称大小写
+                options.SchemaFilter<PreservePropertyCasingSchemaFilter>();
 
                 // 添加自定义操作过滤器来处理动态路由
                 options.OperationFilter<SwaggerOperationFilter>(baseHandler);
