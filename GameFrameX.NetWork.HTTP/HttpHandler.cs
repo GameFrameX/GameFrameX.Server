@@ -1,5 +1,7 @@
 ﻿using System.Buffers;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System.Reflection;
 using GameFrameX.Foundation.Http.Normalization;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
@@ -32,7 +34,7 @@ public static class HttpHandler
         string url = context.Request.PathBase + context.Request.Path;
         var command = context.Request.Path.ToString().Substring(HttpServer.ApiRootPath.Length);
         var logHeader = $"[HTTPServer] TraceIdentifier:[{context.TraceIdentifier}], 来源[{ip}], url:[{url}]";
-        LogHelper.Info($"{logHeader}，请求方式:[{context.Request.Method}]");
+        LogHelper.Debug($"{logHeader}，请求方式:[{context.Request.Method}]");
 
         try
         {
@@ -101,7 +103,7 @@ public static class HttpHandler
             // 记录请求参数
             if (paramMap.Count > 0)
             {
-                LogHelper.Info("请求参数:" + JsonHelper.Serialize(paramMap));
+                LogHelper.Debug("请求参数:" + JsonHelper.Serialize(paramMap));
             }
 
             // 检查指令是否有效
@@ -150,6 +152,7 @@ public static class HttpHandler
                 return;
             }
 
+
             // 执行处理器逻辑
             if (isProtoBuf)
             {
@@ -157,7 +160,7 @@ public static class HttpHandler
                 stopwatch.Start();
                 var result = await handler.Action(ip, url, paramMap, message);
                 stopwatch.Stop();
-                LogHelper.Info($"{logHeader},执行时间：{stopwatch.ElapsedMilliseconds}ms, 结果: {result}");
+                LogHelper.Debug($"{logHeader},执行时间：{stopwatch.ElapsedMilliseconds}ms, 结果: {result}");
                 if (result.IsNotNull())
                 {
                     ReadOnlyMemory<byte> body = ProtoBufSerializerHelper.Serialize(result);
@@ -169,12 +172,46 @@ public static class HttpHandler
             }
             else
             {
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
-                var result = await handler.Action(ip, url, paramMap);
-                stopwatch.Stop();
-                LogHelper.Info($"{logHeader}, 执行时间：{stopwatch.ElapsedMilliseconds}ms, 结果: {result}");
-                await context.Response.WriteAsync(result);
+                var httpRequestAttr = handler.GetType().GetCustomAttribute<HttpMessageRequestAttribute>();
+                if (httpRequestAttr != null)
+                {
+                    httpRequestAttr.MessageType.CheckNotNull(nameof(httpRequestAttr.MessageType));
+                    var httpMessageRequestBase = (HttpMessageRequestBase)JsonHelper.Deserialize(JsonHelper.Serialize(paramMap), httpRequestAttr.MessageType);
+                    var validationResults = new List<ValidationResult>();
+
+                    var validationContext = new ValidationContext(httpMessageRequestBase, null, null);
+
+                    var isValid = Validator.TryValidateObject(httpMessageRequestBase, validationContext, validationResults, true);
+                    if (isValid)
+                    {
+                        Stopwatch stopwatch = new Stopwatch();
+                        stopwatch.Start();
+                        var result = await handler.Action(ip, url, httpMessageRequestBase);
+                        stopwatch.Stop();
+                        LogHelper.Debug($"{logHeader}, 执行时间：{stopwatch.ElapsedMilliseconds}ms, 结果: {result}");
+                        await context.Response.WriteAsync(result);
+                    }
+                    else
+                    {
+                        if (validationResults.Count > 0)
+                        {
+                            await context.Response.WriteAsync(HttpJsonResult.ErrorString(400, validationResults[0].ErrorMessage));
+                        }
+                        else
+                        {
+                            await context.Response.WriteAsync(HttpJsonResult.ErrorString(400, "data verification failed"));
+                        }
+                    }
+                }
+                else
+                {
+                    Stopwatch stopwatch = new Stopwatch();
+                    stopwatch.Start();
+                    var result = await handler.Action(ip, url, paramMap);
+                    stopwatch.Stop();
+                    LogHelper.Debug($"{logHeader}, 执行时间：{stopwatch.ElapsedMilliseconds}ms, 结果: {result}");
+                    await context.Response.WriteAsync(result);
+                }
             }
         }
         catch (Exception e)
