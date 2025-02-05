@@ -62,6 +62,18 @@ public abstract class BaseHttpHandler : IHttpHandler
     }
 
     /// <summary>
+    /// 处理HTTP请求的异步操作，返回MessageObject对象。
+    /// </summary>
+    /// <param name="ip">客户端IP地址。</param>
+    /// <param name="url">请求的URL。</param>
+    /// <param name="request">请求参数对象。</param>
+    /// <returns>返回处理结果的MessageObject对象。</returns>
+    public virtual Task<string> Action(string ip, string url, HttpMessageRequestBase request)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
     /// 获取签名字符串。
     /// </summary>
     /// <param name="str">待签名的字符串。</param>
