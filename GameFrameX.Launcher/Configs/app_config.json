@@ -12,7 +12,7 @@
     "MinModuleId": 1,
     "MaxModuleId": 9999,
     "WsPort": 29110,
-    "HttpPort": 29200,
+    "HttpPort": 28080,
     "HttpCode": "inner_httpcode",
     "DataBaseUrl": "mongodb://admin:admin@192.168.110.28:27017/?authSource=admin",
     "DataBaseName": "gameframex"
