@@ -24,7 +24,7 @@ public sealed partial class MongoDbService
         {
             state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
             state.UpdateCount++;
-            var result = await _mongoDbContext.Update<TState>().ModifyWith(state).ExecuteAsync();
+            var result = await _mongoDbContext.Update<TState>().MatchID(state.Id).ModifyExcept(m => new { m.CreateId, m.CreateTime, m.Id, m.IsDeleted, m.DeleteTime, }, state).ExecuteAsync();
             if (result.IsAcknowledged)
             {
                 state.SaveToDbPostHandler();
@@ -51,7 +51,7 @@ public sealed partial class MongoDbService
             {
                 state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
                 state.UpdateCount++;
-                bulkUpdate.ModifyWith(state).AddToQueue();
+                bulkUpdate.MatchID(state.Id).ModifyExcept(m => new { m.CreateId, m.CreateTime, m.Id, m.IsDeleted, m.DeleteTime, }, state).AddToQueue();
                 resultCount++;
             }
         }
@@ -68,7 +68,7 @@ public sealed partial class MongoDbService
         return resultCount;
     }
 
-    /// <summary>
+    /*/// <summary>
     /// </summary>
     /// <param name="state"></param>
     /// <typeparam name="TState"></typeparam>
@@ -89,7 +89,7 @@ public sealed partial class MongoDbService
         }
 
         return 0;
-    }
+    }*/
 
     #region 更新
 
