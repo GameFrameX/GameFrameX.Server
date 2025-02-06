@@ -1,5 +1,4 @@
 ﻿using GameFrameX.StartUp;
-using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Hotfix.StartUp;
 

@@ -1,6 +1,3 @@
-using GameFrameX.Foundation.Http.Normalization;
-using GameFrameX.NetWork.HTTP;
-
 namespace GameFrameX.Hotfix.Logic.Http;
 
 /// <summary>
