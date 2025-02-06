@@ -39,6 +39,7 @@
     <ItemGroup>
       <PackageReference Include="GameFrameX.Foundation.Hash" Version="1.0.4" />
       <PackageReference Include="GameFrameX.Foundation.Http.Normalization" Version="1.0.4" />
+      <PackageReference Include="GameFrameX.Foundation.Json" Version="1.1.0" />
       <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
       <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.12" />
       <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="7.2.0" />

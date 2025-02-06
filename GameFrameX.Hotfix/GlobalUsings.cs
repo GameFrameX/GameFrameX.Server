@@ -1,5 +1,5 @@
 ﻿global using GameFrameX.Proto;
-global using MongoDB.Bson;  
+global using MongoDB.Bson;
 global using MongoDB.Driver;
 global using MongoDB.Bson.Serialization;
 global using MongoDB.Bson.Serialization.Attributes;
@@ -17,4 +17,8 @@ global using GameFrameX.Utility.Setting;
 global using GameFrameX.Utility.Extensions;
 global using GameFrameX.Utility.Log;
 global using GameFrameX.NetWork.Abstractions;
+global using GameFrameX.NetWork.HTTP;
 global using System.ComponentModel;
+global using GameFrameX.Foundation.Json;
+global using System.ComponentModel.DataAnnotations;
+global using GameFrameX.Foundation.Http.Normalization;

@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using GameFrameX.Foundation.Json;
+using Serilog;
 using Serilog.Events;
 
 namespace GameFrameX.Utility.Log;
