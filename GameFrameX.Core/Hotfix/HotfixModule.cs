@@ -20,22 +20,22 @@ internal class HotfixModule
     /// <summary>
     /// 角色类型到事件ID到监听者的映射。
     /// </summary>
-    private readonly Dictionary<ushort, Dictionary<int, List<IEventListener>>> _actorEvtListeners = new(512);
+    private readonly Dictionary<ushort, Dictionary<int, List<IEventListener>>> _actorEvtListeners = new Dictionary<ushort, Dictionary<int, List<IEventListener>>>(512);
 
     /// <summary>
     /// 代理类型到代理包装类型的映射。
     /// </summary>
-    private readonly Dictionary<Type, Type> _agentAgentWrapperMap = new(512);
+    private readonly Dictionary<Type, Type> _agentAgentWrapperMap = new Dictionary<Type, Type>(512);
 
     /// <summary>
     /// 组件类型到代理类型的映射。
     /// </summary>
-    private readonly Dictionary<Type, Type> _agentCompMap = new(512);
+    private readonly Dictionary<Type, Type> _agentCompMap = new Dictionary<Type, Type>(512);
 
     /// <summary>
     /// 组件类型到代理类型的映射。
     /// </summary>
-    private readonly Dictionary<Type, Type> _compAgentMap = new(512);
+    private readonly Dictionary<Type, Type> _compAgentMap = new Dictionary<Type, Type>(512);
 
     /// <summary>
     /// DLL路径。
@@ -45,22 +45,27 @@ internal class HotfixModule
     /// <summary>
     /// HTTP命令到处理器的映射。
     /// </summary>
-    private readonly Dictionary<string, BaseHttpHandler> _httpHandlerMap = new(512);
+    private readonly Dictionary<string, BaseHttpHandler> _httpHandlerMap = new Dictionary<string, BaseHttpHandler>(512);
 
     /// <summary>
     /// RPC请求类型到响应类型的映射。
     /// </summary>
-    private readonly Dictionary<Type, Type> _rpcHandlerMap = new();
+    private readonly Dictionary<Type, Type> _rpcHandlerMap = new Dictionary<Type, Type>(512);
 
     /// <summary>
     /// 消息ID到处理器类型的映射。
     /// </summary>
-    private readonly Dictionary<int, Type> _tcpHandlerMap = new(512);
+    private readonly Dictionary<int, Type> _tcpHandlerMap = new Dictionary<int, Type>(512);
+
+    /// <summary>
+    /// 消息处理类型列表
+    /// </summary>
+    private readonly List<Type> _tcpHandlerTypes = new List<Type>(512);
 
     /// <summary>
     /// 类型缓存。
     /// </summary>
-    private readonly ConcurrentDictionary<string, object> _typeCacheMap = new();
+    private readonly ConcurrentDictionary<string, object> _typeCacheMap = new ConcurrentDictionary<string, object>(512);
 
     /// <summary>
     /// 是否使用代理包装。
@@ -286,6 +291,12 @@ internal class HotfixModule
             return false;
         }
 
+        if (_tcpHandlerTypes.Contains(attribute.MessageType))
+        {
+            LogHelper.Error($"重复注册消息TCP处理器 类型:[{type.FullName}]");
+            return false;
+        }
+
         var msgIdField = (MessageTypeHandlerAttribute)attribute.MessageType.GetCustomAttribute(typeof(MessageTypeHandlerAttribute), true);
         if (msgIdField.IsNull())
         {
@@ -295,9 +306,10 @@ internal class HotfixModule
         var msgId = msgIdField.MessageId;
         if (!_tcpHandlerMap.TryAdd(msgId, type))
         {
-            LogHelper.Error("重复注册消息TCP处理器:[{}] 消息:[{}]", msgId, type);
+            LogHelper.Error($"重复注册消息TCP处理器:[{msgId}] 消息:[{type}]");
         }
 
+        _tcpHandlerTypes.Add(attribute.MessageType);
         return true;
     }
 
