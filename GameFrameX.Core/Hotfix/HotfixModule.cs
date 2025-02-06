@@ -15,7 +15,7 @@ namespace GameFrameX.Core.Hotfix;
 /// <summary>
 /// 热更模块，负责热更新相关的初始化、卸载、解析DLL等工作。
 /// </summary>
-internal class HotfixModule
+internal sealed class HotfixModule
 {
     /// <summary>
     /// 角色类型到事件ID到监听者的映射。
