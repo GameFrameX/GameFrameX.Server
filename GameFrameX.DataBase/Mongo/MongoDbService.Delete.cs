@@ -13,11 +13,11 @@ namespace GameFrameX.DataBase.Mongo;
 public sealed partial class MongoDbService
 {
     /// <summary>
-    /// 删除数据
+    /// 根据条件删除单条数据(软删除)
     /// </summary>
-    /// <param name="filter">查询条件</param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns></returns>
+    /// <param name="filter">查询条件表达式</param>
+    /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
+    /// <returns>返回修改的记录数</returns>
     public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
     {
         var state = await FindAsync(filter);
@@ -28,10 +28,52 @@ public sealed partial class MongoDbService
     }
 
     /// <summary>
-    /// 删除一条数据
+    /// 根据条件批量删除数据(软删除)
     /// </summary>
-    /// <param name="state"></param>
-    /// <typeparam name="TState"></typeparam>
+    /// <param name="filter">查询条件表达式</param>
+    /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
+    /// <returns>返回修改的记录数</returns>
+    public async Task<long> DeleteListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
+    {
+        var bulkUpdate = _mongoDbContext.Update<TState>();
+        var list = await FindListAsync(filter);
+        var deleteTime = TimeHelper.UnixTimeMilliseconds();
+        foreach (var state in list)
+        {
+            state.DeleteTime = deleteTime;
+            state.IsDeleted = true;
+            bulkUpdate.MatchID(state.Id).Modify(x => x.IsDeleted, state.IsDeleted).Modify(x => x.DeleteTime, state.DeleteTime).AddToQueue();
+        }
+
+        var result = await bulkUpdate.ExecuteAsync();
+        return result.ModifiedCount;
+    }
+
+    /// <summary>
+    /// 根据ID列表批量删除数据(软删除)
+    /// </summary>
+    /// <param name="ids">要删除的ID列表</param>
+    /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
+    /// <returns>返回修改的记录数</returns>
+    public async Task<long> DeleteListIdAsync<TState>(IEnumerable<long> ids) where TState : BaseCacheState
+    {
+        var bulkUpdate = _mongoDbContext.Update<TState>();
+        var deleteTime = TimeHelper.UnixTimeMilliseconds();
+        foreach (var id in ids)
+        {
+            bulkUpdate.MatchID(id).Modify(x => x.IsDeleted, true).Modify(x => x.DeleteTime, deleteTime).AddToQueue();
+        }
+
+        var result = await bulkUpdate.ExecuteAsync();
+        return result.ModifiedCount;
+    }
+
+    /// <summary>
+    /// 删除指定对象(软删除)
+    /// </summary>
+    /// <param name="state">要删除的对象</param>
+    /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
+    /// <returns>返回修改的记录数</returns>
     public async Task<long> DeleteAsync<TState>(TState state) where TState : BaseCacheState
     {
         state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
@@ -414,9 +456,9 @@ public sealed partial class MongoDbService
     /// <summary>
     /// 删除一条记录
     /// </summary>
-    /// <typeparam name="TState"></typeparam>
-    /// <param name="filter">条件</param>
-    /// <returns></returns>
+    /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
+    /// <param name="filter">条件表达式</param>
+    /// <returns>返回被删除的记录</returns>
     public TState DeleteOne<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
     {
         var result = GetCollection<TState>().FindOneAndDelete(filter);
@@ -426,9 +468,9 @@ public sealed partial class MongoDbService
     /// <summary>
     /// 删除一条记录
     /// </summary>
-    /// <param name="collName">表名</param>
-    /// <param name="filter">条件</param>
-    /// <returns></returns>
+    /// <param name="collName">集合名称</param>
+    /// <param name="filter">条件表达式</param>
+    /// <returns>返回被删除的记录</returns>
     public BsonDocument DeleteOne(string collName, Expression<Func<BsonDocument, bool>> filter)
     {
         var result = GetCollection(collName).FindOneAndDelete(filter);
@@ -438,9 +480,9 @@ public sealed partial class MongoDbService
     /// <summary>
     /// 删除一条记录
     /// </summary>
-    /// <typeparam name="TState"></typeparam>
-    /// <param name="filter">条件</param>
-    /// <returns></returns>
+    /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
+    /// <param name="filter">条件表达式</param>
+    /// <returns>返回被删除的记录</returns>
     public async Task<TState> DeleteOneAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
     {
         var result = await GetCollection<TState>().FindOneAndDeleteAsync(filter);
@@ -450,9 +492,9 @@ public sealed partial class MongoDbService
     /// <summary>
     /// 删除一条记录
     /// </summary>
-    /// <param name="collName">表名</param>
-    /// <param name="filter">条件</param>
-    /// <returns></returns>
+    /// <param name="collName">集合名称</param>
+    /// <param name="filter">条件表达式</param>
+    /// <returns>返回被删除的记录</returns>
     public async Task<BsonDocument> DeleteOneAsync(string collName, Expression<Func<BsonDocument, bool>> filter)
     {
         var result = await GetCollection(collName).FindOneAndDeleteAsync(filter);
