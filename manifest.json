@@ -1992,16 +1992,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.JsonHelper.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Utility.JsonHelper.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.Utility.LNumber.yml",
       "output": {
         ".html": {
