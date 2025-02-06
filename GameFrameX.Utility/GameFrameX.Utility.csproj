@@ -42,7 +42,7 @@
         <OutputPath>..\bin\app</OutputPath>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="GameFrameX.Foundation.Json" Version="1.1.0" />
+        <PackageReference Include="GameFrameX.Foundation.Json" Version="1.2.1" />
         <PackageReference Include="Standart.Hash.xxHash" Version="4.0.5"/>
         <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
         <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
