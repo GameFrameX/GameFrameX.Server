@@ -65,7 +65,7 @@ internal class HotfixModule
     /// <summary>
     /// 类型缓存。
     /// </summary>
-    private readonly ConcurrentDictionary<string, object> _typeCacheMap = new ConcurrentDictionary<string, object>(512);
+    private readonly ConcurrentDictionary<string, object> _typeCacheMap = new ConcurrentDictionary<string, object>();
 
     /// <summary>
     /// 是否使用代理包装。
