@@ -89,7 +89,7 @@ internal partial class AppStartUpHotfixGame
 
             async void InvokeAction()
             {
-                await handler.Init((MessageObject)outerNetworkMessage.DeserializeMessageObject(), netWorkChannel);
+                await handler.Init(outerNetworkMessage.DeserializeMessageObject(), netWorkChannel);
                 await handler.InnerAction();
             }
 
