@@ -23,7 +23,7 @@ public sealed partial class MongoDbService
         var state = await FindAsync(filter);
         state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
         state.IsDeleted = true;
-        var result = await _mongoDbContext.Update<TState>().Match(m => m.Id == state.Id).Modify(x => x.IsDeleted, true).Modify(x => x.DeleteTime, TimeHelper.UnixTimeMilliseconds()).ExecuteAsync();
+        var result = await _mongoDbContext.Update<TState>().Match(m => m.Id == state.Id).Modify(x => x.IsDeleted, state.IsDeleted).Modify(x => x.DeleteTime, state.DeleteTime).ExecuteAsync();
         return result.ModifiedCount;
     }
 
@@ -36,7 +36,7 @@ public sealed partial class MongoDbService
     {
         state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
         state.IsDeleted = true;
-        var result = await _mongoDbContext.Update<TState>().Match(m => m.Id == state.Id).Modify(x => x.IsDeleted, true).Modify(x => x.DeleteTime, TimeHelper.UnixTimeMilliseconds()).ExecuteAsync();
+        var result = await _mongoDbContext.Update<TState>().Match(m => m.Id == state.Id).Modify(x => x.IsDeleted, state.IsDeleted).Modify(x => x.DeleteTime, state.DeleteTime).ExecuteAsync();
         return result.ModifiedCount;
     }
 
