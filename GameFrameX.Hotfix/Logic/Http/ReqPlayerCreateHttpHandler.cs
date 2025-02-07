@@ -1,8 +1,5 @@
-using GameFrameX.Apps.Account.Login.Entity;
 using GameFrameX.Apps.Player.Player.Entity;
 using GameFrameX.DataBase;
-using GameFrameX.Hotfix.Common;
-using GameFrameX.Monitor.Account;
 using GameFrameX.Monitor.Player;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Messages;
@@ -14,6 +11,7 @@ namespace GameFrameX.Hotfix.Logic.Http;
 /// 角色创建
 /// </summary>
 [HttpMessageMapping(typeof(ReqPlayerCreateHttpHandler))]
+[Description("角色创建,仅限前端调用")]
 public sealed class ReqPlayerCreateHttpHandler : BaseHttpHandler
 {
     public override async Task<MessageObject> Action(string ip, string url, Dictionary<string, object> paramMap, MessageObject messageObject)

@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+﻿using GameFrameX.Foundation.Json;
 
 namespace GameFrameX.Utility.Setting;
 

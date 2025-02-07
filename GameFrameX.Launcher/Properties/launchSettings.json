@@ -4,11 +4,12 @@
     "GameFrameX.Game": {
       "commandName": "Project",
       "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
         "--IsDebug": false,
         "--IsDebugReceive": false,
         "--IsDebugSend": false,
         "--ServerType": "Game",
-        "--ServerId": 9001,
+        "--ServerId": 9000,
         "--InnerIp": "127.0.0.1",
         "--InnerPort": 29100,
         "--OuterIp": "127.0.0.1",
@@ -16,7 +17,7 @@
         "--MinModuleId": 1,
         "--MaxModuleId": 9999,
         "--WsPort": 29110,
-        "--HttpPort": 29200,
+        "--HttpPort": 28080,
         "--HttpCode": "inner_httpcode",
         "--DataBaseUrl": "mongodb://admin:admin@192.168.110.28:27017/?authSource=admin",
         "--DataBaseName": "gameframex"

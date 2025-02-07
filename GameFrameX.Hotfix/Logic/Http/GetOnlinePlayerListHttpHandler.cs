@@ -1,6 +1,4 @@
 using GameFrameX.Apps.Common.Session;
-using GameFrameX.Foundation.Http.Normalization;
-using GameFrameX.NetWork.HTTP;
 
 namespace GameFrameX.Hotfix.Logic.Http;
 
@@ -9,23 +7,42 @@ namespace GameFrameX.Hotfix.Logic.Http;
 /// http://localhost:20001/game/api/GetOnlinePlayerList
 /// </summary>
 [HttpMessageMapping(typeof(GetOnlinePlayerListHttpHandler))]
+[HttpMessageRequest(typeof(GetOnlinePlayerListRequest))]
+[HttpMessageResponse(typeof(GetOnlinePlayerListResponse))]
+[Description("获取在线玩家列表")]
 public sealed class GetOnlinePlayerListHttpHandler : BaseHttpHandler
 {
     /// <summary>
     /// </summary>
     /// <param name="ip"></param>
     /// <param name="url"></param>
-    /// <param name="parameters"></param>
+    /// <param name="request"></param>
     /// <returns></returns>
-    public override Task<string> Action(string ip, string url, Dictionary<string, object> parameters)
+    public override Task<string> Action(string ip, string url, HttpMessageRequestBase request)
     {
-        parameters.TryGetValue("pageSize", out var pageSizeStr);
-        parameters.TryGetValue("pageIndex", out var pageIndexStr);
-        var pageSize = string.IsNullOrEmpty(pageSizeStr?.ToString()) ? 0 : Convert.ToInt32(pageSizeStr);
-        var pageIndex = string.IsNullOrEmpty(pageIndexStr?.ToString()) ? 0 : Convert.ToInt32(pageIndexStr);
-
-        var response = SessionManager.GetPageList(pageSize, pageIndex);
+        GetOnlinePlayerListRequest parameters = (GetOnlinePlayerListRequest)request;
+        var response = SessionManager.GetPageList(parameters.PageSize, parameters.PageIndex);
         var res = HttpJsonResult.SuccessString("当前在线玩家", JsonHelper.Serialize(response));
         return Task.FromResult(res);
     }
+}
+
+public sealed class GetOnlinePlayerListResponse : HttpMessageResponseBase
+{
+    public List<Session> List { get; set; }
+}
+
+public sealed class GetOnlinePlayerListRequest : HttpMessageRequestBase
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    [Required, Range(0, int.MaxValue)]
+    public int PageIndex { get; set; }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [Required, Range(1, int.MaxValue)]
+    public int PageSize { get; set; }
 }

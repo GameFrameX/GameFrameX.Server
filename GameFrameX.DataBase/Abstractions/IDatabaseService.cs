@@ -109,6 +109,22 @@ public interface IDatabaseService
     Task<long> DeleteAsync<TState>(TState state) where TState : BaseCacheState;
 
     /// <summary>
+    /// 根据条件批量删除数据(软删除)
+    /// </summary>
+    /// <param name="filter">查询条件表达式</param>
+    /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
+    /// <returns>返回修改的记录数</returns>
+    Task<long> DeleteListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState;
+
+    /// <summary>
+    /// 根据ID列表批量删除数据(软删除)
+    /// </summary>
+    /// <param name="ids">要删除的ID列表</param>
+    /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
+    /// <returns>返回修改的记录数</returns>
+    Task<long> DeleteListIdAsync<TState>(IEnumerable<long> ids) where TState : BaseCacheState;
+
+    /// <summary>
     /// 保存数据
     /// </summary>
     /// <param name="state">数据对象</param>

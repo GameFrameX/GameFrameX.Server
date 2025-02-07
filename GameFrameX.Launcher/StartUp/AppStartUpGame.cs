@@ -1,9 +1,4 @@
-﻿using GameFrameX.Core.Components;
-using GameFrameX.DataBase.Mongo;
-using GameFrameX.Utility.Log;
-using GameFrameX.Utility.Setting;
-
-namespace GameFrameX.Launcher.StartUp;
+﻿namespace GameFrameX.Launcher.StartUp;
 
 /// <summary>
 /// 游戏服务器
@@ -64,7 +59,7 @@ internal sealed class AppStartUpGame : AppStartUpBase
                 ServerType = ServerType.Game,
                 InnerPort = 29100,
                 APMPort = 29090,
-                HttpPort = 29200,
+                HttpPort = 28080,
                 WsPort = 29110,
                 MinModuleId = 10,
                 MaxModuleId = 9999,

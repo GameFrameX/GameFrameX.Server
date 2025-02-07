@@ -5,7 +5,7 @@ namespace GameFrameX.Apps;
 
 public static class CacheStateTypeManager
 {
-    private static readonly ConcurrentDictionary<long, Type> HashMap = new();
+    private static readonly ConcurrentDictionary<long, Type> HashMap = new ConcurrentDictionary<long, Type>();
 
     /// <summary>
     /// 初始化对象实体集的扫描

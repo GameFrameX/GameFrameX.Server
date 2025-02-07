@@ -3,7 +3,6 @@ using GameFrameX.Apps.Player.Role.Pet.Component;
 using GameFrameX.Apps.Player.Role.Pet.Entity;
 using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Hotfix.Logic.Server.Server;
-using GameFrameX.Utility.Log;
 
 namespace GameFrameX.Hotfix.Logic.Role.Pet;
 

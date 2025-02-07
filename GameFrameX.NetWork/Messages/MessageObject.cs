@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using GameFrameX.Foundation.Json;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Extensions;
