@@ -18,9 +18,9 @@ public static class QuartzTimer
     private static readonly StatisticsTool StatisticsTool = new();
 
     /// <summary>
-    /// 取消订阅
+    /// 取消订阅指定的定时任务。
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="id">要取消的定时任务的唯一标识符。必须大于0。</param>
     public static void UnSchedule(long id)
     {
         if (id <= 0)
@@ -32,14 +32,66 @@ public static class QuartzTimer
     }
 
     /// <summary>
-    /// 取消订阅
+    /// 取消订阅一组定时任务。
     /// </summary>
-    /// <param name="set"></param>
+    /// <param name="set">要取消的定时任务的唯一标识符集合。</param>
     public static void UnSchedule(IEnumerable<long> set)
     {
         foreach (var id in set)
         {
             UnSchedule(id);
+        }
+    }
+
+    /// <summary>
+    /// 暂停指定的定时任务。
+    /// </summary>
+    /// <param name="id">要暂停的定时任务的唯一标识符。必须大于0。</param>
+    public static void Pause(long id)
+    {
+        if (id <= 0)
+        {
+            return;
+        }
+
+        _scheduler.PauseJob(JobKey.Create(id.ToString()));
+    }
+
+    /// <summary>
+    /// 暂停一组定时任务。
+    /// </summary>
+    /// <param name="set">要暂停的定时任务的唯一标识符集合。</param>
+    public static void Pause(IEnumerable<long> set)
+    {
+        foreach (var id in set)
+        {
+            Pause(id);
+        }
+    }
+
+    /// <summary>
+    /// 恢复指定的定时任务。
+    /// </summary>
+    /// <param name="id">要恢复的定时任务的唯一标识符。必须大于0。</param>
+    public static void Resume(long id)
+    {
+        if (id <= 0)
+        {
+            return;
+        }
+
+        _scheduler.ResumeJob(JobKey.Create(id.ToString()));
+    }
+
+    /// <summary>
+    /// 恢复一组定时任务。
+    /// </summary>
+    /// <param name="set">要恢复的定时任务的唯一标识符集合。</param>
+    public static void Resume(IEnumerable<long> set)
+    {
+        foreach (var id in set)
+        {
+            Resume(id);
         }
     }
 
