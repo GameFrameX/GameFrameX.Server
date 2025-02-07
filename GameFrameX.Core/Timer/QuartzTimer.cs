@@ -43,6 +43,58 @@ public static class QuartzTimer
         }
     }
 
+    /// <summary>
+    /// 暂停定时器
+    /// </summary>
+    /// <param name="id"></param>
+    public static void Pause(long id)
+    {
+        if (id <= 0)
+        {
+            return;
+        }
+
+        _scheduler.PauseJob(JobKey.Create(id.ToString()));
+    }
+
+    /// <summary>
+    /// 暂停定时器
+    /// </summary>
+    /// <param name="set"></param>
+    public static void Pause(IEnumerable<long> set)
+    {
+        foreach (var id in set)
+        {
+            Pause(id);
+        }
+    }
+
+    /// <summary>
+    /// 恢复定时器
+    /// </summary>
+    /// <param name="id"></param>
+    public static void Resume(long id)
+    {
+        if (id <= 0)
+        {
+            return;
+        }
+
+        _scheduler.ResumeJob(JobKey.Create(id.ToString()));
+    }
+
+    /// <summary>
+    /// 恢复定时器
+    /// </summary>
+    /// <param name="set"></param>
+    public static void Resume(IEnumerable<long> set)
+    {
+        foreach (var id in set)
+        {
+            Resume(id);
+        }
+    }
+
     #region 热更定时器
 
     /// <summary>
@@ -192,9 +244,10 @@ public static class QuartzTimer
         return nextId;
     }
 
-    #endregion
+    #endregion 热更定时器
 
     /*
+
     #region 非热更定时器
 
     /// <summary>
@@ -340,7 +393,8 @@ public static class QuartzTimer
         return nextId;
     }
 
-    #endregion
+    #endregion 非热更定时器
+
     */
 
     #region 调度
@@ -511,5 +565,5 @@ public static class QuartzTimer
         }
     }
 
-    #endregion
+    #endregion 调度
 }
