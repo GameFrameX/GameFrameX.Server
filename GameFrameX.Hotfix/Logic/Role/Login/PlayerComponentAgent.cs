@@ -35,10 +35,7 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         }
 
         // 更新连接会话数据
-        var session = SessionManager.Get(workChannel.GameAppSession.SessionID);
-        session.SetRoleId(playerState.Id);
-        session.SetSign(playerState.Id.ToString());
-
+        SessionManager.UpdateSession(workChannel.GameAppSession.SessionID, playerState.Id,playerState.Id.ToString());
         var respPlayerLogin = new RespPlayerLogin
         {
             UniqueId = reqLogin.UniqueId,
