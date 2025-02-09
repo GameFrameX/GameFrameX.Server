@@ -5841,6 +5841,56 @@ references:
   commentId: F:GameFrameX.Core.Timer.QuartzTimer.ParamKey
   fullName: GameFrameX.Core.Timer.QuartzTimer.ParamKey
   nameWithType: QuartzTimer.ParamKey
+- uid: GameFrameX.Core.Timer.QuartzTimer.Pause(System.Collections.Generic.IEnumerable{System.Int64})
+  name: Pause(IEnumerable<long>)
+  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Pause_System_Collections_Generic_IEnumerable_System_Int64__
+  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Pause(System.Collections.Generic.IEnumerable{System.Int64})
+  name.vb: Pause(IEnumerable(Of Long))
+  fullName: GameFrameX.Core.Timer.QuartzTimer.Pause(System.Collections.Generic.IEnumerable<long>)
+  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Pause(System.Collections.Generic.IEnumerable(Of Long))
+  nameWithType: QuartzTimer.Pause(IEnumerable<long>)
+  nameWithType.vb: QuartzTimer.Pause(IEnumerable(Of Long))
+- uid: GameFrameX.Core.Timer.QuartzTimer.Pause(System.Int64)
+  name: Pause(long)
+  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Pause_System_Int64_
+  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Pause(System.Int64)
+  name.vb: Pause(Long)
+  fullName: GameFrameX.Core.Timer.QuartzTimer.Pause(long)
+  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Pause(Long)
+  nameWithType: QuartzTimer.Pause(long)
+  nameWithType.vb: QuartzTimer.Pause(Long)
+- uid: GameFrameX.Core.Timer.QuartzTimer.Pause*
+  name: Pause
+  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Pause_
+  commentId: Overload:GameFrameX.Core.Timer.QuartzTimer.Pause
+  isSpec: "True"
+  fullName: GameFrameX.Core.Timer.QuartzTimer.Pause
+  nameWithType: QuartzTimer.Pause
+- uid: GameFrameX.Core.Timer.QuartzTimer.Resume(System.Collections.Generic.IEnumerable{System.Int64})
+  name: Resume(IEnumerable<long>)
+  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Resume_System_Collections_Generic_IEnumerable_System_Int64__
+  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Resume(System.Collections.Generic.IEnumerable{System.Int64})
+  name.vb: Resume(IEnumerable(Of Long))
+  fullName: GameFrameX.Core.Timer.QuartzTimer.Resume(System.Collections.Generic.IEnumerable<long>)
+  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Resume(System.Collections.Generic.IEnumerable(Of Long))
+  nameWithType: QuartzTimer.Resume(IEnumerable<long>)
+  nameWithType.vb: QuartzTimer.Resume(IEnumerable(Of Long))
+- uid: GameFrameX.Core.Timer.QuartzTimer.Resume(System.Int64)
+  name: Resume(long)
+  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Resume_System_Int64_
+  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Resume(System.Int64)
+  name.vb: Resume(Long)
+  fullName: GameFrameX.Core.Timer.QuartzTimer.Resume(long)
+  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Resume(Long)
+  nameWithType: QuartzTimer.Resume(long)
+  nameWithType.vb: QuartzTimer.Resume(Long)
+- uid: GameFrameX.Core.Timer.QuartzTimer.Resume*
+  name: Resume
+  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Resume_
+  commentId: Overload:GameFrameX.Core.Timer.QuartzTimer.Resume
+  isSpec: "True"
+  fullName: GameFrameX.Core.Timer.QuartzTimer.Resume
+  nameWithType: QuartzTimer.Resume
 - uid: GameFrameX.Core.Timer.QuartzTimer.Schedule*
   name: Schedule
   href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Schedule_
