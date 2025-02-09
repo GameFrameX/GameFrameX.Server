@@ -16,12 +16,14 @@ namespace GameFrameX.DataBase.Mongo;
 public sealed partial class MongoDbService
 {
     /// <summary>
-    /// 加载指定ID的缓存状态。
+    /// 异步加载指定ID的缓存状态。
+    /// 此方法尝试从MongoDB中查找与给定ID匹配的缓存状态。
+    /// 如果找到状态，则返回该状态；如果未找到，则创建一个新的状态实例。
     /// </summary>
-    /// <typeparam name="TState">缓存状态的类型。</typeparam>
+    /// <typeparam name="TState">缓存状态的类型，必须是BaseCacheState的子类，并具有无参数构造函数。</typeparam>
     /// <param name="id">要加载的缓存状态的ID。</param>
-    /// <param name="filter">默认值获取器。</param>
-    /// <returns>加载的缓存状态。</returns>
+    /// <param name="filter">可选的过滤器，用于进一步限制查询结果的条件。</param>
+    /// <returns>加载的缓存状态，如果未找到则返回新创建的状态。</returns>
     public async Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null) where TState : BaseCacheState, new()
     {
         var findExpression = GetDefaultFindExpression(filter);
@@ -30,20 +32,22 @@ public sealed partial class MongoDbService
 
         if (state == null)
         {
+            // 如果未找到状态，则创建一个新的状态实例，并设置其ID和创建时间
             state = new TState { Id = id, CreateTime = TimeHelper.TimeMilliseconds(), };
         }
 
+        // 调用后处理方法以加载状态的其他数据
         state.LoadFromDbPostHandler(isNew);
         return state;
     }
 
     /// <summary>
     /// 异步查找满足指定条件的缓存状态。
-    /// 当没有找到时，会创建一个
+    /// 如果没有找到满足条件的状态，则会创建一个新的状态实例。
     /// </summary>
-    /// <typeparam name="TState">缓存状态的类型。</typeparam>
-    /// <param name="filter">查询条件。</param>
-    /// <returns>满足条件的缓存状态。</returns>
+    /// <typeparam name="TState">缓存状态的类型，必须是BaseCacheState的子类，并具有无参数构造函数。</typeparam>
+    /// <param name="filter">查询条件，用于限制查找的结果。</param>
+    /// <returns>满足条件的缓存状态，如果未找到则返回新创建的状态。</returns>
     public async Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         var findExpression = GetDefaultFindExpression(filter);
@@ -52,12 +56,31 @@ public sealed partial class MongoDbService
 
         if (state == null)
         {
+            // 如果未找到状态，则创建一个新的状态实例，并设置其ID和创建时间
             state = new TState { Id = IdGenerator.GetNextUniqueId(), CreateTime = TimeHelper.TimeMilliseconds(), };
         }
 
+        // 调用后处理方法以加载状态的其他数据
         state.LoadFromDbPostHandler(isNew);
         return state;
     }
+
+    /// <summary>
+    /// 异步加载指定ID的缓存状态。
+    /// 此方法尝试从MongoDB中查找与给定ID匹配的缓存状态。
+    /// 如果未找到状态，将返回null。
+    /// </summary>
+    /// <typeparam name="TState">缓存状态的类型，必须是BaseCacheState的子类，并具有无参数构造函数。</typeparam>
+    /// <param name="id">要加载的缓存状态的唯一标识符。</param>
+    /// <param name="filter">可选的过滤器，用于进一步限制查询结果的条件。</param>
+    /// <returns>加载的缓存状态，如果未找到则返回null。</returns>
+    private async Task<TState> InnerFindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null) where TState : BaseCacheState, new()
+    {
+        var findExpression = GetDefaultFindExpression(filter);
+        var state = await _mongoDbContext.Find<TState>().Match(findExpression).OneAsync(id);
+        return state;
+    }
+
 
     /// <summary>
     /// 异步查找满足指定条件的缓存状态列表。

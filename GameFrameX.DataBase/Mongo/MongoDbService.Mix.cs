@@ -17,7 +17,7 @@ public sealed partial class MongoDbService
     /// <returns>返回增加或更新的条数</returns>
     public async Task<TState> AddOrUpdateAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
-        var resultState = await FindAsync<TState>(state.Id);
+        var resultState = await InnerFindAsync<TState>(state.Id);
 
         if (resultState == null)
         {
