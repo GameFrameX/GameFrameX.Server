@@ -81,7 +81,7 @@ public class BaseNetWorkChannel : INetWorkChannel
     {
         messageObject.CheckNotNull(nameof(messageObject));
 
-        if (messageObject is IResponseMessage responseMessage)
+        if (messageObject is IResponseMessage responseMessage && responseMessage.ErrorCode == default && errorCode != default)
         {
             responseMessage.ErrorCode = errorCode;
         }
