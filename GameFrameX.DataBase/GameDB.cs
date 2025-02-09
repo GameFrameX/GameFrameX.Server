@@ -131,6 +131,7 @@ public static class GameDb
 
     /// <summary>
     /// 根据ID加载指定的文档
+    /// 当没有找到指定ID的文档时，会创建一个新的文档返回
     /// </summary>
     /// <typeparam name="TState">文档的类型,必须继承自BaseCacheState且有无参构造函数</typeparam>
     /// <param name="id">要查找的文档ID</param>
@@ -144,11 +145,12 @@ public static class GameDb
 
     /// <summary>
     /// 查找与指定过滤器匹配的单个文档
+    /// 当没有找到指定ID的文档时，会创建一个新的文档返回
     /// </summary>
     /// <typeparam name="TState">文档的类型,必须继承自BaseCacheState</typeparam>
     /// <param name="filter">用于筛选文档的Lambda表达式</param>
     /// <returns>找到的第一个匹配文档,如果没有匹配项则返回null</returns>
-    public static Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
+    public static Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
         return _dbServiceImplementation.FindAsync(filter);

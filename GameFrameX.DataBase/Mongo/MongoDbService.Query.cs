@@ -25,13 +25,33 @@ public sealed partial class MongoDbService
     {
         var findExpression = GetDefaultFindExpression(filter);
         var state = await _mongoDbContext.Find<TState>().Match(findExpression).OneAsync(id);
-        state?.LoadFromDbPostHandler(false);
-
         var isNew = state == null;
 
         if (state == null)
         {
-            state = new TState { Id = id, };
+            state = new TState { Id = id, CreateTime = TimeHelper.TimeMilliseconds(), };
+        }
+
+        state.LoadFromDbPostHandler(isNew);
+        return state;
+    }
+
+    /// <summary>
+    /// 异步查找满足指定条件的缓存状态。
+    /// 当没有找到时，会创建一个
+    /// </summary>
+    /// <typeparam name="TState">缓存状态的类型。</typeparam>
+    /// <param name="filter">查询条件。</param>
+    /// <returns>满足条件的缓存状态。</returns>
+    public async Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
+    {
+        var findExpression = GetDefaultFindExpression(filter);
+        var state = await _mongoDbContext.Queryable<TState>().Where(findExpression).SingleOrDefaultAsync();
+        var isNew = state == null;
+
+        if (state == null)
+        {
+            state = new TState { Id = IdGenerator.GetNextUniqueId(), CreateTime = TimeHelper.TimeMilliseconds(), };
         }
 
         state.LoadFromDbPostHandler(isNew);
@@ -44,7 +64,7 @@ public sealed partial class MongoDbService
     /// <typeparam name="TState">缓存状态的类型。</typeparam>
     /// <param name="filter">查询条件。</param>
     /// <returns>满足条件的缓存状态列表。</returns>
-    public async Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
+    public async Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         var findExpression = GetDefaultFindExpression(filter);
         var result = await _mongoDbContext.Queryable<TState>().Where(findExpression).ToListAsync();
@@ -54,20 +74,6 @@ public sealed partial class MongoDbService
         }
 
         return result;
-    }
-
-    /// <summary>
-    /// 异步查找满足指定条件的缓存状态。
-    /// </summary>
-    /// <typeparam name="TState">缓存状态的类型。</typeparam>
-    /// <param name="filter">查询条件。</param>
-    /// <returns>满足条件的缓存状态。</returns>
-    public async Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
-    {
-        var findExpression = GetDefaultFindExpression(filter);
-        var state = await _mongoDbContext.Queryable<TState>().Where(findExpression).SingleOrDefaultAsync();
-        state?.LoadFromDbPostHandler(false);
-        return state;
     }
 
     /// <summary>
