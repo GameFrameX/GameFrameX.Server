@@ -55,7 +55,7 @@ public static class GameDb
     /// <typeparam name="TState">文档的类型,必须继承自BaseCacheState</typeparam>
     /// <param name="filter">用于筛选文档的Lambda表达式</param>
     /// <returns>匹配的文档列表</returns>
-    public static Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
+    public static Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
         return _dbServiceImplementation.FindListAsync(filter);
@@ -67,7 +67,7 @@ public static class GameDb
     /// <typeparam name="TState">文档的类型,必须继承自BaseCacheState</typeparam>
     /// <param name="filter">用于筛选文档的Lambda表达式</param>
     /// <returns>匹配的文档数量</returns>
-    public static Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
+    public static Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
         return _dbServiceImplementation.CountAsync(filter);
@@ -80,7 +80,7 @@ public static class GameDb
     /// <param name="filter">用于筛选文档的Lambda表达式</param>
     /// <param name="sortExpression">用于指定排序字段的Lambda表达式</param>
     /// <returns>符合条件的第一个元素,如果没有匹配项则返回null</returns>
-    public static Task<TState> FindSortAscendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : BaseCacheState
+    public static Task<TState> FindSortAscendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
         return _dbServiceImplementation.FindSortAscendingFirstOneAsync(filter, sortExpression);
@@ -93,7 +93,7 @@ public static class GameDb
     /// <param name="filter">用于筛选文档的Lambda表达式</param>
     /// <param name="sortExpression">用于指定排序字段的Lambda表达式</param>
     /// <returns>符合条件的第一个元素,如果没有匹配项则返回null</returns>
-    public static Task<TState> FindSortDescendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : BaseCacheState
+    public static Task<TState> FindSortDescendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
         return _dbServiceImplementation.FindSortDescendingFirstOneAsync(filter, sortExpression);
@@ -108,7 +108,7 @@ public static class GameDb
     /// <param name="pageIndex">页码,从0开始</param>
     /// <param name="pageSize">每页数量,默认为10</param>
     /// <returns>分页后的文档列表</returns>
-    public static Task<List<TState>> FindSortDescendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : BaseCacheState
+    public static Task<List<TState>> FindSortDescendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
         return _dbServiceImplementation.FindSortDescendingAsync(filter, sortExpression, pageIndex, pageSize);
@@ -123,7 +123,7 @@ public static class GameDb
     /// <param name="pageIndex">页码,从0开始</param>
     /// <param name="pageSize">每页数量,默认为10</param>
     /// <returns>分页后的文档列表</returns>
-    public static Task<List<TState>> FindSortAscendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : BaseCacheState
+    public static Task<List<TState>> FindSortAscendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
         return _dbServiceImplementation.FindSortAscendingAsync(filter, sortExpression, pageIndex, pageSize);
@@ -162,7 +162,7 @@ public static class GameDb
     /// <typeparam name="TState">文档的类型,必须继承自BaseCacheState</typeparam>
     /// <param name="state">要更新的文档实例</param>
     /// <returns>更新后的文档</returns>
-    public static Task<TState> UpdateAsync<TState>(TState state) where TState : BaseCacheState
+    public static Task<TState> UpdateAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
         return _dbServiceImplementation.UpdateAsync(state);
@@ -174,7 +174,7 @@ public static class GameDb
     /// <typeparam name="TState">文档的类型,必须继承自BaseCacheState</typeparam>
     /// <param name="state">要保存的文档实例</param>
     /// <returns>保存操作的结果</returns>
-    public static Task SaveOneAsync<TState>(TState state) where TState : BaseCacheState
+    public static Task SaveOneAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
         return _dbServiceImplementation.AddAsync(state);
@@ -198,7 +198,7 @@ public static class GameDb
     /// <typeparam name="TState">文档的类型,必须继承自BaseCacheState</typeparam>
     /// <param name="states">要保存的文档集合</param>
     /// <returns>保存操作的任务</returns>
-    public static Task AddListAsync<TState>(IEnumerable<TState> states) where TState : BaseCacheState
+    public static Task AddListAsync<TState>(IEnumerable<TState> states) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
         return _dbServiceImplementation.AddListAsync(states);
@@ -210,7 +210,7 @@ public static class GameDb
     /// <typeparam name="TState">文档的类型,必须继承自BaseCacheState</typeparam>
     /// <param name="stateList">要更新的文档集合</param>
     /// <returns>成功更新的文档数量</returns>
-    public static Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList) where TState : BaseCacheState
+    public static Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
         return _dbServiceImplementation.UpdateAsync(stateList);
@@ -222,7 +222,7 @@ public static class GameDb
     /// <typeparam name="TState">文档的类型,必须继承自BaseCacheState</typeparam>
     /// <param name="filter">用于筛选文档的Lambda表达式</param>
     /// <returns>如果存在匹配的文档则返回true,否则返回false</returns>
-    public static Task<bool> AnyAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
+    public static Task<bool> AnyAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
         return _dbServiceImplementation.AnyAsync(filter);
@@ -234,7 +234,7 @@ public static class GameDb
     /// <typeparam name="TState">文档的类型,必须继承自BaseCacheState</typeparam>
     /// <param name="filter">用于筛选要删除文档的Lambda表达式</param>
     /// <returns>成功删除的文档数量</returns>
-    public static Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
+    public static Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
         return _dbServiceImplementation.DeleteAsync(filter);
@@ -246,7 +246,7 @@ public static class GameDb
     /// <typeparam name="TState">文档的类型,必须继承自BaseCacheState</typeparam>
     /// <param name="state">要删除的文档实例</param>
     /// <returns>成功删除的文档数量</returns>
-    public static Task<long> DeleteAsync<TState>(TState state) where TState : BaseCacheState
+    public static Task<long> DeleteAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
         return _dbServiceImplementation.DeleteAsync(state);
@@ -258,7 +258,7 @@ public static class GameDb
     /// <param name="filter">查询条件表达式</param>
     /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
     /// <returns>返回修改的记录数</returns>
-    public static async Task<long> DeleteListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
+    public static async Task<long> DeleteListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
         return await _dbServiceImplementation.DeleteListAsync<TState>(filter);
@@ -270,7 +270,7 @@ public static class GameDb
     /// <param name="ids">要删除的ID列表</param>
     /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
     /// <returns>返回修改的记录数</returns>
-    public static async Task<long> DeleteListIdAsync<TState>(IEnumerable<long> ids) where TState : BaseCacheState
+    public static async Task<long> DeleteListIdAsync<TState>(IEnumerable<long> ids) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
         return await _dbServiceImplementation.DeleteListIdAsync<TState>(ids);
