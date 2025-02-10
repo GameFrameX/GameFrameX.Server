@@ -10,4 +10,8 @@
         <ProjectReference Include="..\GameFrameX.ProtoBuf.Net\GameFrameX.ProtoBuf.Net.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Proto\" />
+    </ItemGroup>
+
 </Project>
