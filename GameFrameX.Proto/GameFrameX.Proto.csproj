@@ -9,4 +9,8 @@
       <PackageReference Include="GameFrameX.NetWork" Version="1.4.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Proto\" />
+    </ItemGroup>
+
 </Project>
