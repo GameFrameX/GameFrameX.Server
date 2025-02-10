@@ -46,6 +46,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Mapster" Version="7.4.0" />
         <PackageReference Include="Quartz" Version="3.13.1" />
     </ItemGroup>
 
