@@ -35,8 +35,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.GameAnalytics" Version="1.4.0" />
-      <PackageReference Include="GameFrameX.StartUp" Version="1.4.0" />
+      <PackageReference Include="GameFrameX.GameAnalytics" Version="1.4.2-dev1" />
+      <PackageReference Include="GameFrameX.StartUp" Version="1.4.2-dev1" />
       <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.0.3" />
     </ItemGroup>
 </Project>
