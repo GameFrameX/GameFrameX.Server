@@ -21,11 +21,10 @@ public class ConfigComponent
     public async Task LoadConfig()
     {
         Tables.Init(Instance);
-        LogHelper.Info("Load Config Start...");
+        LogHelper.Debug("Load Config Start...");
         Instance.RemoveAllConfigs();
         await Tables.LoadAsync(Loader);
-        LogHelper.Info("Load Config End...");
-        LogHelper.Info("== load success ==");
+        LogHelper.Debug("Load Config End...");
     }
 
     private static async Task<ByteBuf> Loader(string file, bool tag)
