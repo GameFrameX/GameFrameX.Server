@@ -17,36 +17,36 @@ public sealed class LauncherOptions
     /// APM监控端口
     /// </summary>
     [Option(nameof(APMPort), HelpText = "APM监控端口")]
-    public int APMPort { get; set; }
+    public ushort APMPort { get; set; }
 
     /// <summary>
-    /// 是否是Debug 模式
+    /// 是否是Debug打印日志模式,默认值为false
     /// </summary>
-    [Option(nameof(IsDebug), HelpText = "是否是Debug 模式")]
+    [Option(nameof(IsDebug), Default = false, HelpText = "是否是Debug打印日志模式,默认值为false")]
     public bool IsDebug { get; set; }
 
     /// <summary>
-    /// 是否打印发送数据
+    /// 是否打印发送数据,只有在IsDebug为true时有效,默认值为false
     /// </summary>
-    [Option(nameof(IsDebugSend), HelpText = "是否打印发送数据")]
+    [Option(nameof(IsDebugSend), Default = false, HelpText = "是否打印发送数据,只有在IsDebug为true时有效,默认值为false")]
     public bool IsDebugSend { get; set; }
 
     /// <summary>
-    /// 是否打印发送的心跳数据
+    /// 是否打印发送的心跳数据,只有在IsDebugSend为true时有效,默认值为false
     /// </summary>
-    [Option(nameof(IsDebugSendHeartBeat), HelpText = "是否打印发送的心跳数据")]
+    [Option(nameof(IsDebugSendHeartBeat), Default = false, HelpText = "是否打印发送的心跳数据,只有在IsDebugSend为true时有效,默认值为false")]
     public bool IsDebugSendHeartBeat { get; set; }
 
     /// <summary>
-    /// 是否打印接收数据
+    /// 是否打印接收数据,只有在IsDebug为true时有效,默认值为false
     /// </summary>
-    [Option(nameof(IsDebugReceive), HelpText = "是否打印接收数据")]
+    [Option(nameof(IsDebugReceive), Default = false, HelpText = "是否打印接收数据,只有在IsDebug为true时有效,默认值为false")]
     public bool IsDebugReceive { get; set; }
 
     /// <summary>
-    /// 是否打印接收的心跳数据
+    /// 是否打印接收的心跳数据,只有在IsDebugReceive为true时有效,默认值为false
     /// </summary>
-    [Option(nameof(IsDebugReceiveHeartBeat), HelpText = "是否打印接收的心跳数据")]
+    [Option(nameof(IsDebugReceiveHeartBeat), Default = false, HelpText = "是否打印接收的心跳数据,只有在IsDebugReceive为true时有效,默认值为false")]
     public bool IsDebugReceiveHeartBeat { get; set; }
 
     /// <summary>
@@ -101,19 +101,19 @@ public sealed class LauncherOptions
     /// HTTP 端口
     /// </summary>
     [Option(nameof(HttpPort), HelpText = "HTTP 端口")]
-    public int HttpPort { get; set; }
+    public ushort HttpPort { get; set; }
 
     /// <summary>
     /// HTTPS 端口
     /// </summary>
     [Option(nameof(HttpsPort), HelpText = "HTTPS 端口")]
-    public int HttpsPort { get; set; }
+    public ushort HttpsPort { get; set; }
 
     /// <summary>
     /// WebSocket 端口
     /// </summary>
     [Option(nameof(WsPort), HelpText = "WebSocket 端口")]
-    public int WsPort { get; set; }
+    public ushort WsPort { get; set; }
 
     /// <summary>
     /// 游戏逻辑服务器的处理最小模块ID
@@ -131,7 +131,7 @@ public sealed class LauncherOptions
     /// WebSocket 加密端口
     /// </summary>
     [Option(nameof(WssPort), HelpText = "WebSocket 加密端口")]
-    public int WssPort { get; set; }
+    public ushort WssPort { get; set; }
 
     /// <summary>
     /// Wss 使用的证书路径

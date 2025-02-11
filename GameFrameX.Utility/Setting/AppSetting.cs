@@ -26,8 +26,10 @@ public sealed class AppSetting
         IsDebug = true;
         IsDebugReceive = true;
         IsDebugSend = true;
+        IsDebugSendHeartBeat = true;
+        IsDebugReceiveHeartBeat = true;
 #endif
-        LaunchTime= DateTime.Now;
+        LaunchTime = DateTime.Now;
     }
 
     /// <summary>
@@ -120,27 +122,27 @@ public sealed class AppSetting
     #region 从配置文件读取的属性
 
     /// <summary>
-    /// 是否是调试模式
+    /// 是否是Debug打印日志模式,默认值为false
     /// </summary>
     public bool IsDebug { get; set; }
 
     /// <summary>
-    /// 是否打印发送的数据
+    /// 是否打印发送数据,只有在IsDebug为true时有效,默认值为false
     /// </summary>
     public bool IsDebugSend { get; set; }
 
     /// <summary>
-    /// 是否打印发送的心跳数据
+    /// 是否打印发送的心跳数据,只有在IsDebugSend为true时有效,默认值为false
     /// </summary>
     public bool IsDebugSendHeartBeat { get; set; }
 
     /// <summary>
-    /// 是否打印接收的数据
+    /// 是否打印接收数据,只有在IsDebug为true时有效,默认值为false
     /// </summary>
     public bool IsDebugReceive { get; set; }
 
     /// <summary>
-    /// 是否打印接收的心跳数据
+    /// 是否打印接收的心跳数据,只有在IsDebugReceive为true时有效,默认值为false
     /// </summary>
     public bool IsDebugReceiveHeartBeat { get; set; }
 
@@ -197,22 +199,22 @@ public sealed class AppSetting
     /// <summary>
     /// HTTP端口
     /// </summary>
-    public int HttpPort { get; set; }
+    public ushort HttpPort { get; set; }
 
     /// <summary>
     /// HTTPS端口
     /// </summary>
-    public int HttpsPort { get; set; }
+    public ushort HttpsPort { get; set; }
 
     /// <summary>
     /// WebSocket端口
     /// </summary>
-    public int WsPort { get; set; }
+    public ushort WsPort { get; set; }
 
     /// <summary>
     /// WebSocket加密端口
     /// </summary>
-    public int WssPort { get; set; }
+    public ushort WssPort { get; set; }
 
     /// <summary>
     /// Wss使用的证书路径
@@ -267,7 +269,7 @@ public sealed class AppSetting
     /// <summary>
     /// 应用性能监控端口
     /// </summary>
-    public int APMPort { get; set; }
+    public ushort APMPort { get; set; }
 
     /// <summary>
     /// 最大客户端数量
