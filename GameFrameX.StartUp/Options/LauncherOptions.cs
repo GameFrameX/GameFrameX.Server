@@ -32,10 +32,22 @@ public sealed class LauncherOptions
     public bool IsDebugSend { get; set; }
 
     /// <summary>
+    /// 是否打印发送的心跳数据
+    /// </summary>
+    [Option(nameof(IsDebugSendHeartBeat), HelpText = "是否打印发送的心跳数据")]
+    public bool IsDebugSendHeartBeat { get; set; }
+
+    /// <summary>
     /// 是否打印接收数据
     /// </summary>
     [Option(nameof(IsDebugReceive), HelpText = "是否打印接收数据")]
     public bool IsDebugReceive { get; set; }
+
+    /// <summary>
+    /// 是否打印接收的心跳数据
+    /// </summary>
+    [Option(nameof(IsDebugReceiveHeartBeat), HelpText = "是否打印接收的心跳数据")]
+    public bool IsDebugReceiveHeartBeat { get; set; }
 
     /// <summary>
     /// 服务器ID

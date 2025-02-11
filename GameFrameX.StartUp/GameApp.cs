@@ -10,6 +10,7 @@ using GameFrameX.Utility;
 using GameFrameX.Utility.Extensions;
 using GameFrameX.Utility.Log;
 using GameFrameX.Utility.Setting;
+using Mapster;
 
 namespace GameFrameX.StartUp;
 
@@ -100,38 +101,7 @@ public static class GameApp
                 else
                 {
                     LogHelper.WarnConsole($"没有找到对应的服务器类型的启动配置,将以默认配置启动=>{startKv.Value.ServerType}");
-                    appSetting = new AppSetting
-                    {
-                        ServerId = launcherOptions.ServerId,
-                        ServerType = serverTypeValue,
-                        APMPort = launcherOptions.APMPort,
-                        IsDebug = launcherOptions.IsDebug,
-                        IsDebugSend = launcherOptions.IsDebugSend,
-                        IsDebugReceive = launcherOptions.IsDebugReceive,
-                        Language = launcherOptions.Language,
-                        DataCenter = launcherOptions.DataCenter,
-                        DiscoveryCenterIp = launcherOptions.DiscoveryCenterIp,
-                        DiscoveryCenterPort = launcherOptions.DiscoveryCenterPort,
-                        DBIp = launcherOptions.DBIp,
-                        DBPort = launcherOptions.DBPort,
-                        SaveDataInterval = launcherOptions.SaveDataInterval,
-                        HttpCode = launcherOptions.HttpCode,
-                        HttpPort = launcherOptions.HttpPort,
-                        HttpsPort = launcherOptions.HttpsPort,
-                        HttpUrl = launcherOptions.HttpUrl,
-                        InnerIp = launcherOptions.InnerIp,
-                        InnerPort = launcherOptions.InnerPort,
-                        OuterIp = launcherOptions.OuterIp,
-                        OuterPort = launcherOptions.OuterPort,
-                        WsPort = launcherOptions.WsPort,
-                        WssPort = launcherOptions.WssPort,
-                        WssCertFilePath = launcherOptions.WssCertFilePath,
-                        DataBaseUrl = launcherOptions.DataBaseUrl,
-                        DataBaseName = launcherOptions.DataBaseName,
-                        MinModuleId = launcherOptions.MinModuleId,
-                        MaxModuleId = launcherOptions.MaxModuleId,
-                        TagName = launcherOptions.TagName,
-                    };
+                    appSetting = launcherOptions.Adapt<AppSetting>();
                 }
 
                 Launcher(args, startKv, appSetting);

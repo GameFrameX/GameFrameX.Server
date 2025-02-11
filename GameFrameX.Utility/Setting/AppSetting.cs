@@ -130,9 +130,19 @@ public sealed class AppSetting
     public bool IsDebugSend { get; set; }
 
     /// <summary>
+    /// 是否打印发送的心跳数据
+    /// </summary>
+    public bool IsDebugSendHeartBeat { get; set; }
+
+    /// <summary>
     /// 是否打印接收的数据
     /// </summary>
     public bool IsDebugReceive { get; set; }
+
+    /// <summary>
+    /// 是否打印接收的心跳数据
+    /// </summary>
+    public bool IsDebugReceiveHeartBeat { get; set; }
 
     /// <summary>
     /// 服务器ID
