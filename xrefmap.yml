@@ -10481,6 +10481,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.AppStartUpBase.Init
   nameWithType: AppStartUpBase.Init
+- uid: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.IMessageHandler,GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  name: InvokeMessageHandler(IMessageHandler, INetworkMessage, INetWorkChannel)
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_InvokeMessageHandler_GameFrameX_NetWork_IMessageHandler_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_
+  commentId: M:GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.IMessageHandler,GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  fullName: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.IMessageHandler, GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  nameWithType: AppStartUpBase.InvokeMessageHandler(IMessageHandler, INetworkMessage, INetWorkChannel)
+- uid: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler*
+  name: InvokeMessageHandler
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_InvokeMessageHandler_
+  commentId: Overload:GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler
+  nameWithType: AppStartUpBase.InvokeMessageHandler
 - uid: GameFrameX.StartUp.AppStartUpBase.ListenOptions
   name: ListenOptions
   href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_ListenOptions
@@ -11187,6 +11200,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.IsDebugReceive
   nameWithType: LauncherOptions.IsDebugReceive
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsDebugReceiveHeartBeat
+  name: IsDebugReceiveHeartBeat
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsDebugReceiveHeartBeat
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.IsDebugReceiveHeartBeat
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsDebugReceiveHeartBeat
+  nameWithType: LauncherOptions.IsDebugReceiveHeartBeat
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsDebugReceiveHeartBeat*
+  name: IsDebugReceiveHeartBeat
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsDebugReceiveHeartBeat_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.IsDebugReceiveHeartBeat
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsDebugReceiveHeartBeat
+  nameWithType: LauncherOptions.IsDebugReceiveHeartBeat
 - uid: GameFrameX.StartUp.Options.LauncherOptions.IsDebugSend
   name: IsDebugSend
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsDebugSend
@@ -11200,6 +11226,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.IsDebugSend
   nameWithType: LauncherOptions.IsDebugSend
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsDebugSendHeartBeat
+  name: IsDebugSendHeartBeat
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsDebugSendHeartBeat
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.IsDebugSendHeartBeat
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsDebugSendHeartBeat
+  nameWithType: LauncherOptions.IsDebugSendHeartBeat
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsDebugSendHeartBeat*
+  name: IsDebugSendHeartBeat
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsDebugSendHeartBeat_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.IsDebugSendHeartBeat
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsDebugSendHeartBeat
+  nameWithType: LauncherOptions.IsDebugSendHeartBeat
 - uid: GameFrameX.StartUp.Options.LauncherOptions.Language
   name: Language
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_Language
@@ -25135,6 +25174,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.IsDebugReceive
   nameWithType: AppSetting.IsDebugReceive
+- uid: GameFrameX.Utility.Setting.AppSetting.IsDebugReceiveHeartBeat
+  name: IsDebugReceiveHeartBeat
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsDebugReceiveHeartBeat
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.IsDebugReceiveHeartBeat
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsDebugReceiveHeartBeat
+  nameWithType: AppSetting.IsDebugReceiveHeartBeat
+- uid: GameFrameX.Utility.Setting.AppSetting.IsDebugReceiveHeartBeat*
+  name: IsDebugReceiveHeartBeat
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsDebugReceiveHeartBeat_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.IsDebugReceiveHeartBeat
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsDebugReceiveHeartBeat
+  nameWithType: AppSetting.IsDebugReceiveHeartBeat
 - uid: GameFrameX.Utility.Setting.AppSetting.IsDebugSend
   name: IsDebugSend
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsDebugSend
@@ -25148,6 +25200,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.IsDebugSend
   nameWithType: AppSetting.IsDebugSend
+- uid: GameFrameX.Utility.Setting.AppSetting.IsDebugSendHeartBeat
+  name: IsDebugSendHeartBeat
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsDebugSendHeartBeat
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.IsDebugSendHeartBeat
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsDebugSendHeartBeat
+  nameWithType: AppSetting.IsDebugSendHeartBeat
+- uid: GameFrameX.Utility.Setting.AppSetting.IsDebugSendHeartBeat*
+  name: IsDebugSendHeartBeat
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsDebugSendHeartBeat_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.IsDebugSendHeartBeat
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsDebugSendHeartBeat
+  nameWithType: AppSetting.IsDebugSendHeartBeat
 - uid: GameFrameX.Utility.Setting.AppSetting.IsLocal(System.Int32)
   name: IsLocal(int)
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsLocal_System_Int32_
