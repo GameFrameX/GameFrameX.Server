@@ -59,34 +59,34 @@ internal partial class AppStartUpHotfixGame
     {
         if (message is OuterNetworkMessage outerNetworkMessage)
         {
-            if (Setting.IsDebug && Setting.IsDebugReceive)
-            {
-                LogHelper.Debug($"---收到{outerNetworkMessage.ToFormatMessageString()}");
-            }
-
             var netWorkChannel = SessionManager.GetChannel(appSession.SessionID);
             if (outerNetworkMessage.Header.OperationType == MessageOperationType.HeartBeat)
             {
-                // LogHelper.Info("收到心跳请求:" + req.Timestamp);
+                if (Setting.IsDebug && Setting.IsDebugReceive && Setting.IsDebugReceiveHeartBeat)
+                {
+                    LogHelper.Debug($"---收到{outerNetworkMessage.ToFormatMessageString()}");
+                }
+
+                // 心跳消息回复
                 ReplyHeartBeat(netWorkChannel, (MessageObject)outerNetworkMessage.DeserializeMessageObject());
-                // 心跳消息
-                await ValueTask.CompletedTask;
                 return;
+            }
+
+            if (Setting.IsDebug && Setting.IsDebugReceive)
+            {
+                LogHelper.Debug($"---收到{outerNetworkMessage.ToFormatMessageString()}");
             }
 
             var handler = HotfixManager.GetTcpHandler(outerNetworkMessage.Header.MessageId);
             if (handler == null)
             {
                 LogHelper.Error($"找不到[{outerNetworkMessage.Header.MessageId}][{message.GetType()}]对应的handler");
-                await ValueTask.CompletedTask;
                 return;
             }
 
             // 执行消息分发处理
             await InvokeMessageHandler(handler, outerNetworkMessage.DeserializeMessageObject(), netWorkChannel);
         }
-
-        await ValueTask.CompletedTask;
     }
 
     public override async Task StopAsync(string message = "")
