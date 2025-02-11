@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+using GameFrameX.Utility.Extensions;
 
 namespace GameFrameX.StartUp.Options;
 
@@ -263,9 +264,20 @@ public sealed class LauncherOptions
     /// <exception cref="ArgumentNullException"></exception>
     public void CheckHttpUrl()
     {
-        if (string.IsNullOrWhiteSpace(HttpUrl))
+        if (HttpUrl.IsNullOrEmptyOrWhiteSpace())
         {
             throw new ArgumentNullException(nameof(HttpUrl), "Http 地址不能为空");
+        }
+
+        // 根路径必须以/开头和以/结尾
+        if (!HttpUrl.StartsWith('/'))
+        {
+            throw new ArgumentException(nameof(HttpUrl), $"Http 地址必须以/开头");
+        }
+
+        if (!HttpUrl.EndsWith('/'))
+        {
+            throw new ArgumentException(nameof(HttpUrl), $"Http 地址必须以/结尾");
         }
     }
 
