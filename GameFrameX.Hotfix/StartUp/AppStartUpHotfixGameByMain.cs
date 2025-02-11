@@ -23,7 +23,7 @@ internal partial class AppStartUpHotfixGame
         await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetListHttpHandler(), HotfixManager.GetHttpHandler);
     }
 
-    public async void RunServer(bool reload = false)
+    public async Task RunServer(bool reload = false)
     {
         // 不管是不是重启服务器，都要加载配置
         await ConfigComponent.Instance.LoadConfig();
