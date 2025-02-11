@@ -18,7 +18,7 @@ public class ConfigComponent
 
     private TablesComponent Tables { get; }
 
-    public async void LoadConfig()
+    public async Task LoadConfig()
     {
         Tables.Init(Instance);
         LogHelper.Info("Load Config Start...");

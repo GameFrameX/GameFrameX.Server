@@ -26,7 +26,7 @@ internal partial class AppStartUpHotfixGame
     public async void RunServer(bool reload = false)
     {
         // 不管是不是重启服务器，都要加载配置
-        ConfigComponent.Instance.LoadConfig();
+        await ConfigComponent.Instance.LoadConfig();
         if (reload)
         {
             ActorManager.ClearAgent();
