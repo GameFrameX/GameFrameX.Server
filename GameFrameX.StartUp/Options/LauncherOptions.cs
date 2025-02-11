@@ -86,12 +86,6 @@ public sealed class LauncherOptions
     public ushort OuterPort { get; set; }
 
     /// <summary>
-    /// HTTP 响应码
-    /// </summary>
-    [Option(nameof(HttpCode), HelpText = "HTTP 响应码")]
-    public string HttpCode { get; set; }
-
-    /// <summary>
     /// Http 地址
     /// </summary>
     [Option(nameof(HttpUrl), HelpText = "Http 地址")]
@@ -260,18 +254,6 @@ public sealed class LauncherOptions
         if (OuterPort <= 10000 || OuterPort >= ushort.MaxValue)
         {
             throw new ArgumentOutOfRangeException(nameof(OuterPort), "外部端口必须大于10000且小于等于65535");
-        }
-    }
-
-    /// <summary>
-    /// 检查HttpCode
-    /// </summary>
-    /// <exception cref="ArgumentNullException"></exception>
-    public void CheckHttpCode()
-    {
-        if (string.IsNullOrWhiteSpace(HttpCode))
-        {
-            throw new ArgumentNullException(nameof(HttpCode), "HTTP 响应码不能为空");
         }
     }
 

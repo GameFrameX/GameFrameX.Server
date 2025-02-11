@@ -187,11 +187,6 @@ public sealed class AppSetting
     public ushort OuterPort { get; set; }
 
     /// <summary>
-    /// HTTP响应码
-    /// </summary>
-    public string HttpCode { get; set; }
-
-    /// <summary>
     /// HTTP地址
     /// </summary>
     public string HttpUrl { get; set; }
