@@ -27,6 +27,7 @@ public sealed class AppSetting
         IsDebugReceive = true;
         IsDebugSend = true;
 #endif
+        LaunchTime= DateTime.Now;
     }
 
     /// <summary>
