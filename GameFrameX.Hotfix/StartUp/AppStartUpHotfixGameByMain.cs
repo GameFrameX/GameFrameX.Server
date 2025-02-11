@@ -1,4 +1,8 @@
 ﻿using GameFrameX.Apps.Common.Session;
+using GameFrameX.Config;
+using GameFrameX.NetWork;
+using GameFrameX.NetWork.Message;
+using GameFrameX.NetWork.Messages;
 using GameFrameX.SuperSocket.Connection;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
 using GameFrameX.SuperSocket.WebSocket.Server;
@@ -40,14 +44,21 @@ internal partial class AppStartUpHotfixGame
         return ValueTask.CompletedTask;
     }
 
-    protected override ValueTask OnConnected(IAppSession appSession)
+    protected override async ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
         var netChannel = new DefaultNetWorkChannel(appSession, Setting, MessageEncoderHandler, null, appSession is WebSocketSession);
+        var count = SessionManager.Count();
+        if (count > Setting.MaxClientCount)
+        {
+            // 达到最大在线人数限制
+            await netChannel.WriteAsync(new NotifyServerFullyLoaded(), (int)OperationStatusCode.ServerFullyLoaded);
+            netChannel.Close();
+            return;
+        }
+
         var session = new Session(appSession.SessionID, netChannel);
         SessionManager.Add(session);
-
-        return ValueTask.CompletedTask;
     }
 
     /// <summary>
