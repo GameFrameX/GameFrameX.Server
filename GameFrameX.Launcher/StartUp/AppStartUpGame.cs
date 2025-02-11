@@ -65,8 +65,6 @@ internal sealed class AppStartUpGame : AppStartUpBase
                 MaxModuleId = 9999,
                 DiscoveryCenterIp = "127.0.0.1",
                 DiscoveryCenterPort = 21001,
-                //
-                HttpCode = "inner_httpcode",
                 DataBaseUrl = "mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority",
                 DataBaseName = "gameframex",
             };
