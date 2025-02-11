@@ -27,10 +27,10 @@ public static class GlobalTimer
     /// </summary>
     public static void Start()
     {
-        LogHelper.Info("初始化全局定时开始...");
+        LogHelper.Debug("初始化全局定时开始...");
         IsWorking = true;
         _loopTask = Task.Run(Loop);
-        LogHelper.Info("初始化全局定时完成...");
+        LogHelper.Debug("初始化全局定时完成...");
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ public static class GlobalTimer
 
         while (IsWorking)
         {
-            LogHelper.Info($"下次定时回存时间 {nextSaveTime}");
+            LogHelper.Debug($"下次定时回存时间 {nextSaveTime}");
 
             while (DateTime.Now < nextSaveTime && IsWorking)
             {
@@ -61,7 +61,7 @@ public static class GlobalTimer
             await StateComponent.TimerSave();
 
             var cost = (DateTime.Now - startTime).TotalMilliseconds;
-            LogHelper.Info($"定时回存完成 耗时: {cost:f4}ms");
+            LogHelper.Debug($"定时回存完成 耗时: {cost:f4}ms");
 
             await ActorManager.CheckIdle();
 
