@@ -38,4 +38,14 @@ namespace GameFrameX.Proto.Proto
         public long Timestamp { get; set; }
     }
 
+    /// <summary>
+    /// 通知客户端服务器人数已达上限
+    /// </summary>
+    [ProtoContract]
+    [System.ComponentModel.Description("通知客户端服务器人数已达上限")]
+    [MessageTypeHandler(655372)]
+    public sealed class NotifyServerFullyLoaded : MessageObject, INotifyMessage
+    {
+    }
+
 }
