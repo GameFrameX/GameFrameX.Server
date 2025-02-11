@@ -20,7 +20,7 @@ internal partial class AppStartUpHotfixGame
         // 设置压缩和解压缩
         await StartServerAsync<ClientMessageDecoderHandler, ClientMessageEncoderHandler>(new DefaultMessageCompressHandler(), new DefaultMessageDecompressHandler());
         // 启动Http服务
-        await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetListHttpHandler(), HotfixManager.GetHttpHandler);
+        await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetListHttpHandler(), HotfixManager.GetHttpHandler, null, Setting.HttpUrl);
     }
 
     public async Task RunServer(bool reload = false)
