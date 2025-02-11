@@ -79,17 +79,29 @@ public static class HttpServer
         bool isDevelopment = builder.Environment.IsDevelopment();
         if (isDevelopment)
         {
+            if (openApiInfo == null)
+            {
+                var version = Assembly.GetExecutingAssembly().GetName().Version;
+                if (version == null)
+                {
+                    version = new Version(1, 0, 0);
+                }
+
+                openApiInfo = new OpenApiInfo
+                {
+                    Title = "GameFrameX API",
+                    Version = $"v{version.Major}.{version.Minor}",
+                    TermsOfService = new Uri("https://gameframex.doc.alianblank.com"),
+                    Contact = new OpenApiContact() { Url = new Uri("https://gameframex.doc.alianblank.com"), Name = "Blank", Email = "wangfj11@foxmail.com", },
+                    License = new OpenApiLicense() { Name = "GameFrameX", Url = new Uri("https://github.com/GameFrameX/GameFrameX"), },
+                    Description = "GameFrameX HTTP API documentation",
+                };
+            }
+
             // 添加 Swagger 服务
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(options =>
             {
-                openApiInfo ??= new OpenApiInfo
-                {
-                    Title = "GameFrameX API",
-                    Version = "v1",
-                    Description = "GameFrameX HTTP API documentation",
-                };
-
                 options.SwaggerDoc(openApiInfo.Version, openApiInfo);
 
                 // 使用自定义的 SchemaFilter 来保持属性名称大小写
@@ -128,7 +140,7 @@ public static class HttpServer
             App.UseSwagger();
             App.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "GameFrameX API V1");
+                options.SwaggerEndpoint($"/swagger/{openApiInfo.Version}/swagger.json", openApiInfo.Title);
                 options.RoutePrefix = "swagger";
             });
         }
@@ -161,7 +173,7 @@ public static class HttpServer
         LogHelper.InfoConsole($"启动 HTTP 服务器完成...端口号:{httpPort}");
         if (isDevelopment)
         {
-            LogHelper.InfoConsole($"Swagger UI 可通过 http://localhost:{httpPort}/swagger 访问");
+            LogHelper.DebugConsole($"Swagger UI 可通过 http://localhost:{httpPort}/swagger 访问");
         }
 
         return task;
