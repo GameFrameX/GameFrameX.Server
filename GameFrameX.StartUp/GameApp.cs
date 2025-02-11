@@ -142,14 +142,10 @@ public static class GameApp
     {
         if (!options.ServerType.IsNullOrEmpty() && Enum.TryParse(options.ServerType, out ServerType serverTypeValue))
         {
-            // options.CheckAPMPort();
-
             options.CheckServerId();
 
             switch (serverTypeValue)
             {
-                case ServerType.Log:
-                    break;
                 case ServerType.DataBase:
                 {
                     options.CheckDataBaseUrl();
@@ -161,15 +157,11 @@ public static class GameApp
                     options.CheckOuterPort();
                 }
                     break;
-                case ServerType.Cache:
-                    break;
                 case ServerType.Gateway:
                 {
                     options.CheckOuterIp();
                     options.CheckOuterPort();
                 }
-                    break;
-                case ServerType.Account:
                     break;
                 case ServerType.Router:
                 {
@@ -186,10 +178,6 @@ public static class GameApp
                     options.CheckOuterPort();
                 }
                     break;
-                case ServerType.Backup:
-                    break;
-                case ServerType.Login:
-                    break;
                 case ServerType.Game:
                 {
                     // options.CheckMinModuleId();
@@ -201,20 +189,6 @@ public static class GameApp
                     options.CheckDataBaseUrl();
                     options.CheckDataBaseName();
                 }
-                    break;
-                case ServerType.Recharge:
-                    break;
-                case ServerType.Logic:
-                    break;
-                case ServerType.Chat:
-                    break;
-                case ServerType.Mail:
-                    break;
-                case ServerType.Guild:
-                    break;
-                case ServerType.Room:
-                    break;
-                case ServerType.All:
                     break;
             }
         }
