@@ -63,12 +63,12 @@ public static class HttpServer
         }
 
         // 根路径必须以/开头和以/结尾
-        if (!apiRootPath.StartsWith("/"))
+        if (!apiRootPath.StartsWith('/'))
         {
             apiRootPath = "/" + apiRootPath;
         }
 
-        if (!apiRootPath.EndsWith("/"))
+        if (!apiRootPath.EndsWith('/'))
         {
             apiRootPath += "/";
         }
