@@ -57,7 +57,7 @@ public static class HttpServer
         }
 
         // 如果没有指定根路径，则默认为/game/api/
-        if (apiRootPath.IsNullOrEmpty())
+        if (apiRootPath.IsNullOrEmptyOrWhiteSpace())
         {
             apiRootPath = GameApiPath;
         }
