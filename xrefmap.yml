@@ -10823,19 +10823,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.CheckDiscoveryCenterPort
   nameWithType: LauncherOptions.CheckDiscoveryCenterPort
-- uid: GameFrameX.StartUp.Options.LauncherOptions.CheckHttpCode
-  name: CheckHttpCode()
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_CheckHttpCode
-  commentId: M:GameFrameX.StartUp.Options.LauncherOptions.CheckHttpCode
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.CheckHttpCode()
-  nameWithType: LauncherOptions.CheckHttpCode()
-- uid: GameFrameX.StartUp.Options.LauncherOptions.CheckHttpCode*
-  name: CheckHttpCode
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_CheckHttpCode_
-  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.CheckHttpCode
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.CheckHttpCode
-  nameWithType: LauncherOptions.CheckHttpCode
 - uid: GameFrameX.StartUp.Options.LauncherOptions.CheckHttpPort
   name: CheckHttpPort()
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_CheckHttpPort
@@ -11096,19 +11083,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterPort
   nameWithType: LauncherOptions.DiscoveryCenterPort
-- uid: GameFrameX.StartUp.Options.LauncherOptions.HttpCode
-  name: HttpCode
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_HttpCode
-  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.HttpCode
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.HttpCode
-  nameWithType: LauncherOptions.HttpCode
-- uid: GameFrameX.StartUp.Options.LauncherOptions.HttpCode*
-  name: HttpCode
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_HttpCode_
-  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.HttpCode
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.HttpCode
-  nameWithType: LauncherOptions.HttpCode
 - uid: GameFrameX.StartUp.Options.LauncherOptions.HttpPort
   name: HttpPort
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_HttpPort
@@ -25070,19 +25044,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.DiscoveryCenterPort
   nameWithType: AppSetting.DiscoveryCenterPort
-- uid: GameFrameX.Utility.Setting.AppSetting.HttpCode
-  name: HttpCode
-  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_HttpCode
-  commentId: P:GameFrameX.Utility.Setting.AppSetting.HttpCode
-  fullName: GameFrameX.Utility.Setting.AppSetting.HttpCode
-  nameWithType: AppSetting.HttpCode
-- uid: GameFrameX.Utility.Setting.AppSetting.HttpCode*
-  name: HttpCode
-  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_HttpCode_
-  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.HttpCode
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Setting.AppSetting.HttpCode
-  nameWithType: AppSetting.HttpCode
 - uid: GameFrameX.Utility.Setting.AppSetting.HttpPort
   name: HttpPort
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_HttpPort
