@@ -4,33 +4,17 @@
 // 
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-namespace GameFrameX.Apps;
+namespace GameFrameX.Apps.Server.Entity;
 
-/// <summary>
-/// 每个服存在多个实例的（如玩家和公会）需要小于Separator
-/// 最大id应当小于999
-/// Id一旦定义了不应该修改
-/// </summary>
-public enum ActorType : ushort
+public class ServerState : CacheState
 {
     /// <summary>
-    /// 空将会被判断为无效值
+    /// 世界等级
     /// </summary>
-    None,
+    public int WorldLevel { get; set; } = 1;
 
     /// <summary>
-    /// 分割线(勿调整,勿用于业务逻辑)
+    /// 第一次启动时间，即开服时间
     /// </summary>
-    Separator = GlobalConst.ActorTypeSeparator,
-
-    /// <summary>
-    /// 账号
-    /// 管理玩家账号信息，如注册、密码找回等。
-    /// </summary>
-    Account = 130,
-
-    /// <summary>
-    /// 最大值
-    /// </summary>
-    Max = GlobalConst.ActorTypeMax,
+    public long FirstStartTime { get; set; }
 }

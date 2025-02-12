@@ -4,17 +4,21 @@
 // 
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using GameFrameX.Apps.Player.Player.Entity;
-using GameFrameX.Monitor.Player;
+using GameFrameX.Apps.Player.Bag.Entity;
 
-namespace GameFrameX.Apps.Player.Player.Component;
+namespace GameFrameX.Apps.Player.Bag.Component;
 
 [ComponentType(GlobalConst.ActorTypePlayer)]
-public sealed class PlayerComponent : StateComponent<PlayerState>
+public sealed class BagComponent : StateComponent<BagState>
 {
-    public async Task<PlayerState> OnPlayerLogin(ReqPlayerLogin reqLogin)
+    /// <summary>
+    /// 修改背包状态
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public async Task<BagState> Save()
     {
-        MetricsPlayerRegister.LoginCounterOptions.Inc();
-        return await GameDb.FindAsync<PlayerState>(m => m.Id == reqLogin.Id);
+        await WriteStateAsync();
+        return State;
     }
 }
