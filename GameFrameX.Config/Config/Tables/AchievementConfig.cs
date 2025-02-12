@@ -10,12 +10,12 @@
 using System.Text.Json;
 using GameFrameX.Core.Config;
 
-namespace GameFrameX.Config.item
+namespace GameFrameX.Config.Tables
 {
-    public sealed partial class Achievement : BeanBase
+    public sealed partial class AchievementConfig : BeanBase
     {
         /*
-        public Achievement(int Id, int Image, string Name, string AchievementContent, string LockText, System.Collections.Generic.List<int> AchievementUnlockCondition) 
+        public AchievementConfig(int Id, int Image, string Name, string AchievementContent, string LockText, System.Collections.Generic.List<int> AchievementUnlockCondition) 
         {
             this.Id = Id;
             this.Image = Image;
@@ -27,7 +27,7 @@ namespace GameFrameX.Config.item
         }        
         */
 
-        public Achievement(JsonElement _buf) 
+        public AchievementConfig(JsonElement _buf) 
         {
             Id = _buf.GetProperty("id").GetInt32();
             Image = _buf.GetProperty("image").GetInt32();
@@ -37,9 +37,9 @@ namespace GameFrameX.Config.item
             { var __json0 = _buf.GetProperty("achievement_unlock_condition"); AchievementUnlockCondition = new System.Collections.Generic.List<int>(__json0.GetArrayLength()); foreach(JsonElement __e0 in __json0.EnumerateArray()) { int __v0;  __v0 = __e0.GetInt32();  AchievementUnlockCondition.Add(__v0); }   }
         }
     
-        public static Achievement DeserializeAchievement(JsonElement _buf)
+        public static AchievementConfig DeserializeAchievementConfig(JsonElement _buf)
         {
-            return new item.Achievement(_buf);
+            return new Tables.AchievementConfig(_buf);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace GameFrameX.Config.item
         /// </summary>
         public System.Collections.Generic.List<int> AchievementUnlockCondition { private set; get; }
 
-        private const int __ID__ = 336225460;
+        private const int __ID__ = -1961757688;
         public override int GetTypeId() => __ID__;
 
         public  void ResolveRef(TablesComponent tables)

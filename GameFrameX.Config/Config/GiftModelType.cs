@@ -9,25 +9,30 @@
 
 
 
-namespace GameFrameX.Config.game
+namespace GameFrameX.Config
 { 
-    /// <summary>
-    /// 小游戏类型
-    /// </summary>
-    public enum GameType
+    public enum GiftModelType
     {
         /// <summary>
-        /// 连连看
+        /// 不可预览
         /// </summary>
-        LLK = 0,
+        Non = 0,
         /// <summary>
-        /// 时间挑战
+        /// 单一预览
         /// </summary>
-        TC = 1,
+        Single = 1,
         /// <summary>
-        /// 连连看翻牌
+        /// 整套预览
         /// </summary>
-        FP = 2,
+        Complete = 2,
+        /// <summary>
+        /// 分开预览
+        /// </summary>
+        Enumeration = 3,
+        /// <summary>
+        /// 组合预览
+        /// </summary>
+        Combination = 4,
     }
 
 } 

@@ -9,25 +9,34 @@
 
 
 
-namespace GameFrameX.Config.game
+namespace GameFrameX.Config
 { 
-    /// <summary>
-    /// 游戏难度等级
-    /// </summary>
-    public enum Level
+    public enum ItemSubType
     {
         /// <summary>
-        /// 普通级
+        /// 无
         /// </summary>
-        Normal = 0,
+        NONE = 0,
         /// <summary>
-        /// 困难级
+        /// 武器
         /// </summary>
-        Difficult = 1,
+        WEAPON = 1,
         /// <summary>
-        /// 地狱级
+        /// 胸
         /// </summary>
-        Hell = 2,
+        CHEST = 2,
+        /// <summary>
+        /// 腰带
+        /// </summary>
+        BELT = 3,
+        /// <summary>
+        /// 鞋子
+        /// </summary>
+        BOOT = 4,
+        /// <summary>
+        /// 戒指
+        /// </summary>
+        RING = 5,
     }
 
 } 

@@ -9,18 +9,22 @@
 
 
 
-namespace GameFrameX.Config.chapter
+namespace GameFrameX.Config
 { 
-    /// <summary>
-    /// 章节名称展示位置
-    /// </summary>
-    public enum PositionType
+    public enum ItemEPrompt
     {
-        Left = 0,
-        Right = 1,
-        Top = 2,
-        Center = 3,
-        Bottom = 4,
+        /// <summary>
+        /// 否
+        /// </summary>
+        NONE = 0,
+        /// <summary>
+        /// 新装备
+        /// </summary>
+        NEW_EQUIP = 1,
+        /// <summary>
+        /// 红点
+        /// </summary>
+        RED_POINT = 2,
     }
 
 } 

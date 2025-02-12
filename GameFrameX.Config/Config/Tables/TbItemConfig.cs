@@ -10,18 +10,18 @@
 using System.Text.Json;
 using GameFrameX.Core.Config;
 
-namespace GameFrameX.Config.item
+namespace GameFrameX.Config.Tables
 {
-    public partial class TbAchievement : BaseDataTable<item.Achievement>
+    public partial class TbItemConfig : BaseDataTable<Tables.ItemConfig>
     {
-        //private readonly System.Collections.Generic.Dictionary<int, item.Achievement> _dataMap;
-        //private readonly System.Collections.Generic.List<item.Achievement> _dataList;
+        //private readonly System.Collections.Generic.Dictionary<int, Tables.ItemConfig> _dataMap;
+        //private readonly System.Collections.Generic.List<Tables.ItemConfig> _dataList;
     
-        //public System.Collections.Generic.Dictionary<int, item.Achievement> DataMap => _dataMap;
-        //public System.Collections.Generic.List<item.Achievement> DataList => _dataList;
-        //public item.Achievement GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
-        //public item.Achievement Get(int key) => _dataMap[key];
-        //public item.Achievement this[int key] => _dataMap[key];
+        //public System.Collections.Generic.Dictionary<int, Tables.ItemConfig> DataMap => _dataMap;
+        //public System.Collections.Generic.List<Tables.ItemConfig> DataList => _dataList;
+        //public Tables.ItemConfig GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
+        //public Tables.ItemConfig Get(int key) => _dataMap[key];
+        //public Tables.ItemConfig this[int key] => _dataMap[key];
     
         public override async System.Threading.Tasks.Task LoadAsync()
         {
@@ -31,8 +31,8 @@ namespace GameFrameX.Config.item
             StringDataMaps.Clear();
             foreach(var element in jsonElement.EnumerateArray())
             {
-                item.Achievement _v;
-                _v = item.Achievement.DeserializeAchievement(element);
+                Tables.ItemConfig _v;
+                _v = Tables.ItemConfig.DeserializeItemConfig(element);
                 DataList.Add(_v);
                 LongDataMaps.Add(_v.Id, _v);
                 StringDataMaps.Add(_v.Id.ToString(), _v);
@@ -51,7 +51,7 @@ namespace GameFrameX.Config.item
     
         partial void PostInit();
 
-        public TbAchievement(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        public TbItemConfig(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
         {
         }
     }

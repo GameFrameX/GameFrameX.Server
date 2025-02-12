@@ -9,26 +9,34 @@
 
 
 
-namespace GameFrameX.Config.story
+namespace GameFrameX.Config
 { 
-    public enum TransitionType
+    public enum ItemType
     {
         /// <summary>
-        /// 默认值
+        /// 道具
         /// </summary>
-        Init = 0,
+        Item = 0,
         /// <summary>
-        /// 读取进度时的加载
+        /// 消耗品
         /// </summary>
-        Load = 1,
+        Expendable = 1,
         /// <summary>
-        /// 连贯剧情的加载
+        /// 装备
         /// </summary>
-        Next = 2,
+        Equip = 2,
         /// <summary>
-        /// 跳转剧情的加载
+        /// 碎片
         /// </summary>
-        Jump = 3,
+        Fragment = 3,
+        /// <summary>
+        /// 材料
+        /// </summary>
+        Material = 4,
+        /// <summary>
+        /// 任务
+        /// </summary>
+        Task = 5,
     }
 
 } 

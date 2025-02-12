@@ -9,25 +9,26 @@
 
 
 
-namespace GameFrameX.Config.story
+namespace GameFrameX.Config
 { 
-    /// <summary>
-    /// 分支展示类型类型
-    /// </summary>
-    public enum BranchShowType
+    public enum ItemUseLimiteType
     {
         /// <summary>
-        /// 垂直列表
+        /// 无限制
         /// </summary>
-        VerticalList = 0,
+        NOLIMITE = 0,
         /// <summary>
-        /// 对话框
+        /// 日限制
         /// </summary>
-        MessageBox = 1,
+        DAYLIMITE = 1,
         /// <summary>
-        /// 横向列表
+        /// vip限制
         /// </summary>
-        HorizontalList = 2,
+        VIPLIMITE = 2,
+        /// <summary>
+        /// 周限制
+        /// </summary>
+        WEEK6LIMITE = 3,
     }
 
 } 
