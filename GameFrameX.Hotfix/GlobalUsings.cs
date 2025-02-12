@@ -27,3 +27,6 @@ global using GameFrameX.NetWork.Messages;
 global using GameFrameX.DataBase;
 global using GameFrameX.Config;
 global using GameFrameX.NetWork;
+global using Mapster;
+global using GameFrameX.Config.Tables;
+global using GameFrameX.Core.BaseHandler;

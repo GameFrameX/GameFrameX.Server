@@ -4,16 +4,18 @@
 // 
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-namespace GameFrameX.Hotfix.Logic.Http;
+using GameFrameX.Apps.Common.Session;
+
+namespace GameFrameX.Hotfix.Logic.Http.Player;
 
 /// <summary>
-/// 测试
-/// http://localhost:20001/game/api/test
+/// 获取在线人数
+/// http://localhost:20001/game/api/GetOnlinePlayer
 /// </summary>
-[HttpMessageMapping(typeof(TestHttpHandler))]
-[HttpMessageResponse(typeof(HttpTestResponse))]
-[Description("测试通讯接口。没有实际用途")]
-public sealed class TestHttpHandler : BaseHttpHandler
+[HttpMessageMapping(typeof(GetOnlinePlayerHttpHandler))]
+[HttpMessageResponse(typeof(GetOnlinePlayerResponse))]
+[Description("获取在线人数")]
+public sealed class GetOnlinePlayerHttpHandler : BaseHttpHandler
 {
     /// <summary>
     /// </summary>
@@ -23,15 +25,16 @@ public sealed class TestHttpHandler : BaseHttpHandler
     /// <returns></returns>
     public override Task<string> Action(string ip, string url, Dictionary<string, object> parameters)
     {
-        var response = new HttpTestResponse
+        var response = new GetOnlinePlayerResponse
         {
-            Message = "hello",
+            Count = SessionManager.Count(),
         };
-        return Task.FromResult(HttpJsonResult.SuccessString(response));
+        var res = HttpJsonResult.SuccessString($"当前在线人数:{response.Count}", JsonHelper.Serialize(response));
+        return Task.FromResult(res);
     }
 }
 
-public sealed class HttpTestResponse : HttpMessageResponseBase
+public sealed class GetOnlinePlayerResponse : HttpMessageResponseBase
 {
-    [Description("返回信息")] public string Message { get; set; }
+    [Description("当前在线人数")] public int Count { get; set; }
 }

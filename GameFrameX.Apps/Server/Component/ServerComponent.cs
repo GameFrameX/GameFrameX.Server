@@ -4,17 +4,15 @@
 // 
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using GameFrameX.Apps.Player.Player.Entity;
-using GameFrameX.Monitor.Player;
+using GameFrameX.Apps.Server.Entity;
 
-namespace GameFrameX.Apps.Player.Player.Component;
+namespace GameFrameX.Apps.Server.Component;
 
-[ComponentType(GlobalConst.ActorTypePlayer)]
-public sealed class PlayerComponent : StateComponent<PlayerState>
+[ComponentType(GlobalConst.ActorTypeServer)]
+public class ServerComponent : StateComponent<ServerState>
 {
-    public async Task<PlayerState> OnPlayerLogin(ReqPlayerLogin reqLogin)
-    {
-        MetricsPlayerRegister.LoginCounterOptions.Inc();
-        return await GameDb.FindAsync<PlayerState>(m => m.Id == reqLogin.Id);
-    }
+    /// <summary>
+    /// 存放在此处的数据不会回存到数据库
+    /// </summary>
+    public HashSet<long> OnlineSet = new();
 }

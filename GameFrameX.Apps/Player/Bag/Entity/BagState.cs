@@ -4,33 +4,25 @@
 // 
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-namespace GameFrameX.Apps;
+namespace GameFrameX.Apps.Player.Bag.Entity;
 
-/// <summary>
-/// 每个服存在多个实例的（如玩家和公会）需要小于Separator
-/// 最大id应当小于999
-/// Id一旦定义了不应该修改
-/// </summary>
-public enum ActorType : ushort
+public sealed class BagState : CacheState
 {
     /// <summary>
-    /// 空将会被判断为无效值
+    /// 背包物品
     /// </summary>
-    None,
+    public Dictionary<int, BagItemState> List { get; set; } = new Dictionary<int, BagItemState>();
+}
+
+public sealed class BagItemState
+{
+    /// <summary>
+    /// 物品ID
+    /// </summary>
+    public long ItemId { get; set; }
 
     /// <summary>
-    /// 分割线(勿调整,勿用于业务逻辑)
+    /// 物品数量
     /// </summary>
-    Separator = GlobalConst.ActorTypeSeparator,
-
-    /// <summary>
-    /// 账号
-    /// 管理玩家账号信息，如注册、密码找回等。
-    /// </summary>
-    Account = 130,
-
-    /// <summary>
-    /// 最大值
-    /// </summary>
-    Max = GlobalConst.ActorTypeMax,
+    public long Count { get; set; }
 }
