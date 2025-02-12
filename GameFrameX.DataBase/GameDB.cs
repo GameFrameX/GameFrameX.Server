@@ -136,11 +136,12 @@ public static class GameDb
     /// <typeparam name="TState">文档的类型,必须继承自BaseCacheState且有无参构造函数</typeparam>
     /// <param name="id">要查找的文档ID</param>
     /// <param name="filter">可选的附加过滤条件</param>
+    /// <param name="isCreateIfNotExists">是否创建不存在的文档</param>
     /// <returns>找到的文档,如果不存在则返回新的空文档</returns>
-    public static Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null) where TState : BaseCacheState, new()
+    public static Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null, bool isCreateIfNotExists = true) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
-        return _dbServiceImplementation.FindAsync(id, filter);
+        return _dbServiceImplementation.FindAsync(id, filter, isCreateIfNotExists);
     }
 
     /// <summary>
@@ -149,11 +150,12 @@ public static class GameDb
     /// </summary>
     /// <typeparam name="TState">文档的类型,必须继承自BaseCacheState</typeparam>
     /// <param name="filter">用于筛选文档的Lambda表达式</param>
+    /// <param name="isCreateIfNotExists">是否创建不存在的文档</param>
     /// <returns>找到的第一个匹配文档,如果没有匹配项则返回null</returns>
-    public static Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
+    public static Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter, bool isCreateIfNotExists = true) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
-        return _dbServiceImplementation.FindAsync(filter);
+        return _dbServiceImplementation.FindAsync(filter, isCreateIfNotExists);
     }
 
     /// <summary>

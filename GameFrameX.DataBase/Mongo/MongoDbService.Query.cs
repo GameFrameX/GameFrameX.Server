@@ -23,11 +23,17 @@ public sealed partial class MongoDbService
     /// <typeparam name="TState">缓存状态的类型，必须是BaseCacheState的子类，并具有无参数构造函数。</typeparam>
     /// <param name="id">要加载的缓存状态的ID。</param>
     /// <param name="filter">可选的过滤器，用于进一步限制查询结果的条件。</param>
+    /// <param name="isCreateIfNotExists">是否创建不存在的文档</param>
     /// <returns>加载的缓存状态，如果未找到则返回新创建的状态。</returns>
-    public async Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null) where TState : BaseCacheState, new()
+    public async Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null, bool isCreateIfNotExists = true) where TState : BaseCacheState, new()
     {
         var findExpression = GetDefaultFindExpression(filter);
         var state = await _mongoDbContext.Find<TState>().Match(findExpression).OneAsync(id);
+        if (!isCreateIfNotExists)
+        {
+            return state;
+        }
+
         var isNew = state == null;
 
         if (state == null)
@@ -38,6 +44,7 @@ public sealed partial class MongoDbService
 
         // 调用后处理方法以加载状态的其他数据
         state.LoadFromDbPostHandler(isNew);
+
         return state;
     }
 
@@ -47,11 +54,18 @@ public sealed partial class MongoDbService
     /// </summary>
     /// <typeparam name="TState">缓存状态的类型，必须是BaseCacheState的子类，并具有无参数构造函数。</typeparam>
     /// <param name="filter">查询条件，用于限制查找的结果。</param>
+    /// <param name="isCreateIfNotExists">是否创建不存在的文档</param>
     /// <returns>满足条件的缓存状态，如果未找到则返回新创建的状态。</returns>
-    public async Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
+    public async Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter, bool isCreateIfNotExists = true) where TState : BaseCacheState, new()
     {
         var findExpression = GetDefaultFindExpression(filter);
         var state = await _mongoDbContext.Queryable<TState>().Where(findExpression).SingleOrDefaultAsync();
+
+        if (!isCreateIfNotExists)
+        {
+            return state;
+        }
+
         var isNew = state == null;
 
         if (state == null)
@@ -62,6 +76,7 @@ public sealed partial class MongoDbService
 
         // 调用后处理方法以加载状态的其他数据
         state.LoadFromDbPostHandler(isNew);
+
         return state;
     }
 

@@ -24,17 +24,19 @@ public interface IDatabaseService
     /// </summary>
     /// <param name="id">数据的唯一ID</param>
     /// <param name="filter">查询条件</param>
+    /// <param name="isCreateIfNotExists">是否创建不存在的文档</param>
     /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
     /// <returns>返回符合条件的数据对象</returns>
-    Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null) where TState : BaseCacheState, new();
+    Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null, bool isCreateIfNotExists = true) where TState : BaseCacheState, new();
 
     /// <summary>
     /// 查询单条数据
     /// </summary>
     /// <param name="filter">查询条件</param>
+    /// <param name="isCreateIfNotExists">是否创建不存在的文档</param>
     /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
     /// <returns>返回符合条件的数据对象</returns>
-    Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new();
+    Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter, bool isCreateIfNotExists = true) where TState : BaseCacheState, new();
 
     /// <summary>
     /// 查询数据
