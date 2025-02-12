@@ -10,12 +10,12 @@
 using System.Text.Json;
 using GameFrameX.Core.Config;
 
-namespace GameFrameX.Config.item
+namespace GameFrameX.Config.Tables
 {
-    public sealed partial class Sounds : BeanBase
+    public sealed partial class SoundsConfig : BeanBase
     {
         /*
-        public Sounds(int Id, string GroupName, string Path, string Title, string CharacterName) 
+        public SoundsConfig(int Id, string GroupName, string Path, string Title, string CharacterName) 
         {
             this.Id = Id;
             this.GroupName = GroupName;
@@ -26,7 +26,7 @@ namespace GameFrameX.Config.item
         }        
         */
 
-        public Sounds(JsonElement _buf) 
+        public SoundsConfig(JsonElement _buf) 
         {
             Id = _buf.GetProperty("id").GetInt32();
             GroupName = _buf.GetProperty("groupName").GetString();
@@ -35,9 +35,9 @@ namespace GameFrameX.Config.item
             CharacterName = _buf.GetProperty("characterName").GetString();
         }
     
-        public static Sounds DeserializeSounds(JsonElement _buf)
+        public static SoundsConfig DeserializeSoundsConfig(JsonElement _buf)
         {
-            return new item.Sounds(_buf);
+            return new Tables.SoundsConfig(_buf);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace GameFrameX.Config.item
         public string Title { private set; get; }
         public string CharacterName { private set; get; }
 
-        private const int __ID__ = -1840749409;
+        private const int __ID__ = 4070031;
         public override int GetTypeId() => __ID__;
 
         public  void ResolveRef(TablesComponent tables)

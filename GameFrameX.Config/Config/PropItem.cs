@@ -12,41 +12,38 @@ using GameFrameX.Core.Config;
 
 namespace GameFrameX.Config
 {
-    /// <summary>
-    /// 用于保存中文原content以及对应的国际化Key
-    /// </summary>
-    public sealed partial class TranslateCKBean : BeanBase
+    public sealed partial class PropItem : BeanBase
     {
         /*
-        public TranslateCKBean(string Content, string Key) 
+        public PropItem(int Id, int Count) 
         {
-            this.Content = Content;
-            this.Key = Key;
+            this.Id = Id;
+            this.Count = Count;
             PostInit();
         }        
         */
 
-        public TranslateCKBean(JsonElement _buf) 
+        public PropItem(JsonElement _buf) 
         {
-            Content = _buf.GetProperty("content").GetString();
-            Key = _buf.GetProperty("key").GetString();
+            Id = _buf.GetProperty("Id").GetInt32();
+            Count = _buf.GetProperty("Count").GetInt32();
         }
     
-        public static TranslateCKBean DeserializeTranslateCKBean(JsonElement _buf)
+        public static PropItem DeserializePropItem(JsonElement _buf)
         {
-            return new TranslateCKBean(_buf);
+            return new PropItem(_buf);
         }
 
         /// <summary>
-        /// 内容
+        /// 道具id
         /// </summary>
-        public string Content { private set; get; }
+        public int Id { private set; get; }
         /// <summary>
-        /// 对应Key
+        /// 道具数量
         /// </summary>
-        public string Key { private set; get; }
+        public int Count { private set; get; }
 
-        private const int __ID__ = 1171657446;
+        private const int __ID__ = -929329866;
         public override int GetTypeId() => __ID__;
 
         public  void ResolveRef(TablesComponent tables)
@@ -58,8 +55,8 @@ namespace GameFrameX.Config
         public override string ToString()
         {
             return "{ "
-            + "content:" + Content + ","
-            + "key:" + Key + ","
+            + "Id:" + Id + ","
+            + "Count:" + Count + ","
             + "}";
         }
 

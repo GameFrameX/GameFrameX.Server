@@ -9,21 +9,18 @@
 
 
 
-namespace GameFrameX.Config.story
+namespace GameFrameX.Config
 { 
-    /// <summary>
-    /// 剧情开启条件类型
-    /// </summary>
-    public enum ConditionType
+    public enum GiftUIType
     {
         /// <summary>
-        /// 步骤序号
+        /// 普通界面
         /// </summary>
-        Step = 0,
+        Normal = 0,
         /// <summary>
-        /// 选项
+        /// 特殊界面
         /// </summary>
-        Option = 1,
+        Style_1 = 1,
     }
 
 } 

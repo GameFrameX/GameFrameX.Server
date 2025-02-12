@@ -9,26 +9,22 @@
 
 
 
-namespace GameFrameX.Config.item
+namespace GameFrameX.Config
 { 
-    public enum EQuality
+    public enum GiftFilterType
     {
         /// <summary>
-        /// 最差品质
+        /// 无，全部获得
         /// </summary>
-        WHITE = 1,
+        None = 0,
         /// <summary>
-        /// 蓝色的
+        /// 随机获得N件
         /// </summary>
-        BLUE = 2,
+        Random = 1,
         /// <summary>
-        /// 紫色的
+        /// 自定义选择N件
         /// </summary>
-        PURPLE = 3,
-        /// <summary>
-        /// 最高品质
-        /// </summary>
-        RED = 4,
+        Custom = 2,
     }
 
 } 

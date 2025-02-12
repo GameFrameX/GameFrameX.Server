@@ -15,8 +15,10 @@ namespace GameFrameX.Config
 {
     public partial class TablesComponent
     {
-        internal item.TbAchievement TbAchievement { private set; get; }
-        internal item.TbSounds TbSounds { private set; get; }
+        internal Local.TbLocalization TbLocalization { private set; get; }
+        internal Tables.TbAchievementConfig TbAchievementConfig { private set; get; }
+        internal Tables.TbItemConfig TbItemConfig { private set; get; }
+        internal Tables.TbSoundsConfig TbSoundsConfig { private set; get; }
     
         private ConfigComponent m_ConfigComponent;
 
@@ -31,13 +33,21 @@ namespace GameFrameX.Config
             //m_ConfigComponent.RemoveAllConfigs();
             var loadTasks = new System.Collections.Generic.List<System.Threading.Tasks.Task>();
     
-            TbAchievement = new item.TbAchievement(() => loader("item_tbachievement"));
-            loadTasks.Add(TbAchievement.LoadAsync());
-            m_ConfigComponent.Add(nameof(item.TbAchievement), TbAchievement);
+            TbLocalization = new Local.TbLocalization(() => loader("local_tblocalization"));
+            loadTasks.Add(TbLocalization.LoadAsync());
+            m_ConfigComponent.Add(nameof(Local.TbLocalization), TbLocalization);
 
-            TbSounds = new item.TbSounds(() => loader("item_tbsounds"));
-            loadTasks.Add(TbSounds.LoadAsync());
-            m_ConfigComponent.Add(nameof(item.TbSounds), TbSounds);
+            TbAchievementConfig = new Tables.TbAchievementConfig(() => loader("tables_tbachievementconfig"));
+            loadTasks.Add(TbAchievementConfig.LoadAsync());
+            m_ConfigComponent.Add(nameof(Tables.TbAchievementConfig), TbAchievementConfig);
+
+            TbItemConfig = new Tables.TbItemConfig(() => loader("tables_tbitemconfig"));
+            loadTasks.Add(TbItemConfig.LoadAsync());
+            m_ConfigComponent.Add(nameof(Tables.TbItemConfig), TbItemConfig);
+
+            TbSoundsConfig = new Tables.TbSoundsConfig(() => loader("tables_tbsoundsconfig"));
+            loadTasks.Add(TbSoundsConfig.LoadAsync());
+            m_ConfigComponent.Add(nameof(Tables.TbSoundsConfig), TbSoundsConfig);
 
     
             await System.Threading.Tasks.Task.WhenAll(loadTasks);
@@ -49,8 +59,10 @@ namespace GameFrameX.Config
         {
             //TablesMemory.BeginRecord();
     
-            // TbAchievement = new item.TbAchievement();
-            // TbSounds = new item.TbSounds();
+            // TbLocalization = new Local.TbLocalization();
+            // TbAchievementConfig = new Tables.TbAchievementConfig();
+            // TbItemConfig = new Tables.TbItemConfig();
+            // TbSoundsConfig = new Tables.TbSoundsConfig();
             //TablesMemory.EndRecord();
         }
 
@@ -62,8 +74,10 @@ namespace GameFrameX.Config
 
         private void ResolveRef()
         {
-            TbAchievement.ResolveRef(this);
-            TbSounds.ResolveRef(this);
+            TbLocalization.ResolveRef(this);
+            TbAchievementConfig.ResolveRef(this);
+            TbItemConfig.ResolveRef(this);
+            TbSoundsConfig.ResolveRef(this);
         }
     
         partial void PostInit();

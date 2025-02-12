@@ -10,18 +10,18 @@
 using System.Text.Json;
 using GameFrameX.Core.Config;
 
-namespace GameFrameX.Config.item
+namespace GameFrameX.Config.Tables
 {
-    public partial class TbSounds : BaseDataTable<item.Sounds>
+    public partial class TbAchievementConfig : BaseDataTable<Tables.AchievementConfig>
     {
-        //private readonly System.Collections.Generic.Dictionary<int, item.Sounds> _dataMap;
-        //private readonly System.Collections.Generic.List<item.Sounds> _dataList;
+        //private readonly System.Collections.Generic.Dictionary<int, Tables.AchievementConfig> _dataMap;
+        //private readonly System.Collections.Generic.List<Tables.AchievementConfig> _dataList;
     
-        //public System.Collections.Generic.Dictionary<int, item.Sounds> DataMap => _dataMap;
-        //public System.Collections.Generic.List<item.Sounds> DataList => _dataList;
-        //public item.Sounds GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
-        //public item.Sounds Get(int key) => _dataMap[key];
-        //public item.Sounds this[int key] => _dataMap[key];
+        //public System.Collections.Generic.Dictionary<int, Tables.AchievementConfig> DataMap => _dataMap;
+        //public System.Collections.Generic.List<Tables.AchievementConfig> DataList => _dataList;
+        //public Tables.AchievementConfig GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
+        //public Tables.AchievementConfig Get(int key) => _dataMap[key];
+        //public Tables.AchievementConfig this[int key] => _dataMap[key];
     
         public override async System.Threading.Tasks.Task LoadAsync()
         {
@@ -31,8 +31,8 @@ namespace GameFrameX.Config.item
             StringDataMaps.Clear();
             foreach(var element in jsonElement.EnumerateArray())
             {
-                item.Sounds _v;
-                _v = item.Sounds.DeserializeSounds(element);
+                Tables.AchievementConfig _v;
+                _v = Tables.AchievementConfig.DeserializeAchievementConfig(element);
                 DataList.Add(_v);
                 LongDataMaps.Add(_v.Id, _v);
                 StringDataMaps.Add(_v.Id.ToString(), _v);
@@ -51,7 +51,7 @@ namespace GameFrameX.Config.item
     
         partial void PostInit();
 
-        public TbSounds(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
+        public TbAchievementConfig(Func<Task<JsonElement>> loadFunc) : base(loadFunc)
         {
         }
     }
