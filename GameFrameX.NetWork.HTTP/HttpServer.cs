@@ -123,7 +123,7 @@ public static class HttpServer
             }
 
             // HTTPS
-            if (httpsPort > 0 && Net.PortIsAvailable(httpPort))
+            if (httpsPort > 0 && Net.PortIsAvailable(httpsPort))
             {
                 options.ListenAnyIP(httpsPort, listenOptions => { listenOptions.UseHttps(); });
             }
