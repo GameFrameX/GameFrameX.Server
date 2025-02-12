@@ -147,6 +147,7 @@ public static class HttpServer
 
         App.UseExceptionHandler(ExceptionHandler);
 
+        // 每个http处理器，注册到路由中
         foreach (var handler in baseHandler)
         {
             var handlerType = handler.GetType();
@@ -156,6 +157,7 @@ public static class HttpServer
                 continue;
             }
 
+            // 只支持POST请求
             var route = App.MapPost($"{ApiRootPath}{mappingAttribute.StandardCmd}", async (HttpContext context, string text) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
             if (isDevelopment)
             {
