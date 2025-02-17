@@ -20,94 +20,94 @@
 namespace GameFrameX.Utility.Math;
 
 /// <summary>
-/// 3x3 Matrix.
+/// 4x4 矩阵结构体，用于表示三维空间中的变换。
 /// </summary>
 public struct FPMatrix4x4
 {
     /// <summary>
-    /// M11
+    /// 第一行第一列的元素。
     /// </summary>
-    public FP M11; // 1st row vector
+    public FP M11; // 第一行向量
 
     /// <summary>
-    /// M12
+    /// 第一行第二列的元素。
     /// </summary>
     public FP M12;
 
     /// <summary>
-    /// M13
+    /// 第一行第三列的元素。
     /// </summary>
     public FP M13;
 
     /// <summary>
-    /// M14
+    /// 第一行第四列的元素。
     /// </summary>
     public FP M14;
 
     /// <summary>
-    /// M21
+    /// 第二行第一列的元素。
     /// </summary>
-    public FP M21; // 2nd row vector
+    public FP M21; // 第二行向量
 
     /// <summary>
-    /// M22
+    /// 第二行第二列的元素。
     /// </summary>
     public FP M22;
 
     /// <summary>
-    /// M23
+    /// 第二行第三列的元素。
     /// </summary>
     public FP M23;
 
     /// <summary>
-    /// M24
+    /// 第二行第四列的元素。
     /// </summary>
     public FP M24;
 
     /// <summary>
-    /// M31
+    /// 第三行第一列的元素。
     /// </summary>
-    public FP M31; // 3rd row vector
+    public FP M31; // 第三行向量
 
     /// <summary>
-    /// M32
+    /// 第三行第二列的元素。
     /// </summary>
     public FP M32;
 
     /// <summary>
-    /// M33
+    /// 第三行第三列的元素。
     /// </summary>
     public FP M33;
 
     /// <summary>
-    /// M34
+    /// 第三行第四列的元素。
     /// </summary>
     public FP M34;
 
     /// <summary>
-    /// M41
+    /// 第四行第一列的元素。
     /// </summary>
-    public FP M41; // 4rd row vector
+    public FP M41; // 第四行向量
 
     /// <summary>
-    /// M42
+    /// 第四行第二列的元素。
     /// </summary>
     public FP M42;
 
     /// <summary>
-    /// M43
+    /// 第四行第三列的元素。
     /// </summary>
     public FP M43;
 
     /// <summary>
-    /// M44
+    /// 第四行第四列的元素。
     /// </summary>
     public FP M44;
 
     internal static FPMatrix4x4 InternalIdentity;
 
     /// <summary>
-    /// Identity matrix.
+    /// 单位矩阵。
     /// </summary>
     public static readonly FPMatrix4x4 Identity;
 
@@ -127,24 +127,24 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Initializes a new instance of the matrix structure.
+    /// 初始化矩阵结构的新实例。
     /// </summary>
-    /// <param name="m11">m11</param>
-    /// <param name="m12">m12</param>
-    /// <param name="m13">m13</param>
-    /// <param name="m14">m14</param>
-    /// <param name="m21">m21</param>
-    /// <param name="m22">m22</param>
-    /// <param name="m23">m23</param>
-    /// <param name="m24">m24</param>
-    /// <param name="m31">m31</param>
-    /// <param name="m32">m32</param>
-    /// <param name="m33">m33</param>
-    /// <param name="m34">m34</param>
-    /// <param name="m41">m41</param>
-    /// <param name="m42">m42</param>
-    /// <param name="m43">m43</param>
-    /// <param name="m44">m44</param>
+    /// <param name="m11">第一行第一列的值。</param>
+    /// <param name="m12">第一行第二列的值。</param>
+    /// <param name="m13">第一行第三列的值。</param>
+    /// <param name="m14">第一行第四列的值。</param>
+    /// <param name="m21">第二行第一列的值。</param>
+    /// <param name="m22">第二行第二列的值。</param>
+    /// <param name="m23">第二行第三列的值。</param>
+    /// <param name="m24">第二行第四列的值。</param>
+    /// <param name="m31">第三行第一列的值。</param>
+    /// <param name="m32">第三行第二列的值。</param>
+    /// <param name="m33">第三行第三列的值。</param>
+    /// <param name="m34">第三行第四列的值。</param>
+    /// <param name="m41">第四行第一列的值。</param>
+    /// <param name="m42">第四行第二列的值。</param>
+    /// <param name="m43">第四行第三列的值。</param>
+    /// <param name="m44">第四行第四列的值。</param>
     public FPMatrix4x4(FP m11, FP m12, FP m13, FP m14,
         FP m21, FP m22, FP m23, FP m24,
         FP m31, FP m32, FP m33, FP m34,
@@ -169,11 +169,11 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Multiply two matrices. Notice: matrix multiplication is not commutative.
+    /// 计算两个矩阵的乘积。注意：矩阵乘法不是交换的。
     /// </summary>
-    /// <param name="matrix1">The first matrix.</param>
-    /// <param name="matrix2">The second matrix.</param>
-    /// <returns>The product of both matrices.</returns>
+    /// <param name="matrix1">第一个矩阵。</param>
+    /// <param name="matrix2">第二个矩阵。</param>
+    /// <returns>两个矩阵的乘积。</returns>
     public static FPMatrix4x4 Multiply(FPMatrix4x4 matrix1, FPMatrix4x4 matrix2)
     {
         FPMatrix4x4 result;
@@ -182,32 +182,32 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Multiply two matrices. Notice: matrix multiplication is not commutative.
+    /// 计算两个矩阵的乘积。注意：矩阵乘法不是交换的。
     /// </summary>
-    /// <param name="matrix1">The first matrix.</param>
-    /// <param name="matrix2">The second matrix.</param>
-    /// <param name="result">The product of both matrices.</param>
+    /// <param name="matrix1">第一个矩阵。</param>
+    /// <param name="matrix2">第二个矩阵。</param>
+    /// <param name="result">两个矩阵的乘积。</param>
     public static void Multiply(ref FPMatrix4x4 matrix1, ref FPMatrix4x4 matrix2, out FPMatrix4x4 result)
     {
-        // First row
+        // 第一行
         result.M11 = matrix1.M11 * matrix2.M11 + matrix1.M12 * matrix2.M21 + matrix1.M13 * matrix2.M31 + matrix1.M14 * matrix2.M41;
         result.M12 = matrix1.M11 * matrix2.M12 + matrix1.M12 * matrix2.M22 + matrix1.M13 * matrix2.M32 + matrix1.M14 * matrix2.M42;
         result.M13 = matrix1.M11 * matrix2.M13 + matrix1.M12 * matrix2.M23 + matrix1.M13 * matrix2.M33 + matrix1.M14 * matrix2.M43;
         result.M14 = matrix1.M11 * matrix2.M14 + matrix1.M12 * matrix2.M24 + matrix1.M13 * matrix2.M34 + matrix1.M14 * matrix2.M44;
 
-        // Second row
+        // 第二行
         result.M21 = matrix1.M21 * matrix2.M11 + matrix1.M22 * matrix2.M21 + matrix1.M23 * matrix2.M31 + matrix1.M24 * matrix2.M41;
         result.M22 = matrix1.M21 * matrix2.M12 + matrix1.M22 * matrix2.M22 + matrix1.M23 * matrix2.M32 + matrix1.M24 * matrix2.M42;
         result.M23 = matrix1.M21 * matrix2.M13 + matrix1.M22 * matrix2.M23 + matrix1.M23 * matrix2.M33 + matrix1.M24 * matrix2.M43;
         result.M24 = matrix1.M21 * matrix2.M14 + matrix1.M22 * matrix2.M24 + matrix1.M23 * matrix2.M34 + matrix1.M24 * matrix2.M44;
 
-        // Third row
+        // 第三行
         result.M31 = matrix1.M31 * matrix2.M11 + matrix1.M32 * matrix2.M21 + matrix1.M33 * matrix2.M31 + matrix1.M34 * matrix2.M41;
         result.M32 = matrix1.M31 * matrix2.M12 + matrix1.M32 * matrix2.M22 + matrix1.M33 * matrix2.M32 + matrix1.M34 * matrix2.M42;
         result.M33 = matrix1.M31 * matrix2.M13 + matrix1.M32 * matrix2.M23 + matrix1.M33 * matrix2.M33 + matrix1.M34 * matrix2.M43;
         result.M34 = matrix1.M31 * matrix2.M14 + matrix1.M32 * matrix2.M24 + matrix1.M33 * matrix2.M34 + matrix1.M34 * matrix2.M44;
 
-        // Fourth row
+        // 第四行
         result.M41 = matrix1.M41 * matrix2.M11 + matrix1.M42 * matrix2.M21 + matrix1.M43 * matrix2.M31 + matrix1.M44 * matrix2.M41;
         result.M42 = matrix1.M41 * matrix2.M12 + matrix1.M42 * matrix2.M22 + matrix1.M43 * matrix2.M32 + matrix1.M44 * matrix2.M42;
         result.M43 = matrix1.M41 * matrix2.M13 + matrix1.M42 * matrix2.M23 + matrix1.M43 * matrix2.M33 + matrix1.M44 * matrix2.M43;
@@ -215,11 +215,11 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Matrices are added.
+    /// 将两个矩阵相加。
     /// </summary>
-    /// <param name="matrix1">The first matrix.</param>
-    /// <param name="matrix2">The second matrix.</param>
-    /// <returns>The sum of both matrices.</returns>
+    /// <param name="matrix1">第一个矩阵。</param>
+    /// <param name="matrix2">第二个矩阵。</param>
+    /// <returns>两个矩阵的和。</returns>
     public static FPMatrix4x4 Add(FPMatrix4x4 matrix1, FPMatrix4x4 matrix2)
     {
         FPMatrix4x4 result;
@@ -228,11 +228,11 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Matrices are added.
+    /// 将两个矩阵相加。
     /// </summary>
-    /// <param name="matrix1">The first matrix.</param>
-    /// <param name="matrix2">The second matrix.</param>
-    /// <param name="result">The sum of both matrices.</param>
+    /// <param name="matrix1">第一个矩阵。</param>
+    /// <param name="matrix2">第二个矩阵。</param>
+    /// <param name="result">两个矩阵的和。</param>
     public static void Add(ref FPMatrix4x4 matrix1, ref FPMatrix4x4 matrix2, out FPMatrix4x4 result)
     {
         result.M11 = matrix1.M11 + matrix2.M11;
@@ -257,10 +257,10 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Calculates the inverse of a give matrix.
+    /// 计算给定矩阵的逆矩阵。
     /// </summary>
-    /// <param name="matrix">The matrix to invert.</param>
-    /// <returns>The inverted JMatrix.</returns>
+    /// <param name="matrix">要计算逆的矩阵。</param>
+    /// <returns>逆矩阵。</returns>
     public static FPMatrix4x4 Inverse(FPMatrix4x4 matrix)
     {
         FPMatrix4x4 result;
@@ -319,10 +319,10 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Calculates the inverse of a give matrix.
+    /// 计算给定矩阵的逆矩阵。
     /// </summary>
-    /// <param name="matrix">The matrix to invert.</param>
-    /// <param name="result">The inverted JMatrix.</param>
+    /// <param name="matrix">要计算逆的矩阵。</param>
+    /// <param name="result">逆矩阵。</param>
     public static void Inverse(ref FPMatrix4x4 matrix, out FPMatrix4x4 result)
     {
         //                                       -1
@@ -496,11 +496,11 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Multiply a matrix by a scalefactor.
+    /// 将矩阵乘以一个缩放因子。
     /// </summary>
-    /// <param name="matrix1">The matrix.</param>
-    /// <param name="scaleFactor">The scale factor.</param>
-    /// <returns>A JMatrix multiplied by the scale factor.</returns>
+    /// <param name="matrix1">要缩放的矩阵。</param>
+    /// <param name="scaleFactor">缩放因子。</param>
+    /// <returns>缩放后的矩阵。</returns>
     public static FPMatrix4x4 Multiply(FPMatrix4x4 matrix1, FP scaleFactor)
     {
         FPMatrix4x4 result;
@@ -509,11 +509,11 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Multiply a matrix by a scalefactor.
+    /// 将矩阵乘以一个缩放因子。
     /// </summary>
-    /// <param name="matrix1">The matrix.</param>
-    /// <param name="scaleFactor">The scale factor.</param>
-    /// <param name="result">A JMatrix multiplied by the scale factor.</param>
+    /// <param name="matrix1">要缩放的矩阵。</param>
+    /// <param name="scaleFactor">缩放因子。</param>
+    /// <param name="result">缩放后的矩阵。</param>
     public static void Multiply(ref FPMatrix4x4 matrix1, FP scaleFactor, out FPMatrix4x4 result)
     {
         var num = scaleFactor;
@@ -538,7 +538,11 @@ public struct FPMatrix4x4
         result.M44 = matrix1.M44 * num;
     }
 
-
+    /// <summary>
+    /// 根据四元数创建旋转矩阵。
+    /// </summary>
+    /// <param name="quaternion">用于创建矩阵的四元数。</param>
+    /// <returns>表示方向的旋转矩阵。</returns>
     public static FPMatrix4x4 Rotate(FPQuaternion quaternion)
     {
         FPMatrix4x4 result;
@@ -547,10 +551,10 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Creates a JMatrix representing an orientation from a quaternion.
+    /// 根据四元数创建旋转矩阵。
     /// </summary>
-    /// <param name="quaternion">The quaternion the matrix should be created from.</param>
-    /// <param name="result">JMatrix representing an orientation.</param>
+    /// <param name="quaternion">用于创建矩阵的四元数。</param>
+    /// <param name="result">表示方向的旋转矩阵。</param>
     public static void Rotate(ref FPQuaternion quaternion, out FPMatrix4x4 result)
     {
         // Precalculate coordinate products
@@ -587,10 +591,10 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Creates the transposed matrix.
+    /// 创建转置矩阵。
     /// </summary>
-    /// <param name="matrix">The matrix which should be transposed.</param>
-    /// <returns>The transposed JMatrix.</returns>
+    /// <param name="matrix">要转置的矩阵。</param>
+    /// <returns>转置后的矩阵。</returns>
     public static FPMatrix4x4 Transpose(FPMatrix4x4 matrix)
     {
         FPMatrix4x4 result;
@@ -599,10 +603,10 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Creates the transposed matrix.
+    /// 创建转置矩阵。
     /// </summary>
-    /// <param name="matrix">The matrix which should be transposed.</param>
-    /// <param name="result">The transposed JMatrix.</param>
+    /// <param name="matrix">要转置的矩阵。</param>
+    /// <param name="result">转置后的矩阵。</param>
     public static void Transpose(ref FPMatrix4x4 matrix, out FPMatrix4x4 result)
     {
         result.M11 = matrix.M11;
@@ -623,13 +627,12 @@ public struct FPMatrix4x4
         result.M44 = matrix.M44;
     }
 
-
     /// <summary>
-    /// Multiplies two matrices.
+    /// 重载乘法运算符，计算两个矩阵的乘积。
     /// </summary>
-    /// <param name="value1">The first matrix.</param>
-    /// <param name="value2">The second matrix.</param>
-    /// <returns>The product of both values.</returns>
+    /// <param name="value1">第一个矩阵。</param>
+    /// <param name="value2">第二个矩阵。</param>
+    /// <returns>两个矩阵的乘积。</returns>
     public static FPMatrix4x4 operator *(FPMatrix4x4 value1, FPMatrix4x4 value2)
     {
         FPMatrix4x4 result;
@@ -637,18 +640,21 @@ public struct FPMatrix4x4
         return result;
     }
 
-
+    /// <summary>
+    /// 计算矩阵的迹。
+    /// </summary>
+    /// <returns>矩阵的迹。</returns>
     public FP Trace()
     {
         return M11 + M22 + M33 + M44;
     }
 
     /// <summary>
-    /// Adds two matrices.
+    /// 重载加法运算符，计算两个矩阵的和。
     /// </summary>
-    /// <param name="value1">The first matrix.</param>
-    /// <param name="value2">The second matrix.</param>
-    /// <returns>The sum of both values.</returns>
+    /// <param name="value1">第一个矩阵。</param>
+    /// <param name="value2">第二个矩阵。</param>
+    /// <returns>两个矩阵的和。</returns>
     public static FPMatrix4x4 operator +(FPMatrix4x4 value1, FPMatrix4x4 value2)
     {
         FPMatrix4x4 result;
@@ -657,10 +663,10 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Returns a new matrix with the negated elements of the given matrix.
+    /// 返回给定矩阵的元素取反后的新矩阵。
     /// </summary>
-    /// <param name="value">The source matrix.</param>
-    /// <returns>The negated matrix.</returns>
+    /// <param name="value">源矩阵。</param>
+    /// <returns>取反后的矩阵。</returns>
     public static FPMatrix4x4 operator -(FPMatrix4x4 value)
     {
         FPMatrix4x4 result;
@@ -686,11 +692,11 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Subtracts two matrices.
+    /// 重载减法运算符，计算两个矩阵的差。
     /// </summary>
-    /// <param name="value1">The first matrix.</param>
-    /// <param name="value2">The second matrix.</param>
-    /// <returns>The difference of both values.</returns>
+    /// <param name="value1">第一个矩阵。</param>
+    /// <param name="value2">第二个矩阵。</param>
+    /// <returns>两个矩阵的差。</returns>
     public static FPMatrix4x4 operator -(FPMatrix4x4 value1, FPMatrix4x4 value2)
     {
         FPMatrix4x4 result;
@@ -699,6 +705,12 @@ public struct FPMatrix4x4
         return result;
     }
 
+    /// <summary>
+    /// 重载相等运算符，判断两个矩阵是否相等。
+    /// </summary>
+    /// <param name="value1">第一个矩阵。</param>
+    /// <param name="value2">第二个矩阵。</param>
+    /// <returns>如果两个矩阵相等，则返回 true；否则返回 false。</returns>
     public static bool operator ==(FPMatrix4x4 value1, FPMatrix4x4 value2)
     {
         return value1.M11 == value2.M11 &&
@@ -719,6 +731,12 @@ public struct FPMatrix4x4
                value1.M44 == value2.M44;
     }
 
+    /// <summary>
+    /// 重载不相等运算符，判断两个矩阵是否不相等。
+    /// </summary>
+    /// <param name="value1">第一个矩阵。</param>
+    /// <param name="value2">第二个矩阵。</param>
+    /// <returns>如果两个矩阵不相等，则返回 true；否则返回 false。</returns>
     public static bool operator !=(FPMatrix4x4 value1, FPMatrix4x4 value2)
     {
         return value1.M11 != value2.M11 ||
@@ -739,6 +757,11 @@ public struct FPMatrix4x4
                value1.M44 != value2.M44;
     }
 
+    /// <summary>
+    /// 重写 Equals 方法，判断当前矩阵是否与指定对象相等。
+    /// </summary>
+    /// <param name="obj">要比较的对象。</param>
+    /// <returns>如果当前矩阵与指定对象相等，则返回 true；否则返回 false。</returns>
     public override bool Equals(object obj)
     {
         if (!(obj is FPMatrix4x4))
@@ -759,13 +782,17 @@ public struct FPMatrix4x4
                M31 == other.M31 &&
                M32 == other.M32 &&
                M33 == other.M33 &&
-               M34 == other.M44 &&
+               M34 == other.M34 &&
                M41 == other.M41 &&
                M42 == other.M42 &&
                M43 == other.M43 &&
                M44 == other.M44;
     }
 
+    /// <summary>
+    /// 重写 GetHashCode 方法，返回当前矩阵的哈希代码。
+    /// </summary>
+    /// <returns>当前矩阵的哈希代码。</returns>
     public override int GetHashCode()
     {
         return M11.GetHashCode() ^
@@ -787,12 +814,12 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Creates a translation matrix.
+    /// 创建平移矩阵。
     /// </summary>
-    /// <param name="xPosition">The amount to translate on the X-axis.</param>
-    /// <param name="yPosition">The amount to translate on the Y-axis.</param>
-    /// <param name="zPosition">The amount to translate on the Z-axis.</param>
-    /// <returns>The translation matrix.</returns>
+    /// <param name="xPosition">在 X 轴上的平移量。</param>
+    /// <param name="yPosition">在 Y 轴上的平移量。</param>
+    /// <param name="zPosition">在 Z 轴上的平移量。</param>
+    /// <returns>平移矩阵。</returns>
     public static FPMatrix4x4 Translate(FP xPosition, FP yPosition, FP zPosition)
     {
         FPMatrix4x4 result;
@@ -817,18 +844,23 @@ public struct FPMatrix4x4
         return result;
     }
 
+    /// <summary>
+    /// 根据三维向量创建平移矩阵。
+    /// </summary>
+    /// <param name="translation">平移向量。</param>
+    /// <returns>平移矩阵。</returns>
     public static FPMatrix4x4 Translate(FPVector3 translation)
     {
         return Translate(translation.x, translation.y, translation.z);
     }
 
     /// <summary>
-    /// Creates a scaling matrix.
+    /// 创建缩放矩阵。
     /// </summary>
-    /// <param name="xScale">Value to scale by on the X-axis.</param>
-    /// <param name="yScale">Value to scale by on the Y-axis.</param>
-    /// <param name="zScale">Value to scale by on the Z-axis.</param>
-    /// <returns>The scaling matrix.</returns>
+    /// <param name="xScale">在 X 轴上的缩放值。</param>
+    /// <param name="yScale">在 Y 轴上的缩放值。</param>
+    /// <param name="zScale">在 Z 轴上的缩放值。</param>
+    /// <returns>缩放矩阵。</returns>
     public static FPMatrix4x4 Scale(FP xScale, FP yScale, FP zScale)
     {
         FPMatrix4x4 result;
@@ -854,13 +886,13 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Creates a scaling matrix with a center point.
+    /// 创建带有中心点的缩放矩阵。
     /// </summary>
-    /// <param name="xScale">Value to scale by on the X-axis.</param>
-    /// <param name="yScale">Value to scale by on the Y-axis.</param>
-    /// <param name="zScale">Value to scale by on the Z-axis.</param>
-    /// <param name="centerPoint">The center point.</param>
-    /// <returns>The scaling matrix.</returns>
+    /// <param name="xScale">在 X 轴上的缩放值。</param>
+    /// <param name="yScale">在 Y 轴上的缩放值。</param>
+    /// <param name="zScale">在 Z 轴上的缩放值。</param>
+    /// <param name="centerPoint">缩放的中心点。</param>
+    /// <returns>缩放矩阵。</returns>
     public static FPMatrix4x4 Scale(FP xScale, FP yScale, FP zScale, FPVector3 centerPoint)
     {
         FPMatrix4x4 result;
@@ -890,52 +922,52 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Creates a scaling matrix.
+    /// 创建缩放矩阵。
     /// </summary>
-    /// <param name="scales">The vector containing the amount to scale by on each axis.</param>
-    /// <returns>The scaling matrix.</returns>
+    /// <param name="scales">包含每个轴的缩放值的向量。</param>
+    /// <returns>缩放矩阵。</returns>
     public static FPMatrix4x4 Scale(FPVector3 scales)
     {
         return Scale(scales.x, scales.y, scales.z);
     }
 
     /// <summary>
-    /// Creates a scaling matrix with a center point.
+    /// 创建带有中心点的缩放矩阵。
     /// </summary>
-    /// <param name="scales">The vector containing the amount to scale by on each axis.</param>
-    /// <param name="centerPoint">The center point.</param>
-    /// <returns>The scaling matrix.</returns>
+    /// <param name="scales">包含每个轴的缩放值的向量。</param>
+    /// <param name="centerPoint">缩放的中心点。</param>
+    /// <returns>缩放矩阵。</returns>
     public static FPMatrix4x4 Scale(FPVector3 scales, FPVector3 centerPoint)
     {
         return Scale(scales.x, scales.y, scales.z, centerPoint);
     }
 
     /// <summary>
-    /// Creates a uniform scaling matrix that scales equally on each axis.
+    /// 创建均匀缩放矩阵，使每个轴的缩放相等。
     /// </summary>
-    /// <param name="scale">The uniform scaling factor.</param>
-    /// <returns>The scaling matrix.</returns>
+    /// <param name="scale">均匀缩放因子。</param>
+    /// <returns>缩放矩阵。</returns>
     public static FPMatrix4x4 Scale(FP scale)
     {
         return Scale(scale, scale, scale);
     }
 
     /// <summary>
-    /// Creates a uniform scaling matrix that scales equally on each axis with a center point.
+    /// 创建均匀缩放矩阵，使每个轴的缩放相等，并指定中心点。
     /// </summary>
-    /// <param name="scale">The uniform scaling factor.</param>
-    /// <param name="centerPoint">The center point.</param>
-    /// <returns>The scaling matrix.</returns>
+    /// <param name="scale">均匀缩放因子。</param>
+    /// <param name="centerPoint">缩放的中心点。</param>
+    /// <returns>缩放矩阵。</returns>
     public static FPMatrix4x4 Scale(FP scale, FPVector3 centerPoint)
     {
         return Scale(scale, scale, scale, centerPoint);
     }
 
     /// <summary>
-    /// Creates a matrix for rotating points around the X-axis.
+    /// 创建围绕 X 轴旋转的矩阵。
     /// </summary>
-    /// <param name="radians">The amount, in radians, by which to rotate around the X-axis.</param>
-    /// <returns>The rotation matrix.</returns>
+    /// <param name="radians">围绕 X 轴旋转的弧度。</param>
+    /// <returns>旋转矩阵。</returns>
     public static FPMatrix4x4 RotateX(FP radians)
     {
         FPMatrix4x4 result;
@@ -968,11 +1000,11 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Creates a matrix for rotating points around the X-axis, from a center point.
+    /// 创建围绕 X 轴旋转的矩阵，并指定中心点。
     /// </summary>
-    /// <param name="radians">The amount, in radians, by which to rotate around the X-axis.</param>
-    /// <param name="centerPoint">The center point.</param>
-    /// <returns>The rotation matrix.</returns>
+    /// <param name="radians">围绕 X 轴旋转的弧度。</param>
+    /// <param name="centerPoint">旋转的中心点。</param>
+    /// <returns>旋转矩阵。</returns>
     public static FPMatrix4x4 RotateX(FP radians, FPVector3 centerPoint)
     {
         FPMatrix4x4 result;
@@ -1008,10 +1040,10 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Creates a matrix for rotating points around the Y-axis.
+    /// 创建围绕 Y 轴旋转的矩阵。
     /// </summary>
-    /// <param name="radians">The amount, in radians, by which to rotate around the Y-axis.</param>
-    /// <returns>The rotation matrix.</returns>
+    /// <param name="radians">围绕 Y 轴旋转的弧度。</param>
+    /// <returns>旋转矩阵。</returns>
     public static FPMatrix4x4 RotateY(FP radians)
     {
         FPMatrix4x4 result;
@@ -1044,11 +1076,11 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Creates a matrix for rotating points around the Y-axis, from a center point.
+    /// 创建围绕 Y 轴旋转的矩阵，并指定中心点。
     /// </summary>
-    /// <param name="radians">The amount, in radians, by which to rotate around the Y-axis.</param>
-    /// <param name="centerPoint">The center point.</param>
-    /// <returns>The rotation matrix.</returns>
+    /// <param name="radians">围绕 Y 轴旋转的弧度。</param>
+    /// <param name="centerPoint">旋转的中心点。</param>
+    /// <returns>旋转矩阵。</returns>
     public static FPMatrix4x4 RotateY(FP radians, FPVector3 centerPoint)
     {
         FPMatrix4x4 result;
@@ -1084,10 +1116,10 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Creates a matrix for rotating points around the Z-axis.
+    /// 创建围绕 Z 轴旋转的矩阵。
     /// </summary>
-    /// <param name="radians">The amount, in radians, by which to rotate around the Z-axis.</param>
-    /// <returns>The rotation matrix.</returns>
+    /// <param name="radians">围绕 Z 轴旋转的弧度。</param>
+    /// <returns>旋转矩阵。</returns>
     public static FPMatrix4x4 RotateZ(FP radians)
     {
         FPMatrix4x4 result;
@@ -1120,11 +1152,11 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Creates a matrix for rotating points around the Z-axis, from a center point.
+    /// 创建围绕 Z 轴旋转的矩阵，并指定中心点。
     /// </summary>
-    /// <param name="radians">The amount, in radians, by which to rotate around the Z-axis.</param>
-    /// <param name="centerPoint">The center point.</param>
-    /// <returns>The rotation matrix.</returns>
+    /// <param name="radians">围绕 Z 轴旋转的弧度。</param>
+    /// <param name="centerPoint">旋转的中心点。</param>
+    /// <returns>旋转矩阵。</returns>
     public static FPMatrix4x4 RotateZ(FP radians, FPVector3 centerPoint)
     {
         FPMatrix4x4 result;
@@ -1160,22 +1192,22 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Creates a matrix which rotates around the given axis by the given angle.
+    /// 创建围绕给定轴旋转的矩阵。
     /// </summary>
-    /// <param name="axis">The axis.</param>
-    /// <param name="angle">The angle.</param>
-    /// <param name="result">The resulting rotation matrix</param>
+    /// <param name="axis">旋转轴。</param>
+    /// <param name="angle">旋转角度。</param>
+    /// <param name="result">结果旋转矩阵。</param>
     public static void AxisAngle(ref FPVector3 axis, FP angle, out FPMatrix4x4 result)
     {
-        // a: angle
-        // x, y, z: unit vector for axis.
+        // a: 角度
+        // x, y, z: 轴的单位向量。
         //
-        // Rotation matrix M can compute by using below equation.
+        // 旋转矩阵 M 可以通过以下公式计算。
         //
         //        T               T
         //  M = uu + (cos a)( I-uu ) + (sin a)S
         //
-        // Where:
+        // 其中：
         //
         //  u = ( x, y, z )
         //
@@ -1216,11 +1248,11 @@ public struct FPMatrix4x4
     }
 
     /// <summary>
-    /// Creates a matrix which rotates around the given axis by the given angle.
+    /// 创建围绕给定轴旋转的矩阵。
     /// </summary>
-    /// <param name="axis">The axis.</param>
-    /// <param name="angle">The angle.</param>
-    /// <returns>The resulting rotation matrix</returns>
+    /// <param name="axis">旋转轴。</param>
+    /// <param name="angle">旋转角度。</param>
+    /// <returns>结果旋转矩阵。</returns>
     public static FPMatrix4x4 AngleAxis(FP angle, FPVector3 axis)
     {
         FPMatrix4x4 result;
@@ -1228,6 +1260,10 @@ public struct FPMatrix4x4
         return result;
     }
 
+    /// <summary>
+    /// 返回矩阵的字符串表示形式。
+    /// </summary>
+    /// <returns>矩阵的字符串表示形式。</returns>
     public override string ToString()
     {
         return string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}",
@@ -1237,11 +1273,25 @@ public struct FPMatrix4x4
                              M41.RawValue, M42.RawValue, M43.RawValue, M44.RawValue);
     }
 
+    /// <summary>
+    /// 创建平移、旋转和缩放的组合矩阵。
+    /// </summary>
+    /// <param name="translation">平移向量。</param>
+    /// <param name="rotation">旋转四元数。</param>
+    /// <param name="scale">缩放向量。</param>
+    /// <param name="matrix">组合后的矩阵。</param>
     public static void TRS(FPVector3 translation, FPQuaternion rotation, FPVector3 scale, out FPMatrix4x4 matrix)
     {
         matrix = Translate(translation) * Rotate(rotation) * Scale(scale);
     }
 
+    /// <summary>
+    /// 创建平移、旋转和缩放的组合矩阵。
+    /// </summary>
+    /// <param name="translation">平移向量。</param>
+    /// <param name="rotation">旋转四元数。</param>
+    /// <param name="scale">缩放向量。</param>
+    /// <returns>组合后的矩阵。</returns>
     public static FPMatrix4x4 TRS(FPVector3 translation, FPQuaternion rotation, FPVector3 scale)
     {
         FPMatrix4x4 result;

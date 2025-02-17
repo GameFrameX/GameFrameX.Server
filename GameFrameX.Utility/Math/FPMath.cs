@@ -20,47 +20,45 @@
 namespace GameFrameX.Utility.Math;
 
 /// <summary>
-/// Contains common math operations.
+/// 包含常见的数学操作。
 /// </summary>
 public sealed class FPMath
 {
     /// <summary>
-    /// PI constant.
+    /// PI 常量。
     /// </summary>
     public static FP Pi = FP.Pi;
 
-    /**
-     * @brief PI over 2 constant.
-     */
+    /// <summary>
+    /// PI 除以 2 的常量。
+    /// </summary>
     public static FP PiOver2 = FP.PiOver2;
 
     /// <summary>
-    /// A small value often used to decide if numeric
-    /// results are zero.
+    /// 一个小值，通常用于判断数值结果是否为零。
     /// </summary>
     public static FP Epsilon = FP.Epsilon;
 
-    /**
-     * @brief Degree to radians constant.
-     */
+    /// <summary>
+    /// 角度转弧度的常量。
+    /// </summary>
     public static FP Deg2Rad = FP.Deg2Rad;
 
-    /**
-     * @brief Radians to degree constant.
-     */
+    /// <summary>
+    /// 弧度转角度的常量。
+    /// </summary>
     public static FP Rad2Deg = FP.Rad2Deg;
 
-
-    /**
-     * @brief FP infinity.
-     */
+    /// <summary>
+    /// FP 无穷大。
+    /// </summary>
     public static FP Infinity = FP.MaxValue;
 
     /// <summary>
-    /// Gets the square root.
+    /// 获取平方根。
     /// </summary>
-    /// <param name="number">The number to get the square root from.</param>
-    /// <returns></returns>
+    /// <param name="number">要计算平方根的数字。</param>
+    /// <returns>返回平方根的值。</returns>
 
     #region public static FP Sqrt(FP number)
 
@@ -72,11 +70,11 @@ public sealed class FPMath
     #endregion
 
     /// <summary>
-    /// Gets the maximum number of two values.
+    /// 获取两个值中的最大值。
     /// </summary>
-    /// <param name="val1">The first value.</param>
-    /// <param name="val2">The second value.</param>
-    /// <returns>Returns the largest value.</returns>
+    /// <param name="val1">第一个值。</param>
+    /// <param name="val2">第二个值。</param>
+    /// <returns>返回较大的值。</returns>
 
     #region public static FP Max(FP val1, FP val2)
 
@@ -88,11 +86,11 @@ public sealed class FPMath
     #endregion
 
     /// <summary>
-    /// Gets the minimum number of two values.
+    /// 获取两个值中的最小值。
     /// </summary>
-    /// <param name="val1">The first value.</param>
-    /// <param name="val2">The second value.</param>
-    /// <returns>Returns the smallest value.</returns>
+    /// <param name="val1">第一个值。</param>
+    /// <param name="val2">第二个值。</param>
+    /// <returns>返回较小的值。</returns>
 
     #region public static FP Min(FP val1, FP val2)
 
@@ -104,12 +102,12 @@ public sealed class FPMath
     #endregion
 
     /// <summary>
-    /// Gets the maximum number of three values.
+    /// 获取三个值中的最大值。
     /// </summary>
-    /// <param name="val1">The first value.</param>
-    /// <param name="val2">The second value.</param>
-    /// <param name="val3">The third value.</param>
-    /// <returns>Returns the largest value.</returns>
+    /// <param name="val1">第一个值。</param>
+    /// <param name="val2">第二个值。</param>
+    /// <param name="val3">第三个值。</param>
+    /// <returns>返回较大的值。</returns>
 
     #region public static FP Max(FP val1, FP val2,FP val3)
 
@@ -122,12 +120,12 @@ public sealed class FPMath
     #endregion
 
     /// <summary>
-    /// Returns a number which is within [min,max]
+    /// 返回一个在 [min,max] 范围内的数字。
     /// </summary>
-    /// <param name="value">The value to clamp.</param>
-    /// <param name="min">The minimum value.</param>
-    /// <param name="max">The maximum value.</param>
-    /// <returns>The clamped value.</returns>
+    /// <param name="value">要限制的值。</param>
+    /// <param name="min">最小值。</param>
+    /// <param name="max">最大值。</param>
+    /// <returns>返回限制后的值。</returns>
 
     #region public static FP Clamp(FP value, FP min, FP max)
 
@@ -150,10 +148,10 @@ public sealed class FPMath
     #endregion
 
     /// <summary>
-    /// Returns a number which is within [FP.Zero, FP.One]
+    /// 返回一个在 [FP.Zero, FP.One] 范围内的数字。
     /// </summary>
-    /// <param name="value">The value to clamp.</param>
-    /// <returns>The clamped value.</returns>
+    /// <param name="value">要限制的值。</param>
+    /// <returns>返回限制后的值。</returns>
     public static FP Clamp01(FP value)
     {
         if (value < FP.Zero)
@@ -170,10 +168,10 @@ public sealed class FPMath
     }
 
     /// <summary>
-    /// Changes every sign of the matrix entry to '+'
+    /// 将矩阵的每个元素的符号更改为 '+'。
     /// </summary>
-    /// <param name="matrix">The matrix.</param>
-    /// <param name="result">The absolute matrix.</param>
+    /// <param name="matrix">输入矩阵。</param>
+    /// <param name="result">输出绝对值矩阵。</param>
 
     #region public static void Absolute(ref JMatrix matrix,out JMatrix result)
 
@@ -193,131 +191,156 @@ public sealed class FPMath
     #endregion
 
     /// <summary>
-    /// Returns the sine of value.
+    /// 返回值的正弦。
     /// </summary>
+    /// <param name="value">要计算正弦的值。</param>
+    /// <returns>返回正弦值。</returns>
     public static FP Sin(FP value)
     {
         return FP.Sin(value);
     }
 
     /// <summary>
-    /// Returns the cosine of value.
+    /// 返回值的余弦。
     /// </summary>
+    /// <param name="value">要计算余弦的值。</param>
+    /// <returns>返回余弦值。</returns>
     public static FP Cos(FP value)
     {
         return FP.Cos(value);
     }
 
     /// <summary>
-    /// Returns the tan of value.
+    /// 返回值的正切。
     /// </summary>
+    /// <param name="value">要计算正切的值。</param>
+    /// <returns>返回正切值。</returns>
     public static FP Tan(FP value)
     {
         return FP.Tan(value);
     }
 
     /// <summary>
-    /// Returns the arc sine of value.
+    /// 返回值的反正弦。
     /// </summary>
+    /// <param name="value">要计算反正弦的值。</param>
+    /// <returns>返回反正弦值。</returns>
     public static FP Asin(FP value)
     {
         return FP.Asin(value);
     }
 
     /// <summary>
-    /// Returns the arc cosine of value.
+    /// 返回值的反余弦。
     /// </summary>
+    /// <param name="value">要计算反余弦的值。</param>
+    /// <returns>返回反余弦值。</returns>
     public static FP Acos(FP value)
     {
         return FP.Acos(value);
     }
 
     /// <summary>
-    /// Returns the arc tan of value.
+    /// 返回值的反正切。
     /// </summary>
+    /// <param name="value">要计算反正切的值。</param>
+    /// <returns>返回反正切值。</returns>
     public static FP Atan(FP value)
     {
         return FP.Atan(value);
     }
 
     /// <summary>
-    /// Returns the arc tan of coordinates x-y.
+    /// 返回坐标 x-y 的反正切。
     /// </summary>
+    /// <param name="y">y 坐标。</param>
+    /// <param name="x">x 坐标。</param>
+    /// <returns>返回反正切值。</returns>
     public static FP Atan2(FP y, FP x)
     {
         return FP.Atan2(y, x);
     }
 
     /// <summary>
-    /// Returns the largest integer less than or equal to the specified number.
+    /// 返回小于或等于指定数字的最大整数。
     /// </summary>
+    /// <param name="value">要计算的值。</param>
+    /// <returns>返回小于或等于指定数字的最大整数。</returns>
     public static FP Floor(FP value)
     {
         return FP.Floor(value);
     }
 
     /// <summary>
-    /// Returns the smallest integral value that is greater than or equal to the specified number.
+    /// 返回大于或等于指定数字的最小整数。
     /// </summary>
+    /// <param name="value">要计算的值。</param>
+    /// <returns>返回大于或等于指定数字的最小整数。</returns>
     public static FP Ceiling(FP value)
     {
         return value;
     }
 
     /// <summary>
-    /// Rounds a value to the nearest integral value.
-    /// If the value is halfway between an even and an uneven value, returns the even value.
+    /// 将值四舍五入到最接近的整数值。
+    /// 如果值恰好在偶数和奇数之间，则返回偶数值。
     /// </summary>
+    /// <param name="value">要四舍五入的值。</param>
+    /// <returns>返回四舍五入后的值。</returns>
     public static FP Round(FP value)
     {
         return FP.Round(value);
     }
 
     /// <summary>
-    /// Returns a number indicating the sign of a Fix64 number.
-    /// Returns 1 if the value is positive, 0 if is 0, and -1 if it is negative.
+    /// 返回 Fix64 数字的符号。
+    /// 如果值为正，则返回 1；如果为 0，则返回 0；如果为负，则返回 -1。
     /// </summary>
+    /// <param name="value">要检查符号的值。</param>
+    /// <returns>返回值的符号。</returns>
     public static int Sign(FP value)
     {
         return FP.Sign(value);
     }
 
     /// <summary>
-    /// Returns the absolute value of a Fix64 number.
-    /// Note: Abs(Fix64.MinValue) == Fix64.MaxValue.
+    /// 返回 Fix64 数字的绝对值。
+    /// 注意：Abs(Fix64.MinValue) == Fix64.MaxValue。
     /// </summary>
+    /// <param name="value">要计算绝对值的值。</param>
+    /// <returns>返回绝对值。</returns>
     public static FP Abs(FP value)
     {
         return FP.Abs(value);
     }
 
     /// <summary>
-    /// Returns the barycentric interpolation of three values.
+    /// 返回三个值的重心插值。
     /// </summary>
-    /// <param name="value1"></param>
-    /// <param name="value2"></param>
-    /// <param name="value3"></param>
-    /// <param name="amount1"></param>
-    /// <param name="amount2"></param>
-    /// <returns></returns>
+    /// <param name="value1">第一个值。</param>
+    /// <param name="value2">第二个值。</param>
+    /// <param name="value3">第三个值。</param>
+    /// <param name="amount1">第一个权重。</param>
+    /// <param name="amount2">第二个权重。</param>
+    /// <returns>返回重心插值的结果。</returns>
     public static FP Barycentric(FP value1, FP value2, FP value3, FP amount1, FP amount2)
     {
         return value1 + (value2 - value1) * amount1 + (value3 - value1) * amount2;
     }
 
     /// <summary>
-    /// Returns the CatmullRom interpolation of four values.
+    /// 返回四个值的 CatmullRom 插值。
     /// </summary>
-    /// <param name="value1"></param>
-    /// <param name="value2"></param>
-    /// <param name="value3"></param>
-    /// <param name="value4"></param>
-    /// <param name="amount"></param>
-    /// <returns></returns>
+    /// <param name="value1">第一个值。</param>
+    /// <param name="value2">第二个值。</param>
+    /// <param name="value3">第三个值。</param>
+    /// <param name="value4">第四个值。</param>
+    /// <param name="amount">插值量。</param>
+    /// <returns>返回 CatmullRom 插值的结果。</returns>
     public static FP CatmullRom(FP value1, FP value2, FP value3, FP value4, FP amount)
     {
-        // Using formula from http://www.mvps.org/directx/articles/catmull/
-        // Internally using FPs not to lose precission
+        // 使用来自 http://www.mvps.org/directx/articles/catmull/ 的公式
+        // 内部使用 FPs 以避免精度损失
         var amountSquared = amount * amount;
         var amountCubed = amountSquared * amount;
         return FP.Half * (2 * FP.One * value2 +
@@ -327,29 +350,29 @@ public sealed class FPMath
     }
 
     /// <summary>
-    /// Returns the distance between two values.
+    /// 返回两个值之间的距离。
     /// </summary>
-    /// <param name="value1"></param>
-    /// <param name="value2"></param>
-    /// <returns></returns>
+    /// <param name="value1">第一个值。</param>
+    /// <param name="value2">第二个值。</param>
+    /// <returns>返回两个值之间的距离。</returns>
     public static FP Distance(FP value1, FP value2)
     {
         return FP.Abs(value1 - value2);
     }
 
     /// <summary>
-    /// Returns the Hermite interpolation of two values.
+    /// 返回两个值的 Hermite 插值。
     /// </summary>
-    /// <param name="value1"></param>
-    /// <param name="tangent1"></param>
-    /// <param name="value2"></param>
-    /// <param name="tangent2"></param>
-    /// <param name="amount"></param>
-    /// <returns></returns>
+    /// <param name="value1">第一个值。</param>
+    /// <param name="tangent1">第一个切线。</param>
+    /// <param name="value2">第二个值。</param>
+    /// <param name="tangent2">第二个切线。</param>
+    /// <param name="amount">插值量。</param>
+    /// <returns>返回 Hermite 插值的结果。</returns>
     public static FP Hermite(FP value1, FP tangent1, FP value2, FP tangent2, FP amount)
     {
-        // All transformed to FP not to lose precission
-        // Otherwise, for high numbers of param:amount the result is NaN instead of Infinity
+        // 所有值转换为 FP 以避免精度损失
+        // 否则，对于高数量的参数：amount，结果将是 NaN 而不是无穷大
         FP v1 = value1, v2 = value2, t1 = tangent1, t2 = tangent2, s = amount, result;
         var sCubed = s * s * s;
         var sSquared = s * s;
@@ -374,24 +397,24 @@ public sealed class FPMath
     }
 
     /// <summary>
-    /// Returns the linear interpolation of two values.
+    /// 返回两个值的线性插值。
     /// </summary>
-    /// <param name="value1"></param>
-    /// <param name="value2"></param>
-    /// <param name="amount"></param>
-    /// <returns></returns>
+    /// <param name="value1">第一个值。</param>
+    /// <param name="value2">第二个值。</param>
+    /// <param name="amount">插值量。</param>
+    /// <returns>返回线性插值的结果。</returns>
     public static FP Lerp(FP value1, FP value2, FP amount)
     {
         return value1 + (value2 - value1) * Clamp01(amount);
     }
 
     /// <summary>
-    /// Returns the inverse linear interpolation of two values.
+    /// 返回两个值的反向线性插值。
     /// </summary>
-    /// <param name="value1"></param>
-    /// <param name="value2"></param>
-    /// <param name="amount"></param>
-    /// <returns></returns>
+    /// <param name="value1">第一个值。</param>
+    /// <param name="value2">第二个值。</param>
+    /// <param name="amount">插值量。</param>
+    /// <returns>返回反向线性插值的结果。</returns>
     public static FP InverseLerp(FP value1, FP value2, FP amount)
     {
         if (value1 != value2)
@@ -403,38 +426,40 @@ public sealed class FPMath
     }
 
     /// <summary>
-    /// Returns the smooth Hermite interpolation of two values.
+    /// 返回两个值的平滑 Hermite 插值。
     /// </summary>
-    /// <param name="value1"></param>
-    /// <param name="value2"></param>
-    /// <param name="amount"></param>
-    /// <returns></returns>
+    /// <param name="value1">第一个值。</param>
+    /// <param name="value2">第二个值。</param>
+    /// <param name="amount">插值量。</param>
+    /// <returns>返回平滑 Hermite 插值的结果。</returns>
     public static FP SmoothStep(FP value1, FP value2, FP amount)
     {
-        // It is expected that 0 < amount < 1
-        // If amount < 0, return value1
-        // If amount > 1, return value2
+        // 预期 0 < amount < 1
+        // 如果 amount < 0，返回 value1
+        // 如果 amount > 1，返回 value2
         var result = Clamp(amount, FP.Zero, FP.One);
         result = Hermite(value1, FP.Zero, value2, FP.Zero, result);
         return result;
     }
 
-
     /// <summary>
-    /// Returns 2 raised to the specified power.
-    /// Provides at least 6 decimals of accuracy.
+    /// 返回 2 的指定幂。
+    /// 提供至少 6 位小数的精度。
     /// </summary>
+    /// <param name="x">要计算的指数。</param>
+    /// <returns>返回 2 的 x 次幂。</returns>
     internal static FP Pow2(FP x)
     {
         return FP.Pow2(x);
     }
 
     /// <summary>
-    /// Returns the base-2 logarithm of a specified number.
-    /// Provides at least 9 decimals of accuracy.
+    /// 返回指定数字的以 2 为底的对数。
+    /// 提供至少 9 位小数的精度。
     /// </summary>
+    /// <param name="x">要计算对数的值。</param>
     /// <exception cref="ArgumentOutOfRangeException">
-    /// The argument was non-positive
+    /// 参数为非正数时抛出。
     /// </exception>
     internal static FP Log2(FP x)
     {
@@ -442,14 +467,16 @@ public sealed class FPMath
     }
 
     /// <summary>
-    /// Returns a specified number raised to the specified power.
-    /// Provides about 5 digits of accuracy for the result.
+    /// 返回指定数字的指定幂。
+    /// 提供约 5 位数字的结果精度。
     /// </summary>
+    /// <param name="b">底数。</param>
+    /// <param name="exp">指数。</param>
     /// <exception cref="DivideByZeroException">
-    /// The base was zero, with a negative exponent
+    /// 底数为零且指数为负时抛出。
     /// </exception>
     /// <exception cref="ArgumentOutOfRangeException">
-    /// The base was negative, with a non-zero exponent
+    /// 底数为负且指数非零时抛出。
     /// </exception>
     public static FP Pow(FP b, FP exp)
     {
@@ -479,12 +506,12 @@ public sealed class FPMath
     }
 
     /// <summary>
-    /// Returns a value that is limited between a minimum and a maximum value.
+    /// 返回一个在最小值和最大值之间限制的值。
     /// </summary>
-    /// <param name="current"></param>
-    /// <param name="target"></param>
-    /// <param name="maxDelta"></param>
-    /// <returns></returns>
+    /// <param name="current">当前值。</param>
+    /// <param name="target">目标值。</param>
+    /// <param name="maxDelta">最大变化量。</param>
+    /// <returns>返回限制后的值。</returns>
     public static FP MoveTowards(FP current, FP target, FP maxDelta)
     {
         if (Abs(target - current) <= maxDelta)
@@ -496,22 +523,22 @@ public sealed class FPMath
     }
 
     /// <summary>
-    /// Returns the smallest integral value that is greater than or equal to the specified number.
+    /// 返回大于或等于指定数字的最小整数。
     /// </summary>
-    /// <param name="t"></param>
-    /// <param name="length"></param>
-    /// <returns></returns>
+    /// <param name="t">要计算的值。</param>
+    /// <param name="length">长度。</param>
+    /// <returns>返回结果。</returns>
     public static FP Repeat(FP t, FP length)
     {
         return t - Floor(t / length) * length;
     }
 
     /// <summary>
-    /// Returns the angle between two vectors.
+    /// 返回两个向量之间的角度。
     /// </summary>
-    /// <param name="current"></param>
-    /// <param name="target"></param>
-    /// <returns></returns>
+    /// <param name="current">当前角度。</param>
+    /// <param name="target">目标角度。</param>
+    /// <returns>返回两个角度之间的差值。</returns>
     public static FP DeltaAngle(FP current, FP target)
     {
         var num = Repeat(target - current, 360 * FP.One);
@@ -524,12 +551,12 @@ public sealed class FPMath
     }
 
     /// <summary>
-    /// Returns the angle between two vectors.
+    /// 返回两个向量之间的角度。
     /// </summary>
-    /// <param name="current"></param>
-    /// <param name="target"></param>
-    /// <param name="maxDelta"></param>
-    /// <returns></returns>
+    /// <param name="current">当前角度。</param>
+    /// <param name="target">目标角度。</param>
+    /// <param name="maxDelta">最大变化量。</param>
+    /// <returns>返回更新后的角度。</returns>
     public static FP MoveTowardsAngle(FP current, FP target, FP maxDelta)
     {
         target = current + DeltaAngle(current, target);
@@ -537,14 +564,14 @@ public sealed class FPMath
     }
 
     /// <summary>
-    /// Returns the value of a smooth damping function.
+    /// 返回平滑阻尼函数的值。
     /// </summary>
-    /// <param name="current"></param>
-    /// <param name="target"></param>
-    /// <param name="currentVelocity"></param>
-    /// <param name="smoothTime"></param>
-    /// <param name="maxSpeed"></param>
-    /// <returns></returns>
+    /// <param name="current">当前值。</param>
+    /// <param name="target">目标值。</param>
+    /// <param name="currentVelocity">当前速度。</param>
+    /// <param name="smoothTime">平滑时间。</param>
+    /// <param name="maxSpeed">最大速度。</param>
+    /// <returns>返回平滑阻尼后的值。</returns>
     public static FP SmoothDamp(FP current, FP target, ref FP currentVelocity, FP smoothTime, FP maxSpeed)
     {
         var deltaTime = FP.EN2;
@@ -552,13 +579,13 @@ public sealed class FPMath
     }
 
     /// <summary>
-    /// Returns the value of a smooth damping function.
+    /// 返回平滑阻尼函数的值。
     /// </summary>
-    /// <param name="current"></param>
-    /// <param name="target"></param>
-    /// <param name="currentVelocity"></param>
-    /// <param name="smoothTime"></param>
-    /// <returns></returns>
+    /// <param name="current">当前值。</param>
+    /// <param name="target">目标值。</param>
+    /// <param name="currentVelocity">当前速度。</param>
+    /// <param name="smoothTime">平滑时间。</param>
+    /// <returns>返回平滑阻尼后的值。</returns>
     public static FP SmoothDamp(FP current, FP target, ref FP currentVelocity, FP smoothTime)
     {
         var deltaTime = FP.EN2;
@@ -567,15 +594,15 @@ public sealed class FPMath
     }
 
     /// <summary>
-    /// Returns the value of a smooth damping function.
+    /// 返回平滑阻尼函数的值。
     /// </summary>
-    /// <param name="current"></param>
-    /// <param name="target"></param>
-    /// <param name="currentVelocity"></param>
-    /// <param name="smoothTime"></param>
-    /// <param name="maxSpeed"></param>
-    /// <param name="deltaTime"></param>
-    /// <returns></returns>
+    /// <param name="current">当前值。</param>
+    /// <param name="target">目标值。</param>
+    /// <param name="currentVelocity">当前速度。</param>
+    /// <param name="smoothTime">平滑时间。</param>
+    /// <param name="maxSpeed">最大速度。</param>
+    /// <param name="deltaTime">时间增量。</param>
+    /// <returns>返回平滑阻尼后的值。</returns>
     public static FP SmoothDamp(FP current, FP target, ref FP currentVelocity, FP smoothTime, FP maxSpeed, FP deltaTime)
     {
         smoothTime = Max(FP.EN4, smoothTime);

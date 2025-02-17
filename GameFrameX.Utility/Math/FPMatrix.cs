@@ -20,62 +20,65 @@
 namespace GameFrameX.Utility.Math;
 
 /// <summary>
-/// 3x3 Matrix.
+/// 表示一个3x3矩阵。
 /// </summary>
 public struct FPMatrix
 {
     /// <summary>
-    /// M11
+    /// 矩阵的第1行第1列元素。
     /// </summary>
     public FP M11; // 1st row vector
 
     /// <summary>
-    /// M12
+    /// 矩阵的第1行第2列元素。
     /// </summary>
     public FP M12;
 
     /// <summary>
-    /// M13
+    /// 矩阵的第1行第3列元素。
     /// </summary>
     public FP M13;
 
     /// <summary>
-    /// M21
+    /// 矩阵的第2行第1列元素。
     /// </summary>
     public FP M21; // 2nd row vector
 
     /// <summary>
-    /// M22
+    /// 矩阵的第2行第2列元素。
     /// </summary>
     public FP M22;
 
     /// <summary>
-    /// M23
+    /// 矩阵的第2行第3列元素。
     /// </summary>
     public FP M23;
 
     /// <summary>
-    /// M31
+    /// 矩阵的第3行第1列元素。
     /// </summary>
     public FP M31; // 3rd row vector
 
     /// <summary>
-    /// M32
+    /// 矩阵的第3行第2列元素。
     /// </summary>
     public FP M32;
 
     /// <summary>
-    /// M33
+    /// 矩阵的第3行第3列元素。
     /// </summary>
     public FP M33;
 
     internal static FPMatrix InternalIdentity;
 
     /// <summary>
-    /// Identity matrix.
+    /// 单位矩阵。
     /// </summary>
     public static readonly FPMatrix Identity;
 
+    /// <summary>
+    /// 零矩阵。
+    /// </summary>
     public static readonly FPMatrix Zero;
 
     static FPMatrix()
@@ -90,6 +93,9 @@ public struct FPMatrix
         InternalIdentity = Identity;
     }
 
+    /// <summary>
+    /// 获取矩阵的欧拉角。
+    /// </summary>
     public FPVector3 eulerAngles
     {
         get
@@ -104,6 +110,13 @@ public struct FPMatrix
         }
     }
 
+    /// <summary>
+    /// 根据偏航、俯仰和滚转角度创建旋转矩阵。
+    /// </summary>
+    /// <param name="yaw">偏航角度。</param>
+    /// <param name="pitch">俯仰角度。</param>
+    /// <param name="roll">滚转角度。</param>
+    /// <returns>生成的旋转矩阵。</returns>
     public static FPMatrix CreateFromYawPitchRoll(FP yaw, FP pitch, FP roll)
     {
         FPMatrix matrix;
@@ -113,6 +126,11 @@ public struct FPMatrix
         return matrix;
     }
 
+    /// <summary>
+    /// 创建绕X轴旋转的矩阵。
+    /// </summary>
+    /// <param name="radians">旋转角度（弧度）。</param>
+    /// <returns>生成的旋转矩阵。</returns>
     public static FPMatrix CreateRotationX(FP radians)
     {
         FPMatrix matrix;
@@ -130,6 +148,11 @@ public struct FPMatrix
         return matrix;
     }
 
+    /// <summary>
+    /// 创建绕X轴旋转的矩阵，并将结果输出到指定的矩阵。
+    /// </summary>
+    /// <param name="radians">旋转角度（弧度）。</param>
+    /// <param name="result">输出的旋转矩阵。</param>
     public static void CreateRotationX(FP radians, out FPMatrix result)
     {
         var num2 = FP.Cos(radians);
@@ -145,6 +168,11 @@ public struct FPMatrix
         result.M33 = num2;
     }
 
+    /// <summary>
+    /// 创建绕Y轴旋转的矩阵。
+    /// </summary>
+    /// <param name="radians">旋转角度（弧度）。</param>
+    /// <returns>生成的旋转矩阵。</returns>
     public static FPMatrix CreateRotationY(FP radians)
     {
         FPMatrix matrix;
@@ -162,6 +190,11 @@ public struct FPMatrix
         return matrix;
     }
 
+    /// <summary>
+    /// 创建绕Y轴旋转的矩阵，并将结果输出到指定的矩阵。
+    /// </summary>
+    /// <param name="radians">旋转角度（弧度）。</param>
+    /// <param name="result">输出的旋转矩阵。</param>
     public static void CreateRotationY(FP radians, out FPMatrix result)
     {
         var num2 = FP.Cos(radians);
@@ -177,6 +210,11 @@ public struct FPMatrix
         result.M33 = num2;
     }
 
+    /// <summary>
+    /// 创建绕Z轴旋转的矩阵。
+    /// </summary>
+    /// <param name="radians">旋转角度（弧度）。</param>
+    /// <returns>生成的旋转矩阵。</returns>
     public static FPMatrix CreateRotationZ(FP radians)
     {
         FPMatrix matrix;
@@ -194,7 +232,11 @@ public struct FPMatrix
         return matrix;
     }
 
-
+    /// <summary>
+    /// 创建绕Z轴旋转的矩阵，并将结果输出到指定的矩阵。
+    /// </summary>
+    /// <param name="radians">旋转角度（弧度）。</param>
+    /// <param name="result">输出的旋转矩阵。</param>
     public static void CreateRotationZ(FP radians, out FPMatrix result)
     {
         var num2 = FP.Cos(radians);
@@ -211,17 +253,17 @@ public struct FPMatrix
     }
 
     /// <summary>
-    /// Initializes a new instance of the matrix structure.
+    /// 初始化矩阵结构的新实例。
     /// </summary>
-    /// <param name="m11">m11</param>
-    /// <param name="m12">m12</param>
-    /// <param name="m13">m13</param>
-    /// <param name="m21">m21</param>
-    /// <param name="m22">m22</param>
-    /// <param name="m23">m23</param>
-    /// <param name="m31">m31</param>
-    /// <param name="m32">m32</param>
-    /// <param name="m33">m33</param>
+    /// <param name="m11">矩阵的第1行第1列元素。</param>
+    /// <param name="m12">矩阵的第1行第2列元素。</param>
+    /// <param name="m13">矩阵的第1行第3列元素。</param>
+    /// <param name="m21">矩阵的第2行第1列元素。</param>
+    /// <param name="m22">矩阵的第2行第2列元素。</param>
+    /// <param name="m23">矩阵的第2行第3列元素。</param>
+    /// <param name="m31">矩阵的第3行第1列元素。</param>
+    /// <param name="m32">矩阵的第3行第2列元素。</param>
+    /// <param name="m33">矩阵的第3行第3列元素。</param>
 
     #region public JMatrix(FP m11, FP m12, FP m13, FP m21, FP m22, FP m23,FP m31, FP m32, FP m33)
 
@@ -241,9 +283,9 @@ public struct FPMatrix
     #endregion
 
     /// <summary>
-    /// Gets the determinant of the matrix.
+    /// 获取矩阵的行列式。
     /// </summary>
-    /// <returns>The determinant of the matrix.</returns>
+    /// <returns>矩阵的行列式。</returns>
 
     #region public FP Determinant()
 
@@ -255,11 +297,11 @@ public struct FPMatrix
     #endregion
 
     /// <summary>
-    /// Multiply two matrices. Notice: matrix multiplication is not commutative.
+    /// 乘以两个矩阵。注意：矩阵乘法不是可交换的。
     /// </summary>
-    /// <param name="matrix1">The first matrix.</param>
-    /// <param name="matrix2">The second matrix.</param>
-    /// <returns>The product of both matrices.</returns>
+    /// <param name="matrix1">第一个矩阵。</param>
+    /// <param name="matrix2">第二个矩阵。</param>
+    /// <returns>两个矩阵的乘积。</returns>
 
     #region public static JMatrix Multiply(JMatrix matrix1, JMatrix matrix2)
 
@@ -271,11 +313,11 @@ public struct FPMatrix
     }
 
     /// <summary>
-    /// Multiply two matrices. Notice: matrix multiplication is not commutative.
+    /// 乘以两个矩阵。注意：矩阵乘法不是可交换的。
     /// </summary>
-    /// <param name="matrix1">The first matrix.</param>
-    /// <param name="matrix2">The second matrix.</param>
-    /// <param name="result">The product of both matrices.</param>
+    /// <param name="matrix1">第一个矩阵。</param>
+    /// <param name="matrix2">第二个矩阵。</param>
+    /// <param name="result">两个矩阵的乘积。</param>
     public static void Multiply(ref FPMatrix matrix1, ref FPMatrix matrix2, out FPMatrix result)
     {
         var num0 = matrix1.M11 * matrix2.M11 + matrix1.M12 * matrix2.M21 + matrix1.M13 * matrix2.M31;
@@ -302,11 +344,11 @@ public struct FPMatrix
     #endregion
 
     /// <summary>
-    /// Matrices are added.
+    /// 矩阵相加。
     /// </summary>
-    /// <param name="matrix1">The first matrix.</param>
-    /// <param name="matrix2">The second matrix.</param>
-    /// <returns>The sum of both matrices.</returns>
+    /// <param name="matrix1">第一个矩阵。</param>
+    /// <param name="matrix2">第二个矩阵。</param>
+    /// <returns>两个矩阵的和。</returns>
 
     #region public static JMatrix Add(JMatrix matrix1, JMatrix matrix2)
 
@@ -318,11 +360,11 @@ public struct FPMatrix
     }
 
     /// <summary>
-    /// Matrices are added.
+    /// 矩阵相加。
     /// </summary>
-    /// <param name="matrix1">The first matrix.</param>
-    /// <param name="matrix2">The second matrix.</param>
-    /// <param name="result">The sum of both matrices.</param>
+    /// <param name="matrix1">第一个矩阵。</param>
+    /// <param name="matrix2">第二个矩阵。</param>
+    /// <param name="result">两个矩阵的和。</param>
     public static void Add(ref FPMatrix matrix1, ref FPMatrix matrix2, out FPMatrix result)
     {
         result.M11 = matrix1.M11 + matrix2.M11;
@@ -339,10 +381,10 @@ public struct FPMatrix
     #endregion
 
     /// <summary>
-    /// Calculates the inverse of a give matrix.
+    /// 计算给定矩阵的逆矩阵。
     /// </summary>
-    /// <param name="matrix">The matrix to invert.</param>
-    /// <returns>The inverted JMatrix.</returns>
+    /// <param name="matrix">要计算逆的矩阵。</param>
+    /// <returns>逆矩阵。</returns>
 
     #region public static JMatrix Inverse(JMatrix matrix)
 
@@ -353,12 +395,21 @@ public struct FPMatrix
         return result;
     }
 
+    /// <summary>
+    /// 计算矩阵的行列式。
+    /// </summary>
+    /// <returns>矩阵的行列式。</returns>
     public FP Determinant()
     {
         return M11 * M22 * M33 + M12 * M23 * M31 + M13 * M21 * M32 -
                M31 * M22 * M13 - M32 * M23 * M11 - M33 * M21 * M12;
     }
 
+    /// <summary>
+    /// 计算给定矩阵的逆矩阵。
+    /// </summary>
+    /// <param name="matrix">要计算逆的矩阵。</param>
+    /// <param name="result">逆矩阵。</param>
     public static void Invert(ref FPMatrix matrix, out FPMatrix result)
     {
         var determinantInverse = 1 / matrix.Determinant();
@@ -442,11 +493,11 @@ public struct FPMatrix
     #endregion
 
     /// <summary>
-    /// Multiply a matrix by a scalefactor.
+    /// 将矩阵乘以一个缩放因子。
     /// </summary>
-    /// <param name="matrix1">The matrix.</param>
-    /// <param name="scaleFactor">The scale factor.</param>
-    /// <returns>A JMatrix multiplied by the scale factor.</returns>
+    /// <param name="matrix1">要缩放的矩阵。</param>
+    /// <param name="scaleFactor">缩放因子。</param>
+    /// <returns>缩放后的矩阵。</returns>
 
     #region public static JMatrix Multiply(JMatrix matrix1, FP scaleFactor)
 
@@ -458,11 +509,11 @@ public struct FPMatrix
     }
 
     /// <summary>
-    /// Multiply a matrix by a scalefactor.
+    /// 将矩阵乘以一个缩放因子，并将结果输出到指定的矩阵。
     /// </summary>
-    /// <param name="matrix1">The matrix.</param>
-    /// <param name="scaleFactor">The scale factor.</param>
-    /// <param name="result">A JMatrix multiplied by the scale factor.</param>
+    /// <param name="matrix1">要缩放的矩阵。</param>
+    /// <param name="scaleFactor">缩放因子。</param>
+    /// <param name="result">缩放后的矩阵。</param>
     public static void Multiply(ref FPMatrix matrix1, FP scaleFactor, out FPMatrix result)
     {
         var num = scaleFactor;
@@ -480,10 +531,10 @@ public struct FPMatrix
     #endregion
 
     /// <summary>
-    /// Creates a JMatrix representing an orientation from a quaternion.
+    /// 根据四元数创建表示方向的矩阵。
     /// </summary>
-    /// <param name="quaternion">The quaternion the matrix should be created from.</param>
-    /// <returns>JMatrix representing an orientation.</returns>
+    /// <param name="quaternion">用于创建矩阵的四元数。</param>
+    /// <returns>表示方向的矩阵。</returns>
 
     #region public static JMatrix CreateFromQuaternion(JQuaternion quaternion)
 
@@ -494,6 +545,12 @@ public struct FPMatrix
         return result;
     }
 
+    /// <summary>
+    /// 创建一个观察矩阵。
+    /// </summary>
+    /// <param name="forward">前向向量。</param>
+    /// <param name="upwards">向上向量。</param>
+    /// <returns>观察矩阵。</returns>
     public static FPMatrix LookAt(FPVector3 forward, FPVector3 upwards)
     {
         FPMatrix result;
@@ -502,6 +559,12 @@ public struct FPMatrix
         return result;
     }
 
+    /// <summary>
+    /// 创建一个观察矩阵。
+    /// </summary>
+    /// <param name="forward">前向向量。</param>
+    /// <param name="upwards">向上向量。</param>
+    /// <param name="result">输出的观察矩阵。</param>
     public static void LookAt(FPVector3 forward, FPVector3 upwards, out FPMatrix result)
     {
         var zaxis = forward;
@@ -521,6 +584,11 @@ public struct FPMatrix
         result.M33 = zaxis.z;
     }
 
+    /// <summary>
+    /// 根据四元数创建表示方向的矩阵。
+    /// </summary>
+    /// <param name="quaternion">用于创建矩阵的四元数。</param>
+    /// <returns>表示方向的矩阵。</returns>
     public static FPMatrix CreateFromQuaternion(FPQuaternion quaternion)
     {
         FPMatrix result;
@@ -529,10 +597,10 @@ public struct FPMatrix
     }
 
     /// <summary>
-    /// Creates a JMatrix representing an orientation from a quaternion.
+    /// 根据四元数创建表示方向的矩阵。
     /// </summary>
-    /// <param name="quaternion">The quaternion the matrix should be created from.</param>
-    /// <param name="result">JMatrix representing an orientation.</param>
+    /// <param name="quaternion">用于创建矩阵的四元数。</param>
+    /// <param name="result">表示方向的矩阵。</param>
     public static void CreateFromQuaternion(ref FPQuaternion quaternion, out FPMatrix result)
     {
         var num9 = quaternion.x * quaternion.x;
@@ -558,10 +626,10 @@ public struct FPMatrix
     #endregion
 
     /// <summary>
-    /// Creates the transposed matrix.
+    /// 创建转置矩阵。
     /// </summary>
-    /// <param name="matrix">The matrix which should be transposed.</param>
-    /// <returns>The transposed JMatrix.</returns>
+    /// <param name="matrix">要转置的矩阵。</param>
+    /// <returns>转置后的矩阵。</returns>
 
     #region public static JMatrix Transpose(JMatrix matrix)
 
@@ -573,10 +641,10 @@ public struct FPMatrix
     }
 
     /// <summary>
-    /// Creates the transposed matrix.
+    /// 创建转置矩阵。
     /// </summary>
-    /// <param name="matrix">The matrix which should be transposed.</param>
-    /// <param name="result">The transposed JMatrix.</param>
+    /// <param name="matrix">要转置的矩阵。</param>
+    /// <param name="result">转置后的矩阵。</param>
     public static void Transpose(ref FPMatrix matrix, out FPMatrix result)
     {
         result.M11 = matrix.M11;
@@ -593,11 +661,11 @@ public struct FPMatrix
     #endregion
 
     /// <summary>
-    /// Multiplies two matrices.
+    /// 乘以两个矩阵。
     /// </summary>
-    /// <param name="value1">The first matrix.</param>
-    /// <param name="value2">The second matrix.</param>
-    /// <returns>The product of both values.</returns>
+    /// <param name="value1">第一个矩阵。</param>
+    /// <param name="value2">第二个矩阵。</param>
+    /// <returns>两个矩阵的乘积。</returns>
 
     #region public static JMatrix operator *(JMatrix value1,JMatrix value2)
 
@@ -610,18 +678,21 @@ public struct FPMatrix
 
     #endregion
 
-
+    /// <summary>
+    /// 计算矩阵的迹。
+    /// </summary>
+    /// <returns>矩阵的迹。</returns>
     public FP Trace()
     {
         return M11 + M22 + M33;
     }
 
     /// <summary>
-    /// Adds two matrices.
+    /// 将两个矩阵相加。
     /// </summary>
-    /// <param name="value1">The first matrix.</param>
-    /// <param name="value2">The second matrix.</param>
-    /// <returns>The sum of both values.</returns>
+    /// <param name="value1">第一个矩阵。</param>
+    /// <param name="value2">第二个矩阵。</param>
+    /// <returns>两个矩阵的和。</returns>
 
     #region public static JMatrix operator +(JMatrix value1, JMatrix value2)
 
@@ -635,11 +706,11 @@ public struct FPMatrix
     #endregion
 
     /// <summary>
-    /// Subtracts two matrices.
+    /// 将两个矩阵相减。
     /// </summary>
-    /// <param name="value1">The first matrix.</param>
-    /// <param name="value2">The second matrix.</param>
-    /// <returns>The difference of both values.</returns>
+    /// <param name="value1">第一个矩阵。</param>
+    /// <param name="value2">第二个矩阵。</param>
+    /// <returns>两个矩阵的差。</returns>
 
     #region public static JMatrix operator -(JMatrix value1, JMatrix value2)
 
@@ -653,6 +724,12 @@ public struct FPMatrix
 
     #endregion
 
+    /// <summary>
+    /// 判断两个矩阵是否相等。
+    /// </summary>
+    /// <param name="value1">第一个矩阵。</param>
+    /// <param name="value2">第二个矩阵。</param>
+    /// <returns>如果相等则返回true，否则返回false。</returns>
     public static bool operator ==(FPMatrix value1, FPMatrix value2)
     {
         return value1.M11 == value2.M11 &&
@@ -666,6 +743,12 @@ public struct FPMatrix
                value1.M33 == value2.M33;
     }
 
+    /// <summary>
+    /// 判断两个矩阵是否不相等。
+    /// </summary>
+    /// <param name="value1">第一个矩阵。</param>
+    /// <param name="value2">第二个矩阵。</param>
+    /// <returns>如果不相等则返回true，否则返回false。</returns>
     public static bool operator !=(FPMatrix value1, FPMatrix value2)
     {
         return value1.M11 != value2.M11 ||
@@ -679,6 +762,11 @@ public struct FPMatrix
                value1.M33 != value2.M33;
     }
 
+    /// <summary>
+    /// 判断当前矩阵是否与指定对象相等。
+    /// </summary>
+    /// <param name="obj">要比较的对象。</param>
+    /// <returns>如果相等则返回true，否则返回false。</returns>
     public override bool Equals(object obj)
     {
         if (!(obj is FPMatrix))
@@ -699,6 +787,10 @@ public struct FPMatrix
                M33 == other.M33;
     }
 
+    /// <summary>
+    /// 获取当前矩阵的哈希代码。
+    /// </summary>
+    /// <returns>当前矩阵的哈希代码。</returns>
     public override int GetHashCode()
     {
         return M11.GetHashCode() ^
@@ -713,11 +805,11 @@ public struct FPMatrix
     }
 
     /// <summary>
-    /// Creates a matrix which rotates around the given axis by the given angle.
+    /// 根据给定轴和角度创建旋转矩阵。
     /// </summary>
-    /// <param name="axis">The axis.</param>
-    /// <param name="angle">The angle.</param>
-    /// <param name="result">The resulting rotation matrix</param>
+    /// <param name="axis">旋转轴。</param>
+    /// <param name="angle">旋转角度。</param>
+    /// <param name="result">输出的旋转矩阵。</param>
 
     #region public static void CreateFromAxisAngle(ref JVector axis, FP angle, out JMatrix result)
 
@@ -746,11 +838,11 @@ public struct FPMatrix
     }
 
     /// <summary>
-    /// Creates a matrix which rotates around the given axis by the given angle.
+    /// 根据给定轴和角度创建旋转矩阵。
     /// </summary>
-    /// <param name="axis">The axis.</param>
-    /// <param name="angle">The angle.</param>
-    /// <returns>The resulting rotation matrix</returns>
+    /// <param name="axis">旋转轴。</param>
+    /// <param name="angle">旋转角度。</param>
+    /// <returns>生成的旋转矩阵。</returns>
     public static FPMatrix AngleAxis(FP angle, FPVector3 axis)
     {
         FPMatrix result;
@@ -760,6 +852,10 @@ public struct FPMatrix
 
     #endregion
 
+    /// <summary>
+    /// 将矩阵转换为字符串表示形式。
+    /// </summary>
+    /// <returns>矩阵的字符串表示形式。</returns>
     public override string ToString()
     {
         return string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}", M11.RawValue, M12.RawValue, M13.RawValue, M21.RawValue, M22.RawValue, M23.RawValue, M31.RawValue, M32.RawValue, M33.RawValue);
