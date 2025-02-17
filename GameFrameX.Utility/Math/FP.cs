@@ -7,6 +7,9 @@ namespace GameFrameX.Utility.Math
     [Serializable]
     public partial struct FP : IEquatable<FP>, IComparable<FP>
     {
+        /// <summary>
+        /// 原始值
+        /// </summary>
         public long _serializedValue;
 
         /// <summary>

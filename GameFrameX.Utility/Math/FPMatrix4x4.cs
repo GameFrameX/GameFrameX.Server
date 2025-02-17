@@ -111,6 +111,9 @@ public struct FPMatrix4x4
     /// </summary>
     public static readonly FPMatrix4x4 Identity;
 
+    /// <summary>
+    /// 零矩阵。
+    /// </summary>
     public static readonly FPMatrix4x4 Zero;
 
     static FPMatrix4x4()
@@ -268,6 +271,9 @@ public struct FPMatrix4x4
         return result;
     }
 
+    /// <summary>
+    /// 决定因素
+    /// </summary>
     public FP determinant
     {
         get

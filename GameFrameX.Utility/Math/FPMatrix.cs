@@ -283,20 +283,6 @@ public struct FPMatrix
     #endregion
 
     /// <summary>
-    /// 获取矩阵的行列式。
-    /// </summary>
-    /// <returns>矩阵的行列式。</returns>
-
-    #region public FP Determinant()
-
-    //public FP Determinant()
-    //{
-    //    return M11 * M22 * M33 -M11 * M23 * M32 -M12 * M21 * M33 +M12 * M23 * M31 + M13 * M21 * M32 - M13 * M22 * M31;
-    //}
-
-    #endregion
-
-    /// <summary>
     /// 乘以两个矩阵。注意：矩阵乘法不是可交换的。
     /// </summary>
     /// <param name="matrix1">第一个矩阵。</param>
@@ -540,8 +526,7 @@ public struct FPMatrix
 
     public static FPMatrix CreateFromLookAt(FPVector3 position, FPVector3 target)
     {
-        FPMatrix result;
-        LookAt(target - position, FPVector3.up, out result);
+        LookAt(target - position, FPVector3.up, out var result);
         return result;
     }
 
@@ -553,8 +538,7 @@ public struct FPMatrix
     /// <returns>观察矩阵。</returns>
     public static FPMatrix LookAt(FPVector3 forward, FPVector3 upwards)
     {
-        FPMatrix result;
-        LookAt(forward, upwards, out result);
+        LookAt(forward, upwards, out var result);
 
         return result;
     }
