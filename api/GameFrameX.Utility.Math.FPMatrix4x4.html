@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Struct FPMatrix4x4 | GameFrameX.Server ">
       
-      <meta name="description" content="3x3 Matrix.">
+      <meta name="description" content="4x4 矩阵结构体，用于表示三维空间中的变换。">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.4.2-dev7/apiSpec/new?filename=GameFrameX_Utility_Math_FPMatrix4x4.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Math.FPMatrix4x4%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.4.2-dev8/apiSpec/new?filename=GameFrameX_Utility_Math_FPMatrix4x4.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Math.FPMatrix4x4%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_Utility_Math_FPMatrix4x4" data-uid="GameFrameX.Utility.Math.FPMatrix4x4" class="text-break">
-Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L25"><i class="bi bi-code-slash"></i></a>
+Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <dl><dt>Assembly</dt><dd>GameFrameX.Utility.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>3x3 Matrix.</p>
+  <div class="markdown summary"><p>4x4 矩阵结构体，用于表示三维空间中的变换。</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -148,10 +148,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4__ctor_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.#ctor(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
   FPMatrix4x4(FP, FP, FP, FP, FP, FP, FP, FP, FP, FP, FP, FP, FP, FP, FP, FP)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L148"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L151"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the matrix structure.</p>
+  <div class="markdown level1 summary"><p>初始化矩阵结构的新实例。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -162,52 +162,52 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>m11</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>m11</p>
+    <dd><p>第一行第一列的值。</p>
 </dd>
     <dt><code>m12</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>m12</p>
+    <dd><p>第一行第二列的值。</p>
 </dd>
     <dt><code>m13</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>m13</p>
+    <dd><p>第一行第三列的值。</p>
 </dd>
     <dt><code>m14</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>m14</p>
+    <dd><p>第一行第四列的值。</p>
 </dd>
     <dt><code>m21</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>m21</p>
+    <dd><p>第二行第一列的值。</p>
 </dd>
     <dt><code>m22</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>m22</p>
+    <dd><p>第二行第二列的值。</p>
 </dd>
     <dt><code>m23</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>m23</p>
+    <dd><p>第二行第三列的值。</p>
 </dd>
     <dt><code>m24</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>m24</p>
+    <dd><p>第二行第四列的值。</p>
 </dd>
     <dt><code>m31</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>m31</p>
+    <dd><p>第三行第一列的值。</p>
 </dd>
     <dt><code>m32</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>m32</p>
+    <dd><p>第三行第二列的值。</p>
 </dd>
     <dt><code>m33</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>m33</p>
+    <dd><p>第三行第三列的值。</p>
 </dd>
     <dt><code>m34</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>m34</p>
+    <dd><p>第三行第四列的值。</p>
 </dd>
     <dt><code>m41</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>m41</p>
+    <dd><p>第四行第一列的值。</p>
 </dd>
     <dt><code>m42</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>m42</p>
+    <dd><p>第四行第二列的值。</p>
 </dd>
     <dt><code>m43</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>m43</p>
+    <dd><p>第四行第三列的值。</p>
 </dd>
     <dt><code>m44</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>m44</p>
+    <dd><p>第四行第四列的值。</p>
 </dd>
   </dl>
 
@@ -229,10 +229,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Identity" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Identity">
   Identity
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L112"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Identity matrix.</p>
+  <div class="markdown level1 summary"><p>单位矩阵。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -260,10 +260,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M11" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M11">
   M11
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>M11</p>
+  <div class="markdown level1 summary"><p>第一行第一列的元素。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -291,10 +291,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M12" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M12">
   M12
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>M12</p>
+  <div class="markdown level1 summary"><p>第一行第二列的元素。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -322,10 +322,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M13" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M13">
   M13
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>M13</p>
+  <div class="markdown level1 summary"><p>第一行第三列的元素。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -353,10 +353,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M14" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M14">
   M14
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L45"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>M14</p>
+  <div class="markdown level1 summary"><p>第一行第四列的元素。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -384,10 +384,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M21" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M21">
   M21
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L50"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>M21</p>
+  <div class="markdown level1 summary"><p>第二行第一列的元素。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -415,10 +415,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M22" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M22">
   M22
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L55"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>M22</p>
+  <div class="markdown level1 summary"><p>第二行第二列的元素。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -446,10 +446,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M23" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M23">
   M23
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>M23</p>
+  <div class="markdown level1 summary"><p>第二行第三列的元素。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -477,10 +477,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M24" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M24">
   M24
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L65"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>M24</p>
+  <div class="markdown level1 summary"><p>第二行第四列的元素。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -508,10 +508,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M31" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M31">
   M31
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L70"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>M31</p>
+  <div class="markdown level1 summary"><p>第三行第一列的元素。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -539,10 +539,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M32" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M32">
   M32
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L75"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>M32</p>
+  <div class="markdown level1 summary"><p>第三行第二列的元素。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -570,10 +570,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M33" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M33">
   M33
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L80"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>M33</p>
+  <div class="markdown level1 summary"><p>第三行第三列的元素。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -601,10 +601,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M34" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M34">
   M34
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L85"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>M34</p>
+  <div class="markdown level1 summary"><p>第三行第四列的元素。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -632,10 +632,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M41" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M41">
   M41
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>M41</p>
+  <div class="markdown level1 summary"><p>第四行第一列的元素。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -663,10 +663,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M42" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M42">
   M42
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L95"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>M42</p>
+  <div class="markdown level1 summary"><p>第四行第二列的元素。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -694,10 +694,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M43" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M43">
   M43
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L100"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>M43</p>
+  <div class="markdown level1 summary"><p>第四行第三列的元素。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -725,10 +725,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_M44" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.M44">
   M44
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L105"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>M44</p>
+  <div class="markdown level1 summary"><p>第四行第四列的元素。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -756,10 +756,11 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Zero" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Zero">
   Zero
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L117"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>零矩阵。</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -791,10 +792,11 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_determinant" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.determinant">
   determinant
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L271"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L277"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>决定因素</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -826,10 +828,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Add_GameFrameX_Utility_Math_FPMatrix4x4_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Add(GameFrameX.Utility.Math.FPMatrix4x4,GameFrameX.Utility.Math.FPMatrix4x4)">
   Add(FPMatrix4x4, FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L223"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L226"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Matrices are added.</p>
+  <div class="markdown level1 summary"><p>将两个矩阵相加。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -840,17 +842,17 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>matrix1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The first matrix.</p>
+    <dd><p>第一个矩阵。</p>
 </dd>
     <dt><code>matrix2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The second matrix.</p>
+    <dd><p>第二个矩阵。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The sum of both matrices.</p>
+    <dd><p>两个矩阵的和。</p>
 </dd>
   </dl>
 
@@ -868,10 +870,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Add_GameFrameX_Utility_Math_FPMatrix4x4__GameFrameX_Utility_Math_FPMatrix4x4__GameFrameX_Utility_Math_FPMatrix4x4__" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Add(GameFrameX.Utility.Math.FPMatrix4x4@,GameFrameX.Utility.Math.FPMatrix4x4@,GameFrameX.Utility.Math.FPMatrix4x4@)">
   Add(ref FPMatrix4x4, ref FPMatrix4x4, out FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L236"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L239"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Matrices are added.</p>
+  <div class="markdown level1 summary"><p>将两个矩阵相加。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -882,13 +884,13 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>matrix1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The first matrix.</p>
+    <dd><p>第一个矩阵。</p>
 </dd>
     <dt><code>matrix2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The second matrix.</p>
+    <dd><p>第二个矩阵。</p>
 </dd>
     <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The sum of both matrices.</p>
+    <dd><p>两个矩阵的和。</p>
 </dd>
   </dl>
 
@@ -907,10 +909,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_AngleAxis_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.AngleAxis(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPVector3)">
   AngleAxis(FP, FPVector3)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1224"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1262"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a matrix which rotates around the given axis by the given angle.</p>
+  <div class="markdown level1 summary"><p>创建围绕给定轴旋转的矩阵。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -921,17 +923,17 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>angle</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>The angle.</p>
+    <dd><p>旋转角度。</p>
 </dd>
     <dt><code>axis</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
-    <dd><p>The axis.</p>
+    <dd><p>旋转轴。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The resulting rotation matrix</p>
+    <dd><p>结果旋转矩阵。</p>
 </dd>
   </dl>
 
@@ -949,10 +951,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_AxisAngle_GameFrameX_Utility_Math_FPVector3__GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPMatrix4x4__" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.AxisAngle(GameFrameX.Utility.Math.FPVector3@,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPMatrix4x4@)">
   AxisAngle(ref FPVector3, FP, out FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1168"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1206"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a matrix which rotates around the given axis by the given angle.</p>
+  <div class="markdown level1 summary"><p>创建围绕给定轴旋转的矩阵。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -963,13 +965,13 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>axis</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
-    <dd><p>The axis.</p>
+    <dd><p>旋转轴。</p>
 </dd>
     <dt><code>angle</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>The angle.</p>
+    <dd><p>旋转角度。</p>
 </dd>
     <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The resulting rotation matrix</p>
+    <dd><p>结果旋转矩阵。</p>
 </dd>
   </dl>
 
@@ -988,10 +990,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Equals_System_Object_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Equals(System.Object)">
   Equals(object)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L742"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L771"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Indicates whether this instance and a specified object are equal.</p>
+  <div class="markdown level1 summary"><p>重写 Equals 方法，判断当前矩阵是否与指定对象相等。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1002,14 +1004,14 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
-    <dd><p>The object to compare with the current instance.</p>
+    <dd><p>要比较的对象。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+    <dd><p>如果当前矩阵与指定对象相等，则返回 true；否则返回 false。</p>
 </dd>
   </dl>
 
@@ -1027,10 +1029,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_GetHashCode" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.GetHashCode">
   GetHashCode()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L769"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L802"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Returns the hash code for this instance.</p>
+  <div class="markdown level1 summary"><p>重写 GetHashCode 方法，返回当前矩阵的哈希代码。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1042,7 +1044,7 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>A 32-bit signed integer that is the hash code for this instance.</p>
+    <dd><p>当前矩阵的哈希代码。</p>
 </dd>
   </dl>
 
@@ -1060,10 +1062,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Inverse_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Inverse(GameFrameX.Utility.Math.FPMatrix4x4)">
   Inverse(FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L264"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L267"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Calculates the inverse of a give matrix.</p>
+  <div class="markdown level1 summary"><p>计算给定矩阵的逆矩阵。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1074,14 +1076,14 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>matrix</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The matrix to invert.</p>
+    <dd><p>要计算逆的矩阵。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The inverted JMatrix.</p>
+    <dd><p>逆矩阵。</p>
 </dd>
   </dl>
 
@@ -1099,10 +1101,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Inverse_GameFrameX_Utility_Math_FPMatrix4x4__GameFrameX_Utility_Math_FPMatrix4x4__" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Inverse(GameFrameX.Utility.Math.FPMatrix4x4@,GameFrameX.Utility.Math.FPMatrix4x4@)">
   Inverse(ref FPMatrix4x4, out FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L326"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L332"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Calculates the inverse of a give matrix.</p>
+  <div class="markdown level1 summary"><p>计算给定矩阵的逆矩阵。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1113,10 +1115,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>matrix</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The matrix to invert.</p>
+    <dd><p>要计算逆的矩阵。</p>
 </dd>
     <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The inverted JMatrix.</p>
+    <dd><p>逆矩阵。</p>
 </dd>
   </dl>
 
@@ -1135,10 +1137,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Multiply_GameFrameX_Utility_Math_FPMatrix4x4_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Multiply(GameFrameX.Utility.Math.FPMatrix4x4,GameFrameX.Utility.Math.FP)">
   Multiply(FPMatrix4x4, FP)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L504"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L510"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Multiply a matrix by a scalefactor.</p>
+  <div class="markdown level1 summary"><p>将矩阵乘以一个缩放因子。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1149,17 +1151,17 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>matrix1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The matrix.</p>
+    <dd><p>要缩放的矩阵。</p>
 </dd>
     <dt><code>scaleFactor</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>The scale factor.</p>
+    <dd><p>缩放因子。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>A JMatrix multiplied by the scale factor.</p>
+    <dd><p>缩放后的矩阵。</p>
 </dd>
   </dl>
 
@@ -1177,10 +1179,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Multiply_GameFrameX_Utility_Math_FPMatrix4x4_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Multiply(GameFrameX.Utility.Math.FPMatrix4x4,GameFrameX.Utility.Math.FPMatrix4x4)">
   Multiply(FPMatrix4x4, FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L180"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Multiply two matrices. Notice: matrix multiplication is not commutative.</p>
+  <div class="markdown level1 summary"><p>计算两个矩阵的乘积。注意：矩阵乘法不是交换的。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1191,17 +1193,17 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>matrix1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The first matrix.</p>
+    <dd><p>第一个矩阵。</p>
 </dd>
     <dt><code>matrix2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The second matrix.</p>
+    <dd><p>第二个矩阵。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The product of both matrices.</p>
+    <dd><p>两个矩阵的乘积。</p>
 </dd>
   </dl>
 
@@ -1219,10 +1221,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Multiply_GameFrameX_Utility_Math_FPMatrix4x4__GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPMatrix4x4__" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Multiply(GameFrameX.Utility.Math.FPMatrix4x4@,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPMatrix4x4@)">
   Multiply(ref FPMatrix4x4, FP, out FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L517"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L523"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Multiply a matrix by a scalefactor.</p>
+  <div class="markdown level1 summary"><p>将矩阵乘以一个缩放因子。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1233,13 +1235,13 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>matrix1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The matrix.</p>
+    <dd><p>要缩放的矩阵。</p>
 </dd>
     <dt><code>scaleFactor</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>The scale factor.</p>
+    <dd><p>缩放因子。</p>
 </dd>
     <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>A JMatrix multiplied by the scale factor.</p>
+    <dd><p>缩放后的矩阵。</p>
 </dd>
   </dl>
 
@@ -1258,10 +1260,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Multiply_GameFrameX_Utility_Math_FPMatrix4x4__GameFrameX_Utility_Math_FPMatrix4x4__GameFrameX_Utility_Math_FPMatrix4x4__" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Multiply(GameFrameX.Utility.Math.FPMatrix4x4@,GameFrameX.Utility.Math.FPMatrix4x4@,GameFrameX.Utility.Math.FPMatrix4x4@)">
   Multiply(ref FPMatrix4x4, ref FPMatrix4x4, out FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L190"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L193"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Multiply two matrices. Notice: matrix multiplication is not commutative.</p>
+  <div class="markdown level1 summary"><p>计算两个矩阵的乘积。注意：矩阵乘法不是交换的。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1272,13 +1274,13 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>matrix1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The first matrix.</p>
+    <dd><p>第一个矩阵。</p>
 </dd>
     <dt><code>matrix2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The second matrix.</p>
+    <dd><p>第二个矩阵。</p>
 </dd>
     <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The product of both matrices.</p>
+    <dd><p>两个矩阵的乘积。</p>
 </dd>
   </dl>
 
@@ -1297,10 +1299,11 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Rotate_GameFrameX_Utility_Math_FPQuaternion_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Rotate(GameFrameX.Utility.Math.FPQuaternion)">
   Rotate(FPQuaternion)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L542"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L552"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>根据四元数创建旋转矩阵。</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -1310,13 +1313,15 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>quaternion</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
-    <dd></dd>
+    <dd><p>用于创建矩阵的四元数。</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd></dd>
+    <dd><p>表示方向的旋转矩阵。</p>
+</dd>
   </dl>
 
 
@@ -1333,10 +1338,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Rotate_GameFrameX_Utility_Math_FPQuaternion__GameFrameX_Utility_Math_FPMatrix4x4__" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Rotate(GameFrameX.Utility.Math.FPQuaternion@,GameFrameX.Utility.Math.FPMatrix4x4@)">
   Rotate(ref FPQuaternion, out FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L554"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L564"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a JMatrix representing an orientation from a quaternion.</p>
+  <div class="markdown level1 summary"><p>根据四元数创建旋转矩阵。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1347,10 +1352,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>quaternion</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
-    <dd><p>The quaternion the matrix should be created from.</p>
+    <dd><p>用于创建矩阵的四元数。</p>
 </dd>
     <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>JMatrix representing an orientation.</p>
+    <dd><p>表示方向的旋转矩阵。</p>
 </dd>
   </dl>
 
@@ -1369,10 +1374,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_RotateX_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateX(GameFrameX.Utility.Math.FP)">
   RotateX(FP)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L939"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L977"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a matrix for rotating points around the X-axis.</p>
+  <div class="markdown level1 summary"><p>创建围绕 X 轴旋转的矩阵。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1383,14 +1388,14 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>radians</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>The amount, in radians, by which to rotate around the X-axis.</p>
+    <dd><p>围绕 X 轴旋转的弧度。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The rotation matrix.</p>
+    <dd><p>旋转矩阵。</p>
 </dd>
   </dl>
 
@@ -1408,10 +1413,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_RotateX_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateX(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPVector3)">
   RotateX(FP, FPVector3)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L976"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1014"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a matrix for rotating points around the X-axis, from a center point.</p>
+  <div class="markdown level1 summary"><p>创建围绕 X 轴旋转的矩阵，并指定中心点。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1422,17 +1427,17 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>radians</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>The amount, in radians, by which to rotate around the X-axis.</p>
+    <dd><p>围绕 X 轴旋转的弧度。</p>
 </dd>
     <dt><code>centerPoint</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
-    <dd><p>The center point.</p>
+    <dd><p>旋转的中心点。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The rotation matrix.</p>
+    <dd><p>旋转矩阵。</p>
 </dd>
   </dl>
 
@@ -1450,10 +1455,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_RotateY_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateY(GameFrameX.Utility.Math.FP)">
   RotateY(FP)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1015"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1053"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a matrix for rotating points around the Y-axis.</p>
+  <div class="markdown level1 summary"><p>创建围绕 Y 轴旋转的矩阵。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1464,14 +1469,14 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>radians</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>The amount, in radians, by which to rotate around the Y-axis.</p>
+    <dd><p>围绕 Y 轴旋转的弧度。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The rotation matrix.</p>
+    <dd><p>旋转矩阵。</p>
 </dd>
   </dl>
 
@@ -1489,10 +1494,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_RotateY_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateY(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPVector3)">
   RotateY(FP, FPVector3)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1052"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1090"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a matrix for rotating points around the Y-axis, from a center point.</p>
+  <div class="markdown level1 summary"><p>创建围绕 Y 轴旋转的矩阵，并指定中心点。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1503,17 +1508,17 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>radians</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>The amount, in radians, by which to rotate around the Y-axis.</p>
+    <dd><p>围绕 Y 轴旋转的弧度。</p>
 </dd>
     <dt><code>centerPoint</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
-    <dd><p>The center point.</p>
+    <dd><p>旋转的中心点。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The rotation matrix.</p>
+    <dd><p>旋转矩阵。</p>
 </dd>
   </dl>
 
@@ -1531,10 +1536,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_RotateZ_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateZ(GameFrameX.Utility.Math.FP)">
   RotateZ(FP)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1091"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1129"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a matrix for rotating points around the Z-axis.</p>
+  <div class="markdown level1 summary"><p>创建围绕 Z 轴旋转的矩阵。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1545,14 +1550,14 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>radians</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>The amount, in radians, by which to rotate around the Z-axis.</p>
+    <dd><p>围绕 Z 轴旋转的弧度。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The rotation matrix.</p>
+    <dd><p>旋转矩阵。</p>
 </dd>
   </dl>
 
@@ -1570,10 +1575,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_RotateZ_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.RotateZ(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPVector3)">
   RotateZ(FP, FPVector3)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1128"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1166"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a matrix for rotating points around the Z-axis, from a center point.</p>
+  <div class="markdown level1 summary"><p>创建围绕 Z 轴旋转的矩阵，并指定中心点。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1584,17 +1589,17 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>radians</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>The amount, in radians, by which to rotate around the Z-axis.</p>
+    <dd><p>围绕 Z 轴旋转的弧度。</p>
 </dd>
     <dt><code>centerPoint</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
-    <dd><p>The center point.</p>
+    <dd><p>旋转的中心点。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The rotation matrix.</p>
+    <dd><p>旋转矩阵。</p>
 </dd>
   </dl>
 
@@ -1612,10 +1617,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale(GameFrameX.Utility.Math.FP)">
   Scale(FP)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L918"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L956"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a uniform scaling matrix that scales equally on each axis.</p>
+  <div class="markdown level1 summary"><p>创建均匀缩放矩阵，使每个轴的缩放相等。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1626,14 +1631,14 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>scale</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>The uniform scaling factor.</p>
+    <dd><p>均匀缩放因子。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The scaling matrix.</p>
+    <dd><p>缩放矩阵。</p>
 </dd>
   </dl>
 
@@ -1651,10 +1656,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
   Scale(FP, FP, FP)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L832"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L870"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a scaling matrix.</p>
+  <div class="markdown level1 summary"><p>创建缩放矩阵。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1665,20 +1670,20 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>xScale</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>Value to scale by on the X-axis.</p>
+    <dd><p>在 X 轴上的缩放值。</p>
 </dd>
     <dt><code>yScale</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>Value to scale by on the Y-axis.</p>
+    <dd><p>在 Y 轴上的缩放值。</p>
 </dd>
     <dt><code>zScale</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>Value to scale by on the Z-axis.</p>
+    <dd><p>在 Z 轴上的缩放值。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The scaling matrix.</p>
+    <dd><p>缩放矩阵。</p>
 </dd>
   </dl>
 
@@ -1696,10 +1701,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPVector3)">
   Scale(FP, FP, FP, FPVector3)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L864"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L902"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a scaling matrix with a center point.</p>
+  <div class="markdown level1 summary"><p>创建带有中心点的缩放矩阵。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1710,23 +1715,23 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>xScale</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>Value to scale by on the X-axis.</p>
+    <dd><p>在 X 轴上的缩放值。</p>
 </dd>
     <dt><code>yScale</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>Value to scale by on the Y-axis.</p>
+    <dd><p>在 Y 轴上的缩放值。</p>
 </dd>
     <dt><code>zScale</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>Value to scale by on the Z-axis.</p>
+    <dd><p>在 Z 轴上的缩放值。</p>
 </dd>
     <dt><code>centerPoint</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
-    <dd><p>The center point.</p>
+    <dd><p>缩放的中心点。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The scaling matrix.</p>
+    <dd><p>缩放矩阵。</p>
 </dd>
   </dl>
 
@@ -1744,10 +1749,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FPVector3)">
   Scale(FP, FPVector3)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L929"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L967"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a uniform scaling matrix that scales equally on each axis with a center point.</p>
+  <div class="markdown level1 summary"><p>创建均匀缩放矩阵，使每个轴的缩放相等，并指定中心点。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1758,17 +1763,17 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>scale</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>The uniform scaling factor.</p>
+    <dd><p>均匀缩放因子。</p>
 </dd>
     <dt><code>centerPoint</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
-    <dd><p>The center point.</p>
+    <dd><p>缩放的中心点。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The scaling matrix.</p>
+    <dd><p>缩放矩阵。</p>
 </dd>
   </dl>
 
@@ -1786,10 +1791,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale(GameFrameX.Utility.Math.FPVector3)">
   Scale(FPVector3)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L897"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L935"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a scaling matrix.</p>
+  <div class="markdown level1 summary"><p>创建缩放矩阵。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1800,14 +1805,14 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>scales</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
-    <dd><p>The vector containing the amount to scale by on each axis.</p>
+    <dd><p>包含每个轴的缩放值的向量。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The scaling matrix.</p>
+    <dd><p>缩放矩阵。</p>
 </dd>
   </dl>
 
@@ -1825,10 +1830,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Scale_GameFrameX_Utility_Math_FPVector3_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Scale(GameFrameX.Utility.Math.FPVector3,GameFrameX.Utility.Math.FPVector3)">
   Scale(FPVector3, FPVector3)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L908"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L946"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a scaling matrix with a center point.</p>
+  <div class="markdown level1 summary"><p>创建带有中心点的缩放矩阵。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1839,17 +1844,17 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>scales</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
-    <dd><p>The vector containing the amount to scale by on each axis.</p>
+    <dd><p>包含每个轴的缩放值的向量。</p>
 </dd>
     <dt><code>centerPoint</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
-    <dd><p>The center point.</p>
+    <dd><p>缩放的中心点。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The scaling matrix.</p>
+    <dd><p>缩放矩阵。</p>
 </dd>
   </dl>
 
@@ -1867,10 +1872,11 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_TRS_GameFrameX_Utility_Math_FPVector3_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.TRS(GameFrameX.Utility.Math.FPVector3,GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPVector3)">
   TRS(FPVector3, FPQuaternion, FPVector3)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1245"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1301"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>创建平移、旋转和缩放的组合矩阵。</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -1880,17 +1886,21 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>translation</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
-    <dd></dd>
+    <dd><p>平移向量。</p>
+</dd>
     <dt><code>rotation</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
-    <dd></dd>
+    <dd><p>旋转四元数。</p>
+</dd>
     <dt><code>scale</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
-    <dd></dd>
+    <dd><p>缩放向量。</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd></dd>
+    <dd><p>组合后的矩阵。</p>
+</dd>
   </dl>
 
 
@@ -1907,10 +1917,11 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_TRS_GameFrameX_Utility_Math_FPVector3_GameFrameX_Utility_Math_FPQuaternion_GameFrameX_Utility_Math_FPVector3_GameFrameX_Utility_Math_FPMatrix4x4__" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.TRS(GameFrameX.Utility.Math.FPVector3,GameFrameX.Utility.Math.FPQuaternion,GameFrameX.Utility.Math.FPVector3,GameFrameX.Utility.Math.FPMatrix4x4@)">
   TRS(FPVector3, FPQuaternion, FPVector3, out FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1240"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1289"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>创建平移、旋转和缩放的组合矩阵。</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -1920,13 +1931,17 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>translation</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
-    <dd></dd>
+    <dd><p>平移向量。</p>
+</dd>
     <dt><code>rotation</code> <a class="xref" href="GameFrameX.Utility.Math.FPQuaternion.html">FPQuaternion</a></dt>
-    <dd></dd>
+    <dd><p>旋转四元数。</p>
+</dd>
     <dt><code>scale</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
-    <dd></dd>
+    <dd><p>缩放向量。</p>
+</dd>
     <dt><code>matrix</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd></dd>
+    <dd><p>组合后的矩阵。</p>
+</dd>
   </dl>
 
 
@@ -1944,10 +1959,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_ToString" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1231"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L1273"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Returns the fully qualified type name of this instance.</p>
+  <div class="markdown level1 summary"><p>返回矩阵的字符串表示形式。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1959,7 +1974,7 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The fully qualified type name.</p>
+    <dd><p>矩阵的字符串表示形式。</p>
 </dd>
   </dl>
 
@@ -1977,10 +1992,11 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Trace" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Trace">
   Trace()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L641"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L653"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>计算矩阵的迹。</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -1991,7 +2007,8 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd></dd>
+    <dd><p>矩阵的迹。</p>
+</dd>
   </dl>
 
 
@@ -2008,10 +2025,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Translate_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_GameFrameX_Utility_Math_FP_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Translate(GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP,GameFrameX.Utility.Math.FP)">
   Translate(FP, FP, FP)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L796"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L829"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a translation matrix.</p>
+  <div class="markdown level1 summary"><p>创建平移矩阵。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -2022,20 +2039,20 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>xPosition</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>The amount to translate on the X-axis.</p>
+    <dd><p>在 X 轴上的平移量。</p>
 </dd>
     <dt><code>yPosition</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>The amount to translate on the Y-axis.</p>
+    <dd><p>在 Y 轴上的平移量。</p>
 </dd>
     <dt><code>zPosition</code> <a class="xref" href="GameFrameX.Utility.Math.FP.html">FP</a></dt>
-    <dd><p>The amount to translate on the Z-axis.</p>
+    <dd><p>在 Z 轴上的平移量。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The translation matrix.</p>
+    <dd><p>平移矩阵。</p>
 </dd>
   </dl>
 
@@ -2053,10 +2070,11 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Translate_GameFrameX_Utility_Math_FPVector3_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Translate(GameFrameX.Utility.Math.FPVector3)">
   Translate(FPVector3)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L820"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L858"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>根据三维向量创建平移矩阵。</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -2066,13 +2084,15 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>translation</code> <a class="xref" href="GameFrameX.Utility.Math.FPVector3.html">FPVector3</a></dt>
-    <dd></dd>
+    <dd><p>平移向量。</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd></dd>
+    <dd><p>平移矩阵。</p>
+</dd>
   </dl>
 
 
@@ -2089,10 +2109,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Transpose_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Transpose(GameFrameX.Utility.Math.FPMatrix4x4)">
   Transpose(FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L594"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L604"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates the transposed matrix.</p>
+  <div class="markdown level1 summary"><p>创建转置矩阵。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -2103,14 +2123,14 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>matrix</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The matrix which should be transposed.</p>
+    <dd><p>要转置的矩阵。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The transposed JMatrix.</p>
+    <dd><p>转置后的矩阵。</p>
 </dd>
   </dl>
 
@@ -2128,10 +2148,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_Transpose_GameFrameX_Utility_Math_FPMatrix4x4__GameFrameX_Utility_Math_FPMatrix4x4__" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.Transpose(GameFrameX.Utility.Math.FPMatrix4x4@,GameFrameX.Utility.Math.FPMatrix4x4@)">
   Transpose(ref FPMatrix4x4, out FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L606"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L616"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates the transposed matrix.</p>
+  <div class="markdown level1 summary"><p>创建转置矩阵。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -2142,10 +2162,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>matrix</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The matrix which should be transposed.</p>
+    <dd><p>要转置的矩阵。</p>
 </dd>
     <dt><code>result</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The transposed JMatrix.</p>
+    <dd><p>转置后的矩阵。</p>
 </dd>
   </dl>
 
@@ -2168,10 +2188,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_op_Addition_GameFrameX_Utility_Math_FPMatrix4x4_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_Addition(GameFrameX.Utility.Math.FPMatrix4x4,GameFrameX.Utility.Math.FPMatrix4x4)">
   operator +(FPMatrix4x4, FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L652"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L664"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Adds two matrices.</p>
+  <div class="markdown level1 summary"><p>重载加法运算符，计算两个矩阵的和。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -2182,17 +2202,17 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The first matrix.</p>
+    <dd><p>第一个矩阵。</p>
 </dd>
     <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The second matrix.</p>
+    <dd><p>第二个矩阵。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The sum of both values.</p>
+    <dd><p>两个矩阵的和。</p>
 </dd>
   </dl>
 
@@ -2210,10 +2230,11 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_op_Equality_GameFrameX_Utility_Math_FPMatrix4x4_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_Equality(GameFrameX.Utility.Math.FPMatrix4x4,GameFrameX.Utility.Math.FPMatrix4x4)">
   operator ==(FPMatrix4x4, FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L702"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L720"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>重载相等运算符，判断两个矩阵是否相等。</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -2223,15 +2244,18 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd></dd>
+    <dd><p>第一个矩阵。</p>
+</dd>
     <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd></dd>
+    <dd><p>第二个矩阵。</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
+    <dd><p>如果两个矩阵相等，则返回 true；否则返回 false。</p>
+</dd>
   </dl>
 
 
@@ -2248,10 +2272,11 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_op_Inequality_GameFrameX_Utility_Math_FPMatrix4x4_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_Inequality(GameFrameX.Utility.Math.FPMatrix4x4,GameFrameX.Utility.Math.FPMatrix4x4)">
   operator !=(FPMatrix4x4, FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L722"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L746"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>重载不相等运算符，判断两个矩阵是否不相等。</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -2261,15 +2286,18 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd></dd>
+    <dd><p>第一个矩阵。</p>
+</dd>
     <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd></dd>
+    <dd><p>第二个矩阵。</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
+    <dd><p>如果两个矩阵不相等，则返回 true；否则返回 false。</p>
+</dd>
   </dl>
 
 
@@ -2286,10 +2314,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_op_Multiply_GameFrameX_Utility_Math_FPMatrix4x4_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_Multiply(GameFrameX.Utility.Math.FPMatrix4x4,GameFrameX.Utility.Math.FPMatrix4x4)">
   operator *(FPMatrix4x4, FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L633"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L642"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Multiplies two matrices.</p>
+  <div class="markdown level1 summary"><p>重载乘法运算符，计算两个矩阵的乘积。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -2300,17 +2328,17 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The first matrix.</p>
+    <dd><p>第一个矩阵。</p>
 </dd>
     <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The second matrix.</p>
+    <dd><p>第二个矩阵。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The product of both values.</p>
+    <dd><p>两个矩阵的乘积。</p>
 </dd>
   </dl>
 
@@ -2328,10 +2356,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_op_Subtraction_GameFrameX_Utility_Math_FPMatrix4x4_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_Subtraction(GameFrameX.Utility.Math.FPMatrix4x4,GameFrameX.Utility.Math.FPMatrix4x4)">
   operator -(FPMatrix4x4, FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L694"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L706"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Subtracts two matrices.</p>
+  <div class="markdown level1 summary"><p>重载减法运算符，计算两个矩阵的差。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -2342,17 +2370,17 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>value1</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The first matrix.</p>
+    <dd><p>第一个矩阵。</p>
 </dd>
     <dt><code>value2</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The second matrix.</p>
+    <dd><p>第二个矩阵。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The difference of both values.</p>
+    <dd><p>两个矩阵的差。</p>
 </dd>
   </dl>
 
@@ -2370,10 +2398,10 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_Math_FPMatrix4x4_op_UnaryNegation_GameFrameX_Utility_Math_FPMatrix4x4_" data-uid="GameFrameX.Utility.Math.FPMatrix4x4.op_UnaryNegation(GameFrameX.Utility.Math.FPMatrix4x4)">
   operator -(FPMatrix4x4)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L664"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L676"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Returns a new matrix with the negated elements of the given matrix.</p>
+  <div class="markdown level1 summary"><p>返回给定矩阵的元素取反后的新矩阵。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -2384,14 +2412,14 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>value</code> <a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The source matrix.</p>
+    <dd><p>源矩阵。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Math.FPMatrix4x4.html">FPMatrix4x4</a></dt>
-    <dd><p>The negated matrix.</p>
+    <dd><p>取反后的矩阵。</p>
 </dd>
   </dl>
 
@@ -2409,7 +2437,7 @@ Struct FPMatrix4x4  <a class="header-action link-secondary" title="View source" 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L25" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Math/FPMatrix4x4.cs/#L25" class="edit-link">Edit this page</a>
         </div>
 
 

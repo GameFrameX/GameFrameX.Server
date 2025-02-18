@@ -16337,6 +16337,38 @@ references:
   commentId: T:GameFrameX.Utility.Extensions.ReadOnlySpanExtension
   fullName: GameFrameX.Utility.Extensions.ReadOnlySpanExtension
   nameWithType: ReadOnlySpanExtension
+- uid: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadDouble(System.ReadOnlySpan{System.Byte},System.Int32@)
+  name: ReadDouble(ReadOnlySpan<byte>, ref int)
+  href: api/GameFrameX.Utility.Extensions.ReadOnlySpanExtension.html#GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadDouble_System_ReadOnlySpan_System_Byte__System_Int32__
+  commentId: M:GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadDouble(System.ReadOnlySpan{System.Byte},System.Int32@)
+  name.vb: ReadDouble(ReadOnlySpan(Of Byte), Integer)
+  fullName: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadDouble(System.ReadOnlySpan<byte>, ref int)
+  fullName.vb: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadDouble(System.ReadOnlySpan(Of Byte), Integer)
+  nameWithType: ReadOnlySpanExtension.ReadDouble(ReadOnlySpan<byte>, ref int)
+  nameWithType.vb: ReadOnlySpanExtension.ReadDouble(ReadOnlySpan(Of Byte), Integer)
+- uid: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadDouble*
+  name: ReadDouble
+  href: api/GameFrameX.Utility.Extensions.ReadOnlySpanExtension.html#GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadDouble_
+  commentId: Overload:GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadDouble
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadDouble
+  nameWithType: ReadOnlySpanExtension.ReadDouble
+- uid: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadFloat(System.ReadOnlySpan{System.Byte},System.Int32@)
+  name: ReadFloat(ReadOnlySpan<byte>, ref int)
+  href: api/GameFrameX.Utility.Extensions.ReadOnlySpanExtension.html#GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadFloat_System_ReadOnlySpan_System_Byte__System_Int32__
+  commentId: M:GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadFloat(System.ReadOnlySpan{System.Byte},System.Int32@)
+  name.vb: ReadFloat(ReadOnlySpan(Of Byte), Integer)
+  fullName: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadFloat(System.ReadOnlySpan<byte>, ref int)
+  fullName.vb: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadFloat(System.ReadOnlySpan(Of Byte), Integer)
+  nameWithType: ReadOnlySpanExtension.ReadFloat(ReadOnlySpan<byte>, ref int)
+  nameWithType.vb: ReadOnlySpanExtension.ReadFloat(ReadOnlySpan(Of Byte), Integer)
+- uid: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadFloat*
+  name: ReadFloat
+  href: api/GameFrameX.Utility.Extensions.ReadOnlySpanExtension.html#GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadFloat_
+  commentId: Overload:GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadFloat
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadFloat
+  nameWithType: ReadOnlySpanExtension.ReadFloat
 - uid: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadInt(System.ReadOnlySpan{System.Byte},System.Int32@)
   name: ReadInt(ReadOnlySpan<byte>, ref int)
   href: api/GameFrameX.Utility.Extensions.ReadOnlySpanExtension.html#GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadInt_System_ReadOnlySpan_System_Byte__System_Int32__
@@ -16369,6 +16401,22 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadLong
   nameWithType: ReadOnlySpanExtension.ReadLong
+- uid: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadShort(System.ReadOnlySpan{System.Byte},System.Int32@)
+  name: ReadShort(ReadOnlySpan<byte>, ref int)
+  href: api/GameFrameX.Utility.Extensions.ReadOnlySpanExtension.html#GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadShort_System_ReadOnlySpan_System_Byte__System_Int32__
+  commentId: M:GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadShort(System.ReadOnlySpan{System.Byte},System.Int32@)
+  name.vb: ReadShort(ReadOnlySpan(Of Byte), Integer)
+  fullName: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadShort(System.ReadOnlySpan<byte>, ref int)
+  fullName.vb: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadShort(System.ReadOnlySpan(Of Byte), Integer)
+  nameWithType: ReadOnlySpanExtension.ReadShort(ReadOnlySpan<byte>, ref int)
+  nameWithType.vb: ReadOnlySpanExtension.ReadShort(ReadOnlySpan(Of Byte), Integer)
+- uid: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadShort*
+  name: ReadShort
+  href: api/GameFrameX.Utility.Extensions.ReadOnlySpanExtension.html#GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadShort_
+  commentId: Overload:GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadShort
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadShort
+  nameWithType: ReadOnlySpanExtension.ReadShort
 - uid: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadUInt(System.ReadOnlySpan{System.Byte},System.Int32@)
   name: ReadUInt(ReadOnlySpan<byte>, ref int)
   href: api/GameFrameX.Utility.Extensions.ReadOnlySpanExtension.html#GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadUInt_System_ReadOnlySpan_System_Byte__System_Int32__
@@ -16401,6 +16449,22 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadULong
   nameWithType: ReadOnlySpanExtension.ReadULong
+- uid: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadUShort(System.ReadOnlySpan{System.Byte},System.Int32@)
+  name: ReadUShort(ReadOnlySpan<byte>, ref int)
+  href: api/GameFrameX.Utility.Extensions.ReadOnlySpanExtension.html#GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadUShort_System_ReadOnlySpan_System_Byte__System_Int32__
+  commentId: M:GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadUShort(System.ReadOnlySpan{System.Byte},System.Int32@)
+  name.vb: ReadUShort(ReadOnlySpan(Of Byte), Integer)
+  fullName: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadUShort(System.ReadOnlySpan<byte>, ref int)
+  fullName.vb: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadUShort(System.ReadOnlySpan(Of Byte), Integer)
+  nameWithType: ReadOnlySpanExtension.ReadUShort(ReadOnlySpan<byte>, ref int)
+  nameWithType.vb: ReadOnlySpanExtension.ReadUShort(ReadOnlySpan(Of Byte), Integer)
+- uid: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadUShort*
+  name: ReadUShort
+  href: api/GameFrameX.Utility.Extensions.ReadOnlySpanExtension.html#GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadUShort_
+  commentId: Overload:GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadUShort
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadUShort
+  nameWithType: ReadOnlySpanExtension.ReadUShort
 - uid: GameFrameX.Utility.Extensions.SequenceReaderExtension
   name: SequenceReaderExtension
   href: api/GameFrameX.Utility.Extensions.SequenceReaderExtension.html

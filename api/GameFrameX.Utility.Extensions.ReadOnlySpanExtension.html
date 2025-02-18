@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.4.2-dev7/apiSpec/new?filename=GameFrameX_Utility_Extensions_ReadOnlySpanExtension.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Extensions.ReadOnlySpanExtension%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.4.2-dev8/apiSpec/new?filename=GameFrameX_Utility_Extensions_ReadOnlySpanExtension.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Extensions.ReadOnlySpanExtension%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_Utility_Extensions_ReadOnlySpanExtension" data-uid="GameFrameX.Utility.Extensions.ReadOnlySpanExtension" class="text-break">
-Class ReadOnlySpanExtension  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Extensions/ReadOnlySpanExtension.cs/#L7"><i class="bi bi-code-slash"></i></a>
+Class ReadOnlySpanExtension  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Extensions/ReadOnlySpanExtension.cs/#L7"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -152,11 +152,95 @@ Class ReadOnlySpanExtension  <a class="header-action link-secondary" title="View
 </h2>
 
 
+  <a id="GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadDouble_" data-uid="GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadDouble*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadDouble_System_ReadOnlySpan_System_Byte__System_Int32__" data-uid="GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadDouble(System.ReadOnlySpan{System.Byte},System.Int32@)">
+  ReadDouble(ReadOnlySpan&lt;byte&gt;, ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Extensions/ReadOnlySpanExtension.cs/#L141"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从字节数组中以指定偏移量读取双精度浮点数。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static double ReadDouble(this ReadOnlySpan&lt;byte&gt; buffer, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>要从中读取数据的字节数组。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>读取数据的起始偏移量，此偏移量在读取后会自动增加。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>读取的双精度浮点数，若读取长度小于等于0或偏移量超出数组长度，返回0。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadFloat_" data-uid="GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadFloat*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadFloat_System_ReadOnlySpan_System_Byte__System_Int32__" data-uid="GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadFloat(System.ReadOnlySpan{System.Byte},System.Int32@)">
+  ReadFloat(ReadOnlySpan&lt;byte&gt;, ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Extensions/ReadOnlySpanExtension.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从字节数组中以指定偏移量读取单精度浮点数。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float ReadFloat(this ReadOnlySpan&lt;byte&gt; buffer, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>要从中读取数据的字节数组。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>读取数据的起始偏移量，此偏移量在读取后会自动增加。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>读取的单精度浮点数，若读取长度小于等于0或偏移量超出数组长度，返回0。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadInt_" data-uid="GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadInt*"></a>
 
   <h3 id="GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadInt_System_ReadOnlySpan_System_Byte__System_Int32__" data-uid="GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadInt(System.ReadOnlySpan{System.Byte},System.Int32@)">
   ReadInt(ReadOnlySpan&lt;byte&gt;, ref int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Extensions/ReadOnlySpanExtension.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Extensions/ReadOnlySpanExtension.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>从字节数组中以指定偏移量读取整型。</p>
@@ -198,7 +282,7 @@ Class ReadOnlySpanExtension  <a class="header-action link-secondary" title="View
 
   <h3 id="GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadLong_System_ReadOnlySpan_System_Byte__System_Int32__" data-uid="GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadLong(System.ReadOnlySpan{System.Byte},System.Int32@)">
   ReadLong(ReadOnlySpan&lt;byte&gt;, ref int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Extensions/ReadOnlySpanExtension.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Extensions/ReadOnlySpanExtension.cs/#L69"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>从字节数组中以指定偏移量读取长整型。</p>
@@ -236,11 +320,53 @@ Class ReadOnlySpanExtension  <a class="header-action link-secondary" title="View
 
 
 
+  <a id="GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadShort_" data-uid="GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadShort*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadShort_System_ReadOnlySpan_System_Byte__System_Int32__" data-uid="GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadShort(System.ReadOnlySpan{System.Byte},System.Int32@)">
+  ReadShort(ReadOnlySpan&lt;byte&gt;, ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Extensions/ReadOnlySpanExtension.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从字节数组中以指定偏移量读取短整型。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static short ReadShort(this ReadOnlySpan&lt;byte&gt; buffer, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>要从中读取数据的字节数组。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>读取数据的起始偏移量，此偏移量在读取后会自动增加。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
+    <dd><p>读取的短整型，若读取长度小于等于0或偏移量超出数组长度，返回0。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadUInt_" data-uid="GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadUInt*"></a>
 
   <h3 id="GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadUInt_System_ReadOnlySpan_System_Byte__System_Int32__" data-uid="GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadUInt(System.ReadOnlySpan{System.Byte},System.Int32@)">
   ReadUInt(ReadOnlySpan&lt;byte&gt;, ref int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Extensions/ReadOnlySpanExtension.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Extensions/ReadOnlySpanExtension.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>从字节数组中以指定偏移量读取无符号整型。</p>
@@ -282,7 +408,7 @@ Class ReadOnlySpanExtension  <a class="header-action link-secondary" title="View
 
   <h3 id="GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadULong_System_ReadOnlySpan_System_Byte__System_Int32__" data-uid="GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadULong(System.ReadOnlySpan{System.Byte},System.Int32@)">
   ReadULong(ReadOnlySpan&lt;byte&gt;, ref int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Extensions/ReadOnlySpanExtension.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Extensions/ReadOnlySpanExtension.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>从字节数组中以指定偏移量读取无符号长整型。</p>
@@ -320,11 +446,53 @@ Class ReadOnlySpanExtension  <a class="header-action link-secondary" title="View
 
 
 
+  <a id="GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadUShort_" data-uid="GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadUShort*"></a>
+
+  <h3 id="GameFrameX_Utility_Extensions_ReadOnlySpanExtension_ReadUShort_System_ReadOnlySpan_System_Byte__System_Int32__" data-uid="GameFrameX.Utility.Extensions.ReadOnlySpanExtension.ReadUShort(System.ReadOnlySpan{System.Byte},System.Int32@)">
+  ReadUShort(ReadOnlySpan&lt;byte&gt;, ref int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Extensions/ReadOnlySpanExtension.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从字节数组中以指定偏移量读取无符号短整型。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ushort ReadUShort(this ReadOnlySpan&lt;byte&gt; buffer, ref int offset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>要从中读取数据的字节数组。</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>读取数据的起始偏移量，此偏移量在读取后会自动增加。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd><p>读取的无符号短整型，若读取长度小于等于0或偏移量超出数组长度，返回0。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev7/GameFrameX.Utility/Extensions/ReadOnlySpanExtension.cs/#L7" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.4.2-dev8/GameFrameX.Utility/Extensions/ReadOnlySpanExtension.cs/#L7" class="edit-link">Edit this page</a>
         </div>
 
 
