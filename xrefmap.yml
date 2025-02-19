@@ -18151,6 +18151,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Log.LogHelper.Fatal
   nameWithType: LogHelper.Fatal
+- uid: GameFrameX.Utility.Log.LogHelper.FlushAndSave
+  name: FlushAndSave()
+  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_FlushAndSave
+  commentId: M:GameFrameX.Utility.Log.LogHelper.FlushAndSave
+  fullName: GameFrameX.Utility.Log.LogHelper.FlushAndSave()
+  nameWithType: LogHelper.FlushAndSave()
+- uid: GameFrameX.Utility.Log.LogHelper.FlushAndSave*
+  name: FlushAndSave
+  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_FlushAndSave_
+  commentId: Overload:GameFrameX.Utility.Log.LogHelper.FlushAndSave
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Log.LogHelper.FlushAndSave
+  nameWithType: LogHelper.FlushAndSave
 - uid: GameFrameX.Utility.Log.LogHelper.Info(System.Exception)
   name: Info(Exception)
   href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_Info_System_Exception_
