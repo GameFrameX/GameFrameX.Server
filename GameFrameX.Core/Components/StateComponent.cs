@@ -90,7 +90,7 @@ public sealed class StateComponent
 /// <typeparam name="TState"></typeparam>
 public abstract class StateComponent<TState> : BaseComponent, IState where TState : BaseCacheState, new()
 {
-    private static readonly ConcurrentDictionary<long, TState> StateDic = new();
+    private static readonly ConcurrentDictionary<long, TState> StateDic = new ConcurrentDictionary<long, TState>();
 
     static StateComponent()
     {
@@ -137,8 +137,11 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
             State = await GameDb.FindAsync<TState>(ActorId);
         }
 
-        StateDic.TryRemove(State.Id, out _);
-        StateDic.TryAdd(State.Id, State);
+        if (State.IsNotNull())
+        {
+            StateDic.TryRemove(State.Id, out _);
+            StateDic.TryAdd(State.Id, State);
+        }
     }
 
     /// <summary>
@@ -169,7 +172,10 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     {
         try
         {
-            await GameDb.UpdateAsync(State);
+            if (State.IsNotNull())
+            {
+                await GameDb.UpdateAsync(State);
+            }
         }
         catch (Exception e)
         {
@@ -181,9 +187,9 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     /// 更新状态
     /// </summary>
     /// <returns></returns>
-    public Task WriteStateAsync()
+    public async Task WriteStateAsync()
     {
-        return GameDb.UpdateAsync(State);
+        await SaveState();
     }
 
 
