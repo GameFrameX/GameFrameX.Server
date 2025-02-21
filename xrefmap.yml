@@ -2641,6 +2641,23 @@ references:
   fullName.vb: GameFrameX.Core.Components.StateComponent(Of TState).Active
   nameWithType: StateComponent<TState>.Active
   nameWithType.vb: StateComponent(Of TState).Active
+- uid: GameFrameX.Core.Components.StateComponent`1.ActiveReadStateAsync
+  name: ActiveReadStateAsync()
+  href: api/GameFrameX.Core.Components.StateComponent-1.html#GameFrameX_Core_Components_StateComponent_1_ActiveReadStateAsync
+  commentId: M:GameFrameX.Core.Components.StateComponent`1.ActiveReadStateAsync
+  fullName: GameFrameX.Core.Components.StateComponent<TState>.ActiveReadStateAsync()
+  fullName.vb: GameFrameX.Core.Components.StateComponent(Of TState).ActiveReadStateAsync()
+  nameWithType: StateComponent<TState>.ActiveReadStateAsync()
+  nameWithType.vb: StateComponent(Of TState).ActiveReadStateAsync()
+- uid: GameFrameX.Core.Components.StateComponent`1.ActiveReadStateAsync*
+  name: ActiveReadStateAsync
+  href: api/GameFrameX.Core.Components.StateComponent-1.html#GameFrameX_Core_Components_StateComponent_1_ActiveReadStateAsync_
+  commentId: Overload:GameFrameX.Core.Components.StateComponent`1.ActiveReadStateAsync
+  isSpec: "True"
+  fullName: GameFrameX.Core.Components.StateComponent<TState>.ActiveReadStateAsync
+  fullName.vb: GameFrameX.Core.Components.StateComponent(Of TState).ActiveReadStateAsync
+  nameWithType: StateComponent<TState>.ActiveReadStateAsync
+  nameWithType.vb: StateComponent(Of TState).ActiveReadStateAsync
 - uid: GameFrameX.Core.Components.StateComponent`1.Inactive
   name: Inactive()
   href: api/GameFrameX.Core.Components.StateComponent-1.html#GameFrameX_Core_Components_StateComponent_1_Inactive
