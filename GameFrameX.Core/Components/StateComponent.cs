@@ -120,7 +120,7 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     /// <summary>
     /// 是否创建默认数据
     /// </summary>
-    protected bool IsCreateDefaultState { get; } = true;
+    protected virtual bool IsCreateDefaultState { get; set; } = true;
 
     /// <summary>
     /// 准备状态
