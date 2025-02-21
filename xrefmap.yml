@@ -2675,6 +2675,23 @@ references:
   fullName.vb: GameFrameX.Core.Components.StateComponent(Of TState).Inactive
   nameWithType: StateComponent<TState>.Inactive
   nameWithType.vb: StateComponent(Of TState).Inactive
+- uid: GameFrameX.Core.Components.StateComponent`1.IsCreateDefaultState
+  name: IsCreateDefaultState
+  href: api/GameFrameX.Core.Components.StateComponent-1.html#GameFrameX_Core_Components_StateComponent_1_IsCreateDefaultState
+  commentId: P:GameFrameX.Core.Components.StateComponent`1.IsCreateDefaultState
+  fullName: GameFrameX.Core.Components.StateComponent<TState>.IsCreateDefaultState
+  fullName.vb: GameFrameX.Core.Components.StateComponent(Of TState).IsCreateDefaultState
+  nameWithType: StateComponent<TState>.IsCreateDefaultState
+  nameWithType.vb: StateComponent(Of TState).IsCreateDefaultState
+- uid: GameFrameX.Core.Components.StateComponent`1.IsCreateDefaultState*
+  name: IsCreateDefaultState
+  href: api/GameFrameX.Core.Components.StateComponent-1.html#GameFrameX_Core_Components_StateComponent_1_IsCreateDefaultState_
+  commentId: Overload:GameFrameX.Core.Components.StateComponent`1.IsCreateDefaultState
+  isSpec: "True"
+  fullName: GameFrameX.Core.Components.StateComponent<TState>.IsCreateDefaultState
+  fullName.vb: GameFrameX.Core.Components.StateComponent(Of TState).IsCreateDefaultState
+  nameWithType: StateComponent<TState>.IsCreateDefaultState
+  nameWithType.vb: StateComponent(Of TState).IsCreateDefaultState
 - uid: GameFrameX.Core.Components.StateComponent`1.ReadStateAsync
   name: ReadStateAsync()
   href: api/GameFrameX.Core.Components.StateComponent-1.html#GameFrameX_Core_Components_StateComponent_1_ReadStateAsync
@@ -18337,6 +18354,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Log.LogOptions.LogSavePath
   nameWithType: LogOptions.LogSavePath
+- uid: GameFrameX.Utility.Log.LogOptions.RetainedFileCountLimit
+  name: RetainedFileCountLimit
+  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_RetainedFileCountLimit
+  commentId: P:GameFrameX.Utility.Log.LogOptions.RetainedFileCountLimit
+  fullName: GameFrameX.Utility.Log.LogOptions.RetainedFileCountLimit
+  nameWithType: LogOptions.RetainedFileCountLimit
+- uid: GameFrameX.Utility.Log.LogOptions.RetainedFileCountLimit*
+  name: RetainedFileCountLimit
+  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_RetainedFileCountLimit_
+  commentId: Overload:GameFrameX.Utility.Log.LogOptions.RetainedFileCountLimit
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Log.LogOptions.RetainedFileCountLimit
+  nameWithType: LogOptions.RetainedFileCountLimit
 - uid: GameFrameX.Utility.Log.LogOptions.RollingInterval
   name: RollingInterval
   href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_RollingInterval
