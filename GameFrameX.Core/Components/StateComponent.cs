@@ -118,6 +118,11 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     }
 
     /// <summary>
+    /// 是否创建默认数据
+    /// </summary>
+    protected bool IsCreateDefaultState { get; } = true;
+
+    /// <summary>
     /// 准备状态
     /// </summary>
     /// <returns></returns>
@@ -134,7 +139,7 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
 
         if (State.IsNull())
         {
-            State = await GameDb.FindAsync<TState>(ActorId);
+            State = await GameDb.FindAsync<TState>(ActorId, default, IsCreateDefaultState);
         }
 
         if (State.IsNotNull())
