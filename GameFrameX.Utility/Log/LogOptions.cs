@@ -51,6 +51,12 @@ public sealed class LogOptions
     public int FileSizeLimitBytes { get; set; } = 10 * 1024 * 1024;
 
     /// <summary>
+    /// 日志文件保留数量限制 默认为 31 个文件,即 31 天的日志文件
+    /// 当 设置值为 null 时不限制文件数量
+    /// </summary>
+    public int? RetainedFileCountLimit { get; set; } = 31;
+
+    /// <summary>
     /// 返回日志配置对象的 JSON 字符串表示形式。
     /// </summary>
     /// <returns>JSON 字符串表示形式。</returns>

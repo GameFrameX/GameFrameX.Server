@@ -36,7 +36,7 @@ public static class LoggerHandler
                          .Enrich.FromLogContext()
                          .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                          .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
-                         .WriteTo.File(logPath, rollingInterval: logOptions.RollingInterval, rollOnFileSizeLimit: logOptions.IsFileSizeLimit, fileSizeLimitBytes: logOptions.FileSizeLimitBytes);
+                         .WriteTo.File(logPath, rollingInterval: logOptions.RollingInterval, rollOnFileSizeLimit: logOptions.IsFileSizeLimit, fileSizeLimitBytes: logOptions.FileSizeLimitBytes, retainedFileCountLimit: logOptions.RetainedFileCountLimit);
 
             switch (logOptions.LogEventLevel)
             {
