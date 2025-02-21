@@ -112,9 +112,9 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     /// 激活状态的时候异步读取数据
     /// </summary>
     /// <returns>返回查询的数据结果对象，没有数据返回null</returns>
-    protected virtual async Task ActiveReadStateAsync()
+    protected virtual Task<TState> ActiveReadStateAsync()
     {
-        await Task.CompletedTask;
+        return Task.FromResult<TState>(null);
     }
 
     /// <summary>
@@ -130,7 +130,7 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     {
         try
         {
-            await ActiveReadStateAsync();
+            State = await ActiveReadStateAsync();
         }
         catch (Exception e)
         {
