@@ -109,12 +109,25 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     }
 
     /// <summary>
+    /// 激活状态的时候异步读取数据
+    /// </summary>
+    /// <returns>返回查询的数据结果对象，没有数据返回null</returns>
+    protected virtual Task<TState> ActiveReadStateAsync()
+    {
+        return null;
+    }
+
+    /// <summary>
     /// 准备状态
     /// </summary>
     /// <returns></returns>
     public async Task ReadStateAsync()
     {
-        State = await GameDb.FindAsync<TState>(ActorId);
+        State = await ActiveReadStateAsync();
+        if (State.IsNull())
+        {
+            State = await GameDb.FindAsync<TState>(ActorId);
+        }
 
         StateDic.TryRemove(State.Id, out _);
         StateDic.TryAdd(State.Id, State);
