@@ -48,7 +48,7 @@
         </None>
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="GameFrameX.SuperSocket.Server.Abstractions" Version="1.0.3" />
+      <PackageReference Include="GameFrameX.SuperSocket.Server.Abstractions" Version="1.1.0" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
