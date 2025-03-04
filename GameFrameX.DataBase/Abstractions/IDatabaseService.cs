@@ -12,7 +12,7 @@ public interface IDatabaseService
     /// </summary>
     /// <param name="url">链接地址</param>
     /// <param name="dbName">数据库名称</param>
-    void Open(string url, string dbName);
+    Task Open(string url, string dbName);
 
     /// <summary>
     /// 关闭数据库连接
