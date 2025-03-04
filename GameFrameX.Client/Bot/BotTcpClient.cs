@@ -141,7 +141,7 @@ public sealed class BotTcpClient
     /// <summary>
     /// 处理客户端错误事件
     /// </summary>
-    private void OnMTcpClientOnError(object? client, ErrorEventArgs e)
+    private void OnMTcpClientOnError(object client, ErrorEventArgs e)
     {
         LogHelper.Info("客户端发生错误:" + e.Exception.Message);
         m_BotTcpClientEvent.OnErrorCallback(e);
@@ -150,7 +150,7 @@ public sealed class BotTcpClient
     /// <summary>
     /// 处理客户端连接关闭事件
     /// </summary>
-    private void OnMTcpClientOnClosed(object? client, EventArgs e)
+    private void OnMTcpClientOnClosed(object client, EventArgs e)
     {
         LogHelper.Info("客户端断开连接");
         m_BotTcpClientEvent.OnClosedCallback();
@@ -159,7 +159,7 @@ public sealed class BotTcpClient
     /// <summary>
     /// 处理客户端连接成功事件
     /// </summary>
-    private void OnMTcpClientOnConnected(object? client, EventArgs e)
+    private void OnMTcpClientOnConnected(object client, EventArgs e)
     {
         LogHelper.Info("客户端成功连接到服务器");
         m_BotTcpClientEvent.OnConnectedCallback();
@@ -168,7 +168,7 @@ public sealed class BotTcpClient
     /// <summary>
     /// 处理接收到数据事件
     /// </summary>
-    private void OnMTcpClientOnDataReceived(object? client, DataEventArgs e)
+    private void OnMTcpClientOnDataReceived(object client, DataEventArgs e)
     {
         DecodeMessage(e.Data.ReadBytes(e.Offset, e.Length));
     }
