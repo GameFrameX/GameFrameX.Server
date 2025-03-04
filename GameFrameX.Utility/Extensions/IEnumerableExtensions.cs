@@ -48,20 +48,9 @@ public static class IEnumerableExtensions
     /// <returns>返回两个集合中具有相同键的交集元素</returns>
     public static IEnumerable<TSource> IntersectBy<TSource, TKey>(this IEnumerable<TSource> first, IEnumerable<TSource> second, Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer)
     {
-        if (first == null)
-        {
-            throw new ArgumentNullException(nameof(first));
-        }
-
-        if (second == null)
-        {
-            throw new ArgumentNullException(nameof(second));
-        }
-
-        if (keySelector == null)
-        {
-            throw new ArgumentNullException(nameof(keySelector));
-        }
+        ArgumentNullException.ThrowIfNull(first, nameof(first));
+        ArgumentNullException.ThrowIfNull(second, nameof(second));
+        ArgumentNullException.ThrowIfNull(keySelector, nameof(keySelector));
 
         return IntersectByIterator(first, second, keySelector, comparer);
     }
@@ -149,15 +138,8 @@ public static class IEnumerableExtensions
     /// <returns>返回去重后的集合</returns>
     public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
     {
-        if (source == null)
-        {
-            throw new ArgumentNullException(nameof(source));
-        }
-
-        if (keySelector == null)
-        {
-            throw new ArgumentNullException(nameof(keySelector));
-        }
+        ArgumentNullException.ThrowIfNull(source, nameof(source));
+        ArgumentNullException.ThrowIfNull(keySelector, nameof(keySelector));
 
         var set = new HashSet<TKey>();
         return source.Where(item => set.Add(keySelector(item)));
@@ -189,20 +171,9 @@ public static class IEnumerableExtensions
     /// <returns>返回两个集合中具有相同键的交集元素</returns>
     public static IEnumerable<TSource> IntersectBy<TSource, TKey>(this IEnumerable<TSource> first, IEnumerable<TKey> second, Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer)
     {
-        if (first == null)
-        {
-            throw new ArgumentNullException(nameof(first));
-        }
-
-        if (second == null)
-        {
-            throw new ArgumentNullException(nameof(second));
-        }
-
-        if (keySelector == null)
-        {
-            throw new ArgumentNullException(nameof(keySelector));
-        }
+        ArgumentNullException.ThrowIfNull(first, nameof(first));
+        ArgumentNullException.ThrowIfNull(second, nameof(second));
+        ArgumentNullException.ThrowIfNull(keySelector, nameof(keySelector));
 
         return IntersectByIterator(first, second, keySelector, comparer);
     }
@@ -240,20 +211,9 @@ public static class IEnumerableExtensions
     /// <exception cref="ArgumentNullException">如果 first、second 或 keySelector 为 null，则抛出此异常</exception>
     public static IEnumerable<TSource> ExceptBy<TSource, TKey>(this IEnumerable<TSource> first, IEnumerable<TKey> second, Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer)
     {
-        if (first == null)
-        {
-            throw new ArgumentNullException(nameof(first));
-        }
-
-        if (second == null)
-        {
-            throw new ArgumentNullException(nameof(second));
-        }
-
-        if (keySelector == null)
-        {
-            throw new ArgumentNullException(nameof(keySelector));
-        }
+        ArgumentNullException.ThrowIfNull(first, nameof(first));
+        ArgumentNullException.ThrowIfNull(second, nameof(second));
+        ArgumentNullException.ThrowIfNull(keySelector, nameof(keySelector));
 
         return ExceptByIterator(first, second, keySelector, comparer);
     }
@@ -1135,11 +1095,7 @@ public static class IEnumerableExtensions
     /// <returns>操作后的集合。</returns>
     public static IList<T> ChangeIndex<T>(this IList<T> list, T item, int index)
     {
-        if (item is null)
-        {
-            throw new ArgumentNullException(nameof(item));
-        }
-
+        ArgumentNullException.ThrowIfNull(item, nameof(item));
         ChangeIndexInternal(list, item, index);
         return list;
     }

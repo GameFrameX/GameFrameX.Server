@@ -79,6 +79,7 @@ public abstract partial class AppStartUpBase : IAppStartUp
         LogHelper.ErrorConsole($"服务器类型:{Setting.ServerType} 停止! 终止原因：{message}  配置信息: {Setting.ToFormatString()}");
         StopServer();
         AppExitSource?.TrySetResult(message);
+        LogHelper.FlushAndSave();
         await Task.CompletedTask;
     }
 

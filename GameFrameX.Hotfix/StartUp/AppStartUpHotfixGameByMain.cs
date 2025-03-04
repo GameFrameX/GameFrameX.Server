@@ -1,7 +1,6 @@
 ﻿using GameFrameX.Apps.Common.Session;
 using GameFrameX.Config;
 using GameFrameX.NetWork;
-using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Message;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.SuperSocket.Connection;
@@ -21,13 +20,13 @@ internal partial class AppStartUpHotfixGame
         // 设置压缩和解压缩
         await StartServerAsync<ClientMessageDecoderHandler, ClientMessageEncoderHandler>(new DefaultMessageCompressHandler(), new DefaultMessageDecompressHandler());
         // 启动Http服务
-        await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetListHttpHandler(), HotfixManager.GetHttpHandler);
+        await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetListHttpHandler(), HotfixManager.GetHttpHandler, null, Setting.HttpUrl);
     }
 
-    public async void RunServer(bool reload = false)
+    public async Task RunServer(bool reload = false)
     {
         // 不管是不是重启服务器，都要加载配置
-        ConfigComponent.Instance.LoadConfig();
+        await ConfigComponent.Instance.LoadConfig();
         if (reload)
         {
             ActorManager.ClearAgent();
@@ -45,14 +44,21 @@ internal partial class AppStartUpHotfixGame
         return ValueTask.CompletedTask;
     }
 
-    protected override ValueTask OnConnected(IAppSession appSession)
+    protected override async ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
         var netChannel = new DefaultNetWorkChannel(appSession, Setting, MessageEncoderHandler, null, appSession is WebSocketSession);
+        var count = SessionManager.Count();
+        if (count > Setting.MaxClientCount)
+        {
+            // 达到最大在线人数限制
+            await netChannel.WriteAsync(new NotifyServerFullyLoaded(), (int)OperationStatusCode.ServerFullyLoaded);
+            netChannel.Close();
+            return;
+        }
+
         var session = new Session(appSession.SessionID, netChannel);
         SessionManager.Add(session);
-
-        return ValueTask.CompletedTask;
     }
 
     /// <summary>
@@ -64,39 +70,34 @@ internal partial class AppStartUpHotfixGame
     {
         if (message is OuterNetworkMessage outerNetworkMessage)
         {
-            if (Setting.IsDebug && Setting.IsDebugReceive)
-            {
-                LogHelper.Debug($"---收到{outerNetworkMessage.ToFormatMessageString()}");
-            }
-
             var netWorkChannel = SessionManager.GetChannel(appSession.SessionID);
             if (outerNetworkMessage.Header.OperationType == MessageOperationType.HeartBeat)
             {
-                // LogHelper.Info("收到心跳请求:" + req.Timestamp);
+                if (Setting.IsDebug && Setting.IsDebugReceive && Setting.IsDebugReceiveHeartBeat)
+                {
+                    LogHelper.Debug($"---收到{outerNetworkMessage.ToFormatMessageString()}");
+                }
+
+                // 心跳消息回复
                 ReplyHeartBeat(netWorkChannel, (MessageObject)outerNetworkMessage.DeserializeMessageObject());
-                // 心跳消息
-                await ValueTask.CompletedTask;
                 return;
+            }
+
+            if (Setting.IsDebug && Setting.IsDebugReceive)
+            {
+                LogHelper.Debug($"---收到{outerNetworkMessage.ToFormatMessageString()}");
             }
 
             var handler = HotfixManager.GetTcpHandler(outerNetworkMessage.Header.MessageId);
             if (handler == null)
             {
                 LogHelper.Error($"找不到[{outerNetworkMessage.Header.MessageId}][{message.GetType()}]对应的handler");
-                await ValueTask.CompletedTask;
                 return;
             }
 
-            async void InvokeAction()
-            {
-                await handler.Init(outerNetworkMessage.DeserializeMessageObject(), netWorkChannel);
-                await handler.InnerAction();
-            }
-
-            await Task.Run(InvokeAction);
+            // 执行消息分发处理
+            await InvokeMessageHandler(handler, outerNetworkMessage.DeserializeMessageObject(), netWorkChannel);
         }
-
-        await ValueTask.CompletedTask;
     }
 
     public override async Task StopAsync(string message = "")

@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+using GameFrameX.Utility.Extensions;
 
 namespace GameFrameX.StartUp.Options;
 
@@ -17,25 +18,37 @@ public sealed class LauncherOptions
     /// APM监控端口
     /// </summary>
     [Option(nameof(APMPort), HelpText = "APM监控端口")]
-    public int APMPort { get; set; }
+    public ushort APMPort { get; set; }
 
     /// <summary>
-    /// 是否是Debug 模式
+    /// 是否是Debug打印日志模式,默认值为false
     /// </summary>
-    [Option(nameof(IsDebug), HelpText = "是否是Debug 模式")]
+    [Option(nameof(IsDebug), Default = false, HelpText = "是否是Debug打印日志模式,默认值为false")]
     public bool IsDebug { get; set; }
 
     /// <summary>
-    /// 是否打印发送数据
+    /// 是否打印发送数据,只有在IsDebug为true时有效,默认值为false
     /// </summary>
-    [Option(nameof(IsDebugSend), HelpText = "是否打印发送数据")]
+    [Option(nameof(IsDebugSend), Default = false, HelpText = "是否打印发送数据,只有在IsDebug为true时有效,默认值为false")]
     public bool IsDebugSend { get; set; }
 
     /// <summary>
-    /// 是否打印接收数据
+    /// 是否打印发送的心跳数据,只有在IsDebugSend为true时有效,默认值为false
     /// </summary>
-    [Option(nameof(IsDebugReceive), HelpText = "是否打印接收数据")]
+    [Option(nameof(IsDebugSendHeartBeat), Default = false, HelpText = "是否打印发送的心跳数据,只有在IsDebugSend为true时有效,默认值为false")]
+    public bool IsDebugSendHeartBeat { get; set; }
+
+    /// <summary>
+    /// 是否打印接收数据,只有在IsDebug为true时有效,默认值为false
+    /// </summary>
+    [Option(nameof(IsDebugReceive), Default = false, HelpText = "是否打印接收数据,只有在IsDebug为true时有效,默认值为false")]
     public bool IsDebugReceive { get; set; }
+
+    /// <summary>
+    /// 是否打印接收的心跳数据,只有在IsDebugReceive为true时有效,默认值为false
+    /// </summary>
+    [Option(nameof(IsDebugReceiveHeartBeat), Default = false, HelpText = "是否打印接收的心跳数据,只有在IsDebugReceive为true时有效,默认值为false")]
+    public bool IsDebugReceiveHeartBeat { get; set; }
 
     /// <summary>
     /// 服务器ID
@@ -74,12 +87,6 @@ public sealed class LauncherOptions
     public ushort OuterPort { get; set; }
 
     /// <summary>
-    /// HTTP 响应码
-    /// </summary>
-    [Option(nameof(HttpCode), HelpText = "HTTP 响应码")]
-    public string HttpCode { get; set; }
-
-    /// <summary>
     /// Http 地址
     /// </summary>
     [Option(nameof(HttpUrl), HelpText = "Http 地址")]
@@ -89,19 +96,19 @@ public sealed class LauncherOptions
     /// HTTP 端口
     /// </summary>
     [Option(nameof(HttpPort), HelpText = "HTTP 端口")]
-    public int HttpPort { get; set; }
+    public ushort HttpPort { get; set; }
 
     /// <summary>
     /// HTTPS 端口
     /// </summary>
     [Option(nameof(HttpsPort), HelpText = "HTTPS 端口")]
-    public int HttpsPort { get; set; }
+    public ushort HttpsPort { get; set; }
 
     /// <summary>
     /// WebSocket 端口
     /// </summary>
     [Option(nameof(WsPort), HelpText = "WebSocket 端口")]
-    public int WsPort { get; set; }
+    public ushort WsPort { get; set; }
 
     /// <summary>
     /// 游戏逻辑服务器的处理最小模块ID
@@ -119,7 +126,7 @@ public sealed class LauncherOptions
     /// WebSocket 加密端口
     /// </summary>
     [Option(nameof(WssPort), HelpText = "WebSocket 加密端口")]
-    public int WssPort { get; set; }
+    public ushort WssPort { get; set; }
 
     /// <summary>
     /// Wss 使用的证书路径
@@ -252,26 +259,25 @@ public sealed class LauncherOptions
     }
 
     /// <summary>
-    /// 检查HttpCode
-    /// </summary>
-    /// <exception cref="ArgumentNullException"></exception>
-    public void CheckHttpCode()
-    {
-        if (string.IsNullOrWhiteSpace(HttpCode))
-        {
-            throw new ArgumentNullException(nameof(HttpCode), "HTTP 响应码不能为空");
-        }
-    }
-
-    /// <summary>
     /// 检查HttpUrl
     /// </summary>
     /// <exception cref="ArgumentNullException"></exception>
     public void CheckHttpUrl()
     {
-        if (string.IsNullOrWhiteSpace(HttpUrl))
+        if (HttpUrl.IsNullOrEmptyOrWhiteSpace())
         {
             throw new ArgumentNullException(nameof(HttpUrl), "Http 地址不能为空");
+        }
+
+        // 根路径必须以/开头和以/结尾
+        if (!HttpUrl.StartsWith('/'))
+        {
+            throw new ArgumentException(nameof(HttpUrl), $"Http 地址必须以/开头");
+        }
+
+        if (!HttpUrl.EndsWith('/'))
+        {
+            throw new ArgumentException(nameof(HttpUrl), $"Http 地址必须以/结尾");
         }
     }
 

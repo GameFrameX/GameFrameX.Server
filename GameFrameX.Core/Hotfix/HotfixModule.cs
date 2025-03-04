@@ -125,8 +125,6 @@ internal sealed class HotfixModule
 
             ParseDll();
 
-            File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "dllPath.txt"), _dllPath);
-
             LogHelper.Info($"热更DLL初始化成功: {_dllPath}");
             success = true;
         }

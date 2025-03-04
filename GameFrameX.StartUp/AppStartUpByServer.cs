@@ -1,3 +1,4 @@
+using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Message;
 using GameFrameX.StartUp.Abstractions;
@@ -132,6 +133,24 @@ public abstract partial class AppStartUpBase : IAppStartUp
 
         return ValueTask.CompletedTask;
     }
+
+    /// <summary>
+    /// 消息处理
+    /// </summary>
+    /// <param name="handler"></param>
+    /// <param name="message"></param>
+    /// <param name="netWorkChannel"></param>
+    protected async Task InvokeMessageHandler(IMessageHandler handler, INetworkMessage message, INetWorkChannel netWorkChannel)
+    {
+        async void InvokeAction()
+        {
+            await handler.Init(message, netWorkChannel);
+            await handler.InnerAction();
+        }
+
+        await Task.Run(InvokeAction);
+    }
+
 
     #region TCP Server
 

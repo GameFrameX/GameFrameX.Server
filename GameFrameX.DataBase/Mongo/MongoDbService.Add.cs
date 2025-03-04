@@ -31,7 +31,7 @@ public sealed partial class MongoDbService
     /// <param name="state"></param>
     /// <typeparam name="TState"></typeparam>
     /// <returns>返回修改的条数</returns>
-    public async Task AddAsync<TState>(TState state) where TState : BaseCacheState
+    public async Task AddAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
         state.CreateTime = TimeHelper.UnixTimeMilliseconds();
         state.UpdateTime = state.CreateTime;
@@ -43,7 +43,7 @@ public sealed partial class MongoDbService
     /// </summary>
     /// <param name="states"></param>
     /// <typeparam name="TState"></typeparam>
-    public async Task AddListAsync<TState>(IEnumerable<TState> states) where TState : BaseCacheState
+    public async Task AddListAsync<TState>(IEnumerable<TState> states) where TState : BaseCacheState, new()
     {
         var cacheStates = states.ToList();
         foreach (var cacheState in cacheStates)

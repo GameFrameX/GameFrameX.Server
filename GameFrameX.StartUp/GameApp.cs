@@ -10,6 +10,7 @@ using GameFrameX.Utility;
 using GameFrameX.Utility.Extensions;
 using GameFrameX.Utility.Log;
 using GameFrameX.Utility.Setting;
+using Mapster;
 
 namespace GameFrameX.StartUp;
 
@@ -100,38 +101,7 @@ public static class GameApp
                 else
                 {
                     LogHelper.WarnConsole($"没有找到对应的服务器类型的启动配置,将以默认配置启动=>{startKv.Value.ServerType}");
-                    appSetting = new AppSetting
-                    {
-                        ServerId = launcherOptions.ServerId,
-                        ServerType = serverTypeValue,
-                        APMPort = launcherOptions.APMPort,
-                        IsDebug = launcherOptions.IsDebug,
-                        IsDebugSend = launcherOptions.IsDebugSend,
-                        IsDebugReceive = launcherOptions.IsDebugReceive,
-                        Language = launcherOptions.Language,
-                        DataCenter = launcherOptions.DataCenter,
-                        DiscoveryCenterIp = launcherOptions.DiscoveryCenterIp,
-                        DiscoveryCenterPort = launcherOptions.DiscoveryCenterPort,
-                        DBIp = launcherOptions.DBIp,
-                        DBPort = launcherOptions.DBPort,
-                        SaveDataInterval = launcherOptions.SaveDataInterval,
-                        HttpCode = launcherOptions.HttpCode,
-                        HttpPort = launcherOptions.HttpPort,
-                        HttpsPort = launcherOptions.HttpsPort,
-                        HttpUrl = launcherOptions.HttpUrl,
-                        InnerIp = launcherOptions.InnerIp,
-                        InnerPort = launcherOptions.InnerPort,
-                        OuterIp = launcherOptions.OuterIp,
-                        OuterPort = launcherOptions.OuterPort,
-                        WsPort = launcherOptions.WsPort,
-                        WssPort = launcherOptions.WssPort,
-                        WssCertFilePath = launcherOptions.WssCertFilePath,
-                        DataBaseUrl = launcherOptions.DataBaseUrl,
-                        DataBaseName = launcherOptions.DataBaseName,
-                        MinModuleId = launcherOptions.MinModuleId,
-                        MaxModuleId = launcherOptions.MaxModuleId,
-                        TagName = launcherOptions.TagName,
-                    };
+                    appSetting = launcherOptions.Adapt<AppSetting>();
                 }
 
                 Launcher(args, startKv, appSetting);
@@ -172,14 +142,10 @@ public static class GameApp
     {
         if (!options.ServerType.IsNullOrEmpty() && Enum.TryParse(options.ServerType, out ServerType serverTypeValue))
         {
-            // options.CheckAPMPort();
-
             options.CheckServerId();
 
             switch (serverTypeValue)
             {
-                case ServerType.Log:
-                    break;
                 case ServerType.DataBase:
                 {
                     options.CheckDataBaseUrl();
@@ -191,15 +157,11 @@ public static class GameApp
                     options.CheckOuterPort();
                 }
                     break;
-                case ServerType.Cache:
-                    break;
                 case ServerType.Gateway:
                 {
                     options.CheckOuterIp();
                     options.CheckOuterPort();
                 }
-                    break;
-                case ServerType.Account:
                     break;
                 case ServerType.Router:
                 {
@@ -216,10 +178,6 @@ public static class GameApp
                     options.CheckOuterPort();
                 }
                     break;
-                case ServerType.Backup:
-                    break;
-                case ServerType.Login:
-                    break;
                 case ServerType.Game:
                 {
                     // options.CheckMinModuleId();
@@ -231,20 +189,6 @@ public static class GameApp
                     options.CheckDataBaseUrl();
                     options.CheckDataBaseName();
                 }
-                    break;
-                case ServerType.Recharge:
-                    break;
-                case ServerType.Logic:
-                    break;
-                case ServerType.Chat:
-                    break;
-                case ServerType.Mail:
-                    break;
-                case ServerType.Guild:
-                    break;
-                case ServerType.Room:
-                    break;
-                case ServerType.All:
                     break;
             }
         }

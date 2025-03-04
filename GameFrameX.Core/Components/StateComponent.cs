@@ -90,7 +90,7 @@ public sealed class StateComponent
 /// <typeparam name="TState"></typeparam>
 public abstract class StateComponent<TState> : BaseComponent, IState where TState : BaseCacheState, new()
 {
-    private static readonly ConcurrentDictionary<long, TState> StateDic = new();
+    private static readonly ConcurrentDictionary<long, TState> StateDic = new ConcurrentDictionary<long, TState>();
 
     static StateComponent()
     {
@@ -109,15 +109,44 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     }
 
     /// <summary>
+    /// 激活状态的时候异步读取数据
+    /// </summary>
+    /// <returns>返回查询的数据结果对象，没有数据返回null</returns>
+    protected virtual Task<TState> ActiveReadStateAsync()
+    {
+        return Task.FromResult<TState>(null);
+    }
+
+    /// <summary>
+    /// 是否创建默认数据
+    /// </summary>
+    protected virtual bool IsCreateDefaultState { get; set; } = true;
+
+    /// <summary>
     /// 准备状态
     /// </summary>
     /// <returns></returns>
     public async Task ReadStateAsync()
     {
-        State = await GameDb.FindAsync<TState>(ActorId);
+        try
+        {
+            State = await ActiveReadStateAsync();
+        }
+        catch (Exception e)
+        {
+            LogHelper.Error(e);
+        }
 
-        StateDic.TryRemove(State.Id, out _);
-        StateDic.TryAdd(State.Id, State);
+        if (State.IsNull())
+        {
+            State = await GameDb.FindAsync<TState>(ActorId, default, IsCreateDefaultState);
+        }
+
+        if (State.IsNotNull())
+        {
+            StateDic.TryRemove(State.Id, out _);
+            StateDic.TryAdd(State.Id, State);
+        }
     }
 
     /// <summary>
@@ -148,7 +177,10 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     {
         try
         {
-            await GameDb.UpdateAsync(State);
+            if (State.IsNotNull())
+            {
+                await GameDb.UpdateAsync(State);
+            }
         }
         catch (Exception e)
         {
@@ -160,9 +192,9 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     /// 更新状态
     /// </summary>
     /// <returns></returns>
-    public Task WriteStateAsync()
+    public async Task WriteStateAsync()
     {
-        return GameDb.UpdateAsync(State);
+        await SaveState();
     }
 
 

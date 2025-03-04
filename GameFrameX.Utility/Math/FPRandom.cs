@@ -1,40 +1,49 @@
 ﻿namespace GameFrameX.Utility.Math;
 
-/**
- * @brief Generates random numbers based on a deterministic approach.
- */
+/// <summary>
+/// 生成基于确定性方法的随机数。
+/// </summary>
 public sealed class FPRandom
 {
-    // From http://www.codeproject.com/Articles/164087/Random-Number-Generation
-    // Class TSRandom generates random numbers
-    // from a uniform distribution using the Mersenne
-    // Twister algorithm.
-    private const int N = 624;
-    private const int M = 397;
-    private const uint MATRIX_A = 0x9908b0dfU;
-    private const uint UPPER_MASK = 0x80000000U;
-    private const uint LOWER_MASK = 0x7fffffffU;
-    private const int MAX_RAND_INT = 0x7fffffff;
+    // 来源：http://www.codeproject.com/Articles/164087/Random-Number-Generation
+    // TSRandom 类使用梅森旋转算法生成均匀分布的随机数。
+    private const int N = 624; // 状态向量的大小
+    private const int M = 397; // 子向量的大小
+    private const uint MATRIX_A = 0x9908b0dfU; // 变换矩阵的常量
+    private const uint UPPER_MASK = 0x80000000U; // 上半部分掩码
+    private const uint LOWER_MASK = 0x7fffffffU; // 下半部分掩码
+    private const int MAX_RAND_INT = 0x7fffffff; // 最大随机整数值
 
-    /**
-     * @brief Static instance of {@link TSRandom} with seed 1.
-     */
+    /// <summary>
+    /// 使用种子 1 的 {@link TSRandom} 的静态实例。
+    /// </summary>
     public static FPRandom instance;
 
-    private readonly uint[] mag01 = { 0x0U, MATRIX_A, };
-    private readonly uint[] mt = new uint[N];
-    private int mti = N + 1;
+    private readonly uint[] mag01 = { 0x0U, MATRIX_A, }; // 变换矩阵
+    private readonly uint[] mt = new uint[N]; // 梅森旋转状态向量
+    private int mti = N + 1; // 当前状态向量索引
 
+    /// <summary>
+    /// 初始化一个新的实例，使用当前时间的毫秒数作为种子。
+    /// </summary>
     private FPRandom()
     {
         init_genrand((uint)DateTime.Now.Millisecond);
     }
 
+    /// <summary>
+    /// 使用指定的种子初始化一个新的实例。
+    /// </summary>
+    /// <param name="seed">用于初始化的种子。</param>
     private FPRandom(int seed)
     {
         init_genrand((uint)seed);
     }
 
+    /// <summary>
+    /// 使用指定的初始化数组初始化一个新的实例。
+    /// </summary>
+    /// <param name="init">初始化数组。</param>
     private FPRandom(int[] init)
     {
         var initArray = new uint[init.Length];
@@ -46,22 +55,25 @@ public sealed class FPRandom
         init_by_array(initArray, (uint)initArray.Length);
     }
 
+    /// <summary>
+    /// 获取最大随机整数值。
+    /// </summary>
     public static int MaxRandomInt
     {
         get { return 0x7fffffff; }
     }
 
-    /**
-     * @brief Returns a {@link FP} between 0.0 [inclusive] and 1.0 [inclusive].
-     */
+    /// <summary>
+    /// 返回一个 {@link FP} 值，范围在 0.0 [包含] 到 1.0 [包含] 之间。
+    /// </summary>
     public static FP value
     {
         get { return instance.NextFP(); }
     }
 
-    /**
-     * @brief Returns a random {@link TSVector} representing a point inside a sphere with radius 1.
-     */
+    /// <summary>
+    /// 返回一个随机的 {@link TSVector}，表示半径为 1 的球体内的一个点。
+    /// </summary>
     public static FPVector3 insideUnitSphere
     {
         get { return new FPVector3(value, value, value); }
@@ -72,9 +84,11 @@ public sealed class FPRandom
         instance = New(1);
     }
 
-    /**
-     * @brief Generates a new instance based on a given seed.
-     */
+    /// <summary>
+    /// 根据给定的种子生成一个新的实例。
+    /// </summary>
+    /// <param name="seed">用于生成新实例的种子。</param>
+    /// <returns>新的 FPRandom 实例。</returns>
     public static FPRandom New(int seed)
     {
         var r = new FPRandom(seed);
@@ -85,25 +99,30 @@ public sealed class FPRandom
         return r;
     }
 
-    /**
-     * @brief Returns a random integer.
-     */
+    /// <summary>
+    /// 返回一个随机整数。
+    /// </summary>
+    /// <returns>生成的随机整数。</returns>
     public int Next()
     {
         return genrand_int31();
     }
 
-    /**
-     * @brief Returns a random integer.
-     */
+    /// <summary>
+    /// 返回一个随机整数。
+    /// </summary>
+    /// <returns>生成的随机整数。</returns>
     public static int CallNext()
     {
         return instance.Next();
     }
 
-    /**
-     * @brief Returns a integer between a min value [inclusive] and a max value [exclusive].
-     */
+    /// <summary>
+    /// 返回一个介于 minValue [包含] 和 maxValue [不包含] 之间的整数。
+    /// </summary>
+    /// <param name="minValue">最小值。</param>
+    /// <param name="maxValue">最大值。</param>
+    /// <returns>生成的随机整数。</returns>
     public int Next(int minValue, int maxValue)
     {
         if (minValue > maxValue)
@@ -116,9 +135,12 @@ public sealed class FPRandom
         return minValue + Next() % range;
     }
 
-    /**
-     * @brief Returns a {@link FP} between a min value [inclusive] and a max value [inclusive].
-     */
+    /// <summary>
+    /// 返回一个 {@link FP} 值，范围在 minValue [包含] 到 maxValue [包含] 之间。
+    /// </summary>
+    /// <param name="minValue">最小值。</param>
+    /// <param name="maxValue">最大值。</param>
+    /// <returns>生成的随机 FP 值。</returns>
     public FP Next(float minValue, float maxValue)
     {
         int minValueInt = (int)(minValue * 1000), maxValueInt = (int)(maxValue * 1000);
@@ -132,25 +154,32 @@ public sealed class FPRandom
                         minValueInt) / 1000;
     }
 
-    /**
-     * @brief Returns a integer between a min value [inclusive] and a max value [exclusive].
-     */
+    /// <summary>
+    /// 返回一个介于 minValue [包含] 和 maxValue [不包含] 之间的整数。
+    /// </summary>
+    /// <param name="minValue">最小值。</param>
+    /// <param name="maxValue">最大值。</param>
+    /// <returns>生成的随机整数。</returns>
     public static int Range(int minValue, int maxValue)
     {
         return instance.Next(minValue, maxValue);
     }
 
-    /**
-     * @brief Returns a {@link FP} between a min value [inclusive] and a max value [inclusive].
-     */
+    /// <summary>
+    /// 返回一个 {@link FP} 值，范围在 minValue [包含] 到 maxValue [包含] 之间。
+    /// </summary>
+    /// <param name="minValue">最小值。</param>
+    /// <param name="maxValue">最大值。</param>
+    /// <returns>生成的随机 FP 值。</returns>
     public static FP Range(float minValue, float maxValue)
     {
         return instance.Next(minValue, maxValue);
     }
 
-    /**
-     * @brief Returns a {@link FP} between 0.0 [inclusive] and 1.0 [inclusive].
-     */
+    /// <summary>
+    /// 返回一个 {@link FP} 值，范围在 0.0 [包含] 到 1.0 [包含] 之间。
+    /// </summary>
+    /// <returns>生成的随机 FP 值。</returns>
     public FP NextFP()
     {
         return (FP)Next() / MaxRandomInt;
@@ -201,16 +230,27 @@ public sealed class FPRandom
         return genrand_res53();
     }
 
+    /// <summary>
+    /// 使用当前时间的毫秒数初始化随机数生成器。
+    /// </summary>
     public void Initialize()
     {
         init_genrand((uint)DateTime.Now.Millisecond);
     }
 
+    /// <summary>
+    /// 使用指定的种子初始化随机数生成器。
+    /// </summary>
+    /// <param name="seed">用于初始化的种子。</param>
     public void Initialize(int seed)
     {
         init_genrand((uint)seed);
     }
 
+    /// <summary>
+    /// 使用指定的初始化数组初始化随机数生成器。
+    /// </summary>
+    /// <param name="init">初始化数组。</param>
     public void Initialize(int[] init)
     {
         var initArray = new uint[init.Length];

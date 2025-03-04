@@ -15,10 +15,14 @@ internal static class Program
         {
             CacheStateTypeManager.Init();
             MessageProtoHelper.Init(typeof(MessageProtoBuildInTag).Assembly, typeof(MessageProtoHandler).Assembly);
-        }, LogAction);
+        }, LogConfiguration);
     }
 
-    private static void LogAction(LogOptions options)
+    /// <summary>
+    /// 日志配置
+    /// </summary>
+    /// <param name="options">配置对象</param>
+    private static void LogConfiguration(LogOptions options)
     {
         // 发布之后控制台不输出
 #if !DEBUG

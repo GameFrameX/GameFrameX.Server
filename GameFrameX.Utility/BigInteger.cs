@@ -129,20 +129,19 @@
 //     Electronics Letters, 32(6), 1996, pp 537-538.
 //
 //************************************************************************************
-
 namespace GameFrameX.Utility;
 
 /// <summary>
+/// 表示一个大整数的类，支持多种数学运算和转换。
 /// </summary>
 public sealed class BigInteger
 {
-    // maximum length of the BigInteger in uint (4 bytes)
-    // change this to suit the required level of precision.
-
+    // 最大长度，单位为 uint（4 字节）
+    // 根据所需的精度级别进行更改。
     private const int maxLength = 70;
 
     /// <summary>
-    /// primes smaller than 2000 to test the generated prime number
+    /// 小于 2000 的素数数组，用于测试生成的素数。
     /// </summary>
     public static readonly int[] primesBelow2000 =
     {
@@ -168,20 +167,19 @@ public sealed class BigInteger
         1901, 1907, 1913, 1931, 1933, 1949, 1951, 1973, 1979, 1987, 1993, 1997, 1999,
     };
 
-
-    private readonly uint[] data; // stores bytes from the Big Integer
+    private readonly uint[] data; // 存储大整数的字节
 
     /// <summary>
-    /// number of actual chars used
+    /// 实际使用的字符数
     /// </summary>
     public int dataLength;
 
-
     //***********************************************************************
-    // Constructor (Default value for BigInteger is 0
+    // 构造函数（默认值为 0）
     //***********************************************************************
 
     /// <summary>
+    /// 初始化一个新的 BigInteger 实例，默认值为 0。
     /// </summary>
     public BigInteger()
     {
@@ -189,23 +187,21 @@ public sealed class BigInteger
         dataLength = 1;
     }
 
-
     //***********************************************************************
-    // Constructor (Default value provided by long)
+    // 构造函数（使用 long 提供默认值）
     //***********************************************************************
 
     /// <summary>
+    /// 使用指定的 long 值初始化一个新的 BigInteger 实例。
     /// </summary>
-    /// <param name="value"></param>
-    /// <exception cref="ArithmeticException"></exception>
+    /// <param name="value">要初始化的 long 值。</param>
+    /// <exception cref="ArithmeticException">当发生溢出或下溢时引发。</exception>
     public BigInteger(long value)
     {
         data = new uint[maxLength];
         var tempVal = value;
 
-        // copy bytes from long to BigInteger without any assumption of
-        // the length of the long datatype
-
+        // 将 long 的字节复制到 BigInteger 中，而不假设 long 数据类型的长度
         dataLength = 0;
         while (value != 0 && dataLength < maxLength)
         {
@@ -214,18 +210,18 @@ public sealed class BigInteger
             dataLength++;
         }
 
-        if (tempVal > 0) // overflow check for +ve value
+        if (tempVal > 0) // 正值溢出检查
         {
             if (value != 0 || (data[maxLength - 1] & 0x80000000) != 0)
             {
-                throw new ArithmeticException("Positive overflow in constructor.");
+                throw new ArithmeticException("构造函数中的正溢出。");
             }
         }
-        else if (tempVal < 0) // underflow check for -ve value
+        else if (tempVal < 0) // 负值下溢检查
         {
             if (value != -1 || (data[dataLength - 1] & 0x80000000) == 0)
             {
-                throw new ArithmeticException("Negative underflow in constructor.");
+                throw new ArithmeticException("构造函数中的负下溢。");
             }
         }
 
@@ -235,22 +231,20 @@ public sealed class BigInteger
         }
     }
 
-
     //***********************************************************************
-    // Constructor (Default value provided by ulong)
+    // 构造函数（使用 ulong 提供默认值）
     //***********************************************************************
 
     /// <summary>
+    /// 使用指定的 ulong 值初始化一个新的 BigInteger 实例。
     /// </summary>
-    /// <param name="value"></param>
-    /// <exception cref="ArithmeticException"></exception>
+    /// <param name="value">要初始化的 ulong 值。</param>
+    /// <exception cref="ArithmeticException">当发生溢出时引发。</exception>
     public BigInteger(ulong value)
     {
         data = new uint[maxLength];
 
-        // copy bytes from ulong to BigInteger without any assumption of
-        // the length of the ulong datatype
-
+        // 将 ulong 的字节复制到 BigInteger 中，而不假设 ulong 数据类型的长度
         dataLength = 0;
         while (value != 0 && dataLength < maxLength)
         {
@@ -261,7 +255,7 @@ public sealed class BigInteger
 
         if (value != 0 || (data[maxLength - 1] & 0x80000000) != 0)
         {
-            throw new ArithmeticException("Positive overflow in constructor.");
+            throw new ArithmeticException("构造函数中的正溢出。");
         }
 
         if (dataLength == 0)
@@ -271,9 +265,9 @@ public sealed class BigInteger
     }
 
     /// <summary>
-    /// Constructor (Default value provided by BigInteger)
+    /// 使用指定的 BigInteger 实例初始化一个新的 BigInteger 实例。
     /// </summary>
-    /// <param name="bi"></param>
+    /// <param name="bi">要复制的 BigInteger 实例。</param>
     public BigInteger(BigInteger bi)
     {
         data = new uint[maxLength];
@@ -286,27 +280,35 @@ public sealed class BigInteger
         }
     }
 
-
     /// <summary>
-    /// Constructor (Default value provided by a string of digits of the
-    /// specified base)
-    /// Example (base 10)
-    /// -----------------
-    /// To initialize "a" with the default value of 1234 in base 10
-    /// BigInteger a = new BigInteger("1234", 10)
-    /// To initialize "a" with the default value of -1234
-    /// BigInteger a = new BigInteger("-1234", 10)
-    /// Example (base 16)
-    /// -----------------
-    /// To initialize "a" with the default value of 0x1D4F in base 16
-    /// BigInteger a = new BigInteger("1D4F", 16)
-    /// To initialize "a" with the default value of -0x1D4F
-    /// BigInteger a = new BigInteger("-1D4F", 16)
-    /// Note that string values are specified in the format.
+    /// 使用指定基数的数字字符串初始化一个新的 BigInteger 实例。
     /// </summary>
-    /// <param name="value"></param>
-    /// <param name="radix"></param>
-    /// <exception cref="ArithmeticException"></exception>
+    /// <param name="value">表示数字的字符串。</param>
+    /// <param name="radix">基数，范围为 2 到 36。</param>
+    /// <exception cref="ArithmeticException">当字符串格式无效或发生溢出时引发。</exception>
+    /// <remarks>
+    /// 示例 (基数 10)
+    /// -----------------
+    /// 使用默认值 1234 初始化 "a"：
+    /// <code>
+    /// BigInteger a = new BigInteger("1234", 10);
+    /// </code>
+    /// 使用默认值 -1234 初始化 "a"：
+    /// <code>
+    /// BigInteger a = new BigInteger("-1234", 10);
+    /// </code>
+    /// 示例 (基数 16)
+    /// -----------------
+    /// 使用默认值 0x1D4F 初始化 "a"：
+    /// <code>
+    /// BigInteger a = new BigInteger("1D4F", 16);
+    /// </code>
+    /// 使用默认值 -0x1D4F 初始化 "a"：
+    /// <code>
+    /// BigInteger a = new BigInteger("-1D4F", 16);
+    /// </code>
+    /// 注意：字符串值应按照指定格式提供。
+    /// </remarks>
     public BigInteger(string value, int radix = 10)
     {
         var multiplier = new BigInteger(1);
@@ -336,10 +338,9 @@ public sealed class BigInteger
                 posVal = 9999999; // arbitrary large
             }
 
-
             if (posVal >= radix)
             {
-                throw new ArithmeticException("Invalid string in constructor.");
+                throw new ArithmeticException("构造函数中的无效字符串。");
             }
 
             if (value[0] == '-')
@@ -355,18 +356,18 @@ public sealed class BigInteger
             }
         }
 
-        if (value[0] == '-') // negative values
+        if (value[0] == '-') // 处理负值
         {
             if ((result.data[maxLength - 1] & 0x80000000) == 0)
             {
-                throw new ArithmeticException("Negative underflow in constructor.");
+                throw new ArithmeticException("构造函数中的负溢出。");
             }
         }
-        else // positive values
+        else // 处理正值
         {
             if ((result.data[maxLength - 1] & 0x80000000) != 0)
             {
-                throw new ArithmeticException("Positive overflow in constructor.");
+                throw new ArithmeticException("构造函数中的正溢出。");
             }
         }
 
@@ -379,43 +380,24 @@ public sealed class BigInteger
         dataLength = result.dataLength;
     }
 
-
-    //***********************************************************************
-    // Constructor (Default value provided by an array of bytes)
-    //
-    // The lowest index of the input byte array (i.e [0]) should contain the
-    // most significant byte of the number, and the highest index should
-    // contain the least significant byte.
-    //
-    // E.g.
-    // To initialize "a" with the default value of 0x1D4F in base 16
-    //      byte[] temp = { 0x1D, 0x4F };
-    //      BigInteger a = new BigInteger(temp)
-    //
-    // Note that this method of initialization does not allow the
-    // sign to be specified.
-    //
-    //***********************************************************************
-
     /// <summary>
-    /// Constructor (Default value provided by an array of bytes)
+    /// 使用字节数组初始化一个新的 BigInteger 实例。
     /// </summary>
-    /// <param name="inData"></param>
-    /// <exception cref="ArithmeticException"></exception>
+    /// <param name="inData">包含数字的字节数组。</param>
+    /// <exception cref="ArithmeticException">当字节溢出时引发。</exception>
     public BigInteger(byte[] inData)
     {
         dataLength = inData.Length >> 2;
 
         var leftOver = inData.Length & 0x3;
-        if (leftOver != 0) // length not multiples of 4
+        if (leftOver != 0) // 长度不是 4 的倍数
         {
             dataLength++;
         }
 
-
         if (dataLength > maxLength)
         {
-            throw new ArithmeticException("Byte overflow in constructor.");
+            throw new ArithmeticException("构造函数中的字节溢出。");
         }
 
         data = new uint[maxLength];
@@ -439,7 +421,6 @@ public sealed class BigInteger
             data[dataLength - 1] = (uint)((inData[0] << 16) + (inData[1] << 8) + inData[2]);
         }
 
-
         while (dataLength > 1 && data[dataLength - 1] == 0)
         {
             dataLength--;
@@ -448,32 +429,26 @@ public sealed class BigInteger
         //LogHelper.Info("Len = " + dataLength);
     }
 
-
-    //***********************************************************************
-    // Constructor (Default value provided by an array of bytes of the specified length.)
-    //***********************************************************************
-
     /// <summary>
-    /// Constructor (Default value provided by an array of bytes of the specified length.)
+    /// 使用指定长度的字节数组初始化一个新的 BigInteger 实例。
     /// </summary>
-    /// <param name="inData"></param>
-    /// <param name="inLen"></param>
-    /// <exception cref="ArithmeticException"></exception>
+    /// <param name="inData">包含数字的字节数组。</param>
+    /// <param name="inLen">字节数组的长度。</param>
+    /// <exception cref="ArithmeticException">当字节溢出时引发。</exception>
     public BigInteger(byte[] inData, int inLen)
     {
         dataLength = inLen >> 2;
 
         var leftOver = inLen & 0x3;
-        if (leftOver != 0) // length not multiples of 4
+        if (leftOver != 0) // 长度不是 4 的倍数
         {
             dataLength++;
         }
 
         if (dataLength > maxLength || inLen > inData.Length)
         {
-            throw new ArithmeticException("Byte overflow in constructor.");
+            throw new ArithmeticException("构造函数中的字节溢出。");
         }
-
 
         data = new uint[maxLength];
 
@@ -496,7 +471,6 @@ public sealed class BigInteger
             data[dataLength - 1] = (uint)((inData[0] << 16) + (inData[1] << 8) + inData[2]);
         }
 
-
         if (dataLength == 0)
         {
             dataLength = 1;
@@ -510,19 +484,18 @@ public sealed class BigInteger
         //LogHelper.Info("Len = " + dataLength);
     }
 
-
     /// <summary>
-    /// Constructor (Default value provided by an array of unsigned integers)
+    /// 使用无符号整数数组初始化一个新的 <see cref="BigInteger"/> 实例。
     /// </summary>
-    /// <param name="inData"></param>
-    /// <exception cref="ArithmeticException"></exception>
+    /// <param name="inData">无符号整数数组，表示大整数的值。</param>
+    /// <exception cref="ArithmeticException">当输入数据的长度超过最大长度时引发。</exception>
     public BigInteger(uint[] inData)
     {
         dataLength = inData.Length;
 
         if (dataLength > maxLength)
         {
-            throw new ArithmeticException("Byte overflow in constructor.");
+            throw new ArithmeticException("构造函数中的字节溢出。");
         }
 
         data = new uint[maxLength];
@@ -542,37 +515,40 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Overloading of the typecast operator. For BigInteger bi = 10;
+    /// 将 <see cref="long"/> 类型的值隐式转换为 <see cref="BigInteger"/>。
     /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
+    /// <param name="value">要转换的 <see cref="long"/> 值。</param>
+    /// <returns>转换后的 <see cref="BigInteger"/> 实例。</returns>
     public static implicit operator BigInteger(long value)
     {
         return new BigInteger(value);
     }
 
     /// <summary>
+    /// 将 <see cref="ulong"/> 类型的值隐式转换为 <see cref="BigInteger"/>。
     /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
+    /// <param name="value">要转换的 <see cref="ulong"/> 值。</param>
+    /// <returns>转换后的 <see cref="BigInteger"/> 实例。</returns>
     public static implicit operator BigInteger(ulong value)
     {
         return new BigInteger(value);
     }
 
     /// <summary>
+    /// 将 <see cref="int"/> 类型的值隐式转换为 <see cref="BigInteger"/>。
     /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
+    /// <param name="value">要转换的 <see cref="int"/> 值。</param>
+    /// <returns>转换后的 <see cref="BigInteger"/> 实例。</returns>
     public static implicit operator BigInteger(int value)
     {
         return new BigInteger(value);
     }
 
     /// <summary>
+    /// 将 <see cref="uint"/> 类型的值隐式转换为 <see cref="BigInteger"/>。
     /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
+    /// <param name="value">要转换的 <see cref="uint"/> 值。</param>
+    /// <returns>转换后的 <see cref="BigInteger"/> 实例。</returns>
     public static implicit operator BigInteger(uint value)
     {
         return new BigInteger((ulong)value);
@@ -580,12 +556,12 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Overloading of addition operator
+    /// 重载加法运算符。
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <param name="bi2"></param>
-    /// <returns></returns>
-    /// <exception cref="ArithmeticException"></exception>
+    /// <param name="bi1">第一个 <see cref="BigInteger"/> 实例。</param>
+    /// <param name="bi2">第二个 <see cref="BigInteger"/> 实例。</param>
+    /// <returns>两个 <see cref="BigInteger"/> 实例的和。</returns>
+    /// <exception cref="ArithmeticException">当加法溢出时引发。</exception>
     public static BigInteger operator +(BigInteger bi1, BigInteger bi2)
     {
         var result = new BigInteger();
@@ -612,7 +588,7 @@ public sealed class BigInteger
         }
 
 
-        // overflow check
+        // 溢出检查
         var lastPos = maxLength - 1;
         if ((bi1.data[lastPos] & 0x80000000) == (bi2.data[lastPos] & 0x80000000) &&
             (result.data[lastPos] & 0x80000000) != (bi1.data[lastPos] & 0x80000000))
@@ -625,11 +601,11 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Overloading of the unary ++ operator
+    /// 重载一元自增运算符。
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <returns></returns>
-    /// <exception cref="ArithmeticException"></exception>
+    /// <param name="bi1">要自增的 <see cref="BigInteger"/> 实例。</param>
+    /// <returns>自增后的 <see cref="BigInteger"/> 实例。</returns>
+    /// <exception cref="ArithmeticException">当自增溢出时引发。</exception>
     public static BigInteger operator ++(BigInteger bi1)
     {
         var result = new BigInteger(bi1);
@@ -660,28 +636,26 @@ public sealed class BigInteger
             }
         }
 
-        // overflow check
+        // 溢出检查
         var lastPos = maxLength - 1;
 
-        // overflow if initial value was +ve but ++ caused a sign
-        // change to negative.
-
+        // 如果初始值为正，但自增导致符号变化为负，则发生溢出。
         if ((bi1.data[lastPos] & 0x80000000) == 0 &&
             (result.data[lastPos] & 0x80000000) != (bi1.data[lastPos] & 0x80000000))
         {
-            throw new ArithmeticException("Overflow in ++.");
+            throw new ArithmeticException("自增溢出。");
         }
 
         return result;
     }
 
     /// <summary>
-    /// Overloading of subtraction operator
+    /// 重载减法运算符。
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <param name="bi2"></param>
-    /// <returns></returns>
-    /// <exception cref="ArithmeticException"></exception>
+    /// <param name="bi1">第一个 <see cref="BigInteger"/> 实例。</param>
+    /// <param name="bi2">第二个 <see cref="BigInteger"/> 实例。</param>
+    /// <returns>两个 <see cref="BigInteger"/> 实例的差。</returns>
+    /// <exception cref="ArithmeticException">当减法溢出时引发。</exception>
     public static BigInteger operator -(BigInteger bi1, BigInteger bi2)
     {
         var result = new BigInteger();
@@ -706,7 +680,7 @@ public sealed class BigInteger
             }
         }
 
-        // roll over to negative
+        // 处理负数溢出
         if (carryIn != 0)
         {
             for (var i = result.dataLength; i < maxLength; i++)
@@ -717,14 +691,13 @@ public sealed class BigInteger
             result.dataLength = maxLength;
         }
 
-        // fixed in v1.03 to give correct datalength for a - (-b)
+        // 修复在 v1.03 中的错误，以正确给出 a - (-b) 的数据长度
         while (result.dataLength > 1 && result.data[result.dataLength - 1] == 0)
         {
             result.dataLength--;
         }
 
-        // overflow check
-
+        // 溢出检查
         var lastPos = maxLength - 1;
         if ((bi1.data[lastPos] & 0x80000000) != (bi2.data[lastPos] & 0x80000000) &&
             (result.data[lastPos] & 0x80000000) != (bi1.data[lastPos] & 0x80000000))
@@ -736,11 +709,11 @@ public sealed class BigInteger
     }
 
     /// <summary>
-    /// Overloading of the unary -- operator
+    /// 重载一元自减运算符。
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <returns></returns>
-    /// <exception cref="ArithmeticException"></exception>
+    /// <param name="bi1">要自减的 <see cref="BigInteger"/> 实例。</param>
+    /// <returns>自减后的 <see cref="BigInteger"/> 实例。</returns>
+    /// <exception cref="ArithmeticException">当自减溢出时引发。</exception>
     public static BigInteger operator --(BigInteger bi1)
     {
         var result = new BigInteger(bi1);
@@ -774,43 +747,41 @@ public sealed class BigInteger
             result.dataLength--;
         }
 
-        // overflow check
+        // 溢出检查
         var lastPos = maxLength - 1;
 
-        // overflow if initial value was -ve but -- caused a sign
-        // change to positive.
-
+        // 如果初始值为负，但自减导致符号变化为正，则发生溢出。
         if ((bi1.data[lastPos] & 0x80000000) != 0 &&
             (result.data[lastPos] & 0x80000000) != (bi1.data[lastPos] & 0x80000000))
         {
-            throw new ArithmeticException("Underflow in --.");
+            throw new ArithmeticException("自减下溢。");
         }
 
         return result;
     }
 
     /// <summary>
-    /// Overloading of multiplication operator
+    /// 重载乘法运算符。
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <param name="bi2"></param>
-    /// <returns></returns>
-    /// <exception cref="ArithmeticException"></exception>
+    /// <param name="bi1">第一个 <see cref="BigInteger"/> 实例。</param>
+    /// <param name="bi2">第二个 <see cref="BigInteger"/> 实例。</param>
+    /// <returns>两个 <see cref="BigInteger"/> 实例的乘积。</returns>
+    /// <exception cref="ArithmeticException">当乘法溢出时引发。</exception>
     public static BigInteger operator *(BigInteger bi1, BigInteger bi2)
     {
         var lastPos = maxLength - 1;
         bool bi1Neg = false, bi2Neg = false;
 
-        // take the absolute value of the inputs
+        // 取输入的绝对值
         try
         {
-            if ((bi1.data[lastPos] & 0x80000000) != 0) // bi1 negative
+            if ((bi1.data[lastPos] & 0x80000000) != 0) // bi1 为负
             {
                 bi1Neg = true;
                 bi1 = -bi1;
             }
 
-            if ((bi2.data[lastPos] & 0x80000000) != 0) // bi2 negative
+            if ((bi2.data[lastPos] & 0x80000000) != 0) // bi2 为负
             {
                 bi2Neg = true;
                 bi2 = -bi2;
@@ -822,7 +793,7 @@ public sealed class BigInteger
 
         var result = new BigInteger();
 
-        // multiply the absolute values
+        // 乘以绝对值
         try
         {
             for (var i = 0; i < bi1.dataLength; i++)
@@ -851,7 +822,7 @@ public sealed class BigInteger
         }
         catch (Exception)
         {
-            throw new ArithmeticException("Multiplication overflow.");
+            throw new ArithmeticException("乘法溢出。");
         }
 
 
@@ -866,14 +837,12 @@ public sealed class BigInteger
             result.dataLength--;
         }
 
-        // overflow check (result is -ve)
+        // 溢出检查（结果为负）
         if ((result.data[lastPos] & 0x80000000) != 0)
         {
-            if (bi1Neg != bi2Neg && result.data[lastPos] == 0x80000000) // different sign
+            if (bi1Neg != bi2Neg && result.data[lastPos] == 0x80000000) // 符号不同
             {
-                // handle the special case where multiplication produces
-                // a max negative number in 2's complement.
-
+                // 处理乘法产生最大负数的特殊情况
                 if (result.dataLength == 1)
                 {
                     return result;
@@ -894,10 +863,10 @@ public sealed class BigInteger
                 }
             }
 
-            throw new ArithmeticException("Multiplication overflow.");
+            throw new ArithmeticException("乘法溢出。");
         }
 
-        // if input has different signs, then result is -ve
+        // 如果输入符号不同，则结果为负
         if (bi1Neg != bi2Neg)
         {
             return -result;
@@ -908,11 +877,11 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Overloading of unary "<<" operators
+    /// 重载左移运算符。
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <param name="shiftVal"></param>
-    /// <returns></returns>
+    /// <param name="bi1">要左移的 <see cref="BigInteger"/> 实例。</param>
+    /// <param name="shiftVal">左移的位数。</param>
+    /// <returns>左移后的 <see cref="BigInteger"/> 实例。</returns>
     public static BigInteger operator <<(BigInteger bi1, int shiftVal)
     {
         var result = new BigInteger(bi1);
@@ -923,11 +892,11 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// least significant bits at lower part of buffer
+    /// 将缓冲区中的位左移指定的位数。
     /// </summary>
-    /// <param name="buffer"></param>
-    /// <param name="shiftVal"></param>
-    /// <returns></returns>
+    /// <param name="buffer">要左移的缓冲区。</param>
+    /// <param name="shiftVal">左移的位数。</param>
+    /// <returns>左移后的缓冲区长度。</returns>
     private static int shiftLeft(uint[] buffer, int shiftVal)
     {
         var shiftAmount = 32;
@@ -974,18 +943,18 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Overloading of unary >> operators
+    /// 重载右移运算符。
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <param name="shiftVal"></param>
-    /// <returns></returns>
+    /// <param name="bi1">要右移的 <see cref="BigInteger"/> 实例。</param>
+    /// <param name="shiftVal">右移的位数。</param>
+    /// <returns>右移后的 <see cref="BigInteger"/> 实例。</returns>
     public static BigInteger operator >> (BigInteger bi1, int shiftVal)
     {
         var result = new BigInteger(bi1);
         result.dataLength = shiftRight(result.data, shiftVal);
 
 
-        if ((bi1.data[maxLength - 1] & 0x80000000) != 0) // negative
+        if ((bi1.data[maxLength - 1] & 0x80000000) != 0) // 负数
         {
             for (var i = maxLength - 1; i >= result.dataLength; i--)
             {
@@ -1011,6 +980,12 @@ public sealed class BigInteger
     }
 
 
+    /// <summary>
+    /// 将缓冲区中的位右移指定的位数。
+    /// </summary>
+    /// <param name="buffer">要右移的缓冲区。</param>
+    /// <param name="shiftVal">右移的位数。</param>
+    /// <returns>右移后的缓冲区长度。</returns>
     private static int shiftRight(uint[] buffer, int shiftVal)
     {
         var shiftAmount = 32;
@@ -1056,10 +1031,10 @@ public sealed class BigInteger
     }
 
     /// <summary>
-    /// Overloading of the NOT operator (1's complement)
+    /// 重载按位取反运算符（1 的补码）。
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <returns></returns>
+    /// <param name="bi1">要取反的 <see cref="BigInteger"/> 实例。</param>
+    /// <returns>取反后的 <see cref="BigInteger"/> 实例。</returns>
     public static BigInteger operator ~(BigInteger bi1)
     {
         var result = new BigInteger(bi1);
@@ -1081,16 +1056,14 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Overloading of the NEGATE operator (2's complement)
+    /// 重载取负运算符（2 的补码）。
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <returns></returns>
-    /// <exception cref="ArithmeticException"></exception>
+    /// <param name="bi1">要取负的 <see cref="BigInteger"/> 实例。</param>
+    /// <returns>取负后的 <see cref="BigInteger"/> 实例。</returns>
+    /// <exception cref="ArithmeticException">当取负溢出时引发。</exception>
     public static BigInteger operator -(BigInteger bi1)
     {
-        // handle neg of zero separately since it'll cause an overflow
-        // if we proceed.
-
+        // 处理零的取负情况，因为这会导致溢出
         if (bi1.dataLength == 1 && bi1.data[0] == 0)
         {
             return new BigInteger();
@@ -1098,13 +1071,13 @@ public sealed class BigInteger
 
         var result = new BigInteger(bi1);
 
-        // 1's complement
+        // 1 的补码
         for (var i = 0; i < maxLength; i++)
         {
             result.data[i] = ~bi1.data[i];
         }
 
-        // add one to result of 1's complement
+        // 对 1 的补码结果加 1
         long val, carry = 1;
         var index = 0;
 
@@ -1121,7 +1094,7 @@ public sealed class BigInteger
 
         if ((bi1.data[maxLength - 1] & 0x80000000) == (result.data[maxLength - 1] & 0x80000000))
         {
-            throw new ArithmeticException("Overflow in negation.\n");
+            throw new ArithmeticException("取负溢出。\n");
         }
 
         result.dataLength = maxLength;
@@ -1136,20 +1109,21 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Overloading of equality operator
+    /// 重载相等运算符。
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <param name="bi2"></param>
-    /// <returns></returns>
+    /// <param name="bi1">第一个 <see cref="BigInteger"/> 实例。</param>
+    /// <param name="bi2">第二个 <see cref="BigInteger"/> 实例。</param>
+    /// <returns>如果两个 <see cref="BigInteger"/> 实例相等，则返回 true；否则返回 false。</returns>
     public static bool operator ==(BigInteger bi1, BigInteger bi2)
     {
         return bi1.Equals(bi2);
     }
 
     /// <summary>
+    /// 比较当前 <see cref="BigInteger"/> 实例与另一个 <see cref="BigInteger"/> 实例的大小。
     /// </summary>
-    /// <param name="other"></param>
-    /// <returns></returns>
+    /// <param name="other">要比较的另一个 <see cref="BigInteger"/> 实例。</param>
+    /// <returns>如果当前实例大于 <paramref name="other"/>，则返回 1；如果小于，则返回 -1；否则返回 0。</returns>
     public int CompareTo(BigInteger other)
     {
         if (this > other)
@@ -1167,10 +1141,11 @@ public sealed class BigInteger
 
 
     /// <summary>
+    /// 重载不相等运算符。
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <param name="bi2"></param>
-    /// <returns></returns>
+    /// <param name="bi1">第一个 <see cref="BigInteger"/> 实例。</param>
+    /// <param name="bi2">第二个 <see cref="BigInteger"/> 实例。</param>
+    /// <returns>如果两个 <see cref="BigInteger"/> 实例不相等，则返回 true；否则返回 false。</returns>
     public static bool operator !=(BigInteger bi1, BigInteger bi2)
     {
         return !bi1.Equals(bi2);
@@ -1178,9 +1153,10 @@ public sealed class BigInteger
 
 
     /// <summary>
+    /// 重写 <see cref="Object.Equals"/> 方法。
     /// </summary>
-    /// <param name="o"></param>
-    /// <returns></returns>
+    /// <param name="o">要比较的对象。</param>
+    /// <returns>如果当前实例与 <paramref name="o"/> 相等，则返回 true；否则返回 false。</returns>
     public override bool Equals(object o)
     {
         var bi = (BigInteger)o;
@@ -1202,8 +1178,10 @@ public sealed class BigInteger
     }
 
 
-    /// <summary>Serves as the default hash function.</summary>
-    /// <returns>A hash code for the current object.</returns>
+    /// <summary>
+    /// 作为默认哈希函数。
+    /// </summary>
+    /// <returns>当前对象的哈希代码。</returns>
     public override int GetHashCode()
     {
         return ToString().GetHashCode();
@@ -1211,29 +1189,28 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Overloading of inequality operator
+    /// 重载大于运算符。
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <param name="bi2"></param>
-    /// <returns></returns>
+    /// <param name="bi1">第一个 <see cref="BigInteger"/> 实例。</param>
+    /// <param name="bi2">第二个 <see cref="BigInteger"/> 实例。</param>
+    /// <returns>如果 <paramref name="bi1"/> 大于 <paramref name="bi2"/>，则返回 true；否则返回 false。</returns>
     public static bool operator >(BigInteger bi1, BigInteger bi2)
     {
         var pos = maxLength - 1;
 
-        // bi1 is negative, bi2 is positive
+        // bi1 为负，bi2 为正
         if ((bi1.data[pos] & 0x80000000) != 0 && (bi2.data[pos] & 0x80000000) == 0)
         {
             return false;
         }
 
-        // bi1 is positive, bi2 is negative
-
+        // bi1 为正，bi2 为负
         if ((bi1.data[pos] & 0x80000000) == 0 && (bi2.data[pos] & 0x80000000) != 0)
         {
             return true;
         }
 
-        // same sign
+        // 同符号
         var len = bi1.dataLength > bi2.dataLength ? bi1.dataLength : bi2.dataLength;
         for (pos = len - 1; pos >= 0 && bi1.data[pos] == bi2.data[pos]; pos--)
         {
@@ -1255,28 +1232,28 @@ public sealed class BigInteger
 
 
     /// <summary>
+    /// 重载小于运算符。
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <param name="bi2"></param>
-    /// <returns></returns>
+    /// <param name="bi1">第一个 <see cref="BigInteger"/> 实例。</param>
+    /// <param name="bi2">第二个 <see cref="BigInteger"/> 实例。</param>
+    /// <returns>如果 <paramref name="bi1"/> 小于 <paramref name="bi2"/>，则返回 true；否则返回 false。</returns>
     public static bool operator <(BigInteger bi1, BigInteger bi2)
     {
         var pos = maxLength - 1;
 
-        // bi1 is negative, bi2 is positive
+        // bi1 为负，bi2 为正
         if ((bi1.data[pos] & 0x80000000) != 0 && (bi2.data[pos] & 0x80000000) == 0)
         {
             return true;
         }
 
-        // bi1 is positive, bi2 is negative
-
+        // bi1 为正，bi2 为负
         if ((bi1.data[pos] & 0x80000000) == 0 && (bi2.data[pos] & 0x80000000) != 0)
         {
             return false;
         }
 
-        // same sign
+        // 同符号
         var len = bi1.dataLength > bi2.dataLength ? bi1.dataLength : bi2.dataLength;
         for (pos = len - 1; pos >= 0 && bi1.data[pos] == bi2.data[pos]; pos--)
         {
@@ -1298,10 +1275,11 @@ public sealed class BigInteger
 
 
     /// <summary>
+    /// 重载大于等于运算符。
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <param name="bi2"></param>
-    /// <returns></returns>
+    /// <param name="bi1">第一个 <see cref="BigInteger"/> 实例。</param>
+    /// <param name="bi2">第二个 <see cref="BigInteger"/> 实例。</param>
+    /// <returns>如果 <paramref name="bi1"/> 大于或等于 <paramref name="bi2"/>，则返回 true；否则返回 false。</returns>
     public static bool operator >=(BigInteger bi1, BigInteger bi2)
     {
         return bi1 == bi2 || bi1 > bi2;
@@ -1309,21 +1287,20 @@ public sealed class BigInteger
 
 
     /// <summary>
+    /// 重载小于等于运算符。
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <param name="bi2"></param>
-    /// <returns></returns>
+    /// <param name="bi1">第一个 <see cref="BigInteger"/> 实例。</param>
+    /// <param name="bi2">第二个 <see cref="BigInteger"/> 实例。</param>
+    /// <returns>如果 <paramref name="bi1"/> 小于或等于 <paramref name="bi2"/>，则返回 true；否则返回 false。</returns>
     public static bool operator <=(BigInteger bi1, BigInteger bi2)
     {
         return bi1 == bi2 || bi1 < bi2;
     }
 
-
     //***********************************************************************
-    // Private function that supports the division of two numbers with
-    // a divisor that has more than 1 digit.
+    // 私有函数，支持两个数字的除法运算，其中除数为多位数。
     //
-    // Algorithm taken from [1]
+    // 算法来源于 [1]
     //***********************************************************************
 
     private static void MultiByteDivide(BigInteger bi1, BigInteger bi2,
@@ -1338,30 +1315,22 @@ public sealed class BigInteger
         var val = bi2.data[bi2.dataLength - 1];
         int shift = 0, resultPos = 0;
 
+        // 计算除数的最高位的有效位数
         while (mask != 0 && (val & mask) == 0)
         {
             shift++;
             mask >>= 1;
         }
 
-        //LogHelper.Info("shift = {0}", shift);
-        //LogHelper.Info("Before bi1 Len = {0}, bi2 Len = {1}", bi1.dataLength, bi2.dataLength);
-
+        // 将被除数复制到余数中
         for (var i = 0; i < bi1.dataLength; i++)
         {
             remainder[i] = bi1.data[i];
         }
 
+        // 左移余数以适应除数
         shiftLeft(remainder, shift);
         bi2 = bi2 << shift;
-
-        /*
-    LogHelper.Info("bi1 Len = {0}, bi2 Len = {1}", bi1.dataLength, bi2.dataLength);
-    LogHelper.Info("dividend = " + bi1 + "\ndivisor = " + bi2);
-    for(int q = remainderLen - 1; q >= 0; q--)
-            Console.Write("{0:x2}", remainder[q]);
-    LogHelper.Info();
-    */
 
         var j = remainderLen - bi2.dataLength;
         var pos = remainderLen - 1;
@@ -1372,21 +1341,20 @@ public sealed class BigInteger
         var divisorLen = bi2.dataLength + 1;
         var dividendPart = new uint[divisorLen];
 
+        // 进行除法运算
         while (j > 0)
         {
             var dividend = ((ulong)remainder[pos] << 32) + remainder[pos - 1];
-            //LogHelper.Info("dividend = {0}", dividend);
 
             var q_hat = dividend / firstDivisorByte;
             var r_hat = dividend % firstDivisorByte;
-
-            //LogHelper.Info("q_hat = {0:X}, r_hat = {1:X}", q_hat, r_hat);
 
             var done = false;
             while (!done)
             {
                 done = true;
 
+                // 调整 q_hat 以确保不溢出
                 if (q_hat == 0x100000000 ||
                     q_hat * secondDivisorByte > (r_hat << 32) + remainder[pos - 2])
                 {
@@ -1408,31 +1376,19 @@ public sealed class BigInteger
             var kk = new BigInteger(dividendPart);
             var ss = bi2 * (long)q_hat;
 
-            //LogHelper.Info("ss before = " + ss);
+            // 确保 ss 不大于 kk
             while (ss > kk)
             {
                 q_hat--;
                 ss -= bi2;
-                //LogHelper.Info(ss);
             }
 
             var yy = kk - ss;
-
-            //LogHelper.Info("ss = " + ss);
-            //LogHelper.Info("kk = " + kk);
-            //LogHelper.Info("yy = " + yy);
 
             for (var h = 0; h < divisorLen; h++)
             {
                 remainder[pos - h] = yy.data[bi2.dataLength - h];
             }
-
-            /*
-        LogHelper.Info("dividend = ");
-        for(int q = remainderLen - 1; q >= 0; q--)
-                Console.Write("{0:x2}", remainder[q]);
-        LogHelper.Info("\n************ q_hat = {0:X}\n", q_hat);
-        */
 
             result[resultPos++] = (uint)q_hat;
 
@@ -1440,6 +1396,7 @@ public sealed class BigInteger
             j--;
         }
 
+        // 设置输出商的长度
         outQuotient.dataLength = resultPos;
         var y = 0;
         for (var x = outQuotient.dataLength - 1; x >= 0; x--, y++)
@@ -1452,6 +1409,7 @@ public sealed class BigInteger
             outQuotient.data[y] = 0;
         }
 
+        // 清理商的多余零
         while (outQuotient.dataLength > 1 && outQuotient.data[outQuotient.dataLength - 1] == 0)
         {
             outQuotient.dataLength--;
@@ -1462,6 +1420,7 @@ public sealed class BigInteger
             outQuotient.dataLength = 1;
         }
 
+        // 计算余数
         outRemainder.dataLength = shiftRight(remainder, shift);
 
         for (y = 0; y < outRemainder.dataLength; y++)
@@ -1477,8 +1436,7 @@ public sealed class BigInteger
 
 
     //***********************************************************************
-    // Private function that supports the division of two numbers with
-    // a divisor that has only 1 digit.
+    // 私有函数，支持两个数字的除法运算，其中除数为单个数字。
     //***********************************************************************
 
     private static void SingleByteDivide(BigInteger bi1, BigInteger bi2,
@@ -1487,7 +1445,7 @@ public sealed class BigInteger
         var result = new uint[maxLength];
         var resultPos = 0;
 
-        // copy dividend to reminder
+        // 将被除数复制到余数中
         for (var i = 0; i < maxLength; i++)
         {
             outRemainder.data[i] = bi1.data[i];
@@ -1495,6 +1453,7 @@ public sealed class BigInteger
 
         outRemainder.dataLength = bi1.dataLength;
 
+        // 清理余数的多余零
         while (outRemainder.dataLength > 1 && outRemainder.data[outRemainder.dataLength - 1] == 0)
         {
             outRemainder.dataLength--;
@@ -1504,9 +1463,7 @@ public sealed class BigInteger
         var pos = outRemainder.dataLength - 1;
         ulong dividend = outRemainder.data[pos];
 
-        //LogHelper.Info("divisor = " + divisor + " dividend = " + dividend);
-        //LogHelper.Info("divisor = " + bi2 + "\ndividend = " + bi1);
-
+        // 如果被除数大于等于除数，进行除法运算
         if (dividend >= divisor)
         {
             var quotient = dividend / divisor;
@@ -1517,19 +1474,18 @@ public sealed class BigInteger
 
         pos--;
 
+        // 继续处理余数
         while (pos >= 0)
         {
-            //LogHelper.Info(pos);
-
             dividend = ((ulong)outRemainder.data[pos + 1] << 32) + outRemainder.data[pos];
             var quotient = dividend / divisor;
             result[resultPos++] = (uint)quotient;
 
             outRemainder.data[pos + 1] = 0;
             outRemainder.data[pos--] = (uint)(dividend % divisor);
-            //LogHelper.Info(">>>> " + bi1);
         }
 
+        // 设置输出商的长度
         outQuotient.dataLength = resultPos;
         var j = 0;
         for (var i = outQuotient.dataLength - 1; i >= 0; i--, j++)
@@ -1542,6 +1498,7 @@ public sealed class BigInteger
             outQuotient.data[j] = 0;
         }
 
+        // 清理商的多余零
         while (outQuotient.dataLength > 1 && outQuotient.data[outQuotient.dataLength - 1] == 0)
         {
             outQuotient.dataLength--;
@@ -1552,6 +1509,7 @@ public sealed class BigInteger
             outQuotient.dataLength = 1;
         }
 
+        // 清理余数的多余零
         while (outRemainder.dataLength > 1 && outRemainder.data[outRemainder.dataLength - 1] == 0)
         {
             outRemainder.dataLength--;
@@ -1560,11 +1518,11 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Overloading of division operator
+    /// 重载除法运算符
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <param name="bi2"></param>
-    /// <returns></returns>
+    /// <param name="bi1">被除数</param>
+    /// <param name="bi2">除数</param>
+    /// <returns>返回商</returns>
     public static BigInteger operator /(BigInteger bi1, BigInteger bi2)
     {
         var quotient = new BigInteger();
@@ -1573,13 +1531,13 @@ public sealed class BigInteger
         var lastPos = maxLength - 1;
         bool divisorNeg = false, dividendNeg = false;
 
-        if ((bi1.data[lastPos] & 0x80000000) != 0) // bi1 negative
+        if ((bi1.data[lastPos] & 0x80000000) != 0) // bi1 为负数
         {
             bi1 = -bi1;
             dividendNeg = true;
         }
 
-        if ((bi2.data[lastPos] & 0x80000000) != 0) // bi2 negative
+        if ((bi2.data[lastPos] & 0x80000000) != 0) // bi2 为负数
         {
             bi2 = -bi2;
             divisorNeg = true;
@@ -1587,7 +1545,7 @@ public sealed class BigInteger
 
         if (bi1 < bi2)
         {
-            return quotient;
+            return quotient; // 如果被除数小于除数，商为0
         }
 
         if (bi2.dataLength == 1)
@@ -1601,7 +1559,7 @@ public sealed class BigInteger
 
         if (dividendNeg != divisorNeg)
         {
-            return -quotient;
+            return -quotient; // 如果被除数和除数符号不同，商为负
         }
 
         return quotient;
@@ -1609,11 +1567,11 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Overloading of modulus operator
+    /// 重载取模运算符
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <param name="bi2"></param>
-    /// <returns></returns>
+    /// <param name="bi1">被取模数</param>
+    /// <param name="bi2">模数</param>
+    /// <returns>返回余数</returns>
     public static BigInteger operator %(BigInteger bi1, BigInteger bi2)
     {
         var quotient = new BigInteger();
@@ -1622,20 +1580,20 @@ public sealed class BigInteger
         var lastPos = maxLength - 1;
         var dividendNeg = false;
 
-        if ((bi1.data[lastPos] & 0x80000000) != 0) // bi1 negative
+        if ((bi1.data[lastPos] & 0x80000000) != 0) // bi1 为负数
         {
             bi1 = -bi1;
             dividendNeg = true;
         }
 
-        if ((bi2.data[lastPos] & 0x80000000) != 0) // bi2 negative
+        if ((bi2.data[lastPos] & 0x80000000) != 0) // bi2 为负数
         {
             bi2 = -bi2;
         }
 
         if (bi1 < bi2)
         {
-            return remainder;
+            return remainder; // 如果被取模数小于模数，余数为被取模数
         }
 
         if (bi2.dataLength == 1)
@@ -1649,7 +1607,7 @@ public sealed class BigInteger
 
         if (dividendNeg)
         {
-            return -remainder;
+            return -remainder; // 如果被取模数为负，余数为负
         }
 
         return remainder;
@@ -1657,11 +1615,11 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Overloading of bitwise AND operator
+    /// 重载按位与运算符
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <param name="bi2"></param>
-    /// <returns></returns>
+    /// <param name="bi1">第一个操作数</param>
+    /// <param name="bi2">第二个操作数</param>
+    /// <returns>返回按位与的结果</returns>
     public static BigInteger operator &(BigInteger bi1, BigInteger bi2)
     {
         var result = new BigInteger();
@@ -1686,11 +1644,11 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Overloading of bitwise OR operator
+    /// 重载按位或运算符
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <param name="bi2"></param>
-    /// <returns></returns>
+    /// <param name="bi1">第一个操作数</param>
+    /// <param name="bi2">第二个操作数</param>
+    /// <returns>返回按位或的结果</returns>
     public static BigInteger operator |(BigInteger bi1, BigInteger bi2)
     {
         var result = new BigInteger();
@@ -1715,11 +1673,11 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Overloading of bitwise XOR operator
+    /// 重载按位异或运算符
     /// </summary>
-    /// <param name="bi1"></param>
-    /// <param name="bi2"></param>
-    /// <returns></returns>
+    /// <param name="bi1">第一个操作数</param>
+    /// <param name="bi2">第二个操作数</param>
+    /// <returns>返回按位异或的结果</returns>
     public static BigInteger operator ^(BigInteger bi1, BigInteger bi2)
     {
         var result = new BigInteger();
@@ -1744,10 +1702,10 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Returns max(this, bi)
+    /// 返回当前对象和指定对象的较大值
     /// </summary>
-    /// <param name="bi"></param>
-    /// <returns></returns>
+    /// <param name="bi">要比较的对象</param>
+    /// <returns>返回较大值</returns>
     public BigInteger max(BigInteger bi)
     {
         if (this > bi)
@@ -1760,10 +1718,10 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Returns min(this, bi)
+    /// 返回当前对象和指定对象的较小值
     /// </summary>
-    /// <param name="bi"></param>
-    /// <returns></returns>
+    /// <param name="bi">要比较的对象</param>
+    /// <returns>返回较小值</returns>
     public BigInteger min(BigInteger bi)
     {
         if (this < bi)
@@ -1776,14 +1734,14 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Returns the absolute value
+    /// 返回当前对象的绝对值
     /// </summary>
-    /// <returns></returns>
+    /// <returns>返回绝对值</returns>
     public BigInteger abs()
     {
         if ((data[maxLength - 1] & 0x80000000) != 0)
         {
-            return -this;
+            return -this; // 如果当前对象为负，返回其相反数
         }
 
         return new BigInteger(this);
@@ -1791,9 +1749,9 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Returns a string representing the BigInteger in base 10.
+    /// 返回表示当前 BigInteger 的十进制字符串
     /// </summary>
-    /// <returns></returns>
+    /// <returns>返回十进制字符串</returns>
     public override string ToString()
     {
         return ToString(10);
@@ -1801,21 +1759,21 @@ public sealed class BigInteger
 
 
     //***********************************************************************
-    // Returns a string representing the BigInteger in sign-and-magnitude
-    // format in the specified radix.
+    // 返回表示当前 BigInteger 在指定基数下的符号和大小格式的字符串。
     //
-    // Example
+    // 示例
     // -------
-    // If the value of BigInteger is -255 in base 10, then
-    // ToString(16) returns "-FF"
+    // 如果 BigInteger 的值为 -255（十进制），则
+    // ToString(16) 返回 "-FF"
     //
     //***********************************************************************
 
     /// <summary>
+    /// 返回表示当前 BigInteger 在指定基数下的字符串
     /// </summary>
-    /// <param name="radix"></param>
-    /// <returns></returns>
-    /// <exception cref="ArgumentException"></exception>
+    /// <param name="radix">基数，范围在 2 到 36 之间</param>
+    /// <returns>返回指定基数的字符串表示</returns>
+    /// <exception cref="ArgumentException">当基数不在有效范围内时抛出异常</exception>
     public string ToString(int radix)
     {
         if (radix < 2 || radix > 36)
@@ -1834,7 +1792,7 @@ public sealed class BigInteger
             negative = true;
             try
             {
-                a = -a;
+                a = -a; // 取反以处理负数
             }
             catch (Exception)
             {
@@ -1847,7 +1805,7 @@ public sealed class BigInteger
 
         if (a.dataLength == 1 && a.data[0] == 0)
         {
-            result = "0";
+            result = "0"; // 如果值为0，返回"0"
         }
         else
         {
@@ -1857,19 +1815,19 @@ public sealed class BigInteger
 
                 if (remainder.data[0] < 10)
                 {
-                    result = remainder.data[0] + result;
+                    result = remainder.data[0] + result; // 处理小于10的余数
                 }
                 else
                 {
-                    result = charSet[(int)remainder.data[0] - 10] + result;
+                    result = charSet[(int)remainder.data[0] - 10] + result; // 处理大于等于10的余数
                 }
 
-                a = quotient;
+                a = quotient; // 更新被除数
             }
 
             if (negative)
             {
-                result = "-" + result;
+                result = "-" + result; // 如果是负数，添加负号
             }
         }
 
@@ -1878,22 +1836,23 @@ public sealed class BigInteger
 
 
     //***********************************************************************
-    // Returns a hex string showing the contains of the BigInteger
+    // 返回表示 BigInteger 内容的十六进制字符串
     //
-    // Examples
+    // 示例
     // -------
-    // 1) If the value of BigInteger is 255 in base 10, then
-    //    ToHexString() returns "FF"
+    // 1) 如果 BigInteger 的值为 255（十进制），则
+    //    ToHexString() 返回 "FF"
     //
-    // 2) If the value of BigInteger is -255 in base 10, then
-    //    ToHexString() returns ".....FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF01",
-    //    which is the 2's complement representation of -255.
+    // 2) 如果 BigInteger 的值为 -255（十进制），则
+    //    ToHexString() 返回 ".....FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF01"， 
+    //    这是 -255 的二进制补码表示。
     //
     //***********************************************************************
 
     /// <summary>
+    /// 返回表示 BigInteger 内容的十六进制字符串
     /// </summary>
-    /// <returns></returns>
+    /// <returns>返回十六进制字符串</returns>
     public string ToHexString()
     {
         var result = data[dataLength - 1].ToString("X");
@@ -1908,39 +1867,39 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Modulo Exponentiation
+    /// 模幂运算
     /// </summary>
-    /// <param name="exp"></param>
-    /// <param name="n"></param>
-    /// <returns></returns>
-    /// <exception cref="ArithmeticException"></exception>
+    /// <param name="exp">指数</param>
+    /// <param name="n">模数</param>
+    /// <returns>返回模幂运算的结果</returns>
+    /// <exception cref="ArithmeticException">当指数为负时抛出异常</exception>
     public BigInteger ModPow(BigInteger exp, BigInteger n)
     {
         if ((exp.data[maxLength - 1] & 0x80000000) != 0)
         {
-            throw new ArithmeticException("Positive exponents only.");
+            throw new ArithmeticException("Positive exponents only."); // 仅支持正指数
         }
 
         BigInteger resultNum = 1;
         BigInteger tempNum;
         var thisNegative = false;
 
-        if ((data[maxLength - 1] & 0x80000000) != 0) // negative this
+        if ((data[maxLength - 1] & 0x80000000) != 0) // 当前对象为负数
         {
             tempNum = -this % n;
             thisNegative = true;
         }
         else
         {
-            tempNum = this % n; // ensures (tempNum * tempNum) < b^(2k)
+            tempNum = this % n; // 确保 (tempNum * tempNum) < b^(2k)
         }
 
-        if ((n.data[maxLength - 1] & 0x80000000) != 0) // negative n
+        if ((n.data[maxLength - 1] & 0x80000000) != 0) // 模数为负数
         {
             n = -n;
         }
 
-        // calculate constant = b^(2k) / m
+        // 计算常量 = b^(2k) / m
         var constant = new BigInteger();
 
         var i = n.dataLength << 1;
@@ -1951,11 +1910,10 @@ public sealed class BigInteger
         var totalBits = exp.BitCount();
         var count = 0;
 
-        // perform squaring and multiply exponentiation
+        // 执行平方和乘法指数运算
         for (var pos = 0; pos < exp.dataLength; pos++)
         {
             uint mask = 0x01;
-            //LogHelper.Info("pos = " + pos);
 
             for (var index = 0; index < 32; index++)
             {
@@ -1968,10 +1926,9 @@ public sealed class BigInteger
 
                 tempNum = BarrettReduction(tempNum * tempNum, n, constant);
 
-
                 if (tempNum.dataLength == 1 && tempNum.data[0] == 1)
                 {
-                    if (thisNegative && (exp.data[0] & 0x1) != 0) //odd exp
+                    if (thisNegative && (exp.data[0] & 0x1) != 0) // 奇数指数
                     {
                         return -resultNum;
                     }
@@ -1987,7 +1944,7 @@ public sealed class BigInteger
             }
         }
 
-        if (thisNegative && (exp.data[0] & 0x1) != 0) //odd exp
+        if (thisNegative && (exp.data[0] & 0x1) != 0) // 奇数指数
         {
             return -resultNum;
         }
@@ -1997,11 +1954,11 @@ public sealed class BigInteger
 
 
     //***********************************************************************
-    // Fast calculation of modular reduction using Barrett's reduction.
-    // Requires x < b^(2k), where b is the base.  In this case, base is
-    // 2^32 (uint).
+    // 使用 Barrett 减法快速计算模数减法。
+    // 要求 x < b^(2k)，其中 b 是基数。在此情况下，基数为
+    // 2^32 (uint)。
     //
-    // Reference [4]
+    // 参考文献 [4]
     //***********************************************************************
 
     private BigInteger BarrettReduction(BigInteger x, BigInteger n, BigInteger constant)
@@ -2042,7 +1999,7 @@ public sealed class BigInteger
 
 
         // r1 = x mod b^(k+1)
-        // i.e. keep the lowest (k+1) words
+        // 即保留最低的 (k+1) 个字
         var r1 = new BigInteger();
         var lengthToCopy = x.dataLength > kPlusOne ? kPlusOne : x.dataLength;
         for (var i = 0; i < lengthToCopy; i++)
@@ -2054,7 +2011,7 @@ public sealed class BigInteger
 
 
         // r2 = (q3 * n) mod b^(k+1)
-        // partial multiplication of q3 and n
+        // q3 和 n 的部分乘法
 
         var r2 = new BigInteger();
         for (var i = 0; i < q3.dataLength; i++)
@@ -2089,7 +2046,7 @@ public sealed class BigInteger
         }
 
         r1 -= r2;
-        if ((r1.data[maxLength - 1] & 0x80000000) != 0) // negative
+        if ((r1.data[maxLength - 1] & 0x80000000) != 0) // 负数
         {
             var val = new BigInteger();
             val.data[kPlusOne] = 0x00000001;
@@ -2099,7 +2056,7 @@ public sealed class BigInteger
 
         while (r1 >= n)
         {
-            r1 -= n;
+            r1 -= n; // 确保 r1 小于 n
         }
 
         return r1;
@@ -2107,16 +2064,16 @@ public sealed class BigInteger
 
 
     /// <summary>
-    /// Returns gcd(this, bi)
+    /// 返回当前对象和指定对象的最大公约数
     /// </summary>
-    /// <param name="bi"></param>
-    /// <returns></returns>
+    /// <param name="bi">要比较的对象</param>
+    /// <returns>返回最大公约数</returns>
     public BigInteger Gcd(BigInteger bi)
     {
         BigInteger x;
         BigInteger y;
 
-        if ((data[maxLength - 1] & 0x80000000) != 0) // negative
+        if ((data[maxLength - 1] & 0x80000000) != 0) // 当前对象为负数
         {
             x = -this;
         }
@@ -2125,7 +2082,7 @@ public sealed class BigInteger
             x = this;
         }
 
-        if ((bi.data[maxLength - 1] & 0x80000000) != 0) // negative
+        if ((bi.data[maxLength - 1] & 0x80000000) != 0) // 指定对象为负数
         {
             y = -bi;
         }
@@ -2139,20 +2096,20 @@ public sealed class BigInteger
         while (x.dataLength > 1 || (x.dataLength == 1 && x.data[0] != 0))
         {
             g = x;
-            x = y % x;
+            x = y % x; // 计算余数
             y = g;
         }
 
-        return g;
+        return g; // 返回最大公约数
     }
 
 
     /// <summary>
-    /// Populates "this" with the specified amount of random bits
+    /// 用指定数量的随机位填充当前对象
     /// </summary>
-    /// <param name="bits"></param>
-    /// <param name="rand"></param>
-    /// <exception cref="ArithmeticException"></exception>
+    /// <param name="bits">要生成的位数</param>
+    /// <param name="rand">随机数生成器</param>
+    /// <exception cref="ArithmeticException">当所需位数超过最大长度时抛出异常</exception>
     public void GenRandomBits(int bits, System.Random rand)
     {
         var dwords = bits >> 5;
@@ -2165,7 +2122,7 @@ public sealed class BigInteger
 
         if (dwords > maxLength)
         {
-            throw new ArithmeticException("Number of required bits > maxLength.");
+            throw new ArithmeticException("Number of required bits > maxLength."); // 超过最大长度
         }
 
         for (var i = 0; i < dwords; i++)
@@ -2175,7 +2132,7 @@ public sealed class BigInteger
 
         for (var i = dwords; i < maxLength; i++)
         {
-            data[i] = 0;
+            data[i] = 0; // 填充剩余部分为0
         }
 
         if (remBits != 0)
@@ -2188,14 +2145,14 @@ public sealed class BigInteger
         }
         else
         {
-            data[dwords - 1] |= 0x80000000;
+            data[dwords - 1] |= 0x80000000; // 设置最高位
         }
 
         dataLength = dwords;
 
         if (dataLength == 0)
         {
-            dataLength = 1;
+            dataLength = 1; // 确保数据长度至少为1
         }
     }
 
@@ -2348,37 +2305,35 @@ public sealed class BigInteger
         return true;
     }
 
-
     //***********************************************************************
-    // Probabilistic prime test based on Rabin-Miller's
+    // 基于拉宾-米勒（Rabin-Miller）算法的概率素数测试
     //
-    // for any p > 0 with p - 1 = 2^s * t
+    // 对于任何 p > 0，且 p - 1 = 2^s * t
     //
-    // p is probably prime (strong pseudoprime) if for any a < p,
-    // 1) a^t mod p = 1 or
-    // 2) a^((2^j)*t) mod p = p-1 for some 0 <= j <= s-1
+    // 如果对于任何 a < p，满足以下条件，则 p 可能是素数（强伪素数）：
+    // 1) a^t mod p = 1 或
+    // 2) a^((2^j)*t) mod p = p-1，对于某些 0 <= j <= s-1
     //
-    // Otherwise, p is composite.
+    // 否则，p 是合数。
     //
-    // Returns
+    // 返回值
     // -------
-    // True if "this" is a strong pseudoprime to randomly chosen
-    // bases.  The number of chosen bases is given by the "confidence"
-    // parameter.
+    // 如果 "this" 是随机选择的基数的强伪素数，则返回 true。
+    // 选择的基数数量由 "confidence" 参数给出。
     //
-    // False if "this" is definitely NOT prime.
+    // 如果 "this" 绝对不是素数，则返回 false。
     //
     //***********************************************************************
 
     /// <summary>
-    /// RabinMillerTest
+    /// 拉宾-米勒素数测试
     /// </summary>
-    /// <param name="confidence"></param>
-    /// <returns></returns>
+    /// <param name="confidence">置信度，表示随机选择的基数数量</param>
+    /// <returns>如果 "this" 是强伪素数则返回 true，否则返回 false</returns>
     public bool RabinMillerTest(int confidence)
     {
         BigInteger thisVal;
-        if ((data[maxLength - 1] & 0x80000000) != 0) // negative
+        if ((data[maxLength - 1] & 0x80000000) != 0) // 负数
         {
             thisVal = -this;
         }
@@ -2389,7 +2344,7 @@ public sealed class BigInteger
 
         if (thisVal.dataLength == 1)
         {
-            // test small numbers
+            // 测试小数字
             if (thisVal.data[0] == 0 || thisVal.data[0] == 1)
             {
                 return false;
@@ -2401,13 +2356,12 @@ public sealed class BigInteger
             }
         }
 
-        if ((thisVal.data[0] & 0x1) == 0) // even numbers
+        if ((thisVal.data[0] & 0x1) == 0) // 偶数
         {
             return false;
         }
 
-
-        // calculate values of s and t
+        // 计算 s 和 t 的值
         var p_sub1 = thisVal - new BigInteger(1);
         var s = 0;
 
@@ -2419,7 +2373,7 @@ public sealed class BigInteger
             {
                 if ((p_sub1.data[index] & mask) != 0)
                 {
-                    index = p_sub1.dataLength; // to break the outer loop
+                    index = p_sub1.dataLength; // 退出外层循环
                     break;
                 }
 
@@ -2438,11 +2392,11 @@ public sealed class BigInteger
         {
             var done = false;
 
-            while (!done) // generate a < n
+            while (!done) // 生成 a < n
             {
                 var testBits = 0;
 
-                // make sure "a" has at least 2 bits
+                // 确保 "a" 至少有 2 位
                 while (testBits < 2)
                 {
                     testBits = (int)(rand.NextDouble() * bits);
@@ -2452,14 +2406,14 @@ public sealed class BigInteger
 
                 var byteLen = a.dataLength;
 
-                // make sure "a" is not 0
+                // 确保 "a" 不为 0
                 if (byteLen > 1 || (byteLen == 1 && a.data[0] != 1))
                 {
                     done = true;
                 }
             }
 
-            // check whether a factor exists (fix for version 1.03)
+            // 检查是否存在因子（修复版本 1.03）
             var gcdTest = a.Gcd(thisVal);
             if (gcdTest.dataLength == 1 && gcdTest.data[0] != 1)
             {
@@ -2484,7 +2438,7 @@ public sealed class BigInteger
 
             for (var j = 0; result == false && j < s; j++)
             {
-                if (b == p_sub1) // a^((2^j)*t) mod p = p-1 for some 0 <= j <= s-1
+                if (b == p_sub1) // a^((2^j)*t) mod p = p-1，对于某些 0 <= j <= s-1
                 {
                     result = true;
                     break;
@@ -2504,34 +2458,33 @@ public sealed class BigInteger
 
 
     //***********************************************************************
-    // Probabilistic prime test based on Solovay-Strassen (Euler Criterion)
+    // 基于索洛维-斯特拉森（Solovay-Strassen）算法（欧拉准则）的概率素数测试
     //
-    // p is probably prime if for any a < p (a is not multiple of p),
-    // a^((p-1)/2) mod p = J(a, p)
+    // 如果对于任何 a < p（a 不是 p 的倍数），
+    // 则 p 可能是素数：a^((p-1)/2) mod p = J(a, p)
     //
-    // where J is the Jacobi symbol.
+    // 其中 J 是雅可比符号。
     //
-    // Otherwise, p is composite.
+    // 否则，p 是合数。
     //
-    // Returns
+    // 返回值
     // -------
-    // True if "this" is a Euler pseudoprime to randomly chosen
-    // bases.  The number of chosen bases is given by the "confidence"
-    // parameter.
+    // 如果 "this" 是随机选择的基数的欧拉伪素数，则返回 true。
+    // 选择的基数数量由 "confidence" 参数给出。
     //
-    // False if "this" is definitely NOT prime.
+    // 如果 "this" 绝对不是素数，则返回 false。
     //
     //***********************************************************************
 
     /// <summary>
-    /// Solovay-Strassen
+    /// 索洛维-斯特拉森素数测试
     /// </summary>
-    /// <param name="confidence"></param>
-    /// <returns></returns>
+    /// <param name="confidence">置信度，表示随机选择的基数数量</param>
+    /// <returns>如果 "this" 是欧拉伪素数则返回 true，否则返回 false</returns>
     public bool SolovayStrassenTest(int confidence)
     {
         BigInteger thisVal;
-        if ((data[maxLength - 1] & 0x80000000) != 0) // negative
+        if ((data[maxLength - 1] & 0x80000000) != 0) // 负数
         {
             thisVal = -this;
         }
@@ -2542,7 +2495,7 @@ public sealed class BigInteger
 
         if (thisVal.dataLength == 1)
         {
-            // test small numbers
+            // 测试小数字
             if (thisVal.data[0] == 0 || thisVal.data[0] == 1)
             {
                 return false;
@@ -2554,11 +2507,10 @@ public sealed class BigInteger
             }
         }
 
-        if ((thisVal.data[0] & 0x1) == 0) // even numbers
+        if ((thisVal.data[0] & 0x1) == 0) // 偶数
         {
             return false;
         }
-
 
         var bits = thisVal.BitCount();
         var a = new BigInteger();
@@ -2571,11 +2523,11 @@ public sealed class BigInteger
         {
             var done = false;
 
-            while (!done) // generate a < n
+            while (!done) // 生成 a < n
             {
                 var testBits = 0;
 
-                // make sure "a" has at least 2 bits
+                // 确保 "a" 至少有 2 位
                 while (testBits < 2)
                 {
                     testBits = (int)(rand.NextDouble() * bits);
@@ -2585,21 +2537,21 @@ public sealed class BigInteger
 
                 var byteLen = a.dataLength;
 
-                // make sure "a" is not 0
+                // 确保 "a" 不为 0
                 if (byteLen > 1 || (byteLen == 1 && a.data[0] != 1))
                 {
                     done = true;
                 }
             }
 
-            // check whether a factor exists (fix for version 1.03)
+            // 检查是否存在因子（修复版本 1.03）
             var gcdTest = a.Gcd(thisVal);
             if (gcdTest.dataLength == 1 && gcdTest.data[0] != 1)
             {
                 return false;
             }
 
-            // calculate a^((p-1)/2) mod p
+            // 计算 a^((p-1)/2) mod p
 
             var expResult = a.ModPow(p_sub1_shift, thisVal);
             if (expResult == p_sub1)
@@ -2607,13 +2559,13 @@ public sealed class BigInteger
                 expResult = -1;
             }
 
-            // calculate Jacobi symbol
+            // 计算雅可比符号
             BigInteger jacob = Jacobi(a, thisVal);
 
             //LogHelper.Info("a = " + a.ToString(10) + " b = " + thisVal.ToString(10));
             //LogHelper.Info("expResult = " + expResult.ToString(10) + " Jacob = " + jacob.ToString(10));
 
-            // if they are different then it is not prime
+            // 如果它们不同，则不是素数
             if (expResult != jacob)
             {
                 return false;
@@ -2625,27 +2577,27 @@ public sealed class BigInteger
 
 
     //***********************************************************************
-    // Implementation of the Lucas Strong Pseudo Prime test.
+    // 实现卢卡斯强伪素数测试。
     //
-    // Let n be an odd number with gcd(n,D) = 1, and n - J(D, n) = 2^s * d
-    // with d odd and s >= 0.
+    // 设 n 为一个奇数，且 gcd(n,D) = 1，n - J(D, n) = 2^s * d
+    // 其中 d 为奇数，s >= 0。
     //
-    // If Ud mod n = 0 or V2^r*d mod n = 0 for some 0 <= r < s, then n
-    // is a strong Lucas pseudoprime with parameters (P, Q).  We select
-    // P and Q based on Selfridge.
+    // 如果 Ud mod n = 0 或 V2^r*d mod n = 0，对于某些 0 <= r < s，则 n
+    // 是一个强卢卡斯伪素数，参数为 (P, Q)。我们根据 Selfridge 选择
+    // P 和 Q。
     //
-    // Returns True if number is a strong Lucus pseudo prime.
-    // Otherwise, returns False indicating that number is composite.
+    // 返回值：如果数字是强卢卡斯伪素数，则返回 true。
+    // 否则，返回 false，表示该数字是合数。
     //***********************************************************************
 
     /// <summary>
-    /// Implementation of the Lucas Strong Pseudo Prime test
+    /// 实现卢卡斯强伪素数测试
     /// </summary>
-    /// <returns></returns>
+    /// <returns>如果是强卢卡斯伪素数则返回 true，否则返回 false</returns>
     public bool LucasStrongTest()
     {
         BigInteger thisVal;
-        if ((data[maxLength - 1] & 0x80000000) != 0) // negative
+        if ((data[maxLength - 1] & 0x80000000) != 0) // 负数
         {
             thisVal = -this;
         }
@@ -2656,7 +2608,7 @@ public sealed class BigInteger
 
         if (thisVal.dataLength == 1)
         {
-            // test small numbers
+            // 测试小数字
             if (thisVal.data[0] == 0 || thisVal.data[0] == 1)
             {
                 return false;
@@ -2668,7 +2620,7 @@ public sealed class BigInteger
             }
         }
 
-        if ((thisVal.data[0] & 0x1) == 0) // even numbers
+        if ((thisVal.data[0] & 0x1) == 0) // 偶数
         {
             return false;
         }
@@ -2679,10 +2631,10 @@ public sealed class BigInteger
 
     private bool LucasStrongTestHelper(BigInteger thisVal)
     {
-        // Do the test (selects D based on Selfridge)
-        // Let D be the first element of the sequence
-        // 5, -7, 9, -11, 13, ... for which J(D,n) = -1
-        // Let P = 1, Q = (1-D) / 4
+        // 执行测试（根据 Selfridge 选择 D）
+        // 设 D 为序列的第一个元素
+        // 5, -7, 9, -11, 13, ... 使得 J(D,n) = -1
+        // 设 P = 1, Q = (1-D) / 4
 
         long D = 5, sign = -1, dCount = 0;
         var done = false;
@@ -2697,14 +2649,14 @@ public sealed class BigInteger
             }
             else
             {
-                if (Jresult == 0 && System.Math.Abs(D) < thisVal) // divisor found
+                if (Jresult == 0 && System.Math.Abs(D) < thisVal) // 找到因子
                 {
                     return false;
                 }
 
                 if (dCount == 20)
                 {
-                    // check for square
+                    // 检查是否为平方数
                     var root = thisVal.Sqrt();
                     if (root * root == thisVal)
                     {
@@ -2741,7 +2693,7 @@ public sealed class BigInteger
             {
                 if ((p_add1.data[index] & mask) != 0)
                 {
-                    index = p_add1.dataLength; // to break the outer loop
+                    index = p_add1.dataLength; // 退出外层循环
                     break;
                 }
 
@@ -2752,8 +2704,8 @@ public sealed class BigInteger
 
         var t = p_add1 >> s;
 
-        // calculate constant = b^(2k) / m
-        // for Barrett Reduction
+        // 计算常数 = b^(2k) / m
+        // 用于 Barrett 减少
         var constant = new BigInteger();
 
         var nLen = thisVal.dataLength << 1;
@@ -2768,7 +2720,7 @@ public sealed class BigInteger
         if ((lucas[0].dataLength == 1 && lucas[0].data[0] == 0) ||
             (lucas[1].dataLength == 1 && lucas[1].data[0] == 0))
         {
-            // u(t) = 0 or V(t) = 0
+            // u(t) = 0 或 V(t) = 0
             isPrime = true;
         }
 
@@ -2776,7 +2728,7 @@ public sealed class BigInteger
         {
             if (!isPrime)
             {
-                // doubling of index
+                // 指数加倍
                 lucas[1] = thisVal.BarrettReduction(lucas[1] * lucas[1], thisVal, constant);
                 lucas[1] = (lucas[1] - (lucas[2] << 1)) % thisVal;
 
@@ -2791,11 +2743,10 @@ public sealed class BigInteger
             lucas[2] = thisVal.BarrettReduction(lucas[2] * lucas[2], thisVal, constant); //Q^k
         }
 
-
-        if (isPrime) // additional checks for composite numbers
+        if (isPrime) // 对合数的额外检查
         {
-            // If n is prime and gcd(n, Q) == 1, then
-            // Q^((n+1)/2) = Q * Q^((n-1)/2) is congruent to (Q * J(Q, n)) mod n
+            // 如果 n 是素数且 gcd(n, Q) == 1，则
+            // Q^((n+1)/2) = Q * Q^((n-1)/2) 与 (Q * J(Q, n)) mod n 同余
 
             var g = thisVal.Gcd(Q);
             if (g.dataLength == 1 && g.data[0] == 1) // gcd(this, Q) == 1
@@ -2823,22 +2774,21 @@ public sealed class BigInteger
 
 
     //***********************************************************************
-    // Determines whether a number is probably prime, using the Rabin-Miller's
-    // test.  Before applying the test, the number is tested for divisibility
-    // by primes < 2000
+    // 确定一个数字是否可能是素数，使用拉宾-米勒的测试。
+    // 在应用测试之前，数字会被测试是否能被小于 2000 的素数整除。
     //
-    // Returns true if number is probably prime.
+    // 返回 true 如果数字可能是素数。
     //***********************************************************************
 
     /// <summary>
-    /// Determines whether a number is probably prime, using the Rabin-Miller's
+    /// 确定一个数字是否可能是素数，使用拉宾-米勒的测试
     /// </summary>
-    /// <param name="confidence"></param>
-    /// <returns></returns>
+    /// <param name="confidence">置信度，表示随机选择的基数数量</param>
+    /// <returns>如果数字可能是素数则返回 true，否则返回 false</returns>
     public bool IsProbablePrime(int confidence)
     {
         BigInteger thisVal;
-        if ((data[maxLength - 1] & 0x80000000) != 0) // negative
+        if ((data[maxLength - 1] & 0x80000000) != 0) // 负数
         {
             thisVal = -this;
         }
@@ -2847,8 +2797,7 @@ public sealed class BigInteger
             thisVal = this;
         }
 
-
-        // test for divisibility by primes < 2000
+        // 测试是否能被小于 2000 的素数整除
         for (var p = 0; p < primesBelow2000.Length; p++)
         {
             BigInteger divisor = primesBelow2000[p];
@@ -2880,35 +2829,34 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
 
     //***********************************************************************
-    // Determines whether this BigInteger is probably prime using a
-    // combination of base 2 strong pseudoprime test and Lucas strong
-    // pseudoprime test.
+    // 确定这个 BigInteger 是否可能是素数，使用
+    // 基于 2 的强伪素数测试和卢卡斯强伪素数测试的组合。
     //
-    // The sequence of the primality test is as follows,
+    // 素数测试的顺序如下，
     //
-    // 1) Trial divisions are carried out using prime numbers below 2000.
-    //    if any of the primes divides this BigInteger, then it is not prime.
+    // 1) 使用小于 2000 的素数进行试除。
+    //    如果任何素数整除这个 BigInteger，则它不是素数。
     //
-    // 2) Perform base 2 strong pseudoprime test.  If this BigInteger is a
-    //    base 2 strong pseudoprime, proceed on to the next step.
+    // 2) 执行基于 2 的强伪素数测试。如果这个 BigInteger 是
+    //    基于 2 的强伪素数，则继续进行下一步。
     //
-    // 3) Perform strong Lucas pseudoprime test.
+    // 3) 执行强卢卡斯伪素数测试。
     //
-    // Returns True if this BigInteger is both a base 2 strong pseudoprime
-    // and a strong Lucas pseudoprime.
+    // 如果这个 BigInteger 同时是基于 2 的强伪素数
+    // 和强卢卡斯伪素数，则返回 true。
     //
-    // For a detailed discussion of this primality test, see [6].
+    // 有关此素数测试的详细讨论，请参见 [6]。
     //
     //***********************************************************************
 
     /// <summary>
-    /// Determines whether this BigInteger is probably prime using a
+    /// 确定这个 BigInteger 是否可能是素数
     /// </summary>
-    /// <returns></returns>
+    /// <returns>如果是可能的素数则返回 true，否则返回 false</returns>
     public bool IsProbablePrime()
     {
         BigInteger thisVal;
-        if ((data[maxLength - 1] & 0x80000000) != 0) // negative
+        if ((data[maxLength - 1] & 0x80000000) != 0) // 负数
         {
             thisVal = -this;
         }
@@ -2919,7 +2867,7 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
         if (thisVal.dataLength == 1)
         {
-            // test small numbers
+            // 测试小数字
             if (thisVal.data[0] == 0 || thisVal.data[0] == 1)
             {
                 return false;
@@ -2931,13 +2879,12 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
             }
         }
 
-        if ((thisVal.data[0] & 0x1) == 0) // even numbers
+        if ((thisVal.data[0] & 0x1) == 0) // 偶数
         {
             return false;
         }
 
-
-        // test for divisibility by primes < 2000
+        // 测试是否能被小于 2000 的素数整除
         for (var p = 0; p < primesBelow2000.Length; p++)
         {
             BigInteger divisor = primesBelow2000[p];
@@ -2957,9 +2904,9 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
             }
         }
 
-        // Perform BASE 2 Rabin-Miller Test
+        // 执行基于 2 的拉宾-米勒测试
 
-        // calculate values of s and t
+        // 计算 s 和 t 的值
         var p_sub1 = thisVal - new BigInteger(1);
         var s = 0;
 
@@ -2971,7 +2918,7 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
             {
                 if ((p_sub1.data[index] & mask) != 0)
                 {
-                    index = p_sub1.dataLength; // to break the outer loop
+                    index = p_sub1.dataLength; // 退出外层循环
                     break;
                 }
 
@@ -2996,7 +2943,7 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
         for (var j = 0; result == false && j < s; j++)
         {
-            if (b == p_sub1) // a^((2^j)*t) mod p = p-1 for some 0 <= j <= s-1
+            if (b == p_sub1) // a^((2^j)*t) mod p = p-1，对于某些 0 <= j <= s-1
             {
                 result = true;
                 break;
@@ -3005,7 +2952,7 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
             b = b * b % thisVal;
         }
 
-        // if number is strong pseudoprime to base 2, then do a strong lucas test
+        // 如果数字是基于 2 的强伪素数，则进行强卢卡斯测试
         if (result)
         {
             result = LucasStrongTestHelper(thisVal);
@@ -3016,9 +2963,9 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
 
     /// <summary>
-    /// Returns the lowest 4 bytes of the BigInteger as an int.
+    /// 返回 BigInteger 的最低 4 个字节作为 int。
     /// </summary>
-    /// <returns></returns>
+    /// <returns>最低 4 个字节的整数值</returns>
     public int IntValue()
     {
         return (int)data[0];
@@ -3026,9 +2973,9 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
 
     /// <summary>
-    /// Returns the lowest 8 bytes of the BigInteger as a long.
+    /// 返回 BigInteger 的最低 8 个字节作为 long。
     /// </summary>
-    /// <returns></returns>
+    /// <returns>最低 8 个字节的长整型值</returns>
     public long LongValue()
     {
         long val = 0;
@@ -3036,12 +2983,12 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
         val = data[0];
         try
         {
-            // exception if maxLength = 1
+            // 如果 maxLength = 1 则会抛出异常
             val |= (long)data[1] << 32;
         }
         catch (Exception)
         {
-            if ((data[0] & 0x80000000) != 0) // negative
+            if ((data[0] & 0x80000000) != 0) // 负数
             {
                 val = (int)data[0];
             }
@@ -3052,18 +2999,18 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
 
     /// <summary>
-    /// Computes the Jacobi Symbol for a and b. Algorithm adapted from [3] and [4] with some optimizations
+    /// 计算 a 和 b 的雅可比符号。算法改编自 [3] 和 [4]，并进行了优化
     /// </summary>
-    /// <param name="a"></param>
-    /// <param name="b"></param>
-    /// <returns></returns>
-    /// <exception cref="ArgumentException"></exception>
+    /// <param name="a">第一个参数</param>
+    /// <param name="b">第二个参数</param>
+    /// <returns>雅可比符号的值</returns>
+    /// <exception cref="ArgumentException">如果 b 不是奇数则抛出异常</exception>
     public static int Jacobi(BigInteger a, BigInteger b)
     {
-        // Jacobi defined only for odd integers
+        // 雅可比符号仅定义于奇数
         if ((b.data[0] & 0x1) == 0)
         {
-            throw new ArgumentException("Jacobi defined only for odd integers.");
+            throw new ArgumentException("雅可比符号仅定义于奇数。");
         }
 
         if (a >= b)
@@ -3100,7 +3047,7 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
             {
                 if ((a.data[index] & mask) != 0)
                 {
-                    index = a.dataLength; // to break the outer loop
+                    index = a.dataLength; // 退出外层循环
                     break;
                 }
 
@@ -3131,12 +3078,12 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
     }
 
     /// <summary>
-    /// Generates a positive BigInteger that is probably prime.
+    /// 生成一个可能是素数的正 BigInteger。
     /// </summary>
-    /// <param name="bits"></param>
-    /// <param name="confidence"></param>
-    /// <param name="rand"></param>
-    /// <returns></returns>
+    /// <param name="bits">位数</param>
+    /// <param name="confidence">置信度</param>
+    /// <param name="rand">随机数生成器</param>
+    /// <returns>生成的可能是素数的 BigInteger</returns>
     public static BigInteger GenPseudoPrime(int bits, int confidence, System.Random rand)
     {
         var result = new BigInteger();
@@ -3145,9 +3092,9 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
         while (!done)
         {
             result.GenRandomBits(bits, rand);
-            result.data[0] |= 0x01; // make it odd
+            result.data[0] |= 0x01; // 使其为奇数
 
-            // prime test
+            // 素数测试
             done = result.IsProbablePrime(confidence);
         }
 
@@ -3156,11 +3103,11 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
 
     /// <summary>
-    /// Generates a random number with the specified number of bits such that gcd(number, this) = 1
+    /// 生成一个具有指定位数的随机数，使得 gcd(number, this) = 1
     /// </summary>
-    /// <param name="bits"></param>
-    /// <param name="rand"></param>
-    /// <returns></returns>
+    /// <param name="bits">位数</param>
+    /// <param name="rand">随机数生成器</param>
+    /// <returns>生成的互质的 BigInteger</returns>
     public BigInteger GenCoPrime(int bits, System.Random rand)
     {
         var done = false;
@@ -3171,7 +3118,7 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
             result.GenRandomBits(bits, rand);
             //LogHelper.Info(result.ToString(16));
 
-            // gcd test
+            // gcd 测试
             var g = result.Gcd(this);
             if (g.dataLength == 1 && g.data[0] == 1)
             {
@@ -3184,16 +3131,17 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
 
     /// <summary>
-    /// Returns the modulo inverse of this.  Throws ArithmeticException if the inverse does not exist.  (i.e. gcd(this, modulus) != 1)
+    /// 返回这个的模逆。如果逆不存在则抛出 ArithmeticException。 
+    /// （即 gcd(this, modulus) != 1）
     /// </summary>
-    /// <param name="modulus"></param>
-    /// <returns></returns>
-    /// <exception cref="ArithmeticException"></exception>
+    /// <param name="modulus">模数</param>
+    /// <returns>模逆</returns>
+    /// <exception cref="ArithmeticException">如果逆不存在则抛出异常</exception>
     public BigInteger ModInverse(BigInteger modulus)
     {
         BigInteger[] p = { 0, 1, };
-        var q = new BigInteger[2]; // quotients
-        BigInteger[] r = { 0, 0, }; // remainders
+        var q = new BigInteger[2]; // 商
+        BigInteger[] r = { 0, 0, }; // 余数
 
         var step = 0;
 
@@ -3241,14 +3189,14 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
         if (r[0].dataLength > 1 || (r[0].dataLength == 1 && r[0].data[0] != 1))
         {
-            throw new ArithmeticException("No inverse!");
+            throw new ArithmeticException("没有逆！");
         }
 
         var result = (p[0] - p[1] * q[0]) % modulus;
 
         if ((result.data[maxLength - 1] & 0x80000000) != 0)
         {
-            result += modulus; // get the least positive modulus
+            result += modulus; // 获取最小正模
         }
 
         return result;
@@ -3256,9 +3204,9 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
 
     /// <summary>
-    /// Returns the value of the BigInteger as a byte array.  The lowest index contains the MSB.
+    /// 返回 BigInteger 的字节数组。最低索引包含 MSB。
     /// </summary>
-    /// <returns></returns>
+    /// <returns>字节数组</returns>
     public byte[] GetBytes()
     {
         var numBits = BitCount();
@@ -3313,13 +3261,13 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
 
     /// <summary>
-    /// Sets the value of the specified bit to 1  The Least Significant Bit position is 0.
+    /// 将指定的位的值设置为 1。最低有效位位置为 0。
     /// </summary>
-    /// <param name="bitNum"></param>
+    /// <param name="bitNum">位编号</param>
     public void SetBit(uint bitNum)
     {
-        var bytePos = bitNum >> 5; // divide by 32
-        var bitPos = (byte)(bitNum & 0x1F); // get the lowest 5 bits
+        var bytePos = bitNum >> 5; // 除以 32
+        var bitPos = (byte)(bitNum & 0x1F); // 获取最低 5 位
 
         var mask = (uint)1 << bitPos;
         data[bytePos] |= mask;
@@ -3331,9 +3279,9 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
     }
 
     /// <summary>
-    /// Sets the value of the specified bit to 0  The Least Significant Bit position is 0.
+    /// 将指定的位的值设置为 0。最低有效位位置为 0。
     /// </summary>
-    /// <param name="bitNum"></param>
+    /// <param name="bitNum">位编号</param>
     public void UnsetBit(uint bitNum)
     {
         var bytePos = bitNum >> 5;
@@ -3356,23 +3304,22 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
 
     //***********************************************************************
-    // Returns a value that is equivalent to the integer square root
-    // of the BigInteger.
+    // 返回与 BigInteger 的整数平方根等效的值。
     //
-    // The integer square root of "this" is defined as the largest integer n
-    // such that (n * n) <= this
+    // BigInteger 的整数平方根定义为最大的整数 n
+    // 使得 (n * n) <= this
     //
     //***********************************************************************
 
     /// <summary>
-    /// Returns a value that is equivalent to the integer square root
+    /// 返回与整数平方根等效的值
     /// </summary>
-    /// <returns></returns>
+    /// <returns>整数平方根的值</returns>
     public BigInteger Sqrt()
     {
         var numBits = (uint)BitCount();
 
-        if ((numBits & 0x1) != 0) // odd number of bits
+        if ((numBits & 0x1) != 0) // 奇数位数
         {
             numBits = (numBits >> 1) + 1;
         }
@@ -3403,10 +3350,10 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
         {
             while (mask != 0)
             {
-                // guess
+                // 猜测
                 result.data[i] ^= mask;
 
-                // undo the guess if its square is larger than this
+                // 如果其平方大于 this，则撤销猜测
                 if (result * result > this)
                 {
                     result.data[i] ^= mask;
@@ -3423,45 +3370,45 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
 
     //***********************************************************************
-    // Returns the k_th number in the Lucas Sequence reduced modulo n.
+    // 返回 Lucas 序列中第 k 个数字，模 n 计算。
     //
-    // Uses index doubling to speed up the process.  For example, to calculate V(k),
-    // we maintain two numbers in the sequence V(n) and V(n+1).
+    // 使用索引加倍来加速过程。例如，要计算 V(k)，
+    // 我们维护序列中的两个数字 V(n) 和 V(n+1)。
     //
-    // To obtain V(2n), we use the identity
+    // 要获得 V(2n)，我们使用恒等式
     //      V(2n) = (V(n) * V(n)) - (2 * Q^n)
-    // To obtain V(2n+1), we first write it as
+    // 要获得 V(2n+1)，我们首先将其写为
     //      V(2n+1) = V((n+1) + n)
-    // and use the identity
+    // 并使用恒等式
     //      V(m+n) = V(m) * V(n) - Q * V(m-n)
-    // Hence,
+    // 因此，
     //      V((n+1) + n) = V(n+1) * V(n) - Q^n * V((n+1) - n)
     //                   = V(n+1) * V(n) - Q^n * V(1)
     //                   = V(n+1) * V(n) - Q^n * P
     //
-    // We use k in its binary expansion and perform index doubling for each
-    // bit position.  For each bit position that is set, we perform an
-    // index doubling followed by an index addition.  This means that for V(n),
-    // we need to update it to V(2n+1).  For V(n+1), we need to update it to
+    // 我们使用 k 的二进制展开，并对每个
+    // 位位置执行索引加倍。对于每个设置的位位置，我们执行
+    // 索引加倍后跟索引加法。这意味着对于 V(n)，
+    // 我们需要将其更新为 V(2n+1)。对于 V(n+1)，我们需要将其更新为
     // V((2n+1)+1) = V(2*(n+1))
     //
-    // This function returns
+    // 此函数返回
     // [0] = U(k)
     // [1] = V(k)
     // [2] = Q^n
     //
-    // Where U(0) = 0 % n, U(1) = 1 % n
+    // 其中 U(0) = 0 % n, U(1) = 1 % n
     //       V(0) = 2 % n, V(1) = P % n
     //***********************************************************************
 
     /// <summary>
-    /// Returns the k_th number in the Lucas Sequence reduced modulo n
+    /// 返回 Lucas 序列中第 k 个数字，模 n 计算
     /// </summary>
-    /// <param name="P"></param>
-    /// <param name="Q"></param>
-    /// <param name="k"></param>
-    /// <param name="n"></param>
-    /// <returns></returns>
+    /// <param name="P">参数 P</param>
+    /// <param name="Q">参数 Q</param>
+    /// <param name="k">索引 k</param>
+    /// <param name="n">模数 n</param>
+    /// <returns>Lucas 序列的第 k 个数字</returns>
     public static BigInteger[] LucasSequence(BigInteger P, BigInteger Q,
         BigInteger k, BigInteger n)
     {
@@ -3475,8 +3422,8 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
             return result;
         }
 
-        // calculate constant = b^(2k) / m
-        // for Barrett Reduction
+        // 计算常数 = b^(2k) / m
+        // 用于 Barrett 减少
         var constant = new BigInteger();
 
         var nLen = n.dataLength << 1;
@@ -3485,7 +3432,7 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
         constant = constant / n;
 
-        // calculate values of s and t
+        // 计算 s 和 t 的值
         var s = 0;
 
         for (var index = 0; index < k.dataLength; index++)
@@ -3496,7 +3443,7 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
             {
                 if ((k.data[index] & mask) != 0)
                 {
-                    index = k.dataLength; // to break the outer loop
+                    index = k.dataLength; // 退出外层循环
                     break;
                 }
 
@@ -3513,10 +3460,10 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
 
     //***********************************************************************
-    // Performs the calculation of the kth term in the Lucas Sequence.
-    // For details of the algorithm, see reference [9].
+    // 执行 Lucas 序列中第 k 项的计算。
+    // 有关算法的详细信息，请参见参考文献 [9]。
     //
-    // k must be odd.  i.e LSB == 1
+    // k 必须是奇数，即 LSB == 1
     //***********************************************************************
 
     private static BigInteger[] LucasSequenceHelper(BigInteger P, BigInteger Q,
@@ -3527,7 +3474,7 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
         if ((k.data[0] & 0x00000001) == 0)
         {
-            throw new ArgumentException("Argument k must be odd.");
+            throw new ArgumentException("参数 k 必须是奇数。");
         }
 
         var numbits = k.BitCount();
@@ -3541,19 +3488,19 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
                    u1 = Q_k;
         var flag = true;
 
-        for (var i = k.dataLength - 1; i >= 0; i--) // iterate on the binary expansion of k
+        for (var i = k.dataLength - 1; i >= 0; i--) // 遍历 k 的二进制展开
         {
             //LogHelper.Info("round");
             while (mask != 0)
             {
-                if (i == 0 && mask == 0x00000001) // last bit
+                if (i == 0 && mask == 0x00000001) // 最后一位
                 {
                     break;
                 }
 
-                if ((k.data[i] & mask) != 0) // bit is set
+                if ((k.data[i] & mask) != 0) // 位被设置
                 {
-                    // index doubling with addition
+                    // 索引加倍并加法
 
                     u1 = u1 * v1 % n;
 
@@ -3574,7 +3521,7 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
                 }
                 else
                 {
-                    // index doubling
+                    // 索引加倍
                     u1 = (u1 * v - Q_k) % n;
 
                     v1 = (v * v1 - P * Q_k) % n;
@@ -3598,8 +3545,8 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
             mask = 0x80000000;
         }
 
-        // at this point u1 = u(n+1) and v = v(n)
-        // since the last bit always 1, we need to transform u1 to u(2n+1) and v to v(2n+1)
+        // 此时 u1 = u(n+1) 和 v = v(n)
+        // 由于最后一位始终为 1，我们需要将 u1 转换为 u(2n+1) 和 v 转换为 v(2n+1)
 
         u1 = (u1 * v - Q_k) % n;
         v = (v * v1 - P * Q_k) % n;
@@ -3614,10 +3561,9 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
         Q_k = Q_k * Q % n;
 
-
         for (var i = 0; i < s; i++)
         {
-            // index doubling
+            // 索引加倍
             u1 = u1 * v % n;
             v = (v * v - (Q_k << 1)) % n;
 

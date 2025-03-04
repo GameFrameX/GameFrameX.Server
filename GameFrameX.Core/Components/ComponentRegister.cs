@@ -124,7 +124,7 @@ public static class ComponentRegister
                     var agentType = HotfixManager.GetAgentType(compType);
                     if (agentType == null)
                     {
-                        LogHelper.Warn($"{compType}未实现Agent");
+                        LogHelper.Warn($"{compType}未实现Agent,请检查业务代码是否正确");
                     }
 
                     /*if (actorType > ActorType.Separator)
@@ -136,12 +136,12 @@ public static class ComponentRegister
 
                 if (actorType > GlobalConst.ActorTypeSeparator)
                 {
-                    LogHelper.Info($"激活全局Actor: {actorType}");
+                    LogHelper.Debug($"激活全局Actor: {actorType}");
                     await ActorManager.GetOrNew(ActorIdGenerator.GetActorId(actorType));
                 }
             }
 
-            LogHelper.Info("激活全局组件并检测组件是否都包含Agent实现完成");
+            LogHelper.Debug("激活全局组件并检测组件是否都包含Agent实现完成");
         }
         catch (Exception)
         {

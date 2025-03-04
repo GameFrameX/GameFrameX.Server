@@ -18,7 +18,7 @@ public sealed partial class MongoDbService
     /// <param name="filter">查询条件表达式</param>
     /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
     /// <returns>返回修改的记录数</returns>
-    public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
+    public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         var state = await FindAsync(filter);
         state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
@@ -33,7 +33,7 @@ public sealed partial class MongoDbService
     /// <param name="filter">查询条件表达式</param>
     /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
     /// <returns>返回修改的记录数</returns>
-    public async Task<long> DeleteListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
+    public async Task<long> DeleteListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         var bulkUpdate = _mongoDbContext.Update<TState>();
         var list = await FindListAsync(filter);
@@ -55,7 +55,7 @@ public sealed partial class MongoDbService
     /// <param name="ids">要删除的ID列表</param>
     /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
     /// <returns>返回修改的记录数</returns>
-    public async Task<long> DeleteListIdAsync<TState>(IEnumerable<long> ids) where TState : BaseCacheState
+    public async Task<long> DeleteListIdAsync<TState>(IEnumerable<long> ids) where TState : BaseCacheState, new()
     {
         var bulkUpdate = _mongoDbContext.Update<TState>();
         var deleteTime = TimeHelper.UnixTimeMilliseconds();
@@ -74,7 +74,7 @@ public sealed partial class MongoDbService
     /// <param name="state">要删除的对象</param>
     /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
     /// <returns>返回修改的记录数</returns>
-    public async Task<long> DeleteAsync<TState>(TState state) where TState : BaseCacheState
+    public async Task<long> DeleteAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
         state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
         state.IsDeleted = true;

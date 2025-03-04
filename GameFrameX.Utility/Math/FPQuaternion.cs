@@ -17,11 +17,10 @@
  *  3. This notice may not be removed or altered from any source distribution.
  */
 
-
 namespace GameFrameX.Utility.Math;
 
 /// <summary>
-/// A Quaternion representing an orientation.
+/// 表示一个四元数，用于表示三维空间中的方向和旋转。
 /// </summary>
 [Serializable]
 public struct FPQuaternion
@@ -40,10 +39,9 @@ public struct FPQuaternion
 
     /// <summary>表示单位四元数的静态只读字段。</summary>
     public static readonly FPQuaternion identity;
-
+    /// <summary>静态构造函数，初始化单位四元数。</summary>
     static FPQuaternion()
     {
-        /// <summary>静态构造函数，初始化单位四元数。</summary>
         identity = new FPQuaternion(0, 0, 0, 1);
     }
 
@@ -153,7 +151,6 @@ public struct FPQuaternion
 
         return angle;
     }
-
 
     #region public static JQuaternion Add(JQuaternion quaternion1, JQuaternion quaternion2)
 
@@ -492,7 +489,6 @@ public struct FPQuaternion
 
     #endregion
 
-
     #region public static JQuaternion Multiply(JQuaternion quaternion1, FP scaleFactor)
 
     /// <summary>
@@ -567,7 +563,6 @@ public struct FPQuaternion
             cosHalfAngle
         );
     }
-
 
     #region public static JQuaternion CreateFromMatrix(JMatrix matrix)
 
@@ -681,9 +676,9 @@ public struct FPQuaternion
     /// <summary>
     /// 使用四元数旋转一个三维向量。
     /// </summary>
-    /// <param name="quat"></param>
-    /// <param name="vec"></param>
-    /// <returns></returns>
+    /// <param name="quat">要应用的四元数。</param>
+    /// <param name="vec">要旋转的三维向量。</param>
+    /// <returns>旋转后的三维向量。</returns>
     public static FPVector3 operator *(FPQuaternion quat, FPVector3 vec)
     {
         var num = quat.x * 2 * FP.One;

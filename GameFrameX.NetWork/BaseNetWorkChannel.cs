@@ -81,7 +81,7 @@ public class BaseNetWorkChannel : INetWorkChannel
     {
         messageObject.CheckNotNull(nameof(messageObject));
 
-        if (messageObject is IResponseMessage responseMessage)
+        if (messageObject is IResponseMessage responseMessage && responseMessage.ErrorCode == default && errorCode != default)
         {
             responseMessage.ErrorCode = errorCode;
         }
@@ -89,37 +89,46 @@ public class BaseNetWorkChannel : INetWorkChannel
         var messageData = _messageEncoder.Handler(messageObject);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
-            LogHelper.Debug($"---发送{messageObject.ToFormatMessageString()}");
+            // 判断是否是心跳消息
+            if (messageObject is IHeartBeatMessage)
+            {
+                // 判断是否打印心跳消息的发送
+                if (Setting.IsDebugSendHeartBeat)
+                {
+                    LogHelper.Debug($"---发送{messageObject.ToFormatMessageString()}");
+                }
+            }
+            else
+            {
+                LogHelper.Debug($"---发送{messageObject.ToFormatMessageString()}");
+            }
         }
 
+        if (!GameAppSession.IsConnected)
+        {
+            return;
+        }
 
         if (IsWebSocket)
         {
-            if (_webSocketSession.State == SessionState.Connected)
+            try
             {
-                try
-                {
-                    await _webSocketSession.SendAsync(messageData);
-                }
-                catch (Exception e)
-                {
-                    LogHelper.Error(e);
-                }
+                await _webSocketSession.SendAsync(messageData);
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error(e);
             }
         }
         else
         {
-            var appSession = (IAppSession)GameAppSession;
-            if (appSession.Connection.IsClosed == false && appSession.State == SessionState.Connected)
+            try
             {
-                try
-                {
-                    await GameAppSession.SendAsync(messageData);
-                }
-                catch (Exception e)
-                {
-                    LogHelper.Error(e);
-                }
+                await GameAppSession.SendAsync(messageData);
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error(e);
             }
         }
     }

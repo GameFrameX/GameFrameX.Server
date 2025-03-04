@@ -77,4 +77,77 @@ public static class ReadOnlySpanExtension
         offset += ConstSize.LongSize;
         return value;
     }
+
+    /// <summary>
+    /// 从字节数组中以指定偏移量读取无符号短整型。
+    /// </summary>
+    /// <param name="buffer">要从中读取数据的字节数组。</param>
+    /// <param name="offset">读取数据的起始偏移量，此偏移量在读取后会自动增加。</param>
+    /// <returns>读取的无符号短整型，若读取长度小于等于0或偏移量超出数组长度，返回0。</returns>
+    public static ushort ReadUShort(this ReadOnlySpan<byte> buffer, ref int offset)
+    {
+        if (offset > buffer.Length + ConstSize.UShortSize)
+        {
+            throw new Exception("buffer read out of index");
+        }
+
+        var value = BinaryPrimitives.ReadUInt16BigEndian(buffer[offset..]);
+        offset += ConstSize.UShortSize;
+        return value;
+    }
+
+    /// <summary>
+    /// 从字节数组中以指定偏移量读取短整型。
+    /// </summary>
+    /// <param name="buffer">要从中读取数据的字节数组。</param>
+    /// <param name="offset">读取数据的起始偏移量，此偏移量在读取后会自动增加。</param>
+    /// <returns>读取的短整型，若读取长度小于等于0或偏移量超出数组长度，返回0。</returns>
+    public static short ReadShort(this ReadOnlySpan<byte> buffer, ref int offset)
+    {
+        if (offset > buffer.Length + ConstSize.ShortSize)
+        {
+            throw new Exception("buffer read out of index");
+        }
+
+        var value = BinaryPrimitives.ReadInt16BigEndian(buffer[offset..]);
+        offset += ConstSize.ShortSize;
+        return value;
+    }
+
+    /// <summary>
+    /// 从字节数组中以指定偏移量读取单精度浮点数。
+    /// </summary>
+    /// <param name="buffer">要从中读取数据的字节数组。</param>
+    /// <param name="offset">读取数据的起始偏移量，此偏移量在读取后会自动增加。</param>
+    /// <returns>读取的单精度浮点数，若读取长度小于等于0或偏移量超出数组长度，返回0。</returns>
+    public static float ReadFloat(this ReadOnlySpan<byte> buffer, ref int offset)
+    {
+        if (offset > buffer.Length + ConstSize.FloatSize)
+        {
+            throw new Exception("buffer read out of index");
+        }
+
+        var value = BinaryPrimitives.ReadSingleBigEndian(buffer[offset..]);
+        offset += ConstSize.FloatSize;
+        return value;
+    }
+
+    /// <summary>
+    /// 从字节数组中以指定偏移量读取双精度浮点数。
+    /// </summary>
+    /// <param name="buffer">要从中读取数据的字节数组。</param>
+    /// <param name="offset">读取数据的起始偏移量，此偏移量在读取后会自动增加。</param>
+    /// <returns>读取的双精度浮点数，若读取长度小于等于0或偏移量超出数组长度，返回0。</returns>
+    public static double ReadDouble(this ReadOnlySpan<byte> buffer, ref int offset)
+    {
+        if (offset > buffer.Length + ConstSize.DoubleSize)
+        {
+            throw new Exception("buffer read out of index");
+        }
+
+        var value = BinaryPrimitives.ReadDoubleBigEndian(buffer[offset..]);
+        offset += ConstSize.DoubleSize;
+        return value;
+    }
+
 }

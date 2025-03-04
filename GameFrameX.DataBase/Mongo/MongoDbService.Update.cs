@@ -17,7 +17,7 @@ public sealed partial class MongoDbService
     /// <param name="state"></param>
     /// <typeparam name="TState"></typeparam>
     /// <returns></returns>
-    public async Task<TState> UpdateAsync<TState>(TState state) where TState : BaseCacheState
+    public async Task<TState> UpdateAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
         var isChanged = state.IsModify();
         if (isChanged)
@@ -39,7 +39,7 @@ public sealed partial class MongoDbService
     /// </summary>
     /// <param name="stateList">数据列表对象</param>
     /// <returns>返回更新成功的数量</returns>
-    public async Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList) where TState : BaseCacheState
+    public async Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList) where TState : BaseCacheState, new()
     {
         long resultCount = 0;
         var bulkUpdate = _mongoDbContext.Update<TState>();

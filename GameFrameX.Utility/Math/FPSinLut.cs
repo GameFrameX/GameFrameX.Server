@@ -3,6 +3,9 @@ namespace GameFrameX.Utility.Math
  {
     partial struct FP 
     {
+        /// <summary>
+        /// 正弦查找表
+        /// </summary>
         public static readonly long[] SinLut = {
             0x0L, 0x8000L, 0x10000L, 0x18000L, 0x20000L, 0x28001L, 0x30001L, 0x38001L, 
             0x40001L, 0x48002L, 0x50002L, 0x58002L, 0x60002L, 0x68002L, 0x70003L, 0x78003L, 

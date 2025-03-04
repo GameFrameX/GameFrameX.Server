@@ -57,18 +57,18 @@ public static class HttpServer
         }
 
         // 如果没有指定根路径，则默认为/game/api/
-        if (apiRootPath.IsNullOrEmpty())
+        if (apiRootPath.IsNullOrEmptyOrWhiteSpace())
         {
             apiRootPath = GameApiPath;
         }
 
         // 根路径必须以/开头和以/结尾
-        if (!apiRootPath.StartsWith("/"))
+        if (!apiRootPath.StartsWith('/'))
         {
             apiRootPath = "/" + apiRootPath;
         }
 
-        if (!apiRootPath.EndsWith("/"))
+        if (!apiRootPath.EndsWith('/'))
         {
             apiRootPath += "/";
         }
@@ -79,17 +79,29 @@ public static class HttpServer
         bool isDevelopment = builder.Environment.IsDevelopment();
         if (isDevelopment)
         {
+            if (openApiInfo == null)
+            {
+                var version = Assembly.GetExecutingAssembly().GetName().Version;
+                if (version == null)
+                {
+                    version = new Version(1, 0, 0);
+                }
+
+                openApiInfo = new OpenApiInfo
+                {
+                    Title = "GameFrameX API",
+                    Version = $"v{version.Major}.{version.Minor}",
+                    TermsOfService = new Uri("https://gameframex.doc.alianblank.com"),
+                    Contact = new OpenApiContact() { Url = new Uri("https://gameframex.doc.alianblank.com"), Name = "Blank", Email = "wangfj11@foxmail.com", },
+                    License = new OpenApiLicense() { Name = "GameFrameX", Url = new Uri("https://github.com/GameFrameX/GameFrameX"), },
+                    Description = "GameFrameX HTTP API documentation",
+                };
+            }
+
             // 添加 Swagger 服务
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(options =>
             {
-                openApiInfo ??= new OpenApiInfo
-                {
-                    Title = "GameFrameX API",
-                    Version = "v1",
-                    Description = "GameFrameX HTTP API documentation",
-                };
-
                 options.SwaggerDoc(openApiInfo.Version, openApiInfo);
 
                 // 使用自定义的 SchemaFilter 来保持属性名称大小写
@@ -111,7 +123,7 @@ public static class HttpServer
             }
 
             // HTTPS
-            if (httpsPort > 0 && Net.PortIsAvailable(httpPort))
+            if (httpsPort > 0 && Net.PortIsAvailable(httpsPort))
             {
                 options.ListenAnyIP(httpsPort, listenOptions => { listenOptions.UseHttps(); });
             }
@@ -128,13 +140,14 @@ public static class HttpServer
             App.UseSwagger();
             App.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "GameFrameX API V1");
+                options.SwaggerEndpoint($"/swagger/{openApiInfo.Version}/swagger.json", openApiInfo.Title);
                 options.RoutePrefix = "swagger";
             });
         }
 
         App.UseExceptionHandler(ExceptionHandler);
 
+        // 每个http处理器，注册到路由中
         foreach (var handler in baseHandler)
         {
             var handlerType = handler.GetType();
@@ -144,6 +157,7 @@ public static class HttpServer
                 continue;
             }
 
+            // 只支持POST请求
             var route = App.MapPost($"{ApiRootPath}{mappingAttribute.StandardCmd}", async (HttpContext context, string text) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
             if (isDevelopment)
             {
@@ -161,7 +175,7 @@ public static class HttpServer
         LogHelper.InfoConsole($"启动 HTTP 服务器完成...端口号:{httpPort}");
         if (isDevelopment)
         {
-            LogHelper.InfoConsole($"Swagger UI 可通过 http://localhost:{httpPort}/swagger 访问");
+            LogHelper.DebugConsole($"Swagger UI 可通过 http://localhost:{httpPort}/swagger 访问");
         }
 
         return task;

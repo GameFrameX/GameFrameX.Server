@@ -8,6 +8,14 @@ namespace GameFrameX.Utility.Log;
 public static class LogHelper
 {
     /// <summary>
+    /// 将日志持久化。
+    /// </summary>
+    public static void FlushAndSave()
+    {
+        Serilog.Log.CloseAndFlush();
+    }
+
+    /// <summary>
     /// 记录带有可选格式参数的调试消息。
     /// </summary>
     /// <param name="msg">要记录的调试消息。</param>

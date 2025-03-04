@@ -32,6 +32,9 @@ SOFTWARE.
 
 namespace GameFrameX.Utility.Math;
 
+/// <summary>
+/// 表示一个二维向量结构。
+/// </summary>
 [Serializable]
 public struct FPVector2 : IEquatable<FPVector2>
 {
@@ -71,7 +74,14 @@ public struct FPVector2 : IEquatable<FPVector2>
 
     #region Public Fields
 
+    /// <summary>
+    /// 向量的 X 坐标。
+    /// </summary>
     public FP x;
+
+    /// <summary>
+    /// 向量的 Y 坐标。
+    /// </summary>
     public FP y;
 
     #endregion Public Fields
