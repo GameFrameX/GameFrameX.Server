@@ -494,6 +494,20 @@ public struct FPMatrix
         return result;
     }
 
+    #region public static JMatrix CreateFromQuaternion(JQuaternion quaternion)
+
+    /// <summary>
+    /// 根据位置和目标创建视图矩阵
+    /// </summary>
+    /// <param name="position">观察者的位置</param>
+    /// <param name="target">观察目标的位置</param>
+    /// <returns>返回一个新的视图矩阵</returns>
+    public static FPMatrix CreateFromLookAt(FPVector3 position, FPVector3 target)
+    {
+        LookAt(target - position, FPVector3.up, out var result);
+        return result;
+    }
+
     /// <summary>
     /// 将矩阵乘以一个缩放因子，并将结果输出到指定的矩阵。
     /// </summary>
@@ -515,20 +529,6 @@ public struct FPMatrix
     }
 
     #endregion
-
-    /// <summary>
-    /// 根据四元数创建表示方向的矩阵。
-    /// </summary>
-    /// <param name="quaternion">用于创建矩阵的四元数。</param>
-    /// <returns>表示方向的矩阵。</returns>
-
-    #region public static JMatrix CreateFromQuaternion(JQuaternion quaternion)
-
-    public static FPMatrix CreateFromLookAt(FPVector3 position, FPVector3 target)
-    {
-        LookAt(target - position, FPVector3.up, out var result);
-        return result;
-    }
 
     /// <summary>
     /// 创建一个观察矩阵。
