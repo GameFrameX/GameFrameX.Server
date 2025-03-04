@@ -104,34 +104,31 @@ public class BaseNetWorkChannel : INetWorkChannel
             }
         }
 
+        if (!GameAppSession.IsConnected)
+        {
+            return;
+        }
 
         if (IsWebSocket)
         {
-            if (_webSocketSession.State == SessionState.Connected)
+            try
             {
-                try
-                {
-                    await _webSocketSession.SendAsync(messageData);
-                }
-                catch (Exception e)
-                {
-                    LogHelper.Error(e);
-                }
+                await _webSocketSession.SendAsync(messageData);
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error(e);
             }
         }
         else
         {
-            var appSession = (IAppSession)GameAppSession;
-            if (appSession.Connection.IsClosed == false && appSession.State == SessionState.Connected)
+            try
             {
-                try
-                {
-                    await GameAppSession.SendAsync(messageData);
-                }
-                catch (Exception e)
-                {
-                    LogHelper.Error(e);
-                }
+                await GameAppSession.SendAsync(messageData);
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error(e);
             }
         }
     }
