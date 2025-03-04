@@ -17,25 +17,26 @@ internal sealed class AppStartUpGame : AppStartUpBase
                 Directory.CreateDirectory(hotfixPath);
             }
 
-            LogHelper.InfoConsole("开始配置Actor限制逻辑...");
+            LogHelper.DebugConsole("开始配置Actor限制逻辑...");
             ActorLimit.Init(ActorLimit.RuleType.None);
-            LogHelper.InfoConsole("配置Actor限制逻辑结束...");
+            LogHelper.DebugConsole("配置Actor限制逻辑结束...");
 
-            LogHelper.InfoConsole("开始启动数据库服务...");
-            GameDb.Init<MongoDbService>(Setting.DataBaseUrl, Setting.DataBaseName);
-            LogHelper.InfoConsole("启动数据库服务 结束...");
+            LogHelper.DebugConsole("开始启动数据库服务...");
+            await GameDb.Init<MongoDbService>(Setting.DataBaseUrl, Setting.DataBaseName);
+            LogHelper.DebugConsole("启动数据库服务 结束...");
 
-            LogHelper.InfoConsole("注册组件开始...");
+            LogHelper.DebugConsole("注册组件开始...");
             await ComponentRegister.Init(typeof(AppsHandler).Assembly);
-            LogHelper.InfoConsole("注册组件结束...");
+            LogHelper.DebugConsole("注册组件结束...");
 
-            LogHelper.InfoConsole("开始加载热更新模块...");
+            LogHelper.DebugConsole("开始加载热更新模块...");
             await HotfixManager.LoadHotfixModule(Setting);
-            LogHelper.InfoConsole("加载热更新模块结束...");
+            LogHelper.DebugConsole("加载热更新模块结束...");
 
-            LogHelper.InfoConsole("进入游戏主循环...");
+            LogHelper.DebugConsole("进入游戏主循环...");
             GlobalSettings.LaunchTime = DateTime.Now;
             GlobalSettings.IsAppRunning = true;
+            LogHelper.InfoConsole($"服务器{Setting.ServerType}启动结束...");
             await AppExitToken;
         }
         catch (Exception e)
