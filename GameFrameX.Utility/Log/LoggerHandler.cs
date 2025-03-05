@@ -19,6 +19,11 @@ public static class LoggerHandler
         {
             // 日志文件存储的路径
             var logPath = "./logs/";
+            if (!Directory.Exists(logPath))
+            {
+                Directory.CreateDirectory(logPath);
+            }
+
             var logFileName = $"{logOptions.ServerType ?? "Server"}_log_.log";
             if (logOptions.LogSavePath != null)
             {

@@ -203,7 +203,7 @@ public static class ComponentRegister
                     }
                     catch (Exception e)
                     {
-                        LogHelper.Info(e);
+                        LogHelper.Fatal(e);
                         // throw;
                     }
                 }

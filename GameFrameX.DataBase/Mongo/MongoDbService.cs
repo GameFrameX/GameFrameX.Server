@@ -27,7 +27,7 @@ public sealed partial class MongoDbService : IDatabaseService
     /// </summary>
     /// <param name="url">MongoDB连接URL。</param>
     /// <param name="dbName">要使用的数据库名称。</param>
-    public async void Open(string url, string dbName)
+    public async Task Open(string url, string dbName)
     {
         try
         {

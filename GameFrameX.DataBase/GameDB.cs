@@ -20,12 +20,12 @@ public static class GameDb
     /// <param name="mongoUrl">MongoDB连接URL,不能为null</param>
     /// <param name="mongoDbName">MongoDB数据库的名称,不能为null</param>
     /// <exception cref="ArgumentNullException">当mongoUrl或mongoDbName为null时抛出</exception>
-    public static void Init<T>(string mongoUrl, string mongoDbName) where T : IDatabaseService, new()
+    public static async Task Init<T>(string mongoUrl, string mongoDbName) where T : IDatabaseService, new()
     {
         ArgumentNullException.ThrowIfNull(mongoUrl, nameof(mongoUrl));
         ArgumentNullException.ThrowIfNull(mongoDbName, nameof(mongoDbName));
         _dbServiceImplementation = new T();
-        _dbServiceImplementation.Open(mongoUrl, mongoDbName);
+        await _dbServiceImplementation.Open(mongoUrl, mongoDbName);
     }
 
     /// <summary>

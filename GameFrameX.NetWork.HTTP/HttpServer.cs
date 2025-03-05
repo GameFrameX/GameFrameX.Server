@@ -44,8 +44,9 @@ public static class HttpServer
     /// <param name="apiRootPath">API接口根路径,必须以/开头和以/结尾,默认为[/game/api/]</param>
     /// <param name="minimumLevelLogLevel">日志记录的最小级别,用于控制日志输出</param>
     /// <param name="openApiInfo">Swagger API文档信息配置,包含API标题、版本、描述等</param>
+    /// <param name="isDevelopment">是否为开发模式，默认为否，当设置为开发模式的时候将启用Swagger调试页面</param>
     /// <returns>表示异步操作的Task</returns>
-    public static Task Start(int httpPort, int httpsPort, List<BaseHttpHandler> baseHandler, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes = null, string apiRootPath = GameApiPath, LogLevel minimumLevelLogLevel = LogLevel.Debug, OpenApiInfo openApiInfo = null)
+    public static Task Start(int httpPort, int httpsPort, List<BaseHttpHandler> baseHandler, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes = null, string apiRootPath = GameApiPath, LogLevel minimumLevelLogLevel = LogLevel.Debug, OpenApiInfo openApiInfo = null, bool isDevelopment = false)
     {
         LogHelper.InfoConsole("开始启动 HTTP 服务器...");
         baseHandler.CheckNotNull(nameof(baseHandler));
@@ -76,8 +77,8 @@ public static class HttpServer
         ApiRootPath = apiRootPath;
         var builder = WebApplication.CreateBuilder();
 
-        bool isDevelopment = builder.Environment.IsDevelopment();
-        if (isDevelopment)
+        bool development = isDevelopment || builder.Environment.IsDevelopment();
+        if (development)
         {
             if (openApiInfo == null)
             {
@@ -134,7 +135,7 @@ public static class HttpServer
             logging.SetMinimumLevel(minimumLevelLogLevel);
         });
         App = builder.Build();
-        if (isDevelopment)
+        if (development)
         {
             // 添加 Swagger 中间件
             App.UseSwagger();
@@ -159,7 +160,7 @@ public static class HttpServer
 
             // 只支持POST请求
             var route = App.MapPost($"{ApiRootPath}{mappingAttribute.StandardCmd}", async (HttpContext context, string text) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
-            if (isDevelopment)
+            if (development)
             {
                 route.WithOpenApi(operation =>
                 {
@@ -173,7 +174,7 @@ public static class HttpServer
 
         var task = App.StartAsync();
         LogHelper.InfoConsole($"启动 HTTP 服务器完成...端口号:{httpPort}");
-        if (isDevelopment)
+        if (development)
         {
             LogHelper.DebugConsole($"Swagger UI 可通过 http://localhost:{httpPort}/swagger 访问");
         }
