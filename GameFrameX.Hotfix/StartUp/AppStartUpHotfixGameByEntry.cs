@@ -22,8 +22,8 @@ internal partial class AppStartUpHotfixGame : AppStartUpBase, IHotfixBridge
         return true;
     }
 
-    public async Task Stop()
+    public async Task Stop(string message = "")
     {
-        await StopAsync();
+        await StopAsync(message);
     }
 }
