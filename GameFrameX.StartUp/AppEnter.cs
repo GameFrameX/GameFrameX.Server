@@ -14,7 +14,6 @@ internal static class AppEnter
 {
     private static volatile bool _exitCalled;
     private static volatile Task _gameLoopTask;
-    private static volatile Task _shutDownTask;
     private static volatile IAppStartUp _appStartUp;
 
     /// <summary>
@@ -31,10 +30,6 @@ internal static class AppEnter
             AppExitHandler.Init(HandleExit, appStartUp.Setting);
             _gameLoopTask = appStartUp.StartAsync();
             await _gameLoopTask;
-            if (_shutDownTask != null)
-            {
-                await _shutDownTask;
-            }
         }
         catch (Exception e)
         {
@@ -49,8 +44,6 @@ internal static class AppEnter
                 error = $"启动服务器失败 e:{e}";
                 LogHelper.InfoConsole(error);
             }
-
-            await File.WriteAllTextAsync($"server_error_{appStartUp.ServerType}.txt", $"{appStartUp.Setting.ToFormatString()}\n\n{error}", Encoding.UTF8);
         }
     }
 
@@ -63,18 +56,11 @@ internal static class AppEnter
 
         _exitCalled = true;
         LogHelper.InfoConsole("监听到退出程序消息");
-
-        void Function()
-        {
-            GlobalSettings.IsAppRunning = false;
-            _appStartUp.StopAsync(message);
-            AppExitHandler.Kill();
-            LogHelper.InfoConsole("退出程序");
-            _gameLoopTask?.Wait();
-            Process.GetCurrentProcess().Kill();
-        }
-
-        _shutDownTask = Task.Run(Function);
-        _shutDownTask.Wait();
+        GlobalSettings.IsAppRunning = false;
+        _appStartUp.StopAsync(message).Wait();
+        AppExitHandler.Kill();
+        LogHelper.InfoConsole("退出程序");
+        _gameLoopTask?.Wait();
+        LogHelper.FlushAndSave();
     }
 }
