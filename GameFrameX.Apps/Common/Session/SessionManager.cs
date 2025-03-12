@@ -156,7 +156,7 @@ public static class SessionManager
         SessionMap[session.Id] = session;
     }
 
-    /// <summary>   
+    /// <summary>
     /// 更新会话，处理角色ID和签名的更新。
     /// 如果角色ID已在其他设备上登录，则会通知旧会话并关闭其连接。
     /// </summary>
@@ -180,6 +180,8 @@ public static class SessionManager
             // 清除旧会话的连接数据并关闭连接
             oldSession.WorkChannel.ClearData();
             oldSession.WorkChannel.Close();
+            // 这里先移除，等待Disconnected回调断开在移除的话有延迟
+            Remove(oldSession.Id);
         }
 
         // 获取当前会话并更新角色ID和签名
