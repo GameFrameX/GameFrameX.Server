@@ -98,10 +98,11 @@ public static class HotfixManager
     /// <summary>
     /// 停止
     /// </summary>
+    /// <param name="message">停止原因</param>
     /// <returns></returns>
-    public static Task Stop()
+    public static Task Stop(string message = "")
     {
-        return _module?.HotfixBridge?.Stop() ?? Task.CompletedTask;
+        return _module?.HotfixBridge?.Stop(message) ?? Task.CompletedTask;
     }
 
     internal static Type GetAgentType(Type compType)

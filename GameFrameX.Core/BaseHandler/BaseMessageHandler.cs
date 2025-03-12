@@ -55,7 +55,15 @@ public abstract class BaseMessageHandler : IMessageHandler
             throw new Exception("消息处理器未初始化,请调用先Init方法，如果已经子类实现了Init方法，请调用在子类Init中调用父类Init方法");
         }
 
-        return InnerActionAsync();
+        try
+        {
+            return InnerActionAsync();
+        }
+        catch (Exception e)
+        {
+            LogHelper.Fatal(e);
+            return Task.CompletedTask;
+        }
     }
 
     /// <summary>

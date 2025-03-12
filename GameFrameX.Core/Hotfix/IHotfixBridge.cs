@@ -18,6 +18,7 @@ public interface IHotfixBridge
     /// <summary>
     /// 停止
     /// </summary>
+    /// <param name="message">停止原因</param>
     /// <returns>一个任务，表示异步操作的结果</returns>
-    Task Stop();
+    Task Stop(string message = "");
 }

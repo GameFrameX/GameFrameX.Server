@@ -49,6 +49,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.1.1" />
+      <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.1.2" />
     </ItemGroup>
 </Project>

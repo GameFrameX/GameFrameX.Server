@@ -8,6 +8,7 @@ internal sealed class AppStartUpGame : AppStartUpBase
 {
     public override async Task StartAsync()
     {
+        string exitMessage = null;
         try
         {
             LogHelper.InfoConsole($"开始启动服务器{Setting.ServerType}");
@@ -37,7 +38,7 @@ internal sealed class AppStartUpGame : AppStartUpBase
             GlobalSettings.LaunchTime = DateTime.Now;
             GlobalSettings.IsAppRunning = true;
             LogHelper.InfoConsole($"服务器{Setting.ServerType}启动结束...");
-            await AppExitToken;
+            exitMessage = await AppExitToken;
         }
         catch (Exception e)
         {
@@ -46,7 +47,7 @@ internal sealed class AppStartUpGame : AppStartUpBase
         }
 
         LogHelper.InfoConsole("退出服务器开始");
-        await HotfixManager.Stop();
+        await HotfixManager.Stop(exitMessage);
         LogHelper.InfoConsole("退出服务器成功");
     }
 
