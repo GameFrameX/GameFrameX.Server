@@ -1,3 +1,4 @@
+using GameFrameX.Foundation.Logger;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Message;
@@ -12,7 +13,6 @@ using GameFrameX.SuperSocket.WebSocket;
 using GameFrameX.SuperSocket.WebSocket.Server;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Extensions;
-using GameFrameX.Utility.Log;
 using GameFrameX.Utility.Setting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

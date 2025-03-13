@@ -7,7 +7,7 @@ using GameFrameX.ProtoBuf.Net;
 using GameFrameX.SuperSocket.ClientEngine;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Extensions;
-using GameFrameX.Utility.Log;
+using GameFrameX.Foundation.Logger;
 using ErrorEventArgs = GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs;
 
 namespace GameFrameX.Client.Bot;

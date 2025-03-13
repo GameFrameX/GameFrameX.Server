@@ -6,7 +6,7 @@ using GameFrameX.Core.Components;
 using GameFrameX.Core.Hotfix;
 using GameFrameX.Core.Timer;
 using GameFrameX.Core.Utility;
-using GameFrameX.Utility.Log;
+using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Core.Actors;

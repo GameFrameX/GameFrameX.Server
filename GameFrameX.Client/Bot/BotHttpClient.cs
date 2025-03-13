@@ -5,7 +5,7 @@ using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.ProtoBuf.Net;
 using GameFrameX.Utility.Extensions;
-using GameFrameX.Utility.Log;
+using GameFrameX.Foundation.Logger;
 
 namespace GameFrameX.Client.Bot;
 

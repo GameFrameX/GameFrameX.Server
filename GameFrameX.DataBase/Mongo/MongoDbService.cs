@@ -1,5 +1,5 @@
 ﻿using GameFrameX.DataBase.Abstractions;
-using GameFrameX.Utility.Log;
+using GameFrameX.Foundation.Logger;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Entities;

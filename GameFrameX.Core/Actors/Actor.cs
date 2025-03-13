@@ -4,7 +4,7 @@ using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Abstractions.Timer;
 using GameFrameX.Core.Actors.Impl;
 using GameFrameX.Core.Components;
-using GameFrameX.Utility.Log;
+using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Core.Actors;

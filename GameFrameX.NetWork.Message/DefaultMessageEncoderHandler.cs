@@ -1,7 +1,7 @@
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.ProtoBuf.Net;
-using GameFrameX.Utility.Log;
+using GameFrameX.Foundation.Logger;
 using Microsoft.Extensions.ObjectPool;
 
 namespace GameFrameX.NetWork.Message;

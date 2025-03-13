@@ -7,7 +7,7 @@ using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.ProtoBuf.Net;
 using GameFrameX.Utility.Extensions;
-using GameFrameX.Utility.Log;
+using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility.Setting;
 using Microsoft.AspNetCore.Http;
 

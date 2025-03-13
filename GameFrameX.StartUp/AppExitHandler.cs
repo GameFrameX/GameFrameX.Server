@@ -4,7 +4,7 @@ using System.Runtime.Loader;
 using System.Text;
 using GameFrameX.StartUp.Abstractions;
 using GameFrameX.Utility;
-using GameFrameX.Utility.Log;
+using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.StartUp;

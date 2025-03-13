@@ -15,7 +15,7 @@ global using GameFrameX.Core.Timer;
 global using GameFrameX.Utility;
 global using GameFrameX.Utility.Setting;
 global using GameFrameX.Utility.Extensions;
-global using GameFrameX.Utility.Log;
+global using GameFrameX.Foundation.Logger;
 global using GameFrameX.NetWork.Abstractions;
 global using System.ComponentModel;
 global using System.ComponentModel.DataAnnotations;

@@ -3,7 +3,7 @@ using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.SuperSocket.ProtoBase;
 using GameFrameX.Utility.Extensions;
-using GameFrameX.Utility.Log;
+using GameFrameX.Foundation.Logger;
 
 namespace GameFrameX.NetWork.Message;
 

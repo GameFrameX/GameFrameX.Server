@@ -7,7 +7,7 @@ using GameFrameX.Core.Components;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.Utility.Extensions;
-using GameFrameX.Utility.Log;
+using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Core.Hotfix;

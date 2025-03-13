@@ -1,7 +1,7 @@
 ﻿using GameFrameX.Client.Bot;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Proto.Proto;
-using GameFrameX.Utility.Log;
+using GameFrameX.Foundation.Logger;
 
 internal static class Program
 {
@@ -12,7 +12,7 @@ internal static class Program
         var logOption = LogOptions.Default;
         logOption.IsConsole = true;
         logOption.LogEventLevel = Serilog.Events.LogEventLevel.Information;
-        LoggerHandler.Start(logOption);
+        LogHandler.Create(logOption);
 
         MessageProtoHelper.Init(typeof(ReqLogin).Assembly);
 

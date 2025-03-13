@@ -15,7 +15,7 @@ global using GameFrameX.NetWork.Messages;
 global using GameFrameX.NetWork;
 global using GameFrameX.Utility;
 global using GameFrameX.Launcher;
-global using GameFrameX.Utility.Log;
+global using GameFrameX.Foundation.Logger;
 global using GameFrameX.SuperSocket;
 global using GameFrameX.SuperSocket.ClientEngine;
 global using GameFrameX.SuperSocket.Connection;

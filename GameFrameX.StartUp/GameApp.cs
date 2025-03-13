@@ -1,14 +1,12 @@
 ﻿using System.Collections;
 using System.Reflection;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using CommandLine;
+using GameFrameX.Foundation.Logger;
 using GameFrameX.Monitor;
 using GameFrameX.StartUp.Abstractions;
 using GameFrameX.StartUp.Options;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Extensions;
-using GameFrameX.Utility.Log;
 using GameFrameX.Utility.Setting;
 using Mapster;
 
@@ -64,9 +62,9 @@ public static class GameApp
             LogHelper.Console("启动的服务器类型 ServerType: " + serverType);
         }
 
-        LogOptions.Default.ServerType = serverType;
+        LogOptions.Default.LogType = serverType;
         logConfiguration?.Invoke(LogOptions.Default);
-        LoggerHandler.Start(LogOptions.Default);
+        LogHandler.Create(LogOptions.Default);
 
         GlobalSettings.Load("Configs/app_config.json");
         initAction?.Invoke();

@@ -3,7 +3,7 @@ using GameFrameX.Core.Actors;
 using GameFrameX.Core.Hotfix;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Extensions;
-using GameFrameX.Utility.Log;
+using GameFrameX.Foundation.Logger;
 
 namespace GameFrameX.Core.Events;
 

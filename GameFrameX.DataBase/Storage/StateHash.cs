@@ -1,5 +1,5 @@
 using GameFrameX.Foundation.Hash;
-using GameFrameX.Utility.Log;
+using GameFrameX.Foundation.Logger;
 using Standart.Hash.xxHash;
 
 namespace GameFrameX.DataBase.Storage;

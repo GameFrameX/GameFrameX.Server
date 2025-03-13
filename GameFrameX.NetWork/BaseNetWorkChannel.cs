@@ -3,7 +3,7 @@ using GameFrameX.NetWork.Abstractions;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
 using GameFrameX.SuperSocket.WebSocket.Server;
 using GameFrameX.Utility.Extensions;
-using GameFrameX.Utility.Log;
+using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.NetWork;

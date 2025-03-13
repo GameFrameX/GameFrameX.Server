@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using GameFrameX.Foundation.Json;
-using GameFrameX.Utility.Log;
+using GameFrameX.Foundation.Logger;
 
 namespace GameFrameX.Utility.Setting;
 

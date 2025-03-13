@@ -1,6 +1,6 @@
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Proto.Proto;
-using GameFrameX.Utility.Log;
+using GameFrameX.Foundation.Logger;
 using ErrorEventArgs = GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs;
 
 namespace GameFrameX.Client.Bot;
