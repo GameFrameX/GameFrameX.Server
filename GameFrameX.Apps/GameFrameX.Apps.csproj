@@ -18,8 +18,4 @@
       <Folder Include="Player\" />
       <Folder Include="Server\" />
     </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="GameFrameX.Foundation.Hash" Version="1.2.1" />
-    </ItemGroup>
 </Project>
