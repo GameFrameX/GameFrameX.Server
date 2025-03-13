@@ -5623,12 +5623,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Hotfix.HotfixManager.ReloadTime
   nameWithType: HotfixManager.ReloadTime
-- uid: GameFrameX.Core.Hotfix.HotfixManager.Stop
-  name: Stop()
-  href: api/GameFrameX.Core.Hotfix.HotfixManager.html#GameFrameX_Core_Hotfix_HotfixManager_Stop
-  commentId: M:GameFrameX.Core.Hotfix.HotfixManager.Stop
-  fullName: GameFrameX.Core.Hotfix.HotfixManager.Stop()
-  nameWithType: HotfixManager.Stop()
+- uid: GameFrameX.Core.Hotfix.HotfixManager.Stop(System.String)
+  name: Stop(string)
+  href: api/GameFrameX.Core.Hotfix.HotfixManager.html#GameFrameX_Core_Hotfix_HotfixManager_Stop_System_String_
+  commentId: M:GameFrameX.Core.Hotfix.HotfixManager.Stop(System.String)
+  name.vb: Stop(String)
+  fullName: GameFrameX.Core.Hotfix.HotfixManager.Stop(string)
+  fullName.vb: GameFrameX.Core.Hotfix.HotfixManager.Stop(String)
+  nameWithType: HotfixManager.Stop(string)
+  nameWithType.vb: HotfixManager.Stop(String)
 - uid: GameFrameX.Core.Hotfix.HotfixManager.Stop*
   name: Stop
   href: api/GameFrameX.Core.Hotfix.HotfixManager.html#GameFrameX_Core_Hotfix_HotfixManager_Stop_
@@ -5658,12 +5661,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Hotfix.IHotfixBridge.OnLoadSuccess
   nameWithType: IHotfixBridge.OnLoadSuccess
-- uid: GameFrameX.Core.Hotfix.IHotfixBridge.Stop
-  name: Stop()
-  href: api/GameFrameX.Core.Hotfix.IHotfixBridge.html#GameFrameX_Core_Hotfix_IHotfixBridge_Stop
-  commentId: M:GameFrameX.Core.Hotfix.IHotfixBridge.Stop
-  fullName: GameFrameX.Core.Hotfix.IHotfixBridge.Stop()
-  nameWithType: IHotfixBridge.Stop()
+- uid: GameFrameX.Core.Hotfix.IHotfixBridge.Stop(System.String)
+  name: Stop(string)
+  href: api/GameFrameX.Core.Hotfix.IHotfixBridge.html#GameFrameX_Core_Hotfix_IHotfixBridge_Stop_System_String_
+  commentId: M:GameFrameX.Core.Hotfix.IHotfixBridge.Stop(System.String)
+  name.vb: Stop(String)
+  fullName: GameFrameX.Core.Hotfix.IHotfixBridge.Stop(string)
+  fullName.vb: GameFrameX.Core.Hotfix.IHotfixBridge.Stop(String)
+  nameWithType: IHotfixBridge.Stop(string)
+  nameWithType.vb: IHotfixBridge.Stop(String)
 - uid: GameFrameX.Core.Hotfix.IHotfixBridge.Stop*
   name: Stop
   href: api/GameFrameX.Core.Hotfix.IHotfixBridge.html#GameFrameX_Core_Hotfix_IHotfixBridge_Stop_
@@ -8419,15 +8425,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.HTTP.HttpServer.ApiRootPath
   nameWithType: HttpServer.ApiRootPath
-- uid: GameFrameX.NetWork.HTTP.HttpServer.Start(System.Int32,System.Int32,System.Collections.Generic.List{GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Func{System.String,GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Collections.Generic.List{GameFrameX.NetWork.HTTP.IHttpAopHandler},System.String,Microsoft.Extensions.Logging.LogLevel,Microsoft.OpenApi.Models.OpenApiInfo)
-  name: Start(int, int, List<BaseHttpHandler>, Func<string, BaseHttpHandler>, List<IHttpAopHandler>, string, LogLevel, OpenApiInfo)
-  href: api/GameFrameX.NetWork.HTTP.HttpServer.html#GameFrameX_NetWork_HTTP_HttpServer_Start_System_Int32_System_Int32_System_Collections_Generic_List_GameFrameX_NetWork_HTTP_BaseHttpHandler__System_Func_System_String_GameFrameX_NetWork_HTTP_BaseHttpHandler__System_Collections_Generic_List_GameFrameX_NetWork_HTTP_IHttpAopHandler__System_String_Microsoft_Extensions_Logging_LogLevel_Microsoft_OpenApi_Models_OpenApiInfo_
-  commentId: M:GameFrameX.NetWork.HTTP.HttpServer.Start(System.Int32,System.Int32,System.Collections.Generic.List{GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Func{System.String,GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Collections.Generic.List{GameFrameX.NetWork.HTTP.IHttpAopHandler},System.String,Microsoft.Extensions.Logging.LogLevel,Microsoft.OpenApi.Models.OpenApiInfo)
-  name.vb: Start(Integer, Integer, List(Of BaseHttpHandler), Func(Of String, BaseHttpHandler), List(Of IHttpAopHandler), String, LogLevel, OpenApiInfo)
-  fullName: GameFrameX.NetWork.HTTP.HttpServer.Start(int, int, System.Collections.Generic.List<GameFrameX.NetWork.HTTP.BaseHttpHandler>, System.Func<string, GameFrameX.NetWork.HTTP.BaseHttpHandler>, System.Collections.Generic.List<GameFrameX.NetWork.HTTP.IHttpAopHandler>, string, Microsoft.Extensions.Logging.LogLevel, Microsoft.OpenApi.Models.OpenApiInfo)
-  fullName.vb: GameFrameX.NetWork.HTTP.HttpServer.Start(Integer, Integer, System.Collections.Generic.List(Of GameFrameX.NetWork.HTTP.BaseHttpHandler), System.Func(Of String, GameFrameX.NetWork.HTTP.BaseHttpHandler), System.Collections.Generic.List(Of GameFrameX.NetWork.HTTP.IHttpAopHandler), String, Microsoft.Extensions.Logging.LogLevel, Microsoft.OpenApi.Models.OpenApiInfo)
-  nameWithType: HttpServer.Start(int, int, List<BaseHttpHandler>, Func<string, BaseHttpHandler>, List<IHttpAopHandler>, string, LogLevel, OpenApiInfo)
-  nameWithType.vb: HttpServer.Start(Integer, Integer, List(Of BaseHttpHandler), Func(Of String, BaseHttpHandler), List(Of IHttpAopHandler), String, LogLevel, OpenApiInfo)
+- uid: GameFrameX.NetWork.HTTP.HttpServer.Start(System.Int32,System.Int32,System.Collections.Generic.List{GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Func{System.String,GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Collections.Generic.List{GameFrameX.NetWork.HTTP.IHttpAopHandler},System.String,Microsoft.Extensions.Logging.LogLevel,Microsoft.OpenApi.Models.OpenApiInfo,System.Boolean)
+  name: Start(int, int, List<BaseHttpHandler>, Func<string, BaseHttpHandler>, List<IHttpAopHandler>, string, LogLevel, OpenApiInfo, bool)
+  href: api/GameFrameX.NetWork.HTTP.HttpServer.html#GameFrameX_NetWork_HTTP_HttpServer_Start_System_Int32_System_Int32_System_Collections_Generic_List_GameFrameX_NetWork_HTTP_BaseHttpHandler__System_Func_System_String_GameFrameX_NetWork_HTTP_BaseHttpHandler__System_Collections_Generic_List_GameFrameX_NetWork_HTTP_IHttpAopHandler__System_String_Microsoft_Extensions_Logging_LogLevel_Microsoft_OpenApi_Models_OpenApiInfo_System_Boolean_
+  commentId: M:GameFrameX.NetWork.HTTP.HttpServer.Start(System.Int32,System.Int32,System.Collections.Generic.List{GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Func{System.String,GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Collections.Generic.List{GameFrameX.NetWork.HTTP.IHttpAopHandler},System.String,Microsoft.Extensions.Logging.LogLevel,Microsoft.OpenApi.Models.OpenApiInfo,System.Boolean)
+  name.vb: Start(Integer, Integer, List(Of BaseHttpHandler), Func(Of String, BaseHttpHandler), List(Of IHttpAopHandler), String, LogLevel, OpenApiInfo, Boolean)
+  fullName: GameFrameX.NetWork.HTTP.HttpServer.Start(int, int, System.Collections.Generic.List<GameFrameX.NetWork.HTTP.BaseHttpHandler>, System.Func<string, GameFrameX.NetWork.HTTP.BaseHttpHandler>, System.Collections.Generic.List<GameFrameX.NetWork.HTTP.IHttpAopHandler>, string, Microsoft.Extensions.Logging.LogLevel, Microsoft.OpenApi.Models.OpenApiInfo, bool)
+  fullName.vb: GameFrameX.NetWork.HTTP.HttpServer.Start(Integer, Integer, System.Collections.Generic.List(Of GameFrameX.NetWork.HTTP.BaseHttpHandler), System.Func(Of String, GameFrameX.NetWork.HTTP.BaseHttpHandler), System.Collections.Generic.List(Of GameFrameX.NetWork.HTTP.IHttpAopHandler), String, Microsoft.Extensions.Logging.LogLevel, Microsoft.OpenApi.Models.OpenApiInfo, Boolean)
+  nameWithType: HttpServer.Start(int, int, List<BaseHttpHandler>, Func<string, BaseHttpHandler>, List<IHttpAopHandler>, string, LogLevel, OpenApiInfo, bool)
+  nameWithType.vb: HttpServer.Start(Integer, Integer, List(Of BaseHttpHandler), Func(Of String, BaseHttpHandler), List(Of IHttpAopHandler), String, LogLevel, OpenApiInfo, Boolean)
 - uid: GameFrameX.NetWork.HTTP.HttpServer.Start*
   name: Start
   href: api/GameFrameX.NetWork.HTTP.HttpServer.html#GameFrameX_NetWork_HTTP_HttpServer_Start_
@@ -10725,13 +10731,13 @@ references:
   commentId: T:GameFrameX.StartUp.GameApp
   fullName: GameFrameX.StartUp.GameApp
   nameWithType: GameApp
-- uid: GameFrameX.StartUp.GameApp.Entry(System.String[],System.Action,System.Action{GameFrameX.Utility.Log.LogOptions})
+- uid: GameFrameX.StartUp.GameApp.Entry(System.String[],System.Action,System.Action{GameFrameX.Foundation.Logger.LogOptions})
   name: Entry(string[], Action, Action<LogOptions>)
-  href: api/GameFrameX.StartUp.GameApp.html#GameFrameX_StartUp_GameApp_Entry_System_String___System_Action_System_Action_GameFrameX_Utility_Log_LogOptions__
-  commentId: M:GameFrameX.StartUp.GameApp.Entry(System.String[],System.Action,System.Action{GameFrameX.Utility.Log.LogOptions})
+  href: api/GameFrameX.StartUp.GameApp.html#GameFrameX_StartUp_GameApp_Entry_System_String___System_Action_System_Action_GameFrameX_Foundation_Logger_LogOptions__
+  commentId: M:GameFrameX.StartUp.GameApp.Entry(System.String[],System.Action,System.Action{GameFrameX.Foundation.Logger.LogOptions})
   name.vb: Entry(String(), Action, Action(Of LogOptions))
-  fullName: GameFrameX.StartUp.GameApp.Entry(string[], System.Action, System.Action<GameFrameX.Utility.Log.LogOptions>)
-  fullName.vb: GameFrameX.StartUp.GameApp.Entry(String(), System.Action, System.Action(Of GameFrameX.Utility.Log.LogOptions))
+  fullName: GameFrameX.StartUp.GameApp.Entry(string[], System.Action, System.Action<GameFrameX.Foundation.Logger.LogOptions>)
+  fullName.vb: GameFrameX.StartUp.GameApp.Entry(String(), System.Action, System.Action(Of GameFrameX.Foundation.Logger.LogOptions))
   nameWithType: GameApp.Entry(string[], Action, Action<LogOptions>)
   nameWithType.vb: GameApp.Entry(String(), Action, Action(Of LogOptions))
 - uid: GameFrameX.StartUp.GameApp.Entry*
@@ -18065,366 +18071,6 @@ references:
   commentId: F:GameFrameX.Utility.LNumber.zero
   fullName: GameFrameX.Utility.LNumber.zero
   nameWithType: LNumber.zero
-- uid: GameFrameX.Utility.Log
-  name: GameFrameX.Utility.Log
-  href: api/GameFrameX.Utility.Log.html
-  commentId: N:GameFrameX.Utility.Log
-  fullName: GameFrameX.Utility.Log
-  nameWithType: GameFrameX.Utility.Log
-- uid: GameFrameX.Utility.Log.LogHelper
-  name: LogHelper
-  href: api/GameFrameX.Utility.Log.LogHelper.html
-  commentId: T:GameFrameX.Utility.Log.LogHelper
-  fullName: GameFrameX.Utility.Log.LogHelper
-  nameWithType: LogHelper
-- uid: GameFrameX.Utility.Log.LogHelper.Console(System.String,System.Object[])
-  name: Console(string, params object[])
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_Console_System_String_System_Object___
-  commentId: M:GameFrameX.Utility.Log.LogHelper.Console(System.String,System.Object[])
-  name.vb: Console(String, ParamArray Object())
-  fullName: GameFrameX.Utility.Log.LogHelper.Console(string, params object[])
-  fullName.vb: GameFrameX.Utility.Log.LogHelper.Console(String, ParamArray Object())
-  nameWithType: LogHelper.Console(string, params object[])
-  nameWithType.vb: LogHelper.Console(String, ParamArray Object())
-- uid: GameFrameX.Utility.Log.LogHelper.Console*
-  name: Console
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_Console_
-  commentId: Overload:GameFrameX.Utility.Log.LogHelper.Console
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogHelper.Console
-  nameWithType: LogHelper.Console
-- uid: GameFrameX.Utility.Log.LogHelper.Debug(System.String,System.Object[])
-  name: Debug(string, params object[])
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_Debug_System_String_System_Object___
-  commentId: M:GameFrameX.Utility.Log.LogHelper.Debug(System.String,System.Object[])
-  name.vb: Debug(String, ParamArray Object())
-  fullName: GameFrameX.Utility.Log.LogHelper.Debug(string, params object[])
-  fullName.vb: GameFrameX.Utility.Log.LogHelper.Debug(String, ParamArray Object())
-  nameWithType: LogHelper.Debug(string, params object[])
-  nameWithType.vb: LogHelper.Debug(String, ParamArray Object())
-- uid: GameFrameX.Utility.Log.LogHelper.Debug*
-  name: Debug
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_Debug_
-  commentId: Overload:GameFrameX.Utility.Log.LogHelper.Debug
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogHelper.Debug
-  nameWithType: LogHelper.Debug
-- uid: GameFrameX.Utility.Log.LogHelper.DebugConsole(System.String,System.Object[])
-  name: DebugConsole(string, params object[])
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_DebugConsole_System_String_System_Object___
-  commentId: M:GameFrameX.Utility.Log.LogHelper.DebugConsole(System.String,System.Object[])
-  name.vb: DebugConsole(String, ParamArray Object())
-  fullName: GameFrameX.Utility.Log.LogHelper.DebugConsole(string, params object[])
-  fullName.vb: GameFrameX.Utility.Log.LogHelper.DebugConsole(String, ParamArray Object())
-  nameWithType: LogHelper.DebugConsole(string, params object[])
-  nameWithType.vb: LogHelper.DebugConsole(String, ParamArray Object())
-- uid: GameFrameX.Utility.Log.LogHelper.DebugConsole*
-  name: DebugConsole
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_DebugConsole_
-  commentId: Overload:GameFrameX.Utility.Log.LogHelper.DebugConsole
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogHelper.DebugConsole
-  nameWithType: LogHelper.DebugConsole
-- uid: GameFrameX.Utility.Log.LogHelper.Error(System.Exception)
-  name: Error(Exception)
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_Error_System_Exception_
-  commentId: M:GameFrameX.Utility.Log.LogHelper.Error(System.Exception)
-  fullName: GameFrameX.Utility.Log.LogHelper.Error(System.Exception)
-  nameWithType: LogHelper.Error(Exception)
-- uid: GameFrameX.Utility.Log.LogHelper.Error(System.String,System.Object[])
-  name: Error(string, params object[])
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_Error_System_String_System_Object___
-  commentId: M:GameFrameX.Utility.Log.LogHelper.Error(System.String,System.Object[])
-  name.vb: Error(String, ParamArray Object())
-  fullName: GameFrameX.Utility.Log.LogHelper.Error(string, params object[])
-  fullName.vb: GameFrameX.Utility.Log.LogHelper.Error(String, ParamArray Object())
-  nameWithType: LogHelper.Error(string, params object[])
-  nameWithType.vb: LogHelper.Error(String, ParamArray Object())
-- uid: GameFrameX.Utility.Log.LogHelper.Error*
-  name: Error
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_Error_
-  commentId: Overload:GameFrameX.Utility.Log.LogHelper.Error
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogHelper.Error
-  nameWithType: LogHelper.Error
-- uid: GameFrameX.Utility.Log.LogHelper.ErrorConsole(System.String,System.Object[])
-  name: ErrorConsole(string, params object[])
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_ErrorConsole_System_String_System_Object___
-  commentId: M:GameFrameX.Utility.Log.LogHelper.ErrorConsole(System.String,System.Object[])
-  name.vb: ErrorConsole(String, ParamArray Object())
-  fullName: GameFrameX.Utility.Log.LogHelper.ErrorConsole(string, params object[])
-  fullName.vb: GameFrameX.Utility.Log.LogHelper.ErrorConsole(String, ParamArray Object())
-  nameWithType: LogHelper.ErrorConsole(string, params object[])
-  nameWithType.vb: LogHelper.ErrorConsole(String, ParamArray Object())
-- uid: GameFrameX.Utility.Log.LogHelper.ErrorConsole*
-  name: ErrorConsole
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_ErrorConsole_
-  commentId: Overload:GameFrameX.Utility.Log.LogHelper.ErrorConsole
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogHelper.ErrorConsole
-  nameWithType: LogHelper.ErrorConsole
-- uid: GameFrameX.Utility.Log.LogHelper.Fatal(System.Exception)
-  name: Fatal(Exception)
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_Fatal_System_Exception_
-  commentId: M:GameFrameX.Utility.Log.LogHelper.Fatal(System.Exception)
-  fullName: GameFrameX.Utility.Log.LogHelper.Fatal(System.Exception)
-  nameWithType: LogHelper.Fatal(Exception)
-- uid: GameFrameX.Utility.Log.LogHelper.Fatal(System.String)
-  name: Fatal(string)
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_Fatal_System_String_
-  commentId: M:GameFrameX.Utility.Log.LogHelper.Fatal(System.String)
-  name.vb: Fatal(String)
-  fullName: GameFrameX.Utility.Log.LogHelper.Fatal(string)
-  fullName.vb: GameFrameX.Utility.Log.LogHelper.Fatal(String)
-  nameWithType: LogHelper.Fatal(string)
-  nameWithType.vb: LogHelper.Fatal(String)
-- uid: GameFrameX.Utility.Log.LogHelper.Fatal*
-  name: Fatal
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_Fatal_
-  commentId: Overload:GameFrameX.Utility.Log.LogHelper.Fatal
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogHelper.Fatal
-  nameWithType: LogHelper.Fatal
-- uid: GameFrameX.Utility.Log.LogHelper.FlushAndSave
-  name: FlushAndSave()
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_FlushAndSave
-  commentId: M:GameFrameX.Utility.Log.LogHelper.FlushAndSave
-  fullName: GameFrameX.Utility.Log.LogHelper.FlushAndSave()
-  nameWithType: LogHelper.FlushAndSave()
-- uid: GameFrameX.Utility.Log.LogHelper.FlushAndSave*
-  name: FlushAndSave
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_FlushAndSave_
-  commentId: Overload:GameFrameX.Utility.Log.LogHelper.FlushAndSave
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogHelper.FlushAndSave
-  nameWithType: LogHelper.FlushAndSave
-- uid: GameFrameX.Utility.Log.LogHelper.Info(System.Exception)
-  name: Info(Exception)
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_Info_System_Exception_
-  commentId: M:GameFrameX.Utility.Log.LogHelper.Info(System.Exception)
-  fullName: GameFrameX.Utility.Log.LogHelper.Info(System.Exception)
-  nameWithType: LogHelper.Info(Exception)
-- uid: GameFrameX.Utility.Log.LogHelper.Info(System.Object)
-  name: Info(object)
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_Info_System_Object_
-  commentId: M:GameFrameX.Utility.Log.LogHelper.Info(System.Object)
-  name.vb: Info(Object)
-  fullName: GameFrameX.Utility.Log.LogHelper.Info(object)
-  fullName.vb: GameFrameX.Utility.Log.LogHelper.Info(Object)
-  nameWithType: LogHelper.Info(object)
-  nameWithType.vb: LogHelper.Info(Object)
-- uid: GameFrameX.Utility.Log.LogHelper.Info(System.String,System.Object[])
-  name: Info(string, params object[])
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_Info_System_String_System_Object___
-  commentId: M:GameFrameX.Utility.Log.LogHelper.Info(System.String,System.Object[])
-  name.vb: Info(String, ParamArray Object())
-  fullName: GameFrameX.Utility.Log.LogHelper.Info(string, params object[])
-  fullName.vb: GameFrameX.Utility.Log.LogHelper.Info(String, ParamArray Object())
-  nameWithType: LogHelper.Info(string, params object[])
-  nameWithType.vb: LogHelper.Info(String, ParamArray Object())
-- uid: GameFrameX.Utility.Log.LogHelper.Info*
-  name: Info
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_Info_
-  commentId: Overload:GameFrameX.Utility.Log.LogHelper.Info
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogHelper.Info
-  nameWithType: LogHelper.Info
-- uid: GameFrameX.Utility.Log.LogHelper.InfoConsole(System.String,System.Object[])
-  name: InfoConsole(string, params object[])
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_InfoConsole_System_String_System_Object___
-  commentId: M:GameFrameX.Utility.Log.LogHelper.InfoConsole(System.String,System.Object[])
-  name.vb: InfoConsole(String, ParamArray Object())
-  fullName: GameFrameX.Utility.Log.LogHelper.InfoConsole(string, params object[])
-  fullName.vb: GameFrameX.Utility.Log.LogHelper.InfoConsole(String, ParamArray Object())
-  nameWithType: LogHelper.InfoConsole(string, params object[])
-  nameWithType.vb: LogHelper.InfoConsole(String, ParamArray Object())
-- uid: GameFrameX.Utility.Log.LogHelper.InfoConsole*
-  name: InfoConsole
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_InfoConsole_
-  commentId: Overload:GameFrameX.Utility.Log.LogHelper.InfoConsole
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogHelper.InfoConsole
-  nameWithType: LogHelper.InfoConsole
-- uid: GameFrameX.Utility.Log.LogHelper.Warn(System.String,System.Object[])
-  name: Warn(string, params object[])
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_Warn_System_String_System_Object___
-  commentId: M:GameFrameX.Utility.Log.LogHelper.Warn(System.String,System.Object[])
-  name.vb: Warn(String, ParamArray Object())
-  fullName: GameFrameX.Utility.Log.LogHelper.Warn(string, params object[])
-  fullName.vb: GameFrameX.Utility.Log.LogHelper.Warn(String, ParamArray Object())
-  nameWithType: LogHelper.Warn(string, params object[])
-  nameWithType.vb: LogHelper.Warn(String, ParamArray Object())
-- uid: GameFrameX.Utility.Log.LogHelper.Warn*
-  name: Warn
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_Warn_
-  commentId: Overload:GameFrameX.Utility.Log.LogHelper.Warn
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogHelper.Warn
-  nameWithType: LogHelper.Warn
-- uid: GameFrameX.Utility.Log.LogHelper.WarnConsole(System.String,System.Object[])
-  name: WarnConsole(string, params object[])
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_WarnConsole_System_String_System_Object___
-  commentId: M:GameFrameX.Utility.Log.LogHelper.WarnConsole(System.String,System.Object[])
-  name.vb: WarnConsole(String, ParamArray Object())
-  fullName: GameFrameX.Utility.Log.LogHelper.WarnConsole(string, params object[])
-  fullName.vb: GameFrameX.Utility.Log.LogHelper.WarnConsole(String, ParamArray Object())
-  nameWithType: LogHelper.WarnConsole(string, params object[])
-  nameWithType.vb: LogHelper.WarnConsole(String, ParamArray Object())
-- uid: GameFrameX.Utility.Log.LogHelper.WarnConsole*
-  name: WarnConsole
-  href: api/GameFrameX.Utility.Log.LogHelper.html#GameFrameX_Utility_Log_LogHelper_WarnConsole_
-  commentId: Overload:GameFrameX.Utility.Log.LogHelper.WarnConsole
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogHelper.WarnConsole
-  nameWithType: LogHelper.WarnConsole
-- uid: GameFrameX.Utility.Log.LogOptions
-  name: LogOptions
-  href: api/GameFrameX.Utility.Log.LogOptions.html
-  commentId: T:GameFrameX.Utility.Log.LogOptions
-  fullName: GameFrameX.Utility.Log.LogOptions
-  nameWithType: LogOptions
-- uid: GameFrameX.Utility.Log.LogOptions.Default
-  name: Default
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_Default
-  commentId: F:GameFrameX.Utility.Log.LogOptions.Default
-  fullName: GameFrameX.Utility.Log.LogOptions.Default
-  nameWithType: LogOptions.Default
-- uid: GameFrameX.Utility.Log.LogOptions.FileSizeLimitBytes
-  name: FileSizeLimitBytes
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_FileSizeLimitBytes
-  commentId: P:GameFrameX.Utility.Log.LogOptions.FileSizeLimitBytes
-  fullName: GameFrameX.Utility.Log.LogOptions.FileSizeLimitBytes
-  nameWithType: LogOptions.FileSizeLimitBytes
-- uid: GameFrameX.Utility.Log.LogOptions.FileSizeLimitBytes*
-  name: FileSizeLimitBytes
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_FileSizeLimitBytes_
-  commentId: Overload:GameFrameX.Utility.Log.LogOptions.FileSizeLimitBytes
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogOptions.FileSizeLimitBytes
-  nameWithType: LogOptions.FileSizeLimitBytes
-- uid: GameFrameX.Utility.Log.LogOptions.IsConsole
-  name: IsConsole
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_IsConsole
-  commentId: P:GameFrameX.Utility.Log.LogOptions.IsConsole
-  fullName: GameFrameX.Utility.Log.LogOptions.IsConsole
-  nameWithType: LogOptions.IsConsole
-- uid: GameFrameX.Utility.Log.LogOptions.IsConsole*
-  name: IsConsole
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_IsConsole_
-  commentId: Overload:GameFrameX.Utility.Log.LogOptions.IsConsole
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogOptions.IsConsole
-  nameWithType: LogOptions.IsConsole
-- uid: GameFrameX.Utility.Log.LogOptions.IsFileSizeLimit
-  name: IsFileSizeLimit
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_IsFileSizeLimit
-  commentId: P:GameFrameX.Utility.Log.LogOptions.IsFileSizeLimit
-  fullName: GameFrameX.Utility.Log.LogOptions.IsFileSizeLimit
-  nameWithType: LogOptions.IsFileSizeLimit
-- uid: GameFrameX.Utility.Log.LogOptions.IsFileSizeLimit*
-  name: IsFileSizeLimit
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_IsFileSizeLimit_
-  commentId: Overload:GameFrameX.Utility.Log.LogOptions.IsFileSizeLimit
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogOptions.IsFileSizeLimit
-  nameWithType: LogOptions.IsFileSizeLimit
-- uid: GameFrameX.Utility.Log.LogOptions.LogEventLevel
-  name: LogEventLevel
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_LogEventLevel
-  commentId: P:GameFrameX.Utility.Log.LogOptions.LogEventLevel
-  fullName: GameFrameX.Utility.Log.LogOptions.LogEventLevel
-  nameWithType: LogOptions.LogEventLevel
-- uid: GameFrameX.Utility.Log.LogOptions.LogEventLevel*
-  name: LogEventLevel
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_LogEventLevel_
-  commentId: Overload:GameFrameX.Utility.Log.LogOptions.LogEventLevel
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogOptions.LogEventLevel
-  nameWithType: LogOptions.LogEventLevel
-- uid: GameFrameX.Utility.Log.LogOptions.LogSavePath
-  name: LogSavePath
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_LogSavePath
-  commentId: P:GameFrameX.Utility.Log.LogOptions.LogSavePath
-  fullName: GameFrameX.Utility.Log.LogOptions.LogSavePath
-  nameWithType: LogOptions.LogSavePath
-- uid: GameFrameX.Utility.Log.LogOptions.LogSavePath*
-  name: LogSavePath
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_LogSavePath_
-  commentId: Overload:GameFrameX.Utility.Log.LogOptions.LogSavePath
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogOptions.LogSavePath
-  nameWithType: LogOptions.LogSavePath
-- uid: GameFrameX.Utility.Log.LogOptions.RetainedFileCountLimit
-  name: RetainedFileCountLimit
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_RetainedFileCountLimit
-  commentId: P:GameFrameX.Utility.Log.LogOptions.RetainedFileCountLimit
-  fullName: GameFrameX.Utility.Log.LogOptions.RetainedFileCountLimit
-  nameWithType: LogOptions.RetainedFileCountLimit
-- uid: GameFrameX.Utility.Log.LogOptions.RetainedFileCountLimit*
-  name: RetainedFileCountLimit
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_RetainedFileCountLimit_
-  commentId: Overload:GameFrameX.Utility.Log.LogOptions.RetainedFileCountLimit
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogOptions.RetainedFileCountLimit
-  nameWithType: LogOptions.RetainedFileCountLimit
-- uid: GameFrameX.Utility.Log.LogOptions.RollingInterval
-  name: RollingInterval
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_RollingInterval
-  commentId: P:GameFrameX.Utility.Log.LogOptions.RollingInterval
-  fullName: GameFrameX.Utility.Log.LogOptions.RollingInterval
-  nameWithType: LogOptions.RollingInterval
-- uid: GameFrameX.Utility.Log.LogOptions.RollingInterval*
-  name: RollingInterval
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_RollingInterval_
-  commentId: Overload:GameFrameX.Utility.Log.LogOptions.RollingInterval
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogOptions.RollingInterval
-  nameWithType: LogOptions.RollingInterval
-- uid: GameFrameX.Utility.Log.LogOptions.ServerType
-  name: ServerType
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_ServerType
-  commentId: P:GameFrameX.Utility.Log.LogOptions.ServerType
-  fullName: GameFrameX.Utility.Log.LogOptions.ServerType
-  nameWithType: LogOptions.ServerType
-- uid: GameFrameX.Utility.Log.LogOptions.ServerType*
-  name: ServerType
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_ServerType_
-  commentId: Overload:GameFrameX.Utility.Log.LogOptions.ServerType
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogOptions.ServerType
-  nameWithType: LogOptions.ServerType
-- uid: GameFrameX.Utility.Log.LogOptions.ToString
-  name: ToString()
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_ToString
-  commentId: M:GameFrameX.Utility.Log.LogOptions.ToString
-  fullName: GameFrameX.Utility.Log.LogOptions.ToString()
-  nameWithType: LogOptions.ToString()
-- uid: GameFrameX.Utility.Log.LogOptions.ToString*
-  name: ToString
-  href: api/GameFrameX.Utility.Log.LogOptions.html#GameFrameX_Utility_Log_LogOptions_ToString_
-  commentId: Overload:GameFrameX.Utility.Log.LogOptions.ToString
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LogOptions.ToString
-  nameWithType: LogOptions.ToString
-- uid: GameFrameX.Utility.Log.LoggerHandler
-  name: LoggerHandler
-  href: api/GameFrameX.Utility.Log.LoggerHandler.html
-  commentId: T:GameFrameX.Utility.Log.LoggerHandler
-  fullName: GameFrameX.Utility.Log.LoggerHandler
-  nameWithType: LoggerHandler
-- uid: GameFrameX.Utility.Log.LoggerHandler.Start(GameFrameX.Utility.Log.LogOptions)
-  name: Start(LogOptions)
-  href: api/GameFrameX.Utility.Log.LoggerHandler.html#GameFrameX_Utility_Log_LoggerHandler_Start_GameFrameX_Utility_Log_LogOptions_
-  commentId: M:GameFrameX.Utility.Log.LoggerHandler.Start(GameFrameX.Utility.Log.LogOptions)
-  fullName: GameFrameX.Utility.Log.LoggerHandler.Start(GameFrameX.Utility.Log.LogOptions)
-  nameWithType: LoggerHandler.Start(LogOptions)
-- uid: GameFrameX.Utility.Log.LoggerHandler.Start*
-  name: Start
-  href: api/GameFrameX.Utility.Log.LoggerHandler.html#GameFrameX_Utility_Log_LoggerHandler_Start_
-  commentId: Overload:GameFrameX.Utility.Log.LoggerHandler.Start
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Log.LoggerHandler.Start
-  nameWithType: LoggerHandler.Start
 - uid: GameFrameX.Utility.Math
   name: GameFrameX.Utility.Math
   href: api/GameFrameX.Utility.Math.html
