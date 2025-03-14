@@ -17,15 +17,16 @@ public static class GameDb
     /// 初始化GameDb
     /// </summary>
     /// <typeparam name="T">数据库服务的具体实现类型,必须实现IDatabaseService接口且有无参构造函数</typeparam>
-    /// <param name="mongoUrl">MongoDB连接URL,不能为null</param>
-    /// <param name="mongoDbName">MongoDB数据库的名称,不能为null</param>
-    /// <exception cref="ArgumentNullException">当mongoUrl或mongoDbName为null时抛出</exception>
-    public static async Task Init<T>(string mongoUrl, string mongoDbName) where T : IDatabaseService, new()
+    /// <param name="dbOptions">数据库配置选项</param>
+    /// <exception cref="ArgumentNullException">当  ConnectionString 或 Name 为null时抛出</exception>
+    /// <returns>返回数据库是否初始化成功</returns>
+    public static async Task<bool> Init<T>(DbOptions dbOptions) where T : IDatabaseService, new()
     {
-        ArgumentNullException.ThrowIfNull(mongoUrl, nameof(mongoUrl));
-        ArgumentNullException.ThrowIfNull(mongoDbName, nameof(mongoDbName));
+        ArgumentNullException.ThrowIfNull(dbOptions, nameof(dbOptions));
+        ArgumentNullException.ThrowIfNull(dbOptions.ConnectionString, nameof(dbOptions.ConnectionString));
+        ArgumentNullException.ThrowIfNull(dbOptions.Name, nameof(dbOptions.Name));
         _dbServiceImplementation = new T();
-        await _dbServiceImplementation.Open(mongoUrl, mongoDbName);
+        return await _dbServiceImplementation.Open(dbOptions);
     }
 
     /// <summary>

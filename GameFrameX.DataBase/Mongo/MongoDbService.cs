@@ -23,24 +23,28 @@ public sealed partial class MongoDbService : IDatabaseService
     private MongoDbContext _mongoDbContext;
 
     /// <summary>
-    /// 打开MongoDB连接并指定URL和数据库名称。
+    /// 链接数据库
     /// </summary>
-    /// <param name="url">MongoDB连接URL。</param>
-    /// <param name="dbName">要使用的数据库名称。</param>
-    public async Task Open(string url, string dbName)
+    /// <param name="dbOptions">数据库配置选项</param>
+    /// <returns>返回数据库是否初始化成功</returns>
+    public async Task<bool> Open(DbOptions dbOptions)
     {
         try
         {
-            var settings = MongoClientSettings.FromConnectionString(url);
-            await DB.InitAsync(dbName, settings);
+            ArgumentNullException.ThrowIfNull(dbOptions.ConnectionString, nameof(dbOptions.ConnectionString));
+            ArgumentNullException.ThrowIfNull(dbOptions.Name, nameof(dbOptions.Name));
+            var settings = MongoClientSettings.FromConnectionString(dbOptions.ConnectionString);
+            await DB.InitAsync(dbOptions.Name, settings);
             _mongoDbContext = new MongoDbContext();
-            CurrentDatabase = DB.Database(dbName);
-            LogHelper.Info($"初始化MongoDB服务完成 Url:{url} DbName:{dbName}");
+            CurrentDatabase = DB.Database(dbOptions.Name);
+            LogHelper.Info($"初始化MongoDB服务完成 Url:{dbOptions.ConnectionString} DbName:{dbOptions.Name}");
+            return true;
         }
-        catch (Exception)
+        catch (Exception exception)
         {
-            LogHelper.Error($"初始化MongoDB服务失败 Url:{url} DbName:{dbName}");
-            throw;
+            LogHelper.Fatal(exception);
+            LogHelper.Error($"初始化MongoDB服务失败 Url:{dbOptions.ConnectionString} DbName:{dbOptions.Name}");
+            return false;
         }
     }
 

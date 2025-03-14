@@ -10,9 +10,9 @@ public interface IDatabaseService
     /// <summary>
     /// 链接数据库
     /// </summary>
-    /// <param name="url">链接地址</param>
-    /// <param name="dbName">数据库名称</param>
-    Task Open(string url, string dbName);
+    /// <param name="dbOptions">数据库配置选项</param>
+    /// <returns>返回数据库是否初始化成功</returns>
+    Task<bool> Open(DbOptions dbOptions);
 
     /// <summary>
     /// 关闭数据库连接
