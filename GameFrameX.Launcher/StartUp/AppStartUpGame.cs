@@ -46,7 +46,7 @@ internal sealed class AppStartUpGame : AppStartUpBase
         }
 
         LogHelper.InfoConsole("退出服务器开始");
-        await HotfixManager.Stop();
+        await HotfixManager.Stop("正常退出服务器");
         LogHelper.InfoConsole("退出服务器成功");
     }
 
