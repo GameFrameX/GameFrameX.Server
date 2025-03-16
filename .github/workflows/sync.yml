@@ -2,7 +2,7 @@ name: Sync Github To Image
 
 on:
   push:
-    branches: [main]
+    branches: [main, src]
   #schedule:
     # 定时任务，每天 UTC 时间 0 点运行
     #- cron: "0 0 * * *"
