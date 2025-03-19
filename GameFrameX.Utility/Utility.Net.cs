@@ -76,7 +76,7 @@ public static class Net
     }
 
     /// <summary>
-    /// 检查指定端口是否已用
+    /// 检查指定端口是否可用
     /// </summary>
     /// <param name="port">要检查的端口号</param>
     /// <returns>如果端口未被使用，返回true；否则返回false</returns>
@@ -88,11 +88,13 @@ public static class Net
 
         foreach (var p in portUsed)
         {
-            if (p == port)
+            if (p != port)
             {
-                isAvailable = false;
-                break;
+                continue;
             }
+
+            isAvailable = false;
+            break;
         }
 
         return isAvailable;
