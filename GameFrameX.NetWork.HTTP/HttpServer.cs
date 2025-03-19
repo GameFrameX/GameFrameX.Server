@@ -57,6 +57,13 @@ public static class HttpServer
             httpPort = 28080;
         }
 
+        // HTTP
+        if (Net.PortIsAvailable(httpPort))
+        {
+            LogHelper.Error($"HTTP 服务器 端口 [{httpPort}] 被占用，无法启动HTTP服务");
+            return Task.CompletedTask;
+        }
+
         // 如果没有指定根路径，则默认为/game/api/
         if (apiRootPath.IsNullOrEmptyOrWhiteSpace())
         {
@@ -116,12 +123,8 @@ public static class HttpServer
         }
 
         builder.WebHost.UseKestrel(options =>
-        {
-            // HTTP
-            if (httpPort > 0 && Net.PortIsAvailable(httpPort))
             {
                 options.ListenAnyIP(httpPort);
-            }
 
             // HTTPS
             if (httpsPort > 0 && Net.PortIsAvailable(httpsPort))
