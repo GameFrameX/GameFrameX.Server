@@ -58,7 +58,7 @@ public static class HttpServer
         }
 
         // HTTP
-        if (Net.PortIsAvailable(httpPort))
+        if (!Net.PortIsAvailable(httpPort))
         {
             LogHelper.Error($"HTTP 服务器 端口 [{httpPort}] 被占用，无法启动HTTP服务");
             return Task.CompletedTask;
@@ -123,8 +123,8 @@ public static class HttpServer
         }
 
         builder.WebHost.UseKestrel(options =>
-            {
-                options.ListenAnyIP(httpPort);
+        {
+            options.ListenAnyIP(httpPort);
 
             // HTTPS
             if (httpsPort > 0 && Net.PortIsAvailable(httpsPort))
