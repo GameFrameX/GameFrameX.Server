@@ -40,12 +40,25 @@ public static class ActorManager
     /// 根据ActorId获取对应的IComponentAgent对象
     /// </summary>
     /// <param name="actorId">ActorId</param>
+    /// <param name="isNew">是否当获取为空的时候默认创建，默认值为true</param>
     /// <typeparam name="T">组件代理类型</typeparam>
     /// <returns>组件代理任务</returns>
-    public static async Task<T> GetComponentAgent<T>(long actorId) where T : IComponentAgent
+    public static async Task<T> GetComponentAgent<T>(long actorId, bool isNew = true) where T : IComponentAgent
     {
-        var actor = await GetOrNew(actorId);
-        return await actor.GetComponentAgent<T>();
+        Actor actor;
+        if (isNew)
+        {
+            actor = await GetOrNew(actorId);
+            return await actor.GetComponentAgent<T>();
+        }
+
+        actor = Get(actorId);
+        if (actor != null)
+        {
+            return await actor.GetComponentAgent<T>();
+        }
+
+        return await Task.FromResult<T>(default);
     }
 
     /// <summary>
@@ -74,24 +87,38 @@ public static class ActorManager
     /// </summary>
     /// <param name="actorId">ActorId</param>
     /// <param name="agentType">组件类型</param>
+    /// <param name="isNew">是否当获取为空的时候默认创建，默认值为true</param>
     /// <returns>组件代理任务</returns>
-    internal static async Task<IComponentAgent> GetComponentAgent(long actorId, Type agentType)
+    internal static async Task<IComponentAgent> GetComponentAgent(long actorId, Type agentType, bool isNew = true)
     {
-        var actor = await GetOrNew(actorId);
-        return await actor.GetComponentAgent(agentType);
+        Actor actor;
+        if (isNew)
+        {
+            actor = await GetOrNew(actorId);
+            return await actor.GetComponentAgent(agentType);
+        }
+
+        actor = Get(actorId);
+        if (actor != null)
+        {
+            return await actor.GetComponentAgent(agentType);
+        }
+
+        return await Task.FromResult<IComponentAgent>(default);
     }
 
     /// <summary>
     /// 根据组件类型获取对应的IComponentAgent数据
     /// </summary>
     /// <typeparam name="T">组件代理类型</typeparam>
+    /// <param name="isNew">是否当获取为空的时候默认创建，默认值为true</param>
     /// <returns>组件代理任务</returns>
-    public static Task<T> GetComponentAgent<T>() where T : IComponentAgent
+    public static Task<T> GetComponentAgent<T>(bool isNew = true) where T : IComponentAgent
     {
         var compType = HotfixManager.GetCompType(typeof(T));
         var actorType = ComponentRegister.GetActorType(compType);
         var actorId = ActorIdGenerator.GetActorId(actorType);
-        return GetComponentAgent<T>(actorId);
+        return GetComponentAgent<T>(actorId, isNew);
     }
 
     /// <summary>
@@ -121,6 +148,34 @@ public static class ActorManager
         }
 
         return ActorMap.GetOrAdd(actorId, k => new Actor(k, ActorIdGenerator.GetActorType(k)));
+    }
+
+    /// <summary>
+    /// 根据actorId获取对应的actor实例，不存在则返回空
+    /// </summary>
+    /// <param name="actorId">actorId</param>
+    /// <returns>Actor对象任务</returns>
+    private static Actor Get(long actorId)
+    {
+        var actorType = ActorIdGenerator.GetActorType(actorId);
+        Actor valueActor;
+        if (actorType < GlobalConst.ActorTypeSeparator)
+        {
+            var now = DateTime.Now;
+            if (ActiveTimeDic.TryGetValue(actorId, out var activeTime)
+                && (now - activeTime).TotalMinutes < 10
+                && ActorMap.TryGetValue(actorId, out var actor))
+            {
+                ActiveTimeDic[actorId] = now;
+                return actor;
+            }
+
+            ActorMap.TryGetValue(actorId, out valueActor);
+            return valueActor;
+        }
+
+        ActorMap.TryGetValue(actorId, out valueActor);
+        return valueActor;
     }
 
     /// <summary>
