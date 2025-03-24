@@ -47,15 +47,17 @@ public interface IActor : IWorker
     /// 根据组件类型获取对应的 IComponentAgent
     /// </summary>
     /// <param name="agentType">组件类型</param>
+    /// <param name="isNew">是否当获取为空的时候默认创建，默认值为true</param>
     /// <returns>一个表示异步操作的任务，返回 IComponentAgent 实例</returns>
-    Task<IComponentAgent> GetComponentAgent(Type agentType);
+    Task<IComponentAgent> GetComponentAgent(Type agentType, bool isNew = true);
 
     /// <summary>
     /// 根据组件类型获取对应的 IComponentAgent
     /// </summary>
     /// <typeparam name="T">组件类型</typeparam>
+    /// <param name="isNew">是否当获取为空的时候默认创建，默认值为true</param>
     /// <returns>一个表示异步操作的任务，返回指定类型的 IComponentAgent 实例</returns>
-    Task<T> GetComponentAgent<T>() where T : IComponentAgent;
+    Task<T> GetComponentAgent<T>(bool isNew = true) where T : IComponentAgent;
 
     /// <summary>
     /// 设置自动回收标记
