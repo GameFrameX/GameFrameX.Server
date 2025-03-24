@@ -85,27 +85,52 @@ public sealed class Actor : IActor
     /// 根据组件类型获取对应的IComponentAgent
     /// </summary>
     /// <typeparam name="T">组件类型</typeparam>
+    /// <param name="isNew">是否当获取为空的时候默认创建，默认值为true</param>
     /// <returns></returns>
-    public async Task<T> GetComponentAgent<T>() where T : IComponentAgent
+    public async Task<T> GetComponentAgent<T>(bool isNew = true) where T : IComponentAgent
     {
-        return (T)await GetComponentAgent(typeof(T));
+        return (T)await GetComponentAgent(typeof(T), isNew);
     }
 
     /// <summary>
     /// 根据组件类型获取对应的IComponentAgent
     /// </summary>
     /// <param name="agentType">代理类型</param>
+    /// <param name="isNew">是否当获取为空的时候默认创建，默认值为true</param>
     /// <returns></returns>
-    public async Task<IComponentAgent> GetComponentAgent(Type agentType)
+    public async Task<IComponentAgent> GetComponentAgent(Type agentType, bool isNew = true)
     {
         var compType = agentType.BaseType.GetGenericArguments()[0];
-        var comp = _componentsMap.GetOrAdd(compType, GetOrAddFactory);
-        var agent = comp.GetAgent(agentType);
-        if (!comp.IsActive)
+        IComponentAgent agent;
+        if (isNew)
+        {
+            var comp = _componentsMap.GetOrAdd(compType, GetOrAddFactory);
+            agent = comp.GetAgent(agentType);
+            if (!comp.IsActive)
+            {
+                async Task Worker()
+                {
+                    await comp.Active();
+                    agent.Active();
+                }
+
+                await SendAsyncWithoutCheck(Worker);
+            }
+
+            return agent;
+        }
+
+        if (!_componentsMap.TryGetValue(compType, out var component))
+        {
+            return default;
+        }
+
+        agent = component.GetAgent(agentType);
+        if (!component.IsActive)
         {
             async Task Worker()
             {
-                await comp.Active();
+                await component.Active();
                 agent.Active();
             }
 
