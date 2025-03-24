@@ -451,12 +451,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Abstractions.IActor.CrossDay
   nameWithType: IActor.CrossDay
-- uid: GameFrameX.Core.Abstractions.IActor.GetComponentAgent(System.Type)
-  name: GetComponentAgent(Type)
-  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_GetComponentAgent_System_Type_
-  commentId: M:GameFrameX.Core.Abstractions.IActor.GetComponentAgent(System.Type)
-  fullName: GameFrameX.Core.Abstractions.IActor.GetComponentAgent(System.Type)
-  nameWithType: IActor.GetComponentAgent(Type)
+- uid: GameFrameX.Core.Abstractions.IActor.GetComponentAgent(System.Type,System.Boolean)
+  name: GetComponentAgent(Type, bool)
+  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_GetComponentAgent_System_Type_System_Boolean_
+  commentId: M:GameFrameX.Core.Abstractions.IActor.GetComponentAgent(System.Type,System.Boolean)
+  name.vb: GetComponentAgent(Type, Boolean)
+  fullName: GameFrameX.Core.Abstractions.IActor.GetComponentAgent(System.Type, bool)
+  fullName.vb: GameFrameX.Core.Abstractions.IActor.GetComponentAgent(System.Type, Boolean)
+  nameWithType: IActor.GetComponentAgent(Type, bool)
+  nameWithType.vb: IActor.GetComponentAgent(Type, Boolean)
 - uid: GameFrameX.Core.Abstractions.IActor.GetComponentAgent*
   name: GetComponentAgent
   href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_GetComponentAgent_
@@ -464,15 +467,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Abstractions.IActor.GetComponentAgent
   nameWithType: IActor.GetComponentAgent
-- uid: GameFrameX.Core.Abstractions.IActor.GetComponentAgent``1
-  name: GetComponentAgent<T>()
-  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_GetComponentAgent__1
-  commentId: M:GameFrameX.Core.Abstractions.IActor.GetComponentAgent``1
-  name.vb: GetComponentAgent(Of T)()
-  fullName: GameFrameX.Core.Abstractions.IActor.GetComponentAgent<T>()
-  fullName.vb: GameFrameX.Core.Abstractions.IActor.GetComponentAgent(Of T)()
-  nameWithType: IActor.GetComponentAgent<T>()
-  nameWithType.vb: IActor.GetComponentAgent(Of T)()
+- uid: GameFrameX.Core.Abstractions.IActor.GetComponentAgent``1(System.Boolean)
+  name: GetComponentAgent<T>(bool)
+  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_GetComponentAgent__1_System_Boolean_
+  commentId: M:GameFrameX.Core.Abstractions.IActor.GetComponentAgent``1(System.Boolean)
+  name.vb: GetComponentAgent(Of T)(Boolean)
+  fullName: GameFrameX.Core.Abstractions.IActor.GetComponentAgent<T>(bool)
+  fullName.vb: GameFrameX.Core.Abstractions.IActor.GetComponentAgent(Of T)(Boolean)
+  nameWithType: IActor.GetComponentAgent<T>(bool)
+  nameWithType.vb: IActor.GetComponentAgent(Of T)(Boolean)
 - uid: GameFrameX.Core.Abstractions.IActor.Id
   name: Id
   href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_Id
@@ -912,12 +915,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Actors.Actor.CrossDay
   nameWithType: Actor.CrossDay
-- uid: GameFrameX.Core.Actors.Actor.GetComponentAgent(System.Type)
-  name: GetComponentAgent(Type)
-  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_GetComponentAgent_System_Type_
-  commentId: M:GameFrameX.Core.Actors.Actor.GetComponentAgent(System.Type)
-  fullName: GameFrameX.Core.Actors.Actor.GetComponentAgent(System.Type)
-  nameWithType: Actor.GetComponentAgent(Type)
+- uid: GameFrameX.Core.Actors.Actor.GetComponentAgent(System.Type,System.Boolean)
+  name: GetComponentAgent(Type, bool)
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_GetComponentAgent_System_Type_System_Boolean_
+  commentId: M:GameFrameX.Core.Actors.Actor.GetComponentAgent(System.Type,System.Boolean)
+  name.vb: GetComponentAgent(Type, Boolean)
+  fullName: GameFrameX.Core.Actors.Actor.GetComponentAgent(System.Type, bool)
+  fullName.vb: GameFrameX.Core.Actors.Actor.GetComponentAgent(System.Type, Boolean)
+  nameWithType: Actor.GetComponentAgent(Type, bool)
+  nameWithType.vb: Actor.GetComponentAgent(Type, Boolean)
 - uid: GameFrameX.Core.Actors.Actor.GetComponentAgent*
   name: GetComponentAgent
   href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_GetComponentAgent_
@@ -925,15 +931,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Actors.Actor.GetComponentAgent
   nameWithType: Actor.GetComponentAgent
-- uid: GameFrameX.Core.Actors.Actor.GetComponentAgent``1
-  name: GetComponentAgent<T>()
-  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_GetComponentAgent__1
-  commentId: M:GameFrameX.Core.Actors.Actor.GetComponentAgent``1
-  name.vb: GetComponentAgent(Of T)()
-  fullName: GameFrameX.Core.Actors.Actor.GetComponentAgent<T>()
-  fullName.vb: GameFrameX.Core.Actors.Actor.GetComponentAgent(Of T)()
-  nameWithType: Actor.GetComponentAgent<T>()
-  nameWithType.vb: Actor.GetComponentAgent(Of T)()
+- uid: GameFrameX.Core.Actors.Actor.GetComponentAgent``1(System.Boolean)
+  name: GetComponentAgent<T>(bool)
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_GetComponentAgent__1_System_Boolean_
+  commentId: M:GameFrameX.Core.Actors.Actor.GetComponentAgent``1(System.Boolean)
+  name.vb: GetComponentAgent(Of T)(Boolean)
+  fullName: GameFrameX.Core.Actors.Actor.GetComponentAgent<T>(bool)
+  fullName.vb: GameFrameX.Core.Actors.Actor.GetComponentAgent(Of T)(Boolean)
+  nameWithType: Actor.GetComponentAgent<T>(bool)
+  nameWithType.vb: Actor.GetComponentAgent(Of T)(Boolean)
 - uid: GameFrameX.Core.Actors.Actor.Id
   name: Id
   href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_Id
@@ -1226,24 +1232,24 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Actors.ActorManager.GetComponentAgent
   nameWithType: ActorManager.GetComponentAgent
-- uid: GameFrameX.Core.Actors.ActorManager.GetComponentAgent``1
-  name: GetComponentAgent<T>()
-  href: api/GameFrameX.Core.Actors.ActorManager.html#GameFrameX_Core_Actors_ActorManager_GetComponentAgent__1
-  commentId: M:GameFrameX.Core.Actors.ActorManager.GetComponentAgent``1
-  name.vb: GetComponentAgent(Of T)()
-  fullName: GameFrameX.Core.Actors.ActorManager.GetComponentAgent<T>()
-  fullName.vb: GameFrameX.Core.Actors.ActorManager.GetComponentAgent(Of T)()
-  nameWithType: ActorManager.GetComponentAgent<T>()
-  nameWithType.vb: ActorManager.GetComponentAgent(Of T)()
-- uid: GameFrameX.Core.Actors.ActorManager.GetComponentAgent``1(System.Int64)
-  name: GetComponentAgent<T>(long)
-  href: api/GameFrameX.Core.Actors.ActorManager.html#GameFrameX_Core_Actors_ActorManager_GetComponentAgent__1_System_Int64_
-  commentId: M:GameFrameX.Core.Actors.ActorManager.GetComponentAgent``1(System.Int64)
-  name.vb: GetComponentAgent(Of T)(Long)
-  fullName: GameFrameX.Core.Actors.ActorManager.GetComponentAgent<T>(long)
-  fullName.vb: GameFrameX.Core.Actors.ActorManager.GetComponentAgent(Of T)(Long)
-  nameWithType: ActorManager.GetComponentAgent<T>(long)
-  nameWithType.vb: ActorManager.GetComponentAgent(Of T)(Long)
+- uid: GameFrameX.Core.Actors.ActorManager.GetComponentAgent``1(System.Boolean)
+  name: GetComponentAgent<T>(bool)
+  href: api/GameFrameX.Core.Actors.ActorManager.html#GameFrameX_Core_Actors_ActorManager_GetComponentAgent__1_System_Boolean_
+  commentId: M:GameFrameX.Core.Actors.ActorManager.GetComponentAgent``1(System.Boolean)
+  name.vb: GetComponentAgent(Of T)(Boolean)
+  fullName: GameFrameX.Core.Actors.ActorManager.GetComponentAgent<T>(bool)
+  fullName.vb: GameFrameX.Core.Actors.ActorManager.GetComponentAgent(Of T)(Boolean)
+  nameWithType: ActorManager.GetComponentAgent<T>(bool)
+  nameWithType.vb: ActorManager.GetComponentAgent(Of T)(Boolean)
+- uid: GameFrameX.Core.Actors.ActorManager.GetComponentAgent``1(System.Int64,System.Boolean)
+  name: GetComponentAgent<T>(long, bool)
+  href: api/GameFrameX.Core.Actors.ActorManager.html#GameFrameX_Core_Actors_ActorManager_GetComponentAgent__1_System_Int64_System_Boolean_
+  commentId: M:GameFrameX.Core.Actors.ActorManager.GetComponentAgent``1(System.Int64,System.Boolean)
+  name.vb: GetComponentAgent(Of T)(Long, Boolean)
+  fullName: GameFrameX.Core.Actors.ActorManager.GetComponentAgent<T>(long, bool)
+  fullName.vb: GameFrameX.Core.Actors.ActorManager.GetComponentAgent(Of T)(Long, Boolean)
+  nameWithType: ActorManager.GetComponentAgent<T>(long, bool)
+  nameWithType.vb: ActorManager.GetComponentAgent(Of T)(Long, Boolean)
 - uid: GameFrameX.Core.Actors.ActorManager.HasActor(System.Int64)
   name: HasActor(long)
   href: api/GameFrameX.Core.Actors.ActorManager.html#GameFrameX_Core_Actors_ActorManager_HasActor_System_Int64_
