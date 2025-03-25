@@ -104,99 +104,101 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     }
 
     /// <summary>
-    /// 发送无返回值的工作指令
+    /// 发送无返回值的工作指令到Actor
     /// </summary>
-    /// <param name="work">工作内容</param>
-    /// <param name="timeout">超时时间，默认为int.MaxValue</param>
-    /// <param name="cancellationToken">取消令牌 </param>
+    /// <param name="work">要执行的工作内容，以Action委托形式传入</param>
+    /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为int.MaxValue</param>
+    /// <param name="cancellationToken">取消令牌，用于取消正在执行的操作</param>
     public void Tell(Action work, int timeout = int.MaxValue, CancellationToken cancellationToken = default)
     {
         Actor.Tell(work, timeout, cancellationToken);
     }
 
     /// <summary>
-    /// 发送有返回值的工作指令
+    /// 发送异步工作指令到Actor
     /// </summary>
-    /// <param name="work">工作内容</param>
-    /// <param name="timeout">超时时间，默认为int.MaxValue</param>
-    /// <param name="cancellationToken">取消令牌 </param>
+    /// <param name="work">要执行的异步工作内容，以Func<Task>委托形式传入</param>
+    /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为int.MaxValue</param>
+    /// <param name="cancellationToken">取消令牌，用于取消正在执行的操作</param>
     public void Tell(Func<Task> work, int timeout = int.MaxValue, CancellationToken cancellationToken = default)
     {
         Actor.Tell(work, timeout, cancellationToken);
     }
 
     /// <summary>
-    /// 异步发送无返回值的工作指令
+    /// 异步发送无返回值的工作指令到Actor
     /// </summary>
-    /// <param name="work">工作内容</param>
-    /// <param name="timeout">超时时间，默认为int.MaxValue</param>
-    /// <param name="cancellationToken">取消令牌 </param>
-    /// <returns>一个任务</returns>
+    /// <param name="work">要执行的工作内容，以Action委托形式传入</param>
+    /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为int.MaxValue</param>
+    /// <param name="cancellationToken">取消令牌，用于取消正在执行的操作</param>
+    /// <returns>表示异步操作的Task对象</returns>
     public Task SendAsync(Action work, int timeout = int.MaxValue, CancellationToken cancellationToken = default)
     {
         return Actor.SendAsync(work, timeout, cancellationToken);
     }
 
     /// <summary>
-    /// 异步发送有返回值的工作指令
+    /// 异步发送有返回值的工作指令到Actor
     /// </summary>
-    /// <param name="work">工作内容</param>
-    /// <param name="timeout">超时时间，默认为int.MaxValue</param>
-    /// <param name="cancellationToken">取消令牌 </param>
-    /// <returns>一个任务，返回工作结果</returns>
+    /// <typeparam name="T">返回结果的类型</typeparam>
+    /// <param name="work">要执行的工作内容，以Func<T>委托形式传入</param>
+    /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为int.MaxValue</param>
+    /// <param name="cancellationToken">取消令牌，用于取消正在执行的操作</param>
+    /// <returns>包含执行结果的Task<T>对象</returns>
     public Task<T> SendAsync<T>(Func<T> work, int timeout = int.MaxValue, CancellationToken cancellationToken = default)
     {
         return Actor.SendAsync(work, timeout, cancellationToken);
     }
 
     /// <summary>
-    /// 异步发送有返回值的工作指令
+    /// 异步发送有返回值的工作指令到Actor，支持锁检查
     /// </summary>
-    /// <param name="work">工作内容</param>
-    /// <param name="timeout">超时时间，默认为int.MaxValue</param>
-    /// <param name="checkLock">是否检查锁</param>
-    /// <param name="cancellationToken"></param>
-    /// <returns>一个任务</returns>
+    /// <param name="work">要执行的异步工作内容，以Func<Task>委托形式传入</param>
+    /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为int.MaxValue</param>
+    /// <param name="checkLock">是否检查Actor的锁状态，默认为true</param>
+    /// <param name="cancellationToken">取消令牌，用于取消正在执行的操作</param>
+    /// <returns>表示异步操作的Task对象</returns>
     public Task SendAsync(Func<Task> work, int timeout = int.MaxValue, bool checkLock = true, CancellationToken cancellationToken = default)
     {
         return Actor.SendAsync(work, timeout, checkLock, cancellationToken);
     }
 
     /// <summary>
-    /// 异步发送有返回值的工作指令
+    /// 异步发送有返回值的工作指令到Actor
     /// </summary>
-    /// <param name="work">工作内容</param>
-    /// <param name="timeOut">超时时间，默认为int.MaxValue</param>
-    /// <param name="cancellationToken"></param>
-    /// <returns>一个任务，返回工作结果</returns>
+    /// <typeparam name="T">返回结果的类型</typeparam>
+    /// <param name="work">要执行的异步工作内容，以Func<Task<T>>委托形式传入</param>
+    /// <param name="timeOut">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为int.MaxValue</param>
+    /// <param name="cancellationToken">取消令牌，用于取消正在执行的操作</param>
+    /// <returns>包含执行结果的Task<T>对象</returns>
     public Task<T> SendAsync<T>(Func<Task<T>> work, int timeOut = int.MaxValue, CancellationToken cancellationToken = default)
     {
         return Actor.SendAsync(work, timeOut, cancellationToken);
     }
 
     /// <summary>
-    /// 设置组件是否自动回收
+    /// 设置Actor组件是否自动回收
     /// </summary>
-    /// <param name="autoRecycle">是否自动回收</param>
+    /// <param name="autoRecycle">true表示启用自动回收，false表示禁用自动回收</param>
     protected void SetAutoRecycle(bool autoRecycle)
     {
         Actor.SetAutoRecycle(autoRecycle);
     }
 
     /// <summary>
-    /// 处理Actor跨天事件
+    /// 处理Actor的跨天事件，用于执行每日重置等操作
     /// </summary>
-    /// <param name="serverDay">服务器运行天数</param>
-    /// <returns>一个任务</returns>
+    /// <param name="serverDay">服务器运行的天数，从启动开始计数</param>
+    /// <returns>表示异步操作的Task对象</returns>
     public Task ActorCrossDay(int serverDay)
     {
         return Actor.CrossDay(serverDay);
     }
 
     /// <summary>
-    /// 取消订阅定时任务
+    /// 取消订阅指定ID的定时任务，并从调度集合中移除
     /// </summary>
-    /// <param name="id">定时任务ID</param>
+    /// <param name="id">要取消的定时任务ID</param>
     public void Unscheduled(long id)
     {
         QuartzTimer.Remove(id);
@@ -204,13 +206,13 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     }
 
     /// <summary>
-    /// 延迟执行定时任务
+    /// 延迟执行定时任务，在指定的时间点执行一次任务
     /// </summary>
-    /// <param name="time">延迟的具体时间</param>
-    /// <param name="param">参数</param>
-    /// <param name="unScheduleId">取消订阅的ID</param>
-    /// <typeparam name="T">定时任务处理器类型</typeparam>
-    /// <returns>定时任务ID</returns>
+    /// <param name="time">指定执行任务的具体时间点</param>
+    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="unScheduleId">需要取消的已存在的定时任务ID，如果大于0则会先取消该任务</param>
+    /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
+    /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
     public long Delay<T>(DateTime time, Param param = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
@@ -220,13 +222,13 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     }
 
     /// <summary>
-    /// 延迟执行定时任务
+    /// 延迟执行定时任务，将时间戳转换为DateTime后在指定时间点执行一次任务
     /// </summary>
-    /// <param name="time">延迟的时间</param>
-    /// <param name="param">参数</param>
-    /// <param name="unScheduleId">取消订阅的ID</param>
-    /// <typeparam name="T">定时任务处理器类型</typeparam>
-    /// <returns>定时任务ID</returns>
+    /// <param name="time">Unix时间戳，将被转换为DateTime类型的执行时间点</param>
+    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="unScheduleId">需要取消的已存在的定时任务ID，如果大于0则会先取消该任务</param>
+    /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
+    /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
     public long Delay<T>(long time, Param param = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
@@ -236,13 +238,13 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     }
 
     /// <summary>
-    /// 延迟执行定时任务
+    /// 延迟执行定时任务，在指定的时间间隔后执行一次任务
     /// </summary>
-    /// <param name="delay">延迟多久的时间差</param>
-    /// <param name="param">参数</param>
-    /// <param name="unScheduleId">取消订阅的ID</param>
-    /// <typeparam name="T">定时任务处理器类型</typeparam>
-    /// <returns>定时任务ID</returns>
+    /// <param name="delay">从当前时间开始延迟执行的时间间隔</param>
+    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="unScheduleId">需要取消的已存在的定时任务ID，如果大于0则会先取消该任务</param>
+    /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
+    /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
     public long Delay<T>(TimeSpan delay, Param param = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
@@ -252,15 +254,15 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     }
 
     /// <summary>
-    /// 订阅定时任务
+    /// 订阅定时任务，可设置延迟启动和重复执行间隔
     /// </summary>
-    /// <param name="delay">延迟时间差</param>
-    /// <param name="interval">间隔时间差</param>
-    /// <param name="param">参数</param>
-    /// <param name="repeatCount">调用次数，如果小于0，则一直循环</param>
-    /// <param name="unScheduleId">取消订阅的ID</param>
-    /// <typeparam name="T">定时任务处理器类型</typeparam>
-    /// <returns>定时任务ID</returns>
+    /// <param name="delay">首次执行前的延迟时间</param>
+    /// <param name="interval">连续执行之间的时间间隔</param>
+    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="repeatCount">任务重复执行的次数，小于0表示无限重复执行</param>
+    /// <param name="unScheduleId">需要取消的已存在的定时任务ID，如果大于0则会先取消该任务</param>
+    /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
+    /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
     public long Schedule<T>(TimeSpan delay, TimeSpan interval, Param param = null, int repeatCount = -1, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
@@ -270,14 +272,14 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     }
 
     /// <summary>
-    /// 基于每天的定时任务
+    /// 创建每日定时执行的任务，在指定的时间点执行
     /// </summary>
-    /// <param name="hour">小时</param>
-    /// <param name="minute">分钟</param>
-    /// <param name="param">参数</param>
-    /// <param name="unScheduleId">取消订阅的ID</param>
-    /// <typeparam name="T">定时任务处理器类型</typeparam>
-    /// <returns>定时任务ID</returns>
+    /// <param name="hour">每天执行的小时数（0-23）</param>
+    /// <param name="minute">每天执行的分钟数（0-59）</param>
+    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="unScheduleId">需要取消的已存在的定时任务ID，如果大于0则会先取消该任务</param>
+    /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
+    /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
     public long Daily<T>(int hour = 0, int minute = 0, Param param = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
@@ -287,15 +289,15 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     }
 
     /// <summary>
-    /// 基于每周某天的定时任务
+    /// 创建每周定时执行的任务，在指定的星期几和时间点执行
     /// </summary>
-    /// <param name="dayOfWeek">具体是哪天</param>
-    /// <param name="hour">小时</param>
-    /// <param name="minute">分钟</param>
-    /// <param name="param">参数</param>
-    /// <param name="unScheduleId">取消订阅的ID</param>
-    /// <typeparam name="T">定时任务处理器类型</typeparam>
-    /// <returns>定时任务ID</returns>
+    /// <param name="dayOfWeek">指定每周执行的星期几（周日到周六）</param>
+    /// <param name="hour">执行的小时数（0-23）</param>
+    /// <param name="minute">执行的分钟数（0-59）</param>
+    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="unScheduleId">需要取消的已存在的定时任务ID，如果大于0则会先取消该任务</param>
+    /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
+    /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
     public long Weekly<T>(DayOfWeek dayOfWeek, int hour = 0, int minute = 0, Param param = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
@@ -305,14 +307,14 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     }
 
     /// <summary>
-    /// 基于每周某天的定时任务
+    /// 创建在每周多个指定日期执行的定时任务
     /// </summary>
-    /// <param name="hour">小时</param>
-    /// <param name="minute">分钟</param>
-    /// <param name="param">参数</param>
-    /// <param name="dayOfWeeks">某天的参数列表</param>
-    /// <typeparam name="T">定时任务处理器类型</typeparam>
-    /// <returns>定时任务ID</returns>
+    /// <param name="hour">执行的小时数（0-23）</param>
+    /// <param name="minute">执行的分钟数（0-59）</param>
+    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="dayOfWeeks">指定要执行的多个星期几，可变参数数组</param>
+    /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
+    /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
     public long WithDayOfWeeks<T>(int hour, int minute, Param param, params DayOfWeek[] dayOfWeeks) where T : ITimerHandler
     {
         var scheduleId = QuartzTimer.WithDayOfWeeks<T>(ActorId, hour, minute, param, dayOfWeeks);
@@ -321,15 +323,15 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     }
 
     /// <summary>
-    /// 基于每月某天的定时任务
+    /// 创建每月定时执行的任务，在指定的日期和时间点执行
     /// </summary>
-    /// <param name="dayOfMonth">具体哪天</param>
-    /// <param name="hour">小时</param>
-    /// <param name="minute">分钟</param>
-    /// <param name="param">参数</param>
-    /// <param name="unScheduleId">取消订阅ID</param>
-    /// <typeparam name="T">定时任务处理器类型</typeparam>
-    /// <returns>定时任务ID</returns>
+    /// <param name="dayOfMonth">指定每月执行的日期（1-31）</param>
+    /// <param name="hour">执行的小时数（0-23）</param>
+    /// <param name="minute">执行的分钟数（0-59）</param>
+    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="unScheduleId">需要取消的已存在的定时任务ID，如果大于0则会先取消该任务</param>
+    /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
+    /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
     public long Monthly<T>(int dayOfMonth, int hour = 0, int minute = 0, Param param = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
@@ -339,13 +341,13 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     }
 
     /// <summary>
-    /// 基于Cron表达式的定时任务
+    /// 使用Cron表达式创建定时任务，提供更灵活的定时任务调度
     /// </summary>
-    /// <param name="cronExpression">cron表达式</param>
-    /// <param name="param">参数</param>
-    /// <param name="unScheduleId">取消订阅ID</param>
-    /// <typeparam name="T">定时任务处理器类型</typeparam>
-    /// <returns>定时任务ID</returns>
+    /// <param name="cronExpression">标准的Cron表达式，用于定义复杂的执行计划</param>
+    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="unScheduleId">需要取消的已存在的定时任务ID，如果大于0则会先取消该任务</param>
+    /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
+    /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
     public long WithCronExpression<T>(string cronExpression, Param param = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
