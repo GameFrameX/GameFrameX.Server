@@ -84,23 +84,25 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     }
 
     /// <summary>
-    /// 根据代理类型获取组件
+    /// 根据代理类型获取组件代理实例
     /// </summary>
-    /// <param name="agentType">代理类型</param>
-    /// <returns>一个任务，返回组件代理实例</returns>
-    public Task<IComponentAgent> GetComponentAgent(Type agentType)
+    /// <param name="agentType">要获取的代理类型</param>
+    /// <param name="isNew">是否创建新的实例，true表示创建新实例，false表示获取已存在的实例</param>
+    /// <returns>返回一个异步任务，该任务完成时将返回指定类型的组件代理实例</returns>
+    public Task<IComponentAgent> GetComponentAgent(Type agentType, bool isNew = true)
     {
-        return Actor.GetComponentAgent(agentType);
+        return Actor.GetComponentAgent(agentType, isNew);
     }
 
     /// <summary>
-    /// 根据代理类型获取组件代理
+    /// 获取指定泛型类型的组件代理实例
     /// </summary>
-    /// <typeparam name="T">代理类型</typeparam>
-    /// <returns>一个任务，返回指定类型的组件代理实例</returns>
-    public Task<T> GetComponentAgent<T>() where T : IComponentAgent
+    /// <typeparam name="T">要获取的组件代理类型，必须实现IComponentAgent接口</typeparam>
+    /// <param name="isNew">是否创建新的实例，true表示创建新实例，false表示获取已存在的实例</param>
+    /// <returns>返回一个异步任务，该任务完成时将返回指定泛型类型的组件代理实例</returns>
+    public Task<T> GetComponentAgent<T>(bool isNew = true) where T : IComponentAgent
     {
-        return Actor.GetComponentAgent<T>();
+        return Actor.GetComponentAgent<T>(isNew);
     }
 
     /// <summary>

@@ -59,13 +59,21 @@ public interface IComponentAgent : IWorker
     /// 根据代理类型获取代理组件
     /// </summary>
     /// <param name="agentType">代理类型</param>
-    /// <returns>代理组件</returns>
-    public Task<IComponentAgent> GetComponentAgent(Type agentType);
+    /// <param name="isNew">是否创建新实例，默认为true</param>
+    /// <returns>代理组件实例</returns>
+    /// <remarks>
+    /// 通过Type类型参数获取或创建对应的组件代理实例
+    /// </remarks>
+    public Task<IComponentAgent> GetComponentAgent(Type agentType, bool isNew = true);
 
     /// <summary>
     /// 根据泛型代理类型获取代理组件
     /// </summary>
     /// <typeparam name="T">代理组件的类型</typeparam>
-    /// <returns>代理组件</returns>
-    public Task<T> GetComponentAgent<T>() where T : IComponentAgent;
+    /// <param name="isNew">是否创建新实例，默认为true</param>
+    /// <returns>指定类型的代理组件实例</returns>
+    /// <remarks>
+    /// 泛型方法版本，用于获取或创建指定类型的组件代理实例
+    /// </remarks>
+    public Task<T> GetComponentAgent<T>(bool isNew = true) where T : IComponentAgent;
 }
