@@ -140,15 +140,17 @@ public abstract partial class AppStartUpBase : IAppStartUp
     /// <param name="handler"></param>
     /// <param name="message"></param>
     /// <param name="netWorkChannel"></param>
-    protected async Task InvokeMessageHandler(IMessageHandler handler, INetworkMessage message, INetWorkChannel netWorkChannel)
+    /// <param name="timeout">处理超时时间</param>
+    /// <param name="cancellationToken">用于取消的令牌</param>
+    protected async Task InvokeMessageHandler(IMessageHandler handler, INetworkMessage message, INetWorkChannel netWorkChannel, int timeout = 30000, CancellationToken cancellationToken = default)
     {
         async void InvokeAction()
         {
             await handler.Init(message, netWorkChannel);
-            await handler.InnerAction();
+            await handler.InnerAction(timeout, cancellationToken);
         }
 
-        await Task.Run(InvokeAction);
+        await Task.Run(InvokeAction, cancellationToken);
     }
 
 
