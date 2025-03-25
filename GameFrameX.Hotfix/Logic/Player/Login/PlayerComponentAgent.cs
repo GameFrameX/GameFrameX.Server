@@ -22,7 +22,7 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         await serverComp.RemoveOnlineRole(ActorId);
         //下线后会被自动回收
         SetAutoRecycle(true);
-        QuartzTimer.UnSchedule(ScheduleIdSet);
+        QuartzTimer.Remove(ScheduleIdSet);
     }
 
     /// <summary>
