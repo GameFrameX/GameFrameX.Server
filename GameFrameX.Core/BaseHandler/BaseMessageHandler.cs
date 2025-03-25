@@ -47,8 +47,10 @@ public abstract class BaseMessageHandler : IMessageHandler
     /// <summary>
     /// 执行
     /// </summary>
+    /// <param name="timeout">执行超时时间，单位毫秒，默认30秒</param>
+    /// <param name="cancellationToken">取消令牌</param>
     /// <returns>执行任务</returns>
-    public virtual Task InnerAction()
+    public virtual async Task InnerAction(int timeout = 30000, CancellationToken cancellationToken = default)
     {
         if (_isInit == false)
         {
@@ -57,12 +59,20 @@ public abstract class BaseMessageHandler : IMessageHandler
 
         try
         {
-            return InnerActionAsync();
+            var task = InnerActionAsync();
+            try
+            {
+                await task.WaitAsync(TimeSpan.FromMilliseconds(timeout), cancellationToken);
+            }
+            catch (TimeoutException timeoutException)
+            {
+                LogHelper.Fatal("执行超时:" + timeoutException.Message);
+                //强制设状态-取消该操作
+            }
         }
         catch (Exception e)
         {
             LogHelper.Fatal(e);
-            return Task.CompletedTask;
         }
     }
 

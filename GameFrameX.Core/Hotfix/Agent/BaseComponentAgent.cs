@@ -108,9 +108,10 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// </summary>
     /// <param name="work">工作内容</param>
     /// <param name="timeout">超时时间，默认为int.MaxValue</param>
-    public void Tell(Action work, int timeout = int.MaxValue)
+    /// <param name="cancellationToken">取消令牌 </param>
+    public void Tell(Action work, int timeout = int.MaxValue, CancellationToken cancellationToken = default)
     {
-        Actor.Tell(work, timeout);
+        Actor.Tell(work, timeout, cancellationToken);
     }
 
     /// <summary>
@@ -118,9 +119,10 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// </summary>
     /// <param name="work">工作内容</param>
     /// <param name="timeout">超时时间，默认为int.MaxValue</param>
-    public void Tell(Func<Task> work, int timeout = int.MaxValue)
+    /// <param name="cancellationToken">取消令牌 </param>
+    public void Tell(Func<Task> work, int timeout = int.MaxValue, CancellationToken cancellationToken = default)
     {
-        Actor.Tell(work, timeout);
+        Actor.Tell(work, timeout, cancellationToken);
     }
 
     /// <summary>
@@ -128,10 +130,11 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// </summary>
     /// <param name="work">工作内容</param>
     /// <param name="timeout">超时时间，默认为int.MaxValue</param>
+    /// <param name="cancellationToken">取消令牌 </param>
     /// <returns>一个任务</returns>
-    public Task SendAsync(Action work, int timeout = int.MaxValue)
+    public Task SendAsync(Action work, int timeout = int.MaxValue, CancellationToken cancellationToken = default)
     {
-        return Actor.SendAsync(work, timeout);
+        return Actor.SendAsync(work, timeout, cancellationToken);
     }
 
     /// <summary>
@@ -139,10 +142,11 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// </summary>
     /// <param name="work">工作内容</param>
     /// <param name="timeout">超时时间，默认为int.MaxValue</param>
+    /// <param name="cancellationToken">取消令牌 </param>
     /// <returns>一个任务，返回工作结果</returns>
-    public Task<T> SendAsync<T>(Func<T> work, int timeout = int.MaxValue)
+    public Task<T> SendAsync<T>(Func<T> work, int timeout = int.MaxValue, CancellationToken cancellationToken = default)
     {
-        return Actor.SendAsync(work, timeout);
+        return Actor.SendAsync(work, timeout, cancellationToken);
     }
 
     /// <summary>
@@ -151,10 +155,11 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// <param name="work">工作内容</param>
     /// <param name="timeout">超时时间，默认为int.MaxValue</param>
     /// <param name="checkLock">是否检查锁</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>一个任务</returns>
-    public Task SendAsync(Func<Task> work, int timeout = int.MaxValue, bool checkLock = true)
+    public Task SendAsync(Func<Task> work, int timeout = int.MaxValue, bool checkLock = true, CancellationToken cancellationToken = default)
     {
-        return Actor.SendAsync(work, timeout, checkLock);
+        return Actor.SendAsync(work, timeout, checkLock, cancellationToken);
     }
 
     /// <summary>
@@ -162,10 +167,11 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// </summary>
     /// <param name="work">工作内容</param>
     /// <param name="timeOut">超时时间，默认为int.MaxValue</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>一个任务，返回工作结果</returns>
-    public Task<T> SendAsync<T>(Func<Task<T>> work, int timeOut = int.MaxValue)
+    public Task<T> SendAsync<T>(Func<Task<T>> work, int timeOut = int.MaxValue, CancellationToken cancellationToken = default)
     {
-        return Actor.SendAsync(work, timeOut);
+        return Actor.SendAsync(work, timeOut, cancellationToken);
     }
 
     /// <summary>
@@ -193,7 +199,7 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// <param name="id">定时任务ID</param>
     public void Unscheduled(long id)
     {
-        QuartzTimer.UnSchedule(id);
+        QuartzTimer.Remove(id);
         ScheduleIdSet.Remove(id);
     }
 

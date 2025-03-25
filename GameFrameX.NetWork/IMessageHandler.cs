@@ -29,6 +29,8 @@ public interface IMessageHandler
     /// <summary>
     /// 内部执行
     /// </summary>
+    /// <param name="timeout">执行超时时间，单位毫秒，默认30秒</param>
+    /// <param name="cancellationToken">取消令牌</param>
     /// <returns></returns>
-    Task InnerAction();
+    Task InnerAction(int timeout = 30000, CancellationToken cancellationToken = default);
 }

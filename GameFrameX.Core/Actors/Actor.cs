@@ -10,21 +10,25 @@ using GameFrameX.Utility.Setting;
 namespace GameFrameX.Core.Actors;
 
 /// <summary>
-/// Actor
+/// Actor类,用于管理和协调组件的生命周期、消息传递等核心功能
 /// </summary>
 public sealed class Actor : IActor
 {
     /// <summary>
-    /// 默认超时时长
+    /// 默认超时时长,使用int最大值表示无限等待
     /// </summary>
     public const int TimeOut = int.MaxValue;
 
+    /// <summary>
+    /// 组件映射字典,用于存储当前Actor下的所有组件实例
+    /// </summary>
     private readonly ConcurrentDictionary<Type, BaseComponent> _componentsMap = new();
 
     /// <summary>
+    /// Actor构造函数
     /// </summary>
-    /// <param name="id"></param>
-    /// <param name="type"></param>
+    /// <param name="id">Actor的唯一标识符</param>
+    /// <param name="type">Actor的类型标识</param>
     public Actor(long id, ushort type)
     {
         Id = id;
@@ -41,63 +45,65 @@ public sealed class Actor : IActor
         }
     }
 
+    /// <summary>
+    /// 判断Actor是否准备好进行反激活操作
+    /// </summary>
     internal bool ReadyToDeActive
     {
         get { return _componentsMap.Values.All(item => item.ReadyToInactive); }
     }
 
     /// <summary>
-    /// IActor唯一标识
+    /// Actor的唯一标识符
     /// </summary>
     public long Id { get; set; }
 
     /// <summary>
-    /// 订阅哈希列表
+    /// 订阅的定时器任务ID集合
     /// </summary>
     public HashSet<long> ScheduleIdSet { get; } = new();
 
     /// <summary>
-    /// Actor类型
+    /// Actor的类型标识,用于区分不同种类的Actor
     /// </summary>
     public ushort Type { get; set; }
 
     /// <summary>
-    /// 工作Actor
+    /// 工作者Actor实例,负责具体的任务执行
     /// </summary>
     public IWorkerActor WorkerActor { get; init; }
 
     /// <summary>
-    /// 是否自动回收
+    /// 标识Actor是否启用自动回收机制
     /// </summary>
     public bool AutoRecycle { get; private set; }
 
-
     /// <summary>
-    /// 设置自动回收标记
+    /// 设置Actor的自动回收状态
     /// </summary>
-    /// <param name="autoRecycle">是否自动回收</param>
+    /// <param name="autoRecycle">是否启用自动回收,true表示启用,false表示禁用</param>
     public void SetAutoRecycle(bool autoRecycle)
     {
         Tell(() => { AutoRecycle = autoRecycle; });
     }
 
     /// <summary>
-    /// 根据组件类型获取对应的IComponentAgent
+    /// 获取指定类型的组件代理实例
     /// </summary>
-    /// <typeparam name="T">组件类型</typeparam>
-    /// <param name="isNew">是否当获取为空的时候默认创建，默认值为true</param>
-    /// <returns></returns>
+    /// <typeparam name="T">组件代理类型</typeparam>
+    /// <param name="isNew">当组件不存在时是否创建新实例,默认为true</param>
+    /// <returns>返回指定类型的组件代理实例</returns>
     public async Task<T> GetComponentAgent<T>(bool isNew = true) where T : IComponentAgent
     {
         return (T)await GetComponentAgent(typeof(T), isNew);
     }
 
     /// <summary>
-    /// 根据组件类型获取对应的IComponentAgent
+    /// 根据代理类型获取组件代理实例
     /// </summary>
     /// <param name="agentType">代理类型</param>
-    /// <param name="isNew">是否当获取为空的时候默认创建，默认值为true</param>
-    /// <returns></returns>
+    /// <param name="isNew">当组件不存在时是否创建新实例,默认为true</param>
+    /// <returns>返回指定类型的组件代理实例</returns>
     public async Task<IComponentAgent> GetComponentAgent(Type agentType, bool isNew = true)
     {
         var compType = agentType.BaseType.GetGenericArguments()[0];
@@ -141,7 +147,7 @@ public sealed class Actor : IActor
     }
 
     /// <summary>
-    /// 跨天
+    /// 处理跨天逻辑,遍历所有组件并执行跨天操作
     /// </summary>
     /// <param name="openServerDay">开服天数</param>
     public async Task CrossDay(int openServerDay)
@@ -166,7 +172,7 @@ public sealed class Actor : IActor
     }
 
     /// <summary>
-    /// 反激活所有组件
+    /// 反激活所有组件,使其进入非活动状态
     /// </summary>
     public async Task Inactive()
     {
@@ -177,7 +183,7 @@ public sealed class Actor : IActor
     }
 
     /// <summary>
-    /// 清理全部代理
+    /// 清理所有组件的缓存代理实例
     /// </summary>
     public void ClearAgent()
     {
@@ -188,17 +194,17 @@ public sealed class Actor : IActor
     }
 
     /// <summary>
-    /// 获取或添加组件类型
+    /// 创建或获取指定类型的组件实例
     /// </summary>
-    /// <param name="type">类型</param>
-    /// <returns></returns>
+    /// <param name="type">组件类型</param>
+    /// <returns>返回基础组件实例</returns>
     private BaseComponent GetOrAddFactory(Type type)
     {
         return ComponentRegister.CreateComponent(this, type);
     }
 
     /// <summary>
-    /// 保存全部数据
+    /// 保存所有组件的当前状态
     /// </summary>
     internal async Task SaveAllState()
     {
@@ -209,8 +215,9 @@ public sealed class Actor : IActor
     }
 
     /// <summary>
+    /// 重写ToString方法,返回Actor的标识信息
     /// </summary>
-    /// <returns></returns>
+    /// <returns>返回包含类型和ID的字符串表示</returns>
     public override string ToString()
     {
         return $"{base.ToString()}_{Type}_{Id}";
@@ -219,92 +226,98 @@ public sealed class Actor : IActor
     #region actor 入队
 
     /// <summary>
-    /// 发送无返回值的工作指令
+    /// 发送无返回值的工作指令到Actor队列
     /// </summary>
-    /// <param name="work">工作内容</param>
-    /// <param name="timeOut">超时,默认为int.MaxValue</param>
-    public void Tell(Action work, int timeOut = TimeOut)
+    /// <param name="work">要执行的工作内容</param>
+    /// <param name="timeOut">执行超时时间,默认为TimeOut常量值</param>
+    /// <param name="cancellationToken">取消操作的令牌</param>
+    public void Tell(Action work, int timeOut = TimeOut, CancellationToken cancellationToken = default)
     {
-        WorkerActor.Tell(work, timeOut);
+        WorkerActor.Tell(work, timeOut, cancellationToken);
     }
 
     /// <summary>
-    /// 发送有返回值的工作指令
+    /// 发送异步工作指令到Actor队列
     /// </summary>
-    /// <param name="work">工作内容</param>
-    /// <param name="timeOut">超时,默认为int.MaxValue</param>
-    public void Tell(Func<Task> work, int timeOut = TimeOut)
+    /// <param name="work">要执行的异步工作内容</param>
+    /// <param name="timeOut">执行超时时间,默认为TimeOut常量值</param>
+    /// <param name="cancellationToken">取消操作的令牌</param>
+    public void Tell(Func<Task> work, int timeOut = TimeOut, CancellationToken cancellationToken = default)
     {
-        WorkerActor.Tell(work, timeOut);
+        WorkerActor.Tell(work, timeOut, cancellationToken);
     }
 
     /// <summary>
-    /// 发送无返回值工作指令,超时,默认为int.MaxValue
+    /// 发送无返回值的异步工作指令
     /// </summary>
-    /// <param name="work">工作内容</param>
-    /// <returns></returns>
+    /// <param name="work">要执行的工作内容</param>
+    /// <returns>返回表示异步操作的Task</returns>
     public Task SendAsync(Action work)
     {
         return WorkerActor.SendAsync(work);
     }
 
     /// <summary>
-    /// 发送异步消息
+    /// 发送带超时的异步工作指令
     /// </summary>
-    /// <param name="work"></param>
-    /// <param name="timeout"></param>
-    /// <returns></returns>
-    public Task SendAsync(Action work, int timeout)
-    {
-        return WorkerActor.SendAsync(work, timeout);
-    }
-
-    /// <summary>
-    /// 发送异步消息
-    /// </summary>
-    /// <param name="work"></param>
-    /// <param name="timeout"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    public Task<T> SendAsync<T>(Func<T> work, int timeout = TimeOut)
-    {
-        return WorkerActor.SendAsync(work, timeout);
-    }
-
-
-    /// <summary>
-    /// 发送异步消息
-    /// </summary>
-    /// <param name="work"></param>
-    /// <param name="timeout"></param>
-    /// <param name="checkLock">是否检查锁</param>
-    /// <returns></returns>
-    public Task SendAsync(Func<Task> work, int timeout = TimeOut, bool checkLock = true)
-    {
-        return WorkerActor.SendAsync(work, timeout, checkLock);
-    }
-
-    /// <summary>
-    /// 发送异步消息
-    /// </summary>
-    /// <param name="work"></param>
-    /// <param name="timeout"></param>
-    /// <returns></returns>
-    public Task SendAsyncWithoutCheck(Func<Task> work, int timeout = TimeOut)
-    {
-        return WorkerActor.SendAsync(work, timeout, false);
-    }
-
-    /// <summary>
-    /// 发送异步消息
-    /// </summary>
-    /// <param name="work">工作对象</param>
+    /// <param name="work">要执行的工作内容</param>
     /// <param name="timeout">超时时间</param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
-    public Task<T> SendAsync<T>(Func<Task<T>> work, int timeout = TimeOut)
+    /// <param name="cancellationToken">取消操作的令牌</param>
+    /// <returns>返回表示异步操作的Task</returns>
+    public Task SendAsync(Action work, int timeout, CancellationToken cancellationToken = default)
     {
-        return WorkerActor.SendAsync(work, timeout);
+        return WorkerActor.SendAsync(work, timeout, cancellationToken);
+    }
+
+    /// <summary>
+    /// 发送带返回值的异步工作指令
+    /// </summary>
+    /// <typeparam name="T">返回值类型</typeparam>
+    /// <param name="work">要执行的工作内容</param>
+    /// <param name="timeout">超时时间,默认为TimeOut常量值</param>
+    /// <param name="cancellationToken">取消操作的令牌</param>
+    /// <returns>返回指定类型的异步操作结果</returns>
+    public Task<T> SendAsync<T>(Func<T> work, int timeout = TimeOut, CancellationToken cancellationToken = default)
+    {
+        return WorkerActor.SendAsync(work, timeout, cancellationToken);
+    }
+
+    /// <summary>
+    /// 发送带锁检查的异步工作指令
+    /// </summary>
+    /// <param name="work">要执行的异步工作内容</param>
+    /// <param name="timeout">超时时间,默认为TimeOut常量值</param>
+    /// <param name="checkLock">是否检查锁,默认为true</param>
+    /// <param name="cancellationToken">取消操作的令牌</param>
+    /// <returns>返回表示异步操作的Task</returns>
+    public Task SendAsync(Func<Task> work, int timeout = TimeOut, bool checkLock = true, CancellationToken cancellationToken = default)
+    {
+        return WorkerActor.SendAsync(work, timeout, checkLock, cancellationToken);
+    }
+
+    /// <summary>
+    /// 发送不检查锁的异步工作指令
+    /// </summary>
+    /// <param name="work">要执行的异步工作内容</param>
+    /// <param name="timeout">超时时间,默认为TimeOut常量值</param>
+    /// <param name="cancellationToken">取消操作的令牌</param>
+    /// <returns>返回表示异步操作的Task</returns>
+    public Task SendAsyncWithoutCheck(Func<Task> work, int timeout = TimeOut, CancellationToken cancellationToken = default)
+    {
+        return WorkerActor.SendAsync(work, timeout, false, cancellationToken);
+    }
+
+    /// <summary>
+    /// 发送带返回值的异步工作指令
+    /// </summary>
+    /// <typeparam name="T">返回值类型</typeparam>
+    /// <param name="work">要执行的异步工作内容</param>
+    /// <param name="timeout">超时时间,默认为TimeOut常量值</param>
+    /// <param name="cancellationToken">取消操作的令牌</param>
+    /// <returns>返回指定类型的异步操作结果</returns>
+    public Task<T> SendAsync<T>(Func<Task<T>> work, int timeout = TimeOut, CancellationToken cancellationToken = default)
+    {
+        return WorkerActor.SendAsync(work, timeout, cancellationToken);
     }
 
     #endregion

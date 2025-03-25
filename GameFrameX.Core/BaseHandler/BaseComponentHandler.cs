@@ -50,10 +50,12 @@ public abstract class BaseComponentHandler : BaseMessageHandler
     /// <summary>
     /// 内部执行
     /// </summary>
+    /// <param name="timeout">执行超时时间，单位毫秒，默认30秒</param>
+    /// <param name="cancellationToken">取消令牌</param>
     /// <returns>内部执行任务</returns>
-    public override Task InnerAction()
+    public override Task InnerAction(int timeout = 30000, CancellationToken cancellationToken = default)
     {
-        CacheComponent.Tell(InnerActionAsync);
+        CacheComponent.Tell(InnerActionAsync, timeout, cancellationToken);
         return Task.CompletedTask;
     }
 
