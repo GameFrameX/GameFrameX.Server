@@ -45,12 +45,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Abstractions.Agent.IComponentAgent.ActorId
   nameWithType: IComponentAgent.ActorId
-- uid: GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent(System.Type)
-  name: GetComponentAgent(Type)
-  href: api/GameFrameX.Core.Abstractions.Agent.IComponentAgent.html#GameFrameX_Core_Abstractions_Agent_IComponentAgent_GetComponentAgent_System_Type_
-  commentId: M:GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent(System.Type)
-  fullName: GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent(System.Type)
-  nameWithType: IComponentAgent.GetComponentAgent(Type)
+- uid: GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent(System.Type,System.Boolean)
+  name: GetComponentAgent(Type, bool)
+  href: api/GameFrameX.Core.Abstractions.Agent.IComponentAgent.html#GameFrameX_Core_Abstractions_Agent_IComponentAgent_GetComponentAgent_System_Type_System_Boolean_
+  commentId: M:GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent(System.Type,System.Boolean)
+  name.vb: GetComponentAgent(Type, Boolean)
+  fullName: GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent(System.Type, bool)
+  fullName.vb: GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent(System.Type, Boolean)
+  nameWithType: IComponentAgent.GetComponentAgent(Type, bool)
+  nameWithType.vb: IComponentAgent.GetComponentAgent(Type, Boolean)
 - uid: GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent*
   name: GetComponentAgent
   href: api/GameFrameX.Core.Abstractions.Agent.IComponentAgent.html#GameFrameX_Core_Abstractions_Agent_IComponentAgent_GetComponentAgent_
@@ -58,15 +61,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent
   nameWithType: IComponentAgent.GetComponentAgent
-- uid: GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent``1
-  name: GetComponentAgent<T>()
-  href: api/GameFrameX.Core.Abstractions.Agent.IComponentAgent.html#GameFrameX_Core_Abstractions_Agent_IComponentAgent_GetComponentAgent__1
-  commentId: M:GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent``1
-  name.vb: GetComponentAgent(Of T)()
-  fullName: GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent<T>()
-  fullName.vb: GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent(Of T)()
-  nameWithType: IComponentAgent.GetComponentAgent<T>()
-  nameWithType.vb: IComponentAgent.GetComponentAgent(Of T)()
+- uid: GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent``1(System.Boolean)
+  name: GetComponentAgent<T>(bool)
+  href: api/GameFrameX.Core.Abstractions.Agent.IComponentAgent.html#GameFrameX_Core_Abstractions_Agent_IComponentAgent_GetComponentAgent__1_System_Boolean_
+  commentId: M:GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent``1(System.Boolean)
+  name.vb: GetComponentAgent(Of T)(Boolean)
+  fullName: GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent<T>(bool)
+  fullName.vb: GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent(Of T)(Boolean)
+  nameWithType: IComponentAgent.GetComponentAgent<T>(bool)
+  nameWithType.vb: IComponentAgent.GetComponentAgent(Of T)(Boolean)
 - uid: GameFrameX.Core.Abstractions.Agent.IComponentAgent.Inactive
   name: Inactive()
   href: api/GameFrameX.Core.Abstractions.Agent.IComponentAgent.html#GameFrameX_Core_Abstractions_Agent_IComponentAgent_Inactive
@@ -595,30 +598,43 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Abstractions.IState.ReadStateAsync
   nameWithType: IState.ReadStateAsync
+- uid: GameFrameX.Core.Abstractions.IState.WriteStateAsync
+  name: WriteStateAsync()
+  href: api/GameFrameX.Core.Abstractions.IState.html#GameFrameX_Core_Abstractions_IState_WriteStateAsync
+  commentId: M:GameFrameX.Core.Abstractions.IState.WriteStateAsync
+  fullName: GameFrameX.Core.Abstractions.IState.WriteStateAsync()
+  nameWithType: IState.WriteStateAsync()
+- uid: GameFrameX.Core.Abstractions.IState.WriteStateAsync*
+  name: WriteStateAsync
+  href: api/GameFrameX.Core.Abstractions.IState.html#GameFrameX_Core_Abstractions_IState_WriteStateAsync_
+  commentId: Overload:GameFrameX.Core.Abstractions.IState.WriteStateAsync
+  isSpec: "True"
+  fullName: GameFrameX.Core.Abstractions.IState.WriteStateAsync
+  nameWithType: IState.WriteStateAsync
 - uid: GameFrameX.Core.Abstractions.IWorker
   name: IWorker
   href: api/GameFrameX.Core.Abstractions.IWorker.html
   commentId: T:GameFrameX.Core.Abstractions.IWorker
   fullName: GameFrameX.Core.Abstractions.IWorker
   nameWithType: IWorker
-- uid: GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Action,System.Int32)
-  name: SendAsync(Action, int)
-  href: api/GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync_System_Action_System_Int32_
-  commentId: M:GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Action,System.Int32)
-  name.vb: SendAsync(Action, Integer)
-  fullName: GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Action, int)
-  fullName.vb: GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Action, Integer)
-  nameWithType: IWorker.SendAsync(Action, int)
-  nameWithType.vb: IWorker.SendAsync(Action, Integer)
-- uid: GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean)
-  name: SendAsync(Func<Task>, int, bool)
-  href: api/GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync_System_Func_System_Threading_Tasks_Task__System_Int32_System_Boolean_
-  commentId: M:GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean)
-  name.vb: SendAsync(Func(Of Task), Integer, Boolean)
-  fullName: GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Func<System.Threading.Tasks.Task>, int, bool)
-  fullName.vb: GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Func(Of System.Threading.Tasks.Task), Integer, Boolean)
-  nameWithType: IWorker.SendAsync(Func<Task>, int, bool)
-  nameWithType.vb: IWorker.SendAsync(Func(Of Task), Integer, Boolean)
+- uid: GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Action,System.Int32,System.Threading.CancellationToken)
+  name: SendAsync(Action, int, CancellationToken)
+  href: api/GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync_System_Action_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Action,System.Int32,System.Threading.CancellationToken)
+  name.vb: SendAsync(Action, Integer, CancellationToken)
+  fullName: GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Action, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Action, Integer, System.Threading.CancellationToken)
+  nameWithType: IWorker.SendAsync(Action, int, CancellationToken)
+  nameWithType.vb: IWorker.SendAsync(Action, Integer, CancellationToken)
+- uid: GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean,System.Threading.CancellationToken)
+  name: SendAsync(Func<Task>, int, bool, CancellationToken)
+  href: api/GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync_System_Func_System_Threading_Tasks_Task__System_Int32_System_Boolean_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean,System.Threading.CancellationToken)
+  name.vb: SendAsync(Func(Of Task), Integer, Boolean, CancellationToken)
+  fullName: GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Func<System.Threading.Tasks.Task>, int, bool, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Func(Of System.Threading.Tasks.Task), Integer, Boolean, System.Threading.CancellationToken)
+  nameWithType: IWorker.SendAsync(Func<Task>, int, bool, CancellationToken)
+  nameWithType.vb: IWorker.SendAsync(Func(Of Task), Integer, Boolean, CancellationToken)
 - uid: GameFrameX.Core.Abstractions.IWorker.SendAsync*
   name: SendAsync
   href: api/GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync_
@@ -626,42 +642,42 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Abstractions.IWorker.SendAsync
   nameWithType: IWorker.SendAsync
-- uid: GameFrameX.Core.Abstractions.IWorker.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32)
-  name: SendAsync<T>(Func<Task<T>>, int)
-  href: api/GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync__1_System_Func_System_Threading_Tasks_Task___0___System_Int32_
-  commentId: M:GameFrameX.Core.Abstractions.IWorker.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32)
-  name.vb: SendAsync(Of T)(Func(Of Task(Of T)), Integer)
-  fullName: GameFrameX.Core.Abstractions.IWorker.SendAsync<T>(System.Func<System.Threading.Tasks.Task<T>>, int)
-  fullName.vb: GameFrameX.Core.Abstractions.IWorker.SendAsync(Of T)(System.Func(Of System.Threading.Tasks.Task(Of T)), Integer)
-  nameWithType: IWorker.SendAsync<T>(Func<Task<T>>, int)
-  nameWithType.vb: IWorker.SendAsync(Of T)(Func(Of Task(Of T)), Integer)
-- uid: GameFrameX.Core.Abstractions.IWorker.SendAsync``1(System.Func{``0},System.Int32)
-  name: SendAsync<T>(Func<T>, int)
-  href: api/GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync__1_System_Func___0__System_Int32_
-  commentId: M:GameFrameX.Core.Abstractions.IWorker.SendAsync``1(System.Func{``0},System.Int32)
-  name.vb: SendAsync(Of T)(Func(Of T), Integer)
-  fullName: GameFrameX.Core.Abstractions.IWorker.SendAsync<T>(System.Func<T>, int)
-  fullName.vb: GameFrameX.Core.Abstractions.IWorker.SendAsync(Of T)(System.Func(Of T), Integer)
-  nameWithType: IWorker.SendAsync<T>(Func<T>, int)
-  nameWithType.vb: IWorker.SendAsync(Of T)(Func(Of T), Integer)
-- uid: GameFrameX.Core.Abstractions.IWorker.Tell(System.Action,System.Int32)
-  name: Tell(Action, int)
-  href: api/GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_Tell_System_Action_System_Int32_
-  commentId: M:GameFrameX.Core.Abstractions.IWorker.Tell(System.Action,System.Int32)
-  name.vb: Tell(Action, Integer)
-  fullName: GameFrameX.Core.Abstractions.IWorker.Tell(System.Action, int)
-  fullName.vb: GameFrameX.Core.Abstractions.IWorker.Tell(System.Action, Integer)
-  nameWithType: IWorker.Tell(Action, int)
-  nameWithType.vb: IWorker.Tell(Action, Integer)
-- uid: GameFrameX.Core.Abstractions.IWorker.Tell(System.Func{System.Threading.Tasks.Task},System.Int32)
-  name: Tell(Func<Task>, int)
-  href: api/GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_Tell_System_Func_System_Threading_Tasks_Task__System_Int32_
-  commentId: M:GameFrameX.Core.Abstractions.IWorker.Tell(System.Func{System.Threading.Tasks.Task},System.Int32)
-  name.vb: Tell(Func(Of Task), Integer)
-  fullName: GameFrameX.Core.Abstractions.IWorker.Tell(System.Func<System.Threading.Tasks.Task>, int)
-  fullName.vb: GameFrameX.Core.Abstractions.IWorker.Tell(System.Func(Of System.Threading.Tasks.Task), Integer)
-  nameWithType: IWorker.Tell(Func<Task>, int)
-  nameWithType.vb: IWorker.Tell(Func(Of Task), Integer)
+- uid: GameFrameX.Core.Abstractions.IWorker.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32,System.Threading.CancellationToken)
+  name: SendAsync<T>(Func<Task<T>>, int, CancellationToken)
+  href: api/GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync__1_System_Func_System_Threading_Tasks_Task___0___System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Abstractions.IWorker.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32,System.Threading.CancellationToken)
+  name.vb: SendAsync(Of T)(Func(Of Task(Of T)), Integer, CancellationToken)
+  fullName: GameFrameX.Core.Abstractions.IWorker.SendAsync<T>(System.Func<System.Threading.Tasks.Task<T>>, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Abstractions.IWorker.SendAsync(Of T)(System.Func(Of System.Threading.Tasks.Task(Of T)), Integer, System.Threading.CancellationToken)
+  nameWithType: IWorker.SendAsync<T>(Func<Task<T>>, int, CancellationToken)
+  nameWithType.vb: IWorker.SendAsync(Of T)(Func(Of Task(Of T)), Integer, CancellationToken)
+- uid: GameFrameX.Core.Abstractions.IWorker.SendAsync``1(System.Func{``0},System.Int32,System.Threading.CancellationToken)
+  name: SendAsync<T>(Func<T>, int, CancellationToken)
+  href: api/GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync__1_System_Func___0__System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Abstractions.IWorker.SendAsync``1(System.Func{``0},System.Int32,System.Threading.CancellationToken)
+  name.vb: SendAsync(Of T)(Func(Of T), Integer, CancellationToken)
+  fullName: GameFrameX.Core.Abstractions.IWorker.SendAsync<T>(System.Func<T>, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Abstractions.IWorker.SendAsync(Of T)(System.Func(Of T), Integer, System.Threading.CancellationToken)
+  nameWithType: IWorker.SendAsync<T>(Func<T>, int, CancellationToken)
+  nameWithType.vb: IWorker.SendAsync(Of T)(Func(Of T), Integer, CancellationToken)
+- uid: GameFrameX.Core.Abstractions.IWorker.Tell(System.Action,System.Int32,System.Threading.CancellationToken)
+  name: Tell(Action, int, CancellationToken)
+  href: api/GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_Tell_System_Action_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Abstractions.IWorker.Tell(System.Action,System.Int32,System.Threading.CancellationToken)
+  name.vb: Tell(Action, Integer, CancellationToken)
+  fullName: GameFrameX.Core.Abstractions.IWorker.Tell(System.Action, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Abstractions.IWorker.Tell(System.Action, Integer, System.Threading.CancellationToken)
+  nameWithType: IWorker.Tell(Action, int, CancellationToken)
+  nameWithType.vb: IWorker.Tell(Action, Integer, CancellationToken)
+- uid: GameFrameX.Core.Abstractions.IWorker.Tell(System.Func{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)
+  name: Tell(Func<Task>, int, CancellationToken)
+  href: api/GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_Tell_System_Func_System_Threading_Tasks_Task__System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Abstractions.IWorker.Tell(System.Func{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)
+  name.vb: Tell(Func(Of Task), Integer, CancellationToken)
+  fullName: GameFrameX.Core.Abstractions.IWorker.Tell(System.Func<System.Threading.Tasks.Task>, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Abstractions.IWorker.Tell(System.Func(Of System.Threading.Tasks.Task), Integer, System.Threading.CancellationToken)
+  nameWithType: IWorker.Tell(Func<Task>, int, CancellationToken)
+  nameWithType.vb: IWorker.Tell(Func(Of Task), Integer, CancellationToken)
 - uid: GameFrameX.Core.Abstractions.IWorker.Tell*
   name: Tell
   href: api/GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_Tell_
@@ -675,24 +691,24 @@ references:
   commentId: T:GameFrameX.Core.Abstractions.IWorkerActor
   fullName: GameFrameX.Core.Abstractions.IWorkerActor
   nameWithType: IWorkerActor
-- uid: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Action,System.Int64,System.Boolean,System.Int32)
-  name: Enqueue(Action, long, bool, int)
-  href: api/GameFrameX.Core.Abstractions.IWorkerActor.html#GameFrameX_Core_Abstractions_IWorkerActor_Enqueue_System_Action_System_Int64_System_Boolean_System_Int32_
-  commentId: M:GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Action,System.Int64,System.Boolean,System.Int32)
-  name.vb: Enqueue(Action, Long, Boolean, Integer)
-  fullName: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Action, long, bool, int)
-  fullName.vb: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Action, Long, Boolean, Integer)
-  nameWithType: IWorkerActor.Enqueue(Action, long, bool, int)
-  nameWithType.vb: IWorkerActor.Enqueue(Action, Long, Boolean, Integer)
-- uid: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Func{System.Threading.Tasks.Task},System.Int64,System.Boolean,System.Int32)
-  name: Enqueue(Func<Task>, long, bool, int)
-  href: api/GameFrameX.Core.Abstractions.IWorkerActor.html#GameFrameX_Core_Abstractions_IWorkerActor_Enqueue_System_Func_System_Threading_Tasks_Task__System_Int64_System_Boolean_System_Int32_
-  commentId: M:GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Func{System.Threading.Tasks.Task},System.Int64,System.Boolean,System.Int32)
-  name.vb: Enqueue(Func(Of Task), Long, Boolean, Integer)
-  fullName: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Func<System.Threading.Tasks.Task>, long, bool, int)
-  fullName.vb: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Func(Of System.Threading.Tasks.Task), Long, Boolean, Integer)
-  nameWithType: IWorkerActor.Enqueue(Func<Task>, long, bool, int)
-  nameWithType.vb: IWorkerActor.Enqueue(Func(Of Task), Long, Boolean, Integer)
+- uid: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Action,System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)
+  name: Enqueue(Action, long, bool, int, CancellationToken)
+  href: api/GameFrameX.Core.Abstractions.IWorkerActor.html#GameFrameX_Core_Abstractions_IWorkerActor_Enqueue_System_Action_System_Int64_System_Boolean_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Action,System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)
+  name.vb: Enqueue(Action, Long, Boolean, Integer, CancellationToken)
+  fullName: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Action, long, bool, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Action, Long, Boolean, Integer, System.Threading.CancellationToken)
+  nameWithType: IWorkerActor.Enqueue(Action, long, bool, int, CancellationToken)
+  nameWithType.vb: IWorkerActor.Enqueue(Action, Long, Boolean, Integer, CancellationToken)
+- uid: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Func{System.Threading.Tasks.Task},System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)
+  name: Enqueue(Func<Task>, long, bool, int, CancellationToken)
+  href: api/GameFrameX.Core.Abstractions.IWorkerActor.html#GameFrameX_Core_Abstractions_IWorkerActor_Enqueue_System_Func_System_Threading_Tasks_Task__System_Int64_System_Boolean_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Func{System.Threading.Tasks.Task},System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)
+  name.vb: Enqueue(Func(Of Task), Long, Boolean, Integer, CancellationToken)
+  fullName: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Func<System.Threading.Tasks.Task>, long, bool, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Func(Of System.Threading.Tasks.Task), Long, Boolean, Integer, System.Threading.CancellationToken)
+  nameWithType: IWorkerActor.Enqueue(Func<Task>, long, bool, int, CancellationToken)
+  nameWithType.vb: IWorkerActor.Enqueue(Func(Of Task), Long, Boolean, Integer, CancellationToken)
 - uid: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue*
   name: Enqueue
   href: api/GameFrameX.Core.Abstractions.IWorkerActor.html#GameFrameX_Core_Abstractions_IWorkerActor_Enqueue_
@@ -700,24 +716,24 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue
   nameWithType: IWorkerActor.Enqueue
-- uid: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int64,System.Boolean,System.Int32)
-  name: Enqueue<T>(Func<Task<T>>, long, bool, int)
-  href: api/GameFrameX.Core.Abstractions.IWorkerActor.html#GameFrameX_Core_Abstractions_IWorkerActor_Enqueue__1_System_Func_System_Threading_Tasks_Task___0___System_Int64_System_Boolean_System_Int32_
-  commentId: M:GameFrameX.Core.Abstractions.IWorkerActor.Enqueue``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int64,System.Boolean,System.Int32)
-  name.vb: Enqueue(Of T)(Func(Of Task(Of T)), Long, Boolean, Integer)
-  fullName: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue<T>(System.Func<System.Threading.Tasks.Task<T>>, long, bool, int)
-  fullName.vb: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(Of T)(System.Func(Of System.Threading.Tasks.Task(Of T)), Long, Boolean, Integer)
-  nameWithType: IWorkerActor.Enqueue<T>(Func<Task<T>>, long, bool, int)
-  nameWithType.vb: IWorkerActor.Enqueue(Of T)(Func(Of Task(Of T)), Long, Boolean, Integer)
-- uid: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue``1(System.Func{``0},System.Int64,System.Boolean,System.Int32)
-  name: Enqueue<T>(Func<T>, long, bool, int)
-  href: api/GameFrameX.Core.Abstractions.IWorkerActor.html#GameFrameX_Core_Abstractions_IWorkerActor_Enqueue__1_System_Func___0__System_Int64_System_Boolean_System_Int32_
-  commentId: M:GameFrameX.Core.Abstractions.IWorkerActor.Enqueue``1(System.Func{``0},System.Int64,System.Boolean,System.Int32)
-  name.vb: Enqueue(Of T)(Func(Of T), Long, Boolean, Integer)
-  fullName: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue<T>(System.Func<T>, long, bool, int)
-  fullName.vb: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(Of T)(System.Func(Of T), Long, Boolean, Integer)
-  nameWithType: IWorkerActor.Enqueue<T>(Func<T>, long, bool, int)
-  nameWithType.vb: IWorkerActor.Enqueue(Of T)(Func(Of T), Long, Boolean, Integer)
+- uid: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)
+  name: Enqueue<T>(Func<Task<T>>, long, bool, int, CancellationToken)
+  href: api/GameFrameX.Core.Abstractions.IWorkerActor.html#GameFrameX_Core_Abstractions_IWorkerActor_Enqueue__1_System_Func_System_Threading_Tasks_Task___0___System_Int64_System_Boolean_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Abstractions.IWorkerActor.Enqueue``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)
+  name.vb: Enqueue(Of T)(Func(Of Task(Of T)), Long, Boolean, Integer, CancellationToken)
+  fullName: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue<T>(System.Func<System.Threading.Tasks.Task<T>>, long, bool, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(Of T)(System.Func(Of System.Threading.Tasks.Task(Of T)), Long, Boolean, Integer, System.Threading.CancellationToken)
+  nameWithType: IWorkerActor.Enqueue<T>(Func<Task<T>>, long, bool, int, CancellationToken)
+  nameWithType.vb: IWorkerActor.Enqueue(Of T)(Func(Of Task(Of T)), Long, Boolean, Integer, CancellationToken)
+- uid: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue``1(System.Func{``0},System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)
+  name: Enqueue<T>(Func<T>, long, bool, int, CancellationToken)
+  href: api/GameFrameX.Core.Abstractions.IWorkerActor.html#GameFrameX_Core_Abstractions_IWorkerActor_Enqueue__1_System_Func___0__System_Int64_System_Boolean_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Abstractions.IWorkerActor.Enqueue``1(System.Func{``0},System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)
+  name.vb: Enqueue(Of T)(Func(Of T), Long, Boolean, Integer, CancellationToken)
+  fullName: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue<T>(System.Func<T>, long, bool, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(Of T)(System.Func(Of T), Long, Boolean, Integer, System.Threading.CancellationToken)
+  nameWithType: IWorkerActor.Enqueue<T>(Func<T>, long, bool, int, CancellationToken)
+  nameWithType.vb: IWorkerActor.Enqueue(Of T)(Func(Of T), Long, Boolean, Integer, CancellationToken)
 - uid: GameFrameX.Core.Abstractions.IWorkerActor.IsNeedEnqueue
   name: IsNeedEnqueue()
   href: api/GameFrameX.Core.Abstractions.IWorkerActor.html#GameFrameX_Core_Abstractions_IWorkerActor_IsNeedEnqueue
@@ -985,24 +1001,24 @@ references:
   commentId: M:GameFrameX.Core.Actors.Actor.SendAsync(System.Action)
   fullName: GameFrameX.Core.Actors.Actor.SendAsync(System.Action)
   nameWithType: Actor.SendAsync(Action)
-- uid: GameFrameX.Core.Actors.Actor.SendAsync(System.Action,System.Int32)
-  name: SendAsync(Action, int)
-  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_SendAsync_System_Action_System_Int32_
-  commentId: M:GameFrameX.Core.Actors.Actor.SendAsync(System.Action,System.Int32)
-  name.vb: SendAsync(Action, Integer)
-  fullName: GameFrameX.Core.Actors.Actor.SendAsync(System.Action, int)
-  fullName.vb: GameFrameX.Core.Actors.Actor.SendAsync(System.Action, Integer)
-  nameWithType: Actor.SendAsync(Action, int)
-  nameWithType.vb: Actor.SendAsync(Action, Integer)
-- uid: GameFrameX.Core.Actors.Actor.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean)
-  name: SendAsync(Func<Task>, int, bool)
-  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_SendAsync_System_Func_System_Threading_Tasks_Task__System_Int32_System_Boolean_
-  commentId: M:GameFrameX.Core.Actors.Actor.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean)
-  name.vb: SendAsync(Func(Of Task), Integer, Boolean)
-  fullName: GameFrameX.Core.Actors.Actor.SendAsync(System.Func<System.Threading.Tasks.Task>, int, bool)
-  fullName.vb: GameFrameX.Core.Actors.Actor.SendAsync(System.Func(Of System.Threading.Tasks.Task), Integer, Boolean)
-  nameWithType: Actor.SendAsync(Func<Task>, int, bool)
-  nameWithType.vb: Actor.SendAsync(Func(Of Task), Integer, Boolean)
+- uid: GameFrameX.Core.Actors.Actor.SendAsync(System.Action,System.Int32,System.Threading.CancellationToken)
+  name: SendAsync(Action, int, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_SendAsync_System_Action_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Actor.SendAsync(System.Action,System.Int32,System.Threading.CancellationToken)
+  name.vb: SendAsync(Action, Integer, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Actor.SendAsync(System.Action, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Actor.SendAsync(System.Action, Integer, System.Threading.CancellationToken)
+  nameWithType: Actor.SendAsync(Action, int, CancellationToken)
+  nameWithType.vb: Actor.SendAsync(Action, Integer, CancellationToken)
+- uid: GameFrameX.Core.Actors.Actor.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean,System.Threading.CancellationToken)
+  name: SendAsync(Func<Task>, int, bool, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_SendAsync_System_Func_System_Threading_Tasks_Task__System_Int32_System_Boolean_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Actor.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean,System.Threading.CancellationToken)
+  name.vb: SendAsync(Func(Of Task), Integer, Boolean, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Actor.SendAsync(System.Func<System.Threading.Tasks.Task>, int, bool, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Actor.SendAsync(System.Func(Of System.Threading.Tasks.Task), Integer, Boolean, System.Threading.CancellationToken)
+  nameWithType: Actor.SendAsync(Func<Task>, int, bool, CancellationToken)
+  nameWithType.vb: Actor.SendAsync(Func(Of Task), Integer, Boolean, CancellationToken)
 - uid: GameFrameX.Core.Actors.Actor.SendAsync*
   name: SendAsync
   href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_SendAsync_
@@ -1010,15 +1026,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Actors.Actor.SendAsync
   nameWithType: Actor.SendAsync
-- uid: GameFrameX.Core.Actors.Actor.SendAsyncWithoutCheck(System.Func{System.Threading.Tasks.Task},System.Int32)
-  name: SendAsyncWithoutCheck(Func<Task>, int)
-  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_SendAsyncWithoutCheck_System_Func_System_Threading_Tasks_Task__System_Int32_
-  commentId: M:GameFrameX.Core.Actors.Actor.SendAsyncWithoutCheck(System.Func{System.Threading.Tasks.Task},System.Int32)
-  name.vb: SendAsyncWithoutCheck(Func(Of Task), Integer)
-  fullName: GameFrameX.Core.Actors.Actor.SendAsyncWithoutCheck(System.Func<System.Threading.Tasks.Task>, int)
-  fullName.vb: GameFrameX.Core.Actors.Actor.SendAsyncWithoutCheck(System.Func(Of System.Threading.Tasks.Task), Integer)
-  nameWithType: Actor.SendAsyncWithoutCheck(Func<Task>, int)
-  nameWithType.vb: Actor.SendAsyncWithoutCheck(Func(Of Task), Integer)
+- uid: GameFrameX.Core.Actors.Actor.SendAsyncWithoutCheck(System.Func{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)
+  name: SendAsyncWithoutCheck(Func<Task>, int, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_SendAsyncWithoutCheck_System_Func_System_Threading_Tasks_Task__System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Actor.SendAsyncWithoutCheck(System.Func{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)
+  name.vb: SendAsyncWithoutCheck(Func(Of Task), Integer, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Actor.SendAsyncWithoutCheck(System.Func<System.Threading.Tasks.Task>, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Actor.SendAsyncWithoutCheck(System.Func(Of System.Threading.Tasks.Task), Integer, System.Threading.CancellationToken)
+  nameWithType: Actor.SendAsyncWithoutCheck(Func<Task>, int, CancellationToken)
+  nameWithType.vb: Actor.SendAsyncWithoutCheck(Func(Of Task), Integer, CancellationToken)
 - uid: GameFrameX.Core.Actors.Actor.SendAsyncWithoutCheck*
   name: SendAsyncWithoutCheck
   href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_SendAsyncWithoutCheck_
@@ -1026,24 +1042,24 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Actors.Actor.SendAsyncWithoutCheck
   nameWithType: Actor.SendAsyncWithoutCheck
-- uid: GameFrameX.Core.Actors.Actor.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32)
-  name: SendAsync<T>(Func<Task<T>>, int)
-  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_SendAsync__1_System_Func_System_Threading_Tasks_Task___0___System_Int32_
-  commentId: M:GameFrameX.Core.Actors.Actor.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32)
-  name.vb: SendAsync(Of T)(Func(Of Task(Of T)), Integer)
-  fullName: GameFrameX.Core.Actors.Actor.SendAsync<T>(System.Func<System.Threading.Tasks.Task<T>>, int)
-  fullName.vb: GameFrameX.Core.Actors.Actor.SendAsync(Of T)(System.Func(Of System.Threading.Tasks.Task(Of T)), Integer)
-  nameWithType: Actor.SendAsync<T>(Func<Task<T>>, int)
-  nameWithType.vb: Actor.SendAsync(Of T)(Func(Of Task(Of T)), Integer)
-- uid: GameFrameX.Core.Actors.Actor.SendAsync``1(System.Func{``0},System.Int32)
-  name: SendAsync<T>(Func<T>, int)
-  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_SendAsync__1_System_Func___0__System_Int32_
-  commentId: M:GameFrameX.Core.Actors.Actor.SendAsync``1(System.Func{``0},System.Int32)
-  name.vb: SendAsync(Of T)(Func(Of T), Integer)
-  fullName: GameFrameX.Core.Actors.Actor.SendAsync<T>(System.Func<T>, int)
-  fullName.vb: GameFrameX.Core.Actors.Actor.SendAsync(Of T)(System.Func(Of T), Integer)
-  nameWithType: Actor.SendAsync<T>(Func<T>, int)
-  nameWithType.vb: Actor.SendAsync(Of T)(Func(Of T), Integer)
+- uid: GameFrameX.Core.Actors.Actor.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32,System.Threading.CancellationToken)
+  name: SendAsync<T>(Func<Task<T>>, int, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_SendAsync__1_System_Func_System_Threading_Tasks_Task___0___System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Actor.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32,System.Threading.CancellationToken)
+  name.vb: SendAsync(Of T)(Func(Of Task(Of T)), Integer, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Actor.SendAsync<T>(System.Func<System.Threading.Tasks.Task<T>>, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Actor.SendAsync(Of T)(System.Func(Of System.Threading.Tasks.Task(Of T)), Integer, System.Threading.CancellationToken)
+  nameWithType: Actor.SendAsync<T>(Func<Task<T>>, int, CancellationToken)
+  nameWithType.vb: Actor.SendAsync(Of T)(Func(Of Task(Of T)), Integer, CancellationToken)
+- uid: GameFrameX.Core.Actors.Actor.SendAsync``1(System.Func{``0},System.Int32,System.Threading.CancellationToken)
+  name: SendAsync<T>(Func<T>, int, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_SendAsync__1_System_Func___0__System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Actor.SendAsync``1(System.Func{``0},System.Int32,System.Threading.CancellationToken)
+  name.vb: SendAsync(Of T)(Func(Of T), Integer, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Actor.SendAsync<T>(System.Func<T>, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Actor.SendAsync(Of T)(System.Func(Of T), Integer, System.Threading.CancellationToken)
+  nameWithType: Actor.SendAsync<T>(Func<T>, int, CancellationToken)
+  nameWithType.vb: Actor.SendAsync(Of T)(Func(Of T), Integer, CancellationToken)
 - uid: GameFrameX.Core.Actors.Actor.SetAutoRecycle(System.Boolean)
   name: SetAutoRecycle(bool)
   href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_SetAutoRecycle_System_Boolean_
@@ -1060,24 +1076,24 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Actors.Actor.SetAutoRecycle
   nameWithType: Actor.SetAutoRecycle
-- uid: GameFrameX.Core.Actors.Actor.Tell(System.Action,System.Int32)
-  name: Tell(Action, int)
-  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_Tell_System_Action_System_Int32_
-  commentId: M:GameFrameX.Core.Actors.Actor.Tell(System.Action,System.Int32)
-  name.vb: Tell(Action, Integer)
-  fullName: GameFrameX.Core.Actors.Actor.Tell(System.Action, int)
-  fullName.vb: GameFrameX.Core.Actors.Actor.Tell(System.Action, Integer)
-  nameWithType: Actor.Tell(Action, int)
-  nameWithType.vb: Actor.Tell(Action, Integer)
-- uid: GameFrameX.Core.Actors.Actor.Tell(System.Func{System.Threading.Tasks.Task},System.Int32)
-  name: Tell(Func<Task>, int)
-  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_Tell_System_Func_System_Threading_Tasks_Task__System_Int32_
-  commentId: M:GameFrameX.Core.Actors.Actor.Tell(System.Func{System.Threading.Tasks.Task},System.Int32)
-  name.vb: Tell(Func(Of Task), Integer)
-  fullName: GameFrameX.Core.Actors.Actor.Tell(System.Func<System.Threading.Tasks.Task>, int)
-  fullName.vb: GameFrameX.Core.Actors.Actor.Tell(System.Func(Of System.Threading.Tasks.Task), Integer)
-  nameWithType: Actor.Tell(Func<Task>, int)
-  nameWithType.vb: Actor.Tell(Func(Of Task), Integer)
+- uid: GameFrameX.Core.Actors.Actor.Tell(System.Action,System.Int32,System.Threading.CancellationToken)
+  name: Tell(Action, int, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_Tell_System_Action_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Actor.Tell(System.Action,System.Int32,System.Threading.CancellationToken)
+  name.vb: Tell(Action, Integer, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Actor.Tell(System.Action, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Actor.Tell(System.Action, Integer, System.Threading.CancellationToken)
+  nameWithType: Actor.Tell(Action, int, CancellationToken)
+  nameWithType.vb: Actor.Tell(Action, Integer, CancellationToken)
+- uid: GameFrameX.Core.Actors.Actor.Tell(System.Func{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)
+  name: Tell(Func<Task>, int, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_Tell_System_Func_System_Threading_Tasks_Task__System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Actor.Tell(System.Func{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)
+  name.vb: Tell(Func(Of Task), Integer, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Actor.Tell(System.Func<System.Threading.Tasks.Task>, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Actor.Tell(System.Func(Of System.Threading.Tasks.Task), Integer, System.Threading.CancellationToken)
+  nameWithType: Actor.Tell(Func<Task>, int, CancellationToken)
+  nameWithType.vb: Actor.Tell(Func(Of Task), Integer, CancellationToken)
 - uid: GameFrameX.Core.Actors.Actor.Tell*
   name: Tell
   href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_Tell_
@@ -1937,24 +1953,24 @@ references:
   fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.New
   nameWithType: WorkerActor.WorkerActor
   nameWithType.vb: WorkerActor.New
-- uid: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(System.Action,System.Int64,System.Boolean,System.Int32)
-  name: Enqueue(Action, long, bool, int)
-  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_Enqueue_System_Action_System_Int64_System_Boolean_System_Int32_
-  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(System.Action,System.Int64,System.Boolean,System.Int32)
-  name.vb: Enqueue(Action, Long, Boolean, Integer)
-  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(System.Action, long, bool, int)
-  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(System.Action, Long, Boolean, Integer)
-  nameWithType: WorkerActor.Enqueue(Action, long, bool, int)
-  nameWithType.vb: WorkerActor.Enqueue(Action, Long, Boolean, Integer)
-- uid: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(System.Func{System.Threading.Tasks.Task},System.Int64,System.Boolean,System.Int32)
-  name: Enqueue(Func<Task>, long, bool, int)
-  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_Enqueue_System_Func_System_Threading_Tasks_Task__System_Int64_System_Boolean_System_Int32_
-  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(System.Func{System.Threading.Tasks.Task},System.Int64,System.Boolean,System.Int32)
-  name.vb: Enqueue(Func(Of Task), Long, Boolean, Integer)
-  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(System.Func<System.Threading.Tasks.Task>, long, bool, int)
-  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(System.Func(Of System.Threading.Tasks.Task), Long, Boolean, Integer)
-  nameWithType: WorkerActor.Enqueue(Func<Task>, long, bool, int)
-  nameWithType.vb: WorkerActor.Enqueue(Func(Of Task), Long, Boolean, Integer)
+- uid: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(System.Action,System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)
+  name: Enqueue(Action, long, bool, int, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_Enqueue_System_Action_System_Int64_System_Boolean_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(System.Action,System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)
+  name.vb: Enqueue(Action, Long, Boolean, Integer, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(System.Action, long, bool, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(System.Action, Long, Boolean, Integer, System.Threading.CancellationToken)
+  nameWithType: WorkerActor.Enqueue(Action, long, bool, int, CancellationToken)
+  nameWithType.vb: WorkerActor.Enqueue(Action, Long, Boolean, Integer, CancellationToken)
+- uid: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(System.Func{System.Threading.Tasks.Task},System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)
+  name: Enqueue(Func<Task>, long, bool, int, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_Enqueue_System_Func_System_Threading_Tasks_Task__System_Int64_System_Boolean_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(System.Func{System.Threading.Tasks.Task},System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)
+  name.vb: Enqueue(Func(Of Task), Long, Boolean, Integer, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(System.Func<System.Threading.Tasks.Task>, long, bool, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(System.Func(Of System.Threading.Tasks.Task), Long, Boolean, Integer, System.Threading.CancellationToken)
+  nameWithType: WorkerActor.Enqueue(Func<Task>, long, bool, int, CancellationToken)
+  nameWithType.vb: WorkerActor.Enqueue(Func(Of Task), Long, Boolean, Integer, CancellationToken)
 - uid: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue*
   name: Enqueue
   href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_Enqueue_
@@ -1962,24 +1978,24 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue
   nameWithType: WorkerActor.Enqueue
-- uid: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int64,System.Boolean,System.Int32)
-  name: Enqueue<T>(Func<Task<T>>, long, bool, int)
-  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_Enqueue__1_System_Func_System_Threading_Tasks_Task___0___System_Int64_System_Boolean_System_Int32_
-  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int64,System.Boolean,System.Int32)
-  name.vb: Enqueue(Of T)(Func(Of Task(Of T)), Long, Boolean, Integer)
-  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue<T>(System.Func<System.Threading.Tasks.Task<T>>, long, bool, int)
-  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(Of T)(System.Func(Of System.Threading.Tasks.Task(Of T)), Long, Boolean, Integer)
-  nameWithType: WorkerActor.Enqueue<T>(Func<Task<T>>, long, bool, int)
-  nameWithType.vb: WorkerActor.Enqueue(Of T)(Func(Of Task(Of T)), Long, Boolean, Integer)
-- uid: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue``1(System.Func{``0},System.Int64,System.Boolean,System.Int32)
-  name: Enqueue<T>(Func<T>, long, bool, int)
-  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_Enqueue__1_System_Func___0__System_Int64_System_Boolean_System_Int32_
-  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue``1(System.Func{``0},System.Int64,System.Boolean,System.Int32)
-  name.vb: Enqueue(Of T)(Func(Of T), Long, Boolean, Integer)
-  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue<T>(System.Func<T>, long, bool, int)
-  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(Of T)(System.Func(Of T), Long, Boolean, Integer)
-  nameWithType: WorkerActor.Enqueue<T>(Func<T>, long, bool, int)
-  nameWithType.vb: WorkerActor.Enqueue(Of T)(Func(Of T), Long, Boolean, Integer)
+- uid: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)
+  name: Enqueue<T>(Func<Task<T>>, long, bool, int, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_Enqueue__1_System_Func_System_Threading_Tasks_Task___0___System_Int64_System_Boolean_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)
+  name.vb: Enqueue(Of T)(Func(Of Task(Of T)), Long, Boolean, Integer, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue<T>(System.Func<System.Threading.Tasks.Task<T>>, long, bool, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(Of T)(System.Func(Of System.Threading.Tasks.Task(Of T)), Long, Boolean, Integer, System.Threading.CancellationToken)
+  nameWithType: WorkerActor.Enqueue<T>(Func<Task<T>>, long, bool, int, CancellationToken)
+  nameWithType.vb: WorkerActor.Enqueue(Of T)(Func(Of Task(Of T)), Long, Boolean, Integer, CancellationToken)
+- uid: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue``1(System.Func{``0},System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)
+  name: Enqueue<T>(Func<T>, long, bool, int, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_Enqueue__1_System_Func___0__System_Int64_System_Boolean_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue``1(System.Func{``0},System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)
+  name.vb: Enqueue(Of T)(Func(Of T), Long, Boolean, Integer, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue<T>(System.Func<T>, long, bool, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.Enqueue(Of T)(System.Func(Of T), Long, Boolean, Integer, System.Threading.CancellationToken)
+  nameWithType: WorkerActor.Enqueue<T>(Func<T>, long, bool, int, CancellationToken)
+  nameWithType.vb: WorkerActor.Enqueue(Of T)(Func(Of T), Long, Boolean, Integer, CancellationToken)
 - uid: GameFrameX.Core.Actors.Impl.WorkerActor.IsNeedEnqueue
   name: IsNeedEnqueue()
   href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_IsNeedEnqueue
@@ -2006,33 +2022,33 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Actors.Impl.WorkerActor.NextChainId
   nameWithType: WorkerActor.NextChainId
-- uid: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Action,System.Int32)
-  name: SendAsync(Action, int)
-  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_SendAsync_System_Action_System_Int32_
-  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Action,System.Int32)
-  name.vb: SendAsync(Action, Integer)
-  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Action, int)
-  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Action, Integer)
-  nameWithType: WorkerActor.SendAsync(Action, int)
-  nameWithType.vb: WorkerActor.SendAsync(Action, Integer)
-- uid: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32)
-  name: SendAsync(Func<Task>, int)
-  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_SendAsync_System_Func_System_Threading_Tasks_Task__System_Int32_
-  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32)
-  name.vb: SendAsync(Func(Of Task), Integer)
-  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Func<System.Threading.Tasks.Task>, int)
-  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Func(Of System.Threading.Tasks.Task), Integer)
-  nameWithType: WorkerActor.SendAsync(Func<Task>, int)
-  nameWithType.vb: WorkerActor.SendAsync(Func(Of Task), Integer)
-- uid: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean)
-  name: SendAsync(Func<Task>, int, bool)
-  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_SendAsync_System_Func_System_Threading_Tasks_Task__System_Int32_System_Boolean_
-  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean)
-  name.vb: SendAsync(Func(Of Task), Integer, Boolean)
-  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Func<System.Threading.Tasks.Task>, int, bool)
-  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Func(Of System.Threading.Tasks.Task), Integer, Boolean)
-  nameWithType: WorkerActor.SendAsync(Func<Task>, int, bool)
-  nameWithType.vb: WorkerActor.SendAsync(Func(Of Task), Integer, Boolean)
+- uid: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Action,System.Int32,System.Threading.CancellationToken)
+  name: SendAsync(Action, int, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_SendAsync_System_Action_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Action,System.Int32,System.Threading.CancellationToken)
+  name.vb: SendAsync(Action, Integer, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Action, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Action, Integer, System.Threading.CancellationToken)
+  nameWithType: WorkerActor.SendAsync(Action, int, CancellationToken)
+  nameWithType.vb: WorkerActor.SendAsync(Action, Integer, CancellationToken)
+- uid: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean,System.Threading.CancellationToken)
+  name: SendAsync(Func<Task>, int, bool, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_SendAsync_System_Func_System_Threading_Tasks_Task__System_Int32_System_Boolean_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean,System.Threading.CancellationToken)
+  name.vb: SendAsync(Func(Of Task), Integer, Boolean, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Func<System.Threading.Tasks.Task>, int, bool, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Func(Of System.Threading.Tasks.Task), Integer, Boolean, System.Threading.CancellationToken)
+  nameWithType: WorkerActor.SendAsync(Func<Task>, int, bool, CancellationToken)
+  nameWithType.vb: WorkerActor.SendAsync(Func(Of Task), Integer, Boolean, CancellationToken)
+- uid: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)
+  name: SendAsync(Func<Task>, int, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_SendAsync_System_Func_System_Threading_Tasks_Task__System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)
+  name.vb: SendAsync(Func(Of Task), Integer, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Func<System.Threading.Tasks.Task>, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(System.Func(Of System.Threading.Tasks.Task), Integer, System.Threading.CancellationToken)
+  nameWithType: WorkerActor.SendAsync(Func<Task>, int, CancellationToken)
+  nameWithType.vb: WorkerActor.SendAsync(Func(Of Task), Integer, CancellationToken)
 - uid: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync*
   name: SendAsync
   href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_SendAsync_
@@ -2040,42 +2056,42 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync
   nameWithType: WorkerActor.SendAsync
-- uid: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32)
-  name: SendAsync<T>(Func<Task<T>>, int)
-  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_SendAsync__1_System_Func_System_Threading_Tasks_Task___0___System_Int32_
-  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32)
-  name.vb: SendAsync(Of T)(Func(Of Task(Of T)), Integer)
-  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync<T>(System.Func<System.Threading.Tasks.Task<T>>, int)
-  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(Of T)(System.Func(Of System.Threading.Tasks.Task(Of T)), Integer)
-  nameWithType: WorkerActor.SendAsync<T>(Func<Task<T>>, int)
-  nameWithType.vb: WorkerActor.SendAsync(Of T)(Func(Of Task(Of T)), Integer)
-- uid: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync``1(System.Func{``0},System.Int32)
-  name: SendAsync<T>(Func<T>, int)
-  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_SendAsync__1_System_Func___0__System_Int32_
-  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync``1(System.Func{``0},System.Int32)
-  name.vb: SendAsync(Of T)(Func(Of T), Integer)
-  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync<T>(System.Func<T>, int)
-  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(Of T)(System.Func(Of T), Integer)
-  nameWithType: WorkerActor.SendAsync<T>(Func<T>, int)
-  nameWithType.vb: WorkerActor.SendAsync(Of T)(Func(Of T), Integer)
-- uid: GameFrameX.Core.Actors.Impl.WorkerActor.Tell(System.Action,System.Int32)
-  name: Tell(Action, int)
-  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_Tell_System_Action_System_Int32_
-  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.Tell(System.Action,System.Int32)
-  name.vb: Tell(Action, Integer)
-  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.Tell(System.Action, int)
-  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.Tell(System.Action, Integer)
-  nameWithType: WorkerActor.Tell(Action, int)
-  nameWithType.vb: WorkerActor.Tell(Action, Integer)
-- uid: GameFrameX.Core.Actors.Impl.WorkerActor.Tell(System.Func{System.Threading.Tasks.Task},System.Int32)
-  name: Tell(Func<Task>, int)
-  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_Tell_System_Func_System_Threading_Tasks_Task__System_Int32_
-  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.Tell(System.Func{System.Threading.Tasks.Task},System.Int32)
-  name.vb: Tell(Func(Of Task), Integer)
-  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.Tell(System.Func<System.Threading.Tasks.Task>, int)
-  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.Tell(System.Func(Of System.Threading.Tasks.Task), Integer)
-  nameWithType: WorkerActor.Tell(Func<Task>, int)
-  nameWithType.vb: WorkerActor.Tell(Func(Of Task), Integer)
+- uid: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32,System.Threading.CancellationToken)
+  name: SendAsync<T>(Func<Task<T>>, int, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_SendAsync__1_System_Func_System_Threading_Tasks_Task___0___System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32,System.Threading.CancellationToken)
+  name.vb: SendAsync(Of T)(Func(Of Task(Of T)), Integer, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync<T>(System.Func<System.Threading.Tasks.Task<T>>, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(Of T)(System.Func(Of System.Threading.Tasks.Task(Of T)), Integer, System.Threading.CancellationToken)
+  nameWithType: WorkerActor.SendAsync<T>(Func<Task<T>>, int, CancellationToken)
+  nameWithType.vb: WorkerActor.SendAsync(Of T)(Func(Of Task(Of T)), Integer, CancellationToken)
+- uid: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync``1(System.Func{``0},System.Int32,System.Threading.CancellationToken)
+  name: SendAsync<T>(Func<T>, int, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_SendAsync__1_System_Func___0__System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync``1(System.Func{``0},System.Int32,System.Threading.CancellationToken)
+  name.vb: SendAsync(Of T)(Func(Of T), Integer, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync<T>(System.Func<T>, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.SendAsync(Of T)(System.Func(Of T), Integer, System.Threading.CancellationToken)
+  nameWithType: WorkerActor.SendAsync<T>(Func<T>, int, CancellationToken)
+  nameWithType.vb: WorkerActor.SendAsync(Of T)(Func(Of T), Integer, CancellationToken)
+- uid: GameFrameX.Core.Actors.Impl.WorkerActor.Tell(System.Action,System.Int32,System.Threading.CancellationToken)
+  name: Tell(Action, int, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_Tell_System_Action_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.Tell(System.Action,System.Int32,System.Threading.CancellationToken)
+  name.vb: Tell(Action, Integer, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.Tell(System.Action, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.Tell(System.Action, Integer, System.Threading.CancellationToken)
+  nameWithType: WorkerActor.Tell(Action, int, CancellationToken)
+  nameWithType.vb: WorkerActor.Tell(Action, Integer, CancellationToken)
+- uid: GameFrameX.Core.Actors.Impl.WorkerActor.Tell(System.Func{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)
+  name: Tell(Func<Task>, int, CancellationToken)
+  href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_Tell_System_Func_System_Threading_Tasks_Task__System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Actors.Impl.WorkerActor.Tell(System.Func{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)
+  name.vb: Tell(Func(Of Task), Integer, CancellationToken)
+  fullName: GameFrameX.Core.Actors.Impl.WorkerActor.Tell(System.Func<System.Threading.Tasks.Task>, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Actors.Impl.WorkerActor.Tell(System.Func(Of System.Threading.Tasks.Task), Integer, System.Threading.CancellationToken)
+  nameWithType: WorkerActor.Tell(Func<Task>, int, CancellationToken)
+  nameWithType.vb: WorkerActor.Tell(Func(Of Task), Integer, CancellationToken)
 - uid: GameFrameX.Core.Actors.Impl.WorkerActor.Tell*
   name: Tell
   href: api/GameFrameX.Core.Actors.Impl.WorkerActor.html#GameFrameX_Core_Actors_Impl_WorkerActor_Tell_
@@ -2176,12 +2192,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler.InitActor
   nameWithType: BaseComponentHandler.InitActor
-- uid: GameFrameX.Core.BaseHandler.BaseComponentHandler.InnerAction
-  name: InnerAction()
-  href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html#GameFrameX_Core_BaseHandler_BaseComponentHandler_InnerAction
-  commentId: M:GameFrameX.Core.BaseHandler.BaseComponentHandler.InnerAction
-  fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler.InnerAction()
-  nameWithType: BaseComponentHandler.InnerAction()
+- uid: GameFrameX.Core.BaseHandler.BaseComponentHandler.InnerAction(System.Int32,System.Threading.CancellationToken)
+  name: InnerAction(int, CancellationToken)
+  href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html#GameFrameX_Core_BaseHandler_BaseComponentHandler_InnerAction_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.BaseHandler.BaseComponentHandler.InnerAction(System.Int32,System.Threading.CancellationToken)
+  name.vb: InnerAction(Integer, CancellationToken)
+  fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler.InnerAction(int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.BaseHandler.BaseComponentHandler.InnerAction(Integer, System.Threading.CancellationToken)
+  nameWithType: BaseComponentHandler.InnerAction(int, CancellationToken)
+  nameWithType.vb: BaseComponentHandler.InnerAction(Integer, CancellationToken)
 - uid: GameFrameX.Core.BaseHandler.BaseComponentHandler.InnerAction*
   name: InnerAction
   href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html#GameFrameX_Core_BaseHandler_BaseComponentHandler_InnerAction_
@@ -2221,12 +2240,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.BaseHandler.BaseMessageHandler.Init
   nameWithType: BaseMessageHandler.Init
-- uid: GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerAction
-  name: InnerAction()
-  href: api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_InnerAction
-  commentId: M:GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerAction
-  fullName: GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerAction()
-  nameWithType: BaseMessageHandler.InnerAction()
+- uid: GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerAction(System.Int32,System.Threading.CancellationToken)
+  name: InnerAction(int, CancellationToken)
+  href: api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_InnerAction_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerAction(System.Int32,System.Threading.CancellationToken)
+  name.vb: InnerAction(Integer, CancellationToken)
+  fullName: GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerAction(int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerAction(Integer, System.Threading.CancellationToken)
+  nameWithType: BaseMessageHandler.InnerAction(int, CancellationToken)
+  nameWithType.vb: BaseMessageHandler.InnerAction(Integer, CancellationToken)
 - uid: GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerAction*
   name: InnerAction
   href: api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_InnerAction_
@@ -5127,14 +5149,15 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Delay(Of T)(System.TimeSpan, GameFrameX.Utility.Param, Long)
   nameWithType: BaseComponentAgent<TComponent>.Delay<T>(TimeSpan, Param, long)
   nameWithType.vb: BaseComponentAgent(Of TComponent).Delay(Of T)(TimeSpan, Param, Long)
-- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.GetComponentAgent(System.Type)
-  name: GetComponentAgent(Type)
-  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_GetComponentAgent_System_Type_
-  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.GetComponentAgent(System.Type)
-  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.GetComponentAgent(System.Type)
-  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).GetComponentAgent(System.Type)
-  nameWithType: BaseComponentAgent<TComponent>.GetComponentAgent(Type)
-  nameWithType.vb: BaseComponentAgent(Of TComponent).GetComponentAgent(Type)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.GetComponentAgent(System.Type,System.Boolean)
+  name: GetComponentAgent(Type, bool)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_GetComponentAgent_System_Type_System_Boolean_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.GetComponentAgent(System.Type,System.Boolean)
+  name.vb: GetComponentAgent(Type, Boolean)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.GetComponentAgent(System.Type, bool)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).GetComponentAgent(System.Type, Boolean)
+  nameWithType: BaseComponentAgent<TComponent>.GetComponentAgent(Type, bool)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).GetComponentAgent(Type, Boolean)
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.GetComponentAgent*
   name: GetComponentAgent
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_GetComponentAgent_
@@ -5144,15 +5167,15 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).GetComponentAgent
   nameWithType: BaseComponentAgent<TComponent>.GetComponentAgent
   nameWithType.vb: BaseComponentAgent(Of TComponent).GetComponentAgent
-- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.GetComponentAgent``1
-  name: GetComponentAgent<T>()
-  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_GetComponentAgent__1
-  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.GetComponentAgent``1
-  name.vb: GetComponentAgent(Of T)()
-  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.GetComponentAgent<T>()
-  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).GetComponentAgent(Of T)()
-  nameWithType: BaseComponentAgent<TComponent>.GetComponentAgent<T>()
-  nameWithType.vb: BaseComponentAgent(Of TComponent).GetComponentAgent(Of T)()
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.GetComponentAgent``1(System.Boolean)
+  name: GetComponentAgent<T>(bool)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_GetComponentAgent__1_System_Boolean_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.GetComponentAgent``1(System.Boolean)
+  name.vb: GetComponentAgent(Of T)(Boolean)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.GetComponentAgent<T>(bool)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).GetComponentAgent(Of T)(Boolean)
+  nameWithType: BaseComponentAgent<TComponent>.GetComponentAgent<T>(bool)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).GetComponentAgent(Of T)(Boolean)
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Inactive
   name: Inactive()
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Inactive
@@ -5274,24 +5297,24 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Schedule(Of T)(System.TimeSpan, System.TimeSpan, GameFrameX.Utility.Param, Integer, Long)
   nameWithType: BaseComponentAgent<TComponent>.Schedule<T>(TimeSpan, TimeSpan, Param, int, long)
   nameWithType.vb: BaseComponentAgent(Of TComponent).Schedule(Of T)(TimeSpan, TimeSpan, Param, Integer, Long)
-- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync(System.Action,System.Int32)
-  name: SendAsync(Action, int)
-  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync_System_Action_System_Int32_
-  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync(System.Action,System.Int32)
-  name.vb: SendAsync(Action, Integer)
-  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.SendAsync(System.Action, int)
-  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).SendAsync(System.Action, Integer)
-  nameWithType: BaseComponentAgent<TComponent>.SendAsync(Action, int)
-  nameWithType.vb: BaseComponentAgent(Of TComponent).SendAsync(Action, Integer)
-- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean)
-  name: SendAsync(Func<Task>, int, bool)
-  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync_System_Func_System_Threading_Tasks_Task__System_Int32_System_Boolean_
-  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean)
-  name.vb: SendAsync(Func(Of Task), Integer, Boolean)
-  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.SendAsync(System.Func<System.Threading.Tasks.Task>, int, bool)
-  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).SendAsync(System.Func(Of System.Threading.Tasks.Task), Integer, Boolean)
-  nameWithType: BaseComponentAgent<TComponent>.SendAsync(Func<Task>, int, bool)
-  nameWithType.vb: BaseComponentAgent(Of TComponent).SendAsync(Func(Of Task), Integer, Boolean)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync(System.Action,System.Int32,System.Threading.CancellationToken)
+  name: SendAsync(Action, int, CancellationToken)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync_System_Action_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync(System.Action,System.Int32,System.Threading.CancellationToken)
+  name.vb: SendAsync(Action, Integer, CancellationToken)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.SendAsync(System.Action, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).SendAsync(System.Action, Integer, System.Threading.CancellationToken)
+  nameWithType: BaseComponentAgent<TComponent>.SendAsync(Action, int, CancellationToken)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).SendAsync(Action, Integer, CancellationToken)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean,System.Threading.CancellationToken)
+  name: SendAsync(Func<Task>, int, bool, CancellationToken)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync_System_Func_System_Threading_Tasks_Task__System_Int32_System_Boolean_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean,System.Threading.CancellationToken)
+  name.vb: SendAsync(Func(Of Task), Integer, Boolean, CancellationToken)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.SendAsync(System.Func<System.Threading.Tasks.Task>, int, bool, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).SendAsync(System.Func(Of System.Threading.Tasks.Task), Integer, Boolean, System.Threading.CancellationToken)
+  nameWithType: BaseComponentAgent<TComponent>.SendAsync(Func<Task>, int, bool, CancellationToken)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).SendAsync(Func(Of Task), Integer, Boolean, CancellationToken)
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync*
   name: SendAsync
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync_
@@ -5301,24 +5324,24 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).SendAsync
   nameWithType: BaseComponentAgent<TComponent>.SendAsync
   nameWithType.vb: BaseComponentAgent(Of TComponent).SendAsync
-- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32)
-  name: SendAsync<T>(Func<Task<T>>, int)
-  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync__1_System_Func_System_Threading_Tasks_Task___0___System_Int32_
-  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32)
-  name.vb: SendAsync(Of T)(Func(Of Task(Of T)), Integer)
-  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.SendAsync<T>(System.Func<System.Threading.Tasks.Task<T>>, int)
-  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).SendAsync(Of T)(System.Func(Of System.Threading.Tasks.Task(Of T)), Integer)
-  nameWithType: BaseComponentAgent<TComponent>.SendAsync<T>(Func<Task<T>>, int)
-  nameWithType.vb: BaseComponentAgent(Of TComponent).SendAsync(Of T)(Func(Of Task(Of T)), Integer)
-- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync``1(System.Func{``0},System.Int32)
-  name: SendAsync<T>(Func<T>, int)
-  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync__1_System_Func___0__System_Int32_
-  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync``1(System.Func{``0},System.Int32)
-  name.vb: SendAsync(Of T)(Func(Of T), Integer)
-  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.SendAsync<T>(System.Func<T>, int)
-  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).SendAsync(Of T)(System.Func(Of T), Integer)
-  nameWithType: BaseComponentAgent<TComponent>.SendAsync<T>(Func<T>, int)
-  nameWithType.vb: BaseComponentAgent(Of TComponent).SendAsync(Of T)(Func(Of T), Integer)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32,System.Threading.CancellationToken)
+  name: SendAsync<T>(Func<Task<T>>, int, CancellationToken)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync__1_System_Func_System_Threading_Tasks_Task___0___System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32,System.Threading.CancellationToken)
+  name.vb: SendAsync(Of T)(Func(Of Task(Of T)), Integer, CancellationToken)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.SendAsync<T>(System.Func<System.Threading.Tasks.Task<T>>, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).SendAsync(Of T)(System.Func(Of System.Threading.Tasks.Task(Of T)), Integer, System.Threading.CancellationToken)
+  nameWithType: BaseComponentAgent<TComponent>.SendAsync<T>(Func<Task<T>>, int, CancellationToken)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).SendAsync(Of T)(Func(Of Task(Of T)), Integer, CancellationToken)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync``1(System.Func{``0},System.Int32,System.Threading.CancellationToken)
+  name: SendAsync<T>(Func<T>, int, CancellationToken)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync__1_System_Func___0__System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync``1(System.Func{``0},System.Int32,System.Threading.CancellationToken)
+  name.vb: SendAsync(Of T)(Func(Of T), Integer, CancellationToken)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.SendAsync<T>(System.Func<T>, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).SendAsync(Of T)(System.Func(Of T), Integer, System.Threading.CancellationToken)
+  nameWithType: BaseComponentAgent<TComponent>.SendAsync<T>(Func<T>, int, CancellationToken)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).SendAsync(Of T)(Func(Of T), Integer, CancellationToken)
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SetAutoRecycle(System.Boolean)
   name: SetAutoRecycle(bool)
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SetAutoRecycle_System_Boolean_
@@ -5354,24 +5377,24 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).SetOwner
   nameWithType: BaseComponentAgent<TComponent>.SetOwner
   nameWithType.vb: BaseComponentAgent(Of TComponent).SetOwner
-- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Tell(System.Action,System.Int32)
-  name: Tell(Action, int)
-  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Tell_System_Action_System_Int32_
-  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Tell(System.Action,System.Int32)
-  name.vb: Tell(Action, Integer)
-  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Tell(System.Action, int)
-  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Tell(System.Action, Integer)
-  nameWithType: BaseComponentAgent<TComponent>.Tell(Action, int)
-  nameWithType.vb: BaseComponentAgent(Of TComponent).Tell(Action, Integer)
-- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Tell(System.Func{System.Threading.Tasks.Task},System.Int32)
-  name: Tell(Func<Task>, int)
-  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Tell_System_Func_System_Threading_Tasks_Task__System_Int32_
-  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Tell(System.Func{System.Threading.Tasks.Task},System.Int32)
-  name.vb: Tell(Func(Of Task), Integer)
-  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Tell(System.Func<System.Threading.Tasks.Task>, int)
-  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Tell(System.Func(Of System.Threading.Tasks.Task), Integer)
-  nameWithType: BaseComponentAgent<TComponent>.Tell(Func<Task>, int)
-  nameWithType.vb: BaseComponentAgent(Of TComponent).Tell(Func(Of Task), Integer)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Tell(System.Action,System.Int32,System.Threading.CancellationToken)
+  name: Tell(Action, int, CancellationToken)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Tell_System_Action_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Tell(System.Action,System.Int32,System.Threading.CancellationToken)
+  name.vb: Tell(Action, Integer, CancellationToken)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Tell(System.Action, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Tell(System.Action, Integer, System.Threading.CancellationToken)
+  nameWithType: BaseComponentAgent<TComponent>.Tell(Action, int, CancellationToken)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Tell(Action, Integer, CancellationToken)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Tell(System.Func{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)
+  name: Tell(Func<Task>, int, CancellationToken)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Tell_System_Func_System_Threading_Tasks_Task__System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Tell(System.Func{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)
+  name.vb: Tell(Func(Of Task), Integer, CancellationToken)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Tell(System.Func<System.Threading.Tasks.Task>, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Tell(System.Func(Of System.Threading.Tasks.Task), Integer, System.Threading.CancellationToken)
+  nameWithType: BaseComponentAgent<TComponent>.Tell(Func<Task>, int, CancellationToken)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Tell(Func(Of Task), Integer, CancellationToken)
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Tell*
   name: Tell
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Tell_
@@ -5912,6 +5935,31 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Timer.QuartzTimer.Pause
   nameWithType: QuartzTimer.Pause
+- uid: GameFrameX.Core.Timer.QuartzTimer.Remove(System.Collections.Generic.IEnumerable{System.Int64})
+  name: Remove(IEnumerable<long>)
+  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Remove_System_Collections_Generic_IEnumerable_System_Int64__
+  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Remove(System.Collections.Generic.IEnumerable{System.Int64})
+  name.vb: Remove(IEnumerable(Of Long))
+  fullName: GameFrameX.Core.Timer.QuartzTimer.Remove(System.Collections.Generic.IEnumerable<long>)
+  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Remove(System.Collections.Generic.IEnumerable(Of Long))
+  nameWithType: QuartzTimer.Remove(IEnumerable<long>)
+  nameWithType.vb: QuartzTimer.Remove(IEnumerable(Of Long))
+- uid: GameFrameX.Core.Timer.QuartzTimer.Remove(System.Int64)
+  name: Remove(long)
+  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Remove_System_Int64_
+  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Remove(System.Int64)
+  name.vb: Remove(Long)
+  fullName: GameFrameX.Core.Timer.QuartzTimer.Remove(long)
+  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Remove(Long)
+  nameWithType: QuartzTimer.Remove(long)
+  nameWithType.vb: QuartzTimer.Remove(Long)
+- uid: GameFrameX.Core.Timer.QuartzTimer.Remove*
+  name: Remove
+  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Remove_
+  commentId: Overload:GameFrameX.Core.Timer.QuartzTimer.Remove
+  isSpec: "True"
+  fullName: GameFrameX.Core.Timer.QuartzTimer.Remove
+  nameWithType: QuartzTimer.Remove
 - uid: GameFrameX.Core.Timer.QuartzTimer.Resume(System.Collections.Generic.IEnumerable{System.Int64})
   name: Resume(IEnumerable<long>)
   href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Resume_System_Collections_Generic_IEnumerable_System_Int64__
@@ -8745,12 +8793,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.IMessageHandler.Init
   nameWithType: IMessageHandler.Init
-- uid: GameFrameX.NetWork.IMessageHandler.InnerAction
-  name: InnerAction()
-  href: api/GameFrameX.NetWork.IMessageHandler.html#GameFrameX_NetWork_IMessageHandler_InnerAction
-  commentId: M:GameFrameX.NetWork.IMessageHandler.InnerAction
-  fullName: GameFrameX.NetWork.IMessageHandler.InnerAction()
-  nameWithType: IMessageHandler.InnerAction()
+- uid: GameFrameX.NetWork.IMessageHandler.InnerAction(System.Int32,System.Threading.CancellationToken)
+  name: InnerAction(int, CancellationToken)
+  href: api/GameFrameX.NetWork.IMessageHandler.html#GameFrameX_NetWork_IMessageHandler_InnerAction_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.NetWork.IMessageHandler.InnerAction(System.Int32,System.Threading.CancellationToken)
+  name.vb: InnerAction(Integer, CancellationToken)
+  fullName: GameFrameX.NetWork.IMessageHandler.InnerAction(int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.NetWork.IMessageHandler.InnerAction(Integer, System.Threading.CancellationToken)
+  nameWithType: IMessageHandler.InnerAction(int, CancellationToken)
+  nameWithType.vb: IMessageHandler.InnerAction(Integer, CancellationToken)
 - uid: GameFrameX.NetWork.IMessageHandler.InnerAction*
   name: InnerAction
   href: api/GameFrameX.NetWork.IMessageHandler.html#GameFrameX_NetWork_IMessageHandler_InnerAction_
@@ -10527,12 +10578,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.AppStartUpBase.Init
   nameWithType: AppStartUpBase.Init
-- uid: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.IMessageHandler,GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
-  name: InvokeMessageHandler(IMessageHandler, INetworkMessage, INetWorkChannel)
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_InvokeMessageHandler_GameFrameX_NetWork_IMessageHandler_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_
-  commentId: M:GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.IMessageHandler,GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
-  fullName: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.IMessageHandler, GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel)
-  nameWithType: AppStartUpBase.InvokeMessageHandler(IMessageHandler, INetworkMessage, INetWorkChannel)
+- uid: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.IMessageHandler,GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel,System.Int32,System.Threading.CancellationToken)
+  name: InvokeMessageHandler(IMessageHandler, INetworkMessage, INetWorkChannel, int, CancellationToken)
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_InvokeMessageHandler_GameFrameX_NetWork_IMessageHandler_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.IMessageHandler,GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel,System.Int32,System.Threading.CancellationToken)
+  name.vb: InvokeMessageHandler(IMessageHandler, INetworkMessage, INetWorkChannel, Integer, CancellationToken)
+  fullName: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.IMessageHandler, GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.IMessageHandler, GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel, Integer, System.Threading.CancellationToken)
+  nameWithType: AppStartUpBase.InvokeMessageHandler(IMessageHandler, INetworkMessage, INetWorkChannel, int, CancellationToken)
+  nameWithType.vb: AppStartUpBase.InvokeMessageHandler(IMessageHandler, INetworkMessage, INetWorkChannel, Integer, CancellationToken)
 - uid: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler*
   name: InvokeMessageHandler
   href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_InvokeMessageHandler_

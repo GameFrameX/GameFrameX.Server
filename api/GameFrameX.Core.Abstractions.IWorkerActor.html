@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Interface IWorkerActor | GameFrameX.Server ">
       
-      <meta name="description" content="工作Actor接口定义">
+      <meta name="description" content="工作Actor接口定义 用于处理异步任务队列的Actor接口，继承自IWorker接口">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev3/apiSpec/new?filename=GameFrameX_Core_Abstractions_IWorkerActor.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Abstractions.IWorkerActor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev4/apiSpec/new?filename=GameFrameX_Core_Abstractions_IWorkerActor.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Abstractions.IWorkerActor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_Core_Abstractions_IWorkerActor" data-uid="GameFrameX.Core.Abstractions.IWorkerActor" class="text-break">
-Interface IWorkerActor  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Abstractions/IWorkerActor.cs/#L6"><i class="bi bi-code-slash"></i></a>
+Interface IWorkerActor  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Abstractions/IWorkerActor.cs/#L7"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,8 @@ Interface IWorkerActor  <a class="header-action link-secondary" title="View sour
   <dl><dt>Assembly</dt><dd>GameFrameX.Core.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>工作Actor接口定义</p>
+  <div class="markdown summary"><p>工作Actor接口定义
+用于处理异步任务队列的Actor接口，继承自IWorker接口</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -115,22 +116,22 @@ Interface IWorkerActor  <a class="header-action link-secondary" title="View sour
     <dt>Inherited Members</dt>
     <dd>
     <div>
-      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_Tell_System_Action_System_Int32_">IWorker.Tell(Action, int)</a>
+      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_Tell_System_Action_System_Int32_System_Threading_CancellationToken_">IWorker.Tell(Action, int, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_Tell_System_Func_System_Threading_Tasks_Task__System_Int32_">IWorker.Tell(Func&lt;Task&gt;, int)</a>
+      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_Tell_System_Func_System_Threading_Tasks_Task__System_Int32_System_Threading_CancellationToken_">IWorker.Tell(Func&lt;Task&gt;, int, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync_System_Action_System_Int32_">IWorker.SendAsync(Action, int)</a>
+      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync_System_Action_System_Int32_System_Threading_CancellationToken_">IWorker.SendAsync(Action, int, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync__1_System_Func___0__System_Int32_">IWorker.SendAsync&lt;T&gt;(Func&lt;T&gt;, int)</a>
+      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync__1_System_Func___0__System_Int32_System_Threading_CancellationToken_">IWorker.SendAsync&lt;T&gt;(Func&lt;T&gt;, int, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync_System_Func_System_Threading_Tasks_Task__System_Int32_System_Boolean_">IWorker.SendAsync(Func&lt;Task&gt;, int, bool)</a>
+      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync_System_Func_System_Threading_Tasks_Task__System_Int32_System_Boolean_System_Threading_CancellationToken_">IWorker.SendAsync(Func&lt;Task&gt;, int, bool, CancellationToken)</a>
     </div>
     <div>
-      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync__1_System_Func_System_Threading_Tasks_Task___0___System_Int32_">IWorker.SendAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt;, int)</a>
+      <a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html#GameFrameX_Core_Abstractions_IWorker_SendAsync__1_System_Func_System_Threading_Tasks_Task___0___System_Int32_System_Threading_CancellationToken_">IWorker.SendAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt;, int, CancellationToken)</a>
     </div>
   </dd></dl>
 
@@ -161,39 +162,43 @@ Interface IWorkerActor  <a class="header-action link-secondary" title="View sour
 
   <a id="GameFrameX_Core_Abstractions_IWorkerActor_Enqueue_" data-uid="GameFrameX.Core.Abstractions.IWorkerActor.Enqueue*"></a>
 
-  <h3 id="GameFrameX_Core_Abstractions_IWorkerActor_Enqueue_System_Action_System_Int64_System_Boolean_System_Int32_" data-uid="GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Action,System.Int64,System.Boolean,System.Int32)">
-  Enqueue(Action, long, bool, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Abstractions/IWorkerActor.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_Core_Abstractions_IWorkerActor_Enqueue_System_Action_System_Int64_System_Boolean_System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Action,System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)">
+  Enqueue(Action, long, bool, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Abstractions/IWorkerActor.cs/#L26"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>将无返回值的委托入队</p>
+  <div class="markdown level1 summary"><p>将无返回值的委托入队
+将Action类型的委托添加到任务队列中进行异步处理</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task Enqueue(Action work, long callChainId, bool discard = false, int timeOut = 2147483647)</code></pre>
+    <pre><code class="lang-csharp hljs">Task Enqueue(Action work, long callChainId, bool discard = false, int timeOut = 2147483647, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>work</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
-    <dd><p>无返回值的委托</p>
+    <dd><p>要执行的无返回值委托方法</p>
 </dd>
     <dt><code>callChainId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>调用链ID</p>
+    <dd><p>用于跟踪调用链的唯一标识符</p>
 </dd>
     <dt><code>discard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否强制入队</p>
+    <dd><p>当为true时，表示强制将任务入队，即使队列已满也会尝试入队</p>
 </dd>
     <dt><code>timeOut</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>超时时间</p>
+    <dd><p>任务执行的超时时间，默认为int.MaxValue</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>用于取消操作的令牌</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>一个表示异步操作的任务</p>
+    <dd><p>表示异步操作的Task对象</p>
 </dd>
   </dl>
 
@@ -209,39 +214,43 @@ Interface IWorkerActor  <a class="header-action link-secondary" title="View sour
 
   <a id="GameFrameX_Core_Abstractions_IWorkerActor_Enqueue_" data-uid="GameFrameX.Core.Abstractions.IWorkerActor.Enqueue*"></a>
 
-  <h3 id="GameFrameX_Core_Abstractions_IWorkerActor_Enqueue_System_Func_System_Threading_Tasks_Task__System_Int64_System_Boolean_System_Int32_" data-uid="GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Func{System.Threading.Tasks.Task},System.Int64,System.Boolean,System.Int32)">
-  Enqueue(Func&lt;Task&gt;, long, bool, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Abstractions/IWorkerActor.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_Core_Abstractions_IWorkerActor_Enqueue_System_Func_System_Threading_Tasks_Task__System_Int64_System_Boolean_System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.Abstractions.IWorkerActor.Enqueue(System.Func{System.Threading.Tasks.Task},System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)">
+  Enqueue(Func&lt;Task&gt;, long, bool, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Abstractions/IWorkerActor.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>将返回Task的委托入队</p>
+  <div class="markdown level1 summary"><p>将返回Task的委托入队
+将Func<task></task>类型的委托添加到任务队列中进行异步处理</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task Enqueue(Func&lt;Task&gt; work, long callChainId, bool discard = false, int timeOut = 2147483647)</code></pre>
+    <pre><code class="lang-csharp hljs">Task Enqueue(Func&lt;Task&gt; work, long callChainId, bool discard = false, int timeOut = 2147483647, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>work</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
-    <dd><p>返回Task的委托</p>
+    <dd><p>要执行的返回Task的异步委托方法</p>
 </dd>
     <dt><code>callChainId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>调用链ID</p>
+    <dd><p>用于跟踪调用链的唯一标识符</p>
 </dd>
     <dt><code>discard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否强制入队</p>
+    <dd><p>当为true时，表示强制将任务入队，即使队列已满也会尝试入队</p>
 </dd>
     <dt><code>timeOut</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>超时时间</p>
+    <dd><p>任务执行的超时时间，默认为int.MaxValue</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>用于取消操作的令牌</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>一个表示异步操作的任务</p>
+    <dd><p>表示异步操作的Task对象</p>
 </dd>
   </dl>
 
@@ -257,46 +266,50 @@ Interface IWorkerActor  <a class="header-action link-secondary" title="View sour
 
   <a id="GameFrameX_Core_Abstractions_IWorkerActor_Enqueue_" data-uid="GameFrameX.Core.Abstractions.IWorkerActor.Enqueue*"></a>
 
-  <h3 id="GameFrameX_Core_Abstractions_IWorkerActor_Enqueue__1_System_Func_System_Threading_Tasks_Task___0___System_Int64_System_Boolean_System_Int32_" data-uid="GameFrameX.Core.Abstractions.IWorkerActor.Enqueue``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int64,System.Boolean,System.Int32)">
-  Enqueue&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt;, long, bool, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Abstractions/IWorkerActor.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_Core_Abstractions_IWorkerActor_Enqueue__1_System_Func_System_Threading_Tasks_Task___0___System_Int64_System_Boolean_System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.Abstractions.IWorkerActor.Enqueue``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)">
+  Enqueue&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt;, long, bool, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Abstractions/IWorkerActor.cs/#L64"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>将返回Task<t>的委托入队</t></p>
+  <div class="markdown level1 summary"><p>将返回Task<t></t>的委托入队
+将Func<task></task><t></t>&gt;类型的委托添加到任务队列中进行异步处理</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;T&gt; Enqueue&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; work, long callChainId, bool discard = false, int timeOut = 2147483647)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;T&gt; Enqueue&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; work, long callChainId, bool discard = false, int timeOut = 2147483647, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>work</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;&gt;</dt>
-    <dd><p>返回Task<t>的委托</t></p>
+    <dd><p>要执行的返回Task<t></t>的异步委托方法</p>
 </dd>
     <dt><code>callChainId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>调用链ID</p>
+    <dd><p>用于跟踪调用链的唯一标识符</p>
 </dd>
     <dt><code>discard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否强制入队</p>
+    <dd><p>当为true时，表示强制将任务入队，即使队列已满也会尝试入队</p>
 </dd>
     <dt><code>timeOut</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>超时时间</p>
+    <dd><p>任务执行的超时时间，默认为int.MaxValue</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>用于取消操作的令牌</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
-    <dd><p>一个表示异步操作的任务，任务结果为委托的返回值</p>
+    <dd><p>表示异步操作的Task<t></t>对象，其结果为委托的返回值</p>
 </dd>
   </dl>
 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>T</code></dt>
-    <dd><p>泛型参数</p>
+    <dd><p>异步操作返回值的类型</p>
 </dd>
   </dl>
 
@@ -311,46 +324,50 @@ Interface IWorkerActor  <a class="header-action link-secondary" title="View sour
 
   <a id="GameFrameX_Core_Abstractions_IWorkerActor_Enqueue_" data-uid="GameFrameX.Core.Abstractions.IWorkerActor.Enqueue*"></a>
 
-  <h3 id="GameFrameX_Core_Abstractions_IWorkerActor_Enqueue__1_System_Func___0__System_Int64_System_Boolean_System_Int32_" data-uid="GameFrameX.Core.Abstractions.IWorkerActor.Enqueue``1(System.Func{``0},System.Int64,System.Boolean,System.Int32)">
-  Enqueue&lt;T&gt;(Func&lt;T&gt;, long, bool, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Abstractions/IWorkerActor.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_Core_Abstractions_IWorkerActor_Enqueue__1_System_Func___0__System_Int64_System_Boolean_System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.Abstractions.IWorkerActor.Enqueue``1(System.Func{``0},System.Int64,System.Boolean,System.Int32,System.Threading.CancellationToken)">
+  Enqueue&lt;T&gt;(Func&lt;T&gt;, long, bool, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Abstractions/IWorkerActor.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>将有返回值的委托入队</p>
+  <div class="markdown level1 summary"><p>将有返回值的委托入队
+将Func<t></t>类型的委托添加到任务队列中进行异步处理</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;T&gt; Enqueue&lt;T&gt;(Func&lt;T&gt; work, long callChainId, bool discard = false, int timeOut = 2147483647)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;T&gt; Enqueue&lt;T&gt;(Func&lt;T&gt; work, long callChainId, bool discard = false, int timeOut = 2147483647, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>work</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;T&gt;</dt>
-    <dd><p>有返回值的委托</p>
+    <dd><p>要执行的有返回值委托方法</p>
 </dd>
     <dt><code>callChainId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>调用链ID</p>
+    <dd><p>用于跟踪调用链的唯一标识符</p>
 </dd>
     <dt><code>discard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否强制入队</p>
+    <dd><p>当为true时，表示强制将任务入队，即使队列已满也会尝试入队</p>
 </dd>
     <dt><code>timeOut</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>超时时间</p>
+    <dd><p>任务执行的超时时间，默认为int.MaxValue</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>用于取消操作的令牌</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
-    <dd><p>一个表示异步操作的任务，任务结果为委托的返回值</p>
+    <dd><p>表示异步操作的Task<t></t>对象，其结果为委托的返回值</p>
 </dd>
   </dl>
 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>T</code></dt>
-    <dd><p>泛型参数</p>
+    <dd><p>委托返回值的类型</p>
 </dd>
   </dl>
 
@@ -367,10 +384,11 @@ Interface IWorkerActor  <a class="header-action link-secondary" title="View sour
 
   <h3 id="GameFrameX_Core_Abstractions_IWorkerActor_IsNeedEnqueue" data-uid="GameFrameX.Core.Abstractions.IWorkerActor.IsNeedEnqueue">
   IsNeedEnqueue()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Abstractions/IWorkerActor.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Abstractions/IWorkerActor.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>判断是否需要入队</p>
+  <div class="markdown level1 summary"><p>判断是否需要入队
+检查当前任务是否需要进入队列进行处理</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -382,7 +400,7 @@ Interface IWorkerActor  <a class="header-action link-secondary" title="View sour
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt>(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.int64-.needenqueue">needEnqueue</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.int64-.chainid">chainId</a>)</dt>
-    <dd><p>一个元组，包含是否需要入队的布尔值和调用链ID</p>
+    <dd><p>返回一个元组，包含两个值：needEnqueue(bool类型，表示是否需要入队)和chainId(long类型，表示调用链ID)</p>
 </dd>
   </dl>
 
@@ -400,7 +418,7 @@ Interface IWorkerActor  <a class="header-action link-secondary" title="View sour
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Abstractions/IWorkerActor.cs/#L6" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Abstractions/IWorkerActor.cs/#L7" class="edit-link">Edit this page</a>
         </div>
 
 

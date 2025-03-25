@@ -232,7 +232,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.Core.Abstractions.IActor",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Abstractions.IActor.yml\" sourcestartlinenumber=\"1\">IActor 接口定义</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Abstractions.IActor.yml\" sourcestartlinenumber=\"1\">IActor 接口定义\n定义了一个Actor（参与者）的基本行为和属性，用于管理游戏中的实体对象</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -260,7 +260,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.Core.Abstractions.IState",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Abstractions.IState.yml\" sourcestartlinenumber=\"1\">状态接口</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Abstractions.IState.yml\" sourcestartlinenumber=\"1\">状态接口\n用于管理和维护对象的状态信息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -274,7 +274,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.Core.Abstractions.IWorker",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Abstractions.IWorker.yml\" sourcestartlinenumber=\"1\">IWorker接口定义</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Abstractions.IWorker.yml\" sourcestartlinenumber=\"1\">工作者接口定义\n用于处理异步和同步的工作任务，支持超时和取消操作</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -288,7 +288,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.Core.Abstractions.IWorkerActor",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Abstractions.IWorkerActor.yml\" sourcestartlinenumber=\"1\">工作Actor接口定义</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Abstractions.IWorkerActor.yml\" sourcestartlinenumber=\"1\">工作Actor接口定义\n用于处理异步任务队列的Actor接口，继承自IWorker接口</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -372,7 +372,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.Core.Actors.Actor",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Actors.Actor.yml\" sourcestartlinenumber=\"1\">Actor</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Actors.Actor.yml\" sourcestartlinenumber=\"1\">Actor类,用于管理和协调组件的生命周期、消息传递等核心功能</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -498,7 +498,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.Core.Actors.Impl.WorkerActor",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Actors.Impl.WorkerActor.yml\" sourcestartlinenumber=\"1\">工作Actor</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Actors.Impl.WorkerActor.yml\" sourcestartlinenumber=\"1\">工作Actor类,用于处理异步任务队列</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1086,7 +1086,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.Core.Timer.QuartzTimer",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Timer.QuartzTimer.yml\" sourcestartlinenumber=\"1\">Quartz定时器</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Timer.QuartzTimer.yml\" sourcestartlinenumber=\"1\">Quartz定时器\n提供基于Quartz的定时任务调度功能,支持热更新和非热更新两种模式</p>\n"
     },
     {
       "type": "ManagedReference",

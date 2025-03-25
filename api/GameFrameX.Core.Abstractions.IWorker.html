@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Interface IWorker | GameFrameX.Server ">
       
-      <meta name="description" content="IWorker接口定义">
+      <meta name="description" content="工作者接口定义 用于处理异步和同步的工作任务，支持超时和取消操作">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev3/apiSpec/new?filename=GameFrameX_Core_Abstractions_IWorker.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Abstractions.IWorker%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev4/apiSpec/new?filename=GameFrameX_Core_Abstractions_IWorker.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Abstractions.IWorker%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_Core_Abstractions_IWorker" data-uid="GameFrameX.Core.Abstractions.IWorker" class="text-break">
-Interface IWorker  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Abstractions/IWorker.cs/#L6"><i class="bi bi-code-slash"></i></a>
+Interface IWorker  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Abstractions/IWorker.cs/#L7"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,8 @@ Interface IWorker  <a class="header-action link-secondary" title="View source" h
   <dl><dt>Assembly</dt><dd>GameFrameX.Core.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>IWorker接口定义</p>
+  <div class="markdown summary"><p>工作者接口定义
+用于处理异步和同步的工作任务，支持超时和取消操作</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -139,33 +140,37 @@ Interface IWorker  <a class="header-action link-secondary" title="View source" h
 
   <a id="GameFrameX_Core_Abstractions_IWorker_SendAsync_" data-uid="GameFrameX.Core.Abstractions.IWorker.SendAsync*"></a>
 
-  <h3 id="GameFrameX_Core_Abstractions_IWorker_SendAsync_System_Action_System_Int32_" data-uid="GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Action,System.Int32)">
-  SendAsync(Action, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Abstractions/IWorker.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_Core_Abstractions_IWorker_SendAsync_System_Action_System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Action,System.Int32,System.Threading.CancellationToken)">
+  SendAsync(Action, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Abstractions/IWorker.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>异步发送无返回值的工作指令</p>
+  <div class="markdown level1 summary"><p>异步发送无返回值的工作指令
+异步执行指定的工作内容</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task SendAsync(Action work, int timeOut = 2147483647)</code></pre>
+    <pre><code class="lang-csharp hljs">Task SendAsync(Action work, int timeOut = 2147483647, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>work</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
-    <dd><p>工作内容</p>
+    <dd><p>需要执行的工作内容委托</p>
 </dd>
     <dt><code>timeOut</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>超时时间，默认为int.MaxValue</p>
+    <dd><p>执行超时时间（毫秒），默认为int.MaxValue</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>用于取消操作的令牌</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>一个表示异步操作的任务</p>
+    <dd><p>表示异步操作的任务对象</p>
 </dd>
   </dl>
 
@@ -181,36 +186,40 @@ Interface IWorker  <a class="header-action link-secondary" title="View source" h
 
   <a id="GameFrameX_Core_Abstractions_IWorker_SendAsync_" data-uid="GameFrameX.Core.Abstractions.IWorker.SendAsync*"></a>
 
-  <h3 id="GameFrameX_Core_Abstractions_IWorker_SendAsync_System_Func_System_Threading_Tasks_Task__System_Int32_System_Boolean_" data-uid="GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean)">
-  SendAsync(Func&lt;Task&gt;, int, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Abstractions/IWorker.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_Core_Abstractions_IWorker_SendAsync_System_Func_System_Threading_Tasks_Task__System_Int32_System_Boolean_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.Abstractions.IWorker.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean,System.Threading.CancellationToken)">
+  SendAsync(Func&lt;Task&gt;, int, bool, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Abstractions/IWorker.cs/#L57"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>异步发送有返回值的工作指令</p>
+  <div class="markdown level1 summary"><p>异步发送有返回值的工作指令
+异步执行指定的异步工作内容</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task SendAsync(Func&lt;Task&gt; work, int timeOut = 2147483647, bool checkLock = true)</code></pre>
+    <pre><code class="lang-csharp hljs">Task SendAsync(Func&lt;Task&gt; work, int timeOut = 2147483647, bool checkLock = true, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>work</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
-    <dd><p>工作内容</p>
+    <dd><p>需要执行的异步工作内容委托</p>
 </dd>
     <dt><code>timeOut</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>超时时间，默认为int.MaxValue</p>
+    <dd><p>执行超时时间（毫秒），默认为int.MaxValue</p>
 </dd>
     <dt><code>checkLock</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否检查锁</p>
+    <dd><p>是否在执行前检查锁定状态</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>用于取消操作的令牌</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>一个表示异步操作的任务</p>
+    <dd><p>表示嵌套异步操作的任务对象</p>
 </dd>
   </dl>
 
@@ -226,40 +235,44 @@ Interface IWorker  <a class="header-action link-secondary" title="View source" h
 
   <a id="GameFrameX_Core_Abstractions_IWorker_SendAsync_" data-uid="GameFrameX.Core.Abstractions.IWorker.SendAsync*"></a>
 
-  <h3 id="GameFrameX_Core_Abstractions_IWorker_SendAsync__1_System_Func_System_Threading_Tasks_Task___0___System_Int32_" data-uid="GameFrameX.Core.Abstractions.IWorker.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32)">
-  SendAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt;, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Abstractions/IWorker.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_Core_Abstractions_IWorker_SendAsync__1_System_Func_System_Threading_Tasks_Task___0___System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.Abstractions.IWorker.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32,System.Threading.CancellationToken)">
+  SendAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt;, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Abstractions/IWorker.cs/#L68"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>异步发送有返回值的工作指令</p>
+  <div class="markdown level1 summary"><p>异步发送有返回值的工作指令
+异步执行指定的异步工作内容并返回结果</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;T&gt; SendAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; work, int timeOut = 2147483647)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;T&gt; SendAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; work, int timeOut = 2147483647, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>work</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;&gt;</dt>
-    <dd><p>工作内容</p>
+    <dd><p>需要执行的异步工作内容委托</p>
 </dd>
     <dt><code>timeOut</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>超时时间，默认为int.MaxValue</p>
+    <dd><p>执行超时时间（毫秒），默认为int.MaxValue</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>用于取消操作的令牌</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
-    <dd><p>一个表示异步操作的任务，任务结果为委托的返回值</p>
+    <dd><p>包含执行结果的异步任务对象</p>
 </dd>
   </dl>
 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>T</code></dt>
-    <dd><p>泛型参数</p>
+    <dd><p>返回结果的类型</p>
 </dd>
   </dl>
 
@@ -274,40 +287,44 @@ Interface IWorker  <a class="header-action link-secondary" title="View source" h
 
   <a id="GameFrameX_Core_Abstractions_IWorker_SendAsync_" data-uid="GameFrameX.Core.Abstractions.IWorker.SendAsync*"></a>
 
-  <h3 id="GameFrameX_Core_Abstractions_IWorker_SendAsync__1_System_Func___0__System_Int32_" data-uid="GameFrameX.Core.Abstractions.IWorker.SendAsync``1(System.Func{``0},System.Int32)">
-  SendAsync&lt;T&gt;(Func&lt;T&gt;, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Abstractions/IWorker.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_Core_Abstractions_IWorker_SendAsync__1_System_Func___0__System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.Abstractions.IWorker.SendAsync``1(System.Func{``0},System.Int32,System.Threading.CancellationToken)">
+  SendAsync&lt;T&gt;(Func&lt;T&gt;, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Abstractions/IWorker.cs/#L46"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>异步发送有返回值的工作指令</p>
+  <div class="markdown level1 summary"><p>异步发送有返回值的工作指令
+异步执行指定的同步工作内容并返回结果</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;T&gt; SendAsync&lt;T&gt;(Func&lt;T&gt; work, int timeOut = 2147483647)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;T&gt; SendAsync&lt;T&gt;(Func&lt;T&gt; work, int timeOut = 2147483647, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>work</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;T&gt;</dt>
-    <dd><p>工作内容</p>
+    <dd><p>需要执行的工作内容委托</p>
 </dd>
     <dt><code>timeOut</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>超时时间，默认为int.MaxValue</p>
+    <dd><p>执行超时时间（毫秒），默认为int.MaxValue</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>用于取消操作的令牌</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
-    <dd><p>一个表示异步操作的任务，任务结果为委托的返回值</p>
+    <dd><p>包含执行结果的异步任务对象</p>
 </dd>
   </dl>
 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>T</code></dt>
-    <dd><p>泛型参数</p>
+    <dd><p>返回结果的类型</p>
 </dd>
   </dl>
 
@@ -322,26 +339,30 @@ Interface IWorker  <a class="header-action link-secondary" title="View source" h
 
   <a id="GameFrameX_Core_Abstractions_IWorker_Tell_" data-uid="GameFrameX.Core.Abstractions.IWorker.Tell*"></a>
 
-  <h3 id="GameFrameX_Core_Abstractions_IWorker_Tell_System_Action_System_Int32_" data-uid="GameFrameX.Core.Abstractions.IWorker.Tell(System.Action,System.Int32)">
-  Tell(Action, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Abstractions/IWorker.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_Core_Abstractions_IWorker_Tell_System_Action_System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.Abstractions.IWorker.Tell(System.Action,System.Int32,System.Threading.CancellationToken)">
+  Tell(Action, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Abstractions/IWorker.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>发送无返回值的工作指令</p>
+  <div class="markdown level1 summary"><p>发送无返回值的工作指令
+同步执行指定的工作内容</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void Tell(Action work, int timeOut = 2147483647)</code></pre>
+    <pre><code class="lang-csharp hljs">void Tell(Action work, int timeOut = 2147483647, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>work</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
-    <dd><p>工作内容</p>
+    <dd><p>需要执行的工作内容委托</p>
 </dd>
     <dt><code>timeOut</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>超时时间，默认为int.MaxValue</p>
+    <dd><p>执行超时时间（毫秒），默认为int.MaxValue</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>用于取消操作的令牌</p>
 </dd>
   </dl>
 
@@ -358,26 +379,30 @@ Interface IWorker  <a class="header-action link-secondary" title="View source" h
 
   <a id="GameFrameX_Core_Abstractions_IWorker_Tell_" data-uid="GameFrameX.Core.Abstractions.IWorker.Tell*"></a>
 
-  <h3 id="GameFrameX_Core_Abstractions_IWorker_Tell_System_Func_System_Threading_Tasks_Task__System_Int32_" data-uid="GameFrameX.Core.Abstractions.IWorker.Tell(System.Func{System.Threading.Tasks.Task},System.Int32)">
-  Tell(Func&lt;Task&gt;, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Abstractions/IWorker.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_Core_Abstractions_IWorker_Tell_System_Func_System_Threading_Tasks_Task__System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.Abstractions.IWorker.Tell(System.Func{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)">
+  Tell(Func&lt;Task&gt;, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Abstractions/IWorker.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>发送有返回值的工作指令</p>
+  <div class="markdown level1 summary"><p>发送有返回值的工作指令
+同步执行指定的异步工作内容</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void Tell(Func&lt;Task&gt; work, int timeOut = 2147483647)</code></pre>
+    <pre><code class="lang-csharp hljs">void Tell(Func&lt;Task&gt; work, int timeOut = 2147483647, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>work</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
-    <dd><p>工作内容</p>
+    <dd><p>需要执行的异步工作内容委托</p>
 </dd>
     <dt><code>timeOut</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>超时时间，默认为int.MaxValue</p>
+    <dd><p>执行超时时间（毫秒），默认为int.MaxValue</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>用于取消操作的令牌</p>
 </dd>
   </dl>
 
@@ -396,7 +421,7 @@ Interface IWorker  <a class="header-action link-secondary" title="View source" h
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Abstractions/IWorker.cs/#L6" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Abstractions/IWorker.cs/#L7" class="edit-link">Edit this page</a>
         </div>
 
 

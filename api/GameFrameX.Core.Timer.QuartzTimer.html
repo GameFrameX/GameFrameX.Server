@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class QuartzTimer | GameFrameX.Server ">
       
-      <meta name="description" content="Quartz定时器">
+      <meta name="description" content="Quartz定时器 提供基于Quartz的定时任务调度功能,支持热更新和非热更新两种模式">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev3/apiSpec/new?filename=GameFrameX_Core_Timer_QuartzTimer.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Timer.QuartzTimer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev4/apiSpec/new?filename=GameFrameX_Core_Timer_QuartzTimer.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Timer.QuartzTimer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_Core_Timer_QuartzTimer" data-uid="GameFrameX.Core.Timer.QuartzTimer" class="text-break">
-Class QuartzTimer  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L16"><i class="bi bi-code-slash"></i></a>
+Class QuartzTimer  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,8 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
   <dl><dt>Assembly</dt><dd>GameFrameX.Core.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Quartz定时器</p>
+  <div class="markdown summary"><p>Quartz定时器
+提供基于Quartz的定时任务调度功能,支持热更新和非热更新两种模式</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -156,10 +157,11 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_Core_Timer_QuartzTimer_ParamKey" data-uid="GameFrameX.Core.Timer.QuartzTimer.ParamKey">
   ParamKey
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L490"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L543"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>任务参数的键名</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -191,10 +193,10 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_Core_Timer_QuartzTimer_Daily__1_System_Int64_System_Int32_System_Int32_GameFrameX_Utility_Param_" data-uid="GameFrameX.Core.Timer.QuartzTimer.Daily``1(System.Int64,System.Int32,System.Int32,GameFrameX.Utility.Param)">
   Daily&lt;T&gt;(long, int, int, Param)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L170"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L203"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>每日特定时间执行任务</p>
+  <div class="markdown level1 summary"><p>每日定时执行的任务</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -205,30 +207,30 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>actorId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>Actor的唯一标识</p>
+    <dd><p>Actor的唯一标识,用于定位执行任务的Actor</p>
 </dd>
     <dt><code>hour</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>小时（0-23）</p>
+    <dd><p>指定执行的小时(0-23)</p>
 </dd>
     <dt><code>minute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>分钟（0-59）</p>
+    <dd><p>指定执行的分钟(0-59)</p>
 </dd>
     <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
-    <dd><p>传递给定时器处理器的参数</p>
+    <dd><p>传递给定时器处理器的自定义参数</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>生成的任务ID</p>
+    <dd><p>生成的定时任务ID,可用于后续管理该任务</p>
 </dd>
   </dl>
 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>T</code></dt>
-    <dd><p>定时器处理器类型</p>
+    <dd><p>定时器处理器类型,必须实现ITimerHandler接口</p>
 </dd>
   </dl>
 
@@ -238,6 +240,12 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>当hour或minute参数超出有效范围时抛出</p>
+</dd>
+  </dl>
 
 
 
@@ -245,10 +253,10 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_Core_Timer_QuartzTimer_Delay__1_System_Int64_System_TimeSpan_GameFrameX_Utility_Param_" data-uid="GameFrameX.Core.Timer.QuartzTimer.Delay``1(System.Int64,System.TimeSpan,GameFrameX.Utility.Param)">
   Delay&lt;T&gt;(long, TimeSpan, Param)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L136"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L168"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>基于时间延迟执行一次</p>
+  <div class="markdown level1 summary"><p>延迟执行一次的定时任务</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -259,27 +267,27 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>actorId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>Actor的唯一标识</p>
+    <dd><p>Actor的唯一标识,用于定位执行任务的Actor</p>
 </dd>
     <dt><code>delay</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></dt>
-    <dd><p>延迟时间</p>
+    <dd><p>延迟执行的时间</p>
 </dd>
     <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
-    <dd><p>传递给定时器处理器的参数</p>
+    <dd><p>传递给定时器处理器的自定义参数</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>生成的任务ID</p>
+    <dd><p>生成的定时任务ID,可用于后续管理该任务</p>
 </dd>
   </dl>
 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>T</code></dt>
-    <dd><p>定时器处理器类型</p>
+    <dd><p>定时器处理器类型,必须实现ITimerHandler接口</p>
 </dd>
   </dl>
 
@@ -296,10 +304,10 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_Core_Timer_QuartzTimer_Monthly__1_System_Int64_System_Int32_System_Int32_System_Int32_GameFrameX_Utility_Param_" data-uid="GameFrameX.Core.Timer.QuartzTimer.Monthly``1(System.Int64,System.Int32,System.Int32,System.Int32,GameFrameX.Utility.Param)">
   Monthly&lt;T&gt;(long, int, int, int, Param)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L234"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L269"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>每月某天特定时间执行任务</p>
+  <div class="markdown level1 summary"><p>每月固定某天执行的定时任务</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -310,33 +318,33 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>actorId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>Actor的唯一标识</p>
+    <dd><p>Actor的唯一标识,用于定位执行任务的Actor</p>
 </dd>
     <dt><code>dayOfMonth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>指定的月份中的某一天（1-31）</p>
+    <dd><p>指定执行的日期(1-31)</p>
 </dd>
     <dt><code>hour</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>小时（0-23）</p>
+    <dd><p>指定执行的小时(0-23)</p>
 </dd>
     <dt><code>minute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>分钟（0-59）</p>
+    <dd><p>指定执行的分钟(0-59)</p>
 </dd>
     <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
-    <dd><p>传递给定时器处理器的参数</p>
+    <dd><p>传递给定时器处理器的自定义参数</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>生成的任务ID</p>
+    <dd><p>生成的定时任务ID,可用于后续管理该任务</p>
 </dd>
   </dl>
 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>T</code></dt>
-    <dd><p>定时器处理器类型</p>
+    <dd><p>定时器处理器类型,必须实现ITimerHandler接口</p>
 </dd>
   </dl>
 
@@ -346,6 +354,12 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>当dayOfMonth参数超出有效范围时抛出</p>
+</dd>
+  </dl>
 
 
 
@@ -353,10 +367,10 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_Core_Timer_QuartzTimer_Pause_System_Collections_Generic_IEnumerable_System_Int64__" data-uid="GameFrameX.Core.Timer.QuartzTimer.Pause(System.Collections.Generic.IEnumerable{System.Int64})">
   Pause(IEnumerable&lt;long&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L96"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>暂停定时器</p>
+  <div class="markdown level1 summary"><p>批量暂停定时任务</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -367,7 +381,8 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>set</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>要暂停的定时任务ID集合</p>
+</dd>
   </dl>
 
 
@@ -385,10 +400,10 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_Core_Timer_QuartzTimer_Pause_System_Int64_" data-uid="GameFrameX.Core.Timer.QuartzTimer.Pause(System.Int64)">
   Pause(long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L82"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>暂停定时器</p>
+  <div class="markdown level1 summary"><p>暂停指定的定时任务</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -399,7 +414,74 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd></dd>
+    <dd><p>要暂停的定时任务ID</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Timer_QuartzTimer_Remove_" data-uid="GameFrameX.Core.Timer.QuartzTimer.Remove*"></a>
+
+  <h3 id="GameFrameX_Core_Timer_QuartzTimer_Remove_System_Collections_Generic_IEnumerable_System_Int64__" data-uid="GameFrameX.Core.Timer.QuartzTimer.Remove(System.Collections.Generic.IEnumerable{System.Int64})">
+  Remove(IEnumerable&lt;long&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>批量删除定时任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Remove(IEnumerable&lt;long&gt; set)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>set</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
+    <dd><p>要删除的定时任务ID集合</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_Timer_QuartzTimer_Remove_" data-uid="GameFrameX.Core.Timer.QuartzTimer.Remove*"></a>
+
+  <h3 id="GameFrameX_Core_Timer_QuartzTimer_Remove_System_Int64_" data-uid="GameFrameX.Core.Timer.QuartzTimer.Remove(System.Int64)">
+  Remove(long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>删除指定的定时任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Remove(long id)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>要删除的定时任务ID</p>
+</dd>
   </dl>
 
 
@@ -417,10 +499,10 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_Core_Timer_QuartzTimer_Resume_System_Collections_Generic_IEnumerable_System_Int64__" data-uid="GameFrameX.Core.Timer.QuartzTimer.Resume(System.Collections.Generic.IEnumerable{System.Int64})">
   Resume(IEnumerable&lt;long&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L122"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>恢复定时器</p>
+  <div class="markdown level1 summary"><p>批量恢复定时任务</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -431,7 +513,8 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>set</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>要恢复的定时任务ID集合</p>
+</dd>
   </dl>
 
 
@@ -449,10 +532,10 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_Core_Timer_QuartzTimer_Resume_System_Int64_" data-uid="GameFrameX.Core.Timer.QuartzTimer.Resume(System.Int64)">
   Resume(long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L108"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>恢复定时器</p>
+  <div class="markdown level1 summary"><p>恢复指定的定时任务</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -463,7 +546,8 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd></dd>
+    <dd><p>要恢复的定时任务ID</p>
+</dd>
   </dl>
 
 
@@ -481,10 +565,10 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_Core_Timer_QuartzTimer_Schedule__1_System_Int64_System_TimeSpan_System_TimeSpan_GameFrameX_Utility_Param_System_Int32_" data-uid="GameFrameX.Core.Timer.QuartzTimer.Schedule``1(System.Int64,System.TimeSpan,System.TimeSpan,GameFrameX.Utility.Param,System.Int32)">
   Schedule&lt;T&gt;(long, TimeSpan, TimeSpan, Param, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L142"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>每隔一段时间执行一次</p>
+  <div class="markdown level1 summary"><p>每隔一段时间执行一次的定时任务</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -495,7 +579,7 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>actorId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>Actor的唯一标识</p>
+    <dd><p>Actor的唯一标识,用于定位执行任务的Actor</p>
 </dd>
     <dt><code>delay</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></dt>
     <dd><p>首次执行前的延迟时间</p>
@@ -504,24 +588,24 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
     <dd><p>每次执行之间的间隔时间</p>
 </dd>
     <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
-    <dd><p>传递给定时器处理器的参数</p>
+    <dd><p>传递给定时器处理器的自定义参数</p>
 </dd>
     <dt><code>repeatCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>循环次数，-1表示无限循环</p>
+    <dd><p>循环次数,设置为-1表示无限循环执行</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>生成的任务ID</p>
+    <dd><p>生成的定时任务ID,可用于后续管理该任务</p>
 </dd>
   </dl>
 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>T</code></dt>
-    <dd><p>定时器处理器类型</p>
+    <dd><p>定时器处理器类型,必须实现ITimerHandler接口</p>
 </dd>
   </dl>
 
@@ -538,7 +622,7 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_Core_Timer_QuartzTimer_Start" data-uid="GameFrameX.Core.Timer.QuartzTimer.Start">
   Start()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L433"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L472"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>启动定时任务调度器</p>
@@ -553,7 +637,7 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>一个表示异步操作的任务。</p>
+    <dd><p>表示异步操作的任务</p>
 </dd>
   </dl>
 
@@ -564,7 +648,7 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
 
   <h4 class="section" id="GameFrameX_Core_Timer_QuartzTimer_Start_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>开始调度器，使其可以触发已安排的任务。</p>
+  <div class="markdown level1 remarks"><p>启动调度器,使其开始处理已安排的任务</p>
 </div>
 
 
@@ -574,7 +658,7 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_Core_Timer_QuartzTimer_Stop" data-uid="GameFrameX.Core.Timer.QuartzTimer.Stop">
   Stop()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L445"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L484"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>停止定时任务调度器</p>
@@ -589,7 +673,7 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>一个表示异步操作的任务。</p>
+    <dd><p>表示异步操作的任务</p>
 </dd>
   </dl>
 
@@ -600,7 +684,7 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
 
   <h4 class="section" id="GameFrameX_Core_Timer_QuartzTimer_Stop_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>关闭调度器，停止所有正在运行的任务，并防止新的任务被触发。</p>
+  <div class="markdown level1 remarks"><p>关闭调度器,停止所有正在运行的任务,并阻止新任务的触发</p>
 </div>
 
 
@@ -610,21 +694,23 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_Core_Timer_QuartzTimer_UnSchedule_System_Collections_Generic_IEnumerable_System_Int64__" data-uid="GameFrameX.Core.Timer.QuartzTimer.UnSchedule(System.Collections.Generic.IEnumerable{System.Int64})">
   UnSchedule(IEnumerable&lt;long&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L43"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>取消订阅</p>
+  <div class="markdown level1 summary"><p>批量取消订阅定时任务</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void UnSchedule(IEnumerable&lt;long&gt; set)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;请使用Remove(IEnumerable&lt;long&gt; set)&quot;)]
+public static void UnSchedule(IEnumerable&lt;long&gt; set)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>set</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>要取消的定时任务ID集合</p>
+</dd>
   </dl>
 
 
@@ -642,21 +728,23 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_Core_Timer_QuartzTimer_UnSchedule_System_Int64_" data-uid="GameFrameX.Core.Timer.QuartzTimer.UnSchedule(System.Int64)">
   UnSchedule(long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>取消订阅</p>
+  <div class="markdown level1 summary"><p>取消订阅定时任务</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void UnSchedule(long id)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;请使用Remove(long id)&quot;)]
+public static void UnSchedule(long id)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd></dd>
+    <dd><p>要取消的定时任务ID</p>
+</dd>
   </dl>
 
 
@@ -674,10 +762,10 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_Core_Timer_QuartzTimer_Weekly__1_System_Int64_System_DayOfWeek_System_Int32_System_Int32_GameFrameX_Utility_Param_" data-uid="GameFrameX.Core.Timer.QuartzTimer.Weekly``1(System.Int64,System.DayOfWeek,System.Int32,System.Int32,GameFrameX.Utility.Param)">
   Weekly&lt;T&gt;(long, DayOfWeek, int, int, Param)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L216"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L250"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>每周某天特定时间执行任务</p>
+  <div class="markdown level1 summary"><p>每周固定某天执行的定时任务</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -688,33 +776,33 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>actorId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>Actor的唯一标识</p>
+    <dd><p>Actor的唯一标识,用于定位执行任务的Actor</p>
 </dd>
     <dt><code>dayOfWeek</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.dayofweek">DayOfWeek</a></dt>
-    <dd><p>指定的星期几</p>
+    <dd><p>指定执行的星期几</p>
 </dd>
     <dt><code>hour</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>小时（0-23）</p>
+    <dd><p>指定执行的小时(0-23)</p>
 </dd>
     <dt><code>minute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>分钟（0-59）</p>
+    <dd><p>指定执行的分钟(0-59)</p>
 </dd>
     <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
-    <dd><p>传递给定时器处理器的参数</p>
+    <dd><p>传递给定时器处理器的自定义参数</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>生成的任务ID</p>
+    <dd><p>生成的定时任务ID,可用于后续管理该任务</p>
 </dd>
   </dl>
 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>T</code></dt>
-    <dd><p>定时器处理器类型</p>
+    <dd><p>定时器处理器类型,必须实现ITimerHandler接口</p>
 </dd>
   </dl>
 
@@ -731,10 +819,10 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_Core_Timer_QuartzTimer_WithCronExpression__1_System_Int64_System_String_GameFrameX_Utility_Param_" data-uid="GameFrameX.Core.Timer.QuartzTimer.WithCronExpression``1(System.Int64,System.String,GameFrameX.Utility.Param)">
   WithCronExpression&lt;T&gt;(long, string, Param)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L185"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>基于Cron表达式执行任务</p>
+  <div class="markdown level1 summary"><p>基于Cron表达式的定时任务</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -745,27 +833,27 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>actorId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>Actor的唯一标识</p>
+    <dd><p>Actor的唯一标识,用于定位执行任务的Actor</p>
 </dd>
     <dt><code>cronExpression</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Cron表达式</p>
+    <dd><p>标准的Cron表达式,用于配置复杂的执行时间规则</p>
 </dd>
     <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
-    <dd><p>传递给定时器处理器的参数</p>
+    <dd><p>传递给定时器处理器的自定义参数</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>生成的任务ID</p>
+    <dd><p>生成的定时任务ID,可用于后续管理该任务</p>
 </dd>
   </dl>
 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>T</code></dt>
-    <dd><p>定时器处理器类型</p>
+    <dd><p>定时器处理器类型,必须实现ITimerHandler接口</p>
 </dd>
   </dl>
 
@@ -782,10 +870,10 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_Core_Timer_QuartzTimer_WithDayOfWeeks__1_System_Int64_System_Int32_System_Int32_GameFrameX_Utility_Param_System_DayOfWeek___" data-uid="GameFrameX.Core.Timer.QuartzTimer.WithDayOfWeeks``1(System.Int64,System.Int32,System.Int32,GameFrameX.Utility.Param,System.DayOfWeek[])">
   WithDayOfWeeks&lt;T&gt;(long, int, int, Param, params DayOfWeek[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L193"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L227"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>每周某些天特定时间执行任务</p>
+  <div class="markdown level1 summary"><p>在每周指定的多个日期执行的定时任务</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -796,33 +884,33 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>actorId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>Actor的唯一标识</p>
+    <dd><p>Actor的唯一标识,用于定位执行任务的Actor</p>
 </dd>
     <dt><code>hour</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>小时（0-23）</p>
+    <dd><p>指定执行的小时(0-23)</p>
 </dd>
     <dt><code>minute</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>分钟（0-59）</p>
+    <dd><p>指定执行的分钟(0-59)</p>
 </dd>
     <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
-    <dd><p>传递给定时器处理器的参数</p>
+    <dd><p>传递给定时器处理器的自定义参数</p>
 </dd>
     <dt><code>dayOfWeeks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.dayofweek">DayOfWeek</a>[]</dt>
-    <dd><p>指定的星期几数组</p>
+    <dd><p>指定要执行的星期几,可以指定多个</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>生成的任务ID</p>
+    <dd><p>生成的定时任务ID,可用于后续管理该任务</p>
 </dd>
   </dl>
 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>T</code></dt>
-    <dd><p>定时器处理器类型</p>
+    <dd><p>定时器处理器类型,必须实现ITimerHandler接口</p>
 </dd>
   </dl>
 
@@ -832,6 +920,12 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当dayOfWeeks参数为空或长度为0时抛出</p>
+</dd>
+  </dl>
 
 
 
@@ -839,7 +933,7 @@ Class QuartzTimer  <a class="header-action link-secondary" title="View source" h
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev3/GameFrameX.Core/Timer/QuartzTimer.cs/#L16" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Timer/QuartzTimer.cs/#L17" class="edit-link">Edit this page</a>
         </div>
 
 
