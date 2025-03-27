@@ -228,44 +228,44 @@ public static class TimeHelper
     /// <summary>
     /// 获取指定日期所在星期的时间。
     /// </summary>
-    /// <param name="t">指定日期。</param>
-    /// <param name="d">星期几。</param>
+    /// <param name="dateTime">指定日期。</param>
+    /// <param name="day">星期几。</param>
     /// <returns>指定日期所在星期的时间。</returns>
-    public static DateTime GetDayOfWeekTime(DateTime t, DayOfWeek d)
+    public static DateTime GetDayOfWeekTime(DateTime dateTime, DayOfWeek day)
     {
-        var dd = (int)d;
+        var dd = (int)day;
         if (dd == 0)
         {
             dd = 7;
         }
 
-        var dayOfWeek = (int)t.DayOfWeek;
+        var dayOfWeek = (int)dateTime.DayOfWeek;
         if (dayOfWeek == 0)
         {
             dayOfWeek = 7;
         }
 
-        return t.AddDays(dd - dayOfWeek).Date;
+        return dateTime.AddDays(dd - dayOfWeek).Date;
     }
 
     /// <summary>
     /// 获取当前日期所在星期的时间。
     /// </summary>
-    /// <param name="d">星期几。</param>
+    /// <param name="day">星期几。</param>
     /// <returns>当前日期所在星期的时间。</returns>
-    public static DateTime GetDayOfWeekTime(DayOfWeek d)
+    public static DateTime GetDayOfWeekTime(DayOfWeek day)
     {
-        return GetDayOfWeekTime(DateTime.Now, d);
+        return GetDayOfWeekTime(DateTime.Now, day);
     }
 
     /// <summary>
     /// 获取指定星期在中国的对应数字。
     /// </summary>
-    /// <param name="d">星期几。</param>
+    /// <param name="day">星期几。</param>
     /// <returns>星期在中国的对应数字。</returns>
-    public static int GetChinaDayOfWeek(DayOfWeek d)
+    public static int GetChinaDayOfWeek(DayOfWeek day)
     {
-        var dayOfWeek = (int)d;
+        var dayOfWeek = (int)day;
         if (dayOfWeek == 0)
         {
             dayOfWeek = 7;
@@ -284,18 +284,36 @@ public static class TimeHelper
     }
 
     /// <summary>
-    /// 当前时区时间的完整字符串
+    /// 获取当前本地时区的日期，格式为yyyyMMdd的整数
     /// </summary>
-    /// <returns>当前时区时间的完整字符串。</returns>
+    /// <returns>返回一个8位整数，表示当前本地时区的日期。例如：20231225表示2023年12月25日</returns>
+    public static int CurrentTimeWithDay()
+    {
+        return Convert.ToInt32(DateTime.Now.ToString("yyyyMMdd"));
+    }
+
+    /// <summary>
+    /// 获取当前UTC时区的日期，格式为yyyyMMdd的整数
+    /// </summary>
+    /// <returns>返回一个8位整数，表示当前UTC时区的日期。例如：20231225表示2023年12月25日</returns>
+    public static int CurrentTimeWithUtcDay()
+    {
+        return Convert.ToInt32(DateTime.UtcNow.ToString("yyyyMMdd"));
+    }
+
+    /// <summary>
+    /// 获取当前本地时区时间的完整格式字符串
+    /// </summary>
+    /// <returns>返回格式为"yyyy-MM-dd-HH-mm-ss.fff K"的时间字符串，包含年-月-日-时-分-秒.毫秒 时区偏移。例如："2023-12-25-14-30-45.123 +08:00"</returns>
     public static string CurrentTimeWithFullString()
     {
         return DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss.fff K");
     }
 
     /// <summary>
-    /// UTC时区时间的完整字符串
+    /// 获取当前UTC时区时间的完整格式字符串
     /// </summary>
-    /// <returns>UTC时区时间的完整字符串。</returns>
+    /// <returns>返回格式为"yyyy-MM-dd-HH-mm-ss.fff K"的UTC时间字符串，包含年-月-日-时-分-秒.毫秒 时区偏移。例如："2023-12-25-06-30-45.123 +00:00"</returns>
     public static string CurrentTimeWithUtcFullString()
     {
         return DateTime.UtcNow.ToString("yyyy-MM-dd-HH-mm-ss.fff K");
@@ -332,6 +350,376 @@ public static class TimeHelper
         var time1 = UtcToUtcDateTime(timestamp1);
         var time2 = UtcToUtcDateTime(timestamp2);
         return IsSameDay(time1, time2);
+    }
+
+    /// <summary>
+    /// 获取今天开始时间
+    /// </summary>
+    /// <returns>今天零点时间</returns>
+    public static DateTime GetTodayStartTime()
+    {
+        return DateTime.Today;
+    }
+
+    /// <summary>
+    /// 获取今天开始时间戳
+    /// </summary>
+    /// <returns>今天零点时间戳(秒)</returns>
+    public static long GetTodayStartTimestamp()
+    {
+        return new DateTimeOffset(GetTodayStartTime()).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取今天结束时间
+    /// </summary>
+    /// <returns>今天23:59:59的时间</returns>
+    public static DateTime GetTodayEndTime()
+    {
+        return DateTime.Today.AddDays(1).AddSeconds(-1);
+    }
+
+    /// <summary>
+    /// 获取今天结束时间戳
+    /// </summary>
+    /// <returns>今天23:59:59的时间戳(秒)</returns>
+    public static long GetTodayEndTimestamp()
+    {
+        return new DateTimeOffset(GetTodayEndTime()).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取本周开始时间
+    /// </summary>
+    /// <returns>本周一零点时间</returns>
+    public static DateTime GetWeekStartTime()
+    {
+        var now = DateTime.Now;
+        var dayOfWeek = (int)now.DayOfWeek;
+        dayOfWeek = dayOfWeek == 0 ? 7 : dayOfWeek;
+        return now.AddDays(1 - dayOfWeek).Date;
+    }
+
+    /// <summary>
+    /// 获取本周开始时间戳
+    /// </summary>
+    /// <returns>本周一零点时间戳(秒)</returns>
+    public static long GetWeekStartTimestamp()
+    {
+        return new DateTimeOffset(GetWeekStartTime()).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取本周结束时间
+    /// </summary>
+    /// <returns>本周日23:59:59的时间</returns>
+    public static DateTime GetWeekEndTime()
+    {
+        return GetWeekStartTime().AddDays(7).AddSeconds(-1);
+    }
+
+    /// <summary>
+    /// 获取本周结束时间戳
+    /// </summary>
+    /// <returns>本周日23:59:59的时间戳(秒)</returns>
+    public static long GetWeekEndTimestamp()
+    {
+        return new DateTimeOffset(GetWeekEndTime()).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取本月开始时间
+    /// </summary>
+    /// <returns>本月1号零点时间</returns>
+    public static DateTime GetMonthStartTime()
+    {
+        return new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+    }
+
+    /// <summary>
+    /// 获取本月开始时间戳
+    /// </summary>
+    /// <returns>本月1号零点时间戳(秒)</returns>
+    public static long GetMonthStartTimestamp()
+    {
+        return new DateTimeOffset(GetMonthStartTime()).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取本月结束时间
+    /// </summary>
+    /// <returns>本月最后一天23:59:59的时间</returns>
+    public static DateTime GetMonthEndTime()
+    {
+        return GetMonthStartTime().AddMonths(1).AddSeconds(-1);
+    }
+
+    /// <summary>
+    /// 获取本月结束时间戳
+    /// </summary>
+    /// <returns>本月最后一天23:59:59的时间戳(秒)</returns>
+    public static long GetMonthEndTimestamp()
+    {
+        return new DateTimeOffset(GetMonthEndTime()).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取本年开始时间
+    /// </summary>
+    /// <returns>本年1月1日零点时间</returns>
+    public static DateTime GetYearStartTime()
+    {
+        return new DateTime(DateTime.Now.Year, 1, 1);
+    }
+
+    /// <summary>
+    /// 获取本年开始时间戳
+    /// </summary>
+    /// <returns>本年1月1日零点时间戳(秒)</returns>
+    public static long GetYearStartTimestamp()
+    {
+        return new DateTimeOffset(GetYearStartTime()).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取本年结束时间
+    /// </summary>
+    /// <returns>本年12月31日23:59:59的时间</returns>
+    public static DateTime GetYearEndTime()
+    {
+        return GetYearStartTime().AddYears(1).AddSeconds(-1);
+    }
+
+    /// <summary>
+    /// 获取本年结束时间戳
+    /// </summary>
+    /// <returns>本年12月31日23:59:59的时间戳(秒)</returns>
+    public static long GetYearEndTimestamp()
+    {
+        return new DateTimeOffset(GetYearEndTime()).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取指定日期的开始时间
+    /// </summary>
+    /// <param name="date">指定日期</param>
+    /// <returns>指定日期零点时间</returns>
+    public static DateTime GetStartTimeOfDay(DateTime date)
+    {
+        return date.Date;
+    }
+
+    /// <summary>
+    /// 获取指定日期的开始时间戳
+    /// </summary>
+    /// <param name="date">指定日期</param>
+    /// <returns>指定日期零点时间戳(秒)</returns>
+    public static long GetStartTimestampOfDay(DateTime date)
+    {
+        return new DateTimeOffset(GetStartTimeOfDay(date)).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取指定日期的结束时间
+    /// </summary>
+    /// <param name="date">指定日期</param>
+    /// <returns>指定日期23:59:59的时间</returns>
+    public static DateTime GetEndTimeOfDay(DateTime date)
+    {
+        return date.Date.AddDays(1).AddSeconds(-1);
+    }
+
+    /// <summary>
+    /// 获取指定日期的结束时间戳
+    /// </summary>
+    /// <param name="date">指定日期</param>
+    /// <returns>指定日期23:59:59的时间戳(秒)</returns>
+    public static long GetEndTimestampOfDay(DateTime date)
+    {
+        return new DateTimeOffset(GetEndTimeOfDay(date)).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取指定日期所在周的开始时间
+    /// </summary>
+    /// <param name="date">指定日期</param>
+    /// <returns>所在周周一零点时间</returns>
+    public static DateTime GetStartTimeOfWeek(DateTime date)
+    {
+        var dayOfWeek = (int)date.DayOfWeek;
+        dayOfWeek = dayOfWeek == 0 ? 7 : dayOfWeek;
+        return date.AddDays(1 - dayOfWeek).Date;
+    }
+
+    /// <summary>
+    /// 获取指定日期所在周的开始时间戳
+    /// </summary>
+    /// <param name="date">指定日期</param>
+    /// <returns>所在周周一零点时间戳(秒)</returns>
+    public static long GetStartTimestampOfWeek(DateTime date)
+    {
+        return new DateTimeOffset(GetStartTimeOfWeek(date)).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取指定日期所在周的结束时间
+    /// </summary>
+    /// <param name="date">指定日期</param>
+    /// <returns>所在周周日23:59:59的时间</returns>
+    public static DateTime GetEndTimeOfWeek(DateTime date)
+    {
+        return GetStartTimeOfWeek(date).AddDays(7).AddSeconds(-1);
+    }
+
+    /// <summary>
+    /// 获取指定日期所在周的结束时间戳
+    /// </summary>
+    /// <param name="date">指定日期</param>
+    /// <returns>所在周周日23:59:59的时间戳(秒)</returns>
+    public static long GetEndTimestampOfWeek(DateTime date)
+    {
+        return new DateTimeOffset(GetEndTimeOfWeek(date)).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取指定日期所在月的开始时间
+    /// </summary>
+    /// <param name="date">指定日期</param>
+    /// <returns>所在月1号零点时间</returns>
+    public static DateTime GetStartTimeOfMonth(DateTime date)
+    {
+        return new DateTime(date.Year, date.Month, 1);
+    }
+
+    /// <summary>
+    /// 获取指定日期所在月的开始时间戳
+    /// </summary>
+    /// <param name="date">指定日期</param>
+    /// <returns>所在月1号零点时间戳(秒)</returns>
+    public static long GetStartTimestampOfMonth(DateTime date)
+    {
+        return new DateTimeOffset(GetStartTimeOfMonth(date)).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取指定日期所在月的结束时间
+    /// </summary>
+    /// <param name="date">指定日期</param>
+    /// <returns>所在月最后一天23:59:59的时间</returns>
+    public static DateTime GetEndTimeOfMonth(DateTime date)
+    {
+        return GetStartTimeOfMonth(date).AddMonths(1).AddSeconds(-1);
+    }
+
+    /// <summary>
+    /// 获取指定日期所在月的结束时间戳
+    /// </summary>
+    /// <param name="date">指定日期</param>
+    /// <returns>所在月最后一天23:59:59的时间戳(秒)</returns>
+    public static long GetEndTimestampOfMonth(DateTime date)
+    {
+        return new DateTimeOffset(GetEndTimeOfMonth(date)).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取指定日期所在年的开始时间
+    /// </summary>
+    /// <param name="date">指定日期</param>
+    /// <returns>所在年1月1日零点时间</returns>
+    public static DateTime GetStartTimeOfYear(DateTime date)
+    {
+        return new DateTime(date.Year, 1, 1);
+    }
+
+    /// <summary>
+    /// 获取指定日期所在年的开始时间戳
+    /// </summary>
+    /// <param name="date">指定日期</param>
+    /// <returns>所在年1月1日零点时间戳(秒)</returns>
+    public static long GetStartTimestampOfYear(DateTime date)
+    {
+        return new DateTimeOffset(GetStartTimeOfYear(date)).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取指定日期所在年的结束时间
+    /// </summary>
+    /// <param name="date">指定日期</param>
+    /// <returns>所在年12月31日23:59:59的时间</returns>
+    public static DateTime GetEndTimeOfYear(DateTime date)
+    {
+        return GetStartTimeOfYear(date).AddYears(1).AddSeconds(-1);
+    }
+
+    /// <summary>
+    /// 获取指定日期所在年的结束时间戳
+    /// </summary>
+    /// <param name="date">指定日期</param>
+    /// <returns>所在年12月31日23:59:59的时间戳(秒)</returns>
+    public static long GetEndTimestampOfYear(DateTime date)
+    {
+        return new DateTimeOffset(GetEndTimeOfYear(date)).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取两个时间之间的间隔天数
+    /// </summary>
+    /// <param name="startTime">开始时间</param>
+    /// <param name="endTime">结束时间</param>
+    /// <returns>间隔天数</returns>
+    public static int GetDaysBetween(DateTime startTime, DateTime endTime)
+    {
+        return (int)(endTime.Date - startTime.Date).TotalDays;
+    }
+
+    /// <summary>
+    /// 获取两个UTC时间戳之间的间隔天数
+    /// </summary>
+    /// <param name="startTimestamp">开始时间戳(秒)</param>
+    /// <param name="endTimestamp">结束时间戳(秒)</param>
+    /// <returns>间隔天数</returns>
+    public static int GetDaysBetween(long startTimestamp, long endTimestamp)
+    {
+        var startTime = UtcToUtcDateTime(startTimestamp);
+        var endTime = UtcToUtcDateTime(endTimestamp);
+        return GetDaysBetween(startTime, endTime);
+    }
+
+    /// <summary>
+    /// 获取两个本地时间戳之间的间隔天数
+    /// </summary>
+    /// <param name="startTimestamp">开始时间戳(秒)</param>
+    /// <param name="endTimestamp">结束时间戳(秒)</param>
+    /// <returns>间隔天数</returns>
+    public static int GetLocalDaysBetween(long startTimestamp, long endTimestamp)
+    {
+        var startTime = UtcToLocalDateTime(startTimestamp);
+        var endTime = UtcToLocalDateTime(endTimestamp);
+        return GetDaysBetween(startTime, endTime);
+    }
+
+    /// <summary>
+    /// 获取指定时间是否在指定的时间范围内
+    /// </summary>
+    /// <param name="time">指定时间</param>
+    /// <param name="startTime">开始时间</param>
+    /// <param name="endTime">结束时间</param>
+    /// <returns>是否在范围内</returns>
+    public static bool IsTimeInRange(DateTime time, DateTime startTime, DateTime endTime)
+    {
+        return time >= startTime && time <= endTime;
+    }
+
+    /// <summary>
+    /// 获取指定时间戳是否在指定的时间戳范围内
+    /// </summary>
+    /// <param name="timestamp">指定时间戳</param>
+    /// <param name="startTimestamp">开始时间戳</param>
+    /// <param name="endTimestamp">结束时间戳</param>
+    /// <returns>是否在范围内</returns>
+    public static bool IsTimestampInRange(long timestamp, long startTimestamp, long endTimestamp)
+    {
+        return timestamp >= startTimestamp && timestamp <= endTimestamp;
     }
 
     /// <summary>
