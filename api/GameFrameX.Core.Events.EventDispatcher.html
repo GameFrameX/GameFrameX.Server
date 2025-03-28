@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class EventDispatcher | GameFrameX.Server ">
       
-      <meta name="description" content="事件分发类">
+      <meta name="description" content="事件分发类 - 负责处理游戏中所有事件的分发和处理">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev4/apiSpec/new?filename=GameFrameX_Core_Events_EventDispatcher.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Events.EventDispatcher%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev5/apiSpec/new?filename=GameFrameX_Core_Events_EventDispatcher.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Events.EventDispatcher%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_Core_Events_EventDispatcher" data-uid="GameFrameX.Core.Events.EventDispatcher" class="text-break">
-Class EventDispatcher  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Events/EventDispatcher.cs/#L13"><i class="bi bi-code-slash"></i></a>
+Class EventDispatcher  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev5/GameFrameX.Core/Events/EventDispatcher.cs/#L13"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Class EventDispatcher  <a class="header-action link-secondary" title="View sourc
   <dl><dt>Assembly</dt><dd>GameFrameX.Core.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>事件分发类</p>
+  <div class="markdown summary"><p>事件分发类 - 负责处理游戏中所有事件的分发和处理</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -157,27 +157,27 @@ Class EventDispatcher  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_Core_Events_EventDispatcher_Dispatch_System_Int64_System_Int32_GameFrameX_Utility_Param_" data-uid="GameFrameX.Core.Events.EventDispatcher.Dispatch(System.Int64,System.Int32,GameFrameX.Utility.Param)">
   Dispatch(long, int, Param)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Events/EventDispatcher.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev5/GameFrameX.Core/Events/EventDispatcher.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>分发事件</p>
+  <div class="markdown level1 summary"><p>分发事件到指定的Actor或全局监听器</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void Dispatch(long actorId, int eventId, Param args = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void Dispatch(long actorId, int eventId, Param eventArgs = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>actorId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>演员ID</p>
+    <dd><p>目标Actor的唯一标识符，如果为无效值则分发到全局监听器</p>
 </dd>
     <dt><code>eventId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>事件ID</p>
+    <dd><p>要分发的事件ID</p>
 </dd>
-    <dt><code>args</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
-    <dd><p>参数对象，可以为null</p>
+    <dt><code>eventArgs</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
+    <dd><p>事件携带的参数数据，可以为null</p>
 </dd>
   </dl>
 
@@ -196,7 +196,7 @@ Class EventDispatcher  <a class="header-action link-secondary" title="View sourc
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Events/EventDispatcher.cs/#L13" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev5/GameFrameX.Core/Events/EventDispatcher.cs/#L13" class="edit-link">Edit this page</a>
         </div>
 
 

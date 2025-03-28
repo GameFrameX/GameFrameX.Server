@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class EventListener&lt;T&gt; | GameFrameX.Server ">
       
-      <meta name="description" content="事件监听器类">
+      <meta name="description" content="事件监听器基类，用于处理特定组件代理类型的事件">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev4/apiSpec/new?filename=GameFrameX_Core_Events_EventListener_1.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Events.EventListener%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev5/apiSpec/new?filename=GameFrameX_Core_Events_EventListener_1.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Events.EventListener%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_Core_Events_EventListener_1" data-uid="GameFrameX.Core.Events.EventListener`1" class="text-break">
-Class EventListener&lt;T&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Events/EventListener.cs/#L10"><i class="bi bi-code-slash"></i></a>
+Class EventListener&lt;T&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev5/GameFrameX.Core/Events/EventListener.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Class EventListener&lt;T&gt;  <a class="header-action link-secondary" title="Vie
   <dl><dt>Assembly</dt><dd>GameFrameX.Core.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>事件监听器类</p>
+  <div class="markdown summary"><p>事件监听器基类，用于处理特定组件代理类型的事件</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -110,7 +110,7 @@ Class EventListener&lt;T&gt;  <a class="header-action link-secondary" title="Vie
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>T</code></dt>
-    <dd><p>组件代理类型</p>
+    <dd><p>组件代理类型，必须实现IComponentAgent接口</p>
 </dd>
   </dl>
 
@@ -185,10 +185,10 @@ Class EventListener&lt;T&gt;  <a class="header-action link-secondary" title="Vie
 
   <h3 id="GameFrameX_Core_Events_EventListener_1_AgentType" data-uid="GameFrameX.Core.Events.EventListener`1.AgentType">
   AgentType
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Events/EventListener.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev5/GameFrameX.Core/Events/EventListener.cs/#L45"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取事件代理类型</p>
+  <div class="markdown level1 summary"><p>获取事件代理类型属性</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -203,13 +203,15 @@ Class EventListener&lt;T&gt;  <a class="header-action link-secondary" title="Vie
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd><p>事件代理类型</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="GameFrameX_Core_Events_EventListener_1_AgentType_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>返回泛型参数T的实际类型，用于运行时类型识别</p>
+</div>
 
 
 
@@ -220,33 +222,33 @@ Class EventListener&lt;T&gt;  <a class="header-action link-secondary" title="Vie
 
   <a id="GameFrameX_Core_Events_EventListener_1_HandleEvent_" data-uid="GameFrameX.Core.Events.EventListener`1.HandleEvent*"></a>
 
-  <h3 id="GameFrameX_Core_Events_EventListener_1_HandleEvent_GameFrameX_Core_Abstractions_Agent_IComponentAgent_GameFrameX_Core_Abstractions_Events_Event_" data-uid="GameFrameX.Core.Events.EventListener`1.HandleEvent(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Core.Abstractions.Events.Event)">
-  HandleEvent(IComponentAgent, Event)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Events/EventListener.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_Core_Events_EventListener_1_HandleEvent_GameFrameX_Core_Abstractions_Agent_IComponentAgent_GameFrameX_Core_Abstractions_Events_GameEventArgs_" data-uid="GameFrameX.Core.Events.EventListener`1.HandleEvent(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Core.Abstractions.Events.GameEventArgs)">
+  HandleEvent(IComponentAgent, GameEventArgs)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev5/GameFrameX.Core/Events/EventListener.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>事件处理函数</p>
+  <div class="markdown level1 summary"><p>实现IEventListener接口的事件处理函数</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task HandleEvent(IComponentAgent agent, Event evt)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task HandleEvent(IComponentAgent agent, GameEventArgs gameEventArgs)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>agent</code> <a class="xref" href="GameFrameX.Core.Abstractions.Agent.IComponentAgent.html">IComponentAgent</a></dt>
-    <dd><p>组件代理</p>
+    <dd><p>组件代理实例，类型为IComponentAgent</p>
 </dd>
-    <dt><code>evt</code> <a class="xref" href="GameFrameX.Core.Abstractions.Events.Event.html">Event</a></dt>
-    <dd><p>事件</p>
+    <dt><code>gameEventArgs</code> <a class="xref" href="GameFrameX.Core.Abstractions.Events.GameEventArgs.html">GameEventArgs</a></dt>
+    <dd><p>需要处理的事件对象</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>异步任务</p>
+    <dd><p>异步任务，表示事件处理的完成状态</p>
 </dd>
   </dl>
 
@@ -256,39 +258,39 @@ Class EventListener&lt;T&gt;  <a class="header-action link-secondary" title="Vie
 
 
 
+  <h4 class="section" id="GameFrameX_Core_Events_EventListener_1_HandleEvent_GameFrameX_Core_Abstractions_Agent_IComponentAgent_GameFrameX_Core_Abstractions_Events_GameEventArgs__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>该方法会将传入的IComponentAgent类型转换为泛型类型T后调用保护方法HandleEvent</p>
+</div>
 
 
 
 
   <a id="GameFrameX_Core_Events_EventListener_1_HandleEvent_" data-uid="GameFrameX.Core.Events.EventListener`1.HandleEvent*"></a>
 
-  <h3 id="GameFrameX_Core_Events_EventListener_1_HandleEvent__0_GameFrameX_Core_Abstractions_Events_Event_" data-uid="GameFrameX.Core.Events.EventListener`1.HandleEvent(`0,GameFrameX.Core.Abstractions.Events.Event)">
-  HandleEvent(T, Event)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Events/EventListener.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_Core_Events_EventListener_1_HandleEvent_GameFrameX_Core_Abstractions_Events_GameEventArgs_" data-uid="GameFrameX.Core.Events.EventListener`1.HandleEvent(GameFrameX.Core.Abstractions.Events.GameEventArgs)">
+  HandleEvent(GameEventArgs)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev5/GameFrameX.Core/Events/EventListener.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>事件处理函数</p>
+  <div class="markdown level1 summary"><p>无代理对象的事件处理函数重载</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected abstract Task HandleEvent(T agent, Event evt)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task HandleEvent(GameEventArgs gameEventArgs)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>agent</code> <span class="xref">T</span></dt>
-    <dd><p>组件代理</p>
-</dd>
-    <dt><code>evt</code> <a class="xref" href="GameFrameX.Core.Abstractions.Events.Event.html">Event</a></dt>
-    <dd><p>事件</p>
+    <dt><code>gameEventArgs</code> <a class="xref" href="GameFrameX.Core.Abstractions.Events.GameEventArgs.html">GameEventArgs</a></dt>
+    <dd><p>需要处理的事件对象</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>异步任务</p>
+    <dd><p>异步任务，表示事件处理的完成状态</p>
 </dd>
   </dl>
 
@@ -298,6 +300,54 @@ Class EventListener&lt;T&gt;  <a class="header-action link-secondary" title="Vie
 
 
 
+  <h4 class="section" id="GameFrameX_Core_Events_EventListener_1_HandleEvent_GameFrameX_Core_Abstractions_Events_GameEventArgs__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>该方法会以null作为agent参数调用另一个HandleEvent重载</p>
+</div>
+
+
+
+
+  <a id="GameFrameX_Core_Events_EventListener_1_HandleEvent_" data-uid="GameFrameX.Core.Events.EventListener`1.HandleEvent*"></a>
+
+  <h3 id="GameFrameX_Core_Events_EventListener_1_HandleEvent__0_GameFrameX_Core_Abstractions_Events_GameEventArgs_" data-uid="GameFrameX.Core.Events.EventListener`1.HandleEvent(`0,GameFrameX.Core.Abstractions.Events.GameEventArgs)">
+  HandleEvent(T, GameEventArgs)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev5/GameFrameX.Core/Events/EventListener.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>具体的事件处理实现方法</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract Task HandleEvent(T agent, GameEventArgs gameEventArgs)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>agent</code> <span class="xref">T</span></dt>
+    <dd><p>泛型类型的组件代理实例</p>
+</dd>
+    <dt><code>gameEventArgs</code> <a class="xref" href="GameFrameX.Core.Abstractions.Events.GameEventArgs.html">GameEventArgs</a></dt>
+    <dd><p>需要处理的事件对象</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>异步任务，表示事件处理的完成状态</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="GameFrameX_Core_Events_EventListener_1_HandleEvent__0_GameFrameX_Core_Abstractions_Events_GameEventArgs__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>派生类必须实现该抽象方法来提供具体的事件处理逻辑</p>
+</div>
 
 
 
@@ -306,7 +356,7 @@ Class EventListener&lt;T&gt;  <a class="header-action link-secondary" title="Vie
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev4/GameFrameX.Core/Events/EventListener.cs/#L10" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev5/GameFrameX.Core/Events/EventListener.cs/#L10" class="edit-link">Edit this page</a>
         </div>
 
 

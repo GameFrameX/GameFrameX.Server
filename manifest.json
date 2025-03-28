@@ -138,20 +138,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Core.Abstractions.Events.Event.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Core.Abstractions.Events.Event.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Core.Abstractions.Events.Event",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Abstractions.Events.Event.yml\" sourcestartlinenumber=\"1\">事件参数</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.Core.Abstractions.Events.EventInfoAttribute.yml",
       "output": {
         ".html": {
@@ -166,6 +152,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.Abstractions.Events.GameEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.Abstractions.Events.GameEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.Core.Abstractions.Events.GameEventArgs",
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Abstractions.Events.GameEventArgs.yml\" sourcestartlinenumber=\"1\">事件参数</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.Core.Abstractions.Events.IEventListener.yml",
       "output": {
         ".html": {
@@ -176,7 +176,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.Core.Abstractions.Events.IEventListener",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Abstractions.Events.IEventListener.yml\" sourcestartlinenumber=\"1\">每个实例其实都是单例的</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Abstractions.Events.IEventListener.yml\" sourcestartlinenumber=\"1\">事件监听器接口\n每个实例其实都是单例的，用于处理特定类型的事件\n实现此接口的类需要保证线程安全</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -876,7 +876,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.Core.Events.EventDispatcher",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Events.EventDispatcher.yml\" sourcestartlinenumber=\"1\">事件分发类</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Events.EventDispatcher.yml\" sourcestartlinenumber=\"1\">事件分发类 - 负责处理游戏中所有事件的分发和处理</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -890,7 +890,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.Core.Events.EventListener<T>",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Events.EventListener-1.yml\" sourcestartlinenumber=\"1\">事件监听器类</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Events.EventListener-1.yml\" sourcestartlinenumber=\"1\">事件监听器基类，用于处理特定组件代理类型的事件</p>\n"
     },
     {
       "type": "ManagedReference",

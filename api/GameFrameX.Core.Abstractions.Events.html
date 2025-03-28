@@ -103,7 +103,7 @@ Classes
 Structs
 </h3>
     <dl class="jumplist">
-      <dt><a class="xref" href="GameFrameX.Core.Abstractions.Events.Event.html">Event</a></dt>
+      <dt><a class="xref" href="GameFrameX.Core.Abstractions.Events.GameEventArgs.html">GameEventArgs</a></dt>
       <dd><p>事件参数</p>
 </dd>
     </dl>
@@ -112,7 +112,9 @@ Interfaces
 </h3>
     <dl class="jumplist">
       <dt><a class="xref" href="GameFrameX.Core.Abstractions.Events.IEventListener.html">IEventListener</a></dt>
-      <dd><p>每个实例其实都是单例的</p>
+      <dd><p>事件监听器接口
+每个实例其实都是单例的，用于处理特定类型的事件
+实现此接口的类需要保证线程安全</p>
 </dd>
     </dl>
 
