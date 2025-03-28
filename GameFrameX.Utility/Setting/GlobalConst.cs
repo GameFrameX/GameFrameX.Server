@@ -26,6 +26,11 @@ public static class GlobalConst
     public const string ComponentAgentNameSuffix = "ComponentAgent";
 
     /// <summary>
+    /// 组件处理器名称后缀
+    /// </summary>
+    public const string ComponentHandlerNameSuffix = "Handler";
+    
+    /// <summary>
     /// 组件代理包裹名称后缀
     /// </summary>
     public const string ComponentAgentWrapperNameSuffix = "ComponentAgentWrapper";

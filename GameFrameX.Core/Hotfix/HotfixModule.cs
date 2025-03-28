@@ -289,6 +289,22 @@ internal sealed class HotfixModule
             return false;
         }
 
+        var classFullName = type.FullName;
+        if (classFullName == null)
+        {
+            return false;
+        }
+
+        if (!type.IsSealed)
+        {
+            throw new InvalidOperationException($"{classFullName} 必须是标记为sealed的类");
+        }
+
+        if (!classFullName.EndsWith(GlobalConst.ComponentHandlerNameSuffix))
+        {
+            throw new Exception($"组件代理必须以[{GlobalConst.ComponentHandlerNameSuffix}]结尾，{classFullName}");
+        }
+
         if (_tcpHandlerTypes.Contains(attribute.MessageType))
         {
             LogHelper.Error($"重复注册消息TCP处理器 类型:[{type.FullName}]");
