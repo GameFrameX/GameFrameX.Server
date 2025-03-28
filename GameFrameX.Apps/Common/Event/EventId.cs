@@ -34,6 +34,11 @@ public enum EventId
     /// </summary>
     GotNewPet,
 
+    /// <summary>
+    /// 玩家发送道具
+    /// </summary>
+    PlayerSendItem,
+
     #endregion
 
     /// <summary>

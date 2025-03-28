@@ -4,11 +4,10 @@
 // 
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using GameFrameX.Apps.Common.Event;
+using GameFrameX.Apps.Common.EventData;
 using GameFrameX.Apps.Common.Session;
 using GameFrameX.Apps.Player.Bag.Entity;
-using GameFrameX.Config;
-using GameFrameX.Config.Tables;
-using GameFrameX.DataBase;
 using GameFrameX.Hotfix.Logic.Player.Bag;
 
 namespace GameFrameX.Hotfix.Logic.Http.Bag;
@@ -41,7 +40,10 @@ public sealed class ReqPlayerSendItemHttpHandler : BaseHttpHandler
                 itemDic[item.Key] = item.Value;
             }
         }
-        
+
+        // 发送道具事件
+        var playerSendItemEventData = new OneParam<PlayerSendItemEventData>(new PlayerSendItemEventData(request.RoleId, itemDic));
+        EventDispatcher.Dispatch(request.RoleId, (int)EventId.PlayerSendItem, playerSendItemEventData);
         if (playerSession.IsNotNull())
         {
             // 玩家在线

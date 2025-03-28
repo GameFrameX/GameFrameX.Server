@@ -40,7 +40,7 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         }
 
         // 更新连接会话数据
-        SessionManager.UpdateSession(workChannel.GameAppSession.SessionID, playerState.Id,playerState.Id.ToString());
+        SessionManager.UpdateSession(workChannel.GameAppSession.SessionID, playerState.Id, playerState.Id.ToString());
         var respPlayerLogin = new RespPlayerLogin
         {
             UniqueId = reqLogin.UniqueId,
@@ -65,8 +65,23 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
     [Event(EventId.SessionRemove)]
     private class EL : EventListener<PlayerComponentAgent>
     {
-        protected override Task HandleEvent(PlayerComponentAgent agent, Event evt)
+        protected override Task HandleEvent(PlayerComponentAgent agent, GameEventArgs gameEventArgs)
         {
+            return agent.OnLogout();
+        }
+    }
+
+    [Event(EventId.PlayerSendItem)]
+    private class PlayerSendItemEventListener : EventListener<PlayerComponentAgent>
+    {
+        protected override Task HandleEvent(PlayerComponentAgent agent, GameEventArgs gameEventArgs)
+        {
+            if (agent == null)
+            {
+                LogHelper.Error("PlayerComponentAgent is null");
+                return Task.CompletedTask;
+            }
+
             return agent.OnLogout();
         }
     }
