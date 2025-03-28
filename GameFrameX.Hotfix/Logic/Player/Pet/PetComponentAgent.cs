@@ -19,12 +19,12 @@ public class PetComponentAgent : StateComponentAgent<PetComponent, PetState>
     [Event(EventId.GotNewPet)]
     private class EL : EventListener<PetComponentAgent>
     {
-        protected override async Task HandleEvent(PetComponentAgent agent, Event evt)
+        protected override async Task HandleEvent(PetComponentAgent agent, GameEventArgs gameEventArgs)
         {
-            switch ((EventId)evt.EventId)
+            switch ((EventId)gameEventArgs.EventId)
             {
                 case EventId.GotNewPet:
-                    await agent.OnGotNewPet((OneParam<int>)evt.Data);
+                    await agent.OnGotNewPet((OneParam<int>)gameEventArgs.Data);
                     break;
             }
         }
