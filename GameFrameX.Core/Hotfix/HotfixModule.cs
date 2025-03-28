@@ -504,6 +504,25 @@ internal sealed class HotfixModule
     }
 
     /// <summary>
+    /// 查找事件监听者。
+    /// </summary>
+    /// <param name="eventId">事件ID。</param>
+    /// <returns>事件监听者列表。</returns>
+    internal List<IEventListener> FindListeners(int eventId)
+    {
+        var listenerList = new List<IEventListener>(32);
+        foreach (var actorEvtListener in _actorEvtListeners)
+        {
+            if (actorEvtListener.Value.TryGetValue(eventId, out var listeners))
+            {
+                listenerList.AddRange(listeners);
+            }
+        }
+
+        return listenerList;
+    }
+
+    /// <summary>
     /// 获取实例（主要用于获取Event, Timer, Schedule的处理器实例）。
     /// </summary>
     /// <param name="typeName">类型名称。</param>
