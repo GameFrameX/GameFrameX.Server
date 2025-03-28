@@ -21,39 +21,41 @@ public static class EventDispatcher
     public static void Dispatch(long actorId, int eventId, Param args = null)
     {
         var actor = ActorManager.GetActor(actorId);
-        if (actor != null)
+        if (actor == null)
         {
-            var evt = new Event
-            {
-                EventId = eventId,
-                Data = args,
-            };
+            return;
+        }
 
-            async Task Work()
-            {
-                // 事件需要在本actor内执行，不可多线程执行，所以不能使用Task.WhenAll来处理
-                var listeners = HotfixManager.FindListeners(actor.Type, eventId);
-                if (listeners.IsNullOrEmpty())
-                {
-                    LogHelper.Warn($"事件：{eventId} 没有找到任何监听者");
-                    return;
-                }
+        var evt = new Event
+        {
+            EventId = eventId,
+            Data = args,
+        };
 
-                foreach (var listener in listeners)
-                {
-                    var comp = await actor.GetComponentAgent(listener.AgentType);
-                    try
-                    {
-                        await listener.HandleEvent(comp, evt);
-                    }
-                    catch (Exception exception)
-                    {
-                        LogHelper.Error(exception);
-                    }
-                }
+        async Task Work()
+        {
+            // 事件需要在本actor内执行，不可多线程执行，所以不能使用Task.WhenAll来处理
+            var listeners = HotfixManager.FindListeners(actor.Type, eventId);
+            if (listeners.IsNullOrEmpty())
+            {
+                LogHelper.Warn($"事件：{eventId} 没有找到任何监听者");
+                return;
             }
 
-            actor.Tell(Work);
+            foreach (var listener in listeners)
+            {
+                var comp = await actor.GetComponentAgent(listener.AgentType);
+                try
+                {
+                    await listener.HandleEvent(comp, evt);
+                }
+                catch (Exception exception)
+                {
+                    LogHelper.Error(exception);
+                }
+            }
         }
+
+        actor.Tell(Work);
     }
 }
