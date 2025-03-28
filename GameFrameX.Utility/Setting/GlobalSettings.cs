@@ -112,6 +112,67 @@ public static class GlobalSettings
 
         return result;
     }
+    /// <summary>
+    /// 根据服务器名称获取特定类型的设置
+    /// </summary>
+    /// <param name="serverName">服务器名称，用于匹配AppSetting中的ServerName属性</param>
+    /// <typeparam name="T">设置类型，用于类型安全检查，确保返回正确的设置类型</typeparam>
+    /// <returns>返回匹配的设置，如果没有找到则返回null。返回的设置可以被转换为类型T</returns>
+    /// <exception cref="ArgumentNullException">当serverName为null时抛出此异常</exception>
+    public static AppSetting GetSettingByServerName<T>(string serverName)
+    {
+        ArgumentNullException.ThrowIfNull(serverName, nameof(serverName));
+        foreach (var setting in Settings)
+        {
+            if (setting.ServerName == serverName)
+            {
+                return setting;
+            }
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// 根据服务器Id获取特定类型的设置
+    /// </summary>
+    /// <param name="tagName">服务器Id，用于匹配AppSetting中的ServerId属性</param>
+    /// <typeparam name="T">设置类型，用于类型安全检查，确保返回正确的设置类型</typeparam>
+    /// <returns>返回匹配的设置，如果没有找到则返回null。返回的设置可以被转换为类型T</returns>
+    /// <remarks>此方法不会对传入的serverId进行有效性验证，请确保传入的值在有效范围内</remarks>
+    public static AppSetting GetSettingByServerId<T>(int tagName)
+    {
+        foreach (var setting in Settings)
+        {
+            if (setting.ServerId == tagName)
+            {
+                return setting;
+            }
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// 根据服务器标签名称获取特定类型的设置
+    /// </summary>
+    /// <param name="tagName">服务器标签名称，用于匹配AppSetting中的TagName属性</param>
+    /// <typeparam name="T">设置类型，用于类型安全检查，确保返回正确的设置类型</typeparam>
+    /// <returns>返回匹配的设置，如果没有找到则返回null。返回的设置可以被转换为类型T</returns>
+    /// <exception cref="ArgumentNullException">当tagName为null时抛出此异常</exception>
+    public static AppSetting GetSettingByTagName<T>(string tagName)
+    {
+        ArgumentNullException.ThrowIfNull(tagName, nameof(tagName));
+        foreach (var setting in Settings)
+        {
+            if (setting.TagName == tagName)
+            {
+                return setting;
+            }
+        }
+
+        return null;
+    }
 
     /// <summary>
     /// 根据服务器类型获取特定类型的设置
