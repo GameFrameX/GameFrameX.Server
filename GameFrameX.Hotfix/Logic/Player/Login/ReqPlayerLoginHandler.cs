@@ -3,7 +3,7 @@
 namespace GameFrameX.Hotfix.Logic.Player.Login;
 
 [MessageMapping(typeof(ReqPlayerLogin))]
-internal class ReqPlayerLoginHandler : PlayerComponentHandler<PlayerComponentAgent>
+internal sealed class ReqPlayerLoginHandler : PlayerComponentHandler<PlayerComponentAgent>
 {
     /// <summary>
     /// 玩家登录初始化
