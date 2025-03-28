@@ -211,39 +211,41 @@ public static class ActorManager
     {
         foreach (var actor in ActorMap.Values)
         {
-            if (actor.AutoRecycle)
+            if (!actor.AutoRecycle)
             {
-                async Task Func()
-                {
-                    if (actor.AutoRecycle && (DateTime.Now - ActiveTimeDic[actor.Id]).TotalMinutes > 15)
-                    {
-                        async Task<bool> Work()
-                        {
-                            if (ActiveTimeDic.TryGetValue(actor.Id, out var activeTime) && (DateTime.Now - ActiveTimeDic[actor.Id]).TotalMinutes > 15)
-                            {
-                                // 防止定时回存失败时State被直接移除
-                                if (actor.ReadyToDeActive)
-                                {
-                                    await actor.Inactive();
-                                    ActorMap.TryRemove(actor.Id, out var _);
-                                    LogHelper.Debug($"actor回收 id:{actor.Id} type:{actor.Type}");
-                                }
-                                else
-                                {
-                                    // 不能存就久一点再判断
-                                    ActiveTimeDic[actor.Id] = DateTime.Now;
-                                }
-                            }
+                continue;
+            }
 
-                            return true;
+            async Task Func()
+            {
+                if (actor.AutoRecycle && (DateTime.Now - ActiveTimeDic[actor.Id]).TotalMinutes > 15)
+                {
+                    async Task<bool> Work()
+                    {
+                        if (ActiveTimeDic.TryGetValue(actor.Id, out var activeTime) && (DateTime.Now - ActiveTimeDic[actor.Id]).TotalMinutes > 15)
+                        {
+                            // 防止定时回存失败时State被直接移除
+                            if (actor.ReadyToDeActive)
+                            {
+                                await actor.Inactive();
+                                ActorMap.TryRemove(actor.Id, out var _);
+                                LogHelper.Debug($"actor回收 id:{actor.Id} type:{actor.Type}");
+                            }
+                            else
+                            {
+                                // 不能存就久一点再判断
+                                ActiveTimeDic[actor.Id] = DateTime.Now;
+                            }
                         }
 
-                        await GetLifeActor(actor.Id).SendAsync(Work);
+                        return true;
                     }
-                }
 
-                actor.Tell(Func);
+                    await GetLifeActor(actor.Id).SendAsync(Work);
+                }
             }
+
+            actor.Tell(Func);
         }
 
         return Task.CompletedTask;
@@ -261,12 +263,12 @@ public static class ActorManager
             var taskList = new List<Task>();
             foreach (var actor in ActorMap.Values)
             {
-                async void M()
+                async void Save()
                 {
                     await actor.SaveAllState();
                 }
 
-                taskList.Add(actor.SendAsync(M));
+                taskList.Add(actor.SendAsync(Save));
             }
 
             await Task.WhenAll(taskList);
