@@ -149,11 +149,13 @@ public sealed class LauncherOptions
     /// <summary>
     /// 语言
     /// </summary>
+    [Option(nameof(Language), HelpText = "语言")]
     public string Language { get; set; }
 
     /// <summary>
     /// 数据中心
     /// </summary>
+    [Option(nameof(DataCenter), HelpText = "数据中心")]
     public string DataCenter { get; set; }
 
     /// <summary>
@@ -190,7 +192,7 @@ public sealed class LauncherOptions
     /// 检查APM监控端口
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckAPMPort()
+    public void CheckApmPort()
     {
         if (APMPort <= 10000 || APMPort >= ushort.MaxValue)
         {
