@@ -10,18 +10,24 @@ namespace GameFrameX.Hotfix.Common.Events;
 
 public static class EventDispatcherExtensions
 {
-    public static void Dispatch(this IComponentAgent agent, int evtId, Param args = null)
+    /// <summary>
+    /// 分发事件
+    /// </summary>
+    /// <param name="agent">代理对象</param>
+    /// <param name="eventId">事件ID</param>
+    /// <param name="args">事件参数,可以为null</param>
+    public static void Dispatch(this IComponentAgent agent, int eventId, Param args = null)
     {
-        var evt = new Event
+        var gameEventArgs = new GameEventArgs
         {
-            EventId = evtId,
+            EventId = eventId,
             Data = args,
         };
 
         // 自己处理
-        SelfHandle(agent, evtId, evt);
+        SelfHandle(agent, eventId, gameEventArgs);
 
-        if ((EventId)evtId > EventId.RoleSeparator && agent.OwnerType > GlobalConst.ActorTypeSeparator)
+        if ((EventId)eventId > EventId.RoleSeparator && agent.OwnerType > GlobalConst.ActorTypeSeparator)
         {
             // 全局非玩家事件，抛给所有玩家
             agent.Tell(()
@@ -30,13 +36,13 @@ public static class EventDispatcherExtensions
                            return ServerComponentAgent.OnlineRoleForeach(role
                                                                              =>
                                                                          {
-                                                                             role.Dispatch(evtId, args);
+                                                                             role.Dispatch(eventId, args);
                                                                          });
                        });
         }
     }
 
-    private static void SelfHandle(IComponentAgent agent, int evtId, Event evt)
+    private static void SelfHandle(IComponentAgent agent, int evtId, GameEventArgs evt)
     {
         agent.Tell(async () =>
         {
@@ -63,8 +69,14 @@ public static class EventDispatcherExtensions
         });
     }
 
-    public static void Dispatch(this IComponentAgent agent, EventId evtId, Param args = null)
+    /// <summary>
+    /// 分发事件
+    /// </summary>
+    /// <param name="agent">代理对象</param>
+    /// <param name="eventId">事件ID</param>
+    /// <param name="args">事件参数</param>
+    public static void Dispatch(this IComponentAgent agent, EventId eventId, Param args = null)
     {
-        Dispatch(agent, (int)evtId, args);
+        Dispatch(agent, (int)eventId, args);
     }
 }
