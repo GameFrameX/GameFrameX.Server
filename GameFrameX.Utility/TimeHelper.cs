@@ -651,6 +651,114 @@ public static class TimeHelper
     }
 
     /// <summary>
+    /// 获取明天开始时间
+    /// </summary>
+    /// <returns>明天零点时间</returns>
+    public static DateTime GetTomorrowStartTime()
+    {
+        return DateTime.Today.AddDays(1);
+    }
+
+    /// <summary>
+    /// 获取明天开始时间戳
+    /// </summary>
+    /// <returns>明天零点时间戳(秒)</returns>
+    public static long GetTomorrowStartTimestamp()
+    {
+        return new DateTimeOffset(GetTomorrowStartTime()).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取明天结束时间
+    /// </summary>
+    /// <returns>明天23:59:59的时间</returns>
+    public static DateTime GetTomorrowEndTime()
+    {
+        return DateTime.Today.AddDays(2).AddSeconds(-1);
+    }
+
+    /// <summary>
+    /// 获取明天结束时间戳
+    /// </summary>
+    /// <returns>明天23:59:59的时间戳(秒)</returns>
+    public static long GetTomorrowEndTimestamp()
+    {
+        return new DateTimeOffset(GetTomorrowEndTime()).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取下周开始时间
+    /// </summary>
+    /// <returns>下周一零点时间</returns>
+    public static DateTime GetNextWeekStartTime()
+    {
+        return GetWeekStartTime().AddDays(7);
+    }
+
+    /// <summary>
+    /// 获取下周开始时间戳
+    /// </summary>
+    /// <returns>下周一零点时间戳(秒)</returns>
+    public static long GetNextWeekStartTimestamp()
+    {
+        return new DateTimeOffset(GetNextWeekStartTime()).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取下周结束时间
+    /// </summary>
+    /// <returns>下周日23:59:59的时间</returns>
+    public static DateTime GetNextWeekEndTime()
+    {
+        return GetNextWeekStartTime().AddDays(7).AddSeconds(-1);
+    }
+
+    /// <summary>
+    /// 获取下周结束时间戳
+    /// </summary>
+    /// <returns>下周日23:59:59的时间戳(秒)</returns>
+    public static long GetNextWeekEndTimestamp()
+    {
+        return new DateTimeOffset(GetNextWeekEndTime()).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取下月开始时间
+    /// </summary>
+    /// <returns>下月1号零点时间</returns>
+    public static DateTime GetNextMonthStartTime()
+    {
+        return GetMonthStartTime().AddMonths(1);
+    }
+
+    /// <summary>
+    /// 获取下月开始时间戳
+    /// </summary>
+    /// <returns>下月1号零点时间戳(秒)</returns>
+    public static long GetNextMonthStartTimestamp()
+    {
+        return new DateTimeOffset(GetNextMonthStartTime()).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 获取下月结束时间
+    /// </summary>
+    /// <returns>下月最后一天23:59:59的时间</returns>
+    public static DateTime GetNextMonthEndTime()
+    {
+        return GetNextMonthStartTime().AddMonths(1).AddSeconds(-1);
+    }
+
+    /// <summary>
+    /// 获取下月结束时间戳
+    /// </summary>
+    /// <returns>下月最后一天23:59:59的时间戳(秒)</returns>
+    public static long GetNextMonthEndTimestamp()
+    {
+        return new DateTimeOffset(GetNextMonthEndTime()).ToUnixTimeSeconds();
+    }
+
+    /// <summary>
     /// 获取指定日期所在周的结束时间
     /// </summary>
     /// <param name="date">指定日期</param>
