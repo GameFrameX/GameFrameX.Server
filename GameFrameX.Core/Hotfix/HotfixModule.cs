@@ -284,7 +284,7 @@ internal sealed class HotfixModule
     private bool AddTcpHandler(Type type)
     {
         var attribute = (MessageMappingAttribute)type.GetCustomAttribute(typeof(MessageMappingAttribute), true);
-        if (attribute.IsNull())
+        if (attribute == null)
         {
             return false;
         }
@@ -302,7 +302,7 @@ internal sealed class HotfixModule
 
         if (!classFullName.EndsWith(GlobalConst.ComponentHandlerNameSuffix))
         {
-            throw new Exception($"组件代理必须以[{GlobalConst.ComponentHandlerNameSuffix}]结尾，{classFullName}");
+            throw new Exception($"消息处理器 必须以[{GlobalConst.ComponentHandlerNameSuffix}]结尾，{classFullName}");
         }
 
         if (_tcpHandlerTypes.Contains(attribute.MessageType))
@@ -312,7 +312,7 @@ internal sealed class HotfixModule
         }
 
         var msgIdField = (MessageTypeHandlerAttribute)attribute.MessageType.GetCustomAttribute(typeof(MessageTypeHandlerAttribute), true);
-        if (msgIdField.IsNull())
+        if (msgIdField == null)
         {
             return false;
         }
