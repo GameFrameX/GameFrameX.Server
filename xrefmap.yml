@@ -25343,6 +25343,12 @@ references:
   commentId: F:GameFrameX.Utility.Setting.GlobalConst.ComponentHandlerNameSuffix
   fullName: GameFrameX.Utility.Setting.GlobalConst.ComponentHandlerNameSuffix
   nameWithType: GlobalConst.ComponentHandlerNameSuffix
+- uid: GameFrameX.Utility.Setting.GlobalConst.EventListenerNameSuffix
+  name: EventListenerNameSuffix
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_EventListenerNameSuffix
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.EventListenerNameSuffix
+  fullName: GameFrameX.Utility.Setting.GlobalConst.EventListenerNameSuffix
+  nameWithType: GlobalConst.EventListenerNameSuffix
 - uid: GameFrameX.Utility.Setting.GlobalConst.HotfixNameSpaceNamePrefix
   name: HotfixNameSpaceNamePrefix
   href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_HotfixNameSpaceNamePrefix
