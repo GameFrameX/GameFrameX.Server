@@ -339,28 +339,43 @@ internal sealed class HotfixModule
             return false;
         }
 
+        var classFullName = type.FullName;
+        if (classFullName == null)
+        {
+            return false;
+        }
+
+        if (!type.IsSealed)
+        {
+            throw new InvalidOperationException($"{classFullName} 必须是标记为sealed的类");
+        }
+
+        if (!classFullName.EndsWith(GlobalConst.EventListenerNameSuffix))
+        {
+            throw new Exception($"事件处理器 必须以[{GlobalConst.EventListenerNameSuffix}]结尾，{classFullName}");
+        }
+
         var compAgentType = type.BaseType.GetGenericArguments()[0];
         var compType = compAgentType.BaseType.GetGenericArguments()[0];
         var actorType = ComponentRegister.ComponentActorDic[compType];
         var evtListenersDic = _actorEvtListeners.GetOrAdd(actorType);
 
-        var find = false;
-        foreach (var attr in type.GetCustomAttributes())
-        {
-            if (attr is EventInfoAttribute evt)
-            {
-                find = true;
-
-                var evtId = evt.EventId;
-                var listeners = evtListenersDic.GetOrAdd(evtId);
-                listeners.Add((IEventListener)Activator.CreateInstance(type));
-            }
-        }
-
-        if (!find)
+        var eventInfoAttributes = type.GetCustomAttributes<EventInfoAttribute>();
+        var infoAttributes = eventInfoAttributes.ToList();
+        if (infoAttributes.Count == 0)
         {
             throw new Exception($"IEventListener:{type.FullName}没有指定监听的事件");
         }
+
+        var eventInfoAttribute = infoAttributes.FirstOrDefault();
+        if (eventInfoAttribute == null)
+        {
+            throw new Exception($"IEventListener:{type.FullName}没有指定监听的事件");
+        }
+
+        var evtId = eventInfoAttribute.EventId;
+        var listeners = evtListenersDic.GetOrAdd(evtId);
+        listeners.Add((IEventListener)Activator.CreateInstance(type));
 
         return true;
     }
