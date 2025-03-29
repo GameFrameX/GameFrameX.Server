@@ -1,7 +1,6 @@
 ﻿using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Core.Actors;
 using GameFrameX.Core.Hotfix;
-using GameFrameX.Utility;
 using GameFrameX.Utility.Extensions;
 using GameFrameX.Foundation.Logger;
 
@@ -18,15 +17,8 @@ public static class EventDispatcher
     /// <param name="actorId">目标Actor的唯一标识符，如果为无效值则分发到全局监听器</param>
     /// <param name="eventId">要分发的事件ID</param>
     /// <param name="eventArgs">事件携带的参数数据，可以为null</param>
-    public static void Dispatch(long actorId, int eventId, Param eventArgs = null)
+    public static void Dispatch(long actorId, int eventId, GameEventArgs eventArgs = null)
     {
-        // 构造事件参数对象
-        var gameEventArgs = new GameEventArgs
-        {
-            EventId = eventId,
-            Data = eventArgs,
-        };
-
         // 尝试获取目标Actor
         var actor = ActorManager.GetActor(actorId);
         if (actor != null)
@@ -51,7 +43,7 @@ public static class EventDispatcher
                     try
                     {
                         // 调用监听器的事件处理方法
-                        await listener.HandleEvent(comp, gameEventArgs);
+                        await listener.HandleEvent(comp, eventArgs);
                     }
                     catch (Exception exception)
                     {
@@ -84,7 +76,7 @@ public static class EventDispatcher
                     try
                     {
                         // 调用监听器的事件处理方法
-                        await listener.HandleEvent(gameEventArgs);
+                        await listener.HandleEvent(eventArgs);
                     }
                     catch (Exception exception)
                     {

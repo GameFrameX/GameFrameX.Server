@@ -1,5 +1,5 @@
 ﻿using GameFrameX.Core.Abstractions.Agent;
-using GameFrameX.Utility;
+using GameFrameX.Core.Abstractions.Events;
 
 namespace GameFrameX.Core.Utility;
 
@@ -12,9 +12,9 @@ public interface IAgentCallback
     /// 执行
     /// </summary>
     /// <param name="agent">组件代理</param>
-    /// <param name="param">参数</param>
+    /// <param name="gameEventArgs">参数</param>
     /// <returns></returns>
-    Task<bool> Invoke(IComponentAgent agent, Param param = null);
+    Task<bool> Invoke(IComponentAgent agent, GameEventArgs gameEventArgs = null);
 
     /// <summary>
     /// 组件代理类型
@@ -41,18 +41,18 @@ public abstract class AgentCallback<TAgent> : IAgentCallback where TAgent : ICom
     /// 执行
     /// </summary>
     /// <param name="agent"></param>
-    /// <param name="param"></param>
+    /// <param name="gameEventArgs"></param>
     /// <returns></returns>
-    public Task<bool> Invoke(IComponentAgent agent, Param param = null)
+    public Task<bool> Invoke(IComponentAgent agent, GameEventArgs gameEventArgs = null)
     {
-        return OnCall((TAgent)agent, param);
+        return OnCall((TAgent)agent, gameEventArgs);
     }
 
     /// <summary>
     /// 回调
     /// </summary>
     /// <param name="comp"></param>
-    /// <param name="param"></param>
+    /// <param name="gameEventArgs"></param>
     /// <returns></returns>
-    protected abstract Task<bool> OnCall(TAgent comp, Param param);
+    protected abstract Task<bool> OnCall(TAgent comp, GameEventArgs gameEventArgs);
 }

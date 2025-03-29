@@ -1,8 +1,8 @@
-﻿using GameFrameX.Core.Actors;
+﻿using GameFrameX.Core.Abstractions.Events;
+using GameFrameX.Core.Actors;
 using GameFrameX.Core.Hotfix;
 using GameFrameX.Core.Timer.Handler;
 using GameFrameX.Core.Utility;
-using GameFrameX.Utility;
 using GameFrameX.Foundation.Logger;
 using Quartz;
 using Quartz.Impl;
@@ -136,10 +136,10 @@ public static class QuartzTimer
     /// <param name="actorId">Actor的唯一标识,用于定位执行任务的Actor</param>
     /// <param name="delay">首次执行前的延迟时间</param>
     /// <param name="interval">每次执行之间的间隔时间</param>
-    /// <param name="param">传递给定时器处理器的自定义参数</param>
+    /// <param name="eventArgs">传递给定时器处理器的自定义参数</param>
     /// <param name="repeatCount">循环次数,设置为-1表示无限循环执行</param>
     /// <returns>生成的定时任务ID,可用于后续管理该任务</returns>
-    public static long Schedule<T>(long actorId, TimeSpan delay, TimeSpan interval, Param param = null, int repeatCount = -1) where T : ITimerHandler
+    public static long Schedule<T>(long actorId, TimeSpan delay, TimeSpan interval, GameEventArgs eventArgs = null, int repeatCount = -1) where T : ITimerHandler
     {
         var nextId = NextId();
         var firstTimeOffset = DateTimeOffset.Now.Add(delay);
@@ -153,7 +153,7 @@ public static class QuartzTimer
             builder = TriggerBuilder.Create().StartAt(firstTimeOffset).WithSimpleSchedule(x => x.WithInterval(interval).WithRepeatCount(repeatCount));
         }
 
-        _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, param), builder.Build());
+        _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, eventArgs), builder.Build());
         return nextId;
     }
 
@@ -163,14 +163,14 @@ public static class QuartzTimer
     /// <typeparam name="T">定时器处理器类型,必须实现ITimerHandler接口</typeparam>
     /// <param name="actorId">Actor的唯一标识,用于定位执行任务的Actor</param>
     /// <param name="delay">延迟执行的时间</param>
-    /// <param name="param">传递给定时器处理器的自定义参数</param>
+    /// <param name="eventArgs">传递给定时器处理器的自定义参数</param>
     /// <returns>生成的定时任务ID,可用于后续管理该任务</returns>
-    public static long Delay<T>(long actorId, TimeSpan delay, Param param = null) where T : ITimerHandler
+    public static long Delay<T>(long actorId, TimeSpan delay, GameEventArgs eventArgs = null) where T : ITimerHandler
     {
         var nextId = NextId();
         var firstTimeOffset = DateTimeOffset.Now.Add(delay);
         var trigger = TriggerBuilder.Create().StartAt(firstTimeOffset).Build();
-        _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, param), trigger);
+        _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, eventArgs), trigger);
         return nextId;
     }
 
@@ -180,13 +180,13 @@ public static class QuartzTimer
     /// <typeparam name="T">定时器处理器类型,必须实现ITimerHandler接口</typeparam>
     /// <param name="actorId">Actor的唯一标识,用于定位执行任务的Actor</param>
     /// <param name="cronExpression">标准的Cron表达式,用于配置复杂的执行时间规则</param>
-    /// <param name="param">传递给定时器处理器的自定义参数</param>
+    /// <param name="eventArgs">传递给定时器处理器的自定义参数</param>
     /// <returns>生成的定时任务ID,可用于后续管理该任务</returns>
-    public static long WithCronExpression<T>(long actorId, string cronExpression, Param param = null) where T : ITimerHandler
+    public static long WithCronExpression<T>(long actorId, string cronExpression, GameEventArgs eventArgs = null) where T : ITimerHandler
     {
         var nextId = NextId();
         var trigger = TriggerBuilder.Create().StartNow().WithCronSchedule(cronExpression).Build();
-        _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, param), trigger);
+        _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, eventArgs), trigger);
         return nextId;
     }
 
@@ -197,10 +197,10 @@ public static class QuartzTimer
     /// <param name="actorId">Actor的唯一标识,用于定位执行任务的Actor</param>
     /// <param name="hour">指定执行的小时(0-23)</param>
     /// <param name="minute">指定执行的分钟(0-59)</param>
-    /// <param name="param">传递给定时器处理器的自定义参数</param>
+    /// <param name="eventArgs">传递给定时器处理器的自定义参数</param>
     /// <returns>生成的定时任务ID,可用于后续管理该任务</returns>
     /// <exception cref="ArgumentOutOfRangeException">当hour或minute参数超出有效范围时抛出</exception>
-    public static long Daily<T>(long actorId, int hour, int minute, Param param = null) where T : ITimerHandler
+    public static long Daily<T>(long actorId, int hour, int minute, GameEventArgs eventArgs = null) where T : ITimerHandler
     {
         if (hour < 0 || hour >= 24 || minute < 0 || minute >= 60)
         {
@@ -209,7 +209,7 @@ public static class QuartzTimer
 
         var nextId = NextId();
         var trigger = TriggerBuilder.Create().StartNow().WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(hour, minute)).Build();
-        _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, param), trigger);
+        _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, eventArgs), trigger);
         return nextId;
     }
 
@@ -220,11 +220,11 @@ public static class QuartzTimer
     /// <param name="actorId">Actor的唯一标识,用于定位执行任务的Actor</param>
     /// <param name="hour">指定执行的小时(0-23)</param>
     /// <param name="minute">指定执行的分钟(0-59)</param>
-    /// <param name="param">传递给定时器处理器的自定义参数</param>
+    /// <param name="gameEventArgs">传递给定时器处理器的自定义参数</param>
     /// <param name="dayOfWeeks">指定要执行的星期几,可以指定多个</param>
     /// <returns>生成的定时任务ID,可用于后续管理该任务</returns>
     /// <exception cref="ArgumentNullException">当dayOfWeeks参数为空或长度为0时抛出</exception>
-    public static long WithDayOfWeeks<T>(long actorId, int hour, int minute, Param param, params DayOfWeek[] dayOfWeeks) where T : ITimerHandler
+    public static long WithDayOfWeeks<T>(long actorId, int hour, int minute, GameEventArgs gameEventArgs, params DayOfWeek[] dayOfWeeks) where T : ITimerHandler
     {
         if (dayOfWeeks == null || dayOfWeeks.Length <= 0)
         {
@@ -233,7 +233,7 @@ public static class QuartzTimer
 
         var nextId = NextId();
         var trigger = TriggerBuilder.Create().StartNow().WithSchedule(CronScheduleBuilder.AtHourAndMinuteOnGivenDaysOfWeek(hour, minute, dayOfWeeks)).Build();
-        _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, param), trigger);
+        _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, gameEventArgs), trigger);
         return nextId;
     }
 
@@ -245,13 +245,13 @@ public static class QuartzTimer
     /// <param name="dayOfWeek">指定执行的星期几</param>
     /// <param name="hour">指定执行的小时(0-23)</param>
     /// <param name="minute">指定执行的分钟(0-59)</param>
-    /// <param name="param">传递给定时器处理器的自定义参数</param>
+    /// <param name="gameEventArgs">传递给定时器处理器的自定义参数</param>
     /// <returns>生成的定时任务ID,可用于后续管理该任务</returns>
-    public static long Weekly<T>(long actorId, DayOfWeek dayOfWeek, int hour, int minute, Param param = null) where T : ITimerHandler
+    public static long Weekly<T>(long actorId, DayOfWeek dayOfWeek, int hour, int minute, GameEventArgs gameEventArgs = null) where T : ITimerHandler
     {
         var nextId = NextId();
         var trigger = TriggerBuilder.Create().StartNow().WithSchedule(CronScheduleBuilder.WeeklyOnDayAndHourAndMinute(dayOfWeek, hour, minute)).Build();
-        _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, param), trigger);
+        _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, gameEventArgs), trigger);
         return nextId;
     }
 
@@ -263,10 +263,10 @@ public static class QuartzTimer
     /// <param name="dayOfMonth">指定执行的日期(1-31)</param>
     /// <param name="hour">指定执行的小时(0-23)</param>
     /// <param name="minute">指定执行的分钟(0-59)</param>
-    /// <param name="param">传递给定时器处理器的自定义参数</param>
+    /// <param name="gameEventArgs">传递给定时器处理器的自定义参数</param>
     /// <returns>生成的定时任务ID,可用于后续管理该任务</returns>
     /// <exception cref="ArgumentException">当dayOfMonth参数超出有效范围时抛出</exception>
-    public static long Monthly<T>(long actorId, int dayOfMonth, int hour, int minute, Param param = null) where T : ITimerHandler
+    public static long Monthly<T>(long actorId, int dayOfMonth, int hour, int minute, GameEventArgs gameEventArgs = null) where T : ITimerHandler
     {
         if (dayOfMonth is < 0 or > 31)
         {
@@ -275,7 +275,7 @@ public static class QuartzTimer
 
         var nextId = NextId();
         var trigger = TriggerBuilder.Create().StartNow().WithSchedule(CronScheduleBuilder.MonthlyOnDayAndHourAndMinute(dayOfMonth, hour, minute)).Build();
-        _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, param), trigger);
+        _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, gameEventArgs), trigger);
         return nextId;
     }
 
@@ -516,7 +516,7 @@ public static class QuartzTimer
             var handlerType = context.JobDetail.JobDataMap.GetString(TimerKey);
             try
             {
-                var param = context.JobDetail.JobDataMap.Get(ParamKey) as Param;
+                var param = context.JobDetail.JobDataMap.Get(ParamKey) as GameEventArgs;
                 var handler = HotfixManager.GetInstance<ITimerHandler>(handlerType);
                 if (handler != null)
                 {
@@ -558,10 +558,10 @@ public static class QuartzTimer
     /// <typeparam name="T">定时器处理器类型</typeparam>
     /// <param name="id">任务ID</param>
     /// <param name="actorId">Actor ID</param>
-    /// <param name="param">任务参数</param>
+    /// <param name="eventArgs">任务参数</param>
     /// <returns>作业详情对象</returns>
     /// <exception cref="Exception">当定时器不在热更新程序集中时抛出</exception>
-    private static IJobDetail GetJobDetail<T>(long id, long actorId, Param param) where T : ITimerHandler
+    private static IJobDetail GetJobDetail<T>(long id, long actorId, GameEventArgs eventArgs) where T : ITimerHandler
     {
         var handlerType = typeof(T);
         StatisticsTool.Count(handlerType.FullName);
@@ -571,7 +571,7 @@ public static class QuartzTimer
         }
 
         var job = JobBuilder.Create<TimerJobHelper>().WithIdentity(id + string.Empty).Build();
-        job.JobDataMap.Add(ParamKey, param);
+        job.JobDataMap.Add(ParamKey, eventArgs);
         job.JobDataMap.Add(ActorIdKey, actorId);
         job.JobDataMap.Add(TimerKey, handlerType.FullName);
         return job;
@@ -582,13 +582,13 @@ public static class QuartzTimer
     /// </summary>
     /// <typeparam name="T">定时器处理器类型</typeparam>
     /// <param name="id">任务ID</param>
-    /// <param name="param">任务参数</param>
+    /// <param name="gameEventArgs">任务参数</param>
     /// <returns>作业详情对象</returns>
-    private static IJobDetail GetJobDetail<T>(long id, Param param) where T : NotHotfixTimerHandler
+    private static IJobDetail GetJobDetail<T>(long id, GameEventArgs gameEventArgs) where T : NotHotfixTimerHandler
     {
         StatisticsTool.Count(typeof(T).FullName);
         var job = JobBuilder.Create<T>().WithIdentity(id + string.Empty).Build();
-        job.JobDataMap.Add(ParamKey, param);
+        job.JobDataMap.Add(ParamKey, gameEventArgs);
         return job;
     }
 

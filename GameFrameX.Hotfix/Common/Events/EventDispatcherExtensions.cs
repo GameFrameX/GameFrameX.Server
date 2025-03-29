@@ -5,6 +5,7 @@ using GameFrameX.Hotfix.Logic.Server.Server;
 using GameFrameX.Utility.Extensions;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility.Setting;
+using GameEventArgs = GameFrameX.Core.Abstractions.Events.GameEventArgs;
 
 namespace GameFrameX.Hotfix.Common.Events;
 
@@ -15,15 +16,9 @@ public static class EventDispatcherExtensions
     /// </summary>
     /// <param name="agent">代理对象</param>
     /// <param name="eventId">事件ID</param>
-    /// <param name="args">事件参数,可以为null</param>
-    public static void Dispatch(this IComponentAgent agent, int eventId, Param args = null)
+    /// <param name="gameEventArgs">事件参数,可以为null</param>
+    public static void Dispatch(this IComponentAgent agent, int eventId, GameEventArgs gameEventArgs = null)
     {
-        var gameEventArgs = new GameEventArgs
-        {
-            EventId = eventId,
-            Data = args,
-        };
-
         // 自己处理
         SelfHandle(agent, eventId, gameEventArgs);
 
@@ -36,7 +31,7 @@ public static class EventDispatcherExtensions
                            return ServerComponentAgent.OnlineRoleForeach(role
                                                                              =>
                                                                          {
-                                                                             role.Dispatch(eventId, args);
+                                                                             role.Dispatch(eventId, gameEventArgs);
                                                                          });
                        });
         }
@@ -75,7 +70,7 @@ public static class EventDispatcherExtensions
     /// <param name="agent">代理对象</param>
     /// <param name="eventId">事件ID</param>
     /// <param name="args">事件参数</param>
-    public static void Dispatch(this IComponentAgent agent, EventId eventId, Param args = null)
+    public static void Dispatch(this IComponentAgent agent, EventId eventId, GameEventArgs args = null)
     {
         Dispatch(agent, (int)eventId, args);
     }

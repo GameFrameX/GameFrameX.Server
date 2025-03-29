@@ -1,4 +1,4 @@
-﻿using GameFrameX.Utility;
+﻿using GameFrameX.Core.Abstractions.Events;
 using Quartz;
 
 namespace GameFrameX.Core.Timer.Handler;
@@ -15,14 +15,14 @@ public abstract class NotHotfixTimerHandler : IJob
     /// <returns>一个任务，表示异步操作的结果</returns>
     public Task Execute(IJobExecutionContext context)
     {
-        var param = context.JobDetail.JobDataMap.Get(QuartzTimer.ParamKey) as Param;
+        var param = context.JobDetail.JobDataMap.Get(QuartzTimer.ParamKey) as GameEventArgs;
         return HandleTimer(param);
     }
 
     /// <summary>
     /// 计时器处理函数
     /// </summary>
-    /// <param name="param">传递给处理器的参数</param>
+    /// <param name="gameEventArgs">传递给处理器的参数</param>
     /// <returns>一个任务，表示异步操作的结果</returns>
-    protected abstract Task HandleTimer(Param param);
+    protected abstract Task HandleTimer(GameEventArgs gameEventArgs);
 }

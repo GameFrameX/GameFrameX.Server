@@ -1,5 +1,5 @@
 ﻿using GameFrameX.Core.Abstractions.Agent;
-using GameFrameX.Utility;
+using GameFrameX.Core.Abstractions.Events;
 
 namespace GameFrameX.Core.Timer.Handler;
 
@@ -13,18 +13,18 @@ public abstract class TimerHandler<TAgent> : ITimerHandler where TAgent : ICompo
     /// 内部计时器处理器调用。由 Quartz 调用
     /// </summary>
     /// <param name="agent">组件代理对象，用于与系统其他部分交互</param>
-    /// <param name="param">传递给处理器的参数</param>
+    /// <param name="gameEventArgs">传递给处理器的参数</param>
     /// <returns>一个任务，表示异步操作的结果</returns>
-    public Task InnerHandleTimer(IComponentAgent agent, Param param)
+    public Task InnerHandleTimer(IComponentAgent agent, GameEventArgs gameEventArgs)
     {
-        return HandleTimer((TAgent)agent, param);
+        return HandleTimer((TAgent)agent, gameEventArgs);
     }
 
     /// <summary>
     /// 计时器调用
     /// </summary>
     /// <param name="agent">调用对象，具体类型的组件代理对象</param>
-    /// <param name="param">参数对象，传递给处理器的参数</param>
+    /// <param name="gameEventArgs">参数对象，传递给处理器的参数</param>
     /// <returns>一个任务，表示异步操作的结果</returns>
-    protected abstract Task HandleTimer(TAgent agent, Param param);
+    protected abstract Task HandleTimer(TAgent agent, GameEventArgs gameEventArgs);
 }

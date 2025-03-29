@@ -1,9 +1,9 @@
 ﻿using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Abstractions.Agent;
+using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Core.Components;
 using GameFrameX.Core.Timer;
 using GameFrameX.Core.Timer.Handler;
-using GameFrameX.Utility;
 
 namespace GameFrameX.Core.Hotfix.Agent;
 
@@ -211,14 +211,14 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// 延迟执行定时任务，在指定的时间点执行一次任务
     /// </summary>
     /// <param name="time">指定执行任务的具体时间点</param>
-    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="eventArgs">传递给定时任务处理器的自定义参数对象</param>
     /// <param name="unScheduleId">需要取消的已存在的定时任务ID，如果大于0则会先取消该任务</param>
     /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
     /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
-    public long Delay<T>(DateTime time, Param param = null, long unScheduleId = 0) where T : ITimerHandler
+    public long Delay<T>(DateTime time, GameEventArgs eventArgs = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
-        var scheduleId = QuartzTimer.Delay<T>(ActorId, time - DateTime.Now, param);
+        var scheduleId = QuartzTimer.Delay<T>(ActorId, time - DateTime.Now, eventArgs);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }
@@ -227,14 +227,14 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// 延迟执行定时任务，将时间戳转换为DateTime后在指定时间点执行一次任务
     /// </summary>
     /// <param name="time">Unix时间戳，将被转换为DateTime类型的执行时间点</param>
-    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="eventArgs">传递给定时任务处理器的自定义参数对象</param>
     /// <param name="unScheduleId">需要取消的已存在的定时任务ID，如果大于0则会先取消该任务</param>
     /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
     /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
-    public long Delay<T>(long time, Param param = null, long unScheduleId = 0) where T : ITimerHandler
+    public long Delay<T>(long time, GameEventArgs eventArgs = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
-        var scheduleId = QuartzTimer.Delay<T>(ActorId, new DateTime(time) - DateTime.Now, param);
+        var scheduleId = QuartzTimer.Delay<T>(ActorId, new DateTime(time) - DateTime.Now, eventArgs);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }
@@ -243,14 +243,14 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// 延迟执行定时任务，在指定的时间间隔后执行一次任务
     /// </summary>
     /// <param name="delay">从当前时间开始延迟执行的时间间隔</param>
-    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="eventArgs">传递给定时任务处理器的自定义参数对象</param>
     /// <param name="unScheduleId">需要取消的已存在的定时任务ID，如果大于0则会先取消该任务</param>
     /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
     /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
-    public long Delay<T>(TimeSpan delay, Param param = null, long unScheduleId = 0) where T : ITimerHandler
+    public long Delay<T>(TimeSpan delay, GameEventArgs eventArgs = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
-        var scheduleId = QuartzTimer.Delay<T>(ActorId, delay, param);
+        var scheduleId = QuartzTimer.Delay<T>(ActorId, delay, eventArgs);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }
@@ -260,15 +260,15 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// </summary>
     /// <param name="delay">首次执行前的延迟时间</param>
     /// <param name="interval">连续执行之间的时间间隔</param>
-    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="gameEventArgs">传递给定时任务处理器的自定义参数对象</param>
     /// <param name="repeatCount">任务重复执行的次数，小于0表示无限重复执行</param>
     /// <param name="unScheduleId">需要取消的已存在的定时任务ID，如果大于0则会先取消该任务</param>
     /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
     /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
-    public long Schedule<T>(TimeSpan delay, TimeSpan interval, Param param = null, int repeatCount = -1, long unScheduleId = 0) where T : ITimerHandler
+    public long Schedule<T>(TimeSpan delay, TimeSpan interval, GameEventArgs gameEventArgs = null, int repeatCount = -1, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
-        var scheduleId = QuartzTimer.Schedule<T>(ActorId, delay, interval, param, repeatCount);
+        var scheduleId = QuartzTimer.Schedule<T>(ActorId, delay, interval, gameEventArgs, repeatCount);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }
@@ -278,14 +278,14 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// </summary>
     /// <param name="hour">每天执行的小时数（0-23）</param>
     /// <param name="minute">每天执行的分钟数（0-59）</param>
-    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="gameEventArgs">传递给定时任务处理器的自定义参数对象</param>
     /// <param name="unScheduleId">需要取消的已存在的定时任务ID，如果大于0则会先取消该任务</param>
     /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
     /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
-    public long Daily<T>(int hour = 0, int minute = 0, Param param = null, long unScheduleId = 0) where T : ITimerHandler
+    public long Daily<T>(int hour = 0, int minute = 0, GameEventArgs gameEventArgs = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
-        var scheduleId = QuartzTimer.Daily<T>(ActorId, hour, minute, param);
+        var scheduleId = QuartzTimer.Daily<T>(ActorId, hour, minute, gameEventArgs);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }
@@ -296,14 +296,14 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// <param name="dayOfWeek">指定每周执行的星期几（周日到周六）</param>
     /// <param name="hour">执行的小时数（0-23）</param>
     /// <param name="minute">执行的分钟数（0-59）</param>
-    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="gameEventArgs">传递给定时任务处理器的自定义参数对象</param>
     /// <param name="unScheduleId">需要取消的已存在的定时任务ID，如果大于0则会先取消该任务</param>
     /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
     /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
-    public long Weekly<T>(DayOfWeek dayOfWeek, int hour = 0, int minute = 0, Param param = null, long unScheduleId = 0) where T : ITimerHandler
+    public long Weekly<T>(DayOfWeek dayOfWeek, int hour = 0, int minute = 0, GameEventArgs gameEventArgs = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
-        var scheduleId = QuartzTimer.Weekly<T>(ActorId, dayOfWeek, hour, minute, param);
+        var scheduleId = QuartzTimer.Weekly<T>(ActorId, dayOfWeek, hour, minute, gameEventArgs);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }
@@ -313,13 +313,13 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// </summary>
     /// <param name="hour">执行的小时数（0-23）</param>
     /// <param name="minute">执行的分钟数（0-59）</param>
-    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="gameEventArgs">传递给定时任务处理器的自定义参数对象</param>
     /// <param name="dayOfWeeks">指定要执行的多个星期几，可变参数数组</param>
     /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
     /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
-    public long WithDayOfWeeks<T>(int hour, int minute, Param param, params DayOfWeek[] dayOfWeeks) where T : ITimerHandler
+    public long WithDayOfWeeks<T>(int hour, int minute, GameEventArgs gameEventArgs, params DayOfWeek[] dayOfWeeks) where T : ITimerHandler
     {
-        var scheduleId = QuartzTimer.WithDayOfWeeks<T>(ActorId, hour, minute, param, dayOfWeeks);
+        var scheduleId = QuartzTimer.WithDayOfWeeks<T>(ActorId, hour, minute, gameEventArgs, dayOfWeeks);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }
@@ -330,14 +330,14 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// <param name="dayOfMonth">指定每月执行的日期（1-31）</param>
     /// <param name="hour">执行的小时数（0-23）</param>
     /// <param name="minute">执行的分钟数（0-59）</param>
-    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="gameEventArgs">传递给定时任务处理器的自定义参数对象</param>
     /// <param name="unScheduleId">需要取消的已存在的定时任务ID，如果大于0则会先取消该任务</param>
     /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
     /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
-    public long Monthly<T>(int dayOfMonth, int hour = 0, int minute = 0, Param param = null, long unScheduleId = 0) where T : ITimerHandler
+    public long Monthly<T>(int dayOfMonth, int hour = 0, int minute = 0, GameEventArgs gameEventArgs = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
-        var scheduleId = QuartzTimer.Monthly<T>(ActorId, dayOfMonth, hour, minute, param);
+        var scheduleId = QuartzTimer.Monthly<T>(ActorId, dayOfMonth, hour, minute, gameEventArgs);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }
@@ -346,14 +346,14 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// 使用Cron表达式创建定时任务，提供更灵活的定时任务调度
     /// </summary>
     /// <param name="cronExpression">标准的Cron表达式，用于定义复杂的执行计划</param>
-    /// <param name="param">传递给定时任务处理器的自定义参数对象</param>
+    /// <param name="gameEventArgs">传递给定时任务处理器的自定义参数对象</param>
     /// <param name="unScheduleId">需要取消的已存在的定时任务ID，如果大于0则会先取消该任务</param>
     /// <typeparam name="T">实现了ITimerHandler接口的定时任务处理器类型</typeparam>
     /// <returns>新创建的定时任务ID，可用于后续取消该任务</returns>
-    public long WithCronExpression<T>(string cronExpression, Param param = null, long unScheduleId = 0) where T : ITimerHandler
+    public long WithCronExpression<T>(string cronExpression, GameEventArgs gameEventArgs = null, long unScheduleId = 0) where T : ITimerHandler
     {
         Unscheduled(unScheduleId);
-        var scheduleId = QuartzTimer.WithCronExpression<T>(ActorId, cronExpression, param);
+        var scheduleId = QuartzTimer.WithCronExpression<T>(ActorId, cronExpression, gameEventArgs);
         ScheduleIdSet.Add(scheduleId);
         return scheduleId;
     }
