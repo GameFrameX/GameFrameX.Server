@@ -4,12 +4,14 @@
 // 
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
+using GameFrameX.Core.Abstractions.Events;
+
 namespace GameFrameX.Apps.Common.EventData;
 
 /// <summary>
 /// 发送道具给玩家
 /// </summary>
-public sealed class PlayerSendItemEventData
+public sealed class PlayerSendItemEventArgs : GameEventArgs
 {
     /// <summary>
     /// 玩家ID
@@ -26,7 +28,7 @@ public sealed class PlayerSendItemEventData
     /// </summary>
     /// <param name="playerId">玩家ID</param>
     /// <param name="items">道具列表</param>
-    public PlayerSendItemEventData(long playerId, Dictionary<int, long> items)
+    public PlayerSendItemEventArgs(long playerId, Dictionary<int, long> items)
     {
         PlayerId = playerId;
         Items = items;

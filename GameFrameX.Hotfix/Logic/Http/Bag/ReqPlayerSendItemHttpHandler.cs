@@ -42,7 +42,7 @@ public sealed class ReqPlayerSendItemHttpHandler : BaseHttpHandler
         }
 
         // 发送道具事件
-        var playerSendItemEventData = new OneParam<PlayerSendItemEventData>(new PlayerSendItemEventData(request.RoleId, itemDic));
+        var playerSendItemEventData = new PlayerSendItemEventArgs(request.RoleId, itemDic);
         EventDispatcher.Dispatch(request.RoleId, (int)EventId.PlayerSendItem, playerSendItemEventData);
         if (playerSession.IsNotNull())
         {

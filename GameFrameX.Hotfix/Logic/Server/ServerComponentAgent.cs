@@ -1,6 +1,7 @@
 ﻿using GameFrameX.Apps.Server.Component;
 using GameFrameX.Apps.Server.Entity;
 using GameFrameX.Core.Abstractions.Attribute;
+using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Core.Timer.Handler;
 using GameFrameX.Hotfix.Logic.Role.Login;
 
@@ -142,7 +143,7 @@ public class ServerComponentAgent : StateComponentAgent<ServerComponent, ServerS
 
     private class DelayTimer : TimerHandler<ServerComponentAgent>
     {
-        protected override Task HandleTimer(ServerComponentAgent agent, Param param)
+        protected override Task HandleTimer(ServerComponentAgent agent, GameEventArgs gameEventArgs)
         {
             return agent.TestDelayTimer();
         }
@@ -150,7 +151,7 @@ public class ServerComponentAgent : StateComponentAgent<ServerComponent, ServerS
 
     private class ScheduleTimer : TimerHandler<ServerComponentAgent>
     {
-        protected override Task HandleTimer(ServerComponentAgent agent, Param param)
+        protected override Task HandleTimer(ServerComponentAgent agent, GameEventArgs gameEventArgs)
         {
             return agent.TestScheduleTimer();
         }
@@ -161,7 +162,7 @@ public class ServerComponentAgent : StateComponentAgent<ServerComponent, ServerS
     /// </summary>
     private class CrossDayTimeHandler : TimerHandler<ServerComponentAgent>
     {
-        protected override async Task HandleTimer(ServerComponentAgent agent, Param param)
+        protected override async Task HandleTimer(ServerComponentAgent agent, GameEventArgs gameEventArgs)
         {
             LogHelper.Debug($"ServerCompAgent.CrossDayTimeHandler.跨天定时器执行{TimeHelper.CurrentTimeWithFullString()}");
             await ActorManager.RoleCrossDay(1);
