@@ -3,7 +3,7 @@
 /// <summary>
 /// 事件监听器
 /// </summary>
-[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+[AttributeUsage(AttributeTargets.Class)]
 public class EventInfoAttribute : System.Attribute
 {
     /// <summary>
