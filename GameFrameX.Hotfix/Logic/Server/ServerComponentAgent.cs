@@ -5,18 +5,18 @@ using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Core.Timer.Handler;
 using GameFrameX.Hotfix.Logic.Role.Login;
 
-namespace GameFrameX.Hotfix.Logic.Server.Server;
+namespace GameFrameX.Hotfix.Logic.Server;
 
 public class ServerComponentAgent : StateComponentAgent<ServerComponent, ServerState>
 {
-    public override void Active()
+    public override async Task Active()
     {
         // 跨天定时器
         WithCronExpression<CrossDayTimeHandler>("0 0 0 * * ? *");
         if (State.FirstStartTime == default)
         {
             State.FirstStartTime = TimeHelper.UnixTimeSeconds();
-            OwnerComponent.WriteStateAsync();
+            await OwnerComponent.WriteStateAsync();
         }
     }
 

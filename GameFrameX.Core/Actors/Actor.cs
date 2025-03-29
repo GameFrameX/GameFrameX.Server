@@ -117,7 +117,7 @@ public sealed class Actor : IActor
                 async Task Worker()
                 {
                     await comp.Active();
-                    agent.Active();
+                    await agent.Active();
                 }
 
                 await SendAsyncWithoutCheck(Worker);
@@ -137,7 +137,7 @@ public sealed class Actor : IActor
             async Task Worker()
             {
                 await component.Active();
-                agent.Active();
+                await agent.Active();
             }
 
             await SendAsyncWithoutCheck(Worker);

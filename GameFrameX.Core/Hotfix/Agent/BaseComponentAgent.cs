@@ -70,8 +70,9 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// <summary>
     /// 激活组件
     /// </summary>
-    public virtual void Active()
+    public virtual Task Active()
     {
+        return Task.CompletedTask;
     }
 
     /// <summary>

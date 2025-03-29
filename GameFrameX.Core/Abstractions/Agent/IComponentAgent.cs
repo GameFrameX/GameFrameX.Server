@@ -44,7 +44,7 @@ public interface IComponentAgent : IWorker
     /// 用于初始化并启用组件代理的功能
     /// </remarks>
     /// </summary>
-    void Active();
+    Task Active();
 
     /// <summary>
     /// 反激活组件代理
