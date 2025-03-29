@@ -162,7 +162,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.Core.Abstractions.Events.GameEventArgs",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Abstractions.Events.GameEventArgs.yml\" sourcestartlinenumber=\"1\">事件参数</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Abstractions.Events.GameEventArgs.yml\" sourcestartlinenumber=\"1\">事件参数基类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2728,34 +2728,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.FiveParam-5.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Utility.FiveParam-5.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Utility.FiveParam<T1, T2, T3, T4, T5>",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.FiveParam-5.yml\" sourcestartlinenumber=\"1\">五个参数</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.FourParam-4.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Utility.FourParam-4.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Utility.FourParam<T1, T2, T3, T4>",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.FourParam-4.yml\" sourcestartlinenumber=\"1\">四个参数</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.Utility.IdGenerator.yml",
       "output": {
         ".html": {
@@ -2952,34 +2924,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.OneParam-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Utility.OneParam-1.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Utility.OneParam<T>",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.OneParam-1.yml\" sourcestartlinenumber=\"1\">单个参数</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.Param.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Utility.Param.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Utility.Param",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.Param.yml\" sourcestartlinenumber=\"1\">参数</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.Utility.PlatformRuntimeHelper.yml",
       "output": {
         ".html": {
@@ -3106,20 +3050,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.ThreeParam-3.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Utility.ThreeParam-3.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Utility.ThreeParam<T1, T2, T3>",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.ThreeParam-3.yml\" sourcestartlinenumber=\"1\">三个参数</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.Utility.TimeHelper.yml",
       "output": {
         ".html": {
@@ -3131,20 +3061,6 @@
       "IsMRef": true,
       "Title": "GameFrameX.Utility.TimeHelper",
       "Summary": "<p sourcefile=\"api/GameFrameX.Utility.TimeHelper.yml\" sourcestartlinenumber=\"1\">时间帮助工具类</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.TwoParam-2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Utility.TwoParam-2.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Utility.TwoParam<T1, T2>",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.TwoParam-2.yml\" sourcestartlinenumber=\"1\">两个参数</p>\n"
     },
     {
       "type": "ManagedReference",

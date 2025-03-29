@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev6/apiSpec/new?filename=GameFrameX_Core_Timer_Handler_TimerHandler_1.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Timer.Handler.TimerHandler%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev7/apiSpec/new?filename=GameFrameX_Core_Timer_Handler_TimerHandler_1.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Timer.Handler.TimerHandler%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_Core_Timer_Handler_TimerHandler_1" data-uid="GameFrameX.Core.Timer.Handler.TimerHandler`1" class="text-break">
-Class TimerHandler&lt;TAgent&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev6/GameFrameX.Core/Timer/Handler/TimerHandler.cs/#L10"><i class="bi bi-code-slash"></i></a>
+Class TimerHandler&lt;TAgent&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev7/GameFrameX.Core/Timer/Handler/TimerHandler.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -183,9 +183,9 @@ Class TimerHandler&lt;TAgent&gt;  <a class="header-action link-secondary" title=
 
   <a id="GameFrameX_Core_Timer_Handler_TimerHandler_1_HandleTimer_" data-uid="GameFrameX.Core.Timer.Handler.TimerHandler`1.HandleTimer*"></a>
 
-  <h3 id="GameFrameX_Core_Timer_Handler_TimerHandler_1_HandleTimer__0_GameFrameX_Utility_Param_" data-uid="GameFrameX.Core.Timer.Handler.TimerHandler`1.HandleTimer(`0,GameFrameX.Utility.Param)">
-  HandleTimer(TAgent, Param)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev6/GameFrameX.Core/Timer/Handler/TimerHandler.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_Core_Timer_Handler_TimerHandler_1_HandleTimer__0_GameFrameX_Core_Abstractions_Events_GameEventArgs_" data-uid="GameFrameX.Core.Timer.Handler.TimerHandler`1.HandleTimer(`0,GameFrameX.Core.Abstractions.Events.GameEventArgs)">
+  HandleTimer(TAgent, GameEventArgs)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev7/GameFrameX.Core/Timer/Handler/TimerHandler.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>计时器调用</p>
@@ -193,7 +193,7 @@ Class TimerHandler&lt;TAgent&gt;  <a class="header-action link-secondary" title=
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected abstract Task HandleTimer(TAgent agent, Param param)</code></pre>
+    <pre><code class="lang-csharp hljs">protected abstract Task HandleTimer(TAgent agent, GameEventArgs gameEventArgs)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -201,7 +201,7 @@ Class TimerHandler&lt;TAgent&gt;  <a class="header-action link-secondary" title=
     <dt><code>agent</code> <span class="xref">TAgent</span></dt>
     <dd><p>调用对象，具体类型的组件代理对象</p>
 </dd>
-    <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
+    <dt><code>gameEventArgs</code> <a class="xref" href="GameFrameX.Core.Abstractions.Events.GameEventArgs.html">GameEventArgs</a></dt>
     <dd><p>参数对象，传递给处理器的参数</p>
 </dd>
   </dl>
@@ -225,9 +225,9 @@ Class TimerHandler&lt;TAgent&gt;  <a class="header-action link-secondary" title=
 
   <a id="GameFrameX_Core_Timer_Handler_TimerHandler_1_InnerHandleTimer_" data-uid="GameFrameX.Core.Timer.Handler.TimerHandler`1.InnerHandleTimer*"></a>
 
-  <h3 id="GameFrameX_Core_Timer_Handler_TimerHandler_1_InnerHandleTimer_GameFrameX_Core_Abstractions_Agent_IComponentAgent_GameFrameX_Utility_Param_" data-uid="GameFrameX.Core.Timer.Handler.TimerHandler`1.InnerHandleTimer(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Utility.Param)">
-  InnerHandleTimer(IComponentAgent, Param)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev6/GameFrameX.Core/Timer/Handler/TimerHandler.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_Core_Timer_Handler_TimerHandler_1_InnerHandleTimer_GameFrameX_Core_Abstractions_Agent_IComponentAgent_GameFrameX_Core_Abstractions_Events_GameEventArgs_" data-uid="GameFrameX.Core.Timer.Handler.TimerHandler`1.InnerHandleTimer(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Core.Abstractions.Events.GameEventArgs)">
+  InnerHandleTimer(IComponentAgent, GameEventArgs)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev7/GameFrameX.Core/Timer/Handler/TimerHandler.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>内部计时器处理器调用。由 Quartz 调用</p>
@@ -235,7 +235,7 @@ Class TimerHandler&lt;TAgent&gt;  <a class="header-action link-secondary" title=
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task InnerHandleTimer(IComponentAgent agent, Param param)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task InnerHandleTimer(IComponentAgent agent, GameEventArgs gameEventArgs)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -243,7 +243,7 @@ Class TimerHandler&lt;TAgent&gt;  <a class="header-action link-secondary" title=
     <dt><code>agent</code> <a class="xref" href="GameFrameX.Core.Abstractions.Agent.IComponentAgent.html">IComponentAgent</a></dt>
     <dd><p>组件代理对象，用于与系统其他部分交互</p>
 </dd>
-    <dt><code>param</code> <a class="xref" href="GameFrameX.Utility.Param.html">Param</a></dt>
+    <dt><code>gameEventArgs</code> <a class="xref" href="GameFrameX.Core.Abstractions.Events.GameEventArgs.html">GameEventArgs</a></dt>
     <dd><p>传递给处理器的参数</p>
 </dd>
   </dl>
@@ -269,7 +269,7 @@ Class TimerHandler&lt;TAgent&gt;  <a class="header-action link-secondary" title=
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev6/GameFrameX.Core/Timer/Handler/TimerHandler.cs/#L10" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev7/GameFrameX.Core/Timer/Handler/TimerHandler.cs/#L10" class="edit-link">Edit this page</a>
         </div>
 
 

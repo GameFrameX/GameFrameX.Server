@@ -312,24 +312,6 @@ references:
   commentId: T:GameFrameX.Core.Abstractions.Events.GameEventArgs
   fullName: GameFrameX.Core.Abstractions.Events.GameEventArgs
   nameWithType: GameEventArgs
-- uid: GameFrameX.Core.Abstractions.Events.GameEventArgs.Data
-  name: Data
-  href: api/GameFrameX.Core.Abstractions.Events.GameEventArgs.html#GameFrameX_Core_Abstractions_Events_GameEventArgs_Data
-  commentId: F:GameFrameX.Core.Abstractions.Events.GameEventArgs.Data
-  fullName: GameFrameX.Core.Abstractions.Events.GameEventArgs.Data
-  nameWithType: GameEventArgs.Data
-- uid: GameFrameX.Core.Abstractions.Events.GameEventArgs.Default
-  name: Default
-  href: api/GameFrameX.Core.Abstractions.Events.GameEventArgs.html#GameFrameX_Core_Abstractions_Events_GameEventArgs_Default
-  commentId: F:GameFrameX.Core.Abstractions.Events.GameEventArgs.Default
-  fullName: GameFrameX.Core.Abstractions.Events.GameEventArgs.Default
-  nameWithType: GameEventArgs.Default
-- uid: GameFrameX.Core.Abstractions.Events.GameEventArgs.EventId
-  name: EventId
-  href: api/GameFrameX.Core.Abstractions.Events.GameEventArgs.html#GameFrameX_Core_Abstractions_Events_GameEventArgs_EventId
-  commentId: F:GameFrameX.Core.Abstractions.Events.GameEventArgs.EventId
-  fullName: GameFrameX.Core.Abstractions.Events.GameEventArgs.EventId
-  nameWithType: GameEventArgs.EventId
 - uid: GameFrameX.Core.Abstractions.Events.IEventListener
   name: IEventListener
   href: api/GameFrameX.Core.Abstractions.Events.IEventListener.html
@@ -4944,15 +4926,15 @@ references:
   commentId: T:GameFrameX.Core.Events.EventDispatcher
   fullName: GameFrameX.Core.Events.EventDispatcher
   nameWithType: EventDispatcher
-- uid: GameFrameX.Core.Events.EventDispatcher.Dispatch(System.Int64,System.Int32,GameFrameX.Utility.Param)
-  name: Dispatch(long, int, Param)
-  href: api/GameFrameX.Core.Events.EventDispatcher.html#GameFrameX_Core_Events_EventDispatcher_Dispatch_System_Int64_System_Int32_GameFrameX_Utility_Param_
-  commentId: M:GameFrameX.Core.Events.EventDispatcher.Dispatch(System.Int64,System.Int32,GameFrameX.Utility.Param)
-  name.vb: Dispatch(Long, Integer, Param)
-  fullName: GameFrameX.Core.Events.EventDispatcher.Dispatch(long, int, GameFrameX.Utility.Param)
-  fullName.vb: GameFrameX.Core.Events.EventDispatcher.Dispatch(Long, Integer, GameFrameX.Utility.Param)
-  nameWithType: EventDispatcher.Dispatch(long, int, Param)
-  nameWithType.vb: EventDispatcher.Dispatch(Long, Integer, Param)
+- uid: GameFrameX.Core.Events.EventDispatcher.Dispatch(System.Int64,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name: Dispatch(long, int, GameEventArgs)
+  href: api/GameFrameX.Core.Events.EventDispatcher.html#GameFrameX_Core_Events_EventDispatcher_Dispatch_System_Int64_System_Int32_GameFrameX_Core_Abstractions_Events_GameEventArgs_
+  commentId: M:GameFrameX.Core.Events.EventDispatcher.Dispatch(System.Int64,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name.vb: Dispatch(Long, Integer, GameEventArgs)
+  fullName: GameFrameX.Core.Events.EventDispatcher.Dispatch(long, int, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  fullName.vb: GameFrameX.Core.Events.EventDispatcher.Dispatch(Long, Integer, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  nameWithType: EventDispatcher.Dispatch(long, int, GameEventArgs)
+  nameWithType.vb: EventDispatcher.Dispatch(Long, Integer, GameEventArgs)
 - uid: GameFrameX.Core.Events.EventDispatcher.Dispatch*
   name: Dispatch
   href: api/GameFrameX.Core.Events.EventDispatcher.html#GameFrameX_Core_Events_EventDispatcher_Dispatch_
@@ -5118,15 +5100,15 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Daily
   nameWithType: BaseComponentAgent<TComponent>.Daily
   nameWithType.vb: BaseComponentAgent(Of TComponent).Daily
-- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Daily``1(System.Int32,System.Int32,GameFrameX.Utility.Param,System.Int64)
-  name: Daily<T>(int, int, Param, long)
-  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Daily__1_System_Int32_System_Int32_GameFrameX_Utility_Param_System_Int64_
-  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Daily``1(System.Int32,System.Int32,GameFrameX.Utility.Param,System.Int64)
-  name.vb: Daily(Of T)(Integer, Integer, Param, Long)
-  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Daily<T>(int, int, GameFrameX.Utility.Param, long)
-  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Daily(Of T)(Integer, Integer, GameFrameX.Utility.Param, Long)
-  nameWithType: BaseComponentAgent<TComponent>.Daily<T>(int, int, Param, long)
-  nameWithType.vb: BaseComponentAgent(Of TComponent).Daily(Of T)(Integer, Integer, Param, Long)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Daily``1(System.Int32,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int64)
+  name: Daily<T>(int, int, GameEventArgs, long)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Daily__1_System_Int32_System_Int32_GameFrameX_Core_Abstractions_Events_GameEventArgs_System_Int64_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Daily``1(System.Int32,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int64)
+  name.vb: Daily(Of T)(Integer, Integer, GameEventArgs, Long)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Daily<T>(int, int, GameFrameX.Core.Abstractions.Events.GameEventArgs, long)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Daily(Of T)(Integer, Integer, GameFrameX.Core.Abstractions.Events.GameEventArgs, Long)
+  nameWithType: BaseComponentAgent<TComponent>.Daily<T>(int, int, GameEventArgs, long)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Daily(Of T)(Integer, Integer, GameEventArgs, Long)
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay*
   name: Delay
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Delay_
@@ -5136,33 +5118,33 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Delay
   nameWithType: BaseComponentAgent<TComponent>.Delay
   nameWithType.vb: BaseComponentAgent(Of TComponent).Delay
-- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay``1(System.DateTime,GameFrameX.Utility.Param,System.Int64)
-  name: Delay<T>(DateTime, Param, long)
-  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Delay__1_System_DateTime_GameFrameX_Utility_Param_System_Int64_
-  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay``1(System.DateTime,GameFrameX.Utility.Param,System.Int64)
-  name.vb: Delay(Of T)(Date, Param, Long)
-  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Delay<T>(System.DateTime, GameFrameX.Utility.Param, long)
-  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Delay(Of T)(Date, GameFrameX.Utility.Param, Long)
-  nameWithType: BaseComponentAgent<TComponent>.Delay<T>(DateTime, Param, long)
-  nameWithType.vb: BaseComponentAgent(Of TComponent).Delay(Of T)(Date, Param, Long)
-- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay``1(System.Int64,GameFrameX.Utility.Param,System.Int64)
-  name: Delay<T>(long, Param, long)
-  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Delay__1_System_Int64_GameFrameX_Utility_Param_System_Int64_
-  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay``1(System.Int64,GameFrameX.Utility.Param,System.Int64)
-  name.vb: Delay(Of T)(Long, Param, Long)
-  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Delay<T>(long, GameFrameX.Utility.Param, long)
-  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Delay(Of T)(Long, GameFrameX.Utility.Param, Long)
-  nameWithType: BaseComponentAgent<TComponent>.Delay<T>(long, Param, long)
-  nameWithType.vb: BaseComponentAgent(Of TComponent).Delay(Of T)(Long, Param, Long)
-- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay``1(System.TimeSpan,GameFrameX.Utility.Param,System.Int64)
-  name: Delay<T>(TimeSpan, Param, long)
-  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Delay__1_System_TimeSpan_GameFrameX_Utility_Param_System_Int64_
-  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay``1(System.TimeSpan,GameFrameX.Utility.Param,System.Int64)
-  name.vb: Delay(Of T)(TimeSpan, Param, Long)
-  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Delay<T>(System.TimeSpan, GameFrameX.Utility.Param, long)
-  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Delay(Of T)(System.TimeSpan, GameFrameX.Utility.Param, Long)
-  nameWithType: BaseComponentAgent<TComponent>.Delay<T>(TimeSpan, Param, long)
-  nameWithType.vb: BaseComponentAgent(Of TComponent).Delay(Of T)(TimeSpan, Param, Long)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay``1(System.DateTime,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int64)
+  name: Delay<T>(DateTime, GameEventArgs, long)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Delay__1_System_DateTime_GameFrameX_Core_Abstractions_Events_GameEventArgs_System_Int64_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay``1(System.DateTime,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int64)
+  name.vb: Delay(Of T)(Date, GameEventArgs, Long)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Delay<T>(System.DateTime, GameFrameX.Core.Abstractions.Events.GameEventArgs, long)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Delay(Of T)(Date, GameFrameX.Core.Abstractions.Events.GameEventArgs, Long)
+  nameWithType: BaseComponentAgent<TComponent>.Delay<T>(DateTime, GameEventArgs, long)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Delay(Of T)(Date, GameEventArgs, Long)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay``1(System.Int64,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int64)
+  name: Delay<T>(long, GameEventArgs, long)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Delay__1_System_Int64_GameFrameX_Core_Abstractions_Events_GameEventArgs_System_Int64_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay``1(System.Int64,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int64)
+  name.vb: Delay(Of T)(Long, GameEventArgs, Long)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Delay<T>(long, GameFrameX.Core.Abstractions.Events.GameEventArgs, long)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Delay(Of T)(Long, GameFrameX.Core.Abstractions.Events.GameEventArgs, Long)
+  nameWithType: BaseComponentAgent<TComponent>.Delay<T>(long, GameEventArgs, long)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Delay(Of T)(Long, GameEventArgs, Long)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay``1(System.TimeSpan,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int64)
+  name: Delay<T>(TimeSpan, GameEventArgs, long)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Delay__1_System_TimeSpan_GameFrameX_Core_Abstractions_Events_GameEventArgs_System_Int64_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay``1(System.TimeSpan,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int64)
+  name.vb: Delay(Of T)(TimeSpan, GameEventArgs, Long)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Delay<T>(System.TimeSpan, GameFrameX.Core.Abstractions.Events.GameEventArgs, long)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Delay(Of T)(System.TimeSpan, GameFrameX.Core.Abstractions.Events.GameEventArgs, Long)
+  nameWithType: BaseComponentAgent<TComponent>.Delay<T>(TimeSpan, GameEventArgs, long)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Delay(Of T)(TimeSpan, GameEventArgs, Long)
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.GetComponentAgent(System.Type,System.Boolean)
   name: GetComponentAgent(Type, bool)
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_GetComponentAgent_System_Type_System_Boolean_
@@ -5216,15 +5198,15 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Monthly
   nameWithType: BaseComponentAgent<TComponent>.Monthly
   nameWithType.vb: BaseComponentAgent(Of TComponent).Monthly
-- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Monthly``1(System.Int32,System.Int32,System.Int32,GameFrameX.Utility.Param,System.Int64)
-  name: Monthly<T>(int, int, int, Param, long)
-  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Monthly__1_System_Int32_System_Int32_System_Int32_GameFrameX_Utility_Param_System_Int64_
-  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Monthly``1(System.Int32,System.Int32,System.Int32,GameFrameX.Utility.Param,System.Int64)
-  name.vb: Monthly(Of T)(Integer, Integer, Integer, Param, Long)
-  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Monthly<T>(int, int, int, GameFrameX.Utility.Param, long)
-  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Monthly(Of T)(Integer, Integer, Integer, GameFrameX.Utility.Param, Long)
-  nameWithType: BaseComponentAgent<TComponent>.Monthly<T>(int, int, int, Param, long)
-  nameWithType.vb: BaseComponentAgent(Of TComponent).Monthly(Of T)(Integer, Integer, Integer, Param, Long)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Monthly``1(System.Int32,System.Int32,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int64)
+  name: Monthly<T>(int, int, int, GameEventArgs, long)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Monthly__1_System_Int32_System_Int32_System_Int32_GameFrameX_Core_Abstractions_Events_GameEventArgs_System_Int64_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Monthly``1(System.Int32,System.Int32,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int64)
+  name.vb: Monthly(Of T)(Integer, Integer, Integer, GameEventArgs, Long)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Monthly<T>(int, int, int, GameFrameX.Core.Abstractions.Events.GameEventArgs, long)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Monthly(Of T)(Integer, Integer, Integer, GameFrameX.Core.Abstractions.Events.GameEventArgs, Long)
+  nameWithType: BaseComponentAgent<TComponent>.Monthly<T>(int, int, int, GameEventArgs, long)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Monthly(Of T)(Integer, Integer, Integer, GameEventArgs, Long)
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Owner
   name: Owner
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Owner
@@ -5302,15 +5284,15 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).ScheduleIdSet
   nameWithType: BaseComponentAgent<TComponent>.ScheduleIdSet
   nameWithType.vb: BaseComponentAgent(Of TComponent).ScheduleIdSet
-- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Schedule``1(System.TimeSpan,System.TimeSpan,GameFrameX.Utility.Param,System.Int32,System.Int64)
-  name: Schedule<T>(TimeSpan, TimeSpan, Param, int, long)
-  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Schedule__1_System_TimeSpan_System_TimeSpan_GameFrameX_Utility_Param_System_Int32_System_Int64_
-  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Schedule``1(System.TimeSpan,System.TimeSpan,GameFrameX.Utility.Param,System.Int32,System.Int64)
-  name.vb: Schedule(Of T)(TimeSpan, TimeSpan, Param, Integer, Long)
-  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Schedule<T>(System.TimeSpan, System.TimeSpan, GameFrameX.Utility.Param, int, long)
-  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Schedule(Of T)(System.TimeSpan, System.TimeSpan, GameFrameX.Utility.Param, Integer, Long)
-  nameWithType: BaseComponentAgent<TComponent>.Schedule<T>(TimeSpan, TimeSpan, Param, int, long)
-  nameWithType.vb: BaseComponentAgent(Of TComponent).Schedule(Of T)(TimeSpan, TimeSpan, Param, Integer, Long)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Schedule``1(System.TimeSpan,System.TimeSpan,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int32,System.Int64)
+  name: Schedule<T>(TimeSpan, TimeSpan, GameEventArgs, int, long)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Schedule__1_System_TimeSpan_System_TimeSpan_GameFrameX_Core_Abstractions_Events_GameEventArgs_System_Int32_System_Int64_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Schedule``1(System.TimeSpan,System.TimeSpan,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int32,System.Int64)
+  name.vb: Schedule(Of T)(TimeSpan, TimeSpan, GameEventArgs, Integer, Long)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Schedule<T>(System.TimeSpan, System.TimeSpan, GameFrameX.Core.Abstractions.Events.GameEventArgs, int, long)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Schedule(Of T)(System.TimeSpan, System.TimeSpan, GameFrameX.Core.Abstractions.Events.GameEventArgs, Integer, Long)
+  nameWithType: BaseComponentAgent<TComponent>.Schedule<T>(TimeSpan, TimeSpan, GameEventArgs, int, long)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Schedule(Of T)(TimeSpan, TimeSpan, GameEventArgs, Integer, Long)
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.SendAsync(System.Action,System.Int32,System.Threading.CancellationToken)
   name: SendAsync(Action, int, CancellationToken)
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_SendAsync_System_Action_System_Int32_System_Threading_CancellationToken_
@@ -5445,15 +5427,15 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Weekly
   nameWithType: BaseComponentAgent<TComponent>.Weekly
   nameWithType.vb: BaseComponentAgent(Of TComponent).Weekly
-- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Weekly``1(System.DayOfWeek,System.Int32,System.Int32,GameFrameX.Utility.Param,System.Int64)
-  name: Weekly<T>(DayOfWeek, int, int, Param, long)
-  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Weekly__1_System_DayOfWeek_System_Int32_System_Int32_GameFrameX_Utility_Param_System_Int64_
-  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Weekly``1(System.DayOfWeek,System.Int32,System.Int32,GameFrameX.Utility.Param,System.Int64)
-  name.vb: Weekly(Of T)(DayOfWeek, Integer, Integer, Param, Long)
-  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Weekly<T>(System.DayOfWeek, int, int, GameFrameX.Utility.Param, long)
-  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Weekly(Of T)(System.DayOfWeek, Integer, Integer, GameFrameX.Utility.Param, Long)
-  nameWithType: BaseComponentAgent<TComponent>.Weekly<T>(DayOfWeek, int, int, Param, long)
-  nameWithType.vb: BaseComponentAgent(Of TComponent).Weekly(Of T)(DayOfWeek, Integer, Integer, Param, Long)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Weekly``1(System.DayOfWeek,System.Int32,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int64)
+  name: Weekly<T>(DayOfWeek, int, int, GameEventArgs, long)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Weekly__1_System_DayOfWeek_System_Int32_System_Int32_GameFrameX_Core_Abstractions_Events_GameEventArgs_System_Int64_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Weekly``1(System.DayOfWeek,System.Int32,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int64)
+  name.vb: Weekly(Of T)(DayOfWeek, Integer, Integer, GameEventArgs, Long)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Weekly<T>(System.DayOfWeek, int, int, GameFrameX.Core.Abstractions.Events.GameEventArgs, long)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Weekly(Of T)(System.DayOfWeek, Integer, Integer, GameFrameX.Core.Abstractions.Events.GameEventArgs, Long)
+  nameWithType: BaseComponentAgent<TComponent>.Weekly<T>(DayOfWeek, int, int, GameEventArgs, long)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Weekly(Of T)(DayOfWeek, Integer, Integer, GameEventArgs, Long)
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.WithCronExpression*
   name: WithCronExpression
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_WithCronExpression_
@@ -5463,15 +5445,15 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).WithCronExpression
   nameWithType: BaseComponentAgent<TComponent>.WithCronExpression
   nameWithType.vb: BaseComponentAgent(Of TComponent).WithCronExpression
-- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.WithCronExpression``1(System.String,GameFrameX.Utility.Param,System.Int64)
-  name: WithCronExpression<T>(string, Param, long)
-  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_WithCronExpression__1_System_String_GameFrameX_Utility_Param_System_Int64_
-  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.WithCronExpression``1(System.String,GameFrameX.Utility.Param,System.Int64)
-  name.vb: WithCronExpression(Of T)(String, Param, Long)
-  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.WithCronExpression<T>(string, GameFrameX.Utility.Param, long)
-  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).WithCronExpression(Of T)(String, GameFrameX.Utility.Param, Long)
-  nameWithType: BaseComponentAgent<TComponent>.WithCronExpression<T>(string, Param, long)
-  nameWithType.vb: BaseComponentAgent(Of TComponent).WithCronExpression(Of T)(String, Param, Long)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.WithCronExpression``1(System.String,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int64)
+  name: WithCronExpression<T>(string, GameEventArgs, long)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_WithCronExpression__1_System_String_GameFrameX_Core_Abstractions_Events_GameEventArgs_System_Int64_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.WithCronExpression``1(System.String,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int64)
+  name.vb: WithCronExpression(Of T)(String, GameEventArgs, Long)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.WithCronExpression<T>(string, GameFrameX.Core.Abstractions.Events.GameEventArgs, long)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).WithCronExpression(Of T)(String, GameFrameX.Core.Abstractions.Events.GameEventArgs, Long)
+  nameWithType: BaseComponentAgent<TComponent>.WithCronExpression<T>(string, GameEventArgs, long)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).WithCronExpression(Of T)(String, GameEventArgs, Long)
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.WithDayOfWeeks*
   name: WithDayOfWeeks
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_WithDayOfWeeks_
@@ -5481,15 +5463,15 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).WithDayOfWeeks
   nameWithType: BaseComponentAgent<TComponent>.WithDayOfWeeks
   nameWithType.vb: BaseComponentAgent(Of TComponent).WithDayOfWeeks
-- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.WithDayOfWeeks``1(System.Int32,System.Int32,GameFrameX.Utility.Param,System.DayOfWeek[])
-  name: WithDayOfWeeks<T>(int, int, Param, params DayOfWeek[])
-  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_WithDayOfWeeks__1_System_Int32_System_Int32_GameFrameX_Utility_Param_System_DayOfWeek___
-  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.WithDayOfWeeks``1(System.Int32,System.Int32,GameFrameX.Utility.Param,System.DayOfWeek[])
-  name.vb: WithDayOfWeeks(Of T)(Integer, Integer, Param, ParamArray DayOfWeek())
-  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.WithDayOfWeeks<T>(int, int, GameFrameX.Utility.Param, params System.DayOfWeek[])
-  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).WithDayOfWeeks(Of T)(Integer, Integer, GameFrameX.Utility.Param, ParamArray System.DayOfWeek())
-  nameWithType: BaseComponentAgent<TComponent>.WithDayOfWeeks<T>(int, int, Param, params DayOfWeek[])
-  nameWithType.vb: BaseComponentAgent(Of TComponent).WithDayOfWeeks(Of T)(Integer, Integer, Param, ParamArray DayOfWeek())
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.WithDayOfWeeks``1(System.Int32,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.DayOfWeek[])
+  name: WithDayOfWeeks<T>(int, int, GameEventArgs, params DayOfWeek[])
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_WithDayOfWeeks__1_System_Int32_System_Int32_GameFrameX_Core_Abstractions_Events_GameEventArgs_System_DayOfWeek___
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.WithDayOfWeeks``1(System.Int32,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.DayOfWeek[])
+  name.vb: WithDayOfWeeks(Of T)(Integer, Integer, GameEventArgs, ParamArray DayOfWeek())
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.WithDayOfWeeks<T>(int, int, GameFrameX.Core.Abstractions.Events.GameEventArgs, params System.DayOfWeek[])
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).WithDayOfWeeks(Of T)(Integer, Integer, GameFrameX.Core.Abstractions.Events.GameEventArgs, ParamArray System.DayOfWeek())
+  nameWithType: BaseComponentAgent<TComponent>.WithDayOfWeeks<T>(int, int, GameEventArgs, params DayOfWeek[])
+  nameWithType.vb: BaseComponentAgent(Of TComponent).WithDayOfWeeks(Of T)(Integer, Integer, GameEventArgs, ParamArray DayOfWeek())
 - uid: GameFrameX.Core.Hotfix.Agent.FuncComponentAgent`1
   name: FuncComponentAgent<TComponent>
   href: api/GameFrameX.Core.Hotfix.Agent.FuncComponentAgent-1.html
@@ -5785,12 +5767,12 @@ references:
   commentId: T:GameFrameX.Core.Timer.Handler.ITimerHandler
   fullName: GameFrameX.Core.Timer.Handler.ITimerHandler
   nameWithType: ITimerHandler
-- uid: GameFrameX.Core.Timer.Handler.ITimerHandler.InnerHandleTimer(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Utility.Param)
-  name: InnerHandleTimer(IComponentAgent, Param)
-  href: api/GameFrameX.Core.Timer.Handler.ITimerHandler.html#GameFrameX_Core_Timer_Handler_ITimerHandler_InnerHandleTimer_GameFrameX_Core_Abstractions_Agent_IComponentAgent_GameFrameX_Utility_Param_
-  commentId: M:GameFrameX.Core.Timer.Handler.ITimerHandler.InnerHandleTimer(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Utility.Param)
-  fullName: GameFrameX.Core.Timer.Handler.ITimerHandler.InnerHandleTimer(GameFrameX.Core.Abstractions.Agent.IComponentAgent, GameFrameX.Utility.Param)
-  nameWithType: ITimerHandler.InnerHandleTimer(IComponentAgent, Param)
+- uid: GameFrameX.Core.Timer.Handler.ITimerHandler.InnerHandleTimer(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name: InnerHandleTimer(IComponentAgent, GameEventArgs)
+  href: api/GameFrameX.Core.Timer.Handler.ITimerHandler.html#GameFrameX_Core_Timer_Handler_ITimerHandler_InnerHandleTimer_GameFrameX_Core_Abstractions_Agent_IComponentAgent_GameFrameX_Core_Abstractions_Events_GameEventArgs_
+  commentId: M:GameFrameX.Core.Timer.Handler.ITimerHandler.InnerHandleTimer(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  fullName: GameFrameX.Core.Timer.Handler.ITimerHandler.InnerHandleTimer(GameFrameX.Core.Abstractions.Agent.IComponentAgent, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  nameWithType: ITimerHandler.InnerHandleTimer(IComponentAgent, GameEventArgs)
 - uid: GameFrameX.Core.Timer.Handler.ITimerHandler.InnerHandleTimer*
   name: InnerHandleTimer
   href: api/GameFrameX.Core.Timer.Handler.ITimerHandler.html#GameFrameX_Core_Timer_Handler_ITimerHandler_InnerHandleTimer_
@@ -5817,12 +5799,12 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Timer.Handler.NotHotfixTimerHandler.Execute
   nameWithType: NotHotfixTimerHandler.Execute
-- uid: GameFrameX.Core.Timer.Handler.NotHotfixTimerHandler.HandleTimer(GameFrameX.Utility.Param)
-  name: HandleTimer(Param)
-  href: api/GameFrameX.Core.Timer.Handler.NotHotfixTimerHandler.html#GameFrameX_Core_Timer_Handler_NotHotfixTimerHandler_HandleTimer_GameFrameX_Utility_Param_
-  commentId: M:GameFrameX.Core.Timer.Handler.NotHotfixTimerHandler.HandleTimer(GameFrameX.Utility.Param)
-  fullName: GameFrameX.Core.Timer.Handler.NotHotfixTimerHandler.HandleTimer(GameFrameX.Utility.Param)
-  nameWithType: NotHotfixTimerHandler.HandleTimer(Param)
+- uid: GameFrameX.Core.Timer.Handler.NotHotfixTimerHandler.HandleTimer(GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name: HandleTimer(GameEventArgs)
+  href: api/GameFrameX.Core.Timer.Handler.NotHotfixTimerHandler.html#GameFrameX_Core_Timer_Handler_NotHotfixTimerHandler_HandleTimer_GameFrameX_Core_Abstractions_Events_GameEventArgs_
+  commentId: M:GameFrameX.Core.Timer.Handler.NotHotfixTimerHandler.HandleTimer(GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  fullName: GameFrameX.Core.Timer.Handler.NotHotfixTimerHandler.HandleTimer(GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  nameWithType: NotHotfixTimerHandler.HandleTimer(GameEventArgs)
 - uid: GameFrameX.Core.Timer.Handler.NotHotfixTimerHandler.HandleTimer*
   name: HandleTimer
   href: api/GameFrameX.Core.Timer.Handler.NotHotfixTimerHandler.html#GameFrameX_Core_Timer_Handler_NotHotfixTimerHandler_HandleTimer_
@@ -5839,14 +5821,14 @@ references:
   fullName.vb: GameFrameX.Core.Timer.Handler.TimerHandler(Of TAgent)
   nameWithType: TimerHandler<TAgent>
   nameWithType.vb: TimerHandler(Of TAgent)
-- uid: GameFrameX.Core.Timer.Handler.TimerHandler`1.HandleTimer(`0,GameFrameX.Utility.Param)
-  name: HandleTimer(TAgent, Param)
-  href: api/GameFrameX.Core.Timer.Handler.TimerHandler-1.html#GameFrameX_Core_Timer_Handler_TimerHandler_1_HandleTimer__0_GameFrameX_Utility_Param_
-  commentId: M:GameFrameX.Core.Timer.Handler.TimerHandler`1.HandleTimer(`0,GameFrameX.Utility.Param)
-  fullName: GameFrameX.Core.Timer.Handler.TimerHandler<TAgent>.HandleTimer(TAgent, GameFrameX.Utility.Param)
-  fullName.vb: GameFrameX.Core.Timer.Handler.TimerHandler(Of TAgent).HandleTimer(TAgent, GameFrameX.Utility.Param)
-  nameWithType: TimerHandler<TAgent>.HandleTimer(TAgent, Param)
-  nameWithType.vb: TimerHandler(Of TAgent).HandleTimer(TAgent, Param)
+- uid: GameFrameX.Core.Timer.Handler.TimerHandler`1.HandleTimer(`0,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name: HandleTimer(TAgent, GameEventArgs)
+  href: api/GameFrameX.Core.Timer.Handler.TimerHandler-1.html#GameFrameX_Core_Timer_Handler_TimerHandler_1_HandleTimer__0_GameFrameX_Core_Abstractions_Events_GameEventArgs_
+  commentId: M:GameFrameX.Core.Timer.Handler.TimerHandler`1.HandleTimer(`0,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  fullName: GameFrameX.Core.Timer.Handler.TimerHandler<TAgent>.HandleTimer(TAgent, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  fullName.vb: GameFrameX.Core.Timer.Handler.TimerHandler(Of TAgent).HandleTimer(TAgent, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  nameWithType: TimerHandler<TAgent>.HandleTimer(TAgent, GameEventArgs)
+  nameWithType.vb: TimerHandler(Of TAgent).HandleTimer(TAgent, GameEventArgs)
 - uid: GameFrameX.Core.Timer.Handler.TimerHandler`1.HandleTimer*
   name: HandleTimer
   href: api/GameFrameX.Core.Timer.Handler.TimerHandler-1.html#GameFrameX_Core_Timer_Handler_TimerHandler_1_HandleTimer_
@@ -5856,14 +5838,14 @@ references:
   fullName.vb: GameFrameX.Core.Timer.Handler.TimerHandler(Of TAgent).HandleTimer
   nameWithType: TimerHandler<TAgent>.HandleTimer
   nameWithType.vb: TimerHandler(Of TAgent).HandleTimer
-- uid: GameFrameX.Core.Timer.Handler.TimerHandler`1.InnerHandleTimer(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Utility.Param)
-  name: InnerHandleTimer(IComponentAgent, Param)
-  href: api/GameFrameX.Core.Timer.Handler.TimerHandler-1.html#GameFrameX_Core_Timer_Handler_TimerHandler_1_InnerHandleTimer_GameFrameX_Core_Abstractions_Agent_IComponentAgent_GameFrameX_Utility_Param_
-  commentId: M:GameFrameX.Core.Timer.Handler.TimerHandler`1.InnerHandleTimer(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Utility.Param)
-  fullName: GameFrameX.Core.Timer.Handler.TimerHandler<TAgent>.InnerHandleTimer(GameFrameX.Core.Abstractions.Agent.IComponentAgent, GameFrameX.Utility.Param)
-  fullName.vb: GameFrameX.Core.Timer.Handler.TimerHandler(Of TAgent).InnerHandleTimer(GameFrameX.Core.Abstractions.Agent.IComponentAgent, GameFrameX.Utility.Param)
-  nameWithType: TimerHandler<TAgent>.InnerHandleTimer(IComponentAgent, Param)
-  nameWithType.vb: TimerHandler(Of TAgent).InnerHandleTimer(IComponentAgent, Param)
+- uid: GameFrameX.Core.Timer.Handler.TimerHandler`1.InnerHandleTimer(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name: InnerHandleTimer(IComponentAgent, GameEventArgs)
+  href: api/GameFrameX.Core.Timer.Handler.TimerHandler-1.html#GameFrameX_Core_Timer_Handler_TimerHandler_1_InnerHandleTimer_GameFrameX_Core_Abstractions_Agent_IComponentAgent_GameFrameX_Core_Abstractions_Events_GameEventArgs_
+  commentId: M:GameFrameX.Core.Timer.Handler.TimerHandler`1.InnerHandleTimer(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  fullName: GameFrameX.Core.Timer.Handler.TimerHandler<TAgent>.InnerHandleTimer(GameFrameX.Core.Abstractions.Agent.IComponentAgent, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  fullName.vb: GameFrameX.Core.Timer.Handler.TimerHandler(Of TAgent).InnerHandleTimer(GameFrameX.Core.Abstractions.Agent.IComponentAgent, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  nameWithType: TimerHandler<TAgent>.InnerHandleTimer(IComponentAgent, GameEventArgs)
+  nameWithType.vb: TimerHandler(Of TAgent).InnerHandleTimer(IComponentAgent, GameEventArgs)
 - uid: GameFrameX.Core.Timer.Handler.TimerHandler`1.InnerHandleTimer*
   name: InnerHandleTimer
   href: api/GameFrameX.Core.Timer.Handler.TimerHandler-1.html#GameFrameX_Core_Timer_Handler_TimerHandler_1_InnerHandleTimer_
@@ -5886,15 +5868,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Timer.QuartzTimer.Daily
   nameWithType: QuartzTimer.Daily
-- uid: GameFrameX.Core.Timer.QuartzTimer.Daily``1(System.Int64,System.Int32,System.Int32,GameFrameX.Utility.Param)
-  name: Daily<T>(long, int, int, Param)
-  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Daily__1_System_Int64_System_Int32_System_Int32_GameFrameX_Utility_Param_
-  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Daily``1(System.Int64,System.Int32,System.Int32,GameFrameX.Utility.Param)
-  name.vb: Daily(Of T)(Long, Integer, Integer, Param)
-  fullName: GameFrameX.Core.Timer.QuartzTimer.Daily<T>(long, int, int, GameFrameX.Utility.Param)
-  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Daily(Of T)(Long, Integer, Integer, GameFrameX.Utility.Param)
-  nameWithType: QuartzTimer.Daily<T>(long, int, int, Param)
-  nameWithType.vb: QuartzTimer.Daily(Of T)(Long, Integer, Integer, Param)
+- uid: GameFrameX.Core.Timer.QuartzTimer.Daily``1(System.Int64,System.Int32,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name: Daily<T>(long, int, int, GameEventArgs)
+  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Daily__1_System_Int64_System_Int32_System_Int32_GameFrameX_Core_Abstractions_Events_GameEventArgs_
+  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Daily``1(System.Int64,System.Int32,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name.vb: Daily(Of T)(Long, Integer, Integer, GameEventArgs)
+  fullName: GameFrameX.Core.Timer.QuartzTimer.Daily<T>(long, int, int, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Daily(Of T)(Long, Integer, Integer, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  nameWithType: QuartzTimer.Daily<T>(long, int, int, GameEventArgs)
+  nameWithType.vb: QuartzTimer.Daily(Of T)(Long, Integer, Integer, GameEventArgs)
 - uid: GameFrameX.Core.Timer.QuartzTimer.Delay*
   name: Delay
   href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Delay_
@@ -5902,15 +5884,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Timer.QuartzTimer.Delay
   nameWithType: QuartzTimer.Delay
-- uid: GameFrameX.Core.Timer.QuartzTimer.Delay``1(System.Int64,System.TimeSpan,GameFrameX.Utility.Param)
-  name: Delay<T>(long, TimeSpan, Param)
-  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Delay__1_System_Int64_System_TimeSpan_GameFrameX_Utility_Param_
-  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Delay``1(System.Int64,System.TimeSpan,GameFrameX.Utility.Param)
-  name.vb: Delay(Of T)(Long, TimeSpan, Param)
-  fullName: GameFrameX.Core.Timer.QuartzTimer.Delay<T>(long, System.TimeSpan, GameFrameX.Utility.Param)
-  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Delay(Of T)(Long, System.TimeSpan, GameFrameX.Utility.Param)
-  nameWithType: QuartzTimer.Delay<T>(long, TimeSpan, Param)
-  nameWithType.vb: QuartzTimer.Delay(Of T)(Long, TimeSpan, Param)
+- uid: GameFrameX.Core.Timer.QuartzTimer.Delay``1(System.Int64,System.TimeSpan,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name: Delay<T>(long, TimeSpan, GameEventArgs)
+  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Delay__1_System_Int64_System_TimeSpan_GameFrameX_Core_Abstractions_Events_GameEventArgs_
+  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Delay``1(System.Int64,System.TimeSpan,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name.vb: Delay(Of T)(Long, TimeSpan, GameEventArgs)
+  fullName: GameFrameX.Core.Timer.QuartzTimer.Delay<T>(long, System.TimeSpan, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Delay(Of T)(Long, System.TimeSpan, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  nameWithType: QuartzTimer.Delay<T>(long, TimeSpan, GameEventArgs)
+  nameWithType.vb: QuartzTimer.Delay(Of T)(Long, TimeSpan, GameEventArgs)
 - uid: GameFrameX.Core.Timer.QuartzTimer.Monthly*
   name: Monthly
   href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Monthly_
@@ -5918,15 +5900,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Timer.QuartzTimer.Monthly
   nameWithType: QuartzTimer.Monthly
-- uid: GameFrameX.Core.Timer.QuartzTimer.Monthly``1(System.Int64,System.Int32,System.Int32,System.Int32,GameFrameX.Utility.Param)
-  name: Monthly<T>(long, int, int, int, Param)
-  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Monthly__1_System_Int64_System_Int32_System_Int32_System_Int32_GameFrameX_Utility_Param_
-  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Monthly``1(System.Int64,System.Int32,System.Int32,System.Int32,GameFrameX.Utility.Param)
-  name.vb: Monthly(Of T)(Long, Integer, Integer, Integer, Param)
-  fullName: GameFrameX.Core.Timer.QuartzTimer.Monthly<T>(long, int, int, int, GameFrameX.Utility.Param)
-  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Monthly(Of T)(Long, Integer, Integer, Integer, GameFrameX.Utility.Param)
-  nameWithType: QuartzTimer.Monthly<T>(long, int, int, int, Param)
-  nameWithType.vb: QuartzTimer.Monthly(Of T)(Long, Integer, Integer, Integer, Param)
+- uid: GameFrameX.Core.Timer.QuartzTimer.Monthly``1(System.Int64,System.Int32,System.Int32,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name: Monthly<T>(long, int, int, int, GameEventArgs)
+  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Monthly__1_System_Int64_System_Int32_System_Int32_System_Int32_GameFrameX_Core_Abstractions_Events_GameEventArgs_
+  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Monthly``1(System.Int64,System.Int32,System.Int32,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name.vb: Monthly(Of T)(Long, Integer, Integer, Integer, GameEventArgs)
+  fullName: GameFrameX.Core.Timer.QuartzTimer.Monthly<T>(long, int, int, int, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Monthly(Of T)(Long, Integer, Integer, Integer, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  nameWithType: QuartzTimer.Monthly<T>(long, int, int, int, GameEventArgs)
+  nameWithType.vb: QuartzTimer.Monthly(Of T)(Long, Integer, Integer, Integer, GameEventArgs)
 - uid: GameFrameX.Core.Timer.QuartzTimer.ParamKey
   name: ParamKey
   href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_ParamKey
@@ -6015,15 +5997,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Timer.QuartzTimer.Schedule
   nameWithType: QuartzTimer.Schedule
-- uid: GameFrameX.Core.Timer.QuartzTimer.Schedule``1(System.Int64,System.TimeSpan,System.TimeSpan,GameFrameX.Utility.Param,System.Int32)
-  name: Schedule<T>(long, TimeSpan, TimeSpan, Param, int)
-  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Schedule__1_System_Int64_System_TimeSpan_System_TimeSpan_GameFrameX_Utility_Param_System_Int32_
-  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Schedule``1(System.Int64,System.TimeSpan,System.TimeSpan,GameFrameX.Utility.Param,System.Int32)
-  name.vb: Schedule(Of T)(Long, TimeSpan, TimeSpan, Param, Integer)
-  fullName: GameFrameX.Core.Timer.QuartzTimer.Schedule<T>(long, System.TimeSpan, System.TimeSpan, GameFrameX.Utility.Param, int)
-  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Schedule(Of T)(Long, System.TimeSpan, System.TimeSpan, GameFrameX.Utility.Param, Integer)
-  nameWithType: QuartzTimer.Schedule<T>(long, TimeSpan, TimeSpan, Param, int)
-  nameWithType.vb: QuartzTimer.Schedule(Of T)(Long, TimeSpan, TimeSpan, Param, Integer)
+- uid: GameFrameX.Core.Timer.QuartzTimer.Schedule``1(System.Int64,System.TimeSpan,System.TimeSpan,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int32)
+  name: Schedule<T>(long, TimeSpan, TimeSpan, GameEventArgs, int)
+  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Schedule__1_System_Int64_System_TimeSpan_System_TimeSpan_GameFrameX_Core_Abstractions_Events_GameEventArgs_System_Int32_
+  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Schedule``1(System.Int64,System.TimeSpan,System.TimeSpan,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int32)
+  name.vb: Schedule(Of T)(Long, TimeSpan, TimeSpan, GameEventArgs, Integer)
+  fullName: GameFrameX.Core.Timer.QuartzTimer.Schedule<T>(long, System.TimeSpan, System.TimeSpan, GameFrameX.Core.Abstractions.Events.GameEventArgs, int)
+  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Schedule(Of T)(Long, System.TimeSpan, System.TimeSpan, GameFrameX.Core.Abstractions.Events.GameEventArgs, Integer)
+  nameWithType: QuartzTimer.Schedule<T>(long, TimeSpan, TimeSpan, GameEventArgs, int)
+  nameWithType.vb: QuartzTimer.Schedule(Of T)(Long, TimeSpan, TimeSpan, GameEventArgs, Integer)
 - uid: GameFrameX.Core.Timer.QuartzTimer.Start
   name: Start()
   href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Start
@@ -6082,15 +6064,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Timer.QuartzTimer.Weekly
   nameWithType: QuartzTimer.Weekly
-- uid: GameFrameX.Core.Timer.QuartzTimer.Weekly``1(System.Int64,System.DayOfWeek,System.Int32,System.Int32,GameFrameX.Utility.Param)
-  name: Weekly<T>(long, DayOfWeek, int, int, Param)
-  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Weekly__1_System_Int64_System_DayOfWeek_System_Int32_System_Int32_GameFrameX_Utility_Param_
-  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Weekly``1(System.Int64,System.DayOfWeek,System.Int32,System.Int32,GameFrameX.Utility.Param)
-  name.vb: Weekly(Of T)(Long, DayOfWeek, Integer, Integer, Param)
-  fullName: GameFrameX.Core.Timer.QuartzTimer.Weekly<T>(long, System.DayOfWeek, int, int, GameFrameX.Utility.Param)
-  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Weekly(Of T)(Long, System.DayOfWeek, Integer, Integer, GameFrameX.Utility.Param)
-  nameWithType: QuartzTimer.Weekly<T>(long, DayOfWeek, int, int, Param)
-  nameWithType.vb: QuartzTimer.Weekly(Of T)(Long, DayOfWeek, Integer, Integer, Param)
+- uid: GameFrameX.Core.Timer.QuartzTimer.Weekly``1(System.Int64,System.DayOfWeek,System.Int32,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name: Weekly<T>(long, DayOfWeek, int, int, GameEventArgs)
+  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Weekly__1_System_Int64_System_DayOfWeek_System_Int32_System_Int32_GameFrameX_Core_Abstractions_Events_GameEventArgs_
+  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Weekly``1(System.Int64,System.DayOfWeek,System.Int32,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name.vb: Weekly(Of T)(Long, DayOfWeek, Integer, Integer, GameEventArgs)
+  fullName: GameFrameX.Core.Timer.QuartzTimer.Weekly<T>(long, System.DayOfWeek, int, int, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Weekly(Of T)(Long, System.DayOfWeek, Integer, Integer, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  nameWithType: QuartzTimer.Weekly<T>(long, DayOfWeek, int, int, GameEventArgs)
+  nameWithType.vb: QuartzTimer.Weekly(Of T)(Long, DayOfWeek, Integer, Integer, GameEventArgs)
 - uid: GameFrameX.Core.Timer.QuartzTimer.WithCronExpression*
   name: WithCronExpression
   href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_WithCronExpression_
@@ -6098,15 +6080,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Timer.QuartzTimer.WithCronExpression
   nameWithType: QuartzTimer.WithCronExpression
-- uid: GameFrameX.Core.Timer.QuartzTimer.WithCronExpression``1(System.Int64,System.String,GameFrameX.Utility.Param)
-  name: WithCronExpression<T>(long, string, Param)
-  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_WithCronExpression__1_System_Int64_System_String_GameFrameX_Utility_Param_
-  commentId: M:GameFrameX.Core.Timer.QuartzTimer.WithCronExpression``1(System.Int64,System.String,GameFrameX.Utility.Param)
-  name.vb: WithCronExpression(Of T)(Long, String, Param)
-  fullName: GameFrameX.Core.Timer.QuartzTimer.WithCronExpression<T>(long, string, GameFrameX.Utility.Param)
-  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.WithCronExpression(Of T)(Long, String, GameFrameX.Utility.Param)
-  nameWithType: QuartzTimer.WithCronExpression<T>(long, string, Param)
-  nameWithType.vb: QuartzTimer.WithCronExpression(Of T)(Long, String, Param)
+- uid: GameFrameX.Core.Timer.QuartzTimer.WithCronExpression``1(System.Int64,System.String,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name: WithCronExpression<T>(long, string, GameEventArgs)
+  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_WithCronExpression__1_System_Int64_System_String_GameFrameX_Core_Abstractions_Events_GameEventArgs_
+  commentId: M:GameFrameX.Core.Timer.QuartzTimer.WithCronExpression``1(System.Int64,System.String,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name.vb: WithCronExpression(Of T)(Long, String, GameEventArgs)
+  fullName: GameFrameX.Core.Timer.QuartzTimer.WithCronExpression<T>(long, string, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.WithCronExpression(Of T)(Long, String, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  nameWithType: QuartzTimer.WithCronExpression<T>(long, string, GameEventArgs)
+  nameWithType.vb: QuartzTimer.WithCronExpression(Of T)(Long, String, GameEventArgs)
 - uid: GameFrameX.Core.Timer.QuartzTimer.WithDayOfWeeks*
   name: WithDayOfWeeks
   href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_WithDayOfWeeks_
@@ -6114,15 +6096,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Timer.QuartzTimer.WithDayOfWeeks
   nameWithType: QuartzTimer.WithDayOfWeeks
-- uid: GameFrameX.Core.Timer.QuartzTimer.WithDayOfWeeks``1(System.Int64,System.Int32,System.Int32,GameFrameX.Utility.Param,System.DayOfWeek[])
-  name: WithDayOfWeeks<T>(long, int, int, Param, params DayOfWeek[])
-  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_WithDayOfWeeks__1_System_Int64_System_Int32_System_Int32_GameFrameX_Utility_Param_System_DayOfWeek___
-  commentId: M:GameFrameX.Core.Timer.QuartzTimer.WithDayOfWeeks``1(System.Int64,System.Int32,System.Int32,GameFrameX.Utility.Param,System.DayOfWeek[])
-  name.vb: WithDayOfWeeks(Of T)(Long, Integer, Integer, Param, ParamArray DayOfWeek())
-  fullName: GameFrameX.Core.Timer.QuartzTimer.WithDayOfWeeks<T>(long, int, int, GameFrameX.Utility.Param, params System.DayOfWeek[])
-  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.WithDayOfWeeks(Of T)(Long, Integer, Integer, GameFrameX.Utility.Param, ParamArray System.DayOfWeek())
-  nameWithType: QuartzTimer.WithDayOfWeeks<T>(long, int, int, Param, params DayOfWeek[])
-  nameWithType.vb: QuartzTimer.WithDayOfWeeks(Of T)(Long, Integer, Integer, Param, ParamArray DayOfWeek())
+- uid: GameFrameX.Core.Timer.QuartzTimer.WithDayOfWeeks``1(System.Int64,System.Int32,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.DayOfWeek[])
+  name: WithDayOfWeeks<T>(long, int, int, GameEventArgs, params DayOfWeek[])
+  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_WithDayOfWeeks__1_System_Int64_System_Int32_System_Int32_GameFrameX_Core_Abstractions_Events_GameEventArgs_System_DayOfWeek___
+  commentId: M:GameFrameX.Core.Timer.QuartzTimer.WithDayOfWeeks``1(System.Int64,System.Int32,System.Int32,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.DayOfWeek[])
+  name.vb: WithDayOfWeeks(Of T)(Long, Integer, Integer, GameEventArgs, ParamArray DayOfWeek())
+  fullName: GameFrameX.Core.Timer.QuartzTimer.WithDayOfWeeks<T>(long, int, int, GameFrameX.Core.Abstractions.Events.GameEventArgs, params System.DayOfWeek[])
+  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.WithDayOfWeeks(Of T)(Long, Integer, Integer, GameFrameX.Core.Abstractions.Events.GameEventArgs, ParamArray System.DayOfWeek())
+  nameWithType: QuartzTimer.WithDayOfWeeks<T>(long, int, int, GameEventArgs, params DayOfWeek[])
+  nameWithType.vb: QuartzTimer.WithDayOfWeeks(Of T)(Long, Integer, Integer, GameEventArgs, ParamArray DayOfWeek())
 - uid: GameFrameX.Core.Utility
   name: GameFrameX.Core.Utility
   href: api/GameFrameX.Core.Utility.html
@@ -6238,14 +6220,14 @@ references:
   fullName.vb: GameFrameX.Core.Utility.AgentCallback(Of TAgent).CompAgentType
   nameWithType: AgentCallback<TAgent>.CompAgentType
   nameWithType.vb: AgentCallback(Of TAgent).CompAgentType
-- uid: GameFrameX.Core.Utility.AgentCallback`1.Invoke(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Utility.Param)
-  name: Invoke(IComponentAgent, Param)
-  href: api/GameFrameX.Core.Utility.AgentCallback-1.html#GameFrameX_Core_Utility_AgentCallback_1_Invoke_GameFrameX_Core_Abstractions_Agent_IComponentAgent_GameFrameX_Utility_Param_
-  commentId: M:GameFrameX.Core.Utility.AgentCallback`1.Invoke(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Utility.Param)
-  fullName: GameFrameX.Core.Utility.AgentCallback<TAgent>.Invoke(GameFrameX.Core.Abstractions.Agent.IComponentAgent, GameFrameX.Utility.Param)
-  fullName.vb: GameFrameX.Core.Utility.AgentCallback(Of TAgent).Invoke(GameFrameX.Core.Abstractions.Agent.IComponentAgent, GameFrameX.Utility.Param)
-  nameWithType: AgentCallback<TAgent>.Invoke(IComponentAgent, Param)
-  nameWithType.vb: AgentCallback(Of TAgent).Invoke(IComponentAgent, Param)
+- uid: GameFrameX.Core.Utility.AgentCallback`1.Invoke(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name: Invoke(IComponentAgent, GameEventArgs)
+  href: api/GameFrameX.Core.Utility.AgentCallback-1.html#GameFrameX_Core_Utility_AgentCallback_1_Invoke_GameFrameX_Core_Abstractions_Agent_IComponentAgent_GameFrameX_Core_Abstractions_Events_GameEventArgs_
+  commentId: M:GameFrameX.Core.Utility.AgentCallback`1.Invoke(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  fullName: GameFrameX.Core.Utility.AgentCallback<TAgent>.Invoke(GameFrameX.Core.Abstractions.Agent.IComponentAgent, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  fullName.vb: GameFrameX.Core.Utility.AgentCallback(Of TAgent).Invoke(GameFrameX.Core.Abstractions.Agent.IComponentAgent, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  nameWithType: AgentCallback<TAgent>.Invoke(IComponentAgent, GameEventArgs)
+  nameWithType.vb: AgentCallback(Of TAgent).Invoke(IComponentAgent, GameEventArgs)
 - uid: GameFrameX.Core.Utility.AgentCallback`1.Invoke*
   name: Invoke
   href: api/GameFrameX.Core.Utility.AgentCallback-1.html#GameFrameX_Core_Utility_AgentCallback_1_Invoke_
@@ -6255,14 +6237,14 @@ references:
   fullName.vb: GameFrameX.Core.Utility.AgentCallback(Of TAgent).Invoke
   nameWithType: AgentCallback<TAgent>.Invoke
   nameWithType.vb: AgentCallback(Of TAgent).Invoke
-- uid: GameFrameX.Core.Utility.AgentCallback`1.OnCall(`0,GameFrameX.Utility.Param)
-  name: OnCall(TAgent, Param)
-  href: api/GameFrameX.Core.Utility.AgentCallback-1.html#GameFrameX_Core_Utility_AgentCallback_1_OnCall__0_GameFrameX_Utility_Param_
-  commentId: M:GameFrameX.Core.Utility.AgentCallback`1.OnCall(`0,GameFrameX.Utility.Param)
-  fullName: GameFrameX.Core.Utility.AgentCallback<TAgent>.OnCall(TAgent, GameFrameX.Utility.Param)
-  fullName.vb: GameFrameX.Core.Utility.AgentCallback(Of TAgent).OnCall(TAgent, GameFrameX.Utility.Param)
-  nameWithType: AgentCallback<TAgent>.OnCall(TAgent, Param)
-  nameWithType.vb: AgentCallback(Of TAgent).OnCall(TAgent, Param)
+- uid: GameFrameX.Core.Utility.AgentCallback`1.OnCall(`0,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name: OnCall(TAgent, GameEventArgs)
+  href: api/GameFrameX.Core.Utility.AgentCallback-1.html#GameFrameX_Core_Utility_AgentCallback_1_OnCall__0_GameFrameX_Core_Abstractions_Events_GameEventArgs_
+  commentId: M:GameFrameX.Core.Utility.AgentCallback`1.OnCall(`0,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  fullName: GameFrameX.Core.Utility.AgentCallback<TAgent>.OnCall(TAgent, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  fullName.vb: GameFrameX.Core.Utility.AgentCallback(Of TAgent).OnCall(TAgent, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  nameWithType: AgentCallback<TAgent>.OnCall(TAgent, GameEventArgs)
+  nameWithType.vb: AgentCallback(Of TAgent).OnCall(TAgent, GameEventArgs)
 - uid: GameFrameX.Core.Utility.AgentCallback`1.OnCall*
   name: OnCall
   href: api/GameFrameX.Core.Utility.AgentCallback-1.html#GameFrameX_Core_Utility_AgentCallback_1_OnCall_
@@ -6291,12 +6273,12 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Utility.IAgentCallback.CompAgentType
   nameWithType: IAgentCallback.CompAgentType
-- uid: GameFrameX.Core.Utility.IAgentCallback.Invoke(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Utility.Param)
-  name: Invoke(IComponentAgent, Param)
-  href: api/GameFrameX.Core.Utility.IAgentCallback.html#GameFrameX_Core_Utility_IAgentCallback_Invoke_GameFrameX_Core_Abstractions_Agent_IComponentAgent_GameFrameX_Utility_Param_
-  commentId: M:GameFrameX.Core.Utility.IAgentCallback.Invoke(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Utility.Param)
-  fullName: GameFrameX.Core.Utility.IAgentCallback.Invoke(GameFrameX.Core.Abstractions.Agent.IComponentAgent, GameFrameX.Utility.Param)
-  nameWithType: IAgentCallback.Invoke(IComponentAgent, Param)
+- uid: GameFrameX.Core.Utility.IAgentCallback.Invoke(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  name: Invoke(IComponentAgent, GameEventArgs)
+  href: api/GameFrameX.Core.Utility.IAgentCallback.html#GameFrameX_Core_Utility_IAgentCallback_Invoke_GameFrameX_Core_Abstractions_Agent_IComponentAgent_GameFrameX_Core_Abstractions_Events_GameEventArgs_
+  commentId: M:GameFrameX.Core.Utility.IAgentCallback.Invoke(GameFrameX.Core.Abstractions.Agent.IComponentAgent,GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  fullName: GameFrameX.Core.Utility.IAgentCallback.Invoke(GameFrameX.Core.Abstractions.Agent.IComponentAgent, GameFrameX.Core.Abstractions.Events.GameEventArgs)
+  nameWithType: IAgentCallback.Invoke(IComponentAgent, GameEventArgs)
 - uid: GameFrameX.Core.Utility.IAgentCallback.Invoke*
   name: Invoke
   href: api/GameFrameX.Core.Utility.IAgentCallback.html#GameFrameX_Core_Utility_IAgentCallback_Invoke_
@@ -17403,134 +17385,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Extensions.TypeExtensions.IsImplWithInterface
   nameWithType: TypeExtensions.IsImplWithInterface
-- uid: GameFrameX.Utility.FiveParam`5
-  name: FiveParam<T1, T2, T3, T4, T5>
-  href: api/GameFrameX.Utility.FiveParam-5.html
-  commentId: T:GameFrameX.Utility.FiveParam`5
-  name.vb: FiveParam(Of T1, T2, T3, T4, T5)
-  fullName: GameFrameX.Utility.FiveParam<T1, T2, T3, T4, T5>
-  fullName.vb: GameFrameX.Utility.FiveParam(Of T1, T2, T3, T4, T5)
-  nameWithType: FiveParam<T1, T2, T3, T4, T5>
-  nameWithType.vb: FiveParam(Of T1, T2, T3, T4, T5)
-- uid: GameFrameX.Utility.FiveParam`5.#ctor(`0,`1,`2,`3,`4)
-  name: FiveParam(T1, T2, T3, T4, T5)
-  href: api/GameFrameX.Utility.FiveParam-5.html#GameFrameX_Utility_FiveParam_5__ctor__0__1__2__3__4_
-  commentId: M:GameFrameX.Utility.FiveParam`5.#ctor(`0,`1,`2,`3,`4)
-  name.vb: New(T1, T2, T3, T4, T5)
-  fullName: GameFrameX.Utility.FiveParam<T1, T2, T3, T4, T5>.FiveParam(T1, T2, T3, T4, T5)
-  fullName.vb: GameFrameX.Utility.FiveParam(Of T1, T2, T3, T4, T5).New(T1, T2, T3, T4, T5)
-  nameWithType: FiveParam<T1, T2, T3, T4, T5>.FiveParam(T1, T2, T3, T4, T5)
-  nameWithType.vb: FiveParam(Of T1, T2, T3, T4, T5).New(T1, T2, T3, T4, T5)
-- uid: GameFrameX.Utility.FiveParam`5.#ctor*
-  name: FiveParam
-  href: api/GameFrameX.Utility.FiveParam-5.html#GameFrameX_Utility_FiveParam_5__ctor_
-  commentId: Overload:GameFrameX.Utility.FiveParam`5.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: GameFrameX.Utility.FiveParam<T1, T2, T3, T4, T5>.FiveParam
-  fullName.vb: GameFrameX.Utility.FiveParam(Of T1, T2, T3, T4, T5).New
-  nameWithType: FiveParam<T1, T2, T3, T4, T5>.FiveParam
-  nameWithType.vb: FiveParam(Of T1, T2, T3, T4, T5).New
-- uid: GameFrameX.Utility.FiveParam`5.Value1
-  name: Value1
-  href: api/GameFrameX.Utility.FiveParam-5.html#GameFrameX_Utility_FiveParam_5_Value1
-  commentId: F:GameFrameX.Utility.FiveParam`5.Value1
-  fullName: GameFrameX.Utility.FiveParam<T1, T2, T3, T4, T5>.Value1
-  fullName.vb: GameFrameX.Utility.FiveParam(Of T1, T2, T3, T4, T5).Value1
-  nameWithType: FiveParam<T1, T2, T3, T4, T5>.Value1
-  nameWithType.vb: FiveParam(Of T1, T2, T3, T4, T5).Value1
-- uid: GameFrameX.Utility.FiveParam`5.Value2
-  name: Value2
-  href: api/GameFrameX.Utility.FiveParam-5.html#GameFrameX_Utility_FiveParam_5_Value2
-  commentId: F:GameFrameX.Utility.FiveParam`5.Value2
-  fullName: GameFrameX.Utility.FiveParam<T1, T2, T3, T4, T5>.Value2
-  fullName.vb: GameFrameX.Utility.FiveParam(Of T1, T2, T3, T4, T5).Value2
-  nameWithType: FiveParam<T1, T2, T3, T4, T5>.Value2
-  nameWithType.vb: FiveParam(Of T1, T2, T3, T4, T5).Value2
-- uid: GameFrameX.Utility.FiveParam`5.Value3
-  name: Value3
-  href: api/GameFrameX.Utility.FiveParam-5.html#GameFrameX_Utility_FiveParam_5_Value3
-  commentId: F:GameFrameX.Utility.FiveParam`5.Value3
-  fullName: GameFrameX.Utility.FiveParam<T1, T2, T3, T4, T5>.Value3
-  fullName.vb: GameFrameX.Utility.FiveParam(Of T1, T2, T3, T4, T5).Value3
-  nameWithType: FiveParam<T1, T2, T3, T4, T5>.Value3
-  nameWithType.vb: FiveParam(Of T1, T2, T3, T4, T5).Value3
-- uid: GameFrameX.Utility.FiveParam`5.Value4
-  name: Value4
-  href: api/GameFrameX.Utility.FiveParam-5.html#GameFrameX_Utility_FiveParam_5_Value4
-  commentId: F:GameFrameX.Utility.FiveParam`5.Value4
-  fullName: GameFrameX.Utility.FiveParam<T1, T2, T3, T4, T5>.Value4
-  fullName.vb: GameFrameX.Utility.FiveParam(Of T1, T2, T3, T4, T5).Value4
-  nameWithType: FiveParam<T1, T2, T3, T4, T5>.Value4
-  nameWithType.vb: FiveParam(Of T1, T2, T3, T4, T5).Value4
-- uid: GameFrameX.Utility.FiveParam`5.Value5
-  name: Value5
-  href: api/GameFrameX.Utility.FiveParam-5.html#GameFrameX_Utility_FiveParam_5_Value5
-  commentId: F:GameFrameX.Utility.FiveParam`5.Value5
-  fullName: GameFrameX.Utility.FiveParam<T1, T2, T3, T4, T5>.Value5
-  fullName.vb: GameFrameX.Utility.FiveParam(Of T1, T2, T3, T4, T5).Value5
-  nameWithType: FiveParam<T1, T2, T3, T4, T5>.Value5
-  nameWithType.vb: FiveParam(Of T1, T2, T3, T4, T5).Value5
-- uid: GameFrameX.Utility.FourParam`4
-  name: FourParam<T1, T2, T3, T4>
-  href: api/GameFrameX.Utility.FourParam-4.html
-  commentId: T:GameFrameX.Utility.FourParam`4
-  name.vb: FourParam(Of T1, T2, T3, T4)
-  fullName: GameFrameX.Utility.FourParam<T1, T2, T3, T4>
-  fullName.vb: GameFrameX.Utility.FourParam(Of T1, T2, T3, T4)
-  nameWithType: FourParam<T1, T2, T3, T4>
-  nameWithType.vb: FourParam(Of T1, T2, T3, T4)
-- uid: GameFrameX.Utility.FourParam`4.#ctor(`0,`1,`2,`3)
-  name: FourParam(T1, T2, T3, T4)
-  href: api/GameFrameX.Utility.FourParam-4.html#GameFrameX_Utility_FourParam_4__ctor__0__1__2__3_
-  commentId: M:GameFrameX.Utility.FourParam`4.#ctor(`0,`1,`2,`3)
-  name.vb: New(T1, T2, T3, T4)
-  fullName: GameFrameX.Utility.FourParam<T1, T2, T3, T4>.FourParam(T1, T2, T3, T4)
-  fullName.vb: GameFrameX.Utility.FourParam(Of T1, T2, T3, T4).New(T1, T2, T3, T4)
-  nameWithType: FourParam<T1, T2, T3, T4>.FourParam(T1, T2, T3, T4)
-  nameWithType.vb: FourParam(Of T1, T2, T3, T4).New(T1, T2, T3, T4)
-- uid: GameFrameX.Utility.FourParam`4.#ctor*
-  name: FourParam
-  href: api/GameFrameX.Utility.FourParam-4.html#GameFrameX_Utility_FourParam_4__ctor_
-  commentId: Overload:GameFrameX.Utility.FourParam`4.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: GameFrameX.Utility.FourParam<T1, T2, T3, T4>.FourParam
-  fullName.vb: GameFrameX.Utility.FourParam(Of T1, T2, T3, T4).New
-  nameWithType: FourParam<T1, T2, T3, T4>.FourParam
-  nameWithType.vb: FourParam(Of T1, T2, T3, T4).New
-- uid: GameFrameX.Utility.FourParam`4.Value1
-  name: Value1
-  href: api/GameFrameX.Utility.FourParam-4.html#GameFrameX_Utility_FourParam_4_Value1
-  commentId: F:GameFrameX.Utility.FourParam`4.Value1
-  fullName: GameFrameX.Utility.FourParam<T1, T2, T3, T4>.Value1
-  fullName.vb: GameFrameX.Utility.FourParam(Of T1, T2, T3, T4).Value1
-  nameWithType: FourParam<T1, T2, T3, T4>.Value1
-  nameWithType.vb: FourParam(Of T1, T2, T3, T4).Value1
-- uid: GameFrameX.Utility.FourParam`4.Value2
-  name: Value2
-  href: api/GameFrameX.Utility.FourParam-4.html#GameFrameX_Utility_FourParam_4_Value2
-  commentId: F:GameFrameX.Utility.FourParam`4.Value2
-  fullName: GameFrameX.Utility.FourParam<T1, T2, T3, T4>.Value2
-  fullName.vb: GameFrameX.Utility.FourParam(Of T1, T2, T3, T4).Value2
-  nameWithType: FourParam<T1, T2, T3, T4>.Value2
-  nameWithType.vb: FourParam(Of T1, T2, T3, T4).Value2
-- uid: GameFrameX.Utility.FourParam`4.Value3
-  name: Value3
-  href: api/GameFrameX.Utility.FourParam-4.html#GameFrameX_Utility_FourParam_4_Value3
-  commentId: F:GameFrameX.Utility.FourParam`4.Value3
-  fullName: GameFrameX.Utility.FourParam<T1, T2, T3, T4>.Value3
-  fullName.vb: GameFrameX.Utility.FourParam(Of T1, T2, T3, T4).Value3
-  nameWithType: FourParam<T1, T2, T3, T4>.Value3
-  nameWithType.vb: FourParam(Of T1, T2, T3, T4).Value3
-- uid: GameFrameX.Utility.FourParam`4.Value4
-  name: Value4
-  href: api/GameFrameX.Utility.FourParam-4.html#GameFrameX_Utility_FourParam_4_Value4
-  commentId: F:GameFrameX.Utility.FourParam`4.Value4
-  fullName: GameFrameX.Utility.FourParam<T1, T2, T3, T4>.Value4
-  fullName.vb: GameFrameX.Utility.FourParam(Of T1, T2, T3, T4).Value4
-  nameWithType: FourParam<T1, T2, T3, T4>.Value4
-  nameWithType.vb: FourParam(Of T1, T2, T3, T4).Value4
 - uid: GameFrameX.Utility.IdGenerator
   name: IdGenerator
   href: api/GameFrameX.Utility.IdGenerator.html
@@ -24368,48 +24222,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Net.PortIsUsed
   nameWithType: Net.PortIsUsed
-- uid: GameFrameX.Utility.OneParam`1
-  name: OneParam<T>
-  href: api/GameFrameX.Utility.OneParam-1.html
-  commentId: T:GameFrameX.Utility.OneParam`1
-  name.vb: OneParam(Of T)
-  fullName: GameFrameX.Utility.OneParam<T>
-  fullName.vb: GameFrameX.Utility.OneParam(Of T)
-  nameWithType: OneParam<T>
-  nameWithType.vb: OneParam(Of T)
-- uid: GameFrameX.Utility.OneParam`1.#ctor(`0)
-  name: OneParam(T)
-  href: api/GameFrameX.Utility.OneParam-1.html#GameFrameX_Utility_OneParam_1__ctor__0_
-  commentId: M:GameFrameX.Utility.OneParam`1.#ctor(`0)
-  name.vb: New(T)
-  fullName: GameFrameX.Utility.OneParam<T>.OneParam(T)
-  fullName.vb: GameFrameX.Utility.OneParam(Of T).New(T)
-  nameWithType: OneParam<T>.OneParam(T)
-  nameWithType.vb: OneParam(Of T).New(T)
-- uid: GameFrameX.Utility.OneParam`1.#ctor*
-  name: OneParam
-  href: api/GameFrameX.Utility.OneParam-1.html#GameFrameX_Utility_OneParam_1__ctor_
-  commentId: Overload:GameFrameX.Utility.OneParam`1.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: GameFrameX.Utility.OneParam<T>.OneParam
-  fullName.vb: GameFrameX.Utility.OneParam(Of T).New
-  nameWithType: OneParam<T>.OneParam
-  nameWithType.vb: OneParam(Of T).New
-- uid: GameFrameX.Utility.OneParam`1.Value
-  name: Value
-  href: api/GameFrameX.Utility.OneParam-1.html#GameFrameX_Utility_OneParam_1_Value
-  commentId: F:GameFrameX.Utility.OneParam`1.Value
-  fullName: GameFrameX.Utility.OneParam<T>.Value
-  fullName.vb: GameFrameX.Utility.OneParam(Of T).Value
-  nameWithType: OneParam<T>.Value
-  nameWithType.vb: OneParam(Of T).Value
-- uid: GameFrameX.Utility.Param
-  name: Param
-  href: api/GameFrameX.Utility.Param.html
-  commentId: T:GameFrameX.Utility.Param
-  fullName: GameFrameX.Utility.Param
-  nameWithType: Param
 - uid: GameFrameX.Utility.PlatformRuntimeHelper
   name: PlatformRuntimeHelper
   href: api/GameFrameX.Utility.PlatformRuntimeHelper.html
@@ -25809,58 +25621,6 @@ references:
   fullName.vb: GameFrameX.Utility.Singleton(Of T).Instance
   nameWithType: Singleton<T>.Instance
   nameWithType.vb: Singleton(Of T).Instance
-- uid: GameFrameX.Utility.ThreeParam`3
-  name: ThreeParam<T1, T2, T3>
-  href: api/GameFrameX.Utility.ThreeParam-3.html
-  commentId: T:GameFrameX.Utility.ThreeParam`3
-  name.vb: ThreeParam(Of T1, T2, T3)
-  fullName: GameFrameX.Utility.ThreeParam<T1, T2, T3>
-  fullName.vb: GameFrameX.Utility.ThreeParam(Of T1, T2, T3)
-  nameWithType: ThreeParam<T1, T2, T3>
-  nameWithType.vb: ThreeParam(Of T1, T2, T3)
-- uid: GameFrameX.Utility.ThreeParam`3.#ctor(`0,`1,`2)
-  name: ThreeParam(T1, T2, T3)
-  href: api/GameFrameX.Utility.ThreeParam-3.html#GameFrameX_Utility_ThreeParam_3__ctor__0__1__2_
-  commentId: M:GameFrameX.Utility.ThreeParam`3.#ctor(`0,`1,`2)
-  name.vb: New(T1, T2, T3)
-  fullName: GameFrameX.Utility.ThreeParam<T1, T2, T3>.ThreeParam(T1, T2, T3)
-  fullName.vb: GameFrameX.Utility.ThreeParam(Of T1, T2, T3).New(T1, T2, T3)
-  nameWithType: ThreeParam<T1, T2, T3>.ThreeParam(T1, T2, T3)
-  nameWithType.vb: ThreeParam(Of T1, T2, T3).New(T1, T2, T3)
-- uid: GameFrameX.Utility.ThreeParam`3.#ctor*
-  name: ThreeParam
-  href: api/GameFrameX.Utility.ThreeParam-3.html#GameFrameX_Utility_ThreeParam_3__ctor_
-  commentId: Overload:GameFrameX.Utility.ThreeParam`3.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: GameFrameX.Utility.ThreeParam<T1, T2, T3>.ThreeParam
-  fullName.vb: GameFrameX.Utility.ThreeParam(Of T1, T2, T3).New
-  nameWithType: ThreeParam<T1, T2, T3>.ThreeParam
-  nameWithType.vb: ThreeParam(Of T1, T2, T3).New
-- uid: GameFrameX.Utility.ThreeParam`3.Value1
-  name: Value1
-  href: api/GameFrameX.Utility.ThreeParam-3.html#GameFrameX_Utility_ThreeParam_3_Value1
-  commentId: F:GameFrameX.Utility.ThreeParam`3.Value1
-  fullName: GameFrameX.Utility.ThreeParam<T1, T2, T3>.Value1
-  fullName.vb: GameFrameX.Utility.ThreeParam(Of T1, T2, T3).Value1
-  nameWithType: ThreeParam<T1, T2, T3>.Value1
-  nameWithType.vb: ThreeParam(Of T1, T2, T3).Value1
-- uid: GameFrameX.Utility.ThreeParam`3.Value2
-  name: Value2
-  href: api/GameFrameX.Utility.ThreeParam-3.html#GameFrameX_Utility_ThreeParam_3_Value2
-  commentId: F:GameFrameX.Utility.ThreeParam`3.Value2
-  fullName: GameFrameX.Utility.ThreeParam<T1, T2, T3>.Value2
-  fullName.vb: GameFrameX.Utility.ThreeParam(Of T1, T2, T3).Value2
-  nameWithType: ThreeParam<T1, T2, T3>.Value2
-  nameWithType.vb: ThreeParam(Of T1, T2, T3).Value2
-- uid: GameFrameX.Utility.ThreeParam`3.Value3
-  name: Value3
-  href: api/GameFrameX.Utility.ThreeParam-3.html#GameFrameX_Utility_ThreeParam_3_Value3
-  commentId: F:GameFrameX.Utility.ThreeParam`3.Value3
-  fullName: GameFrameX.Utility.ThreeParam<T1, T2, T3>.Value3
-  fullName.vb: GameFrameX.Utility.ThreeParam(Of T1, T2, T3).Value3
-  nameWithType: ThreeParam<T1, T2, T3>.Value3
-  nameWithType.vb: ThreeParam(Of T1, T2, T3).Value3
 - uid: GameFrameX.Utility.TimeHelper
   name: TimeHelper
   href: api/GameFrameX.Utility.TimeHelper.html
@@ -26816,47 +26576,3 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.UtcToUtcDateTime
   nameWithType: TimeHelper.UtcToUtcDateTime
-- uid: GameFrameX.Utility.TwoParam`2
-  name: TwoParam<T1, T2>
-  href: api/GameFrameX.Utility.TwoParam-2.html
-  commentId: T:GameFrameX.Utility.TwoParam`2
-  name.vb: TwoParam(Of T1, T2)
-  fullName: GameFrameX.Utility.TwoParam<T1, T2>
-  fullName.vb: GameFrameX.Utility.TwoParam(Of T1, T2)
-  nameWithType: TwoParam<T1, T2>
-  nameWithType.vb: TwoParam(Of T1, T2)
-- uid: GameFrameX.Utility.TwoParam`2.#ctor(`0,`1)
-  name: TwoParam(T1, T2)
-  href: api/GameFrameX.Utility.TwoParam-2.html#GameFrameX_Utility_TwoParam_2__ctor__0__1_
-  commentId: M:GameFrameX.Utility.TwoParam`2.#ctor(`0,`1)
-  name.vb: New(T1, T2)
-  fullName: GameFrameX.Utility.TwoParam<T1, T2>.TwoParam(T1, T2)
-  fullName.vb: GameFrameX.Utility.TwoParam(Of T1, T2).New(T1, T2)
-  nameWithType: TwoParam<T1, T2>.TwoParam(T1, T2)
-  nameWithType.vb: TwoParam(Of T1, T2).New(T1, T2)
-- uid: GameFrameX.Utility.TwoParam`2.#ctor*
-  name: TwoParam
-  href: api/GameFrameX.Utility.TwoParam-2.html#GameFrameX_Utility_TwoParam_2__ctor_
-  commentId: Overload:GameFrameX.Utility.TwoParam`2.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: GameFrameX.Utility.TwoParam<T1, T2>.TwoParam
-  fullName.vb: GameFrameX.Utility.TwoParam(Of T1, T2).New
-  nameWithType: TwoParam<T1, T2>.TwoParam
-  nameWithType.vb: TwoParam(Of T1, T2).New
-- uid: GameFrameX.Utility.TwoParam`2.Value1
-  name: Value1
-  href: api/GameFrameX.Utility.TwoParam-2.html#GameFrameX_Utility_TwoParam_2_Value1
-  commentId: F:GameFrameX.Utility.TwoParam`2.Value1
-  fullName: GameFrameX.Utility.TwoParam<T1, T2>.Value1
-  fullName.vb: GameFrameX.Utility.TwoParam(Of T1, T2).Value1
-  nameWithType: TwoParam<T1, T2>.Value1
-  nameWithType.vb: TwoParam(Of T1, T2).Value1
-- uid: GameFrameX.Utility.TwoParam`2.Value2
-  name: Value2
-  href: api/GameFrameX.Utility.TwoParam-2.html#GameFrameX_Utility_TwoParam_2_Value2
-  commentId: F:GameFrameX.Utility.TwoParam`2.Value2
-  fullName: GameFrameX.Utility.TwoParam<T1, T2>.Value2
-  fullName.vb: GameFrameX.Utility.TwoParam(Of T1, T2).Value2
-  nameWithType: TwoParam<T1, T2>.Value2
-  nameWithType.vb: TwoParam(Of T1, T2).Value2
