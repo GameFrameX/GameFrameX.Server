@@ -42,7 +42,7 @@ public class UnitTestTime
     {
         var time = new DateTime(2022, 1, 1, 12, 0, 0);
         var utc = false;
-        var timeMillis = TimeHelper.TimeMillis(time, utc);
+        var timeMillis = TimeHelper.TimeToMilliseconds(time, utc);
         var expectedTimeMillis = (long)(time - new DateTime(1970, 1, 1)).TotalMilliseconds;
         Assert.That(timeMillis, Is.EqualTo(expectedTimeMillis));
     }
@@ -52,7 +52,7 @@ public class UnitTestTime
     {
         var timeMillis = 1641024000000;
         var utc = true;
-        var dateTime = TimeHelper.MillisToDateTime(timeMillis, utc);
+        var dateTime = TimeHelper.MillisecondsTimeStampToDateTime(timeMillis, utc);
         var expectedDateTime = new DateTime(2022, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         Assert.That(dateTime, Is.EqualTo(expectedDateTime));
     }

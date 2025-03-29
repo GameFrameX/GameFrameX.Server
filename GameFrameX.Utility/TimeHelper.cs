@@ -16,15 +16,6 @@ public static class TimeHelper
     public static readonly DateTime EpochUtc = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Utc);
 
     /// <summary>
-    /// 返回当前时间的毫秒表示。
-    /// </summary>
-    /// <returns>当前时间的毫秒数。</returns>
-    public static long CurrentTimeMillis()
-    {
-        return TimeMillis(DateTime.Now);
-    }
-
-    /// <summary>
     /// 当前UTC 时间 秒时间戳
     /// </summary>
     /// <returns>当前UTC时间的秒时间戳。</returns>
@@ -42,6 +33,14 @@ public static class TimeHelper
         return new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
     }
 
+    /// <summary>
+    /// 当前时区时间 秒时间戳
+    /// </summary>
+    /// <returns>当前时区时间的秒时间戳。</returns>
+    public static long TimeSeconds()
+    {
+        return new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
+    }
 
     /// <summary>
     /// 当前时区时间 毫秒时间戳
@@ -58,7 +57,7 @@ public static class TimeHelper
     /// <param name="time">指定时间。</param>
     /// <param name="utc">是否使用UTC时间。</param>
     /// <returns>距离纪元时间的毫秒数。</returns>
-    public static long TimeMillis(DateTime time, bool utc = false)
+    public static long TimeToMilliseconds(DateTime time, bool utc = false)
     {
         if (utc)
         {
@@ -74,7 +73,7 @@ public static class TimeHelper
     /// <param name="time">指定时间。</param>
     /// <param name="utc">是否使用UTC时间。</param>
     /// <returns>距离纪元时间的秒数。</returns>
-    public static int TimeSecond(DateTime time, bool utc = false)
+    public static int TimeToSecond(DateTime time, bool utc = false)
     {
         if (utc)
         {
@@ -84,14 +83,6 @@ public static class TimeHelper
         return (int)(time - EpochLocal).TotalSeconds;
     }
 
-    /// <summary>
-    /// 当前时区时间 秒时间戳
-    /// </summary>
-    /// <returns>当前时区时间的秒时间戳。</returns>
-    public static long TimeSeconds()
-    {
-        return new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
-    }
 
     /// <summary>
     /// 将Unix时间戳转换为自公元1年1月1日以来的刻度数。
@@ -125,58 +116,136 @@ public static class TimeHelper
     public static TimeSpan TimeSpanWithTimestamp(long timestamp)
     {
         // 计算当前时间与给定时间戳表示的时间之间的差值
-        var timeSpan = MillisToDateTime(UnixTimeMilliseconds(), true) - MillisToDateTime(timestamp, true);
+        var timeSpan = MillisecondsTimeStampToDateTime(UnixTimeMilliseconds(), true) - MillisecondsTimeStampToDateTime(timestamp, true);
+        return timeSpan;
+    }
+
+    /// <summary>
+    /// 将给定的时间戳转换为相对于当前本地时间的 TimeSpan 对象。
+    /// </summary>
+    /// <param name="timestamp">自某个固定时间点（通常为1970年1月1日午夜）以来经过的毫秒数。</param>
+    /// <returns>一个 TimeSpan 对象，表示从给定时间戳到当前本地时间的间隔。</returns>
+    public static TimeSpan TimeSpanLocalWithTimestamp(long timestamp)
+    {
+        // 计算当前时间与给定时间戳表示的时间之间的差值
+        var timeSpan = DateTime.Now - MillisecondsTimeStampToDateTime(timestamp, true);
         return timeSpan;
     }
 
     /// <summary>
     /// 毫秒转时间
     /// </summary>
-    /// <param name="time">毫秒数。</param>
+    /// <param name="timestamp">毫秒时间戳。</param>
     /// <param name="utc">是否使用UTC时间。</param>
     /// <returns>转换后的时间。</returns>
-    public static DateTime MillisToDateTime(long time, bool utc = false)
+    public static DateTime MillisecondsTimeStampToDateTime(long timestamp, bool utc = false)
     {
         if (utc)
         {
-            return EpochUtc.AddMilliseconds(time);
+            return EpochUtc.AddMilliseconds(timestamp);
         }
 
-        return EpochLocal.AddMilliseconds(time);
+        return EpochLocal.AddMilliseconds(timestamp);
     }
 
     /// <summary>
-    /// 获取从指定日期到当前日期之间跨越的天数。
+    /// 秒时间戳转时间
     /// </summary>
-    /// <param name="begin">起始日期。</param>
+    /// <param name="timestamp">秒时间戳。</param>
+    /// <param name="utc">是否使用UTC时间。</param>
+    /// <returns>转换后的时间。</returns>
+    public static DateTime TimestampToDateTime(long timestamp, bool utc = false)
+    {
+        if (utc)
+        {
+            return EpochUtc.AddSeconds(timestamp);
+        }
+
+        return EpochLocal.AddSeconds(timestamp);
+    }
+
+    /// <summary>
+    /// 获取从指定日期到当前UTC日期之间跨越的天数。
+    /// </summary>
+    /// <param name="startTime">起始日期。</param>
     /// <param name="hour">小时。</param>
     /// <returns>跨越的天数。</returns>
-    public static int GetCrossDays(DateTime begin, int hour = 0)
+    public static int GetCrossDays(DateTime startTime, int hour = 0)
     {
-        return GetCrossDays(begin, DateTime.Now, hour);
+        return GetCrossDays(startTime, DateTime.UtcNow, hour);
+    }
+
+    /// <summary>
+    /// 获取从指定日期到当前本地日期之间跨越的天数。
+    /// </summary>
+    /// <param name="startTime">起始日期。</param>
+    /// <param name="hour">小时。</param>
+    /// <returns>跨越的天数。</returns>
+    public static int GetCrossLocalDays(DateTime startTime, int hour = 0)
+    {
+        return GetCrossDays(startTime, DateTime.Now, hour);
+    }
+
+    /// <summary>
+    /// 获取两个时间戳之间跨越的天数。
+    /// </summary>
+    /// <param name="beginTimestamp">起始时间戳,从1970年1月1日以来经过的秒数。</param>
+    /// <param name="hour">小时。</param>
+    /// <returns>跨越的天数。</returns>
+    public static int GetCrossDays(long beginTimestamp, int hour = 0)
+    {
+        var begin = TimestampToDateTime(beginTimestamp);
+        return GetCrossDays(begin, hour);
+    }
+
+    /// <summary>
+    /// 获取两个UTC时间戳之间跨越的天数。
+    /// </summary>
+    /// <param name="beginTimestamp">开始时间戳(秒)，从1970年1月1日以来经过的秒数。</param>
+    /// <param name="afterTimestamp">结束时间戳(秒)，从1970年1月1日以来经过的秒数。</param>
+    /// <param name="hour">小时。</param>
+    /// <returns>跨越的天数。</returns>
+    public static int GetCrossDays(long beginTimestamp, long afterTimestamp, int hour = 0)
+    {
+        var begin = UtcToUtcDateTime(beginTimestamp);
+        var after = UtcToUtcDateTime(afterTimestamp);
+        return GetCrossDays(begin, after, hour);
     }
 
     /// <summary>
     /// 获取两个日期之间跨越的天数。
     /// </summary>
-    /// <param name="begin">起始日期。</param>
-    /// <param name="after">结束日期。</param>
+    /// <param name="startTime">起始日期。</param>
+    /// <param name="endTime">结束日期。</param>
     /// <param name="hour">小时。</param>
     /// <returns>跨越的天数。</returns>
-    public static int GetCrossDays(DateTime begin, DateTime after, int hour = 0)
+    public static int GetCrossDays(DateTime startTime, DateTime endTime, int hour = 0)
     {
-        var days = (int)(after.Date - begin.Date).TotalDays;
-        if (begin.Hour < hour)
+        var days = (int)(endTime.Date - startTime.Date).TotalDays;
+        if (startTime.Hour < hour)
         {
             days++;
         }
 
-        if (after.Hour < hour)
+        if (endTime.Hour < hour)
         {
             days--;
         }
 
         return days;
+    }
+
+    /// <summary>
+    /// 获取两个本地时间戳之间的间隔天数
+    /// </summary>
+    /// <param name="startTimestamp">开始时间戳(秒)</param>
+    /// <param name="endTimestamp">结束时间戳(秒)</param>
+    /// <returns>间隔天数</returns>
+    public static int GetCrossLocalDays(long startTimestamp, long endTimestamp)
+    {
+        var startTime = UtcToLocalDateTime(startTimestamp);
+        var endTime = UtcToLocalDateTime(endTimestamp);
+        return GetCrossDays(startTime, endTime);
     }
 
     /// <summary>
@@ -330,6 +399,16 @@ public static class TimeHelper
     }
 
     /// <summary>
+    /// UTC 毫秒时间戳 转换成UTC时间
+    /// </summary>
+    /// <param name="utcTimestampMilliseconds">UTC时间戳,单位毫秒</param>
+    /// <returns>转换后的UTC时间。</returns>
+    public static DateTime UtcMillisecondsToUtcDateTime(long utcTimestampMilliseconds)
+    {
+        return DateTimeOffset.FromUnixTimeMilliseconds(utcTimestampMilliseconds).UtcDateTime;
+    }
+
+    /// <summary>
     /// UTC 时间戳 转换成本地时间
     /// </summary>
     /// <param name="utcTimestamp">UTC时间戳,单位秒</param>
@@ -337,6 +416,16 @@ public static class TimeHelper
     public static DateTime UtcToLocalDateTime(long utcTimestamp)
     {
         return DateTimeOffset.FromUnixTimeSeconds(utcTimestamp).LocalDateTime;
+    }
+
+    /// <summary>
+    /// UTC 毫秒时间戳 转换成本地时间
+    /// </summary>
+    /// <param name="utcTimestampMilliseconds">UTC时间戳,单位毫秒</param>
+    /// <returns>转换后的本地时间。</returns>
+    public static DateTime UtcMillisecondsToDateTime(long utcTimestampMilliseconds)
+    {
+        return DateTimeOffset.FromUnixTimeMilliseconds(utcTimestampMilliseconds).LocalDateTime;
     }
 
     /// <summary>
@@ -661,42 +750,6 @@ public static class TimeHelper
         return new DateTimeOffset(GetEndTimeOfYear(date)).ToUnixTimeSeconds();
     }
 
-    /// <summary>
-    /// 获取两个时间之间的间隔天数
-    /// </summary>
-    /// <param name="startTime">开始时间</param>
-    /// <param name="endTime">结束时间</param>
-    /// <returns>间隔天数</returns>
-    public static int GetDaysBetween(DateTime startTime, DateTime endTime)
-    {
-        return (int)(endTime.Date - startTime.Date).TotalDays;
-    }
-
-    /// <summary>
-    /// 获取两个UTC时间戳之间的间隔天数
-    /// </summary>
-    /// <param name="startTimestamp">开始时间戳(秒)</param>
-    /// <param name="endTimestamp">结束时间戳(秒)</param>
-    /// <returns>间隔天数</returns>
-    public static int GetDaysBetween(long startTimestamp, long endTimestamp)
-    {
-        var startTime = UtcToUtcDateTime(startTimestamp);
-        var endTime = UtcToUtcDateTime(endTimestamp);
-        return GetDaysBetween(startTime, endTime);
-    }
-
-    /// <summary>
-    /// 获取两个本地时间戳之间的间隔天数
-    /// </summary>
-    /// <param name="startTimestamp">开始时间戳(秒)</param>
-    /// <param name="endTimestamp">结束时间戳(秒)</param>
-    /// <returns>间隔天数</returns>
-    public static int GetLocalDaysBetween(long startTimestamp, long endTimestamp)
-    {
-        var startTime = UtcToLocalDateTime(startTimestamp);
-        var endTime = UtcToLocalDateTime(endTimestamp);
-        return GetDaysBetween(startTime, endTime);
-    }
 
     /// <summary>
     /// 获取指定时间是否在指定的时间范围内
