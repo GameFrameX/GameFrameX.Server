@@ -387,13 +387,18 @@ internal sealed class HotfixModule
     /// <returns>是否添加成功。</returns>
     private bool AddAgent(Type type)
     {
-        type.CheckNotNull(nameof(type));
+        ArgumentNullException.ThrowIfNull(type, nameof(type));
         if (!type.IsImplWithInterface(typeof(IComponentAgent)))
         {
             return false;
         }
 
         var fullName = type.FullName;
+        if (fullName == null)
+        {
+            return false;
+        }
+
         if (fullName == "GameFrameX.Launcher.Logic.Server.ServerComp")
         {
             return false;
