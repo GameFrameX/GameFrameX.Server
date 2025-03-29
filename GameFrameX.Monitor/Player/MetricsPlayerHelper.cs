@@ -1,4 +1,4 @@
-using Prometheus;
+using System.Diagnostics.Metrics;
 
 namespace GameFrameX.Monitor.Player;
 
@@ -7,53 +7,35 @@ namespace GameFrameX.Monitor.Player;
 /// </summary>
 public static class MetricsPlayerHelper
 {
-    private static Counter _getPlayerListCounterOptions;
+    private static Counter<ulong> _createCounterOptions;
 
-    private static Counter _createCounterOptions;
+    private static Counter<ulong> _loginCounterOptions;
 
-    private static Counter _loginCounterOptions;
-
-    private static Counter _heartBeatCounterOptions;
+    private const string ModuleName = "player.";
 
     /// <summary>
-    /// 获取玩家列表
+    /// 玩家角色创建数量总和
     /// </summary>
-    public static Counter GetPlayerListCounterOptions
+    public static Counter<ulong> CreateCounterOptions
     {
-        get { return _getPlayerListCounterOptions ??= Metrics.CreateCounter("player_get_player_list", "获取玩家列表"); }
+        get { return _createCounterOptions ??= MetricsHelper.Meter.CreateCounter<ulong>($"{ModuleName}create_total", "人", "玩家角色创建数量总和"); }
     }
 
     /// <summary>
-    /// 玩家角色创建数量
+    /// 玩家角色登录次数
     /// </summary>
-    public static Counter CreateCounterOptions
+    public static Counter<ulong> LoginCounterOptions
     {
-        get { return _createCounterOptions ??= Metrics.CreateCounter("player_create", "玩家角色创建数量"); }
+        get { return _loginCounterOptions ??= MetricsHelper.Meter.CreateCounter<ulong>($"{ModuleName}login_counter", "次", "玩家角色登录次数"); }
     }
 
-    /// <summary>
-    /// 玩家角色登录
-    /// </summary>
-    public static Counter LoginCounterOptions
-    {
-        get { return _loginCounterOptions ??= Metrics.CreateCounter("player_login", "玩家角色登录"); }
-    }
-
-    /// <summary>
-    /// 玩家角色心跳
-    /// </summary>
-    public static Counter HeartBeatCounterOptions
-    {
-        get { return _heartBeatCounterOptions ??= Metrics.CreateCounter("player_heart_beat", "玩家角色心跳"); }
-    }
-
-    private static Gauge _onlineCounterOptions;
+    private static Gauge<int> _onlineCounterOptions;
 
     /// <summary>
     /// 在线玩家数量
     /// </summary>
-    public static Gauge OnlineCounterOptions
+    public static Gauge<int> OnlineCounterOptions
     {
-        get { return _onlineCounterOptions ??= Metrics.CreateGauge("player_online", "在线玩家数量"); }
+        get { return _onlineCounterOptions ??= MetricsHelper.Meter.CreateGauge<int>($"{ModuleName}online", "人", "在线玩家数量"); }
     }
 }

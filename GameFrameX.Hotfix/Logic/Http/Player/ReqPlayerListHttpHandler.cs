@@ -55,7 +55,6 @@ public sealed class ReqPlayerListHttpHandler : BaseHttpHandler
 
     private async Task<List<PlayerState>> GetPlayerList(ReqPlayerList reqPlayerList)
     {
-        MetricsPlayerHelper.GetPlayerListCounterOptions.Inc();
         return await GameDb.FindListAsync<PlayerState>(m => m.AccountId == reqPlayerList.Id);
     }
 }

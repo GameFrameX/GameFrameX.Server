@@ -51,6 +51,7 @@
         </None>
     </ItemGroup>
     <ItemGroup>
+      <ProjectReference Include="..\GameFrameX.Monitor\GameFrameX.Monitor.csproj" />
       <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
     </ItemGroup>
 

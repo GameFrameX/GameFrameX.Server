@@ -1,4 +1,5 @@
-﻿using GameFrameX.Utility;
+﻿using GameFrameX.Monitor.DataBase;
+using GameFrameX.Utility;
 
 namespace GameFrameX.DataBase.Mongo;
 
@@ -22,6 +23,7 @@ public sealed partial class MongoDbService
         var isChanged = state.IsModify();
         if (isChanged)
         {
+            MetricsDataBaseHelper.UpdateCounterOptions.Add(1);
             state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
             state.UpdateCount++;
             var result = await _mongoDbContext.Update<TState>().MatchID(state.Id).ModifyExcept(m => new { m.CreateId, m.CreateTime, m.Id, m.IsDeleted, m.DeleteTime, }, state).ExecuteAsync();
@@ -54,6 +56,11 @@ public sealed partial class MongoDbService
                 bulkUpdate.MatchID(state.Id).ModifyExcept(m => new { m.CreateId, m.CreateTime, m.Id, m.IsDeleted, m.DeleteTime, }, state).AddToQueue();
                 resultCount++;
             }
+        }
+
+        if (resultCount > 0)
+        {
+            MetricsDataBaseHelper.UpdateCounterOptions.Add(1);
         }
 
         var result = await bulkUpdate.ExecuteAsync();

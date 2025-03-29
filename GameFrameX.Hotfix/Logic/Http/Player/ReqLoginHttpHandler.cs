@@ -28,7 +28,6 @@ public sealed class ReqLoginHttpHandler : BaseHttpHandler
             return null;
         }
 
-        MetricsAccountHelper.LoginCounterOptions.Inc();
         var loginState = await OnLogin(reqLogin);
 
         if (loginState == null)
@@ -48,13 +47,13 @@ public sealed class ReqLoginHttpHandler : BaseHttpHandler
 
     public async Task<LoginState> OnLogin(ReqLogin reqLogin)
     {
-        MetricsAccountHelper.LoginCounterOptions.Inc();
+        MetricsAccountHelper.LoginCounterOptions.Add(1);
         return await GameDb.FindAsync<LoginState>(m => m.UserName == reqLogin.UserName && m.Password == reqLogin.Password);
     }
 
     public async Task<LoginState> Register(long accountId, ReqLogin reqLogin)
     {
-        MetricsAccountHelper.RegisterCounterOptions.Inc();
+        MetricsAccountHelper.RegisterCounterOptions.Add(1);
         var loginState = new LoginState { Id = accountId, UserName = reqLogin.UserName, Password = reqLogin.Password, };
         await GameDb.SaveOneAsync(loginState);
         return loginState;

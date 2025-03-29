@@ -14,7 +14,7 @@ public sealed class PlayerComponent : StateComponent<PlayerState>
 {
     public async Task<PlayerState> OnPlayerLogin(ReqPlayerLogin reqLogin)
     {
-        MetricsPlayerHelper.LoginCounterOptions.Inc();
+        MetricsPlayerHelper.LoginCounterOptions.Add(1);
         return await GameDb.FindAsync<PlayerState>(m => m.Id == reqLogin.Id);
     }
 }

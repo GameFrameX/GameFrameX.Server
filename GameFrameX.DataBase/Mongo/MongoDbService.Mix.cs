@@ -1,4 +1,6 @@
-﻿namespace GameFrameX.DataBase.Mongo;
+﻿using GameFrameX.Monitor.DataBase;
+
+namespace GameFrameX.DataBase.Mongo;
 
 /// <summary>
 /// MongoDB服务连接类，实现了
