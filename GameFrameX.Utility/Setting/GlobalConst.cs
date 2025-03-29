@@ -29,7 +29,12 @@ public static class GlobalConst
     /// 组件处理器名称后缀
     /// </summary>
     public const string ComponentHandlerNameSuffix = "Handler";
-    
+
+    /// <summary>
+    /// 事件处理器名称后缀
+    /// </summary>
+    public const string EventListenerNameSuffix = "EventListener";
+
     /// <summary>
     /// 组件代理包裹名称后缀
     /// </summary>
