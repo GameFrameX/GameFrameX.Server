@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Text.Json.Serialization;
+using GameFrameX.Foundation.Logger;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.ProtoBuf.Net;
 using GameFrameX.Utility.Extensions;
@@ -54,28 +55,37 @@ public sealed class InnerNetworkMessage : IInnerNetworkMessage
     /// <returns></returns>
     public string ToFormatMessageString()
     {
-        var stringBuilder = StringBuilderCache.Acquire();
-        stringBuilder.Clear();
-        stringBuilder.AppendLine();
-        // 向下的箭头
-        stringBuilder.AppendLine($"{'\u2193'.RepeatChar(140)}");
-        // 消息的头部信息
-        // 消息类型
-        stringBuilder.Append($"---MessageType:[{GetType().Name.CenterAlignedText(30)}]");
-        // 消息ID
-        stringBuilder.Append($"--MsgId:[{Header.MessageId.ToString().CenterAlignedText(11)}]({MessageIdUtility.GetMainId(Header.MessageId).ToString().CenterAlignedText(3)},{MessageIdUtility.GetSubId(Header.MessageId).ToString().CenterAlignedText(3)})");
-        // 操作类型
-        stringBuilder.Append($"--OpType:[{Header.OperationType.ToString().CenterAlignedText(20)}]");
-        // 唯一ID
-        stringBuilder.Append($"--UniqueId:[{Header.UniqueId.ToString().CenterAlignedText(13)}]---");
-        // 消息的内容 分割
-        stringBuilder.AppendLine();
-        // 消息内容
-        stringBuilder.AppendLine($"{DeserializeMessageObject().ToJsonString()}");
-        // 向上的箭头
-        stringBuilder.AppendLine($"{'\u2191'.RepeatChar(140)}");
-        stringBuilder.AppendLine();
-        return StringBuilderCache.GetStringAndRelease(stringBuilder);
+        try
+        {
+            var stringBuilder = StringBuilderCache.Acquire();
+            stringBuilder.Clear();
+            stringBuilder.AppendLine();
+            // 向下的箭头
+            stringBuilder.AppendLine($"{'\u2193'.RepeatChar(140)}");
+            // 消息的头部信息
+            // 消息类型
+            stringBuilder.Append($"---MessageType:[{GetType().Name.CenterAlignedText(30)}]");
+            // 消息ID
+            stringBuilder.Append($"--MsgId:[{Header.MessageId.ToString().CenterAlignedText(11)}]({MessageIdUtility.GetMainId(Header.MessageId).ToString().CenterAlignedText(3)},{MessageIdUtility.GetSubId(Header.MessageId).ToString().CenterAlignedText(3)})");
+            // 操作类型
+            stringBuilder.Append($"--OpType:[{Header.OperationType.ToString().CenterAlignedText(20)}]");
+            // 唯一ID
+            stringBuilder.Append($"--UniqueId:[{Header.UniqueId.ToString().CenterAlignedText(13)}]---");
+            // 消息的内容 分割
+            stringBuilder.AppendLine();
+            // 消息内容
+            stringBuilder.AppendLine($"{DeserializeMessageObject().ToJsonString()}");
+            // 向上的箭头
+            stringBuilder.AppendLine($"{'\u2191'.RepeatChar(140)}");
+            stringBuilder.AppendLine();
+            return StringBuilderCache.GetStringAndRelease(stringBuilder);
+        }
+        catch (Exception e)
+        {
+            LogHelper.Error(e);
+        }
+
+        return string.Empty;
     }
 
     /// <summary>
