@@ -1,6 +1,4 @@
-﻿using GameFrameX.Hotfix.Logic.Role.Login;
-
-namespace GameFrameX.Hotfix.Logic.Player.Login;
+﻿namespace GameFrameX.Hotfix.Logic.Player.Login;
 
 [MessageMapping(typeof(ReqPlayerLogin))]
 internal sealed class ReqPlayerLoginHandler : PlayerComponentHandler<PlayerComponentAgent>

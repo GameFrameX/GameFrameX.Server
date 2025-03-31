@@ -4,14 +4,12 @@
 // 
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using GameFrameX.Apps.Common.Event;
 using GameFrameX.Apps.Common.Session;
 using GameFrameX.Apps.Player.Player.Component;
 using GameFrameX.Apps.Player.Player.Entity;
-using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Hotfix.Logic.Server;
 
-namespace GameFrameX.Hotfix.Logic.Role.Login;
+namespace GameFrameX.Hotfix.Logic.Player.Login;
 
 public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerState>
 {
@@ -60,29 +58,5 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         //加入在线玩家
         var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
         await serverComp.AddOnlineRole(ActorId);
-    }
-
-    [Event(EventId.SessionRemove)]
-    private class EL : EventListener<PlayerComponentAgent>
-    {
-        protected override Task HandleEvent(PlayerComponentAgent agent, GameEventArgs gameEventArgs)
-        {
-            return agent.OnLogout();
-        }
-    }
-
-    [Event(EventId.PlayerSendItem)]
-    private class PlayerSendItemEventListener : EventListener<PlayerComponentAgent>
-    {
-        protected override Task HandleEvent(PlayerComponentAgent agent, GameEventArgs gameEventArgs)
-        {
-            if (agent == null)
-            {
-                LogHelper.Error("PlayerComponentAgent is null");
-                return Task.CompletedTask;
-            }
-
-            return agent.OnLogout();
-        }
     }
 }

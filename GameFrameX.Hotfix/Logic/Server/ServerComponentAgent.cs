@@ -3,7 +3,7 @@ using GameFrameX.Apps.Server.Entity;
 using GameFrameX.Core.Abstractions.Attribute;
 using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Core.Timer.Handler;
-using GameFrameX.Hotfix.Logic.Role.Login;
+using GameFrameX.Hotfix.Logic.Player.Login;
 
 namespace GameFrameX.Hotfix.Logic.Server;
 
