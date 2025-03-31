@@ -16,7 +16,7 @@ public class UnitTestTime
     [Test]
     public void test_current_time_millis()
     {
-        var currentTimeMillis = TimeHelper.CurrentTimeMillis();
+        var currentTimeMillis = TimeHelper.UnixTimeMilliseconds();
         var expectedTimeMillis = (long)(DateTime.Now - new DateTime(1970, 1, 1)).TotalMilliseconds;
         Assert.That(expectedTimeMillis, Is.EqualTo(currentTimeMillis));
     }
