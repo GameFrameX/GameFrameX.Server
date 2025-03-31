@@ -356,7 +356,7 @@ public static class TimeHelper
     /// 获取当前本地时区的日期，格式为yyyyMMdd的整数
     /// </summary>
     /// <returns>返回一个8位整数，表示当前本地时区的日期。例如：20231225表示2023年12月25日</returns>
-    public static int CurrentTimeWithDay()
+    public static int CurrentDateWithDay()
     {
         return Convert.ToInt32(DateTime.Now.ToString("yyyyMMdd"));
     }
@@ -365,7 +365,7 @@ public static class TimeHelper
     /// 获取当前UTC时区的日期，格式为yyyyMMdd的整数
     /// </summary>
     /// <returns>返回一个8位整数，表示当前UTC时区的日期。例如：20231225表示2023年12月25日</returns>
-    public static int CurrentTimeWithUtcDay()
+    public static int CurrentDateWithUtcDay()
     {
         return Convert.ToInt32(DateTime.UtcNow.ToString("yyyyMMdd"));
     }
@@ -410,7 +410,7 @@ public static class TimeHelper
     /// 获取当前本地时区时间的完整格式字符串
     /// </summary>
     /// <returns>返回格式为"yyyy-MM-dd-HH-mm-ss.fff K"的时间字符串，包含年-月-日-时-分-秒.毫秒 时区偏移。例如："2023-12-25-14-30-45.123 +08:00"</returns>
-    public static string CurrentTimeWithFullString()
+    public static string CurrentDateTimeWithFullString()
     {
         return DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss.fff K");
     }
@@ -419,7 +419,7 @@ public static class TimeHelper
     /// 获取当前UTC时区时间的完整格式字符串
     /// </summary>
     /// <returns>返回格式为"yyyy-MM-dd-HH-mm-ss.fff K"的UTC时间字符串，包含年-月-日-时-分-秒.毫秒 时区偏移。例如："2023-12-25-06-30-45.123 +00:00"</returns>
-    public static string CurrentTimeWithUtcFullString()
+    public static string CurrentDateTimeWithUtcFullString()
     {
         return DateTime.UtcNow.ToString("yyyy-MM-dd-HH-mm-ss.fff K");
     }
