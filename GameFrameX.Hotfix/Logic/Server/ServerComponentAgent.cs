@@ -164,7 +164,7 @@ public class ServerComponentAgent : StateComponentAgent<ServerComponent, ServerS
     {
         protected override async Task HandleTimer(ServerComponentAgent agent, GameEventArgs gameEventArgs)
         {
-            LogHelper.Debug($"ServerCompAgent.CrossDayTimeHandler.跨天定时器执行{TimeHelper.CurrentTimeWithFullString()}");
+            LogHelper.Debug($"ServerCompAgent.CrossDayTimeHandler.跨天定时器执行{TimeHelper.CurrentDateTimeWithUtcFullString()}");
             await ActorManager.RoleCrossDay(1);
             await ActorManager.CrossDay(1, GlobalConst.ActorTypeServer);
         }
