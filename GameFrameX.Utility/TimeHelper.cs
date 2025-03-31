@@ -371,6 +371,42 @@ public static class TimeHelper
     }
 
     /// <summary>
+    /// 获取当前UTC时间，格式为HHmmss的字符串
+    /// </summary>
+    /// <returns>返回一个6位字符串，表示当前UTC时间。例如：143045表示14:30:45</returns>
+    public static string CurrentTimeWithUtcFullString()
+    {
+        return DateTime.UtcNow.ToString("HHmmss");
+    }
+
+    /// <summary>
+    /// 获取当前本地时间，格式为HHmmss的字符串
+    /// </summary>
+    /// <returns>返回一个6位字符串，表示当前本地时间。例如：143045表示14:30:45</returns>
+    public static string CurrentTimeWithLocalFullString()
+    {
+        return DateTime.Now.ToString("HHmmss");
+    }
+
+    /// <summary>
+    /// 获取当前UTC时间，格式为HHmmss的整数
+    /// </summary>
+    /// <returns>返回一个6位整数，表示当前UTC时间。例如：143045表示14:30:45</returns>
+    public static int CurrentTimeWithUtcTime()
+    {
+        return Convert.ToInt32(CurrentTimeWithUtcFullString());
+    }
+
+    /// <summary>
+    /// 获取当前本地时间，格式为HHmmss的整数
+    /// </summary>
+    /// <returns>返回一个6位整数，表示当前本地时间。例如：143045表示14:30:45</returns>
+    public static int CurrentTimeWithLocalTime()
+    {
+        return Convert.ToInt32(CurrentTimeWithLocalFullString());
+    }
+
+    /// <summary>
     /// 获取当前本地时区时间的完整格式字符串
     /// </summary>
     /// <returns>返回格式为"yyyy-MM-dd-HH-mm-ss.fff K"的时间字符串，包含年-月-日-时-分-秒.毫秒 时区偏移。例如："2023-12-25-14-30-45.123 +08:00"</returns>
