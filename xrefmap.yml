@@ -25627,58 +25627,84 @@ references:
   commentId: T:GameFrameX.Utility.TimeHelper
   fullName: GameFrameX.Utility.TimeHelper
   nameWithType: TimeHelper
-- uid: GameFrameX.Utility.TimeHelper.CurrentTimeMillis
-  name: CurrentTimeMillis()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeMillis
-  commentId: M:GameFrameX.Utility.TimeHelper.CurrentTimeMillis
-  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeMillis()
-  nameWithType: TimeHelper.CurrentTimeMillis()
-- uid: GameFrameX.Utility.TimeHelper.CurrentTimeMillis*
-  name: CurrentTimeMillis
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeMillis_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentTimeMillis
+- uid: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFullString
+  name: CurrentDateTimeWithFullString()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateTimeWithFullString
+  commentId: M:GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFullString
+  fullName: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFullString()
+  nameWithType: TimeHelper.CurrentDateTimeWithFullString()
+- uid: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFullString*
+  name: CurrentDateTimeWithFullString
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateTimeWithFullString_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFullString
   isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeMillis
-  nameWithType: TimeHelper.CurrentTimeMillis
-- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithDay
-  name: CurrentTimeWithDay()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithDay
-  commentId: M:GameFrameX.Utility.TimeHelper.CurrentTimeWithDay
-  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithDay()
-  nameWithType: TimeHelper.CurrentTimeWithDay()
-- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithDay*
-  name: CurrentTimeWithDay
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithDay_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentTimeWithDay
+  fullName: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFullString
+  nameWithType: TimeHelper.CurrentDateTimeWithFullString
+- uid: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFullString
+  name: CurrentDateTimeWithUtcFullString()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateTimeWithUtcFullString
+  commentId: M:GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFullString
+  fullName: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFullString()
+  nameWithType: TimeHelper.CurrentDateTimeWithUtcFullString()
+- uid: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFullString*
+  name: CurrentDateTimeWithUtcFullString
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateTimeWithUtcFullString_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFullString
   isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithDay
-  nameWithType: TimeHelper.CurrentTimeWithDay
-- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithFullString
-  name: CurrentTimeWithFullString()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithFullString
-  commentId: M:GameFrameX.Utility.TimeHelper.CurrentTimeWithFullString
-  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithFullString()
-  nameWithType: TimeHelper.CurrentTimeWithFullString()
-- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithFullString*
-  name: CurrentTimeWithFullString
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithFullString_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentTimeWithFullString
+  fullName: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFullString
+  nameWithType: TimeHelper.CurrentDateTimeWithUtcFullString
+- uid: GameFrameX.Utility.TimeHelper.CurrentDateWithDay
+  name: CurrentDateWithDay()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateWithDay
+  commentId: M:GameFrameX.Utility.TimeHelper.CurrentDateWithDay
+  fullName: GameFrameX.Utility.TimeHelper.CurrentDateWithDay()
+  nameWithType: TimeHelper.CurrentDateWithDay()
+- uid: GameFrameX.Utility.TimeHelper.CurrentDateWithDay*
+  name: CurrentDateWithDay
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateWithDay_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentDateWithDay
   isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithFullString
-  nameWithType: TimeHelper.CurrentTimeWithFullString
-- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcDay
-  name: CurrentTimeWithUtcDay()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithUtcDay
-  commentId: M:GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcDay
-  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcDay()
-  nameWithType: TimeHelper.CurrentTimeWithUtcDay()
-- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcDay*
-  name: CurrentTimeWithUtcDay
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithUtcDay_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcDay
+  fullName: GameFrameX.Utility.TimeHelper.CurrentDateWithDay
+  nameWithType: TimeHelper.CurrentDateWithDay
+- uid: GameFrameX.Utility.TimeHelper.CurrentDateWithUtcDay
+  name: CurrentDateWithUtcDay()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateWithUtcDay
+  commentId: M:GameFrameX.Utility.TimeHelper.CurrentDateWithUtcDay
+  fullName: GameFrameX.Utility.TimeHelper.CurrentDateWithUtcDay()
+  nameWithType: TimeHelper.CurrentDateWithUtcDay()
+- uid: GameFrameX.Utility.TimeHelper.CurrentDateWithUtcDay*
+  name: CurrentDateWithUtcDay
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateWithUtcDay_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentDateWithUtcDay
   isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcDay
-  nameWithType: TimeHelper.CurrentTimeWithUtcDay
+  fullName: GameFrameX.Utility.TimeHelper.CurrentDateWithUtcDay
+  nameWithType: TimeHelper.CurrentDateWithUtcDay
+- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalFullString
+  name: CurrentTimeWithLocalFullString()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithLocalFullString
+  commentId: M:GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalFullString
+  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalFullString()
+  nameWithType: TimeHelper.CurrentTimeWithLocalFullString()
+- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalFullString*
+  name: CurrentTimeWithLocalFullString
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithLocalFullString_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalFullString
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalFullString
+  nameWithType: TimeHelper.CurrentTimeWithLocalFullString
+- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalTime
+  name: CurrentTimeWithLocalTime()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithLocalTime
+  commentId: M:GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalTime
+  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalTime()
+  nameWithType: TimeHelper.CurrentTimeWithLocalTime()
+- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalTime*
+  name: CurrentTimeWithLocalTime
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithLocalTime_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalTime
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalTime
+  nameWithType: TimeHelper.CurrentTimeWithLocalTime
 - uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcFullString
   name: CurrentTimeWithUtcFullString()
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithUtcFullString
@@ -25692,6 +25718,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcFullString
   nameWithType: TimeHelper.CurrentTimeWithUtcFullString
+- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcTime
+  name: CurrentTimeWithUtcTime()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithUtcTime
+  commentId: M:GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcTime
+  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcTime()
+  nameWithType: TimeHelper.CurrentTimeWithUtcTime()
+- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcTime*
+  name: CurrentTimeWithUtcTime
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithUtcTime_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcTime
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcTime
+  nameWithType: TimeHelper.CurrentTimeWithUtcTime
 - uid: GameFrameX.Utility.TimeHelper.EpochLocal
   name: EpochLocal
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_EpochLocal
@@ -25741,6 +25780,24 @@ references:
   fullName.vb: GameFrameX.Utility.TimeHelper.GetCrossDays(Date, Integer)
   nameWithType: TimeHelper.GetCrossDays(DateTime, int)
   nameWithType.vb: TimeHelper.GetCrossDays(Date, Integer)
+- uid: GameFrameX.Utility.TimeHelper.GetCrossDays(System.Int64,System.Int32)
+  name: GetCrossDays(long, int)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetCrossDays_System_Int64_System_Int32_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetCrossDays(System.Int64,System.Int32)
+  name.vb: GetCrossDays(Long, Integer)
+  fullName: GameFrameX.Utility.TimeHelper.GetCrossDays(long, int)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetCrossDays(Long, Integer)
+  nameWithType: TimeHelper.GetCrossDays(long, int)
+  nameWithType.vb: TimeHelper.GetCrossDays(Long, Integer)
+- uid: GameFrameX.Utility.TimeHelper.GetCrossDays(System.Int64,System.Int64,System.Int32)
+  name: GetCrossDays(long, long, int)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetCrossDays_System_Int64_System_Int64_System_Int32_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetCrossDays(System.Int64,System.Int64,System.Int32)
+  name.vb: GetCrossDays(Long, Long, Integer)
+  fullName: GameFrameX.Utility.TimeHelper.GetCrossDays(long, long, int)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetCrossDays(Long, Long, Integer)
+  nameWithType: TimeHelper.GetCrossDays(long, long, int)
+  nameWithType.vb: TimeHelper.GetCrossDays(Long, Long, Integer)
 - uid: GameFrameX.Utility.TimeHelper.GetCrossDays*
   name: GetCrossDays
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetCrossDays_
@@ -25748,6 +25805,31 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.GetCrossDays
   nameWithType: TimeHelper.GetCrossDays
+- uid: GameFrameX.Utility.TimeHelper.GetCrossLocalDays(System.DateTime,System.Int32)
+  name: GetCrossLocalDays(DateTime, int)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetCrossLocalDays_System_DateTime_System_Int32_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetCrossLocalDays(System.DateTime,System.Int32)
+  name.vb: GetCrossLocalDays(Date, Integer)
+  fullName: GameFrameX.Utility.TimeHelper.GetCrossLocalDays(System.DateTime, int)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetCrossLocalDays(Date, Integer)
+  nameWithType: TimeHelper.GetCrossLocalDays(DateTime, int)
+  nameWithType.vb: TimeHelper.GetCrossLocalDays(Date, Integer)
+- uid: GameFrameX.Utility.TimeHelper.GetCrossLocalDays(System.Int64,System.Int64)
+  name: GetCrossLocalDays(long, long)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetCrossLocalDays_System_Int64_System_Int64_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetCrossLocalDays(System.Int64,System.Int64)
+  name.vb: GetCrossLocalDays(Long, Long)
+  fullName: GameFrameX.Utility.TimeHelper.GetCrossLocalDays(long, long)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetCrossLocalDays(Long, Long)
+  nameWithType: TimeHelper.GetCrossLocalDays(long, long)
+  nameWithType.vb: TimeHelper.GetCrossLocalDays(Long, Long)
+- uid: GameFrameX.Utility.TimeHelper.GetCrossLocalDays*
+  name: GetCrossLocalDays
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetCrossLocalDays_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetCrossLocalDays
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetCrossLocalDays
+  nameWithType: TimeHelper.GetCrossLocalDays
 - uid: GameFrameX.Utility.TimeHelper.GetDayOfWeekTime(System.DateTime,System.DayOfWeek)
   name: GetDayOfWeekTime(DateTime, DayOfWeek)
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetDayOfWeekTime_System_DateTime_System_DayOfWeek_
@@ -25770,31 +25852,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.GetDayOfWeekTime
   nameWithType: TimeHelper.GetDayOfWeekTime
-- uid: GameFrameX.Utility.TimeHelper.GetDaysBetween(System.DateTime,System.DateTime)
-  name: GetDaysBetween(DateTime, DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetDaysBetween_System_DateTime_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetDaysBetween(System.DateTime,System.DateTime)
-  name.vb: GetDaysBetween(Date, Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetDaysBetween(System.DateTime, System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetDaysBetween(Date, Date)
-  nameWithType: TimeHelper.GetDaysBetween(DateTime, DateTime)
-  nameWithType.vb: TimeHelper.GetDaysBetween(Date, Date)
-- uid: GameFrameX.Utility.TimeHelper.GetDaysBetween(System.Int64,System.Int64)
-  name: GetDaysBetween(long, long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetDaysBetween_System_Int64_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetDaysBetween(System.Int64,System.Int64)
-  name.vb: GetDaysBetween(Long, Long)
-  fullName: GameFrameX.Utility.TimeHelper.GetDaysBetween(long, long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetDaysBetween(Long, Long)
-  nameWithType: TimeHelper.GetDaysBetween(long, long)
-  nameWithType.vb: TimeHelper.GetDaysBetween(Long, Long)
-- uid: GameFrameX.Utility.TimeHelper.GetDaysBetween*
-  name: GetDaysBetween
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetDaysBetween_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetDaysBetween
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetDaysBetween
-  nameWithType: TimeHelper.GetDaysBetween
 - uid: GameFrameX.Utility.TimeHelper.GetEndTimeOfDay(System.DateTime)
   name: GetEndTimeOfDay(DateTime)
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimeOfDay_System_DateTime_
@@ -25923,22 +25980,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.GetEndTimestampOfYear
   nameWithType: TimeHelper.GetEndTimestampOfYear
-- uid: GameFrameX.Utility.TimeHelper.GetLocalDaysBetween(System.Int64,System.Int64)
-  name: GetLocalDaysBetween(long, long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetLocalDaysBetween_System_Int64_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetLocalDaysBetween(System.Int64,System.Int64)
-  name.vb: GetLocalDaysBetween(Long, Long)
-  fullName: GameFrameX.Utility.TimeHelper.GetLocalDaysBetween(long, long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetLocalDaysBetween(Long, Long)
-  nameWithType: TimeHelper.GetLocalDaysBetween(long, long)
-  nameWithType.vb: TimeHelper.GetLocalDaysBetween(Long, Long)
-- uid: GameFrameX.Utility.TimeHelper.GetLocalDaysBetween*
-  name: GetLocalDaysBetween
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetLocalDaysBetween_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetLocalDaysBetween
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetLocalDaysBetween
-  nameWithType: TimeHelper.GetLocalDaysBetween
 - uid: GameFrameX.Utility.TimeHelper.GetMonthEndTime
   name: GetMonthEndTime()
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMonthEndTime
@@ -25991,6 +26032,110 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.GetMonthStartTimestamp
   nameWithType: TimeHelper.GetMonthStartTimestamp
+- uid: GameFrameX.Utility.TimeHelper.GetNextMonthEndTime
+  name: GetNextMonthEndTime()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextMonthEndTime
+  commentId: M:GameFrameX.Utility.TimeHelper.GetNextMonthEndTime
+  fullName: GameFrameX.Utility.TimeHelper.GetNextMonthEndTime()
+  nameWithType: TimeHelper.GetNextMonthEndTime()
+- uid: GameFrameX.Utility.TimeHelper.GetNextMonthEndTime*
+  name: GetNextMonthEndTime
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextMonthEndTime_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetNextMonthEndTime
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetNextMonthEndTime
+  nameWithType: TimeHelper.GetNextMonthEndTime
+- uid: GameFrameX.Utility.TimeHelper.GetNextMonthEndTimestamp
+  name: GetNextMonthEndTimestamp()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextMonthEndTimestamp
+  commentId: M:GameFrameX.Utility.TimeHelper.GetNextMonthEndTimestamp
+  fullName: GameFrameX.Utility.TimeHelper.GetNextMonthEndTimestamp()
+  nameWithType: TimeHelper.GetNextMonthEndTimestamp()
+- uid: GameFrameX.Utility.TimeHelper.GetNextMonthEndTimestamp*
+  name: GetNextMonthEndTimestamp
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextMonthEndTimestamp_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetNextMonthEndTimestamp
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetNextMonthEndTimestamp
+  nameWithType: TimeHelper.GetNextMonthEndTimestamp
+- uid: GameFrameX.Utility.TimeHelper.GetNextMonthStartTime
+  name: GetNextMonthStartTime()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextMonthStartTime
+  commentId: M:GameFrameX.Utility.TimeHelper.GetNextMonthStartTime
+  fullName: GameFrameX.Utility.TimeHelper.GetNextMonthStartTime()
+  nameWithType: TimeHelper.GetNextMonthStartTime()
+- uid: GameFrameX.Utility.TimeHelper.GetNextMonthStartTime*
+  name: GetNextMonthStartTime
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextMonthStartTime_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetNextMonthStartTime
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetNextMonthStartTime
+  nameWithType: TimeHelper.GetNextMonthStartTime
+- uid: GameFrameX.Utility.TimeHelper.GetNextMonthStartTimestamp
+  name: GetNextMonthStartTimestamp()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextMonthStartTimestamp
+  commentId: M:GameFrameX.Utility.TimeHelper.GetNextMonthStartTimestamp
+  fullName: GameFrameX.Utility.TimeHelper.GetNextMonthStartTimestamp()
+  nameWithType: TimeHelper.GetNextMonthStartTimestamp()
+- uid: GameFrameX.Utility.TimeHelper.GetNextMonthStartTimestamp*
+  name: GetNextMonthStartTimestamp
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextMonthStartTimestamp_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetNextMonthStartTimestamp
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetNextMonthStartTimestamp
+  nameWithType: TimeHelper.GetNextMonthStartTimestamp
+- uid: GameFrameX.Utility.TimeHelper.GetNextWeekEndTime
+  name: GetNextWeekEndTime()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextWeekEndTime
+  commentId: M:GameFrameX.Utility.TimeHelper.GetNextWeekEndTime
+  fullName: GameFrameX.Utility.TimeHelper.GetNextWeekEndTime()
+  nameWithType: TimeHelper.GetNextWeekEndTime()
+- uid: GameFrameX.Utility.TimeHelper.GetNextWeekEndTime*
+  name: GetNextWeekEndTime
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextWeekEndTime_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetNextWeekEndTime
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetNextWeekEndTime
+  nameWithType: TimeHelper.GetNextWeekEndTime
+- uid: GameFrameX.Utility.TimeHelper.GetNextWeekEndTimestamp
+  name: GetNextWeekEndTimestamp()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextWeekEndTimestamp
+  commentId: M:GameFrameX.Utility.TimeHelper.GetNextWeekEndTimestamp
+  fullName: GameFrameX.Utility.TimeHelper.GetNextWeekEndTimestamp()
+  nameWithType: TimeHelper.GetNextWeekEndTimestamp()
+- uid: GameFrameX.Utility.TimeHelper.GetNextWeekEndTimestamp*
+  name: GetNextWeekEndTimestamp
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextWeekEndTimestamp_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetNextWeekEndTimestamp
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetNextWeekEndTimestamp
+  nameWithType: TimeHelper.GetNextWeekEndTimestamp
+- uid: GameFrameX.Utility.TimeHelper.GetNextWeekStartTime
+  name: GetNextWeekStartTime()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextWeekStartTime
+  commentId: M:GameFrameX.Utility.TimeHelper.GetNextWeekStartTime
+  fullName: GameFrameX.Utility.TimeHelper.GetNextWeekStartTime()
+  nameWithType: TimeHelper.GetNextWeekStartTime()
+- uid: GameFrameX.Utility.TimeHelper.GetNextWeekStartTime*
+  name: GetNextWeekStartTime
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextWeekStartTime_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetNextWeekStartTime
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetNextWeekStartTime
+  nameWithType: TimeHelper.GetNextWeekStartTime
+- uid: GameFrameX.Utility.TimeHelper.GetNextWeekStartTimestamp
+  name: GetNextWeekStartTimestamp()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextWeekStartTimestamp
+  commentId: M:GameFrameX.Utility.TimeHelper.GetNextWeekStartTimestamp
+  fullName: GameFrameX.Utility.TimeHelper.GetNextWeekStartTimestamp()
+  nameWithType: TimeHelper.GetNextWeekStartTimestamp()
+- uid: GameFrameX.Utility.TimeHelper.GetNextWeekStartTimestamp*
+  name: GetNextWeekStartTimestamp
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextWeekStartTimestamp_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetNextWeekStartTimestamp
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetNextWeekStartTimestamp
+  nameWithType: TimeHelper.GetNextWeekStartTimestamp
 - uid: GameFrameX.Utility.TimeHelper.GetStartTimeOfDay(System.DateTime)
   name: GetStartTimeOfDay(DateTime)
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimeOfDay_System_DateTime_
@@ -26171,6 +26316,58 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.GetTodayStartTimestamp
   nameWithType: TimeHelper.GetTodayStartTimestamp
+- uid: GameFrameX.Utility.TimeHelper.GetTomorrowEndTime
+  name: GetTomorrowEndTime()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTomorrowEndTime
+  commentId: M:GameFrameX.Utility.TimeHelper.GetTomorrowEndTime
+  fullName: GameFrameX.Utility.TimeHelper.GetTomorrowEndTime()
+  nameWithType: TimeHelper.GetTomorrowEndTime()
+- uid: GameFrameX.Utility.TimeHelper.GetTomorrowEndTime*
+  name: GetTomorrowEndTime
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTomorrowEndTime_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTomorrowEndTime
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetTomorrowEndTime
+  nameWithType: TimeHelper.GetTomorrowEndTime
+- uid: GameFrameX.Utility.TimeHelper.GetTomorrowEndTimestamp
+  name: GetTomorrowEndTimestamp()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTomorrowEndTimestamp
+  commentId: M:GameFrameX.Utility.TimeHelper.GetTomorrowEndTimestamp
+  fullName: GameFrameX.Utility.TimeHelper.GetTomorrowEndTimestamp()
+  nameWithType: TimeHelper.GetTomorrowEndTimestamp()
+- uid: GameFrameX.Utility.TimeHelper.GetTomorrowEndTimestamp*
+  name: GetTomorrowEndTimestamp
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTomorrowEndTimestamp_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTomorrowEndTimestamp
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetTomorrowEndTimestamp
+  nameWithType: TimeHelper.GetTomorrowEndTimestamp
+- uid: GameFrameX.Utility.TimeHelper.GetTomorrowStartTime
+  name: GetTomorrowStartTime()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTomorrowStartTime
+  commentId: M:GameFrameX.Utility.TimeHelper.GetTomorrowStartTime
+  fullName: GameFrameX.Utility.TimeHelper.GetTomorrowStartTime()
+  nameWithType: TimeHelper.GetTomorrowStartTime()
+- uid: GameFrameX.Utility.TimeHelper.GetTomorrowStartTime*
+  name: GetTomorrowStartTime
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTomorrowStartTime_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTomorrowStartTime
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetTomorrowStartTime
+  nameWithType: TimeHelper.GetTomorrowStartTime
+- uid: GameFrameX.Utility.TimeHelper.GetTomorrowStartTimestamp
+  name: GetTomorrowStartTimestamp()
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTomorrowStartTimestamp
+  commentId: M:GameFrameX.Utility.TimeHelper.GetTomorrowStartTimestamp
+  fullName: GameFrameX.Utility.TimeHelper.GetTomorrowStartTimestamp()
+  nameWithType: TimeHelper.GetTomorrowStartTimestamp()
+- uid: GameFrameX.Utility.TimeHelper.GetTomorrowStartTimestamp*
+  name: GetTomorrowStartTimestamp
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTomorrowStartTimestamp_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTomorrowStartTimestamp
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetTomorrowStartTimestamp
+  nameWithType: TimeHelper.GetTomorrowStartTimestamp
 - uid: GameFrameX.Utility.TimeHelper.GetWeekEndTime
   name: GetWeekEndTime()
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetWeekEndTime
@@ -26396,38 +26593,22 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.IsUnixSameDay
   nameWithType: TimeHelper.IsUnixSameDay
-- uid: GameFrameX.Utility.TimeHelper.MillisToDateTime(System.Int64,System.Boolean)
-  name: MillisToDateTime(long, bool)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_MillisToDateTime_System_Int64_System_Boolean_
-  commentId: M:GameFrameX.Utility.TimeHelper.MillisToDateTime(System.Int64,System.Boolean)
-  name.vb: MillisToDateTime(Long, Boolean)
-  fullName: GameFrameX.Utility.TimeHelper.MillisToDateTime(long, bool)
-  fullName.vb: GameFrameX.Utility.TimeHelper.MillisToDateTime(Long, Boolean)
-  nameWithType: TimeHelper.MillisToDateTime(long, bool)
-  nameWithType.vb: TimeHelper.MillisToDateTime(Long, Boolean)
-- uid: GameFrameX.Utility.TimeHelper.MillisToDateTime*
-  name: MillisToDateTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_MillisToDateTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.MillisToDateTime
+- uid: GameFrameX.Utility.TimeHelper.MillisecondsTimeStampToDateTime(System.Int64,System.Boolean)
+  name: MillisecondsTimeStampToDateTime(long, bool)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_MillisecondsTimeStampToDateTime_System_Int64_System_Boolean_
+  commentId: M:GameFrameX.Utility.TimeHelper.MillisecondsTimeStampToDateTime(System.Int64,System.Boolean)
+  name.vb: MillisecondsTimeStampToDateTime(Long, Boolean)
+  fullName: GameFrameX.Utility.TimeHelper.MillisecondsTimeStampToDateTime(long, bool)
+  fullName.vb: GameFrameX.Utility.TimeHelper.MillisecondsTimeStampToDateTime(Long, Boolean)
+  nameWithType: TimeHelper.MillisecondsTimeStampToDateTime(long, bool)
+  nameWithType.vb: TimeHelper.MillisecondsTimeStampToDateTime(Long, Boolean)
+- uid: GameFrameX.Utility.TimeHelper.MillisecondsTimeStampToDateTime*
+  name: MillisecondsTimeStampToDateTime
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_MillisecondsTimeStampToDateTime_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.MillisecondsTimeStampToDateTime
   isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.MillisToDateTime
-  nameWithType: TimeHelper.MillisToDateTime
-- uid: GameFrameX.Utility.TimeHelper.TimeMillis(System.DateTime,System.Boolean)
-  name: TimeMillis(DateTime, bool)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeMillis_System_DateTime_System_Boolean_
-  commentId: M:GameFrameX.Utility.TimeHelper.TimeMillis(System.DateTime,System.Boolean)
-  name.vb: TimeMillis(Date, Boolean)
-  fullName: GameFrameX.Utility.TimeHelper.TimeMillis(System.DateTime, bool)
-  fullName.vb: GameFrameX.Utility.TimeHelper.TimeMillis(Date, Boolean)
-  nameWithType: TimeHelper.TimeMillis(DateTime, bool)
-  nameWithType.vb: TimeHelper.TimeMillis(Date, Boolean)
-- uid: GameFrameX.Utility.TimeHelper.TimeMillis*
-  name: TimeMillis
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeMillis_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.TimeMillis
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.TimeMillis
-  nameWithType: TimeHelper.TimeMillis
+  fullName: GameFrameX.Utility.TimeHelper.MillisecondsTimeStampToDateTime
+  nameWithType: TimeHelper.MillisecondsTimeStampToDateTime
 - uid: GameFrameX.Utility.TimeHelper.TimeMilliseconds
   name: TimeMilliseconds()
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeMilliseconds
@@ -26441,22 +26622,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.TimeMilliseconds
   nameWithType: TimeHelper.TimeMilliseconds
-- uid: GameFrameX.Utility.TimeHelper.TimeSecond(System.DateTime,System.Boolean)
-  name: TimeSecond(DateTime, bool)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeSecond_System_DateTime_System_Boolean_
-  commentId: M:GameFrameX.Utility.TimeHelper.TimeSecond(System.DateTime,System.Boolean)
-  name.vb: TimeSecond(Date, Boolean)
-  fullName: GameFrameX.Utility.TimeHelper.TimeSecond(System.DateTime, bool)
-  fullName.vb: GameFrameX.Utility.TimeHelper.TimeSecond(Date, Boolean)
-  nameWithType: TimeHelper.TimeSecond(DateTime, bool)
-  nameWithType.vb: TimeHelper.TimeSecond(Date, Boolean)
-- uid: GameFrameX.Utility.TimeHelper.TimeSecond*
-  name: TimeSecond
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeSecond_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.TimeSecond
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.TimeSecond
-  nameWithType: TimeHelper.TimeSecond
 - uid: GameFrameX.Utility.TimeHelper.TimeSeconds
   name: TimeSeconds()
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeSeconds
@@ -26470,6 +26635,22 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.TimeSeconds
   nameWithType: TimeHelper.TimeSeconds
+- uid: GameFrameX.Utility.TimeHelper.TimeSpanLocalWithTimestamp(System.Int64)
+  name: TimeSpanLocalWithTimestamp(long)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeSpanLocalWithTimestamp_System_Int64_
+  commentId: M:GameFrameX.Utility.TimeHelper.TimeSpanLocalWithTimestamp(System.Int64)
+  name.vb: TimeSpanLocalWithTimestamp(Long)
+  fullName: GameFrameX.Utility.TimeHelper.TimeSpanLocalWithTimestamp(long)
+  fullName.vb: GameFrameX.Utility.TimeHelper.TimeSpanLocalWithTimestamp(Long)
+  nameWithType: TimeHelper.TimeSpanLocalWithTimestamp(long)
+  nameWithType.vb: TimeHelper.TimeSpanLocalWithTimestamp(Long)
+- uid: GameFrameX.Utility.TimeHelper.TimeSpanLocalWithTimestamp*
+  name: TimeSpanLocalWithTimestamp
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeSpanLocalWithTimestamp_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.TimeSpanLocalWithTimestamp
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.TimeSpanLocalWithTimestamp
+  nameWithType: TimeHelper.TimeSpanLocalWithTimestamp
 - uid: GameFrameX.Utility.TimeHelper.TimeSpanWithTimestamp(System.Int64)
   name: TimeSpanWithTimestamp(long)
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeSpanWithTimestamp_System_Int64_
@@ -26486,6 +26667,38 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.TimeSpanWithTimestamp
   nameWithType: TimeHelper.TimeSpanWithTimestamp
+- uid: GameFrameX.Utility.TimeHelper.TimeToMilliseconds(System.DateTime,System.Boolean)
+  name: TimeToMilliseconds(DateTime, bool)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeToMilliseconds_System_DateTime_System_Boolean_
+  commentId: M:GameFrameX.Utility.TimeHelper.TimeToMilliseconds(System.DateTime,System.Boolean)
+  name.vb: TimeToMilliseconds(Date, Boolean)
+  fullName: GameFrameX.Utility.TimeHelper.TimeToMilliseconds(System.DateTime, bool)
+  fullName.vb: GameFrameX.Utility.TimeHelper.TimeToMilliseconds(Date, Boolean)
+  nameWithType: TimeHelper.TimeToMilliseconds(DateTime, bool)
+  nameWithType.vb: TimeHelper.TimeToMilliseconds(Date, Boolean)
+- uid: GameFrameX.Utility.TimeHelper.TimeToMilliseconds*
+  name: TimeToMilliseconds
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeToMilliseconds_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.TimeToMilliseconds
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.TimeToMilliseconds
+  nameWithType: TimeHelper.TimeToMilliseconds
+- uid: GameFrameX.Utility.TimeHelper.TimeToSecond(System.DateTime,System.Boolean)
+  name: TimeToSecond(DateTime, bool)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeToSecond_System_DateTime_System_Boolean_
+  commentId: M:GameFrameX.Utility.TimeHelper.TimeToSecond(System.DateTime,System.Boolean)
+  name.vb: TimeToSecond(Date, Boolean)
+  fullName: GameFrameX.Utility.TimeHelper.TimeToSecond(System.DateTime, bool)
+  fullName.vb: GameFrameX.Utility.TimeHelper.TimeToSecond(Date, Boolean)
+  nameWithType: TimeHelper.TimeToSecond(DateTime, bool)
+  nameWithType.vb: TimeHelper.TimeToSecond(Date, Boolean)
+- uid: GameFrameX.Utility.TimeHelper.TimeToSecond*
+  name: TimeToSecond
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeToSecond_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.TimeToSecond
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.TimeToSecond
+  nameWithType: TimeHelper.TimeToSecond
 - uid: GameFrameX.Utility.TimeHelper.TimestampMillisToTicks(System.Int64)
   name: TimestampMillisToTicks(long)
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimestampMillisToTicks_System_Int64_
@@ -26502,6 +26715,22 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.TimestampMillisToTicks
   nameWithType: TimeHelper.TimestampMillisToTicks
+- uid: GameFrameX.Utility.TimeHelper.TimestampToDateTime(System.Int64,System.Boolean)
+  name: TimestampToDateTime(long, bool)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimestampToDateTime_System_Int64_System_Boolean_
+  commentId: M:GameFrameX.Utility.TimeHelper.TimestampToDateTime(System.Int64,System.Boolean)
+  name.vb: TimestampToDateTime(Long, Boolean)
+  fullName: GameFrameX.Utility.TimeHelper.TimestampToDateTime(long, bool)
+  fullName.vb: GameFrameX.Utility.TimeHelper.TimestampToDateTime(Long, Boolean)
+  nameWithType: TimeHelper.TimestampToDateTime(long, bool)
+  nameWithType.vb: TimeHelper.TimestampToDateTime(Long, Boolean)
+- uid: GameFrameX.Utility.TimeHelper.TimestampToDateTime*
+  name: TimestampToDateTime
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimestampToDateTime_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.TimestampToDateTime
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.TimestampToDateTime
+  nameWithType: TimeHelper.TimestampToDateTime
 - uid: GameFrameX.Utility.TimeHelper.TimestampToTicks(System.Int64)
   name: TimestampToTicks(long)
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimestampToTicks_System_Int64_
@@ -26544,6 +26773,38 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.UnixTimeSeconds
   nameWithType: TimeHelper.UnixTimeSeconds
+- uid: GameFrameX.Utility.TimeHelper.UtcMillisecondsToDateTime(System.Int64)
+  name: UtcMillisecondsToDateTime(long)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcMillisecondsToDateTime_System_Int64_
+  commentId: M:GameFrameX.Utility.TimeHelper.UtcMillisecondsToDateTime(System.Int64)
+  name.vb: UtcMillisecondsToDateTime(Long)
+  fullName: GameFrameX.Utility.TimeHelper.UtcMillisecondsToDateTime(long)
+  fullName.vb: GameFrameX.Utility.TimeHelper.UtcMillisecondsToDateTime(Long)
+  nameWithType: TimeHelper.UtcMillisecondsToDateTime(long)
+  nameWithType.vb: TimeHelper.UtcMillisecondsToDateTime(Long)
+- uid: GameFrameX.Utility.TimeHelper.UtcMillisecondsToDateTime*
+  name: UtcMillisecondsToDateTime
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcMillisecondsToDateTime_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.UtcMillisecondsToDateTime
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.UtcMillisecondsToDateTime
+  nameWithType: TimeHelper.UtcMillisecondsToDateTime
+- uid: GameFrameX.Utility.TimeHelper.UtcMillisecondsToUtcDateTime(System.Int64)
+  name: UtcMillisecondsToUtcDateTime(long)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcMillisecondsToUtcDateTime_System_Int64_
+  commentId: M:GameFrameX.Utility.TimeHelper.UtcMillisecondsToUtcDateTime(System.Int64)
+  name.vb: UtcMillisecondsToUtcDateTime(Long)
+  fullName: GameFrameX.Utility.TimeHelper.UtcMillisecondsToUtcDateTime(long)
+  fullName.vb: GameFrameX.Utility.TimeHelper.UtcMillisecondsToUtcDateTime(Long)
+  nameWithType: TimeHelper.UtcMillisecondsToUtcDateTime(long)
+  nameWithType.vb: TimeHelper.UtcMillisecondsToUtcDateTime(Long)
+- uid: GameFrameX.Utility.TimeHelper.UtcMillisecondsToUtcDateTime*
+  name: UtcMillisecondsToUtcDateTime
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcMillisecondsToUtcDateTime_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.UtcMillisecondsToUtcDateTime
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.UtcMillisecondsToUtcDateTime
+  nameWithType: TimeHelper.UtcMillisecondsToUtcDateTime
 - uid: GameFrameX.Utility.TimeHelper.UtcToLocalDateTime(System.Int64)
   name: UtcToLocalDateTime(long)
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcToLocalDateTime_System_Int64_
