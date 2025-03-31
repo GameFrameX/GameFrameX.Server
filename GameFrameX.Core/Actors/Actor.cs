@@ -116,8 +116,23 @@ public sealed class Actor : IActor
             {
                 async Task Worker()
                 {
-                    await comp.Active();
-                    await agent.Active();
+                    try
+                    {
+                        await comp.Active();
+                    }
+                    catch (Exception e)
+                    {
+                        LogHelper.Fatal(e);
+                    }
+
+                    try
+                    {
+                        await agent.Active();
+                    }
+                    catch (Exception e)
+                    {
+                        LogHelper.Fatal(e);
+                    }
                 }
 
                 await SendAsyncWithoutCheck(Worker);
@@ -136,8 +151,23 @@ public sealed class Actor : IActor
         {
             async Task Worker()
             {
-                await component.Active();
-                await agent.Active();
+                try
+                {
+                    await component.Active();
+                }
+                catch (Exception e)
+                {
+                    LogHelper.Fatal(e);
+                }
+
+                try
+                {
+                    await agent.Active();
+                }
+                catch (Exception e)
+                {
+                    LogHelper.Fatal(e);
+                }
             }
 
             await SendAsyncWithoutCheck(Worker);
