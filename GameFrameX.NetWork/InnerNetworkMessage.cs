@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Text;
 using System.Text.Json.Serialization;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.NetWork.Abstractions;
@@ -57,7 +58,7 @@ public sealed class InnerNetworkMessage : IInnerNetworkMessage
     {
         try
         {
-            var stringBuilder = StringBuilderCache.Acquire();
+            var stringBuilder = new StringBuilder();
             stringBuilder.Clear();
             stringBuilder.AppendLine();
             // 向下的箭头

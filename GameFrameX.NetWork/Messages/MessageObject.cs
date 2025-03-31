@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Text;
+using System.Text.Json.Serialization;
 using GameFrameX.Foundation.Json;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.NetWork.Abstractions;
@@ -79,7 +80,7 @@ public abstract class MessageObject : INetworkMessage
     {
         try
         {
-            var stringBuilder = StringBuilderCache.Acquire();
+            var stringBuilder = new StringBuilder();
             stringBuilder.Clear();
             stringBuilder.AppendLine();
             // 向下的箭头
