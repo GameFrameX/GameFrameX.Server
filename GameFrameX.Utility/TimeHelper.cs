@@ -73,14 +73,14 @@ public static class TimeHelper
     /// <param name="time">指定时间。</param>
     /// <param name="utc">是否使用UTC时间。</param>
     /// <returns>距离纪元时间的秒数。</returns>
-    public static int TimeToSecond(DateTime time, bool utc = false)
+    public static long TimeToSecond(DateTime time, bool utc = false)
     {
         if (utc)
         {
-            return (int)(time - EpochUtc).TotalSeconds;
+            return (long)(time - EpochUtc).TotalSeconds;
         }
 
-        return (int)(time - EpochLocal).TotalSeconds;
+        return (long)(time - EpochLocal).TotalSeconds;
     }
 
 
