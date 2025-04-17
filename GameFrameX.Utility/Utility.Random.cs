@@ -1,22 +1,22 @@
 ﻿using GameFrameX.Utility.Extensions;
+using Tedd.RandomUtils;
 
 namespace GameFrameX.Utility;
 
 /// <summary>
 /// 随机相关的实用函数。
 /// </summary>
-public static class Random
+public static class RandomHelper
 {
-    private static System.Random _random = new((int)DateTime.UtcNow.Ticks);
-
-    /// <summary>
+    private static readonly Random RandomShared = Random.Shared;
+    /*/// <summary>
     /// 设置随机数种子。
     /// </summary>
     /// <param name="seed">随机数种子。</param>
     public static void SetSeed(int seed)
     {
         _random = new System.Random(seed);
-    }
+    }*/
 
     /// <summary>
     /// 获取UInt32范围内的随机数。
@@ -25,7 +25,7 @@ public static class Random
     public static uint NextUInt32()
     {
         var bytes = new byte[4];
-        _random.NextBytes(bytes);
+        RandomShared.NextBytes(bytes);
         return BitConverter.ToUInt32(bytes, 0);
     }
 
@@ -35,7 +35,7 @@ public static class Random
     /// <returns>大于等于零且小于 System.Int32.MaxValue 的 32 位带符号整数。</returns>
     public static int Next()
     {
-        return _random.Next();
+        return RandomShared.Next();
     }
 
     /// <summary>
@@ -45,7 +45,7 @@ public static class Random
     /// <returns>大于等于零且小于 maxValue 的 32 位带符号整数，即：返回值的范围通常包括零但不包括 maxValue。不过，如果 maxValue 等于零，则返回 maxValue。</returns>
     public static int Next(int maxValue)
     {
-        return _random.Next(maxValue);
+        return RandomShared.Next(maxValue);
     }
 
     /// <summary>
@@ -56,7 +56,7 @@ public static class Random
     /// <returns>一个大于等于 minValue 且小于 maxValue 的 32 位带符号整数，即：返回的值范围包括 minValue 但不包括 maxValue。如果 minValue 等于 maxValue，则返回 minValue。</returns>
     public static int Next(int minValue, int maxValue)
     {
-        return _random.Next(minValue, maxValue);
+        return RandomShared.Next(minValue, maxValue);
     }
 
     /// <summary>
@@ -65,7 +65,7 @@ public static class Random
     /// <returns>大于等于零且小于 System.Int64.MaxValue 的 64 位带符号整数。</returns>
     public static long NextInt64()
     {
-        return _random.NextInt64();
+        return RandomShared.NextInt64();
     }
 
     /// <summary>
@@ -75,7 +75,7 @@ public static class Random
     /// <returns>大于等于零且小于 maxValue 的 64 位带符号整数，即：返回值的范围通常包括零但不包括 maxValue。不过，如果 maxValue 等于零，则返回 maxValue。</returns>
     public static long NextInt64(int maxValue)
     {
-        return _random.NextInt64(maxValue);
+        return RandomShared.NextInt64(maxValue);
     }
 
     /// <summary>
@@ -86,7 +86,7 @@ public static class Random
     /// <returns>一个大于等于 minValue 且小于 maxValue 的 64 位带符号整数，即：返回的值范围包括 minValue 但不包括 maxValue。如果 minValue 等于 maxValue，则返回 minValue。</returns>
     public static long NxtInt64(long minValue, long maxValue)
     {
-        return _random.NextInt64(minValue, maxValue);
+        return RandomShared.NextInt64(minValue, maxValue);
     }
 
     /// <summary>
@@ -96,7 +96,7 @@ public static class Random
     public static ulong NextUInt64()
     {
         var bytes = new byte[8];
-        _random.NextBytes(bytes);
+        RandomShared.NextBytes(bytes);
         return BitConverter.ToUInt64(bytes, 0);
     }
 
@@ -106,7 +106,7 @@ public static class Random
     /// <returns>大于等于 0.0 并且小于 1.0 的双精度浮点数。</returns>
     public static double NextDouble()
     {
-        return _random.NextDouble();
+        return RandomShared.NextDouble();
     }
 
     /// <summary>
@@ -115,8 +115,9 @@ public static class Random
     /// <param name="buffer">包含随机数的字节数组。</param>
     public static void NextBytes(byte[] buffer)
     {
-        _random.NextBytes(buffer);
+        RandomShared.NextBytes(buffer);
     }
+
 
     /// <summary>
     /// 从1~n中随机选取m个数，m小于n
@@ -138,7 +139,7 @@ public static class Random
         }
 
         var s = RandomSelect(m - 1, n - 1);
-        var i = ThreadLocalRandom.Current.Next(0, n);
+        var i = ConcurrentCryptoRandom.Next(0, n);
         s.Add(s.Contains(i) ? n - 1 : i);
         return s;
     }
@@ -171,11 +172,10 @@ public static class Random
     /// <exception cref="ArgumentException">当不可重复选取且需求数量大于id数量时抛出此异常</exception>
     private static List<int[]> RandomSelect(int[][] array, int num, int weightIndex, bool canRepeat = true)
     {
-        var random = ThreadLocalRandom.Current;
         if (canRepeat)
         {
             // 可重复
-            return CanRepeatRandom(array, num, weightIndex, random);
+            return CanRepeatRandom(array, num, weightIndex);
         }
 
         // 不可重复，需求数量不应超过id数量
@@ -184,7 +184,7 @@ public static class Random
             throw new ArgumentException($"can't repeat random arg error, num:{num} is great than id count:{array.Length}");
         }
 
-        return NoRepeatRandom(num, weightIndex, random, array);
+        return NoRepeatRandom(num, weightIndex, array);
     }
 
     /// <summary>
@@ -192,10 +192,9 @@ public static class Random
     /// </summary>
     /// <param name="num">需要选取的数量</param>
     /// <param name="weightIndex">权重索引</param>
-    /// <param name="random">随机数生成器</param>
     /// <param name="array">权重数组，每个元素为[id, weight]</param>
     /// <returns>包含随机选取的结果数组列表</returns>
-    private static List<int[]> NoRepeatRandom(int num, int weightIndex, System.Random random, int[][] array)
+    private static List<int[]> NoRepeatRandom(int num, int weightIndex, int[][] array)
     {
         var results = new List<int[]>();
         var idxSet = new HashSet<int>();
@@ -210,7 +209,7 @@ public static class Random
                 }
             }
 
-            var r = random.Next(totalWeight);
+            var r = ConcurrentCryptoRandom.Next(totalWeight);
             var temp = 0;
             var idx = 0;
             for (var j = 0; j < array.Length; j++)
@@ -239,15 +238,9 @@ public static class Random
     /// <param name="array">权重数组，每个元素为[id, weight]</param>
     /// <param name="num">需要选取的数量</param>
     /// <param name="weightIndex">权重索引</param>
-    /// <param name="random">随机数生成器</param>
     /// <returns>包含随机选取的结果数组列表</returns>
-    private static List<int[]> CanRepeatRandom(int[][] array, int num, int weightIndex, System.Random random = null)
+    private static List<int[]> CanRepeatRandom(int[][] array, int num, int weightIndex)
     {
-        if (random == null)
-        {
-            random = ThreadLocalRandom.Current;
-        }
-
         var totalWeight = 0;
         foreach (var arr in array)
         {
@@ -257,7 +250,7 @@ public static class Random
         var results = new List<int[]>(num);
         for (var i = 0; i < num; i++)
         {
-            results.Add(SingleRandom(array, totalWeight, weightIndex, random));
+            results.Add(SingleRandom(array, totalWeight, weightIndex));
         }
 
         return results;
@@ -269,12 +262,11 @@ public static class Random
     /// <param name="weightStr">权重字符串，格式为"id1+weight1;id2+weight2;..."</param>
     /// <param name="num">需要选取的数量</param>
     /// <param name="weightIndex">权重索引</param>
-    /// <param name="random">随机数生成器</param>
     /// <returns>包含随机选取的结果数组列表</returns>
-    private static List<int[]> CanRepeatRandom(string weightStr, int num, int weightIndex, System.Random random = null)
+    private static List<int[]> CanRepeatRandom(string weightStr, int num, int weightIndex)
     {
         var array = weightStr.SplitTo2IntArray();
-        return CanRepeatRandom(array, num, weightIndex, random);
+        return CanRepeatRandom(array, num, weightIndex);
     }
 
     /// <summary>
@@ -283,11 +275,10 @@ public static class Random
     /// <param name="array">权重数组，每个元素为[id, weight]</param>
     /// <param name="totalWeight">总权重</param>
     /// <param name="weightIndex">权重索引</param>
-    /// <param name="random">随机数生成器</param>
     /// <returns>随机选取的结果数组</returns>
-    private static int[] SingleRandom(int[][] array, int totalWeight, int weightIndex, System.Random random)
+    private static int[] SingleRandom(int[][] array, int totalWeight, int weightIndex)
     {
-        var r = random.Next(totalWeight);
+        var r = ConcurrentCryptoRandom.Next(totalWeight);
         var temp = 0;
         foreach (var arr in array)
         {
@@ -309,7 +300,7 @@ public static class Random
     public static int Idx(int[] weights)
     {
         var totalWight = weights.Sum();
-        var r = ThreadLocalRandom.Current.Next(totalWight);
+        var r = ConcurrentCryptoRandom.Next(totalWight);
         var temp = 0;
         for (var i = 0; i < weights.Length; i++)
         {
@@ -331,14 +322,13 @@ public static class Random
     /// <returns>随机选取的id索引</returns>
     public static int Idx(int[][] array, int weightIndex = 1)
     {
-        var random = ThreadLocalRandom.Current;
         var totalWeight = 0;
         foreach (var arr in array)
         {
             totalWeight += arr[weightIndex];
         }
 
-        var r = random.Next(totalWeight);
+        var r = ConcurrentCryptoRandom.Next(totalWeight);
         var temp = 0;
         for (var i = 0; i < array.Length; i++)
         {

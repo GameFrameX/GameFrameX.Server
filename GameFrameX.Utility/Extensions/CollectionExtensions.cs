@@ -117,8 +117,7 @@ public static class CollectionExtensions
     public static T Random<T>(this List<T> list)
     {
         var n = list.Count;
-        var r = ThreadLocalRandom.Current;
-        var index = r.Next(n);
+        var index = Utility.RandomHelper.Next(n);
         return list[index];
     }
 
@@ -130,10 +129,9 @@ public static class CollectionExtensions
     public static void Shuffer<T>(this List<T> list)
     {
         var n = list.Count;
-        var r = ThreadLocalRandom.Current;
         for (var i = 0; i < n; i++)
         {
-            var rand = r.Next(i, n);
+            var rand = Utility.RandomHelper.Next(i, n);
             (list[i], list[rand]) = (list[rand], list[i]);
         }
     }

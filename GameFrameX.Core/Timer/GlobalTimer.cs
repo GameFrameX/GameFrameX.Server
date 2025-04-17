@@ -90,7 +90,7 @@ public static class GlobalTimer
         var a = serverId % 1000;
         var b = a % GlobalConst.MAGIC;
         var c = GlobalSettings.SaveIntervalInMilliSeconds / GlobalConst.MAGIC;
-        var r = ThreadLocalRandom.Current.Next(0, c);
+        var r = GameFrameX.Utility.RandomHelper.Next(0, c);
         var delay = b * c + r;
         t = t.AddMilliseconds(delay);
 

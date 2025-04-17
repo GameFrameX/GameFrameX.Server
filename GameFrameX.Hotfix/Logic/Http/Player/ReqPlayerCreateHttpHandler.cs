@@ -45,9 +45,9 @@ public sealed class ReqPlayerCreateHttpHandler : BaseHttpHandler
             Id = ActorIdGenerator.GetActorId(GlobalConst.ActorTypePlayer),
             AccountId = reqPlayerCreate.Id,
             Name = reqPlayerCreate.Name,
-            Level = (uint)Utility.Random.Next(1, 50),
+            Level = (uint)Utility.RandomHelper.Next(1, 50),
             State = 0,
-            Avatar = (uint)Utility.Random.Next(1, 50),
+            Avatar = (uint)Utility.RandomHelper.Next(1, 50),
         };
         MetricsPlayerHelper.CreateCounterOptions.Inc();
         await GameDb.SaveOneAsync(playerState);
