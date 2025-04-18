@@ -50,7 +50,7 @@ public sealed class ReqPlayerCreateHttpHandler : BaseHttpHandler
             Avatar = (uint)Utility.Random.Next(1, 50),
         };
         MetricsPlayerRegister.CreateCounterOptions.Inc();
-        await GameDb.SaveOneAsync(playerState);
+        await GameDb.AddOrUpdateAsync(playerState);
         return playerState;
     }
 }
