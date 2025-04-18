@@ -71,6 +71,12 @@ internal partial class AppStartUpHotfixGame
         if (message is OuterNetworkMessage outerNetworkMessage)
         {
             var netWorkChannel = SessionManager.GetChannel(appSession.SessionID);
+
+            if (netWorkChannel.IsNull())
+            {
+                return;
+            }
+
             if (outerNetworkMessage.Header.OperationType == MessageOperationType.HeartBeat)
             {
                 if (Setting.IsDebug && Setting.IsDebugReceive && Setting.IsDebugReceiveHeartBeat)
