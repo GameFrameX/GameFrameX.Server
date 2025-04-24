@@ -49,14 +49,14 @@ public sealed class ReqLoginHttpHandler : BaseHttpHandler
     public async Task<LoginState> OnLogin(ReqLogin reqLogin)
     {
         MetricsAccountHelper.LoginCounterOptions.Inc();
-        return await GameDb.FindAsync<LoginState>(m => m.UserName == reqLogin.UserName && m.Password == reqLogin.Password);
+        return await GameDb.FindAsync<LoginState>(m => m.UserName == reqLogin.UserName && m.Password == reqLogin.Password, false);
     }
 
     public async Task<LoginState> Register(long accountId, ReqLogin reqLogin)
     {
         MetricsAccountHelper.RegisterCounterOptions.Inc();
         var loginState = new LoginState { Id = accountId, UserName = reqLogin.UserName, Password = reqLogin.Password, };
-        await GameDb.SaveOneAsync(loginState);
+        await GameDb.AddOrUpdateAsync(loginState);
         return loginState;
     }
 }
