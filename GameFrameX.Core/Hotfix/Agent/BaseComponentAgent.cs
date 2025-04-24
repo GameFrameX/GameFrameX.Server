@@ -209,6 +209,24 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     }
 
     /// <summary>
+    /// 暂停定时任务，不再执行
+    /// </summary>
+    /// <param name="id">定时任务ID</param>
+    public void Pause(long id)
+    {
+        QuartzTimer.Pause(id);
+    }
+
+    /// <summary>
+    /// 恢复暂停的定时任务，继续执行
+    /// </summary>
+    /// <param name="id">定时任务ID</param>
+    public void Resume(long id)
+    {
+        QuartzTimer.Resume(id);
+    }
+
+    /// <summary>
     /// 延迟执行定时任务，在指定的时间点执行一次任务
     /// </summary>
     /// <param name="time">指定执行任务的具体时间点</param>
