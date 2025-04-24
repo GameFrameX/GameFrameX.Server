@@ -127,6 +127,16 @@ public sealed class AppSetting
     public bool IsDebug { get; set; }
 
     /// <summary>
+    /// 是否打印超时日志,
+    /// </summary>
+    public bool IsTimeOut { get; set; }
+
+    /// <summary>
+    /// 处理器超时时间（秒）,默认值为1秒
+    /// </summary>
+    public int TimeOutSeconds { get; set; }
+
+    /// <summary>
     /// 是否打印发送数据,只有在IsDebug为true时有效,默认值为false
     /// </summary>
     public bool IsDebugSend { get; set; }

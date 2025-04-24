@@ -98,6 +98,19 @@ public abstract class BaseMessageHandler : IMessageHandler
             return result;
         }
 
+        if (GlobalSettings.IsMonitorTimeOut)
+        {
+            _stopwatch.Restart();
+            var result = ActionAsync();
+            _stopwatch.Stop();
+            if (_stopwatch.Elapsed.Seconds >= GlobalSettings.MonitorTimeOutSeconds)
+            {
+                LogHelper.Warn($"消息处理器：{GetType().Name},UniqueId：{Message.UniqueId} 执行耗时：{_stopwatch.ElapsedMilliseconds} ms");
+            }
+
+            return result;
+        }
+
         return ActionAsync();
     }
 }
