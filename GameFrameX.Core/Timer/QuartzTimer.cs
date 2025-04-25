@@ -138,19 +138,34 @@ public static class QuartzTimer
     /// <param name="interval">每次执行之间的间隔时间</param>
     /// <param name="eventArgs">传递给定时器处理器的自定义参数</param>
     /// <param name="repeatCount">循环次数,设置为-1表示无限循环执行</param>
+    /// <param name="isMissFire">是否允许错过执行</param>
     /// <returns>生成的定时任务ID,可用于后续管理该任务</returns>
-    public static long Schedule<T>(long actorId, TimeSpan delay, TimeSpan interval, GameEventArgs eventArgs = null, int repeatCount = -1) where T : ITimerHandler
+    public static long Schedule<T>(long actorId, TimeSpan delay, TimeSpan interval, GameEventArgs eventArgs = null, int repeatCount = -1, bool isMissFire = true) where T : ITimerHandler
     {
         var nextId = NextId();
         var firstTimeOffset = DateTimeOffset.Now.Add(delay);
         TriggerBuilder builder;
         if (repeatCount < 0)
         {
-            builder = TriggerBuilder.Create().StartAt(firstTimeOffset).WithSimpleSchedule(x => x.WithInterval(interval).RepeatForever());
+            builder = TriggerBuilder.Create().StartAt(firstTimeOffset).WithSimpleSchedule(x =>
+            {
+                var scheduleBuilder = x.WithInterval(interval).RepeatForever();
+                if (isMissFire)
+                {
+                    scheduleBuilder.WithMisfireHandlingInstructionIgnoreMisfires();
+                }
+            });
         }
         else
         {
-            builder = TriggerBuilder.Create().StartAt(firstTimeOffset).WithSimpleSchedule(x => x.WithInterval(interval).WithRepeatCount(repeatCount));
+            builder = TriggerBuilder.Create().StartAt(firstTimeOffset).WithSimpleSchedule(x =>
+            {
+                var scheduleBuilder = x.WithInterval(interval).WithRepeatCount(repeatCount);
+                if (isMissFire)
+                {
+                    scheduleBuilder.WithMisfireHandlingInstructionIgnoreMisfires();
+                }
+            });
         }
 
         _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, eventArgs), builder.Build());
@@ -169,7 +184,7 @@ public static class QuartzTimer
     {
         var nextId = NextId();
         var firstTimeOffset = DateTimeOffset.Now.Add(delay);
-        var trigger = TriggerBuilder.Create().StartAt(firstTimeOffset).Build();
+        var trigger = TriggerBuilder.Create().StartAt(firstTimeOffset).WithSimpleSchedule(x => x.WithMisfireHandlingInstructionNextWithRemainingCount()).Build();
         _scheduler.ScheduleJob(GetJobDetail<T>(nextId, actorId, eventArgs), trigger);
         return nextId;
     }
