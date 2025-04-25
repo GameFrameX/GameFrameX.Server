@@ -1,15 +1,17 @@
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
+using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 using GameFrameX.ServerManager;
+using GameFrameX.Utility.Extensions;
 
 namespace GameFrameX.Launcher.StartUp.Discovery;
 
 /// <summary>
 /// 服务发现中心服务器
 /// </summary>
-[StartUpTag(ServerType.DiscoveryCenter, 0)]
-internal partial class AppStartUpDiscoveryCenter : AppStartUpService
+// [StartUpTag(ServerType.DiscoveryCenter, 0)]
+internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
 {
     public override async Task StartAsync()
     {
@@ -17,11 +19,12 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
         {
             _namingServiceManager.AddSelf(Setting);
 
-            StartServer();
+            await StartServerAsync<DefaultMessageDecoderHandler, DefaultMessageEncoderHandler>(new DefaultMessageCompressHandler(), new DefaultMessageDecompressHandler());
+
             var aopHandlerTypes = AssemblyHelper.GetRuntimeImplementTypeNamesInstance<IHttpAopHandler>();
             aopHandlerTypes.Sort((handlerX, handlerY) => handlerX.Priority.CompareTo(handlerY.Priority));
             // 启动Http服务
-            await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetHttpHandler, aopHandlerTypes);
+            await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetListHttpHandler(), HotfixManager.GetHttpHandler, null, Setting.HttpUrl);
             await AppExitToken;
         }
         catch (Exception e)
@@ -72,7 +75,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpService
             var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
             if (serverInfo != null)
             {
-                LogHelper.Debug($"---收到[{serverInfo.Type} To {ServerType}]  {message.ToFormatMessageString()}");
+                LogHelper.Debug($"---收到[{serverInfo} To {ServerType}]  {message.ToFormatMessageString()}");
             }
             else
             {
