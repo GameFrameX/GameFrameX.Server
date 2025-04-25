@@ -1,7 +1,6 @@
 ﻿using System.Collections.Concurrent;
-using GameFrameX.Monitor.Discovery;
+using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility.Extensions;
-using GameFrameX.Utility.Log;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.ServerManager;
@@ -52,7 +51,7 @@ public sealed class NamingServiceManager
             return false;
         }
 
-        MetricsDiscoveryRegister.ServiceCounterOptions.Dec(-1);
+        // MetricsDiscoveryRegister.ServiceCounterOptions.Dec(-1);
         var result = _serverMap.TryRemove(serverId, out var value);
         _onServerRemove?.Invoke(value);
         return result;
@@ -183,7 +182,7 @@ public sealed class NamingServiceManager
             return;
         }
 
-        MetricsDiscoveryRegister.ServiceCounterOptions.Inc();
+        // MetricsDiscoveryRegister.ServiceCounterOptions.Inc();
         _serverMap.TryAdd(node.ServerId, node);
         _onServerAdd?.Invoke(node);
         LogHelper.Info($"新的网络节点总数：{GetNodeCount()} 新的节点信息:\n {node}");

@@ -1,6 +1,6 @@
-using GameFrameX.Utility;
+using System.Text.Json.Serialization;
+using GameFrameX.Foundation.Json;
 using GameFrameX.Utility.Setting;
-using Newtonsoft.Json;
 
 namespace GameFrameX.ServerManager;
 

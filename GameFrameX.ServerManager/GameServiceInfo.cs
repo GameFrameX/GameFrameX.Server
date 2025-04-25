@@ -1,6 +1,6 @@
-using GameFrameX.Utility;
+using System.Text.Json.Serialization;
+using GameFrameX.Foundation.Json;
 using GameFrameX.Utility.Setting;
-using Newtonsoft.Json;
 
 namespace GameFrameX.ServerManager;
 
@@ -46,7 +46,6 @@ public sealed class GameServiceInfo : IServiceInfo
     /// </summary>
     [JsonIgnore]
     public object Session { get; }
-
 
     /// <summary>
     /// 服务器状态
