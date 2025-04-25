@@ -9,7 +9,7 @@ namespace GameFrameX.DataBase.Storage;
 /// </summary>
 internal sealed class StateHash
 {
-    public StateHash(BaseCacheState state, bool isNew)
+    public StateHash(BaseCacheState state, bool isNew = false)
     {
         State = state;
         if (!isNew)

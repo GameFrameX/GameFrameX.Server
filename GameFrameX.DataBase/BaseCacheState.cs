@@ -1,6 +1,7 @@
 ﻿using GameFrameX.DataBase.Abstractions;
 using GameFrameX.DataBase.Storage;
 using GameFrameX.Foundation.Json;
+using GameFrameX.Utility.Extensions;
 using MongoDB.Entities;
 
 namespace GameFrameX.DataBase;
@@ -69,8 +70,8 @@ public abstract class BaseCacheState : ICacheState, IEntity
     /// <summary>
     /// 用于在对象从数据库加载后进行一些特定的处理，如初始化数据或设置状态。
     /// </summary>
-    /// <param name="isNew"></param>
-    public virtual void LoadFromDbPostHandler(bool isNew)
+    /// <param name="isNew">是否是新创建的实例，true表示是新创建的实例，false表示不是</param>
+    public virtual void LoadFromDbPostHandler(bool isNew = false)
     {
         _stateHash = new StateHash(this, isNew);
     }
@@ -81,6 +82,7 @@ public abstract class BaseCacheState : ICacheState, IEntity
     /// <returns></returns>
     public virtual (bool isChanged, byte[] data) IsChanged()
     {
+        CheckStateHash();
         return _stateHash.IsChanged();
     }
 
@@ -90,6 +92,7 @@ public abstract class BaseCacheState : ICacheState, IEntity
     /// <returns></returns>
     public virtual (bool isChanged, long stateId, byte[] data) IsChangedWithId()
     {
+        CheckStateHash();
         var res = _stateHash.IsChanged();
         return (res.Item1, Id, res.Item2);
     }
@@ -117,7 +120,21 @@ public abstract class BaseCacheState : ICacheState, IEntity
     /// </summary>
     public void SaveToDbPostHandler()
     {
+        CheckStateHash();
         _stateHash.SaveToDbPostHandler();
+    }
+
+    /// <summary>
+    /// 检查StateHash对象是否存在
+    /// </summary>
+    private void CheckStateHash()
+    {
+        if (_stateHash.IsNotNull())
+        {
+            return;
+        }
+
+        LoadFromDbPostHandler(false);
     }
 
     /// <summary>
