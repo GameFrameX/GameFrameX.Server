@@ -5258,6 +5258,42 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).OwnerType
   nameWithType: BaseComponentAgent<TComponent>.OwnerType
   nameWithType.vb: BaseComponentAgent(Of TComponent).OwnerType
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Pause(System.Int64)
+  name: Pause(long)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Pause_System_Int64_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Pause(System.Int64)
+  name.vb: Pause(Long)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Pause(long)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Pause(Long)
+  nameWithType: BaseComponentAgent<TComponent>.Pause(long)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Pause(Long)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Pause*
+  name: Pause
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Pause_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Pause
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Pause
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Pause
+  nameWithType: BaseComponentAgent<TComponent>.Pause
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Pause
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Resume(System.Int64)
+  name: Resume(long)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Resume_System_Int64_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Resume(System.Int64)
+  name.vb: Resume(Long)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Resume(long)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Resume(Long)
+  nameWithType: BaseComponentAgent<TComponent>.Resume(long)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Resume(Long)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Resume*
+  name: Resume
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Resume_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Resume
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Resume
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Resume
+  nameWithType: BaseComponentAgent<TComponent>.Resume
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Resume
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Schedule*
   name: Schedule
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Schedule_
@@ -5997,15 +6033,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Timer.QuartzTimer.Schedule
   nameWithType: QuartzTimer.Schedule
-- uid: GameFrameX.Core.Timer.QuartzTimer.Schedule``1(System.Int64,System.TimeSpan,System.TimeSpan,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int32)
-  name: Schedule<T>(long, TimeSpan, TimeSpan, GameEventArgs, int)
-  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Schedule__1_System_Int64_System_TimeSpan_System_TimeSpan_GameFrameX_Core_Abstractions_Events_GameEventArgs_System_Int32_
-  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Schedule``1(System.Int64,System.TimeSpan,System.TimeSpan,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int32)
-  name.vb: Schedule(Of T)(Long, TimeSpan, TimeSpan, GameEventArgs, Integer)
-  fullName: GameFrameX.Core.Timer.QuartzTimer.Schedule<T>(long, System.TimeSpan, System.TimeSpan, GameFrameX.Core.Abstractions.Events.GameEventArgs, int)
-  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Schedule(Of T)(Long, System.TimeSpan, System.TimeSpan, GameFrameX.Core.Abstractions.Events.GameEventArgs, Integer)
-  nameWithType: QuartzTimer.Schedule<T>(long, TimeSpan, TimeSpan, GameEventArgs, int)
-  nameWithType.vb: QuartzTimer.Schedule(Of T)(Long, TimeSpan, TimeSpan, GameEventArgs, Integer)
+- uid: GameFrameX.Core.Timer.QuartzTimer.Schedule``1(System.Int64,System.TimeSpan,System.TimeSpan,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int32,System.Boolean)
+  name: Schedule<T>(long, TimeSpan, TimeSpan, GameEventArgs, int, bool)
+  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Schedule__1_System_Int64_System_TimeSpan_System_TimeSpan_GameFrameX_Core_Abstractions_Events_GameEventArgs_System_Int32_System_Boolean_
+  commentId: M:GameFrameX.Core.Timer.QuartzTimer.Schedule``1(System.Int64,System.TimeSpan,System.TimeSpan,GameFrameX.Core.Abstractions.Events.GameEventArgs,System.Int32,System.Boolean)
+  name.vb: Schedule(Of T)(Long, TimeSpan, TimeSpan, GameEventArgs, Integer, Boolean)
+  fullName: GameFrameX.Core.Timer.QuartzTimer.Schedule<T>(long, System.TimeSpan, System.TimeSpan, GameFrameX.Core.Abstractions.Events.GameEventArgs, int, bool)
+  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.Schedule(Of T)(Long, System.TimeSpan, System.TimeSpan, GameFrameX.Core.Abstractions.Events.GameEventArgs, Integer, Boolean)
+  nameWithType: QuartzTimer.Schedule<T>(long, TimeSpan, TimeSpan, GameEventArgs, int, bool)
+  nameWithType.vb: QuartzTimer.Schedule(Of T)(Long, TimeSpan, TimeSpan, GameEventArgs, Integer, Boolean)
 - uid: GameFrameX.Core.Timer.QuartzTimer.Start
   name: Start()
   href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Start
@@ -10399,6 +10435,697 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.RpcSession.TryPeek
   nameWithType: RpcSession.TryPeek
+- uid: GameFrameX.ServerManager
+  name: GameFrameX.ServerManager
+  href: api/GameFrameX.ServerManager.html
+  commentId: N:GameFrameX.ServerManager
+  fullName: GameFrameX.ServerManager
+  nameWithType: GameFrameX.ServerManager
+- uid: GameFrameX.ServerManager.GameServiceInfo
+  name: GameServiceInfo
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html
+  commentId: T:GameFrameX.ServerManager.GameServiceInfo
+  fullName: GameFrameX.ServerManager.GameServiceInfo
+  nameWithType: GameServiceInfo
+- uid: GameFrameX.ServerManager.GameServiceInfo.#ctor(GameFrameX.Utility.Setting.ServerType,System.Object,System.String,System.String,System.Int64,System.Int16,System.Int16)
+  name: GameServiceInfo(ServerType, object, string, string, long, short, short)
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo__ctor_GameFrameX_Utility_Setting_ServerType_System_Object_System_String_System_String_System_Int64_System_Int16_System_Int16_
+  commentId: M:GameFrameX.ServerManager.GameServiceInfo.#ctor(GameFrameX.Utility.Setting.ServerType,System.Object,System.String,System.String,System.Int64,System.Int16,System.Int16)
+  name.vb: New(ServerType, Object, String, String, Long, Short, Short)
+  fullName: GameFrameX.ServerManager.GameServiceInfo.GameServiceInfo(GameFrameX.Utility.Setting.ServerType, object, string, string, long, short, short)
+  fullName.vb: GameFrameX.ServerManager.GameServiceInfo.New(GameFrameX.Utility.Setting.ServerType, Object, String, String, Long, Short, Short)
+  nameWithType: GameServiceInfo.GameServiceInfo(ServerType, object, string, string, long, short, short)
+  nameWithType.vb: GameServiceInfo.New(ServerType, Object, String, String, Long, Short, Short)
+- uid: GameFrameX.ServerManager.GameServiceInfo.#ctor*
+  name: GameServiceInfo
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo__ctor_
+  commentId: Overload:GameFrameX.ServerManager.GameServiceInfo.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFrameX.ServerManager.GameServiceInfo.GameServiceInfo
+  fullName.vb: GameFrameX.ServerManager.GameServiceInfo.New
+  nameWithType: GameServiceInfo.GameServiceInfo
+  nameWithType.vb: GameServiceInfo.New
+- uid: GameFrameX.ServerManager.GameServiceInfo.MaxModuleMessageId
+  name: MaxModuleMessageId
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_MaxModuleMessageId
+  commentId: P:GameFrameX.ServerManager.GameServiceInfo.MaxModuleMessageId
+  fullName: GameFrameX.ServerManager.GameServiceInfo.MaxModuleMessageId
+  nameWithType: GameServiceInfo.MaxModuleMessageId
+- uid: GameFrameX.ServerManager.GameServiceInfo.MaxModuleMessageId*
+  name: MaxModuleMessageId
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_MaxModuleMessageId_
+  commentId: Overload:GameFrameX.ServerManager.GameServiceInfo.MaxModuleMessageId
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.GameServiceInfo.MaxModuleMessageId
+  nameWithType: GameServiceInfo.MaxModuleMessageId
+- uid: GameFrameX.ServerManager.GameServiceInfo.MinModuleMessageId
+  name: MinModuleMessageId
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_MinModuleMessageId
+  commentId: P:GameFrameX.ServerManager.GameServiceInfo.MinModuleMessageId
+  fullName: GameFrameX.ServerManager.GameServiceInfo.MinModuleMessageId
+  nameWithType: GameServiceInfo.MinModuleMessageId
+- uid: GameFrameX.ServerManager.GameServiceInfo.MinModuleMessageId*
+  name: MinModuleMessageId
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_MinModuleMessageId_
+  commentId: Overload:GameFrameX.ServerManager.GameServiceInfo.MinModuleMessageId
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.GameServiceInfo.MinModuleMessageId
+  nameWithType: GameServiceInfo.MinModuleMessageId
+- uid: GameFrameX.ServerManager.GameServiceInfo.ServerId
+  name: ServerId
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_ServerId
+  commentId: P:GameFrameX.ServerManager.GameServiceInfo.ServerId
+  fullName: GameFrameX.ServerManager.GameServiceInfo.ServerId
+  nameWithType: GameServiceInfo.ServerId
+- uid: GameFrameX.ServerManager.GameServiceInfo.ServerId*
+  name: ServerId
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_ServerId_
+  commentId: Overload:GameFrameX.ServerManager.GameServiceInfo.ServerId
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.GameServiceInfo.ServerId
+  nameWithType: GameServiceInfo.ServerId
+- uid: GameFrameX.ServerManager.GameServiceInfo.ServerName
+  name: ServerName
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_ServerName
+  commentId: P:GameFrameX.ServerManager.GameServiceInfo.ServerName
+  fullName: GameFrameX.ServerManager.GameServiceInfo.ServerName
+  nameWithType: GameServiceInfo.ServerName
+- uid: GameFrameX.ServerManager.GameServiceInfo.ServerName*
+  name: ServerName
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_ServerName_
+  commentId: Overload:GameFrameX.ServerManager.GameServiceInfo.ServerName
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.GameServiceInfo.ServerName
+  nameWithType: GameServiceInfo.ServerName
+- uid: GameFrameX.ServerManager.GameServiceInfo.Session
+  name: Session
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_Session
+  commentId: P:GameFrameX.ServerManager.GameServiceInfo.Session
+  fullName: GameFrameX.ServerManager.GameServiceInfo.Session
+  nameWithType: GameServiceInfo.Session
+- uid: GameFrameX.ServerManager.GameServiceInfo.Session*
+  name: Session
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_Session_
+  commentId: Overload:GameFrameX.ServerManager.GameServiceInfo.Session
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.GameServiceInfo.Session
+  nameWithType: GameServiceInfo.Session
+- uid: GameFrameX.ServerManager.GameServiceInfo.SessionId
+  name: SessionId
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_SessionId
+  commentId: P:GameFrameX.ServerManager.GameServiceInfo.SessionId
+  fullName: GameFrameX.ServerManager.GameServiceInfo.SessionId
+  nameWithType: GameServiceInfo.SessionId
+- uid: GameFrameX.ServerManager.GameServiceInfo.SessionId*
+  name: SessionId
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_SessionId_
+  commentId: Overload:GameFrameX.ServerManager.GameServiceInfo.SessionId
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.GameServiceInfo.SessionId
+  nameWithType: GameServiceInfo.SessionId
+- uid: GameFrameX.ServerManager.GameServiceInfo.StatusInfo
+  name: StatusInfo
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_StatusInfo
+  commentId: P:GameFrameX.ServerManager.GameServiceInfo.StatusInfo
+  fullName: GameFrameX.ServerManager.GameServiceInfo.StatusInfo
+  nameWithType: GameServiceInfo.StatusInfo
+- uid: GameFrameX.ServerManager.GameServiceInfo.StatusInfo*
+  name: StatusInfo
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_StatusInfo_
+  commentId: Overload:GameFrameX.ServerManager.GameServiceInfo.StatusInfo
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.GameServiceInfo.StatusInfo
+  nameWithType: GameServiceInfo.StatusInfo
+- uid: GameFrameX.ServerManager.GameServiceInfo.ToString
+  name: ToString()
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_ToString
+  commentId: M:GameFrameX.ServerManager.GameServiceInfo.ToString
+  fullName: GameFrameX.ServerManager.GameServiceInfo.ToString()
+  nameWithType: GameServiceInfo.ToString()
+- uid: GameFrameX.ServerManager.GameServiceInfo.ToString*
+  name: ToString
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_ToString_
+  commentId: Overload:GameFrameX.ServerManager.GameServiceInfo.ToString
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.GameServiceInfo.ToString
+  nameWithType: GameServiceInfo.ToString
+- uid: GameFrameX.ServerManager.GameServiceInfo.Type
+  name: Type
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_Type
+  commentId: P:GameFrameX.ServerManager.GameServiceInfo.Type
+  fullName: GameFrameX.ServerManager.GameServiceInfo.Type
+  nameWithType: GameServiceInfo.Type
+- uid: GameFrameX.ServerManager.GameServiceInfo.Type*
+  name: Type
+  href: api/GameFrameX.ServerManager.GameServiceInfo.html#GameFrameX_ServerManager_GameServiceInfo_Type_
+  commentId: Overload:GameFrameX.ServerManager.GameServiceInfo.Type
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.GameServiceInfo.Type
+  nameWithType: GameServiceInfo.Type
+- uid: GameFrameX.ServerManager.IServiceInfo
+  name: IServiceInfo
+  href: api/GameFrameX.ServerManager.IServiceInfo.html
+  commentId: T:GameFrameX.ServerManager.IServiceInfo
+  fullName: GameFrameX.ServerManager.IServiceInfo
+  nameWithType: IServiceInfo
+- uid: GameFrameX.ServerManager.IServiceInfo.ServerId
+  name: ServerId
+  href: api/GameFrameX.ServerManager.IServiceInfo.html#GameFrameX_ServerManager_IServiceInfo_ServerId
+  commentId: P:GameFrameX.ServerManager.IServiceInfo.ServerId
+  fullName: GameFrameX.ServerManager.IServiceInfo.ServerId
+  nameWithType: IServiceInfo.ServerId
+- uid: GameFrameX.ServerManager.IServiceInfo.ServerId*
+  name: ServerId
+  href: api/GameFrameX.ServerManager.IServiceInfo.html#GameFrameX_ServerManager_IServiceInfo_ServerId_
+  commentId: Overload:GameFrameX.ServerManager.IServiceInfo.ServerId
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.IServiceInfo.ServerId
+  nameWithType: IServiceInfo.ServerId
+- uid: GameFrameX.ServerManager.IServiceInfo.ServerName
+  name: ServerName
+  href: api/GameFrameX.ServerManager.IServiceInfo.html#GameFrameX_ServerManager_IServiceInfo_ServerName
+  commentId: P:GameFrameX.ServerManager.IServiceInfo.ServerName
+  fullName: GameFrameX.ServerManager.IServiceInfo.ServerName
+  nameWithType: IServiceInfo.ServerName
+- uid: GameFrameX.ServerManager.IServiceInfo.ServerName*
+  name: ServerName
+  href: api/GameFrameX.ServerManager.IServiceInfo.html#GameFrameX_ServerManager_IServiceInfo_ServerName_
+  commentId: Overload:GameFrameX.ServerManager.IServiceInfo.ServerName
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.IServiceInfo.ServerName
+  nameWithType: IServiceInfo.ServerName
+- uid: GameFrameX.ServerManager.IServiceInfo.SessionId
+  name: SessionId
+  href: api/GameFrameX.ServerManager.IServiceInfo.html#GameFrameX_ServerManager_IServiceInfo_SessionId
+  commentId: P:GameFrameX.ServerManager.IServiceInfo.SessionId
+  fullName: GameFrameX.ServerManager.IServiceInfo.SessionId
+  nameWithType: IServiceInfo.SessionId
+- uid: GameFrameX.ServerManager.IServiceInfo.SessionId*
+  name: SessionId
+  href: api/GameFrameX.ServerManager.IServiceInfo.html#GameFrameX_ServerManager_IServiceInfo_SessionId_
+  commentId: Overload:GameFrameX.ServerManager.IServiceInfo.SessionId
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.IServiceInfo.SessionId
+  nameWithType: IServiceInfo.SessionId
+- uid: GameFrameX.ServerManager.IServiceInfo.Type
+  name: Type
+  href: api/GameFrameX.ServerManager.IServiceInfo.html#GameFrameX_ServerManager_IServiceInfo_Type
+  commentId: P:GameFrameX.ServerManager.IServiceInfo.Type
+  fullName: GameFrameX.ServerManager.IServiceInfo.Type
+  nameWithType: IServiceInfo.Type
+- uid: GameFrameX.ServerManager.IServiceInfo.Type*
+  name: Type
+  href: api/GameFrameX.ServerManager.IServiceInfo.html#GameFrameX_ServerManager_IServiceInfo_Type_
+  commentId: Overload:GameFrameX.ServerManager.IServiceInfo.Type
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.IServiceInfo.Type
+  nameWithType: IServiceInfo.Type
+- uid: GameFrameX.ServerManager.NamingServiceManager
+  name: NamingServiceManager
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html
+  commentId: T:GameFrameX.ServerManager.NamingServiceManager
+  fullName: GameFrameX.ServerManager.NamingServiceManager
+  nameWithType: NamingServiceManager
+- uid: GameFrameX.ServerManager.NamingServiceManager.#ctor(System.Action{GameFrameX.ServerManager.IServiceInfo},System.Action{GameFrameX.ServerManager.IServiceInfo})
+  name: NamingServiceManager(Action<IServiceInfo>, Action<IServiceInfo>)
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager__ctor_System_Action_GameFrameX_ServerManager_IServiceInfo__System_Action_GameFrameX_ServerManager_IServiceInfo__
+  commentId: M:GameFrameX.ServerManager.NamingServiceManager.#ctor(System.Action{GameFrameX.ServerManager.IServiceInfo},System.Action{GameFrameX.ServerManager.IServiceInfo})
+  name.vb: New(Action(Of IServiceInfo), Action(Of IServiceInfo))
+  fullName: GameFrameX.ServerManager.NamingServiceManager.NamingServiceManager(System.Action<GameFrameX.ServerManager.IServiceInfo>, System.Action<GameFrameX.ServerManager.IServiceInfo>)
+  fullName.vb: GameFrameX.ServerManager.NamingServiceManager.New(System.Action(Of GameFrameX.ServerManager.IServiceInfo), System.Action(Of GameFrameX.ServerManager.IServiceInfo))
+  nameWithType: NamingServiceManager.NamingServiceManager(Action<IServiceInfo>, Action<IServiceInfo>)
+  nameWithType.vb: NamingServiceManager.New(Action(Of IServiceInfo), Action(Of IServiceInfo))
+- uid: GameFrameX.ServerManager.NamingServiceManager.#ctor*
+  name: NamingServiceManager
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager__ctor_
+  commentId: Overload:GameFrameX.ServerManager.NamingServiceManager.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFrameX.ServerManager.NamingServiceManager.NamingServiceManager
+  fullName.vb: GameFrameX.ServerManager.NamingServiceManager.New
+  nameWithType: NamingServiceManager.NamingServiceManager
+  nameWithType.vb: NamingServiceManager.New
+- uid: GameFrameX.ServerManager.NamingServiceManager.Add(GameFrameX.ServerManager.IServiceInfo)
+  name: Add(IServiceInfo)
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_Add_GameFrameX_ServerManager_IServiceInfo_
+  commentId: M:GameFrameX.ServerManager.NamingServiceManager.Add(GameFrameX.ServerManager.IServiceInfo)
+  fullName: GameFrameX.ServerManager.NamingServiceManager.Add(GameFrameX.ServerManager.IServiceInfo)
+  nameWithType: NamingServiceManager.Add(IServiceInfo)
+- uid: GameFrameX.ServerManager.NamingServiceManager.Add*
+  name: Add
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_Add_
+  commentId: Overload:GameFrameX.ServerManager.NamingServiceManager.Add
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.NamingServiceManager.Add
+  nameWithType: NamingServiceManager.Add
+- uid: GameFrameX.ServerManager.NamingServiceManager.AddSelf(GameFrameX.Utility.Setting.AppSetting)
+  name: AddSelf(AppSetting)
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_AddSelf_GameFrameX_Utility_Setting_AppSetting_
+  commentId: M:GameFrameX.ServerManager.NamingServiceManager.AddSelf(GameFrameX.Utility.Setting.AppSetting)
+  fullName: GameFrameX.ServerManager.NamingServiceManager.AddSelf(GameFrameX.Utility.Setting.AppSetting)
+  nameWithType: NamingServiceManager.AddSelf(AppSetting)
+- uid: GameFrameX.ServerManager.NamingServiceManager.AddSelf*
+  name: AddSelf
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_AddSelf_
+  commentId: Overload:GameFrameX.ServerManager.NamingServiceManager.AddSelf
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.NamingServiceManager.AddSelf
+  nameWithType: NamingServiceManager.AddSelf
+- uid: GameFrameX.ServerManager.NamingServiceManager.GetAllNodes
+  name: GetAllNodes()
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_GetAllNodes
+  commentId: M:GameFrameX.ServerManager.NamingServiceManager.GetAllNodes
+  fullName: GameFrameX.ServerManager.NamingServiceManager.GetAllNodes()
+  nameWithType: NamingServiceManager.GetAllNodes()
+- uid: GameFrameX.ServerManager.NamingServiceManager.GetAllNodes*
+  name: GetAllNodes
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_GetAllNodes_
+  commentId: Overload:GameFrameX.ServerManager.NamingServiceManager.GetAllNodes
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.NamingServiceManager.GetAllNodes
+  nameWithType: NamingServiceManager.GetAllNodes
+- uid: GameFrameX.ServerManager.NamingServiceManager.GetNodeBySessionId(System.String)
+  name: GetNodeBySessionId(string)
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_GetNodeBySessionId_System_String_
+  commentId: M:GameFrameX.ServerManager.NamingServiceManager.GetNodeBySessionId(System.String)
+  name.vb: GetNodeBySessionId(String)
+  fullName: GameFrameX.ServerManager.NamingServiceManager.GetNodeBySessionId(string)
+  fullName.vb: GameFrameX.ServerManager.NamingServiceManager.GetNodeBySessionId(String)
+  nameWithType: NamingServiceManager.GetNodeBySessionId(string)
+  nameWithType.vb: NamingServiceManager.GetNodeBySessionId(String)
+- uid: GameFrameX.ServerManager.NamingServiceManager.GetNodeBySessionId*
+  name: GetNodeBySessionId
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_GetNodeBySessionId_
+  commentId: Overload:GameFrameX.ServerManager.NamingServiceManager.GetNodeBySessionId
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.NamingServiceManager.GetNodeBySessionId
+  nameWithType: NamingServiceManager.GetNodeBySessionId
+- uid: GameFrameX.ServerManager.NamingServiceManager.GetNodeCount
+  name: GetNodeCount()
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_GetNodeCount
+  commentId: M:GameFrameX.ServerManager.NamingServiceManager.GetNodeCount
+  fullName: GameFrameX.ServerManager.NamingServiceManager.GetNodeCount()
+  nameWithType: NamingServiceManager.GetNodeCount()
+- uid: GameFrameX.ServerManager.NamingServiceManager.GetNodeCount*
+  name: GetNodeCount
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_GetNodeCount_
+  commentId: Overload:GameFrameX.ServerManager.NamingServiceManager.GetNodeCount
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.NamingServiceManager.GetNodeCount
+  nameWithType: NamingServiceManager.GetNodeCount
+- uid: GameFrameX.ServerManager.NamingServiceManager.GetNodesByType(GameFrameX.Utility.Setting.ServerType)
+  name: GetNodesByType(ServerType)
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_GetNodesByType_GameFrameX_Utility_Setting_ServerType_
+  commentId: M:GameFrameX.ServerManager.NamingServiceManager.GetNodesByType(GameFrameX.Utility.Setting.ServerType)
+  fullName: GameFrameX.ServerManager.NamingServiceManager.GetNodesByType(GameFrameX.Utility.Setting.ServerType)
+  nameWithType: NamingServiceManager.GetNodesByType(ServerType)
+- uid: GameFrameX.ServerManager.NamingServiceManager.GetNodesByType*
+  name: GetNodesByType
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_GetNodesByType_
+  commentId: Overload:GameFrameX.ServerManager.NamingServiceManager.GetNodesByType
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.NamingServiceManager.GetNodesByType
+  nameWithType: NamingServiceManager.GetNodesByType
+- uid: GameFrameX.ServerManager.NamingServiceManager.GetOuterNodes
+  name: GetOuterNodes()
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_GetOuterNodes
+  commentId: M:GameFrameX.ServerManager.NamingServiceManager.GetOuterNodes
+  fullName: GameFrameX.ServerManager.NamingServiceManager.GetOuterNodes()
+  nameWithType: NamingServiceManager.GetOuterNodes()
+- uid: GameFrameX.ServerManager.NamingServiceManager.GetOuterNodes*
+  name: GetOuterNodes
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_GetOuterNodes_
+  commentId: Overload:GameFrameX.ServerManager.NamingServiceManager.GetOuterNodes
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.NamingServiceManager.GetOuterNodes
+  nameWithType: NamingServiceManager.GetOuterNodes
+- uid: GameFrameX.ServerManager.NamingServiceManager.SelfServiceInfo
+  name: SelfServiceInfo
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_SelfServiceInfo
+  commentId: P:GameFrameX.ServerManager.NamingServiceManager.SelfServiceInfo
+  fullName: GameFrameX.ServerManager.NamingServiceManager.SelfServiceInfo
+  nameWithType: NamingServiceManager.SelfServiceInfo
+- uid: GameFrameX.ServerManager.NamingServiceManager.SelfServiceInfo*
+  name: SelfServiceInfo
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_SelfServiceInfo_
+  commentId: Overload:GameFrameX.ServerManager.NamingServiceManager.SelfServiceInfo
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.NamingServiceManager.SelfServiceInfo
+  nameWithType: NamingServiceManager.SelfServiceInfo
+- uid: GameFrameX.ServerManager.NamingServiceManager.TryGet(System.Int64)
+  name: TryGet(long)
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_TryGet_System_Int64_
+  commentId: M:GameFrameX.ServerManager.NamingServiceManager.TryGet(System.Int64)
+  name.vb: TryGet(Long)
+  fullName: GameFrameX.ServerManager.NamingServiceManager.TryGet(long)
+  fullName.vb: GameFrameX.ServerManager.NamingServiceManager.TryGet(Long)
+  nameWithType: NamingServiceManager.TryGet(long)
+  nameWithType.vb: NamingServiceManager.TryGet(Long)
+- uid: GameFrameX.ServerManager.NamingServiceManager.TryGet*
+  name: TryGet
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_TryGet_
+  commentId: Overload:GameFrameX.ServerManager.NamingServiceManager.TryGet
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.NamingServiceManager.TryGet
+  nameWithType: NamingServiceManager.TryGet
+- uid: GameFrameX.ServerManager.NamingServiceManager.TryRemove(GameFrameX.ServerManager.IServiceInfo)
+  name: TryRemove(IServiceInfo)
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_TryRemove_GameFrameX_ServerManager_IServiceInfo_
+  commentId: M:GameFrameX.ServerManager.NamingServiceManager.TryRemove(GameFrameX.ServerManager.IServiceInfo)
+  fullName: GameFrameX.ServerManager.NamingServiceManager.TryRemove(GameFrameX.ServerManager.IServiceInfo)
+  nameWithType: NamingServiceManager.TryRemove(IServiceInfo)
+- uid: GameFrameX.ServerManager.NamingServiceManager.TryRemove(System.Int64)
+  name: TryRemove(long)
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_TryRemove_System_Int64_
+  commentId: M:GameFrameX.ServerManager.NamingServiceManager.TryRemove(System.Int64)
+  name.vb: TryRemove(Long)
+  fullName: GameFrameX.ServerManager.NamingServiceManager.TryRemove(long)
+  fullName.vb: GameFrameX.ServerManager.NamingServiceManager.TryRemove(Long)
+  nameWithType: NamingServiceManager.TryRemove(long)
+  nameWithType.vb: NamingServiceManager.TryRemove(Long)
+- uid: GameFrameX.ServerManager.NamingServiceManager.TryRemove*
+  name: TryRemove
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_TryRemove_
+  commentId: Overload:GameFrameX.ServerManager.NamingServiceManager.TryRemove
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.NamingServiceManager.TryRemove
+  nameWithType: NamingServiceManager.TryRemove
+- uid: GameFrameX.ServerManager.NamingServiceManager.TrySessionRemove(System.String)
+  name: TrySessionRemove(string)
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_TrySessionRemove_System_String_
+  commentId: M:GameFrameX.ServerManager.NamingServiceManager.TrySessionRemove(System.String)
+  name.vb: TrySessionRemove(String)
+  fullName: GameFrameX.ServerManager.NamingServiceManager.TrySessionRemove(string)
+  fullName.vb: GameFrameX.ServerManager.NamingServiceManager.TrySessionRemove(String)
+  nameWithType: NamingServiceManager.TrySessionRemove(string)
+  nameWithType.vb: NamingServiceManager.TrySessionRemove(String)
+- uid: GameFrameX.ServerManager.NamingServiceManager.TrySessionRemove*
+  name: TrySessionRemove
+  href: api/GameFrameX.ServerManager.NamingServiceManager.html#GameFrameX_ServerManager_NamingServiceManager_TrySessionRemove_
+  commentId: Overload:GameFrameX.ServerManager.NamingServiceManager.TrySessionRemove
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.NamingServiceManager.TrySessionRemove
+  nameWithType: NamingServiceManager.TrySessionRemove
+- uid: GameFrameX.ServerManager.ServiceInfo
+  name: ServiceInfo
+  href: api/GameFrameX.ServerManager.ServiceInfo.html
+  commentId: T:GameFrameX.ServerManager.ServiceInfo
+  fullName: GameFrameX.ServerManager.ServiceInfo
+  nameWithType: ServiceInfo
+- uid: GameFrameX.ServerManager.ServiceInfo.#ctor(GameFrameX.Utility.Setting.ServerType,System.Object,System.String,System.String,System.Int64,System.String,System.UInt16,System.String,System.UInt16)
+  name: ServiceInfo(ServerType, object, string, string, long, string, ushort, string, ushort)
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo__ctor_GameFrameX_Utility_Setting_ServerType_System_Object_System_String_System_String_System_Int64_System_String_System_UInt16_System_String_System_UInt16_
+  commentId: M:GameFrameX.ServerManager.ServiceInfo.#ctor(GameFrameX.Utility.Setting.ServerType,System.Object,System.String,System.String,System.Int64,System.String,System.UInt16,System.String,System.UInt16)
+  name.vb: New(ServerType, Object, String, String, Long, String, UShort, String, UShort)
+  fullName: GameFrameX.ServerManager.ServiceInfo.ServiceInfo(GameFrameX.Utility.Setting.ServerType, object, string, string, long, string, ushort, string, ushort)
+  fullName.vb: GameFrameX.ServerManager.ServiceInfo.New(GameFrameX.Utility.Setting.ServerType, Object, String, String, Long, String, UShort, String, UShort)
+  nameWithType: ServiceInfo.ServiceInfo(ServerType, object, string, string, long, string, ushort, string, ushort)
+  nameWithType.vb: ServiceInfo.New(ServerType, Object, String, String, Long, String, UShort, String, UShort)
+- uid: GameFrameX.ServerManager.ServiceInfo.#ctor*
+  name: ServiceInfo
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo__ctor_
+  commentId: Overload:GameFrameX.ServerManager.ServiceInfo.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFrameX.ServerManager.ServiceInfo.ServiceInfo
+  fullName.vb: GameFrameX.ServerManager.ServiceInfo.New
+  nameWithType: ServiceInfo.ServiceInfo
+  nameWithType.vb: ServiceInfo.New
+- uid: GameFrameX.ServerManager.ServiceInfo.InnerIp
+  name: InnerIp
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_InnerIp
+  commentId: P:GameFrameX.ServerManager.ServiceInfo.InnerIp
+  fullName: GameFrameX.ServerManager.ServiceInfo.InnerIp
+  nameWithType: ServiceInfo.InnerIp
+- uid: GameFrameX.ServerManager.ServiceInfo.InnerIp*
+  name: InnerIp
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_InnerIp_
+  commentId: Overload:GameFrameX.ServerManager.ServiceInfo.InnerIp
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.ServiceInfo.InnerIp
+  nameWithType: ServiceInfo.InnerIp
+- uid: GameFrameX.ServerManager.ServiceInfo.InnerPort
+  name: InnerPort
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_InnerPort
+  commentId: P:GameFrameX.ServerManager.ServiceInfo.InnerPort
+  fullName: GameFrameX.ServerManager.ServiceInfo.InnerPort
+  nameWithType: ServiceInfo.InnerPort
+- uid: GameFrameX.ServerManager.ServiceInfo.InnerPort*
+  name: InnerPort
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_InnerPort_
+  commentId: Overload:GameFrameX.ServerManager.ServiceInfo.InnerPort
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.ServiceInfo.InnerPort
+  nameWithType: ServiceInfo.InnerPort
+- uid: GameFrameX.ServerManager.ServiceInfo.OuterIp
+  name: OuterIp
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_OuterIp
+  commentId: P:GameFrameX.ServerManager.ServiceInfo.OuterIp
+  fullName: GameFrameX.ServerManager.ServiceInfo.OuterIp
+  nameWithType: ServiceInfo.OuterIp
+- uid: GameFrameX.ServerManager.ServiceInfo.OuterIp*
+  name: OuterIp
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_OuterIp_
+  commentId: Overload:GameFrameX.ServerManager.ServiceInfo.OuterIp
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.ServiceInfo.OuterIp
+  nameWithType: ServiceInfo.OuterIp
+- uid: GameFrameX.ServerManager.ServiceInfo.OuterPort
+  name: OuterPort
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_OuterPort
+  commentId: P:GameFrameX.ServerManager.ServiceInfo.OuterPort
+  fullName: GameFrameX.ServerManager.ServiceInfo.OuterPort
+  nameWithType: ServiceInfo.OuterPort
+- uid: GameFrameX.ServerManager.ServiceInfo.OuterPort*
+  name: OuterPort
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_OuterPort_
+  commentId: Overload:GameFrameX.ServerManager.ServiceInfo.OuterPort
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.ServiceInfo.OuterPort
+  nameWithType: ServiceInfo.OuterPort
+- uid: GameFrameX.ServerManager.ServiceInfo.ServerId
+  name: ServerId
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_ServerId
+  commentId: P:GameFrameX.ServerManager.ServiceInfo.ServerId
+  fullName: GameFrameX.ServerManager.ServiceInfo.ServerId
+  nameWithType: ServiceInfo.ServerId
+- uid: GameFrameX.ServerManager.ServiceInfo.ServerId*
+  name: ServerId
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_ServerId_
+  commentId: Overload:GameFrameX.ServerManager.ServiceInfo.ServerId
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.ServiceInfo.ServerId
+  nameWithType: ServiceInfo.ServerId
+- uid: GameFrameX.ServerManager.ServiceInfo.ServerName
+  name: ServerName
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_ServerName
+  commentId: P:GameFrameX.ServerManager.ServiceInfo.ServerName
+  fullName: GameFrameX.ServerManager.ServiceInfo.ServerName
+  nameWithType: ServiceInfo.ServerName
+- uid: GameFrameX.ServerManager.ServiceInfo.ServerName*
+  name: ServerName
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_ServerName_
+  commentId: Overload:GameFrameX.ServerManager.ServiceInfo.ServerName
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.ServiceInfo.ServerName
+  nameWithType: ServiceInfo.ServerName
+- uid: GameFrameX.ServerManager.ServiceInfo.Session
+  name: Session
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_Session
+  commentId: P:GameFrameX.ServerManager.ServiceInfo.Session
+  fullName: GameFrameX.ServerManager.ServiceInfo.Session
+  nameWithType: ServiceInfo.Session
+- uid: GameFrameX.ServerManager.ServiceInfo.Session*
+  name: Session
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_Session_
+  commentId: Overload:GameFrameX.ServerManager.ServiceInfo.Session
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.ServiceInfo.Session
+  nameWithType: ServiceInfo.Session
+- uid: GameFrameX.ServerManager.ServiceInfo.SessionId
+  name: SessionId
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_SessionId
+  commentId: P:GameFrameX.ServerManager.ServiceInfo.SessionId
+  fullName: GameFrameX.ServerManager.ServiceInfo.SessionId
+  nameWithType: ServiceInfo.SessionId
+- uid: GameFrameX.ServerManager.ServiceInfo.SessionId*
+  name: SessionId
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_SessionId_
+  commentId: Overload:GameFrameX.ServerManager.ServiceInfo.SessionId
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.ServiceInfo.SessionId
+  nameWithType: ServiceInfo.SessionId
+- uid: GameFrameX.ServerManager.ServiceInfo.StatusInfo
+  name: StatusInfo
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_StatusInfo
+  commentId: P:GameFrameX.ServerManager.ServiceInfo.StatusInfo
+  fullName: GameFrameX.ServerManager.ServiceInfo.StatusInfo
+  nameWithType: ServiceInfo.StatusInfo
+- uid: GameFrameX.ServerManager.ServiceInfo.StatusInfo*
+  name: StatusInfo
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_StatusInfo_
+  commentId: Overload:GameFrameX.ServerManager.ServiceInfo.StatusInfo
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.ServiceInfo.StatusInfo
+  nameWithType: ServiceInfo.StatusInfo
+- uid: GameFrameX.ServerManager.ServiceInfo.ToString
+  name: ToString()
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_ToString
+  commentId: M:GameFrameX.ServerManager.ServiceInfo.ToString
+  fullName: GameFrameX.ServerManager.ServiceInfo.ToString()
+  nameWithType: ServiceInfo.ToString()
+- uid: GameFrameX.ServerManager.ServiceInfo.ToString*
+  name: ToString
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_ToString_
+  commentId: Overload:GameFrameX.ServerManager.ServiceInfo.ToString
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.ServiceInfo.ToString
+  nameWithType: ServiceInfo.ToString
+- uid: GameFrameX.ServerManager.ServiceInfo.Type
+  name: Type
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_Type
+  commentId: P:GameFrameX.ServerManager.ServiceInfo.Type
+  fullName: GameFrameX.ServerManager.ServiceInfo.Type
+  nameWithType: ServiceInfo.Type
+- uid: GameFrameX.ServerManager.ServiceInfo.Type*
+  name: Type
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_Type_
+  commentId: Overload:GameFrameX.ServerManager.ServiceInfo.Type
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.ServiceInfo.Type
+  nameWithType: ServiceInfo.Type
+- uid: GameFrameX.ServerManager.ServiceStatus
+  name: ServiceStatus
+  href: api/GameFrameX.ServerManager.ServiceStatus.html
+  commentId: T:GameFrameX.ServerManager.ServiceStatus
+  fullName: GameFrameX.ServerManager.ServiceStatus
+  nameWithType: ServiceStatus
+- uid: GameFrameX.ServerManager.ServiceStatus.Backup
+  name: Backup
+  href: api/GameFrameX.ServerManager.ServiceStatus.html#GameFrameX_ServerManager_ServiceStatus_Backup
+  commentId: F:GameFrameX.ServerManager.ServiceStatus.Backup
+  fullName: GameFrameX.ServerManager.ServiceStatus.Backup
+  nameWithType: ServiceStatus.Backup
+- uid: GameFrameX.ServerManager.ServiceStatus.Maintenance
+  name: Maintenance
+  href: api/GameFrameX.ServerManager.ServiceStatus.html#GameFrameX_ServerManager_ServiceStatus_Maintenance
+  commentId: F:GameFrameX.ServerManager.ServiceStatus.Maintenance
+  fullName: GameFrameX.ServerManager.ServiceStatus.Maintenance
+  nameWithType: ServiceStatus.Maintenance
+- uid: GameFrameX.ServerManager.ServiceStatus.Offline
+  name: Offline
+  href: api/GameFrameX.ServerManager.ServiceStatus.html#GameFrameX_ServerManager_ServiceStatus_Offline
+  commentId: F:GameFrameX.ServerManager.ServiceStatus.Offline
+  fullName: GameFrameX.ServerManager.ServiceStatus.Offline
+  nameWithType: ServiceStatus.Offline
+- uid: GameFrameX.ServerManager.ServiceStatus.Online
+  name: Online
+  href: api/GameFrameX.ServerManager.ServiceStatus.html#GameFrameX_ServerManager_ServiceStatus_Online
+  commentId: F:GameFrameX.ServerManager.ServiceStatus.Online
+  fullName: GameFrameX.ServerManager.ServiceStatus.Online
+  nameWithType: ServiceStatus.Online
+- uid: GameFrameX.ServerManager.ServiceStatus.Reboot
+  name: Reboot
+  href: api/GameFrameX.ServerManager.ServiceStatus.html#GameFrameX_ServerManager_ServiceStatus_Reboot
+  commentId: F:GameFrameX.ServerManager.ServiceStatus.Reboot
+  fullName: GameFrameX.ServerManager.ServiceStatus.Reboot
+  nameWithType: ServiceStatus.Reboot
+- uid: GameFrameX.ServerManager.ServiceStatus.Reconnecting
+  name: Reconnecting
+  href: api/GameFrameX.ServerManager.ServiceStatus.html#GameFrameX_ServerManager_ServiceStatus_Reconnecting
+  commentId: F:GameFrameX.ServerManager.ServiceStatus.Reconnecting
+  fullName: GameFrameX.ServerManager.ServiceStatus.Reconnecting
+  nameWithType: ServiceStatus.Reconnecting
+- uid: GameFrameX.ServerManager.ServiceStatus.Standby
+  name: Standby
+  href: api/GameFrameX.ServerManager.ServiceStatus.html#GameFrameX_ServerManager_ServiceStatus_Standby
+  commentId: F:GameFrameX.ServerManager.ServiceStatus.Standby
+  fullName: GameFrameX.ServerManager.ServiceStatus.Standby
+  nameWithType: ServiceStatus.Standby
+- uid: GameFrameX.ServerManager.ServiceStatus.Unknown
+  name: Unknown
+  href: api/GameFrameX.ServerManager.ServiceStatus.html#GameFrameX_ServerManager_ServiceStatus_Unknown
+  commentId: F:GameFrameX.ServerManager.ServiceStatus.Unknown
+  fullName: GameFrameX.ServerManager.ServiceStatus.Unknown
+  nameWithType: ServiceStatus.Unknown
+- uid: GameFrameX.ServerManager.ServiceStatusInfo
+  name: ServiceStatusInfo
+  href: api/GameFrameX.ServerManager.ServiceStatusInfo.html
+  commentId: T:GameFrameX.ServerManager.ServiceStatusInfo
+  fullName: GameFrameX.ServerManager.ServiceStatusInfo
+  nameWithType: ServiceStatusInfo
+- uid: GameFrameX.ServerManager.ServiceStatusInfo.#ctor
+  name: ServiceStatusInfo()
+  href: api/GameFrameX.ServerManager.ServiceStatusInfo.html#GameFrameX_ServerManager_ServiceStatusInfo__ctor
+  commentId: M:GameFrameX.ServerManager.ServiceStatusInfo.#ctor
+  name.vb: New()
+  fullName: GameFrameX.ServerManager.ServiceStatusInfo.ServiceStatusInfo()
+  fullName.vb: GameFrameX.ServerManager.ServiceStatusInfo.New()
+  nameWithType: ServiceStatusInfo.ServiceStatusInfo()
+  nameWithType.vb: ServiceStatusInfo.New()
+- uid: GameFrameX.ServerManager.ServiceStatusInfo.#ctor*
+  name: ServiceStatusInfo
+  href: api/GameFrameX.ServerManager.ServiceStatusInfo.html#GameFrameX_ServerManager_ServiceStatusInfo__ctor_
+  commentId: Overload:GameFrameX.ServerManager.ServiceStatusInfo.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFrameX.ServerManager.ServiceStatusInfo.ServiceStatusInfo
+  fullName.vb: GameFrameX.ServerManager.ServiceStatusInfo.New
+  nameWithType: ServiceStatusInfo.ServiceStatusInfo
+  nameWithType.vb: ServiceStatusInfo.New
+- uid: GameFrameX.ServerManager.ServiceStatusInfo.CurrentLoad
+  name: CurrentLoad
+  href: api/GameFrameX.ServerManager.ServiceStatusInfo.html#GameFrameX_ServerManager_ServiceStatusInfo_CurrentLoad
+  commentId: P:GameFrameX.ServerManager.ServiceStatusInfo.CurrentLoad
+  fullName: GameFrameX.ServerManager.ServiceStatusInfo.CurrentLoad
+  nameWithType: ServiceStatusInfo.CurrentLoad
+- uid: GameFrameX.ServerManager.ServiceStatusInfo.CurrentLoad*
+  name: CurrentLoad
+  href: api/GameFrameX.ServerManager.ServiceStatusInfo.html#GameFrameX_ServerManager_ServiceStatusInfo_CurrentLoad_
+  commentId: Overload:GameFrameX.ServerManager.ServiceStatusInfo.CurrentLoad
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.ServiceStatusInfo.CurrentLoad
+  nameWithType: ServiceStatusInfo.CurrentLoad
+- uid: GameFrameX.ServerManager.ServiceStatusInfo.MaxLoad
+  name: MaxLoad
+  href: api/GameFrameX.ServerManager.ServiceStatusInfo.html#GameFrameX_ServerManager_ServiceStatusInfo_MaxLoad
+  commentId: P:GameFrameX.ServerManager.ServiceStatusInfo.MaxLoad
+  fullName: GameFrameX.ServerManager.ServiceStatusInfo.MaxLoad
+  nameWithType: ServiceStatusInfo.MaxLoad
+- uid: GameFrameX.ServerManager.ServiceStatusInfo.MaxLoad*
+  name: MaxLoad
+  href: api/GameFrameX.ServerManager.ServiceStatusInfo.html#GameFrameX_ServerManager_ServiceStatusInfo_MaxLoad_
+  commentId: Overload:GameFrameX.ServerManager.ServiceStatusInfo.MaxLoad
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.ServiceStatusInfo.MaxLoad
+  nameWithType: ServiceStatusInfo.MaxLoad
+- uid: GameFrameX.ServerManager.ServiceStatusInfo.Status
+  name: Status
+  href: api/GameFrameX.ServerManager.ServiceStatusInfo.html#GameFrameX_ServerManager_ServiceStatusInfo_Status
+  commentId: P:GameFrameX.ServerManager.ServiceStatusInfo.Status
+  fullName: GameFrameX.ServerManager.ServiceStatusInfo.Status
+  nameWithType: ServiceStatusInfo.Status
+- uid: GameFrameX.ServerManager.ServiceStatusInfo.Status*
+  name: Status
+  href: api/GameFrameX.ServerManager.ServiceStatusInfo.html#GameFrameX_ServerManager_ServiceStatusInfo_Status_
+  commentId: Overload:GameFrameX.ServerManager.ServiceStatusInfo.Status
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.ServiceStatusInfo.Status
+  nameWithType: ServiceStatusInfo.Status
+- uid: GameFrameX.ServerManager.ServiceStatusInfo.ToString
+  name: ToString()
+  href: api/GameFrameX.ServerManager.ServiceStatusInfo.html#GameFrameX_ServerManager_ServiceStatusInfo_ToString
+  commentId: M:GameFrameX.ServerManager.ServiceStatusInfo.ToString
+  fullName: GameFrameX.ServerManager.ServiceStatusInfo.ToString()
+  nameWithType: ServiceStatusInfo.ToString()
+- uid: GameFrameX.ServerManager.ServiceStatusInfo.ToString*
+  name: ToString
+  href: api/GameFrameX.ServerManager.ServiceStatusInfo.html#GameFrameX_ServerManager_ServiceStatusInfo_ToString_
+  commentId: Overload:GameFrameX.ServerManager.ServiceStatusInfo.ToString
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.ServiceStatusInfo.ToString
+  nameWithType: ServiceStatusInfo.ToString
 - uid: GameFrameX.StartUp
   name: GameFrameX.StartUp
   href: api/GameFrameX.StartUp.html
@@ -11318,6 +12045,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.IsDebugSendHeartBeat
   nameWithType: LauncherOptions.IsDebugSendHeartBeat
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsMonitorTimeOut
+  name: IsMonitorTimeOut
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsMonitorTimeOut
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.IsMonitorTimeOut
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsMonitorTimeOut
+  nameWithType: LauncherOptions.IsMonitorTimeOut
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsMonitorTimeOut*
+  name: IsMonitorTimeOut
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsMonitorTimeOut_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.IsMonitorTimeOut
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsMonitorTimeOut
+  nameWithType: LauncherOptions.IsMonitorTimeOut
 - uid: GameFrameX.StartUp.Options.LauncherOptions.Language
   name: Language
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_Language
@@ -11357,6 +12097,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.MinModuleId
   nameWithType: LauncherOptions.MinModuleId
+- uid: GameFrameX.StartUp.Options.LauncherOptions.MonitorTimeOutSeconds
+  name: MonitorTimeOutSeconds
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_MonitorTimeOutSeconds
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.MonitorTimeOutSeconds
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.MonitorTimeOutSeconds
+  nameWithType: LauncherOptions.MonitorTimeOutSeconds
+- uid: GameFrameX.StartUp.Options.LauncherOptions.MonitorTimeOutSeconds*
+  name: MonitorTimeOutSeconds
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_MonitorTimeOutSeconds_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.MonitorTimeOutSeconds
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.MonitorTimeOutSeconds
+  nameWithType: LauncherOptions.MonitorTimeOutSeconds
 - uid: GameFrameX.StartUp.Options.LauncherOptions.OuterIp
   name: OuterIp
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_OuterIp
@@ -17328,25 +18081,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Extensions.StringExtension.WordWrap
   nameWithType: StringExtension.WordWrap
-- uid: GameFrameX.Utility.Extensions.ThreadLocalRandom
-  name: ThreadLocalRandom
-  href: api/GameFrameX.Utility.Extensions.ThreadLocalRandom.html
-  commentId: T:GameFrameX.Utility.Extensions.ThreadLocalRandom
-  fullName: GameFrameX.Utility.Extensions.ThreadLocalRandom
-  nameWithType: ThreadLocalRandom
-- uid: GameFrameX.Utility.Extensions.ThreadLocalRandom.Current
-  name: Current
-  href: api/GameFrameX.Utility.Extensions.ThreadLocalRandom.html#GameFrameX_Utility_Extensions_ThreadLocalRandom_Current
-  commentId: P:GameFrameX.Utility.Extensions.ThreadLocalRandom.Current
-  fullName: GameFrameX.Utility.Extensions.ThreadLocalRandom.Current
-  nameWithType: ThreadLocalRandom.Current
-- uid: GameFrameX.Utility.Extensions.ThreadLocalRandom.Current*
-  name: Current
-  href: api/GameFrameX.Utility.Extensions.ThreadLocalRandom.html#GameFrameX_Utility_Extensions_ThreadLocalRandom_Current_
-  commentId: Overload:GameFrameX.Utility.Extensions.ThreadLocalRandom.Current
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Extensions.ThreadLocalRandom.Current
-  nameWithType: ThreadLocalRandom.Current
 - uid: GameFrameX.Utility.Extensions.TimerExtension
   name: TimerExtension
   href: api/GameFrameX.Utility.Extensions.TimerExtension.html
@@ -24280,268 +25014,252 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.PlatformRuntimeHelper.IsWindows
   nameWithType: PlatformRuntimeHelper.IsWindows
-- uid: GameFrameX.Utility.Random
-  name: Random
-  href: api/GameFrameX.Utility.Random.html
-  commentId: T:GameFrameX.Utility.Random
-  fullName: GameFrameX.Utility.Random
-  nameWithType: Random
-- uid: GameFrameX.Utility.Random.Gcd(System.Int32,System.Int32)
+- uid: GameFrameX.Utility.RandomHelper
+  name: RandomHelper
+  href: api/GameFrameX.Utility.RandomHelper.html
+  commentId: T:GameFrameX.Utility.RandomHelper
+  fullName: GameFrameX.Utility.RandomHelper
+  nameWithType: RandomHelper
+- uid: GameFrameX.Utility.RandomHelper.Gcd(System.Int32,System.Int32)
   name: Gcd(int, int)
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_Gcd_System_Int32_System_Int32_
-  commentId: M:GameFrameX.Utility.Random.Gcd(System.Int32,System.Int32)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Gcd_System_Int32_System_Int32_
+  commentId: M:GameFrameX.Utility.RandomHelper.Gcd(System.Int32,System.Int32)
   name.vb: Gcd(Integer, Integer)
-  fullName: GameFrameX.Utility.Random.Gcd(int, int)
-  fullName.vb: GameFrameX.Utility.Random.Gcd(Integer, Integer)
-  nameWithType: Random.Gcd(int, int)
-  nameWithType.vb: Random.Gcd(Integer, Integer)
-- uid: GameFrameX.Utility.Random.Gcd(System.Int32[])
+  fullName: GameFrameX.Utility.RandomHelper.Gcd(int, int)
+  fullName.vb: GameFrameX.Utility.RandomHelper.Gcd(Integer, Integer)
+  nameWithType: RandomHelper.Gcd(int, int)
+  nameWithType.vb: RandomHelper.Gcd(Integer, Integer)
+- uid: GameFrameX.Utility.RandomHelper.Gcd(System.Int32[])
   name: Gcd(params int[])
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_Gcd_System_Int32___
-  commentId: M:GameFrameX.Utility.Random.Gcd(System.Int32[])
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Gcd_System_Int32___
+  commentId: M:GameFrameX.Utility.RandomHelper.Gcd(System.Int32[])
   name.vb: Gcd(ParamArray Integer())
-  fullName: GameFrameX.Utility.Random.Gcd(params int[])
-  fullName.vb: GameFrameX.Utility.Random.Gcd(ParamArray Integer())
-  nameWithType: Random.Gcd(params int[])
-  nameWithType.vb: Random.Gcd(ParamArray Integer())
-- uid: GameFrameX.Utility.Random.Gcd*
+  fullName: GameFrameX.Utility.RandomHelper.Gcd(params int[])
+  fullName.vb: GameFrameX.Utility.RandomHelper.Gcd(ParamArray Integer())
+  nameWithType: RandomHelper.Gcd(params int[])
+  nameWithType.vb: RandomHelper.Gcd(ParamArray Integer())
+- uid: GameFrameX.Utility.RandomHelper.Gcd*
   name: Gcd
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_Gcd_
-  commentId: Overload:GameFrameX.Utility.Random.Gcd
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Gcd_
+  commentId: Overload:GameFrameX.Utility.RandomHelper.Gcd
   isSpec: "True"
-  fullName: GameFrameX.Utility.Random.Gcd
-  nameWithType: Random.Gcd
-- uid: GameFrameX.Utility.Random.Ids(System.Int32[][],System.Int32,System.Boolean)
+  fullName: GameFrameX.Utility.RandomHelper.Gcd
+  nameWithType: RandomHelper.Gcd
+- uid: GameFrameX.Utility.RandomHelper.Ids(System.Int32[][],System.Int32,System.Boolean)
   name: Ids(int[][], int, bool)
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_Ids_System_Int32_____System_Int32_System_Boolean_
-  commentId: M:GameFrameX.Utility.Random.Ids(System.Int32[][],System.Int32,System.Boolean)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Ids_System_Int32_____System_Int32_System_Boolean_
+  commentId: M:GameFrameX.Utility.RandomHelper.Ids(System.Int32[][],System.Int32,System.Boolean)
   name.vb: Ids(Integer()(), Integer, Boolean)
-  fullName: GameFrameX.Utility.Random.Ids(int[][], int, bool)
-  fullName.vb: GameFrameX.Utility.Random.Ids(Integer()(), Integer, Boolean)
-  nameWithType: Random.Ids(int[][], int, bool)
-  nameWithType.vb: Random.Ids(Integer()(), Integer, Boolean)
-- uid: GameFrameX.Utility.Random.Ids(System.String,System.Int32,System.Boolean)
+  fullName: GameFrameX.Utility.RandomHelper.Ids(int[][], int, bool)
+  fullName.vb: GameFrameX.Utility.RandomHelper.Ids(Integer()(), Integer, Boolean)
+  nameWithType: RandomHelper.Ids(int[][], int, bool)
+  nameWithType.vb: RandomHelper.Ids(Integer()(), Integer, Boolean)
+- uid: GameFrameX.Utility.RandomHelper.Ids(System.String,System.Int32,System.Boolean)
   name: Ids(string, int, bool)
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_Ids_System_String_System_Int32_System_Boolean_
-  commentId: M:GameFrameX.Utility.Random.Ids(System.String,System.Int32,System.Boolean)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Ids_System_String_System_Int32_System_Boolean_
+  commentId: M:GameFrameX.Utility.RandomHelper.Ids(System.String,System.Int32,System.Boolean)
   name.vb: Ids(String, Integer, Boolean)
-  fullName: GameFrameX.Utility.Random.Ids(string, int, bool)
-  fullName.vb: GameFrameX.Utility.Random.Ids(String, Integer, Boolean)
-  nameWithType: Random.Ids(string, int, bool)
-  nameWithType.vb: Random.Ids(String, Integer, Boolean)
-- uid: GameFrameX.Utility.Random.Ids*
+  fullName: GameFrameX.Utility.RandomHelper.Ids(string, int, bool)
+  fullName.vb: GameFrameX.Utility.RandomHelper.Ids(String, Integer, Boolean)
+  nameWithType: RandomHelper.Ids(string, int, bool)
+  nameWithType.vb: RandomHelper.Ids(String, Integer, Boolean)
+- uid: GameFrameX.Utility.RandomHelper.Ids*
   name: Ids
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_Ids_
-  commentId: Overload:GameFrameX.Utility.Random.Ids
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Ids_
+  commentId: Overload:GameFrameX.Utility.RandomHelper.Ids
   isSpec: "True"
-  fullName: GameFrameX.Utility.Random.Ids
-  nameWithType: Random.Ids
-- uid: GameFrameX.Utility.Random.Idx(System.Int32[])
+  fullName: GameFrameX.Utility.RandomHelper.Ids
+  nameWithType: RandomHelper.Ids
+- uid: GameFrameX.Utility.RandomHelper.Idx(System.Int32[])
   name: Idx(int[])
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_Idx_System_Int32___
-  commentId: M:GameFrameX.Utility.Random.Idx(System.Int32[])
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Idx_System_Int32___
+  commentId: M:GameFrameX.Utility.RandomHelper.Idx(System.Int32[])
   name.vb: Idx(Integer())
-  fullName: GameFrameX.Utility.Random.Idx(int[])
-  fullName.vb: GameFrameX.Utility.Random.Idx(Integer())
-  nameWithType: Random.Idx(int[])
-  nameWithType.vb: Random.Idx(Integer())
-- uid: GameFrameX.Utility.Random.Idx(System.Int32[][],System.Int32)
+  fullName: GameFrameX.Utility.RandomHelper.Idx(int[])
+  fullName.vb: GameFrameX.Utility.RandomHelper.Idx(Integer())
+  nameWithType: RandomHelper.Idx(int[])
+  nameWithType.vb: RandomHelper.Idx(Integer())
+- uid: GameFrameX.Utility.RandomHelper.Idx(System.Int32[][],System.Int32)
   name: Idx(int[][], int)
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_Idx_System_Int32_____System_Int32_
-  commentId: M:GameFrameX.Utility.Random.Idx(System.Int32[][],System.Int32)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Idx_System_Int32_____System_Int32_
+  commentId: M:GameFrameX.Utility.RandomHelper.Idx(System.Int32[][],System.Int32)
   name.vb: Idx(Integer()(), Integer)
-  fullName: GameFrameX.Utility.Random.Idx(int[][], int)
-  fullName.vb: GameFrameX.Utility.Random.Idx(Integer()(), Integer)
-  nameWithType: Random.Idx(int[][], int)
-  nameWithType.vb: Random.Idx(Integer()(), Integer)
-- uid: GameFrameX.Utility.Random.Idx*
+  fullName: GameFrameX.Utility.RandomHelper.Idx(int[][], int)
+  fullName.vb: GameFrameX.Utility.RandomHelper.Idx(Integer()(), Integer)
+  nameWithType: RandomHelper.Idx(int[][], int)
+  nameWithType.vb: RandomHelper.Idx(Integer()(), Integer)
+- uid: GameFrameX.Utility.RandomHelper.Idx*
   name: Idx
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_Idx_
-  commentId: Overload:GameFrameX.Utility.Random.Idx
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Idx_
+  commentId: Overload:GameFrameX.Utility.RandomHelper.Idx
   isSpec: "True"
-  fullName: GameFrameX.Utility.Random.Idx
-  nameWithType: Random.Idx
-- uid: GameFrameX.Utility.Random.Items(System.Int32[][],System.Int32,System.Boolean)
+  fullName: GameFrameX.Utility.RandomHelper.Idx
+  nameWithType: RandomHelper.Idx
+- uid: GameFrameX.Utility.RandomHelper.Items(System.Int32[][],System.Int32,System.Boolean)
   name: Items(int[][], int, bool)
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_Items_System_Int32_____System_Int32_System_Boolean_
-  commentId: M:GameFrameX.Utility.Random.Items(System.Int32[][],System.Int32,System.Boolean)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Items_System_Int32_____System_Int32_System_Boolean_
+  commentId: M:GameFrameX.Utility.RandomHelper.Items(System.Int32[][],System.Int32,System.Boolean)
   name.vb: Items(Integer()(), Integer, Boolean)
-  fullName: GameFrameX.Utility.Random.Items(int[][], int, bool)
-  fullName.vb: GameFrameX.Utility.Random.Items(Integer()(), Integer, Boolean)
-  nameWithType: Random.Items(int[][], int, bool)
-  nameWithType.vb: Random.Items(Integer()(), Integer, Boolean)
-- uid: GameFrameX.Utility.Random.Items(System.String,System.Int32,System.Boolean)
+  fullName: GameFrameX.Utility.RandomHelper.Items(int[][], int, bool)
+  fullName.vb: GameFrameX.Utility.RandomHelper.Items(Integer()(), Integer, Boolean)
+  nameWithType: RandomHelper.Items(int[][], int, bool)
+  nameWithType.vb: RandomHelper.Items(Integer()(), Integer, Boolean)
+- uid: GameFrameX.Utility.RandomHelper.Items(System.String,System.Int32,System.Boolean)
   name: Items(string, int, bool)
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_Items_System_String_System_Int32_System_Boolean_
-  commentId: M:GameFrameX.Utility.Random.Items(System.String,System.Int32,System.Boolean)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Items_System_String_System_Int32_System_Boolean_
+  commentId: M:GameFrameX.Utility.RandomHelper.Items(System.String,System.Int32,System.Boolean)
   name.vb: Items(String, Integer, Boolean)
-  fullName: GameFrameX.Utility.Random.Items(string, int, bool)
-  fullName.vb: GameFrameX.Utility.Random.Items(String, Integer, Boolean)
-  nameWithType: Random.Items(string, int, bool)
-  nameWithType.vb: Random.Items(String, Integer, Boolean)
-- uid: GameFrameX.Utility.Random.Items*
+  fullName: GameFrameX.Utility.RandomHelper.Items(string, int, bool)
+  fullName.vb: GameFrameX.Utility.RandomHelper.Items(String, Integer, Boolean)
+  nameWithType: RandomHelper.Items(string, int, bool)
+  nameWithType.vb: RandomHelper.Items(String, Integer, Boolean)
+- uid: GameFrameX.Utility.RandomHelper.Items*
   name: Items
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_Items_
-  commentId: Overload:GameFrameX.Utility.Random.Items
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Items_
+  commentId: Overload:GameFrameX.Utility.RandomHelper.Items
   isSpec: "True"
-  fullName: GameFrameX.Utility.Random.Items
-  nameWithType: Random.Items
-- uid: GameFrameX.Utility.Random.Next
+  fullName: GameFrameX.Utility.RandomHelper.Items
+  nameWithType: RandomHelper.Items
+- uid: GameFrameX.Utility.RandomHelper.Next
   name: Next()
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_Next
-  commentId: M:GameFrameX.Utility.Random.Next
-  fullName: GameFrameX.Utility.Random.Next()
-  nameWithType: Random.Next()
-- uid: GameFrameX.Utility.Random.Next(System.Int32)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Next
+  commentId: M:GameFrameX.Utility.RandomHelper.Next
+  fullName: GameFrameX.Utility.RandomHelper.Next()
+  nameWithType: RandomHelper.Next()
+- uid: GameFrameX.Utility.RandomHelper.Next(System.Int32)
   name: Next(int)
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_Next_System_Int32_
-  commentId: M:GameFrameX.Utility.Random.Next(System.Int32)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Next_System_Int32_
+  commentId: M:GameFrameX.Utility.RandomHelper.Next(System.Int32)
   name.vb: Next(Integer)
-  fullName: GameFrameX.Utility.Random.Next(int)
-  fullName.vb: GameFrameX.Utility.Random.Next(Integer)
-  nameWithType: Random.Next(int)
-  nameWithType.vb: Random.Next(Integer)
-- uid: GameFrameX.Utility.Random.Next(System.Int32,System.Int32)
+  fullName: GameFrameX.Utility.RandomHelper.Next(int)
+  fullName.vb: GameFrameX.Utility.RandomHelper.Next(Integer)
+  nameWithType: RandomHelper.Next(int)
+  nameWithType.vb: RandomHelper.Next(Integer)
+- uid: GameFrameX.Utility.RandomHelper.Next(System.Int32,System.Int32)
   name: Next(int, int)
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_Next_System_Int32_System_Int32_
-  commentId: M:GameFrameX.Utility.Random.Next(System.Int32,System.Int32)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Next_System_Int32_System_Int32_
+  commentId: M:GameFrameX.Utility.RandomHelper.Next(System.Int32,System.Int32)
   name.vb: Next(Integer, Integer)
-  fullName: GameFrameX.Utility.Random.Next(int, int)
-  fullName.vb: GameFrameX.Utility.Random.Next(Integer, Integer)
-  nameWithType: Random.Next(int, int)
-  nameWithType.vb: Random.Next(Integer, Integer)
-- uid: GameFrameX.Utility.Random.Next*
+  fullName: GameFrameX.Utility.RandomHelper.Next(int, int)
+  fullName.vb: GameFrameX.Utility.RandomHelper.Next(Integer, Integer)
+  nameWithType: RandomHelper.Next(int, int)
+  nameWithType.vb: RandomHelper.Next(Integer, Integer)
+- uid: GameFrameX.Utility.RandomHelper.Next*
   name: Next
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_Next_
-  commentId: Overload:GameFrameX.Utility.Random.Next
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Next_
+  commentId: Overload:GameFrameX.Utility.RandomHelper.Next
   isSpec: "True"
-  fullName: GameFrameX.Utility.Random.Next
-  nameWithType: Random.Next
-- uid: GameFrameX.Utility.Random.NextBytes(System.Byte[])
+  fullName: GameFrameX.Utility.RandomHelper.Next
+  nameWithType: RandomHelper.Next
+- uid: GameFrameX.Utility.RandomHelper.NextBytes(System.Byte[])
   name: NextBytes(byte[])
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_NextBytes_System_Byte___
-  commentId: M:GameFrameX.Utility.Random.NextBytes(System.Byte[])
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NextBytes_System_Byte___
+  commentId: M:GameFrameX.Utility.RandomHelper.NextBytes(System.Byte[])
   name.vb: NextBytes(Byte())
-  fullName: GameFrameX.Utility.Random.NextBytes(byte[])
-  fullName.vb: GameFrameX.Utility.Random.NextBytes(Byte())
-  nameWithType: Random.NextBytes(byte[])
-  nameWithType.vb: Random.NextBytes(Byte())
-- uid: GameFrameX.Utility.Random.NextBytes*
+  fullName: GameFrameX.Utility.RandomHelper.NextBytes(byte[])
+  fullName.vb: GameFrameX.Utility.RandomHelper.NextBytes(Byte())
+  nameWithType: RandomHelper.NextBytes(byte[])
+  nameWithType.vb: RandomHelper.NextBytes(Byte())
+- uid: GameFrameX.Utility.RandomHelper.NextBytes*
   name: NextBytes
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_NextBytes_
-  commentId: Overload:GameFrameX.Utility.Random.NextBytes
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NextBytes_
+  commentId: Overload:GameFrameX.Utility.RandomHelper.NextBytes
   isSpec: "True"
-  fullName: GameFrameX.Utility.Random.NextBytes
-  nameWithType: Random.NextBytes
-- uid: GameFrameX.Utility.Random.NextDouble
+  fullName: GameFrameX.Utility.RandomHelper.NextBytes
+  nameWithType: RandomHelper.NextBytes
+- uid: GameFrameX.Utility.RandomHelper.NextDouble
   name: NextDouble()
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_NextDouble
-  commentId: M:GameFrameX.Utility.Random.NextDouble
-  fullName: GameFrameX.Utility.Random.NextDouble()
-  nameWithType: Random.NextDouble()
-- uid: GameFrameX.Utility.Random.NextDouble*
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NextDouble
+  commentId: M:GameFrameX.Utility.RandomHelper.NextDouble
+  fullName: GameFrameX.Utility.RandomHelper.NextDouble()
+  nameWithType: RandomHelper.NextDouble()
+- uid: GameFrameX.Utility.RandomHelper.NextDouble*
   name: NextDouble
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_NextDouble_
-  commentId: Overload:GameFrameX.Utility.Random.NextDouble
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NextDouble_
+  commentId: Overload:GameFrameX.Utility.RandomHelper.NextDouble
   isSpec: "True"
-  fullName: GameFrameX.Utility.Random.NextDouble
-  nameWithType: Random.NextDouble
-- uid: GameFrameX.Utility.Random.NextInt64
+  fullName: GameFrameX.Utility.RandomHelper.NextDouble
+  nameWithType: RandomHelper.NextDouble
+- uid: GameFrameX.Utility.RandomHelper.NextInt64
   name: NextInt64()
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_NextInt64
-  commentId: M:GameFrameX.Utility.Random.NextInt64
-  fullName: GameFrameX.Utility.Random.NextInt64()
-  nameWithType: Random.NextInt64()
-- uid: GameFrameX.Utility.Random.NextInt64(System.Int32)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NextInt64
+  commentId: M:GameFrameX.Utility.RandomHelper.NextInt64
+  fullName: GameFrameX.Utility.RandomHelper.NextInt64()
+  nameWithType: RandomHelper.NextInt64()
+- uid: GameFrameX.Utility.RandomHelper.NextInt64(System.Int32)
   name: NextInt64(int)
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_NextInt64_System_Int32_
-  commentId: M:GameFrameX.Utility.Random.NextInt64(System.Int32)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NextInt64_System_Int32_
+  commentId: M:GameFrameX.Utility.RandomHelper.NextInt64(System.Int32)
   name.vb: NextInt64(Integer)
-  fullName: GameFrameX.Utility.Random.NextInt64(int)
-  fullName.vb: GameFrameX.Utility.Random.NextInt64(Integer)
-  nameWithType: Random.NextInt64(int)
-  nameWithType.vb: Random.NextInt64(Integer)
-- uid: GameFrameX.Utility.Random.NextInt64*
+  fullName: GameFrameX.Utility.RandomHelper.NextInt64(int)
+  fullName.vb: GameFrameX.Utility.RandomHelper.NextInt64(Integer)
+  nameWithType: RandomHelper.NextInt64(int)
+  nameWithType.vb: RandomHelper.NextInt64(Integer)
+- uid: GameFrameX.Utility.RandomHelper.NextInt64*
   name: NextInt64
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_NextInt64_
-  commentId: Overload:GameFrameX.Utility.Random.NextInt64
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NextInt64_
+  commentId: Overload:GameFrameX.Utility.RandomHelper.NextInt64
   isSpec: "True"
-  fullName: GameFrameX.Utility.Random.NextInt64
-  nameWithType: Random.NextInt64
-- uid: GameFrameX.Utility.Random.NextUInt32
+  fullName: GameFrameX.Utility.RandomHelper.NextInt64
+  nameWithType: RandomHelper.NextInt64
+- uid: GameFrameX.Utility.RandomHelper.NextUInt32
   name: NextUInt32()
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_NextUInt32
-  commentId: M:GameFrameX.Utility.Random.NextUInt32
-  fullName: GameFrameX.Utility.Random.NextUInt32()
-  nameWithType: Random.NextUInt32()
-- uid: GameFrameX.Utility.Random.NextUInt32*
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NextUInt32
+  commentId: M:GameFrameX.Utility.RandomHelper.NextUInt32
+  fullName: GameFrameX.Utility.RandomHelper.NextUInt32()
+  nameWithType: RandomHelper.NextUInt32()
+- uid: GameFrameX.Utility.RandomHelper.NextUInt32*
   name: NextUInt32
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_NextUInt32_
-  commentId: Overload:GameFrameX.Utility.Random.NextUInt32
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NextUInt32_
+  commentId: Overload:GameFrameX.Utility.RandomHelper.NextUInt32
   isSpec: "True"
-  fullName: GameFrameX.Utility.Random.NextUInt32
-  nameWithType: Random.NextUInt32
-- uid: GameFrameX.Utility.Random.NextUInt64
+  fullName: GameFrameX.Utility.RandomHelper.NextUInt32
+  nameWithType: RandomHelper.NextUInt32
+- uid: GameFrameX.Utility.RandomHelper.NextUInt64
   name: NextUInt64()
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_NextUInt64
-  commentId: M:GameFrameX.Utility.Random.NextUInt64
-  fullName: GameFrameX.Utility.Random.NextUInt64()
-  nameWithType: Random.NextUInt64()
-- uid: GameFrameX.Utility.Random.NextUInt64*
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NextUInt64
+  commentId: M:GameFrameX.Utility.RandomHelper.NextUInt64
+  fullName: GameFrameX.Utility.RandomHelper.NextUInt64()
+  nameWithType: RandomHelper.NextUInt64()
+- uid: GameFrameX.Utility.RandomHelper.NextUInt64*
   name: NextUInt64
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_NextUInt64_
-  commentId: Overload:GameFrameX.Utility.Random.NextUInt64
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NextUInt64_
+  commentId: Overload:GameFrameX.Utility.RandomHelper.NextUInt64
   isSpec: "True"
-  fullName: GameFrameX.Utility.Random.NextUInt64
-  nameWithType: Random.NextUInt64
-- uid: GameFrameX.Utility.Random.NxtInt64(System.Int64,System.Int64)
+  fullName: GameFrameX.Utility.RandomHelper.NextUInt64
+  nameWithType: RandomHelper.NextUInt64
+- uid: GameFrameX.Utility.RandomHelper.NxtInt64(System.Int64,System.Int64)
   name: NxtInt64(long, long)
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_NxtInt64_System_Int64_System_Int64_
-  commentId: M:GameFrameX.Utility.Random.NxtInt64(System.Int64,System.Int64)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NxtInt64_System_Int64_System_Int64_
+  commentId: M:GameFrameX.Utility.RandomHelper.NxtInt64(System.Int64,System.Int64)
   name.vb: NxtInt64(Long, Long)
-  fullName: GameFrameX.Utility.Random.NxtInt64(long, long)
-  fullName.vb: GameFrameX.Utility.Random.NxtInt64(Long, Long)
-  nameWithType: Random.NxtInt64(long, long)
-  nameWithType.vb: Random.NxtInt64(Long, Long)
-- uid: GameFrameX.Utility.Random.NxtInt64*
+  fullName: GameFrameX.Utility.RandomHelper.NxtInt64(long, long)
+  fullName.vb: GameFrameX.Utility.RandomHelper.NxtInt64(Long, Long)
+  nameWithType: RandomHelper.NxtInt64(long, long)
+  nameWithType.vb: RandomHelper.NxtInt64(Long, Long)
+- uid: GameFrameX.Utility.RandomHelper.NxtInt64*
   name: NxtInt64
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_NxtInt64_
-  commentId: Overload:GameFrameX.Utility.Random.NxtInt64
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NxtInt64_
+  commentId: Overload:GameFrameX.Utility.RandomHelper.NxtInt64
   isSpec: "True"
-  fullName: GameFrameX.Utility.Random.NxtInt64
-  nameWithType: Random.NxtInt64
-- uid: GameFrameX.Utility.Random.RandomSelect(System.Int32,System.Int32)
+  fullName: GameFrameX.Utility.RandomHelper.NxtInt64
+  nameWithType: RandomHelper.NxtInt64
+- uid: GameFrameX.Utility.RandomHelper.RandomSelect(System.Int32,System.Int32)
   name: RandomSelect(int, int)
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_RandomSelect_System_Int32_System_Int32_
-  commentId: M:GameFrameX.Utility.Random.RandomSelect(System.Int32,System.Int32)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_RandomSelect_System_Int32_System_Int32_
+  commentId: M:GameFrameX.Utility.RandomHelper.RandomSelect(System.Int32,System.Int32)
   name.vb: RandomSelect(Integer, Integer)
-  fullName: GameFrameX.Utility.Random.RandomSelect(int, int)
-  fullName.vb: GameFrameX.Utility.Random.RandomSelect(Integer, Integer)
-  nameWithType: Random.RandomSelect(int, int)
-  nameWithType.vb: Random.RandomSelect(Integer, Integer)
-- uid: GameFrameX.Utility.Random.RandomSelect*
+  fullName: GameFrameX.Utility.RandomHelper.RandomSelect(int, int)
+  fullName.vb: GameFrameX.Utility.RandomHelper.RandomSelect(Integer, Integer)
+  nameWithType: RandomHelper.RandomSelect(int, int)
+  nameWithType.vb: RandomHelper.RandomSelect(Integer, Integer)
+- uid: GameFrameX.Utility.RandomHelper.RandomSelect*
   name: RandomSelect
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_RandomSelect_
-  commentId: Overload:GameFrameX.Utility.Random.RandomSelect
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_RandomSelect_
+  commentId: Overload:GameFrameX.Utility.RandomHelper.RandomSelect
   isSpec: "True"
-  fullName: GameFrameX.Utility.Random.RandomSelect
-  nameWithType: Random.RandomSelect
-- uid: GameFrameX.Utility.Random.SetSeed(System.Int32)
-  name: SetSeed(int)
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_SetSeed_System_Int32_
-  commentId: M:GameFrameX.Utility.Random.SetSeed(System.Int32)
-  name.vb: SetSeed(Integer)
-  fullName: GameFrameX.Utility.Random.SetSeed(int)
-  fullName.vb: GameFrameX.Utility.Random.SetSeed(Integer)
-  nameWithType: Random.SetSeed(int)
-  nameWithType.vb: Random.SetSeed(Integer)
-- uid: GameFrameX.Utility.Random.SetSeed*
-  name: SetSeed
-  href: api/GameFrameX.Utility.Random.html#GameFrameX_Utility_Random_SetSeed_
-  commentId: Overload:GameFrameX.Utility.Random.SetSeed
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Random.SetSeed
-  nameWithType: Random.SetSeed
+  fullName: GameFrameX.Utility.RandomHelper.RandomSelect
+  nameWithType: RandomHelper.RandomSelect
 - uid: GameFrameX.Utility.Setting
   name: GameFrameX.Utility.Setting
   href: api/GameFrameX.Utility.Setting.html
@@ -24855,6 +25573,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.IsLocal
   nameWithType: AppSetting.IsLocal
+- uid: GameFrameX.Utility.Setting.AppSetting.IsTimeOut
+  name: IsTimeOut
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsTimeOut
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.IsTimeOut
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsTimeOut
+  nameWithType: AppSetting.IsTimeOut
+- uid: GameFrameX.Utility.Setting.AppSetting.IsTimeOut*
+  name: IsTimeOut
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsTimeOut_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.IsTimeOut
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsTimeOut
+  nameWithType: AppSetting.IsTimeOut
 - uid: GameFrameX.Utility.Setting.AppSetting.Language
   name: Language
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_Language
@@ -25024,6 +25755,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.TagName
   nameWithType: AppSetting.TagName
+- uid: GameFrameX.Utility.Setting.AppSetting.TimeOutSeconds
+  name: TimeOutSeconds
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_TimeOutSeconds
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.TimeOutSeconds
+  fullName: GameFrameX.Utility.Setting.AppSetting.TimeOutSeconds
+  nameWithType: AppSetting.TimeOutSeconds
+- uid: GameFrameX.Utility.Setting.AppSetting.TimeOutSeconds*
+  name: TimeOutSeconds
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_TimeOutSeconds_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.TimeOutSeconds
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.TimeOutSeconds
+  nameWithType: AppSetting.TimeOutSeconds
 - uid: GameFrameX.Utility.Setting.AppSetting.ToFormatString
   name: ToFormatString()
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_ToFormatString
@@ -25372,6 +26116,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.GlobalSettings.IsDebug
   nameWithType: GlobalSettings.IsDebug
+- uid: GameFrameX.Utility.Setting.GlobalSettings.IsMonitorTimeOut
+  name: IsMonitorTimeOut
+  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_IsMonitorTimeOut
+  commentId: P:GameFrameX.Utility.Setting.GlobalSettings.IsMonitorTimeOut
+  fullName: GameFrameX.Utility.Setting.GlobalSettings.IsMonitorTimeOut
+  nameWithType: GlobalSettings.IsMonitorTimeOut
+- uid: GameFrameX.Utility.Setting.GlobalSettings.IsMonitorTimeOut*
+  name: IsMonitorTimeOut
+  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_IsMonitorTimeOut_
+  commentId: Overload:GameFrameX.Utility.Setting.GlobalSettings.IsMonitorTimeOut
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.GlobalSettings.IsMonitorTimeOut
+  nameWithType: GlobalSettings.IsMonitorTimeOut
 - uid: GameFrameX.Utility.Setting.GlobalSettings.LaunchTime
   name: LaunchTime
   href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_LaunchTime
@@ -25401,6 +26158,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.GlobalSettings.Load
   nameWithType: GlobalSettings.Load
+- uid: GameFrameX.Utility.Setting.GlobalSettings.MonitorTimeOutSeconds
+  name: MonitorTimeOutSeconds
+  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_MonitorTimeOutSeconds
+  commentId: P:GameFrameX.Utility.Setting.GlobalSettings.MonitorTimeOutSeconds
+  fullName: GameFrameX.Utility.Setting.GlobalSettings.MonitorTimeOutSeconds
+  nameWithType: GlobalSettings.MonitorTimeOutSeconds
+- uid: GameFrameX.Utility.Setting.GlobalSettings.MonitorTimeOutSeconds*
+  name: MonitorTimeOutSeconds
+  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_MonitorTimeOutSeconds_
+  commentId: Overload:GameFrameX.Utility.Setting.GlobalSettings.MonitorTimeOutSeconds
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.GlobalSettings.MonitorTimeOutSeconds
+  nameWithType: GlobalSettings.MonitorTimeOutSeconds
 - uid: GameFrameX.Utility.Setting.GlobalSettings.SaveIntervalInMilliSeconds
   name: SaveIntervalInMilliSeconds
   href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_SaveIntervalInMilliSeconds

@@ -2154,6 +2154,104 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.ServerManager.GameServiceInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.ServerManager.GameServiceInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.ServerManager.GameServiceInfo",
+      "Summary": "<p sourcefile=\"api/GameFrameX.ServerManager.GameServiceInfo.yml\" sourcestartlinenumber=\"1\">游戏服务器信息</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.ServerManager.IServiceInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.ServerManager.IServiceInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.ServerManager.IServiceInfo",
+      "Summary": "<p sourcefile=\"api/GameFrameX.ServerManager.IServiceInfo.yml\" sourcestartlinenumber=\"1\">服务信息</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.ServerManager.NamingServiceManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.ServerManager.NamingServiceManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.ServerManager.NamingServiceManager",
+      "Summary": "<p sourcefile=\"api/GameFrameX.ServerManager.NamingServiceManager.yml\" sourcestartlinenumber=\"1\">服务器管理</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.ServerManager.ServiceInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.ServerManager.ServiceInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.ServerManager.ServiceInfo",
+      "Summary": "<p sourcefile=\"api/GameFrameX.ServerManager.ServiceInfo.yml\" sourcestartlinenumber=\"1\">服务器信息</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.ServerManager.ServiceStatus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.ServerManager.ServiceStatus.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.ServerManager.ServiceStatus",
+      "Summary": "<p sourcefile=\"api/GameFrameX.ServerManager.ServiceStatus.yml\" sourcestartlinenumber=\"1\">服务器状态</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.ServerManager.ServiceStatusInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.ServerManager.ServiceStatusInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.ServerManager.ServiceStatusInfo",
+      "Summary": "<p sourcefile=\"api/GameFrameX.ServerManager.ServiceStatusInfo.yml\" sourcestartlinenumber=\"1\">服务器状态信息\n默认状态为在线\n默认承载为5000</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.ServerManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.ServerManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.ServerManager",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.StartUp.Abstractions.IAppStartUp.yml",
       "output": {
         ".html": {
@@ -2672,20 +2770,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.Extensions.ThreadLocalRandom.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Utility.Extensions.ThreadLocalRandom.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Utility.Extensions.ThreadLocalRandom",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.Extensions.ThreadLocalRandom.yml\" sourcestartlinenumber=\"1\">线程私有random对象</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.Utility.Extensions.TimerExtension.yml",
       "output": {
         ".html": {
@@ -2938,17 +3022,17 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.Random.yml",
+      "source_relative_path": "api/GameFrameX.Utility.RandomHelper.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.Utility.Random.html"
+          "relative_path": "api/GameFrameX.Utility.RandomHelper.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFrameX.Utility.Random",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.Random.yml\" sourcestartlinenumber=\"1\">随机相关的实用函数。</p>\n"
+      "Title": "GameFrameX.Utility.RandomHelper",
+      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"1\">随机相关的实用函数。</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3080,11 +3164,11 @@
       "type": "Toc",
       "source_relative_path": "api/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "api/toc.json"
-        },
         ".html": {
           "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
         }
       },
       "version": ""
@@ -3123,11 +3207,11 @@
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "toc.json"
-        },
         ".html": {
           "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
         }
       },
       "version": ""
