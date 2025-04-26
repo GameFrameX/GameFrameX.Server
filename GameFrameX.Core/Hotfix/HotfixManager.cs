@@ -99,10 +99,10 @@ public static class HotfixManager
             DoingHotfix = true;
             var oldModuleHash = oldModule.GetHashCode();
             OldModuleMap.TryAdd(oldModuleHash, oldModule);
-            // 延迟3分钟后清理旧模块
+            // 延迟10分钟后清理旧模块
             _ = Task.Run(async () =>
             {
-                await Task.Delay(1000 * 60 * 3);
+                await Task.Delay(TimeSpan.FromMinutes(10));
                 OldModuleMap.TryRemove(oldModuleHash, out _);
                 oldModule.Unload();
                 DoingHotfix = !OldModuleMap.IsEmpty;
