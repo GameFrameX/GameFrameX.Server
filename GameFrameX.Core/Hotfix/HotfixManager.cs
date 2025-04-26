@@ -133,14 +133,44 @@ public static class HotfixManager
     /// </summary>
     internal static Type GetAgentType(Type compType)
     {
+        if (OldModuleMap.IsEmpty)
+        {
+            return _module.GetAgentType(compType);
+        }
+
+        var compTypeAssembly = compType.Assembly;
+        foreach (var kv in OldModuleMap)
+        {
+            var old = kv.Value;
+            if (compTypeAssembly == old.HotfixAssembly)
+            {
+                return old.GetAgentType(compType);
+            }
+        }
+
         return _module.GetAgentType(compType);
     }
 
     /// <summary>
     /// 获取代理对应的组件类型
     /// </summary>
-    internal static Type GetCompType(Type agentType)
+    internal static Type GetComponentType(Type agentType)
     {
+        if (OldModuleMap.IsEmpty)
+        {
+            return _module.GetComponentType(agentType);
+        }
+
+        var agentTypeAssembly = agentType.Assembly;
+        foreach (var kv in OldModuleMap)
+        {
+            var old = kv.Value;
+            if (agentTypeAssembly == old.HotfixAssembly)
+            {
+                return old.GetComponentType(agentType);
+            }
+        }
+
         return _module.GetComponentType(agentType);
     }
 
@@ -153,17 +183,19 @@ public static class HotfixManager
     /// <returns>返回代理实例</returns>
     public static T GetAgent<T>(BaseComponent component, Type refAssemblyType) where T : IComponentAgent
     {
-        if (!OldModuleMap.IsEmpty)
+        if (OldModuleMap.IsEmpty)
         {
-            var asb = typeof(T).Assembly;
-            var asb2 = refAssemblyType?.Assembly;
-            foreach (var kv in OldModuleMap)
+            return _module.GetAgent<T>(component);
+        }
+
+        var assembly = typeof(T).Assembly;
+        var refAssembly = refAssemblyType?.Assembly;
+        foreach (var kv in OldModuleMap)
+        {
+            var old = kv.Value;
+            if (assembly == old.HotfixAssembly || refAssembly == old.HotfixAssembly)
             {
-                var old = kv.Value;
-                if (asb == old.HotfixAssembly || asb2 == old.HotfixAssembly)
-                {
-                    return old.GetAgent<T>(component);
-                }
+                return old.GetAgent<T>(component);
             }
         }
 
@@ -235,16 +267,18 @@ public static class HotfixManager
             return default;
         }
 
-        if (OldModuleMap.Count > 0)
+        if (OldModuleMap.IsEmpty)
         {
-            var asb = refAssemblyType?.Assembly;
-            foreach (var kv in OldModuleMap)
+            return _module.GetInstance<T>(typeName);
+        }
+
+        var asb = refAssemblyType?.Assembly;
+        foreach (var kv in OldModuleMap)
+        {
+            var old = kv.Value;
+            if (asb == old.HotfixAssembly)
             {
-                var old = kv.Value;
-                if (asb == old.HotfixAssembly)
-                {
-                    return old.GetInstance<T>(typeName);
-                }
+                return old.GetInstance<T>(typeName);
             }
         }
 

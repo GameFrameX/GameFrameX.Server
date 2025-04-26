@@ -115,7 +115,7 @@ public static class ActorManager
     /// <returns>组件代理任务</returns>
     public static Task<T> GetComponentAgent<T>(bool isNew = true) where T : IComponentAgent
     {
-        var compType = HotfixManager.GetCompType(typeof(T));
+        var compType = HotfixManager.GetComponentType(typeof(T));
         var actorType = ComponentRegister.GetActorType(compType);
         var actorId = ActorIdGenerator.GetActorId(actorType);
         return GetComponentAgent<T>(actorId, isNew);
@@ -479,7 +479,7 @@ public static class ActorManager
     public static void ActorForEach<T>(Func<T, Task> func) where T : IComponentAgent
     {
         var agentType = typeof(T);
-        var compType = HotfixManager.GetCompType(agentType);
+        var compType = HotfixManager.GetComponentType(agentType);
         var actorType = ComponentRegister.GetActorType(compType);
         foreach (var actor in ActorMap.Values)
         {
@@ -504,7 +504,7 @@ public static class ActorManager
     public static void ActorForEach<T>(Action<T> action) where T : IComponentAgent
     {
         var agentType = typeof(T);
-        var compType = HotfixManager.GetCompType(agentType);
+        var compType = HotfixManager.GetComponentType(agentType);
         var actorType = ComponentRegister.GetActorType(compType);
         foreach (var actor in ActorMap.Values)
         {
