@@ -1,12 +1,15 @@
+using System.Net;
 using System.Reflection;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Message;
+using GameFrameX.StartUp.Options;
 using GameFrameX.SuperSocket.Connection;
 using GameFrameX.SuperSocket.Primitives;
 using GameFrameX.SuperSocket.ProtoBase;
+using GameFrameX.SuperSocket.Server;
 using GameFrameX.SuperSocket.Server.Abstractions;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
 using GameFrameX.SuperSocket.Server.Host;
@@ -194,18 +197,17 @@ public abstract partial class AppStartUpBase
         if (Setting.InnerPort > 0 && Net.PortIsAvailable(Setting.InnerPort))
         {
             LogHelper.InfoConsole($"启动 [TCP] 服务器 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}");
+            hostBuilder.ConfigureServices((context, collection) => { collection.Configure<ServerOptions>(ConfigureSuperSocket); });
             hostBuilder.AddServer<IMessage, MessageObjectPipelineFilter>(builder =>
             {
-                builder
-                    .ConfigureSuperSocket(ConfigureSuperSocket)
-                    .UseClearIdleSession()
-                    .UsePackageDecoder<TMessageDecoderHandler>()
-                    .UsePackageEncoder<TMessageEncoderHandler>()
-                    .UseSessionHandler(OnConnected, OnDisconnected)
-                    .UsePackageHandler(PackageHandler, PackageErrorHandler)
-                    .UseInProcSessionContainer();
+                builder.UseClearIdleSession()
+                       .UsePackageDecoder<TMessageDecoderHandler>()
+                       .UsePackageEncoder<TMessageEncoderHandler>()
+                       .UseSessionHandler(OnConnected, OnDisconnected)
+                       .UsePackageHandler(PackageHandler, PackageErrorHandler)
+                       .UseInProcSessionContainer();
             });
-            LogHelper.InfoConsole($"启动 [WebSocket] 服务器启动完成 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}");
+            LogHelper.InfoConsole($"启动 [TCP] 服务器启动完成 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}");
         }
         else
         {
@@ -220,12 +222,11 @@ public abstract partial class AppStartUpBase
             // 配置并启动WebSocket服务器
             hostBuilder.AddWebSocketServer(builder =>
             {
-                builder
-                    .UseWebSocketMessageHandler(WebSocketMessageHandler)
-                    .UseSessionHandler(OnConnected, OnDisconnected)
-                    .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)ConfigureWebServer);
+                builder.UseWebSocketMessageHandler(WebSocketMessageHandler)
+                       .UseSessionHandler(OnConnected, OnDisconnected);
+                // .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)ConfigureWebServer);
             });
-
+            hostBuilder.ConfigureServices((context, collection) => { collection.Configure<ServerOptions>(ConfigureWebServer); });
             LogHelper.InfoConsole($"启动 [WebSocket] 服务器启动完成 - 类型: {ServerType}, 端口: {Setting.WsPort}");
         }
         else
@@ -236,9 +237,9 @@ public abstract partial class AppStartUpBase
         if (Setting.HttpPort is > 0 and < ushort.MaxValue && Net.PortIsAvailable(Setting.HttpPort))
         {
             LogHelper.InfoConsole("启动 [HTTP] 服务器...");
-            var builder = hostBuilder.ConfigureWebHost(m =>
+            var builder = hostBuilder.ConfigureWebHost(webHostBuilder =>
             {
-                m.UseKestrel(options =>
+                webHostBuilder.UseKestrel(options =>
                 {
                     options.ListenAnyIP(Setting.HttpPort);
 
@@ -266,94 +267,95 @@ public abstract partial class AppStartUpBase
                 Description = "GameFrameX HTTP API documentation",
             };
             var development = Setting.HttpIsDevelopment;
-            builder.ConfigureServices(services =>
-                   {
-                       if (development)
-                       {
-                           // 开发模式，启用 Swagger
-                           services.AddEndpointsApiExplorer();
-                           services.AddSwaggerGen(options =>
+            builder.ConfigureWebHostDefaults(webHostBuilder =>
+            {
+                webHostBuilder.ConfigureServices((context, services) =>
+                {
+                    services.Configure<ServerOptions>(ConfigureHttp);
+                    if (development)
+                    {
+                        // 开发模式，启用 Swagger
+                        services.AddEndpointsApiExplorer();
+                        services.AddSwaggerGen(options =>
+                        {
+                            options.SwaggerDoc(openApiInfo.Version, openApiInfo);
+
+                            // 使用自定义的 SchemaFilter 来保持属性名称大小写
+                            options.SchemaFilter<PreservePropertyCasingSchemaFilter>();
+
+                            // 添加自定义操作过滤器来处理动态路由
+                            options.OperationFilter<SwaggerOperationFilter>(baseHandler);
+                            // 使用完整的类型名称
+                            options.CustomSchemaIds(type => type.Name);
+                        });
+                    }
+                }).Configure(app =>
+                {
+                    if (development)
+                    {
+                        // 开发模式，启用 Swagger
+                        app.UseDeveloperExceptionPage();
+                        app.UseSwagger()
+                           .UseSwaggerUI(options =>
                            {
-                               options.SwaggerDoc(openApiInfo.Version, openApiInfo);
-
-                               // 使用自定义的 SchemaFilter 来保持属性名称大小写
-                               options.SchemaFilter<PreservePropertyCasingSchemaFilter>();
-
-                               // 添加自定义操作过滤器来处理动态路由
-                               options.OperationFilter<SwaggerOperationFilter>(baseHandler);
-                               // 使用完整的类型名称
-                               options.CustomSchemaIds(type => type.Name);
+                               options.SwaggerEndpoint($"/swagger/{openApiInfo.Version}/swagger.json", openApiInfo.Title);
+                               options.RoutePrefix = "swagger";
                            });
-                       }
-                   })
-                   .ConfigureWebHostDefaults(webHostBuilder =>
-                   {
-                       webHostBuilder.Configure(app =>
-                       {
-                           if (development)
-                           {
-                               // 开发模式，启用 Swagger
-                               app.UseDeveloperExceptionPage();
-                               app.UseSwagger()
-                                  .UseSwaggerUI(options =>
-                                  {
-                                      options.SwaggerEndpoint($"/swagger/{openApiInfo.Version}/swagger.json", openApiInfo.Title);
-                                      options.RoutePrefix = "swagger";
-                                  });
-                           }
+                    }
 
-                           app.UseExceptionHandler(ExceptionHandler);
+                    app.UseExceptionHandler(ExceptionHandler);
 
-                           var apiRootPath = Setting.HttpUrl;
-                           // 根路径必须以/开头和以/结尾
-                           if (!Setting.HttpUrl.StartsWith('/'))
-                           {
-                               apiRootPath = "/" + Setting.HttpUrl;
-                           }
+                    var apiRootPath = Setting.HttpUrl;
+                    // 根路径必须以/开头和以/结尾
+                    if (!Setting.HttpUrl.StartsWith('/'))
+                    {
+                        apiRootPath = "/" + Setting.HttpUrl;
+                    }
 
-                           if (!Setting.HttpUrl.EndsWith('/'))
-                           {
-                               apiRootPath += "/";
-                           }
+                    if (!Setting.HttpUrl.EndsWith('/'))
+                    {
+                        apiRootPath += "/";
+                    }
 
-                           GlobalSettings.ApiRootPath = apiRootPath;
-                           // 注册中间件
-                           app.UseEndpoints(configure =>
-                           {
-                               // 每个http处理器，注册到路由中
-                               foreach (var handler in baseHandler)
-                               {
-                                   var handlerType = handler.GetType();
-                                   var mappingAttribute = handlerType.GetCustomAttribute<HttpMessageMappingAttribute>();
-                                   if (mappingAttribute == null)
-                                   {
-                                       continue;
-                                   }
+                    GlobalSettings.ApiRootPath = apiRootPath;
+                    // 注册中间件
+                    app.UseEndpoints(configure =>
+                    {
+                        // 每个http处理器，注册到路由中
+                        foreach (var handler in baseHandler)
+                        {
+                            var handlerType = handler.GetType();
+                            var mappingAttribute = handlerType.GetCustomAttribute<HttpMessageMappingAttribute>();
+                            if (mappingAttribute == null)
+                            {
+                                continue;
+                            }
 
-                                   // 只支持POST请求
-                                   var route = configure.MapPost($"{apiRootPath}{mappingAttribute.StandardCmd}", async (HttpContext context, string text) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
-                                   if (development)
-                                   {
-                                       // 开发模式，启用 Swagger
-                                       route.WithOpenApi(operation =>
-                                       {
-                                           operation.Summary = "处理 POST 请求";
-                                           operation.Description = "处理来自游戏客户端的 POST 请求";
-                                           return operation;
-                                       });
-                                   }
-                               }
-                           });
-                           if (development)
-                           {
-                               var ipList = Net.GetLocalIpList();
-                               foreach (var ip in ipList)
-                               {
-                                   LogHelper.DebugConsole($"Swagger UI 可通过 http://{ip}:{Setting.HttpPort}/swagger 访问");
-                               }
-                           }
-                       });
-                   });
+                            // 只支持POST请求
+                            var route = configure.MapPost($"{apiRootPath}{mappingAttribute.StandardCmd}", async (HttpContext context, string text) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
+                            if (development)
+                            {
+                                // 开发模式，启用 Swagger
+                                route.WithOpenApi(operation =>
+                                {
+                                    operation.Summary = "处理 POST 请求";
+                                    operation.Description = "处理来自游戏客户端的 POST 请求";
+                                    return operation;
+                                });
+                            }
+                        }
+                    });
+                    if (development)
+                    {
+                        var ipList = Net.GetLocalIpList();
+                        foreach (var ip in ipList)
+                        {
+                            LogHelper.DebugConsole($"Swagger UI 可通过 http://{ip}:{Setting.HttpPort}/swagger 访问");
+                        }
+                    }
+                });
+            });
+            LogHelper.InfoConsole($"启动 [HTTP] 服务器启动完成 - 端口: {Setting.HttpPort}");
         }
         else
         {
@@ -391,8 +393,6 @@ public abstract partial class AppStartUpBase
         MessageEncoderHandler = messageEncoderHandler;
 
         await _gameServer.StartAsync();
-
-        LogHelper.InfoConsole($"TCP服务器启动完成 - 类型: {ServerType}, 端口: {Setting.InnerPort}");
     }
 
     /// <summary>
@@ -418,15 +418,14 @@ public abstract partial class AppStartUpBase
     /// <summary>
     /// 配置WebSocket服务器参数
     /// </summary>
-    private void ConfigureWebServer(HostBuilderContext context, IConfigurationBuilder builder)
+    private void ConfigureWebServer(ServerOptions serverOptions)
     {
-        var paramsDict = new Dictionary<string, string>
+        var listenOptions = new ListenOptions
         {
-            ["serverOptions:listeners:0:port"] = Setting.WsPort.ToString(),
-            ["serverOptions:listeners:0:ip"] = Setting.InnerIp.IsNullOrWhiteSpace() ? "Any" : Setting.InnerIp,
-            ["serverOptions:name"] = Setting.ServerName
+            Ip = IPAddress.Any.ToString(),
+            Port = Setting.WsPort,
         };
-        builder.AddInMemoryCollection(paramsDict);
+        serverOptions.AddListener(listenOptions);
     }
 
     /// <summary>

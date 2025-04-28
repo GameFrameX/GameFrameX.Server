@@ -19,14 +19,6 @@ public abstract partial class AppStartUpBase : IAppStartUp
     protected readonly TaskCompletionSource<string> AppExitSource = new();
 
     /// <summary>
-    /// 监听配置
-    /// 当InnerIp为空时.将使用Any
-    /// 当InnerPort小于1000时.将抛出异常
-    /// 外部不要修改任何值
-    /// </summary>
-    public ListenOptions ListenOptions { get; protected set; }
-
-    /// <summary>
     /// 服务器类型
     /// </summary>
     public ServerType ServerType { get; private set; }
@@ -55,7 +47,6 @@ public abstract partial class AppStartUpBase : IAppStartUp
     {
         ServerType = serverType;
         Setting = setting;
-        ListenOptions = new ListenOptions();
         Init();
         Setting.CheckNotNull(nameof(Setting));
         GlobalSettings.SaveIntervalInMilliSeconds = Setting.SaveDataInterval;
@@ -94,6 +85,20 @@ public abstract partial class AppStartUpBase : IAppStartUp
     /// 配置启动,当InnerIP为空时.将使用Any
     /// </summary>
     /// <param name="options"></param>
+    protected virtual void ConfigureHttp(ServerOptions options)
+    {
+        var listenOptions = new ListenOptions
+        {
+            Ip = IPAddress.Any.ToString(),
+            Port = Setting.HttpPort,
+        };
+        options.AddListener(listenOptions);
+    }
+
+    /// <summary>
+    /// 配置启动,当InnerIP为空时.将使用Any
+    /// </summary>
+    /// <param name="options"></param>
     protected virtual void ConfigureSuperSocket(ServerOptions options)
     {
         if (Setting.InnerIp.IsNotNullOrWhiteSpace())
@@ -104,9 +109,11 @@ public abstract partial class AppStartUpBase : IAppStartUp
             }
         }
 
-        ListenOptions.CheckNotNull(nameof(ListenOptions));
-        ListenOptions.Ip = Setting.InnerIp.IsNullOrEmpty() ? IPAddress.Any.ToString() : Setting.InnerIp;
-        ListenOptions.Port = Setting.InnerPort;
-        options.AddListener(ListenOptions);
+        var listenOptions = new ListenOptions
+        {
+            Ip = Setting.InnerIp.IsNullOrEmpty() ? IPAddress.Any.ToString() : Setting.InnerIp,
+            Port = Setting.InnerPort,
+        };
+        options.AddListener(listenOptions);
     }
 }
