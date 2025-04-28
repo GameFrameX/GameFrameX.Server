@@ -20,6 +20,7 @@
       - MinModuleId=10
       - MaxModuleId=9999
       - WsPort=29110
+      - HttpPort=28080
       - DiscoveryCenterIp=127.0.0.1
       - DiscoveryCenterPort=10001
       - HttpCode=inner_httpcode
