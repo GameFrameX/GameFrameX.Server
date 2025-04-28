@@ -291,7 +291,7 @@ public sealed class Actor : IActor
     /// 发送带超时的异步工作指令
     /// </summary>
     /// <param name="work">要执行的工作内容</param>
-    /// <param name="timeout">超时时间</param>
+    /// <param name="timeout">执行超时时间（毫秒），默认为int.MaxValue</param>
     /// <param name="cancellationToken">取消操作的令牌</param>
     /// <returns>返回表示异步操作的Task</returns>
     public Task SendAsync(Action work, int timeout, CancellationToken cancellationToken = default)
