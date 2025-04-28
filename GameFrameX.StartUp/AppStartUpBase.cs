@@ -81,19 +81,7 @@ public abstract partial class AppStartUpBase : IAppStartUp
     {
     }
 
-    /// <summary>
-    /// 配置启动,当InnerIP为空时.将使用Any
-    /// </summary>
-    /// <param name="options"></param>
-    protected virtual void ConfigureHttp(ServerOptions options)
-    {
-        var listenOptions = new ListenOptions
-        {
-            Ip = IPAddress.Any.ToString(),
-            Port = Setting.HttpPort,
-        };
-        options.AddListener(listenOptions);
-    }
+
 
     /// <summary>
     /// 配置启动,当InnerIP为空时.将使用Any
