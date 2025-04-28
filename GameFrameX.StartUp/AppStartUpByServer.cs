@@ -193,7 +193,7 @@ public abstract partial class AppStartUpBase
         // 检查TCP端口是否可用
         if (Setting.InnerPort > 0 && Net.PortIsAvailable(Setting.InnerPort))
         {
-            LogHelper.InfoConsole($"启动TCP服务器 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}");
+            LogHelper.InfoConsole($"启动 [TCP] 服务器 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}");
             hostBuilder.AddServer<IMessage, MessageObjectPipelineFilter>(builder =>
             {
                 builder
@@ -205,16 +205,17 @@ public abstract partial class AppStartUpBase
                     .UsePackageHandler(PackageHandler, PackageErrorHandler)
                     .UseInProcSessionContainer();
             });
+            LogHelper.InfoConsole($"启动 [WebSocket] 服务器启动完成 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}");
         }
         else
         {
-            LogHelper.WarnConsole($"TCP服务器启动失败 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}, 原因: 端口无效或已被占用");
+            LogHelper.WarnConsole($"启动 [TCP] 服务器启动失败 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}, 原因: 端口无效或已被占用");
         }
 
         // 检查WebSocket端口是否可用
         if (Setting.WsPort is > 0 and < ushort.MaxValue && Net.PortIsAvailable(Setting.WsPort))
         {
-            LogHelper.InfoConsole("启动WebSocket服务器...");
+            LogHelper.InfoConsole("启动 [WebSocket] 服务器...");
 
             // 配置并启动WebSocket服务器
             hostBuilder.AddWebSocketServer(builder =>
@@ -225,11 +226,11 @@ public abstract partial class AppStartUpBase
                     .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)ConfigureWebServer);
             });
 
-            LogHelper.InfoConsole($"WebSocket服务器启动完成 - 类型: {ServerType}, 端口: {Setting.WsPort}");
+            LogHelper.InfoConsole($"启动 [WebSocket] 服务器启动完成 - 类型: {ServerType}, 端口: {Setting.WsPort}");
         }
         else
         {
-            LogHelper.WarnConsole($"WebSocket服务器启动失败 - 类型: {ServerType}, 端口: {Setting.WsPort}, 原因: 端口无效或已被占用");
+            LogHelper.WarnConsole($"启动 [WebSocket] 服务器启动失败 - 类型: {ServerType}, 端口: {Setting.WsPort}, 原因: 端口无效或已被占用");
         }
 
         if (Setting.HttpPort is > 0 and < ushort.MaxValue && Net.PortIsAvailable(Setting.HttpPort))
@@ -367,7 +368,7 @@ public abstract partial class AppStartUpBase
             logging.AddSerilog(Log.Logger, true);
             logging.SetMinimumLevel(minimumLevelLogLevel);
         });
-        
+
         // 配置监控和跟踪
         hostBuilder.ConfigureServices(services =>
         {
@@ -379,7 +380,7 @@ public abstract partial class AppStartUpBase
                         configure.AddConsoleExporter();
                     });
         });
-        
+
         // 构建并启动服务器
         _gameServer = hostBuilder.BuildAsServer();
 
