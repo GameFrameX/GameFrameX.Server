@@ -194,7 +194,7 @@ public abstract partial class AppStartUpBase
     {
         var hostBuilder = MultipleServerHostBuilder.Create();
         // 检查TCP端口是否可用
-        if (Setting.InnerPort > 0 && Net.PortIsAvailable(Setting.InnerPort))
+        if (Setting.InnerPort > 0 && NetHelper.PortIsAvailable(Setting.InnerPort))
         {
             LogHelper.InfoConsole($"启动 [TCP] 服务器 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}");
             hostBuilder.ConfigureServices((context, collection) => { collection.Configure<ServerOptions>(ConfigureSuperSocket); });
@@ -215,7 +215,7 @@ public abstract partial class AppStartUpBase
         }
 
         // 检查WebSocket端口是否可用
-        if (Setting.WsPort is > 0 and < ushort.MaxValue && Net.PortIsAvailable(Setting.WsPort))
+        if (Setting.WsPort is > 0 and < ushort.MaxValue && NetHelper.PortIsAvailable(Setting.WsPort))
         {
             LogHelper.InfoConsole("启动 [WebSocket] 服务器...");
 

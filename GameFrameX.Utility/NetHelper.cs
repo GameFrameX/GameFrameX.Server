@@ -5,9 +5,9 @@ using System.Net.Sockets;
 namespace GameFrameX.Utility;
 
 /// <summary>
-/// 网络端口帮助类
+/// 网络帮助类
 /// </summary>
-public static class Net
+public static class NetHelper
 {
     /// <summary>
     /// 判断IP地址是否合法
@@ -116,14 +116,21 @@ public static class Net
             foreach (var network in networkInterfaces)
             {
                 // 排除非活动状态和环回接口
-                if (network.OperationalStatus != OperationalStatus.Up ||
-                    network.NetworkInterfaceType == NetworkInterfaceType.Loopback)
+                if (network.OperationalStatus != OperationalStatus.Up || network.NetworkInterfaceType == NetworkInterfaceType.Loopback)
                 {
                     continue;
                 }
 
+
                 // 获取网络接口的IP属性
                 var properties = network.GetIPProperties();
+                // 跳过没有网关的地址
+                var gateways = properties.GatewayAddresses;
+                if (gateways == null || gateways.Count == 0)
+                {
+                    continue;
+                }
+
                 foreach (var address in properties.UnicastAddresses)
                 {
                     // 根据指定的地址类型筛选IP
