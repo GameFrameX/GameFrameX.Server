@@ -99,10 +99,16 @@ public sealed class LauncherOptions
     public ushort OuterPort { get; set; }
 
     /// <summary>
-    /// Http 地址
+    /// API接口根路径,必须以/开头和以/结尾,默认为[/game/api/]
     /// </summary>
-    [Option(nameof(HttpUrl), HelpText = "Http 地址")]
+    [Option(nameof(HttpUrl), Default = "/game/api/", HelpText = "API接口根路径,必须以/开头和以/结尾,默认为[/game/api/]")]
     public string HttpUrl { get; set; }
+
+    /// <summary>
+    /// HTTP 是否是开发模式,当是开发模式的时候将会启用Swagger
+    /// </summary>
+    [Option(nameof(HttpIsDevelopment), Default = false, HelpText = "HTTP 是否是开发模式,当是开发模式的时候将会启用Swagger")]
+    public bool HttpIsDevelopment { get; set; }
 
     /// <summary>
     /// HTTP 端口

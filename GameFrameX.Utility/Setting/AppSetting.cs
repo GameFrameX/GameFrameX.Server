@@ -202,6 +202,11 @@ public sealed class AppSetting
     public string HttpUrl { get; set; }
 
     /// <summary>
+    /// HTTP 是否是开发模式
+    /// </summary>
+    public bool HttpIsDevelopment { get; set; }
+
+    /// <summary>
     /// HTTP端口
     /// </summary>
     public ushort HttpPort { get; set; }
