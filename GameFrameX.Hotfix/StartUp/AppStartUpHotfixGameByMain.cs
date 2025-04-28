@@ -109,8 +109,6 @@ internal partial class AppStartUpHotfixGame
     public override async Task StopAsync(string message = "")
     {
         await base.StopAsync(message);
-
-        await HttpServer.Stop();
         // 断开所有连接
         await SessionManager.RemoveAll();
         // 取消所有未执行定时器
