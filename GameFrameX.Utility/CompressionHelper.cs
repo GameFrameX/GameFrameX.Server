@@ -5,7 +5,7 @@ namespace GameFrameX.Utility;
 /// <summary>
 /// 压缩解压缩辅助器。
 /// </summary>
-public static class Compression
+public static class CompressionHelper
 {
     /// <summary>
     /// 压缩数据。

@@ -15,6 +15,6 @@ public sealed class DefaultMessageDecompressHandler : IMessageDecompressHandler
     /// <returns></returns>
     public byte[] Handler(byte[] message)
     {
-        return Compression.Decompress(message);
+        return CompressionHelper.Decompress(message);
     }
 }
