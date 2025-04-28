@@ -71,6 +71,7 @@ internal sealed class AppStartUpGame : AppStartUpBase
                 HttpPort = 28080,
                 WsPort = 29110,
                 MinModuleId = 10,
+                HttpIsDevelopment = true,
                 MaxModuleId = 9999,
                 DiscoveryCenterIp = "127.0.0.1",
                 DiscoveryCenterPort = 21001,
