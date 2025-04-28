@@ -55,6 +55,6 @@
         </None>
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="GameFrameX.SuperSocket.WebSocket.Server" Version="1.1.2" />
+      <PackageReference Include="GameFrameX.SuperSocket.WebSocket.Server" Version="1.2.0" />
     </ItemGroup>
 </Project>
