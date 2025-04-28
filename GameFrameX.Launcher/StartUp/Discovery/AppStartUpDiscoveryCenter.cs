@@ -204,12 +204,6 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
         return ValueTask.CompletedTask;
     }
 
-    protected override void ConfigureSuperSocket(ServerOptions options)
-    {
-        options.ClearIdleSessionInterval = 30;
-        base.ConfigureSuperSocket(options);
-    }
-
     protected override void Init()
     {
         if (Setting == null)
