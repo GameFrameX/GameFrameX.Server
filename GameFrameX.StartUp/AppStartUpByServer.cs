@@ -343,6 +343,14 @@ public abstract partial class AppStartUpBase
                                    }
                                }
                            });
+                           if (development)
+                           {
+                               var ipList = Net.GetLocalIpList();
+                               foreach (var ip in ipList)
+                               {
+                                   LogHelper.DebugConsole($"Swagger UI 可通过 http://{ip}:{Setting.HttpPort}/swagger 访问");
+                               }
+                           }
                        });
                    });
         }

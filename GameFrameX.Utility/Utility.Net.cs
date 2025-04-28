@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Net.NetworkInformation;
+using System.Net.Sockets;
 
 namespace GameFrameX.Utility;
 
@@ -98,5 +99,47 @@ public static class Net
         }
 
         return isAvailable;
+    }
+
+    /// <summary>
+    /// 获取本地IP地址列表
+    /// </summary>
+    /// <param name="addressFamily">IP地址类型,默认为IPv4</param>
+    /// <returns>本地IP地址列表</returns>
+    public static List<string> GetLocalIpList(AddressFamily addressFamily = AddressFamily.InterNetwork)
+    {
+        var ipList = new List<string>();
+        try
+        {
+            // 获取本地计算机的网络接口信息
+            var networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+            foreach (var network in networkInterfaces)
+            {
+                // 排除非活动状态和环回接口
+                if (network.OperationalStatus != OperationalStatus.Up ||
+                    network.NetworkInterfaceType == NetworkInterfaceType.Loopback)
+                {
+                    continue;
+                }
+
+                // 获取网络接口的IP属性
+                var properties = network.GetIPProperties();
+                foreach (var address in properties.UnicastAddresses)
+                {
+                    // 根据指定的地址类型筛选IP
+                    if (address.Address.AddressFamily == addressFamily)
+                    {
+                        ipList.Add(address.Address.ToString());
+                    }
+                }
+            }
+        }
+        catch (Exception)
+        {
+            // 发生异常时返回空列表
+            return new List<string>();
+        }
+
+        return ipList;
     }
 }
