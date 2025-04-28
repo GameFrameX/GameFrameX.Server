@@ -51,11 +51,22 @@ public abstract class BaseDataTable<T> : IDataTable<T>
     public abstract Task LoadAsync();
 
     /// <summary>
-    /// 根据长整型ID获取对象
+    /// 根据整型ID获取对象
     /// </summary>
     /// <param name="id">对象的ID</param>
     /// <returns>找到的对象，如果未找到则返回默认值</returns>
     public T Get(int id)
+    {
+        LongDataMaps.TryGetValue(id, out var value);
+        return value;
+    }
+
+    /// <summary>
+    /// 根据长整型ID获取对象
+    /// </summary>
+    /// <param name="id">对象的ID</param>
+    /// <returns>找到的对象，如果未找到则返回默认值</returns>
+    public T Get(long id)
     {
         LongDataMaps.TryGetValue(id, out var value);
         return value;
@@ -73,11 +84,21 @@ public abstract class BaseDataTable<T> : IDataTable<T>
     }
 
     /// <summary>
-    /// 根据长整型ID获取对象
+    /// 根据整型ID获取对象
     /// </summary>
     /// <param name="id">对象的ID</param>
     /// <returns>找到的对象，如果未找到则返回默认值</returns>
     public T this[int id]
+    {
+        get { return Get(id); }
+    }
+
+    /// <summary>
+    /// 根据长整型ID获取对象
+    /// </summary>
+    /// <param name="id">对象的ID</param>
+    /// <returns>找到的对象，如果未找到则返回默认值</returns>
+    public T this[long id]
     {
         get { return Get(id); }
     }
