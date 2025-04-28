@@ -1,6 +1,8 @@
+using System.Reflection;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
+using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Message;
 using GameFrameX.SuperSocket.Connection;
 using GameFrameX.SuperSocket.Primitives;
@@ -13,10 +15,17 @@ using GameFrameX.SuperSocket.WebSocket.Server;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Extensions;
 using GameFrameX.Utility.Setting;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using Serilog;
 using CloseReason = GameFrameX.SuperSocket.WebSocket.CloseReason;
 
@@ -40,20 +49,22 @@ public abstract partial class AppStartUpBase
     /// <summary>
     /// 启动服务器 - 同时启动TCP和WebSocket服务
     /// </summary>
-    /// <param name="messageCompressHandler">消息编码的时候使用的压缩处理器，如果为空则不处理压缩消息</param>
-    /// <param name="messageDecompressHandler">消息解码的时候使用的解压处理器,如果为空则不处理压缩消息</param>
     /// <typeparam name="TMessageDecoderHandler">消息解码处理器类型，必须实现IMessageDecoderHandler和IPackageDecoder接口</typeparam>
     /// <typeparam name="TMessageEncoderHandler">消息编码处理器类型，必须实现IMessageEncoderHandler和IPackageEncoder接口</typeparam>
+    /// <param name="messageCompressHandler">消息编码的时候使用的压缩处理器，如果为空则不处理压缩消息</param>
+    /// <param name="messageDecompressHandler">消息解码的时候使用的解压处理器,如果为空则不处理压缩消息</param>
+    /// <param name="baseHandler">HTTP处理器列表,用于处理不同的HTTP请求</param>
+    /// <param name="httpFactory">HTTP处理器工厂,根据命令标识符创建对应的处理器实例</param>
+    /// <param name="aopHandlerTypes">AOP处理器列表,用于在HTTP请求处理前后执行额外的逻辑</param>
+    /// <param name="minimumLevelLogLevel">日志记录的最小级别,用于控制日志输出</param>
     protected async Task StartServerAsync<TMessageDecoderHandler, TMessageEncoderHandler>(
-        IMessageCompressHandler messageCompressHandler = null,
-        IMessageDecompressHandler messageDecompressHandler = null)
+        IMessageCompressHandler messageCompressHandler,
+        IMessageDecompressHandler messageDecompressHandler, List<BaseHttpHandler> baseHandler, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes = null, LogLevel minimumLevelLogLevel = LogLevel.Debug)
         where TMessageDecoderHandler : class, IMessageDecoderHandler, IPackageDecoder<IMessage>, new()
         where TMessageEncoderHandler : class, IMessageEncoderHandler, IPackageEncoder<IMessage>, new()
     {
         // 先启动TCP服务器
-        await StartTcpServer<TMessageDecoderHandler, TMessageEncoderHandler>();
-        // 再启动WebSocket服务器
-        await StartWebSocketServer();
+        await StartServer<TMessageDecoderHandler, TMessageEncoderHandler>(baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
 
         // 初始化消息处理器
         if (MessageDecoderHandler.IsNull())
@@ -78,18 +89,21 @@ public abstract partial class AppStartUpBase
         }
 
         // 设置全局启动状态
-        GlobalSettings.LaunchTime = DateTime.Now;
+        GlobalSettings.LaunchTime = DateTime.UtcNow;
         GlobalSettings.IsAppRunning = true;
     }
 
     /// <summary>
     /// 停止服务器 - 关闭所有网络服务
     /// </summary>
-    protected void StopServer()
+    protected async Task StopServerAsync()
     {
         GlobalSettings.IsAppRunning = false;
-        StopTcpServer();
-        StopWebSocketServer();
+        if (_gameServer != null)
+        {
+            await _gameServer.StopAsync();
+            _gameServer = null;
+        }
     }
 
     /// <summary>
@@ -160,116 +174,237 @@ public abstract partial class AppStartUpBase
 
     #region TCP Server
 
-    private IServer _tcpService;
+    private IServer _gameServer;
 
     /// <summary>
     /// 启动TCP服务器
     /// </summary>
     /// <typeparam name="TMessageDecoderHandler">消息解码处理器类型</typeparam>
     /// <typeparam name="TMessageEncoderHandler">消息编码处理器类型</typeparam>
-    private async Task StartTcpServer<TMessageDecoderHandler, TMessageEncoderHandler>()
+    /// <param name="baseHandler">HTTP处理器列表,用于处理不同的HTTP请求</param>
+    /// <param name="httpFactory">HTTP处理器工厂,根据命令标识符创建对应的处理器实例</param>
+    /// <param name="aopHandlerTypes">AOP处理器列表,用于在HTTP请求处理前后执行额外的逻辑</param>
+    /// <param name="minimumLevelLogLevel">日志记录的最小级别,用于控制日志输出</param>
+    private async Task StartServer<TMessageDecoderHandler, TMessageEncoderHandler>(List<BaseHttpHandler> baseHandler, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes = null, LogLevel minimumLevelLogLevel = LogLevel.Debug)
         where TMessageDecoderHandler : class, IMessageDecoderHandler, IPackageDecoder<IMessage>, new()
         where TMessageEncoderHandler : class, IMessageEncoderHandler, IPackageEncoder<IMessage>, new()
     {
-        // 检查端口是否可用
+        var hostBuilder = MultipleServerHostBuilder.Create();
+        // 检查TCP端口是否可用
         if (Setting.InnerPort > 0 && Net.PortIsAvailable(Setting.InnerPort))
         {
             LogHelper.InfoConsole($"启动TCP服务器 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}");
-
-            // 配置并构建TCP服务器
-            var hostBuilder = SuperSocketHostBuilder
-                              .Create<IMessage, MessageObjectPipelineFilter>()
-                              .ConfigureSuperSocket(ConfigureSuperSocket)
-                              .UseClearIdleSession()
-                              .UsePackageDecoder<TMessageDecoderHandler>()
-                              .UsePackageEncoder<TMessageEncoderHandler>()
-                              .UseSessionHandler(OnConnected, OnDisconnected)
-                              .UsePackageHandler(PackageHandler, PackageErrorHandler)
-                              .UseInProcSessionContainer();
-
-            // 配置日志
-            hostBuilder.ConfigureLogging(logging =>
+            hostBuilder.AddServer<IMessage, MessageObjectPipelineFilter>(builder =>
             {
-                logging.ClearProviders();
-                logging.AddSerilog(Log.Logger, true);
+                builder
+                    .ConfigureSuperSocket(ConfigureSuperSocket)
+                    .UseClearIdleSession()
+                    .UsePackageDecoder<TMessageDecoderHandler>()
+                    .UsePackageEncoder<TMessageEncoderHandler>()
+                    .UseSessionHandler(OnConnected, OnDisconnected)
+                    .UsePackageHandler(PackageHandler, PackageErrorHandler)
+                    .UseInProcSessionContainer();
             });
-
-            // 构建并启动服务器
-            _tcpService = hostBuilder.BuildAsServer();
-            var messageEncoderHandler = (IMessageEncoderHandler)_tcpService.ServiceProvider.GetService<IPackageEncoder<IMessage>>();
-            var messageDecoderHandler = (IMessageDecoderHandler)_tcpService.ServiceProvider.GetService<IPackageDecoder<IMessage>>();
-
-            MessageDecoderHandler = messageDecoderHandler;
-            MessageEncoderHandler = messageEncoderHandler;
-
-            await _tcpService.StartAsync();
-
-            LogHelper.InfoConsole($"TCP服务器启动完成 - 类型: {ServerType}, 端口: {Setting.InnerPort}");
         }
         else
         {
-            LogHelper.WarnConsole($"TCP服务器启动失败 - 类型: {ServerType}, 原因: 端口无效或已被占用");
+            LogHelper.WarnConsole($"TCP服务器启动失败 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}, 原因: 端口无效或已被占用");
         }
-    }
 
-    /// <summary>
-    /// 停止TCP服务器
-    /// </summary>
-    private async void StopTcpServer()
-    {
-        if (_tcpService != null)
-        {
-            await _tcpService.StopAsync();
-            _tcpService = null;
-        }
-    }
-
-    #endregion
-
-    #region WebSocket
-
-    /// <summary>
-    /// WebSocket服务器实例
-    /// </summary>
-    private IHost _webSocketServer;
-
-    /// <summary>
-    /// 启动WebSocket服务器
-    /// </summary>
-    protected async Task StartWebSocketServer()
-    {
         // 检查WebSocket端口是否可用
         if (Setting.WsPort is > 0 and < ushort.MaxValue && Net.PortIsAvailable(Setting.WsPort))
         {
             LogHelper.InfoConsole("启动WebSocket服务器...");
 
             // 配置并启动WebSocket服务器
-            _webSocketServer = WebSocketHostBuilder.Create()
-                                                   .UseWebSocketMessageHandler(WebSocketMessageHandler)
-                                                   .UseSessionHandler(OnConnected, OnDisconnected)
-                                                   .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)ConfigureWebServer)
-                                                   .Build();
+            hostBuilder.AddWebSocketServer(builder =>
+            {
+                builder
+                    .UseWebSocketMessageHandler(WebSocketMessageHandler)
+                    .UseSessionHandler(OnConnected, OnDisconnected)
+                    .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)ConfigureWebServer);
+            });
 
-            await _webSocketServer.StartAsync();
             LogHelper.InfoConsole($"WebSocket服务器启动完成 - 类型: {ServerType}, 端口: {Setting.WsPort}");
         }
         else
         {
-            LogHelper.WarnConsole($"WebSocket服务器启动失败 - 类型: {ServerType}, 原因: 端口无效或已被占用");
+            LogHelper.WarnConsole($"WebSocket服务器启动失败 - 类型: {ServerType}, 端口: {Setting.WsPort}, 原因: 端口无效或已被占用");
         }
+
+        if (Setting.HttpPort is > 0 and < ushort.MaxValue && Net.PortIsAvailable(Setting.HttpPort))
+        {
+            LogHelper.InfoConsole("启动 [HTTP] 服务器...");
+            var builder = hostBuilder.ConfigureWebHost(m =>
+            {
+                m.UseKestrel(options =>
+                {
+                    options.ListenAnyIP(Setting.HttpPort);
+
+                    // HTTPS
+                    if (Setting.HttpsPort > 0 && Net.PortIsAvailable(Setting.HttpsPort))
+                    {
+                        options.ListenAnyIP(Setting.HttpsPort, listenOptions => { listenOptions.UseHttps(); });
+                    }
+                });
+            });
+            // 添加 Swagger 服务
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            if (version == null)
+            {
+                version = new Version(1, 0, 0);
+            }
+
+            var openApiInfo = new OpenApiInfo
+            {
+                Title = "GameFrameX API",
+                Version = $"v{version.Major}.{version.Minor}",
+                TermsOfService = new Uri("https://gameframex.doc.alianblank.com"),
+                Contact = new OpenApiContact() { Url = new Uri("https://gameframex.doc.alianblank.com"), Name = "Blank", Email = "wangfj11@foxmail.com", },
+                License = new OpenApiLicense() { Name = "GameFrameX", Url = new Uri("https://github.com/GameFrameX/GameFrameX"), },
+                Description = "GameFrameX HTTP API documentation",
+            };
+            var development = Setting.HttpIsDevelopment;
+            builder.ConfigureServices(services =>
+                   {
+                       if (development)
+                       {
+                           // 开发模式，启用 Swagger
+                           services.AddEndpointsApiExplorer();
+                           services.AddSwaggerGen(options =>
+                           {
+                               options.SwaggerDoc(openApiInfo.Version, openApiInfo);
+
+                               // 使用自定义的 SchemaFilter 来保持属性名称大小写
+                               options.SchemaFilter<PreservePropertyCasingSchemaFilter>();
+
+                               // 添加自定义操作过滤器来处理动态路由
+                               options.OperationFilter<SwaggerOperationFilter>(baseHandler);
+                               // 使用完整的类型名称
+                               options.CustomSchemaIds(type => type.Name);
+                           });
+                       }
+                   })
+                   .ConfigureWebHostDefaults(webHostBuilder =>
+                   {
+                       webHostBuilder.Configure(app =>
+                       {
+                           if (development)
+                           {
+                               // 开发模式，启用 Swagger
+                               app.UseDeveloperExceptionPage();
+                               app.UseSwagger()
+                                  .UseSwaggerUI(options =>
+                                  {
+                                      options.SwaggerEndpoint($"/swagger/{openApiInfo.Version}/swagger.json", openApiInfo.Title);
+                                      options.RoutePrefix = "swagger";
+                                  });
+                           }
+
+                           app.UseExceptionHandler(ExceptionHandler);
+
+                           var apiRootPath = Setting.HttpUrl;
+                           // 根路径必须以/开头和以/结尾
+                           if (!Setting.HttpUrl.StartsWith('/'))
+                           {
+                               apiRootPath = "/" + Setting.HttpUrl;
+                           }
+
+                           if (!Setting.HttpUrl.EndsWith('/'))
+                           {
+                               apiRootPath += "/";
+                           }
+
+
+                           // 注册中间件
+                           app.UseEndpoints(configure =>
+                           {
+                               // 每个http处理器，注册到路由中
+                               foreach (var handler in baseHandler)
+                               {
+                                   var handlerType = handler.GetType();
+                                   var mappingAttribute = handlerType.GetCustomAttribute<HttpMessageMappingAttribute>();
+                                   if (mappingAttribute == null)
+                                   {
+                                       continue;
+                                   }
+
+                                   // 只支持POST请求
+                                   var route = configure.MapPost($"{apiRootPath}{mappingAttribute.StandardCmd}", async (HttpContext context, string text) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
+                                   if (development)
+                                   {
+                                       // 开发模式，启用 Swagger
+                                       route.WithOpenApi(operation =>
+                                       {
+                                           operation.Summary = "处理 POST 请求";
+                                           operation.Description = "处理来自游戏客户端的 POST 请求";
+                                           return operation;
+                                       });
+                                   }
+                               }
+                           });
+                       });
+                   });
+        }
+        else
+        {
+            LogHelper.Error($"启动 [HTTP] 服务器 端口 [{Setting.HttpPort}] 被占用，无法启动HTTP服务");
+        }
+
+
+        // 配置日志
+        hostBuilder.ConfigureLogging(logging =>
+        {
+            logging.ClearProviders();
+            logging.AddSerilog(Log.Logger, true);
+            logging.SetMinimumLevel(minimumLevelLogLevel);
+        });
+        
+        // 配置监控和跟踪
+        hostBuilder.ConfigureServices(services =>
+        {
+            services.AddOpenTelemetry()
+                    .ConfigureResource(configure => { configure.AddService(Setting.ServerName + "-" + Setting.TagName, "GameFrameX").AddTelemetrySdk(); })
+                    .WithTracing(configure =>
+                    {
+                        configure.AddAspNetCoreInstrumentation();
+                        configure.AddConsoleExporter();
+                    });
+        });
+        
+        // 构建并启动服务器
+        _gameServer = hostBuilder.BuildAsServer();
+
+        var messageEncoderHandler = (IMessageEncoderHandler)_gameServer.ServiceProvider.GetService<IPackageEncoder<IMessage>>();
+        var messageDecoderHandler = (IMessageDecoderHandler)_gameServer.ServiceProvider.GetService<IPackageDecoder<IMessage>>();
+
+        MessageDecoderHandler = messageDecoderHandler;
+        MessageEncoderHandler = messageEncoderHandler;
+
+        await _gameServer.StartAsync();
+
+        LogHelper.InfoConsole($"TCP服务器启动完成 - 类型: {ServerType}, 端口: {Setting.InnerPort}");
     }
 
     /// <summary>
-    /// 停止WebSocket服务器
+    /// 异常处理
     /// </summary>
-    private async void StopWebSocketServer()
+    /// <param name="errorContext"></param>
+    private static void ExceptionHandler(IApplicationBuilder errorContext)
     {
-        if (_webSocketServer != null)
+        errorContext.Run(async context =>
         {
-            await _webSocketServer.StopAsync();
-            _webSocketServer = null;
-        }
+            // 获取异常信息
+            var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+
+            // 自定义返回Json信息；
+            await context.Response.WriteAsync(exceptionHandlerPathFeature.Error.Message);
+        });
     }
+
+    #endregion
+
+    #region WebSocket
 
     /// <summary>
     /// 配置WebSocket服务器参数
