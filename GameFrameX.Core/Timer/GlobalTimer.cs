@@ -3,6 +3,7 @@ using GameFrameX.Core.Components;
 using GameFrameX.DataBase;
 using GameFrameX.Utility.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Utility;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Core.Timer;
@@ -39,16 +40,16 @@ public static class GlobalTimer
     private static async Task Loop()
     {
         var nextSaveTime = NextSaveTime();
-        var saveInterval = TimeSpan.FromMilliseconds(GlobalSettings.SaveIntervalInMilliSeconds);
-        var onceDelay = TimeSpan.FromMilliseconds(200);
+        var onceDelay = TimeSpan.FromSeconds(5);
 
         while (IsWorking)
         {
-            LogHelper.Debug($"下次定时回存时间 {nextSaveTime}");
-
-            while (DateTime.Now < nextSaveTime && IsWorking)
+            LogHelper.Info($"下次定时回存时间 {nextSaveTime}");
+            var currentTime = TimeHelper.UnixTimeMilliseconds();
+            while (currentTime < nextSaveTime && IsWorking)
             {
                 await Task.Delay(onceDelay);
+                currentTime = TimeHelper.UnixTimeMilliseconds();
             }
 
             if (!IsWorking)
@@ -56,19 +57,20 @@ public static class GlobalTimer
                 break;
             }
 
-            var startTime = DateTime.Now;
-
+            var startTime = TimeHelper.UnixTimeMilliseconds();
+            LogHelper.Info($"开始定时回存 时间:{startTime}");
             await StateComponent.TimerSave();
-
-            var cost = (DateTime.Now - startTime).TotalMilliseconds;
-            LogHelper.Debug($"定时回存完成 耗时: {cost:f4}ms");
-
+            var endTime = TimeHelper.UnixTimeMilliseconds();
+            var cost = endTime - startTime;
+            LogHelper.Info($"结束定时回存 时间:{endTime} 耗时: {cost}ms");
+            LogHelper.Info($"开始回收空闲Actor 时间:{startTime}");
             await ActorManager.CheckIdle();
-
+            currentTime = TimeHelper.UnixTimeMilliseconds();
+            LogHelper.Info($"结束回收空闲Actor 时间:{currentTime}");
             do
             {
-                nextSaveTime = nextSaveTime.Add(saveInterval);
-            } while (DateTime.Now > nextSaveTime);
+                nextSaveTime = NextSaveTime();
+            } while (currentTime > nextSaveTime);
         }
     }
 
@@ -76,30 +78,9 @@ public static class GlobalTimer
     /// 计算下次回存时间
     /// </summary>
     /// <returns>下次回存时间</returns>
-    private static DateTime NextSaveTime()
+    private static long NextSaveTime()
     {
-        var now = DateTime.Now;
-        var t = now.Date.AddHours(now.Hour);
-
-        while (t < now)
-        {
-            t = t.AddMilliseconds(GlobalSettings.SaveIntervalInMilliSeconds);
-        }
-
-        var serverId = GlobalSettings.ServerId;
-        var a = serverId % 1000;
-        var b = a % GlobalConst.MAGIC;
-        var c = GlobalSettings.SaveIntervalInMilliSeconds / GlobalConst.MAGIC;
-        var r = GameFrameX.Utility.RandomHelper.Next(0, c);
-        var delay = b * c + r;
-        t = t.AddMilliseconds(delay);
-
-        if ((t - now).TotalMilliseconds > GlobalSettings.SaveIntervalInMilliSeconds)
-        {
-            t = t.AddMilliseconds(-GlobalSettings.SaveIntervalInMilliSeconds);
-        }
-
-        return t;
+        return TimeHelper.UnixTimeMilliseconds() + GlobalSettings.SaveIntervalInMilliSeconds;
     }
 
     /// <summary>
