@@ -9,6 +9,7 @@
       - "29100:29100"
       # WebSocket 端口
       - "29110:29110"
+      - "29110:29110"
     environment:
       - ServerType=Game
       - ServerId=1000
