@@ -7,7 +7,6 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "--ServerType": "Game",
         "--ServerId": 9000,
-        "--InnerIp": "127.0.0.1",
         "--InnerPort": 29100,
         "--OuterIp": "127.0.0.1",
         "--OuterPort": 29010,
@@ -19,7 +18,7 @@
         "--DataBaseUrl": "mongodb://admin:admin@192.168.110.28:27017/?authSource=admin",
         "--DataBaseName": "gameframex"
       },
-      "commandLineArgs": "--IsDebug --IsDebugReceive --IsDebugSend"
+      "commandLineArgs": "--IsDebug --IsDebugReceive --IsDebugSend --HttpIsDevelopment"
     }
   }
 }
