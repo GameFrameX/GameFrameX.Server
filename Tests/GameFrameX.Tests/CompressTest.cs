@@ -17,15 +17,15 @@ public class CompressTest
     [Test]
     public void compress()
     {
-        var comData = Compression.Compress(bytes);
+        var comData = CompressionHelper.Compress(bytes);
         Console.WriteLine(comData);
     }
 
     [Test]
     public void decompress()
     {
-        comData = Compression.Compress(bytes);
-        var data = Compression.Decompress(comData);
+        comData = CompressionHelper.Compress(bytes);
+        var data = CompressionHelper.Decompress(comData);
         var x = Encoding.UTF8.GetString(data);
         Console.WriteLine(x);
     }
