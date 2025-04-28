@@ -1,4 +1,16 @@
 ﻿services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./running/database:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    networks:
+      - backend
   gameframex:
     image: gameframex/server.launcher:1.0.0
     container_name: gameframex
@@ -8,22 +20,23 @@
       # TCP 端口
       - "29100:29100"
       # WebSocket 端口
-      - "29110:29110"
+      - "29110:29110"      
+      # HTTP 端口
+      - "28080:28080"
     environment:
       - ServerType=Game
       - ServerId=1000
       - APMPort=29090
-      - InnerIp=127.0.0.1
       - InnerPort=29100
-      - OuterIp=127.0.0.1
       - OuterPort=29100
       - MinModuleId=10
       - MaxModuleId=9999
       - WsPort=29110
+      - HttpPort=28080
       - DiscoveryCenterIp=127.0.0.1
       - DiscoveryCenterPort=10001
       - HttpCode=inner_httpcode
-      - DataBaseUrl=mongodb://gameframex:f9v42aU9DVeFNfAF@47.121.197.120:27017/?authSource=admin
+      - DataBaseUrl=mongodb://admin:admin@mongodb:27017/?authSource=admin
       - DataBaseName=gameframex
     networks:
       - frontend
@@ -32,6 +45,7 @@
       - "./running/hotfix:/app/hotfix"
       - "./running/json:/app/json"
       - "./running/logs:/app/logs"
+      - "./running/GameAnalytics:/GameAnalytics"
 networks:
   frontend:
     name: gameframex-frontend
