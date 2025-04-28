@@ -315,7 +315,7 @@ public abstract partial class AppStartUpBase
                                apiRootPath += "/";
                            }
 
-
+                           GlobalSettings.ApiRootPath = apiRootPath;
                            // 注册中间件
                            app.UseEndpoints(configure =>
                            {
