@@ -55,7 +55,7 @@ public class ActionAsyncWrapper : WorkWrapper
     /// <returns></returns>
     public override string GetTrace()
     {
-        return Work.Target + "|" + Work.Method.Name;
+        return $"{Work.Target}|{Work.Method.GetType().FullName}|{Work.Method.Name}";
     }
 
     /// <summary>
