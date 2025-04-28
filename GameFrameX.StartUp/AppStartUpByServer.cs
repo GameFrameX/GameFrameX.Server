@@ -197,10 +197,10 @@ public abstract partial class AppStartUpBase
         if (Setting.InnerPort > 0 && NetHelper.PortIsAvailable(Setting.InnerPort))
         {
             LogHelper.InfoConsole($"启动 [TCP] 服务器 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}");
-            hostBuilder.ConfigureServices((context, collection) => { collection.Configure<ServerOptions>(ConfigureSuperSocket); });
             hostBuilder.AddServer<IMessage, MessageObjectPipelineFilter>(builder =>
             {
-                builder.UseClearIdleSession()
+                builder.ConfigureSuperSocket(ConfigureSuperSocket)
+                       .UseClearIdleSession()
                        .UsePackageDecoder<TMessageDecoderHandler>()
                        .UsePackageEncoder<TMessageEncoderHandler>()
                        .UseSessionHandler(OnConnected, OnDisconnected)
@@ -222,11 +222,10 @@ public abstract partial class AppStartUpBase
             // 配置并启动WebSocket服务器
             hostBuilder.AddWebSocketServer(builder =>
             {
-                builder.UseWebSocketMessageHandler(WebSocketMessageHandler)
+                builder.ConfigureSuperSocket(ConfigureWebServer)
+                       .UseWebSocketMessageHandler(WebSocketMessageHandler)
                        .UseSessionHandler(OnConnected, OnDisconnected);
-                // .ConfigureAppConfiguration((Action<HostBuilderContext, IConfigurationBuilder>)ConfigureWebServer);
             });
-            hostBuilder.ConfigureServices((context, collection) => { collection.Configure<ServerOptions>(ConfigureWebServer); });
             LogHelper.InfoConsole($"启动 [WebSocket] 服务器启动完成 - 类型: {ServerType}, 端口: {Setting.WsPort}");
         }
         else
