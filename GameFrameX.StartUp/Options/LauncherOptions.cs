@@ -113,7 +113,7 @@ public sealed class LauncherOptions
     /// <summary>
     /// HTTP 端口
     /// </summary>
-    [Option(nameof(HttpPort), HelpText = "HTTP 端口")]
+    [Option(nameof(HttpPort), Default = 28080, HelpText = "HTTP 端口")]
     public ushort HttpPort { get; set; }
 
     /// <summary>
