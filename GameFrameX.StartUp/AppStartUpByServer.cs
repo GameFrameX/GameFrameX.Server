@@ -66,8 +66,8 @@ public abstract partial class AppStartUpBase
         where TMessageDecoderHandler : class, IMessageDecoderHandler, IPackageDecoder<IMessage>, new()
         where TMessageEncoderHandler : class, IMessageEncoderHandler, IPackageEncoder<IMessage>, new()
     {
-        // 先启动TCP服务器
-        await StartServer<TMessageDecoderHandler, TMessageEncoderHandler>(baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
+        // 启动服务器
+        await StartServer<TMessageDecoderHandler>(baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
 
         // 初始化消息处理器
         if (MessageDecoderHandler.IsNull())
@@ -177,35 +177,44 @@ public abstract partial class AppStartUpBase
 
     #region TCP Server
 
-    private IServer _gameServer;
+    private IHost _gameServer;
 
     /// <summary>
     /// 启动TCP服务器
     /// </summary>
     /// <typeparam name="TMessageDecoderHandler">消息解码处理器类型</typeparam>
-    /// <typeparam name="TMessageEncoderHandler">消息编码处理器类型</typeparam>
     /// <param name="baseHandler">HTTP处理器列表,用于处理不同的HTTP请求</param>
     /// <param name="httpFactory">HTTP处理器工厂,根据命令标识符创建对应的处理器实例</param>
     /// <param name="aopHandlerTypes">AOP处理器列表,用于在HTTP请求处理前后执行额外的逻辑</param>
     /// <param name="minimumLevelLogLevel">日志记录的最小级别,用于控制日志输出</param>
-    private async Task StartServer<TMessageDecoderHandler, TMessageEncoderHandler>(List<BaseHttpHandler> baseHandler, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes = null, LogLevel minimumLevelLogLevel = LogLevel.Debug)
+    private async Task StartServer<TMessageDecoderHandler>(List<BaseHttpHandler> baseHandler, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes = null, LogLevel minimumLevelLogLevel = LogLevel.Debug)
         where TMessageDecoderHandler : class, IMessageDecoderHandler, IPackageDecoder<IMessage>, new()
-        where TMessageEncoderHandler : class, IMessageEncoderHandler, IPackageEncoder<IMessage>, new()
     {
-        var hostBuilder = MultipleServerHostBuilder.Create();
+        var multipleServerHostBuilder = MultipleServerHostBuilder.Create();
         // 检查TCP端口是否可用
         if (Setting.InnerPort > 0 && NetHelper.PortIsAvailable(Setting.InnerPort))
         {
             LogHelper.InfoConsole($"启动 [TCP] 服务器 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}");
-            hostBuilder.AddServer<IMessage, MessageObjectPipelineFilter>(builder =>
+            multipleServerHostBuilder.AddServer<IMessage, MessageObjectPipelineFilter>(builder =>
             {
-                builder.ConfigureSuperSocket(ConfigureSuperSocket)
-                       .UseClearIdleSession()
-                       .UsePackageDecoder<TMessageDecoderHandler>()
-                       .UsePackageEncoder<TMessageEncoderHandler>()
-                       .UseSessionHandler(OnConnected, OnDisconnected)
-                       .UsePackageHandler(PackageHandler, PackageErrorHandler)
-                       .UseInProcSessionContainer();
+                builder
+                    .UseClearIdleSession()
+                    .UsePackageDecoder<TMessageDecoderHandler>()
+                    .UseSessionHandler(OnConnected, OnDisconnected)
+                    .UsePackageHandler(PackageHandler, PackageErrorHandler)
+                    .UseInProcSessionContainer()
+                    .ConfigureServices((context, serviceCollection) =>
+                    {
+                        serviceCollection.Configure<ServerOptions>(options =>
+                        {
+                            var listenOptions = new ListenOptions()
+                            {
+                                Ip = "Any",
+                                Port = Setting.InnerPort,
+                            };
+                            options.AddListener(listenOptions);
+                        });
+                    });
             });
             LogHelper.InfoConsole($"启动 [TCP] 服务器启动完成 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}");
         }
@@ -220,11 +229,23 @@ public abstract partial class AppStartUpBase
             LogHelper.InfoConsole("启动 [WebSocket] 服务器...");
 
             // 配置并启动WebSocket服务器
-            hostBuilder.AddWebSocketServer(builder =>
+            multipleServerHostBuilder.AddWebSocketServer(builder =>
             {
-                builder.ConfigureSuperSocket(ConfigureWebServer)
-                       .UseWebSocketMessageHandler(WebSocketMessageHandler)
-                       .UseSessionHandler(OnConnected, OnDisconnected);
+                builder
+                    .UseWebSocketMessageHandler(WebSocketMessageHandler)
+                    .UseSessionHandler(OnConnected, OnDisconnected)
+                    .ConfigureServices((context, serviceCollection) =>
+                    {
+                        serviceCollection.Configure<ServerOptions>(options =>
+                        {
+                            var listenOptions = new ListenOptions()
+                            {
+                                Ip = "Any",
+                                Port = Setting.WsPort,
+                            };
+                            options.AddListener(listenOptions);
+                        });
+                    });
             });
             LogHelper.InfoConsole($"启动 [WebSocket] 服务器启动完成 - 类型: {ServerType}, 端口: {Setting.WsPort}");
         }
@@ -233,10 +254,11 @@ public abstract partial class AppStartUpBase
             LogHelper.WarnConsole($"启动 [WebSocket] 服务器启动失败 - 类型: {ServerType}, 端口: {Setting.WsPort}, 原因: 端口无效或已被占用");
         }
 
+        // await StartHttpServerAsync(hostBuilder,baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
         await StartHttpServer(baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
 
         // 配置日志
-        hostBuilder.ConfigureLogging(logging =>
+        multipleServerHostBuilder.ConfigureLogging(logging =>
         {
             logging.ClearProviders();
             logging.AddSerilog(Log.Logger, true);
@@ -244,7 +266,7 @@ public abstract partial class AppStartUpBase
         });
 
         // 配置监控和跟踪
-        hostBuilder.ConfigureServices(services =>
+        multipleServerHostBuilder.ConfigureServices(services =>
         {
             services.AddOpenTelemetry()
                     .ConfigureResource(configure => { configure.AddService(Setting.ServerName + "-" + Setting.TagName, "GameFrameX").AddTelemetrySdk(); })
@@ -256,14 +278,7 @@ public abstract partial class AppStartUpBase
         });
 
         // 构建并启动服务器
-        _gameServer = hostBuilder.BuildAsServer();
-
-        var messageEncoderHandler = (IMessageEncoderHandler)_gameServer.ServiceProvider.GetService<IPackageEncoder<IMessage>>();
-        var messageDecoderHandler = (IMessageDecoderHandler)_gameServer.ServiceProvider.GetService<IPackageDecoder<IMessage>>();
-
-        MessageDecoderHandler = messageDecoderHandler;
-        MessageEncoderHandler = messageEncoderHandler;
-
+        _gameServer = multipleServerHostBuilder.Build();
         await _gameServer.StartAsync();
     }
 
