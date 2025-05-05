@@ -433,18 +433,19 @@ internal sealed class HotfixModule
     /// <returns>TCP处理器实例。</returns>
     internal BaseMessageHandler GetTcpHandler(int msgId)
     {
-        if (_tcpHandlerMap.TryGetValue(msgId, out var handlerType))
+        if (!_tcpHandlerMap.TryGetValue(msgId, out var handlerType))
         {
-            var instance = Activator.CreateInstance(handlerType);
-            if (instance is BaseMessageHandler handler)
-            {
-                return handler;
-            }
-
-            throw new Exception($"错误的TCP处理器类型，{instance.GetType().FullName}");
+            return default;
         }
 
-        return null;
+        var instance = Activator.CreateInstance(handlerType);
+        if (instance is BaseMessageHandler handler)
+        {
+            return handler;
+        }
+
+        throw new Exception($"错误的TCP处理器类型，{instance.GetType().FullName}");
+
         //throw new HandlerNotFoundException($"消息ID：{msgId}");
     }
 
@@ -526,17 +527,16 @@ internal sealed class HotfixModule
     /// 查找事件监听者。
     /// </summary>
     /// <param name="actorType">角色类型。</param>
-    /// <param name="evtId">事件ID。</param>
+    /// <param name="eventId">事件ID。</param>
     /// <returns>事件监听者列表。</returns>
-    internal List<IEventListener> FindListeners(ushort actorType, int evtId)
+    internal List<IEventListener> FindListeners(ushort actorType, int eventId)
     {
-        if (_actorEvtListeners.TryGetValue(actorType, out var evtListeners)
-            && evtListeners.TryGetValue(evtId, out var listeners))
+        if (_actorEvtListeners.TryGetValue(actorType, out var eventListeners) && eventListeners.TryGetValue(eventId, out var listeners))
         {
             return listeners;
         }
 
-        return null;
+        return default;
     }
 
     /// <summary>
