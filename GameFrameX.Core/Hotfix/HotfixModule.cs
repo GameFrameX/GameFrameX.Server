@@ -45,17 +45,17 @@ internal sealed class HotfixModule
     /// <summary>
     /// HTTP命令到处理器的映射。
     /// </summary>
-    private readonly Dictionary<string, BaseHttpHandler> _httpHandlerMap = new Dictionary<string, BaseHttpHandler>(512);
+    private readonly ConcurrentDictionary<string, BaseHttpHandler> _httpHandlerMap = new ConcurrentDictionary<string, BaseHttpHandler>();
 
     /// <summary>
     /// RPC请求类型到响应类型的映射。
     /// </summary>
-    private readonly Dictionary<Type, Type> _rpcHandlerMap = new Dictionary<Type, Type>(512);
+    private readonly ConcurrentDictionary<Type, Type> _rpcHandlerMap = new ConcurrentDictionary<Type, Type>();
 
     /// <summary>
     /// 消息ID到处理器类型的映射。
     /// </summary>
-    private readonly Dictionary<int, Type> _tcpHandlerMap = new Dictionary<int, Type>(512);
+    private readonly ConcurrentDictionary<int, Type> _tcpHandlerMap = new ConcurrentDictionary<int, Type>();
 
     /// <summary>
     /// 消息处理类型列表
@@ -271,7 +271,7 @@ internal sealed class HotfixModule
             return false;
         }
 
-        _rpcHandlerMap.Add(attribute.RequestMessage.GetType(), attribute.ResponseMessage.GetType());
+        _rpcHandlerMap.TryAdd(attribute.RequestMessage.GetType(), attribute.ResponseMessage.GetType());
 
         return true;
     }
