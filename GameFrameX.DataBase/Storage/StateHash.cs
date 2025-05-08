@@ -48,7 +48,7 @@ internal sealed class StateHash
     {
         if (CacheHash.Equals(ToSaveHash))
         {
-            LogHelper.Warn($"调用AfterSaveToDB前CacheHash已经等于ToSaveHash {GetType().FullName}");
+            LogHelper.Warn($"调用AfterSaveToDB前CacheHash已经等于ToSaveHash {State.GetType().FullName}");
         }
 
         CacheHash = ToSaveHash;
