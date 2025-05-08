@@ -227,9 +227,10 @@ public class NullableDictionary<TKey, TValue> : Dictionary<NullObject<TKey>, TVa
     }
 
     /// <summary>
-    /// 从 Dictionary<TKey, TValue> 隐式转换为 NullableDictionary<TKey, TValue>
+    /// 从 Dictionary&lt;TKey, TValue&gt; 隐式转换为 NullableDictionary&lt;TKey, TValue&gt;
     /// </summary>
     /// <param name="dic">源字典</param>
+    /// <returns>转换后的 NullableDictionary 实例</returns>
     public static implicit operator NullableDictionary<TKey, TValue>(Dictionary<TKey, TValue> dic)
     {
         var nullableDictionary = new NullableDictionary<TKey, TValue>();
@@ -242,7 +243,7 @@ public class NullableDictionary<TKey, TValue> : Dictionary<NullObject<TKey>, TVa
     }
 
     /// <summary>
-    /// 从 ConcurrentDictionary<TKey, TValue> 隐式转换为 NullableDictionary<TKey, TValue>
+    /// 从 ConcurrentDictionary&lt;TKey, TValue&gt; 隐式转换为 NullableDictionary&lt;TKey, TValue&gt;
     /// </summary>
     /// <param name="dic">源字典</param>
     public static implicit operator NullableDictionary<TKey, TValue>(ConcurrentDictionary<TKey, TValue> dic)
@@ -257,7 +258,7 @@ public class NullableDictionary<TKey, TValue> : Dictionary<NullObject<TKey>, TVa
     }
 
     /// <summary>
-    /// 从 NullableDictionary<TKey, TValue> 隐式转换为 Dictionary<TKey, TValue>
+    /// 从 NullableDictionary{TKey, TValue} 隐式转换为 Dictionary{TKey, TValue}
     /// </summary>
     /// <param name="dic">源字典</param>
     public static implicit operator Dictionary<TKey, TValue>(NullableDictionary<TKey, TValue> dic)

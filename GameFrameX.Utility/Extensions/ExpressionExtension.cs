@@ -115,7 +115,7 @@ public static class ExpressionExtension
     /// <returns>一个新的表达式，表示输入表达式的逻辑非运算结果。</returns>
     /// <exception cref="ArgumentNullException">当 expr 为 null 时抛出。</exception>
     /// <remarks>
-    /// 例如，如果输入表达式为 x => x > 5，则输出表达式为 x => !(x > 5)，等价于 x => x <= 5。
+    /// 如果输入表达式为 x => x > 5，则输出表达式为 x => !(x > 5)，等价于 x => x &lt;= 5。
     /// </remarks>
     public static Expression<Func<T, bool>> Not<T>(this Expression<Func<T, bool>> expr)
     {

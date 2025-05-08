@@ -5,7 +5,7 @@ using System.Text;
 namespace GameFrameX.Utility.Extensions;
 
 /// <summary>
-/// 提供对Span<byte>的扩展方法，用于高效地读写基本数据类型。
+/// 提供对Span&lt;byte&gt;的扩展方法，用于高效地读写基本数据类型。
 /// </summary>
 public static class SpanExtension
 {

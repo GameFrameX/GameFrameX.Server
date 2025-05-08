@@ -120,7 +120,7 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// <summary>
     /// 发送异步工作指令到Actor
     /// </summary>
-    /// <param name="work">要执行的异步工作内容，以Func<Task>委托形式传入</param>
+    /// <param name="work">要执行的异步工作内容，以 Func&lt;Task&gt; 委托形式传入</param>
     /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为int.MaxValue</param>
     /// <param name="cancellationToken">取消令牌，用于取消正在执行的操作</param>
     public void Tell(Func<Task> work, int timeout = int.MaxValue, CancellationToken cancellationToken = default)
@@ -144,10 +144,10 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// 异步发送有返回值的工作指令到Actor
     /// </summary>
     /// <typeparam name="T">返回结果的类型</typeparam>
-    /// <param name="work">要执行的工作内容，以Func<T>委托形式传入</param>
+    /// <param name="work">要执行的工作内容，以Func&lt;T&gt;委托形式传入</param>
     /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为int.MaxValue</param>
     /// <param name="cancellationToken">取消令牌，用于取消正在执行的操作</param>
-    /// <returns>包含执行结果的Task<T>对象</returns>
+    /// <returns>包含执行结果的 Task&lt;T&gt; 对象</returns>
     public Task<T> SendAsync<T>(Func<T> work, int timeout = int.MaxValue, CancellationToken cancellationToken = default)
     {
         return Actor.SendAsync(work, timeout, cancellationToken);
@@ -156,7 +156,7 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// <summary>
     /// 异步发送有返回值的工作指令到Actor，支持锁检查
     /// </summary>
-    /// <param name="work">要执行的异步工作内容，以Func<Task>委托形式传入</param>
+    /// <param name="work">要执行的异步工作内容，以Func&lt;Task&gt;委托形式传入</param>
     /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为int.MaxValue</param>
     /// <param name="checkLock">是否检查Actor的锁状态，默认为true</param>
     /// <param name="cancellationToken">取消令牌，用于取消正在执行的操作</param>
@@ -170,10 +170,10 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// 异步发送有返回值的工作指令到Actor
     /// </summary>
     /// <typeparam name="T">返回结果的类型</typeparam>
-    /// <param name="work">要执行的异步工作内容，以Func<Task<T>>委托形式传入</param>
+    /// <param name="work">要执行的异步工作内容，以Func&lt;Task&lt;T&gt;&gt;委托形式传入</param>
     /// <param name="timeOut">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为int.MaxValue</param>
     /// <param name="cancellationToken">取消令牌，用于取消正在执行的操作</param>
-    /// <returns>包含执行结果的Task<T>对象</returns>
+    /// <returns>包含执行结果的 Task&lt;T&gt; 对象</returns>
     public Task<T> SendAsync<T>(Func<Task<T>> work, int timeOut = int.MaxValue, CancellationToken cancellationToken = default)
     {
         return Actor.SendAsync(work, timeOut, cancellationToken);
