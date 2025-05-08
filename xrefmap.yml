@@ -2924,6 +2924,15 @@ references:
   fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).Get(Integer)
   nameWithType: BaseDataTable<T>.Get(int)
   nameWithType.vb: BaseDataTable(Of T).Get(Integer)
+- uid: GameFrameX.Core.Config.BaseDataTable`1.Get(System.Int64)
+  name: Get(long)
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_Get_System_Int64_
+  commentId: M:GameFrameX.Core.Config.BaseDataTable`1.Get(System.Int64)
+  name.vb: Get(Long)
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.Get(long)
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).Get(Long)
+  nameWithType: BaseDataTable<T>.Get(long)
+  nameWithType.vb: BaseDataTable(Of T).Get(Long)
 - uid: GameFrameX.Core.Config.BaseDataTable`1.Get(System.String)
   name: Get(string)
   href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_Get_System_String_
@@ -2951,6 +2960,15 @@ references:
   fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).this[](Integer)
   nameWithType: BaseDataTable<T>.this[int]
   nameWithType.vb: BaseDataTable(Of T).this[](Integer)
+- uid: GameFrameX.Core.Config.BaseDataTable`1.Item(System.Int64)
+  name: this[long]
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_Item_System_Int64_
+  commentId: P:GameFrameX.Core.Config.BaseDataTable`1.Item(System.Int64)
+  name.vb: this[](Long)
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.this[long]
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).this[](Long)
+  nameWithType: BaseDataTable<T>.this[long]
+  nameWithType.vb: BaseDataTable(Of T).this[](Long)
 - uid: GameFrameX.Core.Config.BaseDataTable`1.Item(System.String)
   name: this[string]
   href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_Item_System_String_
@@ -8501,54 +8519,6 @@ references:
   commentId: T:GameFrameX.NetWork.HTTP.HttpMessageResponseBase
   fullName: GameFrameX.NetWork.HTTP.HttpMessageResponseBase
   nameWithType: HttpMessageResponseBase
-- uid: GameFrameX.NetWork.HTTP.HttpServer
-  name: HttpServer
-  href: api/GameFrameX.NetWork.HTTP.HttpServer.html
-  commentId: T:GameFrameX.NetWork.HTTP.HttpServer
-  fullName: GameFrameX.NetWork.HTTP.HttpServer
-  nameWithType: HttpServer
-- uid: GameFrameX.NetWork.HTTP.HttpServer.ApiRootPath
-  name: ApiRootPath
-  href: api/GameFrameX.NetWork.HTTP.HttpServer.html#GameFrameX_NetWork_HTTP_HttpServer_ApiRootPath
-  commentId: P:GameFrameX.NetWork.HTTP.HttpServer.ApiRootPath
-  fullName: GameFrameX.NetWork.HTTP.HttpServer.ApiRootPath
-  nameWithType: HttpServer.ApiRootPath
-- uid: GameFrameX.NetWork.HTTP.HttpServer.ApiRootPath*
-  name: ApiRootPath
-  href: api/GameFrameX.NetWork.HTTP.HttpServer.html#GameFrameX_NetWork_HTTP_HttpServer_ApiRootPath_
-  commentId: Overload:GameFrameX.NetWork.HTTP.HttpServer.ApiRootPath
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.HTTP.HttpServer.ApiRootPath
-  nameWithType: HttpServer.ApiRootPath
-- uid: GameFrameX.NetWork.HTTP.HttpServer.Start(System.Int32,System.Int32,System.Collections.Generic.List{GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Func{System.String,GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Collections.Generic.List{GameFrameX.NetWork.HTTP.IHttpAopHandler},System.String,Microsoft.Extensions.Logging.LogLevel,Microsoft.OpenApi.Models.OpenApiInfo,System.Boolean)
-  name: Start(int, int, List<BaseHttpHandler>, Func<string, BaseHttpHandler>, List<IHttpAopHandler>, string, LogLevel, OpenApiInfo, bool)
-  href: api/GameFrameX.NetWork.HTTP.HttpServer.html#GameFrameX_NetWork_HTTP_HttpServer_Start_System_Int32_System_Int32_System_Collections_Generic_List_GameFrameX_NetWork_HTTP_BaseHttpHandler__System_Func_System_String_GameFrameX_NetWork_HTTP_BaseHttpHandler__System_Collections_Generic_List_GameFrameX_NetWork_HTTP_IHttpAopHandler__System_String_Microsoft_Extensions_Logging_LogLevel_Microsoft_OpenApi_Models_OpenApiInfo_System_Boolean_
-  commentId: M:GameFrameX.NetWork.HTTP.HttpServer.Start(System.Int32,System.Int32,System.Collections.Generic.List{GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Func{System.String,GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Collections.Generic.List{GameFrameX.NetWork.HTTP.IHttpAopHandler},System.String,Microsoft.Extensions.Logging.LogLevel,Microsoft.OpenApi.Models.OpenApiInfo,System.Boolean)
-  name.vb: Start(Integer, Integer, List(Of BaseHttpHandler), Func(Of String, BaseHttpHandler), List(Of IHttpAopHandler), String, LogLevel, OpenApiInfo, Boolean)
-  fullName: GameFrameX.NetWork.HTTP.HttpServer.Start(int, int, System.Collections.Generic.List<GameFrameX.NetWork.HTTP.BaseHttpHandler>, System.Func<string, GameFrameX.NetWork.HTTP.BaseHttpHandler>, System.Collections.Generic.List<GameFrameX.NetWork.HTTP.IHttpAopHandler>, string, Microsoft.Extensions.Logging.LogLevel, Microsoft.OpenApi.Models.OpenApiInfo, bool)
-  fullName.vb: GameFrameX.NetWork.HTTP.HttpServer.Start(Integer, Integer, System.Collections.Generic.List(Of GameFrameX.NetWork.HTTP.BaseHttpHandler), System.Func(Of String, GameFrameX.NetWork.HTTP.BaseHttpHandler), System.Collections.Generic.List(Of GameFrameX.NetWork.HTTP.IHttpAopHandler), String, Microsoft.Extensions.Logging.LogLevel, Microsoft.OpenApi.Models.OpenApiInfo, Boolean)
-  nameWithType: HttpServer.Start(int, int, List<BaseHttpHandler>, Func<string, BaseHttpHandler>, List<IHttpAopHandler>, string, LogLevel, OpenApiInfo, bool)
-  nameWithType.vb: HttpServer.Start(Integer, Integer, List(Of BaseHttpHandler), Func(Of String, BaseHttpHandler), List(Of IHttpAopHandler), String, LogLevel, OpenApiInfo, Boolean)
-- uid: GameFrameX.NetWork.HTTP.HttpServer.Start*
-  name: Start
-  href: api/GameFrameX.NetWork.HTTP.HttpServer.html#GameFrameX_NetWork_HTTP_HttpServer_Start_
-  commentId: Overload:GameFrameX.NetWork.HTTP.HttpServer.Start
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.HTTP.HttpServer.Start
-  nameWithType: HttpServer.Start
-- uid: GameFrameX.NetWork.HTTP.HttpServer.Stop
-  name: Stop()
-  href: api/GameFrameX.NetWork.HTTP.HttpServer.html#GameFrameX_NetWork_HTTP_HttpServer_Stop
-  commentId: M:GameFrameX.NetWork.HTTP.HttpServer.Stop
-  fullName: GameFrameX.NetWork.HTTP.HttpServer.Stop()
-  nameWithType: HttpServer.Stop()
-- uid: GameFrameX.NetWork.HTTP.HttpServer.Stop*
-  name: Stop
-  href: api/GameFrameX.NetWork.HTTP.HttpServer.html#GameFrameX_NetWork_HTTP_HttpServer_Stop_
-  commentId: Overload:GameFrameX.NetWork.HTTP.HttpServer.Stop
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.HTTP.HttpServer.Stop
-  nameWithType: HttpServer.Stop
 - uid: GameFrameX.NetWork.HTTP.HttpStatusCode
   name: HttpStatusCode
   href: api/GameFrameX.NetWork.HTTP.HttpStatusCode.html
@@ -11275,6 +11245,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.AppStartUpBase.AppExitToken
   nameWithType: AppStartUpBase.AppExitToken
+- uid: GameFrameX.StartUp.AppStartUpBase.ConfigureHttp(GameFrameX.SuperSocket.Server.Abstractions.ServerOptions)
+  name: ConfigureHttp(ServerOptions)
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_ConfigureHttp_GameFrameX_SuperSocket_Server_Abstractions_ServerOptions_
+  commentId: M:GameFrameX.StartUp.AppStartUpBase.ConfigureHttp(GameFrameX.SuperSocket.Server.Abstractions.ServerOptions)
+  fullName: GameFrameX.StartUp.AppStartUpBase.ConfigureHttp(GameFrameX.SuperSocket.Server.Abstractions.ServerOptions)
+  nameWithType: AppStartUpBase.ConfigureHttp(ServerOptions)
+- uid: GameFrameX.StartUp.AppStartUpBase.ConfigureHttp*
+  name: ConfigureHttp
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_ConfigureHttp_
+  commentId: Overload:GameFrameX.StartUp.AppStartUpBase.ConfigureHttp
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.AppStartUpBase.ConfigureHttp
+  nameWithType: AppStartUpBase.ConfigureHttp
 - uid: GameFrameX.StartUp.AppStartUpBase.ConfigureSuperSocket(GameFrameX.SuperSocket.Server.Abstractions.ServerOptions)
   name: ConfigureSuperSocket(ServerOptions)
   href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_ConfigureSuperSocket_GameFrameX_SuperSocket_Server_Abstractions_ServerOptions_
@@ -11326,19 +11309,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler
   nameWithType: AppStartUpBase.InvokeMessageHandler
-- uid: GameFrameX.StartUp.AppStartUpBase.ListenOptions
-  name: ListenOptions
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_ListenOptions
-  commentId: P:GameFrameX.StartUp.AppStartUpBase.ListenOptions
-  fullName: GameFrameX.StartUp.AppStartUpBase.ListenOptions
-  nameWithType: AppStartUpBase.ListenOptions
-- uid: GameFrameX.StartUp.AppStartUpBase.ListenOptions*
-  name: ListenOptions
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_ListenOptions_
-  commentId: Overload:GameFrameX.StartUp.AppStartUpBase.ListenOptions
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.AppStartUpBase.ListenOptions
-  nameWithType: AppStartUpBase.ListenOptions
 - uid: GameFrameX.StartUp.AppStartUpBase.MessageDecoderHandler
   name: MessageDecoderHandler
   href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_MessageDecoderHandler
@@ -11466,28 +11436,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.AppStartUpBase.StartServerAsync
   nameWithType: AppStartUpBase.StartServerAsync
-- uid: GameFrameX.StartUp.AppStartUpBase.StartServerAsync``2(GameFrameX.NetWork.Abstractions.IMessageCompressHandler,GameFrameX.NetWork.Abstractions.IMessageDecompressHandler)
-  name: StartServerAsync<TMessageDecoderHandler, TMessageEncoderHandler>(IMessageCompressHandler, IMessageDecompressHandler)
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_StartServerAsync__2_GameFrameX_NetWork_Abstractions_IMessageCompressHandler_GameFrameX_NetWork_Abstractions_IMessageDecompressHandler_
-  commentId: M:GameFrameX.StartUp.AppStartUpBase.StartServerAsync``2(GameFrameX.NetWork.Abstractions.IMessageCompressHandler,GameFrameX.NetWork.Abstractions.IMessageDecompressHandler)
-  name.vb: StartServerAsync(Of TMessageDecoderHandler, TMessageEncoderHandler)(IMessageCompressHandler, IMessageDecompressHandler)
-  fullName: GameFrameX.StartUp.AppStartUpBase.StartServerAsync<TMessageDecoderHandler, TMessageEncoderHandler>(GameFrameX.NetWork.Abstractions.IMessageCompressHandler, GameFrameX.NetWork.Abstractions.IMessageDecompressHandler)
-  fullName.vb: GameFrameX.StartUp.AppStartUpBase.StartServerAsync(Of TMessageDecoderHandler, TMessageEncoderHandler)(GameFrameX.NetWork.Abstractions.IMessageCompressHandler, GameFrameX.NetWork.Abstractions.IMessageDecompressHandler)
-  nameWithType: AppStartUpBase.StartServerAsync<TMessageDecoderHandler, TMessageEncoderHandler>(IMessageCompressHandler, IMessageDecompressHandler)
-  nameWithType.vb: AppStartUpBase.StartServerAsync(Of TMessageDecoderHandler, TMessageEncoderHandler)(IMessageCompressHandler, IMessageDecompressHandler)
-- uid: GameFrameX.StartUp.AppStartUpBase.StartWebSocketServer
-  name: StartWebSocketServer()
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_StartWebSocketServer
-  commentId: M:GameFrameX.StartUp.AppStartUpBase.StartWebSocketServer
-  fullName: GameFrameX.StartUp.AppStartUpBase.StartWebSocketServer()
-  nameWithType: AppStartUpBase.StartWebSocketServer()
-- uid: GameFrameX.StartUp.AppStartUpBase.StartWebSocketServer*
-  name: StartWebSocketServer
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_StartWebSocketServer_
-  commentId: Overload:GameFrameX.StartUp.AppStartUpBase.StartWebSocketServer
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.AppStartUpBase.StartWebSocketServer
-  nameWithType: AppStartUpBase.StartWebSocketServer
+- uid: GameFrameX.StartUp.AppStartUpBase.StartServerAsync``2(GameFrameX.NetWork.Abstractions.IMessageCompressHandler,GameFrameX.NetWork.Abstractions.IMessageDecompressHandler,System.Collections.Generic.List{GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Func{System.String,GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Collections.Generic.List{GameFrameX.NetWork.HTTP.IHttpAopHandler},Microsoft.Extensions.Logging.LogLevel)
+  name: StartServerAsync<TMessageDecoderHandler, TMessageEncoderHandler>(IMessageCompressHandler, IMessageDecompressHandler, List<BaseHttpHandler>, Func<string, BaseHttpHandler>, List<IHttpAopHandler>, LogLevel)
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_StartServerAsync__2_GameFrameX_NetWork_Abstractions_IMessageCompressHandler_GameFrameX_NetWork_Abstractions_IMessageDecompressHandler_System_Collections_Generic_List_GameFrameX_NetWork_HTTP_BaseHttpHandler__System_Func_System_String_GameFrameX_NetWork_HTTP_BaseHttpHandler__System_Collections_Generic_List_GameFrameX_NetWork_HTTP_IHttpAopHandler__Microsoft_Extensions_Logging_LogLevel_
+  commentId: M:GameFrameX.StartUp.AppStartUpBase.StartServerAsync``2(GameFrameX.NetWork.Abstractions.IMessageCompressHandler,GameFrameX.NetWork.Abstractions.IMessageDecompressHandler,System.Collections.Generic.List{GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Func{System.String,GameFrameX.NetWork.HTTP.BaseHttpHandler},System.Collections.Generic.List{GameFrameX.NetWork.HTTP.IHttpAopHandler},Microsoft.Extensions.Logging.LogLevel)
+  name.vb: StartServerAsync(Of TMessageDecoderHandler, TMessageEncoderHandler)(IMessageCompressHandler, IMessageDecompressHandler, List(Of BaseHttpHandler), Func(Of String, BaseHttpHandler), List(Of IHttpAopHandler), LogLevel)
+  fullName: GameFrameX.StartUp.AppStartUpBase.StartServerAsync<TMessageDecoderHandler, TMessageEncoderHandler>(GameFrameX.NetWork.Abstractions.IMessageCompressHandler, GameFrameX.NetWork.Abstractions.IMessageDecompressHandler, System.Collections.Generic.List<GameFrameX.NetWork.HTTP.BaseHttpHandler>, System.Func<string, GameFrameX.NetWork.HTTP.BaseHttpHandler>, System.Collections.Generic.List<GameFrameX.NetWork.HTTP.IHttpAopHandler>, Microsoft.Extensions.Logging.LogLevel)
+  fullName.vb: GameFrameX.StartUp.AppStartUpBase.StartServerAsync(Of TMessageDecoderHandler, TMessageEncoderHandler)(GameFrameX.NetWork.Abstractions.IMessageCompressHandler, GameFrameX.NetWork.Abstractions.IMessageDecompressHandler, System.Collections.Generic.List(Of GameFrameX.NetWork.HTTP.BaseHttpHandler), System.Func(Of String, GameFrameX.NetWork.HTTP.BaseHttpHandler), System.Collections.Generic.List(Of GameFrameX.NetWork.HTTP.IHttpAopHandler), Microsoft.Extensions.Logging.LogLevel)
+  nameWithType: AppStartUpBase.StartServerAsync<TMessageDecoderHandler, TMessageEncoderHandler>(IMessageCompressHandler, IMessageDecompressHandler, List<BaseHttpHandler>, Func<string, BaseHttpHandler>, List<IHttpAopHandler>, LogLevel)
+  nameWithType.vb: AppStartUpBase.StartServerAsync(Of TMessageDecoderHandler, TMessageEncoderHandler)(IMessageCompressHandler, IMessageDecompressHandler, List(Of BaseHttpHandler), Func(Of String, BaseHttpHandler), List(Of IHttpAopHandler), LogLevel)
 - uid: GameFrameX.StartUp.AppStartUpBase.StopAsync(System.String)
   name: StopAsync(string)
   href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_StopAsync_System_String_
@@ -11504,19 +11461,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.AppStartUpBase.StopAsync
   nameWithType: AppStartUpBase.StopAsync
-- uid: GameFrameX.StartUp.AppStartUpBase.StopServer
-  name: StopServer()
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_StopServer
-  commentId: M:GameFrameX.StartUp.AppStartUpBase.StopServer
-  fullName: GameFrameX.StartUp.AppStartUpBase.StopServer()
-  nameWithType: AppStartUpBase.StopServer()
-- uid: GameFrameX.StartUp.AppStartUpBase.StopServer*
-  name: StopServer
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_StopServer_
-  commentId: Overload:GameFrameX.StartUp.AppStartUpBase.StopServer
+- uid: GameFrameX.StartUp.AppStartUpBase.StopServerAsync
+  name: StopServerAsync()
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_StopServerAsync
+  commentId: M:GameFrameX.StartUp.AppStartUpBase.StopServerAsync
+  fullName: GameFrameX.StartUp.AppStartUpBase.StopServerAsync()
+  nameWithType: AppStartUpBase.StopServerAsync()
+- uid: GameFrameX.StartUp.AppStartUpBase.StopServerAsync*
+  name: StopServerAsync
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_StopServerAsync_
+  commentId: Overload:GameFrameX.StartUp.AppStartUpBase.StopServerAsync
   isSpec: "True"
-  fullName: GameFrameX.StartUp.AppStartUpBase.StopServer
-  nameWithType: AppStartUpBase.StopServer
+  fullName: GameFrameX.StartUp.AppStartUpBase.StopServerAsync
+  nameWithType: AppStartUpBase.StopServerAsync
 - uid: GameFrameX.StartUp.GameApp
   name: GameApp
   href: api/GameFrameX.StartUp.GameApp.html
@@ -11915,6 +11872,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterPort
   nameWithType: LauncherOptions.DiscoveryCenterPort
+- uid: GameFrameX.StartUp.Options.LauncherOptions.HttpIsDevelopment
+  name: HttpIsDevelopment
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_HttpIsDevelopment
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.HttpIsDevelopment
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.HttpIsDevelopment
+  nameWithType: LauncherOptions.HttpIsDevelopment
+- uid: GameFrameX.StartUp.Options.LauncherOptions.HttpIsDevelopment*
+  name: HttpIsDevelopment
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_HttpIsDevelopment_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.HttpIsDevelopment
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.HttpIsDevelopment
+  nameWithType: LauncherOptions.HttpIsDevelopment
 - uid: GameFrameX.StartUp.Options.LauncherOptions.HttpPort
   name: HttpPort
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_HttpPort
@@ -13322,44 +13292,44 @@ references:
   commentId: F:GameFrameX.Utility.BigInteger.primesBelow2000
   fullName: GameFrameX.Utility.BigInteger.primesBelow2000
   nameWithType: BigInteger.primesBelow2000
-- uid: GameFrameX.Utility.Compression
-  name: Compression
-  href: api/GameFrameX.Utility.Compression.html
-  commentId: T:GameFrameX.Utility.Compression
-  fullName: GameFrameX.Utility.Compression
-  nameWithType: Compression
-- uid: GameFrameX.Utility.Compression.Compress(System.Byte[])
+- uid: GameFrameX.Utility.CompressionHelper
+  name: CompressionHelper
+  href: api/GameFrameX.Utility.CompressionHelper.html
+  commentId: T:GameFrameX.Utility.CompressionHelper
+  fullName: GameFrameX.Utility.CompressionHelper
+  nameWithType: CompressionHelper
+- uid: GameFrameX.Utility.CompressionHelper.Compress(System.Byte[])
   name: Compress(byte[])
-  href: api/GameFrameX.Utility.Compression.html#GameFrameX_Utility_Compression_Compress_System_Byte___
-  commentId: M:GameFrameX.Utility.Compression.Compress(System.Byte[])
+  href: api/GameFrameX.Utility.CompressionHelper.html#GameFrameX_Utility_CompressionHelper_Compress_System_Byte___
+  commentId: M:GameFrameX.Utility.CompressionHelper.Compress(System.Byte[])
   name.vb: Compress(Byte())
-  fullName: GameFrameX.Utility.Compression.Compress(byte[])
-  fullName.vb: GameFrameX.Utility.Compression.Compress(Byte())
-  nameWithType: Compression.Compress(byte[])
-  nameWithType.vb: Compression.Compress(Byte())
-- uid: GameFrameX.Utility.Compression.Compress*
+  fullName: GameFrameX.Utility.CompressionHelper.Compress(byte[])
+  fullName.vb: GameFrameX.Utility.CompressionHelper.Compress(Byte())
+  nameWithType: CompressionHelper.Compress(byte[])
+  nameWithType.vb: CompressionHelper.Compress(Byte())
+- uid: GameFrameX.Utility.CompressionHelper.Compress*
   name: Compress
-  href: api/GameFrameX.Utility.Compression.html#GameFrameX_Utility_Compression_Compress_
-  commentId: Overload:GameFrameX.Utility.Compression.Compress
+  href: api/GameFrameX.Utility.CompressionHelper.html#GameFrameX_Utility_CompressionHelper_Compress_
+  commentId: Overload:GameFrameX.Utility.CompressionHelper.Compress
   isSpec: "True"
-  fullName: GameFrameX.Utility.Compression.Compress
-  nameWithType: Compression.Compress
-- uid: GameFrameX.Utility.Compression.Decompress(System.Byte[])
+  fullName: GameFrameX.Utility.CompressionHelper.Compress
+  nameWithType: CompressionHelper.Compress
+- uid: GameFrameX.Utility.CompressionHelper.Decompress(System.Byte[])
   name: Decompress(byte[])
-  href: api/GameFrameX.Utility.Compression.html#GameFrameX_Utility_Compression_Decompress_System_Byte___
-  commentId: M:GameFrameX.Utility.Compression.Decompress(System.Byte[])
+  href: api/GameFrameX.Utility.CompressionHelper.html#GameFrameX_Utility_CompressionHelper_Decompress_System_Byte___
+  commentId: M:GameFrameX.Utility.CompressionHelper.Decompress(System.Byte[])
   name.vb: Decompress(Byte())
-  fullName: GameFrameX.Utility.Compression.Decompress(byte[])
-  fullName.vb: GameFrameX.Utility.Compression.Decompress(Byte())
-  nameWithType: Compression.Decompress(byte[])
-  nameWithType.vb: Compression.Decompress(Byte())
-- uid: GameFrameX.Utility.Compression.Decompress*
+  fullName: GameFrameX.Utility.CompressionHelper.Decompress(byte[])
+  fullName.vb: GameFrameX.Utility.CompressionHelper.Decompress(Byte())
+  nameWithType: CompressionHelper.Decompress(byte[])
+  nameWithType.vb: CompressionHelper.Decompress(Byte())
+- uid: GameFrameX.Utility.CompressionHelper.Decompress*
   name: Decompress
-  href: api/GameFrameX.Utility.Compression.html#GameFrameX_Utility_Compression_Decompress_
-  commentId: Overload:GameFrameX.Utility.Compression.Decompress
+  href: api/GameFrameX.Utility.CompressionHelper.html#GameFrameX_Utility_CompressionHelper_Decompress_
+  commentId: Overload:GameFrameX.Utility.CompressionHelper.Decompress
   isSpec: "True"
-  fullName: GameFrameX.Utility.Compression.Decompress
-  nameWithType: Compression.Decompress
+  fullName: GameFrameX.Utility.CompressionHelper.Decompress
+  nameWithType: CompressionHelper.Decompress
 - uid: GameFrameX.Utility.ConsoleHelper
   name: ConsoleHelper
   href: api/GameFrameX.Utility.ConsoleHelper.html
@@ -24889,73 +24859,86 @@ references:
   commentId: F:GameFrameX.Utility.Math.FPVector4.zero
   fullName: GameFrameX.Utility.Math.FPVector4.zero
   nameWithType: FPVector4.zero
-- uid: GameFrameX.Utility.Net
-  name: Net
-  href: api/GameFrameX.Utility.Net.html
-  commentId: T:GameFrameX.Utility.Net
-  fullName: GameFrameX.Utility.Net
-  nameWithType: Net
-- uid: GameFrameX.Utility.Net.GetFirstAvailablePort(System.Int32,System.Int32)
+- uid: GameFrameX.Utility.NetHelper
+  name: NetHelper
+  href: api/GameFrameX.Utility.NetHelper.html
+  commentId: T:GameFrameX.Utility.NetHelper
+  fullName: GameFrameX.Utility.NetHelper
+  nameWithType: NetHelper
+- uid: GameFrameX.Utility.NetHelper.GetFirstAvailablePort(System.Int32,System.Int32)
   name: GetFirstAvailablePort(int, int)
-  href: api/GameFrameX.Utility.Net.html#GameFrameX_Utility_Net_GetFirstAvailablePort_System_Int32_System_Int32_
-  commentId: M:GameFrameX.Utility.Net.GetFirstAvailablePort(System.Int32,System.Int32)
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_GetFirstAvailablePort_System_Int32_System_Int32_
+  commentId: M:GameFrameX.Utility.NetHelper.GetFirstAvailablePort(System.Int32,System.Int32)
   name.vb: GetFirstAvailablePort(Integer, Integer)
-  fullName: GameFrameX.Utility.Net.GetFirstAvailablePort(int, int)
-  fullName.vb: GameFrameX.Utility.Net.GetFirstAvailablePort(Integer, Integer)
-  nameWithType: Net.GetFirstAvailablePort(int, int)
-  nameWithType.vb: Net.GetFirstAvailablePort(Integer, Integer)
-- uid: GameFrameX.Utility.Net.GetFirstAvailablePort*
+  fullName: GameFrameX.Utility.NetHelper.GetFirstAvailablePort(int, int)
+  fullName.vb: GameFrameX.Utility.NetHelper.GetFirstAvailablePort(Integer, Integer)
+  nameWithType: NetHelper.GetFirstAvailablePort(int, int)
+  nameWithType.vb: NetHelper.GetFirstAvailablePort(Integer, Integer)
+- uid: GameFrameX.Utility.NetHelper.GetFirstAvailablePort*
   name: GetFirstAvailablePort
-  href: api/GameFrameX.Utility.Net.html#GameFrameX_Utility_Net_GetFirstAvailablePort_
-  commentId: Overload:GameFrameX.Utility.Net.GetFirstAvailablePort
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_GetFirstAvailablePort_
+  commentId: Overload:GameFrameX.Utility.NetHelper.GetFirstAvailablePort
   isSpec: "True"
-  fullName: GameFrameX.Utility.Net.GetFirstAvailablePort
-  nameWithType: Net.GetFirstAvailablePort
-- uid: GameFrameX.Utility.Net.IsValidIpAddress(System.String,System.Net.IPAddress@)
+  fullName: GameFrameX.Utility.NetHelper.GetFirstAvailablePort
+  nameWithType: NetHelper.GetFirstAvailablePort
+- uid: GameFrameX.Utility.NetHelper.GetLocalIpList(System.Net.Sockets.AddressFamily)
+  name: GetLocalIpList(AddressFamily)
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_GetLocalIpList_System_Net_Sockets_AddressFamily_
+  commentId: M:GameFrameX.Utility.NetHelper.GetLocalIpList(System.Net.Sockets.AddressFamily)
+  fullName: GameFrameX.Utility.NetHelper.GetLocalIpList(System.Net.Sockets.AddressFamily)
+  nameWithType: NetHelper.GetLocalIpList(AddressFamily)
+- uid: GameFrameX.Utility.NetHelper.GetLocalIpList*
+  name: GetLocalIpList
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_GetLocalIpList_
+  commentId: Overload:GameFrameX.Utility.NetHelper.GetLocalIpList
+  isSpec: "True"
+  fullName: GameFrameX.Utility.NetHelper.GetLocalIpList
+  nameWithType: NetHelper.GetLocalIpList
+- uid: GameFrameX.Utility.NetHelper.IsValidIpAddress(System.String,System.Net.IPAddress@)
   name: IsValidIpAddress(string, out IPAddress)
-  href: api/GameFrameX.Utility.Net.html#GameFrameX_Utility_Net_IsValidIpAddress_System_String_System_Net_IPAddress__
-  commentId: M:GameFrameX.Utility.Net.IsValidIpAddress(System.String,System.Net.IPAddress@)
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_IsValidIpAddress_System_String_System_Net_IPAddress__
+  commentId: M:GameFrameX.Utility.NetHelper.IsValidIpAddress(System.String,System.Net.IPAddress@)
   name.vb: IsValidIpAddress(String, IPAddress)
-  fullName: GameFrameX.Utility.Net.IsValidIpAddress(string, out System.Net.IPAddress)
-  fullName.vb: GameFrameX.Utility.Net.IsValidIpAddress(String, System.Net.IPAddress)
-  nameWithType: Net.IsValidIpAddress(string, out IPAddress)
-  nameWithType.vb: Net.IsValidIpAddress(String, IPAddress)
-- uid: GameFrameX.Utility.Net.IsValidIpAddress*
+  fullName: GameFrameX.Utility.NetHelper.IsValidIpAddress(string, out System.Net.IPAddress)
+  fullName.vb: GameFrameX.Utility.NetHelper.IsValidIpAddress(String, System.Net.IPAddress)
+  nameWithType: NetHelper.IsValidIpAddress(string, out IPAddress)
+  nameWithType.vb: NetHelper.IsValidIpAddress(String, IPAddress)
+- uid: GameFrameX.Utility.NetHelper.IsValidIpAddress*
   name: IsValidIpAddress
-  href: api/GameFrameX.Utility.Net.html#GameFrameX_Utility_Net_IsValidIpAddress_
-  commentId: Overload:GameFrameX.Utility.Net.IsValidIpAddress
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_IsValidIpAddress_
+  commentId: Overload:GameFrameX.Utility.NetHelper.IsValidIpAddress
   isSpec: "True"
-  fullName: GameFrameX.Utility.Net.IsValidIpAddress
-  nameWithType: Net.IsValidIpAddress
-- uid: GameFrameX.Utility.Net.PortIsAvailable(System.Int32)
+  fullName: GameFrameX.Utility.NetHelper.IsValidIpAddress
+  nameWithType: NetHelper.IsValidIpAddress
+- uid: GameFrameX.Utility.NetHelper.PortIsAvailable(System.Int32)
   name: PortIsAvailable(int)
-  href: api/GameFrameX.Utility.Net.html#GameFrameX_Utility_Net_PortIsAvailable_System_Int32_
-  commentId: M:GameFrameX.Utility.Net.PortIsAvailable(System.Int32)
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_PortIsAvailable_System_Int32_
+  commentId: M:GameFrameX.Utility.NetHelper.PortIsAvailable(System.Int32)
   name.vb: PortIsAvailable(Integer)
-  fullName: GameFrameX.Utility.Net.PortIsAvailable(int)
-  fullName.vb: GameFrameX.Utility.Net.PortIsAvailable(Integer)
-  nameWithType: Net.PortIsAvailable(int)
-  nameWithType.vb: Net.PortIsAvailable(Integer)
-- uid: GameFrameX.Utility.Net.PortIsAvailable*
+  fullName: GameFrameX.Utility.NetHelper.PortIsAvailable(int)
+  fullName.vb: GameFrameX.Utility.NetHelper.PortIsAvailable(Integer)
+  nameWithType: NetHelper.PortIsAvailable(int)
+  nameWithType.vb: NetHelper.PortIsAvailable(Integer)
+- uid: GameFrameX.Utility.NetHelper.PortIsAvailable*
   name: PortIsAvailable
-  href: api/GameFrameX.Utility.Net.html#GameFrameX_Utility_Net_PortIsAvailable_
-  commentId: Overload:GameFrameX.Utility.Net.PortIsAvailable
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_PortIsAvailable_
+  commentId: Overload:GameFrameX.Utility.NetHelper.PortIsAvailable
   isSpec: "True"
-  fullName: GameFrameX.Utility.Net.PortIsAvailable
-  nameWithType: Net.PortIsAvailable
-- uid: GameFrameX.Utility.Net.PortIsUsed
+  fullName: GameFrameX.Utility.NetHelper.PortIsAvailable
+  nameWithType: NetHelper.PortIsAvailable
+- uid: GameFrameX.Utility.NetHelper.PortIsUsed
   name: PortIsUsed()
-  href: api/GameFrameX.Utility.Net.html#GameFrameX_Utility_Net_PortIsUsed
-  commentId: M:GameFrameX.Utility.Net.PortIsUsed
-  fullName: GameFrameX.Utility.Net.PortIsUsed()
-  nameWithType: Net.PortIsUsed()
-- uid: GameFrameX.Utility.Net.PortIsUsed*
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_PortIsUsed
+  commentId: M:GameFrameX.Utility.NetHelper.PortIsUsed
+  fullName: GameFrameX.Utility.NetHelper.PortIsUsed()
+  nameWithType: NetHelper.PortIsUsed()
+- uid: GameFrameX.Utility.NetHelper.PortIsUsed*
   name: PortIsUsed
-  href: api/GameFrameX.Utility.Net.html#GameFrameX_Utility_Net_PortIsUsed_
-  commentId: Overload:GameFrameX.Utility.Net.PortIsUsed
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_PortIsUsed_
+  commentId: Overload:GameFrameX.Utility.NetHelper.PortIsUsed
   isSpec: "True"
-  fullName: GameFrameX.Utility.Net.PortIsUsed
-  nameWithType: Net.PortIsUsed
+  fullName: GameFrameX.Utility.NetHelper.PortIsUsed
+  nameWithType: NetHelper.PortIsUsed
 - uid: GameFrameX.Utility.PlatformRuntimeHelper
   name: PlatformRuntimeHelper
   href: api/GameFrameX.Utility.PlatformRuntimeHelper.html
@@ -25427,6 +25410,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.DiscoveryCenterPort
   nameWithType: AppSetting.DiscoveryCenterPort
+- uid: GameFrameX.Utility.Setting.AppSetting.HttpIsDevelopment
+  name: HttpIsDevelopment
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_HttpIsDevelopment
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.HttpIsDevelopment
+  fullName: GameFrameX.Utility.Setting.AppSetting.HttpIsDevelopment
+  nameWithType: AppSetting.HttpIsDevelopment
+- uid: GameFrameX.Utility.Setting.AppSetting.HttpIsDevelopment*
+  name: HttpIsDevelopment
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_HttpIsDevelopment_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.HttpIsDevelopment
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.HttpIsDevelopment
+  nameWithType: AppSetting.HttpIsDevelopment
 - uid: GameFrameX.Utility.Setting.AppSetting.HttpPort
   name: HttpPort
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_HttpPort
@@ -26007,6 +26003,19 @@ references:
   commentId: T:GameFrameX.Utility.Setting.GlobalSettings
   fullName: GameFrameX.Utility.Setting.GlobalSettings
   nameWithType: GlobalSettings
+- uid: GameFrameX.Utility.Setting.GlobalSettings.ApiRootPath
+  name: ApiRootPath
+  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_ApiRootPath
+  commentId: P:GameFrameX.Utility.Setting.GlobalSettings.ApiRootPath
+  fullName: GameFrameX.Utility.Setting.GlobalSettings.ApiRootPath
+  nameWithType: GlobalSettings.ApiRootPath
+- uid: GameFrameX.Utility.Setting.GlobalSettings.ApiRootPath*
+  name: ApiRootPath
+  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_ApiRootPath_
+  commentId: Overload:GameFrameX.Utility.Setting.GlobalSettings.ApiRootPath
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.GlobalSettings.ApiRootPath
+  nameWithType: GlobalSettings.ApiRootPath
 - uid: GameFrameX.Utility.Setting.GlobalSettings.GetSetting*
   name: GetSetting
   href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_GetSetting_

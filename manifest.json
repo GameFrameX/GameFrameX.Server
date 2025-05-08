@@ -1720,20 +1720,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.NetWork.HTTP.HttpServer.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.NetWork.HTTP.HttpServer.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.NetWork.HTTP.HttpServer",
-      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.HTTP.HttpServer.yml\" sourcestartlinenumber=\"1\">HTTP服务器</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.NetWork.HTTP.HttpStatusCode.yml",
       "output": {
         ".html": {
@@ -2406,17 +2392,17 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.Compression.yml",
+      "source_relative_path": "api/GameFrameX.Utility.CompressionHelper.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.Utility.Compression.html"
+          "relative_path": "api/GameFrameX.Utility.CompressionHelper.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFrameX.Utility.Compression",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.Compression.yml\" sourcestartlinenumber=\"1\">压缩解压缩辅助器。</p>\n"
+      "Title": "GameFrameX.Utility.CompressionHelper",
+      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.CompressionHelper.yml\" sourcestartlinenumber=\"1\">压缩解压缩辅助器。</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2738,7 +2724,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.Utility.Extensions.SpanExtension",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.Extensions.SpanExtension.yml\" sourcestartlinenumber=\"1\">提供对Span&lt;byte&gt;的扩展方法，用于高效地读写基本数据类型。</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2994,17 +2980,17 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.Net.yml",
+      "source_relative_path": "api/GameFrameX.Utility.NetHelper.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.Utility.Net.html"
+          "relative_path": "api/GameFrameX.Utility.NetHelper.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFrameX.Utility.Net",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.Net.yml\" sourcestartlinenumber=\"1\">网络端口帮助类</p>\n"
+      "Title": "GameFrameX.Utility.NetHelper",
+      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.NetHelper.yml\" sourcestartlinenumber=\"1\">网络帮助类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3164,11 +3150,11 @@
       "type": "Toc",
       "source_relative_path": "api/toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "api/toc.html"
-        },
         ".json": {
           "relative_path": "api/toc.json"
+        },
+        ".html": {
+          "relative_path": "api/toc.html"
         }
       },
       "version": ""
@@ -3207,11 +3193,11 @@
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "toc.html"
-        },
         ".json": {
           "relative_path": "toc.json"
+        },
+        ".html": {
+          "relative_path": "toc.html"
         }
       },
       "version": ""
