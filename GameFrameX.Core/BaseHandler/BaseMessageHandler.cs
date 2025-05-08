@@ -89,14 +89,6 @@ public abstract class BaseMessageHandler : IMessageHandler
     /// <returns>动作执行任务</returns>
     protected async Task InnerActionAsync()
     {
-        if (GlobalSettings.IsDebug)
-        {
-            _stopwatch.Restart();
-            await ActionAsync();
-            _stopwatch.Stop();
-            LogHelper.Debug($"消息处理器：{GetType().Name},UniqueId：{Message.UniqueId} 执行耗时：{_stopwatch.ElapsedMilliseconds} ms");
-        }
-
         if (GlobalSettings.IsMonitorTimeOut)
         {
             _stopwatch.Restart();
@@ -106,7 +98,19 @@ public abstract class BaseMessageHandler : IMessageHandler
             {
                 LogHelper.Warn($"消息处理器：{GetType().Name},UniqueId：{Message.UniqueId} 执行耗时：{_stopwatch.ElapsedMilliseconds} ms");
             }
+
+            return;
         }
+
+        if (GlobalSettings.IsDebug)
+        {
+            _stopwatch.Restart();
+            await ActionAsync();
+            _stopwatch.Stop();
+            LogHelper.Debug($"消息处理器：{GetType().Name},UniqueId：{Message.UniqueId} 执行耗时：{_stopwatch.ElapsedMilliseconds} ms");
+            return;
+        }
+
 
         await ActionAsync();
     }
