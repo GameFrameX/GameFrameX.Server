@@ -504,7 +504,7 @@ public static class QuartzTimer
     /// <summary>
     /// 任务ID生成器的初始值,基于当前时间的Ticks
     /// </summary>
-    private static long _id = DateTime.Now.Ticks;
+    private static long _id = DateTime.UtcNow.Ticks;
 
     /// <summary>
     /// 生成下一个任务ID
