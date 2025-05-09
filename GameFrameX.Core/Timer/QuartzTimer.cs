@@ -531,19 +531,25 @@ public static class QuartzTimer
             var handlerType = context.JobDetail.JobDataMap.GetString(TimerKey);
             try
             {
-                var param = context.JobDetail.JobDataMap.Get(ParamKey) as GameEventArgs;
+                var eventArgs = context.JobDetail.JobDataMap.Get(ParamKey) as GameEventArgs;
                 var handler = HotfixManager.GetInstance<ITimerHandler>(handlerType);
                 if (handler != null)
                 {
                     var actorId = context.JobDetail.JobDataMap.GetLong(ActorIdKey);
-                    var agentType = handler.GetType().BaseType.GenericTypeArguments[0];
-                    var comp = await ActorManager.GetComponentAgent(actorId, agentType);
-                    comp.Tell(() => handler.InnerHandleTimer(comp, param));
+                    var baseType = handler.GetType().BaseType;
+                    if (baseType != null && baseType.GenericTypeArguments.Length > 0)
+                    {
+                        var agentType = baseType.GenericTypeArguments[0];
+                        var componentAgent = await ActorManager.GetComponentAgent(actorId, agentType);
+                        if (componentAgent != null)
+                        {
+                            componentAgent.Tell(() => handler.InnerHandleTimer(componentAgent, eventArgs));
+                            return;
+                        }
+                    }
                 }
-                else
-                {
-                    LogHelper.Error($"错误的ITimer类型，回调失败 type:{handlerType}");
-                }
+
+                LogHelper.Error($"错误的ITimerHandler类型，回调失败 type:{handlerType}");
             }
             catch (Exception e)
             {
