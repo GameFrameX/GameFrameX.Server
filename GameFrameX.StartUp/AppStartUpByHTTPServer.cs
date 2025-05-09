@@ -206,7 +206,7 @@ public abstract partial class AppStartUpBase
         {
             var builder = WebApplication.CreateBuilder();
 
-            var development = Setting.HttpIsDevelopment || builder.Environment.IsDevelopment();
+            var development = Setting.HttpIsDevelopment || EnvironmentHelper.IsDevelopment();
 
             var openApiInfo = GetOpenApiInfo();
             if (development)

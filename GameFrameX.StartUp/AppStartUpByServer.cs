@@ -18,6 +18,7 @@ using GameFrameX.SuperSocket.WebSocket.Server;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Extensions;
 using GameFrameX.Utility.Setting;
+using Grafana.OpenTelemetry;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -27,10 +28,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Serilog;
 using CloseReason = GameFrameX.SuperSocket.WebSocket.CloseReason;
+using Sdk = OpenTelemetry.Sdk;
 
 namespace GameFrameX.StartUp;
 
@@ -257,28 +260,67 @@ public abstract partial class AppStartUpBase
         // await StartHttpServerAsync(hostBuilder,baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
         await StartHttpServer(baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
 
+        // 配置监控和跟踪
+        multipleServerHostBuilder.ConfigureServices(services =>
+        {
+            services.AddOpenTelemetry()
+                    .ConfigureResource(configure => { configure.AddService(Setting.ServerName + "-" + Setting.TagName, "GameFrameX").AddTelemetrySdk(); })
+                    .WithMetrics(configure =>
+                    {
+                        configure.AddAspNetCoreInstrumentation();
+                        if (EnvironmentHelper.IsDevelopment())
+                        {
+                            configure.AddConsoleExporter();
+                        }
+
+                        // Metrics provides by ASP.NET Core in .NET 8
+                        configure.AddMeter("Microsoft.AspNetCore.Hosting");
+                        configure.AddMeter("Microsoft.AspNetCore.Server.Kestrel");
+                        // Metrics provided by System.Net libraries
+                        configure.AddMeter("System.Net.Http");
+                        configure.AddMeter("System.Net.NameResolution");
+                        configure.AddPrometheusExporter();
+                    })
+                    .WithTracing(configure =>
+                    {
+                        configure.AddAspNetCoreInstrumentation();
+                        configure.AddHttpClientInstrumentation();
+                        configure.AddSource("GameFrameX." + Setting.ServerName + "." + Setting.TagName);
+
+                        // if (tracingOtlpEndpoint != null)
+                        // {
+                        //     tracing.AddOtlpExporter(otlpOptions => { otlpOptions.Endpoint = new Uri(tracingOtlpEndpoint); });
+                        // }
+                        // else
+                        {
+                            if (EnvironmentHelper.IsDevelopment())
+                            {
+                                configure.AddConsoleExporter();
+                            }
+                        }
+                    }).UseGrafana();
+        });
         // 配置日志
         multipleServerHostBuilder.ConfigureLogging(logging =>
         {
             logging.ClearProviders();
             logging.AddSerilog(Log.Logger, true);
             logging.SetMinimumLevel(minimumLevelLogLevel);
+            logging.AddOpenTelemetry(configure => { configure.UseGrafana(); });
         });
 
-        // 配置监控和跟踪
-        multipleServerHostBuilder.ConfigureServices(services =>
-        {
-            services.AddOpenTelemetry()
-                    .ConfigureResource(configure => { configure.AddService(Setting.ServerName + "-" + Setting.TagName, "GameFrameX").AddTelemetrySdk(); })
-                    .WithTracing(configure =>
-                    {
-                        configure.AddAspNetCoreInstrumentation();
-                        configure.AddConsoleExporter();
-                    });
-        });
-
+        using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+                                      .UseGrafana(config =>
+                                      {
+                                          config.ServiceName = Setting.ServerName + "-" + Setting.TagName;
+                                          config.ServiceVersion = Assembly.GetCallingAssembly().ImageRuntimeVersion;
+                                          config.ServiceInstanceId = Setting.ServerId.ToString();
+                                          config.DeploymentEnvironment = EnvironmentHelper.GetEnvironmentName().IsNullOrEmpty() ? Setting.IsDebug ? "Debug" : "Release" : EnvironmentHelper.GetEnvironmentName();
+                                      })
+                                      .Build();
         // 构建并启动服务器
         _gameServer = multipleServerHostBuilder.Build();
+
         await _gameServer.StartAsync();
     }
 
