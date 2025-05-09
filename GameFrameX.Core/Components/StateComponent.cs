@@ -102,7 +102,10 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     /// </summary>
     public TState State { get; private set; }
 
-
+    /// <summary>
+    /// 判断组件是否准备好进入非激活状态
+    /// 当State为空或State未被修改时返回true,表示可以进入非激活状态
+    /// </summary>
     internal override bool ReadyToInactive
     {
         get { return State == null || !State.IsModify(); }
@@ -123,9 +126,9 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     protected virtual bool IsCreateDefaultState { get; set; } = true;
 
     /// <summary>
-    /// 准备状态
+    /// 准备并读取状态数据
     /// </summary>
-    /// <returns></returns>
+    /// <returns>异步任务</returns>
     public async Task ReadStateAsync()
     {
         try
@@ -150,9 +153,9 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     }
 
     /// <summary>
-    /// 激活组件
+    /// 激活组件，如果状态为空则读取状态数据
     /// </summary>
-    /// <returns></returns>
+    /// <returns>异步任务</returns>
     public override async Task Active()
     {
         await base.Active();
@@ -165,14 +168,19 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     }
 
     /// <summary>
-    /// 反激活组件
+    /// 反激活组件，从状态字典中移除当前Actor的状态
     /// </summary>
+    /// <returns>异步任务</returns>
     public override Task Inactive()
     {
         StateDic.TryRemove(ActorId, out _);
         return base.Inactive();
     }
 
+    /// <summary>
+    /// 保存状态到数据库
+    /// </summary>
+    /// <returns>异步任务</returns>
     internal override async Task SaveState()
     {
         try
@@ -189,24 +197,36 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     }
 
     /// <summary>
-    /// 更新状态
+    /// 异步写入状态到数据库
     /// </summary>
-    /// <returns></returns>
+    /// <returns>异步任务</returns>
     public async Task WriteStateAsync()
     {
         await SaveState();
     }
 
+    /// <summary>
+    /// 保存数据的虚方法，可被子类重写
+    /// </summary>
+    /// <returns>异步任务</returns>
+    public virtual Task SaveAsync()
+    {
+        return WriteStateAsync();
+    }
 
     #region 仅DBModel.Mongodb调用
 
+    /// <summary>
+    /// 单次批量保存的最大数量
+    /// </summary>
     private const int ONCE_SAVE_COUNT = 500;
 
     /// <summary>
-    /// 保存全部数据
+    /// 保存所有状态数据到数据库
     /// </summary>
-    /// <param name="shutdown"></param>
-    /// <param name="force"></param>
+    /// <param name="shutdown">是否为关服保存</param>
+    /// <param name="force">是否强制保存所有数据</param>
+    /// <returns>异步任务</returns>
     public static async Task SaveAll(bool shutdown, bool force = false)
     {
         var idList = new List<long>();
