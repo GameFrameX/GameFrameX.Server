@@ -2743,6 +2743,23 @@ references:
   fullName.vb: GameFrameX.Core.Components.StateComponent(Of TState).SaveAll
   nameWithType: StateComponent<TState>.SaveAll
   nameWithType.vb: StateComponent(Of TState).SaveAll
+- uid: GameFrameX.Core.Components.StateComponent`1.SaveAsync
+  name: SaveAsync()
+  href: api/GameFrameX.Core.Components.StateComponent-1.html#GameFrameX_Core_Components_StateComponent_1_SaveAsync
+  commentId: M:GameFrameX.Core.Components.StateComponent`1.SaveAsync
+  fullName: GameFrameX.Core.Components.StateComponent<TState>.SaveAsync()
+  fullName.vb: GameFrameX.Core.Components.StateComponent(Of TState).SaveAsync()
+  nameWithType: StateComponent<TState>.SaveAsync()
+  nameWithType.vb: StateComponent(Of TState).SaveAsync()
+- uid: GameFrameX.Core.Components.StateComponent`1.SaveAsync*
+  name: SaveAsync
+  href: api/GameFrameX.Core.Components.StateComponent-1.html#GameFrameX_Core_Components_StateComponent_1_SaveAsync_
+  commentId: Overload:GameFrameX.Core.Components.StateComponent`1.SaveAsync
+  isSpec: "True"
+  fullName: GameFrameX.Core.Components.StateComponent<TState>.SaveAsync
+  fullName.vb: GameFrameX.Core.Components.StateComponent(Of TState).SaveAsync
+  nameWithType: StateComponent<TState>.SaveAsync
+  nameWithType.vb: StateComponent(Of TState).SaveAsync
 - uid: GameFrameX.Core.Components.StateComponent`1.State
   name: State
   href: api/GameFrameX.Core.Components.StateComponent-1.html#GameFrameX_Core_Components_StateComponent_1_State
@@ -12028,6 +12045,45 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.IsMonitorTimeOut
   nameWithType: LauncherOptions.IsMonitorTimeOut
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetry
+  name: IsOpenTelemetry
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsOpenTelemetry
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetry
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetry
+  nameWithType: LauncherOptions.IsOpenTelemetry
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetry*
+  name: IsOpenTelemetry
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsOpenTelemetry_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetry
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetry
+  nameWithType: LauncherOptions.IsOpenTelemetry
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetryMetrics
+  name: IsOpenTelemetryMetrics
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsOpenTelemetryMetrics
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetryMetrics
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetryMetrics
+  nameWithType: LauncherOptions.IsOpenTelemetryMetrics
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetryMetrics*
+  name: IsOpenTelemetryMetrics
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsOpenTelemetryMetrics_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetryMetrics
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetryMetrics
+  nameWithType: LauncherOptions.IsOpenTelemetryMetrics
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetryTracing
+  name: IsOpenTelemetryTracing
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsOpenTelemetryTracing
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetryTracing
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetryTracing
+  nameWithType: LauncherOptions.IsOpenTelemetryTracing
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetryTracing*
+  name: IsOpenTelemetryTracing
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsOpenTelemetryTracing_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetryTracing
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetryTracing
+  nameWithType: LauncherOptions.IsOpenTelemetryTracing
 - uid: GameFrameX.StartUp.Options.LauncherOptions.Language
   name: Language
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_Language
@@ -13349,6 +13405,106 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.ConsoleHelper.ConsoleLogo
   nameWithType: ConsoleHelper.ConsoleLogo
+- uid: GameFrameX.Utility.EnvironmentHelper
+  name: EnvironmentHelper
+  href: api/GameFrameX.Utility.EnvironmentHelper.html
+  commentId: T:GameFrameX.Utility.EnvironmentHelper
+  fullName: GameFrameX.Utility.EnvironmentHelper
+  nameWithType: EnvironmentHelper
+- uid: GameFrameX.Utility.EnvironmentHelper.GetEnvironmentName
+  name: GetEnvironmentName()
+  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_GetEnvironmentName
+  commentId: M:GameFrameX.Utility.EnvironmentHelper.GetEnvironmentName
+  fullName: GameFrameX.Utility.EnvironmentHelper.GetEnvironmentName()
+  nameWithType: EnvironmentHelper.GetEnvironmentName()
+- uid: GameFrameX.Utility.EnvironmentHelper.GetEnvironmentName*
+  name: GetEnvironmentName
+  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_GetEnvironmentName_
+  commentId: Overload:GameFrameX.Utility.EnvironmentHelper.GetEnvironmentName
+  isSpec: "True"
+  fullName: GameFrameX.Utility.EnvironmentHelper.GetEnvironmentName
+  nameWithType: EnvironmentHelper.GetEnvironmentName
+- uid: GameFrameX.Utility.EnvironmentHelper.IsDevelopment
+  name: IsDevelopment()
+  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsDevelopment
+  commentId: M:GameFrameX.Utility.EnvironmentHelper.IsDevelopment
+  fullName: GameFrameX.Utility.EnvironmentHelper.IsDevelopment()
+  nameWithType: EnvironmentHelper.IsDevelopment()
+- uid: GameFrameX.Utility.EnvironmentHelper.IsDevelopment*
+  name: IsDevelopment
+  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsDevelopment_
+  commentId: Overload:GameFrameX.Utility.EnvironmentHelper.IsDevelopment
+  isSpec: "True"
+  fullName: GameFrameX.Utility.EnvironmentHelper.IsDevelopment
+  nameWithType: EnvironmentHelper.IsDevelopment
+- uid: GameFrameX.Utility.EnvironmentHelper.IsDocker
+  name: IsDocker()
+  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsDocker
+  commentId: M:GameFrameX.Utility.EnvironmentHelper.IsDocker
+  fullName: GameFrameX.Utility.EnvironmentHelper.IsDocker()
+  nameWithType: EnvironmentHelper.IsDocker()
+- uid: GameFrameX.Utility.EnvironmentHelper.IsDocker*
+  name: IsDocker
+  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsDocker_
+  commentId: Overload:GameFrameX.Utility.EnvironmentHelper.IsDocker
+  isSpec: "True"
+  fullName: GameFrameX.Utility.EnvironmentHelper.IsDocker
+  nameWithType: EnvironmentHelper.IsDocker
+- uid: GameFrameX.Utility.EnvironmentHelper.IsEnvironment(System.String)
+  name: IsEnvironment(string)
+  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsEnvironment_System_String_
+  commentId: M:GameFrameX.Utility.EnvironmentHelper.IsEnvironment(System.String)
+  name.vb: IsEnvironment(String)
+  fullName: GameFrameX.Utility.EnvironmentHelper.IsEnvironment(string)
+  fullName.vb: GameFrameX.Utility.EnvironmentHelper.IsEnvironment(String)
+  nameWithType: EnvironmentHelper.IsEnvironment(string)
+  nameWithType.vb: EnvironmentHelper.IsEnvironment(String)
+- uid: GameFrameX.Utility.EnvironmentHelper.IsEnvironment*
+  name: IsEnvironment
+  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsEnvironment_
+  commentId: Overload:GameFrameX.Utility.EnvironmentHelper.IsEnvironment
+  isSpec: "True"
+  fullName: GameFrameX.Utility.EnvironmentHelper.IsEnvironment
+  nameWithType: EnvironmentHelper.IsEnvironment
+- uid: GameFrameX.Utility.EnvironmentHelper.IsKubernetes
+  name: IsKubernetes()
+  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsKubernetes
+  commentId: M:GameFrameX.Utility.EnvironmentHelper.IsKubernetes
+  fullName: GameFrameX.Utility.EnvironmentHelper.IsKubernetes()
+  nameWithType: EnvironmentHelper.IsKubernetes()
+- uid: GameFrameX.Utility.EnvironmentHelper.IsKubernetes*
+  name: IsKubernetes
+  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsKubernetes_
+  commentId: Overload:GameFrameX.Utility.EnvironmentHelper.IsKubernetes
+  isSpec: "True"
+  fullName: GameFrameX.Utility.EnvironmentHelper.IsKubernetes
+  nameWithType: EnvironmentHelper.IsKubernetes
+- uid: GameFrameX.Utility.EnvironmentHelper.IsProduction
+  name: IsProduction()
+  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsProduction
+  commentId: M:GameFrameX.Utility.EnvironmentHelper.IsProduction
+  fullName: GameFrameX.Utility.EnvironmentHelper.IsProduction()
+  nameWithType: EnvironmentHelper.IsProduction()
+- uid: GameFrameX.Utility.EnvironmentHelper.IsProduction*
+  name: IsProduction
+  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsProduction_
+  commentId: Overload:GameFrameX.Utility.EnvironmentHelper.IsProduction
+  isSpec: "True"
+  fullName: GameFrameX.Utility.EnvironmentHelper.IsProduction
+  nameWithType: EnvironmentHelper.IsProduction
+- uid: GameFrameX.Utility.EnvironmentHelper.IsStaging
+  name: IsStaging()
+  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsStaging
+  commentId: M:GameFrameX.Utility.EnvironmentHelper.IsStaging
+  fullName: GameFrameX.Utility.EnvironmentHelper.IsStaging()
+  nameWithType: EnvironmentHelper.IsStaging()
+- uid: GameFrameX.Utility.EnvironmentHelper.IsStaging*
+  name: IsStaging
+  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsStaging_
+  commentId: Overload:GameFrameX.Utility.EnvironmentHelper.IsStaging
+  isSpec: "True"
+  fullName: GameFrameX.Utility.EnvironmentHelper.IsStaging
+  nameWithType: EnvironmentHelper.IsStaging
 - uid: GameFrameX.Utility.Extensions
   name: GameFrameX.Utility.Extensions
   href: api/GameFrameX.Utility.Extensions.html
@@ -25569,6 +25725,45 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.IsLocal
   nameWithType: AppSetting.IsLocal
+- uid: GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetry
+  name: IsOpenTelemetry
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsOpenTelemetry
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetry
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetry
+  nameWithType: AppSetting.IsOpenTelemetry
+- uid: GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetry*
+  name: IsOpenTelemetry
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsOpenTelemetry_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetry
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetry
+  nameWithType: AppSetting.IsOpenTelemetry
+- uid: GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetryMetrics
+  name: IsOpenTelemetryMetrics
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsOpenTelemetryMetrics
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetryMetrics
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetryMetrics
+  nameWithType: AppSetting.IsOpenTelemetryMetrics
+- uid: GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetryMetrics*
+  name: IsOpenTelemetryMetrics
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsOpenTelemetryMetrics_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetryMetrics
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetryMetrics
+  nameWithType: AppSetting.IsOpenTelemetryMetrics
+- uid: GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetryTracing
+  name: IsOpenTelemetryTracing
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsOpenTelemetryTracing
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetryTracing
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetryTracing
+  nameWithType: AppSetting.IsOpenTelemetryTracing
+- uid: GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetryTracing*
+  name: IsOpenTelemetryTracing
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsOpenTelemetryTracing_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetryTracing
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetryTracing
+  nameWithType: AppSetting.IsOpenTelemetryTracing
 - uid: GameFrameX.Utility.Setting.AppSetting.IsTimeOut
   name: IsTimeOut
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsTimeOut

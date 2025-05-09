@@ -2420,6 +2420,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.EnvironmentHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.EnvironmentHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.Utility.EnvironmentHelper",
+      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.EnvironmentHelper.yml\" sourcestartlinenumber=\"1\">环境帮助器</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.Utility.Extensions.AlreadyArgumentException.yml",
       "output": {
         ".html": {
