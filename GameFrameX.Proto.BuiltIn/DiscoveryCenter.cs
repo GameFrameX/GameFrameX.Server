@@ -176,6 +176,12 @@ public partial class ReqRegisterServer : MessageObject, IRequestMessage
     /// </summary>
     [ProtoMember(7)]
     public long ServerId { get; set; }
+
+    /// <summary>
+    /// 服务器实例ID
+    /// </summary>
+    [ProtoMember(8)]
+    public long ServerInstanceId { get; set; }
 }
 
 /// <summary>

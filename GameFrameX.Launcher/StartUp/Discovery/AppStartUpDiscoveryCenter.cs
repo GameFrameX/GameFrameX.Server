@@ -151,7 +151,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                 {
                     var reqRegisterServer = (ReqRegisterServer)messageObject.DeserializeMessageObject();
                     // 注册服务
-                    var serviceInfo = new ServiceInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerId, reqRegisterServer.InnerIp, reqRegisterServer.InnerPort, reqRegisterServer.OuterIp, reqRegisterServer.OuterPort);
+                    var serviceInfo = new ServiceInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerId, reqRegisterServer.ServerInstanceId, reqRegisterServer.InnerIp, reqRegisterServer.InnerPort, reqRegisterServer.OuterIp, reqRegisterServer.OuterPort);
                     _namingServiceManager.Add(serviceInfo);
                     LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
                     return ValueTask.CompletedTask;
