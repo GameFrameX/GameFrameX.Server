@@ -10820,15 +10820,15 @@ references:
   commentId: T:GameFrameX.ServerManager.ServiceInfo
   fullName: GameFrameX.ServerManager.ServiceInfo
   nameWithType: ServiceInfo
-- uid: GameFrameX.ServerManager.ServiceInfo.#ctor(GameFrameX.Utility.Setting.ServerType,System.Object,System.String,System.String,System.Int64,System.String,System.UInt16,System.String,System.UInt16)
-  name: ServiceInfo(ServerType, object, string, string, long, string, ushort, string, ushort)
-  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo__ctor_GameFrameX_Utility_Setting_ServerType_System_Object_System_String_System_String_System_Int64_System_String_System_UInt16_System_String_System_UInt16_
-  commentId: M:GameFrameX.ServerManager.ServiceInfo.#ctor(GameFrameX.Utility.Setting.ServerType,System.Object,System.String,System.String,System.Int64,System.String,System.UInt16,System.String,System.UInt16)
-  name.vb: New(ServerType, Object, String, String, Long, String, UShort, String, UShort)
-  fullName: GameFrameX.ServerManager.ServiceInfo.ServiceInfo(GameFrameX.Utility.Setting.ServerType, object, string, string, long, string, ushort, string, ushort)
-  fullName.vb: GameFrameX.ServerManager.ServiceInfo.New(GameFrameX.Utility.Setting.ServerType, Object, String, String, Long, String, UShort, String, UShort)
-  nameWithType: ServiceInfo.ServiceInfo(ServerType, object, string, string, long, string, ushort, string, ushort)
-  nameWithType.vb: ServiceInfo.New(ServerType, Object, String, String, Long, String, UShort, String, UShort)
+- uid: GameFrameX.ServerManager.ServiceInfo.#ctor(GameFrameX.Utility.Setting.ServerType,System.Object,System.String,System.String,System.Int64,System.Int64,System.String,System.UInt16,System.String,System.UInt16)
+  name: ServiceInfo(ServerType, object, string, string, long, long, string, ushort, string, ushort)
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo__ctor_GameFrameX_Utility_Setting_ServerType_System_Object_System_String_System_String_System_Int64_System_Int64_System_String_System_UInt16_System_String_System_UInt16_
+  commentId: M:GameFrameX.ServerManager.ServiceInfo.#ctor(GameFrameX.Utility.Setting.ServerType,System.Object,System.String,System.String,System.Int64,System.Int64,System.String,System.UInt16,System.String,System.UInt16)
+  name.vb: New(ServerType, Object, String, String, Long, Long, String, UShort, String, UShort)
+  fullName: GameFrameX.ServerManager.ServiceInfo.ServiceInfo(GameFrameX.Utility.Setting.ServerType, object, string, string, long, long, string, ushort, string, ushort)
+  fullName.vb: GameFrameX.ServerManager.ServiceInfo.New(GameFrameX.Utility.Setting.ServerType, Object, String, String, Long, Long, String, UShort, String, UShort)
+  nameWithType: ServiceInfo.ServiceInfo(ServerType, object, string, string, long, long, string, ushort, string, ushort)
+  nameWithType.vb: ServiceInfo.New(ServerType, Object, String, String, Long, Long, String, UShort, String, UShort)
 - uid: GameFrameX.ServerManager.ServiceInfo.#ctor*
   name: ServiceInfo
   href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo__ctor_
@@ -10904,6 +10904,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.ServerManager.ServiceInfo.ServerId
   nameWithType: ServiceInfo.ServerId
+- uid: GameFrameX.ServerManager.ServiceInfo.ServerInstanceId
+  name: ServerInstanceId
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_ServerInstanceId
+  commentId: P:GameFrameX.ServerManager.ServiceInfo.ServerInstanceId
+  fullName: GameFrameX.ServerManager.ServiceInfo.ServerInstanceId
+  nameWithType: ServiceInfo.ServerInstanceId
+- uid: GameFrameX.ServerManager.ServiceInfo.ServerInstanceId*
+  name: ServerInstanceId
+  href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_ServerInstanceId_
+  commentId: Overload:GameFrameX.ServerManager.ServiceInfo.ServerInstanceId
+  isSpec: "True"
+  fullName: GameFrameX.ServerManager.ServiceInfo.ServerInstanceId
+  nameWithType: ServiceInfo.ServerInstanceId
 - uid: GameFrameX.ServerManager.ServiceInfo.ServerName
   name: ServerName
   href: api/GameFrameX.ServerManager.ServiceInfo.html#GameFrameX_ServerManager_ServiceInfo_ServerName
@@ -12188,6 +12201,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.ServerId
   nameWithType: LauncherOptions.ServerId
+- uid: GameFrameX.StartUp.Options.LauncherOptions.ServerInstanceId
+  name: ServerInstanceId
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_ServerInstanceId
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.ServerInstanceId
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.ServerInstanceId
+  nameWithType: LauncherOptions.ServerInstanceId
+- uid: GameFrameX.StartUp.Options.LauncherOptions.ServerInstanceId*
+  name: ServerInstanceId
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_ServerInstanceId_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.ServerInstanceId
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.ServerInstanceId
+  nameWithType: LauncherOptions.ServerInstanceId
 - uid: GameFrameX.StartUp.Options.LauncherOptions.ServerType
   name: ServerType
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_ServerType
@@ -25907,6 +25933,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.ServerId
   nameWithType: AppSetting.ServerId
+- uid: GameFrameX.Utility.Setting.AppSetting.ServerInstanceId
+  name: ServerInstanceId
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_ServerInstanceId
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.ServerInstanceId
+  fullName: GameFrameX.Utility.Setting.AppSetting.ServerInstanceId
+  nameWithType: AppSetting.ServerInstanceId
+- uid: GameFrameX.Utility.Setting.AppSetting.ServerInstanceId*
+  name: ServerInstanceId
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_ServerInstanceId_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.ServerInstanceId
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.ServerInstanceId
+  nameWithType: AppSetting.ServerInstanceId
 - uid: GameFrameX.Utility.Setting.AppSetting.ServerName
   name: ServerName
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_ServerName

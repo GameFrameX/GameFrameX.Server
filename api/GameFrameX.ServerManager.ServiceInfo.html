@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev17/apiSpec/new?filename=GameFrameX_ServerManager_ServiceInfo.md&amp;value=---%0Auid%3A%20GameFrameX.ServerManager.ServiceInfo%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev18/apiSpec/new?filename=GameFrameX_ServerManager_ServiceInfo.md&amp;value=---%0Auid%3A%20GameFrameX.ServerManager.ServiceInfo%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_ServerManager_ServiceInfo" data-uid="GameFrameX.ServerManager.ServiceInfo" class="text-break">
-Class ServiceInfo  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev17/GameFrameX.ServerManager/ServiceInfo.cs/#L10"><i class="bi bi-code-slash"></i></a>
+Class ServiceInfo  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev18/GameFrameX.ServerManager/ServiceInfo.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -171,9 +171,9 @@ Class ServiceInfo  <a class="header-action link-secondary" title="View source" h
 
   <a id="GameFrameX_ServerManager_ServiceInfo__ctor_" data-uid="GameFrameX.ServerManager.ServiceInfo.#ctor*"></a>
 
-  <h3 id="GameFrameX_ServerManager_ServiceInfo__ctor_GameFrameX_Utility_Setting_ServerType_System_Object_System_String_System_String_System_Int64_System_String_System_UInt16_System_String_System_UInt16_" data-uid="GameFrameX.ServerManager.ServiceInfo.#ctor(GameFrameX.Utility.Setting.ServerType,System.Object,System.String,System.String,System.Int64,System.String,System.UInt16,System.String,System.UInt16)">
-  ServiceInfo(ServerType, object, string, string, long, string, ushort, string, ushort)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev17/GameFrameX.ServerManager/ServiceInfo.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_ServerManager_ServiceInfo__ctor_GameFrameX_Utility_Setting_ServerType_System_Object_System_String_System_String_System_Int64_System_Int64_System_String_System_UInt16_System_String_System_UInt16_" data-uid="GameFrameX.ServerManager.ServiceInfo.#ctor(GameFrameX.Utility.Setting.ServerType,System.Object,System.String,System.String,System.Int64,System.Int64,System.String,System.UInt16,System.String,System.UInt16)">
+  ServiceInfo(ServerType, object, string, string, long, long, string, ushort, string, ushort)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev18/GameFrameX.ServerManager/ServiceInfo.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>构造服务器信息</p>
@@ -181,7 +181,7 @@ Class ServiceInfo  <a class="header-action link-secondary" title="View source" h
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ServiceInfo(ServerType type, object session, string sessionId, string serverName, long serverId, string innerIp, ushort innerPort, string outerIp, ushort outerPort)</code></pre>
+    <pre><code class="lang-csharp hljs">public ServiceInfo(ServerType type, object session, string sessionId, string serverName, long serverId, long serverInstanceId, string innerIp, ushort innerPort, string outerIp, ushort outerPort)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -195,6 +195,8 @@ Class ServiceInfo  <a class="header-action link-secondary" title="View source" h
     <dt><code>serverName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>serverId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+    <dt><code>serverInstanceId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
     <dd></dd>
     <dt><code>innerIp</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
@@ -225,7 +227,7 @@ Class ServiceInfo  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_ServerManager_ServiceInfo_InnerIp" data-uid="GameFrameX.ServerManager.ServiceInfo.InnerIp">
   InnerIp
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev17/GameFrameX.ServerManager/ServiceInfo.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev18/GameFrameX.ServerManager/ServiceInfo.cs/#L49"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>内部IP</p>
@@ -257,7 +259,7 @@ Class ServiceInfo  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_ServerManager_ServiceInfo_InnerPort" data-uid="GameFrameX.ServerManager.ServiceInfo.InnerPort">
   InnerPort
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev17/GameFrameX.ServerManager/ServiceInfo.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev18/GameFrameX.ServerManager/ServiceInfo.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>内部端口</p>
@@ -289,7 +291,7 @@ Class ServiceInfo  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_ServerManager_ServiceInfo_OuterIp" data-uid="GameFrameX.ServerManager.ServiceInfo.OuterIp">
   OuterIp
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev17/GameFrameX.ServerManager/ServiceInfo.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev18/GameFrameX.ServerManager/ServiceInfo.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>外部IP</p>
@@ -321,7 +323,7 @@ Class ServiceInfo  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_ServerManager_ServiceInfo_OuterPort" data-uid="GameFrameX.ServerManager.ServiceInfo.OuterPort">
   OuterPort
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev17/GameFrameX.ServerManager/ServiceInfo.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev18/GameFrameX.ServerManager/ServiceInfo.cs/#L64"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>外部端口</p>
@@ -353,7 +355,7 @@ Class ServiceInfo  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_ServerManager_ServiceInfo_ServerId" data-uid="GameFrameX.ServerManager.ServiceInfo.ServerId">
   ServerId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev17/GameFrameX.ServerManager/ServiceInfo.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev18/GameFrameX.ServerManager/ServiceInfo.cs/#L89"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>服务器ID</p>
@@ -381,11 +383,43 @@ Class ServiceInfo  <a class="header-action link-secondary" title="View source" h
 
 
 
+  <a id="GameFrameX_ServerManager_ServiceInfo_ServerInstanceId_" data-uid="GameFrameX.ServerManager.ServiceInfo.ServerInstanceId*"></a>
+
+  <h3 id="GameFrameX_ServerManager_ServiceInfo_ServerInstanceId" data-uid="GameFrameX.ServerManager.ServiceInfo.ServerInstanceId">
+  ServerInstanceId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev18/GameFrameX.ServerManager/ServiceInfo.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>服务器实例ID</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long ServerInstanceId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="GameFrameX_ServerManager_ServiceInfo_ServerName_" data-uid="GameFrameX.ServerManager.ServiceInfo.ServerName*"></a>
 
   <h3 id="GameFrameX_ServerManager_ServiceInfo_ServerName" data-uid="GameFrameX.ServerManager.ServiceInfo.ServerName">
   ServerName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev17/GameFrameX.ServerManager/ServiceInfo.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev18/GameFrameX.ServerManager/ServiceInfo.cs/#L84"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>服务器名称</p>
@@ -417,7 +451,7 @@ Class ServiceInfo  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="GameFrameX_ServerManager_ServiceInfo_Session" data-uid="GameFrameX.ServerManager.ServiceInfo.Session">
   Session
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev17/GameFrameX.ServerManager/ServiceInfo.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev18/GameFrameX.ServerManager/ServiceInfo.cs/#L43"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>会话</p>
@@ -450,7 +484,7 @@ public object Session { get; }</code></pre>
 
   <h3 id="GameFrameX_ServerManager_ServiceInfo_SessionId" data-uid="GameFrameX.ServerManager.ServiceInfo.SessionId">
   SessionId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev17/GameFrameX.ServerManager/ServiceInfo.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev18/GameFrameX.ServerManager/ServiceInfo.cs/#L74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>会话ID</p>
@@ -482,7 +516,7 @@ public object Session { get; }</code></pre>
 
   <h3 id="GameFrameX_ServerManager_ServiceInfo_StatusInfo" data-uid="GameFrameX.ServerManager.ServiceInfo.StatusInfo">
   StatusInfo
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev17/GameFrameX.ServerManager/ServiceInfo.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev18/GameFrameX.ServerManager/ServiceInfo.cs/#L69"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>服务器状态</p>
@@ -514,7 +548,7 @@ public object Session { get; }</code></pre>
 
   <h3 id="GameFrameX_ServerManager_ServiceInfo_Type" data-uid="GameFrameX.ServerManager.ServiceInfo.Type">
   Type
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev17/GameFrameX.ServerManager/ServiceInfo.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev18/GameFrameX.ServerManager/ServiceInfo.cs/#L79"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>服务器类型</p>
@@ -550,7 +584,7 @@ public object Session { get; }</code></pre>
 
   <h3 id="GameFrameX_ServerManager_ServiceInfo_ToString" data-uid="GameFrameX.ServerManager.ServiceInfo.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev17/GameFrameX.ServerManager/ServiceInfo.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev18/GameFrameX.ServerManager/ServiceInfo.cs/#L100"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>转换为字符串</p>
@@ -582,7 +616,7 @@ public object Session { get; }</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev17/GameFrameX.ServerManager/ServiceInfo.cs/#L10" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev18/GameFrameX.ServerManager/ServiceInfo.cs/#L10" class="edit-link">Edit this page</a>
         </div>
 
 
