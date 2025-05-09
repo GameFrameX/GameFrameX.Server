@@ -122,6 +122,28 @@ public sealed class AppSetting
     #region 从配置文件读取的属性
 
     /// <summary>
+    /// 是否启用指标收集功能,需要IsOpenTelemetry为true时有效
+    /// <para>用于收集和监控应用程序的性能指标数据</para>
+    /// <para>默认值为false</para>
+    /// </summary>
+    public bool IsOpenTelemetryMetrics { get; set; }
+
+    /// <summary>
+    /// 是否启用分布式追踪功能,需要IsOpenTelemetry为true时有效
+    /// <para>用于跟踪和分析分布式系统中的请求流程</para>
+    /// <para>默认值为false</para>
+    /// </summary>
+    public bool IsOpenTelemetryTracing { get; set; }
+
+    /// <summary>
+    /// 是否启用OpenTelemetry遥测功能
+    /// <para>OpenTelemetry是一个开源的可观测性框架</para>
+    /// <para>启用后可以统一管理指标、追踪和日志等可观测性数据</para>
+    /// <para>默认值为false</para>
+    /// </summary>
+    public bool IsOpenTelemetry { get; set; }
+
+    /// <summary>
     /// 是否是Debug打印日志模式,默认值为false
     /// </summary>
     public bool IsDebug { get; set; }

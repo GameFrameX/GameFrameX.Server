@@ -21,6 +21,31 @@ public sealed class LauncherOptions
     public ushort APMPort { get; set; }
 
     /// <summary>
+    /// 是否启用指标收集功能,需要IsOpenTelemetry为true时有效
+    /// <para>用于收集和监控应用程序的性能指标数据</para>
+    /// <para>默认值为false</para>
+    /// </summary>
+    [Option(nameof(IsOpenTelemetryMetrics), Default = false, HelpText = "是否启用分布式追踪功能,需要 IsOpenTelemetry 为true时有效,默认值为false")]
+    public bool IsOpenTelemetryMetrics { get; set; }
+
+    /// <summary>
+    /// 是否启用分布式追踪功能,需要IsOpenTelemetry为true时有效
+    /// <para>用于跟踪和分析分布式系统中的请求流程</para>
+    /// <para>默认值为false</para>
+    /// </summary>
+    [Option(nameof(IsOpenTelemetryTracing), Default = false, HelpText = "是否启用分布式追踪功能,需要 IsOpenTelemetry为true时有效,默认值为false")]
+    public bool IsOpenTelemetryTracing { get; set; }
+
+    /// <summary>
+    /// 是否启用OpenTelemetry遥测功能
+    /// <para>OpenTelemetry是一个开源的可观测性框架</para>
+    /// <para>启用后可以统一管理指标、追踪和日志等可观测性数据</para>
+    /// <para>默认值为false</para>
+    /// </summary>
+    [Option(nameof(IsOpenTelemetry), Default = false, HelpText = "是否启用OpenTelemetry遥测功能,默认值为false")]
+    public bool IsOpenTelemetry { get; set; }
+
+    /// <summary>
     /// 是否监控打印超时日志
     /// </summary>
     [Option(nameof(IsMonitorTimeOut), Default = false, HelpText = "是否打印超时日志,默认值为false")]
