@@ -261,11 +261,15 @@ public abstract partial class AppStartUpBase
         await StartHttpServer(baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
 
         // 配置监控和跟踪
-        multipleServerHostBuilder.ConfigureServices(services =>
+        if (Setting.IsOpenTelemetry)
         {
-            services.AddOpenTelemetry()
-                    .ConfigureResource(configure => { configure.AddService(Setting.ServerName + "-" + Setting.TagName, "GameFrameX").AddTelemetrySdk(); })
-                    .WithMetrics(configure =>
+            multipleServerHostBuilder.ConfigureServices(services =>
+            {
+                var builder = services.AddOpenTelemetry()
+                                      .ConfigureResource(configure => { configure.AddService(Setting.ServerName + "-" + Setting.TagName, "GameFrameX").AddTelemetrySdk(); });
+                if (Setting.IsOpenTelemetryMetrics)
+                {
+                    builder.WithMetrics(configure =>
                     {
                         configure.AddAspNetCoreInstrumentation();
                         if (EnvironmentHelper.IsDevelopment())
@@ -280,26 +284,27 @@ public abstract partial class AppStartUpBase
                         configure.AddMeter("System.Net.Http");
                         configure.AddMeter("System.Net.NameResolution");
                         configure.AddPrometheusExporter();
-                    })
-                    .WithTracing(configure =>
+                    });
+                }
+
+                if (Setting.IsOpenTelemetryTracing)
+                {
+                    builder.WithTracing(configure =>
                     {
                         configure.AddAspNetCoreInstrumentation();
                         configure.AddHttpClientInstrumentation();
                         configure.AddSource("GameFrameX." + Setting.ServerName + "." + Setting.TagName);
-
-                        // if (tracingOtlpEndpoint != null)
-                        // {
-                        //     tracing.AddOtlpExporter(otlpOptions => { otlpOptions.Endpoint = new Uri(tracingOtlpEndpoint); });
-                        // }
-                        // else
+                        if (EnvironmentHelper.IsDevelopment())
                         {
-                            if (EnvironmentHelper.IsDevelopment())
-                            {
-                                configure.AddConsoleExporter();
-                            }
+                            configure.AddConsoleExporter();
                         }
-                    }).UseGrafana();
-        });
+                    });
+                }
+
+                builder.UseGrafana();
+            });
+        }
+
         // 配置日志
         multipleServerHostBuilder.ConfigureLogging(logging =>
         {
