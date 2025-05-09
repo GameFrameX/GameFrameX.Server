@@ -65,4 +65,36 @@ public static class EnvironmentHelper
 
         return string.Equals(env, environmentName, StringComparison.OrdinalIgnoreCase);
     }
+
+    /// <summary>
+    /// 判断当前应用是否运行在Docker容器中
+    /// 通过检查环境变量 DOTNET_RUNNING_IN_CONTAINER 是否存在来判断
+    /// </summary>
+    /// <returns>如果在Docker容器中运行返回true，否则返回false</returns>
+    public static bool IsDocker()
+    {
+        return !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER"));
+    }
+
+    /// <summary>
+    /// 判断当前应用是否运行在Kubernetes集群中
+    /// 通过检查环境变量 KUBERNETES_SERVICE_HOST 是否存在来判断
+    /// </summary>
+    /// <returns>如果在Kubernetes集群中运行返回true，否则返回false</returns>
+    public static bool IsKubernetes()
+    {
+        return !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("KUBERNETES_SERVICE_HOST"));
+    }
+
+    /// <summary>
+    /// 获取当前运行环境名称
+    /// 优先获取 ASPNETCORE_ENVIRONMENT 环境变量，如果不存在则获取 DOTNET_ENVIRONMENT 环境变量
+    /// </summary>
+    /// <returns>返回当前环境名称，如果未设置环境变量则返回null</returns>
+    public static string GetEnvironmentName()
+    {
+        var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")
+                  ?? Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT");
+        return env;
+    }
 }
