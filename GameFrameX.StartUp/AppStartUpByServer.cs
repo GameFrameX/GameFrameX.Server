@@ -319,7 +319,7 @@ public abstract partial class AppStartUpBase
                                       {
                                           config.ServiceName = Setting.ServerName + "-" + Setting.TagName;
                                           config.ServiceVersion = Assembly.GetCallingAssembly().ImageRuntimeVersion;
-                                          config.ServiceInstanceId = Setting.ServerId.ToString();
+                                          config.ServiceInstanceId = Setting.ServerId + "-" + Setting.ServerInstanceId;
                                           config.DeploymentEnvironment = EnvironmentHelper.GetEnvironmentName().IsNullOrEmpty() ? Setting.IsDebug ? "Debug" : "Release" : EnvironmentHelper.GetEnvironmentName();
                                       })
                                       .Build();

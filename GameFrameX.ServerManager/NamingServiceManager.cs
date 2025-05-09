@@ -159,7 +159,7 @@ public sealed class NamingServiceManager
             return;
         }
 
-        SelfServiceInfo = new ServiceInfo(setting.ServerType, null, string.Empty, setting.ServerName, setting.ServerId, setting.InnerIp, setting.InnerPort, setting.OuterIp, setting.OuterPort);
+        SelfServiceInfo = new ServiceInfo(setting.ServerType, null, string.Empty, setting.ServerName, setting.ServerId, setting.ServerInstanceId, setting.InnerIp, setting.InnerPort, setting.OuterIp, setting.OuterPort);
         _serverMap[SelfServiceInfo.ServerId] = SelfServiceInfo;
     }
 

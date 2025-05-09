@@ -184,6 +184,11 @@ public sealed class AppSetting
     public int ServerId { get; set; }
 
     /// <summary>
+    /// 服务器实例ID
+    /// </summary>
+    public long ServerInstanceId { get; set; }
+
+    /// <summary>
     /// 服务器名称
     /// </summary>
     public string ServerName { get; set; }

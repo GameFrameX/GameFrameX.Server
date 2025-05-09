@@ -94,6 +94,12 @@ public sealed class LauncherOptions
     public int ServerId { get; set; }
 
     /// <summary>
+    /// 服务器实例ID
+    /// </summary>
+    [Option(nameof(ServerInstanceId), HelpText = "服务器实例ID")]
+    public long ServerInstanceId { get; set; }
+
+    /// <summary>
     /// 保存数据间隔, 单位毫秒，默认300秒/5分钟
     /// </summary>
     [Option(nameof(SaveDataInterval), Default = 300_000, HelpText = "保存数据间隔，单位毫秒,默认300秒/5分钟")]

@@ -17,11 +17,12 @@ public sealed class ServiceInfo : IServiceInfo
     /// <param name="sessionId"></param>
     /// <param name="serverName"></param>
     /// <param name="serverId"></param>
+    /// <param name="serverInstanceId"></param>
     /// <param name="innerIp"></param>
     /// <param name="innerPort"></param>
     /// <param name="outerIp"></param>
     /// <param name="outerPort"></param>
-    public ServiceInfo(ServerType type, object session, string sessionId, string serverName, long serverId, string innerIp, ushort innerPort, string outerIp, ushort outerPort)
+    public ServiceInfo(ServerType type, object session, string sessionId, string serverName, long serverId, long serverInstanceId, string innerIp, ushort innerPort, string outerIp, ushort outerPort)
     {
         Type = type;
         Session = session;
@@ -32,6 +33,7 @@ public sealed class ServiceInfo : IServiceInfo
         OuterIp = outerIp;
         OuterPort = outerPort;
         SessionId = sessionId;
+        ServerInstanceId = serverInstanceId;
         StatusInfo = new ServiceStatusInfo();
     }
 
@@ -85,6 +87,11 @@ public sealed class ServiceInfo : IServiceInfo
     /// 服务器ID
     /// </summary>
     public long ServerId { get; }
+
+    /// <summary>
+    /// 服务器实例ID
+    /// </summary>
+    public long ServerInstanceId { get; set; }
 
     /// <summary>
     /// 转换为字符串
