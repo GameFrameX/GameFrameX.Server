@@ -35,6 +35,6 @@ public sealed class MessageObjectPipelineFilter : PipelineFilterBase<IMessage>
             reader.Advance(totalLength);
         }
 
-        return Decoder.Decode(ref readBuffer, Context);
+        return MessageHelper.MessageDecoderHandler.Handler(ref readBuffer);
     }
 }

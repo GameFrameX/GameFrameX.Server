@@ -1,13 +1,12 @@
 using System.Buffers;
 using GameFrameX.NetWork.Abstractions;
-using GameFrameX.SuperSocket.ProtoBase;
 
 namespace GameFrameX.NetWork.Message;
 
 /// <summary>
 /// 基础消息解码处理器
 /// </summary>
-public abstract class BaseMessageDecoderHandler : IMessageDecoderHandler, IPackageDecoder<IMessage>
+public abstract class BaseMessageDecoderHandler : IMessageDecoderHandler
 {
     /// <summary>
     /// 解压消息处理器
@@ -44,16 +43,5 @@ public abstract class BaseMessageDecoderHandler : IMessageDecoderHandler, IPacka
     public void SetDecompressionHandler(IMessageDecompressHandler decompressHandler = null)
     {
         DecompressHandler = decompressHandler;
-    }
-
-    /// <summary>
-    /// 解码
-    /// </summary>
-    /// <param name="buffer"></param>
-    /// <param name="context"></param>
-    /// <returns></returns>
-    public IMessage Decode(ref ReadOnlySequence<byte> buffer, object context)
-    {
-        return Handler(ref buffer);
     }
 }

@@ -9,7 +9,7 @@ namespace GameFrameX.NetWork.Message;
 /// <summary>
 /// 基础消息编码处理器
 /// </summary>
-public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPackageEncoder<IMessage>
+public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler
 {
     /// <summary>
     /// 压缩消息处理器
@@ -19,7 +19,7 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPacka
     /// <summary>
     /// 超过多少字节长度才启用压缩,默认512
     /// </summary>
-    public virtual uint LimitCompressLength { get; } = 512;
+    public virtual uint LimitCompressLength { get; } = 3;
 
     /// <summary>
     /// totalLength + headerLength
@@ -58,19 +58,6 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler, IPacka
     public void SetCompressionHandler(IMessageCompressHandler compressHandler = null)
     {
         CompressHandler = compressHandler;
-    }
-
-
-    /// <summary>
-    /// </summary>
-    /// <param name="writer"></param>
-    /// <param name="pack"></param>
-    /// <returns></returns>
-    public int Encode(IBufferWriter<byte> writer, IMessage pack)
-    {
-        var bytes = Handler(pack);
-        writer.Write(bytes);
-        return bytes.Length;
     }
 
     /// <summary>
