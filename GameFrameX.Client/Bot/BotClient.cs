@@ -1,6 +1,7 @@
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Proto.Proto;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Utility.Extensions;
 using ErrorEventArgs = GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs;
 
 namespace GameFrameX.Client.Bot;
@@ -14,7 +15,7 @@ public sealed class BotClient
     private readonly BotHttpClient m_HttpClient;
     private readonly string m_BotName;
     private readonly BotTcpClientEvent m_BotTcpClientEvent;
-    private const string m_LoginUrl = "http://127.0.0.1:29200/game/api/";
+    private const string m_LoginUrl = "http://127.0.0.1:28080/game/api/";
 
     /// <summary>
     /// 初始化机器人客户端
@@ -114,7 +115,7 @@ public sealed class BotClient
                 Platform = "LoginPlatform.Custom",
             };
 
-            string respLoginUrl = $"{m_LoginUrl}{nameof(ReqLogin)}";
+            string respLoginUrl = $"{m_LoginUrl}{nameof(ReqLogin).ConvertToSnakeCase()}";
             var respLogin = await m_HttpClient.Post<RespLogin>(respLoginUrl, reqLogin);
             if (respLogin.ErrorCode != 0)
             {
@@ -127,7 +128,7 @@ public sealed class BotClient
             //请求角色列表
             var reqPlayerList = new ReqPlayerList();
             reqPlayerList.Id = respLogin.Id;
-            string reqPlayerListUrl = $"{m_LoginUrl}{nameof(ReqPlayerList)}";
+            string reqPlayerListUrl = $"{m_LoginUrl}{nameof(ReqPlayerList).ConvertToSnakeCase()}";
             var respPlayerList = await m_HttpClient.Post<RespPlayerList>(reqPlayerListUrl, reqPlayerList);
 
             if (respPlayerList.ErrorCode != 0)
@@ -145,7 +146,7 @@ public sealed class BotClient
                 var reqCreatePlayer = new ReqPlayerCreate();
                 reqCreatePlayer.Id = respLogin.Id;
 
-                string reqCreatePlayerUrl = $"{m_LoginUrl}{nameof(ReqPlayerCreate)}";
+                string reqCreatePlayerUrl = $"{m_LoginUrl}{nameof(ReqPlayerCreate).ConvertToSnakeCase()}";
                 var respPlayerCreator = await m_HttpClient.Post<RespPlayerCreate>(reqCreatePlayerUrl,
                                                                                   reqCreatePlayer);
                 if (respPlayerCreator.ErrorCode != 0)
