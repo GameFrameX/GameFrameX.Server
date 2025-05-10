@@ -1,4 +1,5 @@
 ﻿using GameFrameX.Foundation.Json;
+using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility.Extensions;
 
 namespace GameFrameX.Utility.Setting;
@@ -77,13 +78,13 @@ public static class GlobalSettings
     /// 2. 不允许传入null值
     /// 3. 会自动校正SaveDataInterval的值，如果小于5000毫秒则使用默认值
     /// </remarks>
-    /// <exception cref="InvalidOperationException">当CurrentSetting已存在时抛出此异常</exception>
     /// <exception cref="ArgumentNullException">当传入的setting参数为null时抛出此异常</exception>
     public static void SetCurrentSetting(AppSetting setting)
     {
         if (CurrentSetting.IsNotNull())
         {
-            throw new InvalidOperationException("当前设置已经存在，不能再次设置");
+            LogHelper.WarnConsole("当前设置已经存在，不能再次设置");
+            return;
         }
 
         ArgumentNullException.ThrowIfNull(setting, nameof(setting));
