@@ -262,7 +262,7 @@ public sealed class Actor : IActor
     {
         foreach (var item in _componentsMap)
         {
-            await item.Value.SaveState();
+            await item.Value.WriteStateAsync();
         }
     }
 

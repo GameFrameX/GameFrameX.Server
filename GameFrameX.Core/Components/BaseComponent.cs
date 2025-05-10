@@ -7,7 +7,7 @@ namespace GameFrameX.Core.Components;
 /// <summary>
 /// 基础组件基类
 /// </summary>
-public abstract class BaseComponent : IComponent
+public abstract class BaseComponent : IComponent, IState
 {
     private readonly object _cacheAgentLock = new();
     private IComponentAgent _cacheAgent;
@@ -93,11 +93,21 @@ public abstract class BaseComponent : IComponent
     }
 
     /// <summary>
-    /// 保存数据
+    /// 读取状态
     /// </summary>
-    /// <returns>保存任务</returns>
-    internal virtual Task SaveState()
-    {
-        return Task.CompletedTask;
-    }
+    /// <returns>一个表示异步操作的任务，该任务在状态读取完成时完成</returns>
+    /// <remarks>
+    /// 此方法用于异步读取对象的当前状态信息
+    /// </remarks>
+    public abstract Task ReadStateAsync();
+
+    /// <summary>
+    /// 更新状态
+    /// </summary>
+    /// <returns>一个表示异步操作的任务，该任务在状态更新完成时完成</returns>
+    /// <remarks>
+    /// 此方法用于异步更新对象的状态信息
+    /// 在状态发生变化时应调用此方法以保持状态的同步
+    /// </remarks>
+    public abstract Task WriteStateAsync();
 }

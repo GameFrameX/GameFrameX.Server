@@ -88,7 +88,7 @@ public sealed class StateComponent
 /// 数据状态组件
 /// </summary>
 /// <typeparam name="TState"></typeparam>
-public abstract class StateComponent<TState> : BaseComponent, IState where TState : BaseCacheState, new()
+public abstract class StateComponent<TState> : BaseComponent where TState : BaseCacheState, new()
 {
     private static readonly ConcurrentDictionary<long, TState> StateDic = new ConcurrentDictionary<long, TState>();
 
@@ -127,9 +127,10 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
 
     /// <summary>
     /// 准备并读取状态数据
+    /// 子类不要重写该函数，而是重写ActiveReadStateAsync函数
     /// </summary>
     /// <returns>异步任务</returns>
-    public async Task ReadStateAsync()
+    public override async Task ReadStateAsync()
     {
         try
         {
@@ -181,7 +182,7 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     /// 保存状态到数据库
     /// </summary>
     /// <returns>异步任务</returns>
-    internal override async Task SaveState()
+    protected async Task SaveState()
     {
         try
         {
@@ -200,18 +201,9 @@ public abstract class StateComponent<TState> : BaseComponent, IState where TStat
     /// 异步写入状态到数据库
     /// </summary>
     /// <returns>异步任务</returns>
-    public async Task WriteStateAsync()
+    public override async Task WriteStateAsync()
     {
         await SaveState();
-    }
-
-    /// <summary>
-    /// 保存数据的虚方法，可被子类重写
-    /// </summary>
-    /// <returns>异步任务</returns>
-    public virtual Task SaveAsync()
-    {
-        return WriteStateAsync();
     }
 
     #region 仅DBModel.Mongodb调用
