@@ -311,7 +311,10 @@ public abstract partial class AppStartUpBase
             logging.ClearProviders();
             logging.AddSerilog(Log.Logger, true);
             logging.SetMinimumLevel(minimumLevelLogLevel);
-            logging.AddOpenTelemetry(configure => { configure.UseGrafana(); });
+            if (Setting.IsOpenTelemetry)
+            {
+                logging.AddOpenTelemetry(configure => { configure.UseGrafana(); });
+            }
         });
 
         using var tracerProvider = Sdk.CreateTracerProviderBuilder()

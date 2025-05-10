@@ -7,6 +7,7 @@ using GameFrameX.SuperSocket.Server.Abstractions;
 using GameFrameX.SuperSocket.Server.Host;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Setting;
+using Grafana.OpenTelemetry;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -15,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Serilog;
@@ -200,37 +202,73 @@ public abstract partial class AppStartUpBase
             }
 
             // 配置Web主机
-            builder.WebHost.UseKestrel(options =>
-                   {
-                       options.ListenAnyIP(Setting.HttpPort);
+            var hostBuilder = builder.WebHost.UseKestrel(options =>
+            {
+                options.ListenAnyIP(Setting.HttpPort);
 
-                       if (Setting.HttpsPort > 0 && NetHelper.PortIsAvailable(Setting.HttpsPort))
-                       {
-                           throw new NotImplementedException("HTTPS 未实现,请取消HTTPS端口配置");
-                       }
-                   })
-                   .ConfigureLogging(logging =>
-                   {
-                       logging.ClearProviders();
-                       logging.AddSerilog(Log.Logger);
-                       logging.SetMinimumLevel(minimumLevelLogLevel);
-                   })
-                   // 配置OpenTelemetry服务
-                   .ConfigureServices(services =>
-                   {
-                       services.AddOpenTelemetry()
-                               .ConfigureResource(configure =>
-                               {
-                                   configure.AddService("HTTP:" + Setting.ServerName + "-" + Setting.TagName, "GameFrameX.HTTP")
-                                            .AddTelemetrySdk();
-                               })
-                               .WithTracing(configure =>
-                               {
-                                   configure.AddAspNetCoreInstrumentation();
-                                   configure.AddConsoleExporter();
-                               });
-                   });
+                if (Setting.HttpsPort > 0 && NetHelper.PortIsAvailable(Setting.HttpsPort))
+                {
+                    throw new NotImplementedException("HTTPS 未实现,请取消HTTPS端口配置");
+                }
+            });
 
+            if (Setting.IsOpenTelemetry)
+            {
+                // 配置OpenTelemetry服务
+                hostBuilder.ConfigureServices(services =>
+                {
+                    var openTelemetryBuilder = services.AddOpenTelemetry()
+                                                       .ConfigureResource(configure =>
+                                                       {
+                                                           configure.AddService("HTTP:" + Setting.ServerName + "-" + Setting.TagName, "GameFrameX.HTTP")
+                                                                    .AddTelemetrySdk();
+                                                       });
+                    if (Setting.IsOpenTelemetryMetrics)
+                    {
+                        openTelemetryBuilder.WithMetrics(configure =>
+                        {
+                            configure.AddAspNetCoreInstrumentation();
+                            if (EnvironmentHelper.IsDevelopment())
+                            {
+                                configure.AddConsoleExporter();
+                            }
+
+                            // Metrics provides by ASP.NET Core in .NET 8
+                            configure.AddMeter("Microsoft.AspNetCore.Hosting");
+                            configure.AddMeter("Microsoft.AspNetCore.Server.Kestrel");
+                            // Metrics provided by System.Net libraries
+                            configure.AddMeter("System.Net.Http");
+                            configure.AddMeter("System.Net.NameResolution");
+                            configure.AddPrometheusExporter();
+                        });
+                    }
+
+                    if (Setting.IsOpenTelemetryTracing)
+                    {
+                        openTelemetryBuilder.WithTracing(configure =>
+                        {
+                            configure.AddAspNetCoreInstrumentation();
+                            configure.AddHttpClientInstrumentation();
+                            configure.AddSource("HTTP:GameFrameX." + Setting.ServerName + "." + Setting.TagName);
+                            if (EnvironmentHelper.IsDevelopment())
+                            {
+                                configure.AddConsoleExporter();
+                            }
+                        });
+                    }
+                });
+            }
+
+            hostBuilder.ConfigureLogging(logging =>
+            {
+                logging.ClearProviders();
+                logging.AddSerilog(Log.Logger);
+                logging.SetMinimumLevel(minimumLevelLogLevel);
+                if (Setting.IsOpenTelemetry)
+                {
+                    logging.AddOpenTelemetry(configure => { configure.UseGrafana(); });
+                }
+            });
             var app = builder.Build();
 
             // 开发环境下的Swagger UI配置
