@@ -7628,6 +7628,64 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.Description
   nameWithType: MessageCodeDescriptionAttribute.Description
+- uid: GameFrameX.NetWork.Abstractions.MessageHelper
+  name: MessageHelper
+  href: api/GameFrameX.NetWork.Abstractions.MessageHelper.html
+  commentId: T:GameFrameX.NetWork.Abstractions.MessageHelper
+  fullName: GameFrameX.NetWork.Abstractions.MessageHelper
+  nameWithType: MessageHelper
+- uid: GameFrameX.NetWork.Abstractions.MessageHelper.DecoderHandler
+  name: DecoderHandler
+  href: api/GameFrameX.NetWork.Abstractions.MessageHelper.html#GameFrameX_NetWork_Abstractions_MessageHelper_DecoderHandler
+  commentId: P:GameFrameX.NetWork.Abstractions.MessageHelper.DecoderHandler
+  fullName: GameFrameX.NetWork.Abstractions.MessageHelper.DecoderHandler
+  nameWithType: MessageHelper.DecoderHandler
+- uid: GameFrameX.NetWork.Abstractions.MessageHelper.DecoderHandler*
+  name: DecoderHandler
+  href: api/GameFrameX.NetWork.Abstractions.MessageHelper.html#GameFrameX_NetWork_Abstractions_MessageHelper_DecoderHandler_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.MessageHelper.DecoderHandler
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.MessageHelper.DecoderHandler
+  nameWithType: MessageHelper.DecoderHandler
+- uid: GameFrameX.NetWork.Abstractions.MessageHelper.EncoderHandler
+  name: EncoderHandler
+  href: api/GameFrameX.NetWork.Abstractions.MessageHelper.html#GameFrameX_NetWork_Abstractions_MessageHelper_EncoderHandler
+  commentId: P:GameFrameX.NetWork.Abstractions.MessageHelper.EncoderHandler
+  fullName: GameFrameX.NetWork.Abstractions.MessageHelper.EncoderHandler
+  nameWithType: MessageHelper.EncoderHandler
+- uid: GameFrameX.NetWork.Abstractions.MessageHelper.EncoderHandler*
+  name: EncoderHandler
+  href: api/GameFrameX.NetWork.Abstractions.MessageHelper.html#GameFrameX_NetWork_Abstractions_MessageHelper_EncoderHandler_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.MessageHelper.EncoderHandler
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.MessageHelper.EncoderHandler
+  nameWithType: MessageHelper.EncoderHandler
+- uid: GameFrameX.NetWork.Abstractions.MessageHelper.SetMessageDecoderHandler(GameFrameX.NetWork.Abstractions.IMessageDecoderHandler,GameFrameX.NetWork.Abstractions.IMessageDecompressHandler)
+  name: SetMessageDecoderHandler(IMessageDecoderHandler, IMessageDecompressHandler)
+  href: api/GameFrameX.NetWork.Abstractions.MessageHelper.html#GameFrameX_NetWork_Abstractions_MessageHelper_SetMessageDecoderHandler_GameFrameX_NetWork_Abstractions_IMessageDecoderHandler_GameFrameX_NetWork_Abstractions_IMessageDecompressHandler_
+  commentId: M:GameFrameX.NetWork.Abstractions.MessageHelper.SetMessageDecoderHandler(GameFrameX.NetWork.Abstractions.IMessageDecoderHandler,GameFrameX.NetWork.Abstractions.IMessageDecompressHandler)
+  fullName: GameFrameX.NetWork.Abstractions.MessageHelper.SetMessageDecoderHandler(GameFrameX.NetWork.Abstractions.IMessageDecoderHandler, GameFrameX.NetWork.Abstractions.IMessageDecompressHandler)
+  nameWithType: MessageHelper.SetMessageDecoderHandler(IMessageDecoderHandler, IMessageDecompressHandler)
+- uid: GameFrameX.NetWork.Abstractions.MessageHelper.SetMessageDecoderHandler*
+  name: SetMessageDecoderHandler
+  href: api/GameFrameX.NetWork.Abstractions.MessageHelper.html#GameFrameX_NetWork_Abstractions_MessageHelper_SetMessageDecoderHandler_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.MessageHelper.SetMessageDecoderHandler
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.MessageHelper.SetMessageDecoderHandler
+  nameWithType: MessageHelper.SetMessageDecoderHandler
+- uid: GameFrameX.NetWork.Abstractions.MessageHelper.SetMessageEncoderHandler(GameFrameX.NetWork.Abstractions.IMessageEncoderHandler,GameFrameX.NetWork.Abstractions.IMessageCompressHandler)
+  name: SetMessageEncoderHandler(IMessageEncoderHandler, IMessageCompressHandler)
+  href: api/GameFrameX.NetWork.Abstractions.MessageHelper.html#GameFrameX_NetWork_Abstractions_MessageHelper_SetMessageEncoderHandler_GameFrameX_NetWork_Abstractions_IMessageEncoderHandler_GameFrameX_NetWork_Abstractions_IMessageCompressHandler_
+  commentId: M:GameFrameX.NetWork.Abstractions.MessageHelper.SetMessageEncoderHandler(GameFrameX.NetWork.Abstractions.IMessageEncoderHandler,GameFrameX.NetWork.Abstractions.IMessageCompressHandler)
+  fullName: GameFrameX.NetWork.Abstractions.MessageHelper.SetMessageEncoderHandler(GameFrameX.NetWork.Abstractions.IMessageEncoderHandler, GameFrameX.NetWork.Abstractions.IMessageCompressHandler)
+  nameWithType: MessageHelper.SetMessageEncoderHandler(IMessageEncoderHandler, IMessageCompressHandler)
+- uid: GameFrameX.NetWork.Abstractions.MessageHelper.SetMessageEncoderHandler*
+  name: SetMessageEncoderHandler
+  href: api/GameFrameX.NetWork.Abstractions.MessageHelper.html#GameFrameX_NetWork_Abstractions_MessageHelper_SetMessageEncoderHandler_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.MessageHelper.SetMessageEncoderHandler
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.MessageHelper.SetMessageEncoderHandler
+  nameWithType: MessageHelper.SetMessageEncoderHandler
 - uid: GameFrameX.NetWork.Abstractions.MessageIdUtility
   name: MessageIdUtility
   href: api/GameFrameX.NetWork.Abstractions.MessageIdUtility.html
@@ -8064,15 +8122,15 @@ references:
   commentId: T:GameFrameX.NetWork.BaseNetWorkChannel
   fullName: GameFrameX.NetWork.BaseNetWorkChannel
   nameWithType: BaseNetWorkChannel
-- uid: GameFrameX.NetWork.BaseNetWorkChannel.#ctor(GameFrameX.SuperSocket.Server.Abstractions.Session.IGameAppSession,GameFrameX.Utility.Setting.AppSetting,GameFrameX.NetWork.Abstractions.IMessageEncoderHandler,GameFrameX.NetWork.Abstractions.IRpcSession,System.Boolean)
-  name: BaseNetWorkChannel(IGameAppSession, AppSetting, IMessageEncoderHandler, IRpcSession, bool)
-  href: api/GameFrameX.NetWork.BaseNetWorkChannel.html#GameFrameX_NetWork_BaseNetWorkChannel__ctor_GameFrameX_SuperSocket_Server_Abstractions_Session_IGameAppSession_GameFrameX_Utility_Setting_AppSetting_GameFrameX_NetWork_Abstractions_IMessageEncoderHandler_GameFrameX_NetWork_Abstractions_IRpcSession_System_Boolean_
-  commentId: M:GameFrameX.NetWork.BaseNetWorkChannel.#ctor(GameFrameX.SuperSocket.Server.Abstractions.Session.IGameAppSession,GameFrameX.Utility.Setting.AppSetting,GameFrameX.NetWork.Abstractions.IMessageEncoderHandler,GameFrameX.NetWork.Abstractions.IRpcSession,System.Boolean)
-  name.vb: New(IGameAppSession, AppSetting, IMessageEncoderHandler, IRpcSession, Boolean)
-  fullName: GameFrameX.NetWork.BaseNetWorkChannel.BaseNetWorkChannel(GameFrameX.SuperSocket.Server.Abstractions.Session.IGameAppSession, GameFrameX.Utility.Setting.AppSetting, GameFrameX.NetWork.Abstractions.IMessageEncoderHandler, GameFrameX.NetWork.Abstractions.IRpcSession, bool)
-  fullName.vb: GameFrameX.NetWork.BaseNetWorkChannel.New(GameFrameX.SuperSocket.Server.Abstractions.Session.IGameAppSession, GameFrameX.Utility.Setting.AppSetting, GameFrameX.NetWork.Abstractions.IMessageEncoderHandler, GameFrameX.NetWork.Abstractions.IRpcSession, Boolean)
-  nameWithType: BaseNetWorkChannel.BaseNetWorkChannel(IGameAppSession, AppSetting, IMessageEncoderHandler, IRpcSession, bool)
-  nameWithType.vb: BaseNetWorkChannel.New(IGameAppSession, AppSetting, IMessageEncoderHandler, IRpcSession, Boolean)
+- uid: GameFrameX.NetWork.BaseNetWorkChannel.#ctor(GameFrameX.SuperSocket.Server.Abstractions.Session.IGameAppSession,GameFrameX.Utility.Setting.AppSetting,GameFrameX.NetWork.Abstractions.IRpcSession,System.Boolean)
+  name: BaseNetWorkChannel(IGameAppSession, AppSetting, IRpcSession, bool)
+  href: api/GameFrameX.NetWork.BaseNetWorkChannel.html#GameFrameX_NetWork_BaseNetWorkChannel__ctor_GameFrameX_SuperSocket_Server_Abstractions_Session_IGameAppSession_GameFrameX_Utility_Setting_AppSetting_GameFrameX_NetWork_Abstractions_IRpcSession_System_Boolean_
+  commentId: M:GameFrameX.NetWork.BaseNetWorkChannel.#ctor(GameFrameX.SuperSocket.Server.Abstractions.Session.IGameAppSession,GameFrameX.Utility.Setting.AppSetting,GameFrameX.NetWork.Abstractions.IRpcSession,System.Boolean)
+  name.vb: New(IGameAppSession, AppSetting, IRpcSession, Boolean)
+  fullName: GameFrameX.NetWork.BaseNetWorkChannel.BaseNetWorkChannel(GameFrameX.SuperSocket.Server.Abstractions.Session.IGameAppSession, GameFrameX.Utility.Setting.AppSetting, GameFrameX.NetWork.Abstractions.IRpcSession, bool)
+  fullName.vb: GameFrameX.NetWork.BaseNetWorkChannel.New(GameFrameX.SuperSocket.Server.Abstractions.Session.IGameAppSession, GameFrameX.Utility.Setting.AppSetting, GameFrameX.NetWork.Abstractions.IRpcSession, Boolean)
+  nameWithType: BaseNetWorkChannel.BaseNetWorkChannel(IGameAppSession, AppSetting, IRpcSession, bool)
+  nameWithType.vb: BaseNetWorkChannel.New(IGameAppSession, AppSetting, IRpcSession, Boolean)
 - uid: GameFrameX.NetWork.BaseNetWorkChannel.#ctor*
   name: BaseNetWorkChannel
   href: api/GameFrameX.NetWork.BaseNetWorkChannel.html#GameFrameX_NetWork_BaseNetWorkChannel__ctor_
@@ -8282,15 +8340,15 @@ references:
   commentId: T:GameFrameX.NetWork.DefaultNetWorkChannel
   fullName: GameFrameX.NetWork.DefaultNetWorkChannel
   nameWithType: DefaultNetWorkChannel
-- uid: GameFrameX.NetWork.DefaultNetWorkChannel.#ctor(GameFrameX.SuperSocket.Server.Abstractions.Session.IGameAppSession,GameFrameX.Utility.Setting.AppSetting,GameFrameX.NetWork.Abstractions.IMessageEncoderHandler,GameFrameX.NetWork.Abstractions.IRpcSession,System.Boolean)
-  name: DefaultNetWorkChannel(IGameAppSession, AppSetting, IMessageEncoderHandler, IRpcSession, bool)
-  href: api/GameFrameX.NetWork.DefaultNetWorkChannel.html#GameFrameX_NetWork_DefaultNetWorkChannel__ctor_GameFrameX_SuperSocket_Server_Abstractions_Session_IGameAppSession_GameFrameX_Utility_Setting_AppSetting_GameFrameX_NetWork_Abstractions_IMessageEncoderHandler_GameFrameX_NetWork_Abstractions_IRpcSession_System_Boolean_
-  commentId: M:GameFrameX.NetWork.DefaultNetWorkChannel.#ctor(GameFrameX.SuperSocket.Server.Abstractions.Session.IGameAppSession,GameFrameX.Utility.Setting.AppSetting,GameFrameX.NetWork.Abstractions.IMessageEncoderHandler,GameFrameX.NetWork.Abstractions.IRpcSession,System.Boolean)
-  name.vb: New(IGameAppSession, AppSetting, IMessageEncoderHandler, IRpcSession, Boolean)
-  fullName: GameFrameX.NetWork.DefaultNetWorkChannel.DefaultNetWorkChannel(GameFrameX.SuperSocket.Server.Abstractions.Session.IGameAppSession, GameFrameX.Utility.Setting.AppSetting, GameFrameX.NetWork.Abstractions.IMessageEncoderHandler, GameFrameX.NetWork.Abstractions.IRpcSession, bool)
-  fullName.vb: GameFrameX.NetWork.DefaultNetWorkChannel.New(GameFrameX.SuperSocket.Server.Abstractions.Session.IGameAppSession, GameFrameX.Utility.Setting.AppSetting, GameFrameX.NetWork.Abstractions.IMessageEncoderHandler, GameFrameX.NetWork.Abstractions.IRpcSession, Boolean)
-  nameWithType: DefaultNetWorkChannel.DefaultNetWorkChannel(IGameAppSession, AppSetting, IMessageEncoderHandler, IRpcSession, bool)
-  nameWithType.vb: DefaultNetWorkChannel.New(IGameAppSession, AppSetting, IMessageEncoderHandler, IRpcSession, Boolean)
+- uid: GameFrameX.NetWork.DefaultNetWorkChannel.#ctor(GameFrameX.SuperSocket.Server.Abstractions.Session.IGameAppSession,GameFrameX.Utility.Setting.AppSetting,GameFrameX.NetWork.Abstractions.IRpcSession,System.Boolean)
+  name: DefaultNetWorkChannel(IGameAppSession, AppSetting, IRpcSession, bool)
+  href: api/GameFrameX.NetWork.DefaultNetWorkChannel.html#GameFrameX_NetWork_DefaultNetWorkChannel__ctor_GameFrameX_SuperSocket_Server_Abstractions_Session_IGameAppSession_GameFrameX_Utility_Setting_AppSetting_GameFrameX_NetWork_Abstractions_IRpcSession_System_Boolean_
+  commentId: M:GameFrameX.NetWork.DefaultNetWorkChannel.#ctor(GameFrameX.SuperSocket.Server.Abstractions.Session.IGameAppSession,GameFrameX.Utility.Setting.AppSetting,GameFrameX.NetWork.Abstractions.IRpcSession,System.Boolean)
+  name.vb: New(IGameAppSession, AppSetting, IRpcSession, Boolean)
+  fullName: GameFrameX.NetWork.DefaultNetWorkChannel.DefaultNetWorkChannel(GameFrameX.SuperSocket.Server.Abstractions.Session.IGameAppSession, GameFrameX.Utility.Setting.AppSetting, GameFrameX.NetWork.Abstractions.IRpcSession, bool)
+  fullName.vb: GameFrameX.NetWork.DefaultNetWorkChannel.New(GameFrameX.SuperSocket.Server.Abstractions.Session.IGameAppSession, GameFrameX.Utility.Setting.AppSetting, GameFrameX.NetWork.Abstractions.IRpcSession, Boolean)
+  nameWithType: DefaultNetWorkChannel.DefaultNetWorkChannel(IGameAppSession, AppSetting, IRpcSession, bool)
+  nameWithType.vb: DefaultNetWorkChannel.New(IGameAppSession, AppSetting, IRpcSession, Boolean)
 - uid: GameFrameX.NetWork.DefaultNetWorkChannel.#ctor*
   name: DefaultNetWorkChannel
   href: api/GameFrameX.NetWork.DefaultNetWorkChannel.html#GameFrameX_NetWork_DefaultNetWorkChannel__ctor_
@@ -9145,22 +9203,6 @@ references:
   commentId: T:GameFrameX.NetWork.Message.BaseMessageDecoderHandler
   fullName: GameFrameX.NetWork.Message.BaseMessageDecoderHandler
   nameWithType: BaseMessageDecoderHandler
-- uid: GameFrameX.NetWork.Message.BaseMessageDecoderHandler.Decode(System.Buffers.ReadOnlySequence{System.Byte}@,System.Object)
-  name: Decode(ref ReadOnlySequence<byte>, object)
-  href: api/GameFrameX.NetWork.Message.BaseMessageDecoderHandler.html#GameFrameX_NetWork_Message_BaseMessageDecoderHandler_Decode_System_Buffers_ReadOnlySequence_System_Byte___System_Object_
-  commentId: M:GameFrameX.NetWork.Message.BaseMessageDecoderHandler.Decode(System.Buffers.ReadOnlySequence{System.Byte}@,System.Object)
-  name.vb: Decode(ReadOnlySequence(Of Byte), Object)
-  fullName: GameFrameX.NetWork.Message.BaseMessageDecoderHandler.Decode(ref System.Buffers.ReadOnlySequence<byte>, object)
-  fullName.vb: GameFrameX.NetWork.Message.BaseMessageDecoderHandler.Decode(System.Buffers.ReadOnlySequence(Of Byte), Object)
-  nameWithType: BaseMessageDecoderHandler.Decode(ref ReadOnlySequence<byte>, object)
-  nameWithType.vb: BaseMessageDecoderHandler.Decode(ReadOnlySequence(Of Byte), Object)
-- uid: GameFrameX.NetWork.Message.BaseMessageDecoderHandler.Decode*
-  name: Decode
-  href: api/GameFrameX.NetWork.Message.BaseMessageDecoderHandler.html#GameFrameX_NetWork_Message_BaseMessageDecoderHandler_Decode_
-  commentId: Overload:GameFrameX.NetWork.Message.BaseMessageDecoderHandler.Decode
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Message.BaseMessageDecoderHandler.Decode
-  nameWithType: BaseMessageDecoderHandler.Decode
 - uid: GameFrameX.NetWork.Message.BaseMessageDecoderHandler.DecompressHandler
   name: DecompressHandler
   href: api/GameFrameX.NetWork.Message.BaseMessageDecoderHandler.html#GameFrameX_NetWork_Message_BaseMessageDecoderHandler_DecompressHandler
@@ -9260,22 +9302,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.Message.BaseMessageEncoderHandler.CompressHandler
   nameWithType: BaseMessageEncoderHandler.CompressHandler
-- uid: GameFrameX.NetWork.Message.BaseMessageEncoderHandler.Encode(System.Buffers.IBufferWriter{System.Byte},GameFrameX.NetWork.Abstractions.IMessage)
-  name: Encode(IBufferWriter<byte>, IMessage)
-  href: api/GameFrameX.NetWork.Message.BaseMessageEncoderHandler.html#GameFrameX_NetWork_Message_BaseMessageEncoderHandler_Encode_System_Buffers_IBufferWriter_System_Byte__GameFrameX_NetWork_Abstractions_IMessage_
-  commentId: M:GameFrameX.NetWork.Message.BaseMessageEncoderHandler.Encode(System.Buffers.IBufferWriter{System.Byte},GameFrameX.NetWork.Abstractions.IMessage)
-  name.vb: Encode(IBufferWriter(Of Byte), IMessage)
-  fullName: GameFrameX.NetWork.Message.BaseMessageEncoderHandler.Encode(System.Buffers.IBufferWriter<byte>, GameFrameX.NetWork.Abstractions.IMessage)
-  fullName.vb: GameFrameX.NetWork.Message.BaseMessageEncoderHandler.Encode(System.Buffers.IBufferWriter(Of Byte), GameFrameX.NetWork.Abstractions.IMessage)
-  nameWithType: BaseMessageEncoderHandler.Encode(IBufferWriter<byte>, IMessage)
-  nameWithType.vb: BaseMessageEncoderHandler.Encode(IBufferWriter(Of Byte), IMessage)
-- uid: GameFrameX.NetWork.Message.BaseMessageEncoderHandler.Encode*
-  name: Encode
-  href: api/GameFrameX.NetWork.Message.BaseMessageEncoderHandler.html#GameFrameX_NetWork_Message_BaseMessageEncoderHandler_Encode_
-  commentId: Overload:GameFrameX.NetWork.Message.BaseMessageEncoderHandler.Encode
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Message.BaseMessageEncoderHandler.Encode
-  nameWithType: BaseMessageEncoderHandler.Encode
 - uid: GameFrameX.NetWork.Message.BaseMessageEncoderHandler.Handler(GameFrameX.NetWork.Abstractions.IInnerNetworkMessage)
   name: Handler(IInnerNetworkMessage)
   href: api/GameFrameX.NetWork.Message.BaseMessageEncoderHandler.html#GameFrameX_NetWork_Message_BaseMessageEncoderHandler_Handler_GameFrameX_NetWork_Abstractions_IInnerNetworkMessage_
@@ -11407,32 +11433,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler
   nameWithType: AppStartUpBase.InvokeMessageHandler
-- uid: GameFrameX.StartUp.AppStartUpBase.MessageDecoderHandler
-  name: MessageDecoderHandler
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_MessageDecoderHandler
-  commentId: P:GameFrameX.StartUp.AppStartUpBase.MessageDecoderHandler
-  fullName: GameFrameX.StartUp.AppStartUpBase.MessageDecoderHandler
-  nameWithType: AppStartUpBase.MessageDecoderHandler
-- uid: GameFrameX.StartUp.AppStartUpBase.MessageDecoderHandler*
-  name: MessageDecoderHandler
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_MessageDecoderHandler_
-  commentId: Overload:GameFrameX.StartUp.AppStartUpBase.MessageDecoderHandler
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.AppStartUpBase.MessageDecoderHandler
-  nameWithType: AppStartUpBase.MessageDecoderHandler
-- uid: GameFrameX.StartUp.AppStartUpBase.MessageEncoderHandler
-  name: MessageEncoderHandler
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_MessageEncoderHandler
-  commentId: P:GameFrameX.StartUp.AppStartUpBase.MessageEncoderHandler
-  fullName: GameFrameX.StartUp.AppStartUpBase.MessageEncoderHandler
-  nameWithType: AppStartUpBase.MessageEncoderHandler
-- uid: GameFrameX.StartUp.AppStartUpBase.MessageEncoderHandler*
-  name: MessageEncoderHandler
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_MessageEncoderHandler_
-  commentId: Overload:GameFrameX.StartUp.AppStartUpBase.MessageEncoderHandler
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.AppStartUpBase.MessageEncoderHandler
-  nameWithType: AppStartUpBase.MessageEncoderHandler
 - uid: GameFrameX.StartUp.AppStartUpBase.OnConnected(GameFrameX.SuperSocket.Server.Abstractions.Session.IAppSession)
   name: OnConnected(IAppSession)
   href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_OnConnected_GameFrameX_SuperSocket_Server_Abstractions_Session_IAppSession_
