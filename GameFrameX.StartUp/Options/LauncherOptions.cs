@@ -234,7 +234,7 @@ public sealed class LauncherOptions
     /// <summary>
     /// 标签名称
     /// </summary>
-    [Option(nameof(TagName), HelpText = "标签名称")]
+    [Option(nameof(TagName), Default = "", HelpText = "标签名称")]
     public string TagName { get; set; }
 
     /// <summary>
