@@ -1,4 +1,5 @@
 ﻿using GameFrameX.Foundation.Json;
+using GameFrameX.Utility.Extensions;
 
 namespace GameFrameX.Utility.Setting;
 
@@ -71,15 +72,27 @@ public static class GlobalSettings
     /// <remarks>
     /// 此方法用于更新全局的当前设置。
     /// 通常在应用程序启动时或需要切换配置时调用。
+    /// 该方法具有以下特点:
+    /// 1. 只能设置一次，重复设置会抛出异常
+    /// 2. 不允许传入null值
+    /// 3. 会自动校正SaveDataInterval的值，如果小于5000毫秒则使用默认值
     /// </remarks>
+    /// <exception cref="InvalidOperationException">当CurrentSetting已存在时抛出此异常</exception>
+    /// <exception cref="ArgumentNullException">当传入的setting参数为null时抛出此异常</exception>
     public static void SetCurrentSetting(AppSetting setting)
     {
+        if (CurrentSetting.IsNotNull())
+        {
+            throw new InvalidOperationException("当前设置已经存在，不能再次设置");
+        }
+
         ArgumentNullException.ThrowIfNull(setting, nameof(setting));
-        CurrentSetting = setting;
-        if (setting.SaveDataInterval < 1000)
+        if (setting.SaveDataInterval < 5000)
         {
             setting.SaveDataInterval = GlobalConst.SaveIntervalInMilliSeconds;
         }
+
+        CurrentSetting = setting;
     }
 
     /// <summary>
