@@ -39,11 +39,6 @@ public static class GlobalSettings
     public static bool IsDebug { get; set; }
 
     /// <summary>
-    /// API根地址
-    /// </summary>
-    public static string ApiRootPath { get; set; }
-
-    /// <summary>
     /// 数据存储间隔 单位 毫秒,默认5分钟，最小1秒
     /// </summary>
     public static int SaveIntervalInMilliSeconds

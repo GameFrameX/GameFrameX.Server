@@ -31,7 +31,7 @@ public static class HttpHandler
     {
         var ip = context.Connection.RemoteIpAddress?.ToString();
         string url = context.Request.PathBase + context.Request.Path;
-        var command = context.Request.Path.ToString().Substring(GlobalSettings.ApiRootPath.Length);
+        var command = context.Request.Path.ToString().Substring(GlobalSettings.CurrentSetting.HttpUrl.Length);
         var logHeader = $"[HTTPServer] TraceIdentifier:[{context.TraceIdentifier}], 来源[{ip}], url:[{url}]";
         LogHelper.Debug($"{logHeader}，请求方式:[{context.Request.Method}]");
 

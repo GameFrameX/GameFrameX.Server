@@ -1,28 +1,16 @@
 using System.Net;
 using System.Reflection;
 using GameFrameX.Foundation.Logger;
-using GameFrameX.NetWork;
-using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
-using GameFrameX.NetWork.Message;
-using GameFrameX.StartUp.Options;
-using GameFrameX.SuperSocket.Connection;
-using GameFrameX.SuperSocket.Primitives;
-using GameFrameX.SuperSocket.ProtoBase;
 using GameFrameX.SuperSocket.Server;
 using GameFrameX.SuperSocket.Server.Abstractions;
-using GameFrameX.SuperSocket.Server.Abstractions.Session;
 using GameFrameX.SuperSocket.Server.Host;
-using GameFrameX.SuperSocket.WebSocket;
-using GameFrameX.SuperSocket.WebSocket.Server;
 using GameFrameX.Utility;
-using GameFrameX.Utility.Extensions;
 using GameFrameX.Utility.Setting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -30,7 +18,6 @@ using Microsoft.OpenApi.Models;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Serilog;
-using CloseReason = GameFrameX.SuperSocket.WebSocket.CloseReason;
 
 namespace GameFrameX.StartUp;
 
@@ -40,54 +27,40 @@ namespace GameFrameX.StartUp;
 public abstract partial class AppStartUpBase
 {
     /// <summary>
-    /// 启动 HTTP 服务器
+    /// 启动 HTTP 服务器的异步方法
     /// </summary>
-    /// <param name="hostBuilder"></param>
+    /// <param name="hostBuilder">多服务器主机构建器,用于配置和构建服务器实例</param>
     /// <param name="baseHandler">HTTP处理器列表,用于处理不同的HTTP请求</param>
     /// <param name="httpFactory">HTTP处理器工厂,根据命令标识符创建对应的处理器实例</param>
     /// <param name="aopHandlerTypes">AOP处理器列表,用于在HTTP请求处理前后执行额外的逻辑</param>
     /// <param name="minimumLevelLogLevel">日志记录的最小级别,用于控制日志输出</param>
+    /// <exception cref="ArgumentException">当HTTP URL格式不正确时抛出</exception>
+    /// <exception cref="NotImplementedException">当启用HTTPS但未实现时抛出</exception>
     private async Task StartHttpServerAsync(MultipleServerHostBuilder hostBuilder, List<BaseHttpHandler> baseHandler, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes = null, LogLevel minimumLevelLogLevel = LogLevel.Debug)
     {
-        var apiRootPath = Setting.HttpUrl;
-        // 根路径必须以/开头和以/结尾
+        // 验证HTTP URL格式
         if (!Setting.HttpUrl.StartsWith('/'))
         {
-            apiRootPath = "/" + Setting.HttpUrl;
+            throw new ArgumentException("Http 地址必须以/开头", nameof(Setting.HttpUrl));
         }
 
         if (!Setting.HttpUrl.EndsWith('/'))
         {
-            apiRootPath += "/";
+            throw new ArgumentException("Http 地址必须以/结尾", nameof(Setting.HttpUrl));
         }
 
-        GlobalSettings.ApiRootPath = apiRootPath;
-
         LogHelper.InfoConsole("启动 [HTTP] 服务器...");
+        // 检查端口是否可用
         if (Setting.HttpPort is > 0 and < ushort.MaxValue && NetHelper.PortIsAvailable(Setting.HttpPort))
         {
             var builder = WebApplication.CreateBuilder();
 
+            // 确定是否为开发环境
             var development = Setting.HttpIsDevelopment || builder.Environment.IsDevelopment();
 
             var openApiInfo = GetOpenApiInfo();
 
-            // hostBuilder.AddServer(hostBuilder =>
-            // {
-            //     hostBuilder.ConfigureServices((context, serviceCollection) =>
-            //     {
-            //         serviceCollection.Configure<ServerOptions>(options =>
-            //         {
-            //             var listenOptions = new ListenOptions()
-            //             {
-            //                 Ip = "Any",
-            //                 Port = Setting.WsPort,
-            //             };
-            //             options.AddListener(listenOptions);
-            //         });
-            //     });
-            // });
-
+            // 在开发环境下配置Swagger
             if (development)
             {
                 // 添加 Swagger 服务
@@ -106,17 +79,15 @@ public abstract partial class AppStartUpBase
                 });
             }
 
-
+            // 配置Web主机
             builder.WebHost.UseKestrel(options =>
             {
                 options.ListenAnyIP(Setting.HttpPort);
 
-                // HTTPS
+                // HTTPS配置检查
                 if (Setting.HttpsPort > 0 && NetHelper.PortIsAvailable(Setting.HttpsPort))
                 {
                     throw new NotImplementedException("HTTPS 未实现,请取消HTTPS端口配置");
-
-                    // options.ListenAnyIP(Setting.HttpsPort, listenOptions => { listenOptions.UseHttps(); });
                 }
             }).ConfigureLogging(logging =>
             {
@@ -126,9 +97,10 @@ public abstract partial class AppStartUpBase
             });
 
             var app = builder.Build();
+
+            // 开发环境下的Swagger UI配置
             if (development)
             {
-                // 添加 Swagger 中间件
                 app.UseSwagger();
                 app.UseSwaggerUI(options =>
                 {
@@ -142,9 +114,10 @@ public abstract partial class AppStartUpBase
                 }
             }
 
+            // 配置全局异常处理
             app.UseExceptionHandler(ExceptionHandler);
 
-            // 每个http处理器，注册到路由中
+            // 注册HTTP处理器路由
             foreach (var handler in baseHandler)
             {
                 var handlerType = handler.GetType();
@@ -154,8 +127,11 @@ public abstract partial class AppStartUpBase
                     continue;
                 }
 
-                // 只支持POST请求
-                var route = app.MapPost($"{apiRootPath}{mappingAttribute.StandardCmd}", async (HttpContext context, string text) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
+                // 注册POST路由
+                var apiPath = $"{GlobalSettings.CurrentSetting.HttpUrl}{mappingAttribute.StandardCmd}";
+                var route = app.MapPost(apiPath, async (HttpContext context, string text) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
+
+                // 开发环境下配置API文档
                 if (development)
                 {
                     // 开发模式，启用 Swagger
@@ -177,85 +153,87 @@ public abstract partial class AppStartUpBase
         }
     }
 
-
     /// <summary>
-    /// 启动 HTTP 服务器
+    /// 启动 HTTP 服务器的同步方法
     /// </summary>
     /// <param name="baseHandler">HTTP处理器列表,用于处理不同的HTTP请求</param>
     /// <param name="httpFactory">HTTP处理器工厂,根据命令标识符创建对应的处理器实例</param>
     /// <param name="aopHandlerTypes">AOP处理器列表,用于在HTTP请求处理前后执行额外的逻辑</param>
     /// <param name="minimumLevelLogLevel">日志记录的最小级别,用于控制日志输出</param>
+    /// <exception cref="ArgumentException">当HTTP URL格式不正确时抛出</exception>
+    /// <exception cref="NotImplementedException">当启用HTTPS但未实现时抛出</exception>
     private async Task StartHttpServer(List<BaseHttpHandler> baseHandler, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes = null, LogLevel minimumLevelLogLevel = LogLevel.Debug)
     {
-        var apiRootPath = Setting.HttpUrl;
-        // 根路径必须以/开头和以/结尾
+        // 验证HTTP URL格式
         if (!Setting.HttpUrl.StartsWith('/'))
         {
-            apiRootPath = "/" + Setting.HttpUrl;
+            throw new ArgumentException("Http 地址必须以/开头", nameof(Setting.HttpUrl));
         }
 
         if (!Setting.HttpUrl.EndsWith('/'))
         {
-            apiRootPath += "/";
+            throw new ArgumentException("Http 地址必须以/结尾", nameof(Setting.HttpUrl));
         }
 
-        GlobalSettings.ApiRootPath = apiRootPath;
-
         LogHelper.InfoConsole("启动 [HTTP] 服务器...");
+        // 检查端口是否可用
         if (Setting.HttpPort is > 0 and < ushort.MaxValue && NetHelper.PortIsAvailable(Setting.HttpPort))
         {
             var builder = WebApplication.CreateBuilder();
 
+            // 确定是否为开发环境
             var development = Setting.HttpIsDevelopment || EnvironmentHelper.IsDevelopment();
 
             var openApiInfo = GetOpenApiInfo();
+
+            // 在开发环境下配置Swagger
             if (development)
             {
-                // 添加 Swagger 服务
                 builder.Services.AddEndpointsApiExplorer();
                 builder.Services.AddSwaggerGen(options =>
                 {
                     options.SwaggerDoc(openApiInfo.Version, openApiInfo);
-
-                    // 使用自定义的 SchemaFilter 来保持属性名称大小写
                     options.SchemaFilter<PreservePropertyCasingSchemaFilter>();
-
-                    // 添加自定义操作过滤器来处理动态路由
                     options.OperationFilter<SwaggerOperationFilter>(baseHandler);
-                    // 使用完整的类型名称
                     options.CustomSchemaIds(type => type.Name);
                 });
             }
 
-
+            // 配置Web主机
             builder.WebHost.UseKestrel(options =>
                    {
                        options.ListenAnyIP(Setting.HttpPort);
 
-                       // HTTPS
                        if (Setting.HttpsPort > 0 && NetHelper.PortIsAvailable(Setting.HttpsPort))
                        {
                            throw new NotImplementedException("HTTPS 未实现,请取消HTTPS端口配置");
-
-                           // options.ListenAnyIP(Setting.HttpsPort, listenOptions => { listenOptions.UseHttps(); });
                        }
-                   }).ConfigureLogging(logging =>
+                   })
+                   .ConfigureLogging(logging =>
                    {
                        logging.ClearProviders();
                        logging.AddSerilog(Log.Logger);
                        logging.SetMinimumLevel(minimumLevelLogLevel);
                    })
+                   // 配置OpenTelemetry服务
                    .ConfigureServices(services =>
                    {
                        services.AddOpenTelemetry()
-                               .ConfigureResource(configure => { configure.AddService("HTTP:" + Setting.ServerName + "-" + Setting.TagName, "GameFrameX.HTTP").AddTelemetrySdk(); })
+                               .ConfigureResource(configure =>
+                               {
+                                   configure.AddService("HTTP:" + Setting.ServerName + "-" + Setting.TagName, "GameFrameX.HTTP")
+                                            .AddTelemetrySdk();
+                               })
                                .WithTracing(configure =>
                                {
                                    configure.AddAspNetCoreInstrumentation();
                                    configure.AddConsoleExporter();
                                });
                    });
+
             var app = builder.Build();
+
+            // 开发环境下的Swagger UI配置
             if (development)
             {
                 // 添加 Swagger 中间件
@@ -272,9 +250,10 @@ public abstract partial class AppStartUpBase
                 }
             }
 
+            // 配置全局异常处理
             app.UseExceptionHandler(ExceptionHandler);
 
-            // 每个http处理器，注册到路由中
+            // 注册HTTP处理器路由
             foreach (var handler in baseHandler)
             {
                 var handlerType = handler.GetType();
@@ -284,8 +263,11 @@ public abstract partial class AppStartUpBase
                     continue;
                 }
 
-                // 只支持POST请求
-                var route = app.MapPost($"{apiRootPath}{mappingAttribute.StandardCmd}", async (HttpContext context, string text) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
+                // 注册POST路由
+                var apiPath = $"{GlobalSettings.CurrentSetting.HttpUrl}{mappingAttribute.StandardCmd}";
+                var route = app.MapPost(apiPath, async (HttpContext context, string text) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
+
+                // 开发环境下配置API文档
                 if (development)
                 {
                     // 开发模式，启用 Swagger
