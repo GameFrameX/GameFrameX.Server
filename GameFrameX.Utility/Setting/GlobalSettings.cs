@@ -104,6 +104,7 @@ public static class GlobalSettings
     /// </remarks>
     public static void SetCurrentSetting(AppSetting setting)
     {
+        ArgumentNullException.ThrowIfNull(setting, nameof(setting));
         CurrentSetting = setting;
     }
 
