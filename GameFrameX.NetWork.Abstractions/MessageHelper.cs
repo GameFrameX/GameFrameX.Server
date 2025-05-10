@@ -14,12 +14,12 @@ public sealed class MessageHelper
     /// <summary>
     /// 消息编码处理器 - 用于将消息编码成二进制格式
     /// </summary>
-    public static IMessageEncoderHandler MessageEncoderHandler { get; private set; }
+    public static IMessageEncoderHandler EncoderHandler { get; private set; }
 
     /// <summary>
     /// 消息解码处理器 - 用于将二进制数据解码成消息对象
     /// </summary>
-    public static IMessageDecoderHandler MessageDecoderHandler { get; private set; }
+    public static IMessageDecoderHandler DecoderHandler { get; private set; }
 
     /// <summary>
     /// 设置消息解码处理器和解压缩处理器
@@ -30,8 +30,8 @@ public sealed class MessageHelper
     public static void SetMessageDecoderHandler(IMessageDecoderHandler decoderHandler, IMessageDecompressHandler decompressHandler)
     {
         ArgumentNullException.ThrowIfNull(decoderHandler, nameof(decoderHandler));
-        MessageDecoderHandler = decoderHandler;
-        MessageDecoderHandler.SetDecompressionHandler(decompressHandler);
+        DecoderHandler = decoderHandler;
+        DecoderHandler.SetDecompressionHandler(decompressHandler);
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ public sealed class MessageHelper
     public static void SetMessageEncoderHandler(IMessageEncoderHandler encoderHandler, IMessageCompressHandler compressHandler)
     {
         ArgumentNullException.ThrowIfNull(encoderHandler, nameof(encoderHandler));
-        MessageEncoderHandler = encoderHandler;
-        MessageEncoderHandler.SetCompressionHandler(compressHandler);
+        EncoderHandler = encoderHandler;
+        EncoderHandler.SetCompressionHandler(compressHandler);
     }
 }
