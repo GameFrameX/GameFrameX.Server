@@ -80,7 +80,7 @@ public static class GlobalTimer
     /// <returns>下次回存时间</returns>
     private static long NextSaveTime()
     {
-        return TimeHelper.UnixTimeMilliseconds() + GlobalSettings.SaveIntervalInMilliSeconds;
+        return TimeHelper.UnixTimeMilliseconds() + GlobalSettings.CurrentSetting.SaveDataInterval;
     }
 
     /// <summary>

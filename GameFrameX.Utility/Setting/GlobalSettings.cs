@@ -12,8 +12,6 @@ public static class GlobalSettings
     /// </summary>
     private static readonly List<AppSetting> Settings = new(16);
 
-    private static int _saveIntervalInMilliSeconds;
-
     /// <summary>
     /// 获取当前应用程序设置
     /// </summary>
@@ -32,24 +30,6 @@ public static class GlobalSettings
     /// 启动时间
     /// </summary>
     public static DateTime LaunchTime { get; set; }
-
-    /// <summary>
-    /// 数据存储间隔 单位 毫秒,默认5分钟，最小1秒
-    /// </summary>
-    public static int SaveIntervalInMilliSeconds
-    {
-        get { return _saveIntervalInMilliSeconds; }
-        set
-        {
-            if (value < 1000)
-            {
-                _saveIntervalInMilliSeconds = GlobalConst.SaveIntervalInMilliSeconds;
-                return;
-            }
-
-            _saveIntervalInMilliSeconds = value;
-        }
-    }
 
     /// <summary>
     /// 加载启动配置
@@ -96,6 +76,10 @@ public static class GlobalSettings
     {
         ArgumentNullException.ThrowIfNull(setting, nameof(setting));
         CurrentSetting = setting;
+        if (setting.SaveDataInterval < 1000)
+        {
+            setting.SaveDataInterval = GlobalConst.SaveIntervalInMilliSeconds;
+        }
     }
 
     /// <summary>

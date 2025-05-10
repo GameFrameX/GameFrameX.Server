@@ -50,7 +50,6 @@ public abstract partial class AppStartUpBase : IAppStartUp
         Init();
         Setting.CheckNotNull(nameof(Setting));
         GlobalSettings.SetCurrentSetting(setting);
-        GlobalSettings.SaveIntervalInMilliSeconds = Setting.SaveDataInterval;
         return true;
     }
 
