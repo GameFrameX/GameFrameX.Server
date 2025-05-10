@@ -51,7 +51,6 @@ public abstract partial class AppStartUpBase : IAppStartUp
         Setting.CheckNotNull(nameof(Setting));
         GlobalSettings.SetCurrentSetting(setting);
         GlobalSettings.SaveIntervalInMilliSeconds = Setting.SaveDataInterval;
-        GlobalSettings.ServerId = Setting.ServerId;
         GlobalSettings.IsDebug = Setting.IsDebug;
         return true;
     }
@@ -81,8 +80,6 @@ public abstract partial class AppStartUpBase : IAppStartUp
     protected virtual void Init()
     {
     }
-
-
 
     /// <summary>
     /// 配置启动,当InnerIP为空时.将使用Any

@@ -39,21 +39,6 @@ public static class GlobalSettings
     public static bool IsDebug { get; set; }
 
     /// <summary>
-    /// 是否监控打印超时日志
-    /// </summary>
-    public static bool IsMonitorTimeOut { get; set; }
-
-    /// <summary>
-    /// 监控超时时间 单位 秒
-    /// </summary>
-    public static int MonitorTimeOutSeconds { get; set; }
-
-    /// <summary>
-    /// 服务器ID
-    /// </summary>
-    public static int ServerId { get; set; }
-
-    /// <summary>
     /// API根地址
     /// </summary>
     public static string ApiRootPath { get; set; }

@@ -114,7 +114,7 @@ public static class ActorIdGenerator
 
         if (serverId == 0)
         {
-            serverId = GlobalSettings.ServerId;
+            serverId = GlobalSettings.CurrentSetting.ServerId;
         }
 
         if (type < GlobalConst.ActorTypeSeparator)
