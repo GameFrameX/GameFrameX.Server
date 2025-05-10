@@ -70,6 +70,16 @@ public interface IActor : IWorker
     Task<T> GetComponentAgent<T>(bool isNew = true) where T : IComponentAgent;
 
     /// <summary>
+    /// 获取所有已激活的组件代理实例
+    /// </summary>
+    /// <remarks>
+    /// 遍历组件映射字典(_componentsMap),筛选出所有处于激活状态(IsActive=true)的组件,
+    /// 并获取它们对应的代理实例。这个方法通常用于需要批量处理或遍历所有活跃组件的场景。
+    /// </remarks>
+    /// <returns>返回包含所有已激活组件代理实例的列表</returns>
+    public List<IComponentAgent> GetActiveComponentAgents();
+
+    /// <summary>
     /// 设置自动回收标记
     /// 配置当前Actor是否允许被系统自动回收
     /// </summary>

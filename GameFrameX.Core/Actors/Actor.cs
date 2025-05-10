@@ -99,6 +99,28 @@ public sealed class Actor : IActor
     }
 
     /// <summary>
+    /// 获取所有已激活的组件代理实例
+    /// </summary>
+    /// <remarks>
+    /// 遍历组件映射字典(_componentsMap),筛选出所有处于激活状态(IsActive=true)的组件,
+    /// 并获取它们对应的代理实例。这个方法通常用于需要批量处理或遍历所有活跃组件的场景。
+    /// </remarks>
+    /// <returns>返回包含所有已激活组件代理实例的列表</returns>
+    public List<IComponentAgent> GetActiveComponentAgents()
+    {
+        var agents = new List<IComponentAgent>();
+        foreach (var kv in _componentsMap)
+        {
+            if (kv.Value.IsActive)
+            {
+                agents.Add(kv.Value.GetAgent());
+            }
+        }
+
+        return agents;
+    }
+
+    /// <summary>
     /// 根据代理类型获取组件代理实例
     /// </summary>
     /// <param name="agentType">代理类型</param>

@@ -7,6 +7,7 @@ using GameFrameX.Core.Hotfix;
 using GameFrameX.Core.Timer;
 using GameFrameX.Core.Utility;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Utility.Extensions;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Core.Actors;
@@ -105,6 +106,28 @@ public static class ActorManager
         }
 
         return await Task.FromResult<IComponentAgent>(default);
+    }
+
+    /// <summary>
+    /// 根据ActorId获取对应Actor中所有激活状态的组件代理对象
+    /// </summary>
+    /// <param name="actorId">要查询的ActorId</param>
+    /// <returns>该Actor下所有处于激活状态的组件代理对象列表,如果Actor不存在则返回空列表</returns>
+    /// <remarks>
+    /// 该方法会返回指定Actor中所有已经被激活的组件代理对象。
+    /// 如果指定的ActorId不存在,将返回一个空列表。
+    /// 组件的激活状态由Actor内部维护。
+    /// </remarks>
+    public static List<IComponentAgent> GetActiveComponentAgents(long actorId)
+    {
+        var result = new List<IComponentAgent>();
+        var actor = GetActor(actorId);
+        if (actor.IsNull())
+        {
+            return result;
+        }
+
+        return actor.GetActiveComponentAgents();
     }
 
     /// <summary>
