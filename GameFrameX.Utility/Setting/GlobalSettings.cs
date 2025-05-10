@@ -15,6 +15,15 @@ public static class GlobalSettings
     private static int _saveIntervalInMilliSeconds;
 
     /// <summary>
+    /// 获取当前应用程序设置
+    /// </summary>
+    /// <remarks>
+    /// 只能通过SetCurrentSetting方法设置，确保配置的安全性。
+    /// 存储当前正在使用的应用程序配置信息。
+    /// </remarks>
+    public static AppSetting CurrentSetting { get; private set; }
+
+    /// <summary>
     /// 是否运行中
     /// </summary>
     public static bool IsAppRunning { get; set; }
@@ -98,6 +107,19 @@ public static class GlobalSettings
 
             Settings.Add(setting);
         }
+    }
+
+    /// <summary>
+    /// 设置当前应用程序设置
+    /// </summary>
+    /// <param name="setting">要设置的应用程序配置对象</param>
+    /// <remarks>
+    /// 此方法用于更新全局的当前设置。
+    /// 通常在应用程序启动时或需要切换配置时调用。
+    /// </remarks>
+    public static void SetCurrentSetting(AppSetting setting)
+    {
+        CurrentSetting = setting;
     }
 
     /// <summary>
