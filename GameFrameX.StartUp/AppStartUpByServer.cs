@@ -43,16 +43,6 @@ namespace GameFrameX.StartUp;
 public abstract partial class AppStartUpBase
 {
     /// <summary>
-    /// 消息编码处理器 - 用于将消息编码成二进制格式
-    /// </summary>
-    protected IMessageEncoderHandler MessageEncoderHandler { get; private set; }
-
-    /// <summary>
-    /// 消息解码处理器 - 用于将二进制数据解码成消息对象
-    /// </summary>
-    protected IMessageDecoderHandler MessageDecoderHandler { get; private set; }
-
-    /// <summary>
     /// 启动服务器 - 同时启动TCP和WebSocket服务
     /// </summary>
     /// <typeparam name="TMessageDecoderHandler">消息解码处理器类型，必须实现IMessageDecoderHandler和IPackageDecoder接口</typeparam>
@@ -65,35 +55,15 @@ public abstract partial class AppStartUpBase
     /// <param name="minimumLevelLogLevel">日志记录的最小级别,用于控制日志输出</param>
     protected async Task StartServerAsync<TMessageDecoderHandler, TMessageEncoderHandler>(
         IMessageCompressHandler messageCompressHandler,
-        IMessageDecompressHandler messageDecompressHandler, List<BaseHttpHandler> baseHandler, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes = null, LogLevel minimumLevelLogLevel = LogLevel.Debug)
-        where TMessageDecoderHandler : class, IMessageDecoderHandler, IPackageDecoder<IMessage>, new()
-        where TMessageEncoderHandler : class, IMessageEncoderHandler, IPackageEncoder<IMessage>, new()
+        IMessageDecompressHandler messageDecompressHandler,
+        List<BaseHttpHandler> baseHandler, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes = null, LogLevel minimumLevelLogLevel = LogLevel.Debug)
+        where TMessageDecoderHandler : class, IMessageDecoderHandler, new()
+        where TMessageEncoderHandler : class, IMessageEncoderHandler, new()
     {
+        MessageHelper.SetMessageDecoderHandler(Activator.CreateInstance<TMessageDecoderHandler>(), messageDecompressHandler);
+        MessageHelper.SetMessageEncoderHandler(Activator.CreateInstance<TMessageEncoderHandler>(), messageCompressHandler);
         // 启动服务器
-        await StartServer<TMessageDecoderHandler>(baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
-
-        // 初始化消息处理器
-        if (MessageDecoderHandler.IsNull())
-        {
-            MessageDecoderHandler = Activator.CreateInstance<TMessageDecoderHandler>();
-        }
-
-        if (MessageEncoderHandler.IsNull())
-        {
-            MessageEncoderHandler = Activator.CreateInstance<TMessageEncoderHandler>();
-        }
-
-        // 设置压缩/解压处理器
-        if (MessageDecoderHandler.IsNotNull())
-        {
-            MessageDecoderHandler.SetDecompressionHandler(messageDecompressHandler);
-        }
-
-        if (MessageEncoderHandler.IsNotNull())
-        {
-            MessageEncoderHandler.SetCompressionHandler(messageCompressHandler);
-        }
-
+        await StartServer(baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
         // 设置全局启动状态
         GlobalSettings.LaunchTime = DateTime.UtcNow;
         GlobalSettings.IsAppRunning = true;
@@ -190,8 +160,7 @@ public abstract partial class AppStartUpBase
     /// <param name="httpFactory">HTTP处理器工厂,根据命令标识符创建对应的处理器实例</param>
     /// <param name="aopHandlerTypes">AOP处理器列表,用于在HTTP请求处理前后执行额外的逻辑</param>
     /// <param name="minimumLevelLogLevel">日志记录的最小级别,用于控制日志输出</param>
-    private async Task StartServer<TMessageDecoderHandler>(List<BaseHttpHandler> baseHandler, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes = null, LogLevel minimumLevelLogLevel = LogLevel.Debug)
-        where TMessageDecoderHandler : class, IMessageDecoderHandler, IPackageDecoder<IMessage>, new()
+    private async Task StartServer(List<BaseHttpHandler> baseHandler, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes = null, LogLevel minimumLevelLogLevel = LogLevel.Debug)
     {
         var multipleServerHostBuilder = MultipleServerHostBuilder.Create();
         // 检查TCP端口是否可用
@@ -202,7 +171,6 @@ public abstract partial class AppStartUpBase
             {
                 builder
                     .UseClearIdleSession()
-                    .UsePackageDecoder<TMessageDecoderHandler>()
                     .UseSessionHandler(OnConnected, OnDisconnected)
                     .UsePackageHandler(PackageHandler, PackageErrorHandler)
                     .UseInProcSessionContainer()
@@ -217,6 +185,14 @@ public abstract partial class AppStartUpBase
                             };
                             options.AddListener(listenOptions);
                         });
+                        // foreach (var serviceDescriptor in serviceCollection)
+                        // {
+                        //     if (serviceDescriptor.ServiceType == typeof(IPackageDecoder<IMessage>))
+                        //     {
+                        //         serviceDescriptor.ImplementationInstance ;
+                        //         LogHelper.Console("XX");
+                        //     }
+                        // }
                     });
             });
             LogHelper.InfoConsole($"启动 [TCP] 服务器启动完成 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}");
@@ -364,7 +340,7 @@ public abstract partial class AppStartUpBase
         }
 
         var readOnlySequence = messagePackage.Data;
-        var message = MessageDecoderHandler.Handler(ref readOnlySequence);
+        var message = MessageHelper.DecoderHandler.Handler(ref readOnlySequence);
         await PackageHandler(session, message);
     }
 
