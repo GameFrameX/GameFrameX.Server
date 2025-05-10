@@ -72,8 +72,8 @@ public class BagComponentAgent : StateComponentAgent<BagComponent, BagState>
 
 
         await netWorkChannel.WriteAsync(notifyBagInfoChanged);
-        var result = await OwnerComponent.Save();
-        return result;
+        await OwnerComponent.WriteStateAsync();
+        return bagState;
     }
 
     /// <summary>
@@ -118,14 +118,8 @@ public class BagComponentAgent : StateComponentAgent<BagComponent, BagState>
             }
         }
 
-        var result = await OwnerComponent.Save();
-        if (result.IsNull())
-        {
-            response.ErrorCode = (int)OperationStatusCode.Unprocessable;
-            return;
-        }
+        await OwnerComponent.WriteStateAsync();
     }
-
 
     /// <summary>
     /// 减少背包物品
@@ -172,13 +166,7 @@ public class BagComponentAgent : StateComponentAgent<BagComponent, BagState>
             return;
         }
 
-
-        var result = await OwnerComponent.Save();
-        if (result.IsNull())
-        {
-            response.ErrorCode = (int)OperationStatusCode.Unprocessable;
-            return;
-        }
+        await OwnerComponent.WriteStateAsync();
     }
 
     /// <summary>
