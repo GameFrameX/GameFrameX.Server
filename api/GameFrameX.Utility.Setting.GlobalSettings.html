@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev19/apiSpec/new?filename=GameFrameX_Utility_Setting_GlobalSettings.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Setting.GlobalSettings%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev20/apiSpec/new?filename=GameFrameX_Utility_Setting_GlobalSettings.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Setting.GlobalSettings%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_Utility_Setting_GlobalSettings" data-uid="GameFrameX.Utility.Setting.GlobalSettings" class="text-break">
-Class GlobalSettings  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev19/GameFrameX.Utility/Setting/GlobalSettings.cs/#L8"><i class="bi bi-code-slash"></i></a>
+Class GlobalSettings  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev20/GameFrameX.Utility/Setting/GlobalSettings.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -153,19 +153,19 @@ Class GlobalSettings  <a class="header-action link-secondary" title="View source
 </h2>
 
 
-  <a id="GameFrameX_Utility_Setting_GlobalSettings_ApiRootPath_" data-uid="GameFrameX.Utility.Setting.GlobalSettings.ApiRootPath*"></a>
+  <a id="GameFrameX_Utility_Setting_GlobalSettings_CurrentSetting_" data-uid="GameFrameX.Utility.Setting.GlobalSettings.CurrentSetting*"></a>
 
-  <h3 id="GameFrameX_Utility_Setting_GlobalSettings_ApiRootPath" data-uid="GameFrameX.Utility.Setting.GlobalSettings.ApiRootPath">
-  ApiRootPath
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev19/GameFrameX.Utility/Setting/GlobalSettings.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_Utility_Setting_GlobalSettings_CurrentSetting" data-uid="GameFrameX.Utility.Setting.GlobalSettings.CurrentSetting">
+  CurrentSetting
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev20/GameFrameX.Utility/Setting/GlobalSettings.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>API根地址</p>
+  <div class="markdown level1 summary"><p>获取当前应用程序设置</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string ApiRootPath { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static AppSetting CurrentSetting { get; }</code></pre>
   </div>
 
 
@@ -174,13 +174,17 @@ Class GlobalSettings  <a class="header-action link-secondary" title="View source
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><a class="xref" href="GameFrameX.Utility.Setting.AppSetting.html">AppSetting</a></dt>
     <dd></dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_Setting_GlobalSettings_CurrentSetting_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>只能通过SetCurrentSetting方法设置，确保配置的安全性。
+存储当前正在使用的应用程序配置信息。</p>
+</div>
 
 
 
@@ -189,7 +193,7 @@ Class GlobalSettings  <a class="header-action link-secondary" title="View source
 
   <h3 id="GameFrameX_Utility_Setting_GlobalSettings_IsAppRunning" data-uid="GameFrameX.Utility.Setting.GlobalSettings.IsAppRunning">
   IsAppRunning
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev19/GameFrameX.Utility/Setting/GlobalSettings.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev20/GameFrameX.Utility/Setting/GlobalSettings.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>是否运行中</p>
@@ -217,75 +221,11 @@ Class GlobalSettings  <a class="header-action link-secondary" title="View source
 
 
 
-  <a id="GameFrameX_Utility_Setting_GlobalSettings_IsDebug_" data-uid="GameFrameX.Utility.Setting.GlobalSettings.IsDebug*"></a>
-
-  <h3 id="GameFrameX_Utility_Setting_GlobalSettings_IsDebug" data-uid="GameFrameX.Utility.Setting.GlobalSettings.IsDebug">
-  IsDebug
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev19/GameFrameX.Utility/Setting/GlobalSettings.cs/#L30"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>是否是调试模式</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsDebug { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="GameFrameX_Utility_Setting_GlobalSettings_IsMonitorTimeOut_" data-uid="GameFrameX.Utility.Setting.GlobalSettings.IsMonitorTimeOut*"></a>
-
-  <h3 id="GameFrameX_Utility_Setting_GlobalSettings_IsMonitorTimeOut" data-uid="GameFrameX.Utility.Setting.GlobalSettings.IsMonitorTimeOut">
-  IsMonitorTimeOut
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev19/GameFrameX.Utility/Setting/GlobalSettings.cs/#L35"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>是否监控打印超时日志</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsMonitorTimeOut { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="GameFrameX_Utility_Setting_GlobalSettings_LaunchTime_" data-uid="GameFrameX.Utility.Setting.GlobalSettings.LaunchTime*"></a>
 
   <h3 id="GameFrameX_Utility_Setting_GlobalSettings_LaunchTime" data-uid="GameFrameX.Utility.Setting.GlobalSettings.LaunchTime">
   LaunchTime
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev19/GameFrameX.Utility/Setting/GlobalSettings.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev20/GameFrameX.Utility/Setting/GlobalSettings.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>启动时间</p>
@@ -313,102 +253,6 @@ Class GlobalSettings  <a class="header-action link-secondary" title="View source
 
 
 
-  <a id="GameFrameX_Utility_Setting_GlobalSettings_MonitorTimeOutSeconds_" data-uid="GameFrameX.Utility.Setting.GlobalSettings.MonitorTimeOutSeconds*"></a>
-
-  <h3 id="GameFrameX_Utility_Setting_GlobalSettings_MonitorTimeOutSeconds" data-uid="GameFrameX.Utility.Setting.GlobalSettings.MonitorTimeOutSeconds">
-  MonitorTimeOutSeconds
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev19/GameFrameX.Utility/Setting/GlobalSettings.cs/#L40"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>监控超时时间 单位 秒</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int MonitorTimeOutSeconds { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="GameFrameX_Utility_Setting_GlobalSettings_SaveIntervalInMilliSeconds_" data-uid="GameFrameX.Utility.Setting.GlobalSettings.SaveIntervalInMilliSeconds*"></a>
-
-  <h3 id="GameFrameX_Utility_Setting_GlobalSettings_SaveIntervalInMilliSeconds" data-uid="GameFrameX.Utility.Setting.GlobalSettings.SaveIntervalInMilliSeconds">
-  SaveIntervalInMilliSeconds
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev19/GameFrameX.Utility/Setting/GlobalSettings.cs/#L55"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>数据存储间隔 单位 毫秒,默认5分钟，最小1秒</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int SaveIntervalInMilliSeconds { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="GameFrameX_Utility_Setting_GlobalSettings_ServerId_" data-uid="GameFrameX.Utility.Setting.GlobalSettings.ServerId*"></a>
-
-  <h3 id="GameFrameX_Utility_Setting_GlobalSettings_ServerId" data-uid="GameFrameX.Utility.Setting.GlobalSettings.ServerId">
-  ServerId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev19/GameFrameX.Utility/Setting/GlobalSettings.cs/#L45"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>服务器ID</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int ServerId { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -417,7 +261,7 @@ Class GlobalSettings  <a class="header-action link-secondary" title="View source
 
   <h3 id="GameFrameX_Utility_Setting_GlobalSettings_GetSettingByServerId__1_System_Int32_" data-uid="GameFrameX.Utility.Setting.GlobalSettings.GetSettingByServerId``1(System.Int32)">
   GetSettingByServerId&lt;T&gt;(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev19/GameFrameX.Utility/Setting/GlobalSettings.cs/#L159"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev20/GameFrameX.Utility/Setting/GlobalSettings.cs/#L154"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>根据服务器Id获取特定类型的设置</p>
@@ -465,7 +309,7 @@ Class GlobalSettings  <a class="header-action link-secondary" title="View source
 
   <h3 id="GameFrameX_Utility_Setting_GlobalSettings_GetSettingByServerName__1_System_String_" data-uid="GameFrameX.Utility.Setting.GlobalSettings.GetSettingByServerName``1(System.String)">
   GetSettingByServerName&lt;T&gt;(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev19/GameFrameX.Utility/Setting/GlobalSettings.cs/#L138"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev20/GameFrameX.Utility/Setting/GlobalSettings.cs/#L133"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>根据服务器名称获取特定类型的设置</p>
@@ -516,7 +360,7 @@ Class GlobalSettings  <a class="header-action link-secondary" title="View source
 
   <h3 id="GameFrameX_Utility_Setting_GlobalSettings_GetSettingByTagName__1_System_String_" data-uid="GameFrameX.Utility.Setting.GlobalSettings.GetSettingByTagName``1(System.String)">
   GetSettingByTagName&lt;T&gt;(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev19/GameFrameX.Utility/Setting/GlobalSettings.cs/#L179"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev20/GameFrameX.Utility/Setting/GlobalSettings.cs/#L174"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>根据服务器标签名称获取特定类型的设置</p>
@@ -567,7 +411,7 @@ Class GlobalSettings  <a class="header-action link-secondary" title="View source
 
   <h3 id="GameFrameX_Utility_Setting_GlobalSettings_GetSetting__1_GameFrameX_Utility_Setting_ServerType_" data-uid="GameFrameX.Utility.Setting.GlobalSettings.GetSetting``1(GameFrameX.Utility.Setting.ServerType)">
   GetSetting&lt;T&gt;(ServerType)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev19/GameFrameX.Utility/Setting/GlobalSettings.cs/#L199"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev20/GameFrameX.Utility/Setting/GlobalSettings.cs/#L194"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>根据服务器类型获取特定类型的设置</p>
@@ -612,7 +456,7 @@ Class GlobalSettings  <a class="header-action link-secondary" title="View source
 
   <h3 id="GameFrameX_Utility_Setting_GlobalSettings_GetSettings" data-uid="GameFrameX.Utility.Setting.GlobalSettings.GetSettings">
   GetSettings()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev19/GameFrameX.Utility/Setting/GlobalSettings.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev20/GameFrameX.Utility/Setting/GlobalSettings.cs/#L102"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取所有设置</p>
@@ -645,7 +489,7 @@ Class GlobalSettings  <a class="header-action link-secondary" title="View source
 
   <h3 id="GameFrameX_Utility_Setting_GlobalSettings_GetSettings_GameFrameX_Utility_Setting_ServerType_" data-uid="GameFrameX.Utility.Setting.GlobalSettings.GetSettings(GameFrameX.Utility.Setting.ServerType)">
   GetSettings(ServerType)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev19/GameFrameX.Utility/Setting/GlobalSettings.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev20/GameFrameX.Utility/Setting/GlobalSettings.cs/#L112"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>根据服务器类型获取设置</p>
@@ -684,7 +528,7 @@ Class GlobalSettings  <a class="header-action link-secondary" title="View source
 
   <h3 id="GameFrameX_Utility_Setting_GlobalSettings_Load_System_String_" data-uid="GameFrameX.Utility.Setting.GlobalSettings.Load(System.String)">
   Load(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev19/GameFrameX.Utility/Setting/GlobalSettings.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev20/GameFrameX.Utility/Setting/GlobalSettings.cs/#L41"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>加载启动配置</p>
@@ -722,11 +566,63 @@ Class GlobalSettings  <a class="header-action link-secondary" title="View source
 
 
 
+  <a id="GameFrameX_Utility_Setting_GlobalSettings_SetCurrentSetting_" data-uid="GameFrameX.Utility.Setting.GlobalSettings.SetCurrentSetting*"></a>
+
+  <h3 id="GameFrameX_Utility_Setting_GlobalSettings_SetCurrentSetting_GameFrameX_Utility_Setting_AppSetting_" data-uid="GameFrameX.Utility.Setting.GlobalSettings.SetCurrentSetting(GameFrameX.Utility.Setting.AppSetting)">
+  SetCurrentSetting(AppSetting)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev20/GameFrameX.Utility/Setting/GlobalSettings.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置当前应用程序设置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetCurrentSetting(AppSetting setting)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>setting</code> <a class="xref" href="GameFrameX.Utility.Setting.AppSetting.html">AppSetting</a></dt>
+    <dd><p>要设置的应用程序配置对象</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="GameFrameX_Utility_Setting_GlobalSettings_SetCurrentSetting_GameFrameX_Utility_Setting_AppSetting__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法用于更新全局的当前设置。
+通常在应用程序启动时或需要切换配置时调用。
+该方法具有以下特点:</p>
+<ol>
+<li>只能设置一次，重复设置会抛出异常</li>
+<li>不允许传入null值</li>
+<li>会自动校正SaveDataInterval的值，如果小于5000毫秒则使用默认值</li>
+</ol>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>当CurrentSetting已存在时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当传入的setting参数为null时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev19/GameFrameX.Utility/Setting/GlobalSettings.cs/#L8" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev20/GameFrameX.Utility/Setting/GlobalSettings.cs/#L9" class="edit-link">Edit this page</a>
         </div>
 
 

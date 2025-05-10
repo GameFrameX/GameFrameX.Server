@@ -442,6 +442,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Abstractions.IActor.CrossDay
   nameWithType: IActor.CrossDay
+- uid: GameFrameX.Core.Abstractions.IActor.GetActiveComponentAgents
+  name: GetActiveComponentAgents()
+  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_GetActiveComponentAgents
+  commentId: M:GameFrameX.Core.Abstractions.IActor.GetActiveComponentAgents
+  fullName: GameFrameX.Core.Abstractions.IActor.GetActiveComponentAgents()
+  nameWithType: IActor.GetActiveComponentAgents()
+- uid: GameFrameX.Core.Abstractions.IActor.GetActiveComponentAgents*
+  name: GetActiveComponentAgents
+  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_GetActiveComponentAgents_
+  commentId: Overload:GameFrameX.Core.Abstractions.IActor.GetActiveComponentAgents
+  isSpec: "True"
+  fullName: GameFrameX.Core.Abstractions.IActor.GetActiveComponentAgents
+  nameWithType: IActor.GetActiveComponentAgents
 - uid: GameFrameX.Core.Abstractions.IActor.GetComponentAgent(System.Type,System.Boolean)
   name: GetComponentAgent(Type, bool)
   href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_GetComponentAgent_System_Type_System_Boolean_
@@ -919,6 +932,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Actors.Actor.CrossDay
   nameWithType: Actor.CrossDay
+- uid: GameFrameX.Core.Actors.Actor.GetActiveComponentAgents
+  name: GetActiveComponentAgents()
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_GetActiveComponentAgents
+  commentId: M:GameFrameX.Core.Actors.Actor.GetActiveComponentAgents
+  fullName: GameFrameX.Core.Actors.Actor.GetActiveComponentAgents()
+  nameWithType: Actor.GetActiveComponentAgents()
+- uid: GameFrameX.Core.Actors.Actor.GetActiveComponentAgents*
+  name: GetActiveComponentAgents
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_GetActiveComponentAgents_
+  commentId: Overload:GameFrameX.Core.Actors.Actor.GetActiveComponentAgents
+  isSpec: "True"
+  fullName: GameFrameX.Core.Actors.Actor.GetActiveComponentAgents
+  nameWithType: Actor.GetActiveComponentAgents
 - uid: GameFrameX.Core.Actors.Actor.GetComponentAgent(System.Type,System.Boolean)
   name: GetComponentAgent(Type, bool)
   href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_GetComponentAgent_System_Type_System_Boolean_
@@ -1229,6 +1255,22 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Actors.ActorManager.CrossDay
   nameWithType: ActorManager.CrossDay
+- uid: GameFrameX.Core.Actors.ActorManager.GetActiveComponentAgents(System.Int64)
+  name: GetActiveComponentAgents(long)
+  href: api/GameFrameX.Core.Actors.ActorManager.html#GameFrameX_Core_Actors_ActorManager_GetActiveComponentAgents_System_Int64_
+  commentId: M:GameFrameX.Core.Actors.ActorManager.GetActiveComponentAgents(System.Int64)
+  name.vb: GetActiveComponentAgents(Long)
+  fullName: GameFrameX.Core.Actors.ActorManager.GetActiveComponentAgents(long)
+  fullName.vb: GameFrameX.Core.Actors.ActorManager.GetActiveComponentAgents(Long)
+  nameWithType: ActorManager.GetActiveComponentAgents(long)
+  nameWithType.vb: ActorManager.GetActiveComponentAgents(Long)
+- uid: GameFrameX.Core.Actors.ActorManager.GetActiveComponentAgents*
+  name: GetActiveComponentAgents
+  href: api/GameFrameX.Core.Actors.ActorManager.html#GameFrameX_Core_Actors_ActorManager_GetActiveComponentAgents_
+  commentId: Overload:GameFrameX.Core.Actors.ActorManager.GetActiveComponentAgents
+  isSpec: "True"
+  fullName: GameFrameX.Core.Actors.ActorManager.GetActiveComponentAgents
+  nameWithType: ActorManager.GetActiveComponentAgents
 - uid: GameFrameX.Core.Actors.ActorManager.GetComponentAgent*
   name: GetComponentAgent
   href: api/GameFrameX.Core.Actors.ActorManager.html#GameFrameX_Core_Actors_ActorManager_GetComponentAgent_
@@ -2497,6 +2539,32 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Components.BaseComponent.IsActive
   nameWithType: BaseComponent.IsActive
+- uid: GameFrameX.Core.Components.BaseComponent.ReadStateAsync
+  name: ReadStateAsync()
+  href: api/GameFrameX.Core.Components.BaseComponent.html#GameFrameX_Core_Components_BaseComponent_ReadStateAsync
+  commentId: M:GameFrameX.Core.Components.BaseComponent.ReadStateAsync
+  fullName: GameFrameX.Core.Components.BaseComponent.ReadStateAsync()
+  nameWithType: BaseComponent.ReadStateAsync()
+- uid: GameFrameX.Core.Components.BaseComponent.ReadStateAsync*
+  name: ReadStateAsync
+  href: api/GameFrameX.Core.Components.BaseComponent.html#GameFrameX_Core_Components_BaseComponent_ReadStateAsync_
+  commentId: Overload:GameFrameX.Core.Components.BaseComponent.ReadStateAsync
+  isSpec: "True"
+  fullName: GameFrameX.Core.Components.BaseComponent.ReadStateAsync
+  nameWithType: BaseComponent.ReadStateAsync
+- uid: GameFrameX.Core.Components.BaseComponent.WriteStateAsync
+  name: WriteStateAsync()
+  href: api/GameFrameX.Core.Components.BaseComponent.html#GameFrameX_Core_Components_BaseComponent_WriteStateAsync
+  commentId: M:GameFrameX.Core.Components.BaseComponent.WriteStateAsync
+  fullName: GameFrameX.Core.Components.BaseComponent.WriteStateAsync()
+  nameWithType: BaseComponent.WriteStateAsync()
+- uid: GameFrameX.Core.Components.BaseComponent.WriteStateAsync*
+  name: WriteStateAsync
+  href: api/GameFrameX.Core.Components.BaseComponent.html#GameFrameX_Core_Components_BaseComponent_WriteStateAsync_
+  commentId: Overload:GameFrameX.Core.Components.BaseComponent.WriteStateAsync
+  isSpec: "True"
+  fullName: GameFrameX.Core.Components.BaseComponent.WriteStateAsync
+  nameWithType: BaseComponent.WriteStateAsync
 - uid: GameFrameX.Core.Components.ComponentRegister
   name: ComponentRegister
   href: api/GameFrameX.Core.Components.ComponentRegister.html
@@ -2743,23 +2811,23 @@ references:
   fullName.vb: GameFrameX.Core.Components.StateComponent(Of TState).SaveAll
   nameWithType: StateComponent<TState>.SaveAll
   nameWithType.vb: StateComponent(Of TState).SaveAll
-- uid: GameFrameX.Core.Components.StateComponent`1.SaveAsync
-  name: SaveAsync()
-  href: api/GameFrameX.Core.Components.StateComponent-1.html#GameFrameX_Core_Components_StateComponent_1_SaveAsync
-  commentId: M:GameFrameX.Core.Components.StateComponent`1.SaveAsync
-  fullName: GameFrameX.Core.Components.StateComponent<TState>.SaveAsync()
-  fullName.vb: GameFrameX.Core.Components.StateComponent(Of TState).SaveAsync()
-  nameWithType: StateComponent<TState>.SaveAsync()
-  nameWithType.vb: StateComponent(Of TState).SaveAsync()
-- uid: GameFrameX.Core.Components.StateComponent`1.SaveAsync*
-  name: SaveAsync
-  href: api/GameFrameX.Core.Components.StateComponent-1.html#GameFrameX_Core_Components_StateComponent_1_SaveAsync_
-  commentId: Overload:GameFrameX.Core.Components.StateComponent`1.SaveAsync
+- uid: GameFrameX.Core.Components.StateComponent`1.SaveState
+  name: SaveState()
+  href: api/GameFrameX.Core.Components.StateComponent-1.html#GameFrameX_Core_Components_StateComponent_1_SaveState
+  commentId: M:GameFrameX.Core.Components.StateComponent`1.SaveState
+  fullName: GameFrameX.Core.Components.StateComponent<TState>.SaveState()
+  fullName.vb: GameFrameX.Core.Components.StateComponent(Of TState).SaveState()
+  nameWithType: StateComponent<TState>.SaveState()
+  nameWithType.vb: StateComponent(Of TState).SaveState()
+- uid: GameFrameX.Core.Components.StateComponent`1.SaveState*
+  name: SaveState
+  href: api/GameFrameX.Core.Components.StateComponent-1.html#GameFrameX_Core_Components_StateComponent_1_SaveState_
+  commentId: Overload:GameFrameX.Core.Components.StateComponent`1.SaveState
   isSpec: "True"
-  fullName: GameFrameX.Core.Components.StateComponent<TState>.SaveAsync
-  fullName.vb: GameFrameX.Core.Components.StateComponent(Of TState).SaveAsync
-  nameWithType: StateComponent<TState>.SaveAsync
-  nameWithType.vb: StateComponent(Of TState).SaveAsync
+  fullName: GameFrameX.Core.Components.StateComponent<TState>.SaveState
+  fullName.vb: GameFrameX.Core.Components.StateComponent(Of TState).SaveState
+  nameWithType: StateComponent<TState>.SaveState
+  nameWithType.vb: StateComponent(Of TState).SaveState
 - uid: GameFrameX.Core.Components.StateComponent`1.State
   name: State
   href: api/GameFrameX.Core.Components.StateComponent-1.html#GameFrameX_Core_Components_StateComponent_1_State
@@ -26237,19 +26305,19 @@ references:
   commentId: T:GameFrameX.Utility.Setting.GlobalSettings
   fullName: GameFrameX.Utility.Setting.GlobalSettings
   nameWithType: GlobalSettings
-- uid: GameFrameX.Utility.Setting.GlobalSettings.ApiRootPath
-  name: ApiRootPath
-  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_ApiRootPath
-  commentId: P:GameFrameX.Utility.Setting.GlobalSettings.ApiRootPath
-  fullName: GameFrameX.Utility.Setting.GlobalSettings.ApiRootPath
-  nameWithType: GlobalSettings.ApiRootPath
-- uid: GameFrameX.Utility.Setting.GlobalSettings.ApiRootPath*
-  name: ApiRootPath
-  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_ApiRootPath_
-  commentId: Overload:GameFrameX.Utility.Setting.GlobalSettings.ApiRootPath
+- uid: GameFrameX.Utility.Setting.GlobalSettings.CurrentSetting
+  name: CurrentSetting
+  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_CurrentSetting
+  commentId: P:GameFrameX.Utility.Setting.GlobalSettings.CurrentSetting
+  fullName: GameFrameX.Utility.Setting.GlobalSettings.CurrentSetting
+  nameWithType: GlobalSettings.CurrentSetting
+- uid: GameFrameX.Utility.Setting.GlobalSettings.CurrentSetting*
+  name: CurrentSetting
+  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_CurrentSetting_
+  commentId: Overload:GameFrameX.Utility.Setting.GlobalSettings.CurrentSetting
   isSpec: "True"
-  fullName: GameFrameX.Utility.Setting.GlobalSettings.ApiRootPath
-  nameWithType: GlobalSettings.ApiRootPath
+  fullName: GameFrameX.Utility.Setting.GlobalSettings.CurrentSetting
+  nameWithType: GlobalSettings.CurrentSetting
 - uid: GameFrameX.Utility.Setting.GlobalSettings.GetSetting*
   name: GetSetting
   href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_GetSetting_
@@ -26346,32 +26414,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.GlobalSettings.IsAppRunning
   nameWithType: GlobalSettings.IsAppRunning
-- uid: GameFrameX.Utility.Setting.GlobalSettings.IsDebug
-  name: IsDebug
-  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_IsDebug
-  commentId: P:GameFrameX.Utility.Setting.GlobalSettings.IsDebug
-  fullName: GameFrameX.Utility.Setting.GlobalSettings.IsDebug
-  nameWithType: GlobalSettings.IsDebug
-- uid: GameFrameX.Utility.Setting.GlobalSettings.IsDebug*
-  name: IsDebug
-  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_IsDebug_
-  commentId: Overload:GameFrameX.Utility.Setting.GlobalSettings.IsDebug
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Setting.GlobalSettings.IsDebug
-  nameWithType: GlobalSettings.IsDebug
-- uid: GameFrameX.Utility.Setting.GlobalSettings.IsMonitorTimeOut
-  name: IsMonitorTimeOut
-  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_IsMonitorTimeOut
-  commentId: P:GameFrameX.Utility.Setting.GlobalSettings.IsMonitorTimeOut
-  fullName: GameFrameX.Utility.Setting.GlobalSettings.IsMonitorTimeOut
-  nameWithType: GlobalSettings.IsMonitorTimeOut
-- uid: GameFrameX.Utility.Setting.GlobalSettings.IsMonitorTimeOut*
-  name: IsMonitorTimeOut
-  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_IsMonitorTimeOut_
-  commentId: Overload:GameFrameX.Utility.Setting.GlobalSettings.IsMonitorTimeOut
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Setting.GlobalSettings.IsMonitorTimeOut
-  nameWithType: GlobalSettings.IsMonitorTimeOut
 - uid: GameFrameX.Utility.Setting.GlobalSettings.LaunchTime
   name: LaunchTime
   href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_LaunchTime
@@ -26401,45 +26443,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.GlobalSettings.Load
   nameWithType: GlobalSettings.Load
-- uid: GameFrameX.Utility.Setting.GlobalSettings.MonitorTimeOutSeconds
-  name: MonitorTimeOutSeconds
-  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_MonitorTimeOutSeconds
-  commentId: P:GameFrameX.Utility.Setting.GlobalSettings.MonitorTimeOutSeconds
-  fullName: GameFrameX.Utility.Setting.GlobalSettings.MonitorTimeOutSeconds
-  nameWithType: GlobalSettings.MonitorTimeOutSeconds
-- uid: GameFrameX.Utility.Setting.GlobalSettings.MonitorTimeOutSeconds*
-  name: MonitorTimeOutSeconds
-  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_MonitorTimeOutSeconds_
-  commentId: Overload:GameFrameX.Utility.Setting.GlobalSettings.MonitorTimeOutSeconds
+- uid: GameFrameX.Utility.Setting.GlobalSettings.SetCurrentSetting(GameFrameX.Utility.Setting.AppSetting)
+  name: SetCurrentSetting(AppSetting)
+  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_SetCurrentSetting_GameFrameX_Utility_Setting_AppSetting_
+  commentId: M:GameFrameX.Utility.Setting.GlobalSettings.SetCurrentSetting(GameFrameX.Utility.Setting.AppSetting)
+  fullName: GameFrameX.Utility.Setting.GlobalSettings.SetCurrentSetting(GameFrameX.Utility.Setting.AppSetting)
+  nameWithType: GlobalSettings.SetCurrentSetting(AppSetting)
+- uid: GameFrameX.Utility.Setting.GlobalSettings.SetCurrentSetting*
+  name: SetCurrentSetting
+  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_SetCurrentSetting_
+  commentId: Overload:GameFrameX.Utility.Setting.GlobalSettings.SetCurrentSetting
   isSpec: "True"
-  fullName: GameFrameX.Utility.Setting.GlobalSettings.MonitorTimeOutSeconds
-  nameWithType: GlobalSettings.MonitorTimeOutSeconds
-- uid: GameFrameX.Utility.Setting.GlobalSettings.SaveIntervalInMilliSeconds
-  name: SaveIntervalInMilliSeconds
-  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_SaveIntervalInMilliSeconds
-  commentId: P:GameFrameX.Utility.Setting.GlobalSettings.SaveIntervalInMilliSeconds
-  fullName: GameFrameX.Utility.Setting.GlobalSettings.SaveIntervalInMilliSeconds
-  nameWithType: GlobalSettings.SaveIntervalInMilliSeconds
-- uid: GameFrameX.Utility.Setting.GlobalSettings.SaveIntervalInMilliSeconds*
-  name: SaveIntervalInMilliSeconds
-  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_SaveIntervalInMilliSeconds_
-  commentId: Overload:GameFrameX.Utility.Setting.GlobalSettings.SaveIntervalInMilliSeconds
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Setting.GlobalSettings.SaveIntervalInMilliSeconds
-  nameWithType: GlobalSettings.SaveIntervalInMilliSeconds
-- uid: GameFrameX.Utility.Setting.GlobalSettings.ServerId
-  name: ServerId
-  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_ServerId
-  commentId: P:GameFrameX.Utility.Setting.GlobalSettings.ServerId
-  fullName: GameFrameX.Utility.Setting.GlobalSettings.ServerId
-  nameWithType: GlobalSettings.ServerId
-- uid: GameFrameX.Utility.Setting.GlobalSettings.ServerId*
-  name: ServerId
-  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_ServerId_
-  commentId: Overload:GameFrameX.Utility.Setting.GlobalSettings.ServerId
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Setting.GlobalSettings.ServerId
-  nameWithType: GlobalSettings.ServerId
+  fullName: GameFrameX.Utility.Setting.GlobalSettings.SetCurrentSetting
+  nameWithType: GlobalSettings.SetCurrentSetting
 - uid: GameFrameX.Utility.Setting.IdModule
   name: IdModule
   href: api/GameFrameX.Utility.Setting.IdModule.html
