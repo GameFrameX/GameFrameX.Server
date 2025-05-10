@@ -100,9 +100,9 @@ public sealed class LauncherOptions
     public long ServerInstanceId { get; set; }
 
     /// <summary>
-    /// 保存数据间隔, 单位毫秒，默认300秒/5分钟
+    /// 保存数据间隔,单位毫秒,默认300秒(5分钟),最小值为5秒(5000毫秒)
     /// </summary>
-    [Option(nameof(SaveDataInterval), Default = 300_000, HelpText = "保存数据间隔，单位毫秒,默认300秒/5分钟")]
+    [Option(nameof(SaveDataInterval), Default = 300_000, HelpText = "保存数据间隔,单位毫秒,默认300秒(5分钟),最小值为5秒(5000毫秒)")]
     public int SaveDataInterval { get; set; }
 
     /// <summary>
