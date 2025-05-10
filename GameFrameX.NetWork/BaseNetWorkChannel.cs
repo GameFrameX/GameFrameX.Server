@@ -14,11 +14,6 @@ namespace GameFrameX.NetWork;
 public class BaseNetWorkChannel : INetWorkChannel
 {
     /// <summary>
-    /// 消息编码器
-    /// </summary>
-    private readonly IMessageEncoderHandler _messageEncoder;
-
-    /// <summary>
     /// WebSocket会话
     /// </summary>
     private readonly WebSocketSession _webSocketSession;
@@ -33,17 +28,14 @@ public class BaseNetWorkChannel : INetWorkChannel
     /// </summary>
     /// <param name="session"></param>
     /// <param name="setting"></param>
-    /// <param name="messageEncoder"></param>
     /// <param name="rpcSession"></param>
     /// <param name="isWebSocket"></param>
-    public BaseNetWorkChannel(IGameAppSession session, AppSetting setting, IMessageEncoderHandler messageEncoder, IRpcSession rpcSession, bool isWebSocket)
+    public BaseNetWorkChannel(IGameAppSession session, AppSetting setting, IRpcSession rpcSession, bool isWebSocket)
     {
         setting.CheckNotNull(nameof(setting));
-        messageEncoder.CheckNotNull(nameof(messageEncoder));
         GameAppSession = session;
         IsWebSocket = isWebSocket;
         Setting = setting;
-        _messageEncoder = messageEncoder;
         RpcSession = rpcSession;
         if (isWebSocket)
         {
@@ -86,7 +78,7 @@ public class BaseNetWorkChannel : INetWorkChannel
             responseMessage.ErrorCode = errorCode;
         }
 
-        var messageData = _messageEncoder.Handler(messageObject);
+        var messageData = MessageHelper.EncoderHandler.Handler(messageObject);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
             // 判断是否是心跳消息
