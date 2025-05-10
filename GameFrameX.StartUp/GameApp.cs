@@ -18,8 +18,8 @@ namespace GameFrameX.StartUp;
 public static class GameApp
 {
     private static readonly Dictionary<Type, StartUpTagAttribute> StartUpTypes = new();
-    private static readonly List<Task> AppStartUpTasks = new();
-    private static readonly List<IAppStartUp> AppStartUps = new();
+    private static readonly List<Task> AppStartUpTasks = new List<Task>();
+    // private static readonly List<IAppStartUp> AppStartUps = new();
 
     /// <summary>
     /// 启动入口函数
@@ -125,12 +125,13 @@ public static class GameApp
                 {
                     LogHelper.WarnConsole($"没有找到对应的服务器类型的启动配置,将以默认配置启动=>{keyValuePair.Value.ServerType}");
                     Launcher(args, keyValuePair);
+                    break;
                 }
             }
         }
 
         LogHelper.InfoConsole("----------------------------启动服务器结束啦------------------------------");
-        ApplicationPerformanceMonitorStart(serverType);
+        // ApplicationPerformanceMonitorStart(serverType);
         ConsoleHelper.ConsoleLogo();
 
         await Task.WhenAll(AppStartUpTasks);
@@ -194,12 +195,12 @@ public static class GameApp
 
     private static void Launcher(string[] args, KeyValuePair<Type, StartUpTagAttribute> keyValuePair, AppSetting appSetting = null)
     {
-        var task = Start(args, keyValuePair.Key, keyValuePair.Value.ServerType, appSetting, out var startUp);
-        AppStartUps.Add(startUp);
+        var task = Start(args, keyValuePair.Key, keyValuePair.Value.ServerType, appSetting);
+        // AppStartUps.Add(startUp);
         AppStartUpTasks.Add(task);
     }
 
-    private static void ApplicationPerformanceMonitorStart(string serverType)
+    /*private static void ApplicationPerformanceMonitorStart(string serverType)
     {
         if (serverType != null && Enum.TryParse(serverType, out ServerType serverTypeValue))
         {
@@ -220,25 +221,27 @@ public static class GameApp
         }
 
         MetricsHelper.Start();
-    }
+    }*/
 
 
-    private static Task Start(string[] args, Type appStartUpType, ServerType serverType, AppSetting setting, out IAppStartUp startUp)
+    private static Task Start(string[] args, Type appStartUpType, ServerType serverType, AppSetting setting)
     {
-        startUp = (IAppStartUp)Activator.CreateInstance(appStartUpType);
-        if (startUp != null)
+        var startUp = (IAppStartUp)Activator.CreateInstance(appStartUpType);
+        if (startUp == null)
         {
-            var isSuccess = startUp.Init(serverType, setting, args);
-            if (isSuccess)
-            {
-                LogHelper.InfoConsole($"----------------------------START-----{serverType}------------------------------");
-                LogHelper.InfoConsole("----------------------------配置信息----------------------------------------------");
-                LogHelper.InfoConsole($"{startUp.Setting.ToFormatString()}");
-                LogHelper.InfoConsole("--------------------------------------------------------------------------------");
-                var task = AppEnter.Entry(startUp);
-                LogHelper.InfoConsole($"-----------------------------END------{serverType}------------------------------");
-                return task;
-            }
+            return Task.CompletedTask;
+        }
+
+        var isSuccess = startUp.Init(serverType, setting, args);
+        if (isSuccess)
+        {
+            LogHelper.InfoConsole($"----------------------------START-----{serverType}------------------------------");
+            LogHelper.InfoConsole("----------------------------配置信息----------------------------------------------");
+            LogHelper.InfoConsole($"{startUp.Setting.ToFormatString()}");
+            LogHelper.InfoConsole("--------------------------------------------------------------------------------");
+            var task = AppEnter.Entry(startUp);
+            LogHelper.InfoConsole($"-----------------------------END------{serverType}------------------------------");
+            return task;
         }
 
         return Task.CompletedTask;
