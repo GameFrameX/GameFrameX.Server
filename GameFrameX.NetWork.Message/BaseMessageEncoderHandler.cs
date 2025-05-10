@@ -19,7 +19,7 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler
     /// <summary>
     /// 超过多少字节长度才启用压缩,默认512
     /// </summary>
-    public virtual uint LimitCompressLength { get; } = 3;
+    public virtual uint LimitCompressLength { get; } = 512;
 
     /// <summary>
     /// totalLength + headerLength
