@@ -8,32 +8,59 @@ namespace GameFrameX.Utility;
 public static class CompressionHelper
 {
     /// <summary>
-    /// 压缩数据。
+    /// 压缩数据。使用GZip算法将原始字节数组压缩成更小的字节数组。
     /// </summary>
-    /// <param name="bytes">要压缩的原始字节数组。</param>
-    /// <returns>压缩后的字节数组。</returns>
+    /// <param name="bytes">要压缩的原始字节数组。不能为null。</param>
+    /// <returns>压缩后的字节数组。如果输入为空数组，则直接返回该空数组。</returns>
+    /// <exception cref="ArgumentNullException">当输入参数bytes为null时抛出。</exception>
     public static byte[] Compress(byte[] bytes)
     {
-        var uncompressed = new MemoryStream(bytes);
-        var compressed = new MemoryStream();
-        var deflateStream = new DeflateStream(compressed, CompressionMode.Compress);
-        uncompressed.CopyTo(deflateStream);
-        deflateStream.Close();
-        return compressed.ToArray();
+        ArgumentNullException.ThrowIfNull(bytes, nameof(bytes));
+        if (bytes.Length == 0)
+        {
+            return bytes;
+        }
+
+        using (var uncompressed = new MemoryStream(bytes))
+        {
+            using (var compressed = new MemoryStream())
+            {
+                using (var gZipStream = new GZipStream(compressed, CompressionMode.Compress, true))
+                {
+                    uncompressed.CopyTo(gZipStream);
+                }
+
+                return compressed.ToArray();
+            }
+        }
     }
 
     /// <summary>
-    /// 解压数据。
+    /// 解压数据。使用GZip算法将压缩的字节数组还原成原始字节数组。
     /// </summary>
-    /// <param name="bytes">要解压的压缩字节数组。</param>
-    /// <returns>解压后的字节数组。</returns>
+    /// <param name="bytes">要解压的压缩字节数组。不能为null。</param>
+    /// <returns>解压后的原始字节数组。如果输入为空数组，则直接返回该空数组。</returns>
+    /// <exception cref="ArgumentNullException">当输入参数bytes为null时抛出。</exception>
+    /// <exception cref="InvalidDataException">当压缩数据格式无效或已损坏时抛出。</exception>
     public static byte[] Decompress(byte[] bytes)
     {
-        var compressed = new MemoryStream(bytes);
-        var decompressed = new MemoryStream();
-        var deflateStream = new DeflateStream(compressed, CompressionMode.Decompress); // 注意：这里第一个参数同样是填写压缩的数据，但是这次是作为输入的数据
-        deflateStream.CopyTo(decompressed);
-        var result = decompressed.ToArray();
-        return result;
+        ArgumentNullException.ThrowIfNull(bytes, nameof(bytes));
+        if (bytes.Length == 0)
+        {
+            return bytes;
+        }
+
+        using (var compressed = new MemoryStream(bytes))
+        {
+            using (var decompressed = new MemoryStream())
+            {
+                using (var gZipStream = new GZipStream(compressed, CompressionMode.Decompress))
+                {
+                    gZipStream.CopyTo(decompressed);
+                }
+
+                return decompressed.ToArray();
+            }
+        }
     }
 }
