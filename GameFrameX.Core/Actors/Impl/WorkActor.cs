@@ -109,6 +109,7 @@ public class WorkerActor : IWorkerActor
     }
 
     #region 勿调用(仅供代码生成器调用)
+
     /// <summary>
     /// 将一个同步Action任务压入Actor的任务队列中执行
     /// </summary>
@@ -120,7 +121,7 @@ public class WorkerActor : IWorkerActor
     /// <returns>返回一个Task对象，表示异步操作的完成状态</returns>
     public Task Enqueue(Action work, long callChainId, bool discard = false, int timeOut = TimeOut, CancellationToken cancellationToken = default)
     {
-        if (!discard && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
+        if (!discard && GlobalSettings.CurrentSetting.IsDebug && !ActorLimit.AllowCall(Id))
         {
             return default;
         }
@@ -147,7 +148,7 @@ public class WorkerActor : IWorkerActor
     /// <returns>返回一个Task<T/>对象，表示异步操作的完成状态和结果</returns>
     public Task<T> Enqueue<T>(Func<T> work, long callChainId, bool discard = false, int timeOut = TimeOut, CancellationToken cancellationToken = default)
     {
-        if (!discard && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
+        if (!discard && GlobalSettings.CurrentSetting.IsDebug && !ActorLimit.AllowCall(Id))
         {
             return default;
         }
@@ -173,7 +174,7 @@ public class WorkerActor : IWorkerActor
     /// <returns>返回一个Task对象，表示异步操作的完成状态</returns>
     public Task Enqueue(Func<Task> work, long callChainId, bool discard = false, int timeOut = TimeOut, CancellationToken cancellationToken = default)
     {
-        if (!discard && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
+        if (!discard && GlobalSettings.CurrentSetting.IsDebug && !ActorLimit.AllowCall(Id))
         {
             return default;
         }
@@ -200,7 +201,7 @@ public class WorkerActor : IWorkerActor
     /// <returns>返回一个Task<T/>对象，表示异步操作的完成状态和结果</returns>
     public Task<T> Enqueue<T>(Func<Task<T>> work, long callChainId, bool discard = false, int timeOut = TimeOut, CancellationToken cancellationToken = default)
     {
-        if (!discard && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
+        if (!discard && GlobalSettings.CurrentSetting.IsDebug && !ActorLimit.AllowCall(Id))
         {
             return default;
         }
@@ -218,6 +219,7 @@ public class WorkerActor : IWorkerActor
     #endregion
 
     #region 供框架底层调用(逻辑开发人员应尽量避免调用)
+
     /// <summary>
     /// 发送无返回值的工作指令到Actor的任务队列中
     /// </summary>
@@ -265,7 +267,7 @@ public class WorkerActor : IWorkerActor
         var (needEnqueue, chainId) = IsNeedEnqueue();
         if (needEnqueue)
         {
-            if (GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
+            if (GlobalSettings.CurrentSetting.IsDebug && !ActorLimit.AllowCall(Id))
             {
                 return default;
             }
@@ -297,7 +299,7 @@ public class WorkerActor : IWorkerActor
         var (needEnqueue, chainId) = IsNeedEnqueue();
         if (needEnqueue)
         {
-            if (GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
+            if (GlobalSettings.CurrentSetting.IsDebug && !ActorLimit.AllowCall(Id))
             {
                 return default;
             }
@@ -340,7 +342,7 @@ public class WorkerActor : IWorkerActor
         var (needEnqueue, chainId) = IsNeedEnqueue();
         if (needEnqueue)
         {
-            if (checkLock && GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
+            if (checkLock && GlobalSettings.CurrentSetting.IsDebug && !ActorLimit.AllowCall(Id))
             {
                 return default;
             }
@@ -371,7 +373,7 @@ public class WorkerActor : IWorkerActor
         var (needEnqueue, chainId) = IsNeedEnqueue();
         if (needEnqueue)
         {
-            if (GlobalSettings.IsDebug && !ActorLimit.AllowCall(Id))
+            if (GlobalSettings.CurrentSetting.IsDebug && !ActorLimit.AllowCall(Id))
             {
                 return default;
             }

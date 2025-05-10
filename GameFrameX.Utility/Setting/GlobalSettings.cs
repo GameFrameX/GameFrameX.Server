@@ -34,11 +34,6 @@ public static class GlobalSettings
     public static DateTime LaunchTime { get; set; }
 
     /// <summary>
-    /// 是否是调试模式
-    /// </summary>
-    public static bool IsDebug { get; set; }
-
-    /// <summary>
     /// 数据存储间隔 单位 毫秒,默认5分钟，最小1秒
     /// </summary>
     public static int SaveIntervalInMilliSeconds

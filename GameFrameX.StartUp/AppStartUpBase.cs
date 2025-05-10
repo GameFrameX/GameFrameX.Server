@@ -51,7 +51,6 @@ public abstract partial class AppStartUpBase : IAppStartUp
         Setting.CheckNotNull(nameof(Setting));
         GlobalSettings.SetCurrentSetting(setting);
         GlobalSettings.SaveIntervalInMilliSeconds = Setting.SaveDataInterval;
-        GlobalSettings.IsDebug = Setting.IsDebug;
         return true;
     }
 

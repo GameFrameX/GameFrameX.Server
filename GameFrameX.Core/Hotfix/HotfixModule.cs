@@ -148,7 +148,7 @@ internal sealed class HotfixModule
         if (_dllLoader != null)
         {
             var weak = _dllLoader.Unload();
-            if (GlobalSettings.IsDebug)
+            if (GlobalSettings.CurrentSetting.IsDebug)
             {
                 // 检查热更DLL是否已经释放
                 Task.Run(async () =>
