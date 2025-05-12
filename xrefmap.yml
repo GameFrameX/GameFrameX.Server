@@ -8244,6 +8244,12 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.BaseNetWorkChannel.IsWebSocket
   nameWithType: BaseNetWorkChannel.IsWebSocket
+- uid: GameFrameX.NetWork.BaseNetWorkChannel.NetWorkSendTimeOutSecondsTimeSpan
+  name: NetWorkSendTimeOutSecondsTimeSpan
+  href: api/GameFrameX.NetWork.BaseNetWorkChannel.html#GameFrameX_NetWork_BaseNetWorkChannel_NetWorkSendTimeOutSecondsTimeSpan
+  commentId: F:GameFrameX.NetWork.BaseNetWorkChannel.NetWorkSendTimeOutSecondsTimeSpan
+  fullName: GameFrameX.NetWork.BaseNetWorkChannel.NetWorkSendTimeOutSecondsTimeSpan
+  nameWithType: BaseNetWorkChannel.NetWorkSendTimeOutSecondsTimeSpan
 - uid: GameFrameX.NetWork.BaseNetWorkChannel.RemoveData(System.String)
   name: RemoveData(string)
   href: api/GameFrameX.NetWork.BaseNetWorkChannel.html#GameFrameX_NetWork_BaseNetWorkChannel_RemoveData_System_String_
@@ -12113,19 +12119,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.IsDebugSendHeartBeat
   nameWithType: LauncherOptions.IsDebugSendHeartBeat
-- uid: GameFrameX.StartUp.Options.LauncherOptions.IsMonitorTimeOut
-  name: IsMonitorTimeOut
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsMonitorTimeOut
-  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.IsMonitorTimeOut
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsMonitorTimeOut
-  nameWithType: LauncherOptions.IsMonitorTimeOut
-- uid: GameFrameX.StartUp.Options.LauncherOptions.IsMonitorTimeOut*
-  name: IsMonitorTimeOut
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsMonitorTimeOut_
-  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.IsMonitorTimeOut
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsMonitorMessageTimeOut
+  name: IsMonitorMessageTimeOut
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsMonitorMessageTimeOut
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.IsMonitorMessageTimeOut
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsMonitorMessageTimeOut
+  nameWithType: LauncherOptions.IsMonitorMessageTimeOut
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsMonitorMessageTimeOut*
+  name: IsMonitorMessageTimeOut
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsMonitorMessageTimeOut_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.IsMonitorMessageTimeOut
   isSpec: "True"
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsMonitorTimeOut
-  nameWithType: LauncherOptions.IsMonitorTimeOut
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsMonitorMessageTimeOut
+  nameWithType: LauncherOptions.IsMonitorMessageTimeOut
 - uid: GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetry
   name: IsOpenTelemetry
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsOpenTelemetry
@@ -12204,19 +12210,32 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.MinModuleId
   nameWithType: LauncherOptions.MinModuleId
-- uid: GameFrameX.StartUp.Options.LauncherOptions.MonitorTimeOutSeconds
-  name: MonitorTimeOutSeconds
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_MonitorTimeOutSeconds
-  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.MonitorTimeOutSeconds
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.MonitorTimeOutSeconds
-  nameWithType: LauncherOptions.MonitorTimeOutSeconds
-- uid: GameFrameX.StartUp.Options.LauncherOptions.MonitorTimeOutSeconds*
-  name: MonitorTimeOutSeconds
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_MonitorTimeOutSeconds_
-  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.MonitorTimeOutSeconds
+- uid: GameFrameX.StartUp.Options.LauncherOptions.MonitorMessageTimeOutSeconds
+  name: MonitorMessageTimeOutSeconds
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_MonitorMessageTimeOutSeconds
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.MonitorMessageTimeOutSeconds
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.MonitorMessageTimeOutSeconds
+  nameWithType: LauncherOptions.MonitorMessageTimeOutSeconds
+- uid: GameFrameX.StartUp.Options.LauncherOptions.MonitorMessageTimeOutSeconds*
+  name: MonitorMessageTimeOutSeconds
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_MonitorMessageTimeOutSeconds_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.MonitorMessageTimeOutSeconds
   isSpec: "True"
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.MonitorTimeOutSeconds
-  nameWithType: LauncherOptions.MonitorTimeOutSeconds
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.MonitorMessageTimeOutSeconds
+  nameWithType: LauncherOptions.MonitorMessageTimeOutSeconds
+- uid: GameFrameX.StartUp.Options.LauncherOptions.NetWorkSendTimeOutSeconds
+  name: NetWorkSendTimeOutSeconds
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_NetWorkSendTimeOutSeconds
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.NetWorkSendTimeOutSeconds
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.NetWorkSendTimeOutSeconds
+  nameWithType: LauncherOptions.NetWorkSendTimeOutSeconds
+- uid: GameFrameX.StartUp.Options.LauncherOptions.NetWorkSendTimeOutSeconds*
+  name: NetWorkSendTimeOutSeconds
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_NetWorkSendTimeOutSeconds_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.NetWorkSendTimeOutSeconds
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.NetWorkSendTimeOutSeconds
+  nameWithType: LauncherOptions.NetWorkSendTimeOutSeconds
 - uid: GameFrameX.StartUp.Options.LauncherOptions.OuterIp
   name: OuterIp
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_OuterIp
@@ -25819,6 +25838,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.IsLocal
   nameWithType: AppSetting.IsLocal
+- uid: GameFrameX.Utility.Setting.AppSetting.IsMonitorTimeOut
+  name: IsMonitorTimeOut
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsMonitorTimeOut
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.IsMonitorTimeOut
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsMonitorTimeOut
+  nameWithType: AppSetting.IsMonitorTimeOut
+- uid: GameFrameX.Utility.Setting.AppSetting.IsMonitorTimeOut*
+  name: IsMonitorTimeOut
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsMonitorTimeOut_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.IsMonitorTimeOut
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsMonitorTimeOut
+  nameWithType: AppSetting.IsMonitorTimeOut
 - uid: GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetry
   name: IsOpenTelemetry
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsOpenTelemetry
@@ -25858,19 +25890,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetryTracing
   nameWithType: AppSetting.IsOpenTelemetryTracing
-- uid: GameFrameX.Utility.Setting.AppSetting.IsTimeOut
-  name: IsTimeOut
-  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsTimeOut
-  commentId: P:GameFrameX.Utility.Setting.AppSetting.IsTimeOut
-  fullName: GameFrameX.Utility.Setting.AppSetting.IsTimeOut
-  nameWithType: AppSetting.IsTimeOut
-- uid: GameFrameX.Utility.Setting.AppSetting.IsTimeOut*
-  name: IsTimeOut
-  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsTimeOut_
-  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.IsTimeOut
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Setting.AppSetting.IsTimeOut
-  nameWithType: AppSetting.IsTimeOut
 - uid: GameFrameX.Utility.Setting.AppSetting.Language
   name: Language
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_Language
@@ -25936,6 +25955,32 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.MinModuleId
   nameWithType: AppSetting.MinModuleId
+- uid: GameFrameX.Utility.Setting.AppSetting.MonitorTimeOutSeconds
+  name: MonitorTimeOutSeconds
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_MonitorTimeOutSeconds
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.MonitorTimeOutSeconds
+  fullName: GameFrameX.Utility.Setting.AppSetting.MonitorTimeOutSeconds
+  nameWithType: AppSetting.MonitorTimeOutSeconds
+- uid: GameFrameX.Utility.Setting.AppSetting.MonitorTimeOutSeconds*
+  name: MonitorTimeOutSeconds
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_MonitorTimeOutSeconds_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.MonitorTimeOutSeconds
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.MonitorTimeOutSeconds
+  nameWithType: AppSetting.MonitorTimeOutSeconds
+- uid: GameFrameX.Utility.Setting.AppSetting.NetWorkSendTimeOutSeconds
+  name: NetWorkSendTimeOutSeconds
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_NetWorkSendTimeOutSeconds
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.NetWorkSendTimeOutSeconds
+  fullName: GameFrameX.Utility.Setting.AppSetting.NetWorkSendTimeOutSeconds
+  nameWithType: AppSetting.NetWorkSendTimeOutSeconds
+- uid: GameFrameX.Utility.Setting.AppSetting.NetWorkSendTimeOutSeconds*
+  name: NetWorkSendTimeOutSeconds
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_NetWorkSendTimeOutSeconds_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.NetWorkSendTimeOutSeconds
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.NetWorkSendTimeOutSeconds
+  nameWithType: AppSetting.NetWorkSendTimeOutSeconds
 - uid: GameFrameX.Utility.Setting.AppSetting.OuterIp
   name: OuterIp
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_OuterIp
@@ -26053,19 +26098,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.TagName
   nameWithType: AppSetting.TagName
-- uid: GameFrameX.Utility.Setting.AppSetting.TimeOutSeconds
-  name: TimeOutSeconds
-  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_TimeOutSeconds
-  commentId: P:GameFrameX.Utility.Setting.AppSetting.TimeOutSeconds
-  fullName: GameFrameX.Utility.Setting.AppSetting.TimeOutSeconds
-  nameWithType: AppSetting.TimeOutSeconds
-- uid: GameFrameX.Utility.Setting.AppSetting.TimeOutSeconds*
-  name: TimeOutSeconds
-  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_TimeOutSeconds_
-  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.TimeOutSeconds
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Setting.AppSetting.TimeOutSeconds
-  nameWithType: AppSetting.TimeOutSeconds
 - uid: GameFrameX.Utility.Setting.AppSetting.ToFormatString
   name: ToFormatString()
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_ToFormatString
