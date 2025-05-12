@@ -107,17 +107,17 @@ public class BaseNetWorkChannel : INetWorkChannel
             return;
         }
 
-        using (var cts = new CancellationTokenSource(NetWorkSendTimeOutSecondsTimeSpan))
+        using (var cancellationTokenSource = new CancellationTokenSource(NetWorkSendTimeOutSecondsTimeSpan))
         {
             try
             {
                 if (IsWebSocket)
                 {
-                    await _webSocketSession.SendAsync(messageData, cts.Token);
+                    await _webSocketSession.SendAsync(messageData, cancellationTokenSource.Token);
                 }
                 else
                 {
-                    await GameAppSession.SendAsync(messageData, cts.Token);
+                    await GameAppSession.SendAsync(messageData, cancellationTokenSource.Token);
                 }
             }
             catch (OperationCanceledException exception)
