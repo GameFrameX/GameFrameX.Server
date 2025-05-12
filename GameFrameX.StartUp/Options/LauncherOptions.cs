@@ -48,14 +48,20 @@ public sealed class LauncherOptions
     /// <summary>
     /// 是否监控打印超时日志
     /// </summary>
-    [Option(nameof(IsMonitorTimeOut), Default = false, HelpText = "是否打印超时日志,默认值为false")]
-    public bool IsMonitorTimeOut { get; set; }
+    [Option(nameof(IsMonitorMessageTimeOut), Default = false, HelpText = "是否打印超时日志,默认值为false")]
+    public bool IsMonitorMessageTimeOut { get; set; }
 
     /// <summary>
     /// 监控处理器超时时间（秒）,默认值为1秒，只有IsMonitorTimeOut为true时有效
     /// </summary>
-    [Option(nameof(MonitorTimeOutSeconds), Default = 1, HelpText = "处理器超时时间（秒）,默认值为1秒，只有IsMonitorTimeOut为true时有效")]
-    public int MonitorTimeOutSeconds { get; set; }
+    [Option(nameof(MonitorMessageTimeOutSeconds), Default = 1, HelpText = "处理器超时时间（秒）,默认值为1秒，只有IsMonitorMessageTimeOut为true时有效")]
+    public int MonitorMessageTimeOutSeconds { get; set; }
+
+    /// <summary>
+    /// 网络发送等待超时时间（秒）,默认值为5秒
+    /// </summary>
+    [Option(nameof(NetWorkSendTimeOutSeconds), Default = 5, HelpText = "网络发送等待超时时间（秒）,默认值为5秒,最小值为1秒")]
+    public int NetWorkSendTimeOutSeconds { get; set; }
 
     /// <summary>
     /// 是否是Debug打印日志模式,默认值为false

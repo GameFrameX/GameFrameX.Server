@@ -151,12 +151,17 @@ public sealed class AppSetting
     /// <summary>
     /// 是否打印超时日志,
     /// </summary>
-    public bool IsTimeOut { get; set; }
+    public bool IsMonitorTimeOut { get; set; }
 
     /// <summary>
     /// 处理器超时时间（秒）,默认值为1秒
     /// </summary>
-    public int TimeOutSeconds { get; set; }
+    public int MonitorTimeOutSeconds { get; set; }
+
+    /// <summary>
+    /// 网络发送等待超时时间（秒）,默认值为5秒
+    /// </summary>
+    public int NetWorkSendTimeOutSeconds { get; set; }
 
     /// <summary>
     /// 是否打印发送数据,只有在IsDebug为true时有效,默认值为false
