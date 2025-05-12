@@ -18,11 +18,16 @@ public interface INetWorkChannel
     IRpcSession RpcSession { get; }
 
     /// <summary>
-    /// 异步写入消息
+    /// 异步写入消息到网络通道
     /// </summary>
-    /// <param name="msg">消息对象</param>
-    /// <param name="errorCode">错误码</param>
-    /// <returns></returns>
+    /// <param name="msg">要发送的网络消息对象,包含消息内容和相关元数据</param>
+    /// <param name="errorCode">错误码,默认为0表示无错误。当发生错误时,可以通过此参数传递错误码</param>
+    /// <returns>表示异步操作的Task对象。当消息成功写入时完成,如果发生错误则抛出异常</returns>
+    /// <remarks>
+    /// 此方法用于将消息异步发送到网络通道。
+    /// 如果errorCode不为0,接收方可以根据错误码进行相应的错误处理。
+    /// 调用此方法时需要确保网络通道处于打开状态。
+    /// </remarks>
     Task WriteAsync(INetworkMessage msg, int errorCode = 0);
 
     /// <summary>

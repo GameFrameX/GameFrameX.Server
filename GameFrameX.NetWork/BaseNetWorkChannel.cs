@@ -24,6 +24,11 @@ public class BaseNetWorkChannel : INetWorkChannel
     protected readonly CancellationTokenSource CancellationTokenSource = new();
 
     /// <summary>
+    /// 网络发送超时时间,单位秒
+    /// </summary>
+    protected readonly TimeSpan NetWorkSendTimeOutSecondsTimeSpan;
+
+    /// <summary>
     /// 初始化
     /// </summary>
     /// <param name="session"></param>
@@ -37,6 +42,7 @@ public class BaseNetWorkChannel : INetWorkChannel
         IsWebSocket = isWebSocket;
         Setting = setting;
         RpcSession = rpcSession;
+        NetWorkSendTimeOutSecondsTimeSpan = TimeSpan.FromSeconds(Setting.NetWorkSendTimeOutSeconds);
         if (isWebSocket)
         {
             _webSocketSession = (WebSocketSession)session;
@@ -101,22 +107,22 @@ public class BaseNetWorkChannel : INetWorkChannel
             return;
         }
 
-        if (IsWebSocket)
+        using (var cts = new CancellationTokenSource(NetWorkSendTimeOutSecondsTimeSpan))
         {
             try
             {
-                await _webSocketSession.SendAsync(messageData);
+                if (IsWebSocket)
+                {
+                    await _webSocketSession.SendAsync(messageData, cts.Token);
+                }
+                else
+                {
+                    await GameAppSession.SendAsync(messageData, cts.Token);
+                }
             }
-            catch (Exception e)
+            catch (OperationCanceledException exception)
             {
-                LogHelper.Error(e);
-            }
-        }
-        else
-        {
-            try
-            {
-                await GameAppSession.SendAsync(messageData);
+                LogHelper.Error($"消息发送超时被取消:{exception.Message}");
             }
             catch (Exception e)
             {
