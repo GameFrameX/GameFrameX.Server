@@ -49,7 +49,7 @@ public abstract partial class AppStartUpBase : IAppStartUp
         Setting = setting;
         Init();
         Setting.CheckNotNull(nameof(Setting));
-        GlobalSettings.SetCurrentSetting(setting);
+        GlobalSettings.SetCurrentSetting(Setting);
         return true;
     }
 
