@@ -27,7 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.Core" Version="1.5.0-dev1" />
+      <PackageReference Include="GameFrameX.Core" Version="1.5.1-dev25" />
       <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.1.2" />
     </ItemGroup>
 

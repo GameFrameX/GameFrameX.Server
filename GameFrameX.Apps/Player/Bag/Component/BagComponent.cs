@@ -11,14 +11,4 @@ namespace GameFrameX.Apps.Player.Bag.Component;
 [ComponentType(GlobalConst.ActorTypePlayer)]
 public sealed class BagComponent : StateComponent<BagState>
 {
-    /// <summary>
-    /// 修改背包状态
-    /// </summary>
-    /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public async Task<BagState> Save()
-    {
-        await WriteStateAsync();
-        return State;
-    }
 }

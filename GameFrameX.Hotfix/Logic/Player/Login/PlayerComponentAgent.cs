@@ -4,12 +4,10 @@
 // 
 // 不得利用本项目从事危害国家安全、扰乱社会秩序、侵犯他人合法权益等法律法规禁止的活动！任何基于本项目二次开发而产生的一切法律纠纷和责任，我们不承担任何责任！
 
-using GameFrameX.Apps.Common.Event;
 using GameFrameX.Apps.Common.Session;
 using GameFrameX.Apps.Player.Player.Component;
 using GameFrameX.Apps.Player.Player.Entity;
-using GameFrameX.Core.Abstractions.Events;
-using GameFrameX.Hotfix.Logic.Server.Server;
+using GameFrameX.Hotfix.Logic.Server;
 
 namespace GameFrameX.Hotfix.Logic.Role.Login;
 
@@ -22,7 +20,7 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         await serverComp.RemoveOnlineRole(ActorId);
         //下线后会被自动回收
         SetAutoRecycle(true);
-        QuartzTimer.UnSchedule(ScheduleIdSet);
+        QuartzTimer.Remove(ScheduleIdSet);
     }
 
     /// <summary>
@@ -40,7 +38,7 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         }
 
         // 更新连接会话数据
-        SessionManager.UpdateSession(workChannel.GameAppSession.SessionID, playerState.Id,playerState.Id.ToString());
+        SessionManager.UpdateSession(workChannel.GameAppSession.SessionID, playerState.Id, playerState.Id.ToString());
         var respPlayerLogin = new RespPlayerLogin
         {
             UniqueId = reqLogin.UniqueId,
@@ -60,14 +58,5 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         //加入在线玩家
         var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
         await serverComp.AddOnlineRole(ActorId);
-    }
-
-    [Event(EventId.SessionRemove)]
-    private class EL : EventListener<PlayerComponentAgent>
-    {
-        protected override Task HandleEvent(PlayerComponentAgent agent, Event evt)
-        {
-            return agent.OnLogout();
-        }
     }
 }

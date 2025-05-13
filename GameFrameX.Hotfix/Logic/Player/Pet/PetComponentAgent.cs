@@ -1,14 +1,11 @@
-﻿using GameFrameX.Apps.Common.Event;
-using GameFrameX.Apps.Player.Pet.Component;
+﻿using GameFrameX.Apps.Player.Pet.Component;
 using GameFrameX.Apps.Player.Pet.Entity;
-using GameFrameX.Core.Abstractions.Events;
-using GameFrameX.Hotfix.Logic.Server.Server;
 
 namespace GameFrameX.Hotfix.Logic.Role.Pet;
 
 public class PetComponentAgent : StateComponentAgent<PetComponent, PetState>
 {
-    private async Task OnGotNewPet(OneParam<int> param)
+    /*private async Task OnGotNewPet(OneParam<int> param)
     {
         var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
         //var level = await serverComp.SendAsync(() => serverComp.GetWorldLevel()); //手动入队的写法
@@ -28,5 +25,5 @@ public class PetComponentAgent : StateComponentAgent<PetComponent, PetState>
                     break;
             }
         }
-    }
+    }*/
 }

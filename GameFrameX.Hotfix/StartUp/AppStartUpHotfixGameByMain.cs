@@ -18,9 +18,7 @@ internal partial class AppStartUpHotfixGame
     {
         // 启动网络服务
         // 设置压缩和解压缩
-        await StartServerAsync<ClientMessageDecoderHandler, ClientMessageEncoderHandler>(new DefaultMessageCompressHandler(), new DefaultMessageDecompressHandler());
-        // 启动Http服务
-        await HttpServer.Start(Setting.HttpPort, Setting.HttpsPort, HotfixManager.GetListHttpHandler(), HotfixManager.GetHttpHandler);
+        await StartServerAsync<ClientMessageDecoderHandler, ClientMessageEncoderHandler>(new DefaultMessageCompressHandler(), new DefaultMessageDecompressHandler(), HotfixManager.GetListHttpHandler(), HotfixManager.GetHttpHandler);
     }
 
     public async Task RunServer(bool reload = false)
@@ -47,7 +45,7 @@ internal partial class AppStartUpHotfixGame
     protected override async ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-        var netChannel = new DefaultNetWorkChannel(appSession, Setting, MessageEncoderHandler, null, appSession is WebSocketSession);
+        var netChannel = new DefaultNetWorkChannel(appSession, Setting, null, appSession is WebSocketSession);
         var count = SessionManager.Count();
         if (count > Setting.MaxClientCount)
         {
@@ -104,7 +102,6 @@ internal partial class AppStartUpHotfixGame
     {
         await base.StopAsync(message);
 
-        await HttpServer.Stop();
         // 断开所有连接
         await SessionManager.RemoveAll();
         // 取消所有未执行定时器

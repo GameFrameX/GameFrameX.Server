@@ -1,4 +1,6 @@
-﻿namespace GameFrameX.Launcher.StartUp;
+﻿using GameFrameX.DataBase.Abstractions;
+
+namespace GameFrameX.Launcher.StartUp;
 
 /// <summary>
 /// 游戏服务器
@@ -22,7 +24,10 @@ internal sealed class AppStartUpGame : AppStartUpBase
             LogHelper.DebugConsole("配置Actor限制逻辑结束...");
 
             LogHelper.DebugConsole("开始启动数据库服务...");
-            await GameDb.Init<MongoDbService>(Setting.DataBaseUrl, Setting.DataBaseName);
+            await GameDb.Init<MongoDbService>(new DbOptions()
+            {
+                ConnectionString = Setting.DataBaseUrl, Name = Setting.DataBaseName,
+            });
             LogHelper.DebugConsole("启动数据库服务 结束...");
 
             LogHelper.DebugConsole("注册组件开始...");

@@ -1,21 +1,23 @@
 ﻿using GameFrameX.Apps.Server.Component;
 using GameFrameX.Apps.Server.Entity;
 using GameFrameX.Core.Abstractions.Attribute;
+using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Core.Timer.Handler;
+using GameFrameX.Hotfix.Logic.Player.Login;
 using GameFrameX.Hotfix.Logic.Role.Login;
 
-namespace GameFrameX.Hotfix.Logic.Server.Server;
+namespace GameFrameX.Hotfix.Logic.Server;
 
 public class ServerComponentAgent : StateComponentAgent<ServerComponent, ServerState>
 {
-    public override void Active()
+    public override async Task Active()
     {
         // 跨天定时器
         WithCronExpression<CrossDayTimeHandler>("0 0 0 * * ? *");
         if (State.FirstStartTime == default)
         {
             State.FirstStartTime = TimeHelper.UnixTimeSeconds();
-            OwnerComponent.WriteStateAsync();
+            await OwnerComponent.WriteStateAsync();
         }
     }
 
@@ -142,7 +144,7 @@ public class ServerComponentAgent : StateComponentAgent<ServerComponent, ServerS
 
     private class DelayTimer : TimerHandler<ServerComponentAgent>
     {
-        protected override Task HandleTimer(ServerComponentAgent agent, Param param)
+        protected override Task HandleTimer(ServerComponentAgent agent, GameEventArgs gameEventArgs)
         {
             return agent.TestDelayTimer();
         }
@@ -150,7 +152,7 @@ public class ServerComponentAgent : StateComponentAgent<ServerComponent, ServerS
 
     private class ScheduleTimer : TimerHandler<ServerComponentAgent>
     {
-        protected override Task HandleTimer(ServerComponentAgent agent, Param param)
+        protected override Task HandleTimer(ServerComponentAgent agent, GameEventArgs gameEventArgs)
         {
             return agent.TestScheduleTimer();
         }
@@ -161,9 +163,9 @@ public class ServerComponentAgent : StateComponentAgent<ServerComponent, ServerS
     /// </summary>
     private class CrossDayTimeHandler : TimerHandler<ServerComponentAgent>
     {
-        protected override async Task HandleTimer(ServerComponentAgent agent, Param param)
+        protected override async Task HandleTimer(ServerComponentAgent agent, GameEventArgs gameEventArgs)
         {
-            LogHelper.Debug($"ServerCompAgent.CrossDayTimeHandler.跨天定时器执行{TimeHelper.CurrentTimeWithFullString()}");
+            LogHelper.Debug($"ServerCompAgent.CrossDayTimeHandler.跨天定时器执行{TimeHelper.CurrentDateTimeWithUtcFullString()}");
             await ActorManager.RoleCrossDay(1);
             await ActorManager.CrossDay(1, GlobalConst.ActorTypeServer);
         }

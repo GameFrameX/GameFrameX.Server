@@ -45,11 +45,11 @@ public sealed class ReqPlayerCreateHttpHandler : BaseHttpHandler
             Id = ActorIdGenerator.GetActorId(GlobalConst.ActorTypePlayer),
             AccountId = reqPlayerCreate.Id,
             Name = reqPlayerCreate.Name,
-            Level = (uint)Utility.Random.Next(1, 50),
+            Level = (uint)RandomHelper.Next(1, 50),
             State = 0,
-            Avatar = (uint)Utility.Random.Next(1, 50),
+            Avatar = (uint)RandomHelper.Next(1, 50),
         };
-        MetricsPlayerRegister.CreateCounterOptions.Inc();
+        // MetricsPlayerRegister.CreateCounterOptions.Inc();
         await GameDb.AddOrUpdateAsync(playerState);
         return playerState;
     }

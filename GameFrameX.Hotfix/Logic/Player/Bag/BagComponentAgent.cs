@@ -33,11 +33,7 @@ public class BagComponentAgent : StateComponentAgent<BagComponent, BagState>
             }
         }
 
-        var result = await UpdateChanged(netWorkChannel, message.ItemDic);
-        if (result.IsNull())
-        {
-            response.ErrorCode = (int)OperationStatusCode.Unprocessable;
-        }
+        await UpdateChanged(netWorkChannel, message.ItemDic);
     }
 
     /// <summary>
@@ -46,7 +42,7 @@ public class BagComponentAgent : StateComponentAgent<BagComponent, BagState>
     /// <param name="netWorkChannel"></param>
     /// <param name="itemDic"></param>
     /// <returns></returns>
-    public async Task<BagState> UpdateChanged(INetWorkChannel netWorkChannel, Dictionary<int, long> itemDic)
+    public async Task UpdateChanged(INetWorkChannel netWorkChannel, Dictionary<int, long> itemDic)
     {
         //将物品添加到背包
         var bagState = OwnerComponent.State;
@@ -72,8 +68,7 @@ public class BagComponentAgent : StateComponentAgent<BagComponent, BagState>
 
 
         await netWorkChannel.WriteAsync(notifyBagInfoChanged);
-        var result = await OwnerComponent.Save();
-        return result;
+        await OwnerComponent.WriteStateAsync();
     }
 
     /// <summary>
@@ -118,12 +113,7 @@ public class BagComponentAgent : StateComponentAgent<BagComponent, BagState>
             }
         }
 
-        var result = await OwnerComponent.Save();
-        if (result.IsNull())
-        {
-            response.ErrorCode = (int)OperationStatusCode.Unprocessable;
-            return;
-        }
+        await OwnerComponent.WriteStateAsync();
     }
 
 
@@ -173,12 +163,7 @@ public class BagComponentAgent : StateComponentAgent<BagComponent, BagState>
         }
 
 
-        var result = await OwnerComponent.Save();
-        if (result.IsNull())
-        {
-            response.ErrorCode = (int)OperationStatusCode.Unprocessable;
-            return;
-        }
+        await OwnerComponent.WriteStateAsync();
     }
 
     /// <summary>
