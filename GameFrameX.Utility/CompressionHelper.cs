@@ -1,4 +1,5 @@
-﻿using System.IO.Compression;
+﻿using System.Buffers;
+using ICSharpCode.SharpZipLib.GZip;
 
 namespace GameFrameX.Utility;
 
@@ -21,16 +22,13 @@ public static class CompressionHelper
             return bytes;
         }
 
-        using (var uncompressed = new MemoryStream(bytes))
+        using (var compressStream = new MemoryStream())
         {
-            using (var compressed = new MemoryStream())
+            using (var gZipOutputStream = new GZipOutputStream(compressStream))
             {
-                using (var gZipStream = new GZipStream(compressed, CompressionMode.Compress, true))
-                {
-                    uncompressed.CopyTo(gZipStream);
-                }
-
-                return compressed.ToArray();
+                gZipOutputStream.Write(bytes, 0, bytes.Length);
+                var press = compressStream.ToArray();
+                return press;
             }
         }
     }
@@ -50,16 +48,29 @@ public static class CompressionHelper
             return bytes;
         }
 
-        using (var compressed = new MemoryStream(bytes))
+        using (var compressedStream = new MemoryStream(bytes))
         {
-            using (var decompressed = new MemoryStream())
+            using (var gZipInputStream = new GZipInputStream(compressedStream))
             {
-                using (var gZipStream = new GZipStream(compressed, CompressionMode.Decompress))
+                using (var decompressedStream = new MemoryStream())
                 {
-                    gZipStream.CopyTo(decompressed);
-                }
+                    var buffer = ArrayPool<byte>.Shared.Rent(8192);
+                    try
+                    {
+                        int count;
+                        while ((count = gZipInputStream.Read(buffer, 0, buffer.Length)) != 0)
+                        {
+                            decompressedStream.Write(buffer, 0, count);
+                        }
+                    }
+                    finally
+                    {
+                        ArrayPool<byte>.Shared.Return(buffer);
+                    }
 
-                return decompressed.ToArray();
+                    var array = decompressedStream.ToArray();
+                    return array;
+                }
             }
         }
     }
