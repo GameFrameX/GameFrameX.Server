@@ -90,6 +90,7 @@ public static class GlobalSettings
         ArgumentNullException.ThrowIfNull(setting, nameof(setting));
         if (setting.SaveDataInterval < 5000)
         {
+            LogHelper.WarnConsole($"SaveDataInterval小于5000毫秒，使用默认值为:{GlobalConst.SaveIntervalInMilliSeconds} 毫秒");
             setting.SaveDataInterval = GlobalConst.SaveIntervalInMilliSeconds;
         }
 
