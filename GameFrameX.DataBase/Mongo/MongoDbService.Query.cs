@@ -59,7 +59,7 @@ public sealed partial class MongoDbService
     public async Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter, bool isCreateIfNotExists = true) where TState : BaseCacheState, new()
     {
         var findExpression = GetDefaultFindExpression(filter);
-        var state = await _mongoDbContext.Queryable<TState>().Where(findExpression).SingleOrDefaultAsync();
+        var state = await _mongoDbContext.Queryable<TState>().Where(findExpression).FirstOrDefaultAsync();
 
         if (!isCreateIfNotExists)
         {
