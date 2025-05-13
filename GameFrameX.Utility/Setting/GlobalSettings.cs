@@ -93,6 +93,12 @@ public static class GlobalSettings
             setting.SaveDataInterval = GlobalConst.SaveIntervalInMilliSeconds;
         }
 
+        if (setting.HttpUrl.IsNullOrEmptyOrWhiteSpace())
+        {
+            LogHelper.WarnConsole("HttpUrl为空，使用默认值为: /game/api/");
+            setting.HttpUrl = "/game/api/";
+        }
+
         CurrentSetting = setting;
     }
 
