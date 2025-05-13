@@ -62,6 +62,10 @@ internal sealed class AppStartUpGame : AppStartUpBase
             Setting = new AppSetting
             {
                 ServerId = 9000,
+                IsDebug = true,
+                IsDebugSend = true,
+                IsDebugReceive = true,
+                NetWorkSendTimeOutSeconds = 5,
                 ServerType = ServerType.Game,
                 InnerPort = 29100,
                 APMPort = 29090,
@@ -69,6 +73,7 @@ internal sealed class AppStartUpGame : AppStartUpBase
                 WsPort = 29110,
                 MinModuleId = 10,
                 MaxModuleId = 9999,
+                HttpUrl = "/game/api/",
                 DiscoveryCenterIp = "127.0.0.1",
                 DiscoveryCenterPort = 21001,
                 DataBaseUrl = "mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority",
