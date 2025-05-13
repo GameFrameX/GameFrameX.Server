@@ -99,6 +99,12 @@ public static class GlobalSettings
             setting.HttpUrl = "/game/api/";
         }
 
+        if (setting.NetWorkSendTimeOutSeconds < 1)
+        {
+            LogHelper.WarnConsole("NetWorkSendTimeOutSeconds小于1秒，使用默认值为:5 秒");
+            setting.NetWorkSendTimeOutSeconds = 5;
+        }
+
         CurrentSetting = setting;
     }
 
