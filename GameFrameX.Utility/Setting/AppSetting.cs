@@ -29,7 +29,7 @@ public sealed class AppSetting
         IsDebugSendHeartBeat = true;
         IsDebugReceiveHeartBeat = true;
 #endif
-        LaunchTime = DateTime.Now;
+        LaunchTime = DateTime.UtcNow;
     }
 
     /// <summary>
