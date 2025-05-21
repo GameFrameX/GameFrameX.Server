@@ -965,10 +965,14 @@ public static class TimeHelper
     /// <summary>
     /// 获取指定时间是否在指定的时间范围内
     /// </summary>
-    /// <param name="time">指定时间</param>
-    /// <param name="startTime">开始时间</param>
-    /// <param name="endTime">结束时间</param>
-    /// <returns>是否在范围内</returns>
+    /// <param name="time">指定时间。例如：2024-01-10 14:30:00</param>
+    /// <param name="startTime">开始时间。例如：2024-01-10 00:00:00</param>
+    /// <param name="endTime">结束时间。例如：2024-01-10 23:59:59</param>
+    /// <returns>如果指定时间在开始时间和结束时间之间（包含边界），则返回true；否则返回false</returns>
+    /// <remarks>
+    /// 此方法使用闭区间比较，即time等于startTime或endTime时也返回true
+    /// 不会对startTime和endTime的先后顺序做检查，调用方需确保startTime不晚于endTime
+    /// </remarks>
     public static bool IsTimeInRange(DateTime time, DateTime startTime, DateTime endTime)
     {
         return time >= startTime && time <= endTime;
@@ -977,10 +981,15 @@ public static class TimeHelper
     /// <summary>
     /// 获取指定时间戳是否在指定的时间戳范围内
     /// </summary>
-    /// <param name="timestamp">指定时间戳</param>
-    /// <param name="startTimestamp">开始时间戳</param>
-    /// <param name="endTimestamp">结束时间戳</param>
-    /// <returns>是否在范围内</returns>
+    /// <param name="timestamp">指定时间戳（Unix秒级时间戳）。例如：1704857400</param>
+    /// <param name="startTimestamp">开始时间戳（Unix秒级时间戳）。例如：1704816000</param>
+    /// <param name="endTimestamp">结束时间戳（Unix秒级时间戳）。例如：1704902399</param>
+    /// <returns>如果指定时间戳在开始时间戳和结束时间戳之间（包含边界），则返回true；否则返回false</returns>
+    /// <remarks>
+    /// 此方法使用闭区间比较，即timestamp等于startTimestamp或endTimestamp时也返回true
+    /// 不会对startTimestamp和endTimestamp的先后顺序做检查，调用方需确保startTimestamp不大于endTimestamp
+    /// 时间戳应为Unix秒级时间戳（自1970年1月1日UTC零点以来的秒数）
+    /// </remarks>
     public static bool IsTimestampInRange(long timestamp, long startTimestamp, long endTimestamp)
     {
         return timestamp >= startTimestamp && timestamp <= endTimestamp;
@@ -989,9 +998,14 @@ public static class TimeHelper
     /// <summary>
     /// 按照本地时间判断两个时间戳是否是同一天
     /// </summary>
-    /// <param name="timestamp1">时间戳1</param>
-    /// <param name="timestamp2">时间戳2</param>
-    /// <returns>是否是同一天</returns>
+    /// <param name="timestamp1">时间戳1（Unix秒级时间戳）。例如：1704857400</param>
+    /// <param name="timestamp2">时间戳2（Unix秒级时间戳）。例如：1704859200</param>
+    /// <returns>如果两个时间戳转换为本地时间后是同一天，则返回true；否则返回false</returns>
+    /// <remarks>
+    /// 此方法会先将UTC时间戳转换为本地时间，然后比较是否为同一天
+    /// 比较时只考虑年月日，不考虑具体时间
+    /// 使用系统默认时区进行UTC到本地时间的转换
+    /// </remarks>
     public static bool IsLocalSameDay(long timestamp1, long timestamp2)
     {
         var time1 = UtcToLocalDateTime(timestamp1);
@@ -1002,9 +1016,14 @@ public static class TimeHelper
     /// <summary>
     /// 判断两个时间是否是同一天
     /// </summary>
-    /// <param name="time1">时间1</param>
-    /// <param name="time2">时间2</param>
-    /// <returns>是否是同一天</returns>
+    /// <param name="time1">时间1。例如：2024-01-10 14:30:00</param>
+    /// <param name="time2">时间2。例如：2024-01-10 18:45:00</param>
+    /// <returns>如果两个时间是同一天，则返回true；否则返回false</returns>
+    /// <remarks>
+    /// 此方法只比较年月日是否相同，不考虑具体时间
+    /// 比较时会忽略时区差异，直接使用DateTime中存储的日期值进行比较
+    /// 使用Date属性确保只比较日期部分
+    /// </remarks>
     public static bool IsSameDay(DateTime time1, DateTime time2)
     {
         return time1.Date.Year == time2.Date.Year && time1.Date.Month == time2.Date.Month && time1.Date.Day == time2.Date.Day;
