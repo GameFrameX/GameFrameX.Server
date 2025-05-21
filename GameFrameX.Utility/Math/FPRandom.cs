@@ -28,7 +28,7 @@ public sealed class FPRandom
     /// </summary>
     private FPRandom()
     {
-        init_genrand((uint)DateTime.Now.Millisecond);
+        init_genrand((uint)DateTime.UtcNow.Millisecond);
     }
 
     /// <summary>
@@ -235,7 +235,7 @@ public sealed class FPRandom
     /// </summary>
     public void Initialize()
     {
-        init_genrand((uint)DateTime.Now.Millisecond);
+        init_genrand((uint)DateTime.UtcNow.Millisecond);
     }
 
     /// <summary>
