@@ -238,9 +238,13 @@ public static class TimeHelper
     /// <summary>
     /// 获取两个本地时间戳之间的间隔天数
     /// </summary>
-    /// <param name="startTimestamp">开始时间戳(秒)</param>
-    /// <param name="endTimestamp">结束时间戳(秒)</param>
-    /// <returns>间隔天数</returns>
+    /// <param name="startTimestamp">开始时间戳(秒),UTC时间戳将被转换为本地时间</param>
+    /// <param name="endTimestamp">结束时间戳(秒),UTC时间戳将被转换为本地时间</param>
+    /// <returns>间隔天数,如果开始时间晚于结束时间,返回负数</returns>
+    /// <remarks>
+    /// 此方法会先将UTC时间戳转换为本地时间,然后计算两个本地时间之间的天数差
+    /// 计算时会考虑日期的时分秒部分
+    /// </remarks>
     public static int GetCrossLocalDays(long startTimestamp, long endTimestamp)
     {
         var startTime = UtcToLocalDateTime(startTimestamp);
@@ -251,8 +255,12 @@ public static class TimeHelper
     /// <summary>
     /// 判断当前时间是否与指定时间处于同一周。
     /// </summary>
-    /// <param name="start">指定时间的起始时间。</param>
+    /// <param name="start">指定时间的起始时间(Ticks)。表示自 0001 年 1 月 1 日午夜 00:00:00 以来所经过的时钟周期数</param>
     /// <returns>如果当前时间与指定时间处于同一周，则为 true；否则为 false。</returns>
+    /// <remarks>
+    /// 此方法将传入的ticks转换为DateTime后与当前时间比较是否在同一周
+    /// 使用系统默认的周计算规则(周日为每周第一天)
+    /// </remarks>
     public static bool IsNowSameWeek(long start)
     {
         return IsNowSameWeek(new DateTime(start));
@@ -260,9 +268,15 @@ public static class TimeHelper
 
     /// <summary>
     /// 判断当前时间是否与指定时间处于同一周。
+    /// 以周一为每周的第一天,周日为每周的最后一天。
+    /// 使用本地时间(DateTime.Now)进行比较。
     /// </summary>
-    /// <param name="start">指定时间的起始时间。</param>
+    /// <param name="start">指定时间的起始时间。可以是任意DateTime值。</param>
     /// <returns>如果当前时间与指定时间处于同一周，则为 true；否则为 false。</returns>
+    /// <remarks>
+    /// 此方法将调用IsSameWeek方法进行实际比较。
+    /// 使用本地时区时间作为当前时间参考点。
+    /// </remarks>
     public static bool IsNowSameWeek(DateTime start)
     {
         return IsSameWeek(start, DateTime.Now);
@@ -270,10 +284,15 @@ public static class TimeHelper
 
     /// <summary>
     /// 判断两个时间是否处于同一周。
+    /// 以周一为每周的第一天,周日为每周的最后一天。
     /// </summary>
-    /// <param name="start">起始时间。</param>
-    /// <param name="end">结束时间。</param>
+    /// <param name="start">起始时间。可以是任意DateTime值。</param>
+    /// <param name="end">结束时间。可以是任意DateTime值。</param>
     /// <returns>如果两个时间处于同一周，则为 true；否则为 false。</returns>
+    /// <remarks>
+    /// 此方法会自动调整参数顺序,确保start是较早的时间。
+    /// 通过计算较早时间所在周的周日时间点,判断另一个时间是否在同一周内。
+    /// </remarks>
     public static bool IsSameWeek(DateTime start, DateTime end)
     {
         // 让start是较早的时间
@@ -297,31 +316,42 @@ public static class TimeHelper
     /// <summary>
     /// 获取指定日期所在星期的时间。
     /// </summary>
-    /// <param name="dateTime">指定日期。</param>
-    /// <param name="day">星期几。</param>
-    /// <returns>指定日期所在星期的时间。</returns>
+    /// <param name="dateTime">指定日期。例如：2024-01-10</param>
+    /// <param name="day">星期几。例如：DayOfWeek.Monday 表示星期一，DayOfWeek.Sunday 表示星期日</param>
+    /// <returns>返回指定日期所在星期的指定星期几的零点时间。例如：dateTime为2024-01-10(星期三)，day为DayOfWeek.Monday，则返回2024-01-08 00:00:00</returns>
+    /// <remarks>
+    /// 此方法将星期日(DayOfWeek.Sunday)视为每周的第7天，而不是第0天
+    /// 返回的时间总是该日期的零点时间（00:00:00）
+    /// </remarks>
     public static DateTime GetDayOfWeekTime(DateTime dateTime, DayOfWeek day)
     {
+        // 将星期几转换为数字(1-7)，将星期日从0转换为7
         var dd = (int)day;
         if (dd == 0)
         {
             dd = 7;
         }
 
+        // 获取指定日期是星期几(1-7)，将星期日从0转换为7
         var dayOfWeek = (int)dateTime.DayOfWeek;
         if (dayOfWeek == 0)
         {
             dayOfWeek = 7;
         }
 
+        // 计算目标日期与当前日期的天数差，并返回目标日期的零点时间
         return dateTime.AddDays(dd - dayOfWeek).Date;
     }
 
     /// <summary>
     /// 获取当前日期所在星期的时间。
     /// </summary>
-    /// <param name="day">星期几。</param>
-    /// <returns>当前日期所在星期的时间。</returns>
+    /// <param name="day">星期几。例如：DayOfWeek.Monday 表示星期一，DayOfWeek.Sunday 表示星期日。</param>
+    /// <returns>返回当前UTC日期所在星期的指定星期几的零点时间。例如：当前是2024-01-10(星期三)，传入DayOfWeek.Monday，则返回2024-01-08 00:00:00。</returns>
+    /// <remarks>
+    /// 此方法使用UTC时间作为基准计算。
+    /// 如果需要使用本地时间，请使用 GetDayOfWeekTime(DateTime.Now, day)。
+    /// </remarks>
     public static DateTime GetDayOfWeekTime(DayOfWeek day)
     {
         return GetDayOfWeekTime(DateTime.Now, day);
