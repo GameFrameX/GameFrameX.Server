@@ -51,10 +51,10 @@ public static class EventDispatcherExtensions
 
             foreach (var listener in listeners)
             {
-                var comp = await agent.GetComponentAgent(listener.AgentType);
+                var componentAgent = await agent.GetComponentAgent(listener.AgentType, false);
                 try
                 {
-                    await listener.HandleEvent(comp, evt);
+                    await listener.HandleEvent(componentAgent, evt);
                 }
                 catch (Exception exception)
                 {
