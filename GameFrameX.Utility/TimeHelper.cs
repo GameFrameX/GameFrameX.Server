@@ -675,9 +675,23 @@ public static class TimeHelper
     /// 获取本月开始时间
     /// </summary>
     /// <returns>本月1号零点时间</returns>
+    /// <remarks>
+    /// 此方法基于UTC时间计算本月开始时间:
+    /// 1. 获取当前UTC时间的年份和月份
+    /// 2. 创建一个新的DateTime对象,设置为本月1号零点
+    /// 3. 返回的时间为UTC时区的时间
+    /// 
+    /// 示例:
+    /// - 当前UTC时间为2024-01-15 14:30:00
+    /// - 返回时间为2024-01-01 00:00:00 (UTC)
+    /// 
+    /// 注意:
+    /// - 返回的是UTC时区的时间,如需本地时间请使用TimeZoneInfo.ConvertTimeFromUtc转换
+    /// - 返回时间的Hour/Minute/Second/Millisecond均为0
+    /// </remarks>
     public static DateTime GetMonthStartTime()
     {
-        return new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+        return new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, 1);
     }
 
     /// <summary>
@@ -711,9 +725,23 @@ public static class TimeHelper
     /// 获取本年开始时间
     /// </summary>
     /// <returns>本年1月1日零点时间</returns>
+    /// <remarks>
+    /// 此方法基于UTC时间计算年份:
+    /// 1. 获取当前UTC时间的年份
+    /// 2. 返回该年份1月1日零点时间
+    /// 
+    /// 示例:
+    /// - 当前UTC时间为2024-03-15 14:30:00
+    /// - 返回2024-01-01 00:00:00
+    /// 
+    /// 注意:
+    /// - 返回的是UTC时间,不考虑本地时区
+    /// - 返回时间的时分秒毫秒都为0
+    /// - 使用DateTime.UtcNow避免时区转换带来的问题
+    /// </remarks>
     public static DateTime GetYearStartTime()
     {
-        return new DateTime(DateTime.Now.Year, 1, 1);
+        return new DateTime(DateTime.UtcNow.Year, 1, 1);
     }
 
     /// <summary>
