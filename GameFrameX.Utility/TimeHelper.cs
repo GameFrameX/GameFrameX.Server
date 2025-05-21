@@ -416,7 +416,27 @@ public static class TimeHelper
     }
 
     /// <summary>
-    /// 获取当前UTC时区时间的完整格式字符串
+    /// 获取当前本地时区时间的自定义格式字符串
+    /// </summary>
+    /// <param name="format">时间格式字符串，默认为"yyyy-MM-dd HH:mm:ss.fff K"</param>
+    /// <returns>返回指定格式的本地时间字符串。例如默认格式返回："2023-12-25 14:30:45.123 +08:00"</returns>
+    public static string CurrentDateTimeWithFormat(string format = "yyyy-MM-dd HH:mm:ss.fff K")
+    {
+        return DateTime.Now.ToString(format);
+    }
+
+    /// <summary>
+    /// 获取当前UTC时区时间的自定义格式字符串
+    /// </summary>
+    /// <param name="format">时间格式字符串，默认为"yyyy-MM-dd HH:mm:ss.fff K"</param>
+    /// <returns>返回指定格式的UTC时间字符串。例如默认格式返回："2023-12-25 06:30:45.123 +00:00"</returns>
+    public static string CurrentDateTimeWithUtcFormat(string format = "yyyy-MM-dd HH:mm:ss.fff K")
+    {
+        return DateTime.UtcNow.ToString(format);
+    }
+
+    /// <summary>
+    /// 获取当前UTC时区时间的完整格式[yyyy-MM-dd-HH-mm-ss.fff K]字符串
     /// </summary>
     /// <returns>返回格式为"yyyy-MM-dd-HH-mm-ss.fff K"的UTC时间字符串，包含年-月-日-时-分-秒.毫秒 时区偏移。例如："2023-12-25-06-30-45.123 +00:00"</returns>
     public static string CurrentDateTimeWithUtcFullString()
