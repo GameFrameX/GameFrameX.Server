@@ -7,7 +7,7 @@ namespace GameFrameX.Core.Events;
 /// 事件监听器基类，用于处理特定组件代理类型的事件
 /// </summary>
 /// <typeparam name="T">组件代理类型，必须实现IComponentAgent接口</typeparam>
-public abstract class EventListener<T> : IEventListener where T : IComponentAgent
+public abstract class EventListener<T> : IEventListener where T : class, IComponentAgent
 {
     /// <summary>
     /// 实现IEventListener接口的事件处理函数
@@ -20,7 +20,7 @@ public abstract class EventListener<T> : IEventListener where T : IComponentAgen
     /// </remarks>
     public Task HandleEvent(IComponentAgent agent, GameEventArgs gameEventArgs)
     {
-        return HandleEvent((T)agent, gameEventArgs);
+        return HandleEvent(agent as T, gameEventArgs);
     }
 
     /// <summary>
