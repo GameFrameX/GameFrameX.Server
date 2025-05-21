@@ -150,10 +150,19 @@ public sealed class InnerNetworkMessage : IInnerNetworkMessage
         messageObjectHeader.UniqueId = message.UniqueId;
 
         networkMessage.SetMessageType(message.GetType());
-        var buffer = ProtoBufSerializerHelper.Serialize(message);
-        networkMessage.SetMessageData(buffer);
-        networkMessage.SetMessageHeader(messageObjectHeader);
-        return networkMessage;
+        try
+        {
+            var buffer = ProtoBufSerializerHelper.Serialize(message);
+            networkMessage.SetMessageData(buffer);
+            networkMessage.SetMessageHeader(messageObjectHeader);
+            return networkMessage;
+        }
+        catch (Exception e)
+        {
+            LogHelper.Error("消息对象编码异常,请检查错误日志");
+            LogHelper.Error(e);
+            throw;
+        }
     }
 
     /// <summary>

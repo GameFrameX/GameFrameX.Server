@@ -32,17 +32,26 @@ public sealed class DefaultMessageEncoderHandler : BaseMessageEncoderHandler
         {
             MessageProtoHelper.SetMessageId(messageObject);
             messageObject.SetOperationType(MessageProtoHelper.GetMessageOperationType(messageObject));
-            var messageBodyData = ProtoBufSerializerHelper.Serialize(messageObject);
-            byte zipFlag = 0;
-            BytesCompressHandler(ref messageBodyData, ref zipFlag);
-            var messageObjectHeader = _messageObjectHeaderObjectPool.Get();
-            messageObjectHeader.OperationType = messageObject.OperationType;
-            messageObjectHeader.UniqueId = messageObject.UniqueId;
-            messageObjectHeader.MessageId = messageObject.MessageId;
-            messageObjectHeader.ZipFlag = zipFlag;
-            var messageHeaderData = ProtoBufSerializerHelper.Serialize(messageObjectHeader);
-            _messageObjectHeaderObjectPool.Return(messageObjectHeader);
-            return InnerBufferHandler(messageBodyData, ref messageHeaderData);
+            try
+            {
+                var messageBodyData = ProtoBufSerializerHelper.Serialize(messageObject);
+                byte zipFlag = 0;
+                BytesCompressHandler(ref messageBodyData, ref zipFlag);
+                var messageObjectHeader = _messageObjectHeaderObjectPool.Get();
+                messageObjectHeader.OperationType = messageObject.OperationType;
+                messageObjectHeader.UniqueId = messageObject.UniqueId;
+                messageObjectHeader.MessageId = messageObject.MessageId;
+                messageObjectHeader.ZipFlag = zipFlag;
+                var messageHeaderData = ProtoBufSerializerHelper.Serialize(messageObjectHeader);
+                _messageObjectHeaderObjectPool.Return(messageObjectHeader);
+                return InnerBufferHandler(messageBodyData, ref messageHeaderData);
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error("消息对象编码异常,请检查错误日志");
+                LogHelper.Error(e);
+                return null;
+            }
         }
 
         LogHelper.Error("消息对象为空，编码异常");

@@ -164,8 +164,18 @@ public sealed class OuterNetworkMessage : IOuterNetworkMessage
         var innerMessage = new OuterNetworkMessage();
         innerMessage.SetMessageType(message.GetType());
         innerMessage.SetUniqueId(message.UniqueId.ToString());
-        var buffer = ProtoBufSerializerHelper.Serialize(message);
-        innerMessage.SetMessageData(buffer);
+        try
+        {
+            var buffer = ProtoBufSerializerHelper.Serialize(message);
+            innerMessage.SetMessageData(buffer);
+        }
+        catch (Exception e)
+        {
+            LogHelper.Error("消息对象编码异常,请检查错误日志");
+            LogHelper.Error(e);
+            throw;
+        }
+
         messageObjectHeader.OperationType = MessageProtoHelper.GetMessageOperationType(message.GetType());
         messageObjectHeader.MessageId = MessageProtoHelper.GetMessageIdByType(message.GetType());
         messageObjectHeader.UniqueId = message.UniqueId;

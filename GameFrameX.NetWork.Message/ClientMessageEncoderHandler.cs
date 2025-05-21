@@ -28,27 +28,36 @@ public sealed class ClientMessageEncoderHandler : BaseMessageEncoderHandler
         {
             MessageProtoHelper.SetMessageId(messageObject);
             messageObject.SetOperationType(MessageProtoHelper.GetMessageOperationType(messageObject));
-            var messageBodyData = ProtoBufSerializerHelper.Serialize(messageObject);
-            var isHeartbeat = MessageProtoHelper.IsHeartbeat(messageObject.GetType());
-            byte zipFlag = 0;
-            BytesCompressHandler(ref messageBodyData, ref zipFlag);
-            var totalLength = (ushort)(PackageHeaderLength + messageBodyData.Length);
-            var buffer = ArrayPool<byte>.Shared.Rent(totalLength);
-            var offset = 0;
-            // 总长度
-            buffer.WriteUInt(totalLength, ref offset);
-            // operationType
-            buffer.WriteByte((byte)(isHeartbeat ? MessageOperationType.HeartBeat : MessageOperationType.Game), ref offset);
-            // zipFlag
-            buffer.WriteByte(zipFlag, ref offset);
-            // uniqueId
-            buffer.WriteInt(messageObject.UniqueId, ref offset);
-            // MessageId
-            buffer.WriteInt(messageObject.MessageId, ref offset);
-            buffer.WriteBytesWithoutLength(messageBodyData, ref offset);
-            var result = buffer.AsSpan(0, totalLength).ToArray();
-            ArrayPool<byte>.Shared.Return(buffer);
-            return result;
+            try
+            {
+                var messageBodyData = ProtoBufSerializerHelper.Serialize(messageObject);
+                var isHeartbeat = MessageProtoHelper.IsHeartbeat(messageObject.GetType());
+                byte zipFlag = 0;
+                BytesCompressHandler(ref messageBodyData, ref zipFlag);
+                var totalLength = (ushort)(PackageHeaderLength + messageBodyData.Length);
+                var buffer = ArrayPool<byte>.Shared.Rent(totalLength);
+                var offset = 0;
+                // 总长度
+                buffer.WriteUInt(totalLength, ref offset);
+                // operationType
+                buffer.WriteByte((byte)(isHeartbeat ? MessageOperationType.HeartBeat : MessageOperationType.Game), ref offset);
+                // zipFlag
+                buffer.WriteByte(zipFlag, ref offset);
+                // uniqueId
+                buffer.WriteInt(messageObject.UniqueId, ref offset);
+                // MessageId
+                buffer.WriteInt(messageObject.MessageId, ref offset);
+                buffer.WriteBytesWithoutLength(messageBodyData, ref offset);
+                var result = buffer.AsSpan(0, totalLength).ToArray();
+                ArrayPool<byte>.Shared.Return(buffer);
+                return result;
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error("消息对象编码异常,请检查错误日志");
+                LogHelper.Error(e);
+                return null;
+            }
         }
 
         LogHelper.Error("消息对象为空，编码异常");

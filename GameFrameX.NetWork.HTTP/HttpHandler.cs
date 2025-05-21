@@ -162,11 +162,19 @@ public static class HttpHandler
                 LogHelper.Debug($"{logHeader},执行时间：{stopwatch.ElapsedMilliseconds}ms, 结果: {result}");
                 if (result.IsNotNull())
                 {
-                    ReadOnlyMemory<byte> body = ProtoBufSerializerHelper.Serialize(result);
-                    MessageHttpObject messageHttpObject = new MessageHttpObject { Id = MessageProtoHelper.GetMessageIdByType(result), UniqueId = message.UniqueId, Body = body.ToArray(), };
-                    var resultResponse = ProtoBufSerializerHelper.Serialize(messageHttpObject);
-                    context.Response.ContentLength = resultResponse.Length;
-                    await context.Response.BodyWriter.WriteAsync(resultResponse);
+                    try
+                    {
+                        ReadOnlyMemory<byte> body = ProtoBufSerializerHelper.Serialize(result);
+                        MessageHttpObject messageHttpObject = new MessageHttpObject { Id = MessageProtoHelper.GetMessageIdByType(result), UniqueId = message.UniqueId, Body = body.ToArray(), };
+                        var resultResponse = ProtoBufSerializerHelper.Serialize(messageHttpObject);
+                        context.Response.ContentLength = resultResponse.Length;
+                        await context.Response.BodyWriter.WriteAsync(resultResponse);
+                    }
+                    catch (Exception e)
+                    {
+                        LogHelper.Error("消息对象编码异常,请检查错误日志");
+                        LogHelper.Error(e);
+                    }
                 }
             }
             else
