@@ -423,7 +423,7 @@ public static class TimeHelper
     /// </remarks>
     public static DateTime GetDayOfWeekTime(DayOfWeek day)
     {
-        return GetDayOfWeekTime(DateTime.Now, day);
+        return GetDayOfWeekTime(DateTime.UtcNow, day);
     }
 
     /// <summary>
