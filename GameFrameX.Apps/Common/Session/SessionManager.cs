@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Concurrent;
+using System.Linq;
 using System.Threading.Tasks;
 using GameFrameX.Apps.Common.Event;
+using GameFrameX.Core.Actors;
+using GameFrameX.Core.Events;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Utility.Setting;
 
@@ -31,7 +34,7 @@ public static class SessionManager
     public static List<Session> GetPageList(int pageSize, int pageIndex)
     {
         var result = SessionMap.Values.OrderBy(m => m.CreateTime)
-            .Where(m => ActorManager.HasActor(m.RoleId))
+            .Where(m => ActorManager.HasActor(m.PlayerId))
             .Skip(pageIndex * pageSize)
             .Take(pageSize)
             .ToList();
@@ -44,12 +47,12 @@ public static class SessionManager
     /// <param name="roleId">要踢掉的玩家的角色ID。</param>
     public static void KickOffLineByUserId(long roleId)
     {
-        var roleSession = Get(m => m.RoleId == roleId);
+        var roleSession = Get(m => m.PlayerId == roleId);
         if (roleSession != null)
         {
-            if (SessionMap.TryRemove(roleSession.Id, out var value) && ActorManager.HasActor(roleSession.RoleId))
+            if (SessionMap.TryRemove(roleSession.SessionId, out var value) && ActorManager.HasActor(roleSession.PlayerId))
             {
-                EventDispatcher.Dispatch(roleSession.RoleId, (int)EventId.SessionRemove);
+                EventDispatcher.Dispatch(roleSession.PlayerId, (int)EventId.SessionRemove);
             }
         }
     }
@@ -62,8 +65,8 @@ public static class SessionManager
     /// <returns>对应的会话对象，如果不存在则返回null。</returns>
     public static Session GetByRoleId(long roleId)
     {
-        var roleSession = Get(m => m.RoleId == roleId);
-        if (roleSession != null && ActorManager.HasActor(roleSession.RoleId))
+        var roleSession = Get(m => m.PlayerId == roleId);
+        if (roleSession != null && ActorManager.HasActor(roleSession.PlayerId))
         {
             return roleSession;
         }
@@ -109,9 +112,9 @@ public static class SessionManager
     /// <returns>被移除的会话对象，如果不存在则返回null。</returns>
     public static Session Remove(string sessionId)
     {
-        if (SessionMap.TryRemove(sessionId, out var value) && ActorManager.HasActor(value.RoleId))
+        if (SessionMap.TryRemove(sessionId, out var value) && ActorManager.HasActor(value.PlayerId))
         {
-            EventDispatcher.Dispatch(value.RoleId, (int)EventId.SessionRemove);
+            EventDispatcher.Dispatch(value.PlayerId, (int)EventId.SessionRemove);
         }
 
         return value;
@@ -125,9 +128,9 @@ public static class SessionManager
     {
         foreach (var session in SessionMap.Values)
         {
-            if (ActorManager.HasActor(session.RoleId))
+            if (ActorManager.HasActor(session.PlayerId))
             {
-                EventDispatcher.Dispatch(session.RoleId, (int)EventId.SessionRemove);
+                EventDispatcher.Dispatch(session.PlayerId, (int)EventId.SessionRemove);
             }
         }
 
@@ -152,8 +155,8 @@ public static class SessionManager
     /// <param name="session">要添加的会话对象。</param>
     public static void Add(Session session)
     {
-        session.WorkChannel.SetData(GlobalConst.SessionIdKey, session.Id);
-        SessionMap[session.Id] = session;
+        session.WorkChannel.SetData(GlobalConst.SessionIdKey, session.SessionId);
+        SessionMap[session.SessionId] = session;
     }
 
     /// <summary>
@@ -181,12 +184,12 @@ public static class SessionManager
             oldSession.WorkChannel.ClearData();
             oldSession.WorkChannel.Close();
             // 这里先移除，等待Disconnected回调断开在移除的话有延迟
-            Remove(oldSession.Id);
+            Remove(oldSession.SessionId);
         }
 
         // 获取当前会话并更新角色ID和签名
         var session = Get(sessionId);
-        session.SetRoleId(roleId);
+        session.SetPlayerId(roleId);
         session.SetSign(sign);
     }
 }

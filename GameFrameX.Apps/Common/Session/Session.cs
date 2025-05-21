@@ -1,9 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using GameFrameX.NetWork.Abstractions;
-using GameFrameX.NetWork.Messages;
-
-namespace GameFrameX.Apps.Common.Session;
+﻿namespace GameFrameX.Apps.Common.Session;
 
 public sealed class Session
 {
@@ -15,24 +10,24 @@ public sealed class Session
     public Session(string sessionId, INetWorkChannel netWorkChannel)
     {
         WorkChannel = netWorkChannel;
-        Id = sessionId;
-        CreateTime = DateTime.Now;
+        SessionId = sessionId;
+        CreateTime = TimeHelper.UnixTimeSeconds();
     }
 
     /// <summary>
     /// 全局会话ID
     /// </summary>
-    public string Id { get; }
+    public string SessionId { get; }
 
     /// <summary>
-    /// 角色ID
+    /// 玩家ID
     /// </summary>
-    public long RoleId { get; private set; }
+    public long PlayerId { get; private set; }
 
     /// <summary>
     /// 连接时间
     /// </summary>
-    public DateTime CreateTime { get; }
+    public long CreateTime { get; }
 
     /// <summary>
     /// 连接上下文
@@ -46,12 +41,12 @@ public sealed class Session
     public string Sign { get; private set; }
 
     /// <summary>
-    /// 设置角色ID
+    /// 设置玩家ID
     /// </summary>
-    /// <param name="roleId"></param>
-    public void SetRoleId(long roleId)
+    /// <param name="playerId">玩家ID</param>
+    public void SetPlayerId(long playerId)
     {
-        RoleId = roleId;
+        PlayerId = playerId;
     }
 
     /// <summary>
