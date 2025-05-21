@@ -39,7 +39,7 @@ public static class EventDispatcher
                 foreach (var listener in listeners)
                 {
                     // 获取监听器对应的组件代理
-                    var componentAgent = await actor.GetComponentAgent(listener.AgentType);
+                    var componentAgent = await actor.GetComponentAgent(listener.AgentType, false);
                     try
                     {
                         // 调用监听器的事件处理方法
