@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev28/apiSpec/new?filename=GameFrameX_Utility_Extensions_TypeExtensions.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Extensions.TypeExtensions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev29/apiSpec/new?filename=GameFrameX_Utility_Extensions_TypeExtensions.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Extensions.TypeExtensions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_Utility_Extensions_TypeExtensions" data-uid="GameFrameX.Utility.Extensions.TypeExtensions" class="text-break">
-Class TypeExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/Extensions/TypeExtensions.cs/#L6"><i class="bi bi-code-slash"></i></a>
+Class TypeExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/Extensions/TypeExtensions.cs/#L6"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -155,33 +155,46 @@ Class TypeExtensions  <a class="header-action link-secondary" title="View source
 
   <a id="GameFrameX_Utility_Extensions_TypeExtensions_IsImplWithInterface_" data-uid="GameFrameX.Utility.Extensions.TypeExtensions.IsImplWithInterface*"></a>
 
-  <h3 id="GameFrameX_Utility_Extensions_TypeExtensions_IsImplWithInterface_System_Type_System_Type_" data-uid="GameFrameX.Utility.Extensions.TypeExtensions.IsImplWithInterface(System.Type,System.Type)">
-  IsImplWithInterface(Type, Type)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/Extensions/TypeExtensions.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_Utility_Extensions_TypeExtensions_IsImplWithInterface_System_Type_System_Type_System_Boolean_" data-uid="GameFrameX.Utility.Extensions.TypeExtensions.IsImplWithInterface(System.Type,System.Type,System.Boolean)">
+  IsImplWithInterface(Type, Type, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/Extensions/TypeExtensions.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>判断类型是否实现了指定的接口。</p>
+  <div class="markdown level1 summary"><p>判断类型是否实现了指定的接口。
+此方法用于检查一个具体类型是否实现了目标接口。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsImplWithInterface(this Type self, Type target)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsImplWithInterface(this Type self, Type target, bool directOnly = false)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>self</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd><p>要判断的类型。</p>
+    <dd><p>要判断的类型。必须是非空的具体类型。</p>
 </dd>
     <dt><code>target</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd><p>要判断的接口类型。</p>
+    <dd><p>要判断的接口类型。必须是非空的接口类型。</p>
+</dd>
+    <dt><code>directOnly</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否只检查直接实现的接口。
+当设置为true时，只检查直接实现的接口；
+当设置为false时，同时检查继承链上的所有接口。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果类型实现了指定的接口且不是接口类型或抽象类型，则为 true；否则为 false。</p>
+    <dd><p>满足以下所有条件时返回true:</p>
+<ol>
+<li>self和target参数都不为null</li>
+<li>target是接口类型</li>
+<li>self不是接口类型或抽象类型</li>
+<li>self实现了target接口（根据directOnly参数决定检查范围）
+否则返回false</li>
+</ol>
 </dd>
   </dl>
 
@@ -199,7 +212,7 @@ Class TypeExtensions  <a class="header-action link-secondary" title="View source
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/Extensions/TypeExtensions.cs/#L6" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/Extensions/TypeExtensions.cs/#L6" class="edit-link">Edit this page</a>
         </div>
 
 

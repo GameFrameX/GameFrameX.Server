@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev28/apiSpec/new?filename=GameFrameX_Utility_TimeHelper.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.TimeHelper%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev29/apiSpec/new?filename=GameFrameX_Utility_TimeHelper.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.TimeHelper%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_Utility_TimeHelper" data-uid="GameFrameX.Utility.TimeHelper" class="text-break">
-Class TimeHelper  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L6"><i class="bi bi-code-slash"></i></a>
+Class TimeHelper  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L6"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -156,7 +156,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_EpochLocal" data-uid="GameFrameX.Utility.TimeHelper.EpochLocal">
   EpochLocal
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>1970-01-01 00:00:00 本地时间</p>
@@ -187,7 +187,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_EpochUtc" data-uid="GameFrameX.Utility.TimeHelper.EpochUtc">
   EpochUtc
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>1970-01-01 00:00:00 UTC 时间</p>
@@ -215,15 +215,124 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="GameFrameX_Utility_TimeHelper_TimeOffsetMilliseconds_" data-uid="GameFrameX.Utility.TimeHelper.TimeOffsetMilliseconds*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_TimeOffsetMilliseconds" data-uid="GameFrameX.Utility.TimeHelper.TimeOffsetMilliseconds">
+  TimeOffsetMilliseconds
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>时区偏移毫秒数。用于调整时间计算的偏移量。
+正值表示向未来偏移,负值表示向过去偏移。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long TimeOffsetMilliseconds { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_TimeOffsetSeconds_" data-uid="GameFrameX.Utility.TimeHelper.TimeOffsetSeconds*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_TimeOffsetSeconds" data-uid="GameFrameX.Utility.TimeHelper.TimeOffsetSeconds">
+  TimeOffsetSeconds
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>时区偏移秒数。用于调整时间计算的偏移量。
+正值表示向未来偏移,负值表示向过去偏移。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long TimeOffsetSeconds { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
+
+
+  <a id="GameFrameX_Utility_TimeHelper_CurrentDateTimeWithFormat_" data-uid="GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFormat*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_CurrentDateTimeWithFormat_System_String_" data-uid="GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFormat(System.String)">
+  CurrentDateTimeWithFormat(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L522"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前本地时区时间的自定义格式字符串</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string CurrentDateTimeWithFormat(string format = &quot;yyyy-MM-dd HH:mm:ss.fff K&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>format</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>时间格式字符串，默认为&quot;yyyy-MM-dd HH:mm:ss.fff K&quot;</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>返回指定格式的本地时间字符串。例如默认格式返回：&quot;2023-12-25 14:30:45.123 +08:00&quot;</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
 
 
   <a id="GameFrameX_Utility_TimeHelper_CurrentDateTimeWithFullString_" data-uid="GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFullString*"></a>
 
   <h3 id="GameFrameX_Utility_TimeHelper_CurrentDateTimeWithFullString" data-uid="GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFullString">
   CurrentDateTimeWithFullString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L413"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L512"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前本地时区时间的完整格式字符串</p>
@@ -252,14 +361,53 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <a id="GameFrameX_Utility_TimeHelper_CurrentDateTimeWithUtcFormat_" data-uid="GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFormat*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_CurrentDateTimeWithUtcFormat_System_String_" data-uid="GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFormat(System.String)">
+  CurrentDateTimeWithUtcFormat(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L532"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前UTC时区时间的自定义格式字符串</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string CurrentDateTimeWithUtcFormat(string format = &quot;yyyy-MM-dd HH:mm:ss.fff K&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>format</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>时间格式字符串，默认为&quot;yyyy-MM-dd HH:mm:ss.fff K&quot;</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>返回指定格式的UTC时间字符串。例如默认格式返回：&quot;2023-12-25 06:30:45.123 +00:00&quot;</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="GameFrameX_Utility_TimeHelper_CurrentDateTimeWithUtcFullString_" data-uid="GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFullString*"></a>
 
   <h3 id="GameFrameX_Utility_TimeHelper_CurrentDateTimeWithUtcFullString" data-uid="GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFullString">
   CurrentDateTimeWithUtcFullString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L422"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L541"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取当前UTC时区时间的完整格式字符串</p>
+  <div class="markdown level1 summary"><p>获取当前UTC时区时间的完整格式[yyyy-MM-dd-HH-mm-ss.fff K]字符串</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -289,7 +437,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_CurrentDateWithDay" data-uid="GameFrameX.Utility.TimeHelper.CurrentDateWithDay">
   CurrentDateWithDay()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L359"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L458"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前本地时区的日期，格式为yyyyMMdd的整数</p>
@@ -322,7 +470,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_CurrentDateWithUtcDay" data-uid="GameFrameX.Utility.TimeHelper.CurrentDateWithUtcDay">
   CurrentDateWithUtcDay()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L368"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L467"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前UTC时区的日期，格式为yyyyMMdd的整数</p>
@@ -355,7 +503,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_CurrentTimeWithLocalFullString" data-uid="GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalFullString">
   CurrentTimeWithLocalFullString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L386"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L485"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前本地时间，格式为HHmmss的字符串</p>
@@ -388,7 +536,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_CurrentTimeWithLocalTime" data-uid="GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalTime">
   CurrentTimeWithLocalTime()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L404"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L503"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前本地时间，格式为HHmmss的整数</p>
@@ -421,7 +569,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_CurrentTimeWithUtcFullString" data-uid="GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcFullString">
   CurrentTimeWithUtcFullString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L377"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L476"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前UTC时间，格式为HHmmss的字符串</p>
@@ -454,7 +602,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_CurrentTimeWithUtcTime" data-uid="GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcTime">
   CurrentTimeWithUtcTime()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L395"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L494"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前UTC时间，格式为HHmmss的整数</p>
@@ -487,7 +635,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetChinaDayOfWeek" data-uid="GameFrameX.Utility.TimeHelper.GetChinaDayOfWeek">
   GetChinaDayOfWeek()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L350"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L449"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前星期在中国的对应数字。</p>
@@ -520,7 +668,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetChinaDayOfWeek_System_DayOfWeek_" data-uid="GameFrameX.Utility.TimeHelper.GetChinaDayOfWeek(System.DayOfWeek)">
   GetChinaDayOfWeek(DayOfWeek)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L335"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L434"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定星期在中国的对应数字。</p>
@@ -559,7 +707,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetCrossDays_System_DateTime_System_DateTime_System_Int32_" data-uid="GameFrameX.Utility.TimeHelper.GetCrossDays(System.DateTime,System.DateTime,System.Int32)">
   GetCrossDays(DateTime, DateTime, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L222"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L291"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取两个日期之间跨越的天数。</p>
@@ -604,7 +752,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetCrossDays_System_DateTime_System_Int32_" data-uid="GameFrameX.Utility.TimeHelper.GetCrossDays(System.DateTime,System.Int32)">
   GetCrossDays(DateTime, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L173"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L242"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取从指定日期到当前UTC日期之间跨越的天数。</p>
@@ -646,7 +794,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetCrossDays_System_Int64_System_Int32_" data-uid="GameFrameX.Utility.TimeHelper.GetCrossDays(System.Int64,System.Int32)">
   GetCrossDays(long, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L195"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L264"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取两个时间戳之间跨越的天数。</p>
@@ -688,7 +836,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetCrossDays_System_Int64_System_Int64_System_Int32_" data-uid="GameFrameX.Utility.TimeHelper.GetCrossDays(System.Int64,System.Int64,System.Int32)">
   GetCrossDays(long, long, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L208"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L277"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取两个UTC时间戳之间跨越的天数。</p>
@@ -733,7 +881,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetCrossLocalDays_System_DateTime_System_Int32_" data-uid="GameFrameX.Utility.TimeHelper.GetCrossLocalDays(System.DateTime,System.Int32)">
   GetCrossLocalDays(DateTime, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L184"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L253"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取从指定日期到当前本地日期之间跨越的天数。</p>
@@ -775,7 +923,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetCrossLocalDays_System_Int64_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.GetCrossLocalDays(System.Int64,System.Int64)">
   GetCrossLocalDays(long, long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L244"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L317"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取两个本地时间戳之间的间隔天数</p>
@@ -789,17 +937,17 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>startTimestamp</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>开始时间戳(秒)</p>
+    <dd><p>开始时间戳(秒),UTC时间戳将被转换为本地时间</p>
 </dd>
     <dt><code>endTimestamp</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>结束时间戳(秒)</p>
+    <dd><p>结束时间戳(秒),UTC时间戳将被转换为本地时间</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>间隔天数</p>
+    <dd><p>间隔天数,如果开始时间晚于结束时间,返回负数</p>
 </dd>
   </dl>
 
@@ -809,6 +957,10 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_GetCrossLocalDays_System_Int64_System_Int64__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法会先将UTC时间戳转换为本地时间,然后计算两个本地时间之间的天数差
+计算时会考虑日期的时分秒部分</p>
+</div>
 
 
 
@@ -817,7 +969,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetDayOfWeekTime_System_DateTime_System_DayOfWeek_" data-uid="GameFrameX.Utility.TimeHelper.GetDayOfWeekTime(System.DateTime,System.DayOfWeek)">
   GetDayOfWeekTime(DateTime, DayOfWeek)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L303"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L395"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定日期所在星期的时间。</p>
@@ -831,17 +983,17 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>dateTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>指定日期。</p>
+    <dd><p>指定日期。例如：2024-01-10</p>
 </dd>
     <dt><code>day</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.dayofweek">DayOfWeek</a></dt>
-    <dd><p>星期几。</p>
+    <dd><p>星期几。例如：DayOfWeek.Monday 表示星期一，DayOfWeek.Sunday 表示星期日</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>指定日期所在星期的时间。</p>
+    <dd><p>返回指定日期所在星期的指定星期几的零点时间。例如：dateTime为2024-01-10(星期三)，day为DayOfWeek.Monday，则返回2024-01-08 00:00:00</p>
 </dd>
   </dl>
 
@@ -851,6 +1003,10 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_GetDayOfWeekTime_System_DateTime_System_DayOfWeek__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法将星期日(DayOfWeek.Sunday)视为每周的第7天，而不是第0天
+返回的时间总是该日期的零点时间（00:00:00）</p>
+</div>
 
 
 
@@ -859,7 +1015,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetDayOfWeekTime_System_DayOfWeek_" data-uid="GameFrameX.Utility.TimeHelper.GetDayOfWeekTime(System.DayOfWeek)">
   GetDayOfWeekTime(DayOfWeek)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L325"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L424"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取当前日期所在星期的时间。</p>
@@ -873,14 +1029,14 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>day</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.dayofweek">DayOfWeek</a></dt>
-    <dd><p>星期几。</p>
+    <dd><p>星期几。例如：DayOfWeek.Monday 表示星期一，DayOfWeek.Sunday 表示星期日。</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>当前日期所在星期的时间。</p>
+    <dd><p>返回当前UTC日期所在星期的指定星期几的零点时间。例如：当前是2024-01-10(星期三)，传入DayOfWeek.Monday，则返回2024-01-08 00:00:00。</p>
 </dd>
   </dl>
 
@@ -890,6 +1046,10 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_GetDayOfWeekTime_System_DayOfWeek__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法使用UTC时间作为基准计算。
+如果需要使用本地时间，请使用 GetDayOfWeekTime(DateTime.Now, day)。</p>
+</div>
 
 
 
@@ -898,7 +1058,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetEndTimeOfDay_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.GetEndTimeOfDay(System.DateTime)">
   GetEndTimeOfDay(DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L652"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L799"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定日期的结束时间</p>
@@ -937,7 +1097,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetEndTimeOfMonth_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.GetEndTimeOfMonth(System.DateTime)">
   GetEndTimeOfMonth(DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L842"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L989"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定日期所在月的结束时间</p>
@@ -976,7 +1136,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetEndTimeOfWeek_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.GetEndTimeOfWeek(System.DateTime)">
   GetEndTimeOfWeek(DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L802"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L949"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定日期所在周的结束时间</p>
@@ -1015,7 +1175,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetEndTimeOfYear_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.GetEndTimeOfYear(System.DateTime)">
   GetEndTimeOfYear(DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L882"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L1029"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定日期所在年的结束时间</p>
@@ -1054,7 +1214,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetEndTimestampOfDay_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.GetEndTimestampOfDay(System.DateTime)">
   GetEndTimestampOfDay(DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L662"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L809"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定日期的结束时间戳</p>
@@ -1093,7 +1253,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetEndTimestampOfMonth_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.GetEndTimestampOfMonth(System.DateTime)">
   GetEndTimestampOfMonth(DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L852"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L999"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定日期所在月的结束时间戳</p>
@@ -1132,7 +1292,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetEndTimestampOfWeek_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.GetEndTimestampOfWeek(System.DateTime)">
   GetEndTimestampOfWeek(DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L812"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L959"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定日期所在周的结束时间戳</p>
@@ -1171,7 +1331,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetEndTimestampOfYear_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.GetEndTimestampOfYear(System.DateTime)">
   GetEndTimestampOfYear(DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L892"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L1039"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定日期所在年的结束时间戳</p>
@@ -1210,7 +1370,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetMonthEndTime" data-uid="GameFrameX.Utility.TimeHelper.GetMonthEndTime">
   GetMonthEndTime()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L577"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L710"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取本月结束时间</p>
@@ -1243,7 +1403,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetMonthEndTimestamp" data-uid="GameFrameX.Utility.TimeHelper.GetMonthEndTimestamp">
   GetMonthEndTimestamp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L586"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L719"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取本月结束时间戳</p>
@@ -1276,7 +1436,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetMonthStartTime" data-uid="GameFrameX.Utility.TimeHelper.GetMonthStartTime">
   GetMonthStartTime()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L559"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L692"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取本月开始时间</p>
@@ -1301,6 +1461,24 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_GetMonthStartTime_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法基于UTC时间计算本月开始时间:</p>
+<ol>
+<li>获取当前UTC时间的年份和月份</li>
+<li>创建一个新的DateTime对象,设置为本月1号零点</li>
+<li>返回的时间为UTC时区的时间</li>
+</ol>
+<p>示例:</p>
+<ul>
+<li>当前UTC时间为2024-01-15 14:30:00</li>
+<li>返回时间为2024-01-01 00:00:00 (UTC)</li>
+</ul>
+<p>注意:</p>
+<ul>
+<li>返回的是UTC时区的时间,如需本地时间请使用TimeZoneInfo.ConvertTimeFromUtc转换</li>
+<li>返回时间的Hour/Minute/Second/Millisecond均为0</li>
+</ul>
+</div>
 
 
 
@@ -1309,7 +1487,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetMonthStartTimestamp" data-uid="GameFrameX.Utility.TimeHelper.GetMonthStartTimestamp">
   GetMonthStartTimestamp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L568"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L701"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取本月开始时间戳</p>
@@ -1342,7 +1520,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetNextMonthEndTime" data-uid="GameFrameX.Utility.TimeHelper.GetNextMonthEndTime">
   GetNextMonthEndTime()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L783"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L930"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取下月结束时间</p>
@@ -1375,7 +1553,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetNextMonthEndTimestamp" data-uid="GameFrameX.Utility.TimeHelper.GetNextMonthEndTimestamp">
   GetNextMonthEndTimestamp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L792"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L939"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取下月结束时间戳</p>
@@ -1408,7 +1586,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetNextMonthStartTime" data-uid="GameFrameX.Utility.TimeHelper.GetNextMonthStartTime">
   GetNextMonthStartTime()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L765"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L912"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取下月开始时间</p>
@@ -1441,7 +1619,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetNextMonthStartTimestamp" data-uid="GameFrameX.Utility.TimeHelper.GetNextMonthStartTimestamp">
   GetNextMonthStartTimestamp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L774"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L921"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取下月开始时间戳</p>
@@ -1474,7 +1652,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetNextWeekEndTime" data-uid="GameFrameX.Utility.TimeHelper.GetNextWeekEndTime">
   GetNextWeekEndTime()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L747"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L894"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取下周结束时间</p>
@@ -1507,7 +1685,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetNextWeekEndTimestamp" data-uid="GameFrameX.Utility.TimeHelper.GetNextWeekEndTimestamp">
   GetNextWeekEndTimestamp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L756"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L903"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取下周结束时间戳</p>
@@ -1540,7 +1718,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetNextWeekStartTime" data-uid="GameFrameX.Utility.TimeHelper.GetNextWeekStartTime">
   GetNextWeekStartTime()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L729"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L876"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取下周开始时间</p>
@@ -1573,7 +1751,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetNextWeekStartTimestamp" data-uid="GameFrameX.Utility.TimeHelper.GetNextWeekStartTimestamp">
   GetNextWeekStartTimestamp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L738"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L885"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取下周开始时间戳</p>
@@ -1602,11 +1780,44 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <a id="GameFrameX_Utility_TimeHelper_GetNow_" data-uid="GameFrameX.Utility.TimeHelper.GetNow*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_GetNow" data-uid="GameFrameX.Utility.TimeHelper.GetNow">
+  GetNow()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L1057"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateTime GetNow()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>当前时间</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="GameFrameX_Utility_TimeHelper_GetStartTimeOfDay_" data-uid="GameFrameX.Utility.TimeHelper.GetStartTimeOfDay*"></a>
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetStartTimeOfDay_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.GetStartTimeOfDay(System.DateTime)">
   GetStartTimeOfDay(DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L632"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L779"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定日期的开始时间</p>
@@ -1645,7 +1856,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetStartTimeOfMonth_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.GetStartTimeOfMonth(System.DateTime)">
   GetStartTimeOfMonth(DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L822"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L969"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定日期所在月的开始时间</p>
@@ -1684,7 +1895,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetStartTimeOfWeek_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.GetStartTimeOfWeek(System.DateTime)">
   GetStartTimeOfWeek(DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L672"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L819"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定日期所在周的开始时间</p>
@@ -1723,7 +1934,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetStartTimeOfYear_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.GetStartTimeOfYear(System.DateTime)">
   GetStartTimeOfYear(DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L862"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L1009"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定日期所在年的开始时间</p>
@@ -1762,7 +1973,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetStartTimestampOfDay_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.GetStartTimestampOfDay(System.DateTime)">
   GetStartTimestampOfDay(DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L642"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L789"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定日期的开始时间戳</p>
@@ -1801,7 +2012,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetStartTimestampOfMonth_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.GetStartTimestampOfMonth(System.DateTime)">
   GetStartTimestampOfMonth(DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L832"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L979"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定日期所在月的开始时间戳</p>
@@ -1840,7 +2051,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetStartTimestampOfWeek_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.GetStartTimestampOfWeek(System.DateTime)">
   GetStartTimestampOfWeek(DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L684"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L831"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定日期所在周的开始时间戳</p>
@@ -1879,7 +2090,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetStartTimestampOfYear_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.GetStartTimestampOfYear(System.DateTime)">
   GetStartTimestampOfYear(DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L872"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L1019"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定日期所在年的开始时间戳</p>
@@ -1918,7 +2129,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetTodayEndTime" data-uid="GameFrameX.Utility.TimeHelper.GetTodayEndTime">
   GetTodayEndTime()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L502"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L621"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取今天结束时间</p>
@@ -1951,7 +2162,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetTodayEndTimestamp" data-uid="GameFrameX.Utility.TimeHelper.GetTodayEndTimestamp">
   GetTodayEndTimestamp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L511"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L630"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取今天结束时间戳</p>
@@ -1984,7 +2195,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetTodayStartTime" data-uid="GameFrameX.Utility.TimeHelper.GetTodayStartTime">
   GetTodayStartTime()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L484"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L603"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取今天开始时间</p>
@@ -2017,7 +2228,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetTodayStartTimestamp" data-uid="GameFrameX.Utility.TimeHelper.GetTodayStartTimestamp">
   GetTodayStartTimestamp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L493"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L612"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取今天开始时间戳</p>
@@ -2050,7 +2261,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetTomorrowEndTime" data-uid="GameFrameX.Utility.TimeHelper.GetTomorrowEndTime">
   GetTomorrowEndTime()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L711"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L858"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取明天结束时间</p>
@@ -2083,7 +2294,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetTomorrowEndTimestamp" data-uid="GameFrameX.Utility.TimeHelper.GetTomorrowEndTimestamp">
   GetTomorrowEndTimestamp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L720"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L867"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取明天结束时间戳</p>
@@ -2116,7 +2327,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetTomorrowStartTime" data-uid="GameFrameX.Utility.TimeHelper.GetTomorrowStartTime">
   GetTomorrowStartTime()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L693"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L840"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取明天开始时间</p>
@@ -2149,7 +2360,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetTomorrowStartTimestamp" data-uid="GameFrameX.Utility.TimeHelper.GetTomorrowStartTimestamp">
   GetTomorrowStartTimestamp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L702"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L849"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取明天开始时间戳</p>
@@ -2178,11 +2389,44 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <a id="GameFrameX_Utility_TimeHelper_GetUtcNow_" data-uid="GameFrameX.Utility.TimeHelper.GetUtcNow*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_GetUtcNow" data-uid="GameFrameX.Utility.TimeHelper.GetUtcNow">
+  GetUtcNow()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L1048"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前UTC时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateTime GetUtcNow()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>当前UTC时间</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="GameFrameX_Utility_TimeHelper_GetWeekEndTime_" data-uid="GameFrameX.Utility.TimeHelper.GetWeekEndTime*"></a>
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetWeekEndTime" data-uid="GameFrameX.Utility.TimeHelper.GetWeekEndTime">
   GetWeekEndTime()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L541"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L660"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取本周结束时间</p>
@@ -2215,7 +2459,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetWeekEndTimestamp" data-uid="GameFrameX.Utility.TimeHelper.GetWeekEndTimestamp">
   GetWeekEndTimestamp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L550"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L669"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取本周结束时间戳</p>
@@ -2248,7 +2492,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetWeekStartTime" data-uid="GameFrameX.Utility.TimeHelper.GetWeekStartTime">
   GetWeekStartTime()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L520"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L639"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取本周开始时间</p>
@@ -2281,7 +2525,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetWeekStartTimestamp" data-uid="GameFrameX.Utility.TimeHelper.GetWeekStartTimestamp">
   GetWeekStartTimestamp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L532"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L651"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取本周开始时间戳</p>
@@ -2314,7 +2558,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetYearEndTime" data-uid="GameFrameX.Utility.TimeHelper.GetYearEndTime">
   GetYearEndTime()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L613"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L760"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取本年结束时间</p>
@@ -2347,7 +2591,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetYearEndTimestamp" data-uid="GameFrameX.Utility.TimeHelper.GetYearEndTimestamp">
   GetYearEndTimestamp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L622"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L769"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取本年结束时间戳</p>
@@ -2380,7 +2624,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetYearStartTime" data-uid="GameFrameX.Utility.TimeHelper.GetYearStartTime">
   GetYearStartTime()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L595"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L742"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取本年开始时间</p>
@@ -2405,6 +2649,24 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_GetYearStartTime_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法基于UTC时间计算年份:</p>
+<ol>
+<li>获取当前UTC时间的年份</li>
+<li>返回该年份1月1日零点时间</li>
+</ol>
+<p>示例:</p>
+<ul>
+<li>当前UTC时间为2024-03-15 14:30:00</li>
+<li>返回2024-01-01 00:00:00</li>
+</ul>
+<p>注意:</p>
+<ul>
+<li>返回的是UTC时间,不考虑本地时区</li>
+<li>返回时间的时分秒毫秒都为0</li>
+<li>使用DateTime.UtcNow避免时区转换带来的问题</li>
+</ul>
+</div>
 
 
 
@@ -2413,7 +2675,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_GetYearStartTimestamp" data-uid="GameFrameX.Utility.TimeHelper.GetYearStartTimestamp">
   GetYearStartTimestamp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L604"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L751"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取本年开始时间戳</p>
@@ -2446,7 +2708,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_IsLocalSameDay_System_Int64_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.IsLocalSameDay(System.Int64,System.Int64)">
   IsLocalSameDay(long, long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L928"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L1106"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>按照本地时间判断两个时间戳是否是同一天</p>
@@ -2460,17 +2722,17 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>timestamp1</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>时间戳1</p>
+    <dd><p>时间戳1（Unix秒级时间戳）。例如：1704857400</p>
 </dd>
     <dt><code>timestamp2</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>时间戳2</p>
+    <dd><p>时间戳2（Unix秒级时间戳）。例如：1704859200</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否是同一天</p>
+    <dd><p>如果两个时间戳转换为本地时间后是同一天，则返回true；否则返回false</p>
 </dd>
   </dl>
 
@@ -2480,6 +2742,11 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_IsLocalSameDay_System_Int64_System_Int64__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法会先将UTC时间戳转换为本地时间，然后比较是否为同一天
+比较时只考虑年月日，不考虑具体时间
+使用系统默认时区进行UTC到本地时间的转换</p>
+</div>
 
 
 
@@ -2488,10 +2755,12 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_IsNowSameWeek_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.IsNowSameWeek(System.DateTime)">
   IsNowSameWeek(DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L266"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L349"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>判断当前时间是否与指定时间处于同一周。</p>
+  <div class="markdown level1 summary"><p>判断当前时间是否与指定时间处于同一周。
+以周一为每周的第一天,周日为每周的最后一天。
+使用本地时间(DateTime.Now)进行比较。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -2502,7 +2771,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>start</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>指定时间的起始时间。</p>
+    <dd><p>指定时间的起始时间。可以是任意DateTime值。</p>
 </dd>
   </dl>
 
@@ -2519,6 +2788,10 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_IsNowSameWeek_System_DateTime__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法将调用IsSameWeek方法进行实际比较。
+使用本地时区时间作为当前时间参考点。</p>
+</div>
 
 
 
@@ -2527,7 +2800,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_IsNowSameWeek_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.IsNowSameWeek(System.Int64)">
   IsNowSameWeek(long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L256"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L333"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>判断当前时间是否与指定时间处于同一周。</p>
@@ -2541,7 +2814,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>start</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>指定时间的起始时间。</p>
+    <dd><p>指定时间的起始时间(Ticks)。表示自 0001 年 1 月 1 日午夜 00:00:00 以来所经过的时钟周期数</p>
 </dd>
   </dl>
 
@@ -2558,6 +2831,10 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_IsNowSameWeek_System_Int64__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法将传入的ticks转换为DateTime后与当前时间比较是否在同一周
+使用系统默认的周计算规则(周日为每周第一天)</p>
+</div>
 
 
 
@@ -2566,7 +2843,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_IsSameDay_System_DateTime_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.IsSameDay(System.DateTime,System.DateTime)">
   IsSameDay(DateTime, DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L941"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L1124"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>判断两个时间是否是同一天</p>
@@ -2580,17 +2857,17 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>time1</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>时间1</p>
+    <dd><p>时间1。例如：2024-01-10 14:30:00</p>
 </dd>
     <dt><code>time2</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>时间2</p>
+    <dd><p>时间2。例如：2024-01-10 18:45:00</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否是同一天</p>
+    <dd><p>如果两个时间是同一天，则返回true；否则返回false</p>
 </dd>
   </dl>
 
@@ -2600,6 +2877,11 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_IsSameDay_System_DateTime_System_DateTime__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法只比较年月日是否相同，不考虑具体时间
+比较时会忽略时区差异，直接使用DateTime中存储的日期值进行比较
+使用Date属性确保只比较日期部分</p>
+</div>
 
 
 
@@ -2608,10 +2890,11 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_IsSameWeek_System_DateTime_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.IsSameWeek(System.DateTime,System.DateTime)">
   IsSameWeek(DateTime, DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L277"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L365"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>判断两个时间是否处于同一周。</p>
+  <div class="markdown level1 summary"><p>判断两个时间是否处于同一周。
+以周一为每周的第一天,周日为每周的最后一天。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -2622,10 +2905,10 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>start</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>起始时间。</p>
+    <dd><p>起始时间。可以是任意DateTime值。</p>
 </dd>
     <dt><code>end</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>结束时间。</p>
+    <dd><p>结束时间。可以是任意DateTime值。</p>
 </dd>
   </dl>
 
@@ -2642,6 +2925,10 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_IsSameWeek_System_DateTime_System_DateTime__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法会自动调整参数顺序,确保start是较早的时间。
+通过计算较早时间所在周的周日时间点,判断另一个时间是否在同一周内。</p>
+</div>
 
 
 
@@ -2650,7 +2937,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_IsTimeInRange_System_DateTime_System_DateTime_System_DateTime_" data-uid="GameFrameX.Utility.TimeHelper.IsTimeInRange(System.DateTime,System.DateTime,System.DateTime)">
   IsTimeInRange(DateTime, DateTime, DateTime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L905"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L1073"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定时间是否在指定的时间范围内</p>
@@ -2664,20 +2951,20 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>time</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>指定时间</p>
+    <dd><p>指定时间。例如：2024-01-10 14:30:00</p>
 </dd>
     <dt><code>startTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>开始时间</p>
+    <dd><p>开始时间。例如：2024-01-10 00:00:00</p>
 </dd>
     <dt><code>endTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
-    <dd><p>结束时间</p>
+    <dd><p>结束时间。例如：2024-01-10 23:59:59</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否在范围内</p>
+    <dd><p>如果指定时间在开始时间和结束时间之间（包含边界），则返回true；否则返回false</p>
 </dd>
   </dl>
 
@@ -2687,6 +2974,10 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_IsTimeInRange_System_DateTime_System_DateTime_System_DateTime__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法使用闭区间比较，即time等于startTime或endTime时也返回true
+不会对startTime和endTime的先后顺序做检查，调用方需确保startTime不晚于endTime</p>
+</div>
 
 
 
@@ -2695,7 +2986,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_IsTimestampInRange_System_Int64_System_Int64_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.IsTimestampInRange(System.Int64,System.Int64,System.Int64)">
   IsTimestampInRange(long, long, long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L917"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L1090"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定时间戳是否在指定的时间戳范围内</p>
@@ -2709,20 +3000,20 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>timestamp</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>指定时间戳</p>
+    <dd><p>指定时间戳（Unix秒级时间戳）。例如：1704857400</p>
 </dd>
     <dt><code>startTimestamp</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>开始时间戳</p>
+    <dd><p>开始时间戳（Unix秒级时间戳）。例如：1704816000</p>
 </dd>
     <dt><code>endTimestamp</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>结束时间戳</p>
+    <dd><p>结束时间戳（Unix秒级时间戳）。例如：1704902399</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>是否在范围内</p>
+    <dd><p>如果指定时间戳在开始时间戳和结束时间戳之间（包含边界），则返回true；否则返回false</p>
 </dd>
   </dl>
 
@@ -2732,6 +3023,11 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_IsTimestampInRange_System_Int64_System_Int64_System_Int64__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法使用闭区间比较，即timestamp等于startTimestamp或endTimestamp时也返回true
+不会对startTimestamp和endTimestamp的先后顺序做检查，调用方需确保startTimestamp不大于endTimestamp
+时间戳应为Unix秒级时间戳（自1970年1月1日UTC零点以来的秒数）</p>
+</div>
 
 
 
@@ -2740,7 +3036,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_IsUnixSameDay_System_Int64_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.IsUnixSameDay(System.Int64,System.Int64)">
   IsUnixSameDay(long, long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L473"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L592"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>按照UTC时间判断两个时间戳是否是同一天</p>
@@ -2782,7 +3078,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_MillisecondsTimeStampToDateTime_System_Int64_System_Boolean_" data-uid="GameFrameX.Utility.TimeHelper.MillisecondsTimeStampToDateTime(System.Int64,System.Boolean)">
   MillisecondsTimeStampToDateTime(long, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L141"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L210"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>毫秒转时间</p>
@@ -2820,14 +3116,86 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <a id="GameFrameX_Utility_TimeHelper_ResetTimeOffset_" data-uid="GameFrameX.Utility.TimeHelper.ResetTimeOffset*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_ResetTimeOffset" data-uid="GameFrameX.Utility.TimeHelper.ResetTimeOffset">
+  ResetTimeOffset()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>重置时区偏移值为默认值(0)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ResetTimeOffset()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_ResetTimeOffset_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法会将秒级和毫秒级的偏移量都重置为0,
+使时间计算恢复到未经调整的状态。</p>
+</div>
+
+
+
+
+  <a id="GameFrameX_Utility_TimeHelper_SetTimeOffset_" data-uid="GameFrameX.Utility.TimeHelper.SetTimeOffset*"></a>
+
+  <h3 id="GameFrameX_Utility_TimeHelper_SetTimeOffset_System_Int64_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.SetTimeOffset(System.Int64,System.Int64)">
+  SetTimeOffset(long, long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置时区偏移值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetTimeOffset(long offsetSeconds, long offsetMilliseconds)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>offsetSeconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>秒级偏移量</p>
+</dd>
+    <dt><code>offsetMilliseconds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>毫秒级偏移量</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_SetTimeOffset_System_Int64_System_Int64__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法用于调整时间计算的基准。
+例如要模拟未来时间,可以传入正数;要模拟过去时间,可以传入负数。
+通常用于调试和测试场景。</p>
+</div>
+
+
+
+
   <a id="GameFrameX_Utility_TimeHelper_TimeMilliseconds_" data-uid="GameFrameX.Utility.TimeHelper.TimeMilliseconds*"></a>
 
   <h3 id="GameFrameX_Utility_TimeHelper_TimeMilliseconds" data-uid="GameFrameX.Utility.TimeHelper.TimeMilliseconds">
   TimeMilliseconds()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>当前时区时间 毫秒时间戳</p>
+  <div class="markdown level1 summary"><p>获取当前本地时区时间的毫秒级时间戳</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -2839,7 +3207,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>当前时区时间的毫秒时间戳。</p>
+    <dd><p>返回自1970年1月1日 00:00:00以来经过的毫秒数(本地时区),加上时区偏移量</p>
 </dd>
   </dl>
 
@@ -2849,6 +3217,15 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_TimeMilliseconds_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法:</p>
+<ol>
+<li>获取当前本地时区时间</li>
+<li>转换为Unix时间戳(毫秒)</li>
+<li>加上TimeOffsetMilliseconds偏移量
+相比秒级时间戳提供更高的精度,适用于需要精确时间计算的场景</li>
+</ol>
+</div>
 
 
 
@@ -2857,10 +3234,10 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_TimeSeconds" data-uid="GameFrameX.Utility.TimeHelper.TimeSeconds">
   TimeSeconds()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L102"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>当前时区时间 秒时间戳</p>
+  <div class="markdown level1 summary"><p>获取当前本地时区时间的秒级时间戳</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -2872,7 +3249,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>当前时区时间的秒时间戳。</p>
+    <dd><p>返回自1970年1月1日 00:00:00以来经过的秒数(本地时区),加上时区偏移量</p>
 </dd>
   </dl>
 
@@ -2882,6 +3259,15 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_TimeSeconds_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法:</p>
+<ol>
+<li>获取当前本地时区时间</li>
+<li>转换为Unix时间戳(秒)</li>
+<li>加上TimeOffsetSeconds偏移量
+主要用于需要本地时区时间戳的场景</li>
+</ol>
+</div>
 
 
 
@@ -2890,7 +3276,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_TimeSpanLocalWithTimestamp_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.TimeSpanLocalWithTimestamp(System.Int64)">
   TimeSpanLocalWithTimestamp(long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L197"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>将给定的时间戳转换为相对于当前本地时间的 TimeSpan 对象。</p>
@@ -2929,7 +3315,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_TimeSpanWithTimestamp_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.TimeSpanWithTimestamp(System.Int64)">
   TimeSpanWithTimestamp(long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L185"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>将给定的时间戳转换为相对于当前时间的 TimeSpan 对象。</p>
@@ -2968,7 +3354,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_TimeToMilliseconds_System_DateTime_System_Boolean_" data-uid="GameFrameX.Utility.TimeHelper.TimeToMilliseconds(System.DateTime,System.Boolean)">
   TimeToMilliseconds(DateTime, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L129"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定时间距离纪元时间（本地时间或UTC时间）的毫秒数。</p>
@@ -3010,7 +3396,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_TimeToSecond_System_DateTime_System_Boolean_" data-uid="GameFrameX.Utility.TimeHelper.TimeToSecond(System.DateTime,System.Boolean)">
   TimeToSecond(DateTime, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L145"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定时间距离纪元时间（本地时间或UTC时间）的秒数。</p>
@@ -3052,7 +3438,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_TimestampMillisToTicks_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.TimestampMillisToTicks(System.Int64)">
   TimestampMillisToTicks(long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L173"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>将Unix毫秒时间戳转换为自公元1年1月1日以来的刻度数。</p>
@@ -3091,7 +3477,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_TimestampToDateTime_System_Int64_System_Boolean_" data-uid="GameFrameX.Utility.TimeHelper.TimestampToDateTime(System.Int64,System.Boolean)">
   TimestampToDateTime(long, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L157"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L226"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>秒时间戳转时间</p>
@@ -3133,7 +3519,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_TimestampToTicks_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.TimestampToTicks(System.Int64)">
   TimestampToTicks(long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L161"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>将Unix时间戳转换为自公元1年1月1日以来的刻度数。</p>
@@ -3172,10 +3558,10 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_UnixTimeMilliseconds" data-uid="GameFrameX.Utility.TimeHelper.UnixTimeMilliseconds">
   UnixTimeMilliseconds()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L86"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>当前UTC 时间 毫秒时间戳</p>
+  <div class="markdown level1 summary"><p>获取当前UTC时间的毫秒级时间戳</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -3187,7 +3573,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>当前UTC时间的毫秒时间戳。</p>
+    <dd><p>返回自1970年1月1日 00:00:00 UTC以来经过的毫秒数,加上时区偏移量</p>
 </dd>
   </dl>
 
@@ -3197,6 +3583,15 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_UnixTimeMilliseconds_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法:</p>
+<ol>
+<li>获取当前UTC时间</li>
+<li>转换为Unix时间戳(毫秒)</li>
+<li>加上TimeOffsetMilliseconds偏移量
+相比秒级时间戳提供更高的精度,适用于需要精确时间计算的场景</li>
+</ol>
+</div>
 
 
 
@@ -3205,10 +3600,10 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_UnixTimeSeconds" data-uid="GameFrameX.Utility.TimeHelper.UnixTimeSeconds">
   UnixTimeSeconds()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L70"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>当前UTC 时间 秒时间戳</p>
+  <div class="markdown level1 summary"><p>获取当前UTC时间的秒级时间戳</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -3220,7 +3615,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>当前UTC时间的秒时间戳。</p>
+    <dd><p>返回自1970年1月1日 00:00:00 UTC以来经过的秒数,加上时区偏移量</p>
 </dd>
   </dl>
 
@@ -3230,6 +3625,15 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_TimeHelper_UnixTimeSeconds_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法:</p>
+<ol>
+<li>获取当前UTC时间</li>
+<li>转换为Unix时间戳(秒)</li>
+<li>加上TimeOffsetSeconds偏移量
+主要用于需要UTC时间戳的场景,如跨时区业务</li>
+</ol>
+</div>
 
 
 
@@ -3238,7 +3642,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_UtcMillisecondsToDateTime_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.UtcMillisecondsToDateTime(System.Int64)">
   UtcMillisecondsToDateTime(long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L462"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L581"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>UTC 毫秒时间戳 转换成本地时间</p>
@@ -3277,7 +3681,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_UtcMillisecondsToUtcDateTime_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.UtcMillisecondsToUtcDateTime(System.Int64)">
   UtcMillisecondsToUtcDateTime(long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L442"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L561"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>UTC 毫秒时间戳 转换成UTC时间</p>
@@ -3316,7 +3720,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_UtcToLocalDateTime_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.UtcToLocalDateTime(System.Int64)">
   UtcToLocalDateTime(long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L452"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L571"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>UTC 时间戳 转换成本地时间</p>
@@ -3355,7 +3759,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="GameFrameX_Utility_TimeHelper_UtcToUtcDateTime_System_Int64_" data-uid="GameFrameX.Utility.TimeHelper.UtcToUtcDateTime(System.Int64)">
   UtcToUtcDateTime(long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L432"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L551"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>UTC 时间戳 转换成UTC时间</p>
@@ -3394,7 +3798,7 @@ Class TimeHelper  <a class="header-action link-secondary" title="View source" hr
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev28/GameFrameX.Utility/TimeHelper.cs/#L6" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev29/GameFrameX.Utility/TimeHelper.cs/#L6" class="edit-link">Edit this page</a>
         </div>
 
 
