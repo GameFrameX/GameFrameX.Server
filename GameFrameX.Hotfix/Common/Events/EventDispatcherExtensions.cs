@@ -37,7 +37,7 @@ public static class EventDispatcherExtensions
         }
     }
 
-    private static void SelfHandle(IComponentAgent agent, int evtId, GameEventArgs evt)
+    private static void SelfHandle(IComponentAgent agent, int evtId, GameEventArgs gameEventArgs)
     {
         agent.Tell(async () =>
         {
@@ -45,7 +45,7 @@ public static class EventDispatcherExtensions
             var listeners = HotfixManager.FindListeners(agent.OwnerType, evtId);
             if (listeners.IsNullOrEmpty())
             {
-                // Log.Warn($"事件：{(EventID)evtId} 没有找到任何监听者");
+                LogHelper.Warn($"事件ID：{evtId} 没有找到任何监听者");
                 return;
             }
 
@@ -54,7 +54,7 @@ public static class EventDispatcherExtensions
                 var componentAgent = await agent.GetComponentAgent(listener.AgentType, false);
                 try
                 {
-                    await listener.HandleEvent(componentAgent, evt);
+                    await listener.HandleEvent(componentAgent, gameEventArgs);
                 }
                 catch (Exception exception)
                 {
