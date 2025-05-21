@@ -233,7 +233,7 @@ public sealed class IllegalWordDetection
             }
         }
 
-        LogHelper.Info($"敏感词初始化耗时:{(DateTime.Now - startTime).TotalMilliseconds}ms, 有效数量:{activeNum}");
+        LogHelper.Info($"敏感词初始化耗时:{(DateTime.UtcNow - startTime).TotalMilliseconds}ms, 有效数量:{activeNum}");
     }
 
     private static unsafe void InnerInit(string[] badwords)
@@ -243,9 +243,8 @@ public sealed class IllegalWordDetection
             return;
         }
 
-        var startTime = DateTime.Now;
+        var startTime = DateTime.UtcNow;
         var activeNum = 0;
-        var wordLength = 0;
         var maxWordLength = int.MinValue;
         for (int stringIndex = 0, len = badwords.Length; stringIndex < len; ++stringIndex)
         {
@@ -256,7 +255,7 @@ public sealed class IllegalWordDetection
 
             var strBadWord = OriginalToLower(badwords[stringIndex]);
             //求得单个的敏感词汇的长度
-            wordLength = strBadWord.Length;
+            var wordLength = strBadWord.Length;
             maxWordLength = System.Math.Max(wordLength, maxWordLength);
 
             fixed (char* pWordStart = strBadWord)
@@ -309,7 +308,7 @@ public sealed class IllegalWordDetection
             }
         }
 
-        LogHelper.Info($"敏感词初始化耗时:{(DateTime.Now - startTime).TotalMilliseconds}ms, 有效数量:{activeNum}");
+        LogHelper.Info($"敏感词初始化耗时:{(DateTime.UtcNow - startTime).TotalMilliseconds}ms, 有效数量:{activeNum}");
     }
 
     private static unsafe string OriginalToLower(string text)
