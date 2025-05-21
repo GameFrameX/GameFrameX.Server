@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using GameFrameX.Core.Actors.Impl;
+using GameFrameX.Utility;
 using GameFrameX.Utility.Extensions;
 
 namespace GameFrameX.Core.Utility;
@@ -9,10 +10,9 @@ namespace GameFrameX.Core.Utility;
 /// </summary>
 public sealed class StatisticsTool
 {
-    private const string Format = "yyyy-MM-dd HH:mm";
-    private readonly Dictionary<string, Dictionary<string, int>> countDic = new();
+    private readonly Dictionary<string, Dictionary<string, int>> _countDic = new();
 
-    private readonly WorkerActor workerActor = new();
+    private readonly WorkerActor _workerActor = new();
 
     /// <summary>
     /// 统计
@@ -21,10 +21,10 @@ public sealed class StatisticsTool
     /// <returns></returns>
     public async Task<string> CountRecord(int limit = 10)
     {
-        return await workerActor.SendAsync(() =>
+        return await _workerActor.SendAsync(() =>
         {
             var sb = new StringBuilder();
-            foreach (var kv in countDic)
+            foreach (var kv in _countDic)
             {
                 var time = kv.Key;
 
@@ -48,7 +48,7 @@ public sealed class StatisticsTool
     /// </summary>
     public void ClearCount()
     {
-        workerActor.Tell(countDic.Clear);
+        _workerActor.Tell(_countDic.Clear);
     }
 
     /// <summary>
@@ -57,10 +57,10 @@ public sealed class StatisticsTool
     /// <param name="time"></param>
     public void ClearCount(DateTime time)
     {
-        workerActor.Tell(() =>
+        _workerActor.Tell(() =>
         {
-            var timeStr = time.ToString(Format);
-            countDic.RemoveIf((k, v) => k.CompareTo(timeStr) < 0);
+            var timeStr = TimeHelper.CurrentDateTimeWithUtcFormat();
+            _countDic.RemoveIf((k, v) => string.Compare(k, timeStr, StringComparison.Ordinal) < 0);
         });
     }
 
@@ -76,13 +76,13 @@ public sealed class StatisticsTool
             return;
         }
 
-        workerActor.Tell(() =>
+        _workerActor.Tell(() =>
         {
-            var timeStr = DateTime.Now.ToString(Format);
-            if (!countDic.TryGetValue(timeStr, out var cd))
+            var timeStr = TimeHelper.CurrentDateTimeWithUtcFullString();
+            if (!_countDic.TryGetValue(timeStr, out var cd))
             {
                 cd = new Dictionary<string, int>();
-                countDic[timeStr] = cd;
+                _countDic[timeStr] = cd;
             }
 
             var old = cd.GetValueOrDefault(key, 0);
