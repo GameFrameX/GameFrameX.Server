@@ -914,6 +914,23 @@ public static class TimeHelper
         return new DateTimeOffset(GetEndTimeOfYear(date)).ToUnixTimeSeconds();
     }
 
+    /// <summary>
+    /// 获取当前UTC时间
+    /// </summary>
+    /// <returns>当前UTC时间</returns>
+    public static DateTime GetUtcNow()
+    {
+        return DateTime.UtcNow;
+    }
+
+    /// <summary>
+    /// 获取当前时间
+    /// </summary>
+    /// <returns>当前时间</returns>
+    public static DateTime GetNow()
+    {
+        return DateTime.Now;
+    }
 
     /// <summary>
     /// 获取指定时间是否在指定的时间范围内
