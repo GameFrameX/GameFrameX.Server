@@ -45,6 +45,58 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Abstractions.Agent.IComponentAgent.ActorId
   nameWithType: IComponentAgent.ActorId
+- uid: GameFrameX.Core.Abstractions.Agent.IComponentAgent.AfterActivation
+  name: AfterActivation()
+  href: api/GameFrameX.Core.Abstractions.Agent.IComponentAgent.html#GameFrameX_Core_Abstractions_Agent_IComponentAgent_AfterActivation
+  commentId: M:GameFrameX.Core.Abstractions.Agent.IComponentAgent.AfterActivation
+  fullName: GameFrameX.Core.Abstractions.Agent.IComponentAgent.AfterActivation()
+  nameWithType: IComponentAgent.AfterActivation()
+- uid: GameFrameX.Core.Abstractions.Agent.IComponentAgent.AfterActivation*
+  name: AfterActivation
+  href: api/GameFrameX.Core.Abstractions.Agent.IComponentAgent.html#GameFrameX_Core_Abstractions_Agent_IComponentAgent_AfterActivation_
+  commentId: Overload:GameFrameX.Core.Abstractions.Agent.IComponentAgent.AfterActivation
+  isSpec: "True"
+  fullName: GameFrameX.Core.Abstractions.Agent.IComponentAgent.AfterActivation
+  nameWithType: IComponentAgent.AfterActivation
+- uid: GameFrameX.Core.Abstractions.Agent.IComponentAgent.AfterInActivation
+  name: AfterInActivation()
+  href: api/GameFrameX.Core.Abstractions.Agent.IComponentAgent.html#GameFrameX_Core_Abstractions_Agent_IComponentAgent_AfterInActivation
+  commentId: M:GameFrameX.Core.Abstractions.Agent.IComponentAgent.AfterInActivation
+  fullName: GameFrameX.Core.Abstractions.Agent.IComponentAgent.AfterInActivation()
+  nameWithType: IComponentAgent.AfterInActivation()
+- uid: GameFrameX.Core.Abstractions.Agent.IComponentAgent.AfterInActivation*
+  name: AfterInActivation
+  href: api/GameFrameX.Core.Abstractions.Agent.IComponentAgent.html#GameFrameX_Core_Abstractions_Agent_IComponentAgent_AfterInActivation_
+  commentId: Overload:GameFrameX.Core.Abstractions.Agent.IComponentAgent.AfterInActivation
+  isSpec: "True"
+  fullName: GameFrameX.Core.Abstractions.Agent.IComponentAgent.AfterInActivation
+  nameWithType: IComponentAgent.AfterInActivation
+- uid: GameFrameX.Core.Abstractions.Agent.IComponentAgent.BeforeActivation
+  name: BeforeActivation()
+  href: api/GameFrameX.Core.Abstractions.Agent.IComponentAgent.html#GameFrameX_Core_Abstractions_Agent_IComponentAgent_BeforeActivation
+  commentId: M:GameFrameX.Core.Abstractions.Agent.IComponentAgent.BeforeActivation
+  fullName: GameFrameX.Core.Abstractions.Agent.IComponentAgent.BeforeActivation()
+  nameWithType: IComponentAgent.BeforeActivation()
+- uid: GameFrameX.Core.Abstractions.Agent.IComponentAgent.BeforeActivation*
+  name: BeforeActivation
+  href: api/GameFrameX.Core.Abstractions.Agent.IComponentAgent.html#GameFrameX_Core_Abstractions_Agent_IComponentAgent_BeforeActivation_
+  commentId: Overload:GameFrameX.Core.Abstractions.Agent.IComponentAgent.BeforeActivation
+  isSpec: "True"
+  fullName: GameFrameX.Core.Abstractions.Agent.IComponentAgent.BeforeActivation
+  nameWithType: IComponentAgent.BeforeActivation
+- uid: GameFrameX.Core.Abstractions.Agent.IComponentAgent.BeforeInActivation
+  name: BeforeInActivation()
+  href: api/GameFrameX.Core.Abstractions.Agent.IComponentAgent.html#GameFrameX_Core_Abstractions_Agent_IComponentAgent_BeforeInActivation
+  commentId: M:GameFrameX.Core.Abstractions.Agent.IComponentAgent.BeforeInActivation
+  fullName: GameFrameX.Core.Abstractions.Agent.IComponentAgent.BeforeInActivation()
+  nameWithType: IComponentAgent.BeforeInActivation()
+- uid: GameFrameX.Core.Abstractions.Agent.IComponentAgent.BeforeInActivation*
+  name: BeforeInActivation
+  href: api/GameFrameX.Core.Abstractions.Agent.IComponentAgent.html#GameFrameX_Core_Abstractions_Agent_IComponentAgent_BeforeInActivation_
+  commentId: Overload:GameFrameX.Core.Abstractions.Agent.IComponentAgent.BeforeInActivation
+  isSpec: "True"
+  fullName: GameFrameX.Core.Abstractions.Agent.IComponentAgent.BeforeInActivation
+  nameWithType: IComponentAgent.BeforeInActivation
 - uid: GameFrameX.Core.Abstractions.Agent.IComponentAgent.GetComponentAgent(System.Type,System.Boolean)
   name: GetComponentAgent(Type, bool)
   href: api/GameFrameX.Core.Abstractions.Agent.IComponentAgent.html#GameFrameX_Core_Abstractions_Agent_IComponentAgent_GetComponentAgent_System_Type_System_Boolean_
@@ -5194,6 +5246,74 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).ActorId
   nameWithType: BaseComponentAgent<TComponent>.ActorId
   nameWithType.vb: BaseComponentAgent(Of TComponent).ActorId
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.AfterActivation
+  name: AfterActivation()
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_AfterActivation
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.AfterActivation
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.AfterActivation()
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).AfterActivation()
+  nameWithType: BaseComponentAgent<TComponent>.AfterActivation()
+  nameWithType.vb: BaseComponentAgent(Of TComponent).AfterActivation()
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.AfterActivation*
+  name: AfterActivation
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_AfterActivation_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.AfterActivation
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.AfterActivation
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).AfterActivation
+  nameWithType: BaseComponentAgent<TComponent>.AfterActivation
+  nameWithType.vb: BaseComponentAgent(Of TComponent).AfterActivation
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.AfterInActivation
+  name: AfterInActivation()
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_AfterInActivation
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.AfterInActivation
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.AfterInActivation()
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).AfterInActivation()
+  nameWithType: BaseComponentAgent<TComponent>.AfterInActivation()
+  nameWithType.vb: BaseComponentAgent(Of TComponent).AfterInActivation()
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.AfterInActivation*
+  name: AfterInActivation
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_AfterInActivation_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.AfterInActivation
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.AfterInActivation
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).AfterInActivation
+  nameWithType: BaseComponentAgent<TComponent>.AfterInActivation
+  nameWithType.vb: BaseComponentAgent(Of TComponent).AfterInActivation
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.BeforeActivation
+  name: BeforeActivation()
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_BeforeActivation
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.BeforeActivation
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.BeforeActivation()
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).BeforeActivation()
+  nameWithType: BaseComponentAgent<TComponent>.BeforeActivation()
+  nameWithType.vb: BaseComponentAgent(Of TComponent).BeforeActivation()
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.BeforeActivation*
+  name: BeforeActivation
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_BeforeActivation_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.BeforeActivation
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.BeforeActivation
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).BeforeActivation
+  nameWithType: BaseComponentAgent<TComponent>.BeforeActivation
+  nameWithType.vb: BaseComponentAgent(Of TComponent).BeforeActivation
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.BeforeInActivation
+  name: BeforeInActivation()
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_BeforeInActivation
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.BeforeInActivation
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.BeforeInActivation()
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).BeforeInActivation()
+  nameWithType: BaseComponentAgent<TComponent>.BeforeInActivation()
+  nameWithType.vb: BaseComponentAgent(Of TComponent).BeforeInActivation()
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.BeforeInActivation*
+  name: BeforeInActivation
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_BeforeInActivation_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.BeforeInActivation
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.BeforeInActivation
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).BeforeInActivation
+  nameWithType: BaseComponentAgent<TComponent>.BeforeInActivation
+  nameWithType.vb: BaseComponentAgent(Of TComponent).BeforeInActivation
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Daily*
   name: Daily
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Daily_
