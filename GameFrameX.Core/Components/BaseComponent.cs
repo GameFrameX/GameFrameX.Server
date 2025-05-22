@@ -86,7 +86,9 @@ public abstract class BaseComponent : IComponent, IState
         var agent = GetAgent();
         if (agent != null)
         {
+            await agent.AfterInActivation();
             await agent.Inactive();
+            await agent.BeforeInActivation();
         }
 
         IsActive = false;

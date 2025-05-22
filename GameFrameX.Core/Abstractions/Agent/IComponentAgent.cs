@@ -39,12 +39,39 @@ public interface IComponentAgent : IWorker
     void SetOwner(IComponent owner);
 
     /// <summary>
+    /// 组件激活前的回调方法
+    /// </summary>
+    /// <returns>表示异步操作的任务</returns>
+    /// <remarks>
+    /// 在组件开始激活流程前执行，可以用于进行一些预处理操作
+    /// </remarks>
+    Task BeforeActivation();
+
+    /// <summary>
     /// 激活组件代理
     /// <remarks>
     /// 用于初始化并启用组件代理的功能
     /// </remarks>
     /// </summary>
     Task Active();
+
+    /// <summary>
+    /// 组件激活后的回调方法
+    /// </summary>
+    /// <returns>表示异步操作的任务</returns>
+    /// <remarks>
+    /// 在组件完成激活流程后执行，可以用于处理一些初始化后的逻辑
+    /// </remarks>
+    Task AfterActivation();
+
+    /// <summary>
+    /// 组件反激活前的回调方法
+    /// </summary>
+    /// <returns>表示异步操作的任务</returns>
+    /// <remarks>
+    /// 在组件开始反激活流程前执行，可以用于保存状态或清理资源
+    /// </remarks>
+    Task BeforeInActivation();
 
     /// <summary>
     /// 反激活组件代理
@@ -54,6 +81,15 @@ public interface IComponentAgent : IWorker
     /// 用于停用组件代理并清理相关资源，这是一个异步操作
     /// </remarks>
     Task Inactive();
+
+    /// <summary>
+    /// 组件反激活后的回调方法
+    /// </summary>
+    /// <returns>表示异步操作的任务</returns>
+    /// <remarks>
+    /// 在组件完成反激活流程后执行，可以用于确认清理完成或执行最终操作
+    /// </remarks>
+    Task AfterInActivation();
 
     /// <summary>
     /// 根据代理类型获取代理组件

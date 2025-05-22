@@ -149,7 +149,9 @@ public sealed class Actor : IActor
 
                     try
                     {
+                        await agent.AfterActivation();
                         await agent.Active();
+                        await agent.BeforeActivation();
                     }
                     catch (Exception e)
                     {
@@ -184,7 +186,9 @@ public sealed class Actor : IActor
 
                 try
                 {
+                    await agent.AfterActivation();
                     await agent.Active();
+                    await agent.BeforeActivation();
                 }
                 catch (Exception e)
                 {

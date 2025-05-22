@@ -68,12 +68,31 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     }
 
     /// <summary>
+    /// 组件激活前的预处理操作
+    /// </summary>
+    /// <returns>一个已完成的任务</returns>
+    public virtual Task BeforeActivation() => Task.CompletedTask;
+
+    /// <summary>
     /// 激活组件
     /// </summary>
+    /// <returns>一个已完成的任务</returns>
     public virtual Task Active()
     {
         return Task.CompletedTask;
     }
+
+    /// <summary>
+    /// 组件激活后的后处理操作
+    /// </summary>
+    /// <returns>一个已完成的任务</returns>
+    public virtual Task AfterActivation() => Task.CompletedTask;
+
+    /// <summary>
+    /// 组件反激活前的预处理操作
+    /// </summary>
+    /// <returns>一个已完成的任务</returns>
+    public virtual Task BeforeInActivation() => Task.CompletedTask;
 
     /// <summary>
     /// 反激活组件
@@ -83,6 +102,12 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     {
         return Task.CompletedTask;
     }
+
+    /// <summary>
+    /// 组件反激活后的后处理操作
+    /// </summary>
+    /// <returns>一个已完成的任务</returns>
+    public virtual Task AfterInActivation() => Task.CompletedTask;
 
     /// <summary>
     /// 根据代理类型获取组件代理实例
