@@ -13,7 +13,8 @@ public sealed class LauncherOptions
     /// <summary>
     /// 服务器类型
     /// </summary>
-    [Option(nameof(ServerType), Required = true, HelpText = "服务器类型,当该值无效时，默认为后续所有参数无效")]
+    [Option(nameof(ServerType), Required = true, HelpText = "服务器类型,当该值无效时,默认为后续所有参数无效")]
+    [GrafanaLokiLabelTag]
     public string ServerType { get; set; }
 
     /// <summary>
@@ -54,9 +55,9 @@ public sealed class LauncherOptions
     public bool IsMonitorMessageTimeOut { get; set; }
 
     /// <summary>
-    /// 监控处理器超时时间（秒）,默认值为1秒，只有IsMonitorTimeOut为true时有效
+    /// 监控处理器超时时间（秒）,默认值为1秒,只有IsMonitorTimeOut为true时有效
     /// </summary>
-    [Option(nameof(MonitorMessageTimeOutSeconds), Default = 1, HelpText = "处理器超时时间（秒）,默认值为1秒，只有IsMonitorMessageTimeOut为true时有效")]
+    [Option(nameof(MonitorMessageTimeOutSeconds), Default = 1, HelpText = "处理器超时时间（秒）,默认值为1秒,只有IsMonitorMessageTimeOut为true时有效")]
     public int MonitorMessageTimeOutSeconds { get; set; }
 
     /// <summary>
