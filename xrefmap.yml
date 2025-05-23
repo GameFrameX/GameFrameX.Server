@@ -452,6 +452,19 @@ references:
   commentId: T:GameFrameX.Core.Abstractions.IActor
   fullName: GameFrameX.Core.Abstractions.IActor
   nameWithType: IActor
+- uid: GameFrameX.Core.Abstractions.IActor.AddOnceRecycleCallback(System.Action)
+  name: AddOnceRecycleCallback(Action)
+  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_AddOnceRecycleCallback_System_Action_
+  commentId: M:GameFrameX.Core.Abstractions.IActor.AddOnceRecycleCallback(System.Action)
+  fullName: GameFrameX.Core.Abstractions.IActor.AddOnceRecycleCallback(System.Action)
+  nameWithType: IActor.AddOnceRecycleCallback(Action)
+- uid: GameFrameX.Core.Abstractions.IActor.AddOnceRecycleCallback*
+  name: AddOnceRecycleCallback
+  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_AddOnceRecycleCallback_
+  commentId: Overload:GameFrameX.Core.Abstractions.IActor.AddOnceRecycleCallback
+  isSpec: "True"
+  fullName: GameFrameX.Core.Abstractions.IActor.AddOnceRecycleCallback
+  nameWithType: IActor.AddOnceRecycleCallback
 - uid: GameFrameX.Core.Abstractions.IActor.AutoRecycle
   name: AutoRecycle
   href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_AutoRecycle
@@ -1003,6 +1016,19 @@ references:
   fullName.vb: GameFrameX.Core.Actors.Actor.New
   nameWithType: Actor.Actor
   nameWithType.vb: Actor.New
+- uid: GameFrameX.Core.Actors.Actor.AddOnceRecycleCallback(System.Action)
+  name: AddOnceRecycleCallback(Action)
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_AddOnceRecycleCallback_System_Action_
+  commentId: M:GameFrameX.Core.Actors.Actor.AddOnceRecycleCallback(System.Action)
+  fullName: GameFrameX.Core.Actors.Actor.AddOnceRecycleCallback(System.Action)
+  nameWithType: Actor.AddOnceRecycleCallback(Action)
+- uid: GameFrameX.Core.Actors.Actor.AddOnceRecycleCallback*
+  name: AddOnceRecycleCallback
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_AddOnceRecycleCallback_
+  commentId: Overload:GameFrameX.Core.Actors.Actor.AddOnceRecycleCallback
+  isSpec: "True"
+  fullName: GameFrameX.Core.Actors.Actor.AddOnceRecycleCallback
+  nameWithType: Actor.AddOnceRecycleCallback
 - uid: GameFrameX.Core.Actors.Actor.AutoRecycle
   name: AutoRecycle
   href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_AutoRecycle
@@ -1151,6 +1177,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Actors.Actor.Inactive
   nameWithType: Actor.Inactive
+- uid: GameFrameX.Core.Actors.Actor.OnRecycle
+  name: OnRecycle()
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_OnRecycle
+  commentId: M:GameFrameX.Core.Actors.Actor.OnRecycle
+  fullName: GameFrameX.Core.Actors.Actor.OnRecycle()
+  nameWithType: Actor.OnRecycle()
+- uid: GameFrameX.Core.Actors.Actor.OnRecycle*
+  name: OnRecycle
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_OnRecycle_
+  commentId: Overload:GameFrameX.Core.Actors.Actor.OnRecycle
+  isSpec: "True"
+  fullName: GameFrameX.Core.Actors.Actor.OnRecycle
+  nameWithType: Actor.OnRecycle
 - uid: GameFrameX.Core.Actors.Actor.RemoveData(System.String)
   name: RemoveData(string)
   href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_RemoveData_System_String_
