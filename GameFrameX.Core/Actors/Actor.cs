@@ -229,6 +229,7 @@ public sealed class Actor : IActor, IDisposable
 
     private readonly ConcurrentDictionary<string, object> _data = new ConcurrentDictionary<string, object>();
 
+
     /// <summary>
     /// 设置Actor的数据
     /// </summary>
@@ -290,6 +291,69 @@ public sealed class Actor : IActor, IDisposable
     public void ClearData()
     {
         _data.Clear();
+    }
+
+    /// <summary>
+    /// Actor 回收时的处理方法
+    /// </summary>
+    /// <remarks>
+    /// 当 Actor 被系统回收时调用此方法。
+    /// 用于执行必要的清理工作，如:
+    /// - 释放占用的资源
+    /// - 清理组件状态
+    /// - 保存需要持久化的数据
+    /// - 取消订阅的事件
+    /// - 断开网络连接等
+    /// </remarks>
+    /// <returns>表示异步操作的任务</returns>
+    public Task OnRecycle()
+    {
+        try
+        {
+            while (_onceRecycleCallbacks.First != null)
+            {
+                var first = _onceRecycleCallbacks.First;
+                _onceRecycleCallbacks.RemoveFirst();
+                try
+                {
+                    first.Value?.Invoke();
+                }
+                catch (Exception ex)
+                {
+                    // 记录回调执行异常但继续执行其他回调
+                    LogHelper.Error($"Actor回收回调执行异常 actorId:{Id} actorType:{Type} 异常：\n{ex}");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            // 记录整体执行异常
+            LogHelper.Error($"Actor回收过程异常 actorId:{Id} actorType:{Type} 异常：\n{ex}");
+        }
+        finally
+        {
+            _onceRecycleCallbacks.Clear();
+        }
+
+        return Task.CompletedTask;
+    }
+
+    private readonly LinkedList<Action> _onceRecycleCallbacks = new LinkedList<Action>();
+
+    /// <summary>
+    /// 添加一个在Actor回收时执行一次的回调事件
+    /// </summary>
+    /// <param name="action">要执行的回调方法</param>
+    /// <remarks>
+    /// 该回调事件只会在Actor被回收时触发一次，之后会自动移除。
+    /// 通常用于:
+    /// - 执行一次性的清理操作
+    /// - 触发状态变更通知
+    /// - 记录回收日志等场景
+    /// </remarks>
+    public void AddOnceRecycleCallback(Action action)
+    {
+        _onceRecycleCallbacks.AddLast(action);
     }
 
     /// <summary>

@@ -138,4 +138,32 @@ public interface IActor : IWorker
     /// 通常在Actor被回收或重置时调用此方法。
     /// </remarks>
     void ClearData();
+
+    /// <summary>
+    /// Actor 回收时的处理方法,该方法在Actor被回收时自动调用，该函数不能由外部调用。只能由ActorManager内部调用
+    /// </summary>
+    /// <remarks>
+    /// 当 Actor 被系统回收时调用此方法。
+    /// 用于执行必要的清理工作，如:
+    /// - 释放占用的资源
+    /// - 清理组件状态
+    /// - 保存需要持久化的数据
+    /// - 取消订阅的事件
+    /// - 断开网络连接等
+    /// </remarks>
+    /// <returns>表示异步操作的任务</returns>
+    internal Task OnRecycle();
+
+    /// <summary>
+    /// 添加一个在Actor回收时执行一次的回调事件
+    /// </summary>
+    /// <param name="action">要执行的回调方法</param>
+    /// <remarks>
+    /// 该回调事件只会在Actor被回收时触发一次，之后会自动移除。
+    /// 通常用于:
+    /// - 执行一次性的清理操作
+    /// - 触发状态变更通知
+    /// - 记录回收日志等场景
+    /// </remarks>
+    void AddOnceRecycleCallback(Action action);
 }

@@ -252,6 +252,7 @@ public static class ActorManager
                             if (actor.ReadyToDeActive)
                             {
                                 await actor.Inactive();
+                                await actor.OnRecycle();
                                 ActorMap.TryRemove(actor.Id, out var _);
                                 LogHelper.Debug($"actor回收 id:{actor.Id} type:{actor.Type}");
                             }
