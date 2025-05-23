@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev32/apiSpec/new?filename=GameFrameX_Core_Actors_Actor.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Actors.Actor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev33/apiSpec/new?filename=GameFrameX_Core_Actors_Actor.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Actors.Actor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_Core_Actors_Actor" data-uid="GameFrameX.Core.Actors.Actor" class="text-break">
-Class Actor  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L15"><i class="bi bi-code-slash"></i></a>
+Class Actor  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -102,7 +102,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class Actor : IActor, IWorker</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class Actor : IActor, IWorker, IDisposable</code></pre>
   </div>
 
 
@@ -121,6 +121,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
     <dd>
       <div><a class="xref" href="GameFrameX.Core.Abstractions.IActor.html">IActor</a></div>
       <div><a class="xref" href="GameFrameX.Core.Abstractions.IWorker.html">IWorker</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     </dd>
   </dl>
 
@@ -174,7 +175,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor__ctor_System_Int64_System_UInt16_" data-uid="GameFrameX.Core.Actors.Actor.#ctor(System.Int64,System.UInt16)">
   Actor(long, ushort)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Actor构造函数</p>
@@ -213,7 +214,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor_TimeOut" data-uid="GameFrameX.Core.Actors.Actor.TimeOut">
   TimeOut
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>默认超时时长,使用int最大值表示无限等待</p>
@@ -249,7 +250,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor_AutoRecycle" data-uid="GameFrameX.Core.Actors.Actor.AutoRecycle">
   AutoRecycle
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L79"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>标识Actor是否启用自动回收机制</p>
@@ -281,7 +282,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor_Id" data-uid="GameFrameX.Core.Actors.Actor.Id">
   Id
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Actor的唯一标识符</p>
@@ -313,7 +314,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor_ScheduleIdSet" data-uid="GameFrameX.Core.Actors.Actor.ScheduleIdSet">
   ScheduleIdSet
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L64"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>订阅的定时器任务ID集合</p>
@@ -345,7 +346,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor_Type" data-uid="GameFrameX.Core.Actors.Actor.Type">
   Type
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L69"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Actor的类型标识,用于区分不同种类的Actor</p>
@@ -377,7 +378,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor_WorkerActor" data-uid="GameFrameX.Core.Actors.Actor.WorkerActor">
   WorkerActor
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>工作者Actor实例,负责具体的任务执行</p>
@@ -413,7 +414,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor_ClearAgent" data-uid="GameFrameX.Core.Actors.Actor.ClearAgent">
   ClearAgent()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L244"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L309"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>清理所有组件的缓存代理实例</p>
@@ -436,11 +437,43 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
 
 
+  <a id="GameFrameX_Core_Actors_Actor_ClearData_" data-uid="GameFrameX.Core.Actors.Actor.ClearData*"></a>
+
+  <h3 id="GameFrameX_Core_Actors_Actor_ClearData" data-uid="GameFrameX.Core.Actors.Actor.ClearData">
+  ClearData()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L290"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>清除Actor中存储的所有数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearData()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="GameFrameX_Core_Actors_Actor_ClearData_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>该方法会清空Actor中所有通过SetData方法存储的数据。
+清除后所有数据将无法恢复，请谨慎使用。
+通常在Actor被回收或重置时调用此方法。</p>
+</div>
+
+
+
+
   <a id="GameFrameX_Core_Actors_Actor_CrossDay_" data-uid="GameFrameX.Core.Actors.Actor.CrossDay*"></a>
 
   <h3 id="GameFrameX_Core_Actors_Actor_CrossDay_System_Int32_" data-uid="GameFrameX.Core.Actors.Actor.CrossDay(System.Int32)">
   CrossDay(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L209"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L209"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>处理跨天逻辑,遍历所有组件并执行跨天操作</p>
@@ -474,11 +507,38 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
 
 
+  <a id="GameFrameX_Core_Actors_Actor_Dispose_" data-uid="GameFrameX.Core.Actors.Actor.Dispose*"></a>
+
+  <h3 id="GameFrameX_Core_Actors_Actor_Dispose" data-uid="GameFrameX.Core.Actors.Actor.Dispose">
+  Dispose()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L449"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>释放资源</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="GameFrameX_Core_Actors_Actor_GetActiveComponentAgents_" data-uid="GameFrameX.Core.Actors.Actor.GetActiveComponentAgents*"></a>
 
   <h3 id="GameFrameX_Core_Actors_Actor_GetActiveComponentAgents" data-uid="GameFrameX.Core.Actors.Actor.GetActiveComponentAgents">
   GetActiveComponentAgents()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L109"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取所有已激活的组件代理实例</p>
@@ -515,7 +575,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor_GetComponentAgent_System_Type_System_Boolean_" data-uid="GameFrameX.Core.Actors.Actor.GetComponentAgent(System.Type,System.Boolean)">
   GetComponentAgent(Type, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L129"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>根据代理类型获取组件代理实例</p>
@@ -557,7 +617,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor_GetComponentAgent__1_System_Boolean_" data-uid="GameFrameX.Core.Actors.Actor.GetComponentAgent``1(System.Boolean)">
   GetComponentAgent&lt;T&gt;(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L96"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取指定类型的组件代理实例</p>
@@ -598,11 +658,60 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
 
 
+  <a id="GameFrameX_Core_Actors_Actor_GetData_" data-uid="GameFrameX.Core.Actors.Actor.GetData*"></a>
+
+  <h3 id="GameFrameX_Core_Actors_Actor_GetData__1_System_String_" data-uid="GameFrameX.Core.Actors.Actor.GetData``1(System.String)">
+  GetData&lt;T&gt;(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L257"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取Actor中存储的数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetData&lt;T&gt;(string key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>数据的键名</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>返回指定类型的数据值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>要获取的数据类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="GameFrameX_Core_Actors_Actor_GetData__1_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>如果指定的键不存在或类型不匹配，可能会抛出异常。
+使用前建议先确认数据是否存在。</p>
+</div>
+
+
+
+
   <a id="GameFrameX_Core_Actors_Actor_Inactive_" data-uid="GameFrameX.Core.Actors.Actor.Inactive*"></a>
 
   <h3 id="GameFrameX_Core_Actors_Actor_Inactive" data-uid="GameFrameX.Core.Actors.Actor.Inactive">
   Inactive()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L233"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L298"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>反激活所有组件,使其进入非活动状态</p>
@@ -630,11 +739,54 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
 
 
+  <a id="GameFrameX_Core_Actors_Actor_RemoveData_" data-uid="GameFrameX.Core.Actors.Actor.RemoveData*"></a>
+
+  <h3 id="GameFrameX_Core_Actors_Actor_RemoveData_System_String_" data-uid="GameFrameX.Core.Actors.Actor.RemoveData(System.String)">
+  RemoveData(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L277"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>移除Actor中存储的数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveData(string key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要移除的数据键名</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果成功移除数据返回true，如果键不存在返回false</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="GameFrameX_Core_Actors_Actor_RemoveData_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>从Actor的数据存储中移除指定键的数据。
+如果键不存在，则不会产生任何效果。</p>
+</div>
+
+
+
+
   <a id="GameFrameX_Core_Actors_Actor_SendAsync_" data-uid="GameFrameX.Core.Actors.Actor.SendAsync*"></a>
 
   <h3 id="GameFrameX_Core_Actors_Actor_SendAsync_System_Action_" data-uid="GameFrameX.Core.Actors.Actor.SendAsync(System.Action)">
   SendAsync(Action)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L311"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L376"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发送无返回值的异步工作指令</p>
@@ -673,7 +825,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor_SendAsync_System_Action_System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.Actors.Actor.SendAsync(System.Action,System.Int32,System.Threading.CancellationToken)">
   SendAsync(Action, int, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L323"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L388"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发送带超时的异步工作指令</p>
@@ -718,7 +870,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor_SendAsync_System_Func_System_Threading_Tasks_Task__System_Int32_System_Boolean_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.Actors.Actor.SendAsync(System.Func{System.Threading.Tasks.Task},System.Int32,System.Boolean,System.Threading.CancellationToken)">
   SendAsync(Func&lt;Task&gt;, int, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L349"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L414"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发送带锁检查的异步工作指令</p>
@@ -766,7 +918,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor_SendAsyncWithoutCheck_System_Func_System_Threading_Tasks_Task__System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.Actors.Actor.SendAsyncWithoutCheck(System.Func{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)">
   SendAsyncWithoutCheck(Func&lt;Task&gt;, int, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L361"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L426"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发送不检查锁的异步工作指令</p>
@@ -811,7 +963,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor_SendAsync__1_System_Func_System_Threading_Tasks_Task___0___System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.Actors.Actor.SendAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32,System.Threading.CancellationToken)">
   SendAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt;, int, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L374"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L439"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发送带返回值的异步工作指令</p>
@@ -862,7 +1014,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor_SendAsync__1_System_Func___0__System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.Actors.Actor.SendAsync``1(System.Func{``0},System.Int32,System.Threading.CancellationToken)">
   SendAsync&lt;T&gt;(Func&lt;T&gt;, int, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L336"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L401"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发送带返回值的异步工作指令</p>
@@ -913,7 +1065,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor_SetAutoRecycle_System_Boolean_" data-uid="GameFrameX.Core.Actors.Actor.SetAutoRecycle(System.Boolean)">
   SetAutoRecycle(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L85"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>设置Actor的自动回收状态</p>
@@ -942,11 +1094,57 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
 
 
+  <a id="GameFrameX_Core_Actors_Actor_SetData_" data-uid="GameFrameX.Core.Actors.Actor.SetData*"></a>
+
+  <h3 id="GameFrameX_Core_Actors_Actor_SetData__1_System_String___0_" data-uid="GameFrameX.Core.Actors.Actor.SetData``1(System.String,``0)">
+  SetData&lt;T&gt;(string, T)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L242"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置Actor的数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetData&lt;T&gt;(string key, T value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>数据的键名</p>
+</dd>
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd><p>要存储的数据值</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>要存储的数据类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="GameFrameX_Core_Actors_Actor_SetData__1_System_String___0__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>用于在Actor中存储任意类型的数据，通过键值对的方式进行管理。
+如果键已存在，则会覆盖原有的值。</p>
+</div>
+
+
+
+
   <a id="GameFrameX_Core_Actors_Actor_Tell_" data-uid="GameFrameX.Core.Actors.Actor.Tell*"></a>
 
   <h3 id="GameFrameX_Core_Actors_Actor_Tell_System_Action_System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.Actors.Actor.Tell(System.Action,System.Int32,System.Threading.CancellationToken)">
   Tell(Action, int, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L290"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L355"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发送无返回值的工作指令到Actor队列</p>
@@ -985,7 +1183,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor_Tell_System_Func_System_Threading_Tasks_Task__System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.Actors.Actor.Tell(System.Func{System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)">
   Tell(Func&lt;Task&gt;, int, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L301"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L366"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发送异步工作指令到Actor队列</p>
@@ -1024,7 +1222,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 
   <h3 id="GameFrameX_Core_Actors_Actor_ToString" data-uid="GameFrameX.Core.Actors.Actor.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L277"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L342"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>重写ToString方法,返回Actor的标识信息</p>
@@ -1057,7 +1255,7 @@ Class Actor  <a class="header-action link-secondary" title="View source" href="h
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Actors/Actor.cs/#L15" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev33/GameFrameX.Core/Actors/Actor.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
 

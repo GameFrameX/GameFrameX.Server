@@ -478,6 +478,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Abstractions.IActor.ClearAgent
   nameWithType: IActor.ClearAgent
+- uid: GameFrameX.Core.Abstractions.IActor.ClearData
+  name: ClearData()
+  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_ClearData
+  commentId: M:GameFrameX.Core.Abstractions.IActor.ClearData
+  fullName: GameFrameX.Core.Abstractions.IActor.ClearData()
+  nameWithType: IActor.ClearData()
+- uid: GameFrameX.Core.Abstractions.IActor.ClearData*
+  name: ClearData
+  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_ClearData_
+  commentId: Overload:GameFrameX.Core.Abstractions.IActor.ClearData
+  isSpec: "True"
+  fullName: GameFrameX.Core.Abstractions.IActor.ClearData
+  nameWithType: IActor.ClearData
 - uid: GameFrameX.Core.Abstractions.IActor.CrossDay(System.Int32)
   name: CrossDay(int)
   href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_CrossDay_System_Int32_
@@ -532,6 +545,22 @@ references:
   fullName.vb: GameFrameX.Core.Abstractions.IActor.GetComponentAgent(Of T)(Boolean)
   nameWithType: IActor.GetComponentAgent<T>(bool)
   nameWithType.vb: IActor.GetComponentAgent(Of T)(Boolean)
+- uid: GameFrameX.Core.Abstractions.IActor.GetData*
+  name: GetData
+  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_GetData_
+  commentId: Overload:GameFrameX.Core.Abstractions.IActor.GetData
+  isSpec: "True"
+  fullName: GameFrameX.Core.Abstractions.IActor.GetData
+  nameWithType: IActor.GetData
+- uid: GameFrameX.Core.Abstractions.IActor.GetData``1(System.String)
+  name: GetData<T>(string)
+  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_GetData__1_System_String_
+  commentId: M:GameFrameX.Core.Abstractions.IActor.GetData``1(System.String)
+  name.vb: GetData(Of T)(String)
+  fullName: GameFrameX.Core.Abstractions.IActor.GetData<T>(string)
+  fullName.vb: GameFrameX.Core.Abstractions.IActor.GetData(Of T)(String)
+  nameWithType: IActor.GetData<T>(string)
+  nameWithType.vb: IActor.GetData(Of T)(String)
 - uid: GameFrameX.Core.Abstractions.IActor.Id
   name: Id
   href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_Id
@@ -558,6 +587,22 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Abstractions.IActor.Inactive
   nameWithType: IActor.Inactive
+- uid: GameFrameX.Core.Abstractions.IActor.RemoveData(System.String)
+  name: RemoveData(string)
+  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_RemoveData_System_String_
+  commentId: M:GameFrameX.Core.Abstractions.IActor.RemoveData(System.String)
+  name.vb: RemoveData(String)
+  fullName: GameFrameX.Core.Abstractions.IActor.RemoveData(string)
+  fullName.vb: GameFrameX.Core.Abstractions.IActor.RemoveData(String)
+  nameWithType: IActor.RemoveData(string)
+  nameWithType.vb: IActor.RemoveData(String)
+- uid: GameFrameX.Core.Abstractions.IActor.RemoveData*
+  name: RemoveData
+  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_RemoveData_
+  commentId: Overload:GameFrameX.Core.Abstractions.IActor.RemoveData
+  isSpec: "True"
+  fullName: GameFrameX.Core.Abstractions.IActor.RemoveData
+  nameWithType: IActor.RemoveData
 - uid: GameFrameX.Core.Abstractions.IActor.ScheduleIdSet
   name: ScheduleIdSet
   href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_ScheduleIdSet
@@ -587,6 +632,22 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Abstractions.IActor.SetAutoRecycle
   nameWithType: IActor.SetAutoRecycle
+- uid: GameFrameX.Core.Abstractions.IActor.SetData*
+  name: SetData
+  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_SetData_
+  commentId: Overload:GameFrameX.Core.Abstractions.IActor.SetData
+  isSpec: "True"
+  fullName: GameFrameX.Core.Abstractions.IActor.SetData
+  nameWithType: IActor.SetData
+- uid: GameFrameX.Core.Abstractions.IActor.SetData``1(System.String,``0)
+  name: SetData<T>(string, T)
+  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_SetData__1_System_String___0_
+  commentId: M:GameFrameX.Core.Abstractions.IActor.SetData``1(System.String,``0)
+  name.vb: SetData(Of T)(String, T)
+  fullName: GameFrameX.Core.Abstractions.IActor.SetData<T>(string, T)
+  fullName.vb: GameFrameX.Core.Abstractions.IActor.SetData(Of T)(String, T)
+  nameWithType: IActor.SetData<T>(string, T)
+  nameWithType.vb: IActor.SetData(Of T)(String, T)
 - uid: GameFrameX.Core.Abstractions.IActor.Type
   name: Type
   href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_Type
@@ -968,6 +1029,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Actors.Actor.ClearAgent
   nameWithType: Actor.ClearAgent
+- uid: GameFrameX.Core.Actors.Actor.ClearData
+  name: ClearData()
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_ClearData
+  commentId: M:GameFrameX.Core.Actors.Actor.ClearData
+  fullName: GameFrameX.Core.Actors.Actor.ClearData()
+  nameWithType: Actor.ClearData()
+- uid: GameFrameX.Core.Actors.Actor.ClearData*
+  name: ClearData
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_ClearData_
+  commentId: Overload:GameFrameX.Core.Actors.Actor.ClearData
+  isSpec: "True"
+  fullName: GameFrameX.Core.Actors.Actor.ClearData
+  nameWithType: Actor.ClearData
 - uid: GameFrameX.Core.Actors.Actor.CrossDay(System.Int32)
   name: CrossDay(int)
   href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_CrossDay_System_Int32_
@@ -984,6 +1058,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Actors.Actor.CrossDay
   nameWithType: Actor.CrossDay
+- uid: GameFrameX.Core.Actors.Actor.Dispose
+  name: Dispose()
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_Dispose
+  commentId: M:GameFrameX.Core.Actors.Actor.Dispose
+  fullName: GameFrameX.Core.Actors.Actor.Dispose()
+  nameWithType: Actor.Dispose()
+- uid: GameFrameX.Core.Actors.Actor.Dispose*
+  name: Dispose
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_Dispose_
+  commentId: Overload:GameFrameX.Core.Actors.Actor.Dispose
+  isSpec: "True"
+  fullName: GameFrameX.Core.Actors.Actor.Dispose
+  nameWithType: Actor.Dispose
 - uid: GameFrameX.Core.Actors.Actor.GetActiveComponentAgents
   name: GetActiveComponentAgents()
   href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_GetActiveComponentAgents
@@ -1022,6 +1109,22 @@ references:
   fullName.vb: GameFrameX.Core.Actors.Actor.GetComponentAgent(Of T)(Boolean)
   nameWithType: Actor.GetComponentAgent<T>(bool)
   nameWithType.vb: Actor.GetComponentAgent(Of T)(Boolean)
+- uid: GameFrameX.Core.Actors.Actor.GetData*
+  name: GetData
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_GetData_
+  commentId: Overload:GameFrameX.Core.Actors.Actor.GetData
+  isSpec: "True"
+  fullName: GameFrameX.Core.Actors.Actor.GetData
+  nameWithType: Actor.GetData
+- uid: GameFrameX.Core.Actors.Actor.GetData``1(System.String)
+  name: GetData<T>(string)
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_GetData__1_System_String_
+  commentId: M:GameFrameX.Core.Actors.Actor.GetData``1(System.String)
+  name.vb: GetData(Of T)(String)
+  fullName: GameFrameX.Core.Actors.Actor.GetData<T>(string)
+  fullName.vb: GameFrameX.Core.Actors.Actor.GetData(Of T)(String)
+  nameWithType: Actor.GetData<T>(string)
+  nameWithType.vb: Actor.GetData(Of T)(String)
 - uid: GameFrameX.Core.Actors.Actor.Id
   name: Id
   href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_Id
@@ -1048,6 +1151,22 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Actors.Actor.Inactive
   nameWithType: Actor.Inactive
+- uid: GameFrameX.Core.Actors.Actor.RemoveData(System.String)
+  name: RemoveData(string)
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_RemoveData_System_String_
+  commentId: M:GameFrameX.Core.Actors.Actor.RemoveData(System.String)
+  name.vb: RemoveData(String)
+  fullName: GameFrameX.Core.Actors.Actor.RemoveData(string)
+  fullName.vb: GameFrameX.Core.Actors.Actor.RemoveData(String)
+  nameWithType: Actor.RemoveData(string)
+  nameWithType.vb: Actor.RemoveData(String)
+- uid: GameFrameX.Core.Actors.Actor.RemoveData*
+  name: RemoveData
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_RemoveData_
+  commentId: Overload:GameFrameX.Core.Actors.Actor.RemoveData
+  isSpec: "True"
+  fullName: GameFrameX.Core.Actors.Actor.RemoveData
+  nameWithType: Actor.RemoveData
 - uid: GameFrameX.Core.Actors.Actor.ScheduleIdSet
   name: ScheduleIdSet
   href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_ScheduleIdSet
@@ -1142,6 +1261,22 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Actors.Actor.SetAutoRecycle
   nameWithType: Actor.SetAutoRecycle
+- uid: GameFrameX.Core.Actors.Actor.SetData*
+  name: SetData
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_SetData_
+  commentId: Overload:GameFrameX.Core.Actors.Actor.SetData
+  isSpec: "True"
+  fullName: GameFrameX.Core.Actors.Actor.SetData
+  nameWithType: Actor.SetData
+- uid: GameFrameX.Core.Actors.Actor.SetData``1(System.String,``0)
+  name: SetData<T>(string, T)
+  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_SetData__1_System_String___0_
+  commentId: M:GameFrameX.Core.Actors.Actor.SetData``1(System.String,``0)
+  name.vb: SetData(Of T)(String, T)
+  fullName: GameFrameX.Core.Actors.Actor.SetData<T>(string, T)
+  fullName.vb: GameFrameX.Core.Actors.Actor.SetData(Of T)(String, T)
+  nameWithType: Actor.SetData<T>(string, T)
+  nameWithType.vb: Actor.SetData(Of T)(String, T)
 - uid: GameFrameX.Core.Actors.Actor.Tell(System.Action,System.Int32,System.Threading.CancellationToken)
   name: Tell(Action, int, CancellationToken)
   href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_Tell_System_Action_System_Int32_System_Threading_CancellationToken_
