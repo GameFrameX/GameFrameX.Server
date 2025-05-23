@@ -7,6 +7,7 @@ using GameFrameX.Core.Hotfix;
 using GameFrameX.Core.Timer;
 using GameFrameX.Core.Utility;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Utility;
 using GameFrameX.Utility.Extensions;
 using GameFrameX.Utility.Setting;
 
@@ -25,7 +26,7 @@ public static class ActorManager
     private const int CrossDayNotRoleWaitSeconds = 120;
     private static readonly ConcurrentDictionary<long, Actor> ActorMap = new();
 
-    private static readonly ConcurrentDictionary<long, DateTime> ActiveTimeDic = new();
+    private static readonly ConcurrentDictionary<long, DateTime> ActiveTimeDic = new ConcurrentDictionary<long, DateTime>();
 
     private static readonly List<WorkerActor> WorkerActors = new();
 
@@ -154,7 +155,7 @@ public static class ActorManager
         var actorType = ActorIdGenerator.GetActorType(actorId);
         if (actorType < GlobalConst.ActorTypeSeparator)
         {
-            var now = DateTime.Now;
+            var now = TimeHelper.GetUtcNow();
             if (ActiveTimeDic.TryGetValue(actorId, out var activeTime)
                 && (now - activeTime).TotalMinutes < 10
                 && ActorMap.TryGetValue(actorId, out var actor))
@@ -184,7 +185,7 @@ public static class ActorManager
         Actor valueActor;
         if (actorType < GlobalConst.ActorTypeSeparator)
         {
-            var now = DateTime.Now;
+            var now = TimeHelper.GetUtcNow();
             if (ActiveTimeDic.TryGetValue(actorId, out var activeTime)
                 && (now - activeTime).TotalMinutes < 10
                 && ActorMap.TryGetValue(actorId, out var actor))
@@ -241,11 +242,11 @@ public static class ActorManager
 
             async Task Func()
             {
-                if (actor.AutoRecycle && (DateTime.Now - ActiveTimeDic[actor.Id]).TotalMinutes > 15)
+                if (actor.AutoRecycle && (TimeHelper.GetUtcNow() - ActiveTimeDic[actor.Id]).TotalMinutes > 15)
                 {
                     async Task<bool> Work()
                     {
-                        if (ActiveTimeDic.TryGetValue(actor.Id, out var activeTime) && (DateTime.Now - ActiveTimeDic[actor.Id]).TotalMinutes > 15)
+                        if (ActiveTimeDic.TryGetValue(actor.Id, out var activeTime) && (TimeHelper.GetUtcNow() - ActiveTimeDic[actor.Id]).TotalMinutes > 15)
                         {
                             // 防止定时回存失败时State被直接移除
                             if (actor.ReadyToDeActive)
@@ -257,7 +258,7 @@ public static class ActorManager
                             else
                             {
                                 // 不能存就久一点再判断
-                                ActiveTimeDic[actor.Id] = DateTime.Now;
+                                ActiveTimeDic[actor.Id] = TimeHelper.GetUtcNow();
                             }
                         }
 
