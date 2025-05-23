@@ -1,5 +1,7 @@
 ﻿using CommandLine;
 using GameFrameX.Utility.Extensions;
+using Serilog;
+using Serilog.Events;
 
 namespace GameFrameX.StartUp.Options;
 
