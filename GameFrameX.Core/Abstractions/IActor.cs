@@ -93,4 +93,39 @@ public interface IActor : IWorker
     /// <param name="serverDay">服务器运行天数，表示服务器运行的累计天数</param>
     /// <returns>一个表示异步操作的任务</returns>
     Task CrossDay(int serverDay);
+
+    /// <summary>
+    /// 设置Actor的数据
+    /// </summary>
+    /// <typeparam name="T">要存储的数据类型</typeparam>
+    /// <param name="key">数据的键名</param>
+    /// <param name="value">要存储的数据值</param>
+    /// <remarks>
+    /// 用于在Actor中存储任意类型的数据，通过键值对的方式进行管理。
+    /// 如果键已存在，则会覆盖原有的值。
+    /// </remarks>
+    void SetData<T>(string key, T value);
+
+    /// <summary>
+    /// 获取Actor中存储的数据
+    /// </summary>
+    /// <typeparam name="T">要获取的数据类型</typeparam>
+    /// <param name="key">数据的键名</param>
+    /// <returns>返回指定类型的数据值</returns>
+    /// <remarks>
+    /// 如果指定的键不存在或类型不匹配，可能会抛出异常。
+    /// 使用前建议先确认数据是否存在。
+    /// </remarks>
+    T GetData<T>(string key);
+
+    /// <summary>
+    /// 移除Actor中存储的数据
+    /// </summary>
+    /// <param name="key">要移除的数据键名</param>
+    /// <returns>如果成功移除数据返回true，如果键不存在返回false</returns>
+    /// <remarks>
+    /// 从Actor的数据存储中移除指定键的数据。
+    /// 如果键不存在，则不会产生任何效果。
+    /// </remarks>
+    bool RemoveData(string key);
 }
