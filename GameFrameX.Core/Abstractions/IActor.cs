@@ -128,4 +128,14 @@ public interface IActor : IWorker
     /// 如果键不存在，则不会产生任何效果。
     /// </remarks>
     bool RemoveData(string key);
+
+    /// <summary>
+    /// 清除Actor中存储的所有数据
+    /// </summary>
+    /// <remarks>
+    /// 该方法会清空Actor中所有通过SetData方法存储的数据。
+    /// 清除后所有数据将无法恢复，请谨慎使用。
+    /// 通常在Actor被回收或重置时调用此方法。
+    /// </remarks>
+    void ClearData();
 }

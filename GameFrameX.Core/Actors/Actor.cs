@@ -12,7 +12,7 @@ namespace GameFrameX.Core.Actors;
 /// <summary>
 /// Actor类,用于管理和协调组件的生命周期、消息传递等核心功能
 /// </summary>
-public sealed class Actor : IActor
+public sealed class Actor : IActor, IDisposable
 {
     /// <summary>
     /// 默认超时时长,使用int最大值表示无限等待
@@ -280,6 +280,19 @@ public sealed class Actor : IActor
     }
 
     /// <summary>
+    /// 清除Actor中存储的所有数据
+    /// </summary>
+    /// <remarks>
+    /// 该方法会清空Actor中所有通过SetData方法存储的数据。
+    /// 清除后所有数据将无法恢复，请谨慎使用。
+    /// 通常在Actor被回收或重置时调用此方法。
+    /// </remarks>
+    public void ClearData()
+    {
+        _data.Clear();
+    }
+
+    /// <summary>
     /// 反激活所有组件,使其进入非活动状态
     /// </summary>
     public async Task Inactive()
@@ -429,4 +442,13 @@ public sealed class Actor : IActor
     }
 
     #endregion
+
+    /// <summary>
+    /// 释放资源
+    /// </summary>
+    public void Dispose()
+    {
+        ClearAgent();
+        ClearData();
+    }
 }
