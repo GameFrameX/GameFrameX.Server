@@ -93,6 +93,61 @@ public sealed class LauncherOptions
     [Option(nameof(IsDebugReceiveHeartBeat), Default = false, HelpText = "是否打印接收的心跳数据,只有在IsDebugReceive为true时有效,默认值为false")]
     public bool IsDebugReceiveHeartBeat { get; set; }
 
+    /// <summary>是否输出到控制台,默认为 true。</summary>
+    /// <remarks>控制日志是否同时在控制台显示,便于开发调试。</remarks>
+    [Option(nameof(LogGrafanaLokiUsername), Default = false, HelpText = "是否输出到控制台,默认为 false。")]
+    public bool LogIsConsole { get; set; } = false;
+
+    /// <summary>是否输出到 GrafanaLoki,默认为 false。</summary>
+    [Option(nameof(LogIsGrafanaLoki), Default = false, HelpText = "是否输出到 GrafanaLoki,默认为 false。")]
+    public bool LogIsGrafanaLoki { get; set; }
+
+    /// <summary>GrafanaLoki 服务地址,默认为 http://localhost:3100。</summary>
+    [Option(nameof(LogGrafanaLokiUrl), Default = "http://localhost:3100", HelpText = "GrafanaLoki 服务地址,默认为 http://localhost:3100。当LogIsGrafanaLoki为true时生效。")]
+    public string LogGrafanaLokiUrl { get; set; } = "http://localhost:3100";
+
+    /// <summary>GrafanaLoki 标签</summary>
+    public IEnumerable<string> LogGrafanaLokiLabels { get; set; } = new List<string>();
+
+    /// <summary>GrafanaLoki 用户名或Email</summary>
+    [Option(nameof(LogGrafanaLokiUsername), HelpText = "GrafanaLoki 用户名或Email,当LogIsGrafanaLoki为true时生效。")]
+    public string LogGrafanaLokiUsername { get; set; }
+
+    /// <summary>GrafanaLoki 密码</summary>
+    [Option(nameof(LogGrafanaLokiPassword), HelpText = "GrafanaLoki 密码,当LogIsGrafanaLoki为true时生效。")]
+    public string LogGrafanaLokiPassword { get; set; }
+
+    /// <summary>日志滚动间隔,默认为每天（Day）。</summary>
+    /// <remarks>决定日志文件创建新文件的时间间隔,可以是小时、天、月等。</remarks>
+    [Option(nameof(LogRollingInterval), Default = RollingInterval.Day, HelpText = "日志滚动间隔,默认为每天(Day),日志滚动间隔(可选值：Minute[分], Hour[时], Day[天], Month[月], Year[年], Infinite[无限])")]
+    public RollingInterval LogRollingInterval { get; set; } = RollingInterval.Day;
+
+    /// <summary>日志输出级别,默认为 Debug。</summary>
+    /// <remarks>控制日志输出的最低级别,低于此级别的日志将不会被记录。</remarks>
+    [Option(nameof(LogEventLevel), Default = LogEventLevel.Debug, HelpText = "日志输出级别,默认为 Debug,日志级别(可选值：Verbose[详细], Debug[调试], Information[信息], Warning[警告], Error[错误], Fatal[致命])")]
+    public LogEventLevel LogEventLevel { get; set; } = LogEventLevel.Debug;
+
+    /// <summary>是否限制单个文件大小,默认为 true。</summary>
+    /// <remarks>启用此选项可以防止单个日志文件过大。</remarks>
+    [Option(nameof(LogIsFileSizeLimit), Default = true, HelpText = "是否限制单个文件大小,默认为 true。")]
+    public bool LogIsFileSizeLimit { get; set; } = true;
+
+    /// <summary>
+    /// 日志单个文件大小限制,默认为 100MB。
+    /// 当 IsFileSizeLimit 为 true 时有效。
+    /// </summary>
+    /// <remarks>当日志文件达到此大小限制时,将创建新的日志文件继续写入。</remarks>
+    [Option(nameof(LogFileSizeLimitBytes), Default = 104857600, HelpText = "日志单个文件大小限制,默认为 100MB。当 LogIsFileSizeLimit 为 true 时有效。")]
+    public int LogFileSizeLimitBytes { get; set; } = 104857600;
+
+    /// <summary>
+    /// 日志文件保留数量限制 默认为 31 个文件,即 31 天的日志文件
+    /// 当 设置值为 null 时不限制文件数量
+    /// </summary>
+    /// <remarks>用于控制历史日志文件的数量,防止占用过多磁盘空间。</remarks>
+    [Option(nameof(LogRetainedFileCountLimit), Default = 31, HelpText = "日志文件保留数量限制 默认为 31 个文件,即 31 天的日志文件")]
+    public int? LogRetainedFileCountLimit { get; set; } = 31;
+
     /// <summary>
     /// 服务器ID
     /// </summary>
