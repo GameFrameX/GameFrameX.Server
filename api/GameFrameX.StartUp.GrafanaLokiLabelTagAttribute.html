@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class ThreadSafeAttribute | GameFrameX.Server </title>
+      <title>Class GrafanaLokiLabelTagAttribute | GameFrameX.Server </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class ThreadSafeAttribute | GameFrameX.Server ">
+      <meta name="title" content="Class GrafanaLokiLabelTagAttribute | GameFrameX.Server ">
       
-      <meta name="description" content="此方法线程安全">
+      <meta name="description" content="Grafana Loki 标签,用于将属性标记为 Grafana Loki 标签">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev32/apiSpec/new?filename=GameFrameX_Core_Abstractions_Attribute_ThreadSafeAttribute.md&amp;value=---%0Auid%3A%20GameFrameX.Core.Abstractions.Attribute.ThreadSafeAttribute%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev32/apiSpec/new?filename=GameFrameX_StartUp_GrafanaLokiLabelTagAttribute.md&amp;value=---%0Auid%3A%20GameFrameX.StartUp.GrafanaLokiLabelTagAttribute%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,26 +84,26 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="GameFrameX.Core.Abstractions.Attribute.ThreadSafeAttribute">
+        <article data-uid="GameFrameX.StartUp.GrafanaLokiLabelTagAttribute">
 
 
 
-  <h1 id="GameFrameX_Core_Abstractions_Attribute_ThreadSafeAttribute" data-uid="GameFrameX.Core.Abstractions.Attribute.ThreadSafeAttribute" class="text-break">
-Class ThreadSafeAttribute  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Abstractions/Attribute/ThreadSafeAttribute.cs/#L6"><i class="bi bi-code-slash"></i></a>
+  <h1 id="GameFrameX_StartUp_GrafanaLokiLabelTagAttribute" data-uid="GameFrameX.StartUp.GrafanaLokiLabelTagAttribute" class="text-break">
+Class GrafanaLokiLabelTagAttribute  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.StartUp/GrafanaLokiLabelTagAttribute.cs/#L12"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Core.html">Core</a>.<a class="xref" href="GameFrameX.Core.Abstractions.html">Abstractions</a>.<a class="xref" href="GameFrameX.Core.Abstractions.Attribute.html">Attribute</a></dd></dl>
-  <dl><dt>Assembly</dt><dd>GameFrameX.Core.dll</dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.StartUp.html">StartUp</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.StartUp.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>此方法线程安全</p>
+  <div class="markdown summary"><p>Grafana Loki 标签,用于将属性标记为 Grafana Loki 标签</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[AttributeUsage(AttributeTargets.Method)]
-public sealed class ThreadSafeAttribute : Attribute</code></pre>
+    <pre><code class="lang-csharp hljs">[AttributeUsage(AttributeTargets.Property)]
+public sealed class GrafanaLokiLabelTagAttribute : Attribute</code></pre>
   </div>
 
 
@@ -114,7 +114,7 @@ public sealed class ThreadSafeAttribute : Attribute</code></pre>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.attribute">Attribute</a></div>
-      <div><span class="xref">ThreadSafeAttribute</span></div>
+      <div><span class="xref">GrafanaLokiLabelTagAttribute</span></div>
     </dd>
   </dl>
 
@@ -273,7 +273,7 @@ public sealed class ThreadSafeAttribute : Attribute</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.Core/Abstractions/Attribute/ThreadSafeAttribute.cs/#L6" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev32/GameFrameX.StartUp/GrafanaLokiLabelTagAttribute.cs/#L12" class="edit-link">Edit this page</a>
         </div>
 
 
