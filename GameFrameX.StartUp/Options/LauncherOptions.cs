@@ -155,12 +155,14 @@ public sealed class LauncherOptions
     /// 服务器ID
     /// </summary>
     [Option(nameof(ServerId), HelpText = "服务器ID")]
+    [GrafanaLokiLabelTag]
     public int ServerId { get; set; }
 
     /// <summary>
     /// 服务器实例ID
     /// </summary>
     [Option(nameof(ServerInstanceId), HelpText = "服务器实例ID")]
+    [GrafanaLokiLabelTag]
     public long ServerInstanceId { get; set; }
 
     /// <summary>
@@ -173,24 +175,28 @@ public sealed class LauncherOptions
     /// 内部IP
     /// </summary>
     [Option(nameof(InnerIp), Default = "0.0.0.0", HelpText = "内部IP")]
+    [GrafanaLokiLabelTag]
     public string InnerIp { get; set; }
 
     /// <summary>
     /// 内部端口
     /// </summary>
     [Option(nameof(InnerPort), HelpText = "内部端口")]
+    [GrafanaLokiLabelTag]
     public ushort InnerPort { get; set; }
 
     /// <summary>
     /// 外部IP
     /// </summary>
     [Option(nameof(OuterIp), Default = "0.0.0.0", HelpText = "外部IP")]
+    [GrafanaLokiLabelTag]
     public string OuterIp { get; set; }
 
     /// <summary>
     /// 外部端口
     /// </summary>
     [Option(nameof(OuterPort), HelpText = "外部端口")]
+    [GrafanaLokiLabelTag]
     public ushort OuterPort { get; set; }
 
     /// <summary>
@@ -203,6 +209,7 @@ public sealed class LauncherOptions
     /// HTTP 是否是开发模式,当是开发模式的时候将会启用Swagger
     /// </summary>
     [Option(nameof(HttpIsDevelopment), Default = false, HelpText = "HTTP 是否是开发模式,当是开发模式的时候将会启用Swagger")]
+    [GrafanaLokiLabelTag]
     public bool HttpIsDevelopment { get; set; }
 
     /// <summary>
@@ -263,6 +270,7 @@ public sealed class LauncherOptions
     /// 语言
     /// </summary>
     [Option(nameof(Language), HelpText = "语言")]
+    [GrafanaLokiLabelTag]
     public string Language { get; set; }
 
     /// <summary>
@@ -299,6 +307,7 @@ public sealed class LauncherOptions
     /// 标签名称
     /// </summary>
     [Option(nameof(TagName), Default = "", HelpText = "标签名称")]
+    [GrafanaLokiLabelTag]
     public string TagName { get; set; }
 
     /// <summary>
