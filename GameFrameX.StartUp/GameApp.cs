@@ -63,6 +63,68 @@ public static class GameApp
         }
 
         LogOptions.Default.LogType = serverType;
+        LogOptions.Default.GrafanaLokiLabels = new Dictionary<string, string>();
+
+        // 将LauncherOptions的所有属性添加到标签中
+        var properties = typeof(LauncherOptions).GetProperties();
+        foreach (var property in properties)
+        {
+            var grafanaLokiLabelTagAttribute = property.GetCustomAttribute<GrafanaLokiLabelTagAttribute>();
+            if (grafanaLokiLabelTagAttribute == null)
+            {
+                continue;
+            }
+
+            var value = property.GetValue(launcherOptions)?.ToString();
+            if (string.IsNullOrEmpty(value))
+            {
+                continue;
+            }
+
+            if (!LogOptions.Default.GrafanaLokiLabels.TryAdd(property.Name, value))
+            {
+                LogHelper.WarnConsole($"Grafana Loki 标签 {property.Name} 已存在,将被忽略");
+            }
+        }
+
+        if (launcherOptions != null)
+        {
+            // 设置日志配置信息
+            LogOptions.Default.IsConsole = launcherOptions.LogIsConsole;
+            LogOptions.Default.IsGrafanaLoki = launcherOptions.LogIsGrafanaLoki;
+            LogOptions.Default.GrafanaLokiUrl = launcherOptions.LogGrafanaLokiUrl;
+            LogOptions.Default.GrafanaLokiUsername = launcherOptions.LogGrafanaLokiUsername;
+            LogOptions.Default.GrafanaLokiPassword = launcherOptions.LogGrafanaLokiPassword;
+            LogOptions.Default.RetainedFileCountLimit = launcherOptions.LogRetainedFileCountLimit;
+            LogOptions.Default.IsFileSizeLimit = launcherOptions.LogIsFileSizeLimit;
+            LogOptions.Default.FileSizeLimitBytes = launcherOptions.LogFileSizeLimitBytes;
+            LogOptions.Default.LogEventLevel = launcherOptions.LogEventLevel;
+            LogOptions.Default.RollingInterval = launcherOptions.LogRollingInterval;
+            if (launcherOptions.LogGrafanaLokiLabels != null)
+            {
+                // 处理额外的自定义标签
+                var lokiLabels = launcherOptions.LogGrafanaLokiLabels.ToList();
+                var count = lokiLabels.Count;
+                // 检查标签数量是否成对
+                if (count % 2 != 0)
+                {
+                    LogHelper.WarnConsole("Grafana Loki 标签数量不是成对的,将忽略最后一个标签");
+                    count--;
+                }
+
+                for (int i = 0; i < count; i += 2)
+                {
+                    var lokiLabelKey = lokiLabels[i];
+                    var lokiLabelValue = lokiLabels[i + 1];
+                    // 检查key是否已存在
+                    if (!LogOptions.Default.GrafanaLokiLabels.TryAdd(lokiLabelKey, lokiLabelValue))
+                    {
+                        LogHelper.WarnConsole($"Grafana Loki 标签 {lokiLabelKey} 已存在,将被忽略");
+                    }
+                }
+            }
+        }
+
         logConfiguration?.Invoke(LogOptions.Default);
         LogHandler.Create(LogOptions.Default);
 
