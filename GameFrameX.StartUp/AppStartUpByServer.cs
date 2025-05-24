@@ -155,7 +155,6 @@ public abstract partial class AppStartUpBase
     /// <summary>
     /// 启动TCP服务器
     /// </summary>
-    /// <typeparam name="TMessageDecoderHandler">消息解码处理器类型</typeparam>
     /// <param name="baseHandler">HTTP处理器列表,用于处理不同的HTTP请求</param>
     /// <param name="httpFactory">HTTP处理器工厂,根据命令标识符创建对应的处理器实例</param>
     /// <param name="aopHandlerTypes">AOP处理器列表,用于在HTTP请求处理前后执行额外的逻辑</param>
