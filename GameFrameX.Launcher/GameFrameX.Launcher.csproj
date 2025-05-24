@@ -35,7 +35,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.GameAnalytics" Version="1.5.1-dev25" />
-      <PackageReference Include="GameFrameX.StartUp" Version="1.5.1-dev25" />
+      <PackageReference Include="GameFrameX.GameAnalytics" Version="1.5.1-dev34" />
+      <PackageReference Include="GameFrameX.StartUp" Version="1.5.1-dev34" />
     </ItemGroup>
 </Project>
