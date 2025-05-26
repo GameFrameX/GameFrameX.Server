@@ -65,30 +65,30 @@ public static class GameApp
         LogOptions.Default.LogType = serverType;
         LogOptions.Default.GrafanaLokiLabels = new Dictionary<string, string>();
 
-        // 将LauncherOptions的所有属性添加到标签中
-        var properties = typeof(LauncherOptions).GetProperties();
-        foreach (var property in properties)
-        {
-            var grafanaLokiLabelTagAttribute = property.GetCustomAttribute<GrafanaLokiLabelTagAttribute>();
-            if (grafanaLokiLabelTagAttribute == null)
-            {
-                continue;
-            }
-
-            var value = property.GetValue(launcherOptions)?.ToString();
-            if (string.IsNullOrEmpty(value))
-            {
-                continue;
-            }
-
-            if (!LogOptions.Default.GrafanaLokiLabels.TryAdd(property.Name, value))
-            {
-                LogHelper.WarnConsole($"Grafana Loki 标签 {property.Name} 已存在,将被忽略");
-            }
-        }
-
         if (launcherOptions != null)
         {
+            // 将LauncherOptions的所有属性添加到标签中
+            var properties = typeof(LauncherOptions).GetProperties();
+            foreach (var property in properties)
+            {
+                var grafanaLokiLabelTagAttribute = property.GetCustomAttribute<GrafanaLokiLabelTagAttribute>();
+                if (grafanaLokiLabelTagAttribute == null)
+                {
+                    continue;
+                }
+
+                var value = property.GetValue(launcherOptions)?.ToString();
+                if (string.IsNullOrEmpty(value))
+                {
+                    continue;
+                }
+
+                if (!LogOptions.Default.GrafanaLokiLabels.TryAdd(property.Name, value))
+                {
+                    LogHelper.WarnConsole($"Grafana Loki 标签 {property.Name} 已存在,将被忽略");
+                }
+            }
+
             // 设置日志配置信息
             LogOptions.Default.IsConsole = launcherOptions.LogIsConsole;
             LogOptions.Default.IsGrafanaLoki = launcherOptions.LogIsGrafanaLoki;
