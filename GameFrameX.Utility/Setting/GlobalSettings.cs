@@ -83,7 +83,7 @@ public static class GlobalSettings
     {
         if (CurrentSetting.IsNotNull())
         {
-            LogHelper.WarnConsole("当前设置已经存在，不能再次设置");
+            LogHelper.WarnConsole("当前设置已经存在,不能再次设置,已忽略本次设置");
             return;
         }
 
