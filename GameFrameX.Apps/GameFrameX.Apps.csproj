@@ -18,7 +18,7 @@
 
     <ItemGroup>
       <PackageReference Include="Mapster" Version="7.4.0" />
-      <PackageReference Include="GameFrameX.Core" Version="1.5.1-dev34" />
-      <PackageReference Include="GameFrameX.Monitor" Version="1.5.1-dev34" />
+      <PackageReference Include="GameFrameX.Core" Version="1.5.1-dev35" />
+      <PackageReference Include="GameFrameX.Monitor" Version="1.5.1-dev35" />
     </ItemGroup>
 </Project>
