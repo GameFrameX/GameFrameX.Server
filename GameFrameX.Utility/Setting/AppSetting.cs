@@ -328,5 +328,20 @@ public sealed class AppSetting
     /// </summary>
     public short MaxModuleId { get; set; }
 
+    /// <summary>
+    /// 描述信息
+    /// </summary>
+    public string Description { get; set; }
+
+    /// <summary>
+    /// 备注信息
+    /// </summary>
+    public string Note { get; set; }
+
+    /// <summary>
+    /// 标签信息
+    /// </summary>
+    public string Label { get; set; }
+
     #endregion
 }

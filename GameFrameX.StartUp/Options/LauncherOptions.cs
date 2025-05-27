@@ -311,6 +311,27 @@ public sealed class LauncherOptions
     public string TagName { get; set; }
 
     /// <summary>
+    /// 描述信息
+    /// </summary>
+    [Option(nameof(Description), Default = "", HelpText = "描述信息")]
+    [GrafanaLokiLabelTag]
+    public string Description { get; set; }
+
+    /// <summary>
+    /// 备注信息
+    /// </summary>
+    [Option(nameof(Note), Default = "", HelpText = "备注信息")]
+    [GrafanaLokiLabelTag]
+    public string Note { get; set; }
+
+    /// <summary>
+    /// 标签信息
+    /// </summary>
+    [Option(nameof(Label), Default = "", HelpText = "标签信息")]
+    [GrafanaLokiLabelTag]
+    public string Label { get; set; }
+
+    /// <summary>
     /// 检查APM监控端口
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
