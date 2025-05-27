@@ -2,7 +2,6 @@
 using GameFrameX.GameAnalytics;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Proto.BuiltIn;
-using GameFrameX.Foundation.Logger;
 
 namespace GameFrameX.Launcher;
 
