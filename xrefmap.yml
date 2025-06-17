@@ -600,6 +600,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Abstractions.IActor.Inactive
   nameWithType: IActor.Inactive
+- uid: GameFrameX.Core.Abstractions.IActor.OnRecycle
+  name: OnRecycle()
+  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_OnRecycle
+  commentId: M:GameFrameX.Core.Abstractions.IActor.OnRecycle
+  fullName: GameFrameX.Core.Abstractions.IActor.OnRecycle()
+  nameWithType: IActor.OnRecycle()
+- uid: GameFrameX.Core.Abstractions.IActor.OnRecycle*
+  name: OnRecycle
+  href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_OnRecycle_
+  commentId: Overload:GameFrameX.Core.Abstractions.IActor.OnRecycle
+  isSpec: "True"
+  fullName: GameFrameX.Core.Abstractions.IActor.OnRecycle
+  nameWithType: IActor.OnRecycle
 - uid: GameFrameX.Core.Abstractions.IActor.RemoveData(System.String)
   name: RemoveData(string)
   href: api/GameFrameX.Core.Abstractions.IActor.html#GameFrameX_Core_Abstractions_IActor_RemoveData_System_String_
