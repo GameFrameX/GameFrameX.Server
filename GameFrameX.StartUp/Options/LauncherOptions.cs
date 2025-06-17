@@ -224,6 +224,12 @@ public sealed class LauncherOptions
     public ushort OuterPort { get; set; }
 
     /// <summary>
+    /// 雪花ID的工作ID
+    /// </summary>
+    [Option(nameof(WorkerId), Default = 0, HelpText = "雪花ID的工作ID,默认为0,表示自动分配")]
+    public ushort WorkerId { get; set; }
+
+    /// <summary>
     /// API接口根路径,必须以/开头和以/结尾,默认为[/game/api/]
     /// </summary>
     [Option(nameof(HttpUrl), Default = "/game/api/", HelpText = "API接口根路径,必须以/开头和以/结尾,默认为[/game/api/]")]

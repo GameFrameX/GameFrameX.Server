@@ -239,6 +239,11 @@ public sealed class AppSetting
     public ushort InnerPort { get; set; }
 
     /// <summary>
+    /// 雪花ID的工作ID
+    /// </summary>
+    public ushort WorkerId { get; set; }
+
+    /// <summary>
     /// 外部IP地址
     /// </summary>
     public string OuterIp { get; set; }
