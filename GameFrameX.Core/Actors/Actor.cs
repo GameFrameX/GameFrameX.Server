@@ -144,9 +144,9 @@ public sealed class Actor : IActor, IDisposable
 
                     try
                     {
-                        await agent.AfterActivation();
-                        await agent.Active();
                         await agent.BeforeActivation();
+                        await agent.Active();
+                        await agent.AfterActivation();
                     }
                     catch (Exception e)
                     {
@@ -181,9 +181,9 @@ public sealed class Actor : IActor, IDisposable
 
                 try
                 {
-                    await agent.AfterActivation();
-                    await agent.Active();
                     await agent.BeforeActivation();
+                    await agent.Active();
+                    await agent.AfterActivation();
                 }
                 catch (Exception e)
                 {
