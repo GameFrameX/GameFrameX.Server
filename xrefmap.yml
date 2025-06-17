@@ -1341,12 +1341,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Actors.Actor.Tell
   nameWithType: Actor.Tell
-- uid: GameFrameX.Core.Actors.Actor.TimeOut
-  name: TimeOut
-  href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_TimeOut
-  commentId: F:GameFrameX.Core.Actors.Actor.TimeOut
-  fullName: GameFrameX.Core.Actors.Actor.TimeOut
-  nameWithType: Actor.TimeOut
 - uid: GameFrameX.Core.Actors.Actor.ToString
   name: ToString()
   href: api/GameFrameX.Core.Actors.Actor.html#GameFrameX_Core_Actors_Actor_ToString
@@ -11925,6 +11919,32 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.APMPort
   nameWithType: LauncherOptions.APMPort
+- uid: GameFrameX.StartUp.Options.LauncherOptions.ActorQueueTimeOut
+  name: ActorQueueTimeOut
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_ActorQueueTimeOut
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.ActorQueueTimeOut
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.ActorQueueTimeOut
+  nameWithType: LauncherOptions.ActorQueueTimeOut
+- uid: GameFrameX.StartUp.Options.LauncherOptions.ActorQueueTimeOut*
+  name: ActorQueueTimeOut
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_ActorQueueTimeOut_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.ActorQueueTimeOut
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.ActorQueueTimeOut
+  nameWithType: LauncherOptions.ActorQueueTimeOut
+- uid: GameFrameX.StartUp.Options.LauncherOptions.ActorTimeOut
+  name: ActorTimeOut
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_ActorTimeOut
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.ActorTimeOut
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.ActorTimeOut
+  nameWithType: LauncherOptions.ActorTimeOut
+- uid: GameFrameX.StartUp.Options.LauncherOptions.ActorTimeOut*
+  name: ActorTimeOut
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_ActorTimeOut_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.ActorTimeOut
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.ActorTimeOut
+  nameWithType: LauncherOptions.ActorTimeOut
 - uid: GameFrameX.StartUp.Options.LauncherOptions.CheckApmPort
   name: CheckApmPort()
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_CheckApmPort
@@ -12250,6 +12270,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.DataCenter
   nameWithType: LauncherOptions.DataCenter
+- uid: GameFrameX.StartUp.Options.LauncherOptions.Description
+  name: Description
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_Description
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.Description
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.Description
+  nameWithType: LauncherOptions.Description
+- uid: GameFrameX.StartUp.Options.LauncherOptions.Description*
+  name: Description
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_Description_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.Description
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.Description
+  nameWithType: LauncherOptions.Description
 - uid: GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterIp
   name: DiscoveryCenterIp
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_DiscoveryCenterIp
@@ -12471,6 +12504,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetryTracing
   nameWithType: LauncherOptions.IsOpenTelemetryTracing
+- uid: GameFrameX.StartUp.Options.LauncherOptions.Label
+  name: Label
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_Label
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.Label
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.Label
+  nameWithType: LauncherOptions.Label
+- uid: GameFrameX.StartUp.Options.LauncherOptions.Label*
+  name: Label
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_Label_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.Label
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.Label
+  nameWithType: LauncherOptions.Label
 - uid: GameFrameX.StartUp.Options.LauncherOptions.Language
   name: Language
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_Language
@@ -12679,6 +12725,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.NetWorkSendTimeOutSeconds
   nameWithType: LauncherOptions.NetWorkSendTimeOutSeconds
+- uid: GameFrameX.StartUp.Options.LauncherOptions.Note
+  name: Note
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_Note
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.Note
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.Note
+  nameWithType: LauncherOptions.Note
+- uid: GameFrameX.StartUp.Options.LauncherOptions.Note*
+  name: Note
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_Note_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.Note
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.Note
+  nameWithType: LauncherOptions.Note
 - uid: GameFrameX.StartUp.Options.LauncherOptions.OuterIp
   name: OuterIp
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_OuterIp
@@ -12705,6 +12764,32 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.OuterPort
   nameWithType: LauncherOptions.OuterPort
+- uid: GameFrameX.StartUp.Options.LauncherOptions.SaveDataBatchCount
+  name: SaveDataBatchCount
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_SaveDataBatchCount
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.SaveDataBatchCount
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.SaveDataBatchCount
+  nameWithType: LauncherOptions.SaveDataBatchCount
+- uid: GameFrameX.StartUp.Options.LauncherOptions.SaveDataBatchCount*
+  name: SaveDataBatchCount
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_SaveDataBatchCount_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.SaveDataBatchCount
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.SaveDataBatchCount
+  nameWithType: LauncherOptions.SaveDataBatchCount
+- uid: GameFrameX.StartUp.Options.LauncherOptions.SaveDataBatchTimeOut
+  name: SaveDataBatchTimeOut
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_SaveDataBatchTimeOut
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.SaveDataBatchTimeOut
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.SaveDataBatchTimeOut
+  nameWithType: LauncherOptions.SaveDataBatchTimeOut
+- uid: GameFrameX.StartUp.Options.LauncherOptions.SaveDataBatchTimeOut*
+  name: SaveDataBatchTimeOut
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_SaveDataBatchTimeOut_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.SaveDataBatchTimeOut
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.SaveDataBatchTimeOut
+  nameWithType: LauncherOptions.SaveDataBatchTimeOut
 - uid: GameFrameX.StartUp.Options.LauncherOptions.SaveDataInterval
   name: SaveDataInterval
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_SaveDataInterval
@@ -26002,6 +26087,32 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.APMPort
   nameWithType: AppSetting.APMPort
+- uid: GameFrameX.Utility.Setting.AppSetting.ActorQueueTimeOut
+  name: ActorQueueTimeOut
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_ActorQueueTimeOut
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.ActorQueueTimeOut
+  fullName: GameFrameX.Utility.Setting.AppSetting.ActorQueueTimeOut
+  nameWithType: AppSetting.ActorQueueTimeOut
+- uid: GameFrameX.Utility.Setting.AppSetting.ActorQueueTimeOut*
+  name: ActorQueueTimeOut
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_ActorQueueTimeOut_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.ActorQueueTimeOut
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.ActorQueueTimeOut
+  nameWithType: AppSetting.ActorQueueTimeOut
+- uid: GameFrameX.Utility.Setting.AppSetting.ActorTimeOut
+  name: ActorTimeOut
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_ActorTimeOut
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.ActorTimeOut
+  fullName: GameFrameX.Utility.Setting.AppSetting.ActorTimeOut
+  nameWithType: AppSetting.ActorTimeOut
+- uid: GameFrameX.Utility.Setting.AppSetting.ActorTimeOut*
+  name: ActorTimeOut
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_ActorTimeOut_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.ActorTimeOut
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.ActorTimeOut
+  nameWithType: AppSetting.ActorTimeOut
 - uid: GameFrameX.Utility.Setting.AppSetting.AppExitSource
   name: AppExitSource
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_AppExitSource
@@ -26099,6 +26210,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.DataCenter
   nameWithType: AppSetting.DataCenter
+- uid: GameFrameX.Utility.Setting.AppSetting.Description
+  name: Description
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_Description
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.Description
+  fullName: GameFrameX.Utility.Setting.AppSetting.Description
+  nameWithType: AppSetting.Description
+- uid: GameFrameX.Utility.Setting.AppSetting.Description*
+  name: Description
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_Description_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.Description
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.Description
+  nameWithType: AppSetting.Description
 - uid: GameFrameX.Utility.Setting.AppSetting.DiscoveryCenterIp
   name: DiscoveryCenterIp
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_DiscoveryCenterIp
@@ -26336,6 +26460,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.IsOpenTelemetryTracing
   nameWithType: AppSetting.IsOpenTelemetryTracing
+- uid: GameFrameX.Utility.Setting.AppSetting.Label
+  name: Label
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_Label
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.Label
+  fullName: GameFrameX.Utility.Setting.AppSetting.Label
+  nameWithType: AppSetting.Label
+- uid: GameFrameX.Utility.Setting.AppSetting.Label*
+  name: Label
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_Label_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.Label
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.Label
+  nameWithType: AppSetting.Label
 - uid: GameFrameX.Utility.Setting.AppSetting.Language
   name: Language
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_Language
@@ -26427,6 +26564,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.NetWorkSendTimeOutSeconds
   nameWithType: AppSetting.NetWorkSendTimeOutSeconds
+- uid: GameFrameX.Utility.Setting.AppSetting.Note
+  name: Note
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_Note
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.Note
+  fullName: GameFrameX.Utility.Setting.AppSetting.Note
+  nameWithType: AppSetting.Note
+- uid: GameFrameX.Utility.Setting.AppSetting.Note*
+  name: Note
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_Note_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.Note
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.Note
+  nameWithType: AppSetting.Note
 - uid: GameFrameX.Utility.Setting.AppSetting.OuterIp
   name: OuterIp
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_OuterIp
@@ -26466,6 +26616,32 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.SDKType
   nameWithType: AppSetting.SDKType
+- uid: GameFrameX.Utility.Setting.AppSetting.SaveDataBatchCount
+  name: SaveDataBatchCount
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_SaveDataBatchCount
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.SaveDataBatchCount
+  fullName: GameFrameX.Utility.Setting.AppSetting.SaveDataBatchCount
+  nameWithType: AppSetting.SaveDataBatchCount
+- uid: GameFrameX.Utility.Setting.AppSetting.SaveDataBatchCount*
+  name: SaveDataBatchCount
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_SaveDataBatchCount_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.SaveDataBatchCount
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.SaveDataBatchCount
+  nameWithType: AppSetting.SaveDataBatchCount
+- uid: GameFrameX.Utility.Setting.AppSetting.SaveDataBatchTimeOut
+  name: SaveDataBatchTimeOut
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_SaveDataBatchTimeOut
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.SaveDataBatchTimeOut
+  fullName: GameFrameX.Utility.Setting.AppSetting.SaveDataBatchTimeOut
+  nameWithType: AppSetting.SaveDataBatchTimeOut
+- uid: GameFrameX.Utility.Setting.AppSetting.SaveDataBatchTimeOut*
+  name: SaveDataBatchTimeOut
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_SaveDataBatchTimeOut_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.SaveDataBatchTimeOut
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.SaveDataBatchTimeOut
+  nameWithType: AppSetting.SaveDataBatchTimeOut
 - uid: GameFrameX.Utility.Setting.AppSetting.SaveDataInterval
   name: SaveDataInterval
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_SaveDataInterval

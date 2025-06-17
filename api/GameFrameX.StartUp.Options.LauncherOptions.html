@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev35/apiSpec/new?filename=GameFrameX_StartUp_Options_LauncherOptions.md&amp;value=---%0Auid%3A%20GameFrameX.StartUp.Options.LauncherOptions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev36/apiSpec/new?filename=GameFrameX_StartUp_Options_LauncherOptions.md&amp;value=---%0Auid%3A%20GameFrameX.StartUp.Options.LauncherOptions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_StartUp_Options_LauncherOptions" data-uid="GameFrameX.StartUp.Options.LauncherOptions" class="text-break">
-Class LauncherOptions  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L11"><i class="bi bi-code-slash"></i></a>
+Class LauncherOptions  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -170,7 +170,7 @@ Class LauncherOptions  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_APMPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.APMPort">
   APMPort
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>APM监控端口</p>
@@ -199,11 +199,77 @@ public ushort APMPort { get; set; }</code></pre>
 
 
 
+  <a id="GameFrameX_StartUp_Options_LauncherOptions_ActorQueueTimeOut_" data-uid="GameFrameX.StartUp.Options.LauncherOptions.ActorQueueTimeOut*"></a>
+
+  <h3 id="GameFrameX_StartUp_Options_LauncherOptions_ActorQueueTimeOut" data-uid="GameFrameX.StartUp.Options.LauncherOptions.ActorQueueTimeOut">
+  ActorQueueTimeOut
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L195"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Actor 执行任务队列超时时间(毫秒),默认值为30秒</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Option(&quot;ActorQueueTimeOut&quot;, Default = 30000, HelpText = &quot;Actor 执行任务队列超时时间(毫秒),默认值为30秒&quot;)]
+public int ActorQueueTimeOut { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_Options_LauncherOptions_ActorTimeOut_" data-uid="GameFrameX.StartUp.Options.LauncherOptions.ActorTimeOut*"></a>
+
+  <h3 id="GameFrameX_StartUp_Options_LauncherOptions_ActorTimeOut" data-uid="GameFrameX.StartUp.Options.LauncherOptions.ActorTimeOut">
+  ActorTimeOut
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L189"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Actor 执行任务超时时间(毫秒),默认值为30秒</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Option(&quot;ActorTimeOut&quot;, Default = 30000, HelpText = &quot;Actor 执行任务超时时间(毫秒),默认值为30秒&quot;)]
+public int ActorTimeOut { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="GameFrameX_StartUp_Options_LauncherOptions_DBIp_" data-uid="GameFrameX.StartUp.Options.LauncherOptions.DBIp*"></a>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_DBIp" data-uid="GameFrameX.StartUp.Options.LauncherOptions.DBIp">
   DBIp
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L297"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L321"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>数据库服务连接地址</p>
@@ -236,7 +302,7 @@ public string DBIp { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_DBPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.DBPort">
   DBPort
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L303"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L327"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>数据库服务连接端口</p>
@@ -269,7 +335,7 @@ public ushort DBPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_DataBaseName" data-uid="GameFrameX.StartUp.Options.LauncherOptions.DataBaseName">
   DataBaseName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L266"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L290"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>数据库名称</p>
@@ -302,7 +368,7 @@ public string DataBaseName { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_DataBaseUrl" data-uid="GameFrameX.StartUp.Options.LauncherOptions.DataBaseUrl">
   DataBaseUrl
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L260"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L284"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>数据库 地址</p>
@@ -335,7 +401,7 @@ public string DataBaseUrl { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_DataCenter" data-uid="GameFrameX.StartUp.Options.LauncherOptions.DataCenter">
   DataCenter
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L279"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L303"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>数据中心</p>
@@ -364,11 +430,44 @@ public string DataCenter { get; set; }</code></pre>
 
 
 
+  <a id="GameFrameX_StartUp_Options_LauncherOptions_Description_" data-uid="GameFrameX.StartUp.Options.LauncherOptions.Description*"></a>
+
+  <h3 id="GameFrameX_StartUp_Options_LauncherOptions_Description" data-uid="GameFrameX.StartUp.Options.LauncherOptions.Description">
+  Description
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L340"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>描述信息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Option(&quot;Description&quot;, Default = &quot;&quot;, HelpText = &quot;描述信息&quot;)]
+public string Description { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="GameFrameX_StartUp_Options_LauncherOptions_DiscoveryCenterIp_" data-uid="GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterIp*"></a>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_DiscoveryCenterIp" data-uid="GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterIp">
   DiscoveryCenterIp
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L285"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L309"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发现中心地址</p>
@@ -401,7 +500,7 @@ public string DiscoveryCenterIp { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_DiscoveryCenterPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterPort">
   DiscoveryCenterPort
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L291"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L315"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发现中心端口</p>
@@ -434,7 +533,7 @@ public ushort DiscoveryCenterPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_HttpIsDevelopment" data-uid="GameFrameX.StartUp.Options.LauncherOptions.HttpIsDevelopment">
   HttpIsDevelopment
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L211"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L235"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>HTTP 是否是开发模式,当是开发模式的时候将会启用Swagger</p>
@@ -467,7 +566,7 @@ public bool HttpIsDevelopment { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_HttpPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.HttpPort">
   HttpPort
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L218"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L242"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>HTTP 端口</p>
@@ -500,7 +599,7 @@ public ushort HttpPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_HttpUrl" data-uid="GameFrameX.StartUp.Options.LauncherOptions.HttpUrl">
   HttpUrl
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L205"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L229"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>API接口根路径,必须以/开头和以/结尾,默认为[/game/api/]</p>
@@ -533,7 +632,7 @@ public string HttpUrl { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_HttpsPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.HttpsPort">
   HttpsPort
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L224"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L248"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>HTTPS 端口</p>
@@ -566,7 +665,7 @@ public ushort HttpsPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_InnerIp" data-uid="GameFrameX.StartUp.Options.LauncherOptions.InnerIp">
   InnerIp
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L201"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>内部IP</p>
@@ -599,7 +698,7 @@ public string InnerIp { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_InnerPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.InnerPort">
   InnerPort
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L184"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L208"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>内部端口</p>
@@ -632,7 +731,7 @@ public ushort InnerPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_IsDebug" data-uid="GameFrameX.StartUp.Options.LauncherOptions.IsDebug">
   IsDebug
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L72"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>是否是Debug打印日志模式,默认值为false</p>
@@ -665,7 +764,7 @@ public bool IsDebug { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_IsDebugReceive" data-uid="GameFrameX.StartUp.Options.LauncherOptions.IsDebugReceive">
   IsDebugReceive
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>是否打印接收数据,只有在IsDebug为true时有效,默认值为false</p>
@@ -698,7 +797,7 @@ public bool IsDebugReceive { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_IsDebugReceiveHeartBeat" data-uid="GameFrameX.StartUp.Options.LauncherOptions.IsDebugReceiveHeartBeat">
   IsDebugReceiveHeartBeat
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L96"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>是否打印接收的心跳数据,只有在IsDebugReceive为true时有效,默认值为false</p>
@@ -731,7 +830,7 @@ public bool IsDebugReceiveHeartBeat { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_IsDebugSend" data-uid="GameFrameX.StartUp.Options.LauncherOptions.IsDebugSend">
   IsDebugSend
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L78"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>是否打印发送数据,只有在IsDebug为true时有效,默认值为false</p>
@@ -764,7 +863,7 @@ public bool IsDebugSend { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_IsDebugSendHeartBeat" data-uid="GameFrameX.StartUp.Options.LauncherOptions.IsDebugSendHeartBeat">
   IsDebugSendHeartBeat
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L84"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L84"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>是否打印发送的心跳数据,只有在IsDebugSend为true时有效,默认值为false</p>
@@ -797,7 +896,7 @@ public bool IsDebugSendHeartBeat { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_IsMonitorMessageTimeOut" data-uid="GameFrameX.StartUp.Options.LauncherOptions.IsMonitorMessageTimeOut">
   IsMonitorMessageTimeOut
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>是否监控打印超时日志</p>
@@ -830,7 +929,7 @@ public bool IsMonitorMessageTimeOut { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_IsOpenTelemetry" data-uid="GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetry">
   IsOpenTelemetry
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L48"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>是否启用OpenTelemetry遥测功能</p>
@@ -866,7 +965,7 @@ public bool IsOpenTelemetry { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_IsOpenTelemetryMetrics" data-uid="GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetryMetrics">
   IsOpenTelemetryMetrics
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L31"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>是否启用指标收集功能,需要IsOpenTelemetry为true时有效</p>
@@ -901,7 +1000,7 @@ public bool IsOpenTelemetryMetrics { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_IsOpenTelemetryTracing" data-uid="GameFrameX.StartUp.Options.LauncherOptions.IsOpenTelemetryTracing">
   IsOpenTelemetryTracing
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>是否启用分布式追踪功能,需要IsOpenTelemetry为true时有效</p>
@@ -932,11 +1031,44 @@ public bool IsOpenTelemetryTracing { get; set; }</code></pre>
 
 
 
+  <a id="GameFrameX_StartUp_Options_LauncherOptions_Label_" data-uid="GameFrameX.StartUp.Options.LauncherOptions.Label*"></a>
+
+  <h3 id="GameFrameX_StartUp_Options_LauncherOptions_Label" data-uid="GameFrameX.StartUp.Options.LauncherOptions.Label">
+  Label
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L354"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>标签信息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Option(&quot;Label&quot;, Default = &quot;&quot;, HelpText = &quot;标签信息&quot;)]
+public string Label { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="GameFrameX_StartUp_Options_LauncherOptions_Language_" data-uid="GameFrameX.StartUp.Options.LauncherOptions.Language*"></a>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_Language" data-uid="GameFrameX.StartUp.Options.LauncherOptions.Language">
   Language
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L272"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L296"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>语言</p>
@@ -969,7 +1101,7 @@ public string Language { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_LogEventLevel" data-uid="GameFrameX.StartUp.Options.LauncherOptions.LogEventLevel">
   LogEventLevel
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L130"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>日志输出级别,默认为 Debug。</p>
@@ -1005,7 +1137,7 @@ public LogEventLevel LogEventLevel { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_LogFileSizeLimitBytes" data-uid="GameFrameX.StartUp.Options.LauncherOptions.LogFileSizeLimitBytes">
   LogFileSizeLimitBytes
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L143"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L143"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>日志单个文件大小限制,默认为 100MB。
@@ -1042,7 +1174,7 @@ public int LogFileSizeLimitBytes { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_LogGrafanaLokiLabels" data-uid="GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiLabels">
   LogGrafanaLokiLabels
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L113"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>GrafanaLoki 标签</p>
@@ -1074,7 +1206,7 @@ public int LogFileSizeLimitBytes { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_LogGrafanaLokiPassword" data-uid="GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiPassword">
   LogGrafanaLokiPassword
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L120"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>GrafanaLoki 密码</p>
@@ -1107,7 +1239,7 @@ public string LogGrafanaLokiPassword { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_LogGrafanaLokiUrl" data-uid="GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiUrl">
   LogGrafanaLokiUrl
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L109"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>GrafanaLoki 服务地址,默认为 http://localhost:3100。</p>
@@ -1140,7 +1272,7 @@ public string LogGrafanaLokiUrl { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_LogGrafanaLokiUsername" data-uid="GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiUsername">
   LogGrafanaLokiUsername
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L116"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>GrafanaLoki 用户名或Email</p>
@@ -1173,7 +1305,7 @@ public string LogGrafanaLokiUsername { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_LogIsConsole" data-uid="GameFrameX.StartUp.Options.LauncherOptions.LogIsConsole">
   LogIsConsole
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L101"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>是否输出到控制台,默认为 true。</p>
@@ -1209,7 +1341,7 @@ public bool LogIsConsole { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_LogIsFileSizeLimit" data-uid="GameFrameX.StartUp.Options.LauncherOptions.LogIsFileSizeLimit">
   LogIsFileSizeLimit
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L135"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>是否限制单个文件大小,默认为 true。</p>
@@ -1245,7 +1377,7 @@ public bool LogIsFileSizeLimit { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_LogIsGrafanaLoki" data-uid="GameFrameX.StartUp.Options.LauncherOptions.LogIsGrafanaLoki">
   LogIsGrafanaLoki
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L105"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>是否输出到 GrafanaLoki,默认为 false。</p>
@@ -1278,7 +1410,7 @@ public bool LogIsGrafanaLoki { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_LogRetainedFileCountLimit" data-uid="GameFrameX.StartUp.Options.LauncherOptions.LogRetainedFileCountLimit">
   LogRetainedFileCountLimit
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L151"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>日志文件保留数量限制 默认为 31 个文件,即 31 天的日志文件
@@ -1315,7 +1447,7 @@ public int? LogRetainedFileCountLimit { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_LogRollingInterval" data-uid="GameFrameX.StartUp.Options.LauncherOptions.LogRollingInterval">
   LogRollingInterval
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L125"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L125"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>日志滚动间隔,默认为每天（Day）。</p>
@@ -1351,7 +1483,7 @@ public RollingInterval LogRollingInterval { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_MaxModuleId" data-uid="GameFrameX.StartUp.Options.LauncherOptions.MaxModuleId">
   MaxModuleId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L242"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L266"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>游戏逻辑服务器的处理最大模块ID</p>
@@ -1384,7 +1516,7 @@ public short MaxModuleId { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_MinModuleId" data-uid="GameFrameX.StartUp.Options.LauncherOptions.MinModuleId">
   MinModuleId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L236"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L260"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>游戏逻辑服务器的处理最小模块ID</p>
@@ -1417,7 +1549,7 @@ public short MinModuleId { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_MonitorMessageTimeOutSeconds" data-uid="GameFrameX.StartUp.Options.LauncherOptions.MonitorMessageTimeOutSeconds">
   MonitorMessageTimeOutSeconds
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>监控处理器超时时间（秒）,默认值为1秒,只有IsMonitorTimeOut为true时有效</p>
@@ -1450,7 +1582,7 @@ public int MonitorMessageTimeOutSeconds { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_NetWorkSendTimeOutSeconds" data-uid="GameFrameX.StartUp.Options.LauncherOptions.NetWorkSendTimeOutSeconds">
   NetWorkSendTimeOutSeconds
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>网络发送等待超时时间（秒）,默认值为5秒</p>
@@ -1479,11 +1611,44 @@ public int NetWorkSendTimeOutSeconds { get; set; }</code></pre>
 
 
 
+  <a id="GameFrameX_StartUp_Options_LauncherOptions_Note_" data-uid="GameFrameX.StartUp.Options.LauncherOptions.Note*"></a>
+
+  <h3 id="GameFrameX_StartUp_Options_LauncherOptions_Note" data-uid="GameFrameX.StartUp.Options.LauncherOptions.Note">
+  Note
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L347"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>备注信息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Option(&quot;Note&quot;, Default = &quot;&quot;, HelpText = &quot;备注信息&quot;)]
+public string Note { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="GameFrameX_StartUp_Options_LauncherOptions_OuterIp_" data-uid="GameFrameX.StartUp.Options.LauncherOptions.OuterIp*"></a>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_OuterIp" data-uid="GameFrameX.StartUp.Options.LauncherOptions.OuterIp">
   OuterIp
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L191"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L215"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>外部IP</p>
@@ -1516,7 +1681,7 @@ public string OuterIp { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_OuterPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.OuterPort">
   OuterPort
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L198"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L222"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>外部端口</p>
@@ -1545,11 +1710,77 @@ public ushort OuterPort { get; set; }</code></pre>
 
 
 
+  <a id="GameFrameX_StartUp_Options_LauncherOptions_SaveDataBatchCount_" data-uid="GameFrameX.StartUp.Options.LauncherOptions.SaveDataBatchCount*"></a>
+
+  <h3 id="GameFrameX_StartUp_Options_LauncherOptions_SaveDataBatchCount" data-uid="GameFrameX.StartUp.Options.LauncherOptions.SaveDataBatchCount">
+  SaveDataBatchCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>保存数据的批量数量长度,默认为500</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Option(&quot;SaveDataBatchCount&quot;, Default = 500, HelpText = &quot;保存数据的批量数量长度,默认为500&quot;)]
+public int SaveDataBatchCount { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_StartUp_Options_LauncherOptions_SaveDataBatchTimeOut_" data-uid="GameFrameX.StartUp.Options.LauncherOptions.SaveDataBatchTimeOut*"></a>
+
+  <h3 id="GameFrameX_StartUp_Options_LauncherOptions_SaveDataBatchTimeOut" data-uid="GameFrameX.StartUp.Options.LauncherOptions.SaveDataBatchTimeOut">
+  SaveDataBatchTimeOut
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L183"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>保存数据的超时时间(毫秒),默认值为30秒</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Option(&quot;SaveDataBatchTimeOut&quot;, Default = 30000, HelpText = &quot;保存数据的超时时间(毫秒),默认值为30秒&quot;)]
+public int SaveDataBatchTimeOut { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="GameFrameX_StartUp_Options_LauncherOptions_SaveDataInterval_" data-uid="GameFrameX.StartUp.Options.LauncherOptions.SaveDataInterval*"></a>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_SaveDataInterval" data-uid="GameFrameX.StartUp.Options.LauncherOptions.SaveDataInterval">
   SaveDataInterval
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L171"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L171"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>保存数据间隔,单位毫秒,默认300秒(5分钟),最小值为5秒(5000毫秒)</p>
@@ -1582,7 +1813,7 @@ public int SaveDataInterval { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_ServerId" data-uid="GameFrameX.StartUp.Options.LauncherOptions.ServerId">
   ServerId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L157"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L157"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>服务器ID</p>
@@ -1615,7 +1846,7 @@ public int ServerId { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_ServerInstanceId" data-uid="GameFrameX.StartUp.Options.LauncherOptions.ServerInstanceId">
   ServerInstanceId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L164"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>服务器实例ID</p>
@@ -1648,7 +1879,7 @@ public long ServerInstanceId { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_ServerType" data-uid="GameFrameX.StartUp.Options.LauncherOptions.ServerType">
   ServerType
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>服务器类型</p>
@@ -1681,7 +1912,7 @@ public string ServerType { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_TagName" data-uid="GameFrameX.StartUp.Options.LauncherOptions.TagName">
   TagName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L309"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L333"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>标签名称</p>
@@ -1714,7 +1945,7 @@ public string TagName { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_WsPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.WsPort">
   WsPort
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L230"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L254"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>WebSocket 端口</p>
@@ -1747,7 +1978,7 @@ public ushort WsPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_WssCertFilePath" data-uid="GameFrameX.StartUp.Options.LauncherOptions.WssCertFilePath">
   WssCertFilePath
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L254"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L278"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Wss 使用的证书路径</p>
@@ -1780,7 +2011,7 @@ public string WssCertFilePath { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_WssPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.WssPort">
   WssPort
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L248"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L272"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>WebSocket 加密端口</p>
@@ -1817,7 +2048,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckApmPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckApmPort">
   CheckApmPort()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L317"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L362"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查APM监控端口</p>
@@ -1849,7 +2080,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckDataBaseName" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckDataBaseName">
   CheckDataBaseName()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L508"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L553"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查DataBaseName</p>
@@ -1881,7 +2112,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckDataBaseUrl" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckDataBaseUrl">
   CheckDataBaseUrl()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L496"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L541"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查DataBaseUrl</p>
@@ -1913,7 +2144,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckDbIp" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckDbIp">
   CheckDbIp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L544"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L589"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查DBIp</p>
@@ -1945,7 +2176,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckDbPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckDbPort">
   CheckDbPort()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L556"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L601"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查数据库服务连接端口</p>
@@ -1977,7 +2208,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckDiscoveryCenterIp" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckDiscoveryCenterIp">
   CheckDiscoveryCenterIp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L520"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L565"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查DiscoveryCenterIp</p>
@@ -2009,7 +2240,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckDiscoveryCenterPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckDiscoveryCenterPort">
   CheckDiscoveryCenterPort()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L532"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L577"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查DiscoveryCenterPort</p>
@@ -2041,7 +2272,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckHttpPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckHttpPort">
   CheckHttpPort()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L412"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L457"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查HttpPort</p>
@@ -2073,7 +2304,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckHttpUrl" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckHttpUrl">
   CheckHttpUrl()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L389"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L434"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查HttpUrl</p>
@@ -2105,7 +2336,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckHttpsPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckHttpsPort">
   CheckHttpsPort()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L424"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L469"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查HttpsPort</p>
@@ -2137,7 +2368,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckInnerIp" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckInnerIp">
   CheckInnerIp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L341"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L386"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查InnerIp</p>
@@ -2169,7 +2400,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckInnerPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckInnerPort">
   CheckInnerPort()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L353"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L398"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查内部端口</p>
@@ -2201,7 +2432,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckMaxModuleId" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckMaxModuleId">
   CheckMaxModuleId()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L460"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L505"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查MaxModuleId</p>
@@ -2233,7 +2464,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckMinModuleId" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckMinModuleId">
   CheckMinModuleId()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L448"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L493"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查MinModuleId</p>
@@ -2265,7 +2496,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckOuterIp" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckOuterIp">
   CheckOuterIp()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L365"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L410"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查OuterIp</p>
@@ -2297,7 +2528,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckOuterPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckOuterPort">
   CheckOuterPort()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L377"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L422"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查外部端口</p>
@@ -2329,7 +2560,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckServerId" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckServerId">
   CheckServerId()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L329"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L374"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查ServerId</p>
@@ -2361,7 +2592,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckWsPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckWsPort">
   CheckWsPort()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L436"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L481"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查WsPort</p>
@@ -2393,7 +2624,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckWssCertFilePath" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckWssCertFilePath">
   CheckWssCertFilePath()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L484"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L529"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查WssCertFilePath</p>
@@ -2425,7 +2656,7 @@ public ushort WssPort { get; set; }</code></pre>
 
   <h3 id="GameFrameX_StartUp_Options_LauncherOptions_CheckWssPort" data-uid="GameFrameX.StartUp.Options.LauncherOptions.CheckWssPort">
   CheckWssPort()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L472"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L517"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>检查WssPort</p>
@@ -2457,7 +2688,7 @@ public ushort WssPort { get; set; }</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev35/GameFrameX.StartUp/Options/LauncherOptions.cs/#L11" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev36/GameFrameX.StartUp/Options/LauncherOptions.cs/#L11" class="edit-link">Edit this page</a>
         </div>
 
 
