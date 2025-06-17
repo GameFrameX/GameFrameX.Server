@@ -101,7 +101,10 @@ public abstract class BaseComponent : IComponent, IState
     /// <remarks>
     /// 此方法用于异步读取对象的当前状态信息
     /// </remarks>
-    public abstract Task ReadStateAsync();
+    public virtual Task ReadStateAsync()
+    {
+        return Task.CompletedTask;
+    }
 
     /// <summary>
     /// 更新状态
@@ -111,5 +114,8 @@ public abstract class BaseComponent : IComponent, IState
     /// 此方法用于异步更新对象的状态信息
     /// 在状态发生变化时应调用此方法以保持状态的同步
     /// </remarks>
-    public abstract Task WriteStateAsync();
+    public virtual Task WriteStateAsync()
+    {
+        return Task.CompletedTask;
+    }
 }
