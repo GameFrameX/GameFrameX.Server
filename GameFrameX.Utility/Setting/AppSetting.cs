@@ -219,6 +219,16 @@ public sealed class AppSetting
     public int SaveDataBatchTimeOut { get; set; } = 30_000;
 
     /// <summary>
+    /// Actor 执行任务超时时间（毫秒）,默认值为30秒
+    /// </summary>
+    public int ActorTimeOut { get; set; } = 30_000;
+
+    /// <summary>
+    /// Actor 执行任务队列超时时间（毫秒）,默认值为30秒
+    /// </summary>
+    public int ActorQueueTimeOut { get; set; } = 30_000;
+
+    /// <summary>
     /// 内部IP地址
     /// </summary>
     public string InnerIp { get; set; }

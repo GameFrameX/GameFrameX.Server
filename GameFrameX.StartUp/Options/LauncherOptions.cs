@@ -184,6 +184,18 @@ public sealed class LauncherOptions
     public int SaveDataBatchTimeOut { get; set; } = 30_000;
 
     /// <summary>
+    /// Actor 执行任务超时时间(毫秒),默认值为30秒
+    /// </summary>
+    [Option(nameof(ActorTimeOut), Default = 30_000, HelpText = "Actor 执行任务超时时间(毫秒),默认值为30秒")]
+    public int ActorTimeOut { get; set; } = 30_000;
+
+    /// <summary>
+    /// Actor 执行任务队列超时时间(毫秒),默认值为30秒
+    /// </summary>
+    [Option(nameof(ActorQueueTimeOut), Default = 30_000, HelpText = "Actor 执行任务队列超时时间(毫秒),默认值为30秒")]
+    public int ActorQueueTimeOut { get; set; } = 30_000;
+
+    /// <summary>
     /// 内部IP
     /// </summary>
     [Option(nameof(InnerIp), Default = "0.0.0.0", HelpText = "内部IP")]
