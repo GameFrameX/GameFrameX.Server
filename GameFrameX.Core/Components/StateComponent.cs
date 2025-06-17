@@ -8,6 +8,7 @@ using GameFrameX.DataBase.Abstractions;
 using GameFrameX.DataBase.Mongo;
 using GameFrameX.Utility.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Utility.Setting;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -209,11 +210,6 @@ public abstract class StateComponent<TState> : BaseComponent where TState : Base
     #region 仅DBModel.Mongodb调用
 
     /// <summary>
-    /// 单次批量保存的最大数量
-    /// </summary>
-    private const int ONCE_SAVE_COUNT = 500;
-
-    /// <summary>
     /// 保存所有状态数据到数据库
     /// </summary>
     /// <param name="shutdown">是否为关服保存</param>
@@ -262,7 +258,7 @@ public abstract class StateComponent<TState> : BaseComponent where TState : Base
                             writeList.Add(new ReplaceOneModel<BsonDocument>(filter, bsonDoc) { IsUpsert = true, });
                             idList.Add(state.Id);
                         }
-                    }));
+                    }, GlobalSettings.CurrentSetting.SaveDataBatchTimeOut));
                 }
             }
 
@@ -276,9 +272,9 @@ public abstract class StateComponent<TState> : BaseComponent where TState : Base
             LogHelper.Debug($"[StateComp] 状态回存 {stateName} count:{writeList.Count}");
             var currentDatabase = GameDb.As<MongoDbService>().CurrentDatabase;
             var collection = currentDatabase.GetCollection<BsonDocument>(stateName);
-            for (var idx = 0; idx < writeList.Count; idx += ONCE_SAVE_COUNT)
+            for (var idx = 0; idx < writeList.Count; idx += GlobalSettings.CurrentSetting.SaveDataBatchCount)
             {
-                var docs = writeList.GetRange(idx, Math.Min(ONCE_SAVE_COUNT, writeList.Count - idx));
+                var docs = writeList.GetRange(idx, Math.Min(GlobalSettings.CurrentSetting.SaveDataBatchCount, writeList.Count - idx));
                 var ids = idList.GetRange(idx, docs.Count);
 
                 var save = false;
