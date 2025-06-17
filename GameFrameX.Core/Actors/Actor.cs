@@ -15,11 +15,6 @@ namespace GameFrameX.Core.Actors;
 public sealed class Actor : IActor, IDisposable
 {
     /// <summary>
-    /// 默认超时时长,使用int最大值表示无限等待
-    /// </summary>
-    public const int TimeOut = int.MaxValue;
-
-    /// <summary>
     /// 组件映射字典,用于存储当前Actor下的所有组件实例
     /// </summary>
     private readonly ConcurrentDictionary<Type, BaseComponent> _componentsMap = new();
@@ -414,10 +409,15 @@ public sealed class Actor : IActor, IDisposable
     /// 发送无返回值的工作指令到Actor队列
     /// </summary>
     /// <param name="work">要执行的工作内容</param>
-    /// <param name="timeOut">执行超时时间,默认为TimeOut常量值</param>
+    /// <param name="timeOut">执行执行超时时间（毫秒）,默认为-1,将采用配置时间ActorTimeOut</param>
     /// <param name="cancellationToken">取消操作的令牌</param>
-    public void Tell(Action work, int timeOut = TimeOut, CancellationToken cancellationToken = default)
+    public void Tell(Action work, int timeOut = -1, CancellationToken cancellationToken = default)
     {
+        if (timeOut <= 0)
+        {
+            timeOut = GlobalSettings.CurrentSetting.ActorTimeOut;
+        }
+
         WorkerActor.Tell(work, timeOut, cancellationToken);
     }
 
@@ -425,10 +425,15 @@ public sealed class Actor : IActor, IDisposable
     /// 发送异步工作指令到Actor队列
     /// </summary>
     /// <param name="work">要执行的异步工作内容</param>
-    /// <param name="timeOut">执行超时时间,默认为TimeOut常量值</param>
+    /// <param name="timeOut">执行执行超时时间（毫秒）,默认为-1,将采用配置时间ActorTimeOut</param>
     /// <param name="cancellationToken">取消操作的令牌</param>
-    public void Tell(Func<Task> work, int timeOut = TimeOut, CancellationToken cancellationToken = default)
+    public void Tell(Func<Task> work, int timeOut = -1, CancellationToken cancellationToken = default)
     {
+        if (timeOut <= 0)
+        {
+            timeOut = GlobalSettings.CurrentSetting.ActorTimeOut;
+        }
+
         WorkerActor.Tell(work, timeOut, cancellationToken);
     }
 
@@ -446,11 +451,16 @@ public sealed class Actor : IActor, IDisposable
     /// 发送带超时的异步工作指令
     /// </summary>
     /// <param name="work">要执行的工作内容</param>
-    /// <param name="timeout">执行超时时间（毫秒），默认为int.MaxValue</param>
+    /// <param name="timeout">执行超时时间（毫秒）,默认为-1,将采用配置时间ActorTimeOut</param>
     /// <param name="cancellationToken">取消操作的令牌</param>
     /// <returns>返回表示异步操作的Task</returns>
     public Task SendAsync(Action work, int timeout, CancellationToken cancellationToken = default)
     {
+        if (timeout <= 0)
+        {
+            timeout = GlobalSettings.CurrentSetting.ActorTimeOut;
+        }
+
         return WorkerActor.SendAsync(work, timeout, cancellationToken);
     }
 
@@ -459,11 +469,16 @@ public sealed class Actor : IActor, IDisposable
     /// </summary>
     /// <typeparam name="T">返回值类型</typeparam>
     /// <param name="work">要执行的工作内容</param>
-    /// <param name="timeout">超时时间,默认为TimeOut常量值</param>
+    /// <param name="timeout">执行超时时间（毫秒）,默认为-1,将采用配置时间ActorTimeOut</param>
     /// <param name="cancellationToken">取消操作的令牌</param>
     /// <returns>返回指定类型的异步操作结果</returns>
-    public Task<T> SendAsync<T>(Func<T> work, int timeout = TimeOut, CancellationToken cancellationToken = default)
+    public Task<T> SendAsync<T>(Func<T> work, int timeout = -1, CancellationToken cancellationToken = default)
     {
+        if (timeout <= 0)
+        {
+            timeout = GlobalSettings.CurrentSetting.ActorTimeOut;
+        }
+
         return WorkerActor.SendAsync(work, timeout, cancellationToken);
     }
 
@@ -471,12 +486,17 @@ public sealed class Actor : IActor, IDisposable
     /// 发送带锁检查的异步工作指令
     /// </summary>
     /// <param name="work">要执行的异步工作内容</param>
-    /// <param name="timeout">超时时间,默认为TimeOut常量值</param>
+    /// <param name="timeout">执行超时时间（毫秒）,默认为-1,将采用配置时间ActorTimeOut</param>
     /// <param name="checkLock">是否检查锁,默认为true</param>
     /// <param name="cancellationToken">取消操作的令牌</param>
     /// <returns>返回表示异步操作的Task</returns>
-    public Task SendAsync(Func<Task> work, int timeout = TimeOut, bool checkLock = true, CancellationToken cancellationToken = default)
+    public Task SendAsync(Func<Task> work, int timeout = -1, bool checkLock = true, CancellationToken cancellationToken = default)
     {
+        if (timeout <= 0)
+        {
+            timeout = GlobalSettings.CurrentSetting.ActorTimeOut;
+        }
+
         return WorkerActor.SendAsync(work, timeout, checkLock, cancellationToken);
     }
 
@@ -484,11 +504,16 @@ public sealed class Actor : IActor, IDisposable
     /// 发送不检查锁的异步工作指令
     /// </summary>
     /// <param name="work">要执行的异步工作内容</param>
-    /// <param name="timeout">超时时间,默认为TimeOut常量值</param>
+    /// <param name="timeout">执行超时时间（毫秒）,默认为-1,将采用配置时间ActorTimeOut</param>
     /// <param name="cancellationToken">取消操作的令牌</param>
     /// <returns>返回表示异步操作的Task</returns>
-    public Task SendAsyncWithoutCheck(Func<Task> work, int timeout = TimeOut, CancellationToken cancellationToken = default)
+    public Task SendAsyncWithoutCheck(Func<Task> work, int timeout = -1, CancellationToken cancellationToken = default)
     {
+        if (timeout <= 0)
+        {
+            timeout = GlobalSettings.CurrentSetting.ActorTimeOut;
+        }
+
         return WorkerActor.SendAsync(work, timeout, false, cancellationToken);
     }
 
@@ -497,11 +522,16 @@ public sealed class Actor : IActor, IDisposable
     /// </summary>
     /// <typeparam name="T">返回值类型</typeparam>
     /// <param name="work">要执行的异步工作内容</param>
-    /// <param name="timeout">超时时间,默认为TimeOut常量值</param>
+    /// <param name="timeout">执行超时时间（毫秒）,默认为-1,将采用配置时间ActorTimeOut</param>
     /// <param name="cancellationToken">取消操作的令牌</param>
     /// <returns>返回指定类型的异步操作结果</returns>
-    public Task<T> SendAsync<T>(Func<Task<T>> work, int timeout = TimeOut, CancellationToken cancellationToken = default)
+    public Task<T> SendAsync<T>(Func<Task<T>> work, int timeout = -1, CancellationToken cancellationToken = default)
     {
+        if (timeout <= 0)
+        {
+            timeout = GlobalSettings.CurrentSetting.ActorTimeOut;
+        }
+
         return WorkerActor.SendAsync(work, timeout, cancellationToken);
     }
 

@@ -4,6 +4,7 @@ using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Core.Components;
 using GameFrameX.Core.Timer;
 using GameFrameX.Core.Timer.Handler;
+using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Core.Hotfix.Agent;
 
@@ -135,10 +136,15 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// 发送无返回值的工作指令到Actor
     /// </summary>
     /// <param name="work">要执行的工作内容，以Action委托形式传入</param>
-    /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为int.MaxValue</param>
+    /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为-1,将采用配置时间ActorTimeOut</param>
     /// <param name="cancellationToken">取消令牌，用于取消正在执行的操作</param>
-    public void Tell(Action work, int timeout = int.MaxValue, CancellationToken cancellationToken = default)
+    public void Tell(Action work, int timeout = -1, CancellationToken cancellationToken = default)
     {
+        if (timeout <= 0)
+        {
+            timeout = GlobalSettings.CurrentSetting.ActorTimeOut;
+        }
+
         Actor.Tell(work, timeout, cancellationToken);
     }
 
@@ -146,10 +152,15 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// 发送异步工作指令到Actor
     /// </summary>
     /// <param name="work">要执行的异步工作内容，以 Func&lt;Task&gt; 委托形式传入</param>
-    /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为int.MaxValue</param>
+    /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为-1,将采用配置时间ActorTimeOut</param>
     /// <param name="cancellationToken">取消令牌，用于取消正在执行的操作</param>
-    public void Tell(Func<Task> work, int timeout = int.MaxValue, CancellationToken cancellationToken = default)
+    public void Tell(Func<Task> work, int timeout = -1, CancellationToken cancellationToken = default)
     {
+        if (timeout <= 0)
+        {
+            timeout = GlobalSettings.CurrentSetting.ActorTimeOut;
+        }
+
         Actor.Tell(work, timeout, cancellationToken);
     }
 
@@ -157,11 +168,16 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// 异步发送无返回值的工作指令到Actor
     /// </summary>
     /// <param name="work">要执行的工作内容，以Action委托形式传入</param>
-    /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为int.MaxValue</param>
+    /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为-1,将采用配置时间ActorTimeOut</param>
     /// <param name="cancellationToken">取消令牌，用于取消正在执行的操作</param>
     /// <returns>表示异步操作的Task对象</returns>
-    public Task SendAsync(Action work, int timeout = int.MaxValue, CancellationToken cancellationToken = default)
+    public Task SendAsync(Action work, int timeout = -1, CancellationToken cancellationToken = default)
     {
+        if (timeout <= 0)
+        {
+            timeout = GlobalSettings.CurrentSetting.ActorTimeOut;
+        }
+
         return Actor.SendAsync(work, timeout, cancellationToken);
     }
 
@@ -170,11 +186,16 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// </summary>
     /// <typeparam name="T">返回结果的类型</typeparam>
     /// <param name="work">要执行的工作内容，以Func&lt;T&gt;委托形式传入</param>
-    /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为int.MaxValue</param>
+    /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为-1,将采用配置时间ActorTimeOut</param>
     /// <param name="cancellationToken">取消令牌，用于取消正在执行的操作</param>
     /// <returns>包含执行结果的 Task&lt;T&gt; 对象</returns>
-    public Task<T> SendAsync<T>(Func<T> work, int timeout = int.MaxValue, CancellationToken cancellationToken = default)
+    public Task<T> SendAsync<T>(Func<T> work, int timeout = -1, CancellationToken cancellationToken = default)
     {
+        if (timeout <= 0)
+        {
+            timeout = GlobalSettings.CurrentSetting.ActorTimeOut;
+        }
+
         return Actor.SendAsync(work, timeout, cancellationToken);
     }
 
@@ -182,12 +203,17 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// 异步发送有返回值的工作指令到Actor，支持锁检查
     /// </summary>
     /// <param name="work">要执行的异步工作内容，以Func&lt;Task&gt;委托形式传入</param>
-    /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为int.MaxValue</param>
+    /// <param name="timeout">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为-1,将采用配置时间ActorTimeOut</param>
     /// <param name="checkLock">是否检查Actor的锁状态，默认为true</param>
     /// <param name="cancellationToken">取消令牌，用于取消正在执行的操作</param>
     /// <returns>表示异步操作的Task对象</returns>
-    public Task SendAsync(Func<Task> work, int timeout = int.MaxValue, bool checkLock = true, CancellationToken cancellationToken = default)
+    public Task SendAsync(Func<Task> work, int timeout = -1, bool checkLock = true, CancellationToken cancellationToken = default)
     {
+        if (timeout <= 0)
+        {
+            timeout = GlobalSettings.CurrentSetting.ActorTimeOut;
+        }
+
         return Actor.SendAsync(work, timeout, checkLock, cancellationToken);
     }
 
@@ -196,11 +222,16 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     /// </summary>
     /// <typeparam name="T">返回结果的类型</typeparam>
     /// <param name="work">要执行的异步工作内容，以Func&lt;Task&lt;T&gt;&gt;委托形式传入</param>
-    /// <param name="timeOut">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为int.MaxValue</param>
+    /// <param name="timeOut">执行超时时间，如果超过这个时间还未执行完成则会抛出异常，默认为-1,将采用配置时间ActorTimeOut</param>
     /// <param name="cancellationToken">取消令牌，用于取消正在执行的操作</param>
     /// <returns>包含执行结果的 Task&lt;T&gt; 对象</returns>
-    public Task<T> SendAsync<T>(Func<Task<T>> work, int timeOut = int.MaxValue, CancellationToken cancellationToken = default)
+    public Task<T> SendAsync<T>(Func<Task<T>> work, int timeOut = -1, CancellationToken cancellationToken = default)
     {
+        if (timeOut <= 0)
+        {
+            timeOut = GlobalSettings.CurrentSetting.ActorTimeOut;
+        }
+
         return Actor.SendAsync(work, timeOut, cancellationToken);
     }
 
