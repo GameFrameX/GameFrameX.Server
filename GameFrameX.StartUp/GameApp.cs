@@ -50,6 +50,7 @@ public static class GameApp
             environmentVariablesList.Add(environmentVariable.Value.ToString());
         }
 
+        LogHelper.Console(string.Join("\n", environmentVariablesList));
         LogHelper.Console("当前环境变量END---------------------");
         LogHelper.Console(string.Empty);
         LogHelper.Console(string.Empty);
