@@ -209,6 +209,16 @@ public sealed class AppSetting
     public int SaveDataInterval { get; set; } = 300_000;
 
     /// <summary>
+    /// 保存数据的批量数量长度，默认为500
+    /// </summary>
+    public int SaveDataBatchCount { get; set; } = 500;
+
+    /// <summary>
+    /// 保存数据的超时时间（毫秒）,默认值为30秒
+    /// </summary>
+    public int SaveDataBatchTimeOut { get; set; } = 30_000;
+
+    /// <summary>
     /// 内部IP地址
     /// </summary>
     public string InnerIp { get; set; }

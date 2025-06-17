@@ -172,6 +172,18 @@ public sealed class LauncherOptions
     public int SaveDataInterval { get; set; }
 
     /// <summary>
+    /// 保存数据的批量数量长度,默认为500
+    /// </summary>
+    [Option(nameof(SaveDataBatchCount), Default = 500, HelpText = "保存数据的批量数量长度,默认为500")]
+    public int SaveDataBatchCount { get; set; } = 500;
+
+    /// <summary>
+    /// 保存数据的超时时间(毫秒),默认值为30秒
+    /// </summary>
+    [Option(nameof(SaveDataBatchTimeOut), Default = 30_000, HelpText = "保存数据的超时时间(毫秒),默认值为30秒")]
+    public int SaveDataBatchTimeOut { get; set; } = 30_000;
+
+    /// <summary>
     /// 内部IP
     /// </summary>
     [Option(nameof(InnerIp), Default = "0.0.0.0", HelpText = "内部IP")]
