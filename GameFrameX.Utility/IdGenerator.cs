@@ -50,15 +50,4 @@ public static class IdGenerator
     {
         return Guid.NewGuid().ToString("N");
     }
-
-    /// <summary>
-    /// 静态构造函数，初始化雪花算法的ID生成器
-    /// </summary>
-    static IdGenerator()
-    {
-        // 创建ID生成器配置，WorkerId设为0
-        var options = new IdGeneratorOptions(0);
-        // 初始化雪花算法ID生成器
-        YitIdHelper.SetIdGenerator(options);
-    }
 }
