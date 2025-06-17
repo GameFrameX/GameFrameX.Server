@@ -77,7 +77,7 @@ public interface IActor : IWorker
     /// 并获取它们对应的代理实例。这个方法通常用于需要批量处理或遍历所有活跃组件的场景。
     /// </remarks>
     /// <returns>返回包含所有已激活组件代理实例的列表</returns>
-    public List<IComponentAgent> GetActiveComponentAgents();
+    List<IComponentAgent> GetActiveComponentAgents();
 
     /// <summary>
     /// 设置自动回收标记
@@ -152,7 +152,7 @@ public interface IActor : IWorker
     /// - 断开网络连接等
     /// </remarks>
     /// <returns>表示异步操作的任务</returns>
-    internal Task OnRecycle();
+    Task OnRecycle();
 
     /// <summary>
     /// 添加一个在Actor回收时执行一次的回调事件
