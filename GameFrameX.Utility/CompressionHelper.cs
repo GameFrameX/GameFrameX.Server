@@ -1,6 +1,5 @@
 ﻿using System.Buffers;
 using GameFrameX.Foundation.Logger;
-using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Zip.Compression;
 
 namespace GameFrameX.Utility;
