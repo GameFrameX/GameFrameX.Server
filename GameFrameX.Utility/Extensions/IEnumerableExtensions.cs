@@ -228,13 +228,13 @@ public static class IEnumerableExtensions
     /// 向集合中添加多个元素
     /// </summary>
     /// <typeparam name="T">集合中的元素类型</typeparam>
-    /// <param name="slef">要添加元素的集合</param>
+    /// <param name="self">要添加元素的集合</param>
     /// <param name="values">要添加的元素数组</param>
-    public static void AddRange<T>(this ICollection<T> slef, params T[] values)
+    public static void AddRange<T>(this ICollection<T> self, params T[] values)
     {
         foreach (var obj in values)
         {
-            slef.Add(obj);
+            self.Add(obj);
         }
     }
 
