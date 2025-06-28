@@ -199,28 +199,28 @@ public sealed class LauncherOptions
     /// 内部IP
     /// </summary>
     [Option(nameof(InnerIp), Default = "0.0.0.0", HelpText = "内部IP")]
-    [GrafanaLokiLabelTag]
+    // [GrafanaLokiLabelTag]
     public string InnerIp { get; set; }
 
     /// <summary>
     /// 内部端口
     /// </summary>
     [Option(nameof(InnerPort), HelpText = "内部端口")]
-    [GrafanaLokiLabelTag]
+    // [GrafanaLokiLabelTag]
     public ushort InnerPort { get; set; }
 
     /// <summary>
     /// 外部IP
     /// </summary>
     [Option(nameof(OuterIp), Default = "0.0.0.0", HelpText = "外部IP")]
-    [GrafanaLokiLabelTag]
+    // [GrafanaLokiLabelTag]
     public string OuterIp { get; set; }
 
     /// <summary>
     /// 外部端口
     /// </summary>
     [Option(nameof(OuterPort), HelpText = "外部端口")]
-    [GrafanaLokiLabelTag]
+    // [GrafanaLokiLabelTag]
     public ushort OuterPort { get; set; }
 
     /// <summary>
@@ -239,7 +239,7 @@ public sealed class LauncherOptions
     /// HTTP 是否是开发模式,当是开发模式的时候将会启用Swagger
     /// </summary>
     [Option(nameof(HttpIsDevelopment), Default = false, HelpText = "HTTP 是否是开发模式,当是开发模式的时候将会启用Swagger")]
-    [GrafanaLokiLabelTag]
+    // [GrafanaLokiLabelTag]
     public bool HttpIsDevelopment { get; set; }
 
     /// <summary>
