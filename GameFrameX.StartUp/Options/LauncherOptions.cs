@@ -226,7 +226,7 @@ public sealed class LauncherOptions
     /// <summary>
     /// 雪花ID的工作ID
     /// </summary>
-    [Option(nameof(WorkerId), Default = 0, HelpText = "雪花ID的工作ID,默认为0,表示自动分配")]
+    [Option(nameof(WorkerId), HelpText = "雪花ID的工作ID,默认为0,表示自动分配")]
     public ushort WorkerId { get; set; }
 
     /// <summary>
