@@ -56,7 +56,13 @@ public static class GameApp
         LogHelper.Console(string.Empty);
         var commandLineParser = new Parser(configuration => { configuration.IgnoreUnknownArguments = true; });
 
-        var launcherOptions = commandLineParser.ParseArguments<LauncherOptions>(environmentVariablesList).WithParsed(LauncherOptionsValidate)?.Value;
+        var launcherOptions = commandLineParser.ParseArguments<LauncherOptions>(environmentVariablesList).WithParsed(LauncherOptionsValidate).WithNotParsed(errors =>
+        {
+            foreach (var error in errors)
+            {
+                LogHelper.ErrorConsole(error.Tag + ": " + error);
+            }
+        })?.Value;
         var serverType = launcherOptions?.ServerType;
         if (!serverType.IsNullOrEmpty())
         {
