@@ -8,6 +8,32 @@ namespace GameFrameX.NetWork.Abstractions;
 public interface INetWorkChannel
 {
     /// <summary>
+    /// 发送字节长度 - 记录通过此通道发送的总字节数
+    /// </summary>
+    ulong SendBytesLength { get; }
+
+    /// <summary>
+    /// 发送数据包长度 - 记录通过此通道发送的数据包总数
+    /// </summary>
+    ulong SendPacketLength { get; }
+
+    /// <summary>
+    /// 接收字节长度 - 记录通过此通道接收的总字节数
+    /// </summary>
+    ulong ReceiveBytesLength { get; }
+
+    /// <summary>
+    /// 接收数据包长度 - 记录通过此通道接收的数据包总数
+    /// </summary>
+    ulong ReceivePacketLength { get; }
+
+    /// <summary>
+    /// 更新接收数据包字节长度
+    /// </summary>
+    /// <param name="bufferLength">接收数据包字节长度</param>
+    void UpdateReceivePacketBytesLength(ulong bufferLength);
+
+    /// <summary>
     /// 应用会话对象
     /// </summary>
     IGameAppSession GameAppSession { get; }

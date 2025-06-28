@@ -11,7 +11,7 @@ namespace GameFrameX.NetWork;
 /// <summary>
 /// 基础网络通道
 /// </summary>
-public class BaseNetWorkChannel : INetWorkChannel
+public abstract class BaseNetWorkChannel : INetWorkChannel
 {
     /// <summary>
     /// WebSocket会话
@@ -21,7 +21,7 @@ public class BaseNetWorkChannel : INetWorkChannel
     /// <summary>
     /// 关闭源
     /// </summary>
-    protected readonly CancellationTokenSource CancellationTokenSource = new();
+    protected readonly CancellationTokenSource CancellationTokenSource = new CancellationTokenSource();
 
     /// <summary>
     /// 网络发送超时时间,单位秒
@@ -37,11 +37,15 @@ public class BaseNetWorkChannel : INetWorkChannel
     /// <param name="isWebSocket"></param>
     public BaseNetWorkChannel(IGameAppSession session, AppSetting setting, IRpcSession rpcSession, bool isWebSocket)
     {
-        setting.CheckNotNull(nameof(setting));
+        ArgumentNullException.ThrowIfNull(setting, nameof(setting));
         GameAppSession = session;
         IsWebSocket = isWebSocket;
         Setting = setting;
         RpcSession = rpcSession;
+        SendPacketLength = default;
+        SendBytesLength = default;
+        ReceivePacketLength = default;
+        ReceiveBytesLength = default;
         NetWorkSendTimeOutSecondsTimeSpan = TimeSpan.FromSeconds(Setting.NetWorkSendTimeOutSeconds);
         if (isWebSocket)
         {
@@ -58,6 +62,36 @@ public class BaseNetWorkChannel : INetWorkChannel
     /// 设置
     /// </summary>
     public AppSetting Setting { get; }
+
+    /// <summary>
+    /// 发送字节长度 - 记录通过此通道发送的总字节数
+    /// </summary>
+    public ulong SendBytesLength { get; private set; }
+
+    /// <summary>
+    /// 发送数据包长度 - 记录通过此通道发送的数据包总数
+    /// </summary>
+    public ulong SendPacketLength { get; private set; }
+
+    /// <summary>
+    /// 接收字节长度 - 记录通过此通道接收的总字节数
+    /// </summary>
+    public ulong ReceiveBytesLength { get; private set; }
+
+    /// <summary>
+    /// 接收数据包长度 - 记录通过此通道接收的数据包总数
+    /// </summary>
+    public ulong ReceivePacketLength { get; private set; }
+
+    /// <summary>
+    /// 更新接收数据包字节长度
+    /// </summary>
+    /// <param name="bufferLength">接收数据包字节长度</param>
+    public void UpdateReceivePacketBytesLength(ulong bufferLength)
+    {
+        ReceivePacketLength++;
+        ReceiveBytesLength += bufferLength;
+    }
 
     /// <summary>
     /// 会话
@@ -108,6 +142,8 @@ public class BaseNetWorkChannel : INetWorkChannel
             return;
         }
 
+        SendBytesLength += ((ulong)messageData.Length);
+        SendPacketLength++;
         using (var cancellationTokenSource = new CancellationTokenSource(NetWorkSendTimeOutSecondsTimeSpan))
         {
             try
@@ -152,8 +188,7 @@ public class BaseNetWorkChannel : INetWorkChannel
 
     #region Data
 
-    private readonly ConcurrentDictionary<string, object> _userDataKv = new();
-
+    private readonly ConcurrentDictionary<string, object> _userDataKv = new ConcurrentDictionary<string, object>();
 
     /// <summary>
     /// 获取用户数据对象.
@@ -179,6 +214,10 @@ public class BaseNetWorkChannel : INetWorkChannel
     public void ClearData()
     {
         _userDataKv.Clear();
+        SendPacketLength = default;
+        SendBytesLength = default;
+        ReceivePacketLength = default;
+        ReceiveBytesLength = default;
     }
 
     /// <summary>
