@@ -55,7 +55,6 @@ public abstract class MessageObject : INetworkMessage
     [JsonIgnore]
     public int UniqueId { get; set; }
 
-
     /// <summary>
     /// 更新唯一消息ID
     /// </summary>
@@ -76,10 +75,11 @@ public abstract class MessageObject : INetworkMessage
     /// <summary>
     /// 获取格式化后的消息字符串
     /// </summary>
-    /// <returns></returns>
-    public string ToFormatMessageString()
+    /// <param name="actorId">ActorId</param>
+    /// <returns>格式化后的消息字符串</returns>
+    public string ToFormatMessageString(long actorId = default)
     {
-        return MessageObjectLoggerHelper.FormatMessage(MessageId, OperationType, UniqueId, this);
+        return MessageObjectLoggerHelper.FormatMessage(MessageId, OperationType, UniqueId, this, actorId);
     }
 
     /// <summary>

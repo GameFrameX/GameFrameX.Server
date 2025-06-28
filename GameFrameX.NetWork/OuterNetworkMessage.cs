@@ -58,14 +58,14 @@ public sealed class OuterNetworkMessage : IOuterNetworkMessage
         MessageData = messageData;
     }
 
-
     /// <summary>
     /// 获取格式化后的消息字符串
     /// </summary>
-    /// <returns></returns>
-    public string ToFormatMessageString()
+    /// <param name="actorId">ActorId</param>
+    /// <returns>格式化后的消息字符串</returns>
+    public string ToFormatMessageString(long actorId = default)
     {
-        return MessageObjectLoggerHelper.FormatMessage(Header.MessageId, Header.OperationType, Header.UniqueId, DeserializeMessageObject());
+        return MessageObjectLoggerHelper.FormatMessage(Header.MessageId, Header.OperationType, Header.UniqueId, DeserializeMessageObject(), actorId);
     }
 
     /// <summary>

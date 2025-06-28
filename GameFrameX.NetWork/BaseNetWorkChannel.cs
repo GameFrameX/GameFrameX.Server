@@ -87,18 +87,19 @@ public class BaseNetWorkChannel : INetWorkChannel
         var messageData = MessageHelper.EncoderHandler.Handler(messageObject);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
+            var actorId = GetData<long>(GlobalConst.ActorIdKey);
             // 判断是否是心跳消息
             if (messageObject is IHeartBeatMessage)
             {
                 // 判断是否打印心跳消息的发送
                 if (Setting.IsDebugSendHeartBeat)
                 {
-                    LogHelper.Debug($"---发送{messageObject.ToFormatMessageString()}");
+                    LogHelper.Debug($"---发送{messageObject.ToFormatMessageString(actorId)}");
                 }
             }
             else
             {
-                LogHelper.Debug($"---发送{messageObject.ToFormatMessageString()}");
+                LogHelper.Debug($"---发送{messageObject.ToFormatMessageString(actorId)}");
             }
         }
 

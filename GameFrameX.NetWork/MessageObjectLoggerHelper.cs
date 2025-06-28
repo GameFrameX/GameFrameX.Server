@@ -25,8 +25,9 @@ public static class MessageObjectLoggerHelper
     /// <param name="operationType">操作类型</param>
     /// <param name="uniqueId">唯一标识ID</param>
     /// <param name="messageObject">网络消息对象</param>
+    /// <param name="actorId"></param>
     /// <returns>格式化后的消息字符串</returns>
-    public static string FormatMessage(int messageId, MessageOperationType operationType, int uniqueId, INetworkMessage messageObject)
+    public static string FormatMessage(int messageId, MessageOperationType operationType, int uniqueId, INetworkMessage messageObject, long actorId)
     {
         try
         {
@@ -49,6 +50,8 @@ public static class MessageObjectLoggerHelper
                 stringBuilder.Append($"--UniqueId:[{uniqueId.ToString().CenterAlignedText(13)}]---");
                 // 消息的内容 分割
                 stringBuilder.AppendLine();
+                // 消息的ActorId内容
+                stringBuilder.AppendLine(actorId.ToString().CenterAlignedText(140));
                 // 消息内容
                 stringBuilder.AppendLine($"{messageObject.ToJsonString()}");
                 // 向上的箭头
@@ -59,7 +62,7 @@ public static class MessageObjectLoggerHelper
             }
 
             // 非控制台输出模式下，将消息序列化为JSON格式
-            var messageObjectLogObject = new MessageObjectLogObject(messageObject.GetType().Name, messageId, operationType, uniqueId, messageObject);
+            var messageObjectLogObject = new MessageObjectLogObject(messageObject.GetType().Name, messageId, operationType, uniqueId, messageObject, actorId);
             var json = JsonHelper.Serialize(messageObjectLogObject);
             return json;
         }

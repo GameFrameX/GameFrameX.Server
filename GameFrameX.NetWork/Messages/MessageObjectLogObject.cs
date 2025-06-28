@@ -21,19 +21,26 @@ public sealed class MessageObjectLogObject
     /// <param name="operationType"></param>
     /// <param name="uniqueId"></param>
     /// <param name="messageObject"></param>
-    public MessageObjectLogObject(string name, int messageId, MessageOperationType operationType, int uniqueId, INetworkMessage messageObject)
+    /// <param name="actorId"></param>
+    public MessageObjectLogObject(string name, int messageId, MessageOperationType operationType, int uniqueId, INetworkMessage messageObject, long actorId)
     {
         MessageType = name;
         MessageId = messageId;
         OpType = operationType;
         UniqueId = uniqueId;
         Data = messageObject;
+        ActorId = actorId;
     }
 
     /// <summary>
     /// 消息类型
     /// </summary>
     public string MessageType { get; set; }
+
+    /// <summary>
+    /// ActorId
+    /// </summary>
+    public long ActorId { get; set; }
 
     /// <summary>
     /// 消息ID

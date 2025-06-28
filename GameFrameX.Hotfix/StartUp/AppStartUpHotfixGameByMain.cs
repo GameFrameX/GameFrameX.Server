@@ -47,7 +47,7 @@ internal partial class AppStartUpHotfixGame
     protected override async ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
-        var netChannel = new DefaultNetWorkChannel(appSession, Setting,  null, appSession is WebSocketSession);
+        var netChannel = new DefaultNetWorkChannel(appSession, Setting, null, appSession is WebSocketSession);
         var count = SessionManager.Count();
         if (count > Setting.MaxClientCount)
         {
@@ -77,11 +77,12 @@ internal partial class AppStartUpHotfixGame
                 return;
             }
 
+            var actorId = netWorkChannel.GetData<long>(GlobalConst.ActorIdKey);
             if (outerNetworkMessage.Header.OperationType == MessageOperationType.HeartBeat)
             {
                 if (Setting.IsDebug && Setting.IsDebugReceive && Setting.IsDebugReceiveHeartBeat)
                 {
-                    LogHelper.Debug($"---收到{outerNetworkMessage.ToFormatMessageString()}");
+                    LogHelper.Debug($"---收到{outerNetworkMessage.ToFormatMessageString(actorId)}");
                 }
 
                 // 心跳消息回复
@@ -91,7 +92,7 @@ internal partial class AppStartUpHotfixGame
 
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
-                LogHelper.Debug($"---收到{outerNetworkMessage.ToFormatMessageString()}");
+                LogHelper.Debug($"---收到{outerNetworkMessage.ToFormatMessageString(actorId)}");
             }
 
             var handler = HotfixManager.GetTcpHandler(outerNetworkMessage.Header.MessageId);
