@@ -1,5 +1,6 @@
 ﻿using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Actors;
+using GameFrameX.Foundation.Logger;
 using GameFrameX.NetWork.Abstractions;
 
 namespace GameFrameX.Core.BaseHandler;
@@ -42,6 +43,13 @@ public abstract class BaseComponentHandler : BaseMessageHandler
         await InitActor();
         if (CacheComponent == null)
         {
+            if (ActorId == default)
+            {
+                LogHelper.Fatal($"ActorId is 0, can not get component，{message.GetType().FullName}, close channel");
+                NetWorkChannel.Close();
+                return;
+            }
+
             CacheComponent = await ActorManager.GetComponentAgent(ActorId, ComponentAgentType);
             // LogHelper.Info(CacheComp);
         }
@@ -55,6 +63,13 @@ public abstract class BaseComponentHandler : BaseMessageHandler
     /// <returns>内部执行任务</returns>
     public override Task InnerAction(int timeout = 30000, CancellationToken cancellationToken = default)
     {
+        if (CacheComponent == null)
+        {
+            LogHelper.Fatal("CacheComponent is null, can not get component, close channel");
+            NetWorkChannel.Close();
+            return Task.CompletedTask;
+        }
+
         CacheComponent.Tell(InnerActionAsync, timeout, cancellationToken);
         return Task.CompletedTask;
     }
@@ -66,6 +81,13 @@ public abstract class BaseComponentHandler : BaseMessageHandler
     /// <returns>组件代理任务</returns>
     protected Task<TOtherAgent> GetComponentAgent<TOtherAgent>() where TOtherAgent : IComponentAgent
     {
+        if (CacheComponent == null)
+        {
+            LogHelper.Fatal("CacheComponent is null, can not get component, close channel");
+            NetWorkChannel.Close();
+            return default;
+        }
+
         return CacheComponent.GetComponentAgent<TOtherAgent>();
     }
 }
