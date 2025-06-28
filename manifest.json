@@ -2014,6 +2014,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.MessageObjectLoggerHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.MessageObjectLoggerHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.NetWork.MessageObjectLoggerHelper",
+      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.MessageObjectLoggerHelper.yml\" sourcestartlinenumber=\"1\">消息对象日志帮助类</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.NetWork.Messages.CommandInfo.yml",
       "output": {
         ".html": {
@@ -2067,6 +2081,20 @@
       "IsMRef": true,
       "Title": "GameFrameX.NetWork.Messages.MessageObjectHeader",
       "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Messages.MessageObjectHeader.yml\" sourcestartlinenumber=\"1\">消息对象头</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.Messages.MessageObjectLogObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.Messages.MessageObjectLogObject.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.NetWork.Messages.MessageObjectLogObject",
+      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Messages.MessageObjectLogObject.yml\" sourcestartlinenumber=\"1\">消息对象日志</p>\n"
     },
     {
       "type": "ManagedReference",
