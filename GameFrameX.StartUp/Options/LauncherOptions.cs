@@ -365,7 +365,7 @@ public sealed class LauncherOptions
     /// 检查APM监控端口
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckApmPort()
+    internal void CheckApmPort()
     {
         if (APMPort <= 10000 || APMPort >= ushort.MaxValue)
         {
@@ -377,7 +377,7 @@ public sealed class LauncherOptions
     /// 检查ServerId
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckServerId()
+    internal void CheckServerId()
     {
         if (ServerId <= 0)
         {
@@ -389,7 +389,7 @@ public sealed class LauncherOptions
     /// 检查InnerIp
     /// </summary>
     /// <exception cref="ArgumentNullException"></exception>
-    public void CheckInnerIp()
+    internal void CheckInnerIp()
     {
         if (string.IsNullOrWhiteSpace(InnerIp))
         {
@@ -401,7 +401,7 @@ public sealed class LauncherOptions
     /// 检查内部端口
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckInnerPort()
+    internal void CheckInnerPort()
     {
         if (InnerPort <= 10000 || InnerPort >= ushort.MaxValue)
         {
@@ -413,7 +413,7 @@ public sealed class LauncherOptions
     /// 检查OuterIp
     /// </summary>
     /// <exception cref="ArgumentNullException"></exception>
-    public void CheckOuterIp()
+    internal void CheckOuterIp()
     {
         if (string.IsNullOrWhiteSpace(OuterIp))
         {
@@ -425,7 +425,7 @@ public sealed class LauncherOptions
     /// 检查外部端口
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckOuterPort()
+    internal void CheckOuterPort()
     {
         if (OuterPort <= 10000 || OuterPort >= ushort.MaxValue)
         {
@@ -437,7 +437,7 @@ public sealed class LauncherOptions
     /// 检查HttpUrl
     /// </summary>
     /// <exception cref="ArgumentNullException"></exception>
-    public void CheckHttpUrl()
+    internal void CheckHttpUrl()
     {
         if (HttpUrl.IsNullOrEmptyOrWhiteSpace())
         {
@@ -460,7 +460,7 @@ public sealed class LauncherOptions
     /// 检查HttpPort
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckHttpPort()
+    internal void CheckHttpPort()
     {
         if (HttpPort <= 10000 || HttpPort >= ushort.MaxValue)
         {
@@ -472,7 +472,7 @@ public sealed class LauncherOptions
     /// 检查HttpsPort
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckHttpsPort()
+    internal void CheckHttpsPort()
     {
         if (HttpsPort <= 10000 || HttpsPort >= ushort.MaxValue)
         {
@@ -484,7 +484,7 @@ public sealed class LauncherOptions
     /// 检查WsPort
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckWsPort()
+    internal void CheckWsPort()
     {
         if (WsPort <= 10000 || WsPort >= ushort.MaxValue)
         {
@@ -496,7 +496,7 @@ public sealed class LauncherOptions
     /// 检查MinModuleId
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckMinModuleId()
+    internal void CheckMinModuleId()
     {
         if (MinModuleId <= 0 || MinModuleId >= short.MaxValue - 10)
         {
@@ -508,7 +508,7 @@ public sealed class LauncherOptions
     /// 检查MaxModuleId
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckMaxModuleId()
+    internal void CheckMaxModuleId()
     {
         if (MaxModuleId <= 0 || MaxModuleId >= short.MaxValue - 10)
         {
@@ -520,7 +520,7 @@ public sealed class LauncherOptions
     /// 检查WssPort
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckWssPort()
+    internal void CheckWssPort()
     {
         if (WssPort <= 10000 || WssPort >= ushort.MaxValue)
         {
@@ -532,7 +532,7 @@ public sealed class LauncherOptions
     /// 检查WssCertFilePath
     /// </summary>
     /// <exception cref="ArgumentNullException"></exception>
-    public void CheckWssCertFilePath()
+    internal void CheckWssCertFilePath()
     {
         if (string.IsNullOrWhiteSpace(WssCertFilePath))
         {
@@ -544,7 +544,7 @@ public sealed class LauncherOptions
     /// 检查DataBaseUrl
     /// </summary>
     /// <exception cref="ArgumentNullException"></exception>
-    public void CheckDataBaseUrl()
+    internal void CheckDataBaseUrl()
     {
         if (string.IsNullOrWhiteSpace(DataBaseUrl))
         {
@@ -556,7 +556,7 @@ public sealed class LauncherOptions
     /// 检查DataBaseName
     /// </summary>
     /// <exception cref="ArgumentNullException"></exception>
-    public void CheckDataBaseName()
+    internal void CheckDataBaseName()
     {
         if (string.IsNullOrWhiteSpace(DataBaseName))
         {
@@ -568,7 +568,7 @@ public sealed class LauncherOptions
     /// 检查DiscoveryCenterIp
     /// </summary>
     /// <exception cref="ArgumentNullException"></exception>
-    public void CheckDiscoveryCenterIp()
+    internal void CheckDiscoveryCenterIp()
     {
         if (string.IsNullOrWhiteSpace(DiscoveryCenterIp))
         {
@@ -580,7 +580,7 @@ public sealed class LauncherOptions
     /// 检查DiscoveryCenterPort
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckDiscoveryCenterPort()
+    internal void CheckDiscoveryCenterPort()
     {
         if (DiscoveryCenterPort <= 10000 || DiscoveryCenterPort >= ushort.MaxValue)
         {
@@ -592,7 +592,7 @@ public sealed class LauncherOptions
     /// 检查DBIp
     /// </summary>
     /// <exception cref="ArgumentNullException"></exception>
-    public void CheckDbIp()
+    internal void CheckDbIp()
     {
         if (string.IsNullOrWhiteSpace(DBIp))
         {
@@ -604,7 +604,7 @@ public sealed class LauncherOptions
     /// 检查数据库服务连接端口
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void CheckDbPort()
+    internal void CheckDbPort()
     {
         if (DBPort <= 10000 || DBPort >= ushort.MaxValue)
         {
