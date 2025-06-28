@@ -7,7 +7,7 @@ namespace GameFrameX.NetWork;
 /// <summary>
 /// 默认网络通道
 /// </summary>
-public class DefaultNetWorkChannel : BaseNetWorkChannel
+public sealed class DefaultNetWorkChannel : BaseNetWorkChannel
 {
     /// <summary>
     /// 初始化
