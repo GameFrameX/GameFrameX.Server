@@ -24,11 +24,6 @@ public abstract class MessageObject : INetworkMessage
     {
         UpdateUniqueId();
     }
-    /*/// <summary>
-    /// 单位id
-    /// </summary>
-    [JsonIgnore]
-    public int UniId { get; set; }*/
 
     /// <summary>
     /// 消息ID
