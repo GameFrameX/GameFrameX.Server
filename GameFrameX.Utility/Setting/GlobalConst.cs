@@ -123,17 +123,17 @@ public static class GlobalConst
     public const ushort ActorTypePlayer = 1;
 
     /// <summary>
-    /// 分割线(勿调整,勿用于业务逻辑)
+    /// Actor类型-分割线(勿调整,勿用于业务逻辑)
     /// </summary>
     public const int ActorTypeSeparator = 128;
 
     /// <summary>
-    /// 服务类型
+    /// 服务器系统的Actor类型
     /// </summary>
     public const int ActorTypeServer = 129;
 
     /// <summary>
-    /// 最大值
+    /// Actor类型的最大值
     /// </summary>
     public const int ActorTypeMax = 999;
 
