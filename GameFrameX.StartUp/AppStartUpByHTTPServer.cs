@@ -193,7 +193,7 @@ public abstract partial class AppStartUpBase
 
                 // 注册POST路由
                 var apiPath = $"{GlobalSettings.CurrentSetting.HttpUrl}{mappingAttribute.StandardCmd}";
-                var route = app.MapPost(apiPath, async (HttpContext context, string text) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
+                var route = app.MapPost(apiPath, async (HttpContext context, string _) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
 
                 // 开发环境下配置API文档
                 if (development)
