@@ -5,6 +5,7 @@ using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Message;
+using GameFrameX.StartUp.Extensions;
 using GameFrameX.StartUp.Options;
 using GameFrameX.SuperSocket.Connection;
 using GameFrameX.SuperSocket.Primitives;
@@ -235,50 +236,18 @@ public abstract partial class AppStartUpBase
         // await StartHttpServerAsync(hostBuilder,baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
         await StartHttpServer(baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
 
-        // 配置监控和跟踪
-        if (Setting.IsOpenTelemetry)
+        // 启动独立的指标服务器（如果配置了独立端口）
+        var metricsServer = await OpenTelemetryExtensions.CreateMetricsServerAsync(Setting, "TCP");
+        if (metricsServer is not null)
         {
-            multipleServerHostBuilder.ConfigureServices(services =>
-            {
-                var builder = services.AddOpenTelemetry()
-                                      .ConfigureResource(configure => { configure.AddService(Setting.ServerName + "-" + Setting.TagName, "GameFrameX").AddTelemetrySdk(); });
-                if (Setting.IsOpenTelemetryMetrics)
-                {
-                    builder.WithMetrics(configure =>
-                    {
-                        configure.AddAspNetCoreInstrumentation();
-                        if (EnvironmentHelper.IsDevelopment())
-                        {
-                            configure.AddConsoleExporter();
-                        }
-
-                        // Metrics provides by ASP.NET Core in .NET 8
-                        configure.AddMeter("Microsoft.AspNetCore.Hosting");
-                        configure.AddMeter("Microsoft.AspNetCore.Server.Kestrel");
-                        // Metrics provided by System.Net libraries
-                        configure.AddMeter("System.Net.Http");
-                        configure.AddMeter("System.Net.NameResolution");
-                        configure.AddPrometheusExporter();
-                    });
-                }
-
-                if (Setting.IsOpenTelemetryTracing)
-                {
-                    builder.WithTracing(configure =>
-                    {
-                        configure.AddAspNetCoreInstrumentation();
-                        configure.AddHttpClientInstrumentation();
-                        configure.AddSource("GameFrameX." + Setting.ServerName + "." + Setting.TagName);
-                        if (EnvironmentHelper.IsDevelopment())
-                        {
-                            configure.AddConsoleExporter();
-                        }
-                    });
-                }
-
-                builder.UseGrafana();
-            });
+            LogHelper.InfoConsole($"独立指标服务器已启动在端口 {Setting.MetricsPort}");
         }
+
+        // 配置监控和跟踪
+        multipleServerHostBuilder.ConfigureServices(services =>
+        {
+            services.AddGameFrameXOpenTelemetry(Setting);
+        });
 
         // 配置日志
         multipleServerHostBuilder.ConfigureLogging(logging =>
@@ -286,10 +255,7 @@ public abstract partial class AppStartUpBase
             logging.ClearProviders();
             logging.AddSerilog(Log.Logger, true);
             logging.SetMinimumLevel(minimumLevelLogLevel);
-            if (Setting.IsOpenTelemetry)
-            {
-                logging.AddOpenTelemetry(configure => { configure.UseGrafana(); });
-            }
+            logging.AddGameFrameXOpenTelemetryLogging(Setting);
         });
 
         using var tracerProvider = Sdk.CreateTracerProviderBuilder()

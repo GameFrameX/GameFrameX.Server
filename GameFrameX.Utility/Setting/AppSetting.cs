@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using GameFrameX.Foundation.Json;
 using GameFrameX.Foundation.Logger;
 
@@ -272,6 +272,11 @@ public sealed class AppSetting
     /// HTTPS端口
     /// </summary>
     public ushort HttpsPort { get; set; }
+
+    /// <summary>
+    /// Prometheus指标端口（如果为0则使用HTTP端口）
+    /// </summary>
+    public ushort MetricsPort { get; set; }
 
     /// <summary>
     /// WebSocket端口

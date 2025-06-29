@@ -2,6 +2,7 @@ using System.Net;
 using System.Reflection;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.NetWork.HTTP;
+using GameFrameX.StartUp.Extensions;
 using GameFrameX.SuperSocket.Server;
 using GameFrameX.SuperSocket.Server.Abstractions;
 using GameFrameX.Utility;
@@ -93,48 +94,7 @@ public abstract partial class AppStartUpBase
             if (Setting.IsOpenTelemetry)
             {
                 // 配置OpenTelemetry服务
-                hostBuilder.ConfigureServices(services =>
-                {
-                    var openTelemetryBuilder = services.AddOpenTelemetry()
-                                                       .ConfigureResource(configure =>
-                                                       {
-                                                           configure.AddService("HTTP:" + Setting.ServerName + "-" + Setting.TagName, "GameFrameX.HTTP")
-                                                                    .AddTelemetrySdk();
-                                                       });
-                    if (Setting.IsOpenTelemetryMetrics)
-                    {
-                        openTelemetryBuilder.WithMetrics(configure =>
-                        {
-                            configure.AddAspNetCoreInstrumentation();
-                            if (EnvironmentHelper.IsDevelopment())
-                            {
-                                configure.AddConsoleExporter();
-                            }
-
-                            // Metrics provides by ASP.NET Core in .NET 8
-                            configure.AddMeter("Microsoft.AspNetCore.Hosting");
-                            configure.AddMeter("Microsoft.AspNetCore.Server.Kestrel");
-                            // Metrics provided by System.Net libraries
-                            configure.AddMeter("System.Net.Http");
-                            configure.AddMeter("System.Net.NameResolution");
-                            configure.AddPrometheusExporter();
-                        });
-                    }
-
-                    if (Setting.IsOpenTelemetryTracing)
-                    {
-                        openTelemetryBuilder.WithTracing(configure =>
-                        {
-                            configure.AddAspNetCoreInstrumentation();
-                            configure.AddHttpClientInstrumentation();
-                            configure.AddSource("HTTP:GameFrameX." + Setting.ServerName + "." + Setting.TagName);
-                            if (EnvironmentHelper.IsDevelopment())
-                            {
-                                configure.AddConsoleExporter();
-                            }
-                        });
-                    }
-                });
+                hostBuilder.ConfigureServices(services => { services.AddGameFrameXOpenTelemetry(Setting, "HTTP", "HTTP"); });
             }
 
             hostBuilder.ConfigureLogging(logging =>
@@ -142,10 +102,7 @@ public abstract partial class AppStartUpBase
                 logging.ClearProviders();
                 logging.AddSerilog(Log.Logger);
                 logging.SetMinimumLevel(minimumLevelLogLevel);
-                if (Setting.IsOpenTelemetry)
-                {
-                    logging.AddOpenTelemetry(configure => { configure.UseGrafana(); });
-                }
+                logging.AddGameFrameXOpenTelemetryLogging(Setting);
             });
             var app = builder.Build();
             var ipList = NetHelper.GetLocalIpList();
@@ -169,13 +126,21 @@ public abstract partial class AppStartUpBase
             // 配置全局异常处理
             app.UseExceptionHandler(ExceptionHandler);
 
-            // 配置OpenTelemetry Prometheus端点
-            if (Setting.IsOpenTelemetry && Setting.IsOpenTelemetryMetrics)
+            // 配置OpenTelemetry Prometheus端点（仅在未配置独立指标端口时）
+            if (Setting.IsOpenTelemetry && Setting.IsOpenTelemetryMetrics && Setting.MetricsPort == 0)
             {
                 app.MapPrometheusScrapingEndpoint();
                 foreach (var ip in ipList)
                 {
                     LogHelper.InfoConsole($"Prometheus metrics 端点已启用: http://{ip}:{Setting.HttpPort}/metrics");
+                }
+            }
+            else if (Setting.IsOpenTelemetry && Setting.IsOpenTelemetryMetrics && Setting.MetricsPort > 0)
+            {
+                LogHelper.InfoConsole($"Prometheus metrics 将在独立端口 {Setting.MetricsPort} 上提供服务");
+                foreach (var ip in ipList)
+                {
+                    LogHelper.InfoConsole($"Prometheus metrics 端点已启用: http://{ip}:{Setting.MetricsPort}/metrics");
                 }
             }
 

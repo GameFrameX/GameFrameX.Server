@@ -21,7 +21,14 @@ public sealed class LauncherOptions
     /// APM监控端口
     /// </summary>
     [Option(nameof(APMPort), HelpText = "APM监控端口")]
+    [Obsolete("MetricsPort 代替")]
     public ushort APMPort { get; set; }
+
+    /// <summary>
+    /// Metrics 端口
+    /// </summary>
+    [Option(nameof(MetricsPort), HelpText = "Metrics 端口")]
+    public ushort MetricsPort { get; set; }
 
     /// <summary>
     /// 是否启用指标收集功能,需要IsOpenTelemetry为true时有效
