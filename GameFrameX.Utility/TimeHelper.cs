@@ -548,9 +548,20 @@ public static class TimeHelper
     /// </summary>
     /// <param name="utcTimestamp">UTC时间戳,单位秒</param>
     /// <returns>转换后的UTC时间。</returns>
+    [Obsolete("UtcSecondsToUtcDateTime(long utcTimestampSeconds)代替")]
     public static DateTime UtcToUtcDateTime(long utcTimestamp)
     {
-        return DateTimeOffset.FromUnixTimeSeconds(utcTimestamp).UtcDateTime;
+        return UtcSecondsToUtcDateTime(utcTimestamp);
+    }
+
+    /// <summary>
+    /// UTC 时间戳 转换成UTC时间
+    /// </summary>
+    /// <param name="utcTimestampSeconds">UTC时间戳,单位秒</param>
+    /// <returns>转换后的UTC时间。</returns>
+    public static DateTime UtcSecondsToUtcDateTime(long utcTimestampSeconds)
+    {
+        return DateTimeOffset.FromUnixTimeSeconds(utcTimestampSeconds).UtcDateTime;
     }
 
     /// <summary>
@@ -568,7 +579,18 @@ public static class TimeHelper
     /// </summary>
     /// <param name="utcTimestamp">UTC时间戳,单位秒</param>
     /// <returns>转换后的本地时间。</returns>
+    [Obsolete("UtcSecondsToLocalDateTime(long utcTimestampSeconds) 代替")]
     public static DateTime UtcToLocalDateTime(long utcTimestamp)
+    {
+        return UtcSecondsToLocalDateTime(utcTimestamp);
+    }
+
+    /// <summary>
+    /// UTC 时间戳 转换成本地时间
+    /// </summary>
+    /// <param name="utcTimestamp">UTC时间戳,单位秒</param>
+    /// <returns>转换后的本地时间。</returns>
+    public static DateTime UtcSecondsToLocalDateTime(long utcTimestamp)
     {
         return DateTimeOffset.FromUnixTimeSeconds(utcTimestamp).LocalDateTime;
     }
@@ -591,8 +613,8 @@ public static class TimeHelper
     /// <returns>是否是同一天</returns>
     public static bool IsUnixSameDay(long timestamp1, long timestamp2)
     {
-        var time1 = UtcToUtcDateTime(timestamp1);
-        var time2 = UtcToUtcDateTime(timestamp2);
+        var time1 = UtcSecondsToUtcDateTime(timestamp1);
+        var time2 = UtcSecondsToUtcDateTime(timestamp2);
         return IsSameDay(time1, time2);
     }
 
@@ -1105,8 +1127,8 @@ public static class TimeHelper
     /// </remarks>
     public static bool IsLocalSameDay(long timestamp1, long timestamp2)
     {
-        var time1 = UtcToLocalDateTime(timestamp1);
-        var time2 = UtcToLocalDateTime(timestamp2);
+        var time1 = UtcSecondsToLocalDateTime(timestamp1);
+        var time2 = UtcSecondsToLocalDateTime(timestamp2);
         return IsSameDay(time1, time2);
     }
 
