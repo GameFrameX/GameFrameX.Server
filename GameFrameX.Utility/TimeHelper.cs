@@ -489,8 +489,15 @@ public static class TimeHelper
     /// <summary>
     /// 获取指定星期在中国的对应数字。
     /// </summary>
-    /// <param name="day">星期几。</param>
-    /// <returns>星期在中国的对应数字。</returns>
+    /// <param name="day">星期几。例如：DayOfWeek.Monday 表示星期一，DayOfWeek.Sunday 表示星期日</param>
+    /// <returns>星期在中国的对应数字。返回1-7,其中7表示星期日</returns>
+    /// <remarks>
+    /// 此方法将C#的DayOfWeek枚举值(0-6)转换为中国习惯的星期表示(1-7)
+    /// 主要区别在于将星期日从0转换为7
+    /// 例如:
+    /// - DayOfWeek.Monday(1) -> 1 (星期一)
+    /// - DayOfWeek.Sunday(0) -> 7 (星期日)
+    /// </remarks>
     public static int GetChinaDayOfWeek(DayOfWeek day)
     {
         var dayOfWeek = (int)day;
@@ -505,7 +512,12 @@ public static class TimeHelper
     /// <summary>
     /// 获取当前星期在中国的对应数字。
     /// </summary>
-    /// <returns>当前星期在中国的对应数字。</returns>
+    /// <returns>当前星期在中国的对应数字。返回1-7,其中7表示星期日</returns>
+    /// <remarks>
+    /// 此方法获取当前本地时间的星期几,并转换为中国习惯的表示方式
+    /// 使用本地时区时间(DateTime.Now)作为基准
+    /// 内部调用GetChinaDayOfWeek(DayOfWeek)方法进行转换
+    /// </remarks>
     public static int GetChinaDayOfWeek()
     {
         return GetChinaDayOfWeek(DateTime.Now.DayOfWeek);
@@ -515,6 +527,13 @@ public static class TimeHelper
     /// 获取当前本地时区的日期，格式为yyyyMMdd的整数
     /// </summary>
     /// <returns>返回一个8位整数，表示当前本地时区的日期。例如：20231225表示2023年12月25日</returns>
+    /// <remarks>
+    /// 此方法将当前本地时间转换为8位数字格式:
+    /// - 前4位表示年份
+    /// - 中间2位表示月份
+    /// - 最后2位表示日期
+    /// 使用DateTime.Now获取本地时间
+    /// </remarks>
     public static int CurrentDateWithDay()
     {
         return Convert.ToInt32(DateTime.Now.ToString("yyyyMMdd"));
@@ -524,6 +543,13 @@ public static class TimeHelper
     /// 获取当前UTC时区的日期，格式为yyyyMMdd的整数
     /// </summary>
     /// <returns>返回一个8位整数，表示当前UTC时区的日期。例如：20231225表示2023年12月25日</returns>
+    /// <remarks>
+    /// 此方法将当前UTC时间转换为8位数字格式:
+    /// - 前4位表示年份
+    /// - 中间2位表示月份
+    /// - 最后2位表示日期
+    /// 使用DateTime.UtcNow获取UTC时间
+    /// </remarks>
     public static int CurrentDateWithUtcDay()
     {
         return Convert.ToInt32(DateTime.UtcNow.ToString("yyyyMMdd"));
@@ -533,6 +559,13 @@ public static class TimeHelper
     /// 获取当前UTC时间，格式为HHmmss的字符串
     /// </summary>
     /// <returns>返回一个6位字符串，表示当前UTC时间。例如：143045表示14:30:45</returns>
+    /// <remarks>
+    /// 此方法将当前UTC时间转换为6位时间字符串:
+    /// - 前2位表示小时(24小时制)
+    /// - 中间2位表示分钟
+    /// - 最后2位表示秒
+    /// 使用DateTime.UtcNow获取UTC时间
+    /// </remarks>
     public static string CurrentTimeWithUtcFullString()
     {
         return DateTime.UtcNow.ToString("HHmmss");
@@ -542,6 +575,13 @@ public static class TimeHelper
     /// 获取当前本地时间，格式为HHmmss的字符串
     /// </summary>
     /// <returns>返回一个6位字符串，表示当前本地时间。例如：143045表示14:30:45</returns>
+    /// <remarks>
+    /// 此方法将当前本地时间转换为6位时间字符串:
+    /// - 前2位表示小时(24小时制)
+    /// - 中间2位表示分钟
+    /// - 最后2位表示秒
+    /// 使用DateTime.Now获取本地时间
+    /// </remarks>
     public static string CurrentTimeWithLocalFullString()
     {
         return DateTime.Now.ToString("HHmmss");
@@ -551,6 +591,13 @@ public static class TimeHelper
     /// 获取当前UTC时间，格式为HHmmss的整数
     /// </summary>
     /// <returns>返回一个6位整数，表示当前UTC时间。例如：143045表示14:30:45</returns>
+    /// <remarks>
+    /// 此方法将当前UTC时间转换为6位整数:
+    /// - 前2位表示小时(24小时制)
+    /// - 中间2位表示分钟
+    /// - 最后2位表示秒
+    /// 内部调用CurrentTimeWithUtcFullString()获取字符串后转换为整数
+    /// </remarks>
     public static int CurrentTimeWithUtcTime()
     {
         return Convert.ToInt32(CurrentTimeWithUtcFullString());
@@ -560,6 +607,13 @@ public static class TimeHelper
     /// 获取当前本地时间，格式为HHmmss的整数
     /// </summary>
     /// <returns>返回一个6位整数，表示当前本地时间。例如：143045表示14:30:45</returns>
+    /// <remarks>
+    /// 此方法将当前本地时间转换为6位整数:
+    /// - 前2位表示小时(24小时制)
+    /// - 中间2位表示分钟
+    /// - 最后2位表示秒
+    /// 内部调用CurrentTimeWithLocalFullString()获取字符串后转换为整数
+    /// </remarks>
     public static int CurrentTimeWithLocalTime()
     {
         return Convert.ToInt32(CurrentTimeWithLocalFullString());
@@ -569,6 +623,18 @@ public static class TimeHelper
     /// 获取当前本地时区时间的完整格式字符串
     /// </summary>
     /// <returns>返回格式为"yyyy-MM-dd-HH-mm-ss.fff K"的时间字符串，包含年-月-日-时-分-秒.毫秒 时区偏移。例如："2023-12-25-14-30-45.123 +08:00"</returns>
+    /// <remarks>
+    /// 此方法返回包含完整时间信息的格式化字符串:
+    /// - yyyy: 4位年份
+    /// - MM: 2位月份
+    /// - dd: 2位日期
+    /// - HH: 24小时制小时
+    /// - mm: 分钟
+    /// - ss: 秒
+    /// - fff: 3位毫秒
+    /// - K: 时区偏移
+    /// 使用DateTime.Now获取本地时间
+    /// </remarks>
     public static string CurrentDateTimeWithFullString()
     {
         return DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss.fff K");
@@ -579,6 +645,13 @@ public static class TimeHelper
     /// </summary>
     /// <param name="format">时间格式字符串，默认为"yyyy-MM-dd HH:mm:ss.fff K"</param>
     /// <returns>返回指定格式的本地时间字符串。例如默认格式返回："2023-12-25 14:30:45.123 +08:00"</returns>
+    /// <remarks>
+    /// 此方法允许自定义时间格式字符串:
+    /// - 默认格式包含年月日时分秒毫秒和时区信息
+    /// - 可以通过format参数指定其他格式
+    /// - 使用DateTime.Now获取本地时间
+    /// 支持标准的.NET日期时间格式说明符
+    /// </remarks>
     public static string CurrentDateTimeWithFormat(string format = "yyyy-MM-dd HH:mm:ss.fff K")
     {
         return DateTime.Now.ToString(format);
@@ -589,6 +662,13 @@ public static class TimeHelper
     /// </summary>
     /// <param name="format">时间格式字符串，默认为"yyyy-MM-dd HH:mm:ss.fff K"</param>
     /// <returns>返回指定格式的UTC时间字符串。例如默认格式返回："2023-12-25 06:30:45.123 +00:00"</returns>
+    /// <remarks>
+    /// 此方法允许自定义UTC时间格式字符串:
+    /// - 默认格式包含年月日时分秒毫秒和时区信息
+    /// - 可以通过format参数指定其他格式
+    /// - 使用DateTime.UtcNow获取UTC时间
+    /// 支持标准的.NET日期时间格式说明符
+    /// </remarks>
     public static string CurrentDateTimeWithUtcFormat(string format = "yyyy-MM-dd HH:mm:ss.fff K")
     {
         return DateTime.UtcNow.ToString(format);
@@ -598,6 +678,18 @@ public static class TimeHelper
     /// 获取当前UTC时区时间的完整格式[yyyy-MM-dd-HH-mm-ss.fff K]字符串
     /// </summary>
     /// <returns>返回格式为"yyyy-MM-dd-HH-mm-ss.fff K"的UTC时间字符串，包含年-月-日-时-分-秒.毫秒 时区偏移。例如："2023-12-25-06-30-45.123 +00:00"</returns>
+    /// <remarks>
+    /// 此方法返回包含完整UTC时间信息的格式化字符串:
+    /// - yyyy: 4位年份
+    /// - MM: 2位月份
+    /// - dd: 2位日期
+    /// - HH: 24小时制小时
+    /// - mm: 分钟
+    /// - ss: 秒
+    /// - fff: 3位毫秒
+    /// - K: 时区偏移(UTC为+00:00)
+    /// 使用DateTime.UtcNow获取UTC时间
+    /// </remarks>
     public static string CurrentDateTimeWithUtcFullString()
     {
         return DateTime.UtcNow.ToString("yyyy-MM-dd-HH-mm-ss.fff K");
@@ -608,6 +700,10 @@ public static class TimeHelper
     /// </summary>
     /// <param name="utcTimestamp">UTC时间戳,单位秒</param>
     /// <returns>转换后的UTC时间。</returns>
+    /// <remarks>
+    /// 此方法已过时,请使用UtcSecondsToUtcDateTime替代
+    /// 用于保持向后兼容性
+    /// </remarks>
     [Obsolete("UtcSecondsToUtcDateTime(long utcTimestampSeconds)代替")]
     public static DateTime UtcToUtcDateTime(long utcTimestamp)
     {
@@ -619,6 +715,11 @@ public static class TimeHelper
     /// </summary>
     /// <param name="utcTimestampSeconds">UTC时间戳,单位秒</param>
     /// <returns>转换后的UTC时间。</returns>
+    /// <remarks>
+    /// 此方法将Unix时间戳(从1970-01-01 00:00:00 UTC开始的秒数)转换为UTC DateTime
+    /// 使用DateTimeOffset.FromUnixTimeSeconds进行转换
+    /// 返回的是UTC时区的时间
+    /// </remarks>
     public static DateTime UtcSecondsToUtcDateTime(long utcTimestampSeconds)
     {
         return DateTimeOffset.FromUnixTimeSeconds(utcTimestampSeconds).UtcDateTime;
@@ -629,6 +730,11 @@ public static class TimeHelper
     /// </summary>
     /// <param name="utcTimestampMilliseconds">UTC时间戳,单位毫秒</param>
     /// <returns>转换后的UTC时间。</returns>
+    /// <remarks>
+    /// 此方法将Unix毫秒时间戳(从1970-01-01 00:00:00 UTC开始的毫秒数)转换为UTC DateTime
+    /// 使用DateTimeOffset.FromUnixTimeMilliseconds进行转换
+    /// 返回的是UTC时区的时间
+    /// </remarks>
     public static DateTime UtcMillisecondsToUtcDateTime(long utcTimestampMilliseconds)
     {
         return DateTimeOffset.FromUnixTimeMilliseconds(utcTimestampMilliseconds).UtcDateTime;
@@ -639,6 +745,10 @@ public static class TimeHelper
     /// </summary>
     /// <param name="utcTimestamp">UTC时间戳,单位秒</param>
     /// <returns>转换后的本地时间。</returns>
+    /// <remarks>
+    /// 此方法已过时,请使用UtcSecondsToLocalDateTime替代
+    /// 用于保持向后兼容性
+    /// </remarks>
     [Obsolete("UtcSecondsToLocalDateTime(long utcTimestampSeconds) 代替")]
     public static DateTime UtcToLocalDateTime(long utcTimestamp)
     {
@@ -650,6 +760,11 @@ public static class TimeHelper
     /// </summary>
     /// <param name="utcTimestamp">UTC时间戳,单位秒</param>
     /// <returns>转换后的本地时间。</returns>
+    /// <remarks>
+    /// 此方法将Unix时间戳(从1970-01-01 00:00:00 UTC开始的秒数)转换为本地时区的DateTime
+    /// 使用DateTimeOffset.FromUnixTimeSeconds进行转换
+    /// 返回的时间会根据系统时区自动调整
+    /// </remarks>
     public static DateTime UtcSecondsToLocalDateTime(long utcTimestamp)
     {
         return DateTimeOffset.FromUnixTimeSeconds(utcTimestamp).LocalDateTime;
@@ -660,6 +775,11 @@ public static class TimeHelper
     /// </summary>
     /// <param name="utcTimestampMilliseconds">UTC时间戳,单位毫秒</param>
     /// <returns>转换后的本地时间。</returns>
+    /// <remarks>
+    /// 此方法将Unix毫秒时间戳(从1970-01-01 00:00:00 UTC开始的毫秒数)转换为本地时区的DateTime
+    /// 使用DateTimeOffset.FromUnixTimeMilliseconds进行转换
+    /// 返回的时间会根据系统时区自动调整
+    /// </remarks>
     public static DateTime UtcMillisecondsToDateTime(long utcTimestampMilliseconds)
     {
         return DateTimeOffset.FromUnixTimeMilliseconds(utcTimestampMilliseconds).LocalDateTime;
@@ -671,6 +791,11 @@ public static class TimeHelper
     /// <param name="timestamp1">时间戳1</param>
     /// <param name="timestamp2">时间戳2</param>
     /// <returns>是否是同一天</returns>
+    /// <remarks>
+    /// 此方法将两个Unix时间戳转换为UTC时间后比较是否为同一天
+    /// 比较时只考虑日期部分(年月日),忽略时间部分
+    /// 使用UTC时间避免时区转换带来的问题
+    /// </remarks>
     public static bool IsUnixSameDay(long timestamp1, long timestamp2)
     {
         var time1 = UtcSecondsToUtcDateTime(timestamp1);
@@ -682,6 +807,11 @@ public static class TimeHelper
     /// 获取今天开始时间
     /// </summary>
     /// <returns>今天零点时间</returns>
+    /// <remarks>
+    /// 此方法返回当天的零点时间(00:00:00)
+    /// 使用DateTime.Today获取当前日期的零点时间
+    /// 返回的是本地时区的时间
+    /// </remarks>
     public static DateTime GetTodayStartTime()
     {
         return DateTime.Today;
@@ -691,6 +821,11 @@ public static class TimeHelper
     /// 获取今天开始时间戳
     /// </summary>
     /// <returns>今天零点时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回当天零点时间的Unix时间戳
+    /// 先获取本地时区的今天零点时间,然后转换为时间戳
+    /// 返回从1970-01-01 00:00:00 UTC开始的秒数
+    /// </remarks>
     public static long GetTodayStartTimestamp()
     {
         return new DateTimeOffset(GetTodayStartTime()).ToUnixTimeSeconds();
@@ -700,6 +835,11 @@ public static class TimeHelper
     /// 获取今天结束时间
     /// </summary>
     /// <returns>今天23:59:59的时间</returns>
+    /// <remarks>
+    /// 此方法返回当天的最后一秒(23:59:59)
+    /// 通过获取明天零点时间然后减去1秒来计算
+    /// 返回的是本地时区的时间
+    /// </remarks>
     public static DateTime GetTodayEndTime()
     {
         return DateTime.Today.AddDays(1).AddSeconds(-1);
@@ -709,6 +849,11 @@ public static class TimeHelper
     /// 获取今天结束时间戳
     /// </summary>
     /// <returns>今天23:59:59的时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回当天最后一秒的Unix时间戳
+    /// 先获取本地时区的今天23:59:59,然后转换为时间戳
+    /// 返回从1970-01-01 00:00:00 UTC开始的秒数
+    /// </remarks>
     public static long GetTodayEndTimestamp()
     {
         return new DateTimeOffset(GetTodayEndTime()).ToUnixTimeSeconds();
@@ -718,6 +863,13 @@ public static class TimeHelper
     /// 获取本周开始时间
     /// </summary>
     /// <returns>本周一零点时间</returns>
+    /// <remarks>
+    /// 此方法返回本周一的零点时间(00:00:00)
+    /// 使用中国习惯:
+    /// - 将周日的DayOfWeek值0转换为7
+    /// - 以周一为每周的第一天
+    /// 返回的是本地时区的时间
+    /// </remarks>
     public static DateTime GetWeekStartTime()
     {
         var now = DateTime.Now;
@@ -730,6 +882,11 @@ public static class TimeHelper
     /// 获取本周开始时间戳
     /// </summary>
     /// <returns>本周一零点时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回本周一零点时间的Unix时间戳
+    /// 先获取本地时区的本周一零点时间,然后转换为时间戳
+    /// 返回从1970-01-01 00:00:00 UTC开始的秒数
+    /// </remarks>
     public static long GetWeekStartTimestamp()
     {
         return new DateTimeOffset(GetWeekStartTime()).ToUnixTimeSeconds();
@@ -739,6 +896,11 @@ public static class TimeHelper
     /// 获取本周结束时间
     /// </summary>
     /// <returns>本周日23:59:59的时间</returns>
+    /// <remarks>
+    /// 此方法返回本周日的最后一秒(23:59:59)
+    /// 通过获取下周一零点时间然后减去1秒来计算
+    /// 返回的是本地时区的时间
+    /// </remarks>
     public static DateTime GetWeekEndTime()
     {
         return GetWeekStartTime().AddDays(7).AddSeconds(-1);
@@ -748,6 +910,11 @@ public static class TimeHelper
     /// 获取本周结束时间戳
     /// </summary>
     /// <returns>本周日23:59:59的时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回本周日最后一秒的Unix时间戳
+    /// 先获取本地时区的本周日23:59:59,然后转换为时间戳
+    /// 返回从1970-01-01 00:00:00 UTC开始的秒数
+    /// </remarks>
     public static long GetWeekEndTimestamp()
     {
         return new DateTimeOffset(GetWeekEndTime()).ToUnixTimeSeconds();
