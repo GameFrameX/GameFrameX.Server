@@ -770,6 +770,11 @@ public static class TimeHelper
     /// 获取本年开始时间戳
     /// </summary>
     /// <returns>本年1月1日零点时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回当前年份1月1日零点的Unix时间戳
+    /// 使用本地时区计算时间
+    /// 例如:2024年返回2024-01-01 00:00:00的时间戳
+    /// </remarks>
     public static long GetYearStartTimestamp()
     {
         return new DateTimeOffset(GetYearStartTime()).ToUnixTimeSeconds();
@@ -779,6 +784,11 @@ public static class TimeHelper
     /// 获取本年结束时间
     /// </summary>
     /// <returns>本年12月31日23:59:59的时间</returns>
+    /// <remarks>
+    /// 此方法返回当前年份最后一天的最后一秒
+    /// 使用本地时区计算时间
+    /// 例如:2024年返回2024-12-31 23:59:59
+    /// </remarks>
     public static DateTime GetYearEndTime()
     {
         return GetYearStartTime().AddYears(1).AddSeconds(-1);
@@ -788,6 +798,11 @@ public static class TimeHelper
     /// 获取本年结束时间戳
     /// </summary>
     /// <returns>本年12月31日23:59:59的时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回当前年份最后一天的最后一秒的Unix时间戳
+    /// 使用本地时区计算时间
+    /// 例如:2024年返回2024-12-31 23:59:59的时间戳
+    /// </remarks>
     public static long GetYearEndTimestamp()
     {
         return new DateTimeOffset(GetYearEndTime()).ToUnixTimeSeconds();
@@ -798,6 +813,11 @@ public static class TimeHelper
     /// </summary>
     /// <param name="date">指定日期</param>
     /// <returns>指定日期零点时间</returns>
+    /// <remarks>
+    /// 此方法返回指定日期的零点时间(00:00:00)
+    /// 例如:输入2024-01-10 14:30:00,返回2024-01-10 00:00:00
+    /// 保持原有时区不变
+    /// </remarks>
     public static DateTime GetStartTimeOfDay(DateTime date)
     {
         return date.Date;
@@ -808,6 +828,11 @@ public static class TimeHelper
     /// </summary>
     /// <param name="date">指定日期</param>
     /// <returns>指定日期零点时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回指定日期零点时间的Unix时间戳
+    /// 例如:输入2024-01-10 14:30:00,返回2024-01-10 00:00:00的时间戳
+    /// 会将时间转换为UTC时间后再计算时间戳
+    /// </remarks>
     public static long GetStartTimestampOfDay(DateTime date)
     {
         return new DateTimeOffset(GetStartTimeOfDay(date)).ToUnixTimeSeconds();
@@ -818,6 +843,11 @@ public static class TimeHelper
     /// </summary>
     /// <param name="date">指定日期</param>
     /// <returns>指定日期23:59:59的时间</returns>
+    /// <remarks>
+    /// 此方法返回指定日期的最后一秒(23:59:59)
+    /// 例如:输入2024-01-10 14:30:00,返回2024-01-10 23:59:59
+    /// 保持原有时区不变
+    /// </remarks>
     public static DateTime GetEndTimeOfDay(DateTime date)
     {
         return date.Date.AddDays(1).AddSeconds(-1);
@@ -828,6 +858,11 @@ public static class TimeHelper
     /// </summary>
     /// <param name="date">指定日期</param>
     /// <returns>指定日期23:59:59的时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回指定日期最后一秒的Unix时间戳
+    /// 例如:输入2024-01-10 14:30:00,返回2024-01-10 23:59:59的时间戳
+    /// 会将时间转换为UTC时间后再计算时间戳
+    /// </remarks>
     public static long GetEndTimestampOfDay(DateTime date)
     {
         return new DateTimeOffset(GetEndTimeOfDay(date)).ToUnixTimeSeconds();
@@ -838,6 +873,12 @@ public static class TimeHelper
     /// </summary>
     /// <param name="date">指定日期</param>
     /// <returns>所在周周一零点时间</returns>
+    /// <remarks>
+    /// 此方法返回指定日期所在周的周一零点时间
+    /// 例如:输入2024-01-10(周三),返回2024-01-08 00:00:00(周一)
+    /// 使用周一作为每周的第一天,周日为每周的最后一天
+    /// 保持原有时区不变
+    /// </remarks>
     public static DateTime GetStartTimeOfWeek(DateTime date)
     {
         var dayOfWeek = (int)date.DayOfWeek;
@@ -850,6 +891,11 @@ public static class TimeHelper
     /// </summary>
     /// <param name="date">指定日期</param>
     /// <returns>所在周周一零点时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回指定日期所在周的周一零点时间的Unix时间戳
+    /// 例如:输入2024-01-10(周三),返回2024-01-08 00:00:00(周一)的时间戳
+    /// 会将时间转换为UTC时间后再计算时间戳
+    /// </remarks>
     public static long GetStartTimestampOfWeek(DateTime date)
     {
         return new DateTimeOffset(GetStartTimeOfWeek(date)).ToUnixTimeSeconds();
@@ -859,6 +905,11 @@ public static class TimeHelper
     /// 获取明天开始时间
     /// </summary>
     /// <returns>明天零点时间</returns>
+    /// <remarks>
+    /// 此方法返回明天的零点时间
+    /// 例如:当前是2024-01-10,返回2024-01-11 00:00:00
+    /// 使用本地时区计算时间
+    /// </remarks>
     public static DateTime GetTomorrowStartTime()
     {
         return DateTime.Today.AddDays(1);
@@ -868,6 +919,11 @@ public static class TimeHelper
     /// 获取明天开始时间戳
     /// </summary>
     /// <returns>明天零点时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回明天零点时间的Unix时间戳
+    /// 例如:当前是2024-01-10,返回2024-01-11 00:00:00的时间戳
+    /// 会将时间转换为UTC时间后再计算时间戳
+    /// </remarks>
     public static long GetTomorrowStartTimestamp()
     {
         return new DateTimeOffset(GetTomorrowStartTime()).ToUnixTimeSeconds();
@@ -877,6 +933,11 @@ public static class TimeHelper
     /// 获取明天结束时间
     /// </summary>
     /// <returns>明天23:59:59的时间</returns>
+    /// <remarks>
+    /// 此方法返回明天的最后一秒
+    /// 例如:当前是2024-01-10,返回2024-01-11 23:59:59
+    /// 使用本地时区计算时间
+    /// </remarks>
     public static DateTime GetTomorrowEndTime()
     {
         return DateTime.Today.AddDays(2).AddSeconds(-1);
@@ -886,6 +947,11 @@ public static class TimeHelper
     /// 获取明天结束时间戳
     /// </summary>
     /// <returns>明天23:59:59的时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回明天最后一秒的Unix时间戳
+    /// 例如:当前是2024-01-10,返回2024-01-11 23:59:59的时间戳
+    /// 会将时间转换为UTC时间后再计算时间戳
+    /// </remarks>
     public static long GetTomorrowEndTimestamp()
     {
         return new DateTimeOffset(GetTomorrowEndTime()).ToUnixTimeSeconds();
@@ -895,6 +961,11 @@ public static class TimeHelper
     /// 获取下周开始时间
     /// </summary>
     /// <returns>下周一零点时间</returns>
+    /// <remarks>
+    /// 此方法返回下周一的零点时间
+    /// 例如:当前是2024-01-10(周三),返回2024-01-15 00:00:00(下周一)
+    /// 使用本地时区计算时间
+    /// </remarks>
     public static DateTime GetNextWeekStartTime()
     {
         return GetWeekStartTime().AddDays(7);
@@ -904,6 +975,11 @@ public static class TimeHelper
     /// 获取下周开始时间戳
     /// </summary>
     /// <returns>下周一零点时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回下周一零点时间的Unix时间戳
+    /// 例如:当前是2024-01-10(周三),返回2024-01-15 00:00:00(下周一)的时间戳
+    /// 会将时间转换为UTC时间后再计算时间戳
+    /// </remarks>
     public static long GetNextWeekStartTimestamp()
     {
         return new DateTimeOffset(GetNextWeekStartTime()).ToUnixTimeSeconds();
@@ -913,6 +989,11 @@ public static class TimeHelper
     /// 获取下周结束时间
     /// </summary>
     /// <returns>下周日23:59:59的时间</returns>
+    /// <remarks>
+    /// 此方法返回下周日的最后一秒
+    /// 例如:当前是2024-01-10(周三),返回2024-01-21 23:59:59(下周日)
+    /// 使用本地时区计算时间
+    /// </remarks>
     public static DateTime GetNextWeekEndTime()
     {
         return GetNextWeekStartTime().AddDays(7).AddSeconds(-1);
@@ -922,6 +1003,11 @@ public static class TimeHelper
     /// 获取下周结束时间戳
     /// </summary>
     /// <returns>下周日23:59:59的时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回下周日最后一秒的Unix时间戳
+    /// 例如:当前是2024-01-10(周三),返回2024-01-21 23:59:59(下周日)的时间戳
+    /// 会将时间转换为UTC时间后再计算时间戳
+    /// </remarks>
     public static long GetNextWeekEndTimestamp()
     {
         return new DateTimeOffset(GetNextWeekEndTime()).ToUnixTimeSeconds();
@@ -931,6 +1017,11 @@ public static class TimeHelper
     /// 获取下月开始时间
     /// </summary>
     /// <returns>下月1号零点时间</returns>
+    /// <remarks>
+    /// 此方法返回下个月1号的零点时间
+    /// 例如:当前是2024-01-10,返回2024-02-01 00:00:00
+    /// 使用本地时区计算时间
+    /// </remarks>
     public static DateTime GetNextMonthStartTime()
     {
         return GetMonthStartTime().AddMonths(1);
@@ -940,6 +1031,11 @@ public static class TimeHelper
     /// 获取下月开始时间戳
     /// </summary>
     /// <returns>下月1号零点时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回下个月1号零点时间的Unix时间戳
+    /// 例如:当前是2024-01-10,返回2024-02-01 00:00:00的时间戳
+    /// 会将时间转换为UTC时间后再计算时间戳
+    /// </remarks>
     public static long GetNextMonthStartTimestamp()
     {
         return new DateTimeOffset(GetNextMonthStartTime()).ToUnixTimeSeconds();
@@ -949,6 +1045,12 @@ public static class TimeHelper
     /// 获取下月结束时间
     /// </summary>
     /// <returns>下月最后一天23:59:59的时间</returns>
+    /// <remarks>
+    /// 此方法返回下个月最后一天的最后一秒
+    /// 例如:当前是2024-01-10,返回2024-02-29 23:59:59
+    /// 使用本地时区计算时间
+    /// 自动处理大小月份和闰年
+    /// </remarks>
     public static DateTime GetNextMonthEndTime()
     {
         return GetNextMonthStartTime().AddMonths(1).AddSeconds(-1);
@@ -958,6 +1060,11 @@ public static class TimeHelper
     /// 获取下月结束时间戳
     /// </summary>
     /// <returns>下月最后一天23:59:59的时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回下个月最后一天最后一秒的Unix时间戳
+    /// 例如:当前是2024-01-10,返回2024-02-29 23:59:59的时间戳
+    /// 会将时间转换为UTC时间后再计算时间戳
+    /// </remarks>
     public static long GetNextMonthEndTimestamp()
     {
         return new DateTimeOffset(GetNextMonthEndTime()).ToUnixTimeSeconds();
@@ -968,6 +1075,12 @@ public static class TimeHelper
     /// </summary>
     /// <param name="date">指定日期</param>
     /// <returns>所在周周日23:59:59的时间</returns>
+    /// <remarks>
+    /// 此方法返回指定日期所在周的周日最后一秒
+    /// 例如:输入2024-01-10(周三),返回2024-01-14 23:59:59(周日)
+    /// 使用周一作为每周的第一天,周日为每周的最后一天
+    /// 保持原有时区不变
+    /// </remarks>
     public static DateTime GetEndTimeOfWeek(DateTime date)
     {
         return GetStartTimeOfWeek(date).AddDays(7).AddSeconds(-1);
@@ -978,6 +1091,11 @@ public static class TimeHelper
     /// </summary>
     /// <param name="date">指定日期</param>
     /// <returns>所在周周日23:59:59的时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回指定日期所在周的周日最后一秒的Unix时间戳
+    /// 例如:输入2024-01-10(周三),返回2024-01-14 23:59:59(周日)的时间戳
+    /// 会将时间转换为UTC时间后再计算时间戳
+    /// </remarks>
     public static long GetEndTimestampOfWeek(DateTime date)
     {
         return new DateTimeOffset(GetEndTimeOfWeek(date)).ToUnixTimeSeconds();
@@ -988,6 +1106,11 @@ public static class TimeHelper
     /// </summary>
     /// <param name="date">指定日期</param>
     /// <returns>所在月1号零点时间</returns>
+    /// <remarks>
+    /// 此方法返回指定日期所在月份的1号零点时间
+    /// 例如:输入2024-01-10,返回2024-01-01 00:00:00
+    /// 保持原有时区不变
+    /// </remarks>
     public static DateTime GetStartTimeOfMonth(DateTime date)
     {
         return new DateTime(date.Year, date.Month, 1);
@@ -998,6 +1121,11 @@ public static class TimeHelper
     /// </summary>
     /// <param name="date">指定日期</param>
     /// <returns>所在月1号零点时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回指定日期所在月份的1号零点时间的Unix时间戳
+    /// 例如:输入2024-01-10,返回2024-01-01 00:00:00的时间戳
+    /// 会将时间转换为UTC时间后再计算时间戳
+    /// </remarks>
     public static long GetStartTimestampOfMonth(DateTime date)
     {
         return new DateTimeOffset(GetStartTimeOfMonth(date)).ToUnixTimeSeconds();
@@ -1008,6 +1136,12 @@ public static class TimeHelper
     /// </summary>
     /// <param name="date">指定日期</param>
     /// <returns>所在月最后一天23:59:59的时间</returns>
+    /// <remarks>
+    /// 此方法返回指定日期所在月份的最后一天的最后一秒
+    /// 例如:输入2024-01-10,返回2024-01-31 23:59:59
+    /// 保持原有时区不变
+    /// 自动处理大小月份和闰年
+    /// </remarks>
     public static DateTime GetEndTimeOfMonth(DateTime date)
     {
         return GetStartTimeOfMonth(date).AddMonths(1).AddSeconds(-1);
@@ -1018,6 +1152,11 @@ public static class TimeHelper
     /// </summary>
     /// <param name="date">指定日期</param>
     /// <returns>所在月最后一天23:59:59的时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回指定日期所在月份的最后一天最后一秒的Unix时间戳
+    /// 例如:输入2024-01-10,返回2024-01-31 23:59:59的时间戳
+    /// 会将时间转换为UTC时间后再计算时间戳
+    /// </remarks>
     public static long GetEndTimestampOfMonth(DateTime date)
     {
         return new DateTimeOffset(GetEndTimeOfMonth(date)).ToUnixTimeSeconds();
@@ -1028,6 +1167,11 @@ public static class TimeHelper
     /// </summary>
     /// <param name="date">指定日期</param>
     /// <returns>所在年1月1日零点时间</returns>
+    /// <remarks>
+    /// 此方法返回指定日期所在年份的1月1日零点时间
+    /// 例如:输入2024-01-10,返回2024-01-01 00:00:00
+    /// 保持原有时区不变
+    /// </remarks>
     public static DateTime GetStartTimeOfYear(DateTime date)
     {
         return new DateTime(date.Year, 1, 1);
@@ -1038,6 +1182,11 @@ public static class TimeHelper
     /// </summary>
     /// <param name="date">指定日期</param>
     /// <returns>所在年1月1日零点时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回指定日期所在年份的1月1日零点时间的Unix时间戳
+    /// 例如:输入2024-01-10,返回2024-01-01 00:00:00的时间戳
+    /// 会将时间转换为UTC时间后再计算时间戳
+    /// </remarks>
     public static long GetStartTimestampOfYear(DateTime date)
     {
         return new DateTimeOffset(GetStartTimeOfYear(date)).ToUnixTimeSeconds();
@@ -1048,6 +1197,11 @@ public static class TimeHelper
     /// </summary>
     /// <param name="date">指定日期</param>
     /// <returns>所在年12月31日23:59:59的时间</returns>
+    /// <remarks>
+    /// 此方法返回指定日期所在年份的12月31日最后一秒
+    /// 例如:输入2024-01-10,返回2024-12-31 23:59:59
+    /// 保持原有时区不变
+    /// </remarks>
     public static DateTime GetEndTimeOfYear(DateTime date)
     {
         return GetStartTimeOfYear(date).AddYears(1).AddSeconds(-1);
@@ -1058,6 +1212,11 @@ public static class TimeHelper
     /// </summary>
     /// <param name="date">指定日期</param>
     /// <returns>所在年12月31日23:59:59的时间戳(秒)</returns>
+    /// <remarks>
+    /// 此方法返回指定日期所在年份的12月31日最后一秒的Unix时间戳
+    /// 例如:输入2024-01-10,返回2024-12-31 23:59:59的时间戳
+    /// 会将时间转换为UTC时间后再计算时间戳
+    /// </remarks>
     public static long GetEndTimestampOfYear(DateTime date)
     {
         return new DateTimeOffset(GetEndTimeOfYear(date)).ToUnixTimeSeconds();
@@ -1067,6 +1226,11 @@ public static class TimeHelper
     /// 获取当前UTC时间
     /// </summary>
     /// <returns>当前UTC时间</returns>
+    /// <remarks>
+    /// 此方法返回当前的UTC时间(协调世界时)
+    /// 与本地时间相比会有时区偏移
+    /// 主要用于需要统一时间标准的场景
+    /// </remarks>
     public static DateTime GetUtcNow()
     {
         return DateTime.UtcNow;
@@ -1076,6 +1240,11 @@ public static class TimeHelper
     /// 获取当前时间
     /// </summary>
     /// <returns>当前时间</returns>
+    /// <remarks>
+    /// 此方法返回当前的本地时间
+    /// 会根据系统设置的时区自动调整
+    /// 主要用于需要显示本地时间的场景
+    /// </remarks>
     public static DateTime GetNow()
     {
         return DateTime.Now;
