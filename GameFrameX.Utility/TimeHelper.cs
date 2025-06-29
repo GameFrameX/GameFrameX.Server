@@ -383,6 +383,66 @@ public static class TimeHelper
     }
 
     /// <summary>
+    /// 判断当前UTC时间是否与指定时间处于同一周。
+    /// 以周一为每周的第一天,周日为每周的最后一天。
+    /// 使用UTC时间(DateTime.UtcNow)进行比较。
+    /// </summary>
+    /// <param name="start">指定时间的起始时间。可以是任意DateTime值。</param>
+    /// <returns>如果当前UTC时间与指定时间处于同一周，则为 true；否则为 false。</returns>
+    /// <remarks>
+    /// 此方法将调用IsSameWeek方法进行实际比较。
+    /// 使用UTC时区时间作为当前时间参考点，避免时区差异影响。
+    /// </remarks>
+    public static bool IsNowSameWeekUtc(DateTime start)
+    {
+        return IsSameWeek(start, DateTime.UtcNow);
+    }
+
+    /// <summary>
+    /// 判断当前UTC时间是否与指定时间戳处于同一周。
+    /// </summary>
+    /// <param name="ticks">指定时间的起始时间(Ticks)。表示自 0001 年 1 月 1 日午夜 00:00:00 以来所经过的时钟周期数</param>
+    /// <returns>如果当前UTC时间与指定时间处于同一周，则为 true；否则为 false。</returns>
+    /// <remarks>
+    /// 此方法将传入的ticks转换为DateTime后与当前UTC时间比较是否在同一周
+    /// 使用UTC时区时间作为当前时间参考点，避免时区差异影响
+    /// </remarks>
+    public static bool IsUnixSameWeek(long ticks)
+    {
+        return IsNowSameWeekUtc(new DateTime(ticks));
+    }
+
+    /// <summary>
+    /// 判断当前UTC时间是否与指定Unix时间戳处于同一周。
+    /// </summary>
+    /// <param name="timestampSeconds">指定时间的Unix时间戳(秒)。表示自1970年1月1日00:00:00 UTC以来的秒数</param>
+    /// <returns>如果当前UTC时间与指定时间处于同一周，则为 true；否则为 false。</returns>
+    /// <remarks>
+    /// 此方法将传入的Unix时间戳(秒)转换为UTC DateTime后与当前UTC时间比较是否在同一周
+    /// 全程使用UTC时间，避免时区差异影响
+    /// </remarks>
+    public static bool IsUnixSameWeekFromTimestamp(long timestampSeconds)
+    {
+        var dateTime = UtcSecondsToUtcDateTime(timestampSeconds);
+        return IsNowSameWeekUtc(dateTime);
+    }
+
+    /// <summary>
+    /// 判断当前UTC时间是否与指定Unix时间戳处于同一周。
+    /// </summary>
+    /// <param name="timestampMilliseconds">指定时间的Unix时间戳(毫秒)。表示自1970年1月1日00:00:00 UTC以来的毫秒数</param>
+    /// <returns>如果当前UTC时间与指定时间处于同一周，则为 true；否则为 false。</returns>
+    /// <remarks>
+    /// 此方法将传入的Unix时间戳(毫秒)转换为UTC DateTime后与当前UTC时间比较是否在同一周
+    /// 全程使用UTC时间，避免时区差异影响
+    /// </remarks>
+    public static bool IsUnixSameWeekFromTimestampMilliseconds(long timestampMilliseconds)
+    {
+        var dateTime = UtcMillisecondsToUtcDateTime(timestampMilliseconds);
+        return IsNowSameWeekUtc(dateTime);
+    }
+
+    /// <summary>
     /// 获取指定日期所在星期的时间。
     /// </summary>
     /// <param name="dateTime">指定日期。例如：2024-01-10</param>
