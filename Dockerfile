@@ -37,4 +37,11 @@ RUN dotnet publish "GameFrameX.Launcher.csproj" -c $BUILD_CONFIGURATION -o /app/
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+# 复制json配置文件
+COPY GameFrameX.Config/json ./json
+
+# 复制hotfix dll文件
+COPY hotfix ./hotfix
+
 ENTRYPOINT ["dotnet", "GameFrameX.Launcher.dll"]
