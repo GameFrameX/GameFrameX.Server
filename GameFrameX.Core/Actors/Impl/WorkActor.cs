@@ -29,7 +29,7 @@ public class WorkerActor : IWorkerActor
     {
         if (id == 0)
         {
-            id = ActorIdGenerator.GetUniqueId(IdModule.WorkerActor);
+            id = ActorIdGenerator.GetUniqueId(GlobalConst.WorkerActorIdModuleValue);
         }
 
         Id = id;

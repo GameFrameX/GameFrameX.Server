@@ -100,6 +100,16 @@ public static class GlobalConst
     /// </summary>
     public const int ModuleIdTimestampMask = 19; //19+30 =42
 
+    /// <summary>
+    /// 模块ID最大值
+    /// </summary>
+    public const int IdModuleMax = 999;
+
+    /// <summary>
+    /// WorkerActor模块Id 值 
+    /// </summary>
+    public const int WorkerActorIdModuleValue = 500;
+
     #region ActorType
 
     /// <summary>

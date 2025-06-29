@@ -179,35 +179,9 @@ public static class ActorIdGenerator
     /// </summary>
     /// <param name="module">默认最大值.</param>
     /// <returns></returns>
-    public static long GetUniqueId(IdModule module = IdModule.Max)
+    public static long GetUniqueId(ushort module = GlobalConst.IdModuleMax)
     {
-        var second = (long)(DateTime.UtcNow - IdGenerator.UtcTimeStart).TotalSeconds;
-        lock (LockObj)
-        {
-            if (second > _genSecond)
-            {
-                _genSecond = second;
-                _incrNum = 0L;
-            }
-            else if (_incrNum >= GlobalConst.MaxUniqueIncrease)
-            {
-                ++_genSecond;
-                _incrNum = 0L;
-            }
-            else
-            {
-                ++_incrNum;
-            }
-        }
-
-        var id = (long)module << GlobalConst.ServerIdOrModuleIdMask; // 模块id 14位 支持 0~9999
-        lock (LockObj)
-        {
-            id |= _genSecond << GlobalConst.ModuleIdTimestampMask; // 时间戳 30位
-        }
-
-        id |= _incrNum; // 自增 19位
-        return id;
+        return GetUniqueIdByModule(module);
     }
 
     /// <summary>
