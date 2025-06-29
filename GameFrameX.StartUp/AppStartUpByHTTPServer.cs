@@ -150,7 +150,7 @@ public abstract partial class AppStartUpBase
                 }
             });
             var app = builder.Build();
-
+            var ipList = NetHelper.GetLocalIpList();
             // 开发环境下的Swagger UI配置
             if (development)
             {
@@ -161,7 +161,7 @@ public abstract partial class AppStartUpBase
                     options.SwaggerEndpoint($"/swagger/{openApiInfo.Version}/swagger.json", openApiInfo.Title);
                     options.RoutePrefix = "swagger";
                 });
-                var ipList = NetHelper.GetLocalIpList();
+
                 foreach (var ip in ipList)
                 {
                     LogHelper.DebugConsole($"Swagger UI 可通过 http://{ip}:{Setting.HttpPort}/swagger 访问");
@@ -170,6 +170,16 @@ public abstract partial class AppStartUpBase
 
             // 配置全局异常处理
             app.UseExceptionHandler(ExceptionHandler);
+
+            // 配置OpenTelemetry Prometheus端点
+            if (Setting.IsOpenTelemetry && Setting.IsOpenTelemetryMetrics)
+            {
+                app.MapPrometheusScrapingEndpoint();
+                foreach (var ip in ipList)
+                {
+                    LogHelper.InfoConsole($"Prometheus metrics 端点已启用: http://{ip}:{Setting.HttpPort}/metrics");
+                }
+            }
 
             // 注册HTTP处理器路由
             foreach (var handler in baseHandler)
