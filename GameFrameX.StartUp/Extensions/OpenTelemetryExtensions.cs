@@ -52,7 +52,7 @@ public static class OpenTelemetryExtensions
             builder.WithMetrics(configure =>
             {
                 configure.AddAspNetCoreInstrumentation();
-                if (EnvironmentHelper.IsDevelopment())
+                if (EnvironmentHelper.IsDevelopment() && LogOptions.Default.IsConsole)
                 {
                     configure.AddConsoleExporter();
                 }
@@ -74,7 +74,7 @@ public static class OpenTelemetryExtensions
                 configure.AddAspNetCoreInstrumentation();
                 configure.AddHttpClientInstrumentation();
                 configure.AddSource(tracingSource);
-                if (EnvironmentHelper.IsDevelopment())
+                if (EnvironmentHelper.IsDevelopment() && LogOptions.Default.IsConsole)
                 {
                     configure.AddConsoleExporter();
                 }
@@ -142,7 +142,7 @@ public static class OpenTelemetryExtensions
             .WithMetrics(configure =>
             {
                 configure.AddAspNetCoreInstrumentation();
-                if (EnvironmentHelper.IsDevelopment())
+                if (EnvironmentHelper.IsDevelopment() && LogOptions.Default.IsConsole)
                 {
                     configure.AddConsoleExporter();
                 }
