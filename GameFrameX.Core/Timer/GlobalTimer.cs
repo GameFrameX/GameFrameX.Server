@@ -1,4 +1,4 @@
-﻿using GameFrameX.Core.Actors;
+using GameFrameX.Core.Actors;
 using GameFrameX.Core.Components;
 using GameFrameX.DataBase;
 using GameFrameX.Utility.Extensions;
@@ -90,7 +90,10 @@ public static class GlobalTimer
     {
         LogHelper.Info("停止全局定时开始...");
         IsWorking = false;
-        await _loopTask;
+        if (_loopTask != null)
+        {
+            await _loopTask;
+        }
         await StateComponent.SaveAll(true);
         GameDb.Close();
         LogHelper.Info("停止全局定时完成...");
