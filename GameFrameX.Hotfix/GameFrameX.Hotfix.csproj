@@ -23,7 +23,6 @@
     <ItemGroup>
         <ProjectReference Include="..\GameFrameX.Apps\GameFrameX.Apps.csproj" />
         <ProjectReference Include="..\GameFrameX.Config\GameFrameX.Config.csproj" />
-        <ProjectReference Include="..\GameFrameX.GameAnalytics\GameFrameX.GameAnalytics.csproj" />
         <ProjectReference Include="..\GameFrameX.Core\GameFrameX.Core.csproj" />
         <ProjectReference Include="..\GameFrameX.NetWork.HTTP\GameFrameX.NetWork.HTTP.csproj" />
         <ProjectReference Include="..\GameFrameX.StartUp\GameFrameX.StartUp.csproj" />
