@@ -6,6 +6,7 @@ using GameFrameX.SuperSocket.Server;
 using GameFrameX.SuperSocket.Server.Abstractions;
 using GameFrameX.SuperSocket.Server.Host;
 using GameFrameX.Utility;
+using GameFrameX.Utility.Extensions;
 using GameFrameX.Utility.Setting;
 using Grafana.OpenTelemetry;
 using Microsoft.AspNetCore.Builder;
@@ -51,14 +52,14 @@ public abstract partial class AppStartUpBase
         }
 
         LogHelper.InfoConsole("启动 [HTTP] 服务器...");
-        if (!Setting.HttpPort.IsRange(1, ushort.MaxValue - 1))
+        if (!Setting.HttpPort.IsRange(10000, ushort.MaxValue - 1))
         {
-            LogHelper.WarnConsole($"启动 [HTTP] 服务器 端口 [{Setting.HttpPort}] 超出范围 [1-{ushort.MaxValue - 1}]，无法启动HTTP服务,启动被忽略");
+            LogHelper.WarnConsole($"启动 [HTTP] 服务器 端口 [{Setting.HttpPort}] 超出范围 [10000-{ushort.MaxValue - 1}]，无法启动HTTP服务,启动被忽略");
             return;
         }
 
         // 检查端口是否可用
-        if (Setting.HttpPort is > 0 and < ushort.MaxValue && NetHelper.PortIsAvailable(Setting.HttpPort))
+        if (NetHelper.PortIsAvailable(Setting.HttpPort))
         {
             var builder = WebApplication.CreateBuilder();
 
