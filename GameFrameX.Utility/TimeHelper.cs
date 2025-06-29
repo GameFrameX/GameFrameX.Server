@@ -276,8 +276,8 @@ public static class TimeHelper
     /// <returns>跨越的天数。</returns>
     public static int GetCrossDays(long beginTimestamp, long afterTimestamp, int hour = 0)
     {
-        var begin = UtcToUtcDateTime(beginTimestamp);
-        var after = UtcToUtcDateTime(afterTimestamp);
+        var begin = UtcSecondsToUtcDateTime(beginTimestamp);
+        var after = UtcSecondsToUtcDateTime(afterTimestamp);
         return GetCrossDays(begin, after, hour);
     }
 
@@ -316,8 +316,8 @@ public static class TimeHelper
     /// </remarks>
     public static int GetCrossLocalDays(long startTimestamp, long endTimestamp)
     {
-        var startTime = UtcToLocalDateTime(startTimestamp);
-        var endTime = UtcToLocalDateTime(endTimestamp);
+        var startTime = UtcSecondsToLocalDateTime(startTimestamp);
+        var endTime = UtcSecondsToLocalDateTime(endTimestamp);
         return GetCrossDays(startTime, endTime);
     }
 
