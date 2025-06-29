@@ -1,4 +1,4 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
 
@@ -9,10 +9,8 @@ COPY ["README.md", "README.md"]
 COPY ["GameFrameX.Launcher/GameFrameX.Launcher.csproj", "GameFrameX.Launcher/"]
 COPY ["GameFrameX.Apps/GameFrameX.Apps.csproj", "GameFrameX.Apps/"]
 COPY ["GameFrameX.Core/GameFrameX.Core.csproj", "GameFrameX.Core/"]
-COPY ["DataBaseServer/GameFrameX.DataBase.Mongo/GameFrameX.DataBase.Mongo.csproj", "DataBaseServer/GameFrameX.DataBase.Mongo/"]
-COPY ["DataBaseServer/GameFrameX.DataBase/GameFrameX.DataBase.csproj", "DataBaseServer/GameFrameX.DataBase/"]
+COPY ["GameFrameX.DataBase/GameFrameX.DataBase.csproj", "GameFrameX.DataBase/"]
 COPY ["GameFrameX.Utility/GameFrameX.Utility.csproj", "GameFrameX.Utility/"]
-COPY ["DataBaseServer/GameFrameX.DataBase.Abstractions/GameFrameX.DataBase.Abstractions.csproj", "DataBaseServer/GameFrameX.DataBase.Abstractions/"]
 COPY ["GameFrameX.NetWork.HTTP/GameFrameX.NetWork.HTTP.csproj", "GameFrameX.NetWork.HTTP/"]
 COPY ["GameFrameX.NetWork.Abstractions/GameFrameX.NetWork.Abstractions.csproj", "GameFrameX.NetWork.Abstractions/"]
 COPY ["GameFrameX.NetWork/GameFrameX.NetWork.csproj", "GameFrameX.NetWork/"]
