@@ -324,15 +324,15 @@ public static class TimeHelper
     /// <summary>
     /// 判断当前时间是否与指定时间处于同一周。
     /// </summary>
-    /// <param name="start">指定时间的起始时间(Ticks)。表示自 0001 年 1 月 1 日午夜 00:00:00 以来所经过的时钟周期数</param>
+    /// <param name="ticks">指定时间的起始时间(Ticks)。表示自 0001 年 1 月 1 日午夜 00:00:00 以来所经过的时钟周期数</param>
     /// <returns>如果当前时间与指定时间处于同一周，则为 true；否则为 false。</returns>
     /// <remarks>
     /// 此方法将传入的ticks转换为DateTime后与当前时间比较是否在同一周
     /// 使用系统默认的周计算规则(周日为每周第一天)
     /// </remarks>
-    public static bool IsNowSameWeek(long start)
+    public static bool IsNowSameWeek(long ticks)
     {
-        return IsNowSameWeek(new DateTime(start));
+        return IsNowSameWeek(new DateTime(ticks));
     }
 
     /// <summary>
