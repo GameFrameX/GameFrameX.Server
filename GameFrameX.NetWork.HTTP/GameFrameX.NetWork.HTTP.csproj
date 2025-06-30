@@ -37,8 +37,8 @@
         <OutputPath>..\bin\app</OutputPath>
     </PropertyGroup>
     <ItemGroup>
-      <PackageReference Include="GameFrameX.Foundation.Hash" Version="1.3.5" />
-      <PackageReference Include="GameFrameX.Foundation.Http.Normalization" Version="1.3.5" />
+      <PackageReference Include="GameFrameX.Foundation.Hash" Version="1.4.0" />
+      <PackageReference Include="GameFrameX.Foundation.Http.Normalization" Version="1.4.0" />
       <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.0" />
       <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.12" />
       <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="7.3.1" />
