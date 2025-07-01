@@ -4,7 +4,44 @@ using Tedd.RandomUtils;
 namespace GameFrameX.Utility;
 
 /// <summary>
-/// 随机相关的实用函数。
+/// 随机数帮助类
+/// 
+/// 功能概述：
+/// - 提供线程安全的随机数生成功能
+/// - 支持多种数据类型的随机数生成（int、long、double、byte[]等）
+/// - 提供便捷的集合随机选择方法
+/// - 支持随机选择单个或多个元素
+/// - 支持获取随机索引
+/// 
+/// 核心特性：
+/// - 线程安全：使用 Random.Shared 确保多线程环境下的安全性
+/// - 高性能：避免重复创建 Random 实例
+/// - 类型安全：支持泛型方法，编译时类型检查
+/// - 参数验证：使用 .NET 静态方法进行参数检查
+/// 
+/// 应用场景：
+/// - 游戏开发中的随机事件生成
+/// - 数据采样和随机测试
+/// - 随机算法实现
+/// - 集合元素的随机选择
+/// 
+/// 使用示例：
+/// <code>
+/// // 生成随机整数
+/// int randomInt = RandomHelper.Next(100);
+/// 
+/// // 从数组中随机选择元素
+/// string[] items = {"A", "B", "C"};
+/// string selected = RandomHelper.RandomSelect(items);
+/// 
+/// // 随机选择多个元素
+/// string[] multipleItems = RandomHelper.Items(items, 2);
+/// </code>
+/// 
+/// 注意事项：
+/// - 所有方法都进行了严格的参数验证
+/// - 空集合或数组会抛出 ArgumentOutOfRangeException
+/// - 负数参数会抛出相应的异常
 /// </summary>
 public static class RandomHelper
 {
@@ -43,8 +80,10 @@ public static class RandomHelper
     /// </summary>
     /// <param name="maxValue">要生成的随机数的上界（随机数不能取该上界值）。maxValue 必须大于等于零。</param>
     /// <returns>大于等于零且小于 maxValue 的 32 位带符号整数，即：返回值的范围通常包括零但不包括 maxValue。不过，如果 maxValue 等于零，则返回 maxValue。</returns>
+    /// <exception cref="ArgumentOutOfRangeException">当 maxValue 小于 0 时抛出此异常</exception>
     public static int Next(int maxValue)
     {
+        ArgumentOutOfRangeException.ThrowIfNegative(maxValue, nameof(maxValue));
         return RandomShared.Next(maxValue);
     }
 
@@ -54,8 +93,10 @@ public static class RandomHelper
     /// <param name="minValue">返回的随机数的下界（随机数可取该下界值）。</param>
     /// <param name="maxValue">返回的随机数的上界（随机数不能取该上界值）。maxValue 必须大于等于 minValue。</param>
     /// <returns>一个大于等于 minValue 且小于 maxValue 的 32 位带符号整数，即：返回的值范围包括 minValue 但不包括 maxValue。如果 minValue 等于 maxValue，则返回 minValue。</returns>
+    /// <exception cref="ArgumentOutOfRangeException">当 minValue 大于 maxValue 时抛出此异常</exception>
     public static int Next(int minValue, int maxValue)
     {
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(minValue, maxValue, nameof(minValue));
         return RandomShared.Next(minValue, maxValue);
     }
 
@@ -73,8 +114,10 @@ public static class RandomHelper
     /// </summary>
     /// <param name="maxValue">要生成的随机数的上界（随机数不能取该上界值）。maxValue 必须大于等于零。</param>
     /// <returns>大于等于零且小于 maxValue 的 64 位带符号整数，即：返回值的范围通常包括零但不包括 maxValue。不过，如果 maxValue 等于零，则返回 maxValue。</returns>
+    /// <exception cref="ArgumentOutOfRangeException">当 maxValue 小于 0 时抛出此异常</exception>
     public static long NextInt64(int maxValue)
     {
+        ArgumentOutOfRangeException.ThrowIfNegative(maxValue, nameof(maxValue));
         return RandomShared.NextInt64(maxValue);
     }
 
@@ -84,8 +127,10 @@ public static class RandomHelper
     /// <param name="minValue">返回的随机数的下界（随机数可取该下界值）。</param>
     /// <param name="maxValue">返回的随机数的上界（随机数不能取该上界值）。maxValue 必须大于等于 minValue。</param>
     /// <returns>一个大于等于 minValue 且小于 maxValue 的 64 位带符号整数，即：返回的值范围包括 minValue 但不包括 maxValue。如果 minValue 等于 maxValue，则返回 minValue。</returns>
-    public static long NxtInt64(long minValue, long maxValue)
+    /// <exception cref="ArgumentOutOfRangeException">当 minValue 大于 maxValue 时抛出此异常</exception>
+    public static long NextInt64(long minValue, long maxValue)
     {
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(minValue, maxValue, nameof(minValue));
         return RandomShared.NextInt64(minValue, maxValue);
     }
 
@@ -113,9 +158,255 @@ public static class RandomHelper
     /// 用随机数填充指定字节数组的元素。
     /// </summary>
     /// <param name="buffer">包含随机数的字节数组。</param>
+    /// <exception cref="ArgumentNullException">当 buffer 为 null 时抛出此异常</exception>
     public static void NextBytes(byte[] buffer)
     {
+        ArgumentNullException.ThrowIfNull(buffer, nameof(buffer));
         RandomShared.NextBytes(buffer);
+    }
+
+    /// <summary>
+    /// 用随机数填充指定字节数组的元素。
+    /// </summary>
+    /// <param name="buffer">包含随机数的字节数组。</param>
+    public static void NextBytes(Span<byte> buffer)
+    {
+        // Span<byte> 是值类型，不需要 null 检查
+        RandomShared.NextBytes(buffer);
+    }
+
+    /// <summary>
+    /// 随机选择
+    /// </summary>
+    /// <param name="items">选择项</param>
+    /// <typeparam name="T">选择项类型</typeparam>
+    /// <returns>选择结果</returns>
+    /// <exception cref="ArgumentNullException">当 items 为 null 时抛出此异常</exception>
+    /// <exception cref="ArgumentException">当 items 为空集合时抛出此异常</exception>
+    public static T RandomSelect<T>(IList<T> items)
+    {
+        ArgumentNullException.ThrowIfNull(items, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfZero(items.Count, nameof(items));
+        return items[Next(items.Count)];
+    }
+
+    /// <summary>
+    /// 随机选择
+    /// </summary>
+    /// <param name="items">选择项</param>
+    /// <typeparam name="T">选择项类型</typeparam>
+    /// <returns>选择结果</returns>
+    /// <exception cref="ArgumentNullException">当 items 为 null 时抛出此异常</exception>
+    /// <exception cref="ArgumentException">当 items 为空数组时抛出此异常</exception>
+    public static T RandomSelect<T>(T[] items)
+    {
+        ArgumentNullException.ThrowIfNull(items, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfZero(items.Length, nameof(items));
+        return items[Next(items.Length)];
+    }
+
+    /// <summary>
+    /// 随机选择
+    /// </summary>
+    /// <param name="items">选择项</param>
+    /// <typeparam name="T">选择项类型</typeparam>
+    /// <returns>选择结果</returns>
+    /// <exception cref="ArgumentNullException">当 items 为 null 时抛出此异常</exception>
+    /// <exception cref="ArgumentException">当 items 为空列表时抛出此异常</exception>
+    public static T RandomSelect<T>(List<T> items)
+    {
+        ArgumentNullException.ThrowIfNull(items, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfZero(items.Count, nameof(items));
+        return items[Next(items.Count)];
+    }
+
+    /// <summary>
+    /// 随机选择索引
+    /// </summary>
+    /// <param name="items">选择项</param>
+    /// <typeparam name="T">选择项类型</typeparam>
+    /// <returns>选择结果索引</returns>
+    /// <exception cref="ArgumentNullException">当 items 为 null 时抛出此异常</exception>
+    /// <exception cref="ArgumentException">当 items 为空集合时抛出此异常</exception>
+    public static int Idx<T>(IList<T> items)
+    {
+        ArgumentNullException.ThrowIfNull(items, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfZero(items.Count, nameof(items));
+        return Next(items.Count);
+    }
+
+    /// <summary>
+    /// 随机选择索引
+    /// </summary>
+    /// <param name="items">选择项</param>
+    /// <typeparam name="T">选择项类型</typeparam>
+    /// <returns>选择结果索引</returns>
+    /// <exception cref="ArgumentNullException">当 items 为 null 时抛出此异常</exception>
+    /// <exception cref="ArgumentException">当 items 为空数组时抛出此异常</exception>
+    public static int Idx<T>(T[] items)
+    {
+        ArgumentNullException.ThrowIfNull(items, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfZero(items.Length, nameof(items));
+        return Next(items.Length);
+    }
+
+    /// <summary>
+    /// 随机选择索引
+    /// </summary>
+    /// <param name="items">选择项</param>
+    /// <typeparam name="T">选择项类型</typeparam>
+    /// <returns>选择结果索引</returns>
+    /// <exception cref="ArgumentNullException">当 items 为 null 时抛出此异常</exception>
+    /// <exception cref="ArgumentException">当 items 为空列表时抛出此异常</exception>
+    public static int Idx<T>(List<T> items)
+    {
+        ArgumentNullException.ThrowIfNull(items, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfZero(items.Count, nameof(items));
+        return Next(items.Count);
+    }
+
+    /// <summary>
+    /// 随机选择多个索引
+    /// </summary>
+    /// <param name="items">选择项</param>
+    /// <param name="count">选择数量</param>
+    /// <typeparam name="T">选择项类型</typeparam>
+    /// <returns>选择结果索引数组</returns>
+    /// <exception cref="ArgumentNullException">当 items 为 null 时抛出此异常</exception>
+    /// <exception cref="ArgumentOutOfRangeException">当 items 为空集合或 count 小于 0 时抛出此异常</exception>
+    public static int[] Ids<T>(IList<T> items, int count)
+    {
+        ArgumentNullException.ThrowIfNull(items, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfZero(items.Count, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfNegative(count, nameof(count));
+
+        var result = new int[count];
+        for (var i = 0; i < count; i++)
+        {
+            result[i] = Next(items.Count);
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// 随机选择多个索引
+    /// </summary>
+    /// <param name="items">选择项</param>
+    /// <param name="count">选择数量</param>
+    /// <typeparam name="T">选择项类型</typeparam>
+    /// <returns>选择结果索引数组</returns>
+    /// <exception cref="ArgumentNullException">当 items 为 null 时抛出此异常</exception>
+    /// <exception cref="ArgumentOutOfRangeException">当 items 为空数组或 count 小于 0 时抛出此异常</exception>
+    public static int[] Ids<T>(T[] items, int count)
+    {
+        ArgumentNullException.ThrowIfNull(items, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfZero(items.Length, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfNegative(count, nameof(count));
+
+        var result = new int[count];
+        for (var i = 0; i < count; i++)
+        {
+            result[i] = Next(items.Length);
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// 随机选择多个索引
+    /// </summary>
+    /// <param name="items">选择项</param>
+    /// <param name="count">选择数量</param>
+    /// <typeparam name="T">选择项类型</typeparam>
+    /// <returns>选择结果索引数组</returns>
+    /// <exception cref="ArgumentNullException">当 items 为 null 时抛出此异常</exception>
+    /// <exception cref="ArgumentOutOfRangeException">当 items 为空列表或 count 小于 0 时抛出此异常</exception>
+    public static int[] Ids<T>(List<T> items, int count)
+    {
+        ArgumentNullException.ThrowIfNull(items, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfZero(items.Count, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfNegative(count, nameof(count));
+
+        var result = new int[count];
+        for (var i = 0; i < count; i++)
+        {
+            result[i] = Next(items.Count);
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// 随机选择多个项目
+    /// </summary>
+    /// <param name="items">选择项</param>
+    /// <param name="count">选择数量</param>
+    /// <typeparam name="T">选择项类型</typeparam>
+    /// <returns>选择结果数组</returns>
+    /// <exception cref="ArgumentNullException">当 items 为 null 时抛出此异常</exception>
+    /// <exception cref="ArgumentOutOfRangeException">当 items 为空集合或 count 小于 0 时抛出此异常</exception>
+    public static T[] Items<T>(IList<T> items, int count)
+    {
+        ArgumentNullException.ThrowIfNull(items, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfZero(items.Count, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfNegative(count, nameof(count));
+
+        var result = new T[count];
+        for (var i = 0; i < count; i++)
+        {
+            result[i] = items[Next(items.Count)];
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// 随机选择多个项目
+    /// </summary>
+    /// <param name="items">选择项</param>
+    /// <param name="count">选择数量</param>
+    /// <typeparam name="T">选择项类型</typeparam>
+    /// <returns>选择结果数组</returns>
+    /// <exception cref="ArgumentNullException">当 items 为 null 时抛出此异常</exception>
+    /// <exception cref="ArgumentOutOfRangeException">当 items 为空数组或 count 小于 0 时抛出此异常</exception>
+    public static T[] Items<T>(T[] items, int count)
+    {
+        ArgumentNullException.ThrowIfNull(items, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfZero(items.Length, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfNegative(count, nameof(count));
+
+        var result = new T[count];
+        for (var i = 0; i < count; i++)
+        {
+            result[i] = items[Next(items.Length)];
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// 随机选择多个项目
+    /// </summary>
+    /// <param name="items">选择项</param>
+    /// <param name="count">选择数量</param>
+    /// <typeparam name="T">选择项类型</typeparam>
+    /// <returns>选择结果数组</returns>
+    /// <exception cref="ArgumentNullException">当 items 为 null 时抛出此异常</exception>
+    /// <exception cref="ArgumentOutOfRangeException">当 items 为空列表或 count 小于 0 时抛出此异常</exception>
+    public static T[] Items<T>(List<T> items, int count)
+    {
+        ArgumentNullException.ThrowIfNull(items, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfZero(items.Count, nameof(items));
+        ArgumentOutOfRangeException.ThrowIfNegative(count, nameof(count));
+
+        var result = new T[count];
+        for (var i = 0; i < count; i++)
+        {
+            result[i] = items[Next(items.Count)];
+        }
+
+        return result;
     }
 
 
@@ -125,17 +416,16 @@ public static class RandomHelper
     /// <param name="m">需要选取的数量</param>
     /// <param name="n">范围上限</param>
     /// <returns>包含随机选取的m个数的集合</returns>
-    /// <exception cref="ArgumentOutOfRangeException">当m大于n时抛出此异常</exception>
+    /// <exception cref="ArgumentOutOfRangeException">当m或n小于0，或m大于n时抛出此异常</exception>
     public static HashSet<int> RandomSelect(int m, int n)
     {
+        ArgumentOutOfRangeException.ThrowIfNegative(m, nameof(m));
+        ArgumentOutOfRangeException.ThrowIfNegative(n, nameof(n));
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(m, n, nameof(m));
+
         if (m == 0)
         {
             return new HashSet<int>();
-        }
-
-        if (m > n)
-        {
-            throw new ArgumentOutOfRangeException(nameof(m), "m must less than n");
         }
 
         var s = RandomSelect(m - 1, n - 1);
@@ -153,9 +443,15 @@ public static class RandomHelper
     /// <param name="weightIndex">权重索引</param>
     /// <param name="canRepeat">是否允许重复选取</param>
     /// <returns>包含随机选取的结果数组列表</returns>
-    /// <exception cref="ArgumentException">当不可重复选取且需求数量大于id数量时抛出此异常</exception>
+    /// <exception cref="ArgumentNullException">当weightStr为null时抛出此异常</exception>
+    /// <exception cref="ArgumentException">当weightStr为空或格式错误，或不可重复选取且需求数量大于id数量时抛出此异常</exception>
+    /// <exception cref="ArgumentOutOfRangeException">当num或weightIndex小于0时抛出此异常</exception>
     private static List<int[]> RandomSelect(string weightStr, int num, int weightIndex, bool canRepeat = true)
     {
+        ArgumentException.ThrowIfNullOrEmpty(weightStr, nameof(weightStr));
+        ArgumentOutOfRangeException.ThrowIfNegative(num, nameof(num));
+        ArgumentOutOfRangeException.ThrowIfNegative(weightIndex, nameof(weightIndex));
+
         var array = weightStr.SplitTo2IntArray();
         return RandomSelect(array, num, weightIndex, canRepeat);
     }
@@ -169,9 +465,16 @@ public static class RandomHelper
     /// <param name="weightIndex">权重索引</param>
     /// <param name="canRepeat">是否允许重复选取</param>
     /// <returns>包含随机选取的结果数组列表</returns>
-    /// <exception cref="ArgumentException">当不可重复选取且需求数量大于id数量时抛出此异常</exception>
+    /// <exception cref="ArgumentNullException">当array为null时抛出此异常</exception>
+    /// <exception cref="ArgumentException">当array为空数组，或不可重复选取且需求数量大于id数量时抛出此异常</exception>
+    /// <exception cref="ArgumentOutOfRangeException">当num或weightIndex小于0时抛出此异常</exception>
     private static List<int[]> RandomSelect(int[][] array, int num, int weightIndex, bool canRepeat = true)
     {
+        ArgumentNullException.ThrowIfNull(array, nameof(array));
+        ArgumentOutOfRangeException.ThrowIfZero(array.Length, nameof(array));
+        ArgumentOutOfRangeException.ThrowIfNegative(num, nameof(num));
+        ArgumentOutOfRangeException.ThrowIfNegative(weightIndex, nameof(weightIndex));
+
         if (canRepeat)
         {
             // 可重复
@@ -297,8 +600,13 @@ public static class RandomHelper
     /// </summary>
     /// <param name="weights">权重数组</param>
     /// <returns>随机选取的id索引</returns>
+    /// <exception cref="ArgumentNullException">当weights为null时抛出此异常</exception>
+    /// <exception cref="ArgumentException">当weights为空数组时抛出此异常</exception>
     public static int Idx(int[] weights)
     {
+        ArgumentNullException.ThrowIfNull(weights, nameof(weights));
+        ArgumentOutOfRangeException.ThrowIfZero(weights.Length, nameof(weights));
+
         var totalWight = weights.Sum();
         var r = ConcurrentCryptoRandom.Next(totalWight);
         var temp = 0;
@@ -320,8 +628,15 @@ public static class RandomHelper
     /// <param name="array">数据列表，每个元素为[id, weight]</param>
     /// <param name="weightIndex">权重索引</param>
     /// <returns>随机选取的id索引</returns>
+    /// <exception cref="ArgumentNullException">当array为null时抛出此异常</exception>
+    /// <exception cref="ArgumentException">当array为空数组时抛出此异常</exception>
+    /// <exception cref="ArgumentOutOfRangeException">当weightIndex小于0时抛出此异常</exception>
     public static int Idx(int[][] array, int weightIndex = 1)
     {
+        ArgumentNullException.ThrowIfNull(array, nameof(array));
+        ArgumentOutOfRangeException.ThrowIfZero(array.Length, nameof(array));
+        ArgumentOutOfRangeException.ThrowIfNegative(weightIndex, nameof(weightIndex));
+
         var totalWeight = 0;
         foreach (var arr in array)
         {
@@ -350,8 +665,15 @@ public static class RandomHelper
     /// <param name="num">需要选取的数量</param>
     /// <param name="isCanRepeat">是否允许重复选取</param>
     /// <returns>包含随机选取的id列表</returns>
+    /// <exception cref="ArgumentNullException">当array为null时抛出此异常</exception>
+    /// <exception cref="ArgumentException">当array为空数组时抛出此异常</exception>
+    /// <exception cref="ArgumentOutOfRangeException">当num小于0时抛出此异常</exception>
     public static List<int> Ids(int[][] array, int num, bool isCanRepeat = true)
     {
+        ArgumentNullException.ThrowIfNull(array, nameof(array));
+        ArgumentOutOfRangeException.ThrowIfZero(array.Length, nameof(array));
+        ArgumentOutOfRangeException.ThrowIfNegative(num, nameof(num));
+
         return RandomSelect(array, num, 1, isCanRepeat).Select(t => t[0]).ToList();
     }
 
@@ -362,8 +684,14 @@ public static class RandomHelper
     /// <param name="num">需要选取的数量</param>
     /// <param name="isCanRepeat">是否允许重复选取</param>
     /// <returns>包含随机选取的id列表</returns>
+    /// <exception cref="ArgumentNullException">当str为null时抛出此异常</exception>
+    /// <exception cref="ArgumentException">当str为空或格式错误时抛出此异常</exception>
+    /// <exception cref="ArgumentOutOfRangeException">当num小于0时抛出此异常</exception>
     public static List<int> Ids(string str, int num, bool isCanRepeat = true)
     {
+        ArgumentException.ThrowIfNullOrEmpty(str, nameof(str));
+        ArgumentOutOfRangeException.ThrowIfNegative(num, nameof(num));
+
         return RandomSelect(str, num, 1, isCanRepeat).Select(t => t[0]).ToList();
     }
 
@@ -374,8 +702,14 @@ public static class RandomHelper
     /// <param name="num">需要选取的数量</param>
     /// <param name="isCanRepeat">是否允许重复选取</param>
     /// <returns>包含随机选取的项目列表</returns>
+    /// <exception cref="ArgumentNullException">当str为null时抛出此异常</exception>
+    /// <exception cref="ArgumentException">当str为空或格式错误时抛出此异常</exception>
+    /// <exception cref="ArgumentOutOfRangeException">当num小于0时抛出此异常</exception>
     public static List<int[]> Items(string str, int num, bool isCanRepeat = true)
     {
+        ArgumentException.ThrowIfNullOrEmpty(str, nameof(str));
+        ArgumentOutOfRangeException.ThrowIfNegative(num, nameof(num));
+
         return RandomSelect(str, num, 2, isCanRepeat);
     }
 
@@ -386,8 +720,15 @@ public static class RandomHelper
     /// <param name="num">需要选取的数量</param>
     /// <param name="isCanRepeat">是否允许重复选取</param>
     /// <returns>包含随机选取的项目列表</returns>
+    /// <exception cref="ArgumentNullException">当array为null时抛出此异常</exception>
+    /// <exception cref="ArgumentException">当array为空数组时抛出此异常</exception>
+    /// <exception cref="ArgumentOutOfRangeException">当num小于0时抛出此异常</exception>
     public static List<int[]> Items(int[][] array, int num, bool isCanRepeat = true)
     {
+        ArgumentNullException.ThrowIfNull(array, nameof(array));
+        ArgumentOutOfRangeException.ThrowIfZero(array.Length, nameof(array));
+        ArgumentOutOfRangeException.ThrowIfNegative(num, nameof(num));
+
         return RandomSelect(array, num, 2, isCanRepeat);
     }
 
@@ -396,8 +737,11 @@ public static class RandomHelper
     /// </summary>
     /// <param name="input">输入的整数数组</param>
     /// <returns>最大公约数</returns>
+    /// <exception cref="ArgumentNullException">当input为null时抛出此异常</exception>
     public static int Gcd(params int[] input)
     {
+        ArgumentNullException.ThrowIfNull(input, nameof(input));
+
         if (input.Length == 0)
         {
             return 1;
