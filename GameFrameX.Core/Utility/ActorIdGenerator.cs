@@ -80,7 +80,7 @@ public static class ActorIdGenerator
     {
         if (actorId < GlobalConst.MinServerId)
         {
-            throw new ArgumentOutOfRangeException(nameof(actorId), "actorId is less than min server id, min server id is " + GlobalConst.MinServerId);
+            throw new ArgumentOutOfRangeException(nameof(actorId), $"actorId :{actorId}  is less than min server id, min server id is {GlobalConst.MinServerId}");
         }
 
         if (actorId < GlobalConst.MaxGlobalId)
