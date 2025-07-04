@@ -13,7 +13,7 @@ public abstract class GlobalComponentHandler : BaseComponentHandler
     /// 初始化
     /// </summary>
     /// <returns></returns>
-    protected override Task InitActor()
+    protected override Task<bool> InitActor()
     {
         if (ActorId <= 0)
         {
@@ -22,7 +22,7 @@ public abstract class GlobalComponentHandler : BaseComponentHandler
             ActorId = ActorIdGenerator.GetActorId(actorType);
         }
 
-        return Task.CompletedTask;
+        return Task.FromResult(true);
     }
 }
 

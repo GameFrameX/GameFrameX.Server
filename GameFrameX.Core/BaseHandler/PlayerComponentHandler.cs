@@ -13,7 +13,7 @@ public abstract class PlayerComponentHandler : BaseComponentHandler
     /// 初始化
     /// </summary>
     /// <returns></returns>
-    protected override Task InitActor()
+    protected override Task<bool> InitActor()
     {
         if (ActorId <= 0)
         {
@@ -25,7 +25,7 @@ public abstract class PlayerComponentHandler : BaseComponentHandler
             ActorId = ActorIdGenerator.GetActorId(GlobalConst.ActorTypePlayer);
         }
 
-        return Task.CompletedTask;
+        return Task.FromResult(true);
     }
 }
 

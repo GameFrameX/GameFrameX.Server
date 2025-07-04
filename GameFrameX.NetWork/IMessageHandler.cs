@@ -30,7 +30,7 @@ public interface IMessageHandler
     /// <param name="message">消息对象</param>
     /// <param name="netWorkChannel">网络渠道</param>
     /// <returns></returns>
-    Task Init(INetworkMessage message, INetWorkChannel netWorkChannel);
+    Task<bool> Init(INetworkMessage message, INetWorkChannel netWorkChannel);
 
     /// <summary>
     /// 内部执行

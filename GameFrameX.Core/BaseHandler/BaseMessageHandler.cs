@@ -35,13 +35,13 @@ public abstract class BaseMessageHandler : IMessageHandler
     /// <param name="message">消息对象</param>
     /// <param name="netWorkChannel">网络渠道</param>
     /// <returns>初始化任务</returns>
-    public virtual Task Init(INetworkMessage message, INetWorkChannel netWorkChannel)
+    public virtual Task<bool> Init(INetworkMessage message, INetWorkChannel netWorkChannel)
     {
         _stopwatch = new Stopwatch();
         Message = message;
         NetWorkChannel = netWorkChannel;
         _isInit = true;
-        return Task.CompletedTask;
+        return Task.FromResult(true);
     }
 
     /// <summary>

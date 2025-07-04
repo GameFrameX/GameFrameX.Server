@@ -1,7 +1,9 @@
 ﻿using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Actors;
+using GameFrameX.Core.Utility;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.NetWork.Abstractions;
+using Serilog;
 
 namespace GameFrameX.Core.BaseHandler;
 
@@ -29,7 +31,7 @@ public abstract class BaseComponentHandler : BaseMessageHandler
     /// 初始化
     /// </summary>
     /// <returns>初始化任务</returns>
-    protected abstract Task InitActor();
+    protected abstract Task<bool> InitActor();
 
     /// <summary>
     /// 初始化
@@ -37,22 +39,42 @@ public abstract class BaseComponentHandler : BaseMessageHandler
     /// <param name="message">网络消息</param>
     /// <param name="netWorkChannel">网络通道</param>
     /// <returns>初始化任务</returns>
-    public override async Task Init(INetworkMessage message, INetWorkChannel netWorkChannel)
+    public override async Task<bool> Init(INetworkMessage message, INetWorkChannel netWorkChannel)
     {
-        await base.Init(message, netWorkChannel);
-        await InitActor();
+        var initSuccess = await base.Init(message, netWorkChannel);
+        if (!initSuccess)
+        {
+            return false;
+        }
+
+        initSuccess = await InitActor();
+        if (!initSuccess)
+        {
+            return false;
+        }
+
         if (CacheComponent == null)
         {
             if (ActorId == default)
             {
                 LogHelper.Fatal($"ActorId is 0, can not get component，{message.GetType().FullName}, close channel");
                 NetWorkChannel.Close();
-                return;
+                return false;
             }
 
-            CacheComponent = await ActorManager.GetComponentAgent(ActorId, ComponentAgentType);
-            // LogHelper.Info(CacheComp);
+            try
+            {
+                CacheComponent = await ActorManager.GetComponentAgent(ActorId, ComponentAgentType);
+            }
+            catch (Exception e)
+            {
+                Log.Fatal(e, "get component failed, close channel");
+                NetWorkChannel.Close();
+                return false;
+            }
         }
+
+        return true;
     }
 
     /// <summary>
