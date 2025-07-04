@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class RandomHelper | GameFrameX.Server ">
       
-      <meta name="description" content="随机相关的实用函数。">
+      <meta name="description" content="随机数帮助类 功能概述：  提供线程安全的随机数生成功能 支持多种数据类型的随机数生成（int、long、double、byte[]等） 提供便捷的集合随机选择方法 支持随机选择单个或多个元素 支持获取随机索引  核心特性：  线程安全：使用 Random.Shared 确保多线程环境下的安全性 高性能：避免重复创建 Random 实例 类型安全：支持泛型方法，编译时类型检查 参数验证：使用 .NET 静态方法进行参数检查  应用场景：  游戏开发中的随机事件生成 数据采样和随机测试 随机算法实现 集合元素的随机选择  使用示例： // 生成随机整数 int randomInt = RandomHelper.Next(100);  // 从数组中随机选择元素 string[] items = {&quot;A&quot;, &quot;B&quot;, &quot;C&quot;}; string selected = RandomHelper.RandomSelect(items);  // 随机选择多个元素 string[] multipleItems = RandomHelper.Items(items, 2); 注意事项：  所有方法都进行了严格的参数验证 空集合或数组会抛出 ArgumentOutOfRangeException 负数参数会抛出相应的异常">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev40/apiSpec/new?filename=GameFrameX_Utility_RandomHelper.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.RandomHelper%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/1.5.1-dev41/apiSpec/new?filename=GameFrameX_Utility_RandomHelper.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.RandomHelper%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_Utility_RandomHelper" data-uid="GameFrameX.Utility.RandomHelper" class="text-break">
-Class RandomHelper  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L9"><i class="bi bi-code-slash"></i></a>
+Class RandomHelper  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L46"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,45 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
   <dl><dt>Assembly</dt><dd>GameFrameX.Utility.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>随机相关的实用函数。</p>
+  <div class="markdown summary"><p>随机数帮助类</p>
+<p>功能概述：</p>
+<ul>
+<li>提供线程安全的随机数生成功能</li>
+<li>支持多种数据类型的随机数生成（int、long、double、byte[]等）</li>
+<li>提供便捷的集合随机选择方法</li>
+<li>支持随机选择单个或多个元素</li>
+<li>支持获取随机索引</li>
+</ul>
+<p>核心特性：</p>
+<ul>
+<li>线程安全：使用 Random.Shared 确保多线程环境下的安全性</li>
+<li>高性能：避免重复创建 Random 实例</li>
+<li>类型安全：支持泛型方法，编译时类型检查</li>
+<li>参数验证：使用 .NET 静态方法进行参数检查</li>
+</ul>
+<p>应用场景：</p>
+<ul>
+<li>游戏开发中的随机事件生成</li>
+<li>数据采样和随机测试</li>
+<li>随机算法实现</li>
+<li>集合元素的随机选择</li>
+</ul>
+<p>使用示例：</p>
+<pre><code class="lang-csharp">// 生成随机整数
+int randomInt = RandomHelper.Next(100);
+
+// 从数组中随机选择元素
+string[] items = {"A", "B", "C"};
+string selected = RandomHelper.RandomSelect(items);
+
+// 随机选择多个元素
+string[] multipleItems = RandomHelper.Items(items, 2);</code></pre>
+<p>注意事项：</p>
+<ul>
+<li>所有方法都进行了严格的参数验证</li>
+<li>空集合或数组会抛出 ArgumentOutOfRangeException</li>
+<li>负数参数会抛出相应的异常</li>
+</ul>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -157,7 +195,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_RandomHelper_Gcd_System_Int32_System_Int32_" data-uid="GameFrameX.Utility.RandomHelper.Gcd(System.Int32,System.Int32)">
   Gcd(int, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L426"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L770"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>求两个数的最大公约数</p>
@@ -199,7 +237,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_RandomHelper_Gcd_System_Int32___" data-uid="GameFrameX.Utility.RandomHelper.Gcd(System.Int32[])">
   Gcd(params int[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L399"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L741"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>求多个数的最大公约数</p>
@@ -231,6 +269,12 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当input为null时抛出此异常</p>
+</dd>
+  </dl>
 
 
 
@@ -238,7 +282,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_RandomHelper_Ids_System_Int32_____System_Int32_System_Boolean_" data-uid="GameFrameX.Utility.RandomHelper.Ids(System.Int32[][],System.Int32,System.Boolean)">
   Ids(int[][], int, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L353"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L671"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>随机获取指定数量的id</p>
@@ -276,6 +320,18 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当array为null时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>当array为空数组时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>当num小于0时抛出此异常</p>
+</dd>
+  </dl>
 
 
 
@@ -283,7 +339,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_RandomHelper_Ids_System_String_System_Int32_System_Boolean_" data-uid="GameFrameX.Utility.RandomHelper.Ids(System.String,System.Int32,System.Boolean)">
   Ids(string, int, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L365"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L690"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>随机获取指定数量的id</p>
@@ -321,6 +377,189 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当str为null时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>当str为空或格式错误时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>当num小于0时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_RandomHelper_Ids_" data-uid="GameFrameX.Utility.RandomHelper.Ids*"></a>
+
+  <h3 id="GameFrameX_Utility_RandomHelper_Ids__1_System_Collections_Generic_IList___0__System_Int32_" data-uid="GameFrameX.Utility.RandomHelper.Ids``1(System.Collections.Generic.IList{``0},System.Int32)">
+  Ids&lt;T&gt;(IList&lt;T&gt;, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L277"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>随机选择多个索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int[] Ids&lt;T&gt;(IList&lt;T&gt; items, int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;T&gt;</dt>
+    <dd><p>选择项</p>
+</dd>
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>选择数量</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>[]</dt>
+    <dd><p>选择结果索引数组</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>选择项类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当 items 为 null 时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>当 items 为空集合或 count 小于 0 时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_RandomHelper_Ids_" data-uid="GameFrameX.Utility.RandomHelper.Ids*"></a>
+
+  <h3 id="GameFrameX_Utility_RandomHelper_Ids__1_System_Collections_Generic_List___0__System_Int32_" data-uid="GameFrameX.Utility.RandomHelper.Ids``1(System.Collections.Generic.List{``0},System.Int32)">
+  Ids&lt;T&gt;(List&lt;T&gt;, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L325"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>随机选择多个索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int[] Ids&lt;T&gt;(List&lt;T&gt; items, int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</dt>
+    <dd><p>选择项</p>
+</dd>
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>选择数量</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>[]</dt>
+    <dd><p>选择结果索引数组</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>选择项类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当 items 为 null 时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>当 items 为空列表或 count 小于 0 时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_RandomHelper_Ids_" data-uid="GameFrameX.Utility.RandomHelper.Ids*"></a>
+
+  <h3 id="GameFrameX_Utility_RandomHelper_Ids__1___0___System_Int32_" data-uid="GameFrameX.Utility.RandomHelper.Ids``1(``0[],System.Int32)">
+  Ids&lt;T&gt;(T[], int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L301"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>随机选择多个索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int[] Ids&lt;T&gt;(T[] items, int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> T[]</dt>
+    <dd><p>选择项</p>
+</dd>
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>选择数量</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>[]</dt>
+    <dd><p>选择结果索引数组</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>选择项类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当 items 为 null 时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>当 items 为空数组或 count 小于 0 时抛出此异常</p>
+</dd>
+  </dl>
 
 
 
@@ -328,7 +567,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_RandomHelper_Idx_System_Int32___" data-uid="GameFrameX.Utility.RandomHelper.Idx(System.Int32[])">
   Idx(int[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L300"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L605"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>根据权重随机选取一个id</p>
@@ -360,6 +599,15 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当weights为null时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>当weights为空数组时抛出此异常</p>
+</dd>
+  </dl>
 
 
 
@@ -367,7 +615,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_RandomHelper_Idx_System_Int32_____System_Int32_" data-uid="GameFrameX.Utility.RandomHelper.Idx(System.Int32[][],System.Int32)">
   Idx(int[][], int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L323"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L634"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>根据权重随机选取一个id</p>
@@ -402,6 +650,180 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当array为null时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>当array为空数组时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>当weightIndex小于0时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_RandomHelper_Idx_" data-uid="GameFrameX.Utility.RandomHelper.Idx*"></a>
+
+  <h3 id="GameFrameX_Utility_RandomHelper_Idx__1_System_Collections_Generic_IList___0__" data-uid="GameFrameX.Utility.RandomHelper.Idx``1(System.Collections.Generic.IList{``0})">
+  Idx&lt;T&gt;(IList&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L231"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>随机选择索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int Idx&lt;T&gt;(IList&lt;T&gt; items)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;T&gt;</dt>
+    <dd><p>选择项</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>选择结果索引</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>选择项类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当 items 为 null 时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>当 items 为空集合时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_RandomHelper_Idx_" data-uid="GameFrameX.Utility.RandomHelper.Idx*"></a>
+
+  <h3 id="GameFrameX_Utility_RandomHelper_Idx__1_System_Collections_Generic_List___0__" data-uid="GameFrameX.Utility.RandomHelper.Idx``1(System.Collections.Generic.List{``0})">
+  Idx&lt;T&gt;(List&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L261"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>随机选择索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int Idx&lt;T&gt;(List&lt;T&gt; items)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</dt>
+    <dd><p>选择项</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>选择结果索引</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>选择项类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当 items 为 null 时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>当 items 为空列表时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_RandomHelper_Idx_" data-uid="GameFrameX.Utility.RandomHelper.Idx*"></a>
+
+  <h3 id="GameFrameX_Utility_RandomHelper_Idx__1___0___" data-uid="GameFrameX.Utility.RandomHelper.Idx``1(``0[])">
+  Idx&lt;T&gt;(T[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L246"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>随机选择索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int Idx&lt;T&gt;(T[] items)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> T[]</dt>
+    <dd><p>选择项</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>选择结果索引</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>选择项类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当 items 为 null 时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>当 items 为空数组时抛出此异常</p>
+</dd>
+  </dl>
 
 
 
@@ -409,7 +831,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_RandomHelper_Items_System_Int32_____System_Int32_System_Boolean_" data-uid="GameFrameX.Utility.RandomHelper.Items(System.Int32[][],System.Int32,System.Boolean)">
   Items(int[][], int, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L389"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L726"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>随机获取指定数量的项目</p>
@@ -447,6 +869,18 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当array为null时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>当array为空数组时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>当num小于0时抛出此异常</p>
+</dd>
+  </dl>
 
 
 
@@ -454,7 +888,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_RandomHelper_Items_System_String_System_Int32_System_Boolean_" data-uid="GameFrameX.Utility.RandomHelper.Items(System.String,System.Int32,System.Boolean)">
   Items(string, int, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L377"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L708"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>随机获取指定数量的项目</p>
@@ -492,6 +926,189 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当str为null时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>当str为空或格式错误时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>当num小于0时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_RandomHelper_Items_" data-uid="GameFrameX.Utility.RandomHelper.Items*"></a>
+
+  <h3 id="GameFrameX_Utility_RandomHelper_Items__1_System_Collections_Generic_IList___0__System_Int32_" data-uid="GameFrameX.Utility.RandomHelper.Items``1(System.Collections.Generic.IList{``0},System.Int32)">
+  Items&lt;T&gt;(IList&lt;T&gt;, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L349"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>随机选择多个项目</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T[] Items&lt;T&gt;(IList&lt;T&gt; items, int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;T&gt;</dt>
+    <dd><p>选择项</p>
+</dd>
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>选择数量</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt>T[]</dt>
+    <dd><p>选择结果数组</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>选择项类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当 items 为 null 时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>当 items 为空集合或 count 小于 0 时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_RandomHelper_Items_" data-uid="GameFrameX.Utility.RandomHelper.Items*"></a>
+
+  <h3 id="GameFrameX_Utility_RandomHelper_Items__1_System_Collections_Generic_List___0__System_Int32_" data-uid="GameFrameX.Utility.RandomHelper.Items``1(System.Collections.Generic.List{``0},System.Int32)">
+  Items&lt;T&gt;(List&lt;T&gt;, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L397"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>随机选择多个项目</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T[] Items&lt;T&gt;(List&lt;T&gt; items, int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</dt>
+    <dd><p>选择项</p>
+</dd>
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>选择数量</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt>T[]</dt>
+    <dd><p>选择结果数组</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>选择项类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当 items 为 null 时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>当 items 为空列表或 count 小于 0 时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_RandomHelper_Items_" data-uid="GameFrameX.Utility.RandomHelper.Items*"></a>
+
+  <h3 id="GameFrameX_Utility_RandomHelper_Items__1___0___System_Int32_" data-uid="GameFrameX.Utility.RandomHelper.Items``1(``0[],System.Int32)">
+  Items&lt;T&gt;(T[], int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L373"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>随机选择多个项目</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T[] Items&lt;T&gt;(T[] items, int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> T[]</dt>
+    <dd><p>选择项</p>
+</dd>
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>选择数量</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt>T[]</dt>
+    <dd><p>选择结果数组</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>选择项类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当 items 为 null 时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>当 items 为空数组或 count 小于 0 时抛出此异常</p>
+</dd>
+  </dl>
 
 
 
@@ -499,7 +1116,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_RandomHelper_Next" data-uid="GameFrameX.Utility.RandomHelper.Next">
   Next()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L73"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>返回非负随机数。</p>
@@ -532,7 +1149,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_RandomHelper_Next_System_Int32_" data-uid="GameFrameX.Utility.RandomHelper.Next(System.Int32)">
   Next(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L84"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>返回一个小于所指定最大值的非负随机数。</p>
@@ -564,6 +1181,12 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>当 maxValue 小于 0 时抛出此异常</p>
+</dd>
+  </dl>
 
 
 
@@ -571,7 +1194,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_RandomHelper_Next_System_Int32_System_Int32_" data-uid="GameFrameX.Utility.RandomHelper.Next(System.Int32,System.Int32)">
   Next(int, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>返回一个指定范围内的随机数。</p>
@@ -606,6 +1229,12 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>当 minValue 大于 maxValue 时抛出此异常</p>
+</dd>
+  </dl>
 
 
 
@@ -613,7 +1242,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_RandomHelper_NextBytes_System_Byte___" data-uid="GameFrameX.Utility.RandomHelper.NextBytes(System.Byte[])">
   NextBytes(byte[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L162"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>用随机数填充指定字节数组的元素。</p>
@@ -639,6 +1268,45 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当 buffer 为 null 时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_RandomHelper_NextBytes_" data-uid="GameFrameX.Utility.RandomHelper.NextBytes*"></a>
+
+  <h3 id="GameFrameX_Utility_RandomHelper_NextBytes_System_Span_System_Byte__" data-uid="GameFrameX.Utility.RandomHelper.NextBytes(System.Span{System.Byte})">
+  NextBytes(Span&lt;byte&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用随机数填充指定字节数组的元素。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void NextBytes(Span&lt;byte&gt; buffer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>包含随机数的字节数组。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -646,7 +1314,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_RandomHelper_NextDouble" data-uid="GameFrameX.Utility.RandomHelper.NextDouble">
   NextDouble()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L152"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>返回一个介于 0.0 和 1.0 之间的随机数。</p>
@@ -679,7 +1347,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_RandomHelper_NextInt64" data-uid="GameFrameX.Utility.RandomHelper.NextInt64">
   NextInt64()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L107"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>返回非负随机数。</p>
@@ -712,7 +1380,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_RandomHelper_NextInt64_System_Int32_" data-uid="GameFrameX.Utility.RandomHelper.NextInt64(System.Int32)">
   NextInt64(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>返回一个小于所指定最大值的非负随机数。</p>
@@ -744,6 +1412,60 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>当 maxValue 小于 0 时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_RandomHelper_NextInt64_" data-uid="GameFrameX.Utility.RandomHelper.NextInt64*"></a>
+
+  <h3 id="GameFrameX_Utility_RandomHelper_NextInt64_System_Int64_System_Int64_" data-uid="GameFrameX.Utility.RandomHelper.NextInt64(System.Int64,System.Int64)">
+  NextInt64(long, long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L131"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>返回一个指定范围内的随机数。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long NextInt64(long minValue, long maxValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>minValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>返回的随机数的下界（随机数可取该下界值）。</p>
+</dd>
+    <dt><code>maxValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>返回的随机数的上界（随机数不能取该上界值）。maxValue 必须大于等于 minValue。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>一个大于等于 minValue 且小于 maxValue 的 64 位带符号整数，即：返回的值范围包括 minValue 但不包括 maxValue。如果 minValue 等于 maxValue，则返回 minValue。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>当 minValue 大于 maxValue 时抛出此异常</p>
+</dd>
+  </dl>
 
 
 
@@ -751,7 +1473,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_RandomHelper_NextUInt32" data-uid="GameFrameX.Utility.RandomHelper.NextUInt32">
   NextUInt32()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L62"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取UInt32范围内的随机数。</p>
@@ -784,7 +1506,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="GameFrameX_Utility_RandomHelper_NextUInt64" data-uid="GameFrameX.Utility.RandomHelper.NextUInt64">
   NextUInt64()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L141"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取UInt64范围内的随机数。</p>
@@ -813,53 +1535,11 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 
 
 
-  <a id="GameFrameX_Utility_RandomHelper_NxtInt64_" data-uid="GameFrameX.Utility.RandomHelper.NxtInt64*"></a>
-
-  <h3 id="GameFrameX_Utility_RandomHelper_NxtInt64_System_Int64_System_Int64_" data-uid="GameFrameX.Utility.RandomHelper.NxtInt64(System.Int64,System.Int64)">
-  NxtInt64(long, long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L87"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>返回一个指定范围内的随机数。</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static long NxtInt64(long minValue, long maxValue)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>minValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>返回的随机数的下界（随机数可取该下界值）。</p>
-</dd>
-    <dt><code>maxValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>返回的随机数的上界（随机数不能取该上界值）。maxValue 必须大于等于 minValue。</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
-    <dd><p>一个大于等于 minValue 且小于 maxValue 的 64 位带符号整数，即：返回的值范围包括 minValue 但不包括 maxValue。如果 minValue 等于 maxValue，则返回 minValue。</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
   <a id="GameFrameX_Utility_RandomHelper_RandomSelect_" data-uid="GameFrameX.Utility.RandomHelper.RandomSelect*"></a>
 
   <h3 id="GameFrameX_Utility_RandomHelper_RandomSelect_System_Int32_System_Int32_" data-uid="GameFrameX.Utility.RandomHelper.RandomSelect(System.Int32,System.Int32)">
   RandomSelect(int, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L420"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>从1~n中随机选取m个数，m小于n</p>
@@ -897,7 +1577,169 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
-    <dd><p>当m大于n时抛出此异常</p>
+    <dd><p>当m或n小于0，或m大于n时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_RandomHelper_RandomSelect_" data-uid="GameFrameX.Utility.RandomHelper.RandomSelect*"></a>
+
+  <h3 id="GameFrameX_Utility_RandomHelper_RandomSelect__1_System_Collections_Generic_IList___0__" data-uid="GameFrameX.Utility.RandomHelper.RandomSelect``1(System.Collections.Generic.IList{``0})">
+  RandomSelect&lt;T&gt;(IList&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L186"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>随机选择</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T RandomSelect&lt;T&gt;(IList&lt;T&gt; items)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;T&gt;</dt>
+    <dd><p>选择项</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>选择结果</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>选择项类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当 items 为 null 时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>当 items 为空集合时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_RandomHelper_RandomSelect_" data-uid="GameFrameX.Utility.RandomHelper.RandomSelect*"></a>
+
+  <h3 id="GameFrameX_Utility_RandomHelper_RandomSelect__1_System_Collections_Generic_List___0__" data-uid="GameFrameX.Utility.RandomHelper.RandomSelect``1(System.Collections.Generic.List{``0})">
+  RandomSelect&lt;T&gt;(List&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L216"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>随机选择</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T RandomSelect&lt;T&gt;(List&lt;T&gt; items)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</dt>
+    <dd><p>选择项</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>选择结果</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>选择项类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当 items 为 null 时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>当 items 为空列表时抛出此异常</p>
+</dd>
+  </dl>
+
+
+
+  <a id="GameFrameX_Utility_RandomHelper_RandomSelect_" data-uid="GameFrameX.Utility.RandomHelper.RandomSelect*"></a>
+
+  <h3 id="GameFrameX_Utility_RandomHelper_RandomSelect__1___0___" data-uid="GameFrameX.Utility.RandomHelper.RandomSelect``1(``0[])">
+  RandomSelect&lt;T&gt;(T[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L201"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>随机选择</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T RandomSelect&lt;T&gt;(T[] items)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> T[]</dt>
+    <dd><p>选择项</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>选择结果</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>选择项类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>当 items 为 null 时抛出此异常</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>当 items 为空数组时抛出此异常</p>
 </dd>
   </dl>
 
@@ -907,7 +1749,7 @@ Class RandomHelper  <a class="header-action link-secondary" title="View source" 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev40/GameFrameX.Utility/RandomHelper.cs/#L9" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/1.5.1-dev41/GameFrameX.Utility/RandomHelper.cs/#L46" class="edit-link">Edit this page</a>
         </div>
 
 

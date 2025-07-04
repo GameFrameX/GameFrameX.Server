@@ -5593,6 +5593,91 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Inactive
   nameWithType: BaseComponentAgent<TComponent>.Inactive
   nameWithType.vb: BaseComponentAgent(Of TComponent).Inactive
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedActivation
+  name: IsInvokedActivation
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_IsInvokedActivation
+  commentId: P:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedActivation
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.IsInvokedActivation
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).IsInvokedActivation
+  nameWithType: BaseComponentAgent<TComponent>.IsInvokedActivation
+  nameWithType.vb: BaseComponentAgent(Of TComponent).IsInvokedActivation
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedActivation*
+  name: IsInvokedActivation
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_IsInvokedActivation_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedActivation
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.IsInvokedActivation
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).IsInvokedActivation
+  nameWithType: BaseComponentAgent<TComponent>.IsInvokedActivation
+  nameWithType.vb: BaseComponentAgent(Of TComponent).IsInvokedActivation
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedAfterActivation
+  name: IsInvokedAfterActivation
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_IsInvokedAfterActivation
+  commentId: P:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedAfterActivation
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.IsInvokedAfterActivation
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).IsInvokedAfterActivation
+  nameWithType: BaseComponentAgent<TComponent>.IsInvokedAfterActivation
+  nameWithType.vb: BaseComponentAgent(Of TComponent).IsInvokedAfterActivation
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedAfterActivation*
+  name: IsInvokedAfterActivation
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_IsInvokedAfterActivation_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedAfterActivation
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.IsInvokedAfterActivation
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).IsInvokedAfterActivation
+  nameWithType: BaseComponentAgent<TComponent>.IsInvokedAfterActivation
+  nameWithType.vb: BaseComponentAgent(Of TComponent).IsInvokedAfterActivation
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedAfterInActivation
+  name: IsInvokedAfterInActivation
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_IsInvokedAfterInActivation
+  commentId: P:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedAfterInActivation
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.IsInvokedAfterInActivation
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).IsInvokedAfterInActivation
+  nameWithType: BaseComponentAgent<TComponent>.IsInvokedAfterInActivation
+  nameWithType.vb: BaseComponentAgent(Of TComponent).IsInvokedAfterInActivation
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedAfterInActivation*
+  name: IsInvokedAfterInActivation
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_IsInvokedAfterInActivation_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedAfterInActivation
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.IsInvokedAfterInActivation
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).IsInvokedAfterInActivation
+  nameWithType: BaseComponentAgent<TComponent>.IsInvokedAfterInActivation
+  nameWithType.vb: BaseComponentAgent(Of TComponent).IsInvokedAfterInActivation
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedBeforeActivation
+  name: IsInvokedBeforeActivation
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_IsInvokedBeforeActivation
+  commentId: P:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedBeforeActivation
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.IsInvokedBeforeActivation
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).IsInvokedBeforeActivation
+  nameWithType: BaseComponentAgent<TComponent>.IsInvokedBeforeActivation
+  nameWithType.vb: BaseComponentAgent(Of TComponent).IsInvokedBeforeActivation
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedBeforeActivation*
+  name: IsInvokedBeforeActivation
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_IsInvokedBeforeActivation_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedBeforeActivation
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.IsInvokedBeforeActivation
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).IsInvokedBeforeActivation
+  nameWithType: BaseComponentAgent<TComponent>.IsInvokedBeforeActivation
+  nameWithType.vb: BaseComponentAgent(Of TComponent).IsInvokedBeforeActivation
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedBeforeInActivation
+  name: IsInvokedBeforeInActivation
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_IsInvokedBeforeInActivation
+  commentId: P:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedBeforeInActivation
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.IsInvokedBeforeInActivation
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).IsInvokedBeforeInActivation
+  nameWithType: BaseComponentAgent<TComponent>.IsInvokedBeforeInActivation
+  nameWithType.vb: BaseComponentAgent(Of TComponent).IsInvokedBeforeInActivation
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedBeforeInActivation*
+  name: IsInvokedBeforeInActivation
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_IsInvokedBeforeInActivation_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedBeforeInActivation
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.IsInvokedBeforeInActivation
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).IsInvokedBeforeInActivation
+  nameWithType: BaseComponentAgent<TComponent>.IsInvokedBeforeInActivation
+  nameWithType.vb: BaseComponentAgent(Of TComponent).IsInvokedBeforeInActivation
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Monthly*
   name: Monthly
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Monthly_
@@ -6605,12 +6690,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Utility.ActorIdGenerator.GetServerId
   nameWithType: ActorIdGenerator.GetServerId
-- uid: GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueId(GameFrameX.Utility.Setting.IdModule)
-  name: GetUniqueId(IdModule)
-  href: api/GameFrameX.Core.Utility.ActorIdGenerator.html#GameFrameX_Core_Utility_ActorIdGenerator_GetUniqueId_GameFrameX_Utility_Setting_IdModule_
-  commentId: M:GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueId(GameFrameX.Utility.Setting.IdModule)
-  fullName: GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueId(GameFrameX.Utility.Setting.IdModule)
-  nameWithType: ActorIdGenerator.GetUniqueId(IdModule)
+- uid: GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueId(System.UInt16)
+  name: GetUniqueId(ushort)
+  href: api/GameFrameX.Core.Utility.ActorIdGenerator.html#GameFrameX_Core_Utility_ActorIdGenerator_GetUniqueId_System_UInt16_
+  commentId: M:GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueId(System.UInt16)
+  name.vb: GetUniqueId(UShort)
+  fullName: GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueId(ushort)
+  fullName.vb: GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueId(UShort)
+  nameWithType: ActorIdGenerator.GetUniqueId(ushort)
+  nameWithType.vb: ActorIdGenerator.GetUniqueId(UShort)
 - uid: GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueId*
   name: GetUniqueId
   href: api/GameFrameX.Core.Utility.ActorIdGenerator.html#GameFrameX_Core_Utility_ActorIdGenerator_GetUniqueId_
@@ -6786,226 +6874,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Utility.StatisticsTool.CountRecord
   nameWithType: StatisticsTool.CountRecord
-- uid: GameFrameX.GameAnalytics
-  name: GameFrameX.GameAnalytics
-  href: api/GameFrameX.GameAnalytics.html
-  commentId: N:GameFrameX.GameAnalytics
-  fullName: GameFrameX.GameAnalytics
-  nameWithType: GameFrameX.GameAnalytics
-- uid: GameFrameX.GameAnalytics.ErrorLevel
-  name: ErrorLevel
-  href: api/GameFrameX.GameAnalytics.ErrorLevel.html
-  commentId: T:GameFrameX.GameAnalytics.ErrorLevel
-  fullName: GameFrameX.GameAnalytics.ErrorLevel
-  nameWithType: ErrorLevel
-- uid: GameFrameX.GameAnalytics.ErrorLevel.Critical
-  name: Critical
-  href: api/GameFrameX.GameAnalytics.ErrorLevel.html#GameFrameX_GameAnalytics_ErrorLevel_Critical
-  commentId: F:GameFrameX.GameAnalytics.ErrorLevel.Critical
-  fullName: GameFrameX.GameAnalytics.ErrorLevel.Critical
-  nameWithType: ErrorLevel.Critical
-- uid: GameFrameX.GameAnalytics.ErrorLevel.Debug
-  name: Debug
-  href: api/GameFrameX.GameAnalytics.ErrorLevel.html#GameFrameX_GameAnalytics_ErrorLevel_Debug
-  commentId: F:GameFrameX.GameAnalytics.ErrorLevel.Debug
-  fullName: GameFrameX.GameAnalytics.ErrorLevel.Debug
-  nameWithType: ErrorLevel.Debug
-- uid: GameFrameX.GameAnalytics.ErrorLevel.Error
-  name: Error
-  href: api/GameFrameX.GameAnalytics.ErrorLevel.html#GameFrameX_GameAnalytics_ErrorLevel_Error
-  commentId: F:GameFrameX.GameAnalytics.ErrorLevel.Error
-  fullName: GameFrameX.GameAnalytics.ErrorLevel.Error
-  nameWithType: ErrorLevel.Error
-- uid: GameFrameX.GameAnalytics.ErrorLevel.Info
-  name: Info
-  href: api/GameFrameX.GameAnalytics.ErrorLevel.html#GameFrameX_GameAnalytics_ErrorLevel_Info
-  commentId: F:GameFrameX.GameAnalytics.ErrorLevel.Info
-  fullName: GameFrameX.GameAnalytics.ErrorLevel.Info
-  nameWithType: ErrorLevel.Info
-- uid: GameFrameX.GameAnalytics.ErrorLevel.Undefined
-  name: Undefined
-  href: api/GameFrameX.GameAnalytics.ErrorLevel.html#GameFrameX_GameAnalytics_ErrorLevel_Undefined
-  commentId: F:GameFrameX.GameAnalytics.ErrorLevel.Undefined
-  fullName: GameFrameX.GameAnalytics.ErrorLevel.Undefined
-  nameWithType: ErrorLevel.Undefined
-- uid: GameFrameX.GameAnalytics.ErrorLevel.Warning
-  name: Warning
-  href: api/GameFrameX.GameAnalytics.ErrorLevel.html#GameFrameX_GameAnalytics_ErrorLevel_Warning
-  commentId: F:GameFrameX.GameAnalytics.ErrorLevel.Warning
-  fullName: GameFrameX.GameAnalytics.ErrorLevel.Warning
-  nameWithType: ErrorLevel.Warning
-- uid: GameFrameX.GameAnalytics.GameAnalyticsHelper
-  name: GameAnalyticsHelper
-  href: api/GameFrameX.GameAnalytics.GameAnalyticsHelper.html
-  commentId: T:GameFrameX.GameAnalytics.GameAnalyticsHelper
-  fullName: GameFrameX.GameAnalytics.GameAnalyticsHelper
-  nameWithType: GameAnalyticsHelper
-- uid: GameFrameX.GameAnalytics.GameAnalyticsHelper.Business(System.String,System.Int32,System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object},System.Boolean)
-  name: Business(string, int, string, string, string, IDictionary<string, object>, bool)
-  href: api/GameFrameX.GameAnalytics.GameAnalyticsHelper.html#GameFrameX_GameAnalytics_GameAnalyticsHelper_Business_System_String_System_Int32_System_String_System_String_System_String_System_Collections_Generic_IDictionary_System_String_System_Object__System_Boolean_
-  commentId: M:GameFrameX.GameAnalytics.GameAnalyticsHelper.Business(System.String,System.Int32,System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object},System.Boolean)
-  name.vb: Business(String, Integer, String, String, String, IDictionary(Of String, Object), Boolean)
-  fullName: GameFrameX.GameAnalytics.GameAnalyticsHelper.Business(string, int, string, string, string, System.Collections.Generic.IDictionary<string, object>, bool)
-  fullName.vb: GameFrameX.GameAnalytics.GameAnalyticsHelper.Business(String, Integer, String, String, String, System.Collections.Generic.IDictionary(Of String, Object), Boolean)
-  nameWithType: GameAnalyticsHelper.Business(string, int, string, string, string, IDictionary<string, object>, bool)
-  nameWithType.vb: GameAnalyticsHelper.Business(String, Integer, String, String, String, IDictionary(Of String, Object), Boolean)
-- uid: GameFrameX.GameAnalytics.GameAnalyticsHelper.Business*
-  name: Business
-  href: api/GameFrameX.GameAnalytics.GameAnalyticsHelper.html#GameFrameX_GameAnalytics_GameAnalyticsHelper_Business_
-  commentId: Overload:GameFrameX.GameAnalytics.GameAnalyticsHelper.Business
-  isSpec: "True"
-  fullName: GameFrameX.GameAnalytics.GameAnalyticsHelper.Business
-  nameWithType: GameAnalyticsHelper.Business
-- uid: GameFrameX.GameAnalytics.GameAnalyticsHelper.Error(GameFrameX.GameAnalytics.ErrorLevel,System.String,System.Collections.Generic.IDictionary{System.String,System.Object},System.Boolean)
-  name: Error(ErrorLevel, string, IDictionary<string, object>, bool)
-  href: api/GameFrameX.GameAnalytics.GameAnalyticsHelper.html#GameFrameX_GameAnalytics_GameAnalyticsHelper_Error_GameFrameX_GameAnalytics_ErrorLevel_System_String_System_Collections_Generic_IDictionary_System_String_System_Object__System_Boolean_
-  commentId: M:GameFrameX.GameAnalytics.GameAnalyticsHelper.Error(GameFrameX.GameAnalytics.ErrorLevel,System.String,System.Collections.Generic.IDictionary{System.String,System.Object},System.Boolean)
-  name.vb: Error(ErrorLevel, String, IDictionary(Of String, Object), Boolean)
-  fullName: GameFrameX.GameAnalytics.GameAnalyticsHelper.Error(GameFrameX.GameAnalytics.ErrorLevel, string, System.Collections.Generic.IDictionary<string, object>, bool)
-  fullName.vb: GameFrameX.GameAnalytics.GameAnalyticsHelper.Error(GameFrameX.GameAnalytics.ErrorLevel, String, System.Collections.Generic.IDictionary(Of String, Object), Boolean)
-  nameWithType: GameAnalyticsHelper.Error(ErrorLevel, string, IDictionary<string, object>, bool)
-  nameWithType.vb: GameAnalyticsHelper.Error(ErrorLevel, String, IDictionary(Of String, Object), Boolean)
-- uid: GameFrameX.GameAnalytics.GameAnalyticsHelper.Error*
-  name: Error
-  href: api/GameFrameX.GameAnalytics.GameAnalyticsHelper.html#GameFrameX_GameAnalytics_GameAnalyticsHelper_Error_
-  commentId: Overload:GameFrameX.GameAnalytics.GameAnalyticsHelper.Error
-  isSpec: "True"
-  fullName: GameFrameX.GameAnalytics.GameAnalyticsHelper.Error
-  nameWithType: GameAnalyticsHelper.Error
-- uid: GameFrameX.GameAnalytics.GameAnalyticsHelper.Event(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: Event(string, Dictionary<string, object>)
-  href: api/GameFrameX.GameAnalytics.GameAnalyticsHelper.html#GameFrameX_GameAnalytics_GameAnalyticsHelper_Event_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:GameFrameX.GameAnalytics.GameAnalyticsHelper.Event(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: Event(String, Dictionary(Of String, Object))
-  fullName: GameFrameX.GameAnalytics.GameAnalyticsHelper.Event(string, System.Collections.Generic.Dictionary<string, object>)
-  fullName.vb: GameFrameX.GameAnalytics.GameAnalyticsHelper.Event(String, System.Collections.Generic.Dictionary(Of String, Object))
-  nameWithType: GameAnalyticsHelper.Event(string, Dictionary<string, object>)
-  nameWithType.vb: GameAnalyticsHelper.Event(String, Dictionary(Of String, Object))
-- uid: GameFrameX.GameAnalytics.GameAnalyticsHelper.Event*
-  name: Event
-  href: api/GameFrameX.GameAnalytics.GameAnalyticsHelper.html#GameFrameX_GameAnalytics_GameAnalyticsHelper_Event_
-  commentId: Overload:GameFrameX.GameAnalytics.GameAnalyticsHelper.Event
-  isSpec: "True"
-  fullName: GameFrameX.GameAnalytics.GameAnalyticsHelper.Event
-  nameWithType: GameAnalyticsHelper.Event
-- uid: GameFrameX.GameAnalytics.GameAnalyticsHelper.Init(System.String,System.String,System.String)
-  name: Init(string, string, string)
-  href: api/GameFrameX.GameAnalytics.GameAnalyticsHelper.html#GameFrameX_GameAnalytics_GameAnalyticsHelper_Init_System_String_System_String_System_String_
-  commentId: M:GameFrameX.GameAnalytics.GameAnalyticsHelper.Init(System.String,System.String,System.String)
-  name.vb: Init(String, String, String)
-  fullName: GameFrameX.GameAnalytics.GameAnalyticsHelper.Init(string, string, string)
-  fullName.vb: GameFrameX.GameAnalytics.GameAnalyticsHelper.Init(String, String, String)
-  nameWithType: GameAnalyticsHelper.Init(string, string, string)
-  nameWithType.vb: GameAnalyticsHelper.Init(String, String, String)
-- uid: GameFrameX.GameAnalytics.GameAnalyticsHelper.Init*
-  name: Init
-  href: api/GameFrameX.GameAnalytics.GameAnalyticsHelper.html#GameFrameX_GameAnalytics_GameAnalyticsHelper_Init_
-  commentId: Overload:GameFrameX.GameAnalytics.GameAnalyticsHelper.Init
-  isSpec: "True"
-  fullName: GameFrameX.GameAnalytics.GameAnalyticsHelper.Init
-  nameWithType: GameAnalyticsHelper.Init
-- uid: GameFrameX.GameAnalytics.GameAnalyticsHelper.Progression(GameFrameX.GameAnalytics.ProgressionStatus,System.String,System.String,System.String,System.Double,System.Collections.Generic.IDictionary{System.String,System.Object},System.Boolean)
-  name: Progression(ProgressionStatus, string, string, string, double, IDictionary<string, object>, bool)
-  href: api/GameFrameX.GameAnalytics.GameAnalyticsHelper.html#GameFrameX_GameAnalytics_GameAnalyticsHelper_Progression_GameFrameX_GameAnalytics_ProgressionStatus_System_String_System_String_System_String_System_Double_System_Collections_Generic_IDictionary_System_String_System_Object__System_Boolean_
-  commentId: M:GameFrameX.GameAnalytics.GameAnalyticsHelper.Progression(GameFrameX.GameAnalytics.ProgressionStatus,System.String,System.String,System.String,System.Double,System.Collections.Generic.IDictionary{System.String,System.Object},System.Boolean)
-  name.vb: Progression(ProgressionStatus, String, String, String, Double, IDictionary(Of String, Object), Boolean)
-  fullName: GameFrameX.GameAnalytics.GameAnalyticsHelper.Progression(GameFrameX.GameAnalytics.ProgressionStatus, string, string, string, double, System.Collections.Generic.IDictionary<string, object>, bool)
-  fullName.vb: GameFrameX.GameAnalytics.GameAnalyticsHelper.Progression(GameFrameX.GameAnalytics.ProgressionStatus, String, String, String, Double, System.Collections.Generic.IDictionary(Of String, Object), Boolean)
-  nameWithType: GameAnalyticsHelper.Progression(ProgressionStatus, string, string, string, double, IDictionary<string, object>, bool)
-  nameWithType.vb: GameAnalyticsHelper.Progression(ProgressionStatus, String, String, String, Double, IDictionary(Of String, Object), Boolean)
-- uid: GameFrameX.GameAnalytics.GameAnalyticsHelper.Progression*
-  name: Progression
-  href: api/GameFrameX.GameAnalytics.GameAnalyticsHelper.html#GameFrameX_GameAnalytics_GameAnalyticsHelper_Progression_
-  commentId: Overload:GameFrameX.GameAnalytics.GameAnalyticsHelper.Progression
-  isSpec: "True"
-  fullName: GameFrameX.GameAnalytics.GameAnalyticsHelper.Progression
-  nameWithType: GameAnalyticsHelper.Progression
-- uid: GameFrameX.GameAnalytics.GameAnalyticsHelper.Resource(GameFrameX.GameAnalytics.ResourceFlowType,System.String,System.Single,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object},System.Boolean)
-  name: Resource(ResourceFlowType, string, float, string, string, IDictionary<string, object>, bool)
-  href: api/GameFrameX.GameAnalytics.GameAnalyticsHelper.html#GameFrameX_GameAnalytics_GameAnalyticsHelper_Resource_GameFrameX_GameAnalytics_ResourceFlowType_System_String_System_Single_System_String_System_String_System_Collections_Generic_IDictionary_System_String_System_Object__System_Boolean_
-  commentId: M:GameFrameX.GameAnalytics.GameAnalyticsHelper.Resource(GameFrameX.GameAnalytics.ResourceFlowType,System.String,System.Single,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object},System.Boolean)
-  name.vb: Resource(ResourceFlowType, String, Single, String, String, IDictionary(Of String, Object), Boolean)
-  fullName: GameFrameX.GameAnalytics.GameAnalyticsHelper.Resource(GameFrameX.GameAnalytics.ResourceFlowType, string, float, string, string, System.Collections.Generic.IDictionary<string, object>, bool)
-  fullName.vb: GameFrameX.GameAnalytics.GameAnalyticsHelper.Resource(GameFrameX.GameAnalytics.ResourceFlowType, String, Single, String, String, System.Collections.Generic.IDictionary(Of String, Object), Boolean)
-  nameWithType: GameAnalyticsHelper.Resource(ResourceFlowType, string, float, string, string, IDictionary<string, object>, bool)
-  nameWithType.vb: GameAnalyticsHelper.Resource(ResourceFlowType, String, Single, String, String, IDictionary(Of String, Object), Boolean)
-- uid: GameFrameX.GameAnalytics.GameAnalyticsHelper.Resource*
-  name: Resource
-  href: api/GameFrameX.GameAnalytics.GameAnalyticsHelper.html#GameFrameX_GameAnalytics_GameAnalyticsHelper_Resource_
-  commentId: Overload:GameFrameX.GameAnalytics.GameAnalyticsHelper.Resource
-  isSpec: "True"
-  fullName: GameFrameX.GameAnalytics.GameAnalyticsHelper.Resource
-  nameWithType: GameAnalyticsHelper.Resource
-- uid: GameFrameX.GameAnalytics.GameAnalyticsHelper.SetGlobalCustomEventFields(System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: SetGlobalCustomEventFields(Dictionary<string, object>)
-  href: api/GameFrameX.GameAnalytics.GameAnalyticsHelper.html#GameFrameX_GameAnalytics_GameAnalyticsHelper_SetGlobalCustomEventFields_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:GameFrameX.GameAnalytics.GameAnalyticsHelper.SetGlobalCustomEventFields(System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: SetGlobalCustomEventFields(Dictionary(Of String, Object))
-  fullName: GameFrameX.GameAnalytics.GameAnalyticsHelper.SetGlobalCustomEventFields(System.Collections.Generic.Dictionary<string, object>)
-  fullName.vb: GameFrameX.GameAnalytics.GameAnalyticsHelper.SetGlobalCustomEventFields(System.Collections.Generic.Dictionary(Of String, Object))
-  nameWithType: GameAnalyticsHelper.SetGlobalCustomEventFields(Dictionary<string, object>)
-  nameWithType.vb: GameAnalyticsHelper.SetGlobalCustomEventFields(Dictionary(Of String, Object))
-- uid: GameFrameX.GameAnalytics.GameAnalyticsHelper.SetGlobalCustomEventFields*
-  name: SetGlobalCustomEventFields
-  href: api/GameFrameX.GameAnalytics.GameAnalyticsHelper.html#GameFrameX_GameAnalytics_GameAnalyticsHelper_SetGlobalCustomEventFields_
-  commentId: Overload:GameFrameX.GameAnalytics.GameAnalyticsHelper.SetGlobalCustomEventFields
-  isSpec: "True"
-  fullName: GameFrameX.GameAnalytics.GameAnalyticsHelper.SetGlobalCustomEventFields
-  nameWithType: GameAnalyticsHelper.SetGlobalCustomEventFields
-- uid: GameFrameX.GameAnalytics.ProgressionStatus
-  name: ProgressionStatus
-  href: api/GameFrameX.GameAnalytics.ProgressionStatus.html
-  commentId: T:GameFrameX.GameAnalytics.ProgressionStatus
-  fullName: GameFrameX.GameAnalytics.ProgressionStatus
-  nameWithType: ProgressionStatus
-- uid: GameFrameX.GameAnalytics.ProgressionStatus.Complete
-  name: Complete
-  href: api/GameFrameX.GameAnalytics.ProgressionStatus.html#GameFrameX_GameAnalytics_ProgressionStatus_Complete
-  commentId: F:GameFrameX.GameAnalytics.ProgressionStatus.Complete
-  fullName: GameFrameX.GameAnalytics.ProgressionStatus.Complete
-  nameWithType: ProgressionStatus.Complete
-- uid: GameFrameX.GameAnalytics.ProgressionStatus.Fail
-  name: Fail
-  href: api/GameFrameX.GameAnalytics.ProgressionStatus.html#GameFrameX_GameAnalytics_ProgressionStatus_Fail
-  commentId: F:GameFrameX.GameAnalytics.ProgressionStatus.Fail
-  fullName: GameFrameX.GameAnalytics.ProgressionStatus.Fail
-  nameWithType: ProgressionStatus.Fail
-- uid: GameFrameX.GameAnalytics.ProgressionStatus.Start
-  name: Start
-  href: api/GameFrameX.GameAnalytics.ProgressionStatus.html#GameFrameX_GameAnalytics_ProgressionStatus_Start
-  commentId: F:GameFrameX.GameAnalytics.ProgressionStatus.Start
-  fullName: GameFrameX.GameAnalytics.ProgressionStatus.Start
-  nameWithType: ProgressionStatus.Start
-- uid: GameFrameX.GameAnalytics.ProgressionStatus.Undefined
-  name: Undefined
-  href: api/GameFrameX.GameAnalytics.ProgressionStatus.html#GameFrameX_GameAnalytics_ProgressionStatus_Undefined
-  commentId: F:GameFrameX.GameAnalytics.ProgressionStatus.Undefined
-  fullName: GameFrameX.GameAnalytics.ProgressionStatus.Undefined
-  nameWithType: ProgressionStatus.Undefined
-- uid: GameFrameX.GameAnalytics.ResourceFlowType
-  name: ResourceFlowType
-  href: api/GameFrameX.GameAnalytics.ResourceFlowType.html
-  commentId: T:GameFrameX.GameAnalytics.ResourceFlowType
-  fullName: GameFrameX.GameAnalytics.ResourceFlowType
-  nameWithType: ResourceFlowType
-- uid: GameFrameX.GameAnalytics.ResourceFlowType.Sink
-  name: Sink
-  href: api/GameFrameX.GameAnalytics.ResourceFlowType.html#GameFrameX_GameAnalytics_ResourceFlowType_Sink
-  commentId: F:GameFrameX.GameAnalytics.ResourceFlowType.Sink
-  fullName: GameFrameX.GameAnalytics.ResourceFlowType.Sink
-  nameWithType: ResourceFlowType.Sink
-- uid: GameFrameX.GameAnalytics.ResourceFlowType.Source
-  name: Source
-  href: api/GameFrameX.GameAnalytics.ResourceFlowType.html#GameFrameX_GameAnalytics_ResourceFlowType_Source
-  commentId: F:GameFrameX.GameAnalytics.ResourceFlowType.Source
-  fullName: GameFrameX.GameAnalytics.ResourceFlowType.Source
-  nameWithType: ResourceFlowType.Source
-- uid: GameFrameX.GameAnalytics.ResourceFlowType.Undefined
-  name: Undefined
-  href: api/GameFrameX.GameAnalytics.ResourceFlowType.html#GameFrameX_GameAnalytics_ResourceFlowType_Undefined
-  commentId: F:GameFrameX.GameAnalytics.ResourceFlowType.Undefined
-  fullName: GameFrameX.GameAnalytics.ResourceFlowType.Undefined
-  nameWithType: ResourceFlowType.Undefined
 - uid: GameFrameX.NetWork
   name: GameFrameX.NetWork
   href: api/GameFrameX.NetWork.html
@@ -12152,6 +12020,63 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.AppStartUpBase.StopServerAsync
   nameWithType: AppStartUpBase.StopServerAsync
+- uid: GameFrameX.StartUp.Extensions
+  name: GameFrameX.StartUp.Extensions
+  href: api/GameFrameX.StartUp.Extensions.html
+  commentId: N:GameFrameX.StartUp.Extensions
+  fullName: GameFrameX.StartUp.Extensions
+  nameWithType: GameFrameX.StartUp.Extensions
+- uid: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions
+  name: OpenTelemetryExtensions
+  href: api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.html
+  commentId: T:GameFrameX.StartUp.Extensions.OpenTelemetryExtensions
+  fullName: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions
+  nameWithType: OpenTelemetryExtensions
+- uid: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetry(Microsoft.Extensions.DependencyInjection.IServiceCollection,GameFrameX.Utility.Setting.AppSetting,System.String,System.String)
+  name: AddGameFrameXOpenTelemetry(IServiceCollection, AppSetting, string, string)
+  href: api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.html#GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_AddGameFrameXOpenTelemetry_Microsoft_Extensions_DependencyInjection_IServiceCollection_GameFrameX_Utility_Setting_AppSetting_System_String_System_String_
+  commentId: M:GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetry(Microsoft.Extensions.DependencyInjection.IServiceCollection,GameFrameX.Utility.Setting.AppSetting,System.String,System.String)
+  name.vb: AddGameFrameXOpenTelemetry(IServiceCollection, AppSetting, String, String)
+  fullName: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetry(Microsoft.Extensions.DependencyInjection.IServiceCollection, GameFrameX.Utility.Setting.AppSetting, string, string)
+  fullName.vb: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetry(Microsoft.Extensions.DependencyInjection.IServiceCollection, GameFrameX.Utility.Setting.AppSetting, String, String)
+  nameWithType: OpenTelemetryExtensions.AddGameFrameXOpenTelemetry(IServiceCollection, AppSetting, string, string)
+  nameWithType.vb: OpenTelemetryExtensions.AddGameFrameXOpenTelemetry(IServiceCollection, AppSetting, String, String)
+- uid: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetry*
+  name: AddGameFrameXOpenTelemetry
+  href: api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.html#GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_AddGameFrameXOpenTelemetry_
+  commentId: Overload:GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetry
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetry
+  nameWithType: OpenTelemetryExtensions.AddGameFrameXOpenTelemetry
+- uid: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetryLogging(Microsoft.Extensions.Logging.ILoggingBuilder,GameFrameX.Utility.Setting.AppSetting)
+  name: AddGameFrameXOpenTelemetryLogging(ILoggingBuilder, AppSetting)
+  href: api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.html#GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_AddGameFrameXOpenTelemetryLogging_Microsoft_Extensions_Logging_ILoggingBuilder_GameFrameX_Utility_Setting_AppSetting_
+  commentId: M:GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetryLogging(Microsoft.Extensions.Logging.ILoggingBuilder,GameFrameX.Utility.Setting.AppSetting)
+  fullName: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetryLogging(Microsoft.Extensions.Logging.ILoggingBuilder, GameFrameX.Utility.Setting.AppSetting)
+  nameWithType: OpenTelemetryExtensions.AddGameFrameXOpenTelemetryLogging(ILoggingBuilder, AppSetting)
+- uid: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetryLogging*
+  name: AddGameFrameXOpenTelemetryLogging
+  href: api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.html#GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_AddGameFrameXOpenTelemetryLogging_
+  commentId: Overload:GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetryLogging
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetryLogging
+  nameWithType: OpenTelemetryExtensions.AddGameFrameXOpenTelemetryLogging
+- uid: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.CreateMetricsServerAsync(GameFrameX.Utility.Setting.AppSetting,System.String)
+  name: CreateMetricsServerAsync(AppSetting, string)
+  href: api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.html#GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_CreateMetricsServerAsync_GameFrameX_Utility_Setting_AppSetting_System_String_
+  commentId: M:GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.CreateMetricsServerAsync(GameFrameX.Utility.Setting.AppSetting,System.String)
+  name.vb: CreateMetricsServerAsync(AppSetting, String)
+  fullName: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.CreateMetricsServerAsync(GameFrameX.Utility.Setting.AppSetting, string)
+  fullName.vb: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.CreateMetricsServerAsync(GameFrameX.Utility.Setting.AppSetting, String)
+  nameWithType: OpenTelemetryExtensions.CreateMetricsServerAsync(AppSetting, string)
+  nameWithType.vb: OpenTelemetryExtensions.CreateMetricsServerAsync(AppSetting, String)
+- uid: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.CreateMetricsServerAsync*
+  name: CreateMetricsServerAsync
+  href: api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.html#GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_CreateMetricsServerAsync_
+  commentId: Overload:GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.CreateMetricsServerAsync
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.CreateMetricsServerAsync
+  nameWithType: OpenTelemetryExtensions.CreateMetricsServerAsync
 - uid: GameFrameX.StartUp.GameApp
   name: GameApp
   href: api/GameFrameX.StartUp.GameApp.html
@@ -12218,6 +12143,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.ActorQueueTimeOut
   nameWithType: LauncherOptions.ActorQueueTimeOut
+- uid: GameFrameX.StartUp.Options.LauncherOptions.ActorRecycleTime
+  name: ActorRecycleTime
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_ActorRecycleTime
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.ActorRecycleTime
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.ActorRecycleTime
+  nameWithType: LauncherOptions.ActorRecycleTime
+- uid: GameFrameX.StartUp.Options.LauncherOptions.ActorRecycleTime*
+  name: ActorRecycleTime
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_ActorRecycleTime_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.ActorRecycleTime
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.ActorRecycleTime
+  nameWithType: LauncherOptions.ActorRecycleTime
 - uid: GameFrameX.StartUp.Options.LauncherOptions.ActorTimeOut
   name: ActorTimeOut
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_ActorTimeOut
@@ -12712,6 +12650,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.MaxModuleId
   nameWithType: LauncherOptions.MaxModuleId
+- uid: GameFrameX.StartUp.Options.LauncherOptions.MetricsPort
+  name: MetricsPort
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_MetricsPort
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.MetricsPort
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.MetricsPort
+  nameWithType: LauncherOptions.MetricsPort
+- uid: GameFrameX.StartUp.Options.LauncherOptions.MetricsPort*
+  name: MetricsPort
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_MetricsPort_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.MetricsPort
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.MetricsPort
+  nameWithType: LauncherOptions.MetricsPort
 - uid: GameFrameX.StartUp.Options.LauncherOptions.MinModuleId
   name: MinModuleId
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_MinModuleId
@@ -25704,6 +25655,22 @@ references:
   commentId: T:GameFrameX.Utility.NetHelper
   fullName: GameFrameX.Utility.NetHelper
   nameWithType: NetHelper
+- uid: GameFrameX.Utility.NetHelper.GetAvailablePorts(System.Int32,System.Int32,System.Int32)
+  name: GetAvailablePorts(int, int, int)
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_GetAvailablePorts_System_Int32_System_Int32_System_Int32_
+  commentId: M:GameFrameX.Utility.NetHelper.GetAvailablePorts(System.Int32,System.Int32,System.Int32)
+  name.vb: GetAvailablePorts(Integer, Integer, Integer)
+  fullName: GameFrameX.Utility.NetHelper.GetAvailablePorts(int, int, int)
+  fullName.vb: GameFrameX.Utility.NetHelper.GetAvailablePorts(Integer, Integer, Integer)
+  nameWithType: NetHelper.GetAvailablePorts(int, int, int)
+  nameWithType.vb: NetHelper.GetAvailablePorts(Integer, Integer, Integer)
+- uid: GameFrameX.Utility.NetHelper.GetAvailablePorts*
+  name: GetAvailablePorts
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_GetAvailablePorts_
+  commentId: Overload:GameFrameX.Utility.NetHelper.GetAvailablePorts
+  isSpec: "True"
+  fullName: GameFrameX.Utility.NetHelper.GetAvailablePorts
+  nameWithType: NetHelper.GetAvailablePorts
 - uid: GameFrameX.Utility.NetHelper.GetFirstAvailablePort(System.Int32,System.Int32)
   name: GetFirstAvailablePort(int, int)
   href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_GetFirstAvailablePort_System_Int32_System_Int32_
@@ -25733,6 +25700,83 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.NetHelper.GetLocalIpList
   nameWithType: NetHelper.GetLocalIpList
+- uid: GameFrameX.Utility.NetHelper.GetMacAddresses
+  name: GetMacAddresses()
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_GetMacAddresses
+  commentId: M:GameFrameX.Utility.NetHelper.GetMacAddresses
+  fullName: GameFrameX.Utility.NetHelper.GetMacAddresses()
+  nameWithType: NetHelper.GetMacAddresses()
+- uid: GameFrameX.Utility.NetHelper.GetMacAddresses*
+  name: GetMacAddresses
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_GetMacAddresses_
+  commentId: Overload:GameFrameX.Utility.NetHelper.GetMacAddresses
+  isSpec: "True"
+  fullName: GameFrameX.Utility.NetHelper.GetMacAddresses
+  nameWithType: NetHelper.GetMacAddresses
+- uid: GameFrameX.Utility.NetHelper.GetPublicIpAddressAsync(System.Int32)
+  name: GetPublicIpAddressAsync(int)
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_GetPublicIpAddressAsync_System_Int32_
+  commentId: M:GameFrameX.Utility.NetHelper.GetPublicIpAddressAsync(System.Int32)
+  name.vb: GetPublicIpAddressAsync(Integer)
+  fullName: GameFrameX.Utility.NetHelper.GetPublicIpAddressAsync(int)
+  fullName.vb: GameFrameX.Utility.NetHelper.GetPublicIpAddressAsync(Integer)
+  nameWithType: NetHelper.GetPublicIpAddressAsync(int)
+  nameWithType.vb: NetHelper.GetPublicIpAddressAsync(Integer)
+- uid: GameFrameX.Utility.NetHelper.GetPublicIpAddressAsync*
+  name: GetPublicIpAddressAsync
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_GetPublicIpAddressAsync_
+  commentId: Overload:GameFrameX.Utility.NetHelper.GetPublicIpAddressAsync
+  isSpec: "True"
+  fullName: GameFrameX.Utility.NetHelper.GetPublicIpAddressAsync
+  nameWithType: NetHelper.GetPublicIpAddressAsync
+- uid: GameFrameX.Utility.NetHelper.IsIpInSubnet(System.String,System.String,System.String)
+  name: IsIpInSubnet(string, string, string)
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_IsIpInSubnet_System_String_System_String_System_String_
+  commentId: M:GameFrameX.Utility.NetHelper.IsIpInSubnet(System.String,System.String,System.String)
+  name.vb: IsIpInSubnet(String, String, String)
+  fullName: GameFrameX.Utility.NetHelper.IsIpInSubnet(string, string, string)
+  fullName.vb: GameFrameX.Utility.NetHelper.IsIpInSubnet(String, String, String)
+  nameWithType: NetHelper.IsIpInSubnet(string, string, string)
+  nameWithType.vb: NetHelper.IsIpInSubnet(String, String, String)
+- uid: GameFrameX.Utility.NetHelper.IsIpInSubnet*
+  name: IsIpInSubnet
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_IsIpInSubnet_
+  commentId: Overload:GameFrameX.Utility.NetHelper.IsIpInSubnet
+  isSpec: "True"
+  fullName: GameFrameX.Utility.NetHelper.IsIpInSubnet
+  nameWithType: NetHelper.IsIpInSubnet
+- uid: GameFrameX.Utility.NetHelper.IsNetworkReachable(System.String,System.Int32)
+  name: IsNetworkReachable(string, int)
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_IsNetworkReachable_System_String_System_Int32_
+  commentId: M:GameFrameX.Utility.NetHelper.IsNetworkReachable(System.String,System.Int32)
+  name.vb: IsNetworkReachable(String, Integer)
+  fullName: GameFrameX.Utility.NetHelper.IsNetworkReachable(string, int)
+  fullName.vb: GameFrameX.Utility.NetHelper.IsNetworkReachable(String, Integer)
+  nameWithType: NetHelper.IsNetworkReachable(string, int)
+  nameWithType.vb: NetHelper.IsNetworkReachable(String, Integer)
+- uid: GameFrameX.Utility.NetHelper.IsNetworkReachable*
+  name: IsNetworkReachable
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_IsNetworkReachable_
+  commentId: Overload:GameFrameX.Utility.NetHelper.IsNetworkReachable
+  isSpec: "True"
+  fullName: GameFrameX.Utility.NetHelper.IsNetworkReachable
+  nameWithType: NetHelper.IsNetworkReachable
+- uid: GameFrameX.Utility.NetHelper.IsPrivateIpAddress(System.String)
+  name: IsPrivateIpAddress(string)
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_IsPrivateIpAddress_System_String_
+  commentId: M:GameFrameX.Utility.NetHelper.IsPrivateIpAddress(System.String)
+  name.vb: IsPrivateIpAddress(String)
+  fullName: GameFrameX.Utility.NetHelper.IsPrivateIpAddress(string)
+  fullName.vb: GameFrameX.Utility.NetHelper.IsPrivateIpAddress(String)
+  nameWithType: NetHelper.IsPrivateIpAddress(string)
+  nameWithType.vb: NetHelper.IsPrivateIpAddress(String)
+- uid: GameFrameX.Utility.NetHelper.IsPrivateIpAddress*
+  name: IsPrivateIpAddress
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_IsPrivateIpAddress_
+  commentId: Overload:GameFrameX.Utility.NetHelper.IsPrivateIpAddress
+  isSpec: "True"
+  fullName: GameFrameX.Utility.NetHelper.IsPrivateIpAddress
+  nameWithType: NetHelper.IsPrivateIpAddress
 - uid: GameFrameX.Utility.NetHelper.IsValidIpAddress(System.String,System.Net.IPAddress@)
   name: IsValidIpAddress(string, out IPAddress)
   href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_IsValidIpAddress_System_String_System_Net_IPAddress__
@@ -25892,6 +25936,33 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.RandomHelper.Ids
   nameWithType: RandomHelper.Ids
+- uid: GameFrameX.Utility.RandomHelper.Ids``1(System.Collections.Generic.IList{``0},System.Int32)
+  name: Ids<T>(IList<T>, int)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Ids__1_System_Collections_Generic_IList___0__System_Int32_
+  commentId: M:GameFrameX.Utility.RandomHelper.Ids``1(System.Collections.Generic.IList{``0},System.Int32)
+  name.vb: Ids(Of T)(IList(Of T), Integer)
+  fullName: GameFrameX.Utility.RandomHelper.Ids<T>(System.Collections.Generic.IList<T>, int)
+  fullName.vb: GameFrameX.Utility.RandomHelper.Ids(Of T)(System.Collections.Generic.IList(Of T), Integer)
+  nameWithType: RandomHelper.Ids<T>(IList<T>, int)
+  nameWithType.vb: RandomHelper.Ids(Of T)(IList(Of T), Integer)
+- uid: GameFrameX.Utility.RandomHelper.Ids``1(System.Collections.Generic.List{``0},System.Int32)
+  name: Ids<T>(List<T>, int)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Ids__1_System_Collections_Generic_List___0__System_Int32_
+  commentId: M:GameFrameX.Utility.RandomHelper.Ids``1(System.Collections.Generic.List{``0},System.Int32)
+  name.vb: Ids(Of T)(List(Of T), Integer)
+  fullName: GameFrameX.Utility.RandomHelper.Ids<T>(System.Collections.Generic.List<T>, int)
+  fullName.vb: GameFrameX.Utility.RandomHelper.Ids(Of T)(System.Collections.Generic.List(Of T), Integer)
+  nameWithType: RandomHelper.Ids<T>(List<T>, int)
+  nameWithType.vb: RandomHelper.Ids(Of T)(List(Of T), Integer)
+- uid: GameFrameX.Utility.RandomHelper.Ids``1(``0[],System.Int32)
+  name: Ids<T>(T[], int)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Ids__1___0___System_Int32_
+  commentId: M:GameFrameX.Utility.RandomHelper.Ids``1(``0[],System.Int32)
+  name.vb: Ids(Of T)(T(), Integer)
+  fullName: GameFrameX.Utility.RandomHelper.Ids<T>(T[], int)
+  fullName.vb: GameFrameX.Utility.RandomHelper.Ids(Of T)(T(), Integer)
+  nameWithType: RandomHelper.Ids<T>(T[], int)
+  nameWithType.vb: RandomHelper.Ids(Of T)(T(), Integer)
 - uid: GameFrameX.Utility.RandomHelper.Idx(System.Int32[])
   name: Idx(int[])
   href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Idx_System_Int32___
@@ -25917,6 +25988,33 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.RandomHelper.Idx
   nameWithType: RandomHelper.Idx
+- uid: GameFrameX.Utility.RandomHelper.Idx``1(System.Collections.Generic.IList{``0})
+  name: Idx<T>(IList<T>)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Idx__1_System_Collections_Generic_IList___0__
+  commentId: M:GameFrameX.Utility.RandomHelper.Idx``1(System.Collections.Generic.IList{``0})
+  name.vb: Idx(Of T)(IList(Of T))
+  fullName: GameFrameX.Utility.RandomHelper.Idx<T>(System.Collections.Generic.IList<T>)
+  fullName.vb: GameFrameX.Utility.RandomHelper.Idx(Of T)(System.Collections.Generic.IList(Of T))
+  nameWithType: RandomHelper.Idx<T>(IList<T>)
+  nameWithType.vb: RandomHelper.Idx(Of T)(IList(Of T))
+- uid: GameFrameX.Utility.RandomHelper.Idx``1(System.Collections.Generic.List{``0})
+  name: Idx<T>(List<T>)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Idx__1_System_Collections_Generic_List___0__
+  commentId: M:GameFrameX.Utility.RandomHelper.Idx``1(System.Collections.Generic.List{``0})
+  name.vb: Idx(Of T)(List(Of T))
+  fullName: GameFrameX.Utility.RandomHelper.Idx<T>(System.Collections.Generic.List<T>)
+  fullName.vb: GameFrameX.Utility.RandomHelper.Idx(Of T)(System.Collections.Generic.List(Of T))
+  nameWithType: RandomHelper.Idx<T>(List<T>)
+  nameWithType.vb: RandomHelper.Idx(Of T)(List(Of T))
+- uid: GameFrameX.Utility.RandomHelper.Idx``1(``0[])
+  name: Idx<T>(T[])
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Idx__1___0___
+  commentId: M:GameFrameX.Utility.RandomHelper.Idx``1(``0[])
+  name.vb: Idx(Of T)(T())
+  fullName: GameFrameX.Utility.RandomHelper.Idx<T>(T[])
+  fullName.vb: GameFrameX.Utility.RandomHelper.Idx(Of T)(T())
+  nameWithType: RandomHelper.Idx<T>(T[])
+  nameWithType.vb: RandomHelper.Idx(Of T)(T())
 - uid: GameFrameX.Utility.RandomHelper.Items(System.Int32[][],System.Int32,System.Boolean)
   name: Items(int[][], int, bool)
   href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Items_System_Int32_____System_Int32_System_Boolean_
@@ -25942,6 +26040,33 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.RandomHelper.Items
   nameWithType: RandomHelper.Items
+- uid: GameFrameX.Utility.RandomHelper.Items``1(System.Collections.Generic.IList{``0},System.Int32)
+  name: Items<T>(IList<T>, int)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Items__1_System_Collections_Generic_IList___0__System_Int32_
+  commentId: M:GameFrameX.Utility.RandomHelper.Items``1(System.Collections.Generic.IList{``0},System.Int32)
+  name.vb: Items(Of T)(IList(Of T), Integer)
+  fullName: GameFrameX.Utility.RandomHelper.Items<T>(System.Collections.Generic.IList<T>, int)
+  fullName.vb: GameFrameX.Utility.RandomHelper.Items(Of T)(System.Collections.Generic.IList(Of T), Integer)
+  nameWithType: RandomHelper.Items<T>(IList<T>, int)
+  nameWithType.vb: RandomHelper.Items(Of T)(IList(Of T), Integer)
+- uid: GameFrameX.Utility.RandomHelper.Items``1(System.Collections.Generic.List{``0},System.Int32)
+  name: Items<T>(List<T>, int)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Items__1_System_Collections_Generic_List___0__System_Int32_
+  commentId: M:GameFrameX.Utility.RandomHelper.Items``1(System.Collections.Generic.List{``0},System.Int32)
+  name.vb: Items(Of T)(List(Of T), Integer)
+  fullName: GameFrameX.Utility.RandomHelper.Items<T>(System.Collections.Generic.List<T>, int)
+  fullName.vb: GameFrameX.Utility.RandomHelper.Items(Of T)(System.Collections.Generic.List(Of T), Integer)
+  nameWithType: RandomHelper.Items<T>(List<T>, int)
+  nameWithType.vb: RandomHelper.Items(Of T)(List(Of T), Integer)
+- uid: GameFrameX.Utility.RandomHelper.Items``1(``0[],System.Int32)
+  name: Items<T>(T[], int)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Items__1___0___System_Int32_
+  commentId: M:GameFrameX.Utility.RandomHelper.Items``1(``0[],System.Int32)
+  name.vb: Items(Of T)(T(), Integer)
+  fullName: GameFrameX.Utility.RandomHelper.Items<T>(T[], int)
+  fullName.vb: GameFrameX.Utility.RandomHelper.Items(Of T)(T(), Integer)
+  nameWithType: RandomHelper.Items<T>(T[], int)
+  nameWithType.vb: RandomHelper.Items(Of T)(T(), Integer)
 - uid: GameFrameX.Utility.RandomHelper.Next
   name: Next()
   href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_Next
@@ -25982,6 +26107,15 @@ references:
   fullName.vb: GameFrameX.Utility.RandomHelper.NextBytes(Byte())
   nameWithType: RandomHelper.NextBytes(byte[])
   nameWithType.vb: RandomHelper.NextBytes(Byte())
+- uid: GameFrameX.Utility.RandomHelper.NextBytes(System.Span{System.Byte})
+  name: NextBytes(Span<byte>)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NextBytes_System_Span_System_Byte__
+  commentId: M:GameFrameX.Utility.RandomHelper.NextBytes(System.Span{System.Byte})
+  name.vb: NextBytes(Span(Of Byte))
+  fullName: GameFrameX.Utility.RandomHelper.NextBytes(System.Span<byte>)
+  fullName.vb: GameFrameX.Utility.RandomHelper.NextBytes(System.Span(Of Byte))
+  nameWithType: RandomHelper.NextBytes(Span<byte>)
+  nameWithType.vb: RandomHelper.NextBytes(Span(Of Byte))
 - uid: GameFrameX.Utility.RandomHelper.NextBytes*
   name: NextBytes
   href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NextBytes_
@@ -26017,6 +26151,15 @@ references:
   fullName.vb: GameFrameX.Utility.RandomHelper.NextInt64(Integer)
   nameWithType: RandomHelper.NextInt64(int)
   nameWithType.vb: RandomHelper.NextInt64(Integer)
+- uid: GameFrameX.Utility.RandomHelper.NextInt64(System.Int64,System.Int64)
+  name: NextInt64(long, long)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NextInt64_System_Int64_System_Int64_
+  commentId: M:GameFrameX.Utility.RandomHelper.NextInt64(System.Int64,System.Int64)
+  name.vb: NextInt64(Long, Long)
+  fullName: GameFrameX.Utility.RandomHelper.NextInt64(long, long)
+  fullName.vb: GameFrameX.Utility.RandomHelper.NextInt64(Long, Long)
+  nameWithType: RandomHelper.NextInt64(long, long)
+  nameWithType.vb: RandomHelper.NextInt64(Long, Long)
 - uid: GameFrameX.Utility.RandomHelper.NextInt64*
   name: NextInt64
   href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NextInt64_
@@ -26050,22 +26193,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.RandomHelper.NextUInt64
   nameWithType: RandomHelper.NextUInt64
-- uid: GameFrameX.Utility.RandomHelper.NxtInt64(System.Int64,System.Int64)
-  name: NxtInt64(long, long)
-  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NxtInt64_System_Int64_System_Int64_
-  commentId: M:GameFrameX.Utility.RandomHelper.NxtInt64(System.Int64,System.Int64)
-  name.vb: NxtInt64(Long, Long)
-  fullName: GameFrameX.Utility.RandomHelper.NxtInt64(long, long)
-  fullName.vb: GameFrameX.Utility.RandomHelper.NxtInt64(Long, Long)
-  nameWithType: RandomHelper.NxtInt64(long, long)
-  nameWithType.vb: RandomHelper.NxtInt64(Long, Long)
-- uid: GameFrameX.Utility.RandomHelper.NxtInt64*
-  name: NxtInt64
-  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_NxtInt64_
-  commentId: Overload:GameFrameX.Utility.RandomHelper.NxtInt64
-  isSpec: "True"
-  fullName: GameFrameX.Utility.RandomHelper.NxtInt64
-  nameWithType: RandomHelper.NxtInt64
 - uid: GameFrameX.Utility.RandomHelper.RandomSelect(System.Int32,System.Int32)
   name: RandomSelect(int, int)
   href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_RandomSelect_System_Int32_System_Int32_
@@ -26082,6 +26209,33 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.RandomHelper.RandomSelect
   nameWithType: RandomHelper.RandomSelect
+- uid: GameFrameX.Utility.RandomHelper.RandomSelect``1(System.Collections.Generic.IList{``0})
+  name: RandomSelect<T>(IList<T>)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_RandomSelect__1_System_Collections_Generic_IList___0__
+  commentId: M:GameFrameX.Utility.RandomHelper.RandomSelect``1(System.Collections.Generic.IList{``0})
+  name.vb: RandomSelect(Of T)(IList(Of T))
+  fullName: GameFrameX.Utility.RandomHelper.RandomSelect<T>(System.Collections.Generic.IList<T>)
+  fullName.vb: GameFrameX.Utility.RandomHelper.RandomSelect(Of T)(System.Collections.Generic.IList(Of T))
+  nameWithType: RandomHelper.RandomSelect<T>(IList<T>)
+  nameWithType.vb: RandomHelper.RandomSelect(Of T)(IList(Of T))
+- uid: GameFrameX.Utility.RandomHelper.RandomSelect``1(System.Collections.Generic.List{``0})
+  name: RandomSelect<T>(List<T>)
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_RandomSelect__1_System_Collections_Generic_List___0__
+  commentId: M:GameFrameX.Utility.RandomHelper.RandomSelect``1(System.Collections.Generic.List{``0})
+  name.vb: RandomSelect(Of T)(List(Of T))
+  fullName: GameFrameX.Utility.RandomHelper.RandomSelect<T>(System.Collections.Generic.List<T>)
+  fullName.vb: GameFrameX.Utility.RandomHelper.RandomSelect(Of T)(System.Collections.Generic.List(Of T))
+  nameWithType: RandomHelper.RandomSelect<T>(List<T>)
+  nameWithType.vb: RandomHelper.RandomSelect(Of T)(List(Of T))
+- uid: GameFrameX.Utility.RandomHelper.RandomSelect``1(``0[])
+  name: RandomSelect<T>(T[])
+  href: api/GameFrameX.Utility.RandomHelper.html#GameFrameX_Utility_RandomHelper_RandomSelect__1___0___
+  commentId: M:GameFrameX.Utility.RandomHelper.RandomSelect``1(``0[])
+  name.vb: RandomSelect(Of T)(T())
+  fullName: GameFrameX.Utility.RandomHelper.RandomSelect<T>(T[])
+  fullName.vb: GameFrameX.Utility.RandomHelper.RandomSelect(Of T)(T())
+  nameWithType: RandomHelper.RandomSelect<T>(T[])
+  nameWithType.vb: RandomHelper.RandomSelect(Of T)(T())
 - uid: GameFrameX.Utility.Setting
   name: GameFrameX.Utility.Setting
   href: api/GameFrameX.Utility.Setting.html
@@ -26139,6 +26293,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.ActorQueueTimeOut
   nameWithType: AppSetting.ActorQueueTimeOut
+- uid: GameFrameX.Utility.Setting.AppSetting.ActorRecycleTime
+  name: ActorRecycleTime
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_ActorRecycleTime
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.ActorRecycleTime
+  fullName: GameFrameX.Utility.Setting.AppSetting.ActorRecycleTime
+  nameWithType: AppSetting.ActorRecycleTime
+- uid: GameFrameX.Utility.Setting.AppSetting.ActorRecycleTime*
+  name: ActorRecycleTime
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_ActorRecycleTime_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.ActorRecycleTime
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.ActorRecycleTime
+  nameWithType: AppSetting.ActorRecycleTime
 - uid: GameFrameX.Utility.Setting.AppSetting.ActorTimeOut
   name: ActorTimeOut
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_ActorTimeOut
@@ -26564,6 +26731,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.MaxModuleId
   nameWithType: AppSetting.MaxModuleId
+- uid: GameFrameX.Utility.Setting.AppSetting.MetricsPort
+  name: MetricsPort
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_MetricsPort
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.MetricsPort
+  fullName: GameFrameX.Utility.Setting.AppSetting.MetricsPort
+  nameWithType: AppSetting.MetricsPort
+- uid: GameFrameX.Utility.Setting.AppSetting.MetricsPort*
+  name: MetricsPort
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_MetricsPort_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.MetricsPort
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.MetricsPort
+  nameWithType: AppSetting.MetricsPort
 - uid: GameFrameX.Utility.Setting.AppSetting.MinModuleId
   name: MinModuleId
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_MinModuleId
@@ -26927,6 +27107,12 @@ references:
   commentId: F:GameFrameX.Utility.Setting.GlobalConst.HttpTimestampKey
   fullName: GameFrameX.Utility.Setting.GlobalConst.HttpTimestampKey
   nameWithType: GlobalConst.HttpTimestampKey
+- uid: GameFrameX.Utility.Setting.GlobalConst.IdModuleMax
+  name: IdModuleMax
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_IdModuleMax
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.IdModuleMax
+  fullName: GameFrameX.Utility.Setting.GlobalConst.IdModuleMax
+  nameWithType: GlobalConst.IdModuleMax
 - uid: GameFrameX.Utility.Setting.GlobalConst.MAGIC
   name: MAGIC
   href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_MAGIC
@@ -26999,6 +27185,12 @@ references:
   commentId: F:GameFrameX.Utility.Setting.GlobalConst.UniqueIdIdKey
   fullName: GameFrameX.Utility.Setting.GlobalConst.UniqueIdIdKey
   nameWithType: GlobalConst.UniqueIdIdKey
+- uid: GameFrameX.Utility.Setting.GlobalConst.WorkerActorIdModuleValue
+  name: WorkerActorIdModuleValue
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_WorkerActorIdModuleValue
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.WorkerActorIdModuleValue
+  fullName: GameFrameX.Utility.Setting.GlobalConst.WorkerActorIdModuleValue
+  nameWithType: GlobalConst.WorkerActorIdModuleValue
 - uid: GameFrameX.Utility.Setting.GlobalConst.WrapperNameSuffix
   name: WrapperNameSuffix
   href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_WrapperNameSuffix
@@ -27162,48 +27354,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.GlobalSettings.SetCurrentSetting
   nameWithType: GlobalSettings.SetCurrentSetting
-- uid: GameFrameX.Utility.Setting.IdModule
-  name: IdModule
-  href: api/GameFrameX.Utility.Setting.IdModule.html
-  commentId: T:GameFrameX.Utility.Setting.IdModule
-  fullName: GameFrameX.Utility.Setting.IdModule
-  nameWithType: IdModule
-- uid: GameFrameX.Utility.Setting.IdModule.Account
-  name: Account
-  href: api/GameFrameX.Utility.Setting.IdModule.html#GameFrameX_Utility_Setting_IdModule_Account
-  commentId: F:GameFrameX.Utility.Setting.IdModule.Account
-  fullName: GameFrameX.Utility.Setting.IdModule.Account
-  nameWithType: IdModule.Account
-- uid: GameFrameX.Utility.Setting.IdModule.Equip
-  name: Equip
-  href: api/GameFrameX.Utility.Setting.IdModule.html#GameFrameX_Utility_Setting_IdModule_Equip
-  commentId: F:GameFrameX.Utility.Setting.IdModule.Equip
-  fullName: GameFrameX.Utility.Setting.IdModule.Equip
-  nameWithType: IdModule.Equip
-- uid: GameFrameX.Utility.Setting.IdModule.Max
-  name: Max
-  href: api/GameFrameX.Utility.Setting.IdModule.html#GameFrameX_Utility_Setting_IdModule_Max
-  commentId: F:GameFrameX.Utility.Setting.IdModule.Max
-  fullName: GameFrameX.Utility.Setting.IdModule.Max
-  nameWithType: IdModule.Max
-- uid: GameFrameX.Utility.Setting.IdModule.Min
-  name: Min
-  href: api/GameFrameX.Utility.Setting.IdModule.html#GameFrameX_Utility_Setting_IdModule_Min
-  commentId: F:GameFrameX.Utility.Setting.IdModule.Min
-  fullName: GameFrameX.Utility.Setting.IdModule.Min
-  nameWithType: IdModule.Min
-- uid: GameFrameX.Utility.Setting.IdModule.Pet
-  name: Pet
-  href: api/GameFrameX.Utility.Setting.IdModule.html#GameFrameX_Utility_Setting_IdModule_Pet
-  commentId: F:GameFrameX.Utility.Setting.IdModule.Pet
-  fullName: GameFrameX.Utility.Setting.IdModule.Pet
-  nameWithType: IdModule.Pet
-- uid: GameFrameX.Utility.Setting.IdModule.WorkerActor
-  name: WorkerActor
-  href: api/GameFrameX.Utility.Setting.IdModule.html#GameFrameX_Utility_Setting_IdModule_WorkerActor
-  commentId: F:GameFrameX.Utility.Setting.IdModule.WorkerActor
-  fullName: GameFrameX.Utility.Setting.IdModule.WorkerActor
-  nameWithType: IdModule.WorkerActor
 - uid: GameFrameX.Utility.Setting.ServerType
   name: ServerType
   href: api/GameFrameX.Utility.Setting.ServerType.html
@@ -27510,6 +27660,38 @@ references:
   commentId: F:GameFrameX.Utility.TimeHelper.EpochUtc
   fullName: GameFrameX.Utility.TimeHelper.EpochUtc
   nameWithType: TimeHelper.EpochUtc
+- uid: GameFrameX.Utility.TimeHelper.GetAbsoluteMillisecondsDifference(System.DateTime,System.DateTime)
+  name: GetAbsoluteMillisecondsDifference(DateTime, DateTime)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetAbsoluteMillisecondsDifference_System_DateTime_System_DateTime_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetAbsoluteMillisecondsDifference(System.DateTime,System.DateTime)
+  name.vb: GetAbsoluteMillisecondsDifference(Date, Date)
+  fullName: GameFrameX.Utility.TimeHelper.GetAbsoluteMillisecondsDifference(System.DateTime, System.DateTime)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetAbsoluteMillisecondsDifference(Date, Date)
+  nameWithType: TimeHelper.GetAbsoluteMillisecondsDifference(DateTime, DateTime)
+  nameWithType.vb: TimeHelper.GetAbsoluteMillisecondsDifference(Date, Date)
+- uid: GameFrameX.Utility.TimeHelper.GetAbsoluteMillisecondsDifference*
+  name: GetAbsoluteMillisecondsDifference
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetAbsoluteMillisecondsDifference_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetAbsoluteMillisecondsDifference
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetAbsoluteMillisecondsDifference
+  nameWithType: TimeHelper.GetAbsoluteMillisecondsDifference
+- uid: GameFrameX.Utility.TimeHelper.GetAbsoluteSecondsDifference(System.DateTime,System.DateTime)
+  name: GetAbsoluteSecondsDifference(DateTime, DateTime)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetAbsoluteSecondsDifference_System_DateTime_System_DateTime_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetAbsoluteSecondsDifference(System.DateTime,System.DateTime)
+  name.vb: GetAbsoluteSecondsDifference(Date, Date)
+  fullName: GameFrameX.Utility.TimeHelper.GetAbsoluteSecondsDifference(System.DateTime, System.DateTime)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetAbsoluteSecondsDifference(Date, Date)
+  nameWithType: TimeHelper.GetAbsoluteSecondsDifference(DateTime, DateTime)
+  nameWithType.vb: TimeHelper.GetAbsoluteSecondsDifference(Date, Date)
+- uid: GameFrameX.Utility.TimeHelper.GetAbsoluteSecondsDifference*
+  name: GetAbsoluteSecondsDifference
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetAbsoluteSecondsDifference_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetAbsoluteSecondsDifference
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetAbsoluteSecondsDifference
+  nameWithType: TimeHelper.GetAbsoluteSecondsDifference
 - uid: GameFrameX.Utility.TimeHelper.GetChinaDayOfWeek
   name: GetChinaDayOfWeek()
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetChinaDayOfWeek
@@ -27619,6 +27801,63 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.GetDayOfWeekTime
   nameWithType: TimeHelper.GetDayOfWeekTime
+- uid: GameFrameX.Utility.TimeHelper.GetDaysDifference(System.DateTime,System.DateTime)
+  name: GetDaysDifference(DateTime, DateTime)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetDaysDifference_System_DateTime_System_DateTime_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetDaysDifference(System.DateTime,System.DateTime)
+  name.vb: GetDaysDifference(Date, Date)
+  fullName: GameFrameX.Utility.TimeHelper.GetDaysDifference(System.DateTime, System.DateTime)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetDaysDifference(Date, Date)
+  nameWithType: TimeHelper.GetDaysDifference(DateTime, DateTime)
+  nameWithType.vb: TimeHelper.GetDaysDifference(Date, Date)
+- uid: GameFrameX.Utility.TimeHelper.GetDaysDifference*
+  name: GetDaysDifference
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetDaysDifference_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetDaysDifference
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetDaysDifference
+  nameWithType: TimeHelper.GetDaysDifference
+- uid: GameFrameX.Utility.TimeHelper.GetElapsedMilliseconds(System.Int64,System.Boolean)
+  name: GetElapsedMilliseconds(long, bool)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetElapsedMilliseconds_System_Int64_System_Boolean_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetElapsedMilliseconds(System.Int64,System.Boolean)
+  name.vb: GetElapsedMilliseconds(Long, Boolean)
+  fullName: GameFrameX.Utility.TimeHelper.GetElapsedMilliseconds(long, bool)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetElapsedMilliseconds(Long, Boolean)
+  nameWithType: TimeHelper.GetElapsedMilliseconds(long, bool)
+  nameWithType.vb: TimeHelper.GetElapsedMilliseconds(Long, Boolean)
+- uid: GameFrameX.Utility.TimeHelper.GetElapsedMilliseconds*
+  name: GetElapsedMilliseconds
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetElapsedMilliseconds_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetElapsedMilliseconds
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetElapsedMilliseconds
+  nameWithType: TimeHelper.GetElapsedMilliseconds
+- uid: GameFrameX.Utility.TimeHelper.GetElapsedSeconds(System.DateTime,System.Boolean)
+  name: GetElapsedSeconds(DateTime, bool)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetElapsedSeconds_System_DateTime_System_Boolean_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetElapsedSeconds(System.DateTime,System.Boolean)
+  name.vb: GetElapsedSeconds(Date, Boolean)
+  fullName: GameFrameX.Utility.TimeHelper.GetElapsedSeconds(System.DateTime, bool)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetElapsedSeconds(Date, Boolean)
+  nameWithType: TimeHelper.GetElapsedSeconds(DateTime, bool)
+  nameWithType.vb: TimeHelper.GetElapsedSeconds(Date, Boolean)
+- uid: GameFrameX.Utility.TimeHelper.GetElapsedSeconds(System.Int64,System.Boolean)
+  name: GetElapsedSeconds(long, bool)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetElapsedSeconds_System_Int64_System_Boolean_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetElapsedSeconds(System.Int64,System.Boolean)
+  name.vb: GetElapsedSeconds(Long, Boolean)
+  fullName: GameFrameX.Utility.TimeHelper.GetElapsedSeconds(long, bool)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetElapsedSeconds(Long, Boolean)
+  nameWithType: TimeHelper.GetElapsedSeconds(long, bool)
+  nameWithType.vb: TimeHelper.GetElapsedSeconds(Long, Boolean)
+- uid: GameFrameX.Utility.TimeHelper.GetElapsedSeconds*
+  name: GetElapsedSeconds
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetElapsedSeconds_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetElapsedSeconds
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetElapsedSeconds
+  nameWithType: TimeHelper.GetElapsedSeconds
 - uid: GameFrameX.Utility.TimeHelper.GetEndTimeOfDay(System.DateTime)
   name: GetEndTimeOfDay(DateTime)
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimeOfDay_System_DateTime_
@@ -27747,6 +27986,63 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.GetEndTimestampOfYear
   nameWithType: TimeHelper.GetEndTimestampOfYear
+- uid: GameFrameX.Utility.TimeHelper.GetHoursDifference(System.DateTime,System.DateTime)
+  name: GetHoursDifference(DateTime, DateTime)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetHoursDifference_System_DateTime_System_DateTime_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetHoursDifference(System.DateTime,System.DateTime)
+  name.vb: GetHoursDifference(Date, Date)
+  fullName: GameFrameX.Utility.TimeHelper.GetHoursDifference(System.DateTime, System.DateTime)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetHoursDifference(Date, Date)
+  nameWithType: TimeHelper.GetHoursDifference(DateTime, DateTime)
+  nameWithType.vb: TimeHelper.GetHoursDifference(Date, Date)
+- uid: GameFrameX.Utility.TimeHelper.GetHoursDifference*
+  name: GetHoursDifference
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetHoursDifference_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetHoursDifference
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetHoursDifference
+  nameWithType: TimeHelper.GetHoursDifference
+- uid: GameFrameX.Utility.TimeHelper.GetMillisecondsDifference(System.DateTime,System.DateTime)
+  name: GetMillisecondsDifference(DateTime, DateTime)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMillisecondsDifference_System_DateTime_System_DateTime_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetMillisecondsDifference(System.DateTime,System.DateTime)
+  name.vb: GetMillisecondsDifference(Date, Date)
+  fullName: GameFrameX.Utility.TimeHelper.GetMillisecondsDifference(System.DateTime, System.DateTime)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetMillisecondsDifference(Date, Date)
+  nameWithType: TimeHelper.GetMillisecondsDifference(DateTime, DateTime)
+  nameWithType.vb: TimeHelper.GetMillisecondsDifference(Date, Date)
+- uid: GameFrameX.Utility.TimeHelper.GetMillisecondsDifference(System.Int64,System.Int64)
+  name: GetMillisecondsDifference(long, long)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMillisecondsDifference_System_Int64_System_Int64_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetMillisecondsDifference(System.Int64,System.Int64)
+  name.vb: GetMillisecondsDifference(Long, Long)
+  fullName: GameFrameX.Utility.TimeHelper.GetMillisecondsDifference(long, long)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetMillisecondsDifference(Long, Long)
+  nameWithType: TimeHelper.GetMillisecondsDifference(long, long)
+  nameWithType.vb: TimeHelper.GetMillisecondsDifference(Long, Long)
+- uid: GameFrameX.Utility.TimeHelper.GetMillisecondsDifference*
+  name: GetMillisecondsDifference
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMillisecondsDifference_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetMillisecondsDifference
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetMillisecondsDifference
+  nameWithType: TimeHelper.GetMillisecondsDifference
+- uid: GameFrameX.Utility.TimeHelper.GetMinutesDifference(System.DateTime,System.DateTime)
+  name: GetMinutesDifference(DateTime, DateTime)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMinutesDifference_System_DateTime_System_DateTime_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetMinutesDifference(System.DateTime,System.DateTime)
+  name.vb: GetMinutesDifference(Date, Date)
+  fullName: GameFrameX.Utility.TimeHelper.GetMinutesDifference(System.DateTime, System.DateTime)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetMinutesDifference(Date, Date)
+  nameWithType: TimeHelper.GetMinutesDifference(DateTime, DateTime)
+  nameWithType.vb: TimeHelper.GetMinutesDifference(Date, Date)
+- uid: GameFrameX.Utility.TimeHelper.GetMinutesDifference*
+  name: GetMinutesDifference
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMinutesDifference_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetMinutesDifference
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetMinutesDifference
+  nameWithType: TimeHelper.GetMinutesDifference
 - uid: GameFrameX.Utility.TimeHelper.GetMonthEndTime
   name: GetMonthEndTime()
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMonthEndTime
@@ -27916,6 +28212,31 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.GetNow
   nameWithType: TimeHelper.GetNow
+- uid: GameFrameX.Utility.TimeHelper.GetSecondsDifference(System.DateTime,System.DateTime)
+  name: GetSecondsDifference(DateTime, DateTime)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetSecondsDifference_System_DateTime_System_DateTime_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetSecondsDifference(System.DateTime,System.DateTime)
+  name.vb: GetSecondsDifference(Date, Date)
+  fullName: GameFrameX.Utility.TimeHelper.GetSecondsDifference(System.DateTime, System.DateTime)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetSecondsDifference(Date, Date)
+  nameWithType: TimeHelper.GetSecondsDifference(DateTime, DateTime)
+  nameWithType.vb: TimeHelper.GetSecondsDifference(Date, Date)
+- uid: GameFrameX.Utility.TimeHelper.GetSecondsDifference(System.Int64,System.Int64)
+  name: GetSecondsDifference(long, long)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetSecondsDifference_System_Int64_System_Int64_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetSecondsDifference(System.Int64,System.Int64)
+  name.vb: GetSecondsDifference(Long, Long)
+  fullName: GameFrameX.Utility.TimeHelper.GetSecondsDifference(long, long)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetSecondsDifference(Long, Long)
+  nameWithType: TimeHelper.GetSecondsDifference(long, long)
+  nameWithType.vb: TimeHelper.GetSecondsDifference(Long, Long)
+- uid: GameFrameX.Utility.TimeHelper.GetSecondsDifference*
+  name: GetSecondsDifference
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetSecondsDifference_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetSecondsDifference
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetSecondsDifference
+  nameWithType: TimeHelper.GetSecondsDifference
 - uid: GameFrameX.Utility.TimeHelper.GetStartTimeOfDay(System.DateTime)
   name: GetStartTimeOfDay(DateTime)
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimeOfDay_System_DateTime_
@@ -28044,6 +28365,88 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.GetStartTimestampOfYear
   nameWithType: TimeHelper.GetStartTimestampOfYear
+- uid: GameFrameX.Utility.TimeHelper.GetTimeDifference(System.DateTime,System.DateTime)
+  name: GetTimeDifference(DateTime, DateTime)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifference_System_DateTime_System_DateTime_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetTimeDifference(System.DateTime,System.DateTime)
+  name.vb: GetTimeDifference(Date, Date)
+  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifference(System.DateTime, System.DateTime)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetTimeDifference(Date, Date)
+  nameWithType: TimeHelper.GetTimeDifference(DateTime, DateTime)
+  nameWithType.vb: TimeHelper.GetTimeDifference(Date, Date)
+- uid: GameFrameX.Utility.TimeHelper.GetTimeDifference(System.Int64,System.Int64,System.Boolean)
+  name: GetTimeDifference(long, long, bool)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifference_System_Int64_System_Int64_System_Boolean_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetTimeDifference(System.Int64,System.Int64,System.Boolean)
+  name.vb: GetTimeDifference(Long, Long, Boolean)
+  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifference(long, long, bool)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetTimeDifference(Long, Long, Boolean)
+  nameWithType: TimeHelper.GetTimeDifference(long, long, bool)
+  nameWithType.vb: TimeHelper.GetTimeDifference(Long, Long, Boolean)
+- uid: GameFrameX.Utility.TimeHelper.GetTimeDifference*
+  name: GetTimeDifference
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifference_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTimeDifference
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifference
+  nameWithType: TimeHelper.GetTimeDifference
+- uid: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow(System.DateTime,System.Boolean)
+  name: GetTimeDifferenceFromNow(DateTime, bool)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifferenceFromNow_System_DateTime_System_Boolean_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow(System.DateTime,System.Boolean)
+  name.vb: GetTimeDifferenceFromNow(Date, Boolean)
+  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow(System.DateTime, bool)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow(Date, Boolean)
+  nameWithType: TimeHelper.GetTimeDifferenceFromNow(DateTime, bool)
+  nameWithType.vb: TimeHelper.GetTimeDifferenceFromNow(Date, Boolean)
+- uid: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow(System.Int64,System.Boolean)
+  name: GetTimeDifferenceFromNow(long, bool)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifferenceFromNow_System_Int64_System_Boolean_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow(System.Int64,System.Boolean)
+  name.vb: GetTimeDifferenceFromNow(Long, Boolean)
+  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow(long, bool)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow(Long, Boolean)
+  nameWithType: TimeHelper.GetTimeDifferenceFromNow(long, bool)
+  nameWithType.vb: TimeHelper.GetTimeDifferenceFromNow(Long, Boolean)
+- uid: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow*
+  name: GetTimeDifferenceFromNow
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifferenceFromNow_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow
+  nameWithType: TimeHelper.GetTimeDifferenceFromNow
+- uid: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNowMs(System.Int64,System.Boolean)
+  name: GetTimeDifferenceFromNowMs(long, bool)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifferenceFromNowMs_System_Int64_System_Boolean_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNowMs(System.Int64,System.Boolean)
+  name.vb: GetTimeDifferenceFromNowMs(Long, Boolean)
+  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNowMs(long, bool)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNowMs(Long, Boolean)
+  nameWithType: TimeHelper.GetTimeDifferenceFromNowMs(long, bool)
+  nameWithType.vb: TimeHelper.GetTimeDifferenceFromNowMs(Long, Boolean)
+- uid: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNowMs*
+  name: GetTimeDifferenceFromNowMs
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifferenceFromNowMs_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNowMs
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNowMs
+  nameWithType: TimeHelper.GetTimeDifferenceFromNowMs
+- uid: GameFrameX.Utility.TimeHelper.GetTimeDifferenceMs(System.Int64,System.Int64,System.Boolean)
+  name: GetTimeDifferenceMs(long, long, bool)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifferenceMs_System_Int64_System_Int64_System_Boolean_
+  commentId: M:GameFrameX.Utility.TimeHelper.GetTimeDifferenceMs(System.Int64,System.Int64,System.Boolean)
+  name.vb: GetTimeDifferenceMs(Long, Long, Boolean)
+  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifferenceMs(long, long, bool)
+  fullName.vb: GameFrameX.Utility.TimeHelper.GetTimeDifferenceMs(Long, Long, Boolean)
+  nameWithType: TimeHelper.GetTimeDifferenceMs(long, long, bool)
+  nameWithType.vb: TimeHelper.GetTimeDifferenceMs(Long, Long, Boolean)
+- uid: GameFrameX.Utility.TimeHelper.GetTimeDifferenceMs*
+  name: GetTimeDifferenceMs
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifferenceMs_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTimeDifferenceMs
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifferenceMs
+  nameWithType: TimeHelper.GetTimeDifferenceMs
 - uid: GameFrameX.Utility.TimeHelper.GetTodayEndTime
   name: GetTodayEndTime()
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTodayEndTime
@@ -28306,6 +28709,22 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.IsNowSameWeek
   nameWithType: TimeHelper.IsNowSameWeek
+- uid: GameFrameX.Utility.TimeHelper.IsNowSameWeekUtc(System.DateTime)
+  name: IsNowSameWeekUtc(DateTime)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsNowSameWeekUtc_System_DateTime_
+  commentId: M:GameFrameX.Utility.TimeHelper.IsNowSameWeekUtc(System.DateTime)
+  name.vb: IsNowSameWeekUtc(Date)
+  fullName: GameFrameX.Utility.TimeHelper.IsNowSameWeekUtc(System.DateTime)
+  fullName.vb: GameFrameX.Utility.TimeHelper.IsNowSameWeekUtc(Date)
+  nameWithType: TimeHelper.IsNowSameWeekUtc(DateTime)
+  nameWithType.vb: TimeHelper.IsNowSameWeekUtc(Date)
+- uid: GameFrameX.Utility.TimeHelper.IsNowSameWeekUtc*
+  name: IsNowSameWeekUtc
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsNowSameWeekUtc_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.IsNowSameWeekUtc
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.IsNowSameWeekUtc
+  nameWithType: TimeHelper.IsNowSameWeekUtc
 - uid: GameFrameX.Utility.TimeHelper.IsSameDay(System.DateTime,System.DateTime)
   name: IsSameDay(DateTime, DateTime)
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsSameDay_System_DateTime_System_DateTime_
@@ -28386,6 +28805,54 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.IsUnixSameDay
   nameWithType: TimeHelper.IsUnixSameDay
+- uid: GameFrameX.Utility.TimeHelper.IsUnixSameWeek(System.Int64)
+  name: IsUnixSameWeek(long)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsUnixSameWeek_System_Int64_
+  commentId: M:GameFrameX.Utility.TimeHelper.IsUnixSameWeek(System.Int64)
+  name.vb: IsUnixSameWeek(Long)
+  fullName: GameFrameX.Utility.TimeHelper.IsUnixSameWeek(long)
+  fullName.vb: GameFrameX.Utility.TimeHelper.IsUnixSameWeek(Long)
+  nameWithType: TimeHelper.IsUnixSameWeek(long)
+  nameWithType.vb: TimeHelper.IsUnixSameWeek(Long)
+- uid: GameFrameX.Utility.TimeHelper.IsUnixSameWeek*
+  name: IsUnixSameWeek
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsUnixSameWeek_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.IsUnixSameWeek
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.IsUnixSameWeek
+  nameWithType: TimeHelper.IsUnixSameWeek
+- uid: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestamp(System.Int64)
+  name: IsUnixSameWeekFromTimestamp(long)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsUnixSameWeekFromTimestamp_System_Int64_
+  commentId: M:GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestamp(System.Int64)
+  name.vb: IsUnixSameWeekFromTimestamp(Long)
+  fullName: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestamp(long)
+  fullName.vb: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestamp(Long)
+  nameWithType: TimeHelper.IsUnixSameWeekFromTimestamp(long)
+  nameWithType.vb: TimeHelper.IsUnixSameWeekFromTimestamp(Long)
+- uid: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestamp*
+  name: IsUnixSameWeekFromTimestamp
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsUnixSameWeekFromTimestamp_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestamp
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestamp
+  nameWithType: TimeHelper.IsUnixSameWeekFromTimestamp
+- uid: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestampMilliseconds(System.Int64)
+  name: IsUnixSameWeekFromTimestampMilliseconds(long)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsUnixSameWeekFromTimestampMilliseconds_System_Int64_
+  commentId: M:GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestampMilliseconds(System.Int64)
+  name.vb: IsUnixSameWeekFromTimestampMilliseconds(Long)
+  fullName: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestampMilliseconds(long)
+  fullName.vb: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestampMilliseconds(Long)
+  nameWithType: TimeHelper.IsUnixSameWeekFromTimestampMilliseconds(long)
+  nameWithType.vb: TimeHelper.IsUnixSameWeekFromTimestampMilliseconds(Long)
+- uid: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestampMilliseconds*
+  name: IsUnixSameWeekFromTimestampMilliseconds
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsUnixSameWeekFromTimestampMilliseconds_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestampMilliseconds
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestampMilliseconds
+  nameWithType: TimeHelper.IsUnixSameWeekFromTimestampMilliseconds
 - uid: GameFrameX.Utility.TimeHelper.MillisecondsTimeStampToDateTime(System.Int64,System.Boolean)
   name: MillisecondsTimeStampToDateTime(long, bool)
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_MillisecondsTimeStampToDateTime_System_Int64_System_Boolean_
@@ -28653,6 +29120,38 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.UtcMillisecondsToUtcDateTime
   nameWithType: TimeHelper.UtcMillisecondsToUtcDateTime
+- uid: GameFrameX.Utility.TimeHelper.UtcSecondsToLocalDateTime(System.Int64)
+  name: UtcSecondsToLocalDateTime(long)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcSecondsToLocalDateTime_System_Int64_
+  commentId: M:GameFrameX.Utility.TimeHelper.UtcSecondsToLocalDateTime(System.Int64)
+  name.vb: UtcSecondsToLocalDateTime(Long)
+  fullName: GameFrameX.Utility.TimeHelper.UtcSecondsToLocalDateTime(long)
+  fullName.vb: GameFrameX.Utility.TimeHelper.UtcSecondsToLocalDateTime(Long)
+  nameWithType: TimeHelper.UtcSecondsToLocalDateTime(long)
+  nameWithType.vb: TimeHelper.UtcSecondsToLocalDateTime(Long)
+- uid: GameFrameX.Utility.TimeHelper.UtcSecondsToLocalDateTime*
+  name: UtcSecondsToLocalDateTime
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcSecondsToLocalDateTime_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.UtcSecondsToLocalDateTime
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.UtcSecondsToLocalDateTime
+  nameWithType: TimeHelper.UtcSecondsToLocalDateTime
+- uid: GameFrameX.Utility.TimeHelper.UtcSecondsToUtcDateTime(System.Int64)
+  name: UtcSecondsToUtcDateTime(long)
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcSecondsToUtcDateTime_System_Int64_
+  commentId: M:GameFrameX.Utility.TimeHelper.UtcSecondsToUtcDateTime(System.Int64)
+  name.vb: UtcSecondsToUtcDateTime(Long)
+  fullName: GameFrameX.Utility.TimeHelper.UtcSecondsToUtcDateTime(long)
+  fullName.vb: GameFrameX.Utility.TimeHelper.UtcSecondsToUtcDateTime(Long)
+  nameWithType: TimeHelper.UtcSecondsToUtcDateTime(long)
+  nameWithType.vb: TimeHelper.UtcSecondsToUtcDateTime(Long)
+- uid: GameFrameX.Utility.TimeHelper.UtcSecondsToUtcDateTime*
+  name: UtcSecondsToUtcDateTime
+  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcSecondsToUtcDateTime_
+  commentId: Overload:GameFrameX.Utility.TimeHelper.UtcSecondsToUtcDateTime
+  isSpec: "True"
+  fullName: GameFrameX.Utility.TimeHelper.UtcSecondsToUtcDateTime
+  nameWithType: TimeHelper.UtcSecondsToUtcDateTime
 - uid: GameFrameX.Utility.TimeHelper.UtcToLocalDateTime(System.Int64)
   name: UtcToLocalDateTime(long)
   href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcToLocalDateTime_System_Int64_

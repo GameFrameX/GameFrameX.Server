@@ -96,7 +96,29 @@ Classes
 </h3>
     <dl class="jumplist">
       <dt><a class="xref" href="GameFrameX.Utility.AssemblyHelper.html">AssemblyHelper</a></dt>
-      <dd><p>程序集辅助器</p>
+      <dd><p>程序集辅助工具类
+提供程序集和类型的加载、缓存和查询功能，支持线程安全操作</p>
+<p>主要功能：</p>
+<ol>
+<li>程序集管理：获取当前应用程序域中的所有已加载程序集</li>
+<li>类型发现：查找和缓存程序集中的类型信息</li>
+<li>继承关系分析：查找指定类型的实现类、派生类和子类</li>
+<li>实例创建：自动实例化符合条件的类型</li>
+<li>特性过滤：基于自定义特性标记进行类型筛选</li>
+</ol>
+<p>性能特性：</p>
+<ul>
+<li>使用 ConcurrentDictionary 提供线程安全的类型缓存</li>
+<li>采用 Lazy&lt;T&gt; 实现延迟加载，避免重复的类型扫描</li>
+<li>内置异常处理，确保部分程序集加载失败不影响整体功能</li>
+</ul>
+<p>适用场景：</p>
+<ul>
+<li>插件系统的类型发现和加载</li>
+<li>IoC 容器的类型注册和解析</li>
+<li>组件化架构的模块扫描</li>
+<li>反射操作的性能优化</li>
+</ul>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -131,7 +153,8 @@ Classes
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="GameFrameX.Utility.NetHelper.html">NetHelper</a></dt>
-      <dd><p>网络帮助类</p>
+      <dd><p>网络帮助类
+提供网络相关的实用工具方法，包括IP地址验证、端口可用性检查、本地IP获取等功能</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -141,7 +164,45 @@ Classes
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="GameFrameX.Utility.RandomHelper.html">RandomHelper</a></dt>
-      <dd><p>随机相关的实用函数。</p>
+      <dd><p>随机数帮助类</p>
+<p>功能概述：</p>
+<ul>
+<li>提供线程安全的随机数生成功能</li>
+<li>支持多种数据类型的随机数生成（int、long、double、byte[]等）</li>
+<li>提供便捷的集合随机选择方法</li>
+<li>支持随机选择单个或多个元素</li>
+<li>支持获取随机索引</li>
+</ul>
+<p>核心特性：</p>
+<ul>
+<li>线程安全：使用 Random.Shared 确保多线程环境下的安全性</li>
+<li>高性能：避免重复创建 Random 实例</li>
+<li>类型安全：支持泛型方法，编译时类型检查</li>
+<li>参数验证：使用 .NET 静态方法进行参数检查</li>
+</ul>
+<p>应用场景：</p>
+<ul>
+<li>游戏开发中的随机事件生成</li>
+<li>数据采样和随机测试</li>
+<li>随机算法实现</li>
+<li>集合元素的随机选择</li>
+</ul>
+<p>使用示例：</p>
+<pre><code class="lang-csharp">// 生成随机整数
+int randomInt = RandomHelper.Next(100);
+
+// 从数组中随机选择元素
+string[] items = {"A", "B", "C"};
+string selected = RandomHelper.RandomSelect(items);
+
+// 随机选择多个元素
+string[] multipleItems = RandomHelper.Items(items, 2);</code></pre>
+<p>注意事项：</p>
+<ul>
+<li>所有方法都进行了严格的参数验证</li>
+<li>空集合或数组会抛出 ArgumentOutOfRangeException</li>
+<li>负数参数会抛出相应的异常</li>
+</ul>
 </dd>
     </dl>
     <dl class="jumplist">
