@@ -29,7 +29,7 @@ public interface IMessageHandler
     /// </summary>
     /// <param name="message">消息对象</param>
     /// <param name="netWorkChannel">网络渠道</param>
-    /// <returns></returns>
+    /// <returns>返回是否初始化成功,true:成功,false:失败</returns>
     Task<bool> Init(INetworkMessage message, INetWorkChannel netWorkChannel);
 
     /// <summary>

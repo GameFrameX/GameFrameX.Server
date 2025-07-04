@@ -142,7 +142,12 @@ public abstract partial class AppStartUpBase
     {
         async void InvokeAction()
         {
-            await handler.Init(message, netWorkChannel);
+            bool initSuccess = await handler.Init(message, netWorkChannel);
+            if (initSuccess == false)
+            {
+                return;
+            }
+
             await handler.InnerAction(timeout, cancellationToken);
         }
 

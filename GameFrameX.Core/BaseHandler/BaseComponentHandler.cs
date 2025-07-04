@@ -38,7 +38,7 @@ public abstract class BaseComponentHandler : BaseMessageHandler
     /// </summary>
     /// <param name="message">网络消息</param>
     /// <param name="netWorkChannel">网络通道</param>
-    /// <returns>初始化任务</returns>
+    /// <returns>返回是否初始化成功,true:成功,false:失败</returns>
     public override async Task<bool> Init(INetworkMessage message, INetWorkChannel netWorkChannel)
     {
         var initSuccess = await base.Init(message, netWorkChannel);
