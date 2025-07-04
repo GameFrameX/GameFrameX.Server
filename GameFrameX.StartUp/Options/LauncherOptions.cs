@@ -203,6 +203,12 @@ public sealed class LauncherOptions
     public int ActorQueueTimeOut { get; set; } = 30_000;
 
     /// <summary>
+    /// Actor 空闲多久回收,单位分钟,默认值为15分钟,最小值为1分钟,小于1则强制设置为5分钟
+    /// </summary>
+    [Option(nameof(ActorRecycleTime), Default = 15, HelpText = "Actor 空闲多久回收,单位分钟,默认值为15分钟,最小值为1分钟,小于1则强制设置为5分钟")]
+    public int ActorRecycleTime { get; set; } = 15;
+
+    /// <summary>
     /// 内部IP
     /// </summary>
     [Option(nameof(InnerIp), Default = "0.0.0.0", HelpText = "内部IP")]

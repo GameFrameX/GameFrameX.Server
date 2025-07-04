@@ -224,6 +224,11 @@ public sealed class AppSetting
     public int ActorTimeOut { get; set; } = 30_000;
 
     /// <summary>
+    /// Actor 空闲多久回收,单位分钟,默认值为15分钟
+    /// </summary>
+    public int ActorRecycleTime { get; set; } = 15;
+
+    /// <summary>
     /// Actor 执行任务队列超时时间（毫秒）,默认值为30秒
     /// </summary>
     public int ActorQueueTimeOut { get; set; } = 30_000;

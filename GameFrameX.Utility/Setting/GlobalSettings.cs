@@ -107,6 +107,12 @@ public static class GlobalSettings
             setting.NetWorkSendTimeOutSeconds = 5;
         }
 
+        if (setting.ActorRecycleTime < 1)
+        {
+            LogHelper.WarnConsole("ActorRecycleTime小于1分钟，使用默认值为:5 分钟");
+            setting.ActorRecycleTime = 5;
+        }
+
         // 创建ID生成器配置，WorkerId设为0
         var options = new IdGeneratorOptions(setting.WorkerId);
         // 初始化雪花算法ID生成器

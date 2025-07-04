@@ -242,11 +242,11 @@ public static class ActorManager
 
             async Task Func()
             {
-                if (actor.AutoRecycle && (TimeHelper.GetUtcNow() - ActiveTimeDic[actor.Id]).TotalMinutes > 15)
+                if (actor.AutoRecycle && (TimeHelper.GetUtcNow() - ActiveTimeDic[actor.Id]).TotalMinutes > GlobalSettings.CurrentSetting.ActorRecycleTime)
                 {
                     async Task<bool> Work()
                     {
-                        if (ActiveTimeDic.TryGetValue(actor.Id, out var activeTime) && (TimeHelper.GetUtcNow() - ActiveTimeDic[actor.Id]).TotalMinutes > 15)
+                        if (ActiveTimeDic.TryGetValue(actor.Id, out var activeTime) && (TimeHelper.GetUtcNow() - ActiveTimeDic[actor.Id]).TotalMinutes > GlobalSettings.CurrentSetting.ActorRecycleTime)
                         {
                             // 防止定时回存失败时State被直接移除
                             if (actor.ReadyToDeActive)
