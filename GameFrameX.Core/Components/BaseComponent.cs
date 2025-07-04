@@ -73,6 +73,11 @@ public abstract class BaseComponent : IComponent, IState
     /// <returns>激活任务</returns>
     public virtual Task Active()
     {
+        if (IsActive)
+        {
+            return Task.CompletedTask;
+        }
+
         IsActive = true;
         return Task.CompletedTask;
     }

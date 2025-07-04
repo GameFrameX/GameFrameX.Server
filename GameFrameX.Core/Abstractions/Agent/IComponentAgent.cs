@@ -45,7 +45,7 @@ public interface IComponentAgent : IWorker
     /// <remarks>
     /// 在组件开始激活流程前执行，可以用于进行一些预处理操作
     /// </remarks>
-    Task BeforeActivation();
+    Task<bool> BeforeActivation();
 
     /// <summary>
     /// 激活组件代理
@@ -53,7 +53,7 @@ public interface IComponentAgent : IWorker
     /// 用于初始化并启用组件代理的功能
     /// </remarks>
     /// </summary>
-    Task Active();
+    Task<bool> Active();
 
     /// <summary>
     /// 组件激活后的回调方法
@@ -62,7 +62,7 @@ public interface IComponentAgent : IWorker
     /// <remarks>
     /// 在组件完成激活流程后执行，可以用于处理一些初始化后的逻辑
     /// </remarks>
-    Task AfterActivation();
+    Task<bool> AfterActivation();
 
     /// <summary>
     /// 组件反激活前的回调方法
@@ -71,7 +71,7 @@ public interface IComponentAgent : IWorker
     /// <remarks>
     /// 在组件开始反激活流程前执行，可以用于保存状态或清理资源
     /// </remarks>
-    Task BeforeInActivation();
+    Task<bool> BeforeInActivation();
 
     /// <summary>
     /// 反激活组件代理
@@ -89,7 +89,7 @@ public interface IComponentAgent : IWorker
     /// <remarks>
     /// 在组件完成反激活流程后执行，可以用于确认清理完成或执行最终操作
     /// </remarks>
-    Task AfterInActivation();
+    Task<bool> AfterInActivation();
 
     /// <summary>
     /// 根据代理类型获取代理组件

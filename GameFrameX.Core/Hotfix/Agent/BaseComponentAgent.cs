@@ -69,46 +69,141 @@ public abstract class BaseComponentAgent<TComponent> : IComponentAgent where TCo
     }
 
     /// <summary>
+    /// 标记组件是否已执行过激活前预处理
+    /// </summary>
+    protected bool IsInvokedBeforeActivation { get; private set; }
+
+    /// <summary>
     /// 组件激活前的预处理操作
     /// </summary>
-    /// <returns>一个已完成的任务</returns>
-    public virtual Task BeforeActivation() => Task.CompletedTask;
+    /// <returns>
+    /// 返回一个 Task&lt;bool&gt; 对象：
+    /// - true：表示预处理成功且是首次执行
+    /// - false：表示已经执行过预处理
+    /// </returns>
+    public virtual Task<bool> BeforeActivation()
+    {
+        if (IsInvokedBeforeActivation)
+        {
+            return Task.FromResult(false);
+        }
+
+        IsInvokedBeforeActivation = true;
+
+        return Task.FromResult(true);
+    }
+
+    /// <summary>
+    /// 标记组件是否已执行过激活操作
+    /// </summary>
+    protected bool IsInvokedActivation { get; private set; }
 
     /// <summary>
     /// 激活组件
     /// </summary>
-    /// <returns>一个已完成的任务</returns>
-    public virtual Task Active()
+    /// <returns>
+    /// 返回一个 Task&lt;bool&gt; 对象：
+    /// - true：表示激活成功且是首次执行
+    /// - false：表示组件已经被激活过
+    /// </returns>
+    public virtual Task<bool> Active()
     {
-        return Task.CompletedTask;
+        if (IsInvokedActivation)
+        {
+            return Task.FromResult(false);
+        }
+
+        IsInvokedActivation = true;
+
+        return Task.FromResult(true);
     }
+
+    /// <summary>
+    /// 标记组件是否已执行过激活后处理
+    /// </summary>
+    protected bool IsInvokedAfterActivation { get; private set; }
 
     /// <summary>
     /// 组件激活后的后处理操作
     /// </summary>
-    /// <returns>一个已完成的任务</returns>
-    public virtual Task AfterActivation() => Task.CompletedTask;
+    /// <returns>
+    /// 返回一个 Task&lt;bool&gt; 对象：
+    /// - true：表示后处理成功且是首次执行
+    /// - false：表示已经执行过后处理
+    /// </returns>
+    public virtual Task<bool> AfterActivation()
+    {
+        if (IsInvokedAfterActivation)
+        {
+            return Task.FromResult(false);
+        }
+
+        IsInvokedAfterActivation = true;
+
+        return Task.FromResult(true);
+    }
+
+    /// <summary>
+    /// 标记组件是否已执行过反激活前预处理
+    /// </summary>
+    protected bool IsInvokedBeforeInActivation { get; private set; }
 
     /// <summary>
     /// 组件反激活前的预处理操作
     /// </summary>
-    /// <returns>一个已完成的任务</returns>
-    public virtual Task BeforeInActivation() => Task.CompletedTask;
+    /// <returns>
+    /// 返回一个 Task&lt;bool&gt; 对象：
+    /// - true：表示预处理成功且是首次执行
+    /// - false：表示已经执行过预处理
+    /// </returns>
+    public virtual Task<bool> BeforeInActivation()
+    {
+        if (IsInvokedBeforeInActivation)
+        {
+            return Task.FromResult(false);
+        }
+
+        IsInvokedBeforeInActivation = true;
+
+        return Task.FromResult(true);
+    }
 
     /// <summary>
     /// 反激活组件
     /// </summary>
-    /// <returns>一个已完成的任务</returns>
+    /// <returns>
+    /// 返回一个已完成的 Task 对象。
+    /// 注意：此方法不检查执行状态，可以多次调用
+    /// </returns>
     public virtual Task Inactive()
     {
         return Task.CompletedTask;
     }
 
     /// <summary>
+    /// 标记组件是否已执行过反激活后处理
+    /// </summary>
+    protected bool IsInvokedAfterInActivation { get; private set; }
+
+    /// <summary>
     /// 组件反激活后的后处理操作
     /// </summary>
-    /// <returns>一个已完成的任务</returns>
-    public virtual Task AfterInActivation() => Task.CompletedTask;
+    /// <returns>
+    /// 返回一个 Task&lt;bool&gt; 对象：
+    /// - true：表示后处理成功且是首次执行
+    /// - false：表示已经执行过后处理
+    /// </returns>
+    public virtual Task<bool> AfterInActivation()
+    {
+        if (IsInvokedAfterInActivation)
+        {
+            return Task.FromResult(false);
+        }
+
+        IsInvokedAfterInActivation = true;
+
+        return Task.FromResult(true);
+    }
 
     /// <summary>
     /// 根据代理类型获取组件代理实例
