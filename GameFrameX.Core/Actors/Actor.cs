@@ -125,17 +125,18 @@ public sealed class Actor : IActor, IDisposable
     {
         var compType = agentType.BaseType.GetGenericArguments()[0];
         IComponentAgent agent;
+        BaseComponent component;
         if (isNew)
         {
-            var comp = _componentsMap.GetOrAdd(compType, GetOrAddFactory);
-            agent = comp.GetAgent(agentType);
-            if (!comp.IsActive)
+            component = _componentsMap.GetOrAdd(compType, GetOrAddFactory);
+            agent = component.GetAgent(agentType);
+            if (!component.IsActive)
             {
                 async Task Worker()
                 {
                     try
                     {
-                        await comp.Active();
+                        await component.Active();
                     }
                     catch (Exception e)
                     {
@@ -160,7 +161,7 @@ public sealed class Actor : IActor, IDisposable
             return agent;
         }
 
-        if (!_componentsMap.TryGetValue(compType, out var component))
+        if (!_componentsMap.TryGetValue(compType, out component))
         {
             return default;
         }
