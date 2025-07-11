@@ -2,8 +2,7 @@ using System.Buffers;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.ProtoBuf.Net;
-using GameFrameX.SuperSocket.ProtoBase;
-using GameFrameX.Utility.Extensions;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
 
 namespace GameFrameX.NetWork.Message;
@@ -24,19 +23,19 @@ public class DefaultMessageDecoderHandler : BaseMessageDecoderHandler
         try
         {
             // 消息总长度
-            reader.TryReadBigEndian(out int totalLength);
+            reader.TryReadBigEndianValue(out int totalLength);
             // 消息头长度
-            reader.TryReadBigEndian(out ushort headerLength);
+            reader.TryReadBigEndianValue(out ushort headerLength);
             // 消息头字节数组
-            reader.TryReadBytes(headerLength, out var messageHeaderData);
+            reader.TryReadBytesValue(headerLength, out var messageHeaderData);
             // 消息对象头
             var messageObjectHeader = (INetworkMessageHeader)ProtoBufSerializerHelper.Deserialize(messageHeaderData, typeof(MessageObjectHeader));
 
             // 消息内容
-            reader.TryReadBytes(totalLength - headerLength - PackageHeaderLength, out var messageData);
+            reader.TryReadBytesValue(totalLength - headerLength - PackageHeaderLength, out var messageData);
             if (messageObjectHeader.ZipFlag > 0)
             {
-                DecompressHandler.CheckNotNull(nameof(DecompressHandler));
+                ArgumentNullException.ThrowIfNull(DecompressHandler, nameof(DecompressHandler));
                 messageData = DecompressHandler.Handler(messageData);
             }
 

@@ -1,5 +1,4 @@
 ﻿using GameFrameX.StartUp.Abstractions;
-using GameFrameX.Utility.Extensions;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility.Setting;
 

@@ -1,4 +1,4 @@
-﻿using GameFrameX.Utility.Extensions;
+﻿using GameFrameX.Foundation.Extensions;
 
 namespace GameFrameX.NetWork.HTTP;
 

@@ -6,7 +6,7 @@ using GameFrameX.StartUp.Extensions;
 using GameFrameX.SuperSocket.Server;
 using GameFrameX.SuperSocket.Server.Abstractions;
 using GameFrameX.Utility;
-using GameFrameX.Utility.Extensions;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.Utility.Setting;
 using Grafana.OpenTelemetry;
 using Microsoft.AspNetCore.Builder;

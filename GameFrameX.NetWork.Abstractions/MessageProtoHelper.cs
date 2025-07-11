@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Reflection;
-using GameFrameX.Utility.Extensions;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
 
 namespace GameFrameX.NetWork.Abstractions;

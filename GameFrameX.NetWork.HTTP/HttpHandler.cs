@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Reflection;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Http.Normalization;
 using GameFrameX.Foundation.Json;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.ProtoBuf.Net;
-using GameFrameX.Utility.Extensions;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility.Setting;
 using Microsoft.AspNetCore.Http;

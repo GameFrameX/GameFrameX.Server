@@ -9,7 +9,7 @@ using GameFrameX.Foundation.Json;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
-using GameFrameX.Utility.Extensions;
+using GameFrameX.Foundation.Extensions;
 
 namespace GameFrameX.NetWork;
 

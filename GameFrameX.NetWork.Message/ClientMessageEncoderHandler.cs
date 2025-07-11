@@ -1,8 +1,8 @@
 using System.Buffers;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.ProtoBuf.Net;
-using GameFrameX.Utility.Extensions;
 using GameFrameX.Foundation.Logger;
 
 namespace GameFrameX.NetWork.Message;
@@ -38,15 +38,15 @@ public sealed class ClientMessageEncoderHandler : BaseMessageEncoderHandler
                 var buffer = ArrayPool<byte>.Shared.Rent(totalLength);
                 var offset = 0;
                 // 总长度
-                buffer.WriteUInt(totalLength, ref offset);
+                buffer.WriteUIntValue(totalLength, ref offset);
                 // operationType
-                buffer.WriteByte((byte)(isHeartbeat ? MessageOperationType.HeartBeat : MessageOperationType.Game), ref offset);
+                buffer.WriteByteValue((byte)(isHeartbeat ? MessageOperationType.HeartBeat : MessageOperationType.Game), ref offset);
                 // zipFlag
-                buffer.WriteByte(zipFlag, ref offset);
+                buffer.WriteByteValue(zipFlag, ref offset);
                 // uniqueId
-                buffer.WriteInt(messageObject.UniqueId, ref offset);
+                buffer.WriteIntValue(messageObject.UniqueId, ref offset);
                 // MessageId
-                buffer.WriteInt(messageObject.MessageId, ref offset);
+                buffer.WriteIntValue(messageObject.MessageId, ref offset);
                 buffer.WriteBytesWithoutLength(messageBodyData, ref offset);
                 var result = buffer.AsSpan(0, totalLength).ToArray();
                 ArrayPool<byte>.Shared.Return(buffer);

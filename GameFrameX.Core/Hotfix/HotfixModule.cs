@@ -6,7 +6,7 @@ using GameFrameX.Core.BaseHandler;
 using GameFrameX.Core.Components;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
-using GameFrameX.Utility.Extensions;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility.Setting;
 

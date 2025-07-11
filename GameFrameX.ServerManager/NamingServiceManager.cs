@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using GameFrameX.Foundation.Logger;
-using GameFrameX.Utility.Extensions;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.ServerManager;

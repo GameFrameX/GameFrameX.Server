@@ -3,7 +3,7 @@ using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
 using GameFrameX.ServerManager;
-using GameFrameX.Utility.Extensions;
+using GameFrameX.Foundation.Extensions;
 
 namespace GameFrameX.Launcher.StartUp.Discovery;
 
@@ -41,8 +41,8 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
     /// <param name="message">消息对象</param>
     private async void SendMessage(IAppSession session, INetworkMessage message)
     {
-        message.CheckNotNull(nameof(message));
-        if (session == null || session.Connection.IsClosed)
+        ArgumentNullException.ThrowIfNull(session, nameof(session));
+        if (session.Connection.IsClosed)
         {
             return;
         }

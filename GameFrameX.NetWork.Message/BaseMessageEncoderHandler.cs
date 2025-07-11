@@ -1,8 +1,7 @@
 using System.Buffers;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.ProtoBuf.Net;
-using GameFrameX.SuperSocket.ProtoBase;
-using GameFrameX.Utility.Extensions;
 
 namespace GameFrameX.NetWork.Message;
 
@@ -75,9 +74,9 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler
 
         var offset = 0;
         // 总长度
-        buffer.WriteUInt(totalLength, ref offset);
+        buffer.WriteUIntValue(totalLength, ref offset);
         // 消息头长度
-        buffer.WriteUShort((ushort)messageHeaderData.Length, ref offset);
+        buffer.WriteUShortValue((ushort)messageHeaderData.Length, ref offset);
         // 消息头
         buffer.WriteBytesWithoutLength(messageHeaderData, ref offset);
         // 消息体

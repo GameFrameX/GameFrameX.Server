@@ -1,6 +1,6 @@
 using System.Collections.Concurrent;
 using System.Reflection;
-using GameFrameX.Utility.Extensions;
+using GameFrameX.Foundation.Extensions;
 
 namespace GameFrameX.Utility;
 

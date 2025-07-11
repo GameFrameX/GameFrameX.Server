@@ -1,7 +1,7 @@
 using GameFrameX.Core.Actors;
 using GameFrameX.Core.Components;
 using GameFrameX.DataBase;
-using GameFrameX.Utility.Extensions;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Setting;

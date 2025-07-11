@@ -5,7 +5,7 @@ using GameFrameX.Core.Abstractions.Attribute;
 using GameFrameX.Core.Actors;
 using GameFrameX.Core.Hotfix;
 using GameFrameX.Core.Utility;
-using GameFrameX.Utility.Extensions;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility.Setting;
 
@@ -71,7 +71,7 @@ public static class ComponentRegister
             assembly = Assembly.GetEntryAssembly();
         }
 
-        assembly.CheckNotNull(nameof(assembly));
+        ArgumentNullException.ThrowIfNull(assembly, nameof(assembly));
         var baseCompName = typeof(BaseComponent);
         var types = assembly.GetTypes();
         foreach (var type in types)

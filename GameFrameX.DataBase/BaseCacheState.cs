@@ -1,7 +1,7 @@
 ﻿using GameFrameX.DataBase.Abstractions;
 using GameFrameX.DataBase.Storage;
 using GameFrameX.Foundation.Json;
-using GameFrameX.Utility.Extensions;
+using GameFrameX.Foundation.Extensions;
 using MongoDB.Entities;
 
 namespace GameFrameX.DataBase;

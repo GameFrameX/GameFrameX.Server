@@ -1,5 +1,5 @@
 ﻿using CommandLine;
-using GameFrameX.Utility.Extensions;
+using GameFrameX.Foundation.Extensions;
 using Serilog;
 using Serilog.Events;
 

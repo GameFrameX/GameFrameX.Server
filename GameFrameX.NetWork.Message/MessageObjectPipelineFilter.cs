@@ -1,7 +1,7 @@
 ﻿using System.Buffers;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.SuperSocket.ProtoBase;
-using GameFrameX.Utility.Extensions;
 
 namespace GameFrameX.NetWork.Message;
 
@@ -18,7 +18,7 @@ public sealed class MessageObjectPipelineFilter : PipelineFilterBase<IMessage>
     public override IMessage Filter(ref SequenceReader<byte> reader)
     {
         var pack = reader.Sequence;
-        reader.TryPeekBigEndian(out uint totalLength);
+        reader.TryPeekBigEndianValue(out uint totalLength);
         if (totalLength <= 0)
         {
             reader.AdvanceToEnd();

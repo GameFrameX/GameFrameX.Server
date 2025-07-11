@@ -23,7 +23,7 @@ global using GameFrameX.Proto.Proto;
 global using GameFrameX.DataBase;
 global using GameFrameX.DataBase.Mongo;
 global using GameFrameX.DataBase.Abstractions;
-global using GameFrameX.Utility.Extensions;
+global using GameFrameX.Foundation.Extensions;
 global using GameFrameX.Utility.Setting;
 global using GameFrameX.Apps.Common.Event;
 global using GameFrameX.Utility;

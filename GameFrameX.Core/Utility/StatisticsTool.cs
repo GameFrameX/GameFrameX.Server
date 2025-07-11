@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using GameFrameX.Core.Actors.Impl;
 using GameFrameX.Utility;
-using GameFrameX.Utility.Extensions;
+using GameFrameX.Foundation.Extensions;
 
 namespace GameFrameX.Core.Utility;
 

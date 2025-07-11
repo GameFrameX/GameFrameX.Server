@@ -8,7 +8,7 @@ using System.Collections.Concurrent;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
 using GameFrameX.SuperSocket.WebSocket.Server;
-using GameFrameX.Utility.Extensions;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility.Setting;
 
@@ -117,7 +117,7 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
     /// <returns></returns>
     public virtual async Task WriteAsync(INetworkMessage messageObject, int errorCode = 0)
     {
-        messageObject.CheckNotNull(nameof(messageObject));
+        ArgumentNullException.ThrowIfNull(messageObject, nameof(messageObject));
 
         if (messageObject is IResponseMessage responseMessage && responseMessage.ErrorCode == default && errorCode != default)
         {

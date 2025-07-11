@@ -6,7 +6,7 @@ using GameFrameX.Core.BaseHandler;
 using GameFrameX.Core.Components;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.Utility;
-using GameFrameX.Utility.Extensions;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Core.Hotfix;

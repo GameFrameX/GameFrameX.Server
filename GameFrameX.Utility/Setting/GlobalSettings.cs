@@ -1,6 +1,6 @@
-﻿using GameFrameX.Foundation.Json;
+﻿using GameFrameX.Foundation.Extensions;
+using GameFrameX.Foundation.Json;
 using GameFrameX.Foundation.Logger;
-using GameFrameX.Utility.Extensions;
 using Yitter.IdGenerator;
 
 namespace GameFrameX.Utility.Setting;

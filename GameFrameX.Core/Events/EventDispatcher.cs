@@ -1,7 +1,7 @@
 ﻿using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Core.Actors;
 using GameFrameX.Core.Hotfix;
-using GameFrameX.Utility.Extensions;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
 
 namespace GameFrameX.Core.Events;

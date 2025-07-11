@@ -1,8 +1,8 @@
 using System.Buffers;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
-using GameFrameX.SuperSocket.ProtoBase;
-using GameFrameX.Utility.Extensions;
+// using GameFrameX.SuperSocket.ProtoBase;
 using GameFrameX.Foundation.Logger;
 
 namespace GameFrameX.NetWork.Message;
@@ -29,22 +29,22 @@ public sealed class ClientMessageDecoderHandler : DefaultMessageDecoderHandler
         try
         {
             // 消息总长度
-            reader.TryReadBigEndian(out uint totalLength);
+            reader.TryReadBigEndianValue(out uint totalLength);
             // 消息对象头
             var messageObjectHeader = new MessageObjectHeader();
-            reader.TryReadBigEndian(out byte operationType);
-            reader.TryReadBigEndian(out byte zipFlag);
-            reader.TryReadBigEndian(out int uniqueId);
-            reader.TryReadBigEndian(out int messageId);
+            reader.TryReadBigEndianValue(out byte operationType);
+            reader.TryReadBigEndianValue(out byte zipFlag);
+            reader.TryReadBigEndianValue(out int uniqueId);
+            reader.TryReadBigEndianValue(out int messageId);
             messageObjectHeader.OperationType = (MessageOperationType)operationType;
             messageObjectHeader.ZipFlag = zipFlag;
             messageObjectHeader.UniqueId = uniqueId;
             messageObjectHeader.MessageId = messageId;
             // 消息内容
-            reader.TryReadBytes((int)(totalLength - PackageHeaderLength), out var messageData);
+            reader.TryReadBytesValue((int)(totalLength - PackageHeaderLength), out var messageData);
             if (messageObjectHeader.ZipFlag > 0)
             {
-                DecompressHandler.CheckNotNull(nameof(DecompressHandler));
+                ArgumentNullException.ThrowIfNull(DecompressHandler, nameof(DecompressHandler));
                 messageData = DecompressHandler.Handler(messageData);
             }
 
