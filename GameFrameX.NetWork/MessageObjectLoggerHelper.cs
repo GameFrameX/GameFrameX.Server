@@ -58,7 +58,7 @@ public static class MessageObjectLoggerHelper
                 stringBuilder.AppendLine($"{'\u2191'.RepeatChar(140)}");
                 stringBuilder.AppendLine();
                 // 从缓存中获取并释放StringBuilder的内容
-                return StringBuilderCache.GetStringAndRelease(stringBuilder);
+                return stringBuilder.ToString();
             }
 
             // 非控制台输出模式下，将消息序列化为JSON格式
