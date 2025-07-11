@@ -28,7 +28,7 @@ public sealed class HttpMessageResponseAttribute : Attribute
     /// <exception cref="InvalidCastException">当 classType 未继承自HttpMessageResponseBase时抛出此异常</exception>
     public HttpMessageResponseAttribute(Type classType)
     {
-        classType.CheckNotNull(nameof(classType));
+        ArgumentNullException.ThrowIfNull(classType, nameof(classType));
         var isRequest = classType.IsSubclassOf(typeof(HttpMessageResponseBase));
         if (isRequest == false)
         {

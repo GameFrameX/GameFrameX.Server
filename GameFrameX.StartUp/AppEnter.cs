@@ -19,7 +19,7 @@ internal static class AppEnter
     /// <param name="appStartUp">启动对象</param>
     internal static async Task Entry(IAppStartUp appStartUp)
     {
-        appStartUp.CheckNotNull(nameof(appStartUp));
+        ArgumentNullException.ThrowIfNull(appStartUp, nameof(appStartUp));
 
         try
         {

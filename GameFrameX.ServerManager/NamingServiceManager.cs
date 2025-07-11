@@ -169,7 +169,7 @@ public sealed class NamingServiceManager
     /// <param name="node">节点信息</param>
     public void Add(IServiceInfo node)
     {
-        node.CheckNotNull(nameof(node));
+        ArgumentNullException.ThrowIfNull(node, nameof(node));
         if (node.Type == SelfServiceInfo.Type)
         {
             LogHelper.Error($"不能添加{SelfServiceInfo.Type.ToString()}节点...{node}");

@@ -48,7 +48,7 @@ public abstract partial class AppStartUpBase : IAppStartUp
         ServerType = serverType;
         Setting = setting;
         Init();
-        Setting.CheckNotNull(nameof(Setting));
+        ArgumentNullException.ThrowIfNull(Setting, nameof(Setting));
         GlobalSettings.SetCurrentSetting(Setting);
         return true;
     }

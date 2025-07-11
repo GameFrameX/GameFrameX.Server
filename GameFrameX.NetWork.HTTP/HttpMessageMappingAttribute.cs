@@ -26,7 +26,7 @@ public sealed class HttpMessageMappingAttribute : Attribute
     /// <exception cref="InvalidOperationException">当classType不是密封类或不以HTTPsuffix结尾时抛出</exception>
     public HttpMessageMappingAttribute(Type classType)
     {
-        classType.CheckNotNull(nameof(classType));
+        ArgumentNullException.ThrowIfNull(classType, nameof(classType));
         var className = classType.Name;
         if (!classType.IsSealed)
         {

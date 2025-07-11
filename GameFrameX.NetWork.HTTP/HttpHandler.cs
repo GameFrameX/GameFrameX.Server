@@ -182,7 +182,7 @@ public static class HttpHandler
                 var httpRequestAttr = handler.GetType().GetCustomAttribute<HttpMessageRequestAttribute>();
                 if (httpRequestAttr != null)
                 {
-                    httpRequestAttr.MessageType.CheckNotNull(nameof(httpRequestAttr.MessageType));
+                    ArgumentNullException.ThrowIfNull(httpRequestAttr.MessageType, nameof(httpRequestAttr.MessageType));
                     var httpMessageRequestBase = (HttpMessageRequestBase)JsonHelper.Deserialize(JsonHelper.Serialize(paramMap), httpRequestAttr.MessageType);
                     var validationResults = new List<ValidationResult>();
 

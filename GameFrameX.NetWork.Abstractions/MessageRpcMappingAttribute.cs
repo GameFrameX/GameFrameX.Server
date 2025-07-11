@@ -1,5 +1,3 @@
-using GameFrameX.Utility.Extensions;
-
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
@@ -15,8 +13,8 @@ public class MessageRpcMappingAttribute : Attribute
     /// <param name="responseMessage">返回消息类型</param>
     public MessageRpcMappingAttribute(IRequestMessage requestMessage, IResponseMessage responseMessage)
     {
-        requestMessage.CheckNotNull(nameof(requestMessage));
-        responseMessage.CheckNotNull(nameof(responseMessage));
+        ArgumentNullException.ThrowIfNull(requestMessage, nameof(requestMessage));
+        ArgumentNullException.ThrowIfNull(responseMessage, nameof(responseMessage));
         RequestMessage = requestMessage;
         ResponseMessage = responseMessage;
     }

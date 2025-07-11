@@ -23,7 +23,7 @@ public static class MessageProtoHelper
     /// <returns></returns>
     public static int GetMessageIdByType(INetworkMessage message)
     {
-        message.CheckNotNull(nameof(message));
+        ArgumentNullException.ThrowIfNull(message, nameof(message));
         var messageType = message.GetType();
         return GetMessageIdByType(messageType);
     }
@@ -61,7 +61,7 @@ public static class MessageProtoHelper
     /// <returns></returns>
     public static MessageOperationType GetMessageOperationType(INetworkMessage message)
     {
-        message.CheckNotNull(nameof(message));
+        ArgumentNullException.ThrowIfNull(message, nameof(message));
         var messageType = message.GetType();
         return GetMessageOperationType(messageType);
     }
@@ -92,7 +92,7 @@ public static class MessageProtoHelper
     /// <param name="message">消息对象</param>
     public static void SetMessageId(INetworkMessage message)
     {
-        message.CheckNotNull(nameof(message));
+        ArgumentNullException.ThrowIfNull(message, nameof(message));
         var messageType = message.GetType();
         message.SetMessageId(GetMessageIdByType(messageType));
     }
@@ -104,7 +104,7 @@ public static class MessageProtoHelper
     /// <returns></returns>
     public static bool IsHeartbeat(INetworkMessage message)
     {
-        message.CheckNotNull(nameof(message));
+        ArgumentNullException.ThrowIfNull(message, nameof(message));
         var messageType = message.GetType();
         return IsHeartbeat(messageType);
     }
@@ -126,7 +126,7 @@ public static class MessageProtoHelper
     /// <exception cref="Exception">如果ID重复将会触发异常</exception>
     public static void Init(params Assembly[] assemblies)
     {
-        assemblies.CheckNotNull(nameof(assemblies));
+        ArgumentNullException.ThrowIfNull(assemblies, nameof(assemblies));
 
         AllMessageDictionary.Clear();
         RequestDictionary.Clear();
