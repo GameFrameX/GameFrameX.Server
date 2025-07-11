@@ -146,7 +146,7 @@ public static class MessageProtoHelper
                     if (!AllMessageDictionary.TryAdd(messageTypeHandler.MessageId, type))
                     {
                         RequestDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
-                        throw new AlreadyArgumentException($"消息Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
+                        throw new ArgumentAlreadyException($"消息Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
                     }
 
                     OperationType.TryAdd(type, messageTypeHandler.OperationType);
@@ -169,7 +169,7 @@ public static class MessageProtoHelper
                         if (!RequestDictionary.TryAdd(messageTypeHandler.MessageId, type))
                         {
                             RequestDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
-                            throw new AlreadyArgumentException($"请求Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
+                            throw new ArgumentAlreadyException($"请求Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
                         }
                     }
                     else if (type.IsImplWithInterface(typeof(IResponseMessage)) || type.IsImplWithInterface(typeof(INotifyMessage)))
@@ -178,7 +178,7 @@ public static class MessageProtoHelper
                         if (!ResponseDictionary.TryAdd(messageTypeHandler.MessageId, type))
                         {
                             ResponseDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
-                            throw new AlreadyArgumentException($"返回Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
+                            throw new ArgumentAlreadyException($"返回Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
                         }
                     }
                 }
