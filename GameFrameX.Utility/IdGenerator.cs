@@ -1,4 +1,4 @@
-﻿using Yitter.IdGenerator;
+using Yitter.IdGenerator;
 
 namespace GameFrameX.Utility;
 
@@ -18,6 +18,16 @@ public static class IdGenerator
     /// 用于生成递增的整数ID
     /// </summary>
     private static int _intCounter = (int)(DateTime.UtcNow - UtcTimeStart).TotalSeconds;
+    
+    /// <summary>
+    /// 标记YitIdHelper是否已初始化
+    /// </summary>
+    private static bool _isYitIdInitialized = false;
+    
+    /// <summary>
+    /// 用于同步YitIdHelper初始化的锁对象
+    /// </summary>
+    private static readonly object _initLock = new object();
 
     /// <summary>
     /// 使用Interlocked.Increment生成唯一的整数ID
@@ -35,10 +45,53 @@ public static class IdGenerator
     /// 基于Yitter.IdGenerator实现，提供分布式环境下的唯一ID生成
     /// </summary>
     /// <returns>返回下一个唯一的长整数ID，保证全局唯一性</returns>
+    /// <exception cref="InvalidOperationException">当YitIdHelper初始化失败时抛出此异常</exception>
     public static long GetNextUniqueId()
     {
+        // 确保YitIdHelper已初始化
+        EnsureYitIdInitialized();
+        
         // 使用雪花算法生成ID
         return YitIdHelper.NextId();
+    }
+    
+    /// <summary>
+    /// 确保YitIdHelper已正确初始化
+    /// </summary>
+    /// <exception cref="InvalidOperationException">当初始化失败时抛出此异常</exception>
+    private static void EnsureYitIdInitialized()
+    {
+        if (_isYitIdInitialized)
+        {
+            return;
+        }
+        
+        lock (_initLock)
+        {
+            if (_isYitIdInitialized)
+            {
+                return;
+            }
+            
+            try
+            {
+                // 使用默认配置初始化YitIdHelper
+                // WorkerId设为1，确保在没有外部配置时也能正常工作
+                var options = new IdGeneratorOptions(1)
+                {
+                    WorkerIdBitLength = 6,
+                    SeqBitLength = 6,
+                    BaseTime = UtcTimeStart
+                };
+                
+                YitIdHelper.SetIdGenerator(options);
+                _isYitIdInitialized = true;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Failed to initialize YitIdHelper for ID generation.", ex);
+            }
+        }
     }
 
     /// <summary>
