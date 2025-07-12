@@ -71,10 +71,22 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
     {
         get
         {
-            LNumber r;
-            r.Raw = (Raw + FRACTION_MASK) & INTEGER_MASK;
-
-            return (long)r;
+            // 如果没有小数部分，直接返回整数部分
+            if ((Raw & FRACTION_MASK) == 0)
+            {
+                return Raw >> FRACTION_BITS;
+            }
+            
+            // 有小数部分时，正数向上取整，负数向零取整（即向上取整）
+            if (Raw > 0)
+            {
+                return (Raw >> FRACTION_BITS) + 1;
+            }
+            else
+            {
+                // 对于负数，向零取整意味着要加1（因为右移对负数是向下取整）
+                return (Raw >> FRACTION_BITS) + 1;
+            }
         }
     }
 
@@ -85,10 +97,8 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
     {
         get
         {
-            LNumber r;
-            r.Raw = Raw & INTEGER_MASK;
-
-            return (long)r;
+            // 直接右移，这对正数和负数都能正确实现向下取整
+            return Raw >> FRACTION_BITS;
         }
     }
 
@@ -104,7 +114,8 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
             Debug.LogError("Xnumber 创建失败！ " + i + "." + f);
 #endif
 
-        var sign = (i ^ f) >= 0 ? 1 : -1;
+        // 确定符号：如果整数部分为负，则结果为负；如果整数部分为0且小数部分为负，则结果为负
+        var sign = (i < 0 || (i == 0 && f < 0)) ? -1 : 1;
 
         if (i < 0)
         {
