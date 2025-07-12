@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Text;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
@@ -576,6 +576,6 @@ public sealed class IllegalWordDetection
             }
         }
 
-        return false;
+        return findResult.Count > 0;
     }
 }
