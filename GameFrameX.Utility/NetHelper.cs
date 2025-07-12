@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 
@@ -34,7 +34,23 @@ public static class NetHelper
     {
         ArgumentNullException.ThrowIfNull(ipAddress, nameof(ipAddress));
 
-        return IPAddress.TryParse(ipAddress, out value);
+        value = null;
+        
+        // 首先尝试解析IP地址
+        if (!IPAddress.TryParse(ipAddress, out var parsedIp))
+        {
+            return false;
+        }
+        
+        // 验证解析后的IP地址字符串表示是否与原始输入完全匹配
+        // 这可以防止IPAddress.TryParse自动补全不完整的IP地址（如"192.168.1"被解析为"192.168.0.1"）
+        if (parsedIp.ToString() != ipAddress)
+        {
+            return false;
+        }
+        
+        value = parsedIp;
+        return true;
     }
 
     /// <summary>
@@ -321,6 +337,7 @@ public static class NetHelper
     /// <param name="timeout">超时时间（毫秒），默认10000毫秒</param>
     /// <returns>公网IP地址字符串，获取失败返回null</returns>
     /// <exception cref="ArgumentOutOfRangeException">当timeout小于0时抛出此异常</exception>
+#nullable enable
     public static async Task<string?> GetPublicIpAddressAsync(int timeout = 10000)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(timeout, nameof(timeout));
@@ -365,7 +382,7 @@ public static class NetHelper
     {
         ArgumentException.ThrowIfNullOrEmpty(ipAddress, nameof(ipAddress));
 
-        if (!IPAddress.TryParse(ipAddress, out var ip))
+        if (!IsValidIpAddress(ipAddress, out var ip))
         {
             throw new ArgumentException("无效的IP地址格式", nameof(ipAddress));
         }
