@@ -1,4 +1,4 @@
-﻿/* Copyright (C) <2009-2011> <Thorben Linneweber, Jitter Physics>
+/* Copyright (C) <2009-2011> <Thorben Linneweber, Jitter Physics>
  *
  *  This software is provided 'as-is', without any express or implied
  *  warranty.  In no event will the authors be held liable for any damages
@@ -278,7 +278,7 @@ public sealed class FPMath
     /// <returns>返回大于或等于指定数字的最小整数。</returns>
     public static FP Ceiling(FP value)
     {
-        return value;
+        return FP.Ceiling(value);
     }
 
     /// <summary>
@@ -589,7 +589,7 @@ public sealed class FPMath
     public static FP SmoothDamp(FP current, FP target, ref FP currentVelocity, FP smoothTime)
     {
         var deltaTime = FP.EN2;
-        var positiveInfinity = -FP.MaxValue;
+        var positiveInfinity = FP.MaxValue;
         return SmoothDamp(current, target, ref currentVelocity, smoothTime, positiveInfinity, deltaTime);
     }
 

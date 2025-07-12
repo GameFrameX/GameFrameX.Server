@@ -1,4 +1,4 @@
-﻿#if FP
+#if FP
 namespace GameFrameX.Utility.Math
 {
     /// <summary>
@@ -419,7 +419,11 @@ namespace GameFrameX.Utility.Math
         public static FP Ceiling(FP value)
         {
             var hasFractionalPart = (value._serializedValue & 0x00000000FFFFFFFF) != 0;
-            return hasFractionalPart ? Floor(value) + One : value;
+            if (!hasFractionalPart)
+                return value;
+            
+            // 对于正数，Floor + 1；对于负数，也是Floor + 1（因为Floor对负数向下取整）
+            return Floor(value) + One;
         }
 
         /// <summary>
