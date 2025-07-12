@@ -1,5 +1,6 @@
-﻿using GameFrameX.ProtoBuf.Net;
+using GameFrameX.ProtoBuf.Net;
 using ProtoBuf;
+using Xunit;
 
 namespace GameFrameX.Tests.ProtoBuff;
 
@@ -11,12 +12,12 @@ public class ProtoBuffTest
         [ProtoMember(1, IsRequired = false)] public List<string> Test { get; set; } = new List<string>();
     }
 
-    [SetUp]
-    public void Setup()
+    public ProtoBuffTest()
     {
+        // xUnit uses constructor for setup
     }
 
-    [Test]
+    [Fact]
     public void TestSerialize()
     {
         PbTest pbTest = new PbTest();
