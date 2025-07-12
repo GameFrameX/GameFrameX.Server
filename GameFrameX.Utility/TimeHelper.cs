@@ -1,4 +1,4 @@
-﻿namespace GameFrameX.Utility;
+namespace GameFrameX.Utility;
 
 /// <summary>
 /// 时间帮助工具类
@@ -158,11 +158,17 @@ public static class TimeHelper
     /// </summary>
     /// <param name="timestampSeconds">Unix时间戳，从1970年1月1日以来的秒数。</param>
     /// <returns>自公元1年1月1日以来的刻度数。</returns>
+    /// <exception cref="ArgumentOutOfRangeException">当时间戳超出有效范围时抛出此异常</exception>
     public static long TimestampToTicks(long timestampSeconds)
     {
+        if (timestampSeconds < -62135596800L || timestampSeconds > 253402300799L)
+        {
+            throw new ArgumentOutOfRangeException(nameof(timestampSeconds), "Timestamp is out of valid range for DateTime conversion.");
+        }
+        
         // 将Unix时间戳转换为刻度数，每秒等于10000000刻度
-        // 621355968000000000是公元1年1月1日至1970年1月1日的刻度数差值
-        return timestampSeconds * 10000000L + 621355968000000000L;
+        // 使用TimeHelper.EpochUtc.Ticks确保与项目中其他时间计算保持一致
+        return timestampSeconds * TimeSpan.TicksPerSecond + EpochUtc.Ticks;
     }
 
     /// <summary>
@@ -170,35 +176,51 @@ public static class TimeHelper
     /// </summary>
     /// <param name="timestampMillisSeconds">Unix毫秒时间戳，从1970年1月1日以来的毫秒数。</param>
     /// <returns>自公元1年1月1日以来的刻度数。</returns>
+    /// <exception cref="ArgumentOutOfRangeException">当时间戳超出有效范围时抛出此异常</exception>
     public static long TimestampMillisToTicks(long timestampMillisSeconds)
     {
-        // 将Unix毫秒时间戳转换为刻度数，每毫秒等于10000000000刻度
-        // 621355968000000000是公元1年1月1日至1970年1月1日的刻度数差值
-        return timestampMillisSeconds * 10000L + 621355968000000000L;
+        if (timestampMillisSeconds < -62135596800000L || timestampMillisSeconds > 253402300799999L)
+        {
+            throw new ArgumentOutOfRangeException(nameof(timestampMillisSeconds), "Timestamp is out of valid range for DateTime conversion.");
+        }
+        
+        // 将Unix毫秒时间戳转换为刻度数，每毫秒等于10000刻度
+        // 使用TimeHelper.EpochUtc.Ticks确保与项目中其他时间计算保持一致
+        return timestampMillisSeconds * TimeSpan.TicksPerMillisecond + EpochUtc.Ticks;
     }
 
     /// <summary>
-    /// 将给定的时间戳转换为相对于当前时间的 TimeSpan 对象。
+    /// 将给定的时间戳转换为相对于EpochUtc的 TimeSpan 对象。
     /// </summary>
-    /// <param name="timestamp">自某个固定时间点（通常为1970年1月1日午夜）以来经过的毫秒数。</param>
-    /// <returns>一个 TimeSpan 对象，表示从给定时间戳到当前时间的间隔。</returns>
+    /// <param name="timestamp">自1970年1月1日午夜以来经过的秒数。</param>
+    /// <returns>一个 TimeSpan 对象，表示从EpochUtc到给定时间戳的间隔。</returns>
+    /// <exception cref="ArgumentOutOfRangeException">当时间戳超出有效范围时抛出此异常</exception>
     public static TimeSpan TimeSpanWithTimestamp(long timestamp)
     {
-        // 计算当前时间与给定时间戳表示的时间之间的差值
-        var timeSpan = MillisecondsTimeStampToDateTime(UnixTimeMilliseconds(), true) - MillisecondsTimeStampToDateTime(timestamp, true);
-        return timeSpan;
+        if (timestamp < -62135596800L || timestamp > 253402300799L)
+        {
+            throw new ArgumentOutOfRangeException(nameof(timestamp), "Timestamp is out of valid range for DateTime conversion.");
+        }
+        
+        // 直接将秒数转换为TimeSpan
+        return TimeSpan.FromSeconds(timestamp);
     }
 
     /// <summary>
-    /// 将给定的时间戳转换为相对于当前本地时间的 TimeSpan 对象。
+    /// 将给定的时间戳转换为相对于EpochLocal的 TimeSpan 对象。
     /// </summary>
-    /// <param name="timestamp">自某个固定时间点（通常为1970年1月1日午夜）以来经过的毫秒数。</param>
-    /// <returns>一个 TimeSpan 对象，表示从给定时间戳到当前本地时间的间隔。</returns>
+    /// <param name="timestamp">自1970年1月1日午夜以来经过的秒数。</param>
+    /// <returns>一个 TimeSpan 对象，表示从EpochLocal到给定时间戳的间隔。</returns>
+    /// <exception cref="ArgumentOutOfRangeException">当时间戳超出有效范围时抛出此异常</exception>
     public static TimeSpan TimeSpanLocalWithTimestamp(long timestamp)
     {
-        // 计算当前时间与给定时间戳表示的时间之间的差值
-        var timeSpan = DateTime.Now - MillisecondsTimeStampToDateTime(timestamp, true);
-        return timeSpan;
+        if (timestamp < -62135596800L || timestamp > 253402300799L)
+        {
+            throw new ArgumentOutOfRangeException(nameof(timestamp), "Timestamp is out of valid range for DateTime conversion.");
+        }
+        
+        // 直接将秒数转换为TimeSpan
+        return TimeSpan.FromSeconds(timestamp);
     }
 
     #region 时间差计算函数
