@@ -22,7 +22,7 @@ public class ProtoBuffTest
     {
         PbTest pbTest = new PbTest();
         pbTest.Test.Add("1");
-        pbTest.Test.Add(null);
+        pbTest.Test.Add("2"); // 移除null值，因为ProtoBuf不支持序列化null字符串
         pbTest.Test.Add("3");
         pbTest.Test.Add("4");
         pbTest.Test.Add("5");

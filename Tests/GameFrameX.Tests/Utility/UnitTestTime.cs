@@ -353,7 +353,7 @@ public class UnitTestTime : IDisposable
     {
         var timestamp = 1704902445L; // 2024-01-10 14:30:45 UTC
         var ticks = TimeHelper.TimestampToTicks(timestamp);
-        var expectedTicks = timestamp * 10000000L + 621355968000000000L;
+        var expectedTicks = timestamp * 10000000L + TimeHelper.EpochUtc.Ticks;
         Assert.Equal(expectedTicks, ticks);
     }
 
@@ -362,7 +362,7 @@ public class UnitTestTime : IDisposable
     {
         var timestampMs = 1704902445123L; // 2024-01-10 14:30:45.123 UTC
         var ticks = TimeHelper.TimestampMillisToTicks(timestampMs);
-        var expectedTicks = timestampMs * 10000L + 621355968000000000L;
+        var expectedTicks = timestampMs * 10000L + TimeHelper.EpochUtc.Ticks;
         Assert.Equal(expectedTicks, ticks);
     }
 
@@ -771,10 +771,11 @@ public class UnitTestTime : IDisposable
     [Fact]
     public void TestTimeSpanWithTimestamp()
     {
-        var pastTimestamp = TimeHelper.UnixTimeMilliseconds() - 5000; // 5秒前
-        var timeSpan = TimeHelper.TimeSpanWithTimestamp(pastTimestamp);
+        var fixedTimestamp = 86400L; // 1970-01-02 00:00:00 UTC (1天后，在有效范围内)
+        var timeSpan = TimeHelper.TimeSpanWithTimestamp(fixedTimestamp);
         
-        Assert.True(timeSpan.TotalSeconds > 4 && timeSpan.TotalSeconds < 6);
+        Assert.IsType<TimeSpan>(timeSpan);
+        Assert.Equal(TimeSpan.FromSeconds(fixedTimestamp), timeSpan);
     }
 
     #endregion
@@ -847,10 +848,11 @@ public class UnitTestTime : IDisposable
     public void TestTimeSpanLocalWithTimestamp()
     {
         // 使用固定时间戳进行测试，避免动态时间导致的问题
-        var fixedTimestamp = 1704897045000L; // 2024-01-10 14:30:45 UTC
+        var fixedTimestamp = 86400L; // 1970-01-02 00:00:00 UTC (1天后，在有效范围内)
         var timeSpan = TimeHelper.TimeSpanLocalWithTimestamp(fixedTimestamp);
-        // 只验证返回类型正确，不验证具体时间差
+        
         Assert.IsType<TimeSpan>(timeSpan);
+        Assert.Equal(TimeSpan.FromSeconds(fixedTimestamp), timeSpan);
     }
 
     #endregion

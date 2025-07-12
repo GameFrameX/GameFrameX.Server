@@ -158,13 +158,22 @@ public class AssemblyHelperTests
     /// 测试 GetType 方法 - null 或空字符串应该抛出异常
     /// </summary>
     [Theory]
-    [InlineData(null)]
     [InlineData("")]
     [InlineData(" ")]
     public void GetType_WithInvalidInput_ShouldThrowArgumentException(string typeName)
     {
         // Act & Assert
         Assert.Throws<ArgumentException>(() => AssemblyHelper.GetType(typeName));
+    }
+
+    /// <summary>
+    /// 测试 GetType 方法 - null 参数应该抛出 ArgumentNullException
+    /// </summary>
+    [Fact]
+    public void GetType_WithNullInput_ShouldThrowArgumentNullException()
+    {
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => AssemblyHelper.GetType(null));
     }
 
     /// <summary>

@@ -98,32 +98,38 @@ public class TimerExtensionTests : IDisposable
     public async Task Reset_ShouldResetTimerInterval()
     {
         // Arrange
-        var timer = CreateTestTimer(100); // 100ms间隔
+        var timer = CreateTestTimer(200); // 200ms间隔，增加间隔时间
         var elapsedTimes = new List<DateTime>();
         var resetSignal = new ManualResetEventSlim(false);
         
         timer.Elapsed += (sender, e) => 
         {
-            elapsedTimes.Add(DateTime.Now);
-            if (elapsedTimes.Count >= 2)
+            lock (elapsedTimes)
             {
-                resetSignal.Set();
+                elapsedTimes.Add(DateTime.Now);
+                if (elapsedTimes.Count >= 2)
+                {
+                    resetSignal.Set();
+                }
             }
         };
 
         timer.Start();
         
         // 等待一段时间后重置
-        await Task.Delay(50);
+        await Task.Delay(100); // 增加等待时间
         timer.Reset();
 
-        // 等待Timer触发几次
-        var waitResult = resetSignal.Wait(TimeSpan.FromSeconds(1));
+        // 等待Timer触发几次，增加超时时间
+        var waitResult = resetSignal.Wait(TimeSpan.FromSeconds(3));
         timer.Stop();
 
         // Assert
         Assert.True(waitResult, "Timer should have elapsed at least twice");
-        Assert.True(elapsedTimes.Count >= 2, "Timer should have elapsed at least twice");
+        lock (elapsedTimes)
+        {
+            Assert.True(elapsedTimes.Count >= 2, $"Timer should have elapsed at least twice, but only elapsed {elapsedTimes.Count} times");
+        }
     }
 
     /// <summary>

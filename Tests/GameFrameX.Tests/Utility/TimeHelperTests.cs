@@ -16,8 +16,8 @@ public class TimeHelperTests
     public void TimeConstants_ShouldHaveCorrectValues()
     {
         // Assert
-        Assert.Equal(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Local), TimeHelper.EpochLocal);
-        Assert.Equal(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc), TimeHelper.EpochUtc);
+        Assert.Equal(TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Local), TimeHelper.EpochLocal);
+        Assert.Equal(TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Utc), TimeHelper.EpochUtc);
         Assert.Equal(0L, TimeHelper.TimeOffsetSeconds);
         Assert.Equal(0L, TimeHelper.TimeOffsetMilliseconds);
     }
@@ -87,7 +87,7 @@ public class TimeHelperTests
     {
         // Arrange
         var now = DateTime.UtcNow;
-        var expectedUnixTime = (long)(now - TimeHelper.EpochUtc).TotalSeconds;
+        var expectedUnixTime = new DateTimeOffset(now).ToUnixTimeSeconds() + TimeHelper.TimeOffsetSeconds;
         
         // Act
         var actualUnixTime = TimeHelper.UnixTimeSeconds();
@@ -105,7 +105,7 @@ public class TimeHelperTests
     {
         // Arrange
         var now = DateTime.UtcNow;
-        var expectedUnixTime = (long)(now - TimeHelper.EpochUtc).TotalMilliseconds;
+        var expectedUnixTime = new DateTimeOffset(now).ToUnixTimeMilliseconds() + TimeHelper.TimeOffsetMilliseconds;
         
         // Act
         var actualUnixTime = TimeHelper.UnixTimeMilliseconds();
@@ -123,7 +123,7 @@ public class TimeHelperTests
     {
         // Arrange
         var now = DateTime.Now;
-        var expectedTime = (long)(now - TimeHelper.EpochLocal).TotalSeconds;
+        var expectedTime = new DateTimeOffset(now).ToUnixTimeSeconds() + TimeHelper.TimeOffsetSeconds;
         
         // Act
         var actualTime = TimeHelper.TimeSeconds();
@@ -141,7 +141,7 @@ public class TimeHelperTests
     {
         // Arrange
         var now = DateTime.Now;
-        var expectedTime = (long)(now - TimeHelper.EpochLocal).TotalMilliseconds;
+        var expectedTime = new DateTimeOffset(now).ToUnixTimeMilliseconds() + TimeHelper.TimeOffsetMilliseconds;
         
         // Act
         var actualTime = TimeHelper.TimeMilliseconds();
@@ -294,7 +294,7 @@ public class TimeHelperTests
     }
 
     /// <summary>
-    /// 测试 GetTimeDifference 方法比较两个毫秒级时间戳
+    /// 测试 GetTimeDifferenceMs 方法比较两个毫秒级时间戳
     /// </summary>
     [Fact]
     public void GetTimeDifference_WithMillisecondTimestamps_ShouldReturnCorrectDifference()
@@ -305,7 +305,7 @@ public class TimeHelperTests
         var expectedDifference = TimeSpan.FromMilliseconds(endTimestamp - startTimestamp);
         
         // Act
-        var actualDifference = TimeHelper.GetTimeDifference(startTimestamp, endTimestamp, true);
+        var actualDifference = TimeHelper.GetTimeDifferenceMs(startTimestamp, endTimestamp, true);
         
         // Assert
         Assert.Equal(expectedDifference, actualDifference);

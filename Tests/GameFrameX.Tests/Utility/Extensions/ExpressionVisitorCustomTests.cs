@@ -246,10 +246,12 @@ public class ExpressionVisitorCustomTests
         var newParam = Expression.Parameter(typeof(TestClass), "y");
         var visitor = new ExpressionVisitorCustom(newParam);
         
-        // 创建数组访问表达式：x => x.Name[x.Value]
+        // 创建字符串索引访问表达式：x => x.Name[x.Value]
         var nameProperty = Expression.Property(originalParam, nameof(TestClass.Name));
         var valueProperty = Expression.Property(originalParam, nameof(TestClass.Value));
-        var indexAccess = Expression.Property(nameProperty, "Item", valueProperty);
+        // 使用 MakeIndex 来创建字符串索引访问
+        var stringIndexer = typeof(string).GetProperty("Chars")!;
+        var indexAccess = Expression.MakeIndex(nameProperty, stringIndexer, new[] { valueProperty });
         
         var lambda = Expression.Lambda<Func<TestClass, char>>(indexAccess, originalParam);
 

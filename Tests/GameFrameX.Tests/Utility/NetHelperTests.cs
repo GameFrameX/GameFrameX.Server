@@ -292,13 +292,18 @@ namespace GameFrameX.Tests.Utility
         /// <summary>
         /// 测试null或空主机地址
         /// </summary>
-        [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        public void IsNetworkReachable_WithNullOrEmptyHost_ShouldThrowArgumentException(string host)
+        [Fact]
+        public void IsNetworkReachable_WithNullHost_ShouldThrowArgumentNullException()
         {
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => NetHelper.IsNetworkReachable(host));
+            Assert.Throws<ArgumentNullException>(() => NetHelper.IsNetworkReachable(null));
+        }
+
+        [Fact]
+        public void IsNetworkReachable_WithEmptyHost_ShouldThrowArgumentException()
+        {
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => NetHelper.IsNetworkReachable(""));
         }
 
         /// <summary>
@@ -387,16 +392,26 @@ namespace GameFrameX.Tests.Utility
         }
 
         /// <summary>
-        /// 测试null或空参数
+        /// 测试null参数
         /// </summary>
         [Theory]
         [InlineData(null, "192.168.1.0", "255.255.255.0")]
-        [InlineData("", "192.168.1.0", "255.255.255.0")]
         [InlineData("192.168.1.1", null, "255.255.255.0")]
-        [InlineData("192.168.1.1", "", "255.255.255.0")]
         [InlineData("192.168.1.1", "192.168.1.0", null)]
+        public void IsIpInSubnet_WithNullParameters_ShouldThrowArgumentNullException(string ipAddress, string networkAddress, string subnetMask)
+        {
+            // Act & Assert
+            Assert.Throws<ArgumentNullException>(() => NetHelper.IsIpInSubnet(ipAddress, networkAddress, subnetMask));
+        }
+
+        /// <summary>
+        /// 测试空参数
+        /// </summary>
+        [Theory]
+        [InlineData("", "192.168.1.0", "255.255.255.0")]
+        [InlineData("192.168.1.1", "", "255.255.255.0")]
         [InlineData("192.168.1.1", "192.168.1.0", "")]
-        public void IsIpInSubnet_WithNullOrEmptyParameters_ShouldThrowArgumentException(string ipAddress, string networkAddress, string subnetMask)
+        public void IsIpInSubnet_WithEmptyParameters_ShouldThrowArgumentException(string ipAddress, string networkAddress, string subnetMask)
         {
             // Act & Assert
             Assert.Throws<ArgumentException>(() => NetHelper.IsIpInSubnet(ipAddress, networkAddress, subnetMask));
@@ -553,15 +568,23 @@ namespace GameFrameX.Tests.Utility
         }
 
         /// <summary>
-        /// 测试null或空IP地址
+        /// 测试null IP地址
         /// </summary>
-        [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        public void IsPrivateIpAddress_WithNullOrEmptyIp_ShouldThrowArgumentException(string ipAddress)
+        [Fact]
+        public void IsPrivateIpAddress_WithNullIp_ShouldThrowArgumentNullException()
         {
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => NetHelper.IsPrivateIpAddress(ipAddress));
+            Assert.Throws<ArgumentNullException>(() => NetHelper.IsPrivateIpAddress(null));
+        }
+
+        /// <summary>
+        /// 测试空IP地址
+        /// </summary>
+        [Fact]
+        public void IsPrivateIpAddress_WithEmptyIp_ShouldThrowArgumentException()
+        {
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => NetHelper.IsPrivateIpAddress(""));
         }
 
         #endregion
