@@ -6,12 +6,13 @@
 
 using System.Linq.Expressions;
 using GameFrameX.Utility.Extensions;
+using Xunit;
 
 namespace GameFrameX.Tests.Utility;
 
 public class ExpressionExtensionTests
 {
-    [Test]
+    [Fact]
     public void And_CombinesTwoExpressions()
     {
         // Arrange
@@ -22,11 +23,11 @@ public class ExpressionExtensionTests
         var combined = expr1.And(expr2);
 
         // Assert
-        Assert.That(combined.Compile()("testing"), Is.True);
-        Assert.That(combined.Compile()("test"), Is.False);
+        Assert.True(combined.Compile()("testing"));
+        Assert.False(combined.Compile()("test"));
     }
 
-    [Test]
+    [Fact]
     public void AndIf_OnlyAppliesWhenConditionIsTrue()
     {
         // Arrange
@@ -40,12 +41,12 @@ public class ExpressionExtensionTests
         var result2 = expr1.AndIf(() => condition, expr2);
 
         // Assert
-        Assert.That(result1.Compile()("testing"), Is.True);
-        Assert.That(result1.Compile()("test"), Is.False);
-        Assert.That(result2.Compile()("longstr"), Is.True); // Only first expression applies
+        Assert.True(result1.Compile()("testing"));
+        Assert.False(result1.Compile()("test"));
+        Assert.True(result2.Compile()("longstr")); // Only first expression applies
     }
 
-    [Test]
+    [Fact]
     public void Or_CombinesTwoExpressions()
     {
         // Arrange
@@ -56,13 +57,13 @@ public class ExpressionExtensionTests
         var combined = expr1.Or(expr2);
 
         // Assert
-        Assert.That(combined.Compile()("testing"), Is.True); // Matches both
-        Assert.That(combined.Compile()("test"), Is.True); // Matches second
-        Assert.That(combined.Compile()("longstr"), Is.True); // Matches first
-        Assert.That(combined.Compile()("no"), Is.False); // Matches neither
+        Assert.True(combined.Compile()("testing")); // Matches both
+        Assert.True(combined.Compile()("test")); // Matches second
+        Assert.True(combined.Compile()("longstr")); // Matches first
+        Assert.False(combined.Compile()("no")); // Matches neither
     }
 
-    [Test]
+    [Fact]
     public void OrIf_OnlyAppliesWhenConditionIsTrue()
     {
         // Arrange
@@ -76,11 +77,11 @@ public class ExpressionExtensionTests
         var result2 = expr1.OrIf(() => condition, expr2);
 
         // Assert
-        Assert.That(result1.Compile()("test"), Is.True); // Second expression applies
-        Assert.That(result2.Compile()("test"), Is.False); // Only first expression applies
+        Assert.True(result1.Compile()("test")); // Second expression applies
+        Assert.False(result2.Compile()("test")); // Only first expression applies
     }
 
-    [Test]
+    [Fact]
     public void Not_InvertsExpression()
     {
         // Arrange
@@ -90,11 +91,11 @@ public class ExpressionExtensionTests
         var notExpr = expr.Not();
 
         // Assert
-        Assert.That(notExpr.Compile()("test"), Is.True); // Length <= 5
-        Assert.That(notExpr.Compile()("testing"), Is.False); // Length > 5
+        Assert.True(notExpr.Compile()("test")); // Length <= 5
+        Assert.False(notExpr.Compile()("testing")); // Length > 5
     }
 
-    [Test]
+    [Fact]
     public void All_ThrowArgumentNullException_WhenInputIsNull()
     {
         // Arrange
@@ -102,14 +103,14 @@ public class ExpressionExtensionTests
         Expression<Func<string, bool>> nullExpr = null;
 
         // Assert
-        Assert.That(() => expr.And(nullExpr), Throws.ArgumentNullException);
-        Assert.That(() => nullExpr.And(expr), Throws.ArgumentNullException);
-        Assert.That(() => expr.AndIf(null, expr), Throws.ArgumentNullException);
-        Assert.That(() => expr.AndIf(() => true, null), Throws.ArgumentNullException);
-        Assert.That(() => expr.Or(nullExpr), Throws.ArgumentNullException);
-        Assert.That(() => nullExpr.Or(expr), Throws.ArgumentNullException);
-        Assert.That(() => expr.OrIf(null, expr), Throws.ArgumentNullException);
-        Assert.That(() => expr.OrIf(() => true, null), Throws.ArgumentNullException);
-        Assert.That(() => nullExpr.Not(), Throws.ArgumentNullException);
+        Assert.Throws<ArgumentNullException>(() => expr.And(nullExpr));
+        Assert.Throws<ArgumentNullException>(() => nullExpr.And(expr));
+        Assert.Throws<ArgumentNullException>(() => expr.AndIf(null, expr));
+        Assert.Throws<ArgumentNullException>(() => expr.AndIf(() => true, null));
+        Assert.Throws<ArgumentNullException>(() => expr.Or(nullExpr));
+        Assert.Throws<ArgumentNullException>(() => nullExpr.Or(expr));
+        Assert.Throws<ArgumentNullException>(() => expr.OrIf(null, expr));
+        Assert.Throws<ArgumentNullException>(() => expr.OrIf(() => true, null));
+        Assert.Throws<ArgumentNullException>(() => nullExpr.Not());
     }
 }
