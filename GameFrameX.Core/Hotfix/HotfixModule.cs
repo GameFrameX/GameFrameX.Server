@@ -358,7 +358,7 @@ internal sealed class HotfixModule
         var compAgentType = type.BaseType.GetGenericArguments()[0];
         var compType = compAgentType.BaseType.GetGenericArguments()[0];
         var actorType = ComponentRegister.ComponentActorDic[compType];
-        var evtListenersDic = _actorEvtListeners.GetOrAdd(actorType);
+        var evtListenersDic = _actorEvtListeners.GetOrAddValue(actorType);
 
         var eventInfoAttributes = type.GetCustomAttributes<EventInfoAttribute>();
         var infoAttributes = eventInfoAttributes.ToList();
@@ -374,7 +374,7 @@ internal sealed class HotfixModule
         }
 
         var evtId = eventInfoAttribute.EventId;
-        var listeners = evtListenersDic.GetOrAdd(evtId);
+        var listeners = evtListenersDic.GetOrAddValue(evtId);
         listeners.Add((IEventListener)Activator.CreateInstance(type));
 
         return true;

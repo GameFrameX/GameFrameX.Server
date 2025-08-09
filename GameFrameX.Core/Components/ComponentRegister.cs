@@ -84,7 +84,7 @@ public static class ComponentRegister
             if (type.GetCustomAttribute(typeof(ComponentTypeAttribute)) is ComponentTypeAttribute compAttr)
             {
                 var actorType = compAttr.Type;
-                var compTypes = ActorComponentDic.GetOrAdd(actorType);
+                var compTypes = ActorComponentDic.GetOrAddValue(actorType);
                 compTypes.Add(type);
 
                 ComponentActorDic[type] = actorType;
@@ -93,7 +93,7 @@ public static class ComponentRegister
                 {
                     if (type.GetCustomAttribute(typeof(FuncAttribute)) is FuncAttribute funcAttr)
                     {
-                        var set = FuncComponentDic.GetOrAdd(funcAttr.Func);
+                        var set = FuncComponentDic.GetOrAddValue(funcAttr.Func);
                         set.Add(type);
                         ComponentFuncDic[type] = funcAttr.Func;
                     }
