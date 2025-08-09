@@ -38,7 +38,7 @@ internal sealed class StateHash
     {
         var (toSaveHash, data) = GetHashAndData(State);
         ToSaveHash = toSaveHash;
-        return (XxHashHelper.IsDefault(CacheHash) || !toSaveHash.Equals(CacheHash), data);
+        return (XxHashHelper.IsDefault(CacheHash) || !(toSaveHash.high64 == CacheHash.high64 && toSaveHash.low64 == CacheHash.low64), data);
     }
 
     /// <summary>
@@ -46,7 +46,7 @@ internal sealed class StateHash
     /// </summary>
     public void SaveToDbPostHandler()
     {
-        if (CacheHash.Equals(ToSaveHash))
+        if (CacheHash.high64 == ToSaveHash.high64 && CacheHash.low64 == ToSaveHash.low64)
         {
             LogHelper.Warn($"调用AfterSaveToDB前CacheHash已经等于ToSaveHash {State.GetType().FullName}");
         }
