@@ -64,8 +64,8 @@ public static class HotfixManager
     /// <returns>返回是否加载成功</returns>
     public static async Task<bool> LoadHotfixModule(AppSetting setting, string dllVersion = "", string dllPath = "hotfix", string hotfixDllName = "GameFrameX.Hotfix.dll")
     {
-        dllPath.CheckNotNullOrEmptyOrWhiteSpace(nameof(dllPath));
-        hotfixDllName.CheckNotNullOrEmptyOrWhiteSpace(nameof(hotfixDllName));
+        ArgumentException.ThrowIfNullOrEmpty(dllPath, nameof(dllPath));
+        ArgumentException.ThrowIfNullOrEmpty(hotfixDllName, nameof(hotfixDllName));
         if (setting != null)
         {
             _baseSetting = setting;
