@@ -405,7 +405,7 @@ public static class ActorManager
         {
             if ((DateTime.Now - begin).TotalSeconds > CrossDayGlobalWaitSeconds)
             {
-                LogHelper.Warn($"全局comp跨天耗时过久，不阻止其他comp跨天，当前已过{CrossDayGlobalWaitSeconds}秒");
+                LogHelper.Warning($"全局comp跨天耗时过久，不阻止其他comp跨天，当前已过{CrossDayGlobalWaitSeconds}秒");
                 break;
             }
 
@@ -436,7 +436,7 @@ public static class ActorManager
         {
             if ((DateTime.Now - begin).TotalSeconds > CrossDayNotRoleWaitSeconds)
             {
-                LogHelper.Warn($"非玩家comp跨天耗时过久，不阻止玩家comp跨天，当前已过{CrossDayNotRoleWaitSeconds}秒");
+                LogHelper.Warning($"非玩家comp跨天耗时过久，不阻止玩家comp跨天，当前已过{CrossDayNotRoleWaitSeconds}秒");
                 break;
             }
 

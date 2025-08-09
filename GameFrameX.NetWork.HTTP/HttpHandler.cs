@@ -138,7 +138,7 @@ public static class HttpHandler
             var handler = baseHandler(command);
             if (handler == null)
             {
-                LogHelper.Warn($"http cmd handler 不存在：{command}");
+                LogHelper.Warning($"http cmd handler 不存在：{command}");
                 await context.Response.WriteAsync(HttpJsonResult.NotFoundString());
                 return;
             }

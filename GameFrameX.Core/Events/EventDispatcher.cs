@@ -31,7 +31,7 @@ public static class EventDispatcher
                 var listeners = HotfixManager.FindListeners(actor.Type, eventId);
                 if (listeners.IsNullOrEmpty())
                 {
-                    LogHelper.Warn($"事件：{eventId} 没有找到任何监听者");
+                    LogHelper.Warning($"事件：{eventId} 没有找到任何监听者");
                     return;
                 }
 
@@ -66,7 +66,7 @@ public static class EventDispatcher
                 var listeners = HotfixManager.FindListeners(eventId);
                 if (listeners.IsNullOrEmpty())
                 {
-                    LogHelper.Warn($"事件：{eventId} 没有找到任何监听者");
+                    LogHelper.Warning($"事件：{eventId} 没有找到任何监听者");
                     return;
                 }
 

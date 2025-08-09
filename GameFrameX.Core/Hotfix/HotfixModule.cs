@@ -161,7 +161,7 @@ internal sealed class HotfixModule
                         GC.WaitForPendingFinalizers();
                     }
 
-                    LogHelper.Warn($"热更DLL卸载{(weak.IsAlive ? "失败" : "成功")}");
+                    LogHelper.Warning($"热更DLL卸载{(weak.IsAlive ? "失败" : "成功")}");
                 });
             }
         }

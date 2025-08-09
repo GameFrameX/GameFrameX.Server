@@ -48,7 +48,7 @@ internal sealed class StateHash
     {
         if (CacheHash.high64 == ToSaveHash.high64 && CacheHash.low64 == ToSaveHash.low64)
         {
-            LogHelper.Warn($"调用AfterSaveToDB前CacheHash已经等于ToSaveHash {State.GetType().FullName}");
+            LogHelper.Warning($"调用AfterSaveToDB前CacheHash已经等于ToSaveHash {State.GetType().FullName}");
         }
 
         CacheHash = ToSaveHash;

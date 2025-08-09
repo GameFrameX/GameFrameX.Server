@@ -91,7 +91,7 @@ public static class GameApp
 
                 if (!LogOptions.Default.GrafanaLokiLabels.TryAdd(property.Name, value))
                 {
-                    LogHelper.WarnConsole($"Grafana Loki 标签 {property.Name} 已存在,将被忽略");
+                    LogHelper.WarningConsole($"Grafana Loki 标签 {property.Name} 已存在,将被忽略");
                 }
             }
 
@@ -114,7 +114,7 @@ public static class GameApp
                 // 检查标签数量是否成对
                 if (count % 2 != 0)
                 {
-                    LogHelper.WarnConsole("Grafana Loki 标签数量不是成对的,将忽略最后一个标签");
+                    LogHelper.WarningConsole("Grafana Loki 标签数量不是成对的,将忽略最后一个标签");
                     count--;
                 }
 
@@ -125,7 +125,7 @@ public static class GameApp
                     // 检查key是否已存在
                     if (!LogOptions.Default.GrafanaLokiLabels.TryAdd(lokiLabelKey, lokiLabelValue))
                     {
-                        LogHelper.WarnConsole($"Grafana Loki 标签 {lokiLabelKey} 已存在,将被忽略");
+                        LogHelper.WarningConsole($"Grafana Loki 标签 {lokiLabelKey} 已存在,将被忽略");
                     }
                 }
             }
@@ -166,7 +166,7 @@ public static class GameApp
                 }
                 else
                 {
-                    LogHelper.WarnConsole($"没有找到对应的服务器类型的启动配置,将以默认配置启动=>{startKv.Value.ServerType}");
+                    LogHelper.WarningConsole($"没有找到对应的服务器类型的启动配置,将以默认配置启动=>{startKv.Value.ServerType}");
                     appSetting = launcherOptions.Adapt<AppSetting>();
                 }
 
@@ -191,7 +191,7 @@ public static class GameApp
 
                 if (isFind == false)
                 {
-                    LogHelper.WarnConsole($"没有找到对应的服务器类型的启动配置,将以默认配置启动=>{keyValuePair.Value.ServerType}");
+                    LogHelper.WarningConsole($"没有找到对应的服务器类型的启动配置,将以默认配置启动=>{keyValuePair.Value.ServerType}");
                     Launcher(args, keyValuePair);
                     break;
                 }

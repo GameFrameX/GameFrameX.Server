@@ -124,7 +124,7 @@ public static class ComponentRegister
                     var agentType = HotfixManager.GetAgentType(compType);
                     if (agentType == null)
                     {
-                        LogHelper.Warn($"{compType}未实现Agent,请检查业务代码是否正确");
+                        LogHelper.Warning($"{compType}未实现Agent,请检查业务代码是否正确");
                     }
 
                     /*if (actorType > ActorType.Separator)
