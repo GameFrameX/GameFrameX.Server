@@ -46,8 +46,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="GameFrameX.Foundation.Options" Version="1.5.14" />
       <PackageReference Include="GameFrameX.SuperSocket.Server" Version="1.2.0" />
-      <PackageReference Include="CommandLineParser" Version="2.9.1" />
       <PackageReference Include="GameFrameX.SuperSocket.Udp" Version="1.2.0" />
       <PackageReference Include="Grafana.OpenTelemetry" Version="1.2.0" />
       <PackageReference Include="OpenTelemetry.Api" Version="1.11.2" />

@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Reflection;
-using CommandLine;
+﻿using System.Reflection;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Options;
 using GameFrameX.StartUp.Abstractions;
 using GameFrameX.StartUp.Options;
 using GameFrameX.Utility;
@@ -28,40 +27,16 @@ public static class GameApp
     /// <param name="logConfiguration">初始化日志系统之前回调,可以重写参数</param>
     public static async Task Entry(string[] args, Action initAction, Action<LogOptions> logConfiguration = null)
     {
-        var environmentVariablesList = new List<string>(args);
-        LogHelper.Console("启动参数：" + string.Join(" ", args));
-        LogHelper.Console("当前环境变量START---------------------");
-        var environmentVariables = Environment.GetEnvironmentVariables();
-        foreach (DictionaryEntry environmentVariable in environmentVariables)
+        LauncherOptions launcherOptions = null;
+        try
         {
-            if (environmentVariable.Value == null || environmentVariable.Key.ToString().IsNullOrWhiteSpace())
-            {
-                continue;
-            }
-
-            var key = environmentVariable.Key.ToString().StartsWith("--") ? environmentVariable.Key.ToString() : "--" + environmentVariable.Key;
-            if (environmentVariablesList.Contains(key))
-            {
-                continue;
-            }
-
-            environmentVariablesList.Add(key);
-            environmentVariablesList.Add(environmentVariable.Value.ToString());
+            launcherOptions = OptionsBuilder.CreateWithDebug<LauncherOptions>(args);
+        }
+        catch (Exception e)
+        {
+            LogHelper.ErrorConsole(e.Message);
         }
 
-        LogHelper.Console(string.Join("\n", environmentVariablesList));
-        LogHelper.Console("当前环境变量END---------------------");
-        LogHelper.Console(string.Empty);
-        LogHelper.Console(string.Empty);
-        var commandLineParser = new Parser(configuration => { configuration.IgnoreUnknownArguments = true; });
-
-        var launcherOptions = commandLineParser.ParseArguments<LauncherOptions>(environmentVariablesList).WithParsed(LauncherOptionsValidate).WithNotParsed(errors =>
-        {
-            foreach (var error in errors)
-            {
-                LogHelper.ErrorConsole(error.Tag + ": " + error);
-            }
-        })?.Value;
         var serverType = launcherOptions?.ServerType;
         if (!serverType.IsNullOrEmpty())
         {
