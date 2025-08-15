@@ -59,9 +59,6 @@
       <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.11.1" />
       <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.0" />
       <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.12" />
-      <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="8.1.1" />
-      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="8.1.1" />
-      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.1" />
     </ItemGroup>
     <ItemGroup>
         <None Include="..\logo.png">
