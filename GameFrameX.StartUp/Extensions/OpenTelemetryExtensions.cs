@@ -32,20 +32,20 @@ public static class OpenTelemetryExtensions
             return services;
         }
 
-        var serviceName = string.IsNullOrEmpty(servicePrefix) 
+        var serviceName = string.IsNullOrEmpty(servicePrefix)
                               ? $"{setting.ServerName}-{setting.TagName}"
                               : $"{servicePrefix}:{setting.ServerName}-{setting.TagName}";
 
         var tracingSource = string.IsNullOrEmpty(tracingSourcePrefix)
-            ? $"GameFrameX.{setting.ServerName}.{setting.TagName}"
-            : $"{tracingSourcePrefix}:GameFrameX.{setting.ServerName}.{setting.TagName}";
+                                ? $"GameFrameX.{setting.ServerName}.{setting.TagName}"
+                                : $"{tracingSourcePrefix}:GameFrameX.{setting.ServerName}.{setting.TagName}";
 
         var builder = services.AddOpenTelemetry()
-            .ConfigureResource(configure => 
-            {
-                configure.AddService(serviceName, string.IsNullOrEmpty(servicePrefix) ? "GameFrameX" : "GameFrameX.HTTP")
-                         .AddTelemetrySdk();
-            });
+                              .ConfigureResource(configure =>
+                              {
+                                  configure.AddService(serviceName, string.IsNullOrEmpty(servicePrefix) ? "GameFrameX" : "GameFrameX.HTTP")
+                                           .AddTelemetrySdk();
+                              });
 
         if (setting.IsOpenTelemetryMetrics)
         {
@@ -60,9 +60,18 @@ public static class OpenTelemetryExtensions
                 // Metrics provides by ASP.NET Core in .NET 8
                 configure.AddMeter("Microsoft.AspNetCore.Hosting");
                 configure.AddMeter("Microsoft.AspNetCore.Server.Kestrel");
+
                 // Metrics provided by System.Net libraries
                 configure.AddMeter("System.Net.Http");
                 configure.AddMeter("System.Net.NameResolution");
+
+                // Metrics provided by .NET Runtime (available in .NET 9+)
+                configure.AddMeter("System.Runtime");
+
+                // Additional ASP.NET Core metrics for Blazor components (if applicable)
+                // configure.AddMeter("Microsoft.AspNetCore.Components");
+                // configure.AddMeter("Microsoft.AspNetCore.Components.Lifecycle");
+                // configure.AddMeter("Microsoft.AspNetCore.Components.Server.Circuits");
                 configure.AddPrometheusExporter();
             });
         }
@@ -97,6 +106,7 @@ public static class OpenTelemetryExtensions
         {
             logging.AddOpenTelemetry(configure => { configure.UseGrafana(); });
         }
+
         return logging;
     }
 
@@ -121,59 +131,65 @@ public static class OpenTelemetryExtensions
         }
 
         var builder = WebApplication.CreateBuilder();
-        
-        var serviceName = string.IsNullOrEmpty(servicePrefix) 
+
+        var serviceName = string.IsNullOrEmpty(servicePrefix)
                               ? $"{setting.ServerName}-{setting.TagName}-Metrics"
                               : $"{servicePrefix}:{setting.ServerName}-{setting.TagName}-Metrics";
 
         // 配置Web主机
-        builder.WebHost.UseKestrel(options =>
-        {
-            options.ListenAnyIP(setting.MetricsPort);
-        });
+        builder.WebHost.UseKestrel(options => { options.ListenAnyIP(setting.MetricsPort); });
 
         // 配置OpenTelemetry指标
         builder.Services.AddOpenTelemetry()
-            .ConfigureResource(configure => 
-            {
-                configure.AddService(serviceName, "GameFrameX.Metrics")
-                         .AddTelemetrySdk();
-            })
-            .WithMetrics(configure =>
-            {
-                configure.AddAspNetCoreInstrumentation();
-                if (EnvironmentHelper.IsDevelopment() && LogOptions.Default.IsConsole)
-                {
-                    configure.AddConsoleExporter();
-                }
+               .ConfigureResource(configure =>
+               {
+                   configure.AddService(serviceName, "GameFrameX.Metrics")
+                            .AddTelemetrySdk();
+               })
+               .WithMetrics(configure =>
+               {
+                   configure.AddAspNetCoreInstrumentation();
+                   if (EnvironmentHelper.IsDevelopment() && LogOptions.Default.IsConsole)
+                   {
+                       configure.AddConsoleExporter();
+                   }
 
-                // Metrics provides by ASP.NET Core in .NET 8
-                configure.AddMeter("Microsoft.AspNetCore.Hosting");
-                configure.AddMeter("Microsoft.AspNetCore.Server.Kestrel");
-                // Metrics provided by System.Net libraries
-                configure.AddMeter("System.Net.Http");
-                configure.AddMeter("System.Net.NameResolution");
-                configure.AddPrometheusExporter();
-            })
-            .UseGrafana();
+                   // Metrics provides by ASP.NET Core in .NET 8
+                   configure.AddMeter("Microsoft.AspNetCore.Hosting");
+                   configure.AddMeter("Microsoft.AspNetCore.Server.Kestrel");
+
+                   // Metrics provided by System.Net libraries
+                   configure.AddMeter("System.Net.Http");
+                   configure.AddMeter("System.Net.NameResolution");
+
+                   // Metrics provided by .NET Runtime (available in .NET 9+)
+                   configure.AddMeter("System.Runtime");
+
+                   // Additional ASP.NET Core metrics for Blazor components (if applicable)
+                   // configure.AddMeter("Microsoft.AspNetCore.Components");
+                   // configure.AddMeter("Microsoft.AspNetCore.Components.Lifecycle");
+                   // configure.AddMeter("Microsoft.AspNetCore.Components.Server.Circuits");
+                   configure.AddPrometheusExporter();
+               })
+               .UseGrafana();
 
         var app = builder.Build();
-        
+
         // 配置Prometheus端点
         app.MapPrometheusScrapingEndpoint();
-        
+
         // 添加健康检查端点
         app.MapGet("/health", () => "OK");
-        
+
         await app.StartAsync();
-        
+
         var ipList = NetHelper.GetLocalIpList();
         foreach (var ip in ipList)
         {
             LogHelper.InfoConsole($"独立 Prometheus metrics 端点已启用: http://{ip}:{setting.MetricsPort}/metrics");
             LogHelper.InfoConsole($"独立 Metrics 健康检查端点: http://{ip}:{setting.MetricsPort}/health");
         }
-        
+
         return app;
     }
 }
