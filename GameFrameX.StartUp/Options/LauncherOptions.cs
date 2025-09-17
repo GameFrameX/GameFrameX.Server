@@ -399,6 +399,20 @@ public sealed class LauncherOptions
     public string Label { get; set; }
 
     /// <summary>
+    /// 客户端API地址
+    /// </summary>
+    [Option(nameof(ClientApiUrl), Description = "客户端API地址")]
+    [DefaultValue("")]
+    public string ClientApiUrl { get; set; }
+
+    /// <summary>
+    /// HubAPI地址
+    /// </summary>
+    [Option(nameof(HubApiUrl), Description = "HubAPI地址")]
+    [DefaultValue("")]
+    public string HubApiUrl { get; set; }
+
+    /// <summary>
     /// 检查ServerId
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
