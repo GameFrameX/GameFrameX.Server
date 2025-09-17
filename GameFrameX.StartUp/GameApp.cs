@@ -81,29 +81,6 @@ public static class GameApp
             LogOptions.Default.FileSizeLimitBytes = launcherOptions.LogFileSizeLimitBytes;
             LogOptions.Default.LogEventLevel = launcherOptions.LogEventLevel;
             LogOptions.Default.RollingInterval = launcherOptions.LogRollingInterval;
-            if (launcherOptions.LogGrafanaLokiLabels != null)
-            {
-                // 处理额外的自定义标签
-                var lokiLabels = launcherOptions.LogGrafanaLokiLabels.ToList();
-                var count = lokiLabels.Count;
-                // 检查标签数量是否成对
-                if (count % 2 != 0)
-                {
-                    LogHelper.WarningConsole("Grafana Loki 标签数量不是成对的,将忽略最后一个标签");
-                    count--;
-                }
-
-                for (int i = 0; i < count; i += 2)
-                {
-                    var lokiLabelKey = lokiLabels[i];
-                    var lokiLabelValue = lokiLabels[i + 1];
-                    // 检查key是否已存在
-                    if (!LogOptions.Default.GrafanaLokiLabels.TryAdd(lokiLabelKey, lokiLabelValue))
-                    {
-                        LogHelper.WarningConsole($"Grafana Loki 标签 {lokiLabelKey} 已存在,将被忽略");
-                    }
-                }
-            }
         }
 
         logConfiguration?.Invoke(LogOptions.Default);

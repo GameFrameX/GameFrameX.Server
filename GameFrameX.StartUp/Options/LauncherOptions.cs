@@ -130,9 +130,6 @@ public sealed class LauncherOptions
     [DefaultValue("http://localhost:3100")]
     public string LogGrafanaLokiUrl { get; set; } = "http://localhost:3100";
 
-    /// <summary>GrafanaLoki 标签</summary>
-    public IEnumerable<string> LogGrafanaLokiLabels { get; set; } = new List<string>();
-
     /// <summary>GrafanaLoki 用户名或Email</summary>
     [Option(nameof(LogGrafanaLokiUsername), Description = "GrafanaLoki 用户名或Email,当LogIsGrafanaLoki为true时生效。")]
     public string LogGrafanaLokiUsername { get; set; }
