@@ -18,13 +18,6 @@ public sealed class LauncherOptions
     public string ServerType { get; set; }
 
     /// <summary>
-    /// APM监控端口
-    /// </summary>
-    [Option(nameof(APMPort), Description = "APM监控端口")]
-    [Obsolete("MetricsPort 代替")]
-    public ushort APMPort { get; set; }
-
-    /// <summary>
     /// Metrics 端口
     /// </summary>
     [Option(nameof(MetricsPort), Description = "Metrics 端口")]
@@ -404,18 +397,6 @@ public sealed class LauncherOptions
     [DefaultValue("")]
     [GrafanaLokiLabelTag]
     public string Label { get; set; }
-
-    /// <summary>
-    /// 检查APM监控端口
-    /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
-    internal void CheckApmPort()
-    {
-        if (APMPort <= 10000 || APMPort >= ushort.MaxValue)
-        {
-            throw new ArgumentOutOfRangeException(nameof(APMPort), "APMPort必须大于10000且小于等于65535");
-        }
-    }
 
     /// <summary>
     /// 检查ServerId
