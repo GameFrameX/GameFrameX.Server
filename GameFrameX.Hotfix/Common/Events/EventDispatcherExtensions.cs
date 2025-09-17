@@ -45,7 +45,7 @@ public static class EventDispatcherExtensions
             var listeners = HotfixManager.FindListeners(agent.OwnerType, evtId);
             if (listeners.IsNullOrEmpty())
             {
-                LogHelper.Warn($"事件ID：{evtId} 没有找到任何监听者");
+                LogHelper.Warning($"事件ID：{evtId} 没有找到任何监听者");
                 return;
             }
 
