@@ -177,27 +177,6 @@ public abstract partial class AppStartUpBase
     }
 
     /// <summary>
-    /// 配置启动,当InnerIP为空时.将使用Any
-    /// </summary>
-    /// <param name="options"></param>
-    protected virtual void ConfigureHttp(ServerOptions options)
-    {
-        // configApp.AddInMemoryCollection(new Dictionary<string, string>
-        // {
-        //     { "serverOptions:name", "TestServer" },
-        //     { "serverOptions:listeners:0:ip", "Any" },
-        //     { "serverOptions:listeners:0:port", "4040" }
-        // });
-
-        var listenOptions = new ListenOptions
-        {
-            Ip = IPAddress.Any.ToString(),
-            Port = Setting.HttpPort,
-        };
-        options.AddListener(listenOptions);
-    }
-
-    /// <summary>
     /// 获取或创建 Swagger信息
     /// </summary>
     /// <returns></returns>
