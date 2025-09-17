@@ -175,7 +175,7 @@ public sealed class LauncherOptions
     /// <remarks>用于控制历史日志文件的数量,防止占用过多磁盘空间。</remarks>
     [Option(nameof(LogRetainedFileCountLimit), Description = "日志文件保留数量限制 默认为 31 个文件,即 31 天的日志文件")]
     [DefaultValue(31)]
-    public int? LogRetainedFileCountLimit { get; set; } = 31;
+    public int LogRetainedFileCountLimit { get; set; } = 31;
 
     /// <summary>
     /// 服务器ID
