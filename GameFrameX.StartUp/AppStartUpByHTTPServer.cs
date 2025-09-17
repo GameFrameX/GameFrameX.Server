@@ -119,6 +119,9 @@ public abstract partial class AppStartUpBase
                 }
             }
 
+            // 配置健康检查端点
+            app.UseGameFrameXHealthChecks(Setting, ipList);
+
             // 配置全局异常处理
             app.UseExceptionHandler(ExceptionHandler);
 
