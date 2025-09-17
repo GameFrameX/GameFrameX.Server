@@ -4,11 +4,16 @@ using GameFrameX.Utility.Setting;
 using Grafana.OpenTelemetry;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Logging;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using System.IO;
+using System.Net.Http;
+using System.Threading;
 
 namespace GameFrameX.StartUp.Extensions;
 
@@ -91,6 +96,10 @@ public static class OpenTelemetryExtensions
         }
 
         builder.UseGrafana();
+        
+        // 添加健康检查服务
+        services.AddHealthChecks();
+        
         return services;
     }
 
@@ -192,4 +201,5 @@ public static class OpenTelemetryExtensions
 
         return app;
     }
+
 }

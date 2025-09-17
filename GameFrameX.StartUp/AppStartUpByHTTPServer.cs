@@ -1,14 +1,10 @@
-using System.Net;
 using System.Reflection;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.StartUp.Extensions;
-using GameFrameX.SuperSocket.Server;
-using GameFrameX.SuperSocket.Server.Abstractions;
 using GameFrameX.Utility;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Utility.Setting;
-using Grafana.OpenTelemetry;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -16,9 +12,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using OpenTelemetry.Metrics;
-using OpenTelemetry.Resources;
-using OpenTelemetry.Trace;
 using Serilog;
 
 namespace GameFrameX.StartUp;
@@ -66,6 +59,9 @@ public abstract partial class AppStartUpBase
             var development = Setting.HttpIsDevelopment || EnvironmentHelper.IsDevelopment();
 
             var openApiInfo = GetOpenApiInfo();
+
+            // 添加健康检查服务
+            builder.Services.AddGameFrameXHealthChecks(Setting);
 
             // 在开发环境下配置Swagger
             if (development)
