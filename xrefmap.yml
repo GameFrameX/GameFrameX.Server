@@ -11817,19 +11817,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.AppStartUpBase.AppExitToken
   nameWithType: AppStartUpBase.AppExitToken
-- uid: GameFrameX.StartUp.AppStartUpBase.ConfigureHttp(GameFrameX.SuperSocket.Server.Abstractions.ServerOptions)
-  name: ConfigureHttp(ServerOptions)
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_ConfigureHttp_GameFrameX_SuperSocket_Server_Abstractions_ServerOptions_
-  commentId: M:GameFrameX.StartUp.AppStartUpBase.ConfigureHttp(GameFrameX.SuperSocket.Server.Abstractions.ServerOptions)
-  fullName: GameFrameX.StartUp.AppStartUpBase.ConfigureHttp(GameFrameX.SuperSocket.Server.Abstractions.ServerOptions)
-  nameWithType: AppStartUpBase.ConfigureHttp(ServerOptions)
-- uid: GameFrameX.StartUp.AppStartUpBase.ConfigureHttp*
-  name: ConfigureHttp
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_ConfigureHttp_
-  commentId: Overload:GameFrameX.StartUp.AppStartUpBase.ConfigureHttp
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.AppStartUpBase.ConfigureHttp
-  nameWithType: AppStartUpBase.ConfigureHttp
 - uid: GameFrameX.StartUp.AppStartUpBase.ConfigureSuperSocket(GameFrameX.SuperSocket.Server.Abstractions.ServerOptions)
   name: ConfigureSuperSocket(ServerOptions)
   href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_ConfigureSuperSocket_GameFrameX_SuperSocket_Server_Abstractions_ServerOptions_
@@ -12026,6 +12013,59 @@ references:
   commentId: N:GameFrameX.StartUp.Extensions
   fullName: GameFrameX.StartUp.Extensions
   nameWithType: GameFrameX.StartUp.Extensions
+- uid: GameFrameX.StartUp.Extensions.HealthChecksExtensions
+  name: HealthChecksExtensions
+  href: api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html
+  commentId: T:GameFrameX.StartUp.Extensions.HealthChecksExtensions
+  fullName: GameFrameX.StartUp.Extensions.HealthChecksExtensions
+  nameWithType: HealthChecksExtensions
+- uid: GameFrameX.StartUp.Extensions.HealthChecksExtensions.AddGameFrameXHealthChecks(Microsoft.Extensions.DependencyInjection.IServiceCollection,GameFrameX.Utility.Setting.AppSetting)
+  name: AddGameFrameXHealthChecks(IServiceCollection, AppSetting)
+  href: api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html#GameFrameX_StartUp_Extensions_HealthChecksExtensions_AddGameFrameXHealthChecks_Microsoft_Extensions_DependencyInjection_IServiceCollection_GameFrameX_Utility_Setting_AppSetting_
+  commentId: M:GameFrameX.StartUp.Extensions.HealthChecksExtensions.AddGameFrameXHealthChecks(Microsoft.Extensions.DependencyInjection.IServiceCollection,GameFrameX.Utility.Setting.AppSetting)
+  fullName: GameFrameX.StartUp.Extensions.HealthChecksExtensions.AddGameFrameXHealthChecks(Microsoft.Extensions.DependencyInjection.IServiceCollection, GameFrameX.Utility.Setting.AppSetting)
+  nameWithType: HealthChecksExtensions.AddGameFrameXHealthChecks(IServiceCollection, AppSetting)
+- uid: GameFrameX.StartUp.Extensions.HealthChecksExtensions.AddGameFrameXHealthChecks*
+  name: AddGameFrameXHealthChecks
+  href: api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html#GameFrameX_StartUp_Extensions_HealthChecksExtensions_AddGameFrameXHealthChecks_
+  commentId: Overload:GameFrameX.StartUp.Extensions.HealthChecksExtensions.AddGameFrameXHealthChecks
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Extensions.HealthChecksExtensions.AddGameFrameXHealthChecks
+  nameWithType: HealthChecksExtensions.AddGameFrameXHealthChecks
+- uid: GameFrameX.StartUp.Extensions.HealthChecksExtensions.DefaultHealthCheckPath
+  name: DefaultHealthCheckPath
+  href: api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html#GameFrameX_StartUp_Extensions_HealthChecksExtensions_DefaultHealthCheckPath
+  commentId: F:GameFrameX.StartUp.Extensions.HealthChecksExtensions.DefaultHealthCheckPath
+  fullName: GameFrameX.StartUp.Extensions.HealthChecksExtensions.DefaultHealthCheckPath
+  nameWithType: HealthChecksExtensions.DefaultHealthCheckPath
+- uid: GameFrameX.StartUp.Extensions.HealthChecksExtensions.OpenTelemetryHealthCheckPath
+  name: OpenTelemetryHealthCheckPath
+  href: api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html#GameFrameX_StartUp_Extensions_HealthChecksExtensions_OpenTelemetryHealthCheckPath
+  commentId: F:GameFrameX.StartUp.Extensions.HealthChecksExtensions.OpenTelemetryHealthCheckPath
+  fullName: GameFrameX.StartUp.Extensions.HealthChecksExtensions.OpenTelemetryHealthCheckPath
+  nameWithType: HealthChecksExtensions.OpenTelemetryHealthCheckPath
+- uid: GameFrameX.StartUp.Extensions.HealthChecksExtensions.SimpleHealthCheckPath
+  name: SimpleHealthCheckPath
+  href: api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html#GameFrameX_StartUp_Extensions_HealthChecksExtensions_SimpleHealthCheckPath
+  commentId: F:GameFrameX.StartUp.Extensions.HealthChecksExtensions.SimpleHealthCheckPath
+  fullName: GameFrameX.StartUp.Extensions.HealthChecksExtensions.SimpleHealthCheckPath
+  nameWithType: HealthChecksExtensions.SimpleHealthCheckPath
+- uid: GameFrameX.StartUp.Extensions.HealthChecksExtensions.UseGameFrameXHealthChecks(Microsoft.AspNetCore.Builder.IApplicationBuilder,GameFrameX.Utility.Setting.AppSetting,System.Collections.Generic.List{System.String})
+  name: UseGameFrameXHealthChecks(IApplicationBuilder, AppSetting, List<string>)
+  href: api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html#GameFrameX_StartUp_Extensions_HealthChecksExtensions_UseGameFrameXHealthChecks_Microsoft_AspNetCore_Builder_IApplicationBuilder_GameFrameX_Utility_Setting_AppSetting_System_Collections_Generic_List_System_String__
+  commentId: M:GameFrameX.StartUp.Extensions.HealthChecksExtensions.UseGameFrameXHealthChecks(Microsoft.AspNetCore.Builder.IApplicationBuilder,GameFrameX.Utility.Setting.AppSetting,System.Collections.Generic.List{System.String})
+  name.vb: UseGameFrameXHealthChecks(IApplicationBuilder, AppSetting, List(Of String))
+  fullName: GameFrameX.StartUp.Extensions.HealthChecksExtensions.UseGameFrameXHealthChecks(Microsoft.AspNetCore.Builder.IApplicationBuilder, GameFrameX.Utility.Setting.AppSetting, System.Collections.Generic.List<string>)
+  fullName.vb: GameFrameX.StartUp.Extensions.HealthChecksExtensions.UseGameFrameXHealthChecks(Microsoft.AspNetCore.Builder.IApplicationBuilder, GameFrameX.Utility.Setting.AppSetting, System.Collections.Generic.List(Of String))
+  nameWithType: HealthChecksExtensions.UseGameFrameXHealthChecks(IApplicationBuilder, AppSetting, List<string>)
+  nameWithType.vb: HealthChecksExtensions.UseGameFrameXHealthChecks(IApplicationBuilder, AppSetting, List(Of String))
+- uid: GameFrameX.StartUp.Extensions.HealthChecksExtensions.UseGameFrameXHealthChecks*
+  name: UseGameFrameXHealthChecks
+  href: api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html#GameFrameX_StartUp_Extensions_HealthChecksExtensions_UseGameFrameXHealthChecks_
+  commentId: Overload:GameFrameX.StartUp.Extensions.HealthChecksExtensions.UseGameFrameXHealthChecks
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Extensions.HealthChecksExtensions.UseGameFrameXHealthChecks
+  nameWithType: HealthChecksExtensions.UseGameFrameXHealthChecks
 - uid: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions
   name: OpenTelemetryExtensions
   href: api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.html
@@ -12099,12 +12139,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.GameApp.Entry
   nameWithType: GameApp.Entry
-- uid: GameFrameX.StartUp.GrafanaLokiLabelTagAttribute
-  name: GrafanaLokiLabelTagAttribute
-  href: api/GameFrameX.StartUp.GrafanaLokiLabelTagAttribute.html
-  commentId: T:GameFrameX.StartUp.GrafanaLokiLabelTagAttribute
-  fullName: GameFrameX.StartUp.GrafanaLokiLabelTagAttribute
-  nameWithType: GrafanaLokiLabelTagAttribute
 - uid: GameFrameX.StartUp.Options
   name: GameFrameX.StartUp.Options
   href: api/GameFrameX.StartUp.Options.html
@@ -12117,19 +12151,6 @@ references:
   commentId: T:GameFrameX.StartUp.Options.LauncherOptions
   fullName: GameFrameX.StartUp.Options.LauncherOptions
   nameWithType: LauncherOptions
-- uid: GameFrameX.StartUp.Options.LauncherOptions.APMPort
-  name: APMPort
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_APMPort
-  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.APMPort
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.APMPort
-  nameWithType: LauncherOptions.APMPort
-- uid: GameFrameX.StartUp.Options.LauncherOptions.APMPort*
-  name: APMPort
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_APMPort_
-  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.APMPort
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.APMPort
-  nameWithType: LauncherOptions.APMPort
 - uid: GameFrameX.StartUp.Options.LauncherOptions.ActorQueueTimeOut
   name: ActorQueueTimeOut
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_ActorQueueTimeOut
@@ -12169,6 +12190,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.ActorTimeOut
   nameWithType: LauncherOptions.ActorTimeOut
+- uid: GameFrameX.StartUp.Options.LauncherOptions.ClientApiUrl
+  name: ClientApiUrl
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_ClientApiUrl
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.ClientApiUrl
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.ClientApiUrl
+  nameWithType: LauncherOptions.ClientApiUrl
+- uid: GameFrameX.StartUp.Options.LauncherOptions.ClientApiUrl*
+  name: ClientApiUrl
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_ClientApiUrl_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.ClientApiUrl
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.ClientApiUrl
+  nameWithType: LauncherOptions.ClientApiUrl
 - uid: GameFrameX.StartUp.Options.LauncherOptions.DBIp
   name: DBIp
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_DBIp
@@ -12325,6 +12359,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.HttpsPort
   nameWithType: LauncherOptions.HttpsPort
+- uid: GameFrameX.StartUp.Options.LauncherOptions.HubApiUrl
+  name: HubApiUrl
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_HubApiUrl
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.HubApiUrl
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.HubApiUrl
+  nameWithType: LauncherOptions.HubApiUrl
+- uid: GameFrameX.StartUp.Options.LauncherOptions.HubApiUrl*
+  name: HubApiUrl
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_HubApiUrl_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.HubApiUrl
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.HubApiUrl
+  nameWithType: LauncherOptions.HubApiUrl
 - uid: GameFrameX.StartUp.Options.LauncherOptions.InnerIp
   name: InnerIp
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_InnerIp
@@ -12520,19 +12567,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.LogFileSizeLimitBytes
   nameWithType: LauncherOptions.LogFileSizeLimitBytes
-- uid: GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiLabels
-  name: LogGrafanaLokiLabels
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_LogGrafanaLokiLabels
-  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiLabels
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiLabels
-  nameWithType: LauncherOptions.LogGrafanaLokiLabels
-- uid: GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiLabels*
-  name: LogGrafanaLokiLabels
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_LogGrafanaLokiLabels_
-  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiLabels
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiLabels
-  nameWithType: LauncherOptions.LogGrafanaLokiLabels
 - uid: GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiPassword
   name: LogGrafanaLokiPassword
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_LogGrafanaLokiPassword

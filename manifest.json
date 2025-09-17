@@ -2266,6 +2266,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.StartUp.Extensions.HealthChecksExtensions",
+      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.yml\" sourcestartlinenumber=\"1\">健康检查配置扩展方法</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.yml",
       "output": {
         ".html": {
@@ -2305,20 +2319,6 @@
       "IsMRef": true,
       "Title": "GameFrameX.StartUp.GameApp",
       "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.GameApp.yml\" sourcestartlinenumber=\"1\">程序入口类</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.StartUp.GrafanaLokiLabelTagAttribute.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.StartUp.GrafanaLokiLabelTagAttribute.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.StartUp.GrafanaLokiLabelTagAttribute",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.GrafanaLokiLabelTagAttribute.yml\" sourcestartlinenumber=\"1\">Grafana Loki 标签,用于将属性标记为 Grafana Loki 标签</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2842,11 +2842,11 @@
       "type": "Toc",
       "source_relative_path": "api/toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "api/toc.html"
-        },
         ".json": {
           "relative_path": "api/toc.json"
+        },
+        ".html": {
+          "relative_path": "api/toc.html"
         }
       },
       "version": ""
@@ -2885,11 +2885,11 @@
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "toc.html"
-        },
         ".json": {
           "relative_path": "toc.json"
+        },
+        ".html": {
+          "relative_path": "toc.html"
         }
       },
       "version": ""
