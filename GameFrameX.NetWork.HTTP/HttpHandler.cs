@@ -224,7 +224,7 @@ public static class HttpHandler
         catch (Exception e)
         {
             LogHelper.Error($"{logHeader}, 发生异常. {{0}} {{1}}", e.Message, e.StackTrace);
-            await context.Response.WriteAsync(HttpJsonResult.ServerErrorString());
+            await context.Response.WriteAsync(HttpJsonResult.FailString(e.Message));
         }
     }
 }
