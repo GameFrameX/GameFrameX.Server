@@ -10,6 +10,7 @@ namespace GameFrameX.NetWork.Message;
 /// <summary>
 /// 对外部客户端的消息解码处理器
 /// </summary>
+[Obsolete("建议使用 DefaultMessageDecoderHandler 替代")]
 public sealed class ClientMessageDecoderHandler : DefaultMessageDecoderHandler
 {
     /// <summary>

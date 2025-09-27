@@ -10,6 +10,7 @@ namespace GameFrameX.NetWork.Message;
 /// <summary>
 /// 基础消息编码处理器
 /// </summary>
+[Obsolete("建议使用 DefaultMessageEncoderHandler 替代")]
 public sealed class ClientMessageEncoderHandler : BaseMessageEncoderHandler
 {
     /// <summary>
