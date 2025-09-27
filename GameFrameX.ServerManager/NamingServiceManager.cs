@@ -1,6 +1,7 @@
 ﻿using System.Collections.Concurrent;
-using GameFrameX.Foundation.Logger;
 using GameFrameX.Foundation.Extensions;
+using GameFrameX.Foundation.Logger;
+using GameFrameX.Utility;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.ServerManager;
@@ -8,28 +9,30 @@ namespace GameFrameX.ServerManager;
 /// <summary>
 /// 服务器管理
 /// </summary>
-public sealed class NamingServiceManager
+public sealed class NamingServiceManager : Singleton<NamingServiceManager>
 {
     /// <summary>
     /// 服务器添加的时候触发的回调
     /// </summary>
-    private readonly Action<IServiceInfo> _onServerAdd;
+    private Action<IServiceInfo> _onServerAdd;
 
     /// <summary>
     /// 服务器移除的时候触发的回调
     /// </summary>
-    private readonly Action<IServiceInfo> _onServerRemove;
+    private Action<IServiceInfo> _onServerRemove;
 
     /// <summary>
     /// 服务器节点的id 为自身的serverId
     /// </summary>
-    private readonly ConcurrentDictionary<long, IServiceInfo> _serverMap;
+    private readonly ConcurrentDictionary<long, List<IServiceInfo>> _serverMap = new();
 
     /// <summary>
+    /// 设置服务器变更的回调
     /// </summary>
-    public NamingServiceManager(Action<IServiceInfo> onServerAdd, Action<IServiceInfo> onServerRemove)
+    /// <param name="onServerAdd"></param>
+    /// <param name="onServerRemove"></param>
+    public void SetServerChangeCallback(Action<IServiceInfo> onServerAdd, Action<IServiceInfo> onServerRemove)
     {
-        _serverMap = new ConcurrentDictionary<long, IServiceInfo>();
         _onServerAdd = onServerAdd;
         _onServerRemove = onServerRemove;
     }
@@ -51,9 +54,15 @@ public sealed class NamingServiceManager
             return false;
         }
 
-        // MetricsDiscoveryRegister.ServiceCounterOptions.Dec(-1);
         var result = _serverMap.TryRemove(serverId, out var value);
-        _onServerRemove?.Invoke(value);
+        if (value != null)
+        {
+            foreach (var serviceInfo in value)
+            {
+                _onServerRemove?.Invoke(serviceInfo);
+            }
+        }
+
         return result;
     }
 
@@ -67,10 +76,13 @@ public sealed class NamingServiceManager
         long serverId = 0;
         foreach (var keyValuePair in _serverMap)
         {
-            if (keyValuePair.Value.SessionId == sessionId)
+            foreach (var serviceInfo in keyValuePair.Value)
             {
-                serverId = keyValuePair.Key;
-                break;
+                if (serviceInfo.SessionId == sessionId)
+                {
+                    serverId = keyValuePair.Key;
+                    break;
+                }
             }
         }
 
@@ -86,9 +98,12 @@ public sealed class NamingServiceManager
     {
         foreach (var keyValuePair in _serverMap)
         {
-            if (keyValuePair.Value.SessionId == sessionId)
+            foreach (var serviceInfo in keyValuePair.Value)
             {
-                return keyValuePair.Value;
+                if (serviceInfo.SessionId == sessionId)
+                {
+                    return serviceInfo;
+                }
             }
         }
 
@@ -115,7 +130,7 @@ public sealed class NamingServiceManager
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    public IServiceInfo TryGet(long id)
+    public List<IServiceInfo> TryGet(long id)
     {
         _serverMap.TryGetValue(id, out var value);
         return value;
@@ -125,7 +140,7 @@ public sealed class NamingServiceManager
     /// 获取节点列表
     /// </summary>
     /// <returns></returns>
-    public List<IServiceInfo> GetAllNodes()
+    public List<List<IServiceInfo>> GetAllNodes()
     {
         return _serverMap.Values.ToList();
     }
@@ -136,7 +151,19 @@ public sealed class NamingServiceManager
     /// <returns></returns>
     public List<IServiceInfo> GetOuterNodes()
     {
-        return _serverMap.Values.Where(m => !string.IsNullOrEmpty(m.SessionId)).ToList();
+        List<IServiceInfo> result = new();
+        foreach (var keyValuePair in _serverMap)
+        {
+            foreach (var serviceInfo in keyValuePair.Value)
+            {
+                if (serviceInfo.SessionId.IsNotNullOrEmpty())
+                {
+                    result.Add(serviceInfo);
+                }
+            }
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -160,7 +187,7 @@ public sealed class NamingServiceManager
         }
 
         SelfServiceInfo = new ServiceInfo(setting.ServerType, null, string.Empty, setting.ServerName, setting.ServerId, setting.ServerInstanceId, setting.InnerIp, setting.InnerPort, setting.OuterIp, setting.OuterPort);
-        _serverMap[SelfServiceInfo.ServerId] = SelfServiceInfo;
+        _serverMap[SelfServiceInfo.ServerId] = [SelfServiceInfo,];
     }
 
     /// <summary>
@@ -176,14 +203,19 @@ public sealed class NamingServiceManager
             return;
         }
 
-        if (_serverMap.ContainsKey(node.ServerId))
+        if (!_serverMap.TryGetValue(node.ServerId, out var list))
         {
-            LogHelper.Error($"重复添加节点:[{node}]");
+            list = new List<IServiceInfo>();
+            _serverMap[node.ServerId] = list;
+        }
+
+        if (list.Contains(node))
+        {
+            LogHelper.Warning("重复添加节点...忽略处理" + node);
             return;
         }
 
-        // MetricsDiscoveryRegister.ServiceCounterOptions.Inc();
-        _serverMap.TryAdd(node.ServerId, node);
+        list.Add(node);
         _onServerAdd?.Invoke(node);
         LogHelper.Info($"新的网络节点总数：{GetNodeCount()} 新的节点信息:\n {node}");
     }
@@ -198,9 +230,12 @@ public sealed class NamingServiceManager
         var list = new List<IServiceInfo>();
         foreach (var node in _serverMap)
         {
-            if (node.Value.Type == type)
+            foreach (var serviceInfo in node.Value)
             {
-                list.Add(node.Value);
+                if (serviceInfo.Type == type)
+                {
+                    list.Add(serviceInfo);
+                }
             }
         }
 
