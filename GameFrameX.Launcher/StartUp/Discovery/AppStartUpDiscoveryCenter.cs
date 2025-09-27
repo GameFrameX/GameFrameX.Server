@@ -41,7 +41,11 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
     /// <param name="message">消息对象</param>
     private async void SendMessage(IAppSession session, INetworkMessage message)
     {
-        ArgumentNullException.ThrowIfNull(session, nameof(session));
+        if (session == null)
+        {
+            return;
+        }
+
         if (session.Connection.IsClosed)
         {
             return;
