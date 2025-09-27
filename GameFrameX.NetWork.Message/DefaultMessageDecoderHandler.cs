@@ -28,16 +28,25 @@ public class DefaultMessageDecoderHandler : BaseMessageDecoderHandler
         try
         {
             // 消息总长度
-            reader.TryReadBigEndianValue(out int totalLength);
-            // 消息头长度
-            reader.TryReadBigEndianValue(out ushort headerLength);
-            // 消息头字节数组
-            reader.TryReadBytesValue(headerLength, out var messageHeaderData);
+            reader.TryReadBigEndianValue(out uint totalLength);
+            // 操作类型
+            reader.TryReadBigEndianValue(out byte operationType);
+            // 压缩标记
+            reader.TryReadBigEndianValue(out byte zipFlag);
+            // 唯一ID
+            reader.TryReadBigEndianValue(out int uniqueId);
+            // 消息ID
+            reader.TryReadBigEndianValue(out int messageId);
             // 消息对象头
-            var messageObjectHeader = (INetworkMessageHeader)ProtoBufSerializerHelper.Deserialize(messageHeaderData, typeof(MessageObjectHeader));
-
+            var messageObjectHeader = new MessageObjectHeader
+            {
+                OperationType = (MessageOperationType)operationType,
+                ZipFlag = zipFlag,
+                UniqueId = uniqueId,
+                MessageId = messageId,
+            };
             // 消息内容
-            reader.TryReadBytesValue(totalLength - headerLength - PackageHeaderLength, out var messageData);
+            reader.TryReadBytesValue((int)(totalLength - PackageHeaderLength), out var messageData);
             if (messageObjectHeader.ZipFlag > 0)
             {
                 ArgumentNullException.ThrowIfNull(DecompressHandler, nameof(DecompressHandler));
