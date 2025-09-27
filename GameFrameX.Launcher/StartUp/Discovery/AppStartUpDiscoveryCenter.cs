@@ -61,6 +61,10 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
             {
                 LogHelper.Info("---发送[" + ServerType + " To " + serverInfo.Type + "]  " + innerNetworkMessage.ToFormatMessageString());
             }
+            else
+            {
+                LogHelper.Info("---发送[" + ServerType + " To " + ServerType + "]  " + innerNetworkMessage.ToFormatMessageString());
+            }
         }
 
         await session.SendAsync(buffer);
