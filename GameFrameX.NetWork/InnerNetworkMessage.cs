@@ -8,6 +8,7 @@ using System.Collections.Concurrent;
 using System.Text.Json.Serialization;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.NetWork.Abstractions;
+using GameFrameX.NetWork.Messages;
 using GameFrameX.ProtoBuf.Net;
 
 namespace GameFrameX.NetWork;
@@ -41,7 +42,15 @@ public sealed class InnerNetworkMessage : IInnerNetworkMessage
     /// <returns></returns>
     public INetworkMessage DeserializeMessageObject()
     {
-        return (INetworkMessage)ProtoBufSerializerHelper.Deserialize(MessageData, MessageType);
+        var message = (INetworkMessage)ProtoBufSerializerHelper.Deserialize(MessageData, MessageType);
+        message.SetUniqueId(Header.UniqueId);
+        MessageProtoHelper.SetMessageId(message);
+        if (message is MessageObject messageObject)
+        {
+            messageObject.SetOperationType(Header.OperationType);
+        }
+
+        return message;
     }
 
     /// <summary>
