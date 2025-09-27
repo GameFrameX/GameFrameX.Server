@@ -57,7 +57,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
             ServerId = Setting.ServerId,
         };
         var innerNetworkMessage = InnerNetworkMessage.Create(message, messageObjectHeader);
-        var buffer = MessageHelper.EncoderHandler.Handler(innerNetworkMessage);
+        var buffer = MessageHelper.EncoderHandler.Handler(message);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
             if (Setting.IsDebugSendHeartBeat || messageObjectHeader.OperationType != MessageOperationType.HeartBeat)
