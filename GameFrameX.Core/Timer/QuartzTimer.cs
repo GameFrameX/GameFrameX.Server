@@ -643,7 +643,7 @@ public static class QuartzTimer
                     }
                     else if (level == LogLevel.Warn)
                     {
-                        LogHelper.Warn(func(), parameters);
+                        LogHelper.Warning(func(), parameters);
                     }
                     else
                     {
