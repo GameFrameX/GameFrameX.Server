@@ -91,7 +91,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                 {
                     // 心跳响应
                     var reqHeartBeat = messageObject.DeserializeMessageObject();
-                    var response = new NotifyHeartBeat
+                    var response = new NotifyActorHeartBeat
                     {
                         UniqueId = reqHeartBeat.UniqueId,
                         Timestamp = TimeHelper.UnixTimeMilliseconds(),
