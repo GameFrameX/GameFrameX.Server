@@ -41,7 +41,7 @@ namespace GameFrameX.Launcher.StartUp.Discovery;
 /// <summary>
 /// 服务发现中心服务器
 /// </summary>
-// [StartUpTag(ServerType.DiscoveryCenter, 0)]
+[StartUpTag(ServerType.DiscoveryCenter)]
 internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
 {
     public override async Task StartAsync()
