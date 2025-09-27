@@ -33,6 +33,12 @@ namespace GameFrameX.StartUp;
 public abstract partial class AppStartUpBase
 {
     /// <summary>
+    /// 是否将当前服务注册到服务中心
+    /// 默认 false：不自动注册；子类可重写为 true 以开启注册逻辑。
+    /// </summary>
+    protected virtual bool IsRegisterToDiscoveryCenter { get; set; } = false;
+
+    /// <summary>
     /// 启动服务器 - 同时启动TCP和WebSocket服务
     /// </summary>
     /// <typeparam name="TMessageDecoderHandler">消息解码处理器类型，必须实现IMessageDecoderHandler和IPackageDecoder接口</typeparam>
@@ -54,6 +60,11 @@ public abstract partial class AppStartUpBase
         MessageHelper.SetMessageEncoderHandler(Activator.CreateInstance<TMessageEncoderHandler>(), messageCompressHandler);
         // 启动服务器
         await StartServer(baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
+        if (IsRegisterToDiscoveryCenter)
+        {
+            StartGameAppClient();
+        }
+
         // 设置全局启动状态
         GlobalSettings.LaunchTime = DateTime.UtcNow;
         GlobalSettings.IsAppRunning = true;
@@ -65,6 +76,8 @@ public abstract partial class AppStartUpBase
     protected async Task StopServerAsync()
     {
         GlobalSettings.IsAppRunning = false;
+        _gameAppClient?.Stop();
+
         if (_gameServer != null)
         {
             await _gameServer.StopAsync();
@@ -238,10 +251,7 @@ public abstract partial class AppStartUpBase
         }
 
         // 配置监控和跟踪
-        multipleServerHostBuilder.ConfigureServices(services =>
-        {
-            services.AddGameFrameXOpenTelemetry(Setting);
-        });
+        multipleServerHostBuilder.ConfigureServices(services => { services.AddGameFrameXOpenTelemetry(Setting); });
 
         // 配置日志
         multipleServerHostBuilder.ConfigureLogging(logging =>
