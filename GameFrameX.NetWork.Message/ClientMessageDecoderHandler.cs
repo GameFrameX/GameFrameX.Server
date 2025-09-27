@@ -15,7 +15,7 @@ public sealed class ClientMessageDecoderHandler : DefaultMessageDecoderHandler
     /// <summary>
     /// 消息头长度
     /// </summary>
-    public override int PackageHeaderLength { get; } = sizeof(uint) + sizeof(byte) + sizeof(byte) + sizeof(int) + sizeof(int);
+    public override uint PackageHeaderLength { get; } = sizeof(uint) + sizeof(byte) + sizeof(byte) + sizeof(int) + sizeof(int);
 
 
     /// <summary>

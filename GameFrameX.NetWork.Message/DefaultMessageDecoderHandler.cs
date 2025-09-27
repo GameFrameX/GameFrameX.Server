@@ -13,6 +13,11 @@ namespace GameFrameX.NetWork.Message;
 public class DefaultMessageDecoderHandler : BaseMessageDecoderHandler
 {
     /// <summary>
+    /// 消息头长度
+    /// </summary>
+    public override ushort PackageHeaderLength { get; } = sizeof(uint) + sizeof(byte) + sizeof(byte) + sizeof(int) + sizeof(int);
+
+    /// <summary>
     /// 消息解码
     /// </summary>
     /// <param name="sequence"></param>

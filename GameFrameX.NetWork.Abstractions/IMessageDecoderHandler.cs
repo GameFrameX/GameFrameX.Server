@@ -10,7 +10,7 @@ public interface IMessageDecoderHandler
     /// <summary>
     /// 消息头长度
     /// </summary>
-    int PackageHeaderLength { get; }
+    ushort PackageHeaderLength { get; }
 
     /// <summary>
     /// 解析消息

@@ -16,7 +16,7 @@ public abstract class BaseMessageDecoderHandler : IMessageDecoderHandler
     /// <summary>
     /// 消息头长度
     /// </summary>
-    public virtual int PackageHeaderLength { get; } = 6;
+    public virtual ushort PackageHeaderLength { get; } = 6;
 
     /// <summary>
     /// 和客户端之间的消息 数据长度(2)+消息唯一ID(4)+消息ID(4)+消息内容
