@@ -13,6 +13,11 @@ namespace GameFrameX.NetWork.Message;
 public sealed class DefaultMessageEncoderHandler : BaseMessageEncoderHandler
 {
     /// <summary>
+    /// 消息头长度
+    /// </summary>
+    public override ushort PackageHeaderLength { get; } = sizeof(uint) + sizeof(byte) + sizeof(byte) + sizeof(int) + sizeof(int);
+
+    /// <summary>
     /// 和客户端之间的消息 数据长度(2)+消息唯一ID(4)+消息ID(4)+消息内容
     /// </summary>
     /// <param name="message"></param>
