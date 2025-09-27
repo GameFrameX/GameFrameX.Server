@@ -1,7 +1,4 @@
-using System.Buffers;
-using GameFrameX.Foundation.Extensions;
 using GameFrameX.NetWork.Abstractions;
-using GameFrameX.ProtoBuf.Net;
 
 namespace GameFrameX.NetWork.Message;
 
@@ -33,24 +30,6 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler
     public abstract byte[] Handler(IMessage message);
 
     /// <summary>
-    /// 内部消息
-    /// </summary>
-    /// <param name="message"></param>
-    /// <returns></returns>
-    public byte[] Handler(IInnerNetworkMessage message)
-    {
-        var innerNetworkMessage = message;
-        var headerZipFlag = innerNetworkMessage.Header.ZipFlag;
-        var messageData = innerNetworkMessage.MessageData;
-        BytesCompressHandler(ref messageData, ref headerZipFlag);
-        innerNetworkMessage.Header.ZipFlag = headerZipFlag;
-        innerNetworkMessage.SetMessageData(messageData);
-        var messageHeaderData = ProtoBufSerializerHelper.Serialize(innerNetworkMessage.Header);
-        return InnerBufferHandler(message.MessageData, ref messageHeaderData);
-    }
-
-
-    /// <summary>
     /// 设置压缩消息处理器
     /// </summary>
     /// <param name="compressHandler">压缩消息处理器</param>
@@ -58,34 +37,6 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler
     {
         CompressHandler = compressHandler;
     }
-
-    /// <summary>
-    /// 内部消息结构写入
-    /// 结构为 totalLength(uint) + headerLength(ushort) + header 数组 + body 数组
-    /// </summary>
-    /// <param name="messageHeaderData">消息头数组</param>
-    /// <param name="messageBodyData">内容数组</param>
-    /// <returns></returns>
-    protected byte[] InnerBufferHandler(byte[] messageBodyData, ref byte[] messageHeaderData)
-    {
-        var totalLength = (ushort)(PackageHeaderLength + messageBodyData.Length + messageHeaderData.Length);
-
-        var buffer = ArrayPool<byte>.Shared.Rent(totalLength);
-
-        var offset = 0;
-        // 总长度
-        buffer.WriteUIntValue(totalLength, ref offset);
-        // 消息头长度
-        buffer.WriteUShortValue((ushort)messageHeaderData.Length, ref offset);
-        // 消息头
-        buffer.WriteBytesWithoutLength(messageHeaderData, ref offset);
-        // 消息体
-        buffer.WriteBytesWithoutLength(messageBodyData, ref offset);
-        var result = buffer.AsSpan(0, totalLength).ToArray();
-        ArrayPool<byte>.Shared.Return(buffer);
-        return result;
-    }
-
 
     /// <summary>
     /// 消息压缩处理
