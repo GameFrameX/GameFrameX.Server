@@ -54,6 +54,38 @@ public static class HotfixManager
     /// </summary>
     public static DateTime ReloadTime { get; private set; }
 
+
+    /// <summary>
+    /// 加载热更新模块
+    /// </summary>
+    /// <param name="setting">应用程序配置</param>
+    /// <param name="dllPath">热更新程序集路径，默认为hotfix</param>
+    /// <param name="hotfixDllName">热更新程序集名称</param>
+    /// <param name="dllVersion">Dll版本.当不为空的时候会优先加载指定的Dll.替换 dllPath 参数</param>
+    /// <returns>返回是否加载成功</returns>
+    public static bool LoadHotfix(AppSetting setting, string dllVersion = "", string dllPath = "hotfix", string hotfixDllName = "GameFrameX.Hotfix.dll")
+    {
+        ArgumentException.ThrowIfNullOrEmpty(dllPath, nameof(dllPath));
+        ArgumentException.ThrowIfNullOrEmpty(hotfixDllName, nameof(hotfixDllName));
+        if (setting != null)
+        {
+            _baseSetting = setting;
+        }
+
+        var path = Path.Combine(Environment.CurrentDirectory, string.IsNullOrEmpty(dllVersion) ? dllPath : $"{dllVersion}", hotfixDllName);
+        var hotfixModule = new HotfixModule(path);
+        var reload = _module != null;
+        // 起服时失败会有异常抛出
+        var success = hotfixModule.Init(reload);
+        if (!success)
+        {
+            return false;
+        }
+
+        _module = hotfixModule;
+        return true;
+    }
+
     /// <summary>
     /// 加载热更新模块
     /// </summary>
