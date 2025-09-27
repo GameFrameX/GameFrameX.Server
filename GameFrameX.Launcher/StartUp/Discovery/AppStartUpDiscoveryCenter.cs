@@ -56,14 +56,11 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
         var buffer = MessageHelper.EncoderHandler.Handler(innerNetworkMessage);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
-            var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
-            if (serverInfo != null)
+            if (Setting.IsDebugSendHeartBeat || messageObjectHeader.OperationType != MessageOperationType.HeartBeat)
             {
-                LogHelper.Info("---发送[" + ServerType + " To " + serverInfo.Type + "]  " + innerNetworkMessage.ToFormatMessageString());
-            }
-            else
-            {
-                LogHelper.Info("---发送[" + ServerType + " To " + ServerType + "]  " + innerNetworkMessage.ToFormatMessageString());
+                var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
+                var toServerType = serverInfo != null ? serverInfo.ToString() : ServerType.ToString();
+                LogHelper.Info($"---发送[{ServerType} To {toServerType}]  {innerNetworkMessage.ToFormatMessageString()}");
             }
         }
 
@@ -72,21 +69,19 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
 
     protected override ValueTask PackageHandler(IAppSession session, IMessage message)
     {
-        if (Setting.IsDebug && Setting.IsDebugReceive)
+        if (message is IInnerNetworkMessage messageObject)
         {
-            var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
-            if (serverInfo != null)
+            if (Setting.IsDebug && Setting.IsDebugReceive)
             {
-                LogHelper.Debug($"---收到[{serverInfo} To {ServerType}]  {message.ToFormatMessageString()}");
-            }
-            else
+                // 当需要打印心跳，或当前非心跳消息时才输出日志
+                if (Setting.IsDebugReceiveHeartBeat || messageObject.Header.OperationType != MessageOperationType.HeartBeat)
             {
-                LogHelper.Debug($"---收到[{ServerType}]  {message.ToFormatMessageString()}");
+                    var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
+                    var from = serverInfo != null ? serverInfo.ToString() : ServerType.ToString();
+                    LogHelper.Debug($"---收到[{from} To {ServerType}]  {message.ToFormatMessageString()}");
             }
         }
 
-        if (message is IInnerNetworkMessage messageObject)
-        {
             switch (messageObject.Header.OperationType)
             {
                 case MessageOperationType.None:
