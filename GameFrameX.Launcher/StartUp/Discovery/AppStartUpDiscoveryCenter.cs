@@ -20,8 +20,9 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
             _namingServiceManager.AddSelf(Setting);
             var aopHandlerTypes = AssemblyHelper.GetRuntimeImplementTypeNamesInstance<IHttpAopHandler>();
             aopHandlerTypes.Sort((handlerX, handlerY) => handlerX.Priority.CompareTo(handlerY.Priority));
-
-            await StartServerAsync<DefaultMessageDecoderHandler, DefaultMessageEncoderHandler>(new DefaultMessageCompressHandler(), new DefaultMessageDecompressHandler(), null, null, aopHandlerTypes);
+            await ComponentRegister.Init(typeof(AppsHandler).Assembly);
+            HotfixManager.LoadHotfix(Setting);
+            await StartServerAsync<DefaultMessageDecoderHandler, DefaultMessageEncoderHandler>(new DefaultMessageCompressHandler(), new DefaultMessageDecompressHandler(), HotfixManager.GetListHttpHandler(), HotfixManager.GetHttpHandler, aopHandlerTypes);
 
             await AppExitToken;
         }
