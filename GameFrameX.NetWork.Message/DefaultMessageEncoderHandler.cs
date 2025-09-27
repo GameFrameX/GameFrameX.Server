@@ -1,8 +1,9 @@
+using System.Buffers;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.ProtoBuf.Net;
 using GameFrameX.Foundation.Logger;
-using Microsoft.Extensions.ObjectPool;
 
 namespace GameFrameX.NetWork.Message;
 
@@ -11,16 +12,6 @@ namespace GameFrameX.NetWork.Message;
 /// </summary>
 public sealed class DefaultMessageEncoderHandler : BaseMessageEncoderHandler
 {
-    private readonly ObjectPool<MessageObjectHeader> _messageObjectHeaderObjectPool;
-
-    /// <summary>
-    /// 默认消息编码处理器
-    /// </summary>
-    public DefaultMessageEncoderHandler()
-    {
-        _messageObjectHeaderObjectPool = new DefaultObjectPoolProvider().Create<MessageObjectHeader>();
-    }
-
     /// <summary>
     /// 和客户端之间的消息 数据长度(2)+消息唯一ID(4)+消息ID(4)+消息内容
     /// </summary>
@@ -37,14 +28,23 @@ public sealed class DefaultMessageEncoderHandler : BaseMessageEncoderHandler
                 var messageBodyData = ProtoBufSerializerHelper.Serialize(messageObject);
                 byte zipFlag = 0;
                 BytesCompressHandler(ref messageBodyData, ref zipFlag);
-                var messageObjectHeader = _messageObjectHeaderObjectPool.Get();
-                messageObjectHeader.OperationType = messageObject.OperationType;
-                messageObjectHeader.UniqueId = messageObject.UniqueId;
-                messageObjectHeader.MessageId = messageObject.MessageId;
-                messageObjectHeader.ZipFlag = zipFlag;
-                var messageHeaderData = ProtoBufSerializerHelper.Serialize(messageObjectHeader);
-                _messageObjectHeaderObjectPool.Return(messageObjectHeader);
-                return InnerBufferHandler(messageBodyData, ref messageHeaderData);
+                var totalLength = (ushort)(PackageHeaderLength + messageBodyData.Length);
+                var buffer = ArrayPool<byte>.Shared.Rent(totalLength);
+                var offset = 0;
+                // 总长度
+                buffer.WriteUIntValue(totalLength, ref offset);
+                // operationType 操作类型
+                buffer.WriteByteValue((byte)messageObject.OperationType, ref offset);
+                // zipFlag 压缩标记
+                buffer.WriteByteValue(zipFlag, ref offset);
+                // uniqueId 唯一ID
+                buffer.WriteIntValue(messageObject.UniqueId, ref offset);
+                // MessageId 消息ID
+                buffer.WriteIntValue(messageObject.MessageId, ref offset);
+                buffer.WriteBytesWithoutLength(messageBodyData, ref offset);
+                var result = buffer.AsSpan(0, totalLength).ToArray();
+                ArrayPool<byte>.Shared.Return(buffer);
+                return result;
             }
             catch (Exception e)
             {
