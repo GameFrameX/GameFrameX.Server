@@ -1,4 +1,3 @@
-using System.Net;
 using System.Reflection;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
@@ -271,19 +270,6 @@ public abstract partial class AppStartUpBase
     #endregion
 
     #region WebSocket
-
-    /// <summary>
-    /// 配置WebSocket服务器参数
-    /// </summary>
-    private void ConfigureWebServer(ServerOptions serverOptions)
-    {
-        var listenOptions = new ListenOptions
-        {
-            Ip = IPAddress.Any.ToString(),
-            Port = Setting.WsPort,
-        };
-        serverOptions.AddListener(listenOptions);
-    }
 
     /// <summary>
     /// WebSocket消息处理方法

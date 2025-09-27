@@ -1,9 +1,5 @@
-using System.Net;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.StartUp.Abstractions;
-using GameFrameX.SuperSocket.Server;
-using GameFrameX.SuperSocket.Server.Abstractions;
-using GameFrameX.Foundation.Extensions;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.StartUp;
@@ -77,27 +73,5 @@ public abstract partial class AppStartUpBase : IAppStartUp
     /// </summary>
     protected virtual void Init()
     {
-    }
-
-    /// <summary>
-    /// 配置启动,当InnerIP为空时.将使用Any
-    /// </summary>
-    /// <param name="options"></param>
-    protected virtual void ConfigureSuperSocket(ServerOptions options)
-    {
-        if (Setting.InnerIp.IsNotNullOrWhiteSpace())
-        {
-            if (Setting.InnerPort <= 1000)
-            {
-                throw new ArgumentOutOfRangeException(nameof(Setting.InnerPort), $"InnerPort参数必须大于1000,当前值为{Setting.InnerPort}");
-            }
-        }
-
-        var listenOptions = new ListenOptions
-        {
-            Ip = Setting.InnerIp.IsNullOrEmpty() ? IPAddress.Any.ToString() : Setting.InnerIp,
-            Port = Setting.InnerPort,
-        };
-        options.AddListener(listenOptions);
     }
 }
