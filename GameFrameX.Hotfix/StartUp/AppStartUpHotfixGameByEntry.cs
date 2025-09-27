@@ -1,5 +1,4 @@
 ﻿using GameFrameX.StartUp;
-using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Hotfix.StartUp;
 
@@ -14,7 +13,6 @@ internal partial class AppStartUpHotfixGame : AppStartUpBase, IHotfixBridge
             ActorManager.ClearAgent();
             return true;
         }
-
 
         Init(setting.ServerType, setting);
         await RunServer();

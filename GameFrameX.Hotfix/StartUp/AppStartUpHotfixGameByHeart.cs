@@ -1,6 +1,4 @@
-﻿using GameFrameX.NetWork.Messages;
-
-namespace GameFrameX.Hotfix.StartUp;
+﻿namespace GameFrameX.Hotfix.StartUp;
 
 internal partial class AppStartUpHotfixGame
 {
