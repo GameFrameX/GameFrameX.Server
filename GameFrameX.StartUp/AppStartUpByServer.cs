@@ -60,9 +60,12 @@ public abstract partial class AppStartUpBase
         MessageHelper.SetMessageEncoderHandler(Activator.CreateInstance<TMessageEncoderHandler>(), messageCompressHandler);
         // 启动服务器
         await StartServer(baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
-        if (IsRegisterToDiscoveryCenter)
+        if (Setting.ServerType != ServerType.DiscoveryCenter)
         {
-            StartGameAppClient();
+            if (IsRegisterToDiscoveryCenter)
+            {
+                StartGameAppClient();
+            }
         }
 
         // 设置全局启动状态
