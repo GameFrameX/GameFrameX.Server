@@ -50,8 +50,13 @@ public static class MessageObjectLoggerHelper
                 stringBuilder.Append($"--UniqueId:[{uniqueId.ToString().CenterAlignedText(13)}]---");
                 // 消息的内容 分割
                 stringBuilder.AppendLine();
-                // 消息的ActorId内容
-                stringBuilder.AppendLine(actorId.ToString().CenterAlignedText(140));
+
+                if (actorId != default)
+                {
+                    // 消息的ActorId内容
+                    stringBuilder.AppendLine(actorId.ToString().CenterAlignedText(140));
+                }
+
                 // 消息内容
                 stringBuilder.AppendLine($"{messageObject.ToJsonString()}");
                 // 向上的箭头
