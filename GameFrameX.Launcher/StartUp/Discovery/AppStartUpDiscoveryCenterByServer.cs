@@ -13,14 +13,15 @@ internal partial class AppStartUpDiscoveryCenter
 
     public AppStartUpDiscoveryCenter()
     {
-        _namingServiceManager = new NamingServiceManager(OnServerAdd, OnServerRemove);
+        _namingServiceManager = NamingServiceManager.Instance;
+        _namingServiceManager.SetServerChangeCallback(OnServerAdd, OnServerRemove);
     }
-
 
     private void OnServerRemove(IServiceInfo serverInfo)
     {
-        var serverList = _namingServiceManager.GetAllNodes().Where(m => m.ServerId != 0 && m.ServerId != serverInfo.ServerId).ToList();
-
+        var serverList = _namingServiceManager.GetOuterNodes()
+            .Where(m => m.ServerId != 0 && m.ServerId != serverInfo.ServerId)
+            .ToList();
         var respServerOnlineServer = new RespServerOfflineServer
         {
             ServerType = serverInfo.Type,
