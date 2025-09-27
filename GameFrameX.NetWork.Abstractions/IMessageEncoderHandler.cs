@@ -23,13 +23,6 @@ public interface IMessageEncoderHandler
     byte[] Handler(IMessage message);
 
     /// <summary>
-    /// 内部消息
-    /// </summary>
-    /// <param name="message"></param>
-    /// <returns></returns>
-    byte[] Handler(IInnerNetworkMessage message);
-
-    /// <summary>
     /// 设置压缩消息处理器
     /// </summary>
     /// <param name="compressHandler">压缩消息处理器</param>
