@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 using GameFrameX.Utility.Setting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -121,20 +120,19 @@ public static class HealthChecksExtensions
             {
                 context.Response.ContentType = JsonContentType;
 
-                var response = new
+                var response = new HealthCheckResponse
                 {
-                    status = report.Status.ToString(),
-                    checks = report.Entries.Select(entry => new
+                    Timestamp = DateTime.UtcNow,
+                    Status = report.Status.ToString(),
+                    Checks = report.Entries.Select(entry => new HealthCheckResponse.HealthCheckItem
                     {
-                        name = entry.Key,
-                        status = entry.Value.Status.ToString(),
-                        description = entry.Value.Description,
-                        duration = entry.Value.Duration.TotalMilliseconds
-                    }),
-                    totalDuration = report.TotalDuration.TotalMilliseconds,
-                    serverName = setting.ServerName ?? "Unknown",
-                    tagName = setting.TagName ?? "Unknown",
-                    timestamp = DateTime.UtcNow
+                        Name = entry.Key,
+                        Status = entry.Value.Status.ToString(),
+                        Description = entry.Value.Description,
+                        Duration = entry.Value.Duration.TotalMilliseconds,
+                    }).ToList(),
+                    TotalDuration = report.TotalDuration.TotalMilliseconds,
+                    Setting = setting,
                 };
 
                 await context.Response.WriteAsync(JsonHelper.Serialize(response));
@@ -184,4 +182,75 @@ public static class HealthChecksExtensions
 
         return app;
     }
+}
+
+/// <summary>
+/// 健康检查响应信息
+/// </summary>
+public sealed class HealthCheckResponse
+{
+    /// <summary>
+    /// 健康检查项目信息
+    /// </summary>
+    public sealed class HealthCheckItem
+    {
+        /// <summary>
+        /// 获取或设置健康检查项目的名称
+        /// </summary>
+        /// <value>健康检查项目的名称</value>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 获取或设置健康检查项目的状态
+        /// </summary>
+        /// <value>健康检查项目的状态，如"Healthy"、"Unhealthy"等</value>
+        public string Status { get; set; }
+
+        /// <summary>
+        /// 获取或设置健康检查项目的描述信息
+        /// </summary>
+        /// <value>健康检查项目的详细描述信息</value>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// 获取或设置健康检查项目的执行持续时间
+        /// </summary>
+        /// <value>健康检查项目的执行持续时间，单位为毫秒</value>
+        public double Duration { get; set; }
+    }
+
+    /// <summary>
+    /// 获取或设置整体健康检查状态
+    /// </summary>
+    /// <value>整体健康检查状态，如"Healthy"、"Unhealthy"等</value>
+    public string Status { get; set; }
+
+    /// <summary>
+    /// 获取或设置所有健康检查项目的总执行时间
+    /// </summary>
+    /// <value>所有健康检查项目的总执行时间，单位为毫秒</value>
+    public double TotalDuration { get; set; }
+
+    /// <summary>
+    /// 获取或设置健康检查执行的时间戳
+    /// </summary>
+    /// <value>健康检查执行的时间戳</value>
+    public DateTime Timestamp { get; set; }
+
+    /// <summary>
+    /// 获取或设置应用设置信息
+    /// </summary>
+    /// <remarks>
+    /// 该属性用于在健康检查响应中携带当前应用程序的配置信息，便于调试与监控。
+    /// 包含端口、功能开关等关键配置项，方便在健康检查接口中直接查看运行参数。
+    /// </remarks>
+    /// <value>当前应用程序的 <see cref="AppSetting"/> 实例，可能为 null。</value>
+    public AppSetting Setting { get; set; }
+
+    /// <summary>
+    /// 获取或设置健康检查项目列表
+    /// </summary>
+    /// <value>包含所有健康检查项目的列表</value>
+    /// <seealso cref="HealthCheckItem"/>
+    public List<HealthCheckItem> Checks { get; set; }
 }
