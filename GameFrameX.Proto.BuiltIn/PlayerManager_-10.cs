@@ -35,136 +35,12 @@ using GameFrameX.Utility.Setting;
 using ProtoBuf;
 
 namespace GameFrameX.Proto.BuiltIn;
-//
-// /// <summary>
-// /// 请求链接的服务
-// /// </summary>
-// [MessageTypeHandler(((-1) << 16) + 100, MessageOperationType.RequestConnectServer)]
-// public partial class ReqConnectServer : MessageObject, IRequestMessage
-// {
-//     /// <summary>
-//     ///  服务器类型
-//     /// </summary>
-//     [ProtoMember(1)]
-//     public ServerType ServerType { get; set; }
-//
-//     /// <summary>
-//     /// 服务器ID
-//     /// </summary>
-//     [ProtoMember(2)]
-//     public long ServerId { get; set; }
-// }
-//
-// /// <summary>
-// /// 请求链接的服务返回
-// /// </summary>
-// [MessageTypeHandler(((-1) << 16) + 101, MessageOperationType.RequestConnectServer)]
-// public partial class RespConnectServer : MessageObject, IResponseMessage
-// {
-//     /// <summary>
-//     ///  服务器类型
-//     /// </summary>
-//     [ProtoMember(1)]
-//     public ServerType ServerType { get; set; }
-//
-//     /// <summary>
-//     /// 服务器名称
-//     /// </summary>
-//     [ProtoMember(2)]
-//     public string ServerName { get; set; }
-//
-//     /// <summary>
-//     /// 服务器ID
-//     /// </summary>
-//     [ProtoMember(3)]
-//     public long ServerId { get; set; }
-//
-//     /// <summary>
-//     /// 服务器IP
-//     /// </summary>
-//     [ProtoMember(5)]
-//     public string TargetIp { get; set; }
-//
-//     /// <summary>
-//     /// 服务器端口
-//     /// </summary>
-//     [ProtoMember(6)]
-//     public ushort TargetPort { get; set; }
-//
-//     /// <summary>
-//     /// 返回的错误码
-//     /// </summary>
-//     [ProtoMember(888)]
-//     public int ErrorCode { get; set; }
-// }
-//
-// /// <summary>
-// /// 服务上线
-// /// </summary>
-// [MessageTypeHandler(((-1) << 16) + 102, MessageOperationType.Notify)]
-// public partial class RespServerOnlineServer : MessageObject, IResponseMessage
-// {
-//     /// <summary>
-//     ///  服务器类型
-//     /// </summary>
-//     [ProtoMember(1)]
-//     public ServerType ServerType { get; set; }
-//
-//     /// <summary>
-//     /// 服务器名称
-//     /// </summary>
-//     [ProtoMember(2)]
-//     public string ServerName { get; set; }
-//
-//     /// <summary>
-//     /// 服务器ID
-//     /// </summary>
-//     [ProtoMember(3)]
-//     public long ServerId { get; set; }
-//
-//     /// <summary>
-//     /// 返回的错误码
-//     /// </summary>
-//     [ProtoMember(888)]
-//     public int ErrorCode { get; set; }
-// }
-//
-// /// <summary>
-// /// 服务下线
-// /// </summary>
-// [MessageTypeHandler(((-1) << 16) + 103, MessageOperationType.Notify)]
-// public partial class RespServerOfflineServer : MessageObject, IResponseMessage
-// {
-//     /// <summary>
-//     ///  服务器类型
-//     /// </summary>
-//     [ProtoMember(1)]
-//     public ServerType ServerType { get; set; }
-//
-//     /// <summary>
-//     /// 服务器名称
-//     /// </summary>
-//     [ProtoMember(2)]
-//     public string ServerName { get; set; }
-//
-//     /// <summary>
-//     /// 服务器ID
-//     /// </summary>
-//     [ProtoMember(3)]
-//     public long ServerId { get; set; }
-//
-//     /// <summary>
-//     /// 返回的错误码
-//     /// </summary>
-//     [ProtoMember(888)]
-//     public int ErrorCode { get; set; }
-// }
 
 /// <summary>
-/// 请求注册玩家
+/// 请求注册玩家在线
 /// </summary>
-[MessageTypeHandler(((-10) << 16) + 104, MessageOperationType.PlayerRegister)]
-public partial class ReqRegisterPlayer : MessageObject, IRequestMessage
+[MessageTypeHandler(((-10) << 16) + 101, MessageOperationType.PlayerRegisterOnLine)]
+public partial class ReqDiscoverCenterPlayerOnline : MessageObject, IRequestMessage
 {
     /// <summary>
     /// 玩家ID
@@ -184,40 +60,28 @@ public partial class ReqRegisterPlayer : MessageObject, IRequestMessage
     [ProtoMember(8)]
     public long ServerInstanceId { get; set; }
 }
-//
-// /// <summary>
-// /// 请求注册游戏服务
-// /// </summary>
-// [MessageTypeHandler(((-1) << 16) + 204, MessageOperationType.Register)]
-// public partial class ReqRegisterGameServer : MessageObject, IRequestMessage
-// {
-//     /// <summary>
-//     ///  服务器类型
-//     /// </summary>
-//     [ProtoMember(1)]
-//     public ServerType ServerType { get; set; }
-//
-//     /// <summary>
-//     /// 服务器名称
-//     /// </summary>
-//     [ProtoMember(2)]
-//     public string ServerName { get; set; }
-//
-//     /// <summary>
-//     /// 最小模块消息ID
-//     /// </summary>
-//     [ProtoMember(3)]
-//     public short MinModuleMessageId { get; set; }
-//
-//     /// <summary>
-//     /// 最大模块消息ID
-//     /// </summary>
-//     [ProtoMember(4)]
-//     public short MaxModuleMessageId { get; set; }
-//
-//     /// <summary>
-//     /// 服务器ID
-//     /// </summary>
-//     [ProtoMember(7)]
-//     public long ServerId { get; set; }
-// }
+
+/// <summary>
+/// 请求注册玩家离线
+/// </summary>
+[MessageTypeHandler(((-10) << 16) + 102, MessageOperationType.PlayerRegisterOffLine)]
+public partial class ReqDiscoverCenterPlayerOffline : MessageObject, IRequestMessage
+{
+    /// <summary>
+    /// 玩家ID
+    /// </summary>
+    [ProtoMember(1)]
+    public long PlayerId { get; set; }
+
+    /// <summary>
+    /// 服务器ID
+    /// </summary>
+    [ProtoMember(7)]
+    public long ServerId { get; set; }
+
+    /// <summary>
+    /// 服务器实例ID
+    /// </summary>
+    [ProtoMember(8)]
+    public long ServerInstanceId { get; set; }
+}

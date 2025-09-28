@@ -119,5 +119,10 @@ public enum MessageOperationType : byte
     /// <summary>
     /// 玩家注册
     /// </summary>
-    PlayerRegister,
+    PlayerRegisterOnLine,
+
+    /// <summary>
+    /// 玩家注销
+    /// </summary>
+    PlayerRegisterOffLine,
 }
