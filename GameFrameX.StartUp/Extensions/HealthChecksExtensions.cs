@@ -39,6 +39,7 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using GameFrameX.Foundation.Json;
 using GameFrameX.Foundation.Logger;
 using Mapster;
+using System.Text.Json;
 
 namespace GameFrameX.StartUp.Extensions;
 
@@ -136,7 +137,11 @@ public static class HealthChecksExtensions
                     Setting = setting.Adapt<HealthCheckResponse.HealthCheckSetting>(),
                 };
 
-                await context.Response.WriteAsync(JsonHelper.Serialize(response));
+                await context.Response.WriteAsync(JsonHelper.Serialize(response, new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                    WriteIndented = false,
+                }));
             }
         };
 
