@@ -97,7 +97,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
             {
                 var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
                 var toServerType = serverInfo != null ? serverInfo.Type.ToString() : ServerType.ToString();
-                LogHelper.Info($"---发送[{ServerType} To {toServerType}]  {innerNetworkMessage.ToFormatMessageString()}");
+                LogHelper.Debug($"---发送[{ServerType} To {toServerType}]  {innerNetworkMessage.ToFormatMessageString()}");
             }
         }
 
