@@ -277,33 +277,4 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
 
         return list;
     }
-
-    /*
-    /// <summary>
-    /// 设置节点的状态信息
-    /// </summary>
-    /// <param name="nodeId">节点ID</param>
-    /// <param name="statusInfo">节点状态信息</param>
-    public void SetNodeState(long nodeId, ServerStatusInfo statusInfo)
-    {
-        //Log.Debug($"设置节点{nodeId}状态");
-        if (_serverMap.TryGetValue(nodeId, out var node))
-        {
-            node.StatusInfo = statusInfo;
-        }
-    }
-
-    /// <summary>
-    /// 设置节点的状态
-    /// </summary>
-    /// <param name="nodeId">节点ID</param>
-    /// <param name="state">节点状态</param>
-    public void SetNodeState(long nodeId, ServerStatus state)
-    {
-        //Log.Debug($"设置节点{nodeId}状态");
-        if (_serverMap.TryGetValue(nodeId, out var node))
-        {
-            node.StatusInfo.Status = state;
-        }
-    }*/
 }
