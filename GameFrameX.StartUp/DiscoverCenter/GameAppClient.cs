@@ -194,6 +194,7 @@ internal sealed class GameAppClient
     private void SendHeartBeat()
     {
         _reqActorHeartBeat.Timestamp = TimeHelper.UnixTimeMilliseconds();
+        _reqActorHeartBeat.UpdateUniqueId();
         SendToServer(_reqActorHeartBeat);
     }
 
