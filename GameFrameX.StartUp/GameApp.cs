@@ -196,30 +196,6 @@ public static class GameApp
         AppStartUpTasks.Add(task);
     }
 
-    /*private static void ApplicationPerformanceMonitorStart(string serverType)
-    {
-        if (serverType != null && Enum.TryParse(serverType, out ServerType serverTypeValue))
-        {
-            foreach (var appStartUp in AppStartUps)
-            {
-                if (appStartUp.ServerType == serverTypeValue && appStartUp.Setting.APMPort is > 0 and < ushort.MaxValue)
-                {
-                    if (!NetHelper.PortIsAvailable(appStartUp.Setting.APMPort))
-                    {
-                        LogHelper.ErrorConsole("APM端口已被占用!=>" + appStartUp.Setting.APMPort);
-                        return;
-                    }
-
-                    MetricsHelper.Start(appStartUp.Setting.APMPort);
-                    return;
-                }
-            }
-        }
-
-        MetricsHelper.Start();
-    }*/
-
-
     private static Task Start(string[] args, Type appStartUpType, ServerType serverType, AppSetting setting)
     {
         var startUp = (IAppStartUp)Activator.CreateInstance(appStartUpType);
