@@ -31,7 +31,7 @@
 
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Proto.BuiltIn;
-using GameFrameX.ServerManager;
+using GameFrameX.DiscoveryCenterManager.Server;
 
 namespace GameFrameX.Launcher.StartUp.Discovery;
 

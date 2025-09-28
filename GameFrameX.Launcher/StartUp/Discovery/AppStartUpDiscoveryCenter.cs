@@ -33,7 +33,8 @@ using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Message;
 using GameFrameX.Proto.BuiltIn;
-using GameFrameX.ServerManager;
+using GameFrameX.DiscoveryCenterManager.Player;
+using GameFrameX.DiscoveryCenterManager.Server;
 using GameFrameX.Foundation.Extensions;
 
 namespace GameFrameX.Launcher.StartUp.Discovery;
@@ -182,6 +183,22 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     break;
                 case MessageOperationType.Forward:
                     break;
+                case MessageOperationType.PlayerRegisterOnLine:
+                {
+                    var reqRegisterPlayer = (ReqDiscoverCenterPlayerOnline)messageObject.DeserializeMessageObject();
+                    // 注册玩家
+                    NamingPlayerManager.Instance.Add(reqRegisterPlayer.PlayerId, reqRegisterPlayer.ServerId, reqRegisterPlayer.ServerInstanceId);
+                    LogHelper.Info($"注册玩家成功：{reqRegisterPlayer.PlayerId}  {reqRegisterPlayer}");
+                    return ValueTask.CompletedTask;
+                }
+                case MessageOperationType.PlayerRegisterOffLine:
+                {
+                    var reqRegisterPlayer = (ReqDiscoverCenterPlayerOffline)messageObject.DeserializeMessageObject();
+                    // 注册玩家
+                    NamingPlayerManager.Instance.TryRemove(reqRegisterPlayer.PlayerId, out var playerInfo);
+                    LogHelper.Info($"注销玩家成功：{reqRegisterPlayer.PlayerId}  {reqRegisterPlayer}");
+                    return ValueTask.CompletedTask;
+                }
                 case MessageOperationType.Register:
                 {
                     var reqRegisterServer = (ReqRegisterServer)messageObject.DeserializeMessageObject();
