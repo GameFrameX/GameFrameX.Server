@@ -29,6 +29,7 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using GameFrameX.Hotfix.Logic.DiscoveryCenter;
 using GameFrameX.StartUp;
 
 namespace GameFrameX.Hotfix.StartUp;
@@ -50,6 +51,12 @@ internal partial class AppStartUpHotfixGame : AppStartUpBase, IHotfixBridge
         // 启动定时器
         GlobalTimer.Start();
         await ComponentRegister.ActiveGlobalComponents();
+        var discoveryCenterComponentAgent = await ActorManager.GetComponentAgent<DiscoveryCenterComponentAgent>();
+        if (discoveryCenterComponentAgent.IsNotNull())
+        {
+            discoveryCenterComponentAgent.SetAppStartUp(this);
+        }
+
         return true;
     }
 
