@@ -30,11 +30,12 @@
 // ==========================================================================================
 
 
-
 using GameFrameX.Apps.Common.Session;
 using GameFrameX.Apps.Player.Player.Component;
 using GameFrameX.Apps.Player.Player.Entity;
+using GameFrameX.Hotfix.Logic.DiscoveryCenter;
 using GameFrameX.Hotfix.Logic.Server;
+using GameFrameX.Proto.BuiltIn;
 
 namespace GameFrameX.Hotfix.Logic.Player.Login;
 
@@ -45,6 +46,15 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         //移除在线玩家
         var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
         await serverComp.RemoveOnlineRole(ActorId);
+
+        var reqRegisterPlayer = new ReqDiscoverCenterPlayerOffline
+        {
+            PlayerId = ActorId,
+            ServerId = GlobalSettings.CurrentSetting.ServerId,
+            ServerInstanceId = GlobalSettings.CurrentSetting.ServerInstanceId,
+        };
+        var discoveryCenterComponentAgent = await ActorManager.GetComponentAgent<DiscoveryCenterComponentAgent>();
+        discoveryCenterComponentAgent.SendToDiscoveryCenter(reqRegisterPlayer);
         //下线后会被自动回收
         SetAutoRecycle(true);
         QuartzTimer.Remove(ScheduleIdSet);
@@ -85,5 +95,14 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         //加入在线玩家
         var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
         await serverComp.AddOnlineRole(ActorId);
+
+        var reqRegisterPlayer = new ReqDiscoverCenterPlayerOnline()
+        {
+            PlayerId = ActorId,
+            ServerId = GlobalSettings.CurrentSetting.ServerId,
+            ServerInstanceId = GlobalSettings.CurrentSetting.ServerInstanceId,
+        };
+        var discoveryCenterComponentAgent = await ActorManager.GetComponentAgent<DiscoveryCenterComponentAgent>();
+        discoveryCenterComponentAgent.SendToDiscoveryCenter(reqRegisterPlayer);
     }
 }
