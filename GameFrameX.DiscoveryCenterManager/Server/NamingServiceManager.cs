@@ -45,12 +45,12 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
     /// <summary>
     /// 服务器添加的时候触发的回调
     /// </summary>
-    private Action<IServiceInfo> _onServerAdd;
+    private Action<IServiceInfo> _onAdd;
 
     /// <summary>
     /// 服务器移除的时候触发的回调
     /// </summary>
-    private Action<IServiceInfo> _onServerRemove;
+    private Action<IServiceInfo> _onRemove;
 
     /// <summary>
     /// 服务器节点的id 为自身的serverId
@@ -60,12 +60,12 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
     /// <summary>
     /// 设置服务器变更的回调
     /// </summary>
-    /// <param name="onServerAdd"></param>
-    /// <param name="onServerRemove"></param>
-    public void SetServerChangeCallback(Action<IServiceInfo> onServerAdd, Action<IServiceInfo> onServerRemove)
+    /// <param name="onAdd"></param>
+    /// <param name="onRemove"></param>
+    public void SetServerChangeCallback(Action<IServiceInfo> onAdd, Action<IServiceInfo> onRemove)
     {
-        _onServerAdd = onServerAdd;
-        _onServerRemove = onServerRemove;
+        _onAdd = onAdd;
+        _onRemove = onRemove;
     }
 
     /// <summary>
@@ -90,7 +90,7 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
         {
             foreach (var serviceInfo in value)
             {
-                _onServerRemove?.Invoke(serviceInfo);
+                _onRemove?.Invoke(serviceInfo);
             }
         }
 
