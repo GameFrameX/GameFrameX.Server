@@ -360,26 +360,6 @@ public sealed class AppSetting
     public ushort DiscoveryCenterPort { get; set; }
 
     /// <summary>
-    /// 数据库服务连接地址
-    /// </summary>
-    public string DBIp { get; set; }
-
-    /// <summary>
-    /// 数据库服务连接端口
-    /// </summary>
-    public ushort DBPort { get; set; }
-
-    /// <summary>
-    /// SDK类型
-    /// </summary>
-    public int SDKType { get; set; }
-
-    /// <summary>
-    /// 应用性能监控端口
-    /// </summary>
-    public ushort APMPort { get; set; }
-
-    /// <summary>
     /// 最大客户端数量
     /// </summary>
     public int MaxClientCount { get; set; } = 3000;

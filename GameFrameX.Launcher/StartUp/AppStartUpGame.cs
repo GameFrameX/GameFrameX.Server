@@ -98,7 +98,7 @@ internal sealed class AppStartUpGame : AppStartUpBase
                 ServerId = 9000,
                 ServerType = ServerType.Game,
                 InnerPort = 29100,
-                APMPort = 29090,
+                MetricsPort = 29090,
                 HttpPort = 28080,
                 WsPort = 29110,
                 MinModuleId = 10,
