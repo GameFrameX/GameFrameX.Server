@@ -132,6 +132,22 @@ public static class GameApp
             }
             
             LogOptions.Default.LogType = logTypeParts.Count > 0 ? string.Join("_", logTypeParts) : null;
+            if (launcherOptions.TagName.IsNotNullOrWhiteSpace())
+            {
+                LogOptions.Default.LogTagName = launcherOptions.TagName;
+            }
+            else if (launcherOptions.Note.IsNotNullOrWhiteSpace())
+            {
+                LogOptions.Default.LogTagName = launcherOptions.Note;
+            }
+            else if (launcherOptions.Label.IsNotNullOrWhiteSpace())
+            {
+                LogOptions.Default.LogTagName = launcherOptions.Label;
+            }
+            else if (launcherOptions.Description.IsNotNullOrWhiteSpace())
+            {
+                LogOptions.Default.LogTagName = launcherOptions.Description;
+            }
         }
 
         logConfiguration?.Invoke(LogOptions.Default);
