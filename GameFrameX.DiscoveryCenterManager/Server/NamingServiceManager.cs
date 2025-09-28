@@ -35,7 +35,7 @@ using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Setting;
 
-namespace GameFrameX.ServerManager;
+namespace GameFrameX.DiscoveryCenterManager.Server;
 
 /// <summary>
 /// 服务器管理

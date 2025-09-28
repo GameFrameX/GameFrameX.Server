@@ -31,7 +31,8 @@
 
 
 
-using GameFrameX.ServerManager;
+using GameFrameX.DiscoveryCenterManager;
+using GameFrameX.DiscoveryCenterManager.Server;
 
 namespace GameFrameX.Hotfix.Logic.Http.DiscoveryCenter;
 

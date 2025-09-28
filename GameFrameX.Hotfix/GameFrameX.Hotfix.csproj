@@ -25,7 +25,7 @@
         <ProjectReference Include="..\GameFrameX.Config\GameFrameX.Config.csproj" />
         <ProjectReference Include="..\GameFrameX.Core\GameFrameX.Core.csproj" />
         <ProjectReference Include="..\GameFrameX.NetWork.HTTP\GameFrameX.NetWork.HTTP.csproj" />
-        <ProjectReference Include="..\GameFrameX.ServerManager\GameFrameX.ServerManager.csproj" />
+        <ProjectReference Include="..\GameFrameX.DiscoveryCenterManager\GameFrameX.DiscoveryCenterManager.csproj" />
         <ProjectReference Include="..\GameFrameX.StartUp\GameFrameX.StartUp.csproj" />
         <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
         <ProjectReference Include="..\GameFrameX.CodeGenerator\GameFrameX.CodeGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />

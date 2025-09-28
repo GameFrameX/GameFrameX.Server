@@ -115,4 +115,9 @@ public enum MessageOperationType : byte
     /// 请求链接服务器信息
     /// </summary>
     RequestConnectServer,
+
+    /// <summary>
+    /// 玩家注册
+    /// </summary>
+    PlayerRegister,
 }

@@ -29,50 +29,86 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
-namespace GameFrameX.ServerManager;
+using System.Text.Json.Serialization;
+using GameFrameX.Foundation.Json;
+using GameFrameX.Utility.Setting;
+
+namespace GameFrameX.DiscoveryCenterManager.Server;
 
 /// <summary>
-/// 服务器状态
+/// 游戏服务器信息
 /// </summary>
-public enum ServiceStatus
+public sealed class GameServiceInfo : IServiceInfo
 {
     /// <summary>
-    /// 未知
+    /// 构造游戏服务器信息
     /// </summary>
-    Unknown,
+    /// <param name="type"></param>
+    /// <param name="session"></param>
+    /// <param name="sessionId"></param>
+    /// <param name="serverName"></param>
+    /// <param name="serverId"></param>
+    /// <param name="minModuleMessageId"></param>
+    /// <param name="maxModuleMessageId"></param>
+    public GameServiceInfo(ServerType type, object session, string sessionId, string serverName, long serverId, short minModuleMessageId, short maxModuleMessageId)
+    {
+        Type = type;
+        Session = session;
+        ServerName = serverName;
+        ServerId = serverId;
+        MinModuleMessageId = minModuleMessageId;
+        MaxModuleMessageId = maxModuleMessageId;
+        SessionId = sessionId;
+        StatusInfo = new ServiceStatusInfo();
+    }
 
     /// <summary>
-    /// 在线
+    /// 最大模块消息ID
     /// </summary>
-    Online,
+    public short MaxModuleMessageId { get; set; }
 
     /// <summary>
-    /// 重连中
+    /// 最小模块消息ID
     /// </summary>
-    Reconnecting,
+    public short MinModuleMessageId { get; }
 
     /// <summary>
-    /// 维护
+    /// 会话
     /// </summary>
-    Maintenance,
+    [JsonIgnore]
+    public object Session { get; }
 
     /// <summary>
-    /// 待命
+    /// 服务器状态
     /// </summary>
-    Standby,
+    public ServiceStatusInfo StatusInfo { get; set; }
 
     /// <summary>
-    /// 重启
+    /// 会话ID
     /// </summary>
-    Reboot,
+    public string SessionId { get; }
 
     /// <summary>
-    /// 备用
+    /// 服务器类型
     /// </summary>
-    Backup,
+    public ServerType Type { get; }
 
     /// <summary>
-    /// 离线
+    /// 服务器名称
     /// </summary>
-    Offline,
+    public string ServerName { get; }
+
+    /// <summary>
+    /// 服务器ID
+    /// </summary>
+    public long ServerId { get; }
+
+    /// <summary>
+    /// 转换为字符串
+    /// </summary>
+    /// <returns></returns>
+    public override string ToString()
+    {
+        return JsonHelper.SerializeFormat(this);
+    }
 }

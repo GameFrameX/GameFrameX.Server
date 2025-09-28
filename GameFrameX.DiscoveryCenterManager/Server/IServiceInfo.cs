@@ -29,40 +29,32 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using GameFrameX.Utility.Setting;
 
-
-using GameFrameX.DiscoveryCenterManager;
-using GameFrameX.DiscoveryCenterManager.Server;
-
-namespace GameFrameX.Hotfix.Logic.Http.DiscoveryCenter;
+namespace GameFrameX.DiscoveryCenterManager.Server;
 
 /// <summary>
-/// 测试
-/// http://localhost:20001/game/api/test
+/// 服务信息
 /// </summary>
-[HttpMessageMapping(typeof(ServerListHttpHandler))]
-[HttpMessageResponse(typeof(ServerListResponse))]
-[Description("测试通讯接口。没有实际用途")]
-public sealed class ServerListHttpHandler : BaseHttpHandler
+public interface IServiceInfo
 {
     /// <summary>
+    /// 会话ID
     /// </summary>
-    /// <param name="ip"></param>
-    /// <param name="url"></param>
-    /// <param name="parameters"></param>
-    /// <returns></returns>
-    public override Task<string> Action(string ip, string url, Dictionary<string, object> parameters)
-    {
-        var serviceInfos = NamingServiceManager.Instance.GetOuterNodes();
-        var response = new ServerListResponse
-        {
-            Message = serviceInfos,
-        };
-        return Task.FromResult(HttpJsonResult.SuccessString(response));
-    }
-}
+    string SessionId { get; }
 
-public sealed class ServerListResponse : HttpMessageResponseBase
-{
-    [Description("返回信息")] public List<IServiceInfo> Message { get; set; }
+    /// <summary>
+    /// 服务器类型
+    /// </summary>
+    ServerType Type { get; }
+
+    /// <summary>
+    /// 服务器名称
+    /// </summary>
+    string ServerName { get; }
+
+    /// <summary>
+    /// 服务器ID
+    /// </summary>
+    long ServerId { get; }
 }

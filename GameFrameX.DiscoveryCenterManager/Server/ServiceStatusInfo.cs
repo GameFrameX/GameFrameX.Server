@@ -29,32 +29,48 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
-using GameFrameX.Utility.Setting;
+using GameFrameX.Foundation.Json;
 
-namespace GameFrameX.ServerManager;
+namespace GameFrameX.DiscoveryCenterManager.Server;
 
 /// <summary>
-/// 服务信息
+/// 服务器状态信息
+/// 默认状态为在线
+/// 默认承载为5000
 /// </summary>
-public interface IServiceInfo
+public sealed class ServiceStatusInfo
 {
     /// <summary>
-    /// 会话ID
+    /// 构造
     /// </summary>
-    string SessionId { get; }
+    public ServiceStatusInfo()
+    {
+        Status = ServiceStatus.Online;
+        MaxLoad = 5000;
+        CurrentLoad = 0;
+    }
 
     /// <summary>
-    /// 服务器类型
+    /// 服务器状态
     /// </summary>
-    ServerType Type { get; }
+    public ServiceStatus Status { get; set; }
 
     /// <summary>
-    /// 服务器名称
+    /// 承载上限
     /// </summary>
-    string ServerName { get; }
+    public int MaxLoad { get; set; }
 
     /// <summary>
-    /// 服务器ID
+    /// 当前承载
     /// </summary>
-    long ServerId { get; }
+    public int CurrentLoad { get; set; }
+
+    /// <summary>
+    /// 转换为字符串
+    /// </summary>
+    /// <returns></returns>
+    public override string ToString()
+    {
+        return JsonHelper.SerializeFormat(this);
+    }
 }

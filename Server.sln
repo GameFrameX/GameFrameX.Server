@@ -36,7 +36,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Tests", "Tests\G
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.ProtoBuf.Net", "GameFrameX.ProtoBuf.Net\GameFrameX.ProtoBuf.Net.csproj", "{E487194B-7F38-43B2-8942-E55AD479F5DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.ServerManager", "GameFrameX.ServerManager\GameFrameX.ServerManager.csproj", "{0C904924-63CD-4154-B776-DD0C4ED7F158}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DiscoveryCenterManager", "GameFrameX.DiscoveryCenterManager\GameFrameX.DiscoveryCenterManager.csproj", "{0C904924-63CD-4154-B776-DD0C4ED7F158}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Client", "GameFrameX.Client\GameFrameX.Client.csproj", "{5A03B53C-7C8E-429F-BC51-94E09E5FFE8C}"
 EndProject
