@@ -31,6 +31,7 @@
 
 using System.Collections.Concurrent;
 using GameFrameX.Foundation.Extensions;
+using GameFrameX.Foundation.Json;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Setting;
@@ -251,8 +252,8 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
         }
 
         list.Add(node);
-        _onServerAdd?.Invoke(node);
-        LogHelper.Info($"新的网络节点总数：{GetNodeCount()} 新的节点信息:\n {node}");
+        _onAdd?.Invoke(node);
+        LogHelper.Info($"新的网络节点总数：{GetNodeCount()} 新的节点信息: {JsonHelper.Serialize(node)}");
     }
 
     /// <summary>
