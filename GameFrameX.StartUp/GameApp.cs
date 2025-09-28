@@ -189,62 +189,6 @@ public static class GameApp
         await Task.WhenAll(AppStartUpTasks);
     }
 
-    private static void LauncherOptionsValidate(LauncherOptions options)
-    {
-        if (!options.ServerType.IsNullOrEmpty() && Enum.TryParse(options.ServerType, out ServerType serverTypeValue))
-        {
-            options.CheckServerId();
-
-            switch (serverTypeValue)
-            {
-                case ServerType.DataBase:
-                {
-                    options.CheckDataBaseUrl();
-
-                    options.CheckDataBaseName();
-
-                    options.CheckOuterIp();
-
-                    options.CheckOuterPort();
-                }
-                    break;
-                case ServerType.Gateway:
-                {
-                    options.CheckOuterIp();
-                    options.CheckOuterPort();
-                }
-                    break;
-                case ServerType.Router:
-                {
-                    options.CheckOuterIp();
-                    options.CheckOuterPort();
-                    options.CheckWsPort();
-                    options.CheckDiscoveryCenterIp();
-                    options.CheckDiscoveryCenterPort();
-                }
-                    break;
-                case ServerType.DiscoveryCenter:
-                {
-                    options.CheckOuterIp();
-                    options.CheckOuterPort();
-                }
-                    break;
-                case ServerType.Game:
-                {
-                    // options.CheckMinModuleId();
-                    // options.CheckMaxModuleId();
-                    // options.CheckOuterIp();
-                    // options.CheckOuterPort();
-                    // options.CheckDiscoveryCenterIp();
-                    // options.CheckDiscoveryCenterPort();
-                    options.CheckDataBaseUrl();
-                    options.CheckDataBaseName();
-                }
-                    break;
-            }
-        }
-    }
-
     private static void Launcher(string[] args, KeyValuePair<Type, StartUpTagAttribute> keyValuePair, AppSetting appSetting = null)
     {
         var task = Start(args, keyValuePair.Key, keyValuePair.Value.ServerType, appSetting);
