@@ -199,16 +199,16 @@ public sealed class LauncherOptions
     public int LogRetainedFileCountLimit { get; set; } = 31;
 
     /// <summary>
-    /// 服务器ID
+    /// 服务器ID-如果需要合服，请确保不同服的ServerId一样。不然合服后数据会无法处理用户数据
     /// </summary>
-    [Option(nameof(ServerId), Description = "服务器ID")]
+    [Option(nameof(ServerId), Description = "服务器ID-如果需要合服，请确保不同服的ServerId一样。不然合服后数据会无法处理用户数据")]
     [GrafanaLokiLabelTag]
     public int ServerId { get; set; }
 
     /// <summary>
-    /// 服务器实例ID
+    /// 服务器实例ID-用于区分同一服务器的不同实例,默认值为0,表示不区分
     /// </summary>
-    [Option(nameof(ServerInstanceId), Description = "服务器实例ID")]
+    [Option(nameof(ServerInstanceId), Description = "服务器实例ID-用于区分同一服务器的不同实例")]
     [GrafanaLokiLabelTag]
     public long ServerInstanceId { get; set; }
 
@@ -386,7 +386,7 @@ public sealed class LauncherOptions
     public ushort DiscoveryCenterPort { get; set; }
 
     /// <summary>
-    /// 数据库服务连接地址
+    /// 标签名称-用于区分不同环境的服务器,没有实际用途,只是方便运维管理
     /// </summary>
     [Option(nameof(DBIp), Description = "数据库服务连接地址")]
     public string DBIp { get; set; }
@@ -401,30 +401,31 @@ public sealed class LauncherOptions
     /// 标签名称
     /// </summary>
     [Option(nameof(TagName), Description = "标签名称")]
+    [Option(nameof(TagName), Description = "标签名称-用于区分不同环境的服务器,没有实际用途,只是方便运维管理")]
     [DefaultValue("")]
     [GrafanaLokiLabelTag]
     public string TagName { get; set; }
 
     /// <summary>
-    /// 描述信息
+    /// 描述信息-用于描述该服务器的用途,没有实际用途,只是方便运维管理
     /// </summary>
-    [Option(nameof(Description), Description = "描述信息")]
+    [Option(nameof(Description), Description = "描述信息-用于描述该服务器的用途,没有实际用途,只是方便运维管理")]
     [DefaultValue("")]
     [GrafanaLokiLabelTag]
     public string Description { get; set; }
 
     /// <summary>
-    /// 备注信息
+    /// 备注信息-用于描述该服务器的备注信息,没有实际用途,只是方便运维管理
     /// </summary>
-    [Option(nameof(Note), Description = "备注信息")]
+    [Option(nameof(Note), Description = "备注信息-用于描述该服务器的备注信息,没有实际用途,只是方便运维管理")]
     [DefaultValue("")]
     [GrafanaLokiLabelTag]
     public string Note { get; set; }
 
     /// <summary>
-    /// 标签信息
+    /// 标签信息-用于描述该服务器的标签信息,没有实际用途,只是方便运维管理
     /// </summary>
-    [Option(nameof(Label), Description = "标签信息")]
+    [Option(nameof(Label), Description = "标签信息-用于描述该服务器的标签信息,没有实际用途,只是方便运维管理")]
     [DefaultValue("")]
     [GrafanaLokiLabelTag]
     public string Label { get; set; }
