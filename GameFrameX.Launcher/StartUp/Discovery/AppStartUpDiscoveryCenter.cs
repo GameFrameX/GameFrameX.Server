@@ -95,7 +95,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
             if (Setting.IsDebugSendHeartBeat || messageObjectHeader.OperationType != MessageOperationType.HeartBeat)
             {
                 var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
-                var toServerType = serverInfo != null ? serverInfo.ToString() : ServerType.ToString();
+                var toServerType = serverInfo != null ? serverInfo.Type.ToString() : ServerType.ToString();
                 LogHelper.Info($"---发送[{ServerType} To {toServerType}]  {innerNetworkMessage.ToFormatMessageString()}");
             }
         }
@@ -113,7 +113,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                 if (Setting.IsDebugReceiveHeartBeat || messageObject.Header.OperationType != MessageOperationType.HeartBeat)
             {
                     var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
-                    var from = serverInfo != null ? serverInfo.ToString() : ServerType.ToString();
+                    var from = serverInfo != null ? serverInfo.Type.ToString() : ServerType.ToString();
                     LogHelper.Debug($"---收到[{from} To {ServerType}]  {message.ToFormatMessageString()}");
             }
         }
