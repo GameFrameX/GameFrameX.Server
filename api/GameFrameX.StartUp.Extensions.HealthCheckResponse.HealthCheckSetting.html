@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class HealthCheckResponse.HealthCheckSetting | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class HealthCheckResponse.HealthCheckSetting | GameFrameX.Server ">
+      
+      <meta name="description" content="健康检查设置信息类">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0-dev1/apiSpec/new?filename=GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting.md&amp;value=---%0Auid%3A%20GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting">
+
+
+
+  <h1 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting" class="text-break">
+Class HealthCheckResponse.HealthCheckSetting  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L236"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.StartUp.html">StartUp</a>.<a class="xref" href="GameFrameX.StartUp.Extensions.html">Extensions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.StartUp.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>健康检查设置信息类</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class HealthCheckResponse.HealthCheckSetting</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">HealthCheckResponse.HealthCheckSetting</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>该类用于在健康检查响应中携带服务器的基本配置信息，
+便于运维人员通过健康检查接口快速了解服务器的运行状态和配置参数。
+包含服务器标识、类型、时间等关键信息。</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Description_" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Description*"></a>
+
+  <h3 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Description" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Description">
+  Description
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L320"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置描述信息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Description { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>服务器的详细描述信息</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Description_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>描述信息提供服务器的详细说明，包括功能介绍、版本信息等。
+主要用于文档记录和运维人员了解服务器的具体用途。</p>
+</div>
+
+
+
+
+  <a id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Label_" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Label*"></a>
+
+  <h3 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Label" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Label">
+  Label
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L341"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置标签信息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Label { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>服务器的标签信息</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Label_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>标签信息用于对服务器进行分类和过滤，支持多标签管理。
+可以用于服务发现、监控分组、资源管理等场景。
+标签通常以逗号分隔的字符串形式存储。</p>
+</div>
+
+
+
+
+  <a id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Language_" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Language*"></a>
+
+  <h3 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Language" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Language">
+  Language
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L310"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置语言设置</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Language { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>服务器使用的语言代码</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Language_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>语言设置用于国际化和本地化支持，影响服务器返回的消息和日志的语言。
+通常使用标准的语言代码，如&quot;zh-CN&quot;、&quot;en-US&quot;等。</p>
+</div>
+
+
+
+
+  <a id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_LaunchTime_" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.LaunchTime*"></a>
+
+  <h3 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_LaunchTime" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.LaunchTime">
+  LaunchTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L246"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置应用程序启动时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime LaunchTime { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd><p>应用程序的启动时间戳</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_LaunchTime_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>用于计算服务器运行时长，便于监控服务器的稳定性和运行状态。
+该时间通常在应用程序初始化时设置，不会在运行期间改变。</p>
+</div>
+
+
+
+
+  <a id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Note_" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Note*"></a>
+
+  <h3 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Note" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Note">
+  Note
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L330"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置备注信息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Note { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>服务器的备注信息</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Note_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>备注信息用于记录服务器的额外说明、注意事项或临时信息。
+可以包含运维相关的提醒、配置说明或其他重要信息。</p>
+</div>
+
+
+
+
+  <a id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerId_" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerId*"></a>
+
+  <h3 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerId" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerId">
+  ServerId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L268"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置服务器ID</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ServerId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>服务器的唯一标识符</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerId_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>服务器ID用于在集群环境中唯一标识一个服务器实例。
+通常在配置文件中指定，用于服务发现、负载均衡和消息路由等场景。</p>
+</div>
+
+
+
+
+  <a id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerInstanceId_" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerInstanceId*"></a>
+
+  <h3 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerInstanceId" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerInstanceId">
+  ServerInstanceId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L279"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置服务器实例ID</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long ServerInstanceId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>服务器实例的唯一标识符</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerInstanceId_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>服务器实例ID是一个长整型的唯一标识符，通常在服务器启动时生成。
+用于区分同一服务器类型的不同实例，在分布式环境中确保实例的唯一性。
+与ServerId不同，实例ID通常是动态生成的。</p>
+</div>
+
+
+
+
+  <a id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerName_" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerName*"></a>
+
+  <h3 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerName" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerName">
+  ServerName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L290"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置服务器名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ServerName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>服务器的显示名称</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerName_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>服务器名称通常基于服务器类型自动生成，也可以手动指定。
+用于日志记录、监控界面显示和调试信息输出等场景。
+例如：&quot;Game&quot;、&quot;Gateway&quot;、&quot;Account&quot;等。</p>
+</div>
+
+
+
+
+  <a id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerType_" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerType*"></a>
+
+  <h3 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerType" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerType">
+  ServerType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L258"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置服务器类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ServerType ServerType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.Utility.Setting.ServerType.html">ServerType</a></dt>
+    <dd><p>当前服务器的类型，如游戏服、网关服、账号服等</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerType_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>服务器类型决定了服务器的功能和职责范围。
+支持的类型包括：Game（游戏服）、Gateway（网关服）、Account（账号服）、
+DiscoveryCenter（服务发现中心）、Login（登录服）等。</p>
+</div>
+
+
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerType">ServerType</a></div>
+    </dd>
+  </dl>
+
+
+  <a id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_TagName_" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.TagName*"></a>
+
+  <h3 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_TagName" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.TagName">
+  TagName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L300"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置标记名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string TagName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>服务器的标记名称</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_TagName_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>标记名称用于对服务器进行分类或标记，便于管理和识别。
+可以用于环境区分（如dev、test、prod）或功能标记等。</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L236" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

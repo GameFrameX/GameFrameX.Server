@@ -2112,104 +2112,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.ServerManager.GameServiceInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.ServerManager.GameServiceInfo.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.ServerManager.GameServiceInfo",
-      "Summary": "<p sourcefile=\"api/GameFrameX.ServerManager.GameServiceInfo.yml\" sourcestartlinenumber=\"1\">游戏服务器信息</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.ServerManager.IServiceInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.ServerManager.IServiceInfo.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.ServerManager.IServiceInfo",
-      "Summary": "<p sourcefile=\"api/GameFrameX.ServerManager.IServiceInfo.yml\" sourcestartlinenumber=\"1\">服务信息</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.ServerManager.NamingServiceManager.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.ServerManager.NamingServiceManager.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.ServerManager.NamingServiceManager",
-      "Summary": "<p sourcefile=\"api/GameFrameX.ServerManager.NamingServiceManager.yml\" sourcestartlinenumber=\"1\">服务器管理</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.ServerManager.ServiceInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.ServerManager.ServiceInfo.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.ServerManager.ServiceInfo",
-      "Summary": "<p sourcefile=\"api/GameFrameX.ServerManager.ServiceInfo.yml\" sourcestartlinenumber=\"1\">服务器信息</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.ServerManager.ServiceStatus.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.ServerManager.ServiceStatus.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.ServerManager.ServiceStatus",
-      "Summary": "<p sourcefile=\"api/GameFrameX.ServerManager.ServiceStatus.yml\" sourcestartlinenumber=\"1\">服务器状态</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.ServerManager.ServiceStatusInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.ServerManager.ServiceStatusInfo.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.ServerManager.ServiceStatusInfo",
-      "Summary": "<p sourcefile=\"api/GameFrameX.ServerManager.ServiceStatusInfo.yml\" sourcestartlinenumber=\"1\">服务器状态信息\n默认状态为在线\n默认承载为5000</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.ServerManager.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.ServerManager.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.ServerManager",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.StartUp.Abstractions.IAppStartUp.yml",
       "output": {
         ".html": {
@@ -2263,6 +2165,48 @@
       "IsMRef": true,
       "Title": "GameFrameX.StartUp.AppStartUpBase",
       "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.AppStartUpBase.yml\" sourcestartlinenumber=\"1\">程序启动器基类</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem",
+      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.yml\" sourcestartlinenumber=\"1\">健康检查项目信息</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting",
+      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.yml\" sourcestartlinenumber=\"1\">健康检查设置信息类</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.StartUp.Extensions.HealthCheckResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.StartUp.Extensions.HealthCheckResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.StartUp.Extensions.HealthCheckResponse",
+      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.HealthCheckResponse.yml\" sourcestartlinenumber=\"1\">健康检查响应信息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2842,11 +2786,11 @@
       "type": "Toc",
       "source_relative_path": "api/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "api/toc.json"
-        },
         ".html": {
           "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
         }
       },
       "version": ""
@@ -2885,11 +2829,11 @@
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "toc.json"
-        },
         ".html": {
           "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
         }
       },
       "version": ""
