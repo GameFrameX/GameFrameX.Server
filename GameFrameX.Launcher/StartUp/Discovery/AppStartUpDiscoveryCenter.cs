@@ -112,17 +112,15 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
             {
                 // 当需要打印心跳，或当前非心跳消息时才输出日志
                 if (Setting.IsDebugReceiveHeartBeat || messageObject.Header.OperationType != MessageOperationType.HeartBeat)
-            {
+                {
                     var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
                     var from = serverInfo != null ? serverInfo.Type.ToString() : ServerType.ToString();
                     LogHelper.Debug($"---收到[{from} To {ServerType}]  {message.ToFormatMessageString()}");
+                }
             }
-        }
 
             switch (messageObject.Header.OperationType)
             {
-                case MessageOperationType.None:
-                    break;
                 case MessageOperationType.HeartBeat:
                 {
                     // 心跳响应
@@ -135,10 +133,6 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     SendMessage(session, response);
                     return ValueTask.CompletedTask;
                 }
-                case MessageOperationType.Cache:
-                    break;
-                case MessageOperationType.Database:
-                    break;
                 case MessageOperationType.Game:
                 {
                     var reqConnectServer = (ReqConnectServer)messageObject.DeserializeMessageObject();
@@ -165,24 +159,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     }
                 }
                     break;
-                case MessageOperationType.GameManager:
-                    break;
-                case MessageOperationType.Forbid:
-                    break;
-                case MessageOperationType.Reboot:
-                    break;
-                case MessageOperationType.Reconnect:
-                    break;
-                case MessageOperationType.Reload:
-                    break;
-                case MessageOperationType.Exit:
-                    break;
-                case MessageOperationType.Kick:
-                    break;
-                case MessageOperationType.Notify:
-                    break;
-                case MessageOperationType.Forward:
-                    break;
+
                 case MessageOperationType.PlayerRegisterOnLine:
                 {
                     var reqRegisterPlayer = (ReqDiscoverCenterPlayerOnline)messageObject.DeserializeMessageObject();
@@ -194,7 +171,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                 case MessageOperationType.PlayerRegisterOffLine:
                 {
                     var reqRegisterPlayer = (ReqDiscoverCenterPlayerOffline)messageObject.DeserializeMessageObject();
-                    // 注册玩家
+                    // 注销玩家
                     NamingPlayerManager.Instance.TryRemove(reqRegisterPlayer.PlayerId, out var playerInfo);
                     LogHelper.Info($"注销玩家成功：{reqRegisterPlayer.PlayerId}  {reqRegisterPlayer}");
                     return ValueTask.CompletedTask;
@@ -234,8 +211,6 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     SendMessage(session, respConnectServer);
                 }
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
         }
 
