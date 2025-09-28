@@ -22,6 +22,7 @@ COPY ["GameFrameX.Config/GameFrameX.Config.csproj", "GameFrameX.Config/"]
 COPY ["GameFrameX.Core.Config/GameFrameX.Core.Config.csproj", "GameFrameX.Core.Config/"]
 COPY ["GameFrameX.NetWork.Message/GameFrameX.NetWork.Message.csproj", "GameFrameX.NetWork.Message/"]
 COPY ["GameFrameX.Proto.BuiltIn/GameFrameX.Proto.BuiltIn.csproj", "GameFrameX.Proto.BuiltIn/"]
+COPY ["GameFrameX.DiscoveryCenterManager/GameFrameX.DiscoveryCenterManager.csproj", "GameFrameX.DiscoveryCenterManager/"]
 COPY ["GameFrameX.StartUp/GameFrameX.StartUp.csproj", "GameFrameX.StartUp/"]
 COPY ["GameFrameX.Hotfix/GameFrameX.Hotfix.csproj", "GameFrameX.Hotfix/"]
 
