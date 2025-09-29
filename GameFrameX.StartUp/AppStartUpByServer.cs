@@ -244,34 +244,41 @@ public abstract partial class AppStartUpBase
         }
 
         // 检查WebSocket端口是否可用
-        if (Setting.IsEnableWebSocket && Setting.WsPort is > 0 and < ushort.MaxValue && NetHelper.PortIsAvailable(Setting.WsPort))
+        if (Setting.IsEnableWebSocket)
         {
-            LogHelper.InfoConsole("启动 [WebSocket] 服务器...");
-
-            // 配置并启动WebSocket服务器
-            multipleServerHostBuilder.AddWebSocketServer(builder =>
+            if (Setting.WsPort is > 0 and < ushort.MaxValue && NetHelper.PortIsAvailable(Setting.WsPort))
             {
-                builder
-                    .UseWebSocketMessageHandler(WebSocketMessageHandler)
-                    .UseSessionHandler(OnConnected, OnDisconnected)
-                    .ConfigureServices((context, serviceCollection) =>
-                    {
-                        serviceCollection.Configure<ServerOptions>(options =>
+                LogHelper.InfoConsole("启动 [WebSocket] 服务器...");
+
+                // 配置并启动WebSocket服务器
+                multipleServerHostBuilder.AddWebSocketServer(builder =>
+                {
+                    builder
+                        .UseWebSocketMessageHandler(WebSocketMessageHandler)
+                        .UseSessionHandler(OnConnected, OnDisconnected)
+                        .ConfigureServices((context, serviceCollection) =>
                         {
-                            var listenOptions = new ListenOptions()
+                            serviceCollection.Configure<ServerOptions>(options =>
                             {
-                                Ip = "Any",
-                                Port = Setting.WsPort,
-                            };
-                            options.AddListener(listenOptions);
+                                var listenOptions = new ListenOptions()
+                                {
+                                    Ip = "Any",
+                                    Port = Setting.WsPort,
+                                };
+                                options.AddListener(listenOptions);
+                            });
                         });
-                    });
-            });
-            LogHelper.InfoConsole($"启动 [WebSocket] 服务器启动完成 - 类型: {ServerType}, 端口: {Setting.WsPort}");
+                });
+                LogHelper.InfoConsole($"启动 [WebSocket] 服务器启动完成 - 类型: {ServerType}, 端口: {Setting.WsPort}");
+            }
+            else
+            {
+                LogHelper.WarningConsole($"启动 [WebSocket] 服务器启动失败 - 类型: {ServerType}, 端口: {Setting.WsPort}, 原因: 端口无效或已被占用");
+            }
         }
         else
         {
-            LogHelper.WarningConsole($"启动 [WebSocket] 服务器启动失败 - 类型: {ServerType}, 端口: {Setting.WsPort}, 原因: 端口无效或已被占用");
+            LogHelper.InfoConsole($"启动 [WebSocket] 服务器启动失败 - 类型: {ServerType}, 端口: {Setting.WsPort}, 原因: 未启用WebSocket服务");
         }
 
         // await StartHttpServerAsync(hostBuilder,baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
