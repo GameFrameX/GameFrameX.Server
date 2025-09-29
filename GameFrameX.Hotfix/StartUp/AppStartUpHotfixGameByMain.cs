@@ -130,7 +130,14 @@ internal partial class AppStartUpHotfixGame
             }
 
             // 执行消息分发处理
-            await InvokeMessageHandler(handler, outerNetworkMessage.DeserializeMessageObject(), netWorkChannel);
+            try
+            {
+                await InvokeMessageHandler(handler, outerNetworkMessage.DeserializeMessageObject(), netWorkChannel);
+            }
+            catch (Exception exception)
+            {
+                LogHelper.Fatal(exception);
+            }
         }
     }
 
