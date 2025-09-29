@@ -170,6 +170,10 @@ public static class GlobalConst
 
     #endregion
 
+    /// <summary>
+    /// 服务发现中心服务名称
+    /// </summary>
+    public const string DiscoveryCenterName = "DiscoveryCenter";
 
     #region HTTP
 
