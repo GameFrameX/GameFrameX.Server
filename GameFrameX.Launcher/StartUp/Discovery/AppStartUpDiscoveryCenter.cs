@@ -150,10 +150,10 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                         {
                             UniqueId = reqConnectServer.UniqueId,
                             ServerType = serverInfo.Type,
-                            ServerName = serverInfo.ServerName,
+                            ServerName = serverInfo.Name,
                             ServerId = serverInfo.ServerId,
-                            TargetIp = serverInfo.OuterIp,
-                            TargetPort = serverInfo.OuterPort,
+                            TargetIp = serverInfo.ExternalHost,
+                            TargetPort = serverInfo.ExternalPort,
                         };
                         SendMessage(session, respConnectServer);
                     }
@@ -202,10 +202,10 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     {
                         var serverInfo = (ServiceInfo)serverList.Random();
                         respConnectServer.ServerType = serverInfo.Type;
-                        respConnectServer.ServerName = serverInfo.ServerName;
+                        respConnectServer.ServerName = serverInfo.Name;
                         respConnectServer.ServerId = serverInfo.ServerId;
-                        respConnectServer.TargetIp = serverInfo.OuterIp;
-                        respConnectServer.TargetPort = serverInfo.OuterPort;
+                        respConnectServer.TargetIp = serverInfo.ExternalHost;
+                        respConnectServer.TargetPort = serverInfo.ExternalPort;
                     }
 
                     SendMessage(session, respConnectServer);

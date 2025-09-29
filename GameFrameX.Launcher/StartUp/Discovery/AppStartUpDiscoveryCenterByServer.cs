@@ -56,7 +56,7 @@ internal partial class AppStartUpDiscoveryCenter
         var respServerOnlineServer = new RespServerOfflineServer
         {
             ServerType = serverInfo.Type,
-            ServerName = serverInfo.ServerName,
+            ServerName = serverInfo.Name,
             ServerId = serverInfo.ServerId,
         };
         MessageProtoHelper.SetMessageId(respServerOnlineServer);
@@ -81,7 +81,7 @@ internal partial class AppStartUpDiscoveryCenter
         var respServerOnlineServer = new RespServerOnlineServer
         {
             ServerType = serverInfo.Type,
-            ServerName = serverInfo.ServerName,
+            ServerName = serverInfo.Name,
             ServerId = serverInfo.ServerId,
         };
         MessageProtoHelper.SetMessageId(respServerOnlineServer);
