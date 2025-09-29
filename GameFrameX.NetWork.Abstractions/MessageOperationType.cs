@@ -44,85 +44,60 @@ public enum MessageOperationType : byte
     /// <summary>
     /// 心跳
     /// </summary>
-    HeartBeat,
+    HeartBeat = 1,
 
     /// <summary>
-    /// 缓存查询
+    /// 游戏逻辑相关消息
     /// </summary>
-    Cache,
+    Game = 4,
 
     /// <summary>
-    /// 数据库查询
+    /// 服务注册，用于服务实例向中心注册自身信息，声明可提供的服务能力
     /// </summary>
-    Database,
+    ServiceRegister = 16,
 
     /// <summary>
-    /// 游戏
+    /// 服务注销，用于服务实例从中心移除自身注册信息，停止服务宣告
     /// </summary>
-    Game,
+    ServiceUnRegister = 17,
 
     /// <summary>
-    /// 游戏管理
+    /// 服务上线通知，用于服务实例成功启动后向中心广播自身已就绪，可接受调用
     /// </summary>
-    GameManager,
+    NotifyServiceOnLine = 18,
 
     /// <summary>
-    /// 禁止
+    /// 服务下线通知，用于服务实例即将停止时向中心广播自身将离线，不再接受调用
     /// </summary>
-    Forbid,
+    NotifyServiceOffLine = 19,
 
     /// <summary>
-    /// 重启
+    /// 请求连接服务器信息，客户端向中心获取目标游戏服务器或网关的接入地址与凭证
     /// </summary>
-    Reboot,
+    RequestConnectServer = 20,
 
     /// <summary>
-    /// 重连
+    /// 玩家注册，用于玩家会话首次建立时在中心记录玩家与具体游戏服务器的映射关系
     /// </summary>
-    Reconnect,
+    PlayerRegister = 32,
 
     /// <summary>
-    /// 重载
+    /// 玩家注销，用于玩家会话结束时在中心移除玩家与游戏服务器的映射关系
     /// </summary>
-    Reload,
+    PlayerUnRegister = 33,
 
     /// <summary>
-    /// 退出
+    /// 玩家上线通知，玩家会话成功建立后向相关服务广播玩家已登录，可推送游戏数据
     /// </summary>
-    Exit,
+    NotifyPlayerOnLine = 34,
 
     /// <summary>
-    /// 踢人
+    /// 玩家下线通知，玩家会话断开时向相关服务广播玩家已离线，需清理玩家状态与数据
     /// </summary>
-    Kick,
+    NotifyPlayerOffLine = 35,
 
     /// <summary>
-    /// 通知
+    /// 最大值，保留位
     /// </summary>
-    Notify,
-
-    /// <summary>
-    /// 转发
-    /// </summary>
-    Forward,
-
-    /// <summary>
-    /// 注册
-    /// </summary>
-    Register,
-
-    /// <summary>
-    /// 请求链接服务器信息
-    /// </summary>
-    RequestConnectServer,
-
-    /// <summary>
-    /// 玩家注册
-    /// </summary>
-    PlayerRegisterOnLine,
-
-    /// <summary>
-    /// 玩家注销
-    /// </summary>
-    PlayerRegisterOffLine,
+    Max = 64,
 }
