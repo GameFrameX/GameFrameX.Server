@@ -58,12 +58,23 @@ public abstract partial class AppStartUpBase
             OnError = GameAppClientOnError,
             OnHeartBeat = GameAppClientOnHeartBeat,
         };
-        var endPoint = new DnsEndPoint(Setting.DiscoveryCenterIp, Setting.DiscoveryCenterPort);
+        var endPoint = new DnsEndPoint(Setting.DiscoveryCenterHost, Setting.DiscoveryCenterPort);
+        GameAppClientOption option = new();
+        ConfigureGameAppClient(option);
         // 根据配置创建发现中心终结点并初始化客户端
-        _gameAppClient = new GameAppClient(gameAppClientEvent, endPoint);
+        _gameAppClient = new GameAppClient(gameAppClientEvent, endPoint, option);
 
         // 异步启动客户端，开始与发现中心建立连接
         await _gameAppClient.EntryAsync();
+    }
+
+    /// <summary>
+    /// 配置 GameAppClient 的可选参数，子类可重写此方法以自定义连接行为
+    /// </summary>
+    /// <param name="option">GameAppClient 的配置选项实例</param>
+    protected virtual void ConfigureGameAppClient(GameAppClientOption option)
+    {
+        // 默认不做任何配置，子类可根据需要重写此方法
     }
 
     /// <summary>

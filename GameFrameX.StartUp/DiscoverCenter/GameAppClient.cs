@@ -95,18 +95,16 @@ internal sealed class GameAppClient
     /// </summary>
     /// <param name="clientEvent">客户端事件回调结构体，包含连接、断开、消息等事件的处理委托</param>
     /// <param name="endPoint">服务器端点信息（IP和端口）</param>
-    /// <param name="heartBeatInterval">心跳包发送间隔（毫秒），默认5000</param>
-    /// <param name="connectDelay">连接尝试间隔（毫秒），默认5000</param>
-    /// <param name="retryDelay">重连延迟时间（毫秒），默认5000</param>
-    /// <param name="maxRetryCount">最大重连次数，-1表示无限重试</param>
-    public GameAppClient(GameAppClientEvent clientEvent, EndPoint endPoint, int heartBeatInterval = 5000, int connectDelay = 5000, int retryDelay = 5000, int maxRetryCount = -1)
+    /// <param name="option">配置信息</param>
+    public GameAppClient(GameAppClientEvent clientEvent, EndPoint endPoint, GameAppClientOption option)
     {
-        ConnectDelay = connectDelay;
+        ArgumentNullException.ThrowIfNull(option, nameof(option));
+        ConnectDelay = option.ConnectDelay;
         _mGameAppClientEvent = clientEvent;
         _serverHost = endPoint;
-        _heartBeatInterval = heartBeatInterval;
-        _retryDelay = retryDelay;
-        MaxRetryCount = maxRetryCount;
+        _heartBeatInterval = option.HeartBeatInterval;
+        _retryDelay = option.RetryDelay;
+        MaxRetryCount = option.MaxRetryCount;
         _mTcpClient = new AsyncTcpSession();
         _mTcpClient.Connected += OnClientOnConnected;
         _mTcpClient.Closed += OnClientOnClosed;
