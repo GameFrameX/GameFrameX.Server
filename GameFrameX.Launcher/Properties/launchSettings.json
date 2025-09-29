@@ -5,17 +5,8 @@
       "commandName": "Project",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "--ServerType": "Game",
-        "--ServerId": 9000,
-        "--InnerPort": 29100,
-        "--OuterIp": "127.0.0.1",
-        "--OuterPort": 29010,
-        "--MinModuleId": 1,
-        "--MaxModuleId": 9999,
-        "--WsPort": 29110,
-        "--HttpPort": 28080,
-        "--HttpCode": "inner_httpcode",
         "--DataBaseUrl": "mongodb://admin:admin@192.168.110.28:27017/?authSource=admin",
+        "--ServerType": "DiscoveryCenter",
         "--DataBaseName": "gameframex"
       },
       "commandLineArgs": "--IsDebug --IsDebugReceive --IsDebugSend --HttpIsDevelopment"
