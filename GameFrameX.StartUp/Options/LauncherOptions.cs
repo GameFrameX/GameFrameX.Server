@@ -266,6 +266,7 @@ public sealed class LauncherOptions
     /// 内部端口
     /// </summary>
     [Option(nameof(InnerPort), Description = "内部端口")]
+    [DefaultValue(8888)]
     // [GrafanaLokiLabelTag]
     public ushort InnerPort { get; set; }
 
