@@ -376,8 +376,8 @@ public sealed class LauncherOptions
     /// <summary>
     /// 发现中心地址
     /// </summary>
-    [Option(nameof(DiscoveryCenterIp), Description = "发现中心地址")]
-    public string DiscoveryCenterIp { get; set; }
+    [Option(nameof(DiscoveryCenterHost), Description = "发现中心地址")]
+    public string DiscoveryCenterHost { get; set; }
 
     /// <summary>
     /// 发现中心端口

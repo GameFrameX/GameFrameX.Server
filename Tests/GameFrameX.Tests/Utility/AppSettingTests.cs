@@ -417,7 +417,7 @@ public class AppSettingTests
         appSetting.DataBaseName = "GameDB";
         appSetting.Language = "zh-CN";
         appSetting.DataCenter = "Beijing";
-        appSetting.DiscoveryCenterIp = "192.168.1.200";
+        appSetting.DiscoveryCenterHost = "192.168.1.200";
         appSetting.DiscoveryCenterPort = 8500;
 
 
@@ -426,7 +426,7 @@ public class AppSettingTests
         Assert.Equal("GameDB", appSetting.DataBaseName);
         Assert.Equal("zh-CN", appSetting.Language);
         Assert.Equal("Beijing", appSetting.DataCenter);
-        Assert.Equal("192.168.1.200", appSetting.DiscoveryCenterIp);
+        Assert.Equal("192.168.1.200", appSetting.DiscoveryCenterHost);
         Assert.Equal((ushort)8500, appSetting.DiscoveryCenterPort);
     }
 

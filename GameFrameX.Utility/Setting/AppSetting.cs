@@ -352,7 +352,7 @@ public sealed class AppSetting
     /// <summary>
     /// 发现中心地址
     /// </summary>
-    public string DiscoveryCenterIp { get; set; }
+    public string DiscoveryCenterHost { get; set; }
 
     /// <summary>
     /// 发现中心端口
