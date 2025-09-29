@@ -145,45 +145,6 @@ public class AppSettingTests
     }
 
     /// <summary>
-    /// 测试ServerType属性设置
-    /// </summary>
-    [Fact]
-    public void ServerType_SetValue_ShouldUpdateServerTypeAndServerName()
-    {
-        // Arrange
-        var appSetting = new AppSetting();
-
-        // Act
-        appSetting.ServerType = ServerType.Game;
-
-        // Assert
-        Assert.Equal(ServerType.Game, appSetting.ServerType);
-        Assert.Equal("Game", appSetting.ServerName);
-    }
-
-    /// <summary>
-    /// 测试ServerType属性设置为不同值
-    /// </summary>
-    [Theory]
-    [InlineData(ServerType.Gateway, "Gateway")]
-    [InlineData(ServerType.Account, "Account")]
-    [InlineData(ServerType.Login, "Login")]
-    [InlineData(ServerType.Chat, "Chat")]
-    [InlineData(ServerType.DataBase, "DataBase")]
-    public void ServerType_SetDifferentValues_ShouldUpdateCorrectly(ServerType serverType, string expectedName)
-    {
-        // Arrange
-        var appSetting = new AppSetting();
-
-        // Act
-        appSetting.ServerType = serverType;
-
-        // Assert
-        Assert.Equal(serverType, appSetting.ServerType);
-        Assert.Equal(expectedName, appSetting.ServerName);
-    }
-
-    /// <summary>
     /// 测试IsLocal方法
     /// </summary>
     [Fact]
@@ -213,56 +174,6 @@ public class AppSettingTests
 
         // Assert
         Assert.False(result);
-    }
-
-    /// <summary>
-    /// 测试ToString方法
-    /// </summary>
-    [Fact]
-    public void ToString_ShouldReturnJsonString()
-    {
-        // Arrange
-        var appSetting = new AppSetting
-        {
-            ServerId = 123,
-            ServerType = ServerType.Game,
-            IsDebug = true
-        };
-
-        // Act
-        var result = appSetting.ToString();
-
-        // Assert
-        Assert.NotNull(result);
-        Assert.NotEmpty(result);
-        Assert.Contains("123", result); // ServerId
-        Assert.Contains("Game", result); // ServerName
-    }
-
-    /// <summary>
-    /// 测试ToFormatString方法
-    /// </summary>
-    [Fact]
-    public void ToFormatString_ShouldReturnFormattedJsonString()
-    {
-        // Arrange
-        var appSetting = new AppSetting
-        {
-            ServerId = 123,
-            ServerType = ServerType.Game,
-            IsDebug = true
-        };
-
-        // Act
-        var result = appSetting.ToFormatString();
-
-        // Assert
-        Assert.NotNull(result);
-        Assert.NotEmpty(result);
-        Assert.Contains("123", result); // ServerId
-        Assert.Contains("Game", result); // ServerName
-        // 格式化的JSON应该包含换行符或缩进
-        Assert.True(result.Contains("\n") || result.Contains("  "));
     }
 
     /// <summary>

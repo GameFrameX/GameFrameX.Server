@@ -46,7 +46,7 @@ public sealed class AppSetting
     [JsonIgnore] public readonly TaskCompletionSource<bool> AppExitSource = new();
 
     private bool _appRunning;
-    private ServerType _serverType;
+    private string _serverType;
 
     /// <summary>
     /// 构造函数
@@ -112,13 +112,13 @@ public sealed class AppSetting
     /// <summary>
     /// 获取或设置服务器类型
     /// </summary>
-    public ServerType ServerType
+    public string ServerType
     {
         get { return _serverType; }
         set
         {
             _serverType = value;
-            ServerName = value.ToString();
+            ServerName = value;
         }
     }
 

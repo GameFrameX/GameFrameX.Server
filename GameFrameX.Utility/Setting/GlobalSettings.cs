@@ -165,12 +165,12 @@ public static class GlobalSettings
     /// </summary>
     /// <param name="serverType">服务器类型</param>
     /// <returns>返回匹配的设置列表</returns>
-    public static List<AppSetting> GetSettings(ServerType serverType)
+    public static List<AppSetting> GetSettings(string serverType)
     {
         var result = new List<AppSetting>();
         foreach (var setting in Settings)
         {
-            if ((setting.ServerType & serverType) != 0)
+            if (setting.ServerType == serverType)
             {
                 result.Add(setting);
             }
@@ -247,11 +247,11 @@ public static class GlobalSettings
     /// <param name="serverType">服务器类型</param>
     /// <typeparam name="T">设置类型</typeparam>
     /// <returns>返回匹配的设置，如果没有找到则返回null</returns>
-    public static AppSetting GetSetting<T>(ServerType serverType)
+    public static AppSetting GetSetting<T>(string serverType)
     {
         foreach (var setting in Settings)
         {
-            if ((setting.ServerType & serverType) != 0)
+            if (setting.ServerType == serverType)
             {
                 return setting;
             }
