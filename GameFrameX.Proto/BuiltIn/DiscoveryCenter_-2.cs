@@ -46,7 +46,7 @@ public partial class ReqConnectServer : MessageObject, IRequestMessage
     ///  服务器类型
     /// </summary>
     [ProtoMember(1)]
-    public ServerType ServerType { get; set; }
+    public string ServerType { get; set; }
 
     /// <summary>
     /// 服务器ID
@@ -65,7 +65,7 @@ public partial class RespConnectServer : MessageObject, IResponseMessage
     ///  服务器类型
     /// </summary>
     [ProtoMember(1)]
-    public ServerType ServerType { get; set; }
+    public string ServerType { get; set; }
 
     /// <summary>
     /// 服务器名称
@@ -108,7 +108,7 @@ public partial class RespServerOnlineServer : MessageObject, IResponseMessage
     ///  服务器类型
     /// </summary>
     [ProtoMember(1)]
-    public ServerType ServerType { get; set; }
+    public string ServerType { get; set; }
 
     /// <summary>
     /// 服务器名称
@@ -139,7 +139,7 @@ public partial class RespServerOfflineServer : MessageObject, IResponseMessage
     ///  服务器类型
     /// </summary>
     [ProtoMember(1)]
-    public ServerType ServerType { get; set; }
+    public string ServerType { get; set; }
 
     /// <summary>
     /// 服务器名称
@@ -170,7 +170,7 @@ public partial class ReqRegisterServer : MessageObject, IRequestMessage
     ///  服务器类型
     /// </summary>
     [ProtoMember(1)]
-    public ServerType ServerType { get; set; }
+    public string ServerType { get; set; }
 
     /// <summary>
     /// 服务器名称
