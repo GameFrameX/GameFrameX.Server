@@ -75,9 +75,9 @@ public abstract partial class AppStartUpBase
         }
 
         LogHelper.InfoConsole("启动 [HTTP] 服务器...");
-        if (!Setting.HttpPort.IsRange(10000, ushort.MaxValue - 1))
+        if (!Setting.HttpPort.IsRange(5000, ushort.MaxValue - 1))
         {
-            LogHelper.WarningConsole($"启动 [HTTP] 服务器 端口 [{Setting.HttpPort}] 超出范围 [10000-{ushort.MaxValue - 1}]，无法启动HTTP服务,启动被忽略");
+            LogHelper.WarningConsole($"启动 [HTTP] 服务器 端口 [{Setting.HttpPort}] 超出范围 [5000-{ushort.MaxValue - 1}]，无法启动HTTP服务,启动被忽略");
             return;
         }
 
