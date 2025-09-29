@@ -31,7 +31,6 @@
 
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
-using GameFrameX.Utility.Setting;
 using ProtoBuf;
 
 namespace GameFrameX.Proto.BuiltIn;
@@ -39,7 +38,7 @@ namespace GameFrameX.Proto.BuiltIn;
 /// <summary>
 /// 请求链接的服务
 /// </summary>
-[MessageTypeHandler(((-2) << 16) + 100, MessageOperationType.RequestConnectServer)]
+[MessageTypeHandler(((-2) << 16) + 100, (byte)MessageOperationType.ConnectService)]
 public partial class ReqConnectServer : MessageObject, IRequestMessage
 {
     /// <summary>
@@ -58,9 +57,17 @@ public partial class ReqConnectServer : MessageObject, IRequestMessage
 /// <summary>
 /// 请求链接的服务返回
 /// </summary>
-[MessageTypeHandler(((-2) << 16) + 101, MessageOperationType.RequestConnectServer)]
+[MessageTypeHandler(((-2) << 16) + 101, (byte)MessageOperationType.ConnectService)]
 public partial class RespConnectServer : MessageObject, IResponseMessage
 {
+    /// <summary>
+    /// 是否成功
+    /// </summary>
+    public bool IsSuccess
+    {
+        get { return ErrorCode == 0; }
+    }
+
     /// <summary>
     ///  服务器类型
     /// </summary>
@@ -97,4 +104,3 @@ public partial class RespConnectServer : MessageObject, IResponseMessage
     [ProtoMember(888)]
     public int ErrorCode { get; set; }
 }
-

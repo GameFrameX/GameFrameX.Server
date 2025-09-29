@@ -74,7 +74,7 @@ public enum MessageOperationType : byte
     /// <summary>
     /// 请求连接服务器信息，客户端向中心获取目标游戏服务器或网关的接入地址与凭证
     /// </summary>
-    RequestConnectServer = 20,
+    ConnectService = 25,
 
     /// <summary>
     /// 玩家注册，用于玩家会话首次建立时在中心记录玩家与具体游戏服务器的映射关系
