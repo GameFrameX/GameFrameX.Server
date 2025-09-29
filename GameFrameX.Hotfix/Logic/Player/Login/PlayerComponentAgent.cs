@@ -47,7 +47,7 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
         await serverComp.RemoveOnlineRole(ActorId);
 
-        var reqRegisterPlayer = new ReqDiscoverCenterPlayerOffline
+        var reqRegisterPlayer = new NotifyPlayerOffLine
         {
             PlayerId = ActorId,
             ServerId = GlobalSettings.CurrentSetting.ServerId,
@@ -96,7 +96,7 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
         await serverComp.AddOnlineRole(ActorId);
 
-        var reqRegisterPlayer = new ReqDiscoverCenterPlayerOnline()
+        var reqRegisterPlayer = new NotifyPlayerOnLine()
         {
             PlayerId = ActorId,
             ServerId = GlobalSettings.CurrentSetting.ServerId,

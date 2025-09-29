@@ -31,16 +31,15 @@
 
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
-using GameFrameX.Utility.Setting;
 using ProtoBuf;
 
 namespace GameFrameX.Proto.BuiltIn;
 
 /// <summary>
-/// 请求注册玩家在线
+/// 请求注册服务（模块-10，协议101）
 /// </summary>
-[MessageTypeHandler(((-10) << 16) + 101, MessageOperationType.PlayerRegisterOnLine)]
-public partial class ReqDiscoverCenterPlayerOnline : MessageObject, IRequestMessage
+[MessageTypeHandler(((-10) << 16) + 101, (byte)MessageOperationType.PlayerRegister)]
+public partial class ReqPlayerRegister : MessageObject, IRequestMessage
 {
     /// <summary>
     /// 玩家ID
@@ -51,21 +50,21 @@ public partial class ReqDiscoverCenterPlayerOnline : MessageObject, IRequestMess
     /// <summary>
     /// 服务器ID
     /// </summary>
-    [ProtoMember(7)]
+    [ProtoMember(2)]
     public long ServerId { get; set; }
 
     /// <summary>
     /// 服务器实例ID
     /// </summary>
-    [ProtoMember(8)]
+    [ProtoMember(3)]
     public long ServerInstanceId { get; set; }
 }
 
 /// <summary>
-/// 请求注册玩家离线
+/// 请求注销服务（模块-10，协议102）
 /// </summary>
-[MessageTypeHandler(((-10) << 16) + 102, MessageOperationType.PlayerRegisterOffLine)]
-public partial class ReqDiscoverCenterPlayerOffline : MessageObject, IRequestMessage
+[MessageTypeHandler(((-10) << 16) + 102, (byte)MessageOperationType.PlayerUnRegister)]
+public partial class ReqPlayerUnRegister : MessageObject, IRequestMessage
 {
     /// <summary>
     /// 玩家ID
@@ -76,12 +75,62 @@ public partial class ReqDiscoverCenterPlayerOffline : MessageObject, IRequestMes
     /// <summary>
     /// 服务器ID
     /// </summary>
-    [ProtoMember(7)]
+    [ProtoMember(2)]
     public long ServerId { get; set; }
 
     /// <summary>
     /// 服务器实例ID
     /// </summary>
-    [ProtoMember(8)]
+    [ProtoMember(3)]
+    public long ServerInstanceId { get; set; }
+}
+
+/// <summary>
+/// 通知玩家上线（模块-10，协议111）
+/// </summary>
+[MessageTypeHandler(((-10) << 16) + 111, (byte)MessageOperationType.NotifyPlayerOnLine)]
+public partial class NotifyPlayerOnLine : MessageObject, IRequestMessage
+{
+    /// <summary>
+    /// 玩家ID
+    /// </summary>
+    [ProtoMember(1)]
+    public long PlayerId { get; set; }
+
+    /// <summary>
+    /// 服务器ID
+    /// </summary>
+    [ProtoMember(2)]
+    public long ServerId { get; set; }
+
+    /// <summary>
+    /// 服务器实例ID
+    /// </summary>
+    [ProtoMember(3)]
+    public long ServerInstanceId { get; set; }
+}
+
+/// <summary>
+/// 通知玩家下线（模块-10，协议112）
+/// </summary>
+[MessageTypeHandler(((-10) << 16) + 112, (byte)MessageOperationType.NotifyPlayerOffLine)]
+public partial class NotifyPlayerOffLine : MessageObject, IRequestMessage
+{
+    /// <summary>
+    /// 玩家ID
+    /// </summary>
+    [ProtoMember(1)]
+    public long PlayerId { get; set; }
+
+    /// <summary>
+    /// 服务器ID
+    /// </summary>
+    [ProtoMember(2)]
+    public long ServerId { get; set; }
+
+    /// <summary>
+    /// 服务器实例ID
+    /// </summary>
+    [ProtoMember(3)]
     public long ServerInstanceId { get; set; }
 }

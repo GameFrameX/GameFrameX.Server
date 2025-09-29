@@ -162,7 +162,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
 
                 case (byte)MessageOperationType.NotifyPlayerOnLine:
                 {
-                    var reqRegisterPlayer = (ReqDiscoverCenterPlayerOnline)messageObject.DeserializeMessageObject();
+                    var reqRegisterPlayer = (NotifyPlayerOnLine)messageObject.DeserializeMessageObject();
                     // 注册玩家
                     NamingPlayerManager.Instance.Add(reqRegisterPlayer.PlayerId, reqRegisterPlayer.ServerId, reqRegisterPlayer.ServerInstanceId);
                     LogHelper.Info($"注册玩家成功：{reqRegisterPlayer.PlayerId}  {reqRegisterPlayer}");
@@ -170,7 +170,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                 }
                 case (byte)MessageOperationType.NotifyPlayerOffLine:
                 {
-                    var reqRegisterPlayer = (ReqDiscoverCenterPlayerOffline)messageObject.DeserializeMessageObject();
+                    var reqRegisterPlayer = (NotifyPlayerOffLine)messageObject.DeserializeMessageObject();
                     // 注销玩家
                     NamingPlayerManager.Instance.TryRemove(reqRegisterPlayer.PlayerId, out var playerInfo);
                     LogHelper.Info($"注销玩家成功：{reqRegisterPlayer.PlayerId}  {reqRegisterPlayer}");
