@@ -84,12 +84,7 @@ internal sealed class GameAppClient
     /// <summary>
     /// 最大重连次数，-1表示无限重试
     /// </summary>
-    private readonly int _maxRetryCount;
-
-    /// <summary>
-    /// 心跳请求消息实例，复用对象避免频繁创建
-    /// </summary>
-    private readonly ReqActorHeartBeat _reqActorHeartBeat;
+    public int MaxRetryCount { get; }
 
     /// <summary>
     /// 标记当前实例是否已被释放，防止重复释放或空操作
@@ -112,11 +107,7 @@ internal sealed class GameAppClient
         _serverHost = endPoint;
         _heartBeatInterval = heartBeatInterval;
         _retryDelay = retryDelay;
-        _maxRetryCount = maxRetryCount;
-        _reqActorHeartBeat = new ReqActorHeartBeat
-        {
-            Timestamp = TimeHelper.UnixTimeMilliseconds(),
-        };
+        MaxRetryCount = maxRetryCount;
         _mTcpClient = new AsyncTcpSession();
         _mTcpClient.Connected += OnClientOnConnected;
         _mTcpClient.Closed += OnClientOnClosed;
