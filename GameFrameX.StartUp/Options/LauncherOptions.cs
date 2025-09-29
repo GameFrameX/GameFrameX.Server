@@ -308,8 +308,7 @@ public sealed class LauncherOptions
     /// <summary>
     /// HTTP 端口
     /// </summary>
-    [Option(nameof(HttpPort), Description = "HTTP 端口")]
-    [DefaultValue(28080)]
+    [Option(nameof(HttpPort), DefaultValue = 8080, Description = "HTTP 端口")]
     public ushort HttpPort { get; set; }
 
     /// <summary>
