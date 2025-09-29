@@ -10,7 +10,7 @@ namespace GameFrameX.Hotfix.Logic.Server;
 
 public class ServerComponentAgent : StateComponentAgent<ServerComponent, ServerState>
 {
-    public override async Task Active()
+    public override async Task<bool> Active()
     {
         // 跨天定时器
         WithCronExpression<CrossDayTimeHandler>("0 0 0 * * ? *");
@@ -19,6 +19,8 @@ public class ServerComponentAgent : StateComponentAgent<ServerComponent, ServerS
             State.FirstStartTime = TimeHelper.UnixTimeSeconds();
             await OwnerComponent.WriteStateAsync();
         }
+
+        return true;
     }
 
     [Service]

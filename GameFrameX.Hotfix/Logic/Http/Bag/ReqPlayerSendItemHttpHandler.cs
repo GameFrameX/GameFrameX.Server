@@ -9,6 +9,7 @@ using GameFrameX.Apps.Player.Bag.Entity;
 using GameFrameX.Config;
 using GameFrameX.Config.Tables;
 using GameFrameX.DataBase;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.Hotfix.Logic.Player.Bag;
 
 namespace GameFrameX.Hotfix.Logic.Http.Bag;

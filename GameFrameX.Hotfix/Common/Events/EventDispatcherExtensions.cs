@@ -1,6 +1,7 @@
 ﻿using GameFrameX.Apps.Common.Event;
 using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Abstractions.Events;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.Hotfix.Logic.Server;
 
 namespace GameFrameX.Hotfix.Common.Events;
