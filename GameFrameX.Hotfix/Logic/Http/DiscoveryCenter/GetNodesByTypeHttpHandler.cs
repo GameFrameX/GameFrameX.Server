@@ -61,7 +61,6 @@ public sealed class GetNodesByTypeHttpHandler : BaseHttpHandler
             {
                 Success = false,
                 Message = "无效的请求类型",
-                ServerType = ServerType.None,
                 Nodes = new List<IServiceInfo>(),
                 Count = 0
             };
@@ -71,13 +70,13 @@ public sealed class GetNodesByTypeHttpHandler : BaseHttpHandler
         var serverType = typeRequest.ServerType;
         
         // 验证ServerType参数
-        if (serverType == ServerType.None)
+        if (serverType.IsNullOrEmpty())
         {
             var errorResponse = new GetNodesByTypeResponse
             {
                 Success = false,
                 Message = "无效的ServerType参数",
-                ServerType = ServerType.None,
+                ServerType = serverType,
                 Nodes = new List<IServiceInfo>(),
                 Count = 0
             };
@@ -109,7 +108,7 @@ public class GetNodesByTypeRequest : HttpMessageRequestBase
     /// 服务器类型
     /// </summary>
     /// <value>要查询的服务器类型枚举值</value>
-    public ServerType ServerType { get; set; }
+    public string ServerType { get; set; }
 }
 
 /// <summary>
@@ -133,7 +132,7 @@ public class GetNodesByTypeResponse : HttpMessageResponseBase
     /// 查询的服务器类型
     /// </summary>
     /// <value>请求中指定的服务器类型</value>
-    public ServerType ServerType { get; set; }
+    public string ServerType { get; set; }
     
     /// <summary>
     /// 指定类型的节点列表

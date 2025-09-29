@@ -60,17 +60,13 @@ public sealed class GetNodeCountHttpHandler : BaseHttpHandler
     {
         var countRequest = (GetNodeCountRequest)request;
         // 从请求对象中获取ServerType（可选）
-        ServerType? serverType = countRequest.ServerType;
+        var serverType = countRequest.ServerType;
         
         var namingServiceManager = NamingServiceManager.Instance;
         var allNodeGroups = namingServiceManager.GetAllNodes();
         
         // 按服务器类型分组统计
-        var countByType = new Dictionary<ServerType, int>();
-        foreach (ServerType type in Enum.GetValues<ServerType>())
-        {
-            countByType[type] = 0;
-        }
+        var countByType = new Dictionary<string, int>();
         
         // 遍历所有节点组，然后遍历每个组中的节点
         foreach (var nodeGroup in allNodeGroups)
@@ -86,9 +82,9 @@ public sealed class GetNodeCountHttpHandler : BaseHttpHandler
         
         // 如果指定了服务器类型，只返回该类型的统计
         int totalCount;
-        if (serverType.HasValue)
+        if (serverType.IsNotNullOrEmpty())
         {
-            totalCount = countByType.GetValueOrDefault(serverType.Value, 0);
+            totalCount = countByType.GetValueOrDefault(serverType, 0);
         }
         else
         {
@@ -121,7 +117,7 @@ public class GetNodeCountRequest : HttpMessageRequestBase
     /// 服务器类型（可选）
     /// </summary>
     /// <value>要统计的特定服务器类型，如果为null则统计所有类型</value>
-    public ServerType? ServerType { get; set; }
+    public string? ServerType { get; set; }
 }
 
 /// <summary>
@@ -151,11 +147,11 @@ public class GetNodeCountResponse : HttpMessageResponseBase
     /// 按服务器类型分组的节点数量统计
     /// </summary>
     /// <value>以服务器类型为键，对应节点数量为值的 <see cref="Dictionary{TKey, TValue}"/> 其中 TKey 为 <see cref="ServerType"/>，TValue 为 <see cref="int"/></value>
-    public Dictionary<ServerType, int> CountByType { get; set; } = new();
+    public Dictionary<string, int> CountByType { get; set; } = new();
     
     /// <summary>
     /// 查询的服务器类型
     /// </summary>
     /// <value>请求中指定的服务器类型，如果为null表示查询所有类型</value>
-    public ServerType? QueryServerType { get; set; }
+    public string? QueryServerType { get; set; }
 }
