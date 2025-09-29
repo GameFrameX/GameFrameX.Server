@@ -66,7 +66,7 @@ public sealed class GetNodeByIdHttpHandler : BaseHttpHandler
         
         if (serverId > 0)
         {
-            serviceInfoList = namingServiceManager.TryGet(serverId);
+            serviceInfoList = namingServiceManager.GetNodesByServerId(serverId);
         }
 
         var response = new GetNodeByIdResponse
