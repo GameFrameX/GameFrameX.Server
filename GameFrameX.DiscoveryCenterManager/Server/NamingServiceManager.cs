@@ -75,57 +75,90 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
     public IServiceInfo SelfServiceInfo { get; private set; }
 
     /// <summary>
-    /// 根据节点数据从服务器列表中删除
+    /// 根据服务器实例ID从服务器列表中删除对应的服务节点
     /// </summary>
-    /// <param name="serverId"></param>
-    /// <returns></returns>
-    public bool TryRemove(long serverId)
+    /// <param name="serverInstanceId">服务器实例ID</param>
+    /// <returns>删除成功返回true，否则返回false</returns>
+    public bool TryRemoveByInstanceId(long serverInstanceId)
     {
-        if (serverId <= 0)
+        if (serverInstanceId <= 0)
         {
             return false;
         }
 
-        var result = _serverMap.TryRemove(serverId, out var value);
-        if (value != null)
+        bool removed = false;
+        var keysToRemove = new List<long>();
+
+        foreach (var keyValuePair in _serverMap)
         {
-            foreach (var serviceInfo in value)
+            var serviceToRemove = keyValuePair.Value.FirstOrDefault(m => m.ServerInstanceId == serverInstanceId);
+            if (serviceToRemove != null)
             {
-                _onRemove?.Invoke(serviceInfo);
+                // 从列表中移除找到的服务节点
+                keyValuePair.Value.Remove(serviceToRemove);
+
+                // 触发移除回调
+                _onRemove?.Invoke(serviceToRemove);
+                removed = true;
+
+                // 如果列表为空，标记该键需要被删除
+                if (keyValuePair.Value.Count == 0)
+                {
+                    keysToRemove.Add(keyValuePair.Key);
+                }
+
+                // 找到并删除后跳出循环，因为ServerInstanceId应该是唯一的
+                break;
             }
         }
 
-        return result;
+        // 清空空的字典键
+        foreach (var key in keysToRemove)
+        {
+            _serverMap.TryRemove(key, out _);
+        }
+
+        return removed;
     }
 
     /// <summary>
-    /// 根据节点数据从服务器列表中删除
+    /// 根据会话ID移除对应的服务节点
     /// </summary>
-    /// <param name="sessionId"></param>
-    /// <returns></returns>
-    public bool TrySessionRemove(string sessionId)
+    /// <param name="sessionId">会话ID</param>
+    /// <returns>成功移除返回true，否则返回false</returns>
+    public bool TryRemoveBySessionId(string sessionId)
     {
-        long serverId = 0;
+        IServiceInfo serverInfo = default;
         foreach (var keyValuePair in _serverMap)
         {
             foreach (var serviceInfo in keyValuePair.Value)
             {
                 if (serviceInfo.SessionId == sessionId)
                 {
-                    serverId = keyValuePair.Key;
+                    serverInfo = serviceInfo;
                     break;
                 }
             }
+
+            if (serverInfo != null)
+            {
+                break;
+            }
         }
 
-        return TryRemove(serverId);
+        if (serverInfo != null)
+        {
+            return TryRemoveByInstanceId(serverInfo.ServerInstanceId);
+        }
+
+        return false;
     }
 
     /// <summary>
-    /// 根据节点数据从服务器列表中删除
+    /// 根据会话ID获取对应的服务节点
     /// </summary>
-    /// <param name="sessionId"></param>
-    /// <returns></returns>
+    /// <param name="sessionId">会话ID</param>
+    /// <returns>如果找到对应的服务节点，则返回该节点；否则返回null</returns>
     public IServiceInfo GetNodeBySessionId(string sessionId)
     {
         foreach (var keyValuePair in _serverMap)
@@ -139,7 +172,7 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
             }
         }
 
-        return null;
+        return default;
     }
 
     /// <summary>
@@ -147,40 +180,40 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
     /// </summary>
     /// <param name="info"></param>
     /// <returns></returns>
-    public bool TryRemove(IServiceInfo info)
+    public bool TryRemoveByServiceInfo(IServiceInfo info)
     {
         if (info == null)
         {
             return true;
         }
 
-        return TryRemove(info.ServerId);
+        return TryRemoveByInstanceId(info.ServerInstanceId);
     }
 
     /// <summary>
-    /// 根据id获取节点数据
+    /// 根据服务器ID获取对应的服务节点列表
     /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    public List<IServiceInfo> TryGet(long id)
+    /// <param name="serverId">服务器ID</param>
+    /// <returns>如果找到对应的服务节点列表，则返回该列表；否则返回null</returns>
+    public List<IServiceInfo> GetNodesByServerId(long serverId)
     {
-        _serverMap.TryGetValue(id, out var value);
+        _serverMap.TryGetValue(serverId, out var value);
         return value;
     }
 
     /// <summary>
-    /// 获取节点列表
+    /// 获取所有服务节点列表
     /// </summary>
-    /// <returns></returns>
+    /// <returns>所有服务节点的列表，每个键值对表示一个服务器类型及其对应的服务节点列表</returns>
     public List<List<IServiceInfo>> GetAllNodes()
     {
         return _serverMap.Values.ToList();
     }
 
     /// <summary>
-    /// 获取外部节点
+    /// 获取所有外部服务节点列表
     /// </summary>
-    /// <returns></returns>
+    /// <returns>所有外部服务节点的列表，每个节点包含会话ID非空的服务节点</returns>
     public List<IServiceInfo> GetOuterNodes()
     {
         List<IServiceInfo> result = new();
@@ -199,17 +232,18 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
     }
 
     /// <summary>
-    /// 获取节点数量
+    /// 获取所有服务节点的总数量
     /// </summary>
-    /// <returns></returns>
+    /// <returns>所有服务节点的总数量</returns>
     public int GetNodeCount()
     {
-        return _serverMap.Count;
+        return _serverMap.Values.Sum(list => list.Count);
     }
 
     /// <summary>
-    /// 添加自身
+    /// 添加自身服务节点
     /// </summary>
+    /// <param name="setting">自身服务节点的配置信息</param>
     public void AddSelf(AppSetting setting)
     {
         if (SelfServiceInfo != null)
@@ -223,9 +257,9 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
     }
 
     /// <summary>
-    /// 添加节点
+    /// 添加服务节点
     /// </summary>
-    /// <param name="node">节点信息</param>
+    /// <param name="node">服务节点信息</param>
     public void Add(IServiceInfo node)
     {
         if (node == null)
@@ -235,7 +269,7 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
 
         if (node.Type == SelfServiceInfo.Type)
         {
-            LogHelper.Error($"不能添加{SelfServiceInfo.Type.ToString()}节点...{node}");
+            LogHelper.Error($"Cannot add {SelfServiceInfo.Type.ToString()} node...{node}");
             return;
         }
 
@@ -247,20 +281,20 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
 
         if (list.Contains(node))
         {
-            LogHelper.Warning("重复添加节点...忽略处理" + node);
+            LogHelper.Warning("Duplicate node addition...Ignored " + node);
             return;
         }
 
         list.Add(node);
         _onAdd?.Invoke(node);
-        LogHelper.Info($"新的网络节点总数：{GetNodeCount()} 新的节点信息: {JsonHelper.Serialize(node)}");
+        LogHelper.Info($"Current total network node count: {GetNodeCount()} New node info: {JsonHelper.Serialize(node)}");
     }
 
     /// <summary>
-    /// 根据服务器类型获取节点列表
+    /// 根据服务器类型获取所有服务节点列表
     /// </summary>
     /// <param name="type">服务器类型</param>
-    /// <returns></returns>
+    /// <returns>所有指定类型的服务节点列表</returns>
     public List<IServiceInfo> GetNodesByType(ServerType type)
     {
         var list = new List<IServiceInfo>();
