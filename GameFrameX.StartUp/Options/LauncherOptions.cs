@@ -319,9 +319,19 @@ public sealed class LauncherOptions
     public ushort HttpsPort { get; set; }
 
     /// <summary>
-    /// WebSocket 端口
+    /// 是否启用 WebSocket 服务
+    /// <para>开启后服务器将监听 WebSocket 端口，允许客户端通过 WebSocket 协议进行连接</para>
+    /// <para>默认值为 false，即不启用</para>
     /// </summary>
-    [Option(nameof(WsPort), Description = "WebSocket 端口")]
+    [Option(nameof(IsEnableWebSocket), Description = "是否启用 WebSocket 服务，默认值为 false")]
+    [DefaultValue(false)]
+    public bool IsEnableWebSocket { get; set; } = false;
+
+    /// <summary>
+    /// WebSocket 端口
+    /// <para>默认值为 8889，当 IsEnableWebSocket 为 true 时才会启用</para>
+    /// </summary>
+    [Option(nameof(WsPort), DefaultValue = 8889, Description = "WebSocket 端口，默认值为 8889，当 IsEnableWebSocket 为 true 时才会启用")]
     public ushort WsPort { get; set; }
 
     /// <summary>

@@ -315,6 +315,13 @@ public sealed class AppSetting
     public ushort MetricsPort { get; set; }
 
     /// <summary>
+    /// 是否启用 WebSocket 服务
+    /// <para>开启后服务器将监听 WebSocket 端口，允许客户端通过 WebSocket 协议进行连接</para>
+    /// <para>默认值为 false，即不启用</para>
+    /// </summary>
+    public bool IsEnableWebSocket { get; set; } = false;
+
+    /// <summary>
     /// WebSocket端口
     /// </summary>
     public ushort WsPort { get; set; }

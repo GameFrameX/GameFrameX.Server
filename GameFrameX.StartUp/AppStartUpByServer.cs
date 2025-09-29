@@ -244,7 +244,7 @@ public abstract partial class AppStartUpBase
         }
 
         // 检查WebSocket端口是否可用
-        if (Setting.WsPort is > 0 and < ushort.MaxValue && NetHelper.PortIsAvailable(Setting.WsPort))
+        if (Setting.IsEnableWebSocket && Setting.WsPort is > 0 and < ushort.MaxValue && NetHelper.PortIsAvailable(Setting.WsPort))
         {
             LogHelper.InfoConsole("启动 [WebSocket] 服务器...");
 
