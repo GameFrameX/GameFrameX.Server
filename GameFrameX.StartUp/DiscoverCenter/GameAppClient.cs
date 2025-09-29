@@ -59,7 +59,7 @@ internal sealed class GameAppClient
     /// <summary>
     /// 当前重连次数计数器
     /// </summary>
-    private int _mRetryCount;
+    public int RetryCount { get; private set; }
 
     /// <summary>
     /// 客户端事件回调集合，用于通知外部连接、断开、消息等事件
@@ -162,11 +162,11 @@ internal sealed class GameAppClient
                 }
 
                 // 未达到最大重连次数（或无限重试）则进行重连
-                if (_mRetryCount < _maxRetryCount || _maxRetryCount < 0)
+                if (RetryCount < MaxRetryCount || MaxRetryCount < 0)
                 {
-                    LogHelper.Info($"未连接到发现中心服务器, 尝试重连 (尝试次数: {_mRetryCount + 1}/{(_maxRetryCount < 0 ? "∞" : _maxRetryCount.ToString())})...");
+                    LogHelper.Info($"未连接到发现中心服务器, 尝试重连 (尝试次数: {RetryCount + 1}/{(MaxRetryCount < 0 ? "∞" : MaxRetryCount.ToString())})...");
                     _mTcpClient.Connect(_serverHost);
-                    _mRetryCount++;
+                    RetryCount++;
                     await Task.Delay(_retryDelay);
                 }
                 else
@@ -178,7 +178,7 @@ internal sealed class GameAppClient
             else
             {
                 // 连接成功，重置重连计数
-                _mRetryCount = 0;
+                RetryCount = 0;
                 // 发送心跳
                 SendHeartBeat();
                 // 等待下一次心跳间隔
