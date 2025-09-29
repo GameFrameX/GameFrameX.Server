@@ -6902,6 +6902,25 @@ references:
   commentId: N:GameFrameX.NetWork.Abstractions
   fullName: GameFrameX.NetWork.Abstractions
   nameWithType: GameFrameX.NetWork.Abstractions
+- uid: GameFrameX.NetWork.Abstractions.IActorHeartBeat
+  name: IActorHeartBeat
+  href: api/GameFrameX.NetWork.Abstractions.IActorHeartBeat.html
+  commentId: T:GameFrameX.NetWork.Abstractions.IActorHeartBeat
+  fullName: GameFrameX.NetWork.Abstractions.IActorHeartBeat
+  nameWithType: IActorHeartBeat
+- uid: GameFrameX.NetWork.Abstractions.IActorHeartBeat.Timestamp
+  name: Timestamp
+  href: api/GameFrameX.NetWork.Abstractions.IActorHeartBeat.html#GameFrameX_NetWork_Abstractions_IActorHeartBeat_Timestamp
+  commentId: P:GameFrameX.NetWork.Abstractions.IActorHeartBeat.Timestamp
+  fullName: GameFrameX.NetWork.Abstractions.IActorHeartBeat.Timestamp
+  nameWithType: IActorHeartBeat.Timestamp
+- uid: GameFrameX.NetWork.Abstractions.IActorHeartBeat.Timestamp*
+  name: Timestamp
+  href: api/GameFrameX.NetWork.Abstractions.IActorHeartBeat.html#GameFrameX_NetWork_Abstractions_IActorHeartBeat_Timestamp_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IActorHeartBeat.Timestamp
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IActorHeartBeat.Timestamp
+  nameWithType: IActorHeartBeat.Timestamp
 - uid: GameFrameX.NetWork.Abstractions.ICommandInfo
   name: ICommandInfo
   href: api/GameFrameX.NetWork.Abstractions.ICommandInfo.html
@@ -7610,6 +7629,25 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.Abstractions.INetworkMessageHeader.ZipFlag
   nameWithType: INetworkMessageHeader.ZipFlag
+- uid: GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat
+  name: INotifyActorHeartBeat
+  href: api/GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat.html
+  commentId: T:GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat
+  fullName: GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat
+  nameWithType: INotifyActorHeartBeat
+- uid: GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat.Timestamp
+  name: Timestamp
+  href: api/GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat.html#GameFrameX_NetWork_Abstractions_INotifyActorHeartBeat_Timestamp
+  commentId: P:GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat.Timestamp
+  fullName: GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat.Timestamp
+  nameWithType: INotifyActorHeartBeat.Timestamp
+- uid: GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat.Timestamp*
+  name: Timestamp
+  href: api/GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat.html#GameFrameX_NetWork_Abstractions_INotifyActorHeartBeat_Timestamp_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat.Timestamp
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat.Timestamp
+  nameWithType: INotifyActorHeartBeat.Timestamp
 - uid: GameFrameX.NetWork.Abstractions.INotifyMessage
   name: INotifyMessage
   href: api/GameFrameX.NetWork.Abstractions.INotifyMessage.html
@@ -7840,6 +7878,258 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.Abstractions.IRpcSession.Send
   nameWithType: IRpcSession.Send
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline
+  name: IServiceNotifyOffline
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.html
+  commentId: T:GameFrameX.NetWork.Abstractions.IServiceNotifyOffline
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline
+  nameWithType: IServiceNotifyOffline
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Host
+  name: Host
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOffline_Host
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Host
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Host
+  nameWithType: IServiceNotifyOffline.Host
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Host*
+  name: Host
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOffline_Host_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Host
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Host
+  nameWithType: IServiceNotifyOffline.Host
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Name
+  name: Name
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOffline_Name
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Name
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Name
+  nameWithType: IServiceNotifyOffline.Name
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Name*
+  name: Name
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOffline_Name_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Name
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Name
+  nameWithType: IServiceNotifyOffline.Name
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Port
+  name: Port
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOffline_Port
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Port
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Port
+  nameWithType: IServiceNotifyOffline.Port
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Port*
+  name: Port
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOffline_Port_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Port
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Port
+  nameWithType: IServiceNotifyOffline.Port
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.ServerId
+  name: ServerId
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOffline_ServerId
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.ServerId
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.ServerId
+  nameWithType: IServiceNotifyOffline.ServerId
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.ServerId*
+  name: ServerId
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOffline_ServerId_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.ServerId
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.ServerId
+  nameWithType: IServiceNotifyOffline.ServerId
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.ServerInstanceId
+  name: ServerInstanceId
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOffline_ServerInstanceId
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.ServerInstanceId
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.ServerInstanceId
+  nameWithType: IServiceNotifyOffline.ServerInstanceId
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.ServerInstanceId*
+  name: ServerInstanceId
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOffline_ServerInstanceId_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.ServerInstanceId
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.ServerInstanceId
+  nameWithType: IServiceNotifyOffline.ServerInstanceId
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Type
+  name: Type
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOffline_Type
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Type
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Type
+  nameWithType: IServiceNotifyOffline.Type
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Type*
+  name: Type
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOffline_Type_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Type
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.Type
+  nameWithType: IServiceNotifyOffline.Type
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline
+  name: IServiceNotifyOnline
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.html
+  commentId: T:GameFrameX.NetWork.Abstractions.IServiceNotifyOnline
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline
+  nameWithType: IServiceNotifyOnline
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Host
+  name: Host
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOnline_Host
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Host
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Host
+  nameWithType: IServiceNotifyOnline.Host
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Host*
+  name: Host
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOnline_Host_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Host
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Host
+  nameWithType: IServiceNotifyOnline.Host
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Name
+  name: Name
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOnline_Name
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Name
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Name
+  nameWithType: IServiceNotifyOnline.Name
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Name*
+  name: Name
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOnline_Name_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Name
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Name
+  nameWithType: IServiceNotifyOnline.Name
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Port
+  name: Port
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOnline_Port
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Port
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Port
+  nameWithType: IServiceNotifyOnline.Port
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Port*
+  name: Port
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOnline_Port_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Port
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Port
+  nameWithType: IServiceNotifyOnline.Port
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.ServerId
+  name: ServerId
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOnline_ServerId
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.ServerId
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.ServerId
+  nameWithType: IServiceNotifyOnline.ServerId
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.ServerId*
+  name: ServerId
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOnline_ServerId_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.ServerId
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.ServerId
+  nameWithType: IServiceNotifyOnline.ServerId
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.ServerInstanceId
+  name: ServerInstanceId
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOnline_ServerInstanceId
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.ServerInstanceId
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.ServerInstanceId
+  nameWithType: IServiceNotifyOnline.ServerInstanceId
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.ServerInstanceId*
+  name: ServerInstanceId
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOnline_ServerInstanceId_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.ServerInstanceId
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.ServerInstanceId
+  nameWithType: IServiceNotifyOnline.ServerInstanceId
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Type
+  name: Type
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOnline_Type
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Type
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Type
+  nameWithType: IServiceNotifyOnline.Type
+- uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Type*
+  name: Type
+  href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.html#GameFrameX_NetWork_Abstractions_IServiceNotifyOnline_Type_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Type
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.Type
+  nameWithType: IServiceNotifyOnline.Type
+- uid: GameFrameX.NetWork.Abstractions.IServiceRegister
+  name: IServiceRegister
+  href: api/GameFrameX.NetWork.Abstractions.IServiceRegister.html
+  commentId: T:GameFrameX.NetWork.Abstractions.IServiceRegister
+  fullName: GameFrameX.NetWork.Abstractions.IServiceRegister
+  nameWithType: IServiceRegister
+- uid: GameFrameX.NetWork.Abstractions.IServiceRegister.Host
+  name: Host
+  href: api/GameFrameX.NetWork.Abstractions.IServiceRegister.html#GameFrameX_NetWork_Abstractions_IServiceRegister_Host
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceRegister.Host
+  fullName: GameFrameX.NetWork.Abstractions.IServiceRegister.Host
+  nameWithType: IServiceRegister.Host
+- uid: GameFrameX.NetWork.Abstractions.IServiceRegister.Host*
+  name: Host
+  href: api/GameFrameX.NetWork.Abstractions.IServiceRegister.html#GameFrameX_NetWork_Abstractions_IServiceRegister_Host_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceRegister.Host
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceRegister.Host
+  nameWithType: IServiceRegister.Host
+- uid: GameFrameX.NetWork.Abstractions.IServiceRegister.Name
+  name: Name
+  href: api/GameFrameX.NetWork.Abstractions.IServiceRegister.html#GameFrameX_NetWork_Abstractions_IServiceRegister_Name
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceRegister.Name
+  fullName: GameFrameX.NetWork.Abstractions.IServiceRegister.Name
+  nameWithType: IServiceRegister.Name
+- uid: GameFrameX.NetWork.Abstractions.IServiceRegister.Name*
+  name: Name
+  href: api/GameFrameX.NetWork.Abstractions.IServiceRegister.html#GameFrameX_NetWork_Abstractions_IServiceRegister_Name_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceRegister.Name
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceRegister.Name
+  nameWithType: IServiceRegister.Name
+- uid: GameFrameX.NetWork.Abstractions.IServiceRegister.Port
+  name: Port
+  href: api/GameFrameX.NetWork.Abstractions.IServiceRegister.html#GameFrameX_NetWork_Abstractions_IServiceRegister_Port
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceRegister.Port
+  fullName: GameFrameX.NetWork.Abstractions.IServiceRegister.Port
+  nameWithType: IServiceRegister.Port
+- uid: GameFrameX.NetWork.Abstractions.IServiceRegister.Port*
+  name: Port
+  href: api/GameFrameX.NetWork.Abstractions.IServiceRegister.html#GameFrameX_NetWork_Abstractions_IServiceRegister_Port_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceRegister.Port
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceRegister.Port
+  nameWithType: IServiceRegister.Port
+- uid: GameFrameX.NetWork.Abstractions.IServiceRegister.ServerId
+  name: ServerId
+  href: api/GameFrameX.NetWork.Abstractions.IServiceRegister.html#GameFrameX_NetWork_Abstractions_IServiceRegister_ServerId
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceRegister.ServerId
+  fullName: GameFrameX.NetWork.Abstractions.IServiceRegister.ServerId
+  nameWithType: IServiceRegister.ServerId
+- uid: GameFrameX.NetWork.Abstractions.IServiceRegister.ServerId*
+  name: ServerId
+  href: api/GameFrameX.NetWork.Abstractions.IServiceRegister.html#GameFrameX_NetWork_Abstractions_IServiceRegister_ServerId_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceRegister.ServerId
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceRegister.ServerId
+  nameWithType: IServiceRegister.ServerId
+- uid: GameFrameX.NetWork.Abstractions.IServiceRegister.ServerInstanceId
+  name: ServerInstanceId
+  href: api/GameFrameX.NetWork.Abstractions.IServiceRegister.html#GameFrameX_NetWork_Abstractions_IServiceRegister_ServerInstanceId
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceRegister.ServerInstanceId
+  fullName: GameFrameX.NetWork.Abstractions.IServiceRegister.ServerInstanceId
+  nameWithType: IServiceRegister.ServerInstanceId
+- uid: GameFrameX.NetWork.Abstractions.IServiceRegister.ServerInstanceId*
+  name: ServerInstanceId
+  href: api/GameFrameX.NetWork.Abstractions.IServiceRegister.html#GameFrameX_NetWork_Abstractions_IServiceRegister_ServerInstanceId_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceRegister.ServerInstanceId
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceRegister.ServerInstanceId
+  nameWithType: IServiceRegister.ServerInstanceId
+- uid: GameFrameX.NetWork.Abstractions.IServiceRegister.Type
+  name: Type
+  href: api/GameFrameX.NetWork.Abstractions.IServiceRegister.html#GameFrameX_NetWork_Abstractions_IServiceRegister_Type
+  commentId: P:GameFrameX.NetWork.Abstractions.IServiceRegister.Type
+  fullName: GameFrameX.NetWork.Abstractions.IServiceRegister.Type
+  nameWithType: IServiceRegister.Type
+- uid: GameFrameX.NetWork.Abstractions.IServiceRegister.Type*
+  name: Type
+  href: api/GameFrameX.NetWork.Abstractions.IServiceRegister.html#GameFrameX_NetWork_Abstractions_IServiceRegister_Type_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IServiceRegister.Type
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IServiceRegister.Type
+  nameWithType: IServiceRegister.Type
 - uid: GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute
   name: MessageCodeDescriptionAttribute
   href: api/GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.html
@@ -8034,114 +8324,84 @@ references:
   commentId: T:GameFrameX.NetWork.Abstractions.MessageOperationType
   fullName: GameFrameX.NetWork.Abstractions.MessageOperationType
   nameWithType: MessageOperationType
-- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.Cache
-  name: Cache
-  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_Cache
-  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.Cache
-  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.Cache
-  nameWithType: MessageOperationType.Cache
-- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.Database
-  name: Database
-  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_Database
-  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.Database
-  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.Database
-  nameWithType: MessageOperationType.Database
-- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.Exit
-  name: Exit
-  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_Exit
-  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.Exit
-  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.Exit
-  nameWithType: MessageOperationType.Exit
-- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.Forbid
-  name: Forbid
-  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_Forbid
-  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.Forbid
-  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.Forbid
-  nameWithType: MessageOperationType.Forbid
-- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.Forward
-  name: Forward
-  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_Forward
-  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.Forward
-  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.Forward
-  nameWithType: MessageOperationType.Forward
+- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.ConnectService
+  name: ConnectService
+  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_ConnectService
+  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.ConnectService
+  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.ConnectService
+  nameWithType: MessageOperationType.ConnectService
 - uid: GameFrameX.NetWork.Abstractions.MessageOperationType.Game
   name: Game
   href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_Game
   commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.Game
   fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.Game
   nameWithType: MessageOperationType.Game
-- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.GameManager
-  name: GameManager
-  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_GameManager
-  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.GameManager
-  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.GameManager
-  nameWithType: MessageOperationType.GameManager
 - uid: GameFrameX.NetWork.Abstractions.MessageOperationType.HeartBeat
   name: HeartBeat
   href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_HeartBeat
   commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.HeartBeat
   fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.HeartBeat
   nameWithType: MessageOperationType.HeartBeat
-- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.Kick
-  name: Kick
-  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_Kick
-  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.Kick
-  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.Kick
-  nameWithType: MessageOperationType.Kick
+- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.Max
+  name: Max
+  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_Max
+  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.Max
+  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.Max
+  nameWithType: MessageOperationType.Max
 - uid: GameFrameX.NetWork.Abstractions.MessageOperationType.None
   name: None
   href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_None
   commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.None
   fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.None
   nameWithType: MessageOperationType.None
-- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.Notify
-  name: Notify
-  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_Notify
-  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.Notify
-  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.Notify
-  nameWithType: MessageOperationType.Notify
-- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.PlayerRegisterOffLine
-  name: PlayerRegisterOffLine
-  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_PlayerRegisterOffLine
-  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.PlayerRegisterOffLine
-  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.PlayerRegisterOffLine
-  nameWithType: MessageOperationType.PlayerRegisterOffLine
-- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.PlayerRegisterOnLine
-  name: PlayerRegisterOnLine
-  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_PlayerRegisterOnLine
-  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.PlayerRegisterOnLine
-  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.PlayerRegisterOnLine
-  nameWithType: MessageOperationType.PlayerRegisterOnLine
-- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.Reboot
-  name: Reboot
-  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_Reboot
-  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.Reboot
-  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.Reboot
-  nameWithType: MessageOperationType.Reboot
-- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.Reconnect
-  name: Reconnect
-  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_Reconnect
-  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.Reconnect
-  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.Reconnect
-  nameWithType: MessageOperationType.Reconnect
-- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.Register
-  name: Register
-  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_Register
-  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.Register
-  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.Register
-  nameWithType: MessageOperationType.Register
-- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.Reload
-  name: Reload
-  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_Reload
-  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.Reload
-  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.Reload
-  nameWithType: MessageOperationType.Reload
-- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.RequestConnectServer
-  name: RequestConnectServer
-  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_RequestConnectServer
-  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.RequestConnectServer
-  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.RequestConnectServer
-  nameWithType: MessageOperationType.RequestConnectServer
+- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.NotifyPlayerOffLine
+  name: NotifyPlayerOffLine
+  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_NotifyPlayerOffLine
+  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.NotifyPlayerOffLine
+  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.NotifyPlayerOffLine
+  nameWithType: MessageOperationType.NotifyPlayerOffLine
+- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.NotifyPlayerOnLine
+  name: NotifyPlayerOnLine
+  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_NotifyPlayerOnLine
+  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.NotifyPlayerOnLine
+  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.NotifyPlayerOnLine
+  nameWithType: MessageOperationType.NotifyPlayerOnLine
+- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.NotifyServiceOffLine
+  name: NotifyServiceOffLine
+  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_NotifyServiceOffLine
+  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.NotifyServiceOffLine
+  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.NotifyServiceOffLine
+  nameWithType: MessageOperationType.NotifyServiceOffLine
+- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.NotifyServiceOnLine
+  name: NotifyServiceOnLine
+  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_NotifyServiceOnLine
+  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.NotifyServiceOnLine
+  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.NotifyServiceOnLine
+  nameWithType: MessageOperationType.NotifyServiceOnLine
+- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.PlayerRegister
+  name: PlayerRegister
+  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_PlayerRegister
+  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.PlayerRegister
+  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.PlayerRegister
+  nameWithType: MessageOperationType.PlayerRegister
+- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.PlayerUnRegister
+  name: PlayerUnRegister
+  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_PlayerUnRegister
+  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.PlayerUnRegister
+  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.PlayerUnRegister
+  nameWithType: MessageOperationType.PlayerUnRegister
+- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.ServiceRegister
+  name: ServiceRegister
+  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_ServiceRegister
+  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.ServiceRegister
+  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.ServiceRegister
+  nameWithType: MessageOperationType.ServiceRegister
+- uid: GameFrameX.NetWork.Abstractions.MessageOperationType.ServiceUnRegister
+  name: ServiceUnRegister
+  href: api/GameFrameX.NetWork.Abstractions.MessageOperationType.html#GameFrameX_NetWork_Abstractions_MessageOperationType_ServiceUnRegister
+  commentId: F:GameFrameX.NetWork.Abstractions.MessageOperationType.ServiceUnRegister
+  fullName: GameFrameX.NetWork.Abstractions.MessageOperationType.ServiceUnRegister
+  nameWithType: MessageOperationType.ServiceUnRegister
 - uid: GameFrameX.NetWork.Abstractions.MessageProtoHelper
   name: MessageProtoHelper
   href: api/GameFrameX.NetWork.Abstractions.MessageProtoHelper.html
@@ -8307,15 +8567,15 @@ references:
   commentId: T:GameFrameX.NetWork.Abstractions.MessageTypeHandlerAttribute
   fullName: GameFrameX.NetWork.Abstractions.MessageTypeHandlerAttribute
   nameWithType: MessageTypeHandlerAttribute
-- uid: GameFrameX.NetWork.Abstractions.MessageTypeHandlerAttribute.#ctor(System.Int32,GameFrameX.NetWork.Abstractions.MessageOperationType)
-  name: MessageTypeHandlerAttribute(int, MessageOperationType)
-  href: api/GameFrameX.NetWork.Abstractions.MessageTypeHandlerAttribute.html#GameFrameX_NetWork_Abstractions_MessageTypeHandlerAttribute__ctor_System_Int32_GameFrameX_NetWork_Abstractions_MessageOperationType_
-  commentId: M:GameFrameX.NetWork.Abstractions.MessageTypeHandlerAttribute.#ctor(System.Int32,GameFrameX.NetWork.Abstractions.MessageOperationType)
-  name.vb: New(Integer, MessageOperationType)
-  fullName: GameFrameX.NetWork.Abstractions.MessageTypeHandlerAttribute.MessageTypeHandlerAttribute(int, GameFrameX.NetWork.Abstractions.MessageOperationType)
-  fullName.vb: GameFrameX.NetWork.Abstractions.MessageTypeHandlerAttribute.New(Integer, GameFrameX.NetWork.Abstractions.MessageOperationType)
-  nameWithType: MessageTypeHandlerAttribute.MessageTypeHandlerAttribute(int, MessageOperationType)
-  nameWithType.vb: MessageTypeHandlerAttribute.New(Integer, MessageOperationType)
+- uid: GameFrameX.NetWork.Abstractions.MessageTypeHandlerAttribute.#ctor(System.Int32,System.Byte)
+  name: MessageTypeHandlerAttribute(int, byte)
+  href: api/GameFrameX.NetWork.Abstractions.MessageTypeHandlerAttribute.html#GameFrameX_NetWork_Abstractions_MessageTypeHandlerAttribute__ctor_System_Int32_System_Byte_
+  commentId: M:GameFrameX.NetWork.Abstractions.MessageTypeHandlerAttribute.#ctor(System.Int32,System.Byte)
+  name.vb: New(Integer, Byte)
+  fullName: GameFrameX.NetWork.Abstractions.MessageTypeHandlerAttribute.MessageTypeHandlerAttribute(int, byte)
+  fullName.vb: GameFrameX.NetWork.Abstractions.MessageTypeHandlerAttribute.New(Integer, Byte)
+  nameWithType: MessageTypeHandlerAttribute.MessageTypeHandlerAttribute(int, byte)
+  nameWithType.vb: MessageTypeHandlerAttribute.New(Integer, Byte)
 - uid: GameFrameX.NetWork.Abstractions.MessageTypeHandlerAttribute.#ctor*
   name: MessageTypeHandlerAttribute
   href: api/GameFrameX.NetWork.Abstractions.MessageTypeHandlerAttribute.html#GameFrameX_NetWork_Abstractions_MessageTypeHandlerAttribute__ctor_
@@ -9693,73 +9953,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.Message.BaseMessageEncoderHandler.SetCompressionHandler
   nameWithType: BaseMessageEncoderHandler.SetCompressionHandler
-- uid: GameFrameX.NetWork.Message.ClientMessageDecoderHandler
-  name: ClientMessageDecoderHandler
-  href: api/GameFrameX.NetWork.Message.ClientMessageDecoderHandler.html
-  commentId: T:GameFrameX.NetWork.Message.ClientMessageDecoderHandler
-  fullName: GameFrameX.NetWork.Message.ClientMessageDecoderHandler
-  nameWithType: ClientMessageDecoderHandler
-- uid: GameFrameX.NetWork.Message.ClientMessageDecoderHandler.Handler(System.Buffers.ReadOnlySequence{System.Byte}@)
-  name: Handler(ref ReadOnlySequence<byte>)
-  href: api/GameFrameX.NetWork.Message.ClientMessageDecoderHandler.html#GameFrameX_NetWork_Message_ClientMessageDecoderHandler_Handler_System_Buffers_ReadOnlySequence_System_Byte___
-  commentId: M:GameFrameX.NetWork.Message.ClientMessageDecoderHandler.Handler(System.Buffers.ReadOnlySequence{System.Byte}@)
-  name.vb: Handler(ReadOnlySequence(Of Byte))
-  fullName: GameFrameX.NetWork.Message.ClientMessageDecoderHandler.Handler(ref System.Buffers.ReadOnlySequence<byte>)
-  fullName.vb: GameFrameX.NetWork.Message.ClientMessageDecoderHandler.Handler(System.Buffers.ReadOnlySequence(Of Byte))
-  nameWithType: ClientMessageDecoderHandler.Handler(ref ReadOnlySequence<byte>)
-  nameWithType.vb: ClientMessageDecoderHandler.Handler(ReadOnlySequence(Of Byte))
-- uid: GameFrameX.NetWork.Message.ClientMessageDecoderHandler.Handler*
-  name: Handler
-  href: api/GameFrameX.NetWork.Message.ClientMessageDecoderHandler.html#GameFrameX_NetWork_Message_ClientMessageDecoderHandler_Handler_
-  commentId: Overload:GameFrameX.NetWork.Message.ClientMessageDecoderHandler.Handler
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Message.ClientMessageDecoderHandler.Handler
-  nameWithType: ClientMessageDecoderHandler.Handler
-- uid: GameFrameX.NetWork.Message.ClientMessageDecoderHandler.PackageHeaderLength
-  name: PackageHeaderLength
-  href: api/GameFrameX.NetWork.Message.ClientMessageDecoderHandler.html#GameFrameX_NetWork_Message_ClientMessageDecoderHandler_PackageHeaderLength
-  commentId: P:GameFrameX.NetWork.Message.ClientMessageDecoderHandler.PackageHeaderLength
-  fullName: GameFrameX.NetWork.Message.ClientMessageDecoderHandler.PackageHeaderLength
-  nameWithType: ClientMessageDecoderHandler.PackageHeaderLength
-- uid: GameFrameX.NetWork.Message.ClientMessageDecoderHandler.PackageHeaderLength*
-  name: PackageHeaderLength
-  href: api/GameFrameX.NetWork.Message.ClientMessageDecoderHandler.html#GameFrameX_NetWork_Message_ClientMessageDecoderHandler_PackageHeaderLength_
-  commentId: Overload:GameFrameX.NetWork.Message.ClientMessageDecoderHandler.PackageHeaderLength
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Message.ClientMessageDecoderHandler.PackageHeaderLength
-  nameWithType: ClientMessageDecoderHandler.PackageHeaderLength
-- uid: GameFrameX.NetWork.Message.ClientMessageEncoderHandler
-  name: ClientMessageEncoderHandler
-  href: api/GameFrameX.NetWork.Message.ClientMessageEncoderHandler.html
-  commentId: T:GameFrameX.NetWork.Message.ClientMessageEncoderHandler
-  fullName: GameFrameX.NetWork.Message.ClientMessageEncoderHandler
-  nameWithType: ClientMessageEncoderHandler
-- uid: GameFrameX.NetWork.Message.ClientMessageEncoderHandler.Handler(GameFrameX.NetWork.Abstractions.IMessage)
-  name: Handler(IMessage)
-  href: api/GameFrameX.NetWork.Message.ClientMessageEncoderHandler.html#GameFrameX_NetWork_Message_ClientMessageEncoderHandler_Handler_GameFrameX_NetWork_Abstractions_IMessage_
-  commentId: M:GameFrameX.NetWork.Message.ClientMessageEncoderHandler.Handler(GameFrameX.NetWork.Abstractions.IMessage)
-  fullName: GameFrameX.NetWork.Message.ClientMessageEncoderHandler.Handler(GameFrameX.NetWork.Abstractions.IMessage)
-  nameWithType: ClientMessageEncoderHandler.Handler(IMessage)
-- uid: GameFrameX.NetWork.Message.ClientMessageEncoderHandler.Handler*
-  name: Handler
-  href: api/GameFrameX.NetWork.Message.ClientMessageEncoderHandler.html#GameFrameX_NetWork_Message_ClientMessageEncoderHandler_Handler_
-  commentId: Overload:GameFrameX.NetWork.Message.ClientMessageEncoderHandler.Handler
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Message.ClientMessageEncoderHandler.Handler
-  nameWithType: ClientMessageEncoderHandler.Handler
-- uid: GameFrameX.NetWork.Message.ClientMessageEncoderHandler.PackageHeaderLength
-  name: PackageHeaderLength
-  href: api/GameFrameX.NetWork.Message.ClientMessageEncoderHandler.html#GameFrameX_NetWork_Message_ClientMessageEncoderHandler_PackageHeaderLength
-  commentId: P:GameFrameX.NetWork.Message.ClientMessageEncoderHandler.PackageHeaderLength
-  fullName: GameFrameX.NetWork.Message.ClientMessageEncoderHandler.PackageHeaderLength
-  nameWithType: ClientMessageEncoderHandler.PackageHeaderLength
-- uid: GameFrameX.NetWork.Message.ClientMessageEncoderHandler.PackageHeaderLength*
-  name: PackageHeaderLength
-  href: api/GameFrameX.NetWork.Message.ClientMessageEncoderHandler.html#GameFrameX_NetWork_Message_ClientMessageEncoderHandler_PackageHeaderLength_
-  commentId: Overload:GameFrameX.NetWork.Message.ClientMessageEncoderHandler.PackageHeaderLength
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Message.ClientMessageEncoderHandler.PackageHeaderLength
-  nameWithType: ClientMessageEncoderHandler.PackageHeaderLength
 - uid: GameFrameX.NetWork.Message.DefaultMessageCompressHandler
   name: DefaultMessageCompressHandler
   href: api/GameFrameX.NetWork.Message.DefaultMessageCompressHandler.html
@@ -9899,15 +10092,15 @@ references:
   commentId: T:GameFrameX.NetWork.MessageObjectLoggerHelper
   fullName: GameFrameX.NetWork.MessageObjectLoggerHelper
   nameWithType: MessageObjectLoggerHelper
-- uid: GameFrameX.NetWork.MessageObjectLoggerHelper.FormatMessage(System.Int32,GameFrameX.NetWork.Abstractions.MessageOperationType,System.Int32,GameFrameX.NetWork.Abstractions.INetworkMessage,System.Int64)
-  name: FormatMessage(int, MessageOperationType, int, INetworkMessage, long)
-  href: api/GameFrameX.NetWork.MessageObjectLoggerHelper.html#GameFrameX_NetWork_MessageObjectLoggerHelper_FormatMessage_System_Int32_GameFrameX_NetWork_Abstractions_MessageOperationType_System_Int32_GameFrameX_NetWork_Abstractions_INetworkMessage_System_Int64_
-  commentId: M:GameFrameX.NetWork.MessageObjectLoggerHelper.FormatMessage(System.Int32,GameFrameX.NetWork.Abstractions.MessageOperationType,System.Int32,GameFrameX.NetWork.Abstractions.INetworkMessage,System.Int64)
-  name.vb: FormatMessage(Integer, MessageOperationType, Integer, INetworkMessage, Long)
-  fullName: GameFrameX.NetWork.MessageObjectLoggerHelper.FormatMessage(int, GameFrameX.NetWork.Abstractions.MessageOperationType, int, GameFrameX.NetWork.Abstractions.INetworkMessage, long)
-  fullName.vb: GameFrameX.NetWork.MessageObjectLoggerHelper.FormatMessage(Integer, GameFrameX.NetWork.Abstractions.MessageOperationType, Integer, GameFrameX.NetWork.Abstractions.INetworkMessage, Long)
-  nameWithType: MessageObjectLoggerHelper.FormatMessage(int, MessageOperationType, int, INetworkMessage, long)
-  nameWithType.vb: MessageObjectLoggerHelper.FormatMessage(Integer, MessageOperationType, Integer, INetworkMessage, Long)
+- uid: GameFrameX.NetWork.MessageObjectLoggerHelper.FormatMessage(System.Int32,System.Byte,System.Int32,GameFrameX.NetWork.Abstractions.INetworkMessage,System.Int64)
+  name: FormatMessage(int, byte, int, INetworkMessage, long)
+  href: api/GameFrameX.NetWork.MessageObjectLoggerHelper.html#GameFrameX_NetWork_MessageObjectLoggerHelper_FormatMessage_System_Int32_System_Byte_System_Int32_GameFrameX_NetWork_Abstractions_INetworkMessage_System_Int64_
+  commentId: M:GameFrameX.NetWork.MessageObjectLoggerHelper.FormatMessage(System.Int32,System.Byte,System.Int32,GameFrameX.NetWork.Abstractions.INetworkMessage,System.Int64)
+  name.vb: FormatMessage(Integer, Byte, Integer, INetworkMessage, Long)
+  fullName: GameFrameX.NetWork.MessageObjectLoggerHelper.FormatMessage(int, byte, int, GameFrameX.NetWork.Abstractions.INetworkMessage, long)
+  fullName.vb: GameFrameX.NetWork.MessageObjectLoggerHelper.FormatMessage(Integer, Byte, Integer, GameFrameX.NetWork.Abstractions.INetworkMessage, Long)
+  nameWithType: MessageObjectLoggerHelper.FormatMessage(int, byte, int, INetworkMessage, long)
+  nameWithType.vb: MessageObjectLoggerHelper.FormatMessage(Integer, Byte, Integer, INetworkMessage, Long)
 - uid: GameFrameX.NetWork.MessageObjectLoggerHelper.FormatMessage*
   name: FormatMessage
   href: api/GameFrameX.NetWork.MessageObjectLoggerHelper.html#GameFrameX_NetWork_MessageObjectLoggerHelper_FormatMessage_
@@ -10105,12 +10298,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.Messages.MessageObject.SetMessageId
   nameWithType: MessageObject.SetMessageId
-- uid: GameFrameX.NetWork.Messages.MessageObject.SetOperationType(GameFrameX.NetWork.Abstractions.MessageOperationType)
-  name: SetOperationType(MessageOperationType)
-  href: api/GameFrameX.NetWork.Messages.MessageObject.html#GameFrameX_NetWork_Messages_MessageObject_SetOperationType_GameFrameX_NetWork_Abstractions_MessageOperationType_
-  commentId: M:GameFrameX.NetWork.Messages.MessageObject.SetOperationType(GameFrameX.NetWork.Abstractions.MessageOperationType)
-  fullName: GameFrameX.NetWork.Messages.MessageObject.SetOperationType(GameFrameX.NetWork.Abstractions.MessageOperationType)
-  nameWithType: MessageObject.SetOperationType(MessageOperationType)
+- uid: GameFrameX.NetWork.Messages.MessageObject.SetOperationType(System.Byte)
+  name: SetOperationType(byte)
+  href: api/GameFrameX.NetWork.Messages.MessageObject.html#GameFrameX_NetWork_Messages_MessageObject_SetOperationType_System_Byte_
+  commentId: M:GameFrameX.NetWork.Messages.MessageObject.SetOperationType(System.Byte)
+  name.vb: SetOperationType(Byte)
+  fullName: GameFrameX.NetWork.Messages.MessageObject.SetOperationType(byte)
+  fullName.vb: GameFrameX.NetWork.Messages.MessageObject.SetOperationType(Byte)
+  nameWithType: MessageObject.SetOperationType(byte)
+  nameWithType.vb: MessageObject.SetOperationType(Byte)
 - uid: GameFrameX.NetWork.Messages.MessageObject.SetOperationType*
   name: SetOperationType
   href: api/GameFrameX.NetWork.Messages.MessageObject.html#GameFrameX_NetWork_Messages_MessageObject_SetOperationType_
@@ -10266,15 +10462,15 @@ references:
   commentId: T:GameFrameX.NetWork.Messages.MessageObjectLogObject
   fullName: GameFrameX.NetWork.Messages.MessageObjectLogObject
   nameWithType: MessageObjectLogObject
-- uid: GameFrameX.NetWork.Messages.MessageObjectLogObject.#ctor(System.String,System.Int32,GameFrameX.NetWork.Abstractions.MessageOperationType,System.Int32,GameFrameX.NetWork.Abstractions.INetworkMessage,System.Int64)
-  name: MessageObjectLogObject(string, int, MessageOperationType, int, INetworkMessage, long)
-  href: api/GameFrameX.NetWork.Messages.MessageObjectLogObject.html#GameFrameX_NetWork_Messages_MessageObjectLogObject__ctor_System_String_System_Int32_GameFrameX_NetWork_Abstractions_MessageOperationType_System_Int32_GameFrameX_NetWork_Abstractions_INetworkMessage_System_Int64_
-  commentId: M:GameFrameX.NetWork.Messages.MessageObjectLogObject.#ctor(System.String,System.Int32,GameFrameX.NetWork.Abstractions.MessageOperationType,System.Int32,GameFrameX.NetWork.Abstractions.INetworkMessage,System.Int64)
-  name.vb: New(String, Integer, MessageOperationType, Integer, INetworkMessage, Long)
-  fullName: GameFrameX.NetWork.Messages.MessageObjectLogObject.MessageObjectLogObject(string, int, GameFrameX.NetWork.Abstractions.MessageOperationType, int, GameFrameX.NetWork.Abstractions.INetworkMessage, long)
-  fullName.vb: GameFrameX.NetWork.Messages.MessageObjectLogObject.New(String, Integer, GameFrameX.NetWork.Abstractions.MessageOperationType, Integer, GameFrameX.NetWork.Abstractions.INetworkMessage, Long)
-  nameWithType: MessageObjectLogObject.MessageObjectLogObject(string, int, MessageOperationType, int, INetworkMessage, long)
-  nameWithType.vb: MessageObjectLogObject.New(String, Integer, MessageOperationType, Integer, INetworkMessage, Long)
+- uid: GameFrameX.NetWork.Messages.MessageObjectLogObject.#ctor(System.String,System.Int32,System.Int32,System.Int32,GameFrameX.NetWork.Abstractions.INetworkMessage,System.Int64)
+  name: MessageObjectLogObject(string, int, int, int, INetworkMessage, long)
+  href: api/GameFrameX.NetWork.Messages.MessageObjectLogObject.html#GameFrameX_NetWork_Messages_MessageObjectLogObject__ctor_System_String_System_Int32_System_Int32_System_Int32_GameFrameX_NetWork_Abstractions_INetworkMessage_System_Int64_
+  commentId: M:GameFrameX.NetWork.Messages.MessageObjectLogObject.#ctor(System.String,System.Int32,System.Int32,System.Int32,GameFrameX.NetWork.Abstractions.INetworkMessage,System.Int64)
+  name.vb: New(String, Integer, Integer, Integer, INetworkMessage, Long)
+  fullName: GameFrameX.NetWork.Messages.MessageObjectLogObject.MessageObjectLogObject(string, int, int, int, GameFrameX.NetWork.Abstractions.INetworkMessage, long)
+  fullName.vb: GameFrameX.NetWork.Messages.MessageObjectLogObject.New(String, Integer, Integer, Integer, GameFrameX.NetWork.Abstractions.INetworkMessage, Long)
+  nameWithType: MessageObjectLogObject.MessageObjectLogObject(string, int, int, int, INetworkMessage, long)
+  nameWithType.vb: MessageObjectLogObject.New(String, Integer, Integer, Integer, INetworkMessage, Long)
 - uid: GameFrameX.NetWork.Messages.MessageObjectLogObject.#ctor*
   name: MessageObjectLogObject
   href: api/GameFrameX.NetWork.Messages.MessageObjectLogObject.html#GameFrameX_NetWork_Messages_MessageObjectLogObject__ctor_
@@ -11002,15 +11198,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Abstractions.IAppStartUp.AppExitToken
   nameWithType: IAppStartUp.AppExitToken
-- uid: GameFrameX.StartUp.Abstractions.IAppStartUp.Init(GameFrameX.Utility.Setting.ServerType,GameFrameX.Utility.Setting.AppSetting,System.String[])
-  name: Init(ServerType, AppSetting, string[])
-  href: api/GameFrameX.StartUp.Abstractions.IAppStartUp.html#GameFrameX_StartUp_Abstractions_IAppStartUp_Init_GameFrameX_Utility_Setting_ServerType_GameFrameX_Utility_Setting_AppSetting_System_String___
-  commentId: M:GameFrameX.StartUp.Abstractions.IAppStartUp.Init(GameFrameX.Utility.Setting.ServerType,GameFrameX.Utility.Setting.AppSetting,System.String[])
-  name.vb: Init(ServerType, AppSetting, String())
-  fullName: GameFrameX.StartUp.Abstractions.IAppStartUp.Init(GameFrameX.Utility.Setting.ServerType, GameFrameX.Utility.Setting.AppSetting, string[])
-  fullName.vb: GameFrameX.StartUp.Abstractions.IAppStartUp.Init(GameFrameX.Utility.Setting.ServerType, GameFrameX.Utility.Setting.AppSetting, String())
-  nameWithType: IAppStartUp.Init(ServerType, AppSetting, string[])
-  nameWithType.vb: IAppStartUp.Init(ServerType, AppSetting, String())
+- uid: GameFrameX.StartUp.Abstractions.IAppStartUp.Init(System.String,GameFrameX.Utility.Setting.AppSetting,System.String[])
+  name: Init(string, AppSetting, string[])
+  href: api/GameFrameX.StartUp.Abstractions.IAppStartUp.html#GameFrameX_StartUp_Abstractions_IAppStartUp_Init_System_String_GameFrameX_Utility_Setting_AppSetting_System_String___
+  commentId: M:GameFrameX.StartUp.Abstractions.IAppStartUp.Init(System.String,GameFrameX.Utility.Setting.AppSetting,System.String[])
+  name.vb: Init(String, AppSetting, String())
+  fullName: GameFrameX.StartUp.Abstractions.IAppStartUp.Init(string, GameFrameX.Utility.Setting.AppSetting, string[])
+  fullName.vb: GameFrameX.StartUp.Abstractions.IAppStartUp.Init(String, GameFrameX.Utility.Setting.AppSetting, String())
+  nameWithType: IAppStartUp.Init(string, AppSetting, string[])
+  nameWithType.vb: IAppStartUp.Init(String, AppSetting, String())
 - uid: GameFrameX.StartUp.Abstractions.IAppStartUp.Init*
   name: Init
   href: api/GameFrameX.StartUp.Abstractions.IAppStartUp.html#GameFrameX_StartUp_Abstractions_IAppStartUp_Init_
@@ -11191,15 +11387,15 @@ references:
   commentId: M:GameFrameX.StartUp.AppStartUpBase.Init
   fullName: GameFrameX.StartUp.AppStartUpBase.Init()
   nameWithType: AppStartUpBase.Init()
-- uid: GameFrameX.StartUp.AppStartUpBase.Init(GameFrameX.Utility.Setting.ServerType,GameFrameX.Utility.Setting.AppSetting,System.String[])
-  name: Init(ServerType, AppSetting, string[])
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_Init_GameFrameX_Utility_Setting_ServerType_GameFrameX_Utility_Setting_AppSetting_System_String___
-  commentId: M:GameFrameX.StartUp.AppStartUpBase.Init(GameFrameX.Utility.Setting.ServerType,GameFrameX.Utility.Setting.AppSetting,System.String[])
-  name.vb: Init(ServerType, AppSetting, String())
-  fullName: GameFrameX.StartUp.AppStartUpBase.Init(GameFrameX.Utility.Setting.ServerType, GameFrameX.Utility.Setting.AppSetting, string[])
-  fullName.vb: GameFrameX.StartUp.AppStartUpBase.Init(GameFrameX.Utility.Setting.ServerType, GameFrameX.Utility.Setting.AppSetting, String())
-  nameWithType: AppStartUpBase.Init(ServerType, AppSetting, string[])
-  nameWithType.vb: AppStartUpBase.Init(ServerType, AppSetting, String())
+- uid: GameFrameX.StartUp.AppStartUpBase.Init(System.String,GameFrameX.Utility.Setting.AppSetting,System.String[])
+  name: Init(string, AppSetting, string[])
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_Init_System_String_GameFrameX_Utility_Setting_AppSetting_System_String___
+  commentId: M:GameFrameX.StartUp.AppStartUpBase.Init(System.String,GameFrameX.Utility.Setting.AppSetting,System.String[])
+  name.vb: Init(String, AppSetting, String())
+  fullName: GameFrameX.StartUp.AppStartUpBase.Init(string, GameFrameX.Utility.Setting.AppSetting, string[])
+  fullName.vb: GameFrameX.StartUp.AppStartUpBase.Init(String, GameFrameX.Utility.Setting.AppSetting, String())
+  nameWithType: AppStartUpBase.Init(string, AppSetting, string[])
+  nameWithType.vb: AppStartUpBase.Init(String, AppSetting, String())
 - uid: GameFrameX.StartUp.AppStartUpBase.Init*
   name: Init
   href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_Init_
@@ -12609,15 +12805,15 @@ references:
   commentId: T:GameFrameX.StartUp.StartUpTagAttribute
   fullName: GameFrameX.StartUp.StartUpTagAttribute
   nameWithType: StartUpTagAttribute
-- uid: GameFrameX.StartUp.StartUpTagAttribute.#ctor(GameFrameX.Utility.Setting.ServerType,System.Int32)
-  name: StartUpTagAttribute(ServerType, int)
-  href: api/GameFrameX.StartUp.StartUpTagAttribute.html#GameFrameX_StartUp_StartUpTagAttribute__ctor_GameFrameX_Utility_Setting_ServerType_System_Int32_
-  commentId: M:GameFrameX.StartUp.StartUpTagAttribute.#ctor(GameFrameX.Utility.Setting.ServerType,System.Int32)
-  name.vb: New(ServerType, Integer)
-  fullName: GameFrameX.StartUp.StartUpTagAttribute.StartUpTagAttribute(GameFrameX.Utility.Setting.ServerType, int)
-  fullName.vb: GameFrameX.StartUp.StartUpTagAttribute.New(GameFrameX.Utility.Setting.ServerType, Integer)
-  nameWithType: StartUpTagAttribute.StartUpTagAttribute(ServerType, int)
-  nameWithType.vb: StartUpTagAttribute.New(ServerType, Integer)
+- uid: GameFrameX.StartUp.StartUpTagAttribute.#ctor(System.String,System.Int32)
+  name: StartUpTagAttribute(string, int)
+  href: api/GameFrameX.StartUp.StartUpTagAttribute.html#GameFrameX_StartUp_StartUpTagAttribute__ctor_System_String_System_Int32_
+  commentId: M:GameFrameX.StartUp.StartUpTagAttribute.#ctor(System.String,System.Int32)
+  name.vb: New(String, Integer)
+  fullName: GameFrameX.StartUp.StartUpTagAttribute.StartUpTagAttribute(string, int)
+  fullName.vb: GameFrameX.StartUp.StartUpTagAttribute.New(String, Integer)
+  nameWithType: StartUpTagAttribute.StartUpTagAttribute(string, int)
+  nameWithType.vb: StartUpTagAttribute.New(String, Integer)
 - uid: GameFrameX.StartUp.StartUpTagAttribute.#ctor*
   name: StartUpTagAttribute
   href: api/GameFrameX.StartUp.StartUpTagAttribute.html#GameFrameX_StartUp_StartUpTagAttribute__ctor_
@@ -22319,12 +22515,30 @@ references:
   commentId: F:GameFrameX.Utility.Setting.GlobalConst.ComponentHandlerNameSuffix
   fullName: GameFrameX.Utility.Setting.GlobalConst.ComponentHandlerNameSuffix
   nameWithType: GlobalConst.ComponentHandlerNameSuffix
+- uid: GameFrameX.Utility.Setting.GlobalConst.DiscoveryCenterName
+  name: DiscoveryCenterName
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_DiscoveryCenterName
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.DiscoveryCenterName
+  fullName: GameFrameX.Utility.Setting.GlobalConst.DiscoveryCenterName
+  nameWithType: GlobalConst.DiscoveryCenterName
 - uid: GameFrameX.Utility.Setting.GlobalConst.EventListenerNameSuffix
   name: EventListenerNameSuffix
   href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_EventListenerNameSuffix
   commentId: F:GameFrameX.Utility.Setting.GlobalConst.EventListenerNameSuffix
   fullName: GameFrameX.Utility.Setting.GlobalConst.EventListenerNameSuffix
   nameWithType: GlobalConst.EventListenerNameSuffix
+- uid: GameFrameX.Utility.Setting.GlobalConst.FriendName
+  name: FriendName
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_FriendName
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.FriendName
+  fullName: GameFrameX.Utility.Setting.GlobalConst.FriendName
+  nameWithType: GlobalConst.FriendName
+- uid: GameFrameX.Utility.Setting.GlobalConst.GameName
+  name: GameName
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_GameName
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.GameName
+  fullName: GameFrameX.Utility.Setting.GlobalConst.GameName
+  nameWithType: GlobalConst.GameName
 - uid: GameFrameX.Utility.Setting.GlobalConst.HotfixNameSpaceNamePrefix
   name: HotfixNameSpaceNamePrefix
   href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_HotfixNameSpaceNamePrefix
@@ -22349,6 +22563,12 @@ references:
   commentId: F:GameFrameX.Utility.Setting.GlobalConst.IdModuleMax
   fullName: GameFrameX.Utility.Setting.GlobalConst.IdModuleMax
   nameWithType: GlobalConst.IdModuleMax
+- uid: GameFrameX.Utility.Setting.GlobalConst.ImName
+  name: ImName
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_ImName
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.ImName
+  fullName: GameFrameX.Utility.Setting.GlobalConst.ImName
+  nameWithType: GlobalConst.ImName
 - uid: GameFrameX.Utility.Setting.GlobalConst.MAGIC
   name: MAGIC
   href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_MAGIC
@@ -22391,6 +22611,12 @@ references:
   commentId: F:GameFrameX.Utility.Setting.GlobalConst.ModuleIdTimestampMask
   fullName: GameFrameX.Utility.Setting.GlobalConst.ModuleIdTimestampMask
   nameWithType: GlobalConst.ModuleIdTimestampMask
+- uid: GameFrameX.Utility.Setting.GlobalConst.RoomName
+  name: RoomName
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_RoomName
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.RoomName
+  fullName: GameFrameX.Utility.Setting.GlobalConst.RoomName
+  nameWithType: GlobalConst.RoomName
 - uid: GameFrameX.Utility.Setting.GlobalConst.SecondMask
   name: SecondMask
   href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_SecondMask
@@ -22507,27 +22733,30 @@ references:
   fullName.vb: GameFrameX.Utility.Setting.GlobalSettings.GetSettingByTagName(Of T)(String)
   nameWithType: GlobalSettings.GetSettingByTagName<T>(string)
   nameWithType.vb: GlobalSettings.GetSettingByTagName(Of T)(String)
-- uid: GameFrameX.Utility.Setting.GlobalSettings.GetSetting``1(GameFrameX.Utility.Setting.ServerType)
-  name: GetSetting<T>(ServerType)
-  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_GetSetting__1_GameFrameX_Utility_Setting_ServerType_
-  commentId: M:GameFrameX.Utility.Setting.GlobalSettings.GetSetting``1(GameFrameX.Utility.Setting.ServerType)
-  name.vb: GetSetting(Of T)(ServerType)
-  fullName: GameFrameX.Utility.Setting.GlobalSettings.GetSetting<T>(GameFrameX.Utility.Setting.ServerType)
-  fullName.vb: GameFrameX.Utility.Setting.GlobalSettings.GetSetting(Of T)(GameFrameX.Utility.Setting.ServerType)
-  nameWithType: GlobalSettings.GetSetting<T>(ServerType)
-  nameWithType.vb: GlobalSettings.GetSetting(Of T)(ServerType)
+- uid: GameFrameX.Utility.Setting.GlobalSettings.GetSetting``1(System.String)
+  name: GetSetting<T>(string)
+  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_GetSetting__1_System_String_
+  commentId: M:GameFrameX.Utility.Setting.GlobalSettings.GetSetting``1(System.String)
+  name.vb: GetSetting(Of T)(String)
+  fullName: GameFrameX.Utility.Setting.GlobalSettings.GetSetting<T>(string)
+  fullName.vb: GameFrameX.Utility.Setting.GlobalSettings.GetSetting(Of T)(String)
+  nameWithType: GlobalSettings.GetSetting<T>(string)
+  nameWithType.vb: GlobalSettings.GetSetting(Of T)(String)
 - uid: GameFrameX.Utility.Setting.GlobalSettings.GetSettings
   name: GetSettings()
   href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_GetSettings
   commentId: M:GameFrameX.Utility.Setting.GlobalSettings.GetSettings
   fullName: GameFrameX.Utility.Setting.GlobalSettings.GetSettings()
   nameWithType: GlobalSettings.GetSettings()
-- uid: GameFrameX.Utility.Setting.GlobalSettings.GetSettings(GameFrameX.Utility.Setting.ServerType)
-  name: GetSettings(ServerType)
-  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_GetSettings_GameFrameX_Utility_Setting_ServerType_
-  commentId: M:GameFrameX.Utility.Setting.GlobalSettings.GetSettings(GameFrameX.Utility.Setting.ServerType)
-  fullName: GameFrameX.Utility.Setting.GlobalSettings.GetSettings(GameFrameX.Utility.Setting.ServerType)
-  nameWithType: GlobalSettings.GetSettings(ServerType)
+- uid: GameFrameX.Utility.Setting.GlobalSettings.GetSettings(System.String)
+  name: GetSettings(string)
+  href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_GetSettings_System_String_
+  commentId: M:GameFrameX.Utility.Setting.GlobalSettings.GetSettings(System.String)
+  name.vb: GetSettings(String)
+  fullName: GameFrameX.Utility.Setting.GlobalSettings.GetSettings(string)
+  fullName.vb: GameFrameX.Utility.Setting.GlobalSettings.GetSettings(String)
+  nameWithType: GlobalSettings.GetSettings(string)
+  nameWithType.vb: GlobalSettings.GetSettings(String)
 - uid: GameFrameX.Utility.Setting.GlobalSettings.GetSettings*
   name: GetSettings
   href: api/GameFrameX.Utility.Setting.GlobalSettings.html#GameFrameX_Utility_Setting_GlobalSettings_GetSettings_
@@ -22590,132 +22819,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.GlobalSettings.SetCurrentSetting
   nameWithType: GlobalSettings.SetCurrentSetting
-- uid: GameFrameX.Utility.Setting.ServerType
-  name: ServerType
-  href: api/GameFrameX.Utility.Setting.ServerType.html
-  commentId: T:GameFrameX.Utility.Setting.ServerType
-  fullName: GameFrameX.Utility.Setting.ServerType
-  nameWithType: ServerType
-- uid: GameFrameX.Utility.Setting.ServerType.Account
-  name: Account
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_Account
-  commentId: F:GameFrameX.Utility.Setting.ServerType.Account
-  fullName: GameFrameX.Utility.Setting.ServerType.Account
-  nameWithType: ServerType.Account
-- uid: GameFrameX.Utility.Setting.ServerType.All
-  name: All
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_All
-  commentId: F:GameFrameX.Utility.Setting.ServerType.All
-  fullName: GameFrameX.Utility.Setting.ServerType.All
-  nameWithType: ServerType.All
-- uid: GameFrameX.Utility.Setting.ServerType.Backup
-  name: Backup
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_Backup
-  commentId: F:GameFrameX.Utility.Setting.ServerType.Backup
-  fullName: GameFrameX.Utility.Setting.ServerType.Backup
-  nameWithType: ServerType.Backup
-- uid: GameFrameX.Utility.Setting.ServerType.Cache
-  name: Cache
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_Cache
-  commentId: F:GameFrameX.Utility.Setting.ServerType.Cache
-  fullName: GameFrameX.Utility.Setting.ServerType.Cache
-  nameWithType: ServerType.Cache
-- uid: GameFrameX.Utility.Setting.ServerType.Chat
-  name: Chat
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_Chat
-  commentId: F:GameFrameX.Utility.Setting.ServerType.Chat
-  fullName: GameFrameX.Utility.Setting.ServerType.Chat
-  nameWithType: ServerType.Chat
-- uid: GameFrameX.Utility.Setting.ServerType.Client
-  name: Client
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_Client
-  commentId: F:GameFrameX.Utility.Setting.ServerType.Client
-  fullName: GameFrameX.Utility.Setting.ServerType.Client
-  nameWithType: ServerType.Client
-- uid: GameFrameX.Utility.Setting.ServerType.DataBase
-  name: DataBase
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_DataBase
-  commentId: F:GameFrameX.Utility.Setting.ServerType.DataBase
-  fullName: GameFrameX.Utility.Setting.ServerType.DataBase
-  nameWithType: ServerType.DataBase
-- uid: GameFrameX.Utility.Setting.ServerType.DiscoveryCenter
-  name: DiscoveryCenter
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_DiscoveryCenter
-  commentId: F:GameFrameX.Utility.Setting.ServerType.DiscoveryCenter
-  fullName: GameFrameX.Utility.Setting.ServerType.DiscoveryCenter
-  nameWithType: ServerType.DiscoveryCenter
-- uid: GameFrameX.Utility.Setting.ServerType.Game
-  name: Game
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_Game
-  commentId: F:GameFrameX.Utility.Setting.ServerType.Game
-  fullName: GameFrameX.Utility.Setting.ServerType.Game
-  nameWithType: ServerType.Game
-- uid: GameFrameX.Utility.Setting.ServerType.Gateway
-  name: Gateway
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_Gateway
-  commentId: F:GameFrameX.Utility.Setting.ServerType.Gateway
-  fullName: GameFrameX.Utility.Setting.ServerType.Gateway
-  nameWithType: ServerType.Gateway
-- uid: GameFrameX.Utility.Setting.ServerType.Guild
-  name: Guild
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_Guild
-  commentId: F:GameFrameX.Utility.Setting.ServerType.Guild
-  fullName: GameFrameX.Utility.Setting.ServerType.Guild
-  nameWithType: ServerType.Guild
-- uid: GameFrameX.Utility.Setting.ServerType.Log
-  name: Log
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_Log
-  commentId: F:GameFrameX.Utility.Setting.ServerType.Log
-  fullName: GameFrameX.Utility.Setting.ServerType.Log
-  nameWithType: ServerType.Log
-- uid: GameFrameX.Utility.Setting.ServerType.Logic
-  name: Logic
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_Logic
-  commentId: F:GameFrameX.Utility.Setting.ServerType.Logic
-  fullName: GameFrameX.Utility.Setting.ServerType.Logic
-  nameWithType: ServerType.Logic
-- uid: GameFrameX.Utility.Setting.ServerType.Login
-  name: Login
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_Login
-  commentId: F:GameFrameX.Utility.Setting.ServerType.Login
-  fullName: GameFrameX.Utility.Setting.ServerType.Login
-  nameWithType: ServerType.Login
-- uid: GameFrameX.Utility.Setting.ServerType.Mail
-  name: Mail
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_Mail
-  commentId: F:GameFrameX.Utility.Setting.ServerType.Mail
-  fullName: GameFrameX.Utility.Setting.ServerType.Mail
-  nameWithType: ServerType.Mail
-- uid: GameFrameX.Utility.Setting.ServerType.Match
-  name: Match
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_Match
-  commentId: F:GameFrameX.Utility.Setting.ServerType.Match
-  fullName: GameFrameX.Utility.Setting.ServerType.Match
-  nameWithType: ServerType.Match
-- uid: GameFrameX.Utility.Setting.ServerType.None
-  name: None
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_None
-  commentId: F:GameFrameX.Utility.Setting.ServerType.None
-  fullName: GameFrameX.Utility.Setting.ServerType.None
-  nameWithType: ServerType.None
-- uid: GameFrameX.Utility.Setting.ServerType.Recharge
-  name: Recharge
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_Recharge
-  commentId: F:GameFrameX.Utility.Setting.ServerType.Recharge
-  fullName: GameFrameX.Utility.Setting.ServerType.Recharge
-  nameWithType: ServerType.Recharge
-- uid: GameFrameX.Utility.Setting.ServerType.Room
-  name: Room
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_Room
-  commentId: F:GameFrameX.Utility.Setting.ServerType.Room
-  fullName: GameFrameX.Utility.Setting.ServerType.Room
-  nameWithType: ServerType.Room
-- uid: GameFrameX.Utility.Setting.ServerType.Router
-  name: Router
-  href: api/GameFrameX.Utility.Setting.ServerType.html#GameFrameX_Utility_Setting_ServerType_Router
-  commentId: F:GameFrameX.Utility.Setting.ServerType.Router
-  fullName: GameFrameX.Utility.Setting.ServerType.Router
-  nameWithType: ServerType.Router
 - uid: GameFrameX.Utility.Singleton`1
   name: Singleton<T>
   href: api/GameFrameX.Utility.Singleton-1.html

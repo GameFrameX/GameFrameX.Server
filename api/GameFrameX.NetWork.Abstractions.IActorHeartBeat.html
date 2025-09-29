@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Enum ServerType | GameFrameX.Server </title>
+      <title>Interface IActorHeartBeat | GameFrameX.Server </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Enum ServerType | GameFrameX.Server ">
+      <meta name="title" content="Interface IActorHeartBeat | GameFrameX.Server ">
       
-      <meta name="description" content="服务器类型">
+      <meta name="description" content="心跳接口，用于标识具备心跳时间戳的Actor">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0-dev4/apiSpec/new?filename=GameFrameX_Utility_Setting_ServerType.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.Setting.ServerType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.1-dev1/apiSpec/new?filename=GameFrameX_NetWork_Abstractions_IActorHeartBeat.md&amp;value=---%0Auid%3A%20GameFrameX.NetWork.Abstractions.IActorHeartBeat%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,27 +84,25 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="GameFrameX.Utility.Setting.ServerType">
+        <article data-uid="GameFrameX.NetWork.Abstractions.IActorHeartBeat">
 
 
 
-
-  <h1 id="GameFrameX_Utility_Setting_ServerType" data-uid="GameFrameX.Utility.Setting.ServerType" class="text-break">
-Enum ServerType  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0-dev4/GameFrameX.Utility/Setting/ServerType.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <h1 id="GameFrameX_NetWork_Abstractions_IActorHeartBeat" data-uid="GameFrameX.NetWork.Abstractions.IActorHeartBeat" class="text-break">
+Interface IActorHeartBeat  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.NetWork.Abstractions/IActorHeartBeat.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Utility.html">Utility</a>.<a class="xref" href="GameFrameX.Utility.Setting.html">Setting</a></dd></dl>
-  <dl><dt>Assembly</dt><dd>GameFrameX.Utility.dll</dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.NetWork.html">NetWork</a>.<a class="xref" href="GameFrameX.NetWork.Abstractions.html">Abstractions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.NetWork.Abstractions.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>服务器类型</p>
+  <div class="markdown summary"><p>心跳接口，用于标识具备心跳时间戳的Actor</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Flags]
-public enum ServerType</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IActorHeartBeat : INetworkMessage, IMessage</code></pre>
   </div>
 
 
@@ -113,99 +111,75 @@ public enum ServerType</code></pre>
 
 
 
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="GameFrameX.NetWork.Abstractions.INetworkMessage.html#GameFrameX_NetWork_Abstractions_INetworkMessage_UniqueId">INetworkMessage.UniqueId</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.NetWork.Abstractions.INetworkMessage.html#GameFrameX_NetWork_Abstractions_INetworkMessage_SetMessageId_System_Int32_">INetworkMessage.SetMessageId(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.NetWork.Abstractions.INetworkMessage.html#GameFrameX_NetWork_Abstractions_INetworkMessage_UpdateUniqueId">INetworkMessage.UpdateUniqueId()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.NetWork.Abstractions.INetworkMessage.html#GameFrameX_NetWork_Abstractions_INetworkMessage_SetUniqueId_System_Int32_">INetworkMessage.SetUniqueId(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.NetWork.Abstractions.INetworkMessage.html#GameFrameX_NetWork_Abstractions_INetworkMessage_ToJsonString">INetworkMessage.ToJsonString()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.NetWork.Abstractions.IMessage.html#GameFrameX_NetWork_Abstractions_IMessage_ToFormatMessageString_System_Int64_">IMessage.ToFormatMessageString(long)</a>
+    </div>
+  </dd></dl>
 
 
-  <h2 id="fields">Fields
+
+
+
+
+  <h2 class="section" id="properties">Properties
 </h2>
+
+
+  <a id="GameFrameX_NetWork_Abstractions_IActorHeartBeat_Timestamp_" data-uid="GameFrameX.NetWork.Abstractions.IActorHeartBeat.Timestamp*"></a>
+
+  <h3 id="GameFrameX_NetWork_Abstractions_IActorHeartBeat_Timestamp" data-uid="GameFrameX.NetWork.Abstractions.IActorHeartBeat.Timestamp">
+  Timestamp
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.NetWork.Abstractions/IActorHeartBeat.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>时间戳，单位毫秒，表示该Actor最后一次心跳的时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">long Timestamp { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt id="GameFrameX_Utility_Setting_ServerType_Account"><code>Account = 32</code></dt>
-  
-  <dd><p>账号服</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_All"><code>All = Log | DataBase | Cache | Gateway | Account | DiscoveryCenter | Backup | Game | Recharge | Logic | Chat | Mail | Guild | Room</code></dt>
-  
-  <dd><p>全部</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_Backup"><code>Backup = 256</code></dt>
-  
-  <dd><p>远程备份</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_Cache"><code>Cache = 8</code></dt>
-  
-  <dd><p>缓存服</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_Chat"><code>Chat = 16384</code></dt>
-  
-  <dd><p>聊天服</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_Client"><code>Client = 0</code></dt>
-  
-  <dd><p>客户端</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_DataBase"><code>DataBase = 4</code></dt>
-  
-  <dd><p>数据库</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_DiscoveryCenter"><code>DiscoveryCenter = 128</code></dt>
-  
-  <dd><p>服务发现中心服，用于发现其他服务器。</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_Game"><code>Game = 1024</code></dt>
-  
-  <dd><p>游戏服</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_Gateway"><code>Gateway = 16</code></dt>
-  
-  <dd><p>网关服</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_Guild"><code>Guild = 65536</code></dt>
-  
-  <dd><p>公会服</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_Log"><code>Log = 2</code></dt>
-  
-  <dd><p>日志服</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_Logic"><code>Logic = 8192</code></dt>
-  
-  <dd><p>逻辑服</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_Login"><code>Login = 512</code></dt>
-  
-  <dd><p>登录服务器</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_Mail"><code>Mail = 32768</code></dt>
-  
-  <dd><p>邮件服</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_Match"><code>Match = 2048</code></dt>
-  
-  <dd><p>匹配服</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_None"><code>None = -1</code></dt>
-  
-  <dd><p>空值</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_Recharge"><code>Recharge = 4096</code></dt>
-  
-  <dd><p>充值服</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_Room"><code>Room = 131072</code></dt>
-  
-  <dd><p>房间服</p>
-</dd>
-    <dt id="GameFrameX_Utility_Setting_ServerType_Router"><code>Router = 64</code></dt>
-  
-  <dd><p>路由</p>
-</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
   </dl>
+
+
+
+
+
+
 
 
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0-dev4/GameFrameX.Utility/Setting/ServerType.cs/#L37" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.NetWork.Abstractions/IActorHeartBeat.cs/#L37" class="edit-link">Edit this page</a>
         </div>
 
 

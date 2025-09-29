@@ -1174,6 +1174,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.Abstractions.IActorHeartBeat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.Abstractions.IActorHeartBeat.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.NetWork.Abstractions.IActorHeartBeat",
+      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Abstractions.IActorHeartBeat.yml\" sourcestartlinenumber=\"1\">心跳接口，用于标识具备心跳时间戳的Actor</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.NetWork.Abstractions.ICommandInfo.yml",
       "output": {
         ".html": {
@@ -1328,6 +1342,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat",
+      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat.yml\" sourcestartlinenumber=\"1\">服务器通知心跳结果，因为有些业务需要对心跳结果做处理所以不做成RPC的方式处理</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.NetWork.Abstractions.INotifyMessage.yml",
       "output": {
         ".html": {
@@ -1409,6 +1437,48 @@
       "IsMRef": true,
       "Title": "GameFrameX.NetWork.Abstractions.IRpcSession",
       "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Abstractions.IRpcSession.yml\" sourcestartlinenumber=\"1\">RPC会话接口</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.NetWork.Abstractions.IServiceNotifyOffline",
+      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.yml\" sourcestartlinenumber=\"1\">服务下线通知接口，用于在节点退出集群时广播自身信息。</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.NetWork.Abstractions.IServiceNotifyOnline",
+      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.yml\" sourcestartlinenumber=\"1\">服务上线通知接口，用于在节点加入集群时广播自身信息。</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.Abstractions.IServiceRegister.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.Abstractions.IServiceRegister.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.NetWork.Abstractions.IServiceRegister",
+      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Abstractions.IServiceRegister.yml\" sourcestartlinenumber=\"1\">服务注册接口，用于描述一个可被注册到集群中的服务器节点信息。</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1829,34 +1899,6 @@
       "IsMRef": true,
       "Title": "GameFrameX.NetWork.Message.BaseMessageEncoderHandler",
       "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Message.BaseMessageEncoderHandler.yml\" sourcestartlinenumber=\"1\">基础消息编码处理器</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.NetWork.Message.ClientMessageDecoderHandler.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.NetWork.Message.ClientMessageDecoderHandler.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.NetWork.Message.ClientMessageDecoderHandler",
-      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Message.ClientMessageDecoderHandler.yml\" sourcestartlinenumber=\"1\">对外部客户端的消息解码处理器</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.NetWork.Message.ClientMessageEncoderHandler.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.NetWork.Message.ClientMessageEncoderHandler.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.NetWork.Message.ClientMessageEncoderHandler",
-      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Message.ClientMessageEncoderHandler.yml\" sourcestartlinenumber=\"1\">基础消息编码处理器</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2711,20 +2753,6 @@
       "IsMRef": true,
       "Title": "GameFrameX.Utility.Setting.GlobalSettings",
       "Summary": "<p sourcefile=\"api/GameFrameX.Utility.Setting.GlobalSettings.yml\" sourcestartlinenumber=\"1\">全局设置</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.Setting.ServerType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Utility.Setting.ServerType.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Utility.Setting.ServerType",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.Setting.ServerType.yml\" sourcestartlinenumber=\"1\">服务器类型</p>\n"
     },
     {
       "type": "ManagedReference",

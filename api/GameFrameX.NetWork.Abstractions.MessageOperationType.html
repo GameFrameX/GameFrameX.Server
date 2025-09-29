@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0-dev4/apiSpec/new?filename=GameFrameX_NetWork_Abstractions_MessageOperationType.md&amp;value=---%0Auid%3A%20GameFrameX.NetWork.Abstractions.MessageOperationType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.1-dev1/apiSpec/new?filename=GameFrameX_NetWork_Abstractions_MessageOperationType.md&amp;value=---%0Auid%3A%20GameFrameX.NetWork.Abstractions.MessageOperationType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -90,7 +90,7 @@
 
 
   <h1 id="GameFrameX_NetWork_Abstractions_MessageOperationType" data-uid="GameFrameX.NetWork.Abstractions.MessageOperationType" class="text-break">
-Enum MessageOperationType  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0-dev4/GameFrameX.NetWork.Abstractions/MessageOperationType.cs/#L37"><i class="bi bi-code-slash"></i></a>
+Enum MessageOperationType  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.NetWork.Abstractions/MessageOperationType.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -117,77 +117,57 @@ Enum MessageOperationType  <a class="header-action link-secondary" title="View s
   <h2 id="fields">Fields
 </h2>
   <dl class="parameters">
-    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_Cache"><code>Cache = 2</code></dt>
+    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_ConnectService"><code>ConnectService = 25</code></dt>
   
-  <dd><p>缓存查询</p>
-</dd>
-    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_Database"><code>Database = 3</code></dt>
-  
-  <dd><p>数据库查询</p>
-</dd>
-    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_Exit"><code>Exit = 10</code></dt>
-  
-  <dd><p>退出</p>
-</dd>
-    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_Forbid"><code>Forbid = 6</code></dt>
-  
-  <dd><p>禁止</p>
-</dd>
-    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_Forward"><code>Forward = 13</code></dt>
-  
-  <dd><p>转发</p>
+  <dd><p>请求连接服务器信息，客户端向中心获取目标游戏服务器或网关的接入地址与凭证</p>
 </dd>
     <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_Game"><code>Game = 4</code></dt>
   
-  <dd><p>游戏</p>
-</dd>
-    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_GameManager"><code>GameManager = 5</code></dt>
-  
-  <dd><p>游戏管理</p>
+  <dd><p>游戏逻辑相关消息</p>
 </dd>
     <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_HeartBeat"><code>HeartBeat = 1</code></dt>
   
   <dd><p>心跳</p>
 </dd>
-    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_Kick"><code>Kick = 11</code></dt>
+    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_Max"><code>Max = 64</code></dt>
   
-  <dd><p>踢人</p>
+  <dd><p>最大值，保留位</p>
 </dd>
     <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_None"><code>None = 0</code></dt>
   
   <dd><p>空类型</p>
 </dd>
-    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_Notify"><code>Notify = 12</code></dt>
+    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_NotifyPlayerOffLine"><code>NotifyPlayerOffLine = 35</code></dt>
   
-  <dd><p>通知</p>
+  <dd><p>玩家下线通知，玩家会话断开时向相关服务广播玩家已离线，需清理玩家状态与数据</p>
 </dd>
-    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_PlayerRegisterOffLine"><code>PlayerRegisterOffLine = 17</code></dt>
+    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_NotifyPlayerOnLine"><code>NotifyPlayerOnLine = 34</code></dt>
   
-  <dd><p>玩家注销</p>
+  <dd><p>玩家上线通知，玩家会话成功建立后向相关服务广播玩家已登录，可推送游戏数据</p>
 </dd>
-    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_PlayerRegisterOnLine"><code>PlayerRegisterOnLine = 16</code></dt>
+    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_NotifyServiceOffLine"><code>NotifyServiceOffLine = 19</code></dt>
   
-  <dd><p>玩家注册</p>
+  <dd><p>服务下线通知，用于服务实例即将停止时向中心广播自身将离线，不再接受调用</p>
 </dd>
-    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_Reboot"><code>Reboot = 7</code></dt>
+    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_NotifyServiceOnLine"><code>NotifyServiceOnLine = 18</code></dt>
   
-  <dd><p>重启</p>
+  <dd><p>服务上线通知，用于服务实例成功启动后向中心广播自身已就绪，可接受调用</p>
 </dd>
-    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_Reconnect"><code>Reconnect = 8</code></dt>
+    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_PlayerRegister"><code>PlayerRegister = 32</code></dt>
   
-  <dd><p>重连</p>
+  <dd><p>玩家注册，用于玩家会话首次建立时在中心记录玩家与具体游戏服务器的映射关系</p>
 </dd>
-    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_Register"><code>Register = 14</code></dt>
+    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_PlayerUnRegister"><code>PlayerUnRegister = 33</code></dt>
   
-  <dd><p>注册</p>
+  <dd><p>玩家注销，用于玩家会话结束时在中心移除玩家与游戏服务器的映射关系</p>
 </dd>
-    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_Reload"><code>Reload = 9</code></dt>
+    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_ServiceRegister"><code>ServiceRegister = 16</code></dt>
   
-  <dd><p>重载</p>
+  <dd><p>服务注册，用于服务实例向中心注册自身信息，声明可提供的服务能力</p>
 </dd>
-    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_RequestConnectServer"><code>RequestConnectServer = 15</code></dt>
+    <dt id="GameFrameX_NetWork_Abstractions_MessageOperationType_ServiceUnRegister"><code>ServiceUnRegister = 17</code></dt>
   
-  <dd><p>请求链接服务器信息</p>
+  <dd><p>服务注销，用于服务实例从中心移除自身注册信息，停止服务宣告</p>
 </dd>
   </dl>
 
@@ -196,7 +176,7 @@ Enum MessageOperationType  <a class="header-action link-secondary" title="View s
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0-dev4/GameFrameX.NetWork.Abstractions/MessageOperationType.cs/#L37" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.NetWork.Abstractions/MessageOperationType.cs/#L37" class="edit-link">Edit this page</a>
         </div>
 
 

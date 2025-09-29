@@ -133,6 +133,11 @@ Classes
 Interfaces
 </h3>
     <dl class="jumplist">
+      <dt><a class="xref" href="GameFrameX.NetWork.Abstractions.IActorHeartBeat.html">IActorHeartBeat</a></dt>
+      <dd><p>心跳接口，用于标识具备心跳时间戳的Actor</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="GameFrameX.NetWork.Abstractions.ICommandInfo.html">ICommandInfo</a></dt>
       <dd><p>消息指令信息</p>
 </dd>
@@ -188,6 +193,11 @@ Interfaces
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat.html">INotifyActorHeartBeat</a></dt>
+      <dd><p>服务器通知心跳结果，因为有些业务需要对心跳结果做处理所以不做成RPC的方式处理</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="GameFrameX.NetWork.Abstractions.INotifyMessage.html">INotifyMessage</a></dt>
       <dd><p>通知消息</p>
 </dd>
@@ -215,6 +225,21 @@ Interfaces
     <dl class="jumplist">
       <dt><a class="xref" href="GameFrameX.NetWork.Abstractions.IRpcSession.html">IRpcSession</a></dt>
       <dd><p>RPC会话接口</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.html">IServiceNotifyOffline</a></dt>
+      <dd><p>服务下线通知接口，用于在节点退出集群时广播自身信息。</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFrameX.NetWork.Abstractions.IServiceNotifyOnline.html">IServiceNotifyOnline</a></dt>
+      <dd><p>服务上线通知接口，用于在节点加入集群时广播自身信息。</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="GameFrameX.NetWork.Abstractions.IServiceRegister.html">IServiceRegister</a></dt>
+      <dd><p>服务注册接口，用于描述一个可被注册到集群中的服务器节点信息。</p>
 </dd>
     </dl>
     <h3 id="enums">
