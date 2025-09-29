@@ -50,9 +50,10 @@ internal partial class AppStartUpDiscoveryCenter
 
     private void OnServerRemove(IServiceInfo serverInfo)
     {
-        var serverList = _namingServiceManager.GetOuterNodes()
-            .Where(m => m.ServerId != 0 && m.ServerId != serverInfo.ServerId)
-            .ToList();
+        var serverList = _namingServiceManager.GetOuterNodes();
+        serverList = serverList.Where(m => m.ServerId != 0 && m.ServerInstanceId != serverInfo.ServerInstanceId)
+                               .ToList();
+
         var respServerOnlineServer = new RespServerOfflineServer
         {
             ServerType = serverInfo.Type,
@@ -76,7 +77,8 @@ internal partial class AppStartUpDiscoveryCenter
 
     private void OnServerAdd(IServiceInfo serverInfo)
     {
-        var serverList = _namingServiceManager.GetOuterNodes().Where(m => m.ServerId != serverInfo.ServerId).ToList();
+        var serverList = _namingServiceManager.GetOuterNodes();
+        serverList = serverList.Where(m => m.ServerInstanceId != serverInfo.ServerInstanceId).ToList();
 
         var respServerOnlineServer = new RespServerOnlineServer
         {
