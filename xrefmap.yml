@@ -12135,6 +12135,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.IsDebugSendHeartBeat
   nameWithType: LauncherOptions.IsDebugSendHeartBeat
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsEnableWebSocket
+  name: IsEnableWebSocket
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsEnableWebSocket
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.IsEnableWebSocket
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsEnableWebSocket
+  nameWithType: LauncherOptions.IsEnableWebSocket
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsEnableWebSocket*
+  name: IsEnableWebSocket
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsEnableWebSocket_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.IsEnableWebSocket
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsEnableWebSocket
+  nameWithType: LauncherOptions.IsEnableWebSocket
 - uid: GameFrameX.StartUp.Options.LauncherOptions.IsMonitorMessageTimeOut
   name: IsMonitorMessageTimeOut
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsMonitorMessageTimeOut
@@ -21821,6 +21834,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.IsDebugSendHeartBeat
   nameWithType: AppSetting.IsDebugSendHeartBeat
+- uid: GameFrameX.Utility.Setting.AppSetting.IsEnableWebSocket
+  name: IsEnableWebSocket
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsEnableWebSocket
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.IsEnableWebSocket
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsEnableWebSocket
+  nameWithType: AppSetting.IsEnableWebSocket
+- uid: GameFrameX.Utility.Setting.AppSetting.IsEnableWebSocket*
+  name: IsEnableWebSocket
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsEnableWebSocket_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.IsEnableWebSocket
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsEnableWebSocket
+  nameWithType: AppSetting.IsEnableWebSocket
 - uid: GameFrameX.Utility.Setting.AppSetting.IsLocal(System.Int32)
   name: IsLocal(int)
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsLocal_System_Int32_
