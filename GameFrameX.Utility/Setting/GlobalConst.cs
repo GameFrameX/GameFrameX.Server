@@ -171,9 +171,30 @@ public static class GlobalConst
     #endregion
 
     /// <summary>
-    /// 服务发现中心服务名称
+    /// 服务发现中心 服务名称
     /// </summary>
     public const string DiscoveryCenterName = "DiscoveryCenter";
+
+    /// <summary>
+    /// 游戏 服务名称
+    /// </summary>
+    public const string GameName = "Game";
+
+
+    /// <summary>
+    /// 聊天 服务名称
+    /// </summary>
+    public const string ImName = "Im";
+
+    /// <summary>
+    /// 好友 服务名称
+    /// </summary>
+    public const string FriendName = "Friend";
+
+    /// <summary>
+    /// 房间 服务名称
+    /// </summary>
+    public const string RoomName = "Room";
 
     #region HTTP
 
