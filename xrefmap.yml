@@ -11836,19 +11836,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.ActorTimeOut
   nameWithType: LauncherOptions.ActorTimeOut
-- uid: GameFrameX.StartUp.Options.LauncherOptions.ClientApiUrl
-  name: ClientApiUrl
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_ClientApiUrl
-  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.ClientApiUrl
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.ClientApiUrl
-  nameWithType: LauncherOptions.ClientApiUrl
-- uid: GameFrameX.StartUp.Options.LauncherOptions.ClientApiUrl*
-  name: ClientApiUrl
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_ClientApiUrl_
-  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.ClientApiUrl
+- uid: GameFrameX.StartUp.Options.LauncherOptions.ClientApiHost
+  name: ClientApiHost
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_ClientApiHost
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.ClientApiHost
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.ClientApiHost
+  nameWithType: LauncherOptions.ClientApiHost
+- uid: GameFrameX.StartUp.Options.LauncherOptions.ClientApiHost*
+  name: ClientApiHost
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_ClientApiHost_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.ClientApiHost
   isSpec: "True"
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.ClientApiUrl
-  nameWithType: LauncherOptions.ClientApiUrl
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.ClientApiHost
+  nameWithType: LauncherOptions.ClientApiHost
 - uid: GameFrameX.StartUp.Options.LauncherOptions.DataBaseName
   name: DataBaseName
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_DataBaseName
@@ -12031,32 +12031,32 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.HttpsPort
   nameWithType: LauncherOptions.HttpsPort
-- uid: GameFrameX.StartUp.Options.LauncherOptions.HubApiUrl
-  name: HubApiUrl
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_HubApiUrl
-  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.HubApiUrl
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.HubApiUrl
-  nameWithType: LauncherOptions.HubApiUrl
-- uid: GameFrameX.StartUp.Options.LauncherOptions.HubApiUrl*
-  name: HubApiUrl
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_HubApiUrl_
-  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.HubApiUrl
+- uid: GameFrameX.StartUp.Options.LauncherOptions.HubApiHost
+  name: HubApiHost
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_HubApiHost
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.HubApiHost
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.HubApiHost
+  nameWithType: LauncherOptions.HubApiHost
+- uid: GameFrameX.StartUp.Options.LauncherOptions.HubApiHost*
+  name: HubApiHost
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_HubApiHost_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.HubApiHost
   isSpec: "True"
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.HubApiUrl
-  nameWithType: LauncherOptions.HubApiUrl
-- uid: GameFrameX.StartUp.Options.LauncherOptions.InnerIp
-  name: InnerIp
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_InnerIp
-  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.InnerIp
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.InnerIp
-  nameWithType: LauncherOptions.InnerIp
-- uid: GameFrameX.StartUp.Options.LauncherOptions.InnerIp*
-  name: InnerIp
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_InnerIp_
-  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.InnerIp
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.HubApiHost
+  nameWithType: LauncherOptions.HubApiHost
+- uid: GameFrameX.StartUp.Options.LauncherOptions.InnerHost
+  name: InnerHost
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_InnerHost
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.InnerHost
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.InnerHost
+  nameWithType: LauncherOptions.InnerHost
+- uid: GameFrameX.StartUp.Options.LauncherOptions.InnerHost*
+  name: InnerHost
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_InnerHost_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.InnerHost
   isSpec: "True"
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.InnerIp
-  nameWithType: LauncherOptions.InnerIp
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.InnerHost
+  nameWithType: LauncherOptions.InnerHost
 - uid: GameFrameX.StartUp.Options.LauncherOptions.InnerPort
   name: InnerPort
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_InnerPort
@@ -12421,19 +12421,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.Note
   nameWithType: LauncherOptions.Note
-- uid: GameFrameX.StartUp.Options.LauncherOptions.OuterIp
-  name: OuterIp
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_OuterIp
-  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.OuterIp
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.OuterIp
-  nameWithType: LauncherOptions.OuterIp
-- uid: GameFrameX.StartUp.Options.LauncherOptions.OuterIp*
-  name: OuterIp
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_OuterIp_
-  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.OuterIp
+- uid: GameFrameX.StartUp.Options.LauncherOptions.OuterHost
+  name: OuterHost
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_OuterHost
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.OuterHost
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.OuterHost
+  nameWithType: LauncherOptions.OuterHost
+- uid: GameFrameX.StartUp.Options.LauncherOptions.OuterHost*
+  name: OuterHost
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_OuterHost_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.OuterHost
   isSpec: "True"
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.OuterIp
-  nameWithType: LauncherOptions.OuterIp
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.OuterHost
+  nameWithType: LauncherOptions.OuterHost
 - uid: GameFrameX.StartUp.Options.LauncherOptions.OuterPort
   name: OuterPort
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_OuterPort
@@ -21522,6 +21522,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.AppRunning
   nameWithType: AppSetting.AppRunning
+- uid: GameFrameX.Utility.Setting.AppSetting.ClientApiHost
+  name: ClientApiHost
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_ClientApiHost
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.ClientApiHost
+  fullName: GameFrameX.Utility.Setting.AppSetting.ClientApiHost
+  nameWithType: AppSetting.ClientApiHost
+- uid: GameFrameX.Utility.Setting.AppSetting.ClientApiHost*
+  name: ClientApiHost
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_ClientApiHost_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.ClientApiHost
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.ClientApiHost
+  nameWithType: AppSetting.ClientApiHost
 - uid: GameFrameX.Utility.Setting.AppSetting.DataBaseName
   name: DataBaseName
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_DataBaseName
@@ -21704,19 +21717,32 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.HttpsPort
   nameWithType: AppSetting.HttpsPort
-- uid: GameFrameX.Utility.Setting.AppSetting.InnerIp
-  name: InnerIp
-  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_InnerIp
-  commentId: P:GameFrameX.Utility.Setting.AppSetting.InnerIp
-  fullName: GameFrameX.Utility.Setting.AppSetting.InnerIp
-  nameWithType: AppSetting.InnerIp
-- uid: GameFrameX.Utility.Setting.AppSetting.InnerIp*
-  name: InnerIp
-  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_InnerIp_
-  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.InnerIp
+- uid: GameFrameX.Utility.Setting.AppSetting.HubApiHost
+  name: HubApiHost
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_HubApiHost
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.HubApiHost
+  fullName: GameFrameX.Utility.Setting.AppSetting.HubApiHost
+  nameWithType: AppSetting.HubApiHost
+- uid: GameFrameX.Utility.Setting.AppSetting.HubApiHost*
+  name: HubApiHost
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_HubApiHost_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.HubApiHost
   isSpec: "True"
-  fullName: GameFrameX.Utility.Setting.AppSetting.InnerIp
-  nameWithType: AppSetting.InnerIp
+  fullName: GameFrameX.Utility.Setting.AppSetting.HubApiHost
+  nameWithType: AppSetting.HubApiHost
+- uid: GameFrameX.Utility.Setting.AppSetting.InnerHost
+  name: InnerHost
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_InnerHost
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.InnerHost
+  fullName: GameFrameX.Utility.Setting.AppSetting.InnerHost
+  nameWithType: AppSetting.InnerHost
+- uid: GameFrameX.Utility.Setting.AppSetting.InnerHost*
+  name: InnerHost
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_InnerHost_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.InnerHost
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.InnerHost
+  nameWithType: AppSetting.InnerHost
 - uid: GameFrameX.Utility.Setting.AppSetting.InnerPort
   name: InnerPort
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_InnerPort
@@ -21993,19 +22019,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.Note
   nameWithType: AppSetting.Note
-- uid: GameFrameX.Utility.Setting.AppSetting.OuterIp
-  name: OuterIp
-  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_OuterIp
-  commentId: P:GameFrameX.Utility.Setting.AppSetting.OuterIp
-  fullName: GameFrameX.Utility.Setting.AppSetting.OuterIp
-  nameWithType: AppSetting.OuterIp
-- uid: GameFrameX.Utility.Setting.AppSetting.OuterIp*
-  name: OuterIp
-  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_OuterIp_
-  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.OuterIp
+- uid: GameFrameX.Utility.Setting.AppSetting.OuterHost
+  name: OuterHost
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_OuterHost
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.OuterHost
+  fullName: GameFrameX.Utility.Setting.AppSetting.OuterHost
+  nameWithType: AppSetting.OuterHost
+- uid: GameFrameX.Utility.Setting.AppSetting.OuterHost*
+  name: OuterHost
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_OuterHost_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.OuterHost
   isSpec: "True"
-  fullName: GameFrameX.Utility.Setting.AppSetting.OuterIp
-  nameWithType: AppSetting.OuterIp
+  fullName: GameFrameX.Utility.Setting.AppSetting.OuterHost
+  nameWithType: AppSetting.OuterHost
 - uid: GameFrameX.Utility.Setting.AppSetting.OuterPort
   name: OuterPort
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_OuterPort
