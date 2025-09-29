@@ -54,7 +54,7 @@ public sealed class RemoveNodeHttpHandler : BaseHttpHandler
     /// <remarks>
     /// 该方法支持通过 <see cref="IServiceInfo.ServerId"/> 或 <see cref="IServiceInfo.SessionId"/> 来移除服务节点。
     /// 优先使用ServerId进行移除，如果ServerId为空则使用SessionId。
-    /// 移除操作通过 <see cref="NamingServiceManager.TryRemove(long)"/> 或 <see cref="NamingServiceManager.TrySessionRemove(string)"/> 方法执行。
+    /// 移除操作通过 <see cref="NamingServiceManager.TryRemoveByInstanceId"/> 或 <see cref="NamingServiceManager.TrySessionRemove(string)"/> 方法执行。
     /// </remarks>
     public override Task<string> Action(string ip, string url, HttpMessageRequestBase request)
     {
@@ -70,7 +70,7 @@ public sealed class RemoveNodeHttpHandler : BaseHttpHandler
         if (!string.IsNullOrEmpty(serverId) && long.TryParse(serverId, out long serverIdLong))
         {
             // 通过ServerId移除节点
-            success = namingServiceManager.TryRemove(serverIdLong);
+            success = namingServiceManager.TryRemoveByInstanceId(serverIdLong);
             message = success 
                 ? $"成功移除ServerId为 {serverId} 的节点" 
                 : $"移除ServerId为 {serverId} 的节点失败，节点可能不存在";
