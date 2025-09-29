@@ -111,7 +111,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
                 // 当需要打印心跳，或当前非心跳消息时才输出日志
-                if (Setting.IsDebugReceiveHeartBeat || messageObject.Header.OperationType != MessageOperationType.HeartBeat)
+                if (Setting.IsDebugReceiveHeartBeat || messageObject.Header.OperationType != (byte)MessageOperationType.HeartBeat)
                 {
                     var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
                     var from = serverInfo != null ? serverInfo.Type.ToString() : ServerType.ToString();
@@ -121,7 +121,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
 
             switch (messageObject.Header.OperationType)
             {
-                case MessageOperationType.HeartBeat:
+                case (byte)MessageOperationType.HeartBeat:
                 {
                     // 心跳响应
                     var reqHeartBeat = messageObject.DeserializeMessageObject();
@@ -133,7 +133,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     SendMessage(session, response);
                     return ValueTask.CompletedTask;
                 }
-                case MessageOperationType.Game:
+                case (byte)MessageOperationType.Game:
                 {
                     var reqConnectServer = (ReqConnectServer)messageObject.DeserializeMessageObject();
                     var serverList = _namingServiceManager.GetNodesByType(reqConnectServer.ServerType);
@@ -160,7 +160,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                 }
                     break;
 
-                case MessageOperationType.PlayerRegisterOnLine:
+                case (byte)MessageOperationType.NotifyPlayerOnLine:
                 {
                     var reqRegisterPlayer = (ReqDiscoverCenterPlayerOnline)messageObject.DeserializeMessageObject();
                     // 注册玩家
@@ -168,7 +168,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     LogHelper.Info($"注册玩家成功：{reqRegisterPlayer.PlayerId}  {reqRegisterPlayer}");
                     return ValueTask.CompletedTask;
                 }
-                case MessageOperationType.PlayerRegisterOffLine:
+                case (byte)MessageOperationType.NotifyPlayerOffLine:
                 {
                     var reqRegisterPlayer = (ReqDiscoverCenterPlayerOffline)messageObject.DeserializeMessageObject();
                     // 注销玩家
@@ -176,16 +176,16 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     LogHelper.Info($"注销玩家成功：{reqRegisterPlayer.PlayerId}  {reqRegisterPlayer}");
                     return ValueTask.CompletedTask;
                 }
-                case MessageOperationType.Register:
+                case (byte)MessageOperationType.NotifyServiceOnLine:
                 {
-                    var reqRegisterServer = (ReqRegisterServer)messageObject.DeserializeMessageObject();
+                    var reqRegisterServer = (ReqServiceRegister)messageObject.DeserializeMessageObject();
                     // 注册服务
                     var serviceInfo = new ServiceInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerId, reqRegisterServer.ServerInstanceId, reqRegisterServer.InnerHost, reqRegisterServer.InnerPort, reqRegisterServer.OuterHost, reqRegisterServer.OuterPort);
                     _namingServiceManager.Add(serviceInfo);
                     LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
                     return ValueTask.CompletedTask;
                 }
-                case MessageOperationType.RequestConnectServer:
+                case (byte)MessageOperationType.ConnectService:
                 {
                     var reqConnectServer = (ReqConnectServer)messageObject.DeserializeMessageObject();
                     var serverList = _namingServiceManager.GetNodesByType(reqConnectServer.ServerType);
