@@ -82,9 +82,9 @@ public abstract partial class AppStartUpBase
             OnMessage = GameAppClientOnMessage,
             OnError = GameAppClientOnError,
         };
-
+        var endPoint = new DnsEndPoint(Setting.DiscoveryCenterIp, Setting.DiscoveryCenterPort);
         // 根据配置创建发现中心终结点并初始化客户端
-        _gameAppClient = new GameAppClient(gameAppClientEvent, new DnsEndPoint(Setting.DiscoveryCenterIp, Setting.DiscoveryCenterPort));
+        _gameAppClient = new GameAppClient(gameAppClientEvent, endPoint);
 
         // 异步启动客户端，开始与发现中心建立连接
         await _gameAppClient.EntryAsync();
