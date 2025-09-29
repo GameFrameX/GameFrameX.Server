@@ -54,7 +54,7 @@ internal partial class AppStartUpDiscoveryCenter
         serverList = serverList.Where(m => m.ServerId != 0 && m.ServerInstanceId != serverInfo.ServerInstanceId)
                                .ToList();
 
-        var respServerOnlineServer = new RespServerOfflineServer
+        var respServerOnlineServer = new NotifyServiceOffLine
         {
             ServerType = serverInfo.Type,
             ServerName = serverInfo.Name,
@@ -80,7 +80,7 @@ internal partial class AppStartUpDiscoveryCenter
         var serverList = _namingServiceManager.GetOuterNodes();
         serverList = serverList.Where(m => m.ServerInstanceId != serverInfo.ServerInstanceId).ToList();
 
-        var respServerOnlineServer = new RespServerOnlineServer
+        var respServerOnlineServer = new NotifyServiceOnLine
         {
             ServerType = serverInfo.Type,
             ServerName = serverInfo.Name,

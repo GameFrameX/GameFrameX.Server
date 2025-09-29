@@ -39,7 +39,7 @@ internal partial class AppStartUpHotfixGame
     {
         base.GameAppClientOnConnected();
         // 注册服务器到发现中心
-        var reqRegisterServer = new ReqRegisterServer
+        var reqRegisterServer = new ReqServiceRegister
         {
             ServerId = Setting.ServerId,
             ServerName = Setting.ServerName,
