@@ -49,23 +49,22 @@ public sealed class ServiceInfo : IServiceInfo
     /// <param name="serverName"></param>
     /// <param name="serverId"></param>
     /// <param name="serverInstanceId"></param>
-    /// <param name="innerIp"></param>
-    /// <param name="innerPort"></param>
-    /// <param name="outerIp"></param>
-    /// <param name="outerPort"></param>
-    public ServiceInfo(ServerType type, object session, string sessionId, string serverName, long serverId, long serverInstanceId, string innerIp, ushort innerPort, string outerIp, ushort outerPort)
+    /// <param name="intranetHost"></param>
+    /// <param name="intranetPort"></param>
+    /// <param name="externalHost"></param>
+    /// <param name="externalPort"></param>
+    public ServiceInfo(ServerType type, object session, string sessionId, string serverName, long serverId, long serverInstanceId, string intranetHost, ushort intranetPort, string externalHost, ushort externalPort)
     {
         Type = type;
         Session = session;
-        ServerName = serverName;
+        Name = serverName;
         ServerId = serverId;
-        InnerIp = innerIp;
-        InnerPort = innerPort;
-        OuterIp = outerIp;
-        OuterPort = outerPort;
+        IntranetHost = intranetHost;
+        IntranetPort = intranetPort;
+        ExternalHost = externalHost;
+        ExternalPort = externalPort;
         SessionId = sessionId;
         ServerInstanceId = serverInstanceId;
-        StatusInfo = new ServiceStatusInfo();
     }
 
     /// <summary>
@@ -73,31 +72,6 @@ public sealed class ServiceInfo : IServiceInfo
     /// </summary>
     [JsonIgnore]
     public object Session { get; }
-
-    /// <summary>
-    /// 内部IP
-    /// </summary>
-    public string InnerIp { get; }
-
-    /// <summary>
-    /// 内部端口
-    /// </summary>
-    public ushort InnerPort { get; }
-
-    /// <summary>
-    /// 外部IP
-    /// </summary>
-    public string OuterIp { get; }
-
-    /// <summary>
-    /// 外部端口
-    /// </summary>
-    public ushort OuterPort { get; }
-
-    /// <summary>
-    /// 服务器状态
-    /// </summary>
-    public ServiceStatusInfo StatusInfo { get; set; }
 
     /// <summary>
     /// 会话ID
@@ -112,7 +86,27 @@ public sealed class ServiceInfo : IServiceInfo
     /// <summary>
     /// 服务器名称
     /// </summary>
-    public string ServerName { get; }
+    public string Name { get; }
+
+    /// <summary>
+    /// 内网主机地址，服务在内网中的访问地址
+    /// </summary>
+    public string IntranetHost { get; }
+
+    /// <summary>
+    /// 内网端口号，服务在内网中的监听端口
+    /// </summary>
+    public ushort IntranetPort { get; }
+
+    /// <summary>
+    /// 外网主机地址，服务在外网中的访问地址
+    /// </summary>
+    public string ExternalHost { get; }
+
+    /// <summary>
+    /// 外网端口号，服务在外网中的监听端口
+    /// </summary>
+    public ushort ExternalPort { get; }
 
     /// <summary>
     /// 服务器ID
@@ -123,6 +117,21 @@ public sealed class ServiceInfo : IServiceInfo
     /// 服务器实例ID
     /// </summary>
     public long ServerInstanceId { get; set; }
+
+    /// <summary>
+    /// 服务器状态
+    /// </summary>
+    public ServiceStatus Status { get; set; }
+
+    /// <summary>
+    /// 承载上限
+    /// </summary>
+    public int MaxLoad { get; set; }
+
+    /// <summary>
+    /// 当前承载
+    /// </summary>
+    public int CurrentLoad { get; set; }
 
     /// <summary>
     /// 转换为字符串

@@ -32,29 +32,53 @@
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.DiscoveryCenterManager.Server;
-
 /// <summary>
-/// 服务信息
+/// 服务信息接口
 /// </summary>
 public interface IServiceInfo
 {
     /// <summary>
-    /// 会话ID
+    /// 会话ID，用于唯一标识当前服务会话
     /// </summary>
     string SessionId { get; }
 
     /// <summary>
-    /// 服务器类型
+    /// 服务器类型，标识当前服务所属的服务器类别
     /// </summary>
     ServerType Type { get; }
 
     /// <summary>
-    /// 服务器名称
+    /// 服务器名称，用于显示或区分不同服务实例
     /// </summary>
-    string ServerName { get; }
+    string Name { get; }
 
     /// <summary>
-    /// 服务器ID
+    /// 内网主机地址，服务在内网中的访问地址
+    /// </summary>
+    string IntranetHost { get; }
+
+    /// <summary>
+    /// 内网端口号，服务在内网中的监听端口
+    /// </summary>
+    ushort IntranetPort { get; }
+
+    /// <summary>
+    /// 外网主机地址，服务在外网中的访问地址
+    /// </summary>
+    string ExternalHost { get; }
+
+    /// <summary>
+    /// 外网端口号，服务在外网中的监听端口
+    /// </summary>
+    ushort ExternalPort { get; }
+
+    /// <summary>
+    /// 服务器ID，全局唯一标识该服务器
     /// </summary>
     long ServerId { get; }
+
+    /// <summary>
+    /// 服务器实例ID，用于区分同一服务器下的不同实例
+    /// </summary>
+    long ServerInstanceId { get; }
 }
