@@ -78,7 +78,7 @@ public sealed class RemoveNodeHttpHandler : BaseHttpHandler
         else if (!string.IsNullOrEmpty(sessionId))
         {
             // 通过SessionId移除节点
-            success = namingServiceManager.TrySessionRemove(sessionId);
+            success = namingServiceManager.TryRemoveBySessionId(sessionId);
             message = success 
                 ? $"成功移除SessionId为 {sessionId} 的节点" 
                 : $"移除SessionId为 {sessionId} 的节点失败，节点可能不存在";
