@@ -431,7 +431,6 @@ public sealed class LauncherOptions
     [DefaultValue("")]
     public string HubApiUrl { get; set; }
 
-
     /// <summary>
     /// 心跳间隔（毫秒），默认 5000 毫秒
     /// </summary>
