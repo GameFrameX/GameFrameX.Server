@@ -93,7 +93,7 @@ public partial class ReqServiceRegister : MessageObject, IRequestMessage
 /// <summary>
 /// 请求注销服务
 /// </summary>
-[MessageTypeHandler(((-3) << 16) + 101, (byte)MessageOperationType.ServiceUnRegister)]
+[MessageTypeHandler(((-3) << 16) + 102, (byte)MessageOperationType.ServiceUnRegister)]
 public partial class ReqServiceUnRegister : MessageObject, IRequestMessage
 {
     /// <summary>
