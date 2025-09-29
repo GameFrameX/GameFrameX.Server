@@ -207,7 +207,7 @@ public abstract partial class AppStartUpBase
         // 检查TCP端口是否可用
         if (Setting.InnerPort > 0 && NetHelper.PortIsAvailable(Setting.InnerPort))
         {
-            LogHelper.InfoConsole($"启动 [TCP] 服务器 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}");
+            LogHelper.InfoConsole($"启动 [TCP] 服务器 - 类型: {ServerType}, 地址: {Setting.InnerHost}, 端口: {Setting.InnerPort}");
             multipleServerHostBuilder.AddServer<IMessage, MessageObjectPipelineFilter>(builder =>
             {
                 builder
@@ -236,11 +236,11 @@ public abstract partial class AppStartUpBase
                         // }
                     });
             });
-            LogHelper.InfoConsole($"启动 [TCP] 服务器启动完成 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}");
+            LogHelper.InfoConsole($"启动 [TCP] 服务器启动完成 - 类型: {ServerType}, 地址: {Setting.InnerHost}, 端口: {Setting.InnerPort}");
         }
         else
         {
-            LogHelper.WarningConsole($"启动 [TCP] 服务器启动失败 - 类型: {ServerType}, 地址: {Setting.InnerIp}, 端口: {Setting.InnerPort}, 原因: 端口无效或已被占用");
+            LogHelper.WarningConsole($"启动 [TCP] 服务器启动失败 - 类型: {ServerType}, 地址: {Setting.InnerHost}, 端口: {Setting.InnerPort}, 原因: 端口无效或已被占用");
         }
 
         // 检查WebSocket端口是否可用

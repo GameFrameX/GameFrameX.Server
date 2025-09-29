@@ -375,9 +375,9 @@ public class AppSettingTests
         var appSetting = new AppSetting();
 
         // Act
-        appSetting.InnerIp = "192.168.1.100";
+        appSetting.InnerHost = "192.168.1.100";
         appSetting.InnerPort = 8080;
-        appSetting.OuterIp = "203.0.113.1";
+        appSetting.OuterHost = "203.0.113.1";
         appSetting.OuterPort = 9090;
         appSetting.HttpUrl = "http://localhost:8080";
         appSetting.HttpIsDevelopment = true;
@@ -389,9 +389,9 @@ public class AppSettingTests
         appSetting.WssCertFilePath = "/path/to/cert.pem";
 
         // Assert
-        Assert.Equal("192.168.1.100", appSetting.InnerIp);
+        Assert.Equal("192.168.1.100", appSetting.InnerHost);
         Assert.Equal((ushort)8080, appSetting.InnerPort);
-        Assert.Equal("203.0.113.1", appSetting.OuterIp);
+        Assert.Equal("203.0.113.1", appSetting.OuterHost);
         Assert.Equal((ushort)9090, appSetting.OuterPort);
         Assert.Equal("http://localhost:8080", appSetting.HttpUrl);
         Assert.True(appSetting.HttpIsDevelopment);

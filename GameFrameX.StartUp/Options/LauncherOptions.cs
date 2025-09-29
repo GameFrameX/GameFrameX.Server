@@ -255,12 +255,12 @@ public sealed class LauncherOptions
     public int ActorRecycleTime { get; set; } = 15;
 
     /// <summary>
-    /// 内部IP
+    /// 内部主机地址
     /// </summary>
-    [Option(nameof(InnerIp), Description = "内部IP")]
+    [Option(nameof(InnerHost), Description = "内部IP")]
     [DefaultValue("0.0.0.0")]
     // [GrafanaLokiLabelTag]
-    public string InnerIp { get; set; }
+    public string InnerHost { get; set; }
 
     /// <summary>
     /// 内部端口
@@ -270,12 +270,12 @@ public sealed class LauncherOptions
     public ushort InnerPort { get; set; }
 
     /// <summary>
-    /// 外部IP
+    /// 外部主机地址
     /// </summary>
-    [Option(nameof(OuterIp), Description = "外部IP")]
+    [Option(nameof(OuterHost), Description = "外部IP")]
     [DefaultValue("0.0.0.0")]
     // [GrafanaLokiLabelTag]
-    public string OuterIp { get; set; }
+    public string OuterHost { get; set; }
 
     /// <summary>
     /// 外部端口

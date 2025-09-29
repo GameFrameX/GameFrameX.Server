@@ -265,9 +265,9 @@ public sealed class AppSetting
     public int ActorQueueTimeOut { get; set; } = 30_000;
 
     /// <summary>
-    /// 内部IP地址
+    /// 内部主机地址
     /// </summary>
-    public string InnerIp { get; set; }
+    public string InnerHost { get; set; }
 
     /// <summary>
     /// 内部端口
@@ -280,9 +280,9 @@ public sealed class AppSetting
     public ushort WorkerId { get; set; }
 
     /// <summary>
-    /// 外部IP地址
+    /// 外部主机地址
     /// </summary>
-    public string OuterIp { get; set; }
+    public string OuterHost { get; set; }
 
     /// <summary>
     /// 外部端口
