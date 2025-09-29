@@ -390,6 +390,16 @@ public sealed class AppSetting
     public string Label { get; set; }
 
     /// <summary>
+    /// 客户端API地址
+    /// </summary>
+    public string ClientApiHost { get; set; }
+
+    /// <summary>
+    /// HubAPI地址
+    /// </summary>
+    public string HubApiHost { get; set; }
+
+    /// <summary>
     /// 心跳间隔（毫秒），默认 5000 毫秒
     /// </summary>
     public int GameAppClientHeartBeatInterval { get; set; }
