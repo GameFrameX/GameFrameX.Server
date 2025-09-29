@@ -29,9 +29,7 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
-using System.Reflection;
 using GameFrameX.NetWork.Abstractions;
-using GameFrameX.Proto.BuiltIn;
 
 namespace GameFrameX.Launcher;
 
@@ -42,7 +40,7 @@ internal static class Program
         await GameApp.Entry(args, () =>
         {
             CacheStateTypeManager.Init();
-            MessageProtoHelper.Init(typeof(MessageProtoBuildInTag).Assembly, typeof(MessageProtoHandler).Assembly);
+            MessageProtoHelper.Init(typeof(MessageProtoHandler).Assembly);
         }, LogConfiguration);
     }
 
