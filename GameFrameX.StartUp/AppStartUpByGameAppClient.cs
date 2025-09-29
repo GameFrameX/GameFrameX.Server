@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using System.Net;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.StartUp.DiscoverCenter;
@@ -58,6 +59,19 @@ public abstract partial class AppStartUpBase
             OnError = GameAppClientOnError,
             OnHeartBeat = GameAppClientOnHeartBeat,
         };
+
+        if (Setting.DiscoveryCenterHost.IsNullOrEmptyOrWhiteSpace())
+        {
+            LogHelper.Error("DiscoveryCenterHost is not configured; unable to start connection to DiscoveryCenter. Please check the configuration item DiscoveryCenterHost");
+            return;
+        }
+
+        if (!Setting.DiscoveryCenterPort.IsRange())
+        {
+            LogHelper.Error("DiscoveryCenterPort is not configured; unable to start connection to DiscoveryCenter. Please check the configuration item DiscoveryCenterPort");
+            return;
+        }
+
         var endPoint = new DnsEndPoint(Setting.DiscoveryCenterHost, Setting.DiscoveryCenterPort);
         GameAppClientOption option = new();
         ConfigureGameAppClient(option);
