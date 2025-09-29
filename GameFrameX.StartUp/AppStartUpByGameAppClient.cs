@@ -97,7 +97,7 @@ public abstract partial class AppStartUpBase
     /// <returns>返回要发送的心跳消息对象；如无需发送心跳，返回 null</returns>
     protected virtual MessageObject GameAppClientOnHeartBeat()
     {
-        return null;
+        return default;
     }
 
     /// <summary>
