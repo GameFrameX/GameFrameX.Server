@@ -295,7 +295,7 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
     /// </summary>
     /// <param name="type">服务器类型</param>
     /// <returns>所有指定类型的服务节点列表</returns>
-    public List<IServiceInfo> GetNodesByType(ServerType type)
+    public List<IServiceInfo> GetNodesByType(string type)
     {
         var list = new List<IServiceInfo>();
         foreach (var node in _serverMap)

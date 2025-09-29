@@ -53,7 +53,7 @@ public sealed class ServiceInfo : IServiceInfo
     /// <param name="intranetPort"></param>
     /// <param name="externalHost"></param>
     /// <param name="externalPort"></param>
-    public ServiceInfo(ServerType type, object session, string sessionId, string serverName, long serverId, long serverInstanceId, string intranetHost, ushort intranetPort, string externalHost, ushort externalPort)
+    public ServiceInfo(string type, object session, string sessionId, string serverName, long serverId, long serverInstanceId, string intranetHost, ushort intranetPort, string externalHost, ushort externalPort)
     {
         Type = type;
         Session = session;
@@ -81,7 +81,7 @@ public sealed class ServiceInfo : IServiceInfo
     /// <summary>
     /// 服务器类型
     /// </summary>
-    public ServerType Type { get; }
+    public string Type { get; }
 
     /// <summary>
     /// 服务器名称

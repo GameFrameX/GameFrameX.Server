@@ -45,7 +45,7 @@ public interface IServiceInfo
     /// <summary>
     /// 服务器类型，标识当前服务所属的服务器类别
     /// </summary>
-    ServerType Type { get; }
+    string Type { get; }
 
     /// <summary>
     /// 服务器名称，用于显示或区分不同服务实例
