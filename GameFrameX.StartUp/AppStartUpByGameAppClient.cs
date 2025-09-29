@@ -56,6 +56,7 @@ public abstract partial class AppStartUpBase
             OnClosed = GameAppClientOnClosed,
             OnMessage = GameAppClientOnMessage,
             OnError = GameAppClientOnError,
+            OnHeartBeat = GameAppClientOnHeartBeat,
         };
         var endPoint = new DnsEndPoint(Setting.DiscoveryCenterIp, Setting.DiscoveryCenterPort);
         // 根据配置创建发现中心终结点并初始化客户端
@@ -63,6 +64,15 @@ public abstract partial class AppStartUpBase
 
         // 异步启动客户端，开始与发现中心建立连接
         await _gameAppClient.EntryAsync();
+    }
+
+    /// <summary>
+    /// 心跳回调：当需要向发现中心发送心跳消息时触发，可在此构造并返回心跳数据
+    /// </summary>
+    /// <returns>返回要发送的心跳消息对象；如无需发送心跳，返回 null</returns>
+    protected virtual MessageObject GameAppClientOnHeartBeat()
+    {
+        return null;
     }
 
     /// <summary>

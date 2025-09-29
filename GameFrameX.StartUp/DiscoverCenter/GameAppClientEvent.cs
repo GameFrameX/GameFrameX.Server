@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 using GameFrameX.NetWork.Messages;
 
 namespace GameFrameX.StartUp.DiscoverCenter;
@@ -59,4 +58,9 @@ internal sealed class GameAppClientEvent
     /// 接收到消息时的回调
     /// </summary>
     public Action<MessageObject> OnMessage;
+
+    /// <summary>
+    /// 心跳包生成回调，返回待发送的心跳消息
+    /// </summary>
+    public Func<MessageObject> OnHeartBeat;
 }
