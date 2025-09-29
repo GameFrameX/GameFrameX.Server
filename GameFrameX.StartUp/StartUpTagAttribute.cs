@@ -47,14 +47,14 @@ public class StartUpTagAttribute : Attribute
     /// <summary>
     /// 服务器类型
     /// </summary>
-    public readonly ServerType ServerType;
+    public readonly string ServerType;
 
     /// <summary>
     /// 构建启动属性
     /// </summary>
     /// <param name="serverType">服务器类型</param>
     /// <param name="priority">优先级，默认为1000</param>
-    public StartUpTagAttribute(ServerType serverType, int priority = 1000)
+    public StartUpTagAttribute(string serverType, int priority = 1000)
     {
         ServerType = serverType;
         Priority = priority;
