@@ -93,7 +93,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
         var buffer = MessageHelper.EncoderHandler.Handler(message);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
-            if (Setting.IsDebugSendHeartBeat || messageObjectHeader.OperationType != MessageOperationType.HeartBeat)
+            if (Setting.IsDebugSendHeartBeat || messageObjectHeader.OperationType != (byte)MessageOperationType.HeartBeat)
             {
                 var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
                 var toServerType = serverInfo != null ? serverInfo.Type.ToString() : ServerType.ToString();

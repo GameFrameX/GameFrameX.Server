@@ -42,7 +42,7 @@ public class MessageTypeHandlerAttribute : Attribute
     /// </summary>
     /// <param name="messageId">消息ID</param>
     /// <param name="operationType">消息类型</param>
-    public MessageTypeHandlerAttribute(int messageId, MessageOperationType operationType = MessageOperationType.None)
+    public MessageTypeHandlerAttribute(int messageId, byte operationType = default)
     {
         OperationType = operationType;
         MessageId = messageId;
@@ -68,5 +68,5 @@ public class MessageTypeHandlerAttribute : Attribute
     /// <summary>
     /// 消息操作类型
     /// </summary>
-    public MessageOperationType OperationType { get; }
+    public byte OperationType { get; }
 }

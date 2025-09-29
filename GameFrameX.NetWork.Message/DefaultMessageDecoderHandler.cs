@@ -70,7 +70,7 @@ public class DefaultMessageDecoderHandler : BaseMessageDecoderHandler
             // 消息对象头
             var messageObjectHeader = new MessageObjectHeader
             {
-                OperationType = (MessageOperationType)operationType,
+                OperationType = operationType,
                 ZipFlag = zipFlag,
                 UniqueId = uniqueId,
                 MessageId = messageId,

@@ -54,7 +54,7 @@ public static class MessageObjectLoggerHelper
     /// <param name="messageObject">网络消息对象</param>
     /// <param name="actorId"></param>
     /// <returns>格式化后的消息字符串</returns>
-    public static string FormatMessage(int messageId, MessageOperationType operationType, int uniqueId, INetworkMessage messageObject, long actorId)
+    public static string FormatMessage(int messageId, byte operationType, int uniqueId, INetworkMessage messageObject, long actorId)
     {
         try
         {

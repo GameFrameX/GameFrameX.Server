@@ -231,7 +231,7 @@ public sealed class BotTcpClient
 
             var messageObject = (MessageObject)ProtoBufSerializerHelper.Deserialize(messageData, messageType);
             messageObject.SetMessageId(messageId);
-            messageObject.SetOperationType((MessageOperationType)operationType);
+            messageObject.SetOperationType(operationType);
             messageObject.SetUniqueId(uniqueId);
             m_BotTcpClientEvent.OnReceiveMsgCallback(messageObject);
         }

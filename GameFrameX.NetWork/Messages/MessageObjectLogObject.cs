@@ -49,7 +49,7 @@ public sealed class MessageObjectLogObject
     /// <param name="uniqueId"></param>
     /// <param name="messageObject"></param>
     /// <param name="actorId"></param>
-    public MessageObjectLogObject(string name, int messageId, MessageOperationType operationType, int uniqueId, INetworkMessage messageObject, long actorId)
+    public MessageObjectLogObject(string name, int messageId, int operationType, int uniqueId, INetworkMessage messageObject, long actorId)
     {
         MessageType = name;
         MessageId = messageId;
@@ -77,7 +77,7 @@ public sealed class MessageObjectLogObject
     /// <summary>
     /// 操作类型
     /// </summary>
-    public MessageOperationType OpType { get; set; }
+    public int OpType { get; set; }
 
     /// <summary>
     /// 唯一ID

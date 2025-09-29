@@ -52,7 +52,7 @@ public class MessageObjectHeader : INetworkMessageHeader
     /// 操作类型
     /// </summary>
     [ProtoMember(2)]
-    public MessageOperationType OperationType { get; set; }
+    public byte OperationType { get; set; }
 
     /// <summary>
     /// 压缩标记

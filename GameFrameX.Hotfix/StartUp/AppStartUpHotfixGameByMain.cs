@@ -105,7 +105,7 @@ internal partial class AppStartUpHotfixGame
             }
 
             var actorId = netWorkChannel.GetData<long>(GlobalConst.ActorIdKey);
-            if (outerNetworkMessage.Header.OperationType == MessageOperationType.HeartBeat)
+            if (outerNetworkMessage.Header.OperationType == (byte)MessageOperationType.HeartBeat)
             {
                 if (Setting.IsDebug && Setting.IsDebugReceive && Setting.IsDebugReceiveHeartBeat)
                 {

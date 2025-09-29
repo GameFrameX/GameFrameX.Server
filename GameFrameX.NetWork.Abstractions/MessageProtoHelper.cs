@@ -44,7 +44,7 @@ public static class MessageProtoHelper
     private static readonly BidirectionalDictionary<int, Type> RequestDictionary = new();
     private static readonly BidirectionalDictionary<int, Type> AllMessageDictionary = new();
     private static readonly BidirectionalDictionary<int, Type> ResponseDictionary = new();
-    private static readonly ConcurrentDictionary<Type, MessageOperationType> OperationType = new();
+    private static readonly ConcurrentDictionary<Type, byte> OperationType = new();
     private static readonly List<Type> HeartBeatList = new();
 
     /// <summary>
@@ -90,7 +90,7 @@ public static class MessageProtoHelper
     /// </summary>
     /// <param name="message">消息对象</param>
     /// <returns></returns>
-    public static MessageOperationType GetMessageOperationType(INetworkMessage message)
+    public static byte GetMessageOperationType(INetworkMessage message)
     {
         ArgumentNullException.ThrowIfNull(message, nameof(message));
         var messageType = message.GetType();
@@ -102,11 +102,11 @@ public static class MessageProtoHelper
     /// </summary>
     /// <param name="type">消息类型</param>
     /// <returns></returns>
-    public static MessageOperationType GetMessageOperationType(Type type)
+    public static byte GetMessageOperationType(Type type)
     {
         if (IsHeartbeat(type))
         {
-            return MessageOperationType.HeartBeat;
+            return (byte)MessageOperationType.HeartBeat;
         }
 
         if (OperationType.TryGetValue(type, out var value))
@@ -114,7 +114,7 @@ public static class MessageProtoHelper
             return value;
         }
 
-        return MessageOperationType.None;
+        return default;
     }
 
     /// <summary>

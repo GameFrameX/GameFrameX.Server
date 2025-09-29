@@ -62,7 +62,7 @@ public abstract class MessageObject : INetworkMessage
     /// 消息业务类型
     /// </summary>
     [JsonIgnore]
-    public MessageOperationType OperationType { get; private set; }
+    public byte OperationType { get; private set; }
 
     /// <summary>
     /// 设置消息ID
@@ -119,7 +119,7 @@ public abstract class MessageObject : INetworkMessage
     /// 设置消息业务类型
     /// </summary>
     /// <param name="messageOperationType">消息业务类型 </param>
-    public void SetOperationType(MessageOperationType messageOperationType)
+    public void SetOperationType(byte messageOperationType)
     {
         OperationType = messageOperationType;
     }

@@ -49,7 +49,7 @@ public interface INetworkMessageHeader
     /// <summary>
     /// 操作类型
     /// </summary>
-    MessageOperationType OperationType { get; set; }
+    byte OperationType { get; set; }
 
     /// <summary>
     /// 压缩标记
