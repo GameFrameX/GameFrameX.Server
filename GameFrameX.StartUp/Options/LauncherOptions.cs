@@ -420,16 +420,16 @@ public sealed class LauncherOptions
     /// <summary>
     /// 客户端API地址
     /// </summary>
-    [Option(nameof(ClientApiUrl), Description = "客户端API地址")]
+    [Option(nameof(ClientApiHost), Description = "客户端API地址")]
     [DefaultValue("")]
-    public string ClientApiUrl { get; set; }
+    public string ClientApiHost { get; set; }
 
     /// <summary>
     /// HubAPI地址
     /// </summary>
-    [Option(nameof(HubApiUrl), Description = "HubAPI地址")]
+    [Option(nameof(HubApiHost), Description = "HubAPI地址")]
     [DefaultValue("")]
-    public string HubApiUrl { get; set; }
+    public string HubApiHost { get; set; }
 
     /// <summary>
     /// 心跳间隔（毫秒），默认 5000 毫秒
