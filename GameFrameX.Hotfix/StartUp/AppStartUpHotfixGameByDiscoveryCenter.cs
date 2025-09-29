@@ -52,4 +52,17 @@ internal partial class AppStartUpHotfixGame
         };
         Send(reqRegisterServer);
     }
+
+    readonly ReqActorHeartBeat _reqActorHeartBeat = new ReqActorHeartBeat();
+
+    protected override MessageObject GameAppClientOnHeartBeat()
+    {
+        _reqActorHeartBeat.Timestamp = TimeHelper.UnixTimeMilliseconds();
+        _reqActorHeartBeat.UpdateUniqueId();
+        return _reqActorHeartBeat;
+    }
+
+    protected override void GameAppClientOnMessage(MessageObject message)
+    {
+    }
 }
