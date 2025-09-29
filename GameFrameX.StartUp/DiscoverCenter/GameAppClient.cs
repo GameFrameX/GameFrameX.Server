@@ -35,7 +35,6 @@ using GameFrameX.Foundation.Logger;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
-using GameFrameX.Proto.BuiltIn;
 using GameFrameX.SuperSocket.ClientEngine;
 using GameFrameX.Utility;
 
