@@ -227,7 +227,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
     protected override ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs args)
     {
         LogHelper.Info("有外部服务从中心服务器断开。链接信息：断开原因:" + args.Reason);
-        _namingServiceManager.TrySessionRemove(appSession.SessionID);
+        _namingServiceManager.TryRemoveBySessionId(appSession.SessionID);
         return ValueTask.CompletedTask;
     }
 
