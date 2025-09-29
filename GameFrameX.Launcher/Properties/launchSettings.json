@@ -7,6 +7,8 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "--DataBaseUrl": "mongodb://admin:admin@192.168.110.28:27017/?authSource=admin",
         "--ServerType": "DiscoveryCenter",
+        "--ServerId": "9000",
+        "--InnerPort": "29900",
         "--DataBaseName": "gameframex"
       },
       "commandLineArgs": "--IsDebug --IsDebugReceive --IsDebugSend --HttpIsDevelopment"
