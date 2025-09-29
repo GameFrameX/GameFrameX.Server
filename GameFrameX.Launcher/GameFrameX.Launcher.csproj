@@ -38,7 +38,6 @@
         <ProjectReference Include="..\GameFrameX.DataBase\GameFrameX.DataBase.csproj" />
         <ProjectReference Include="..\GameFrameX.Monitor\GameFrameX.Monitor.csproj" />
         <ProjectReference Include="..\GameFrameX.NetWork.Message\GameFrameX.NetWork.Message.csproj" />
-        <ProjectReference Include="..\GameFrameX.Proto.BuiltIn\GameFrameX.Proto.BuiltIn.csproj" />
         <ProjectReference Include="..\GameFrameX.Proto\GameFrameX.Proto.csproj" />
         <ProjectReference Include="..\GameFrameX.DiscoveryCenterManager\GameFrameX.DiscoveryCenterManager.csproj" />
         <ProjectReference Include="..\GameFrameX.StartUp\GameFrameX.StartUp.csproj" />
