@@ -11159,6 +11159,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnError
   nameWithType: AppStartUpBase.GameAppClientOnError
+- uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnHeartBeat
+  name: GameAppClientOnHeartBeat()
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnHeartBeat
+  commentId: M:GameFrameX.StartUp.AppStartUpBase.GameAppClientOnHeartBeat
+  fullName: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnHeartBeat()
+  nameWithType: AppStartUpBase.GameAppClientOnHeartBeat()
+- uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnHeartBeat*
+  name: GameAppClientOnHeartBeat
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnHeartBeat_
+  commentId: Overload:GameFrameX.StartUp.AppStartUpBase.GameAppClientOnHeartBeat
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnHeartBeat
+  nameWithType: AppStartUpBase.GameAppClientOnHeartBeat
 - uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnMessage(GameFrameX.NetWork.Messages.MessageObject)
   name: GameAppClientOnMessage(MessageObject)
   href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnMessage_GameFrameX_NetWork_Messages_MessageObject_
@@ -11888,19 +11901,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.Description
   nameWithType: LauncherOptions.Description
-- uid: GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterIp
-  name: DiscoveryCenterIp
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_DiscoveryCenterIp
-  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterIp
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterIp
-  nameWithType: LauncherOptions.DiscoveryCenterIp
-- uid: GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterIp*
-  name: DiscoveryCenterIp
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_DiscoveryCenterIp_
-  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterIp
+- uid: GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterHost
+  name: DiscoveryCenterHost
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_DiscoveryCenterHost
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterHost
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterHost
+  nameWithType: LauncherOptions.DiscoveryCenterHost
+- uid: GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterHost*
+  name: DiscoveryCenterHost
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_DiscoveryCenterHost_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterHost
   isSpec: "True"
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterIp
-  nameWithType: LauncherOptions.DiscoveryCenterIp
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterHost
+  nameWithType: LauncherOptions.DiscoveryCenterHost
 - uid: GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterPort
   name: DiscoveryCenterPort
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_DiscoveryCenterPort
@@ -11914,6 +11927,58 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.DiscoveryCenterPort
   nameWithType: LauncherOptions.DiscoveryCenterPort
+- uid: GameFrameX.StartUp.Options.LauncherOptions.GameAppClientConnectDelay
+  name: GameAppClientConnectDelay
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_GameAppClientConnectDelay
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.GameAppClientConnectDelay
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.GameAppClientConnectDelay
+  nameWithType: LauncherOptions.GameAppClientConnectDelay
+- uid: GameFrameX.StartUp.Options.LauncherOptions.GameAppClientConnectDelay*
+  name: GameAppClientConnectDelay
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_GameAppClientConnectDelay_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.GameAppClientConnectDelay
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.GameAppClientConnectDelay
+  nameWithType: LauncherOptions.GameAppClientConnectDelay
+- uid: GameFrameX.StartUp.Options.LauncherOptions.GameAppClientHeartBeatInterval
+  name: GameAppClientHeartBeatInterval
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_GameAppClientHeartBeatInterval
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.GameAppClientHeartBeatInterval
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.GameAppClientHeartBeatInterval
+  nameWithType: LauncherOptions.GameAppClientHeartBeatInterval
+- uid: GameFrameX.StartUp.Options.LauncherOptions.GameAppClientHeartBeatInterval*
+  name: GameAppClientHeartBeatInterval
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_GameAppClientHeartBeatInterval_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.GameAppClientHeartBeatInterval
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.GameAppClientHeartBeatInterval
+  nameWithType: LauncherOptions.GameAppClientHeartBeatInterval
+- uid: GameFrameX.StartUp.Options.LauncherOptions.GameAppClientMaxRetryCount
+  name: GameAppClientMaxRetryCount
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_GameAppClientMaxRetryCount
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.GameAppClientMaxRetryCount
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.GameAppClientMaxRetryCount
+  nameWithType: LauncherOptions.GameAppClientMaxRetryCount
+- uid: GameFrameX.StartUp.Options.LauncherOptions.GameAppClientMaxRetryCount*
+  name: GameAppClientMaxRetryCount
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_GameAppClientMaxRetryCount_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.GameAppClientMaxRetryCount
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.GameAppClientMaxRetryCount
+  nameWithType: LauncherOptions.GameAppClientMaxRetryCount
+- uid: GameFrameX.StartUp.Options.LauncherOptions.GameAppClientRetryDelay
+  name: GameAppClientRetryDelay
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_GameAppClientRetryDelay
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.GameAppClientRetryDelay
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.GameAppClientRetryDelay
+  nameWithType: LauncherOptions.GameAppClientRetryDelay
+- uid: GameFrameX.StartUp.Options.LauncherOptions.GameAppClientRetryDelay*
+  name: GameAppClientRetryDelay
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_GameAppClientRetryDelay_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.GameAppClientRetryDelay
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.GameAppClientRetryDelay
+  nameWithType: LauncherOptions.GameAppClientRetryDelay
 - uid: GameFrameX.StartUp.Options.LauncherOptions.HttpIsDevelopment
   name: HttpIsDevelopment
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_HttpIsDevelopment
@@ -21509,19 +21574,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.Description
   nameWithType: AppSetting.Description
-- uid: GameFrameX.Utility.Setting.AppSetting.DiscoveryCenterIp
-  name: DiscoveryCenterIp
-  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_DiscoveryCenterIp
-  commentId: P:GameFrameX.Utility.Setting.AppSetting.DiscoveryCenterIp
-  fullName: GameFrameX.Utility.Setting.AppSetting.DiscoveryCenterIp
-  nameWithType: AppSetting.DiscoveryCenterIp
-- uid: GameFrameX.Utility.Setting.AppSetting.DiscoveryCenterIp*
-  name: DiscoveryCenterIp
-  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_DiscoveryCenterIp_
-  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.DiscoveryCenterIp
+- uid: GameFrameX.Utility.Setting.AppSetting.DiscoveryCenterHost
+  name: DiscoveryCenterHost
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_DiscoveryCenterHost
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.DiscoveryCenterHost
+  fullName: GameFrameX.Utility.Setting.AppSetting.DiscoveryCenterHost
+  nameWithType: AppSetting.DiscoveryCenterHost
+- uid: GameFrameX.Utility.Setting.AppSetting.DiscoveryCenterHost*
+  name: DiscoveryCenterHost
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_DiscoveryCenterHost_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.DiscoveryCenterHost
   isSpec: "True"
-  fullName: GameFrameX.Utility.Setting.AppSetting.DiscoveryCenterIp
-  nameWithType: AppSetting.DiscoveryCenterIp
+  fullName: GameFrameX.Utility.Setting.AppSetting.DiscoveryCenterHost
+  nameWithType: AppSetting.DiscoveryCenterHost
 - uid: GameFrameX.Utility.Setting.AppSetting.DiscoveryCenterPort
   name: DiscoveryCenterPort
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_DiscoveryCenterPort
@@ -21535,6 +21600,58 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.DiscoveryCenterPort
   nameWithType: AppSetting.DiscoveryCenterPort
+- uid: GameFrameX.Utility.Setting.AppSetting.GameAppClientConnectDelay
+  name: GameAppClientConnectDelay
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_GameAppClientConnectDelay
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.GameAppClientConnectDelay
+  fullName: GameFrameX.Utility.Setting.AppSetting.GameAppClientConnectDelay
+  nameWithType: AppSetting.GameAppClientConnectDelay
+- uid: GameFrameX.Utility.Setting.AppSetting.GameAppClientConnectDelay*
+  name: GameAppClientConnectDelay
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_GameAppClientConnectDelay_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.GameAppClientConnectDelay
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.GameAppClientConnectDelay
+  nameWithType: AppSetting.GameAppClientConnectDelay
+- uid: GameFrameX.Utility.Setting.AppSetting.GameAppClientHeartBeatInterval
+  name: GameAppClientHeartBeatInterval
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_GameAppClientHeartBeatInterval
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.GameAppClientHeartBeatInterval
+  fullName: GameFrameX.Utility.Setting.AppSetting.GameAppClientHeartBeatInterval
+  nameWithType: AppSetting.GameAppClientHeartBeatInterval
+- uid: GameFrameX.Utility.Setting.AppSetting.GameAppClientHeartBeatInterval*
+  name: GameAppClientHeartBeatInterval
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_GameAppClientHeartBeatInterval_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.GameAppClientHeartBeatInterval
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.GameAppClientHeartBeatInterval
+  nameWithType: AppSetting.GameAppClientHeartBeatInterval
+- uid: GameFrameX.Utility.Setting.AppSetting.GameAppClientMaxRetryCount
+  name: GameAppClientMaxRetryCount
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_GameAppClientMaxRetryCount
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.GameAppClientMaxRetryCount
+  fullName: GameFrameX.Utility.Setting.AppSetting.GameAppClientMaxRetryCount
+  nameWithType: AppSetting.GameAppClientMaxRetryCount
+- uid: GameFrameX.Utility.Setting.AppSetting.GameAppClientMaxRetryCount*
+  name: GameAppClientMaxRetryCount
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_GameAppClientMaxRetryCount_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.GameAppClientMaxRetryCount
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.GameAppClientMaxRetryCount
+  nameWithType: AppSetting.GameAppClientMaxRetryCount
+- uid: GameFrameX.Utility.Setting.AppSetting.GameAppClientRetryDelay
+  name: GameAppClientRetryDelay
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_GameAppClientRetryDelay
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.GameAppClientRetryDelay
+  fullName: GameFrameX.Utility.Setting.AppSetting.GameAppClientRetryDelay
+  nameWithType: AppSetting.GameAppClientRetryDelay
+- uid: GameFrameX.Utility.Setting.AppSetting.GameAppClientRetryDelay*
+  name: GameAppClientRetryDelay
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_GameAppClientRetryDelay_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.GameAppClientRetryDelay
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.GameAppClientRetryDelay
+  nameWithType: AppSetting.GameAppClientRetryDelay
 - uid: GameFrameX.Utility.Setting.AppSetting.HttpIsDevelopment
   name: HttpIsDevelopment
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_HttpIsDevelopment
