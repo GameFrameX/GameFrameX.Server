@@ -45,9 +45,9 @@ internal partial class AppStartUpHotfixGame
             ServerName = Setting.ServerName,
             ServerType = Setting.ServerType,
             ServerInstanceId = Setting.ServerInstanceId,
-            InnerIp = Setting.InnerIp,
+            InnerHost = Setting.InnerIp,
             InnerPort = Setting.InnerPort,
-            OuterIp = Setting.OuterIp,
+            OuterHost = Setting.OuterIp,
             OuterPort = Setting.OuterPort,
         };
         Send(reqRegisterServer);

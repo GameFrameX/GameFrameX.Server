@@ -152,7 +152,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                             ServerType = serverInfo.Type,
                             ServerName = serverInfo.Name,
                             ServerId = serverInfo.ServerId,
-                            TargetIp = serverInfo.ExternalHost,
+                            TargetHost = serverInfo.ExternalHost,
                             TargetPort = serverInfo.ExternalPort,
                         };
                         SendMessage(session, respConnectServer);
@@ -180,7 +180,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                 {
                     var reqRegisterServer = (ReqRegisterServer)messageObject.DeserializeMessageObject();
                     // 注册服务
-                    var serviceInfo = new ServiceInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerId, reqRegisterServer.ServerInstanceId, reqRegisterServer.InnerIp, reqRegisterServer.InnerPort, reqRegisterServer.OuterIp, reqRegisterServer.OuterPort);
+                    var serviceInfo = new ServiceInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerId, reqRegisterServer.ServerInstanceId, reqRegisterServer.InnerHost, reqRegisterServer.InnerPort, reqRegisterServer.OuterHost, reqRegisterServer.OuterPort);
                     _namingServiceManager.Add(serviceInfo);
                     LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
                     return ValueTask.CompletedTask;
@@ -204,7 +204,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                         respConnectServer.ServerType = serverInfo.Type;
                         respConnectServer.ServerName = serverInfo.Name;
                         respConnectServer.ServerId = serverInfo.ServerId;
-                        respConnectServer.TargetIp = serverInfo.ExternalHost;
+                        respConnectServer.TargetHost = serverInfo.ExternalHost;
                         respConnectServer.TargetPort = serverInfo.ExternalPort;
                     }
 

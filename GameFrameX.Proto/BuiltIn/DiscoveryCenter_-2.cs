@@ -80,10 +80,10 @@ public partial class RespConnectServer : MessageObject, IResponseMessage
     public long ServerId { get; set; }
 
     /// <summary>
-    /// 服务器IP
+    /// 服务器地址
     /// </summary>
     [ProtoMember(5)]
-    public string TargetIp { get; set; }
+    public string TargetHost { get; set; }
 
     /// <summary>
     /// 服务器端口
@@ -179,10 +179,10 @@ public partial class ReqRegisterServer : MessageObject, IRequestMessage
     public string ServerName { get; set; }
 
     /// <summary>
-    /// 内部服务器IP
+    /// 内部服务器地址
     /// </summary>
     [ProtoMember(3)]
-    public string InnerIp { get; set; }
+    public string InnerHost { get; set; }
 
     /// <summary>
     /// 内部服务器端口
@@ -191,10 +191,10 @@ public partial class ReqRegisterServer : MessageObject, IRequestMessage
     public ushort InnerPort { get; set; }
 
     /// <summary>
-    /// 外部服务器IP
+    /// 外部服务器地址
     /// </summary>
     [ProtoMember(5)]
-    public string OuterIp { get; set; }
+    public string OuterHost { get; set; }
 
     /// <summary>
     /// 外部服务器端口
