@@ -48,7 +48,7 @@ public abstract partial class AppStartUpBase : IAppStartUp
     /// <summary>
     /// 服务器类型
     /// </summary>
-    public ServerType ServerType { get; private set; }
+    public string ServerType { get; private set; }
 
     /// <summary>
     /// 配置信息
@@ -70,7 +70,7 @@ public abstract partial class AppStartUpBase : IAppStartUp
     /// <param name="setting">配置信息对象</param>
     /// <param name="args">参数</param>
     /// <returns></returns>
-    public bool Init(ServerType serverType, AppSetting setting, string[] args = null)
+    public bool Init(string serverType, AppSetting setting, string[] args = null)
     {
         ServerType = serverType;
         Setting = setting;

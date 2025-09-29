@@ -115,22 +115,22 @@ public static class GameApp
             LogOptions.Default.RollingInterval = launcherOptions.LogRollingInterval;
             // 构建LogType，当值为空或默认值时不拼接
             var logTypeParts = new List<string>();
-            
+
             if (!string.IsNullOrWhiteSpace(launcherOptions.ServerType))
             {
                 logTypeParts.Add(launcherOptions.ServerType);
             }
-            
+
             if (launcherOptions.ServerId > 0)
             {
                 logTypeParts.Add(launcherOptions.ServerId.ToString());
             }
-            
+
             if (launcherOptions.ServerInstanceId > 0)
             {
                 logTypeParts.Add(launcherOptions.ServerInstanceId.ToString());
             }
-            
+
             LogOptions.Default.LogType = logTypeParts.Count > 0 ? string.Join("_", logTypeParts) : null;
             if (launcherOptions.TagName.IsNotNullOrWhiteSpace())
             {
@@ -173,12 +173,12 @@ public static class GameApp
 
         LogHelper.InfoConsole("----------------------------开始启动服务器啦------------------------------");
         var appSettings = GlobalSettings.GetSettings();
-        if (serverType != null && Enum.TryParse(serverType, out ServerType serverTypeValue))
+        if (serverType.IsNotNullOrWhiteSpace())
         {
-            var startKv = sortedStartUpTypes.FirstOrDefault(m => m.Value.ServerType == serverTypeValue);
+            var startKv = sortedStartUpTypes.FirstOrDefault(m => m.Value.ServerType == serverType);
             if (startKv.Value != null)
             {
-                var appSetting = appSettings.FirstOrDefault(m => m.ServerType == serverTypeValue);
+                var appSetting = appSettings.FirstOrDefault(m => m.ServerType == serverType);
                 if (appSetting != null)
                 {
                     LogHelper.InfoConsole($"从配置文件中找到对应的服务器类型的启动配置,将以配置启动=>{startKv.Value.ServerType}");
@@ -231,7 +231,7 @@ public static class GameApp
         AppStartUpTasks.Add(task);
     }
 
-    private static Task Start(string[] args, Type appStartUpType, ServerType serverType, AppSetting setting)
+    private static Task Start(string[] args, Type appStartUpType, string serverType, AppSetting setting)
     {
         var startUp = (IAppStartUp)Activator.CreateInstance(appStartUpType);
         if (startUp == null)

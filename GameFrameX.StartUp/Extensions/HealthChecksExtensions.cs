@@ -255,7 +255,7 @@ public sealed class HealthCheckResponse
         /// DiscoveryCenter（服务发现中心）、Login（登录服）等。
         /// </remarks>
         /// <seealso cref="ServerType"/>
-        public ServerType ServerType { get; set; }
+        public string ServerType { get; set; }
 
         /// <summary>
         /// 获取或设置服务器ID

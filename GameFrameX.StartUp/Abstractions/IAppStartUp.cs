@@ -46,7 +46,7 @@ public interface IAppStartUp
     /// <summary>
     /// 服务器类型
     /// </summary>
-    ServerType ServerType { get; }
+    string ServerType { get; }
 
     /// <summary>
     /// 配置信息
@@ -60,7 +60,7 @@ public interface IAppStartUp
     /// <param name="setting">启动设置</param>
     /// <param name="args">启动参数</param>
     /// <returns></returns>
-    bool Init(ServerType serverType, AppSetting setting, string[] args);
+    bool Init(string serverType, AppSetting setting, string[] args);
 
     /// <summary>
     /// 启动
