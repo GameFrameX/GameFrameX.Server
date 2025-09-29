@@ -389,5 +389,25 @@ public sealed class AppSetting
     /// </summary>
     public string Label { get; set; }
 
+    /// <summary>
+    /// 心跳间隔（毫秒），默认 5000 毫秒
+    /// </summary>
+    public int GameAppClientHeartBeatInterval { get; set; }
+
+    /// <summary>
+    /// 连接延迟（毫秒），默认 5000 毫秒
+    /// </summary>
+    public int GameAppClientConnectDelay { get; set; }
+
+    /// <summary>
+    /// 重试延迟（毫秒），默认 5000 毫秒
+    /// </summary>
+    public int GameAppClientRetryDelay { get; set; }
+
+    /// <summary>
+    /// 最大重试次数，默认 -1 表示无限重试
+    /// </summary>
+    public int GameAppClientMaxRetryCount { get; set; }
+
     #endregion
 }

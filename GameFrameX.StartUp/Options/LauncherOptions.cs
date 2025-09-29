@@ -430,4 +430,33 @@ public sealed class LauncherOptions
     [Option(nameof(HubApiUrl), Description = "HubAPI地址")]
     [DefaultValue("")]
     public string HubApiUrl { get; set; }
+
+
+    /// <summary>
+    /// 心跳间隔（毫秒），默认 5000 毫秒
+    /// </summary>
+    [Option(nameof(GameAppClientHeartBeatInterval), Description = "心跳间隔（毫秒），默认 5000 毫秒")]
+    [DefaultValue(5000)]
+    public int GameAppClientHeartBeatInterval { get; set; } = 5000;
+
+    /// <summary>
+    /// 连接延迟（毫秒），默认 5000 毫秒
+    /// </summary>
+    [Option(nameof(GameAppClientConnectDelay), Description = "连接延迟（毫秒），默认 5000 毫秒")]
+    [DefaultValue(5000)]
+    public int GameAppClientConnectDelay { get; set; } = 5000;
+
+    /// <summary>
+    /// 重试延迟（毫秒），默认 5000 毫秒
+    /// </summary>
+    [Option(nameof(GameAppClientRetryDelay), Description = "重试延迟（毫秒），默认 5000 毫秒")]
+    [DefaultValue(5000)]
+    public int GameAppClientRetryDelay { get; set; } = 5000;
+
+    /// <summary>
+    /// 最大重试次数，默认 -1 表示无限重试
+    /// </summary>
+    [Option(nameof(GameAppClientMaxRetryCount), Description = "最大重试次数，默认 -1 表示无限重试")]
+    [DefaultValue(-1)]
+    public int GameAppClientMaxRetryCount { get; set; } = -1;
 }

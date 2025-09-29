@@ -37,6 +37,7 @@ using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.SuperSocket.ClientEngine;
 using GameFrameX.Utility;
+using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.StartUp.DiscoverCenter;
 
@@ -95,16 +96,16 @@ internal sealed class GameAppClient
     /// </summary>
     /// <param name="clientEvent">客户端事件回调结构体，包含连接、断开、消息等事件的处理委托</param>
     /// <param name="endPoint">服务器端点信息（IP和端口）</param>
-    /// <param name="option">配置信息</param>
-    public GameAppClient(GameAppClientEvent clientEvent, EndPoint endPoint, GameAppClientOption option)
+    /// <param name="appSetting">配置信息</param>
+    public GameAppClient(GameAppClientEvent clientEvent, EndPoint endPoint, AppSetting appSetting)
     {
-        ArgumentNullException.ThrowIfNull(option, nameof(option));
-        ConnectDelay = option.ConnectDelay;
+        ArgumentNullException.ThrowIfNull(appSetting, nameof(appSetting));
+        ConnectDelay = appSetting.GameAppClientConnectDelay;
         _mGameAppClientEvent = clientEvent;
         _serverHost = endPoint;
-        _heartBeatInterval = option.HeartBeatInterval;
-        _retryDelay = option.RetryDelay;
-        MaxRetryCount = option.MaxRetryCount;
+        _heartBeatInterval = appSetting.GameAppClientHeartBeatInterval;
+        _retryDelay = appSetting.GameAppClientRetryDelay;
+        MaxRetryCount = appSetting.GameAppClientMaxRetryCount;
         _mTcpClient = new AsyncTcpSession();
         _mTcpClient.Connected += OnClientOnConnected;
         _mTcpClient.Closed += OnClientOnClosed;
