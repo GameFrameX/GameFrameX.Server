@@ -142,7 +142,7 @@ internal sealed class GameAppClient
             // 如果未连接且未处于连接中，则尝试连接
             if (!_mTcpClient.IsConnected && !_mTcpClient.IsInConnecting)
             {
-                LogHelper.Info("尝试连接到发现中心服务器...");
+                LogHelper.Debug("尝试连接到发现中心服务器...");
                 _mTcpClient.Connect(_serverHost);
                 await Task.Delay(ConnectDelay);
 
