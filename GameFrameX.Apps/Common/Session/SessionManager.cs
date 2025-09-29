@@ -220,6 +220,10 @@ public static class SessionManager
 
         // 获取当前会话并更新角色ID和签名
         var session = Get(sessionId);
+        if (session.IsNull())
+        {
+            return;
+        }
         session.SetPlayerId(roleId);
         session.SetSign(sign);
     }
