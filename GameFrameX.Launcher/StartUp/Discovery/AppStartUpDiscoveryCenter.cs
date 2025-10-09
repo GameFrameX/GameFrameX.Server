@@ -60,7 +60,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
         }
         catch (Exception e)
         {
-            LogHelper.Info($"服务器{ServerType}执行异常，e:{e}");
+            LogHelper.Warning($"SERVER {ServerType} EXECUTION EXCEPTION");
             LogHelper.Fatal(e);
         }
 
