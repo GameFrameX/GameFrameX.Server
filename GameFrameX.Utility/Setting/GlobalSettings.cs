@@ -78,7 +78,7 @@ public static class GlobalSettings
         if (!File.Exists(path))
         {
             Console.BackgroundColor = ConsoleColor.Yellow;
-            Console.Write("配置文件不存在。可能会导致启动失败==>>>" + path);
+            Console.Write("The profile does not exist. may cause startup failure==>>>" + path);
             Console.ResetColor();
             Console.WriteLine();
             return;
@@ -89,11 +89,7 @@ public static class GlobalSettings
 
         foreach (var setting in settings)
         {
-            if (setting.ServerId < GlobalConst.MinServerId || setting.ServerId > GlobalConst.MaxServerId)
-            {
-                throw new Exception($"ServerId不合法{setting.ServerId},需要在[{GlobalConst.MinServerId},{GlobalConst.MaxServerId}]范围之内");
-            }
-
+            setting.ServerId.IsRange(GlobalConst.MinServerId, GlobalConst.MaxServerId);
             Settings.Add(setting);
         }
     }
@@ -115,7 +111,7 @@ public static class GlobalSettings
     {
         if (CurrentSetting.IsNotNull())
         {
-            LogHelper.WarningConsole("当前设置已经存在,不能再次设置,已忽略本次设置");
+            LogHelper.WarningConsole("The current setting already exists, cannot be set again, and this setting has been ignored.");
             return;
         }
 
@@ -128,19 +124,19 @@ public static class GlobalSettings
 
         if (setting.HttpUrl.IsNullOrEmptyOrWhiteSpace())
         {
-            LogHelper.WarningConsole("HttpUrl为空，使用默认值为: /game/api/");
+            LogHelper.WarningConsole("HttpUrl is empty and uses the default value of : /game/api/");
             setting.HttpUrl = "/game/api/";
         }
 
         if (setting.NetWorkSendTimeOutSeconds < 1)
         {
-            LogHelper.WarningConsole("NetWorkSendTimeOutSeconds小于1秒，使用默认值为:5 秒");
+            LogHelper.WarningConsole("NetWorkSendTimeOutSeconds is less than 1 second, and the default value is 5 seconds");
             setting.NetWorkSendTimeOutSeconds = 5;
         }
 
         if (setting.ActorRecycleTime < 1)
         {
-            LogHelper.WarningConsole("ActorRecycleTime小于1分钟，使用默认值为:5 分钟");
+            LogHelper.WarningConsole("ActorRecycleTime is less than 1 minute, and the default value is 5 minutes");
             setting.ActorRecycleTime = 5;
         }
 
