@@ -66,18 +66,18 @@ public abstract partial class AppStartUpBase
         // 验证HTTP URL格式
         if (!Setting.HttpUrl.StartsWith('/'))
         {
-            throw new ArgumentException("Http 地址必须以/开头", nameof(Setting.HttpUrl));
+            throw new ArgumentException("The HTTP address must start with /", nameof(Setting.HttpUrl));
         }
 
         if (!Setting.HttpUrl.EndsWith('/'))
         {
-            throw new ArgumentException("Http 地址必须以/结尾", nameof(Setting.HttpUrl));
+            throw new ArgumentException("The HTTP address must end in /", nameof(Setting.HttpUrl));
         }
 
-        LogHelper.InfoConsole("启动 [HTTP] 服务器...");
+        LogHelper.InfoConsole("start the [HTTP] server...");
         if (!Setting.HttpPort.IsRange(5000, ushort.MaxValue - 1))
         {
-            LogHelper.WarningConsole($"启动 [HTTP] 服务器 端口 [{Setting.HttpPort}] 超出范围 [5000-{ushort.MaxValue - 1}]，无法启动HTTP服务,启动被忽略");
+            LogHelper.WarningConsole($"start the [HTTP] server port [{Setting.HttpPort}] out of range [5000-{ushort.MaxValue - 1}],The HTTP service cannot be started, and the startup is ignored");
             return;
         }
 
@@ -114,7 +114,7 @@ public abstract partial class AppStartUpBase
 
                 if (Setting.HttpsPort > 0 && NetHelper.PortIsAvailable(Setting.HttpsPort))
                 {
-                    throw new NotImplementedException("HTTPS 未实现,请取消HTTPS端口配置");
+                    throw new NotImplementedException("If HTTPS is not implemented, cancel the HTTPS port configuration");
                 }
             });
 
@@ -146,7 +146,7 @@ public abstract partial class AppStartUpBase
 
                 foreach (var ip in ipList)
                 {
-                    LogHelper.DebugConsole($"Swagger UI 可通过 http://{ip}:{Setting.HttpPort}/swagger 访问");
+                    LogHelper.DebugConsole($"Swagger UI can be passed http://{ip}:{Setting.HttpPort}/swagger access");
                 }
             }
 
@@ -162,15 +162,15 @@ public abstract partial class AppStartUpBase
                 app.MapPrometheusScrapingEndpoint();
                 foreach (var ip in ipList)
                 {
-                    LogHelper.InfoConsole($"Prometheus metrics 端点已启用: http://{ip}:{Setting.HttpPort}/metrics");
+                    LogHelper.InfoConsole($"Prometheus metrics the endpoint is enabled: http://{ip}:{Setting.HttpPort}/metrics");
                 }
             }
             else if (Setting.IsOpenTelemetry && Setting.IsOpenTelemetryMetrics && Setting.MetricsPort > 0)
             {
-                LogHelper.InfoConsole($"Prometheus metrics 将在独立端口 {Setting.MetricsPort} 上提供服务");
+                LogHelper.InfoConsole($"Prometheus metrics The service will be provided on the standalone port {Setting.MetricsPort}");
                 foreach (var ip in ipList)
                 {
-                    LogHelper.InfoConsole($"Prometheus metrics 端点已启用: http://{ip}:{Setting.MetricsPort}/metrics");
+                    LogHelper.InfoConsole($"Prometheus metrics the endpoint is enabled: http://{ip}:{Setting.MetricsPort}/metrics");
                 }
             }
 
@@ -202,11 +202,11 @@ public abstract partial class AppStartUpBase
             }
 
             await app.StartAsync();
-            LogHelper.InfoConsole($"启动 [HTTP] 服务器启动完成 - 端口: {Setting.HttpPort}");
+            LogHelper.InfoConsole($"Start [HTTP] Server Startup Complete - Port: {Setting.HttpPort}");
         }
         else
         {
-            LogHelper.Error($"启动 [HTTP] 服务器 端口 [{Setting.HttpPort}] 被占用，无法启动HTTP服务");
+            LogHelper.Error($"Start [HTTP] server port [{Setting.HttpPort}] is occupied and the HTTP service cannot be started");
         }
     }
 
