@@ -156,12 +156,12 @@ internal sealed class HotfixModule
 
             ParseDll();
 
-            LogHelper.Info($"热更DLL初始化成功: {_dllPath}");
+            LogHelper.Info($"the hot change dll initialization succeeds: {_dllPath}");
             success = true;
         }
         catch (Exception e)
         {
-            LogHelper.Error($"热更DLL初始化失败...\n{e}");
+            LogHelper.Error($"the hot change dll initialization failed...\n{e}");
             if (!reload)
             {
                 throw;
@@ -192,7 +192,7 @@ internal sealed class HotfixModule
                         GC.WaitForPendingFinalizers();
                     }
 
-                    LogHelper.Warning($"热更DLL卸载{(weak.IsAlive ? "失败" : "成功")}");
+                    LogHelper.Warning($"hot dll uninstall{(weak.IsAlive ? "failure" : "successful")}");
                 });
             }
         }
@@ -270,13 +270,13 @@ internal sealed class HotfixModule
         // 注册原始命令
         if (!_httpHandlerMap.TryAdd(attr.OriginalCmd, handler))
         {
-            throw new Exception($"HTTP处理器命令重复注册，命令:{attr.OriginalCmd}");
+            throw new Exception($"HTTP processor command repeatedly registers, command:{attr.OriginalCmd}");
         }
 
         // 注册标准化的命名
         if (!_httpHandlerMap.TryAdd(attr.StandardCmd, handler))
         {
-            throw new Exception($"HTTP处理器命令重复注册，命令:{attr.OriginalCmd}");
+            throw new Exception($"HTTP processor command repeatedly registers, command:{attr.OriginalCmd}");
         }
 
         return true;
@@ -298,7 +298,7 @@ internal sealed class HotfixModule
         var isHas = _rpcHandlerMap.TryGetValue(attribute.RequestMessage.GetType(), out var requestHandler);
         if (isHas && requestHandler?.GetType() == attribute.ResponseMessage.GetType())
         {
-            LogHelper.Error($"重复注册消息RPC处理器:[{attribute.RequestMessage}] 消息:[{attribute.ResponseMessage}]");
+            LogHelper.Error($"repeatedly register message rpc processors:[{attribute.RequestMessage}] message type:[{attribute.ResponseMessage}]");
             return false;
         }
 
@@ -328,17 +328,17 @@ internal sealed class HotfixModule
 
         if (!type.IsSealed)
         {
-            throw new InvalidOperationException($"{classFullName} 必须是标记为sealed的类");
+            throw new InvalidOperationException($"{classFullName} must be a class marked as sealed");
         }
 
         if (!classFullName.EndsWith(GlobalConst.ComponentHandlerNameSuffix))
         {
-            throw new Exception($"消息处理器 必须以[{GlobalConst.ComponentHandlerNameSuffix}]结尾，{classFullName}");
+            throw new Exception($"the message processor must be in the[{GlobalConst.ComponentHandlerNameSuffix}]ending，{classFullName}");
         }
 
         if (_tcpHandlerTypes.Contains(attribute.MessageType))
         {
-            LogHelper.Error($"重复注册消息TCP处理器 类型:[{type.FullName}]");
+            LogHelper.Error($"repeatedly register messages of the tcp processor type:[{type.FullName}]");
             return false;
         }
 
@@ -351,7 +351,7 @@ internal sealed class HotfixModule
         var msgId = msgIdField.MessageId;
         if (!_tcpHandlerMap.TryAdd(msgId, type))
         {
-            LogHelper.Error($"重复注册消息TCP处理器:[{msgId}] 消息:[{type}]");
+            LogHelper.Error($"repeatedly register messages with tcp processors:[{msgId}] message type:[{type}]");
         }
 
         _tcpHandlerTypes.Add(attribute.MessageType);
@@ -378,12 +378,12 @@ internal sealed class HotfixModule
 
         if (!type.IsSealed)
         {
-            throw new InvalidOperationException($"{classFullName} 必须是标记为sealed的类");
+            throw new InvalidOperationException($"{classFullName} must be a class marked as sealed");
         }
 
         if (!classFullName.EndsWith(GlobalConst.EventListenerNameSuffix))
         {
-            throw new Exception($"事件处理器 必须以[{GlobalConst.EventListenerNameSuffix}]结尾，{classFullName}");
+            throw new Exception($"the event handler must be based on [{GlobalConst.EventListenerNameSuffix}] ending，{classFullName}");
         }
 
         var compAgentType = type.BaseType.GetGenericArguments()[0];
@@ -395,13 +395,13 @@ internal sealed class HotfixModule
         var infoAttributes = eventInfoAttributes.ToList();
         if (infoAttributes.Count == 0)
         {
-            throw new Exception($"IEventListener:{type.FullName}没有指定监听的事件");
+            throw new Exception($"IEventListener:{type.FullName} There are no events that are specified to listen to");
         }
 
         var eventInfoAttribute = infoAttributes.FirstOrDefault();
         if (eventInfoAttribute == null)
         {
-            throw new Exception($"IEventListener:{type.FullName}没有指定监听的事件");
+            throw new Exception($"IEventListener:{type.FullName} There are no events that are specified to listen to");
         }
 
         var evtId = eventInfoAttribute.EventId;
@@ -444,13 +444,13 @@ internal sealed class HotfixModule
 
         if (!fullName.EndsWith(GlobalConst.ComponentAgentNameSuffix))
         {
-            throw new Exception($"组件代理必须以{GlobalConst.ComponentAgentNameSuffix}结尾，{fullName}");
+            throw new Exception($"the component agent must be based on [{GlobalConst.ComponentAgentNameSuffix}] ending，{fullName}");
         }
 
         var compType = type.BaseType.GetGenericArguments()[0];
         if (!_compAgentMap.TryAdd(compType, type))
         {
-            throw new Exception($"组件:{compType.FullName}有多个代理");
+            throw new Exception($"component:[{compType.FullName}] there are multiple agents");
         }
 
         _agentCompMap[type] = compType;
@@ -475,7 +475,7 @@ internal sealed class HotfixModule
             return handler;
         }
 
-        throw new Exception($"错误的TCP处理器类型，{instance.GetType().FullName}");
+        throw new Exception($"wrong tcp processor type:{instance.GetType().FullName}");
 
         //throw new HandlerNotFoundException($"消息ID：{msgId}");
     }
