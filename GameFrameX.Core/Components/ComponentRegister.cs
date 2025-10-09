@@ -132,11 +132,11 @@ public static class ComponentRegister
             }
             else
             {
-                throw new Exception($"comp:{type.FullName}未绑定actor类型");
+                throw new Exception($"component:[{type.FullName}] the actor type is not bound");
             }
         }
 
-        LogHelper.Info("初始化组件注册完成");
+        LogHelper.Info("initialize component registration complete");
         return Task.CompletedTask;
     }
 
@@ -167,16 +167,16 @@ public static class ComponentRegister
 
                 if (actorType > GlobalConst.ActorTypeSeparator)
                 {
-                    LogHelper.Debug($"激活全局Actor: {actorType}");
+                    LogHelper.Debug($"activate the global actor: {actorType}");
                     await ActorManager.GetOrNew(ActorIdGenerator.GetActorId(actorType));
                 }
             }
 
-            LogHelper.Debug("激活全局组件并检测组件是否都包含Agent实现完成");
+            LogHelper.Debug("Activate the global component and check if the components all contain the Agent implementation completion");
         }
         catch (Exception)
         {
-            LogHelper.Error("激活全局组件并检测组件是否都包含Agent实现失败");
+            LogHelper.Error("Activate the global component and detect if the components all contain the agent implementation failed");
             throw;
         }
     }
@@ -242,7 +242,7 @@ public static class ComponentRegister
         }
         else
         {
-            LogHelper.Fatal($"获取不属于此actor：{actor.Type}的组件");
+            LogHelper.Fatal($"get an actor that doesn't belong to this actor: [{actor.Type}] components");
         }
     }
 
@@ -256,12 +256,12 @@ public static class ComponentRegister
     {
         if (!ActorComponentDic.TryGetValue(actor.Type, out var compTypes))
         {
-            throw new Exception($"获取不属于此actor：{actor.Type}的Component:{compType.FullName}");
+            throw new Exception($"get an actor that doesn't belong to this actor: [{actor.Type}] component:[{compType.FullName}]");
         }
 
         if (!compTypes.Contains(compType))
         {
-            throw new Exception($"获取不属于此actor：{actor.Type}的Component:{compType.FullName}");
+            throw new Exception($"get an actor that doesn't belong to this actor: [{actor.Type}] component:[{compType.FullName}]");
         }
 
         var comp = (BaseComponent)Activator.CreateInstance(compType);
