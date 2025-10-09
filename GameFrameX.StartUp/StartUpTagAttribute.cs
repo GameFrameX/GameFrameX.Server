@@ -29,8 +29,6 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
-using GameFrameX.Utility.Setting;
-
 namespace GameFrameX.StartUp;
 
 /// <summary>
