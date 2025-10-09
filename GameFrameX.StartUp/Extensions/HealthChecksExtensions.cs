@@ -76,13 +76,14 @@ public static class HealthChecksExtensions
     {
         var healthChecksBuilder = services.AddHealthChecks();
         // 基础应用程序健康检查
-        healthChecksBuilder.AddCheck(DefaultHealthCheckPath, () => HealthCheckResult.Healthy("应用程序运行正常"));
-        healthChecksBuilder.AddCheck(SimpleHealthCheckPath, () => HealthCheckResult.Healthy("应用程序运行正常"));
+        healthChecksBuilder.AddCheck(DefaultHealthCheckPath, () => HealthCheckResult.Healthy("the application is working fine"));
+        // 简单健康检查（兼容性端点）
+        healthChecksBuilder.AddCheck(SimpleHealthCheckPath, () => HealthCheckResult.Healthy("the application is working fine"));
 
         // OpenTelemetry相关检查
         if (setting.IsOpenTelemetry)
         {
-            healthChecksBuilder.AddCheck(OpenTelemetryHealthCheckPath, () => HealthCheckResult.Healthy("OpenTelemetry 配置正常"));
+            healthChecksBuilder.AddCheck(OpenTelemetryHealthCheckPath, () => HealthCheckResult.Healthy("OpenTelemetry the configuration is normal"));
         }
 
         return services;
@@ -169,20 +170,20 @@ public static class HealthChecksExtensions
                 ResponseWriter = async (context, _) =>
                 {
                     context.Response.ContentType = JsonContentType;
-                    await context.Response.WriteAsync("OpenTelemetry 配置正常");
+                    await context.Response.WriteAsync("OpenTelemetry is configured normally");
                 },
             };
             app.UseHealthChecks(OpenTelemetryHealthCheckPath, openTelemetryHealthCheckOptions);
         }
 
-        LogHelper.InfoConsole("健康检查端点已启用:");
+        LogHelper.InfoConsole("the health check endpoint is enabled:");
         foreach (var ip in ipList)
         {
-            LogHelper.InfoConsole($"- 详细健康检查: http://{ip}:{setting.HttpPort}{DefaultHealthCheckPath}");
-            LogHelper.InfoConsole($"- 简单健康检查: http://{ip}:{setting.HttpPort}{SimpleHealthCheckPath}");
+            LogHelper.InfoConsole($"- detailed health checks: http://{ip}:{setting.HttpPort}{DefaultHealthCheckPath}");
+            LogHelper.InfoConsole($"- simple health check: http://{ip}:{setting.HttpPort}{SimpleHealthCheckPath}");
             if (setting.IsOpenTelemetry)
             {
-                LogHelper.InfoConsole($"- OpenTelemetry 检查: http://{ip}:{setting.HttpPort}{OpenTelemetryHealthCheckPath}");
+                LogHelper.InfoConsole($"- OpenTelemetry check: http://{ip}:{setting.HttpPort}{OpenTelemetryHealthCheckPath}");
             }
         }
 
