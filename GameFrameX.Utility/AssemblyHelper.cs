@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -36,6 +36,28 @@ using GameFrameX.Foundation.Extensions;
 namespace GameFrameX.Utility;
 
 /// <summary>
+/// Assembly helper utility class
+/// Provides assembly and type loading, caching, and querying functionality with thread-safe operations
+///  Main Features:
+/// 1. Assembly Management: Get all loaded assemblies in the current application domain
+/// 2. Type Discovery: Find and cache type information from assemblies
+/// 3. Inheritance Analysis: Find implementations, derived classes, and subclasses of specified types
+/// 4. Instance Creation: Automatically instantiate types that meet specified conditions
+/// 5. Attribute Filtering: Filter types based on custom attribute markers
+/// 
+/// Performance Features:
+/// - Uses ConcurrentDictionary for thread-safe type caching
+/// - Implements lazy loading with Lazy{T} to avoid repeated type scanning
+/// - Built-in exception handling ensures partial assembly loading failures don't affect overall functionality
+/// 
+/// Use Cases:
+/// - Type discovery and loading for plugin systems
+/// - Type registration and resolution for IoC containers
+/// - Module scanning for component-based architectures
+/// - Performance optimization for reflection operations
+/// 
+/// </summary>
+/// <remarks>
 /// 程序集辅助工具类
 /// 提供程序集和类型的加载、缓存和查询功能，支持线程安全操作
 /// 
@@ -56,31 +78,46 @@ namespace GameFrameX.Utility;
 /// - IoC 容器的类型注册和解析
 /// - 组件化架构的模块扫描
 /// - 反射操作的性能优化
-/// </summary>
+/// </remarks>
 public static class AssemblyHelper
 {
     /// <summary>
+    /// Type cache dictionary using type full name as key, thread-safe
+    /// Uses StringComparer.Ordinal for optimal string comparison performance
+    /// </summary>
+    /// <remarks>
     /// 类型缓存字典，使用类型全名作为键，线程安全
     /// 使用 StringComparer.Ordinal 提供最佳性能的字符串比较
-    /// </summary>
+    /// </remarks>
     private static readonly ConcurrentDictionary<string, Type> CachedTypes = new(StringComparer.Ordinal);
     
     /// <summary>
+    /// Lazy-loaded type array ensuring types are loaded only once
+    /// Uses Lazy{T} to guarantee thread-safe single initialization
+    /// </summary>
+    /// <remarks>
     /// 延迟加载的类型数组，确保类型只被加载一次
     /// 使用 Lazy&lt;T&gt; 保证线程安全的单次初始化
-    /// </summary>
+    /// </remarks>
     private static readonly Lazy<Type[]> LazyTypes = new(() => LoadAllTypes());
     
     /// <summary>
-    /// 程序集访问锁，用于同步程序集获取操作
+    /// Assembly access lock for synchronizing assembly retrieval operations
     /// </summary>
+    /// <remarks>
+    /// 程序集访问锁，用于同步程序集获取操作
+    /// </remarks>
     private static readonly object AssemblyLock = new();
 
     /// <summary>
+    /// Load all types with exception handling
+    /// Iterates through all loaded assemblies and extracts type information
+    /// </summary>
+    /// <remarks>
     /// 加载所有类型，包含异常处理
     /// 遍历所有已加载的程序集，提取其中的类型信息
-    /// </summary>
-    /// <returns>所有已加载的类型数组</returns>
+    /// </remarks>
+    /// <returns>Array of all loaded types / 所有已加载的类型数组</returns>
     private static Type[] LoadAllTypes()
     {
         var results = new List<Type>();
@@ -113,10 +150,14 @@ public static class AssemblyHelper
     }
 
     /// <summary>
+    /// Get currently loaded assemblies
+    /// Uses lock to ensure safe access to assembly list in multi-threaded environment
+    /// </summary>
+    /// <remarks>
     /// 获取当前已加载的程序集
     /// 使用锁确保在多线程环境下安全访问程序集列表
-    /// </summary>
-    /// <returns>当前已加载的程序集数组</returns>
+    /// </remarks>
+    /// <returns>Array of currently loaded assemblies / 当前已加载的程序集数组</returns>
     private static Assembly[] GetCurrentAssemblies()
     {
         // 使用锁保护程序集访问，防止在程序集动态加载时出现竞态条件
@@ -127,31 +168,43 @@ public static class AssemblyHelper
     }
 
     /// <summary>
+    /// Get loaded assemblies
+    /// Returns all loaded assemblies in the current application domain, including dynamically loaded assemblies
+    /// </summary>
+    /// <remarks>
     /// 获取已加载的程序集
     /// 返回当前应用程序域中所有已加载的程序集，包括动态加载的程序集
-    /// </summary>
-    /// <returns>已加载的程序集数组，包含系统程序集和用户程序集</returns>
+    /// </remarks>
+    /// <returns>Array of loaded assemblies, including system and user assemblies / 已加载的程序集数组，包含系统程序集和用户程序集</returns>
     public static Assembly[] GetAssemblies()
     {
         return GetCurrentAssemblies();
     }
 
     /// <summary>
+    /// Get all types from loaded assemblies
+    /// Uses lazy loading and caching mechanism to ensure type information is loaded only once, improving performance
+    /// </summary>
+    /// <remarks>
     /// 获取已加载的程序集中的所有类型
     /// 使用延迟加载和缓存机制，确保类型信息只被加载一次，提高性能
-    /// </summary>
-    /// <returns>已加载的程序集中的所有类型数组，包括类、接口、枚举、委托等</returns>
+    /// </remarks>
+    /// <returns>Array of all types from loaded assemblies, including classes, interfaces, enums, delegates, etc. / 已加载的程序集中的所有类型数组，包括类、接口、枚举、委托等</returns>
     public static Type[] GetTypes()
     {
         return LazyTypes.Value;
     }
 
     /// <summary>
+    /// Get all types from loaded assemblies and add results to the specified list
+    /// This method clears the target list and then adds all type information
+    /// </summary>
+    /// <remarks>
     /// 获取已加载的程序集中的所有类型，并将结果添加到指定的列表中
     /// 此方法会清空目标列表，然后添加所有类型信息
-    /// </summary>
-    /// <param name="results">用于存储结果的列表，不能为 null</param>
-    /// <exception cref="ArgumentNullException">当 results 参数为 null 时抛出</exception>
+    /// </remarks>
+    /// <param name="results">List for storing results, cannot be null / 用于存储结果的列表，不能为 null</param>
+    /// <exception cref="ArgumentNullException">Thrown when results parameter is null / 当 results 参数为 null 时抛出</exception>
     public static void GetTypes(List<Type> results)
     {
         ArgumentNullException.ThrowIfNull(results, nameof(results));
@@ -161,12 +214,16 @@ public static class AssemblyHelper
     }
 
     /// <summary>
+    /// Get specified type from loaded assemblies
+    /// Supports fully qualified names and simple type names, uses caching mechanism to improve lookup performance
+    /// </summary>
+    /// <remarks>
     /// 获取已加载的程序集中的指定类型
     /// 支持完全限定名和简单类型名，使用缓存机制提高查找性能
-    /// </summary>
-    /// <param name="typeName">要获取的类型名，支持完全限定名（如 "System.String"）</param>
-    /// <returns>已加载的程序集中的指定类型，如果未找到则返回 null</returns>
-    /// <exception cref="ArgumentException">当 typeName 参数为 null 或空字符串时抛出</exception>
+    /// </remarks>
+    /// <param name="typeName">Type name to get, supports fully qualified names (e.g., "System.String") / 要获取的类型名，支持完全限定名（如 "System.String"）</param>
+    /// <returns>Specified type from loaded assemblies, returns null if not found / 已加载的程序集中的指定类型，如果未找到则返回 null</returns>
+    /// <exception cref="ArgumentException">Thrown when typeName parameter is null or empty string / 当 typeName 参数为 null 或空字符串时抛出</exception>
     public static Type GetType(string typeName)
     {
         ArgumentException.ThrowIfNullOrEmpty(typeName, nameof(typeName));
@@ -205,11 +262,15 @@ public static class AssemblyHelper
     }
 
     /// <summary>
+    /// Get instantiated list of subclasses of specified type from loaded assemblies
+    /// Automatically creates instances of all implementing types, only instantiates types with parameterless constructors
+    /// </summary>
+    /// <remarks>
     /// 获取已加载的程序集中的指定类型的子类实例化列表
     /// 自动创建所有实现类型的实例，只实例化具有无参构造函数的类型
-    /// </summary>
-    /// <typeparam name="T">指定的基类型或接口类型</typeparam>
-    /// <returns>指定类型的子类实例化列表，已排除无法实例化的类型</returns>
+    /// </remarks>
+    /// <typeparam name="T">Specified base type or interface type / 指定的基类型或接口类型</typeparam>
+    /// <returns>Instantiated list of subclasses of specified type, excluding types that cannot be instantiated / 指定类型的子类实例化列表，已排除无法实例化的类型</returns>
     public static List<T> GetRuntimeImplementTypeNamesInstance<T>()
     {
         var types = GetRuntimeImplementTypeNames(typeof(T));
@@ -240,23 +301,31 @@ public static class AssemblyHelper
     }
 
     /// <summary>
+    /// Get subclass list of specified type from loaded assemblies
+    /// Generic version providing type-safe calling method
+    /// </summary>
+    /// <remarks>
     /// 获取已加载的程序集中的指定类型的子类列表
     /// 泛型版本，提供类型安全的调用方式
-    /// </summary>
-    /// <typeparam name="T">指定的基类型或接口类型</typeparam>
-    /// <returns>指定类型的子类列表，包括所有实现类和派生类</returns>
+    /// </remarks>
+    /// <typeparam name="T">Specified base type or interface type / 指定的基类型或接口类型</typeparam>
+    /// <returns>Subclass list of specified type, including all implementing classes and derived classes / 指定类型的子类列表，包括所有实现类和派生类</returns>
     public static List<Type> GetRuntimeImplementTypeNames<T>()
     {
         return GetRuntimeImplementTypeNames(typeof(T));
     }
 
     /// <summary>
+    /// Get subclass list of specified type from loaded assemblies and filter types with specified attributes
+    /// Combines type inheritance and attribute marking for dual filtering, commonly used in plugin systems and component discovery
+    /// </summary>
+    /// <remarks>
     /// 获取已加载的程序集中的指定类型的子类列表，并过滤出具有指定特性的类型
     /// 结合类型继承和特性标记进行双重过滤，常用于插件系统和组件发现
-    /// </summary>
-    /// <typeparam name="T">指定的基类型或接口类型</typeparam>
-    /// <typeparam name="TAttribute">指定的自定义特性标记类型</typeparam>
-    /// <returns>指定类型的子类列表，且这些类型具有指定的特性标记</returns>
+    /// </remarks>
+    /// <typeparam name="T">Specified base type or interface type / 指定的基类型或接口类型</typeparam>
+    /// <typeparam name="TAttribute">Specified custom attribute marker type / 指定的自定义特性标记类型</typeparam>
+    /// <returns>Subclass list of specified type with specified attribute markers / 指定类型的子类列表，且这些类型具有指定的特性标记</returns>
     public static List<Type> GetRuntimeImplementTypeNames<T, TAttribute>() where TAttribute : Attribute
     {
         var types = GetRuntimeImplementTypeNames(typeof(T));
@@ -266,11 +335,15 @@ public static class AssemblyHelper
     }
 
     /// <summary>
+    /// Get subclass list of specified type from loaded assemblies and return their full names
+    /// Returns fully qualified names of types, convenient for serialization, configuration, and logging
+    /// </summary>
+    /// <remarks>
     /// 获取已加载的程序集中的指定类型的子类列表，并返回它们的全名
     /// 返回类型的完全限定名称，便于序列化、配置和日志记录
-    /// </summary>
-    /// <param name="type">指定的基类型或接口类型</param>
-    /// <returns>指定类型的子类列表的全名字符串集合</returns>
+    /// </remarks>
+    /// <param name="type">Specified base type or interface type / 指定的基类型或接口类型</param>
+    /// <returns>Collection of full name strings of subclass list of specified type / 指定类型的子类列表的全名字符串集合</returns>
     public static List<string> GetRuntimeTypeNames(Type type)
     {
         var results = new List<string>();
@@ -287,12 +360,16 @@ public static class AssemblyHelper
     }
 
     /// <summary>
+    /// Get subclass list of specified type from loaded assemblies
+    /// Core implementation method supporting multiple matching modes including interface implementation, class inheritance, and type assignment
+    /// </summary>
+    /// <remarks>
     /// 获取已加载的程序集中的指定类型的子类列表
     /// 核心实现方法，支持接口实现、类继承和类型分配的多种匹配模式
-    /// </summary>
-    /// <param name="type">指定的基类型或接口类型，不能为 null</param>
-    /// <returns>指定类型的子类列表，包括实现类、派生类和可分配类型</returns>
-    /// <exception cref="ArgumentNullException">当 type 参数为 null 时抛出</exception>
+    /// </remarks>
+    /// <param name="type">Specified base type or interface type, cannot be null / 指定的基类型或接口类型，不能为 null</param>
+    /// <returns>Subclass list of specified type, including implementing classes, derived classes, and assignable types / 指定类型的子类列表，包括实现类、派生类和可分配类型</returns>
+    /// <exception cref="ArgumentNullException">Thrown when type parameter is null / 当 type 参数为 null 时抛出</exception>
     public static List<Type> GetRuntimeImplementTypeNames(Type type)
     {
         ArgumentNullException.ThrowIfNull(type, nameof(type));
