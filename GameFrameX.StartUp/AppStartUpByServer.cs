@@ -137,7 +137,7 @@ public abstract partial class AppStartUpBase
     /// <param name="disconnectEventArgs">断开连接的相关参数</param>
     protected virtual ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
     {
-        LogHelper.Info($"客户端断开连接 - SessionID: {appSession.SessionID}, 断开原因: {disconnectEventArgs.Reason}");
+        LogHelper.Info($"the client disconnects - SessionID: {appSession.SessionID}, 断开原因: {disconnectEventArgs.Reason}");
         return ValueTask.CompletedTask;
     }
 
@@ -147,7 +147,7 @@ public abstract partial class AppStartUpBase
     /// <param name="appSession">新建立的会话对象</param>
     protected virtual ValueTask OnConnected(IAppSession appSession)
     {
-        LogHelper.Info($"新客户端连接 - SessionID: {appSession.SessionID}, 远程终端: {appSession.RemoteEndPoint}");
+        LogHelper.Info($"new client connection - SessionID: {appSession.SessionID}, 远程终端: {appSession.RemoteEndPoint}");
         return ValueTask.CompletedTask;
     }
 
@@ -160,7 +160,7 @@ public abstract partial class AppStartUpBase
     {
         if (Setting.IsDebug && Setting.IsDebugReceive)
         {
-            LogHelper.Debug($"收到消息 - 服务器类型: [{ServerType}], 消息内容: {message.ToFormatMessageString()}");
+            LogHelper.Debug($"message received- server type: [{ServerType}], message content: {message.ToFormatMessageString()}");
         }
 
         return ValueTask.CompletedTask;
@@ -207,7 +207,7 @@ public abstract partial class AppStartUpBase
         // 检查TCP端口是否可用
         if (Setting.InnerPort > 0 && NetHelper.PortIsAvailable(Setting.InnerPort))
         {
-            LogHelper.InfoConsole($"启动 [TCP] 服务器 - 类型: {ServerType}, 地址: {Setting.InnerHost}, 端口: {Setting.InnerPort}");
+            LogHelper.InfoConsole($"start tcp server type: {ServerType}, address: {Setting.InnerHost}, port: {Setting.InnerPort}");
             multipleServerHostBuilder.AddServer<IMessage, MessageObjectPipelineFilter>(builder =>
             {
                 builder
@@ -236,11 +236,11 @@ public abstract partial class AppStartUpBase
                         // }
                     });
             });
-            LogHelper.InfoConsole($"启动 [TCP] 服务器启动完成 - 类型: {ServerType}, 地址: {Setting.InnerHost}, 端口: {Setting.InnerPort}");
+            LogHelper.InfoConsole($"start tcp server startup complete type: {ServerType}, address: {Setting.InnerHost}, port: {Setting.InnerPort}");
         }
         else
         {
-            LogHelper.WarningConsole($"启动 [TCP] 服务器启动失败 - 类型: {ServerType}, 地址: {Setting.InnerHost}, 端口: {Setting.InnerPort}, 原因: 端口无效或已被占用");
+            LogHelper.WarningConsole($"start tcp server start failed type: {ServerType}, address: {Setting.InnerHost}, port: {Setting.InnerPort}, cause: the port is invalid or occupied");
         }
 
         // 检查WebSocket端口是否可用
@@ -248,7 +248,7 @@ public abstract partial class AppStartUpBase
         {
             if (Setting.WsPort is > 0 and < ushort.MaxValue && NetHelper.PortIsAvailable(Setting.WsPort))
             {
-                LogHelper.InfoConsole("启动 [WebSocket] 服务器...");
+                LogHelper.InfoConsole("start the websocket server...");
 
                 // 配置并启动WebSocket服务器
                 multipleServerHostBuilder.AddWebSocketServer(builder =>
@@ -269,16 +269,16 @@ public abstract partial class AppStartUpBase
                             });
                         });
                 });
-                LogHelper.InfoConsole($"启动 [WebSocket] 服务器启动完成 - 类型: {ServerType}, 端口: {Setting.WsPort}");
+                LogHelper.InfoConsole($"start websocket server startup complete type: {ServerType}, port: {Setting.WsPort}");
             }
             else
             {
-                LogHelper.WarningConsole($"启动 [WebSocket] 服务器启动失败 - 类型: {ServerType}, 端口: {Setting.WsPort}, 原因: 端口无效或已被占用");
+                LogHelper.WarningConsole($"start websocket server start failed type: {ServerType}, port: {Setting.WsPort}, cause: the port is invalid or occupied");
             }
         }
         else
         {
-            LogHelper.InfoConsole($"启动 [WebSocket] 服务器启动失败 - 类型: {ServerType}, 端口: {Setting.WsPort}, 原因: 未启用WebSocket服务");
+            LogHelper.InfoConsole($"start websocket server start failed type: {ServerType}, port: {Setting.WsPort}, cause: WebSocket service is not enabled");
         }
 
         // await StartHttpServerAsync(hostBuilder,baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
@@ -288,7 +288,7 @@ public abstract partial class AppStartUpBase
         var metricsServer = await OpenTelemetryExtensions.CreateMetricsServerAsync(Setting, "TCP");
         if (metricsServer is not null)
         {
-            LogHelper.InfoConsole($"独立指标服务器已启动在端口 {Setting.MetricsPort}");
+            LogHelper.InfoConsole($"The standalone metric server is started on the port: {Setting.MetricsPort}");
         }
 
         // 配置监控和跟踪

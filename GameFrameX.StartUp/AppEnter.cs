@@ -64,14 +64,14 @@ internal static class AppEnter
             string error;
             if (GlobalSettings.IsAppRunning)
             {
-                error = $"服务器运行时异常 e:{e}";
-                LogHelper.InfoConsole(error);
+                error = $"abnormal server runtime:{e}";
             }
             else
             {
-                error = $"启动服务器失败 e:{e}";
-                LogHelper.InfoConsole(error);
+                error = $"failed to start the server:{e}";
             }
+
+            LogHelper.ErrorConsole(error);
         }
     }
 
@@ -83,11 +83,11 @@ internal static class AppEnter
         }
 
         _exitCalled = true;
-        LogHelper.InfoConsole("监听到退出程序消息");
+        LogHelper.InfoConsole("listen to the exit message from the program");
         GlobalSettings.IsAppRunning = false;
         _appStartUp.StopAsync(message).Wait();
         AppExitHandler.Kill();
-        LogHelper.InfoConsole("退出程序");
+        LogHelper.InfoConsole("exit procedure");
         _gameLoopTask?.Wait();
         LogHelper.FlushAndSave();
     }

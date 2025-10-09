@@ -72,7 +72,7 @@ public static class GameApp
         var serverType = launcherOptions?.ServerType;
         if (!serverType.IsNullOrEmpty())
         {
-            LogHelper.Console("启动的服务器类型 ServerType: " + serverType);
+            LogHelper.Console("the type of server that is launched : " + serverType);
         }
 
         LogOptions.Default.LogType = serverType;
@@ -98,7 +98,7 @@ public static class GameApp
 
                 if (!LogOptions.Default.GrafanaLokiLabels.TryAdd(property.Name, value))
                 {
-                    LogHelper.WarningConsole($"Grafana Loki 标签 {property.Name} 已存在,将被忽略");
+                    LogHelper.WarningConsole($"Grafana Loki label {property.Name} already exists, will be ignored");
                 }
             }
 
@@ -171,7 +171,7 @@ public static class GameApp
 
         var sortedStartUpTypes = StartUpTypes.OrderBy(m => m.Value.Priority);
 
-        LogHelper.InfoConsole("----------------------------开始启动服务器啦------------------------------");
+        LogHelper.InfoConsole("----------------------------Start Starting The Server------------------------------");
         var appSettings = GlobalSettings.GetSettings();
         if (serverType.IsNotNullOrWhiteSpace())
         {
@@ -181,11 +181,11 @@ public static class GameApp
                 var appSetting = appSettings.FirstOrDefault(m => m.ServerType == serverType);
                 if (appSetting != null)
                 {
-                    LogHelper.InfoConsole($"从配置文件中找到对应的服务器类型的启动配置,将以配置启动=>{startKv.Value.ServerType}");
+                    LogHelper.InfoConsole($"Finding the boot configuration for the corresponding server type in the configuration file will be configured to boot=>{startKv.Value.ServerType}");
                 }
                 else
                 {
-                    LogHelper.WarningConsole($"没有找到对应的服务器类型的启动配置,将以默认配置启动=>{startKv.Value.ServerType}");
+                    LogHelper.WarningConsole($"If no startup configuration is found for the server type, it will start with the default configuration=>{startKv.Value.ServerType}");
                     appSetting = launcherOptions.Adapt<AppSetting>();
                 }
 
@@ -210,14 +210,14 @@ public static class GameApp
 
                 if (isFind == false)
                 {
-                    LogHelper.WarningConsole($"没有找到对应的服务器类型的启动配置,将以默认配置启动=>{keyValuePair.Value.ServerType}");
+                    LogHelper.WarningConsole($"If no startup configuration is found for the server type, it will start with the default configuration=>{keyValuePair.Value.ServerType}");
                     Launcher(args, keyValuePair);
                     break;
                 }
             }
         }
 
-        LogHelper.InfoConsole("----------------------------启动服务器结束啦------------------------------");
+        LogHelper.InfoConsole("----------------------------The Startup Server Is Over------------------------------");
         // ApplicationPerformanceMonitorStart(serverType);
         ConsoleHelper.ConsoleLogo();
 
@@ -243,7 +243,7 @@ public static class GameApp
         if (isSuccess)
         {
             LogHelper.InfoConsole($"----------------------------START-----{serverType}------------------------------");
-            LogHelper.InfoConsole("----------------------------配置信息----------------------------------------------");
+            LogHelper.InfoConsole($"----------------------------Configuration Information---------------------------");
             LogHelper.InfoConsole($"{startUp.Setting.ToFormatString()}");
             LogHelper.InfoConsole("--------------------------------------------------------------------------------");
             var task = AppEnter.Entry(startUp);
