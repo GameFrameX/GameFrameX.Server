@@ -89,7 +89,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
         {
             ServerId = Setting.ServerId,
         };
-        var innerNetworkMessage = InnerNetworkMessage.Create(message, messageObjectHeader);
+        var innerNetworkMessage = NetworkMessagePackage.Create(message, messageObjectHeader);
         var buffer = MessageHelper.EncoderHandler.Handler(message);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
@@ -106,7 +106,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
 
     protected override ValueTask PackageHandler(IAppSession session, IMessage message)
     {
-        if (message is IInnerNetworkMessage messageObject)
+        if (message is INetworkMessagePackage messageObject)
         {
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
