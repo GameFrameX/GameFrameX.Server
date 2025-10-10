@@ -117,7 +117,7 @@ public class GetNodeCountRequest : HttpMessageRequestBase
     /// 服务器类型（可选）
     /// </summary>
     /// <value>要统计的特定服务器类型，如果为null则统计所有类型</value>
-    public string? ServerType { get; set; }
+    public string ServerType { get; set; }
 }
 
 /// <summary>
@@ -153,5 +153,5 @@ public class GetNodeCountResponse : HttpMessageResponseBase
     /// 查询的服务器类型
     /// </summary>
     /// <value>请求中指定的服务器类型，如果为null表示查询所有类型</value>
-    public string? QueryServerType { get; set; }
+    public string QueryServerType { get; set; }
 }
