@@ -171,30 +171,84 @@ public static class GlobalConst
     #endregion
 
     /// <summary>
-    /// 服务发现中心 服务名称
-    /// </summary>
-    public const string DiscoveryCenterName = "DiscoveryCenter";
-
-    /// <summary>
     /// 游戏 服务名称
     /// </summary>
-    public const string GameName = "Game";
+    public const string GameServiceName = "Game";
 
+    /// <summary>
+    /// 游戏 服务器ID
+    /// </summary>
+    public const int GameServiceServerId = 1000;
+
+    /// <summary>
+    /// 服务发现中心 服务名称
+    /// </summary>
+    public const string DiscoveryCenterServiceName = "DiscoveryCenter";
+
+    /// <summary>
+    /// 服务发现中心 服务器ID
+    /// </summary>
+    public const int DiscoveryCenterServiceServerId = 9000;
+
+    /// <summary>
+    /// 网关 服务名称
+    /// </summary>
+    public const string GatewayServiceName = "Gateway";
+
+    /// <summary>
+    /// 网关 服务器ID
+    /// </summary>
+    public const int GatewayServiceServerId = 9400;
 
     /// <summary>
     /// 聊天 服务名称
     /// </summary>
-    public const string ImName = "Im";
+    public const string ImServiceName = "Im";
+
+    /// <summary>
+    /// 聊天 服务器ID
+    /// </summary>
+    public const int ImServiceServerId = 9500;
 
     /// <summary>
     /// 好友 服务名称
     /// </summary>
-    public const string FriendName = "Friend";
+    public const string FriendServiceName = "Friend";
+
+    /// <summary>
+    /// 好友 服务器ID
+    /// </summary>
+    public const int FriendServiceServerId = 9600;
+
+    /// <summary>
+    /// 授权 服务名称
+    /// </summary>
+    public const string AuthServiceName = "Auth";
+
+    /// <summary>
+    /// 授权 服务器ID
+    /// </summary>
+    public const int AuthServiceServerId = 9700;
+
+    /// <summary>
+    /// 社交 服务名称
+    /// </summary>
+    public const string SocialServiceName = "Social";
+
+    /// <summary>
+    /// 社交 服务器ID
+    /// </summary>
+    public const int SocialServiceServerId = 9800;
 
     /// <summary>
     /// 房间 服务名称
     /// </summary>
-    public const string RoomName = "Room";
+    public const string RoomServiceName = "Room";
+
+    /// <summary>
+    /// 房间 服务器ID
+    /// </summary>
+    public const int RoomServiceServerId = 9900;
 
     #region HTTP
 
