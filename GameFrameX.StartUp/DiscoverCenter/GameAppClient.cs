@@ -247,8 +247,8 @@ internal sealed class GameAppClient
     private void OnClientOnDataReceived(object client, DataEventArgs e)
     {
         var message = MessageHelper.DecoderHandler.Handler(e.Data.ReadBytesValue(e.Offset, e.Length));
-
-        if (message is InnerNetworkMessage innerNetworkMessage)
+        // 只处理内部消息
+        if (message is NetworkMessagePackage innerNetworkMessage && innerNetworkMessage.Header.MessageId < 0)
         {
             _mGameAppClientEvent.OnMessage?.Invoke((MessageObject)innerNetworkMessage.DeserializeMessageObject());
         }
