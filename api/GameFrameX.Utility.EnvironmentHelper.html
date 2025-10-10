@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class EnvironmentHelper | GameFrameX.Server ">
       
-      <meta name="description" content="环境帮助器">
+      <meta name="description" content="Environment helper utility class.">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.1-dev1/apiSpec/new?filename=GameFrameX_Utility_EnvironmentHelper.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.EnvironmentHelper%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.1-dev2/apiSpec/new?filename=GameFrameX_Utility_EnvironmentHelper.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.EnvironmentHelper%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_Utility_EnvironmentHelper" data-uid="GameFrameX.Utility.EnvironmentHelper" class="text-break">
-Class EnvironmentHelper  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/EnvironmentHelper.cs/#L41"><i class="bi bi-code-slash"></i></a>
+Class EnvironmentHelper  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/EnvironmentHelper.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
   <dl><dt>Assembly</dt><dd>GameFrameX.Utility.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>环境帮助器</p>
+  <div class="markdown summary"><p>Environment helper utility class.</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -147,6 +147,9 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
 
 
 
+  <h2 id="GameFrameX_Utility_EnvironmentHelper_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>环境帮助器</p>
+</div>
 
 
   <h2 class="section" id="methods">Methods
@@ -157,11 +160,11 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
 
   <h3 id="GameFrameX_Utility_EnvironmentHelper_GetEnvironmentName" data-uid="GameFrameX.Utility.EnvironmentHelper.GetEnvironmentName">
   GetEnvironmentName()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/EnvironmentHelper.cs/#L121"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/EnvironmentHelper.cs/#L152"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取当前运行环境名称
-优先获取 ASPNETCORE_ENVIRONMENT 环境变量，如果不存在则获取 DOTNET_ENVIRONMENT 环境变量</p>
+  <div class="markdown level1 summary"><p>Gets the current environment name from environment variables.
+Returns the value of ASPNETCORE_ENVIRONMENT or DOTNET_ENVIRONMENT, or &quot;Production&quot; if neither is set.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -173,7 +176,7 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>返回当前环境名称，如果未设置环境变量则返回null</p>
+    <dd><p>The current environment name. / 当前环境名称</p>
 </dd>
   </dl>
 
@@ -183,6 +186,10 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_EnvironmentHelper_GetEnvironmentName_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>获取当前环境名称
+从环境变量 ASPNETCORE_ENVIRONMENT 或 DOTNET_ENVIRONMENT 中获取，如果都未设置则返回 &quot;Production&quot;</p>
+</div>
 
 
 
@@ -191,11 +198,11 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
 
   <h3 id="GameFrameX_Utility_EnvironmentHelper_IsDevelopment" data-uid="GameFrameX.Utility.EnvironmentHelper.IsDevelopment">
   IsDevelopment()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/EnvironmentHelper.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/EnvironmentHelper.cs/#L55"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>判断是否为开发环境
-通过检查环境变量 ASPNETCORE_ENVIRONMENT 或 DOTNET_ENVIRONMENT 的值是否为 Development</p>
+  <div class="markdown level1 summary"><p>Determines whether the current environment is a development environment.
+Checks if the ASPNETCORE_ENVIRONMENT or DOTNET_ENVIRONMENT environment variable is set to Development.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -207,7 +214,7 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果是开发环境返回true，否则返回false</p>
+    <dd><p>True if the current environment is development, otherwise false. / 如果是开发环境返回true，否则返回false</p>
 </dd>
   </dl>
 
@@ -217,6 +224,10 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_EnvironmentHelper_IsDevelopment_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>判断是否为开发环境
+通过检查环境变量 ASPNETCORE_ENVIRONMENT 或 DOTNET_ENVIRONMENT 的值是否为 Development</p>
+</div>
 
 
 
@@ -225,11 +236,11 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
 
   <h3 id="GameFrameX_Utility_EnvironmentHelper_IsDocker" data-uid="GameFrameX.Utility.EnvironmentHelper.IsDocker">
   IsDocker()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/EnvironmentHelper.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/EnvironmentHelper.cs/#L124"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>判断当前应用是否运行在Docker容器中
-通过检查环境变量 DOTNET_RUNNING_IN_CONTAINER 是否存在来判断</p>
+  <div class="markdown level1 summary"><p>Determines whether the current application is running in a Docker container.
+Checks if the DOTNET_RUNNING_IN_CONTAINER environment variable exists.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -241,7 +252,7 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果在Docker容器中运行返回true，否则返回false</p>
+    <dd><p>True if running in a Docker container, otherwise false. / 如果在Docker容器中运行返回true，否则返回false</p>
 </dd>
   </dl>
 
@@ -251,6 +262,10 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_EnvironmentHelper_IsDocker_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>判断当前应用是否运行在Docker容器中
+通过检查环境变量 DOTNET_RUNNING_IN_CONTAINER 是否存在来判断</p>
+</div>
 
 
 
@@ -259,11 +274,11 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
 
   <h3 id="GameFrameX_Utility_EnvironmentHelper_IsEnvironment_System_String_" data-uid="GameFrameX.Utility.EnvironmentHelper.IsEnvironment(System.String)">
   IsEnvironment(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/EnvironmentHelper.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/EnvironmentHelper.cs/#L107"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>判断是否为任意自定义环境
-通过检查环境变量 ASPNETCORE_ENVIRONMENT 或 DOTNET_ENVIRONMENT 的值是否与指定环境名称匹配</p>
+  <div class="markdown level1 summary"><p>Determines whether the current environment matches the specified custom environment name.
+Checks if the ASPNETCORE_ENVIRONMENT or DOTNET_ENVIRONMENT environment variable matches the specified environment name.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -274,14 +289,14 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>environmentName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>要检查的环境名称</p>
+    <dd><p>The environment name to check. / 要检查的环境名称</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果当前环境与指定环境名称匹配返回true，否则返回false</p>
+    <dd><p>True if the current environment matches the specified environment name, otherwise false. / 如果当前环境与指定环境名称匹配返回true，否则返回false</p>
 </dd>
   </dl>
 
@@ -291,6 +306,10 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_EnvironmentHelper_IsEnvironment_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>判断是否为任意自定义环境
+通过检查环境变量 ASPNETCORE_ENVIRONMENT 或 DOTNET_ENVIRONMENT 的值是否与指定环境名称匹配</p>
+</div>
 
 
 
@@ -299,11 +318,11 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
 
   <h3 id="GameFrameX_Utility_EnvironmentHelper_IsKubernetes" data-uid="GameFrameX.Utility.EnvironmentHelper.IsKubernetes">
   IsKubernetes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/EnvironmentHelper.cs/#L111"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/EnvironmentHelper.cs/#L138"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>判断当前应用是否运行在Kubernetes集群中
-通过检查环境变量 KUBERNETES_SERVICE_HOST 是否存在来判断</p>
+  <div class="markdown level1 summary"><p>Determines whether the current application is running in a Kubernetes cluster.
+Checks if the KUBERNETES_SERVICE_HOST environment variable exists.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -315,7 +334,7 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果在Kubernetes集群中运行返回true，否则返回false</p>
+    <dd><p>True if running in a Kubernetes cluster, otherwise false. / 如果在Kubernetes集群中运行返回true，否则返回false</p>
 </dd>
   </dl>
 
@@ -325,6 +344,10 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_EnvironmentHelper_IsKubernetes_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>判断当前应用是否运行在Kubernetes集群中
+通过检查环境变量 KUBERNETES_SERVICE_HOST 是否存在来判断</p>
+</div>
 
 
 
@@ -333,11 +356,11 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
 
   <h3 id="GameFrameX_Utility_EnvironmentHelper_IsProduction" data-uid="GameFrameX.Utility.EnvironmentHelper.IsProduction">
   IsProduction()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/EnvironmentHelper.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/EnvironmentHelper.cs/#L72"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>判断是否为生产环境
-通过检查环境变量 ASPNETCORE_ENVIRONMENT 或 DOTNET_ENVIRONMENT 的值是否为 Production</p>
+  <div class="markdown level1 summary"><p>Determines whether the current environment is a production environment.
+Checks if the ASPNETCORE_ENVIRONMENT or DOTNET_ENVIRONMENT environment variable is set to Production.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -349,7 +372,7 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果是生产环境返回true，否则返回false</p>
+    <dd><p>True if the current environment is production, otherwise false. / 如果是生产环境返回true，否则返回false</p>
 </dd>
   </dl>
 
@@ -359,6 +382,10 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_EnvironmentHelper_IsProduction_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>判断是否为生产环境
+通过检查环境变量 ASPNETCORE_ENVIRONMENT 或 DOTNET_ENVIRONMENT 的值是否为 Production</p>
+</div>
 
 
 
@@ -367,11 +394,11 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
 
   <h3 id="GameFrameX_Utility_EnvironmentHelper_IsStaging" data-uid="GameFrameX.Utility.EnvironmentHelper.IsStaging">
   IsStaging()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/EnvironmentHelper.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/EnvironmentHelper.cs/#L89"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>判断是否为测试/预发布环境
-通过检查环境变量 ASPNETCORE_ENVIRONMENT 或 DOTNET_ENVIRONMENT 的值是否为 Staging</p>
+  <div class="markdown level1 summary"><p>Determines whether the current environment is a staging/testing environment.
+Checks if the ASPNETCORE_ENVIRONMENT or DOTNET_ENVIRONMENT environment variable is set to Staging.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -383,7 +410,7 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>如果是测试/预发布环境返回true，否则返回false</p>
+    <dd><p>True if the current environment is staging, otherwise false. / 如果是测试/预发布环境返回true，否则返回false</p>
 </dd>
   </dl>
 
@@ -393,6 +420,10 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_EnvironmentHelper_IsStaging_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>判断是否为测试/预发布环境
+通过检查环境变量 ASPNETCORE_ENVIRONMENT 或 DOTNET_ENVIRONMENT 的值是否为 Staging</p>
+</div>
 
 
 
@@ -401,7 +432,7 @@ Class EnvironmentHelper  <a class="header-action link-secondary" title="View sou
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/EnvironmentHelper.cs/#L41" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/EnvironmentHelper.cs/#L44" class="edit-link">Edit this page</a>
         </div>
 
 

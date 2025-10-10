@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class AssemblyHelper | GameFrameX.Server ">
       
-      <meta name="description" content="程序集辅助工具类 提供程序集和类型的加载、缓存和查询功能，支持线程安全操作 主要功能：  程序集管理：获取当前应用程序域中的所有已加载程序集 类型发现：查找和缓存程序集中的类型信息 继承关系分析：查找指定类型的实现类、派生类和子类 实例创建：自动实例化符合条件的类型 特性过滤：基于自定义特性标记进行类型筛选  性能特性：  使用 ConcurrentDictionary 提供线程安全的类型缓存 采用 Lazy&amp;lt;T&amp;gt; 实现延迟加载，避免重复的类型扫描 内置异常处理，确保部分程序集加载失败不影响整体功能  适用场景：  插件系统的类型发现和加载 IoC 容器的类型注册和解析 组件化架构的模块扫描 反射操作的性能优化">
+      <meta name="description" content="Assembly helper utility class Provides assembly and type loading, caching, and querying functionality with thread-safe operations Main Features:  Assembly Management: Get all loaded assemblies in the current application domain Type Discovery: Find and cache type information from assemblies Inheritance Analysis: Find implementations, derived classes, and subclasses of specified types Instance Creation: Automatically instantiate types that meet specified conditions Attribute Filtering: Filter types based on custom attribute markers  Performance Features:  Uses ConcurrentDictionary for thread-safe type caching Implements lazy loading with Lazy{T} to avoid repeated type scanning Built-in exception handling ensures partial assembly loading failures don&#39;t affect overall functionality  Use Cases:  Type discovery and loading for plugin systems Type registration and resolution for IoC containers Module scanning for component-based architectures Performance optimization for reflection operations">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.1-dev1/apiSpec/new?filename=GameFrameX_Utility_AssemblyHelper.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.AssemblyHelper%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.1-dev2/apiSpec/new?filename=GameFrameX_Utility_AssemblyHelper.md&amp;value=---%0Auid%3A%20GameFrameX.Utility.AssemblyHelper%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_Utility_AssemblyHelper" data-uid="GameFrameX.Utility.AssemblyHelper" class="text-break">
-Class AssemblyHelper  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/AssemblyHelper.cs/#L60"><i class="bi bi-code-slash"></i></a>
+Class AssemblyHelper  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/AssemblyHelper.cs/#L82"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,28 +97,28 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
   <dl><dt>Assembly</dt><dd>GameFrameX.Utility.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>程序集辅助工具类
-提供程序集和类型的加载、缓存和查询功能，支持线程安全操作</p>
-<p>主要功能：</p>
+  <div class="markdown summary"><p>Assembly helper utility class
+Provides assembly and type loading, caching, and querying functionality with thread-safe operations
+Main Features:</p>
 <ol>
-<li>程序集管理：获取当前应用程序域中的所有已加载程序集</li>
-<li>类型发现：查找和缓存程序集中的类型信息</li>
-<li>继承关系分析：查找指定类型的实现类、派生类和子类</li>
-<li>实例创建：自动实例化符合条件的类型</li>
-<li>特性过滤：基于自定义特性标记进行类型筛选</li>
+<li>Assembly Management: Get all loaded assemblies in the current application domain</li>
+<li>Type Discovery: Find and cache type information from assemblies</li>
+<li>Inheritance Analysis: Find implementations, derived classes, and subclasses of specified types</li>
+<li>Instance Creation: Automatically instantiate types that meet specified conditions</li>
+<li>Attribute Filtering: Filter types based on custom attribute markers</li>
 </ol>
-<p>性能特性：</p>
+<p>Performance Features:</p>
 <ul>
-<li>使用 ConcurrentDictionary 提供线程安全的类型缓存</li>
-<li>采用 Lazy&lt;T&gt; 实现延迟加载，避免重复的类型扫描</li>
-<li>内置异常处理，确保部分程序集加载失败不影响整体功能</li>
+<li>Uses ConcurrentDictionary for thread-safe type caching</li>
+<li>Implements lazy loading with Lazy{T} to avoid repeated type scanning</li>
+<li>Built-in exception handling ensures partial assembly loading failures don't affect overall functionality</li>
 </ul>
-<p>适用场景：</p>
+<p>Use Cases:</p>
 <ul>
-<li>插件系统的类型发现和加载</li>
-<li>IoC 容器的类型注册和解析</li>
-<li>组件化架构的模块扫描</li>
-<li>反射操作的性能优化</li>
+<li>Type discovery and loading for plugin systems</li>
+<li>Type registration and resolution for IoC containers</li>
+<li>Module scanning for component-based architectures</li>
+<li>Performance optimization for reflection operations</li>
 </ul>
 </div>
   <div class="markdown conceptual"></div>
@@ -169,6 +169,31 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
 
 
+  <h2 id="GameFrameX_Utility_AssemblyHelper_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>程序集辅助工具类
+提供程序集和类型的加载、缓存和查询功能，支持线程安全操作</p>
+<p>主要功能：</p>
+<ol>
+<li>程序集管理：获取当前应用程序域中的所有已加载程序集</li>
+<li>类型发现：查找和缓存程序集中的类型信息</li>
+<li>继承关系分析：查找指定类型的实现类、派生类和子类</li>
+<li>实例创建：自动实例化符合条件的类型</li>
+<li>特性过滤：基于自定义特性标记进行类型筛选</li>
+</ol>
+<p>性能特性：</p>
+<ul>
+<li>使用 ConcurrentDictionary 提供线程安全的类型缓存</li>
+<li>采用 Lazy&lt;T&gt; 实现延迟加载，避免重复的类型扫描</li>
+<li>内置异常处理，确保部分程序集加载失败不影响整体功能</li>
+</ul>
+<p>适用场景：</p>
+<ul>
+<li>插件系统的类型发现和加载</li>
+<li>IoC 容器的类型注册和解析</li>
+<li>组件化架构的模块扫描</li>
+<li>反射操作的性能优化</li>
+</ul>
+</div>
 
 
   <h2 class="section" id="methods">Methods
@@ -179,11 +204,11 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
   <h3 id="GameFrameX_Utility_AssemblyHelper_GetAssemblies" data-uid="GameFrameX.Utility.AssemblyHelper.GetAssemblies">
   GetAssemblies()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/AssemblyHelper.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/AssemblyHelper.cs/#L179"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取已加载的程序集
-返回当前应用程序域中所有已加载的程序集，包括动态加载的程序集</p>
+  <div class="markdown level1 summary"><p>Get loaded assemblies
+Returns all loaded assemblies in the current application domain, including dynamically loaded assemblies</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -195,7 +220,7 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.assembly">Assembly</a>[]</dt>
-    <dd><p>已加载的程序集数组，包含系统程序集和用户程序集</p>
+    <dd><p>Array of loaded assemblies, including system and user assemblies / 已加载的程序集数组，包含系统程序集和用户程序集</p>
 </dd>
   </dl>
 
@@ -205,6 +230,10 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_AssemblyHelper_GetAssemblies_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>获取已加载的程序集
+返回当前应用程序域中所有已加载的程序集，包括动态加载的程序集</p>
+</div>
 
 
 
@@ -213,11 +242,11 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
   <h3 id="GameFrameX_Utility_AssemblyHelper_GetRuntimeImplementTypeNames_System_Type_" data-uid="GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNames(System.Type)">
   GetRuntimeImplementTypeNames(Type)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/AssemblyHelper.cs/#L296"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/AssemblyHelper.cs/#L373"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取已加载的程序集中的指定类型的子类列表
-核心实现方法，支持接口实现、类继承和类型分配的多种匹配模式</p>
+  <div class="markdown level1 summary"><p>Get subclass list of specified type from loaded assemblies
+Core implementation method supporting multiple matching modes including interface implementation, class inheritance, and type assignment</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -228,14 +257,14 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd><p>指定的基类型或接口类型，不能为 null</p>
+    <dd><p>Specified base type or interface type, cannot be null / 指定的基类型或接口类型，不能为 null</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</dt>
-    <dd><p>指定类型的子类列表，包括实现类、派生类和可分配类型</p>
+    <dd><p>Subclass list of specified type, including implementing classes, derived classes, and assignable types / 指定类型的子类列表，包括实现类、派生类和可分配类型</p>
 </dd>
   </dl>
 
@@ -245,11 +274,15 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_AssemblyHelper_GetRuntimeImplementTypeNames_System_Type__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>获取已加载的程序集中的指定类型的子类列表
+核心实现方法，支持接口实现、类继承和类型分配的多种匹配模式</p>
+</div>
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
-    <dd><p>当 type 参数为 null 时抛出</p>
+    <dd><p>Thrown when type parameter is null / 当 type 参数为 null 时抛出</p>
 </dd>
   </dl>
 
@@ -259,11 +292,11 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
   <h3 id="GameFrameX_Utility_AssemblyHelper_GetRuntimeImplementTypeNamesInstance__1" data-uid="GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNamesInstance``1">
   GetRuntimeImplementTypeNamesInstance&lt;T&gt;()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/AssemblyHelper.cs/#L213"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/AssemblyHelper.cs/#L274"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取已加载的程序集中的指定类型的子类实例化列表
-自动创建所有实现类型的实例，只实例化具有无参构造函数的类型</p>
+  <div class="markdown level1 summary"><p>Get instantiated list of subclasses of specified type from loaded assemblies
+Automatically creates instances of all implementing types, only instantiates types with parameterless constructors</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -275,14 +308,14 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</dt>
-    <dd><p>指定类型的子类实例化列表，已排除无法实例化的类型</p>
+    <dd><p>Instantiated list of subclasses of specified type, excluding types that cannot be instantiated / 指定类型的子类实例化列表，已排除无法实例化的类型</p>
 </dd>
   </dl>
 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>T</code></dt>
-    <dd><p>指定的基类型或接口类型</p>
+    <dd><p>Specified base type or interface type / 指定的基类型或接口类型</p>
 </dd>
   </dl>
 
@@ -291,6 +324,10 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_AssemblyHelper_GetRuntimeImplementTypeNamesInstance__1_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>获取已加载的程序集中的指定类型的子类实例化列表
+自动创建所有实现类型的实例，只实例化具有无参构造函数的类型</p>
+</div>
 
 
 
@@ -299,11 +336,11 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
   <h3 id="GameFrameX_Utility_AssemblyHelper_GetRuntimeImplementTypeNames__1" data-uid="GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNames``1">
   GetRuntimeImplementTypeNames&lt;T&gt;()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/AssemblyHelper.cs/#L248"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/AssemblyHelper.cs/#L313"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取已加载的程序集中的指定类型的子类列表
-泛型版本，提供类型安全的调用方式</p>
+  <div class="markdown level1 summary"><p>Get subclass list of specified type from loaded assemblies
+Generic version providing type-safe calling method</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -315,14 +352,14 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</dt>
-    <dd><p>指定类型的子类列表，包括所有实现类和派生类</p>
+    <dd><p>Subclass list of specified type, including all implementing classes and derived classes / 指定类型的子类列表，包括所有实现类和派生类</p>
 </dd>
   </dl>
 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>T</code></dt>
-    <dd><p>指定的基类型或接口类型</p>
+    <dd><p>Specified base type or interface type / 指定的基类型或接口类型</p>
 </dd>
   </dl>
 
@@ -331,6 +368,10 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_AssemblyHelper_GetRuntimeImplementTypeNames__1_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>获取已加载的程序集中的指定类型的子类列表
+泛型版本，提供类型安全的调用方式</p>
+</div>
 
 
 
@@ -339,11 +380,11 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
   <h3 id="GameFrameX_Utility_AssemblyHelper_GetRuntimeImplementTypeNames__2" data-uid="GameFrameX.Utility.AssemblyHelper.GetRuntimeImplementTypeNames``2">
   GetRuntimeImplementTypeNames&lt;T, TAttribute&gt;()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/AssemblyHelper.cs/#L260"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/AssemblyHelper.cs/#L329"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取已加载的程序集中的指定类型的子类列表，并过滤出具有指定特性的类型
-结合类型继承和特性标记进行双重过滤，常用于插件系统和组件发现</p>
+  <div class="markdown level1 summary"><p>Get subclass list of specified type from loaded assemblies and filter types with specified attributes
+Combines type inheritance and attribute marking for dual filtering, commonly used in plugin systems and component discovery</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -355,17 +396,17 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</dt>
-    <dd><p>指定类型的子类列表，且这些类型具有指定的特性标记</p>
+    <dd><p>Subclass list of specified type with specified attribute markers / 指定类型的子类列表，且这些类型具有指定的特性标记</p>
 </dd>
   </dl>
 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>T</code></dt>
-    <dd><p>指定的基类型或接口类型</p>
+    <dd><p>Specified base type or interface type / 指定的基类型或接口类型</p>
 </dd>
     <dt><code>TAttribute</code></dt>
-    <dd><p>指定的自定义特性标记类型</p>
+    <dd><p>Specified custom attribute marker type / 指定的自定义特性标记类型</p>
 </dd>
   </dl>
 
@@ -374,6 +415,10 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_AssemblyHelper_GetRuntimeImplementTypeNames__2_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>获取已加载的程序集中的指定类型的子类列表，并过滤出具有指定特性的类型
+结合类型继承和特性标记进行双重过滤，常用于插件系统和组件发现</p>
+</div>
 
 
 
@@ -382,11 +427,11 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
   <h3 id="GameFrameX_Utility_AssemblyHelper_GetRuntimeTypeNames_System_Type_" data-uid="GameFrameX.Utility.AssemblyHelper.GetRuntimeTypeNames(System.Type)">
   GetRuntimeTypeNames(Type)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/AssemblyHelper.cs/#L274"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/AssemblyHelper.cs/#L347"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取已加载的程序集中的指定类型的子类列表，并返回它们的全名
-返回类型的完全限定名称，便于序列化、配置和日志记录</p>
+  <div class="markdown level1 summary"><p>Get subclass list of specified type from loaded assemblies and return their full names
+Returns fully qualified names of types, convenient for serialization, configuration, and logging</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -397,14 +442,14 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd><p>指定的基类型或接口类型</p>
+    <dd><p>Specified base type or interface type / 指定的基类型或接口类型</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd><p>指定类型的子类列表的全名字符串集合</p>
+    <dd><p>Collection of full name strings of subclass list of specified type / 指定类型的子类列表的全名字符串集合</p>
 </dd>
   </dl>
 
@@ -414,6 +459,10 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_AssemblyHelper_GetRuntimeTypeNames_System_Type__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>获取已加载的程序集中的指定类型的子类列表，并返回它们的全名
+返回类型的完全限定名称，便于序列化、配置和日志记录</p>
+</div>
 
 
 
@@ -422,11 +471,11 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
   <h3 id="GameFrameX_Utility_AssemblyHelper_GetType_System_String_" data-uid="GameFrameX.Utility.AssemblyHelper.GetType(System.String)">
   GetType(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/AssemblyHelper.cs/#L170"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/AssemblyHelper.cs/#L227"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取已加载的程序集中的指定类型
-支持完全限定名和简单类型名，使用缓存机制提高查找性能</p>
+  <div class="markdown level1 summary"><p>Get specified type from loaded assemblies
+Supports fully qualified names and simple type names, uses caching mechanism to improve lookup performance</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -437,14 +486,14 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>typeName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>要获取的类型名，支持完全限定名（如 &quot;System.String&quot;）</p>
+    <dd><p>Type name to get, supports fully qualified names (e.g., &quot;System.String&quot;) / 要获取的类型名，支持完全限定名（如 &quot;System.String&quot;）</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd><p>已加载的程序集中的指定类型，如果未找到则返回 null</p>
+    <dd><p>Specified type from loaded assemblies, returns null if not found / 已加载的程序集中的指定类型，如果未找到则返回 null</p>
 </dd>
   </dl>
 
@@ -454,11 +503,15 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_AssemblyHelper_GetType_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>获取已加载的程序集中的指定类型
+支持完全限定名和简单类型名，使用缓存机制提高查找性能</p>
+</div>
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
-    <dd><p>当 typeName 参数为 null 或空字符串时抛出</p>
+    <dd><p>Thrown when typeName parameter is null or empty string / 当 typeName 参数为 null 或空字符串时抛出</p>
 </dd>
   </dl>
 
@@ -468,11 +521,11 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
   <h3 id="GameFrameX_Utility_AssemblyHelper_GetTypes" data-uid="GameFrameX.Utility.AssemblyHelper.GetTypes">
   GetTypes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/AssemblyHelper.cs/#L144"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/AssemblyHelper.cs/#L193"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取已加载的程序集中的所有类型
-使用延迟加载和缓存机制，确保类型信息只被加载一次，提高性能</p>
+  <div class="markdown level1 summary"><p>Get all types from loaded assemblies
+Uses lazy loading and caching mechanism to ensure type information is loaded only once, improving performance</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -484,7 +537,7 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>[]</dt>
-    <dd><p>已加载的程序集中的所有类型数组，包括类、接口、枚举、委托等</p>
+    <dd><p>Array of all types from loaded assemblies, including classes, interfaces, enums, delegates, etc. / 已加载的程序集中的所有类型数组，包括类、接口、枚举、委托等</p>
 </dd>
   </dl>
 
@@ -494,6 +547,10 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_AssemblyHelper_GetTypes_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>获取已加载的程序集中的所有类型
+使用延迟加载和缓存机制，确保类型信息只被加载一次，提高性能</p>
+</div>
 
 
 
@@ -502,11 +559,11 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
   <h3 id="GameFrameX_Utility_AssemblyHelper_GetTypes_System_Collections_Generic_List_System_Type__" data-uid="GameFrameX.Utility.AssemblyHelper.GetTypes(System.Collections.Generic.List{System.Type})">
   GetTypes(List&lt;Type&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/AssemblyHelper.cs/#L155"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/AssemblyHelper.cs/#L208"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取已加载的程序集中的所有类型，并将结果添加到指定的列表中
-此方法会清空目标列表，然后添加所有类型信息</p>
+  <div class="markdown level1 summary"><p>Get all types from loaded assemblies and add results to the specified list
+This method clears the target list and then adds all type information</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -517,7 +574,7 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>results</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</dt>
-    <dd><p>用于存储结果的列表，不能为 null</p>
+    <dd><p>List for storing results, cannot be null / 用于存储结果的列表，不能为 null</p>
 </dd>
   </dl>
 
@@ -528,11 +585,15 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 
 
 
+  <h4 class="section" id="GameFrameX_Utility_AssemblyHelper_GetTypes_System_Collections_Generic_List_System_Type___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>获取已加载的程序集中的所有类型，并将结果添加到指定的列表中
+此方法会清空目标列表，然后添加所有类型信息</p>
+</div>
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
-    <dd><p>当 results 参数为 null 时抛出</p>
+    <dd><p>Thrown when results parameter is null / 当 results 参数为 null 时抛出</p>
 </dd>
   </dl>
 
@@ -542,7 +603,7 @@ Class AssemblyHelper  <a class="header-action link-secondary" title="View source
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev1/GameFrameX.Utility/AssemblyHelper.cs/#L60" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev2/GameFrameX.Utility/AssemblyHelper.cs/#L82" class="edit-link">Edit this page</a>
         </div>
 
 
