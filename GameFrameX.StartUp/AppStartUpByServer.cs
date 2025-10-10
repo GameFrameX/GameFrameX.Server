@@ -91,7 +91,7 @@ public abstract partial class AppStartUpBase
         MessageHelper.SetMessageEncoderHandler(Activator.CreateInstance<TMessageEncoderHandler>(), messageCompressHandler);
         // 启动服务器
         await StartServer(baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
-        if (Setting.ServerType != GlobalConst.DiscoveryCenterName)
+        if (Setting.ServerType != GlobalConst.DiscoveryCenterServiceName)
         {
             if (IsRegisterToDiscoveryCenter)
             {
