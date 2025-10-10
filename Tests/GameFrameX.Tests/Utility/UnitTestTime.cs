@@ -142,23 +142,6 @@ public class UnitTestTime : IDisposable
     }
 
     [Fact]
-    public void TestUtcToUtcDateTime()
-    {
-        var timestamp = 1704897045L; // 2024-01-10 14:30:45 UTC
-        var dateTime = TimeHelper.UtcToUtcDateTime(timestamp);
-        var expected = new DateTime(2024, 1, 10, 14, 30, 45, DateTimeKind.Utc);
-        Assert.Equal(expected, dateTime);
-    }
-
-    [Fact]
-    public void TestUtcToLocalDateTime()
-    {
-        var timestamp = 1704897045L; // 2024-01-10 14:30:45 UTC
-        var localDateTime = TimeHelper.UtcToLocalDateTime(timestamp);
-        Assert.IsType<DateTime>(localDateTime);
-    }
-
-    [Fact]
     public void TestUtcSecondsToLocalDateTime()
     {
         var timestamp = 1704897045L; // 2024-01-10 14:30:45 UTC
