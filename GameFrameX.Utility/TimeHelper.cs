@@ -1072,21 +1072,6 @@ public static class TimeHelper
     /// <summary>
     /// UTC 时间戳 转换成UTC时间
     /// </summary>
-    /// <param name="utcTimestamp">UTC时间戳,单位秒</param>
-    /// <returns>转换后的UTC时间。</returns>
-    /// <remarks>
-    /// 此方法已过时,请使用UtcSecondsToUtcDateTime替代
-    /// 用于保持向后兼容性
-    /// </remarks>
-    [Obsolete("UtcSecondsToUtcDateTime(long utcTimestampSeconds)代替")]
-    public static DateTime UtcToUtcDateTime(long utcTimestamp)
-    {
-        return UtcSecondsToUtcDateTime(utcTimestamp);
-    }
-
-    /// <summary>
-    /// UTC 时间戳 转换成UTC时间
-    /// </summary>
     /// <param name="utcTimestampSeconds">UTC时间戳,单位秒</param>
     /// <returns>转换后的UTC时间。</returns>
     /// <remarks>
@@ -1112,21 +1097,6 @@ public static class TimeHelper
     public static DateTime UtcMillisecondsToUtcDateTime(long utcTimestampMilliseconds)
     {
         return DateTimeOffset.FromUnixTimeMilliseconds(utcTimestampMilliseconds).UtcDateTime;
-    }
-
-    /// <summary>
-    /// UTC 时间戳 转换成本地时间
-    /// </summary>
-    /// <param name="utcTimestamp">UTC时间戳,单位秒</param>
-    /// <returns>转换后的本地时间。</returns>
-    /// <remarks>
-    /// 此方法已过时,请使用UtcSecondsToLocalDateTime替代
-    /// 用于保持向后兼容性
-    /// </remarks>
-    [Obsolete("UtcSecondsToLocalDateTime(long utcTimestampSeconds) 代替")]
-    public static DateTime UtcToLocalDateTime(long utcTimestamp)
-    {
-        return UtcSecondsToLocalDateTime(utcTimestamp);
     }
 
     /// <summary>
