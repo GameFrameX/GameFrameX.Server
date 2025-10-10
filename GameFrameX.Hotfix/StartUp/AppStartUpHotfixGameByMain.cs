@@ -95,7 +95,7 @@ internal partial class AppStartUpHotfixGame
     /// <param name="message"></param>
     protected override async ValueTask PackageHandler(IAppSession appSession, IMessage message)
     {
-        if (message is OuterNetworkMessage outerNetworkMessage)
+        if (message is NetworkMessagePackage messagePackage)
         {
             var netWorkChannel = SessionManager.GetChannel(appSession.SessionID);
 
@@ -105,34 +105,34 @@ internal partial class AppStartUpHotfixGame
             }
 
             var actorId = netWorkChannel.GetData<long>(GlobalConst.ActorIdKey);
-            if (outerNetworkMessage.Header.OperationType == (byte)MessageOperationType.HeartBeat)
+            if (messagePackage.Header.OperationType == (byte)MessageOperationType.HeartBeat)
             {
                 if (Setting.IsDebug && Setting.IsDebugReceive && Setting.IsDebugReceiveHeartBeat)
                 {
-                    LogHelper.Debug($"---收到{outerNetworkMessage.ToFormatMessageString(actorId)}");
+                    LogHelper.Debug($"---收到{messagePackage.ToFormatMessageString(actorId)}");
                 }
 
                 // 心跳消息回复
-                ReplyHeartBeat(netWorkChannel, (MessageObject)outerNetworkMessage.DeserializeMessageObject());
+                ReplyHeartBeat(netWorkChannel, (MessageObject)messagePackage.DeserializeMessageObject());
                 return;
             }
 
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
-                LogHelper.Debug($"---收到{outerNetworkMessage.ToFormatMessageString(actorId)}");
+                LogHelper.Debug($"---收到{messagePackage.ToFormatMessageString(actorId)}");
             }
 
-            var handler = HotfixManager.GetTcpHandler(outerNetworkMessage.Header.MessageId);
+            var handler = HotfixManager.GetTcpHandler(messagePackage.Header.MessageId);
             if (handler == null)
             {
-                LogHelper.Error($"找不到[{outerNetworkMessage.Header.MessageId}][{message.GetType()}]对应的handler");
+                LogHelper.Error($"找不到[{messagePackage.Header.MessageId}][{message.GetType()}]对应的handler");
                 return;
             }
 
             // 执行消息分发处理
             try
             {
-                await InvokeMessageHandler(handler, outerNetworkMessage.DeserializeMessageObject(), netWorkChannel);
+                await InvokeMessageHandler(handler, messagePackage.DeserializeMessageObject(), netWorkChannel);
             }
             catch (Exception exception)
             {
