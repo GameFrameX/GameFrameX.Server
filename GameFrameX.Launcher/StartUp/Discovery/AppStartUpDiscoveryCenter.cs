@@ -42,7 +42,7 @@ namespace GameFrameX.Launcher.StartUp.Discovery;
 /// <summary>
 /// 服务发现中心服务器
 /// </summary>
-[StartUpTag(GlobalConst.DiscoveryCenterName)]
+[StartUpTag(GlobalConst.DiscoveryCenterServiceName)]
 internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
 {
     public override async Task StartAsync()
@@ -237,8 +237,8 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
         {
             Setting = new AppSetting
             {
-                ServerId = 21000,
-                ServerType = GlobalConst.DiscoveryCenterName,
+                ServerId = GlobalConst.DiscoveryCenterServiceServerId,
+                ServerType = GlobalConst.DiscoveryCenterServiceName,
                 InnerPort = 21001,
                 HttpPort = 21011,
                 MetricsPort = 21090,
