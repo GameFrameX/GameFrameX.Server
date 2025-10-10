@@ -96,7 +96,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
             if (Setting.IsDebugSendHeartBeat || messageObjectHeader.OperationType != (byte)MessageOperationType.HeartBeat)
             {
                 var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
-                var toServerType = serverInfo != null ? serverInfo.Type.ToString() : ServerType.ToString();
+                var toServerType = serverInfo != null ? serverInfo.Type : ServerType;
                 LogHelper.Debug($"---发送[{ServerType} To {toServerType}]  {innerNetworkMessage.ToFormatMessageString()}");
             }
         }
