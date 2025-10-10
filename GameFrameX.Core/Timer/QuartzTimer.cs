@@ -53,34 +53,6 @@ public static class QuartzTimer
     private static readonly StatisticsTool StatisticsTool = new();
 
     /// <summary>
-    /// 取消订阅定时任务
-    /// </summary>
-    /// <param name="id">要取消的定时任务ID</param>
-    [Obsolete("请使用Remove(long id)")]
-    public static void UnSchedule(long id)
-    {
-        if (id <= 0)
-        {
-            return;
-        }
-
-        _scheduler.DeleteJob(JobKey.Create(id.ToString()));
-    }
-
-    /// <summary>
-    /// 批量取消订阅定时任务
-    /// </summary>
-    /// <param name="set">要取消的定时任务ID集合</param>
-    [Obsolete("请使用Remove(IEnumerable<long> set)")]
-    public static void UnSchedule(IEnumerable<long> set)
-    {
-        foreach (var id in set)
-        {
-            UnSchedule(id);
-        }
-    }
-
-    /// <summary>
     /// 删除指定的定时任务
     /// </summary>
     /// <param name="id">要删除的定时任务ID</param>
