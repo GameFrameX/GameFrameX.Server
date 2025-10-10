@@ -201,7 +201,7 @@ public sealed class LauncherOptions
     /// <summary>
     /// 服务器ID-如果需要合服，请确保不同服的ServerId一样。不然合服后数据会无法处理用户数据
     /// </summary>
-    [Option(nameof(ServerId), DefaultValue = 2000, Description = "服务器ID-如果需要合服，请确保不同服的ServerId一样。不然合服后数据会无法处理用户数据")]
+    [Option(nameof(ServerId), Description = "服务器ID-如果需要合服，请确保不同服的ServerId一样。不然合服后数据会无法处理用户数据")]
     [GrafanaLokiLabelTag]
     public int ServerId { get; set; }
 
