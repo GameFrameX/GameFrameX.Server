@@ -6947,112 +6947,6 @@ references:
   commentId: T:GameFrameX.NetWork.Abstractions.IHeartBeatMessage
   fullName: GameFrameX.NetWork.Abstractions.IHeartBeatMessage
   nameWithType: IHeartBeatMessage
-- uid: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage
-  name: IInnerNetworkMessage
-  href: api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.html
-  commentId: T:GameFrameX.NetWork.Abstractions.IInnerNetworkMessage
-  fullName: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage
-  nameWithType: IInnerNetworkMessage
-- uid: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.ClearData
-  name: ClearData()
-  href: api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.html#GameFrameX_NetWork_Abstractions_IInnerNetworkMessage_ClearData
-  commentId: M:GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.ClearData
-  fullName: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.ClearData()
-  nameWithType: IInnerNetworkMessage.ClearData()
-- uid: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.ClearData*
-  name: ClearData
-  href: api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.html#GameFrameX_NetWork_Abstractions_IInnerNetworkMessage_ClearData_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.ClearData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.ClearData
-  nameWithType: IInnerNetworkMessage.ClearData
-- uid: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.DeserializeMessageObject
-  name: DeserializeMessageObject()
-  href: api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.html#GameFrameX_NetWork_Abstractions_IInnerNetworkMessage_DeserializeMessageObject
-  commentId: M:GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.DeserializeMessageObject
-  fullName: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.DeserializeMessageObject()
-  nameWithType: IInnerNetworkMessage.DeserializeMessageObject()
-- uid: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.DeserializeMessageObject*
-  name: DeserializeMessageObject
-  href: api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.html#GameFrameX_NetWork_Abstractions_IInnerNetworkMessage_DeserializeMessageObject_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.DeserializeMessageObject
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.DeserializeMessageObject
-  nameWithType: IInnerNetworkMessage.DeserializeMessageObject
-- uid: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.GetData(System.String)
-  name: GetData(string)
-  href: api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.html#GameFrameX_NetWork_Abstractions_IInnerNetworkMessage_GetData_System_String_
-  commentId: M:GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.GetData(System.String)
-  name.vb: GetData(String)
-  fullName: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.GetData(string)
-  fullName.vb: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.GetData(String)
-  nameWithType: IInnerNetworkMessage.GetData(string)
-  nameWithType.vb: IInnerNetworkMessage.GetData(String)
-- uid: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.GetData*
-  name: GetData
-  href: api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.html#GameFrameX_NetWork_Abstractions_IInnerNetworkMessage_GetData_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.GetData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.GetData
-  nameWithType: IInnerNetworkMessage.GetData
-- uid: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.Header
-  name: Header
-  href: api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.html#GameFrameX_NetWork_Abstractions_IInnerNetworkMessage_Header
-  commentId: P:GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.Header
-  fullName: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.Header
-  nameWithType: IInnerNetworkMessage.Header
-- uid: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.Header*
-  name: Header
-  href: api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.html#GameFrameX_NetWork_Abstractions_IInnerNetworkMessage_Header_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.Header
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.Header
-  nameWithType: IInnerNetworkMessage.Header
-- uid: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.MessageData
-  name: MessageData
-  href: api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.html#GameFrameX_NetWork_Abstractions_IInnerNetworkMessage_MessageData
-  commentId: P:GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.MessageData
-  fullName: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.MessageData
-  nameWithType: IInnerNetworkMessage.MessageData
-- uid: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.MessageData*
-  name: MessageData
-  href: api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.html#GameFrameX_NetWork_Abstractions_IInnerNetworkMessage_MessageData_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.MessageData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.MessageData
-  nameWithType: IInnerNetworkMessage.MessageData
-- uid: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.SetData(System.String,System.Object)
-  name: SetData(string, object)
-  href: api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.html#GameFrameX_NetWork_Abstractions_IInnerNetworkMessage_SetData_System_String_System_Object_
-  commentId: M:GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.SetData(System.String,System.Object)
-  name.vb: SetData(String, Object)
-  fullName: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.SetData(string, object)
-  fullName.vb: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.SetData(String, Object)
-  nameWithType: IInnerNetworkMessage.SetData(string, object)
-  nameWithType.vb: IInnerNetworkMessage.SetData(String, Object)
-- uid: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.SetData*
-  name: SetData
-  href: api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.html#GameFrameX_NetWork_Abstractions_IInnerNetworkMessage_SetData_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.SetData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.SetData
-  nameWithType: IInnerNetworkMessage.SetData
-- uid: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.SetMessageData(System.Byte[])
-  name: SetMessageData(byte[])
-  href: api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.html#GameFrameX_NetWork_Abstractions_IInnerNetworkMessage_SetMessageData_System_Byte___
-  commentId: M:GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.SetMessageData(System.Byte[])
-  name.vb: SetMessageData(Byte())
-  fullName: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.SetMessageData(byte[])
-  fullName.vb: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.SetMessageData(Byte())
-  nameWithType: IInnerNetworkMessage.SetMessageData(byte[])
-  nameWithType.vb: IInnerNetworkMessage.SetMessageData(Byte())
-- uid: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.SetMessageData*
-  name: SetMessageData
-  href: api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.html#GameFrameX_NetWork_Abstractions_IInnerNetworkMessage_SetMessageData_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.SetMessageData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.SetMessageData
-  nameWithType: IInnerNetworkMessage.SetMessageData
 - uid: GameFrameX.NetWork.Abstractions.IMessage
   name: IMessage
   href: api/GameFrameX.NetWork.Abstractions.IMessage.html
@@ -7604,6 +7498,80 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.Abstractions.INetworkMessageHeader.ZipFlag
   nameWithType: INetworkMessageHeader.ZipFlag
+- uid: GameFrameX.NetWork.Abstractions.INetworkMessagePackage
+  name: INetworkMessagePackage
+  href: api/GameFrameX.NetWork.Abstractions.INetworkMessagePackage.html
+  commentId: T:GameFrameX.NetWork.Abstractions.INetworkMessagePackage
+  fullName: GameFrameX.NetWork.Abstractions.INetworkMessagePackage
+  nameWithType: INetworkMessagePackage
+- uid: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.DeserializeMessageObject
+  name: DeserializeMessageObject()
+  href: api/GameFrameX.NetWork.Abstractions.INetworkMessagePackage.html#GameFrameX_NetWork_Abstractions_INetworkMessagePackage_DeserializeMessageObject
+  commentId: M:GameFrameX.NetWork.Abstractions.INetworkMessagePackage.DeserializeMessageObject
+  fullName: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.DeserializeMessageObject()
+  nameWithType: INetworkMessagePackage.DeserializeMessageObject()
+- uid: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.DeserializeMessageObject*
+  name: DeserializeMessageObject
+  href: api/GameFrameX.NetWork.Abstractions.INetworkMessagePackage.html#GameFrameX_NetWork_Abstractions_INetworkMessagePackage_DeserializeMessageObject_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.INetworkMessagePackage.DeserializeMessageObject
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.DeserializeMessageObject
+  nameWithType: INetworkMessagePackage.DeserializeMessageObject
+- uid: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.Header
+  name: Header
+  href: api/GameFrameX.NetWork.Abstractions.INetworkMessagePackage.html#GameFrameX_NetWork_Abstractions_INetworkMessagePackage_Header
+  commentId: P:GameFrameX.NetWork.Abstractions.INetworkMessagePackage.Header
+  fullName: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.Header
+  nameWithType: INetworkMessagePackage.Header
+- uid: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.Header*
+  name: Header
+  href: api/GameFrameX.NetWork.Abstractions.INetworkMessagePackage.html#GameFrameX_NetWork_Abstractions_INetworkMessagePackage_Header_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.INetworkMessagePackage.Header
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.Header
+  nameWithType: INetworkMessagePackage.Header
+- uid: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.MessageData
+  name: MessageData
+  href: api/GameFrameX.NetWork.Abstractions.INetworkMessagePackage.html#GameFrameX_NetWork_Abstractions_INetworkMessagePackage_MessageData
+  commentId: P:GameFrameX.NetWork.Abstractions.INetworkMessagePackage.MessageData
+  fullName: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.MessageData
+  nameWithType: INetworkMessagePackage.MessageData
+- uid: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.MessageData*
+  name: MessageData
+  href: api/GameFrameX.NetWork.Abstractions.INetworkMessagePackage.html#GameFrameX_NetWork_Abstractions_INetworkMessagePackage_MessageData_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.INetworkMessagePackage.MessageData
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.MessageData
+  nameWithType: INetworkMessagePackage.MessageData
+- uid: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.MessageType
+  name: MessageType
+  href: api/GameFrameX.NetWork.Abstractions.INetworkMessagePackage.html#GameFrameX_NetWork_Abstractions_INetworkMessagePackage_MessageType
+  commentId: P:GameFrameX.NetWork.Abstractions.INetworkMessagePackage.MessageType
+  fullName: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.MessageType
+  nameWithType: INetworkMessagePackage.MessageType
+- uid: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.MessageType*
+  name: MessageType
+  href: api/GameFrameX.NetWork.Abstractions.INetworkMessagePackage.html#GameFrameX_NetWork_Abstractions_INetworkMessagePackage_MessageType_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.INetworkMessagePackage.MessageType
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.MessageType
+  nameWithType: INetworkMessagePackage.MessageType
+- uid: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.SetMessageData(System.Byte[])
+  name: SetMessageData(byte[])
+  href: api/GameFrameX.NetWork.Abstractions.INetworkMessagePackage.html#GameFrameX_NetWork_Abstractions_INetworkMessagePackage_SetMessageData_System_Byte___
+  commentId: M:GameFrameX.NetWork.Abstractions.INetworkMessagePackage.SetMessageData(System.Byte[])
+  name.vb: SetMessageData(Byte())
+  fullName: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.SetMessageData(byte[])
+  fullName.vb: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.SetMessageData(Byte())
+  nameWithType: INetworkMessagePackage.SetMessageData(byte[])
+  nameWithType.vb: INetworkMessagePackage.SetMessageData(Byte())
+- uid: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.SetMessageData*
+  name: SetMessageData
+  href: api/GameFrameX.NetWork.Abstractions.INetworkMessagePackage.html#GameFrameX_NetWork_Abstractions_INetworkMessagePackage_SetMessageData_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.INetworkMessagePackage.SetMessageData
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.INetworkMessagePackage.SetMessageData
+  nameWithType: INetworkMessagePackage.SetMessageData
 - uid: GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat
   name: INotifyActorHeartBeat
   href: api/GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat.html
@@ -7629,125 +7597,6 @@ references:
   commentId: T:GameFrameX.NetWork.Abstractions.INotifyMessage
   fullName: GameFrameX.NetWork.Abstractions.INotifyMessage
   nameWithType: INotifyMessage
-- uid: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage
-  name: IOuterNetworkMessage
-  href: api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html
-  commentId: T:GameFrameX.NetWork.Abstractions.IOuterNetworkMessage
-  fullName: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage
-  nameWithType: IOuterNetworkMessage
-- uid: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.ClearData
-  name: ClearData()
-  href: api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html#GameFrameX_NetWork_Abstractions_IOuterNetworkMessage_ClearData
-  commentId: M:GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.ClearData
-  fullName: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.ClearData()
-  nameWithType: IOuterNetworkMessage.ClearData()
-- uid: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.ClearData*
-  name: ClearData
-  href: api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html#GameFrameX_NetWork_Abstractions_IOuterNetworkMessage_ClearData_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.ClearData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.ClearData
-  nameWithType: IOuterNetworkMessage.ClearData
-- uid: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.DeserializeMessageObject
-  name: DeserializeMessageObject()
-  href: api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html#GameFrameX_NetWork_Abstractions_IOuterNetworkMessage_DeserializeMessageObject
-  commentId: M:GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.DeserializeMessageObject
-  fullName: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.DeserializeMessageObject()
-  nameWithType: IOuterNetworkMessage.DeserializeMessageObject()
-- uid: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.DeserializeMessageObject*
-  name: DeserializeMessageObject
-  href: api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html#GameFrameX_NetWork_Abstractions_IOuterNetworkMessage_DeserializeMessageObject_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.DeserializeMessageObject
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.DeserializeMessageObject
-  nameWithType: IOuterNetworkMessage.DeserializeMessageObject
-- uid: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.GetData(System.String)
-  name: GetData(string)
-  href: api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html#GameFrameX_NetWork_Abstractions_IOuterNetworkMessage_GetData_System_String_
-  commentId: M:GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.GetData(System.String)
-  name.vb: GetData(String)
-  fullName: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.GetData(string)
-  fullName.vb: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.GetData(String)
-  nameWithType: IOuterNetworkMessage.GetData(string)
-  nameWithType.vb: IOuterNetworkMessage.GetData(String)
-- uid: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.GetData*
-  name: GetData
-  href: api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html#GameFrameX_NetWork_Abstractions_IOuterNetworkMessage_GetData_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.GetData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.GetData
-  nameWithType: IOuterNetworkMessage.GetData
-- uid: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.Header
-  name: Header
-  href: api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html#GameFrameX_NetWork_Abstractions_IOuterNetworkMessage_Header
-  commentId: P:GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.Header
-  fullName: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.Header
-  nameWithType: IOuterNetworkMessage.Header
-- uid: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.Header*
-  name: Header
-  href: api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html#GameFrameX_NetWork_Abstractions_IOuterNetworkMessage_Header_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.Header
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.Header
-  nameWithType: IOuterNetworkMessage.Header
-- uid: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.MessageData
-  name: MessageData
-  href: api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html#GameFrameX_NetWork_Abstractions_IOuterNetworkMessage_MessageData
-  commentId: P:GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.MessageData
-  fullName: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.MessageData
-  nameWithType: IOuterNetworkMessage.MessageData
-- uid: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.MessageData*
-  name: MessageData
-  href: api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html#GameFrameX_NetWork_Abstractions_IOuterNetworkMessage_MessageData_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.MessageData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.MessageData
-  nameWithType: IOuterNetworkMessage.MessageData
-- uid: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.SetData(System.String,System.Object)
-  name: SetData(string, object)
-  href: api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html#GameFrameX_NetWork_Abstractions_IOuterNetworkMessage_SetData_System_String_System_Object_
-  commentId: M:GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.SetData(System.String,System.Object)
-  name.vb: SetData(String, Object)
-  fullName: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.SetData(string, object)
-  fullName.vb: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.SetData(String, Object)
-  nameWithType: IOuterNetworkMessage.SetData(string, object)
-  nameWithType.vb: IOuterNetworkMessage.SetData(String, Object)
-- uid: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.SetData*
-  name: SetData
-  href: api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html#GameFrameX_NetWork_Abstractions_IOuterNetworkMessage_SetData_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.SetData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.SetData
-  nameWithType: IOuterNetworkMessage.SetData
-- uid: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.SetMessageData(System.Byte[])
-  name: SetMessageData(byte[])
-  href: api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html#GameFrameX_NetWork_Abstractions_IOuterNetworkMessage_SetMessageData_System_Byte___
-  commentId: M:GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.SetMessageData(System.Byte[])
-  name.vb: SetMessageData(Byte())
-  fullName: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.SetMessageData(byte[])
-  fullName.vb: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.SetMessageData(Byte())
-  nameWithType: IOuterNetworkMessage.SetMessageData(byte[])
-  nameWithType.vb: IOuterNetworkMessage.SetMessageData(Byte())
-- uid: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.SetMessageData*
-  name: SetMessageData
-  href: api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html#GameFrameX_NetWork_Abstractions_IOuterNetworkMessage_SetMessageData_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.SetMessageData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.SetMessageData
-  nameWithType: IOuterNetworkMessage.SetMessageData
-- uid: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.UniqueId
-  name: UniqueId
-  href: api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html#GameFrameX_NetWork_Abstractions_IOuterNetworkMessage_UniqueId
-  commentId: P:GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.UniqueId
-  fullName: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.UniqueId
-  nameWithType: IOuterNetworkMessage.UniqueId
-- uid: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.UniqueId*
-  name: UniqueId
-  href: api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html#GameFrameX_NetWork_Abstractions_IOuterNetworkMessage_UniqueId_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.UniqueId
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.UniqueId
-  nameWithType: IOuterNetworkMessage.UniqueId
 - uid: GameFrameX.NetWork.Abstractions.IRequestMessage
   name: IRequestMessage
   href: api/GameFrameX.NetWork.Abstractions.IRequestMessage.html
@@ -9560,211 +9409,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.IMessageHandler.NetWorkChannel
   nameWithType: IMessageHandler.NetWorkChannel
-- uid: GameFrameX.NetWork.InnerNetworkMessage
-  name: InnerNetworkMessage
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html
-  commentId: T:GameFrameX.NetWork.InnerNetworkMessage
-  fullName: GameFrameX.NetWork.InnerNetworkMessage
-  nameWithType: InnerNetworkMessage
-- uid: GameFrameX.NetWork.InnerNetworkMessage.ClearData
-  name: ClearData()
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_ClearData
-  commentId: M:GameFrameX.NetWork.InnerNetworkMessage.ClearData
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.ClearData()
-  nameWithType: InnerNetworkMessage.ClearData()
-- uid: GameFrameX.NetWork.InnerNetworkMessage.ClearData*
-  name: ClearData
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_ClearData_
-  commentId: Overload:GameFrameX.NetWork.InnerNetworkMessage.ClearData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.ClearData
-  nameWithType: InnerNetworkMessage.ClearData
-- uid: GameFrameX.NetWork.InnerNetworkMessage.Create(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetworkMessageHeader)
-  name: Create(INetworkMessage, INetworkMessageHeader)
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_Create_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetworkMessageHeader_
-  commentId: M:GameFrameX.NetWork.InnerNetworkMessage.Create(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetworkMessageHeader)
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.Create(GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetworkMessageHeader)
-  nameWithType: InnerNetworkMessage.Create(INetworkMessage, INetworkMessageHeader)
-- uid: GameFrameX.NetWork.InnerNetworkMessage.Create(GameFrameX.NetWork.Abstractions.INetworkMessageHeader,System.Byte[],System.Type)
-  name: Create(INetworkMessageHeader, byte[], Type)
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_Create_GameFrameX_NetWork_Abstractions_INetworkMessageHeader_System_Byte___System_Type_
-  commentId: M:GameFrameX.NetWork.InnerNetworkMessage.Create(GameFrameX.NetWork.Abstractions.INetworkMessageHeader,System.Byte[],System.Type)
-  name.vb: Create(INetworkMessageHeader, Byte(), Type)
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.Create(GameFrameX.NetWork.Abstractions.INetworkMessageHeader, byte[], System.Type)
-  fullName.vb: GameFrameX.NetWork.InnerNetworkMessage.Create(GameFrameX.NetWork.Abstractions.INetworkMessageHeader, Byte(), System.Type)
-  nameWithType: InnerNetworkMessage.Create(INetworkMessageHeader, byte[], Type)
-  nameWithType.vb: InnerNetworkMessage.Create(INetworkMessageHeader, Byte(), Type)
-- uid: GameFrameX.NetWork.InnerNetworkMessage.Create*
-  name: Create
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_Create_
-  commentId: Overload:GameFrameX.NetWork.InnerNetworkMessage.Create
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.Create
-  nameWithType: InnerNetworkMessage.Create
-- uid: GameFrameX.NetWork.InnerNetworkMessage.DeserializeMessageObject
-  name: DeserializeMessageObject()
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_DeserializeMessageObject
-  commentId: M:GameFrameX.NetWork.InnerNetworkMessage.DeserializeMessageObject
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.DeserializeMessageObject()
-  nameWithType: InnerNetworkMessage.DeserializeMessageObject()
-- uid: GameFrameX.NetWork.InnerNetworkMessage.DeserializeMessageObject*
-  name: DeserializeMessageObject
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_DeserializeMessageObject_
-  commentId: Overload:GameFrameX.NetWork.InnerNetworkMessage.DeserializeMessageObject
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.DeserializeMessageObject
-  nameWithType: InnerNetworkMessage.DeserializeMessageObject
-- uid: GameFrameX.NetWork.InnerNetworkMessage.GetData
-  name: GetData()
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_GetData
-  commentId: M:GameFrameX.NetWork.InnerNetworkMessage.GetData
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.GetData()
-  nameWithType: InnerNetworkMessage.GetData()
-- uid: GameFrameX.NetWork.InnerNetworkMessage.GetData(System.String)
-  name: GetData(string)
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_GetData_System_String_
-  commentId: M:GameFrameX.NetWork.InnerNetworkMessage.GetData(System.String)
-  name.vb: GetData(String)
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.GetData(string)
-  fullName.vb: GameFrameX.NetWork.InnerNetworkMessage.GetData(String)
-  nameWithType: InnerNetworkMessage.GetData(string)
-  nameWithType.vb: InnerNetworkMessage.GetData(String)
-- uid: GameFrameX.NetWork.InnerNetworkMessage.GetData*
-  name: GetData
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_GetData_
-  commentId: Overload:GameFrameX.NetWork.InnerNetworkMessage.GetData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.GetData
-  nameWithType: InnerNetworkMessage.GetData
-- uid: GameFrameX.NetWork.InnerNetworkMessage.Header
-  name: Header
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_Header
-  commentId: P:GameFrameX.NetWork.InnerNetworkMessage.Header
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.Header
-  nameWithType: InnerNetworkMessage.Header
-- uid: GameFrameX.NetWork.InnerNetworkMessage.Header*
-  name: Header
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_Header_
-  commentId: Overload:GameFrameX.NetWork.InnerNetworkMessage.Header
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.Header
-  nameWithType: InnerNetworkMessage.Header
-- uid: GameFrameX.NetWork.InnerNetworkMessage.MessageData
-  name: MessageData
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_MessageData
-  commentId: P:GameFrameX.NetWork.InnerNetworkMessage.MessageData
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.MessageData
-  nameWithType: InnerNetworkMessage.MessageData
-- uid: GameFrameX.NetWork.InnerNetworkMessage.MessageData*
-  name: MessageData
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_MessageData_
-  commentId: Overload:GameFrameX.NetWork.InnerNetworkMessage.MessageData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.MessageData
-  nameWithType: InnerNetworkMessage.MessageData
-- uid: GameFrameX.NetWork.InnerNetworkMessage.MessageType
-  name: MessageType
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_MessageType
-  commentId: P:GameFrameX.NetWork.InnerNetworkMessage.MessageType
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.MessageType
-  nameWithType: InnerNetworkMessage.MessageType
-- uid: GameFrameX.NetWork.InnerNetworkMessage.MessageType*
-  name: MessageType
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_MessageType_
-  commentId: Overload:GameFrameX.NetWork.InnerNetworkMessage.MessageType
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.MessageType
-  nameWithType: InnerNetworkMessage.MessageType
-- uid: GameFrameX.NetWork.InnerNetworkMessage.RemoveData(System.String)
-  name: RemoveData(string)
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_RemoveData_System_String_
-  commentId: M:GameFrameX.NetWork.InnerNetworkMessage.RemoveData(System.String)
-  name.vb: RemoveData(String)
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.RemoveData(string)
-  fullName.vb: GameFrameX.NetWork.InnerNetworkMessage.RemoveData(String)
-  nameWithType: InnerNetworkMessage.RemoveData(string)
-  nameWithType.vb: InnerNetworkMessage.RemoveData(String)
-- uid: GameFrameX.NetWork.InnerNetworkMessage.RemoveData*
-  name: RemoveData
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_RemoveData_
-  commentId: Overload:GameFrameX.NetWork.InnerNetworkMessage.RemoveData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.RemoveData
-  nameWithType: InnerNetworkMessage.RemoveData
-- uid: GameFrameX.NetWork.InnerNetworkMessage.SetData(System.String,System.Object)
-  name: SetData(string, object)
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_SetData_System_String_System_Object_
-  commentId: M:GameFrameX.NetWork.InnerNetworkMessage.SetData(System.String,System.Object)
-  name.vb: SetData(String, Object)
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.SetData(string, object)
-  fullName.vb: GameFrameX.NetWork.InnerNetworkMessage.SetData(String, Object)
-  nameWithType: InnerNetworkMessage.SetData(string, object)
-  nameWithType.vb: InnerNetworkMessage.SetData(String, Object)
-- uid: GameFrameX.NetWork.InnerNetworkMessage.SetData*
-  name: SetData
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_SetData_
-  commentId: Overload:GameFrameX.NetWork.InnerNetworkMessage.SetData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.SetData
-  nameWithType: InnerNetworkMessage.SetData
-- uid: GameFrameX.NetWork.InnerNetworkMessage.SetMessageData(System.Byte[])
-  name: SetMessageData(byte[])
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_SetMessageData_System_Byte___
-  commentId: M:GameFrameX.NetWork.InnerNetworkMessage.SetMessageData(System.Byte[])
-  name.vb: SetMessageData(Byte())
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.SetMessageData(byte[])
-  fullName.vb: GameFrameX.NetWork.InnerNetworkMessage.SetMessageData(Byte())
-  nameWithType: InnerNetworkMessage.SetMessageData(byte[])
-  nameWithType.vb: InnerNetworkMessage.SetMessageData(Byte())
-- uid: GameFrameX.NetWork.InnerNetworkMessage.SetMessageData*
-  name: SetMessageData
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_SetMessageData_
-  commentId: Overload:GameFrameX.NetWork.InnerNetworkMessage.SetMessageData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.SetMessageData
-  nameWithType: InnerNetworkMessage.SetMessageData
-- uid: GameFrameX.NetWork.InnerNetworkMessage.SetMessageHeader(GameFrameX.NetWork.Abstractions.INetworkMessageHeader)
-  name: SetMessageHeader(INetworkMessageHeader)
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_SetMessageHeader_GameFrameX_NetWork_Abstractions_INetworkMessageHeader_
-  commentId: M:GameFrameX.NetWork.InnerNetworkMessage.SetMessageHeader(GameFrameX.NetWork.Abstractions.INetworkMessageHeader)
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.SetMessageHeader(GameFrameX.NetWork.Abstractions.INetworkMessageHeader)
-  nameWithType: InnerNetworkMessage.SetMessageHeader(INetworkMessageHeader)
-- uid: GameFrameX.NetWork.InnerNetworkMessage.SetMessageHeader*
-  name: SetMessageHeader
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_SetMessageHeader_
-  commentId: Overload:GameFrameX.NetWork.InnerNetworkMessage.SetMessageHeader
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.SetMessageHeader
-  nameWithType: InnerNetworkMessage.SetMessageHeader
-- uid: GameFrameX.NetWork.InnerNetworkMessage.SetMessageType(System.Type)
-  name: SetMessageType(Type)
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_SetMessageType_System_Type_
-  commentId: M:GameFrameX.NetWork.InnerNetworkMessage.SetMessageType(System.Type)
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.SetMessageType(System.Type)
-  nameWithType: InnerNetworkMessage.SetMessageType(Type)
-- uid: GameFrameX.NetWork.InnerNetworkMessage.SetMessageType*
-  name: SetMessageType
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_SetMessageType_
-  commentId: Overload:GameFrameX.NetWork.InnerNetworkMessage.SetMessageType
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.SetMessageType
-  nameWithType: InnerNetworkMessage.SetMessageType
-- uid: GameFrameX.NetWork.InnerNetworkMessage.ToFormatMessageString(System.Int64)
-  name: ToFormatMessageString(long)
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_ToFormatMessageString_System_Int64_
-  commentId: M:GameFrameX.NetWork.InnerNetworkMessage.ToFormatMessageString(System.Int64)
-  name.vb: ToFormatMessageString(Long)
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.ToFormatMessageString(long)
-  fullName.vb: GameFrameX.NetWork.InnerNetworkMessage.ToFormatMessageString(Long)
-  nameWithType: InnerNetworkMessage.ToFormatMessageString(long)
-  nameWithType.vb: InnerNetworkMessage.ToFormatMessageString(Long)
-- uid: GameFrameX.NetWork.InnerNetworkMessage.ToFormatMessageString*
-  name: ToFormatMessageString
-  href: api/GameFrameX.NetWork.InnerNetworkMessage.html#GameFrameX_NetWork_InnerNetworkMessage_ToFormatMessageString_
-  commentId: Overload:GameFrameX.NetWork.InnerNetworkMessage.ToFormatMessageString
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.InnerNetworkMessage.ToFormatMessageString
-  nameWithType: InnerNetworkMessage.ToFormatMessageString
 - uid: GameFrameX.NetWork.Message
   name: GameFrameX.NetWork.Message
   href: api/GameFrameX.NetWork.Message.html
@@ -10534,240 +10178,118 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.Messages.MessageObjectLogObject.UniqueId
   nameWithType: MessageObjectLogObject.UniqueId
-- uid: GameFrameX.NetWork.OuterNetworkMessage
-  name: OuterNetworkMessage
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html
-  commentId: T:GameFrameX.NetWork.OuterNetworkMessage
-  fullName: GameFrameX.NetWork.OuterNetworkMessage
-  nameWithType: OuterNetworkMessage
-- uid: GameFrameX.NetWork.OuterNetworkMessage.ClearData
-  name: ClearData()
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_ClearData
-  commentId: M:GameFrameX.NetWork.OuterNetworkMessage.ClearData
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.ClearData()
-  nameWithType: OuterNetworkMessage.ClearData()
-- uid: GameFrameX.NetWork.OuterNetworkMessage.ClearData*
-  name: ClearData
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_ClearData_
-  commentId: Overload:GameFrameX.NetWork.OuterNetworkMessage.ClearData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.ClearData
-  nameWithType: OuterNetworkMessage.ClearData
-- uid: GameFrameX.NetWork.OuterNetworkMessage.Create(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetworkMessageHeader)
+- uid: GameFrameX.NetWork.NetworkMessagePackage
+  name: NetworkMessagePackage
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html
+  commentId: T:GameFrameX.NetWork.NetworkMessagePackage
+  fullName: GameFrameX.NetWork.NetworkMessagePackage
+  nameWithType: NetworkMessagePackage
+- uid: GameFrameX.NetWork.NetworkMessagePackage.Create(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetworkMessageHeader)
   name: Create(INetworkMessage, INetworkMessageHeader)
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_Create_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetworkMessageHeader_
-  commentId: M:GameFrameX.NetWork.OuterNetworkMessage.Create(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetworkMessageHeader)
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.Create(GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetworkMessageHeader)
-  nameWithType: OuterNetworkMessage.Create(INetworkMessage, INetworkMessageHeader)
-- uid: GameFrameX.NetWork.OuterNetworkMessage.Create(GameFrameX.NetWork.Abstractions.INetworkMessageHeader,System.Byte[],System.Type)
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_Create_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetworkMessageHeader_
+  commentId: M:GameFrameX.NetWork.NetworkMessagePackage.Create(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetworkMessageHeader)
+  fullName: GameFrameX.NetWork.NetworkMessagePackage.Create(GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetworkMessageHeader)
+  nameWithType: NetworkMessagePackage.Create(INetworkMessage, INetworkMessageHeader)
+- uid: GameFrameX.NetWork.NetworkMessagePackage.Create(GameFrameX.NetWork.Abstractions.INetworkMessageHeader,System.Byte[],System.Type)
   name: Create(INetworkMessageHeader, byte[], Type)
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_Create_GameFrameX_NetWork_Abstractions_INetworkMessageHeader_System_Byte___System_Type_
-  commentId: M:GameFrameX.NetWork.OuterNetworkMessage.Create(GameFrameX.NetWork.Abstractions.INetworkMessageHeader,System.Byte[],System.Type)
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_Create_GameFrameX_NetWork_Abstractions_INetworkMessageHeader_System_Byte___System_Type_
+  commentId: M:GameFrameX.NetWork.NetworkMessagePackage.Create(GameFrameX.NetWork.Abstractions.INetworkMessageHeader,System.Byte[],System.Type)
   name.vb: Create(INetworkMessageHeader, Byte(), Type)
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.Create(GameFrameX.NetWork.Abstractions.INetworkMessageHeader, byte[], System.Type)
-  fullName.vb: GameFrameX.NetWork.OuterNetworkMessage.Create(GameFrameX.NetWork.Abstractions.INetworkMessageHeader, Byte(), System.Type)
-  nameWithType: OuterNetworkMessage.Create(INetworkMessageHeader, byte[], Type)
-  nameWithType.vb: OuterNetworkMessage.Create(INetworkMessageHeader, Byte(), Type)
-- uid: GameFrameX.NetWork.OuterNetworkMessage.Create*
+  fullName: GameFrameX.NetWork.NetworkMessagePackage.Create(GameFrameX.NetWork.Abstractions.INetworkMessageHeader, byte[], System.Type)
+  fullName.vb: GameFrameX.NetWork.NetworkMessagePackage.Create(GameFrameX.NetWork.Abstractions.INetworkMessageHeader, Byte(), System.Type)
+  nameWithType: NetworkMessagePackage.Create(INetworkMessageHeader, byte[], Type)
+  nameWithType.vb: NetworkMessagePackage.Create(INetworkMessageHeader, Byte(), Type)
+- uid: GameFrameX.NetWork.NetworkMessagePackage.Create*
   name: Create
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_Create_
-  commentId: Overload:GameFrameX.NetWork.OuterNetworkMessage.Create
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_Create_
+  commentId: Overload:GameFrameX.NetWork.NetworkMessagePackage.Create
   isSpec: "True"
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.Create
-  nameWithType: OuterNetworkMessage.Create
-- uid: GameFrameX.NetWork.OuterNetworkMessage.DeserializeMessageObject
+  fullName: GameFrameX.NetWork.NetworkMessagePackage.Create
+  nameWithType: NetworkMessagePackage.Create
+- uid: GameFrameX.NetWork.NetworkMessagePackage.DeserializeMessageObject
   name: DeserializeMessageObject()
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_DeserializeMessageObject
-  commentId: M:GameFrameX.NetWork.OuterNetworkMessage.DeserializeMessageObject
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.DeserializeMessageObject()
-  nameWithType: OuterNetworkMessage.DeserializeMessageObject()
-- uid: GameFrameX.NetWork.OuterNetworkMessage.DeserializeMessageObject*
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_DeserializeMessageObject
+  commentId: M:GameFrameX.NetWork.NetworkMessagePackage.DeserializeMessageObject
+  fullName: GameFrameX.NetWork.NetworkMessagePackage.DeserializeMessageObject()
+  nameWithType: NetworkMessagePackage.DeserializeMessageObject()
+- uid: GameFrameX.NetWork.NetworkMessagePackage.DeserializeMessageObject*
   name: DeserializeMessageObject
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_DeserializeMessageObject_
-  commentId: Overload:GameFrameX.NetWork.OuterNetworkMessage.DeserializeMessageObject
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_DeserializeMessageObject_
+  commentId: Overload:GameFrameX.NetWork.NetworkMessagePackage.DeserializeMessageObject
   isSpec: "True"
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.DeserializeMessageObject
-  nameWithType: OuterNetworkMessage.DeserializeMessageObject
-- uid: GameFrameX.NetWork.OuterNetworkMessage.GetData
-  name: GetData()
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_GetData
-  commentId: M:GameFrameX.NetWork.OuterNetworkMessage.GetData
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.GetData()
-  nameWithType: OuterNetworkMessage.GetData()
-- uid: GameFrameX.NetWork.OuterNetworkMessage.GetData(System.String)
-  name: GetData(string)
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_GetData_System_String_
-  commentId: M:GameFrameX.NetWork.OuterNetworkMessage.GetData(System.String)
-  name.vb: GetData(String)
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.GetData(string)
-  fullName.vb: GameFrameX.NetWork.OuterNetworkMessage.GetData(String)
-  nameWithType: OuterNetworkMessage.GetData(string)
-  nameWithType.vb: OuterNetworkMessage.GetData(String)
-- uid: GameFrameX.NetWork.OuterNetworkMessage.GetData*
-  name: GetData
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_GetData_
-  commentId: Overload:GameFrameX.NetWork.OuterNetworkMessage.GetData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.GetData
-  nameWithType: OuterNetworkMessage.GetData
-- uid: GameFrameX.NetWork.OuterNetworkMessage.Header
+  fullName: GameFrameX.NetWork.NetworkMessagePackage.DeserializeMessageObject
+  nameWithType: NetworkMessagePackage.DeserializeMessageObject
+- uid: GameFrameX.NetWork.NetworkMessagePackage.Header
   name: Header
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_Header
-  commentId: P:GameFrameX.NetWork.OuterNetworkMessage.Header
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.Header
-  nameWithType: OuterNetworkMessage.Header
-- uid: GameFrameX.NetWork.OuterNetworkMessage.Header*
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_Header
+  commentId: P:GameFrameX.NetWork.NetworkMessagePackage.Header
+  fullName: GameFrameX.NetWork.NetworkMessagePackage.Header
+  nameWithType: NetworkMessagePackage.Header
+- uid: GameFrameX.NetWork.NetworkMessagePackage.Header*
   name: Header
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_Header_
-  commentId: Overload:GameFrameX.NetWork.OuterNetworkMessage.Header
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_Header_
+  commentId: Overload:GameFrameX.NetWork.NetworkMessagePackage.Header
   isSpec: "True"
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.Header
-  nameWithType: OuterNetworkMessage.Header
-- uid: GameFrameX.NetWork.OuterNetworkMessage.MessageData
+  fullName: GameFrameX.NetWork.NetworkMessagePackage.Header
+  nameWithType: NetworkMessagePackage.Header
+- uid: GameFrameX.NetWork.NetworkMessagePackage.MessageData
   name: MessageData
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_MessageData
-  commentId: P:GameFrameX.NetWork.OuterNetworkMessage.MessageData
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.MessageData
-  nameWithType: OuterNetworkMessage.MessageData
-- uid: GameFrameX.NetWork.OuterNetworkMessage.MessageData*
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_MessageData
+  commentId: P:GameFrameX.NetWork.NetworkMessagePackage.MessageData
+  fullName: GameFrameX.NetWork.NetworkMessagePackage.MessageData
+  nameWithType: NetworkMessagePackage.MessageData
+- uid: GameFrameX.NetWork.NetworkMessagePackage.MessageData*
   name: MessageData
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_MessageData_
-  commentId: Overload:GameFrameX.NetWork.OuterNetworkMessage.MessageData
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_MessageData_
+  commentId: Overload:GameFrameX.NetWork.NetworkMessagePackage.MessageData
   isSpec: "True"
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.MessageData
-  nameWithType: OuterNetworkMessage.MessageData
-- uid: GameFrameX.NetWork.OuterNetworkMessage.MessageType
+  fullName: GameFrameX.NetWork.NetworkMessagePackage.MessageData
+  nameWithType: NetworkMessagePackage.MessageData
+- uid: GameFrameX.NetWork.NetworkMessagePackage.MessageType
   name: MessageType
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_MessageType
-  commentId: P:GameFrameX.NetWork.OuterNetworkMessage.MessageType
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.MessageType
-  nameWithType: OuterNetworkMessage.MessageType
-- uid: GameFrameX.NetWork.OuterNetworkMessage.MessageType*
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_MessageType
+  commentId: P:GameFrameX.NetWork.NetworkMessagePackage.MessageType
+  fullName: GameFrameX.NetWork.NetworkMessagePackage.MessageType
+  nameWithType: NetworkMessagePackage.MessageType
+- uid: GameFrameX.NetWork.NetworkMessagePackage.MessageType*
   name: MessageType
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_MessageType_
-  commentId: Overload:GameFrameX.NetWork.OuterNetworkMessage.MessageType
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_MessageType_
+  commentId: Overload:GameFrameX.NetWork.NetworkMessagePackage.MessageType
   isSpec: "True"
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.MessageType
-  nameWithType: OuterNetworkMessage.MessageType
-- uid: GameFrameX.NetWork.OuterNetworkMessage.RemoveData(System.String)
-  name: RemoveData(string)
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_RemoveData_System_String_
-  commentId: M:GameFrameX.NetWork.OuterNetworkMessage.RemoveData(System.String)
-  name.vb: RemoveData(String)
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.RemoveData(string)
-  fullName.vb: GameFrameX.NetWork.OuterNetworkMessage.RemoveData(String)
-  nameWithType: OuterNetworkMessage.RemoveData(string)
-  nameWithType.vb: OuterNetworkMessage.RemoveData(String)
-- uid: GameFrameX.NetWork.OuterNetworkMessage.RemoveData*
-  name: RemoveData
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_RemoveData_
-  commentId: Overload:GameFrameX.NetWork.OuterNetworkMessage.RemoveData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.RemoveData
-  nameWithType: OuterNetworkMessage.RemoveData
-- uid: GameFrameX.NetWork.OuterNetworkMessage.SetData(System.String,System.Object)
-  name: SetData(string, object)
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_SetData_System_String_System_Object_
-  commentId: M:GameFrameX.NetWork.OuterNetworkMessage.SetData(System.String,System.Object)
-  name.vb: SetData(String, Object)
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.SetData(string, object)
-  fullName.vb: GameFrameX.NetWork.OuterNetworkMessage.SetData(String, Object)
-  nameWithType: OuterNetworkMessage.SetData(string, object)
-  nameWithType.vb: OuterNetworkMessage.SetData(String, Object)
-- uid: GameFrameX.NetWork.OuterNetworkMessage.SetData*
-  name: SetData
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_SetData_
-  commentId: Overload:GameFrameX.NetWork.OuterNetworkMessage.SetData
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.SetData
-  nameWithType: OuterNetworkMessage.SetData
-- uid: GameFrameX.NetWork.OuterNetworkMessage.SetMessageData(System.Byte[])
+  fullName: GameFrameX.NetWork.NetworkMessagePackage.MessageType
+  nameWithType: NetworkMessagePackage.MessageType
+- uid: GameFrameX.NetWork.NetworkMessagePackage.SetMessageData(System.Byte[])
   name: SetMessageData(byte[])
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_SetMessageData_System_Byte___
-  commentId: M:GameFrameX.NetWork.OuterNetworkMessage.SetMessageData(System.Byte[])
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_SetMessageData_System_Byte___
+  commentId: M:GameFrameX.NetWork.NetworkMessagePackage.SetMessageData(System.Byte[])
   name.vb: SetMessageData(Byte())
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.SetMessageData(byte[])
-  fullName.vb: GameFrameX.NetWork.OuterNetworkMessage.SetMessageData(Byte())
-  nameWithType: OuterNetworkMessage.SetMessageData(byte[])
-  nameWithType.vb: OuterNetworkMessage.SetMessageData(Byte())
-- uid: GameFrameX.NetWork.OuterNetworkMessage.SetMessageData*
+  fullName: GameFrameX.NetWork.NetworkMessagePackage.SetMessageData(byte[])
+  fullName.vb: GameFrameX.NetWork.NetworkMessagePackage.SetMessageData(Byte())
+  nameWithType: NetworkMessagePackage.SetMessageData(byte[])
+  nameWithType.vb: NetworkMessagePackage.SetMessageData(Byte())
+- uid: GameFrameX.NetWork.NetworkMessagePackage.SetMessageData*
   name: SetMessageData
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_SetMessageData_
-  commentId: Overload:GameFrameX.NetWork.OuterNetworkMessage.SetMessageData
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_SetMessageData_
+  commentId: Overload:GameFrameX.NetWork.NetworkMessagePackage.SetMessageData
   isSpec: "True"
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.SetMessageData
-  nameWithType: OuterNetworkMessage.SetMessageData
-- uid: GameFrameX.NetWork.OuterNetworkMessage.SetMessageHeader(GameFrameX.NetWork.Abstractions.INetworkMessageHeader)
-  name: SetMessageHeader(INetworkMessageHeader)
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_SetMessageHeader_GameFrameX_NetWork_Abstractions_INetworkMessageHeader_
-  commentId: M:GameFrameX.NetWork.OuterNetworkMessage.SetMessageHeader(GameFrameX.NetWork.Abstractions.INetworkMessageHeader)
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.SetMessageHeader(GameFrameX.NetWork.Abstractions.INetworkMessageHeader)
-  nameWithType: OuterNetworkMessage.SetMessageHeader(INetworkMessageHeader)
-- uid: GameFrameX.NetWork.OuterNetworkMessage.SetMessageHeader*
-  name: SetMessageHeader
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_SetMessageHeader_
-  commentId: Overload:GameFrameX.NetWork.OuterNetworkMessage.SetMessageHeader
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.SetMessageHeader
-  nameWithType: OuterNetworkMessage.SetMessageHeader
-- uid: GameFrameX.NetWork.OuterNetworkMessage.SetMessageType(System.Type)
-  name: SetMessageType(Type)
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_SetMessageType_System_Type_
-  commentId: M:GameFrameX.NetWork.OuterNetworkMessage.SetMessageType(System.Type)
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.SetMessageType(System.Type)
-  nameWithType: OuterNetworkMessage.SetMessageType(Type)
-- uid: GameFrameX.NetWork.OuterNetworkMessage.SetMessageType*
-  name: SetMessageType
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_SetMessageType_
-  commentId: Overload:GameFrameX.NetWork.OuterNetworkMessage.SetMessageType
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.SetMessageType
-  nameWithType: OuterNetworkMessage.SetMessageType
-- uid: GameFrameX.NetWork.OuterNetworkMessage.SetUniqueId(System.String)
-  name: SetUniqueId(string)
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_SetUniqueId_System_String_
-  commentId: M:GameFrameX.NetWork.OuterNetworkMessage.SetUniqueId(System.String)
-  name.vb: SetUniqueId(String)
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.SetUniqueId(string)
-  fullName.vb: GameFrameX.NetWork.OuterNetworkMessage.SetUniqueId(String)
-  nameWithType: OuterNetworkMessage.SetUniqueId(string)
-  nameWithType.vb: OuterNetworkMessage.SetUniqueId(String)
-- uid: GameFrameX.NetWork.OuterNetworkMessage.SetUniqueId*
-  name: SetUniqueId
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_SetUniqueId_
-  commentId: Overload:GameFrameX.NetWork.OuterNetworkMessage.SetUniqueId
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.SetUniqueId
-  nameWithType: OuterNetworkMessage.SetUniqueId
-- uid: GameFrameX.NetWork.OuterNetworkMessage.ToFormatMessageString(System.Int64)
+  fullName: GameFrameX.NetWork.NetworkMessagePackage.SetMessageData
+  nameWithType: NetworkMessagePackage.SetMessageData
+- uid: GameFrameX.NetWork.NetworkMessagePackage.ToFormatMessageString(System.Int64)
   name: ToFormatMessageString(long)
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_ToFormatMessageString_System_Int64_
-  commentId: M:GameFrameX.NetWork.OuterNetworkMessage.ToFormatMessageString(System.Int64)
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_ToFormatMessageString_System_Int64_
+  commentId: M:GameFrameX.NetWork.NetworkMessagePackage.ToFormatMessageString(System.Int64)
   name.vb: ToFormatMessageString(Long)
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.ToFormatMessageString(long)
-  fullName.vb: GameFrameX.NetWork.OuterNetworkMessage.ToFormatMessageString(Long)
-  nameWithType: OuterNetworkMessage.ToFormatMessageString(long)
-  nameWithType.vb: OuterNetworkMessage.ToFormatMessageString(Long)
-- uid: GameFrameX.NetWork.OuterNetworkMessage.ToFormatMessageString*
+  fullName: GameFrameX.NetWork.NetworkMessagePackage.ToFormatMessageString(long)
+  fullName.vb: GameFrameX.NetWork.NetworkMessagePackage.ToFormatMessageString(Long)
+  nameWithType: NetworkMessagePackage.ToFormatMessageString(long)
+  nameWithType.vb: NetworkMessagePackage.ToFormatMessageString(Long)
+- uid: GameFrameX.NetWork.NetworkMessagePackage.ToFormatMessageString*
   name: ToFormatMessageString
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_ToFormatMessageString_
-  commentId: Overload:GameFrameX.NetWork.OuterNetworkMessage.ToFormatMessageString
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_ToFormatMessageString_
+  commentId: Overload:GameFrameX.NetWork.NetworkMessagePackage.ToFormatMessageString
   isSpec: "True"
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.ToFormatMessageString
-  nameWithType: OuterNetworkMessage.ToFormatMessageString
-- uid: GameFrameX.NetWork.OuterNetworkMessage.UniqueId
-  name: UniqueId
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_UniqueId
-  commentId: P:GameFrameX.NetWork.OuterNetworkMessage.UniqueId
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.UniqueId
-  nameWithType: OuterNetworkMessage.UniqueId
-- uid: GameFrameX.NetWork.OuterNetworkMessage.UniqueId*
-  name: UniqueId
-  href: api/GameFrameX.NetWork.OuterNetworkMessage.html#GameFrameX_NetWork_OuterNetworkMessage_UniqueId_
-  commentId: Overload:GameFrameX.NetWork.OuterNetworkMessage.UniqueId
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.OuterNetworkMessage.UniqueId
-  nameWithType: OuterNetworkMessage.UniqueId
+  fullName: GameFrameX.NetWork.NetworkMessagePackage.ToFormatMessageString
+  nameWithType: NetworkMessagePackage.ToFormatMessageString
 - uid: GameFrameX.NetWork.RpcData
   name: RpcData
   href: api/GameFrameX.NetWork.RpcData.html

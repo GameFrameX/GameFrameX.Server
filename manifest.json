@@ -1216,20 +1216,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.NetWork.Abstractions.IInnerNetworkMessage",
-      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Abstractions.IInnerNetworkMessage.yml\" sourcestartlinenumber=\"1\">内部消息</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.NetWork.Abstractions.IMessage.yml",
       "output": {
         ".html": {
@@ -1342,6 +1328,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.Abstractions.INetworkMessagePackage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.Abstractions.INetworkMessagePackage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.NetWork.Abstractions.INetworkMessagePackage",
+      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Abstractions.INetworkMessagePackage.yml\" sourcestartlinenumber=\"1\">Defines the interface for a network message package, including message data, header, and related operations.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.NetWork.Abstractions.INotifyActorHeartBeat.yml",
       "output": {
         ".html": {
@@ -1367,20 +1367,6 @@
       "IsMRef": true,
       "Title": "GameFrameX.NetWork.Abstractions.INotifyMessage",
       "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Abstractions.INotifyMessage.yml\" sourcestartlinenumber=\"1\">通知消息</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.NetWork.Abstractions.IOuterNetworkMessage",
-      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Abstractions.IOuterNetworkMessage.yml\" sourcestartlinenumber=\"1\">外部消息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1860,20 +1846,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.NetWork.InnerNetworkMessage.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.NetWork.InnerNetworkMessage.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.NetWork.InnerNetworkMessage",
-      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.InnerNetworkMessage.yml\" sourcestartlinenumber=\"1\">内部消息</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.NetWork.Message.BaseMessageDecoderHandler.yml",
       "output": {
         ".html": {
@@ -2084,17 +2056,17 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.NetWork.OuterNetworkMessage.yml",
+      "source_relative_path": "api/GameFrameX.NetWork.NetworkMessagePackage.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.NetWork.OuterNetworkMessage.html"
+          "relative_path": "api/GameFrameX.NetWork.NetworkMessagePackage.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFrameX.NetWork.OuterNetworkMessage",
-      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.OuterNetworkMessage.yml\" sourcestartlinenumber=\"1\">外部消息</p>\n"
+      "Title": "GameFrameX.NetWork.NetworkMessagePackage",
+      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.NetworkMessagePackage.yml\" sourcestartlinenumber=\"1\">Defines the interface for a network message package, including message data, header, and related operations.</p>\n"
     },
     {
       "type": "ManagedReference",
