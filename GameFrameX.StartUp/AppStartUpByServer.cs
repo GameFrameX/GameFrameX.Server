@@ -137,7 +137,7 @@ public abstract partial class AppStartUpBase
     /// <param name="disconnectEventArgs">断开连接的相关参数</param>
     protected virtual ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
     {
-        LogHelper.Info($"the client disconnects - SessionID: {appSession.SessionID}, 断开原因: {disconnectEventArgs.Reason}");
+        LogHelper.Info($"the client disconnects - SessionID: {appSession.SessionID}, remote terminal: {appSession.RemoteEndPoint}, disconnect cause: {disconnectEventArgs.Reason}");
         return ValueTask.CompletedTask;
     }
 
@@ -147,7 +147,7 @@ public abstract partial class AppStartUpBase
     /// <param name="appSession">新建立的会话对象</param>
     protected virtual ValueTask OnConnected(IAppSession appSession)
     {
-        LogHelper.Info($"new client connection - SessionID: {appSession.SessionID}, 远程终端: {appSession.RemoteEndPoint}");
+        LogHelper.Info($"new client connection - SessionID: {appSession.SessionID}, remote terminal: {appSession.RemoteEndPoint}");
         return ValueTask.CompletedTask;
     }
 
