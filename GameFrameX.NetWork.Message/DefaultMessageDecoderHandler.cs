@@ -88,11 +88,11 @@ public class DefaultMessageDecoderHandler : BaseMessageDecoderHandler
             if (messageObjectHeader.MessageId >= 0)
             {
                 // 外部消息
-                return OuterNetworkMessage.Create(messageObjectHeader, messageData, messageType);
+                return NetworkMessagePackage.Create(messageObjectHeader, messageData, messageType);
             }
 
             // 内部消息
-            return InnerNetworkMessage.Create(messageObjectHeader, messageData, messageType);
+            return NetworkMessagePackage.Create(messageObjectHeader, messageData, messageType);
         }
         catch (Exception e)
         {
