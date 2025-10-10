@@ -6573,31 +6573,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Timer.QuartzTimer.Stop
   nameWithType: QuartzTimer.Stop
-- uid: GameFrameX.Core.Timer.QuartzTimer.UnSchedule(System.Collections.Generic.IEnumerable{System.Int64})
-  name: UnSchedule(IEnumerable<long>)
-  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_UnSchedule_System_Collections_Generic_IEnumerable_System_Int64__
-  commentId: M:GameFrameX.Core.Timer.QuartzTimer.UnSchedule(System.Collections.Generic.IEnumerable{System.Int64})
-  name.vb: UnSchedule(IEnumerable(Of Long))
-  fullName: GameFrameX.Core.Timer.QuartzTimer.UnSchedule(System.Collections.Generic.IEnumerable<long>)
-  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.UnSchedule(System.Collections.Generic.IEnumerable(Of Long))
-  nameWithType: QuartzTimer.UnSchedule(IEnumerable<long>)
-  nameWithType.vb: QuartzTimer.UnSchedule(IEnumerable(Of Long))
-- uid: GameFrameX.Core.Timer.QuartzTimer.UnSchedule(System.Int64)
-  name: UnSchedule(long)
-  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_UnSchedule_System_Int64_
-  commentId: M:GameFrameX.Core.Timer.QuartzTimer.UnSchedule(System.Int64)
-  name.vb: UnSchedule(Long)
-  fullName: GameFrameX.Core.Timer.QuartzTimer.UnSchedule(long)
-  fullName.vb: GameFrameX.Core.Timer.QuartzTimer.UnSchedule(Long)
-  nameWithType: QuartzTimer.UnSchedule(long)
-  nameWithType.vb: QuartzTimer.UnSchedule(Long)
-- uid: GameFrameX.Core.Timer.QuartzTimer.UnSchedule*
-  name: UnSchedule
-  href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_UnSchedule_
-  commentId: Overload:GameFrameX.Core.Timer.QuartzTimer.UnSchedule
-  isSpec: "True"
-  fullName: GameFrameX.Core.Timer.QuartzTimer.UnSchedule
-  nameWithType: QuartzTimer.UnSchedule
 - uid: GameFrameX.Core.Timer.QuartzTimer.Weekly*
   name: Weekly
   href: api/GameFrameX.Core.Timer.QuartzTimer.html#GameFrameX_Core_Timer_QuartzTimer_Weekly_
@@ -22497,6 +22472,18 @@ references:
   commentId: F:GameFrameX.Utility.Setting.GlobalConst.ActorTypeServer
   fullName: GameFrameX.Utility.Setting.GlobalConst.ActorTypeServer
   nameWithType: GlobalConst.ActorTypeServer
+- uid: GameFrameX.Utility.Setting.GlobalConst.AuthServiceName
+  name: AuthServiceName
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_AuthServiceName
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.AuthServiceName
+  fullName: GameFrameX.Utility.Setting.GlobalConst.AuthServiceName
+  nameWithType: GlobalConst.AuthServiceName
+- uid: GameFrameX.Utility.Setting.GlobalConst.AuthServiceServerId
+  name: AuthServiceServerId
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_AuthServiceServerId
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.AuthServiceServerId
+  fullName: GameFrameX.Utility.Setting.GlobalConst.AuthServiceServerId
+  nameWithType: GlobalConst.AuthServiceServerId
 - uid: GameFrameX.Utility.Setting.GlobalConst.ComponentAgentNameSuffix
   name: ComponentAgentNameSuffix
   href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_ComponentAgentNameSuffix
@@ -22515,30 +22502,60 @@ references:
   commentId: F:GameFrameX.Utility.Setting.GlobalConst.ComponentHandlerNameSuffix
   fullName: GameFrameX.Utility.Setting.GlobalConst.ComponentHandlerNameSuffix
   nameWithType: GlobalConst.ComponentHandlerNameSuffix
-- uid: GameFrameX.Utility.Setting.GlobalConst.DiscoveryCenterName
-  name: DiscoveryCenterName
-  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_DiscoveryCenterName
-  commentId: F:GameFrameX.Utility.Setting.GlobalConst.DiscoveryCenterName
-  fullName: GameFrameX.Utility.Setting.GlobalConst.DiscoveryCenterName
-  nameWithType: GlobalConst.DiscoveryCenterName
+- uid: GameFrameX.Utility.Setting.GlobalConst.DiscoveryCenterServiceName
+  name: DiscoveryCenterServiceName
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_DiscoveryCenterServiceName
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.DiscoveryCenterServiceName
+  fullName: GameFrameX.Utility.Setting.GlobalConst.DiscoveryCenterServiceName
+  nameWithType: GlobalConst.DiscoveryCenterServiceName
+- uid: GameFrameX.Utility.Setting.GlobalConst.DiscoveryCenterServiceServerId
+  name: DiscoveryCenterServiceServerId
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_DiscoveryCenterServiceServerId
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.DiscoveryCenterServiceServerId
+  fullName: GameFrameX.Utility.Setting.GlobalConst.DiscoveryCenterServiceServerId
+  nameWithType: GlobalConst.DiscoveryCenterServiceServerId
 - uid: GameFrameX.Utility.Setting.GlobalConst.EventListenerNameSuffix
   name: EventListenerNameSuffix
   href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_EventListenerNameSuffix
   commentId: F:GameFrameX.Utility.Setting.GlobalConst.EventListenerNameSuffix
   fullName: GameFrameX.Utility.Setting.GlobalConst.EventListenerNameSuffix
   nameWithType: GlobalConst.EventListenerNameSuffix
-- uid: GameFrameX.Utility.Setting.GlobalConst.FriendName
-  name: FriendName
-  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_FriendName
-  commentId: F:GameFrameX.Utility.Setting.GlobalConst.FriendName
-  fullName: GameFrameX.Utility.Setting.GlobalConst.FriendName
-  nameWithType: GlobalConst.FriendName
-- uid: GameFrameX.Utility.Setting.GlobalConst.GameName
-  name: GameName
-  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_GameName
-  commentId: F:GameFrameX.Utility.Setting.GlobalConst.GameName
-  fullName: GameFrameX.Utility.Setting.GlobalConst.GameName
-  nameWithType: GlobalConst.GameName
+- uid: GameFrameX.Utility.Setting.GlobalConst.FriendServiceName
+  name: FriendServiceName
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_FriendServiceName
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.FriendServiceName
+  fullName: GameFrameX.Utility.Setting.GlobalConst.FriendServiceName
+  nameWithType: GlobalConst.FriendServiceName
+- uid: GameFrameX.Utility.Setting.GlobalConst.FriendServiceServerId
+  name: FriendServiceServerId
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_FriendServiceServerId
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.FriendServiceServerId
+  fullName: GameFrameX.Utility.Setting.GlobalConst.FriendServiceServerId
+  nameWithType: GlobalConst.FriendServiceServerId
+- uid: GameFrameX.Utility.Setting.GlobalConst.GameServiceName
+  name: GameServiceName
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_GameServiceName
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.GameServiceName
+  fullName: GameFrameX.Utility.Setting.GlobalConst.GameServiceName
+  nameWithType: GlobalConst.GameServiceName
+- uid: GameFrameX.Utility.Setting.GlobalConst.GameServiceServerId
+  name: GameServiceServerId
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_GameServiceServerId
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.GameServiceServerId
+  fullName: GameFrameX.Utility.Setting.GlobalConst.GameServiceServerId
+  nameWithType: GlobalConst.GameServiceServerId
+- uid: GameFrameX.Utility.Setting.GlobalConst.GatewayServiceName
+  name: GatewayServiceName
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_GatewayServiceName
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.GatewayServiceName
+  fullName: GameFrameX.Utility.Setting.GlobalConst.GatewayServiceName
+  nameWithType: GlobalConst.GatewayServiceName
+- uid: GameFrameX.Utility.Setting.GlobalConst.GatewayServiceServerId
+  name: GatewayServiceServerId
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_GatewayServiceServerId
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.GatewayServiceServerId
+  fullName: GameFrameX.Utility.Setting.GlobalConst.GatewayServiceServerId
+  nameWithType: GlobalConst.GatewayServiceServerId
 - uid: GameFrameX.Utility.Setting.GlobalConst.HotfixNameSpaceNamePrefix
   name: HotfixNameSpaceNamePrefix
   href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_HotfixNameSpaceNamePrefix
@@ -22563,12 +22580,18 @@ references:
   commentId: F:GameFrameX.Utility.Setting.GlobalConst.IdModuleMax
   fullName: GameFrameX.Utility.Setting.GlobalConst.IdModuleMax
   nameWithType: GlobalConst.IdModuleMax
-- uid: GameFrameX.Utility.Setting.GlobalConst.ImName
-  name: ImName
-  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_ImName
-  commentId: F:GameFrameX.Utility.Setting.GlobalConst.ImName
-  fullName: GameFrameX.Utility.Setting.GlobalConst.ImName
-  nameWithType: GlobalConst.ImName
+- uid: GameFrameX.Utility.Setting.GlobalConst.ImServiceName
+  name: ImServiceName
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_ImServiceName
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.ImServiceName
+  fullName: GameFrameX.Utility.Setting.GlobalConst.ImServiceName
+  nameWithType: GlobalConst.ImServiceName
+- uid: GameFrameX.Utility.Setting.GlobalConst.ImServiceServerId
+  name: ImServiceServerId
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_ImServiceServerId
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.ImServiceServerId
+  fullName: GameFrameX.Utility.Setting.GlobalConst.ImServiceServerId
+  nameWithType: GlobalConst.ImServiceServerId
 - uid: GameFrameX.Utility.Setting.GlobalConst.MAGIC
   name: MAGIC
   href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_MAGIC
@@ -22611,12 +22634,18 @@ references:
   commentId: F:GameFrameX.Utility.Setting.GlobalConst.ModuleIdTimestampMask
   fullName: GameFrameX.Utility.Setting.GlobalConst.ModuleIdTimestampMask
   nameWithType: GlobalConst.ModuleIdTimestampMask
-- uid: GameFrameX.Utility.Setting.GlobalConst.RoomName
-  name: RoomName
-  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_RoomName
-  commentId: F:GameFrameX.Utility.Setting.GlobalConst.RoomName
-  fullName: GameFrameX.Utility.Setting.GlobalConst.RoomName
-  nameWithType: GlobalConst.RoomName
+- uid: GameFrameX.Utility.Setting.GlobalConst.RoomServiceName
+  name: RoomServiceName
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_RoomServiceName
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.RoomServiceName
+  fullName: GameFrameX.Utility.Setting.GlobalConst.RoomServiceName
+  nameWithType: GlobalConst.RoomServiceName
+- uid: GameFrameX.Utility.Setting.GlobalConst.RoomServiceServerId
+  name: RoomServiceServerId
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_RoomServiceServerId
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.RoomServiceServerId
+  fullName: GameFrameX.Utility.Setting.GlobalConst.RoomServiceServerId
+  nameWithType: GlobalConst.RoomServiceServerId
 - uid: GameFrameX.Utility.Setting.GlobalConst.SecondMask
   name: SecondMask
   href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_SecondMask
@@ -22635,6 +22664,18 @@ references:
   commentId: F:GameFrameX.Utility.Setting.GlobalConst.SessionIdKey
   fullName: GameFrameX.Utility.Setting.GlobalConst.SessionIdKey
   nameWithType: GlobalConst.SessionIdKey
+- uid: GameFrameX.Utility.Setting.GlobalConst.SocialServiceName
+  name: SocialServiceName
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_SocialServiceName
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.SocialServiceName
+  fullName: GameFrameX.Utility.Setting.GlobalConst.SocialServiceName
+  nameWithType: GlobalConst.SocialServiceName
+- uid: GameFrameX.Utility.Setting.GlobalConst.SocialServiceServerId
+  name: SocialServiceServerId
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_SocialServiceServerId
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.SocialServiceServerId
+  fullName: GameFrameX.Utility.Setting.GlobalConst.SocialServiceServerId
+  nameWithType: GlobalConst.SocialServiceServerId
 - uid: GameFrameX.Utility.Setting.GlobalConst.TimestampMask
   name: TimestampMask
   href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_TimestampMask
@@ -24491,35 +24532,3 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.TimeHelper.UtcSecondsToUtcDateTime
   nameWithType: TimeHelper.UtcSecondsToUtcDateTime
-- uid: GameFrameX.Utility.TimeHelper.UtcToLocalDateTime(System.Int64)
-  name: UtcToLocalDateTime(long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcToLocalDateTime_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.UtcToLocalDateTime(System.Int64)
-  name.vb: UtcToLocalDateTime(Long)
-  fullName: GameFrameX.Utility.TimeHelper.UtcToLocalDateTime(long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.UtcToLocalDateTime(Long)
-  nameWithType: TimeHelper.UtcToLocalDateTime(long)
-  nameWithType.vb: TimeHelper.UtcToLocalDateTime(Long)
-- uid: GameFrameX.Utility.TimeHelper.UtcToLocalDateTime*
-  name: UtcToLocalDateTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcToLocalDateTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.UtcToLocalDateTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.UtcToLocalDateTime
-  nameWithType: TimeHelper.UtcToLocalDateTime
-- uid: GameFrameX.Utility.TimeHelper.UtcToUtcDateTime(System.Int64)
-  name: UtcToUtcDateTime(long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcToUtcDateTime_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.UtcToUtcDateTime(System.Int64)
-  name.vb: UtcToUtcDateTime(Long)
-  fullName: GameFrameX.Utility.TimeHelper.UtcToUtcDateTime(long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.UtcToUtcDateTime(Long)
-  nameWithType: TimeHelper.UtcToUtcDateTime(long)
-  nameWithType.vb: TimeHelper.UtcToUtcDateTime(Long)
-- uid: GameFrameX.Utility.TimeHelper.UtcToUtcDateTime*
-  name: UtcToUtcDateTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcToUtcDateTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.UtcToUtcDateTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.UtcToUtcDateTime
-  nameWithType: TimeHelper.UtcToUtcDateTime
