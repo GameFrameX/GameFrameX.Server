@@ -64,21 +64,15 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
     /// 使用角色ID登录
     /// </summary>
     /// <param name="workChannel"></param>
-    /// <param name="reqLogin"></param>
-    public async Task OnPlayerLogin(INetWorkChannel workChannel, ReqPlayerLogin reqLogin)
+    /// <param name="playerState"></param>
+    /// <param name="reqLoginUniqueId"></param>
+    public async Task OnPlayerLogin(INetWorkChannel workChannel, PlayerState playerState, int reqLoginUniqueId)
     {
-        var playerState = await OwnerComponent.OnPlayerLogin(reqLogin);
-        if (playerState == null)
-        {
-            //角色找不到？
-            return;
-        }
-
         // 更新连接会话数据
         SessionManager.UpdateSession(workChannel.GameAppSession.SessionID, playerState.Id, playerState.Id.ToString());
         var respPlayerLogin = new RespPlayerLogin
         {
-            UniqueId = reqLogin.UniqueId,
+            UniqueId = reqLoginUniqueId,
             Code = playerState.State,
             CreateTime = playerState.CreateTime,
             PlayerInfo = new PlayerInfo
