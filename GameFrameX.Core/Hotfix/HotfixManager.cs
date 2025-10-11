@@ -267,6 +267,16 @@ public static class HotfixManager
     }
 
     /// <summary>
+    /// 获取RPC处理器实例。
+    /// </summary>
+    /// <param name="type">请求消息的类型。</param>
+    /// <returns>对应的 <see cref="BaseMessageHandler"/> 实例，如果未找到则返回 null。</returns>
+    public static BaseMessageHandler GetRpcHandler(Type type)
+    {
+        return _module.GetRpcHandler(type);
+    }
+
+    /// <summary>
     /// 获取TCP消息处理器
     /// </summary>
     /// <param name="msgId">消息ID</param>

@@ -282,6 +282,28 @@ internal sealed class HotfixModule
         return true;
     }
 
+
+    /// <summary>
+    /// 获取RPC处理器实例。
+    /// </summary>
+    /// <param name="type">请求消息的类型。</param>
+    /// <returns>对应的 <see cref="BaseMessageHandler"/> 实例，如果未找到则返回 null。</returns>
+    internal BaseMessageHandler GetRpcHandler(Type type)
+    {
+        if (!_rpcHandlerMap.TryGetValue(type, out var handlerType))
+        {
+            return default;
+        }
+
+        var instance = Activator.CreateInstance(handlerType);
+        if (instance is BaseMessageHandler handler)
+        {
+            return handler;
+        }
+
+        throw new Exception($"wrong tcp processor type:{instance.GetType().FullName}");
+    }
+
     /// <summary>
     /// 添加RPC处理器。
     /// </summary>
@@ -456,6 +478,7 @@ internal sealed class HotfixModule
         _agentCompMap[type] = compType;
         return true;
     }
+
 
     /// <summary>
     /// 获取TCP处理器。
