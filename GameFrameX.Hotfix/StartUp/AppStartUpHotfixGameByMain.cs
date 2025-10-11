@@ -125,7 +125,7 @@ internal partial class AppStartUpHotfixGame
             var handler = HotfixManager.GetTcpHandler(messagePackage.Header.MessageId);
             if (handler == null)
             {
-                LogHelper.Error($"找不到[{messagePackage.Header.MessageId}][{message.GetType()}]对应的handler");
+                LogHelper.Error($"找不到[{messagePackage.Header.MessageId}][{messagePackage.MessageType}]对应的handler");
                 return;
             }
 
