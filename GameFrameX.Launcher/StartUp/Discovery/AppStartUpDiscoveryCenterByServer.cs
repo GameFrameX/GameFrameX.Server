@@ -29,9 +29,12 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using GameFrameX.DiscoveryCenterManager.Player;
+using GameFrameX.DiscoveryCenterManager.Server;
+using GameFrameX.Foundation.Json;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Proto.BuiltIn;
-using GameFrameX.DiscoveryCenterManager.Server;
+using Mapster;
 
 namespace GameFrameX.Launcher.StartUp.Discovery;
 
@@ -41,11 +44,47 @@ namespace GameFrameX.Launcher.StartUp.Discovery;
 internal partial class AppStartUpDiscoveryCenter
 {
     private readonly NamingServiceManager _namingServiceManager;
+    private readonly NamingPlayerManager _namingPlayerManager;
 
     public AppStartUpDiscoveryCenter()
     {
         _namingServiceManager = NamingServiceManager.Instance;
         _namingServiceManager.SetServerChangeCallback(OnServerAdd, OnServerRemove);
+        _namingPlayerManager = NamingPlayerManager.Instance;
+        _namingPlayerManager.SetChangeCallback(OnPlayerAdd, OnPlayerRemove);
+    }
+
+    private void OnPlayerRemove(IPlayerInfo playerInfo)
+    {
+        LogHelper.DebugConsole("玩家下线回调，通知其他服务器:" + JsonHelper.Serialize(playerInfo));
+
+        var serverList = _namingServiceManager.GetOuterNodes();
+        serverList = serverList.Where(m => m.ServerId == 8000).ToList();
+
+        var notifyPlayerOffLine = playerInfo.Adapt<NotifyPlayerOffLine>();
+        MessageProtoHelper.SetMessageId(notifyPlayerOffLine);
+        foreach (var serviceInfo in serverList)
+        {
+            var info = (ServiceInfo)serviceInfo;
+            var appSession = (IAppSession)info.Session;
+            SendMessage(appSession, notifyPlayerOffLine);
+        }
+    }
+
+    private void OnPlayerAdd(IPlayerInfo playerInfo)
+    {
+        LogHelper.DebugConsole("玩家上线回调，通知其他服务器:" + JsonHelper.Serialize(playerInfo));
+        var serverList = _namingServiceManager.GetOuterNodes();
+        serverList = serverList.Where(m => m.ServerId == GlobalConst.SocialServiceServerId).ToList();
+
+        var notifyPlayerOnLine = playerInfo.Adapt<NotifyPlayerOnLine>();
+        MessageProtoHelper.SetMessageId(notifyPlayerOnLine);
+        foreach (var serviceInfo in serverList)
+        {
+            var info = (ServiceInfo)serviceInfo;
+            var appSession = (IAppSession)info.Session;
+            SendMessage(appSession, notifyPlayerOnLine);
+        }
     }
 
     private void OnServerRemove(IServiceInfo serverInfo)
