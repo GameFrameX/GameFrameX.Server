@@ -95,7 +95,7 @@ internal sealed class AppStartUpGame : AppStartUpBase
         {
             Setting = new AppSetting
             {
-                ServerId = 9000,
+                ServerId = GlobalConst.GameServiceServerId,
                 ServerType = GlobalConst.GameServiceName,
                 InnerPort = 29100,
                 MetricsPort = 29090,
