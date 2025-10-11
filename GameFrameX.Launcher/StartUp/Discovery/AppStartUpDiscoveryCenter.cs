@@ -160,29 +160,37 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                 }
                     break;
 
-                case (byte)MessageOperationType.NotifyPlayerOnLine:
+                case (byte)MessageOperationType.PlayerRegister:
                 {
-                    var reqRegisterPlayer = (NotifyPlayerOnLine)messageObject.DeserializeMessageObject();
+                    var reqRegisterPlayer = (ReqPlayerRegister)messageObject.DeserializeMessageObject();
                     // 注册玩家
                     NamingPlayerManager.Instance.Add(reqRegisterPlayer.PlayerId, reqRegisterPlayer.ServerId, reqRegisterPlayer.ServerInstanceId);
                     LogHelper.Info($"注册玩家成功：{reqRegisterPlayer.PlayerId}  {reqRegisterPlayer}");
                     return ValueTask.CompletedTask;
                 }
-                case (byte)MessageOperationType.NotifyPlayerOffLine:
+                case (byte)MessageOperationType.PlayerUnRegister:
                 {
-                    var reqRegisterPlayer = (NotifyPlayerOffLine)messageObject.DeserializeMessageObject();
+                    var reqRegisterPlayer = (ReqPlayerUnRegister)messageObject.DeserializeMessageObject();
                     // 注销玩家
                     NamingPlayerManager.Instance.TryRemove(reqRegisterPlayer.PlayerId, out var playerInfo);
                     LogHelper.Info($"注销玩家成功：{reqRegisterPlayer.PlayerId}  {reqRegisterPlayer}");
                     return ValueTask.CompletedTask;
                 }
-                case (byte)MessageOperationType.NotifyServiceOnLine:
+                case (byte)MessageOperationType.ServiceRegister:
                 {
                     var reqRegisterServer = (ReqServiceRegister)messageObject.DeserializeMessageObject();
                     // 注册服务
                     var serviceInfo = new ServiceInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerId, reqRegisterServer.ServerInstanceId, reqRegisterServer.InnerHost, reqRegisterServer.InnerPort, reqRegisterServer.OuterHost, reqRegisterServer.OuterPort);
                     _namingServiceManager.Add(serviceInfo);
                     LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
+                    return ValueTask.CompletedTask;
+                }
+                case (byte)MessageOperationType.ServiceUnRegister:
+                {
+                    var reqServiceUnRegister = (ReqServiceUnRegister)messageObject.DeserializeMessageObject();
+                    // 注销服务
+                    _namingServiceManager.TryRemoveByInstanceId(reqServiceUnRegister.ServerInstanceId);
+                    LogHelper.Info($"注销服务成功：{reqServiceUnRegister.ServerId}  {reqServiceUnRegister.ServerInstanceId} ");
                     return ValueTask.CompletedTask;
                 }
                 case (byte)MessageOperationType.ConnectService:
