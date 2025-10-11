@@ -45,7 +45,7 @@
         <PackageReference Include="GameFrameX.Foundation.Extensions" Version="1.5.17" />
         <PackageReference Include="GameFrameX.Foundation.Hash" Version="1.5.17" />
         <PackageReference Include="GameFrameX.Foundation.Logger" Version="1.5.17" />
-        <PackageReference Include="Lib.Harmony" Version="2.3.6" />
+        <PackageReference Include="Lib.Harmony" Version="2.4.1" />
         <PackageReference Include="SharpZipLib" Version="1.4.2" />
         <PackageReference Include="Tedd.RandomUtils" Version="1.0.6" />
         <PackageReference Include="Yitter.IdGenerator" Version="1.0.14" />
