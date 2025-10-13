@@ -33,11 +33,6 @@ namespace GameFrameX.Hotfix.StartUp;
 
 internal partial class AppStartUpHotfixGame
 {
-    private readonly NotifyHeartBeat _notifyHeartBeat = new NotifyHeartBeat
-    {
-        Timestamp = TimeHelper.UnixTimeMilliseconds(),
-    };
-
     /// <summary>
     /// 回复心跳消息
     /// </summary>
@@ -49,9 +44,10 @@ internal partial class AppStartUpHotfixGame
         {
             // LogHelper.Info("收到心跳请求:" + req.Timestamp);
             netWorkChannel.UpdateReceiveMessageTime();
-            _notifyHeartBeat.Timestamp = TimeHelper.UnixTimeMilliseconds();
-            _notifyHeartBeat.UniqueId = req.UniqueId;
-            await netWorkChannel.WriteAsync(_notifyHeartBeat);
+            NotifyHeartBeat notifyHeartBeat = MessageObjectPoolHelper.Get<NotifyHeartBeat>();
+            notifyHeartBeat.Timestamp = TimeHelper.UnixTimeMilliseconds();
+            notifyHeartBeat.UniqueId = req.UniqueId;
+            await netWorkChannel.WriteAsync(notifyHeartBeat);
         }
     }
 }
