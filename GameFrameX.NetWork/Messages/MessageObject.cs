@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 using System.Text.Json.Serialization;
 using GameFrameX.Foundation.Json;
 using GameFrameX.NetWork.Abstractions;
@@ -132,4 +131,9 @@ public abstract class MessageObject : INetworkMessage
     {
         return JsonHelper.Serialize(this);
     }
+
+    /// <summary>
+    /// 清除消息内容
+    /// </summary>
+    public abstract void Clear();
 }
