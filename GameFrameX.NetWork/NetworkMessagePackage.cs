@@ -114,6 +114,16 @@ public sealed class NetworkMessagePackage : INetworkMessagePackage
     }
 
     /// <summary>
+    /// 清除消息内容
+    /// </summary>
+    public void Clear()
+    {
+        MessageType = default;
+        MessageData = default;
+        Header = default;
+    }
+
+    /// <summary>
     /// 设置消息头
     /// </summary>
     /// <param name="header">要设置的网络消息头对象，不能为空</param>
