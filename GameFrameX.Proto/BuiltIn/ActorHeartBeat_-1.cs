@@ -47,6 +47,11 @@ public sealed class ReqActorHeartBeat : MessageObject, IRequestMessage, IHeartBe
     /// </summary>
     [ProtoMember(1)]
     public long Timestamp { get; set; }
+
+    public override void Clear()
+    {
+        Timestamp = default;
+    }
 }
 
 /// <summary>
@@ -61,4 +66,9 @@ public sealed class NotifyActorHeartBeat : MessageObject, INotifyMessage, IHeart
     /// </summary>
     [ProtoMember(1)]
     public long Timestamp { get; set; }
+
+    public override void Clear()
+    {
+        Timestamp = default;
+    }
 }

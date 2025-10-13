@@ -88,6 +88,18 @@ public partial class ReqServiceRegister : MessageObject, IRequestMessage
     /// </summary>
     [ProtoMember(8)]
     public long ServerInstanceId { get; set; }
+
+    public override void Clear()
+    {
+        this.ServerType = default;
+        this.ServerName = default;
+        this.InnerHost = default;
+        this.InnerPort = default;
+        this.OuterHost = default;
+        this.OuterPort = default;
+        this.ServerId = default;
+        this.ServerInstanceId = default;
+    }
 }
 
 /// <summary>
@@ -107,6 +119,12 @@ public partial class ReqServiceUnRegister : MessageObject, IRequestMessage
     /// </summary>
     [ProtoMember(8)]
     public long ServerInstanceId { get; set; }
+
+    public override void Clear()
+    {
+        this.ServerId = default;
+        this.ServerInstanceId = default;
+    }
 }
 
 /// <summary>
@@ -138,6 +156,14 @@ public partial class NotifyServiceOnLine : MessageObject, IResponseMessage
     /// </summary>
     [ProtoMember(888)]
     public int ErrorCode { get; set; }
+
+    public override void Clear()
+    {
+        this.ServerType = default;
+        this.ServerName = default;
+        this.ServerId = default;
+        this.ErrorCode = default;
+    }
 }
 
 /// <summary>
@@ -169,4 +195,12 @@ public partial class NotifyServiceOffLine : MessageObject, IResponseMessage
     /// </summary>
     [ProtoMember(888)]
     public int ErrorCode { get; set; }
+
+    public override void Clear()
+    {
+        this.ServerType = default;
+        this.ServerName = default;
+        this.ServerId = default;
+        this.ErrorCode = default;
+    }
 }

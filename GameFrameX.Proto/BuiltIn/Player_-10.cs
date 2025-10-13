@@ -58,6 +58,13 @@ public partial class ReqPlayerRegister : MessageObject, IRequestMessage
     /// </summary>
     [ProtoMember(3)]
     public long ServerInstanceId { get; set; }
+
+    public override void Clear()
+    {
+        PlayerId = default;
+        ServerId = default;
+        ServerInstanceId = default;
+    }
 }
 
 /// <summary>
@@ -83,6 +90,13 @@ public partial class ReqPlayerUnRegister : MessageObject, IRequestMessage
     /// </summary>
     [ProtoMember(3)]
     public long ServerInstanceId { get; set; }
+
+    public override void Clear()
+    {
+        PlayerId = default;
+        ServerId = default;
+        ServerInstanceId = default;
+    }
 }
 
 /// <summary>
@@ -108,6 +122,13 @@ public partial class NotifyPlayerOnLine : MessageObject, IRequestMessage
     /// </summary>
     [ProtoMember(3)]
     public long ServerInstanceId { get; set; }
+
+    public override void Clear()
+    {
+        PlayerId = default;
+        ServerId = default;
+        ServerInstanceId = default;
+    }
 }
 
 /// <summary>
@@ -133,4 +154,11 @@ public partial class NotifyPlayerOffLine : MessageObject, IRequestMessage
     /// </summary>
     [ProtoMember(3)]
     public long ServerInstanceId { get; set; }
+
+    public override void Clear()
+    {
+        PlayerId = default;
+        ServerId = default;
+        ServerInstanceId = default;
+    }
 }

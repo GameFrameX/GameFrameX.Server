@@ -52,6 +52,12 @@ public partial class ReqConnectServer : MessageObject, IRequestMessage
     /// </summary>
     [ProtoMember(2)]
     public long ServerId { get; set; }
+
+    public override void Clear()
+    {
+        ServerId = default;
+        ServerType = default;
+    }
 }
 
 /// <summary>
@@ -103,4 +109,14 @@ public partial class RespConnectServer : MessageObject, IResponseMessage
     /// </summary>
     [ProtoMember(888)]
     public int ErrorCode { get; set; }
+
+    public override void Clear()
+    {
+        ServerId = default;
+        ServerName = default;
+        ServerType = default;
+        TargetHost = default;
+        TargetPort = default;
+        ErrorCode = default;
+    }
 }
