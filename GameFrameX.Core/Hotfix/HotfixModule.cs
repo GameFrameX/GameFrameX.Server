@@ -288,7 +288,7 @@ internal sealed class HotfixModule
     /// </summary>
     /// <param name="type">请求消息的类型。</param>
     /// <returns>对应的 <see cref="BaseMessageHandler"/> 实例，如果未找到则返回 null。</returns>
-    internal BaseMessageHandler GetRpcHandler(Type type)
+    internal IMessageHandler GetRpcHandler(Type type)
     {
         if (!_rpcHandlerMap.TryGetValue(type, out var handlerType))
         {
@@ -296,7 +296,7 @@ internal sealed class HotfixModule
         }
 
         var instance = Activator.CreateInstance(handlerType);
-        if (instance is BaseMessageHandler handler)
+        if (instance is IMessageHandler handler)
         {
             return handler;
         }
@@ -485,7 +485,7 @@ internal sealed class HotfixModule
     /// </summary>
     /// <param name="msgId">消息ID。</param>
     /// <returns>TCP处理器实例。</returns>
-    internal BaseMessageHandler GetTcpHandler(int msgId)
+    internal IMessageHandler GetTcpHandler(int msgId)
     {
         if (!_tcpHandlerMap.TryGetValue(msgId, out var handlerType))
         {
@@ -493,7 +493,7 @@ internal sealed class HotfixModule
         }
 
         var instance = Activator.CreateInstance(handlerType);
-        if (instance is BaseMessageHandler handler)
+        if (instance is IMessageHandler handler)
         {
             return handler;
         }

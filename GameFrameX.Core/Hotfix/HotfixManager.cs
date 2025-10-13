@@ -33,11 +33,10 @@ using System.Collections.Concurrent;
 using System.Reflection;
 using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Abstractions.Events;
-using GameFrameX.Core.BaseHandler;
 using GameFrameX.Core.Components;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.Utility;
-using GameFrameX.Foundation.Extensions;
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Core.Hotfix;
@@ -271,7 +270,7 @@ public static class HotfixManager
     /// </summary>
     /// <param name="type">请求消息的类型。</param>
     /// <returns>对应的 <see cref="BaseMessageHandler"/> 实例，如果未找到则返回 null。</returns>
-    public static BaseMessageHandler GetRpcHandler(Type type)
+    public static IMessageHandler GetRpcHandler(Type type)
     {
         return _module.GetRpcHandler(type);
     }
@@ -281,7 +280,7 @@ public static class HotfixManager
     /// </summary>
     /// <param name="msgId">消息ID</param>
     /// <returns>返回对应的消息处理器</returns>
-    public static BaseMessageHandler GetTcpHandler(int msgId)
+    public static IMessageHandler GetTcpHandler(int msgId)
     {
         return _module.GetTcpHandler(msgId);
     }
