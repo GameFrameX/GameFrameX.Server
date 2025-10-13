@@ -24,15 +24,6 @@ public static class ProtoBufSerializerHelper
     }
 
     /// <summary>
-    /// 注册类型
-    /// </summary>
-    /// <param name="type"></param>
-    public static void Register(Type type)
-    {
-        RuntimeTypeModel.Default.Add(type, false);
-    }
-
-    /// <summary>
     /// 反序列化数据对象
     /// </summary>
     /// <param name="data">数据</param>
