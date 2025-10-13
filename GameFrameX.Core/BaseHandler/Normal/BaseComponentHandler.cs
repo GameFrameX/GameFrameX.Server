@@ -40,6 +40,7 @@ namespace GameFrameX.Core.BaseHandler.Normal;
 /// <summary>
 /// 基础组件处理器基类
 /// </summary>
+/// <typeparam name="TRequest">请求消息类型，必须实现 <see cref="IRequestMessage"/> 并具备无参构造函数</typeparam>
 public abstract class BaseComponentHandler<TRequest> : BaseMessageHandler<TRequest> where TRequest : class, IRequestMessage, new()
 {
     /// <summary>

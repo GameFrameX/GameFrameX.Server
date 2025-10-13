@@ -39,6 +39,10 @@ namespace GameFrameX.Core.BaseHandler.Normal;
 /// <summary>
 /// 基础消息处理器
 /// </summary>
+/// <typeparam name="TRequest">请求消息类型，必须实现 <see cref="IRequestMessage"/> 接口，且具备无参构造函数</typeparam>
+/// <remarks>
+/// 所有具体消息处理器均应继承自此抽象类，以实现统一的消息初始化、超时监控、性能统计与异常处理逻辑。
+/// </remarks>
 public abstract class BaseMessageHandler<TRequest> : IMessageHandler where TRequest : class, IRequestMessage, new()
 {
     private bool _isInit;
