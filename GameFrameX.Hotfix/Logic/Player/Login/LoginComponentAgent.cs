@@ -38,7 +38,7 @@ using GameFrameX.Proto.BuiltIn;
 
 namespace GameFrameX.Hotfix.Logic.Player.Login;
 
-public sealed class LoginComponentAgent : StateComponentAgent<LoginComponent, LoginState>
+public class LoginComponentAgent : StateComponentAgent<LoginComponent, LoginState>
 {
     /// <summary>
     /// 使用角色ID登录
@@ -56,6 +56,6 @@ public sealed class LoginComponentAgent : StateComponentAgent<LoginComponent, Lo
         }
 
         var playerComponentAgent = await ActorManager.GetComponentAgent<PlayerComponentAgent>(playerState.Id);
-        await playerComponentAgent.OnPlayerLogin(workChannel, playerState,  response);
+        await playerComponentAgent.OnPlayerLogin(workChannel, playerState, response);
     }
 }
