@@ -30,15 +30,21 @@
 // ==========================================================================================
 
 using GameFrameX.Core.Abstractions.Agent;
+using GameFrameX.Core.BaseHandler.Normal;
 using GameFrameX.Core.Components;
 using GameFrameX.Core.Utility;
+using GameFrameX.NetWork.Abstractions;
 
 namespace GameFrameX.Core.BaseHandler;
 
 /// <summary>
 /// 全局组件处理器
 /// </summary>
-public abstract class GlobalComponentHandler : BaseComponentHandler
+/// <typeparam name="TRequest">请求消息类型，必须实现 <see cref="IRequestMessage"/> 接口，且具备无参构造函数</typeparam>
+/// <remarks>
+/// 所有全局组件处理器均应继承自此抽象类，以实现统一的组件初始化、超时监控、性能统计与异常处理逻辑。
+/// </remarks>
+public abstract class GlobalComponentHandler<TRequest> : BaseComponentHandler<TRequest> where TRequest : class, IRequestMessage, new()
 {
     /// <summary>
     /// 初始化
@@ -58,10 +64,15 @@ public abstract class GlobalComponentHandler : BaseComponentHandler
 }
 
 /// <summary>
-/// 全局组件处理器
+/// 全局组件处理器（泛型双参版）
 /// </summary>
-/// <typeparam name="T"></typeparam>
-public abstract class GlobalComponentHandler<T> : GlobalComponentHandler where T : IComponentAgent
+/// <typeparam name="T">组件代理类型，必须实现 <see cref="IComponentAgent"/> 接口</typeparam>
+/// <typeparam name="TRequest">请求消息类型，必须实现 <see cref="IRequestMessage"/> 接口，且具备无参构造函数</typeparam>
+/// <remarks>
+/// 所有全局组件处理器均应继承自此抽象类，以实现统一的组件初始化、超时监控、性能统计与异常处理逻辑。
+/// 本泛型版本在单参版的基础上，额外提供强类型的组件代理访问能力，方便业务层直接操作具体组件代理而无需强制转换。
+/// </remarks>
+public abstract class GlobalComponentHandler<T, TRequest> : GlobalComponentHandler<TRequest> where T : IComponentAgent where TRequest : class, IRequestMessage, new()
 {
     /// <summary>
     /// 组件代理类型
