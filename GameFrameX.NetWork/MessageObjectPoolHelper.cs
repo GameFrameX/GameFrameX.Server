@@ -133,7 +133,7 @@ public static class MessageObjectPoolHelper
         }
 
         // Get or create cached get action for this type / 获取或创建此类型的缓存获取操作
-        var getAction = GetActions.GetOrAdd(type, t =>
+        Func<object> ValueFactory(Type t)
         {
             // Check if the type has a parameterless constructor / 检查类型是否有无参构造函数
             var constructor = t.GetConstructor(Type.EmptyTypes);
@@ -143,24 +143,54 @@ public static class MessageObjectPoolHelper
             }
 
             // Get the pool for the specified type / 获取指定类型的池
-            var pool = ObjectPools.GetOrAdd(t, _ =>
-            {
-                var policyType = typeof(ResetObjectPolicy<>).MakeGenericType(t);
-                var policy = Activator.CreateInstance(policyType);
-                var createMethod = typeof(ObjectPoolProvider).GetMethod(nameof(ObjectPoolProvider.Create))!
-                    .MakeGenericMethod(t);
-                return createMethod.Invoke(PoolProvider, new[] { policy })!;
-            });
+            var pool = GetPool(t);
 
             // Create a cached delegate for the Get method / 为 Get 方法创建缓存的委托
             var poolType = typeof(ObjectPool<>).MakeGenericType(t);
             var getMethod = poolType.GetMethod(nameof(ObjectPool<object>.Get))!;
-            
+
             return (Func<object>)(() => getMethod.Invoke(pool, null)!);
-        });
+        }
+
+        var getAction = GetActions.GetOrAdd(type, ValueFactory);
 
         // Use the cached delegate to get the object / 使用缓存的委托获取对象
         return (IMessageObject)getAction();
+    }
+
+    private static object GetPool(Type type)
+    {
+        object ValueFactory(Type _)
+        {
+            var policyType = typeof(ResetObjectPolicy<>).MakeGenericType(type);
+            var policy = Activator.CreateInstance(policyType);
+
+            // Find the generic Create method / 查找泛型Create方法
+            var createMethod = typeof(ObjectPoolProvider).GetMethods()
+                                                         .FirstOrDefault(m => m.Name == nameof(ObjectPoolProvider.Create)
+                                                                              && m.IsGenericMethodDefinition
+                                                                              && m.GetParameters().Length == 1
+                                                                              && m.GetParameters()[0].ParameterType.IsGenericType
+                                                                              && m.GetParameters()[0].ParameterType.GetGenericTypeDefinition() == typeof(IPooledObjectPolicy<>));
+
+            if (createMethod == null)
+            {
+                throw new InvalidOperationException($"Cannot find Create method on ObjectPoolProvider / 无法在 ObjectPoolProvider 上找到 Create 方法");
+            }
+
+            var genericCreateMethod = createMethod.MakeGenericMethod(type);
+            var result = genericCreateMethod.Invoke(PoolProvider, new[] { policy });
+
+            if (result == null)
+            {
+                throw new InvalidOperationException($"Failed to create object pool for type {type.Name} / 无法为类型 {type.Name} 创建对象池");
+            }
+
+            return result;
+        }
+
+        var pool = ObjectPools.GetOrAdd(type, ValueFactory);
+        return pool;
     }
 
     /// <summary>
@@ -191,7 +221,7 @@ public static class MessageObjectPoolHelper
         ArgumentNullException.ThrowIfNull(obj, nameof(obj));
 
         var objType = obj.GetType();
-        
+
         // Get or create cached return action for this type / 获取或创建此类型的缓存返回操作
         var returnAction = ReturnActions.GetOrAdd(objType, type =>
         {
@@ -203,19 +233,12 @@ public static class MessageObjectPoolHelper
             }
 
             // Get the pool for the object's actual type / 获取对象实际类型的池
-            var pool = ObjectPools.GetOrAdd(type, _ =>
-            {
-                var policyType = typeof(ResetObjectPolicy<>).MakeGenericType(type);
-                var policy = Activator.CreateInstance(policyType);
-                var createMethod = typeof(ObjectPoolProvider).GetMethod(nameof(ObjectPoolProvider.Create))!
-                    .MakeGenericMethod(type);
-                return createMethod.Invoke(PoolProvider, new[] { policy })!;
-            });
+            var pool = GetPool(type);
 
             // Create a cached delegate for the Return method / 为 Return 方法创建缓存的委托
             var poolType = typeof(ObjectPool<>).MakeGenericType(type);
             var returnMethod = poolType.GetMethod(nameof(ObjectPool<object>.Return))!;
-            
+
             return (Action<object>)(o => returnMethod.Invoke(pool, new[] { o }));
         });
 
