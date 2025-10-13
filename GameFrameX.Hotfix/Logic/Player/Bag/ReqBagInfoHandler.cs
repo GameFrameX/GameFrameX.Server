@@ -30,28 +30,21 @@
 // ==========================================================================================
 
 
-
-using GameFrameX.Core.BaseHandler;
-
 namespace GameFrameX.Hotfix.Logic.Player.Bag;
 
 [MessageMapping(typeof(ReqBagInfo))]
-internal sealed class ReqBagInfoHandler : PlayerComponentHandler<BagComponentAgent>
+internal sealed class ReqBagInfoHandler : PlayerRpcComponentHandler<BagComponentAgent, ReqBagInfo, RespBagInfo>
 {
-    protected override Task ActionAsync()
+    protected override async Task ActionAsync(ReqBagInfo request, RespBagInfo response)
     {
-        var response = new RespBagInfo();
         try
         {
-            ComponentAgent.OnReqBagInfoAsync(NetWorkChannel, Message as ReqBagInfo, response);
+            await ComponentAgent.OnReqBagInfoAsync(NetWorkChannel, request, response);
         }
         catch (Exception e)
         {
             LogHelper.Fatal(e);
             response.ErrorCode = (int)OperationStatusCode.InternalServerError;
         }
-
-        response.SetUniqueId(Message.UniqueId);
-        return NetWorkChannel.WriteAsync(response);
     }
 }

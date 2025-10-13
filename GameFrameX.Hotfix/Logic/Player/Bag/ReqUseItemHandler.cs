@@ -30,32 +30,24 @@
 // ==========================================================================================
 
 
-
-using GameFrameX.Core.BaseHandler;
-
 namespace GameFrameX.Hotfix.Logic.Player.Bag;
 
 /// <summary>
 /// 请求使用物品
 /// </summary>
 [MessageMapping(typeof(ReqUseItem))]
-internal sealed class ReqUseItemHandler : PlayerComponentHandler<BagComponentAgent>
+internal sealed class ReqUseItemHandler : PlayerRpcComponentHandler<BagComponentAgent, ReqUseItem, RespUseItem>
 {
-    protected override async Task ActionAsync()
+    protected override async Task ActionAsync(ReqUseItem request, RespUseItem response)
     {
-        var response = new RespUseItem();
-
         try
         {
-            await ComponentAgent.OnUseBagItem(NetWorkChannel, Message as ReqUseItem, response);
+            await ComponentAgent.OnUseBagItem(NetWorkChannel, request, response);
         }
         catch (Exception e)
         {
             LogHelper.Fatal(e);
             response.ErrorCode = (int)OperationStatusCode.InternalServerError;
         }
-
-        response.SetUniqueId(Message.UniqueId);
-        await NetWorkChannel.WriteAsync(response);
     }
 }

@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 using GameFrameX.Apps.Player.Bag.Component;
 using GameFrameX.Apps.Player.Bag.Entity;
 using GameFrameX.Config;
@@ -202,12 +201,14 @@ public class BagComponentAgent : StateComponentAgent<BagComponent, BagState>
     /// <param name="netWorkChannel"></param>
     /// <param name="message"></param>
     /// <param name="response"></param>
-    public void OnReqBagInfoAsync(INetWorkChannel netWorkChannel, ReqBagInfo message, RespBagInfo response)
+    public async Task OnReqBagInfoAsync(INetWorkChannel netWorkChannel, ReqBagInfo message, RespBagInfo response)
     {
         var bagState = OwnerComponent.State;
         if (bagState.IsNotNull())
         {
             response.ItemDic = bagState.List.ToDictionary(x => x.Key, x => x.Value.Count);
         }
+
+        await Task.CompletedTask;
     }
 }

@@ -30,31 +30,24 @@
 // ==========================================================================================
 
 
-
-using GameFrameX.Core.BaseHandler;
-
 namespace GameFrameX.Hotfix.Logic.Player.Bag;
 
 /// <summary>
 /// 减少背包物品
 /// </summary>
 [MessageMapping(typeof(ReqRemoveItem))]
-internal sealed class ReqRemoveItemHandler : PlayerComponentHandler<BagComponentAgent>
+internal sealed class ReqRemoveItemHandler : PlayerRpcComponentHandler<BagComponentAgent, ReqRemoveItem, RespRemoveItem>
 {
-    protected override async Task ActionAsync()
+    protected override async Task ActionAsync(ReqRemoveItem request, RespRemoveItem rsponse)
     {
-        var resp = new RespRemoveItem();
         try
         {
-            await ComponentAgent.OnRemoveBagItem(NetWorkChannel, Message as ReqRemoveItem, resp);
+            await ComponentAgent.OnRemoveBagItem(NetWorkChannel, request, rsponse);
         }
         catch (Exception e)
         {
             LogHelper.Fatal(e);
-            resp.ErrorCode = (int)OperationStatusCode.InternalServerError;
+            rsponse.ErrorCode = (int)OperationStatusCode.InternalServerError;
         }
-
-        resp.SetUniqueId(Message.UniqueId);
-        await NetWorkChannel.WriteAsync(resp);
     }
 }

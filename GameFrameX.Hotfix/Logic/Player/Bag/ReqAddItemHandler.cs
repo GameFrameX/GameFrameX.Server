@@ -30,32 +30,24 @@
 // ==========================================================================================
 
 
-
-using GameFrameX.Core.BaseHandler;
-
 namespace GameFrameX.Hotfix.Logic.Player.Bag;
 
 /// <summary>
 /// 增加背包物品
 /// </summary>
 [MessageMapping(typeof(ReqAddItem))]
-internal sealed class ReqAddItemHandler : PlayerComponentHandler<BagComponentAgent>
+internal sealed class ReqAddItemHandler : PlayerRpcComponentHandler<BagComponentAgent, ReqAddItem, RespAddItem>
 {
-    protected override async Task ActionAsync()
+    protected override async Task ActionAsync(ReqAddItem request, RespAddItem response)
     {
-        var response = new RespAddItem();
-
         try
         {
-            await ComponentAgent.OnAddBagItem(NetWorkChannel, Message as ReqAddItem, response);
+            await ComponentAgent.OnAddBagItem(NetWorkChannel, request, response);
         }
         catch (Exception e)
         {
             LogHelper.Fatal(e);
             response.ErrorCode = (int)OperationStatusCode.InternalServerError;
         }
-
-        response.SetUniqueId(Message.UniqueId);
-        await NetWorkChannel.WriteAsync(response);
     }
 }
