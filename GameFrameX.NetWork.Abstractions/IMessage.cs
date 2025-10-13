@@ -42,4 +42,9 @@ public interface IMessage
     /// <param name="actorId">ActorId</param>
     /// <returns>格式化后的消息字符串</returns>
     string ToFormatMessageString(long actorId = default);
+
+    /// <summary>
+    /// 清除消息内容
+    /// </summary>
+    void Clear();
 }
