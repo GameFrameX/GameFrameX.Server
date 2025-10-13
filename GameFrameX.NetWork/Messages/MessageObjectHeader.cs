@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 using GameFrameX.NetWork.Abstractions;
 using ProtoBuf;
 
@@ -65,4 +64,15 @@ public class MessageObjectHeader : INetworkMessageHeader
     /// </summary>
     [ProtoMember(4)]
     public int UniqueId { get; set; }
+
+    /// <summary>
+    /// 清除消息内容
+    /// </summary>
+    public void Clear()
+    {
+        MessageId = default;
+        OperationType = default;
+        ZipFlag = default;
+        UniqueId = default;
+    }
 }

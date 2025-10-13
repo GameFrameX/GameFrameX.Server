@@ -34,7 +34,7 @@ namespace GameFrameX.NetWork.Abstractions;
 /// <summary>
 /// 网络消息头
 /// </summary>
-public interface INetworkMessageHeader
+public interface INetworkMessageHeader : IMessageObject
 {
     /// <summary>
     /// 消息ID
