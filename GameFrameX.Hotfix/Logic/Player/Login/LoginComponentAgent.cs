@@ -45,7 +45,8 @@ public sealed class LoginComponentAgent : StateComponentAgent<LoginComponent, Lo
     /// </summary>
     /// <param name="workChannel"></param>
     /// <param name="reqLogin"></param>
-    public async Task OnPlayerLogin(INetWorkChannel workChannel, ReqPlayerLogin reqLogin)
+    /// <param name="response"></param>
+    public async Task OnPlayerLogin(INetWorkChannel workChannel, ReqPlayerLogin reqLogin, RespPlayerLogin response)
     {
         var playerState = await OwnerComponent.OnPlayerLogin(reqLogin);
         if (playerState == null)
@@ -55,6 +56,6 @@ public sealed class LoginComponentAgent : StateComponentAgent<LoginComponent, Lo
         }
 
         var playerComponentAgent = await ActorManager.GetComponentAgent<PlayerComponentAgent>(playerState.Id);
-        await playerComponentAgent.OnPlayerLogin(workChannel, playerState, reqLogin.UniqueId);
+        await playerComponentAgent.OnPlayerLogin(workChannel, playerState,  response);
     }
 }

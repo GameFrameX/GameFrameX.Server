@@ -66,25 +66,21 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
     /// <param name="workChannel"></param>
     /// <param name="playerState"></param>
     /// <param name="reqLoginUniqueId"></param>
-    public async Task OnPlayerLogin(INetWorkChannel workChannel, PlayerState playerState, int reqLoginUniqueId)
+    /// <param name="response"></param>
+    public async Task OnPlayerLogin(INetWorkChannel workChannel, PlayerState playerState, RespPlayerLogin response)
     {
         // 更新连接会话数据
         SessionManager.UpdateSession(workChannel.GameAppSession.SessionID, playerState.Id, playerState.Id.ToString());
-        var respPlayerLogin = new RespPlayerLogin
+        response.Code = playerState.State;
+        response.CreateTime = playerState.CreateTime;
+        response.PlayerInfo = new PlayerInfo
         {
-            UniqueId = reqLoginUniqueId,
-            Code = playerState.State,
-            CreateTime = playerState.CreateTime,
-            PlayerInfo = new PlayerInfo
-            {
-                Id = playerState.Id,
-                Name = playerState.Name,
-                Level = playerState.Level,
-                State = playerState.State,
-                Avatar = playerState.Avatar,
-            },
+            Id = playerState.Id,
+            Name = playerState.Name,
+            Level = playerState.Level,
+            State = playerState.State,
+            Avatar = playerState.Avatar,
         };
-        await workChannel.WriteAsync(respPlayerLogin);
 
         //加入在线玩家
         var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();

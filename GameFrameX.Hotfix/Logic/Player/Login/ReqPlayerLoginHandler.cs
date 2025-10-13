@@ -32,10 +32,10 @@
 namespace GameFrameX.Hotfix.Logic.Player.Login;
 
 [MessageMapping(typeof(ReqPlayerLogin))]
-internal sealed class ReqPlayerLoginHandler : GlobalComponentHandler<LoginComponentAgent>
+internal sealed class ReqPlayerLoginHandler : GlobalRpcComponentHandler<LoginComponentAgent, ReqPlayerLogin, RespPlayerLogin>
 {
-    protected override async Task ActionAsync(INetworkMessage message)
+    protected override async Task ActionAsync(ReqPlayerLogin request, RespPlayerLogin response)
     {
-        await ComponentAgent.OnPlayerLogin(NetWorkChannel, Message as ReqPlayerLogin);
+        await ComponentAgent.OnPlayerLogin(NetWorkChannel, request, response);
     }
 }
