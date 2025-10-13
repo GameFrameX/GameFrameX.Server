@@ -29,7 +29,6 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
-using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Options.Attributes;
 using Serilog;
 using Serilog.Events;
@@ -59,8 +58,7 @@ public sealed class LauncherOptions
     /// <para>用于收集和监控应用程序的性能指标数据</para>
     /// <para>默认值为false</para>
     /// </summary>
-    [Option(nameof(IsOpenTelemetryMetrics), Description = "是否启用分布式追踪功能,需要 IsOpenTelemetry 为true时有效,默认值为false")]
-    [DefaultValue(false)]
+    [Option(nameof(IsOpenTelemetryMetrics), DefaultValue = false, Description = "是否启用分布式追踪功能,需要 IsOpenTelemetry 为true时有效,默认值为false")]
     public bool IsOpenTelemetryMetrics { get; set; }
 
     /// <summary>
@@ -68,8 +66,7 @@ public sealed class LauncherOptions
     /// <para>用于跟踪和分析分布式系统中的请求流程</para>
     /// <para>默认值为false</para>
     /// </summary>
-    [Option(nameof(IsOpenTelemetryTracing), Description = "是否启用分布式追踪功能,需要 IsOpenTelemetry为true时有效,默认值为false")]
-    [DefaultValue(false)]
+    [Option(nameof(IsOpenTelemetryTracing), DefaultValue = false, Description = "是否启用分布式追踪功能,需要 IsOpenTelemetry为true时有效,默认值为false")]
     public bool IsOpenTelemetryTracing { get; set; }
 
     /// <summary>
@@ -78,80 +75,68 @@ public sealed class LauncherOptions
     /// <para>启用后可以统一管理指标、追踪和日志等可观测性数据</para>
     /// <para>默认值为false</para>
     /// </summary>
-    [Option(nameof(IsOpenTelemetry), Description = "是否启用OpenTelemetry遥测功能,默认值为false")]
-    [DefaultValue(false)]
+    [Option(nameof(IsOpenTelemetry), DefaultValue = false, Description = "是否启用OpenTelemetry遥测功能,默认值为false")]
     public bool IsOpenTelemetry { get; set; }
 
     /// <summary>
     /// 是否监控打印超时日志
     /// </summary>
-    [Option(nameof(IsMonitorMessageTimeOut), Description = "是否打印超时日志,默认值为false")]
-    [DefaultValue(false)]
+    [Option(nameof(IsMonitorMessageTimeOut), DefaultValue = false, Description = "是否打印超时日志,默认值为false")]
     public bool IsMonitorMessageTimeOut { get; set; }
 
     /// <summary>
     /// 监控处理器超时时间（秒）,默认值为1秒,只有IsMonitorTimeOut为true时有效
     /// </summary>
-    [Option(nameof(MonitorMessageTimeOutSeconds), Description = "处理器超时时间（秒）,默认值为1秒,只有IsMonitorMessageTimeOut为true时有效")]
-    [DefaultValue(1)]
+    [Option(nameof(MonitorMessageTimeOutSeconds), DefaultValue = 1, Description = "处理器超时时间（秒）,默认值为1秒,只有IsMonitorMessageTimeOut为true时有效")]
     public int MonitorMessageTimeOutSeconds { get; set; }
 
     /// <summary>
     /// 网络发送等待超时时间（秒）,默认值为5秒
     /// </summary>
-    [Option(nameof(NetWorkSendTimeOutSeconds), Description = "网络发送等待超时时间（秒）,默认值为5秒,最小值为1秒")]
-    [DefaultValue(5)]
+    [Option(nameof(NetWorkSendTimeOutSeconds), DefaultValue = 5, Description = "网络发送等待超时时间（秒）,默认值为5秒,最小值为1秒")]
     public int NetWorkSendTimeOutSeconds { get; set; }
 
     /// <summary>
     /// 是否是Debug打印日志模式,默认值为false
     /// </summary>
-    [Option(nameof(IsDebug), Description = "是否是Debug打印日志模式,默认值为false")]
-    [DefaultValue(false)]
+    [Option(nameof(IsDebug), DefaultValue = false, Description = "是否是Debug打印日志模式,默认值为false")]
     public bool IsDebug { get; set; }
 
     /// <summary>
     /// 是否打印发送数据,只有在IsDebug为true时有效,默认值为false
     /// </summary>
-    [Option(nameof(IsDebugSend), Description = "是否打印发送数据,只有在IsDebug为true时有效,默认值为false")]
-    [DefaultValue(false)]
+    [Option(nameof(IsDebugSend), DefaultValue = false, Description = "是否打印发送数据,只有在IsDebug为true时有效,默认值为false")]
     public bool IsDebugSend { get; set; }
 
     /// <summary>
     /// 是否打印发送的心跳数据,只有在IsDebugSend为true时有效,默认值为false
     /// </summary>
-    [Option(nameof(IsDebugSendHeartBeat), Description = "是否打印发送的心跳数据,只有在IsDebugSend为true时有效,默认值为false")]
-    [DefaultValue(false)]
+    [Option(nameof(IsDebugSendHeartBeat), DefaultValue = false, Description = "是否打印发送的心跳数据,只有在IsDebugSend为true时有效,默认值为false")]
     public bool IsDebugSendHeartBeat { get; set; }
 
     /// <summary>
     /// 是否打印接收数据,只有在IsDebug为true时有效,默认值为false
     /// </summary>
-    [Option(nameof(IsDebugReceive), Description = "是否打印接收数据,只有在IsDebug为true时有效,默认值为false")]
-    [DefaultValue(false)]
+    [Option(nameof(IsDebugReceive), DefaultValue = false, Description = "是否打印接收数据,只有在IsDebug为true时有效,默认值为false")]
     public bool IsDebugReceive { get; set; }
 
     /// <summary>
     /// 是否打印接收的心跳数据,只有在IsDebugReceive为true时有效,默认值为false
     /// </summary>
-    [Option(nameof(IsDebugReceiveHeartBeat), Description = "是否打印接收的心跳数据,只有在IsDebugReceive为true时有效,默认值为false")]
-    [DefaultValue(false)]
+    [Option(nameof(IsDebugReceiveHeartBeat), DefaultValue = false, Description = "是否打印接收的心跳数据,只有在IsDebugReceive为true时有效,默认值为false")]
     public bool IsDebugReceiveHeartBeat { get; set; }
 
     /// <summary>是否输出到控制台,默认为 true。</summary>
     /// <remarks>控制日志是否同时在控制台显示,便于开发调试。</remarks>
-    [Option(nameof(LogGrafanaLokiUsername), Description = "是否输出到控制台,默认为 false。")]
-    [DefaultValue(false)]
+    [Option(nameof(LogGrafanaLokiUsername), DefaultValue = false, Description = "是否输出到控制台,默认为 false。")]
     public bool LogIsConsole { get; set; } = false;
 
     /// <summary>是否输出到 GrafanaLoki,默认为 false。</summary>
-    [Option(nameof(LogIsGrafanaLoki), Description = "是否输出到 GrafanaLoki,默认为 false。")]
-    [DefaultValue(false)]
+    [Option(nameof(LogIsGrafanaLoki), DefaultValue = false, Description = "是否输出到 GrafanaLoki,默认为 false。")]
     public bool LogIsGrafanaLoki { get; set; }
 
     /// <summary>GrafanaLoki 服务地址,默认为 http://localhost:3100。</summary>
-    [Option(nameof(LogGrafanaLokiUrl), Description = "GrafanaLoki 服务地址,默认为 http://localhost:3100。当LogIsGrafanaLoki为true时生效。")]
-    [DefaultValue("http://localhost:3100")]
+    [Option(nameof(LogGrafanaLokiUrl), DefaultValue = "http://localhost:3100", Description = "GrafanaLoki 服务地址,默认为 http://localhost:3100。当LogIsGrafanaLoki为true时生效。")]
     public string LogGrafanaLokiUrl { get; set; } = "http://localhost:3100";
 
     /// <summary>GrafanaLoki 用户名或Email</summary>
@@ -164,20 +149,17 @@ public sealed class LauncherOptions
 
     /// <summary>日志滚动间隔,默认为每天（Day）。</summary>
     /// <remarks>决定日志文件创建新文件的时间间隔,可以是小时、天、月等。</remarks>
-    [Option(nameof(LogRollingInterval), Description = "日志滚动间隔,默认为每天(Day),日志滚动间隔(可选值：Minute[分], Hour[时], Day[天], Month[月], Year[年], Infinite[无限])")]
-    [DefaultValue(RollingInterval.Day)]
+    [Option(nameof(LogRollingInterval), DefaultValue = RollingInterval.Day, Description = "日志滚动间隔,默认为每天(Day),日志滚动间隔(可选值：Minute[分], Hour[时], Day[天], Month[月], Year[年], Infinite[无限])")]
     public RollingInterval LogRollingInterval { get; set; } = RollingInterval.Day;
 
     /// <summary>日志输出级别,默认为 Debug。</summary>
     /// <remarks>控制日志输出的最低级别,低于此级别的日志将不会被记录。</remarks>
-    [Option(nameof(LogEventLevel), Description = "日志输出级别,默认为 Debug,日志级别(可选值：Verbose[详细], Debug[调试], Information[信息], Warning[警告], Error[错误], Fatal[致命])")]
-    [DefaultValue(LogEventLevel.Debug)]
+    [Option(nameof(LogEventLevel), DefaultValue = LogEventLevel.Debug, Description = "日志输出级别,默认为 Debug,日志级别(可选值：Verbose[详细], Debug[调试], Information[信息], Warning[警告], Error[错误], Fatal[致命])")]
     public LogEventLevel LogEventLevel { get; set; } = LogEventLevel.Debug;
 
     /// <summary>是否限制单个文件大小,默认为 true。</summary>
     /// <remarks>启用此选项可以防止单个日志文件过大。</remarks>
-    [Option(nameof(LogIsFileSizeLimit), Description = "是否限制单个文件大小,默认为 true。")]
-    [DefaultValue(true)]
+    [Option(nameof(LogIsFileSizeLimit), DefaultValue = true, Description = "是否限制单个文件大小,默认为 true。")]
     public bool LogIsFileSizeLimit { get; set; } = true;
 
     /// <summary>
@@ -185,8 +167,7 @@ public sealed class LauncherOptions
     /// 当 IsFileSizeLimit 为 true 时有效。
     /// </summary>
     /// <remarks>当日志文件达到此大小限制时,将创建新的日志文件继续写入。</remarks>
-    [Option(nameof(LogFileSizeLimitBytes), Description = "日志单个文件大小限制,默认为 100MB。当 LogIsFileSizeLimit 为 true 时有效。")]
-    [DefaultValue(104857600)]
+    [Option(nameof(LogFileSizeLimitBytes), DefaultValue = 104857600, Description = "日志单个文件大小限制,默认为 100MB。当 LogIsFileSizeLimit 为 true 时有效。")]
     public int LogFileSizeLimitBytes { get; set; } = 104857600;
 
     /// <summary>
@@ -194,8 +175,7 @@ public sealed class LauncherOptions
     /// 当 设置值为 null 时不限制文件数量
     /// </summary>
     /// <remarks>用于控制历史日志文件的数量,防止占用过多磁盘空间。</remarks>
-    [Option(nameof(LogRetainedFileCountLimit), Description = "日志文件保留数量限制 默认为 31 个文件,即 31 天的日志文件")]
-    [DefaultValue(31)]
+    [Option(nameof(LogRetainedFileCountLimit), DefaultValue = 31, Description = "日志文件保留数量限制 默认为 31 个文件,即 31 天的日志文件")]
     public int LogRetainedFileCountLimit { get; set; } = 31;
 
     /// <summary>
@@ -215,66 +195,58 @@ public sealed class LauncherOptions
     /// <summary>
     /// 保存数据间隔,单位毫秒,默认300秒(5分钟),最小值为5秒(5000毫秒)
     /// </summary>
-    [Option(nameof(SaveDataInterval), Description = "保存数据间隔,单位毫秒,默认300秒(5分钟),最小值为5秒(5000毫秒)")]
-    [DefaultValue(300_000)]
+    [Option(nameof(SaveDataInterval), DefaultValue = 30_000, Description = "保存数据间隔,单位毫秒,默认300秒(5分钟),最小值为5秒(5000毫秒)")]
     public int SaveDataInterval { get; set; }
 
     /// <summary>
     /// 保存数据的批量数量长度,默认为500
     /// </summary>
-    [Option(nameof(SaveDataBatchCount), Description = "保存数据的批量数量长度,默认为500")]
-    [DefaultValue(500)]
+    [Option(nameof(SaveDataBatchCount), DefaultValue = 500, Description = "保存数据的批量数量长度,默认为500")]
     public int SaveDataBatchCount { get; set; } = 500;
 
     /// <summary>
     /// 保存数据的超时时间(毫秒),默认值为30秒
     /// </summary>
-    [Option(nameof(SaveDataBatchTimeOut), Description = "保存数据的超时时间(毫秒),默认值为30秒")]
-    [DefaultValue(30_000)]
+    [Option(nameof(SaveDataBatchTimeOut), DefaultValue = 30_000, Description = "保存数据的超时时间(毫秒),默认值为30秒")]
     public int SaveDataBatchTimeOut { get; set; } = 30_000;
 
     /// <summary>
     /// Actor 执行任务超时时间(毫秒),默认值为30秒
     /// </summary>
-    [Option(nameof(ActorTimeOut), Description = "Actor 执行任务超时时间(毫秒),默认值为30秒")]
-    [DefaultValue(30_000)]
+    [Option(nameof(ActorTimeOut), DefaultValue = 30_000, Description = "Actor 执行任务超时时间(毫秒),默认值为30秒")]
     public int ActorTimeOut { get; set; } = 30_000;
 
     /// <summary>
     /// Actor 执行任务队列超时时间(毫秒),默认值为30秒
     /// </summary>
-    [Option(nameof(ActorQueueTimeOut), Description = "Actor 执行任务队列超时时间(毫秒),默认值为30秒")]
-    [DefaultValue(30_000)]
+    [Option(nameof(ActorQueueTimeOut), DefaultValue = 30_000, Description = "Actor 执行任务队列超时时间(毫秒),默认值为30秒")]
+
     public int ActorQueueTimeOut { get; set; } = 30_000;
 
     /// <summary>
     /// Actor 空闲多久回收,单位分钟,默认值为15分钟,最小值为1分钟,小于1则强制设置为5分钟
     /// </summary>
-    [Option(nameof(ActorRecycleTime), Description = "Actor 空闲多久回收,单位分钟,默认值为15分钟,最小值为1分钟,小于1则强制设置为5分钟")]
-    [DefaultValue(15)]
+    [Option(nameof(ActorRecycleTime), DefaultValue = 15, Description = "Actor 空闲多久回收,单位分钟,默认值为15分钟,最小值为1分钟,小于1则强制设置为5分钟")]
     public int ActorRecycleTime { get; set; } = 15;
 
     /// <summary>
     /// 内部主机地址
     /// </summary>
-    [Option(nameof(InnerHost), Description = "内部IP")]
-    [DefaultValue("0.0.0.0")]
+    [Option(nameof(InnerHost), DefaultValue = "0.0.0.0", Description = "内部IP")]
     // [GrafanaLokiLabelTag]
     public string InnerHost { get; set; }
 
     /// <summary>
     /// 内部端口
     /// </summary>
-    [Option(nameof(InnerPort), Description = "内部端口")]
-    [DefaultValue(8888)]
+    [Option(nameof(InnerPort), DefaultValue = 8888, Description = "内部端口")]
     // [GrafanaLokiLabelTag]
     public ushort InnerPort { get; set; }
 
     /// <summary>
     /// 外部主机地址
     /// </summary>
-    [Option(nameof(OuterHost), Description = "外部IP")]
-    [DefaultValue("0.0.0.0")]
+    [Option(nameof(OuterHost), DefaultValue = "0.0.0.0", Description = "外部IP")]
     // [GrafanaLokiLabelTag]
     public string OuterHost { get; set; }
 
@@ -294,15 +266,13 @@ public sealed class LauncherOptions
     /// <summary>
     /// API接口根路径,必须以/开头和以/结尾,默认为[/game/api/]
     /// </summary>
-    [Option(nameof(HttpUrl), Description = "API接口根路径,必须以/开头和以/结尾,默认为[/game/api/]")]
-    [DefaultValue("/game/api/")]
+    [Option(nameof(HttpUrl), DefaultValue = "/game/api/", Description = "API接口根路径,必须以/开头和以/结尾,默认为[/game/api/]")]
     public string HttpUrl { get; set; }
 
     /// <summary>
     /// HTTP 是否是开发模式,当是开发模式的时候将会启用Swagger
     /// </summary>
-    [Option(nameof(HttpIsDevelopment), Description = "HTTP 是否是开发模式,当是开发模式的时候将会启用Swagger")]
-    [DefaultValue(false)]
+    [Option(nameof(HttpIsDevelopment), DefaultValue = false, Description = "HTTP 是否是开发模式,当是开发模式的时候将会启用Swagger")]
     // [GrafanaLokiLabelTag]
     public bool HttpIsDevelopment { get; set; }
 
@@ -323,8 +293,7 @@ public sealed class LauncherOptions
     /// <para>开启后服务器将监听 WebSocket 端口，允许客户端通过 WebSocket 协议进行连接</para>
     /// <para>默认值为 false，即不启用</para>
     /// </summary>
-    [Option(nameof(IsEnableWebSocket), Description = "是否启用 WebSocket 服务，默认值为 false")]
-    [DefaultValue(false)]
+    [Option(nameof(IsEnableWebSocket), DefaultValue = false, Description = "是否启用 WebSocket 服务，默认值为 false")]
     public bool IsEnableWebSocket { get; set; } = false;
 
     /// <summary>
@@ -398,74 +367,64 @@ public sealed class LauncherOptions
     /// <summary>
     /// 标签名称-用于区分不同环境的服务器,没有实际用途,只是方便运维管理
     /// </summary>
-    [Option(nameof(TagName), Description = "标签名称-用于区分不同环境的服务器,没有实际用途,只是方便运维管理")]
-    [DefaultValue("")]
+    [Option(nameof(TagName), DefaultValue = "", Description = "标签名称-用于区分不同环境的服务器,没有实际用途,只是方便运维管理")]
     [GrafanaLokiLabelTag]
     public string TagName { get; set; }
 
     /// <summary>
     /// 描述信息-用于描述该服务器的用途,没有实际用途,只是方便运维管理
     /// </summary>
-    [Option(nameof(Description), Description = "描述信息-用于描述该服务器的用途,没有实际用途,只是方便运维管理")]
-    [DefaultValue("")]
+    [Option(nameof(Description), DefaultValue = "", Description = "描述信息-用于描述该服务器的用途,没有实际用途,只是方便运维管理")]
     [GrafanaLokiLabelTag]
     public string Description { get; set; }
 
     /// <summary>
     /// 备注信息-用于描述该服务器的备注信息,没有实际用途,只是方便运维管理
     /// </summary>
-    [Option(nameof(Note), Description = "备注信息-用于描述该服务器的备注信息,没有实际用途,只是方便运维管理")]
-    [DefaultValue("")]
+    [Option(nameof(Note), DefaultValue = "", Description = "备注信息-用于描述该服务器的备注信息,没有实际用途,只是方便运维管理")]
     [GrafanaLokiLabelTag]
     public string Note { get; set; }
 
     /// <summary>
     /// 标签信息-用于描述该服务器的标签信息,没有实际用途,只是方便运维管理
     /// </summary>
-    [Option(nameof(Label), Description = "标签信息-用于描述该服务器的标签信息,没有实际用途,只是方便运维管理")]
-    [DefaultValue("")]
+    [Option(nameof(Label), DefaultValue = "", Description = "标签信息-用于描述该服务器的标签信息,没有实际用途,只是方便运维管理")]
     [GrafanaLokiLabelTag]
     public string Label { get; set; }
 
     /// <summary>
     /// 客户端API地址
     /// </summary>
-    [Option(nameof(ClientApiHost), Description = "客户端API地址")]
-    [DefaultValue("")]
+    [Option(nameof(ClientApiHost), DefaultValue = "", Description = "客户端API地址")]
     public string ClientApiHost { get; set; }
 
     /// <summary>
     /// HubAPI地址
     /// </summary>
-    [Option(nameof(HubApiHost), Description = "HubAPI地址")]
-    [DefaultValue("")]
+    [Option(nameof(HubApiHost), DefaultValue = "", Description = "HubAPI地址")]
     public string HubApiHost { get; set; }
 
     /// <summary>
     /// 心跳间隔（毫秒），默认 5000 毫秒
     /// </summary>
-    [Option(nameof(GameAppClientHeartBeatInterval), Description = "心跳间隔（毫秒），默认 5000 毫秒")]
-    [DefaultValue(5000)]
+    [Option(nameof(GameAppClientHeartBeatInterval), DefaultValue = 5000, Description = "心跳间隔（毫秒），默认 5000 毫秒")]
     public int GameAppClientHeartBeatInterval { get; set; } = 5000;
 
     /// <summary>
     /// 连接延迟（毫秒），默认 5000 毫秒
     /// </summary>
-    [Option(nameof(GameAppClientConnectDelay), Description = "连接延迟（毫秒），默认 5000 毫秒")]
-    [DefaultValue(5000)]
+    [Option(nameof(GameAppClientConnectDelay), DefaultValue = 5000, Description = "连接延迟（毫秒），默认 5000 毫秒")]
     public int GameAppClientConnectDelay { get; set; } = 5000;
 
     /// <summary>
     /// 重试延迟（毫秒），默认 5000 毫秒
     /// </summary>
-    [Option(nameof(GameAppClientRetryDelay), Description = "重试延迟（毫秒），默认 5000 毫秒")]
-    [DefaultValue(5000)]
+    [Option(nameof(GameAppClientRetryDelay), DefaultValue = 5000, Description = "重试延迟（毫秒），默认 5000 毫秒")]
     public int GameAppClientRetryDelay { get; set; } = 5000;
 
     /// <summary>
     /// 最大重试次数，默认 -1 表示无限重试
     /// </summary>
-    [Option(nameof(GameAppClientMaxRetryCount), Description = "最大重试次数，默认 -1 表示无限重试")]
-    [DefaultValue(-1)]
+    [Option(nameof(GameAppClientMaxRetryCount), DefaultValue = -1, Description = "最大重试次数，默认 -1 表示无限重试")]
     public int GameAppClientMaxRetryCount { get; set; } = -1;
 }
