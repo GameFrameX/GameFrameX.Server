@@ -85,19 +85,16 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
         }
 
         MessageProtoHelper.SetMessageId(message);
-        var messageObjectHeader = new InnerMessageObjectHeader
-        {
-            ServerId = Setting.ServerId,
-        };
-        var innerNetworkMessage = NetworkMessagePackage.Create(message, messageObjectHeader);
         var buffer = MessageHelper.EncoderHandler.Handler(message);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
-            if (Setting.IsDebugSendHeartBeat || messageObjectHeader.OperationType != (byte)MessageOperationType.HeartBeat)
+            var debugMessage = (MessageObject)message;
+
+            if (Setting.IsDebugSendHeartBeat || debugMessage.OperationType != (byte)MessageOperationType.HeartBeat)
             {
                 var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
                 var toServerType = serverInfo != null ? serverInfo.Type : ServerType;
-                LogHelper.Debug($"---发送[{ServerType} To {toServerType}]  {innerNetworkMessage.ToFormatMessageString()}");
+                LogHelper.Debug($"---发送[{ServerType} To {toServerType}]  {debugMessage.ToFormatMessageString()}");
             }
         }
 
