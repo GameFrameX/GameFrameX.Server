@@ -31,6 +31,7 @@
 
 using System.Diagnostics;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Utility.Setting;
 
@@ -101,7 +102,7 @@ public abstract class BaseRpcMessageHandler<TRequest, TResponse> : IMessageHandl
 
         try
         {
-            var response = Activator.CreateInstance<TResponse>();
+            var response = MessageObjectPoolHelper.Get<TResponse>();
             var requestId = RequestMessage.UniqueId;
 
             var task = InnerActionAsync(RequestMessage, response);

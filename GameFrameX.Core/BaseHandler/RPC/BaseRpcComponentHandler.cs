@@ -32,6 +32,7 @@
 using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Actors;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
 using Serilog;
 
@@ -129,7 +130,7 @@ public abstract class BaseRpcComponentHandler<TRequest, TResponse> : BaseRpcMess
 
         async Task Work()
         {
-            var response = Activator.CreateInstance<TResponse>();
+            var response = MessageObjectPoolHelper.Get<TResponse>();
             var requestId = RequestMessage.UniqueId;
             try
             {
