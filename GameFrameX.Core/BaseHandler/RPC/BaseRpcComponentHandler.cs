@@ -40,6 +40,11 @@ namespace GameFrameX.Core.BaseHandler.RPC;
 /// <summary>
 /// 基础组件处理器基类
 /// </summary>
+/// <typeparam name="TRequest">请求消息类型，必须实现 <see cref="IRequestMessage"/> 接口，且具备无参构造函数</typeparam>
+/// <typeparam name="TResponse">响应消息类型，必须实现 <see cref="IResponseMessage"/> 接口，且具备无参构造函数</typeparam>
+/// <remarks>
+/// 所有具体组件处理器均应继承自此抽象类，以实现统一的组件初始化、超时监控、性能统计与异常处理逻辑。
+/// </remarks>
 public abstract class BaseRpcComponentHandler<TRequest, TResponse> : BaseRpcMessageHandler<TRequest, TResponse> where TRequest : class, IRequestMessage, new() where TResponse : class, IResponseMessage, new()
 {
     /// <summary>
