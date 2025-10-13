@@ -2368,320 +2368,829 @@ references:
   commentId: N:GameFrameX.Core.BaseHandler
   fullName: GameFrameX.Core.BaseHandler
   nameWithType: GameFrameX.Core.BaseHandler
-- uid: GameFrameX.Core.BaseHandler.BaseComponentHandler
-  name: BaseComponentHandler
-  href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html
-  commentId: T:GameFrameX.Core.BaseHandler.BaseComponentHandler
-  fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler
-  nameWithType: BaseComponentHandler
-- uid: GameFrameX.Core.BaseHandler.BaseComponentHandler.ActorId
-  name: ActorId
-  href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html#GameFrameX_Core_BaseHandler_BaseComponentHandler_ActorId
-  commentId: P:GameFrameX.Core.BaseHandler.BaseComponentHandler.ActorId
-  fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler.ActorId
-  nameWithType: BaseComponentHandler.ActorId
-- uid: GameFrameX.Core.BaseHandler.BaseComponentHandler.ActorId*
-  name: ActorId
-  href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html#GameFrameX_Core_BaseHandler_BaseComponentHandler_ActorId_
-  commentId: Overload:GameFrameX.Core.BaseHandler.BaseComponentHandler.ActorId
-  isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler.ActorId
-  nameWithType: BaseComponentHandler.ActorId
-- uid: GameFrameX.Core.BaseHandler.BaseComponentHandler.CacheComponent
-  name: CacheComponent
-  href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html#GameFrameX_Core_BaseHandler_BaseComponentHandler_CacheComponent
-  commentId: P:GameFrameX.Core.BaseHandler.BaseComponentHandler.CacheComponent
-  fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler.CacheComponent
-  nameWithType: BaseComponentHandler.CacheComponent
-- uid: GameFrameX.Core.BaseHandler.BaseComponentHandler.CacheComponent*
-  name: CacheComponent
-  href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html#GameFrameX_Core_BaseHandler_BaseComponentHandler_CacheComponent_
-  commentId: Overload:GameFrameX.Core.BaseHandler.BaseComponentHandler.CacheComponent
-  isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler.CacheComponent
-  nameWithType: BaseComponentHandler.CacheComponent
-- uid: GameFrameX.Core.BaseHandler.BaseComponentHandler.ComponentAgentType
-  name: ComponentAgentType
-  href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html#GameFrameX_Core_BaseHandler_BaseComponentHandler_ComponentAgentType
-  commentId: P:GameFrameX.Core.BaseHandler.BaseComponentHandler.ComponentAgentType
-  fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler.ComponentAgentType
-  nameWithType: BaseComponentHandler.ComponentAgentType
-- uid: GameFrameX.Core.BaseHandler.BaseComponentHandler.ComponentAgentType*
-  name: ComponentAgentType
-  href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html#GameFrameX_Core_BaseHandler_BaseComponentHandler_ComponentAgentType_
-  commentId: Overload:GameFrameX.Core.BaseHandler.BaseComponentHandler.ComponentAgentType
-  isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler.ComponentAgentType
-  nameWithType: BaseComponentHandler.ComponentAgentType
-- uid: GameFrameX.Core.BaseHandler.BaseComponentHandler.GetComponentAgent*
-  name: GetComponentAgent
-  href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html#GameFrameX_Core_BaseHandler_BaseComponentHandler_GetComponentAgent_
-  commentId: Overload:GameFrameX.Core.BaseHandler.BaseComponentHandler.GetComponentAgent
-  isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler.GetComponentAgent
-  nameWithType: BaseComponentHandler.GetComponentAgent
-- uid: GameFrameX.Core.BaseHandler.BaseComponentHandler.GetComponentAgent``1
-  name: GetComponentAgent<TOtherAgent>()
-  href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html#GameFrameX_Core_BaseHandler_BaseComponentHandler_GetComponentAgent__1
-  commentId: M:GameFrameX.Core.BaseHandler.BaseComponentHandler.GetComponentAgent``1
-  name.vb: GetComponentAgent(Of TOtherAgent)()
-  fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler.GetComponentAgent<TOtherAgent>()
-  fullName.vb: GameFrameX.Core.BaseHandler.BaseComponentHandler.GetComponentAgent(Of TOtherAgent)()
-  nameWithType: BaseComponentHandler.GetComponentAgent<TOtherAgent>()
-  nameWithType.vb: BaseComponentHandler.GetComponentAgent(Of TOtherAgent)()
-- uid: GameFrameX.Core.BaseHandler.BaseComponentHandler.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
-  name: Init(INetworkMessage, INetWorkChannel)
-  href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html#GameFrameX_Core_BaseHandler_BaseComponentHandler_Init_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_
-  commentId: M:GameFrameX.Core.BaseHandler.BaseComponentHandler.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
-  fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler.Init(GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel)
-  nameWithType: BaseComponentHandler.Init(INetworkMessage, INetWorkChannel)
-- uid: GameFrameX.Core.BaseHandler.BaseComponentHandler.Init*
-  name: Init
-  href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html#GameFrameX_Core_BaseHandler_BaseComponentHandler_Init_
-  commentId: Overload:GameFrameX.Core.BaseHandler.BaseComponentHandler.Init
-  isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler.Init
-  nameWithType: BaseComponentHandler.Init
-- uid: GameFrameX.Core.BaseHandler.BaseComponentHandler.InitActor
-  name: InitActor()
-  href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html#GameFrameX_Core_BaseHandler_BaseComponentHandler_InitActor
-  commentId: M:GameFrameX.Core.BaseHandler.BaseComponentHandler.InitActor
-  fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler.InitActor()
-  nameWithType: BaseComponentHandler.InitActor()
-- uid: GameFrameX.Core.BaseHandler.BaseComponentHandler.InitActor*
-  name: InitActor
-  href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html#GameFrameX_Core_BaseHandler_BaseComponentHandler_InitActor_
-  commentId: Overload:GameFrameX.Core.BaseHandler.BaseComponentHandler.InitActor
-  isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler.InitActor
-  nameWithType: BaseComponentHandler.InitActor
-- uid: GameFrameX.Core.BaseHandler.BaseComponentHandler.InnerAction(System.Int32,System.Threading.CancellationToken)
-  name: InnerAction(int, CancellationToken)
-  href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html#GameFrameX_Core_BaseHandler_BaseComponentHandler_InnerAction_System_Int32_System_Threading_CancellationToken_
-  commentId: M:GameFrameX.Core.BaseHandler.BaseComponentHandler.InnerAction(System.Int32,System.Threading.CancellationToken)
-  name.vb: InnerAction(Integer, CancellationToken)
-  fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler.InnerAction(int, System.Threading.CancellationToken)
-  fullName.vb: GameFrameX.Core.BaseHandler.BaseComponentHandler.InnerAction(Integer, System.Threading.CancellationToken)
-  nameWithType: BaseComponentHandler.InnerAction(int, CancellationToken)
-  nameWithType.vb: BaseComponentHandler.InnerAction(Integer, CancellationToken)
-- uid: GameFrameX.Core.BaseHandler.BaseComponentHandler.InnerAction*
-  name: InnerAction
-  href: api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html#GameFrameX_Core_BaseHandler_BaseComponentHandler_InnerAction_
-  commentId: Overload:GameFrameX.Core.BaseHandler.BaseComponentHandler.InnerAction
-  isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.BaseComponentHandler.InnerAction
-  nameWithType: BaseComponentHandler.InnerAction
-- uid: GameFrameX.Core.BaseHandler.BaseMessageHandler
-  name: BaseMessageHandler
-  href: api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html
-  commentId: T:GameFrameX.Core.BaseHandler.BaseMessageHandler
-  fullName: GameFrameX.Core.BaseHandler.BaseMessageHandler
-  nameWithType: BaseMessageHandler
-- uid: GameFrameX.Core.BaseHandler.BaseMessageHandler.ActionAsync
-  name: ActionAsync()
-  href: api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_ActionAsync
-  commentId: M:GameFrameX.Core.BaseHandler.BaseMessageHandler.ActionAsync
-  fullName: GameFrameX.Core.BaseHandler.BaseMessageHandler.ActionAsync()
-  nameWithType: BaseMessageHandler.ActionAsync()
-- uid: GameFrameX.Core.BaseHandler.BaseMessageHandler.ActionAsync*
-  name: ActionAsync
-  href: api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_ActionAsync_
-  commentId: Overload:GameFrameX.Core.BaseHandler.BaseMessageHandler.ActionAsync
-  isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.BaseMessageHandler.ActionAsync
-  nameWithType: BaseMessageHandler.ActionAsync
-- uid: GameFrameX.Core.BaseHandler.BaseMessageHandler.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
-  name: Init(INetworkMessage, INetWorkChannel)
-  href: api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_Init_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_
-  commentId: M:GameFrameX.Core.BaseHandler.BaseMessageHandler.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
-  fullName: GameFrameX.Core.BaseHandler.BaseMessageHandler.Init(GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel)
-  nameWithType: BaseMessageHandler.Init(INetworkMessage, INetWorkChannel)
-- uid: GameFrameX.Core.BaseHandler.BaseMessageHandler.Init*
-  name: Init
-  href: api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_Init_
-  commentId: Overload:GameFrameX.Core.BaseHandler.BaseMessageHandler.Init
-  isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.BaseMessageHandler.Init
-  nameWithType: BaseMessageHandler.Init
-- uid: GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerAction(System.Int32,System.Threading.CancellationToken)
-  name: InnerAction(int, CancellationToken)
-  href: api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_InnerAction_System_Int32_System_Threading_CancellationToken_
-  commentId: M:GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerAction(System.Int32,System.Threading.CancellationToken)
-  name.vb: InnerAction(Integer, CancellationToken)
-  fullName: GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerAction(int, System.Threading.CancellationToken)
-  fullName.vb: GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerAction(Integer, System.Threading.CancellationToken)
-  nameWithType: BaseMessageHandler.InnerAction(int, CancellationToken)
-  nameWithType.vb: BaseMessageHandler.InnerAction(Integer, CancellationToken)
-- uid: GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerAction*
-  name: InnerAction
-  href: api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_InnerAction_
-  commentId: Overload:GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerAction
-  isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerAction
-  nameWithType: BaseMessageHandler.InnerAction
-- uid: GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerActionAsync
-  name: InnerActionAsync()
-  href: api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_InnerActionAsync
-  commentId: M:GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerActionAsync
-  fullName: GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerActionAsync()
-  nameWithType: BaseMessageHandler.InnerActionAsync()
-- uid: GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerActionAsync*
-  name: InnerActionAsync
-  href: api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_InnerActionAsync_
-  commentId: Overload:GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerActionAsync
-  isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.BaseMessageHandler.InnerActionAsync
-  nameWithType: BaseMessageHandler.InnerActionAsync
-- uid: GameFrameX.Core.BaseHandler.BaseMessageHandler.Message
-  name: Message
-  href: api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_Message
-  commentId: P:GameFrameX.Core.BaseHandler.BaseMessageHandler.Message
-  fullName: GameFrameX.Core.BaseHandler.BaseMessageHandler.Message
-  nameWithType: BaseMessageHandler.Message
-- uid: GameFrameX.Core.BaseHandler.BaseMessageHandler.Message*
-  name: Message
-  href: api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_Message_
-  commentId: Overload:GameFrameX.Core.BaseHandler.BaseMessageHandler.Message
-  isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.BaseMessageHandler.Message
-  nameWithType: BaseMessageHandler.Message
-- uid: GameFrameX.Core.BaseHandler.BaseMessageHandler.NetWorkChannel
-  name: NetWorkChannel
-  href: api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_NetWorkChannel
-  commentId: P:GameFrameX.Core.BaseHandler.BaseMessageHandler.NetWorkChannel
-  fullName: GameFrameX.Core.BaseHandler.BaseMessageHandler.NetWorkChannel
-  nameWithType: BaseMessageHandler.NetWorkChannel
-- uid: GameFrameX.Core.BaseHandler.BaseMessageHandler.NetWorkChannel*
-  name: NetWorkChannel
-  href: api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_NetWorkChannel_
-  commentId: Overload:GameFrameX.Core.BaseHandler.BaseMessageHandler.NetWorkChannel
-  isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.BaseMessageHandler.NetWorkChannel
-  nameWithType: BaseMessageHandler.NetWorkChannel
-- uid: GameFrameX.Core.BaseHandler.GlobalComponentHandler
-  name: GlobalComponentHandler
-  href: api/GameFrameX.Core.BaseHandler.GlobalComponentHandler.html
-  commentId: T:GameFrameX.Core.BaseHandler.GlobalComponentHandler
-  fullName: GameFrameX.Core.BaseHandler.GlobalComponentHandler
-  nameWithType: GlobalComponentHandler
-- uid: GameFrameX.Core.BaseHandler.GlobalComponentHandler.InitActor
-  name: InitActor()
-  href: api/GameFrameX.Core.BaseHandler.GlobalComponentHandler.html#GameFrameX_Core_BaseHandler_GlobalComponentHandler_InitActor
-  commentId: M:GameFrameX.Core.BaseHandler.GlobalComponentHandler.InitActor
-  fullName: GameFrameX.Core.BaseHandler.GlobalComponentHandler.InitActor()
-  nameWithType: GlobalComponentHandler.InitActor()
-- uid: GameFrameX.Core.BaseHandler.GlobalComponentHandler.InitActor*
-  name: InitActor
-  href: api/GameFrameX.Core.BaseHandler.GlobalComponentHandler.html#GameFrameX_Core_BaseHandler_GlobalComponentHandler_InitActor_
-  commentId: Overload:GameFrameX.Core.BaseHandler.GlobalComponentHandler.InitActor
-  isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.GlobalComponentHandler.InitActor
-  nameWithType: GlobalComponentHandler.InitActor
 - uid: GameFrameX.Core.BaseHandler.GlobalComponentHandler`1
-  name: GlobalComponentHandler<T>
+  name: GlobalComponentHandler<TRequest>
   href: api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-1.html
   commentId: T:GameFrameX.Core.BaseHandler.GlobalComponentHandler`1
-  name.vb: GlobalComponentHandler(Of T)
-  fullName: GameFrameX.Core.BaseHandler.GlobalComponentHandler<T>
-  fullName.vb: GameFrameX.Core.BaseHandler.GlobalComponentHandler(Of T)
-  nameWithType: GlobalComponentHandler<T>
-  nameWithType.vb: GlobalComponentHandler(Of T)
-- uid: GameFrameX.Core.BaseHandler.GlobalComponentHandler`1.ComponentAgent
-  name: ComponentAgent
-  href: api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-1.html#GameFrameX_Core_BaseHandler_GlobalComponentHandler_1_ComponentAgent
-  commentId: P:GameFrameX.Core.BaseHandler.GlobalComponentHandler`1.ComponentAgent
-  fullName: GameFrameX.Core.BaseHandler.GlobalComponentHandler<T>.ComponentAgent
-  fullName.vb: GameFrameX.Core.BaseHandler.GlobalComponentHandler(Of T).ComponentAgent
-  nameWithType: GlobalComponentHandler<T>.ComponentAgent
-  nameWithType.vb: GlobalComponentHandler(Of T).ComponentAgent
-- uid: GameFrameX.Core.BaseHandler.GlobalComponentHandler`1.ComponentAgent*
-  name: ComponentAgent
-  href: api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-1.html#GameFrameX_Core_BaseHandler_GlobalComponentHandler_1_ComponentAgent_
-  commentId: Overload:GameFrameX.Core.BaseHandler.GlobalComponentHandler`1.ComponentAgent
-  isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.GlobalComponentHandler<T>.ComponentAgent
-  fullName.vb: GameFrameX.Core.BaseHandler.GlobalComponentHandler(Of T).ComponentAgent
-  nameWithType: GlobalComponentHandler<T>.ComponentAgent
-  nameWithType.vb: GlobalComponentHandler(Of T).ComponentAgent
-- uid: GameFrameX.Core.BaseHandler.GlobalComponentHandler`1.ComponentAgentType
-  name: ComponentAgentType
-  href: api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-1.html#GameFrameX_Core_BaseHandler_GlobalComponentHandler_1_ComponentAgentType
-  commentId: P:GameFrameX.Core.BaseHandler.GlobalComponentHandler`1.ComponentAgentType
-  fullName: GameFrameX.Core.BaseHandler.GlobalComponentHandler<T>.ComponentAgentType
-  fullName.vb: GameFrameX.Core.BaseHandler.GlobalComponentHandler(Of T).ComponentAgentType
-  nameWithType: GlobalComponentHandler<T>.ComponentAgentType
-  nameWithType.vb: GlobalComponentHandler(Of T).ComponentAgentType
-- uid: GameFrameX.Core.BaseHandler.GlobalComponentHandler`1.ComponentAgentType*
-  name: ComponentAgentType
-  href: api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-1.html#GameFrameX_Core_BaseHandler_GlobalComponentHandler_1_ComponentAgentType_
-  commentId: Overload:GameFrameX.Core.BaseHandler.GlobalComponentHandler`1.ComponentAgentType
-  isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.GlobalComponentHandler<T>.ComponentAgentType
-  fullName.vb: GameFrameX.Core.BaseHandler.GlobalComponentHandler(Of T).ComponentAgentType
-  nameWithType: GlobalComponentHandler<T>.ComponentAgentType
-  nameWithType.vb: GlobalComponentHandler(Of T).ComponentAgentType
-- uid: GameFrameX.Core.BaseHandler.PlayerComponentHandler
-  name: PlayerComponentHandler
-  href: api/GameFrameX.Core.BaseHandler.PlayerComponentHandler.html
-  commentId: T:GameFrameX.Core.BaseHandler.PlayerComponentHandler
-  fullName: GameFrameX.Core.BaseHandler.PlayerComponentHandler
-  nameWithType: PlayerComponentHandler
-- uid: GameFrameX.Core.BaseHandler.PlayerComponentHandler.InitActor
+  name.vb: GlobalComponentHandler(Of TRequest)
+  fullName: GameFrameX.Core.BaseHandler.GlobalComponentHandler<TRequest>
+  fullName.vb: GameFrameX.Core.BaseHandler.GlobalComponentHandler(Of TRequest)
+  nameWithType: GlobalComponentHandler<TRequest>
+  nameWithType.vb: GlobalComponentHandler(Of TRequest)
+- uid: GameFrameX.Core.BaseHandler.GlobalComponentHandler`1.InitActor
   name: InitActor()
-  href: api/GameFrameX.Core.BaseHandler.PlayerComponentHandler.html#GameFrameX_Core_BaseHandler_PlayerComponentHandler_InitActor
-  commentId: M:GameFrameX.Core.BaseHandler.PlayerComponentHandler.InitActor
-  fullName: GameFrameX.Core.BaseHandler.PlayerComponentHandler.InitActor()
-  nameWithType: PlayerComponentHandler.InitActor()
-- uid: GameFrameX.Core.BaseHandler.PlayerComponentHandler.InitActor*
+  href: api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-1.html#GameFrameX_Core_BaseHandler_GlobalComponentHandler_1_InitActor
+  commentId: M:GameFrameX.Core.BaseHandler.GlobalComponentHandler`1.InitActor
+  fullName: GameFrameX.Core.BaseHandler.GlobalComponentHandler<TRequest>.InitActor()
+  fullName.vb: GameFrameX.Core.BaseHandler.GlobalComponentHandler(Of TRequest).InitActor()
+  nameWithType: GlobalComponentHandler<TRequest>.InitActor()
+  nameWithType.vb: GlobalComponentHandler(Of TRequest).InitActor()
+- uid: GameFrameX.Core.BaseHandler.GlobalComponentHandler`1.InitActor*
   name: InitActor
-  href: api/GameFrameX.Core.BaseHandler.PlayerComponentHandler.html#GameFrameX_Core_BaseHandler_PlayerComponentHandler_InitActor_
-  commentId: Overload:GameFrameX.Core.BaseHandler.PlayerComponentHandler.InitActor
+  href: api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-1.html#GameFrameX_Core_BaseHandler_GlobalComponentHandler_1_InitActor_
+  commentId: Overload:GameFrameX.Core.BaseHandler.GlobalComponentHandler`1.InitActor
   isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.PlayerComponentHandler.InitActor
-  nameWithType: PlayerComponentHandler.InitActor
+  fullName: GameFrameX.Core.BaseHandler.GlobalComponentHandler<TRequest>.InitActor
+  fullName.vb: GameFrameX.Core.BaseHandler.GlobalComponentHandler(Of TRequest).InitActor
+  nameWithType: GlobalComponentHandler<TRequest>.InitActor
+  nameWithType.vb: GlobalComponentHandler(Of TRequest).InitActor
+- uid: GameFrameX.Core.BaseHandler.GlobalComponentHandler`2
+  name: GlobalComponentHandler<T, TRequest>
+  href: api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-2.html
+  commentId: T:GameFrameX.Core.BaseHandler.GlobalComponentHandler`2
+  name.vb: GlobalComponentHandler(Of T, TRequest)
+  fullName: GameFrameX.Core.BaseHandler.GlobalComponentHandler<T, TRequest>
+  fullName.vb: GameFrameX.Core.BaseHandler.GlobalComponentHandler(Of T, TRequest)
+  nameWithType: GlobalComponentHandler<T, TRequest>
+  nameWithType.vb: GlobalComponentHandler(Of T, TRequest)
+- uid: GameFrameX.Core.BaseHandler.GlobalComponentHandler`2.ComponentAgent
+  name: ComponentAgent
+  href: api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-2.html#GameFrameX_Core_BaseHandler_GlobalComponentHandler_2_ComponentAgent
+  commentId: P:GameFrameX.Core.BaseHandler.GlobalComponentHandler`2.ComponentAgent
+  fullName: GameFrameX.Core.BaseHandler.GlobalComponentHandler<T, TRequest>.ComponentAgent
+  fullName.vb: GameFrameX.Core.BaseHandler.GlobalComponentHandler(Of T, TRequest).ComponentAgent
+  nameWithType: GlobalComponentHandler<T, TRequest>.ComponentAgent
+  nameWithType.vb: GlobalComponentHandler(Of T, TRequest).ComponentAgent
+- uid: GameFrameX.Core.BaseHandler.GlobalComponentHandler`2.ComponentAgent*
+  name: ComponentAgent
+  href: api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-2.html#GameFrameX_Core_BaseHandler_GlobalComponentHandler_2_ComponentAgent_
+  commentId: Overload:GameFrameX.Core.BaseHandler.GlobalComponentHandler`2.ComponentAgent
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.GlobalComponentHandler<T, TRequest>.ComponentAgent
+  fullName.vb: GameFrameX.Core.BaseHandler.GlobalComponentHandler(Of T, TRequest).ComponentAgent
+  nameWithType: GlobalComponentHandler<T, TRequest>.ComponentAgent
+  nameWithType.vb: GlobalComponentHandler(Of T, TRequest).ComponentAgent
+- uid: GameFrameX.Core.BaseHandler.GlobalComponentHandler`2.ComponentAgentType
+  name: ComponentAgentType
+  href: api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-2.html#GameFrameX_Core_BaseHandler_GlobalComponentHandler_2_ComponentAgentType
+  commentId: P:GameFrameX.Core.BaseHandler.GlobalComponentHandler`2.ComponentAgentType
+  fullName: GameFrameX.Core.BaseHandler.GlobalComponentHandler<T, TRequest>.ComponentAgentType
+  fullName.vb: GameFrameX.Core.BaseHandler.GlobalComponentHandler(Of T, TRequest).ComponentAgentType
+  nameWithType: GlobalComponentHandler<T, TRequest>.ComponentAgentType
+  nameWithType.vb: GlobalComponentHandler(Of T, TRequest).ComponentAgentType
+- uid: GameFrameX.Core.BaseHandler.GlobalComponentHandler`2.ComponentAgentType*
+  name: ComponentAgentType
+  href: api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-2.html#GameFrameX_Core_BaseHandler_GlobalComponentHandler_2_ComponentAgentType_
+  commentId: Overload:GameFrameX.Core.BaseHandler.GlobalComponentHandler`2.ComponentAgentType
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.GlobalComponentHandler<T, TRequest>.ComponentAgentType
+  fullName.vb: GameFrameX.Core.BaseHandler.GlobalComponentHandler(Of T, TRequest).ComponentAgentType
+  nameWithType: GlobalComponentHandler<T, TRequest>.ComponentAgentType
+  nameWithType.vb: GlobalComponentHandler(Of T, TRequest).ComponentAgentType
+- uid: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler`2
+  name: GlobalRpcComponentHandler<TRequest, TResponse>
+  href: api/GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler-2.html
+  commentId: T:GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler`2
+  name.vb: GlobalRpcComponentHandler(Of TRequest, TResponse)
+  fullName: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler<TRequest, TResponse>
+  fullName.vb: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler(Of TRequest, TResponse)
+  nameWithType: GlobalRpcComponentHandler<TRequest, TResponse>
+  nameWithType.vb: GlobalRpcComponentHandler(Of TRequest, TResponse)
+- uid: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler`2.InitActor
+  name: InitActor()
+  href: api/GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_GlobalRpcComponentHandler_2_InitActor
+  commentId: M:GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler`2.InitActor
+  fullName: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler<TRequest, TResponse>.InitActor()
+  fullName.vb: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler(Of TRequest, TResponse).InitActor()
+  nameWithType: GlobalRpcComponentHandler<TRequest, TResponse>.InitActor()
+  nameWithType.vb: GlobalRpcComponentHandler(Of TRequest, TResponse).InitActor()
+- uid: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler`2.InitActor*
+  name: InitActor
+  href: api/GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_GlobalRpcComponentHandler_2_InitActor_
+  commentId: Overload:GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler`2.InitActor
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler<TRequest, TResponse>.InitActor
+  fullName.vb: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler(Of TRequest, TResponse).InitActor
+  nameWithType: GlobalRpcComponentHandler<TRequest, TResponse>.InitActor
+  nameWithType.vb: GlobalRpcComponentHandler(Of TRequest, TResponse).InitActor
+- uid: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler`3
+  name: GlobalRpcComponentHandler<T, TRequest, TResponse>
+  href: api/GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler-3.html
+  commentId: T:GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler`3
+  name.vb: GlobalRpcComponentHandler(Of T, TRequest, TResponse)
+  fullName: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler<T, TRequest, TResponse>
+  fullName.vb: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler(Of T, TRequest, TResponse)
+  nameWithType: GlobalRpcComponentHandler<T, TRequest, TResponse>
+  nameWithType.vb: GlobalRpcComponentHandler(Of T, TRequest, TResponse)
+- uid: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler`3.ComponentAgent
+  name: ComponentAgent
+  href: api/GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler-3.html#GameFrameX_Core_BaseHandler_GlobalRpcComponentHandler_3_ComponentAgent
+  commentId: P:GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler`3.ComponentAgent
+  fullName: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler<T, TRequest, TResponse>.ComponentAgent
+  fullName.vb: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler(Of T, TRequest, TResponse).ComponentAgent
+  nameWithType: GlobalRpcComponentHandler<T, TRequest, TResponse>.ComponentAgent
+  nameWithType.vb: GlobalRpcComponentHandler(Of T, TRequest, TResponse).ComponentAgent
+- uid: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler`3.ComponentAgent*
+  name: ComponentAgent
+  href: api/GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler-3.html#GameFrameX_Core_BaseHandler_GlobalRpcComponentHandler_3_ComponentAgent_
+  commentId: Overload:GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler`3.ComponentAgent
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler<T, TRequest, TResponse>.ComponentAgent
+  fullName.vb: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler(Of T, TRequest, TResponse).ComponentAgent
+  nameWithType: GlobalRpcComponentHandler<T, TRequest, TResponse>.ComponentAgent
+  nameWithType.vb: GlobalRpcComponentHandler(Of T, TRequest, TResponse).ComponentAgent
+- uid: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler`3.ComponentAgentType
+  name: ComponentAgentType
+  href: api/GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler-3.html#GameFrameX_Core_BaseHandler_GlobalRpcComponentHandler_3_ComponentAgentType
+  commentId: P:GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler`3.ComponentAgentType
+  fullName: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler<T, TRequest, TResponse>.ComponentAgentType
+  fullName.vb: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler(Of T, TRequest, TResponse).ComponentAgentType
+  nameWithType: GlobalRpcComponentHandler<T, TRequest, TResponse>.ComponentAgentType
+  nameWithType.vb: GlobalRpcComponentHandler(Of T, TRequest, TResponse).ComponentAgentType
+- uid: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler`3.ComponentAgentType*
+  name: ComponentAgentType
+  href: api/GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler-3.html#GameFrameX_Core_BaseHandler_GlobalRpcComponentHandler_3_ComponentAgentType_
+  commentId: Overload:GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler`3.ComponentAgentType
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler<T, TRequest, TResponse>.ComponentAgentType
+  fullName.vb: GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler(Of T, TRequest, TResponse).ComponentAgentType
+  nameWithType: GlobalRpcComponentHandler<T, TRequest, TResponse>.ComponentAgentType
+  nameWithType.vb: GlobalRpcComponentHandler(Of T, TRequest, TResponse).ComponentAgentType
+- uid: GameFrameX.Core.BaseHandler.Normal
+  name: GameFrameX.Core.BaseHandler.Normal
+  href: api/GameFrameX.Core.BaseHandler.Normal.html
+  commentId: N:GameFrameX.Core.BaseHandler.Normal
+  fullName: GameFrameX.Core.BaseHandler.Normal
+  nameWithType: GameFrameX.Core.BaseHandler.Normal
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1
+  name: BaseComponentHandler<TRequest>
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html
+  commentId: T:GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1
+  name.vb: BaseComponentHandler(Of TRequest)
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler<TRequest>
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler(Of TRequest)
+  nameWithType: BaseComponentHandler<TRequest>
+  nameWithType.vb: BaseComponentHandler(Of TRequest)
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.ActorId
+  name: ActorId
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_ActorId
+  commentId: P:GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.ActorId
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler<TRequest>.ActorId
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler(Of TRequest).ActorId
+  nameWithType: BaseComponentHandler<TRequest>.ActorId
+  nameWithType.vb: BaseComponentHandler(Of TRequest).ActorId
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.ActorId*
+  name: ActorId
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_ActorId_
+  commentId: Overload:GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.ActorId
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler<TRequest>.ActorId
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler(Of TRequest).ActorId
+  nameWithType: BaseComponentHandler<TRequest>.ActorId
+  nameWithType.vb: BaseComponentHandler(Of TRequest).ActorId
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.CacheComponent
+  name: CacheComponent
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_CacheComponent
+  commentId: P:GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.CacheComponent
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler<TRequest>.CacheComponent
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler(Of TRequest).CacheComponent
+  nameWithType: BaseComponentHandler<TRequest>.CacheComponent
+  nameWithType.vb: BaseComponentHandler(Of TRequest).CacheComponent
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.CacheComponent*
+  name: CacheComponent
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_CacheComponent_
+  commentId: Overload:GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.CacheComponent
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler<TRequest>.CacheComponent
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler(Of TRequest).CacheComponent
+  nameWithType: BaseComponentHandler<TRequest>.CacheComponent
+  nameWithType.vb: BaseComponentHandler(Of TRequest).CacheComponent
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.ComponentAgentType
+  name: ComponentAgentType
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_ComponentAgentType
+  commentId: P:GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.ComponentAgentType
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler<TRequest>.ComponentAgentType
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler(Of TRequest).ComponentAgentType
+  nameWithType: BaseComponentHandler<TRequest>.ComponentAgentType
+  nameWithType.vb: BaseComponentHandler(Of TRequest).ComponentAgentType
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.ComponentAgentType*
+  name: ComponentAgentType
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_ComponentAgentType_
+  commentId: Overload:GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.ComponentAgentType
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler<TRequest>.ComponentAgentType
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler(Of TRequest).ComponentAgentType
+  nameWithType: BaseComponentHandler<TRequest>.ComponentAgentType
+  nameWithType.vb: BaseComponentHandler(Of TRequest).ComponentAgentType
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.GetComponentAgent*
+  name: GetComponentAgent
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_GetComponentAgent_
+  commentId: Overload:GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.GetComponentAgent
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler<TRequest>.GetComponentAgent
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler(Of TRequest).GetComponentAgent
+  nameWithType: BaseComponentHandler<TRequest>.GetComponentAgent
+  nameWithType.vb: BaseComponentHandler(Of TRequest).GetComponentAgent
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.GetComponentAgent``1
+  name: GetComponentAgent<TOtherAgent>()
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_GetComponentAgent__1
+  commentId: M:GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.GetComponentAgent``1
+  name.vb: GetComponentAgent(Of TOtherAgent)()
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler<TRequest>.GetComponentAgent<TOtherAgent>()
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler(Of TRequest).GetComponentAgent(Of TOtherAgent)()
+  nameWithType: BaseComponentHandler<TRequest>.GetComponentAgent<TOtherAgent>()
+  nameWithType.vb: BaseComponentHandler(Of TRequest).GetComponentAgent(Of TOtherAgent)()
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  name: Init(INetworkMessage, INetWorkChannel)
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_Init_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_
+  commentId: M:GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler<TRequest>.Init(GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler(Of TRequest).Init(GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  nameWithType: BaseComponentHandler<TRequest>.Init(INetworkMessage, INetWorkChannel)
+  nameWithType.vb: BaseComponentHandler(Of TRequest).Init(INetworkMessage, INetWorkChannel)
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.Init*
+  name: Init
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_Init_
+  commentId: Overload:GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.Init
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler<TRequest>.Init
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler(Of TRequest).Init
+  nameWithType: BaseComponentHandler<TRequest>.Init
+  nameWithType.vb: BaseComponentHandler(Of TRequest).Init
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.InitActor
+  name: InitActor()
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_InitActor
+  commentId: M:GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.InitActor
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler<TRequest>.InitActor()
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler(Of TRequest).InitActor()
+  nameWithType: BaseComponentHandler<TRequest>.InitActor()
+  nameWithType.vb: BaseComponentHandler(Of TRequest).InitActor()
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.InitActor*
+  name: InitActor
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_InitActor_
+  commentId: Overload:GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.InitActor
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler<TRequest>.InitActor
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler(Of TRequest).InitActor
+  nameWithType: BaseComponentHandler<TRequest>.InitActor
+  nameWithType.vb: BaseComponentHandler(Of TRequest).InitActor
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.InnerAction(System.Int32,System.Threading.CancellationToken)
+  name: InnerAction(int, CancellationToken)
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_InnerAction_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.InnerAction(System.Int32,System.Threading.CancellationToken)
+  name.vb: InnerAction(Integer, CancellationToken)
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler<TRequest>.InnerAction(int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler(Of TRequest).InnerAction(Integer, System.Threading.CancellationToken)
+  nameWithType: BaseComponentHandler<TRequest>.InnerAction(int, CancellationToken)
+  nameWithType.vb: BaseComponentHandler(Of TRequest).InnerAction(Integer, CancellationToken)
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.InnerAction*
+  name: InnerAction
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_InnerAction_
+  commentId: Overload:GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler`1.InnerAction
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler<TRequest>.InnerAction
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler(Of TRequest).InnerAction
+  nameWithType: BaseComponentHandler<TRequest>.InnerAction
+  nameWithType.vb: BaseComponentHandler(Of TRequest).InnerAction
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1
+  name: BaseMessageHandler<TRequest>
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html
+  commentId: T:GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1
+  name.vb: BaseMessageHandler(Of TRequest)
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler(Of TRequest)
+  nameWithType: BaseMessageHandler<TRequest>
+  nameWithType.vb: BaseMessageHandler(Of TRequest)
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.ActionAsync(`0)
+  name: ActionAsync(TRequest)
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_ActionAsync__0_
+  commentId: M:GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.ActionAsync(`0)
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>.ActionAsync(TRequest)
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler(Of TRequest).ActionAsync(TRequest)
+  nameWithType: BaseMessageHandler<TRequest>.ActionAsync(TRequest)
+  nameWithType.vb: BaseMessageHandler(Of TRequest).ActionAsync(TRequest)
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.ActionAsync*
+  name: ActionAsync
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_ActionAsync_
+  commentId: Overload:GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.ActionAsync
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>.ActionAsync
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler(Of TRequest).ActionAsync
+  nameWithType: BaseMessageHandler<TRequest>.ActionAsync
+  nameWithType.vb: BaseMessageHandler(Of TRequest).ActionAsync
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.GetMessageType
+  name: GetMessageType()
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_GetMessageType
+  commentId: M:GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.GetMessageType
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>.GetMessageType()
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler(Of TRequest).GetMessageType()
+  nameWithType: BaseMessageHandler<TRequest>.GetMessageType()
+  nameWithType.vb: BaseMessageHandler(Of TRequest).GetMessageType()
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.GetMessageType*
+  name: GetMessageType
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_GetMessageType_
+  commentId: Overload:GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.GetMessageType
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>.GetMessageType
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler(Of TRequest).GetMessageType
+  nameWithType: BaseMessageHandler<TRequest>.GetMessageType
+  nameWithType.vb: BaseMessageHandler(Of TRequest).GetMessageType
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.GetResponseType
+  name: GetResponseType()
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_GetResponseType
+  commentId: M:GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.GetResponseType
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>.GetResponseType()
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler(Of TRequest).GetResponseType()
+  nameWithType: BaseMessageHandler<TRequest>.GetResponseType()
+  nameWithType.vb: BaseMessageHandler(Of TRequest).GetResponseType()
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.GetResponseType*
+  name: GetResponseType
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_GetResponseType_
+  commentId: Overload:GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.GetResponseType
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>.GetResponseType
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler(Of TRequest).GetResponseType
+  nameWithType: BaseMessageHandler<TRequest>.GetResponseType
+  nameWithType.vb: BaseMessageHandler(Of TRequest).GetResponseType
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  name: Init(INetworkMessage, INetWorkChannel)
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_Init_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_
+  commentId: M:GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>.Init(GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler(Of TRequest).Init(GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  nameWithType: BaseMessageHandler<TRequest>.Init(INetworkMessage, INetWorkChannel)
+  nameWithType.vb: BaseMessageHandler(Of TRequest).Init(INetworkMessage, INetWorkChannel)
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.Init*
+  name: Init
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_Init_
+  commentId: Overload:GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.Init
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>.Init
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler(Of TRequest).Init
+  nameWithType: BaseMessageHandler<TRequest>.Init
+  nameWithType.vb: BaseMessageHandler(Of TRequest).Init
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.InnerAction(System.Int32,System.Threading.CancellationToken)
+  name: InnerAction(int, CancellationToken)
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_InnerAction_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.InnerAction(System.Int32,System.Threading.CancellationToken)
+  name.vb: InnerAction(Integer, CancellationToken)
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>.InnerAction(int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler(Of TRequest).InnerAction(Integer, System.Threading.CancellationToken)
+  nameWithType: BaseMessageHandler<TRequest>.InnerAction(int, CancellationToken)
+  nameWithType.vb: BaseMessageHandler(Of TRequest).InnerAction(Integer, CancellationToken)
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.InnerAction*
+  name: InnerAction
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_InnerAction_
+  commentId: Overload:GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.InnerAction
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>.InnerAction
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler(Of TRequest).InnerAction
+  nameWithType: BaseMessageHandler<TRequest>.InnerAction
+  nameWithType.vb: BaseMessageHandler(Of TRequest).InnerAction
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.InnerActionAsync(`0)
+  name: InnerActionAsync(TRequest)
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_InnerActionAsync__0_
+  commentId: M:GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.InnerActionAsync(`0)
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>.InnerActionAsync(TRequest)
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler(Of TRequest).InnerActionAsync(TRequest)
+  nameWithType: BaseMessageHandler<TRequest>.InnerActionAsync(TRequest)
+  nameWithType.vb: BaseMessageHandler(Of TRequest).InnerActionAsync(TRequest)
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.InnerActionAsync*
+  name: InnerActionAsync
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_InnerActionAsync_
+  commentId: Overload:GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.InnerActionAsync
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>.InnerActionAsync
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler(Of TRequest).InnerActionAsync
+  nameWithType: BaseMessageHandler<TRequest>.InnerActionAsync
+  nameWithType.vb: BaseMessageHandler(Of TRequest).InnerActionAsync
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.Message
+  name: Message
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_Message
+  commentId: P:GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.Message
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>.Message
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler(Of TRequest).Message
+  nameWithType: BaseMessageHandler<TRequest>.Message
+  nameWithType.vb: BaseMessageHandler(Of TRequest).Message
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.Message*
+  name: Message
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_Message_
+  commentId: Overload:GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.Message
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>.Message
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler(Of TRequest).Message
+  nameWithType: BaseMessageHandler<TRequest>.Message
+  nameWithType.vb: BaseMessageHandler(Of TRequest).Message
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.NetWorkChannel
+  name: NetWorkChannel
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_NetWorkChannel
+  commentId: P:GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.NetWorkChannel
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>.NetWorkChannel
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler(Of TRequest).NetWorkChannel
+  nameWithType: BaseMessageHandler<TRequest>.NetWorkChannel
+  nameWithType.vb: BaseMessageHandler(Of TRequest).NetWorkChannel
+- uid: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.NetWorkChannel*
+  name: NetWorkChannel
+  href: api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_NetWorkChannel_
+  commentId: Overload:GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.NetWorkChannel
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>.NetWorkChannel
+  fullName.vb: GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler(Of TRequest).NetWorkChannel
+  nameWithType: BaseMessageHandler<TRequest>.NetWorkChannel
+  nameWithType.vb: BaseMessageHandler(Of TRequest).NetWorkChannel
 - uid: GameFrameX.Core.BaseHandler.PlayerComponentHandler`1
-  name: PlayerComponentHandler<T>
+  name: PlayerComponentHandler<TRequest>
   href: api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-1.html
   commentId: T:GameFrameX.Core.BaseHandler.PlayerComponentHandler`1
-  name.vb: PlayerComponentHandler(Of T)
-  fullName: GameFrameX.Core.BaseHandler.PlayerComponentHandler<T>
-  fullName.vb: GameFrameX.Core.BaseHandler.PlayerComponentHandler(Of T)
-  nameWithType: PlayerComponentHandler<T>
-  nameWithType.vb: PlayerComponentHandler(Of T)
-- uid: GameFrameX.Core.BaseHandler.PlayerComponentHandler`1.ComponentAgent
-  name: ComponentAgent
-  href: api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-1.html#GameFrameX_Core_BaseHandler_PlayerComponentHandler_1_ComponentAgent
-  commentId: P:GameFrameX.Core.BaseHandler.PlayerComponentHandler`1.ComponentAgent
-  fullName: GameFrameX.Core.BaseHandler.PlayerComponentHandler<T>.ComponentAgent
-  fullName.vb: GameFrameX.Core.BaseHandler.PlayerComponentHandler(Of T).ComponentAgent
-  nameWithType: PlayerComponentHandler<T>.ComponentAgent
-  nameWithType.vb: PlayerComponentHandler(Of T).ComponentAgent
-- uid: GameFrameX.Core.BaseHandler.PlayerComponentHandler`1.ComponentAgent*
-  name: ComponentAgent
-  href: api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-1.html#GameFrameX_Core_BaseHandler_PlayerComponentHandler_1_ComponentAgent_
-  commentId: Overload:GameFrameX.Core.BaseHandler.PlayerComponentHandler`1.ComponentAgent
+  name.vb: PlayerComponentHandler(Of TRequest)
+  fullName: GameFrameX.Core.BaseHandler.PlayerComponentHandler<TRequest>
+  fullName.vb: GameFrameX.Core.BaseHandler.PlayerComponentHandler(Of TRequest)
+  nameWithType: PlayerComponentHandler<TRequest>
+  nameWithType.vb: PlayerComponentHandler(Of TRequest)
+- uid: GameFrameX.Core.BaseHandler.PlayerComponentHandler`1.InitActor
+  name: InitActor()
+  href: api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-1.html#GameFrameX_Core_BaseHandler_PlayerComponentHandler_1_InitActor
+  commentId: M:GameFrameX.Core.BaseHandler.PlayerComponentHandler`1.InitActor
+  fullName: GameFrameX.Core.BaseHandler.PlayerComponentHandler<TRequest>.InitActor()
+  fullName.vb: GameFrameX.Core.BaseHandler.PlayerComponentHandler(Of TRequest).InitActor()
+  nameWithType: PlayerComponentHandler<TRequest>.InitActor()
+  nameWithType.vb: PlayerComponentHandler(Of TRequest).InitActor()
+- uid: GameFrameX.Core.BaseHandler.PlayerComponentHandler`1.InitActor*
+  name: InitActor
+  href: api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-1.html#GameFrameX_Core_BaseHandler_PlayerComponentHandler_1_InitActor_
+  commentId: Overload:GameFrameX.Core.BaseHandler.PlayerComponentHandler`1.InitActor
   isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.PlayerComponentHandler<T>.ComponentAgent
-  fullName.vb: GameFrameX.Core.BaseHandler.PlayerComponentHandler(Of T).ComponentAgent
-  nameWithType: PlayerComponentHandler<T>.ComponentAgent
-  nameWithType.vb: PlayerComponentHandler(Of T).ComponentAgent
-- uid: GameFrameX.Core.BaseHandler.PlayerComponentHandler`1.ComponentAgentType
-  name: ComponentAgentType
-  href: api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-1.html#GameFrameX_Core_BaseHandler_PlayerComponentHandler_1_ComponentAgentType
-  commentId: P:GameFrameX.Core.BaseHandler.PlayerComponentHandler`1.ComponentAgentType
-  fullName: GameFrameX.Core.BaseHandler.PlayerComponentHandler<T>.ComponentAgentType
-  fullName.vb: GameFrameX.Core.BaseHandler.PlayerComponentHandler(Of T).ComponentAgentType
-  nameWithType: PlayerComponentHandler<T>.ComponentAgentType
-  nameWithType.vb: PlayerComponentHandler(Of T).ComponentAgentType
-- uid: GameFrameX.Core.BaseHandler.PlayerComponentHandler`1.ComponentAgentType*
-  name: ComponentAgentType
-  href: api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-1.html#GameFrameX_Core_BaseHandler_PlayerComponentHandler_1_ComponentAgentType_
-  commentId: Overload:GameFrameX.Core.BaseHandler.PlayerComponentHandler`1.ComponentAgentType
+  fullName: GameFrameX.Core.BaseHandler.PlayerComponentHandler<TRequest>.InitActor
+  fullName.vb: GameFrameX.Core.BaseHandler.PlayerComponentHandler(Of TRequest).InitActor
+  nameWithType: PlayerComponentHandler<TRequest>.InitActor
+  nameWithType.vb: PlayerComponentHandler(Of TRequest).InitActor
+- uid: GameFrameX.Core.BaseHandler.PlayerComponentHandler`2
+  name: PlayerComponentHandler<T, TRequest>
+  href: api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-2.html
+  commentId: T:GameFrameX.Core.BaseHandler.PlayerComponentHandler`2
+  name.vb: PlayerComponentHandler(Of T, TRequest)
+  fullName: GameFrameX.Core.BaseHandler.PlayerComponentHandler<T, TRequest>
+  fullName.vb: GameFrameX.Core.BaseHandler.PlayerComponentHandler(Of T, TRequest)
+  nameWithType: PlayerComponentHandler<T, TRequest>
+  nameWithType.vb: PlayerComponentHandler(Of T, TRequest)
+- uid: GameFrameX.Core.BaseHandler.PlayerComponentHandler`2.ComponentAgent
+  name: ComponentAgent
+  href: api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-2.html#GameFrameX_Core_BaseHandler_PlayerComponentHandler_2_ComponentAgent
+  commentId: P:GameFrameX.Core.BaseHandler.PlayerComponentHandler`2.ComponentAgent
+  fullName: GameFrameX.Core.BaseHandler.PlayerComponentHandler<T, TRequest>.ComponentAgent
+  fullName.vb: GameFrameX.Core.BaseHandler.PlayerComponentHandler(Of T, TRequest).ComponentAgent
+  nameWithType: PlayerComponentHandler<T, TRequest>.ComponentAgent
+  nameWithType.vb: PlayerComponentHandler(Of T, TRequest).ComponentAgent
+- uid: GameFrameX.Core.BaseHandler.PlayerComponentHandler`2.ComponentAgent*
+  name: ComponentAgent
+  href: api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-2.html#GameFrameX_Core_BaseHandler_PlayerComponentHandler_2_ComponentAgent_
+  commentId: Overload:GameFrameX.Core.BaseHandler.PlayerComponentHandler`2.ComponentAgent
   isSpec: "True"
-  fullName: GameFrameX.Core.BaseHandler.PlayerComponentHandler<T>.ComponentAgentType
-  fullName.vb: GameFrameX.Core.BaseHandler.PlayerComponentHandler(Of T).ComponentAgentType
-  nameWithType: PlayerComponentHandler<T>.ComponentAgentType
-  nameWithType.vb: PlayerComponentHandler(Of T).ComponentAgentType
+  fullName: GameFrameX.Core.BaseHandler.PlayerComponentHandler<T, TRequest>.ComponentAgent
+  fullName.vb: GameFrameX.Core.BaseHandler.PlayerComponentHandler(Of T, TRequest).ComponentAgent
+  nameWithType: PlayerComponentHandler<T, TRequest>.ComponentAgent
+  nameWithType.vb: PlayerComponentHandler(Of T, TRequest).ComponentAgent
+- uid: GameFrameX.Core.BaseHandler.PlayerComponentHandler`2.ComponentAgentType
+  name: ComponentAgentType
+  href: api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-2.html#GameFrameX_Core_BaseHandler_PlayerComponentHandler_2_ComponentAgentType
+  commentId: P:GameFrameX.Core.BaseHandler.PlayerComponentHandler`2.ComponentAgentType
+  fullName: GameFrameX.Core.BaseHandler.PlayerComponentHandler<T, TRequest>.ComponentAgentType
+  fullName.vb: GameFrameX.Core.BaseHandler.PlayerComponentHandler(Of T, TRequest).ComponentAgentType
+  nameWithType: PlayerComponentHandler<T, TRequest>.ComponentAgentType
+  nameWithType.vb: PlayerComponentHandler(Of T, TRequest).ComponentAgentType
+- uid: GameFrameX.Core.BaseHandler.PlayerComponentHandler`2.ComponentAgentType*
+  name: ComponentAgentType
+  href: api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-2.html#GameFrameX_Core_BaseHandler_PlayerComponentHandler_2_ComponentAgentType_
+  commentId: Overload:GameFrameX.Core.BaseHandler.PlayerComponentHandler`2.ComponentAgentType
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.PlayerComponentHandler<T, TRequest>.ComponentAgentType
+  fullName.vb: GameFrameX.Core.BaseHandler.PlayerComponentHandler(Of T, TRequest).ComponentAgentType
+  nameWithType: PlayerComponentHandler<T, TRequest>.ComponentAgentType
+  nameWithType.vb: PlayerComponentHandler(Of T, TRequest).ComponentAgentType
+- uid: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler`2
+  name: PlayerRpcComponentHandler<TRequest, TResponse>
+  href: api/GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler-2.html
+  commentId: T:GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler`2
+  name.vb: PlayerRpcComponentHandler(Of TRequest, TResponse)
+  fullName: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler<TRequest, TResponse>
+  fullName.vb: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler(Of TRequest, TResponse)
+  nameWithType: PlayerRpcComponentHandler<TRequest, TResponse>
+  nameWithType.vb: PlayerRpcComponentHandler(Of TRequest, TResponse)
+- uid: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler`2.InitActor
+  name: InitActor()
+  href: api/GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_PlayerRpcComponentHandler_2_InitActor
+  commentId: M:GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler`2.InitActor
+  fullName: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler<TRequest, TResponse>.InitActor()
+  fullName.vb: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler(Of TRequest, TResponse).InitActor()
+  nameWithType: PlayerRpcComponentHandler<TRequest, TResponse>.InitActor()
+  nameWithType.vb: PlayerRpcComponentHandler(Of TRequest, TResponse).InitActor()
+- uid: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler`2.InitActor*
+  name: InitActor
+  href: api/GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_PlayerRpcComponentHandler_2_InitActor_
+  commentId: Overload:GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler`2.InitActor
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler<TRequest, TResponse>.InitActor
+  fullName.vb: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler(Of TRequest, TResponse).InitActor
+  nameWithType: PlayerRpcComponentHandler<TRequest, TResponse>.InitActor
+  nameWithType.vb: PlayerRpcComponentHandler(Of TRequest, TResponse).InitActor
+- uid: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler`3
+  name: PlayerRpcComponentHandler<T, TRequest, TResponse>
+  href: api/GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler-3.html
+  commentId: T:GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler`3
+  name.vb: PlayerRpcComponentHandler(Of T, TRequest, TResponse)
+  fullName: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler<T, TRequest, TResponse>
+  fullName.vb: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler(Of T, TRequest, TResponse)
+  nameWithType: PlayerRpcComponentHandler<T, TRequest, TResponse>
+  nameWithType.vb: PlayerRpcComponentHandler(Of T, TRequest, TResponse)
+- uid: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler`3.ComponentAgent
+  name: ComponentAgent
+  href: api/GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler-3.html#GameFrameX_Core_BaseHandler_PlayerRpcComponentHandler_3_ComponentAgent
+  commentId: P:GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler`3.ComponentAgent
+  fullName: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler<T, TRequest, TResponse>.ComponentAgent
+  fullName.vb: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler(Of T, TRequest, TResponse).ComponentAgent
+  nameWithType: PlayerRpcComponentHandler<T, TRequest, TResponse>.ComponentAgent
+  nameWithType.vb: PlayerRpcComponentHandler(Of T, TRequest, TResponse).ComponentAgent
+- uid: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler`3.ComponentAgent*
+  name: ComponentAgent
+  href: api/GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler-3.html#GameFrameX_Core_BaseHandler_PlayerRpcComponentHandler_3_ComponentAgent_
+  commentId: Overload:GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler`3.ComponentAgent
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler<T, TRequest, TResponse>.ComponentAgent
+  fullName.vb: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler(Of T, TRequest, TResponse).ComponentAgent
+  nameWithType: PlayerRpcComponentHandler<T, TRequest, TResponse>.ComponentAgent
+  nameWithType.vb: PlayerRpcComponentHandler(Of T, TRequest, TResponse).ComponentAgent
+- uid: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler`3.ComponentAgentType
+  name: ComponentAgentType
+  href: api/GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler-3.html#GameFrameX_Core_BaseHandler_PlayerRpcComponentHandler_3_ComponentAgentType
+  commentId: P:GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler`3.ComponentAgentType
+  fullName: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler<T, TRequest, TResponse>.ComponentAgentType
+  fullName.vb: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler(Of T, TRequest, TResponse).ComponentAgentType
+  nameWithType: PlayerRpcComponentHandler<T, TRequest, TResponse>.ComponentAgentType
+  nameWithType.vb: PlayerRpcComponentHandler(Of T, TRequest, TResponse).ComponentAgentType
+- uid: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler`3.ComponentAgentType*
+  name: ComponentAgentType
+  href: api/GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler-3.html#GameFrameX_Core_BaseHandler_PlayerRpcComponentHandler_3_ComponentAgentType_
+  commentId: Overload:GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler`3.ComponentAgentType
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler<T, TRequest, TResponse>.ComponentAgentType
+  fullName.vb: GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler(Of T, TRequest, TResponse).ComponentAgentType
+  nameWithType: PlayerRpcComponentHandler<T, TRequest, TResponse>.ComponentAgentType
+  nameWithType.vb: PlayerRpcComponentHandler(Of T, TRequest, TResponse).ComponentAgentType
+- uid: GameFrameX.Core.BaseHandler.RPC
+  name: GameFrameX.Core.BaseHandler.RPC
+  href: api/GameFrameX.Core.BaseHandler.RPC.html
+  commentId: N:GameFrameX.Core.BaseHandler.RPC
+  fullName: GameFrameX.Core.BaseHandler.RPC
+  nameWithType: GameFrameX.Core.BaseHandler.RPC
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2
+  name: BaseRpcComponentHandler<TRequest, TResponse>
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.html
+  commentId: T:GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2
+  name.vb: BaseRpcComponentHandler(Of TRequest, TResponse)
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler<TRequest, TResponse>
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler(Of TRequest, TResponse)
+  nameWithType: BaseRpcComponentHandler<TRequest, TResponse>
+  nameWithType.vb: BaseRpcComponentHandler(Of TRequest, TResponse)
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.ActorId
+  name: ActorId
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_ActorId
+  commentId: P:GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.ActorId
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler<TRequest, TResponse>.ActorId
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler(Of TRequest, TResponse).ActorId
+  nameWithType: BaseRpcComponentHandler<TRequest, TResponse>.ActorId
+  nameWithType.vb: BaseRpcComponentHandler(Of TRequest, TResponse).ActorId
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.ActorId*
+  name: ActorId
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_ActorId_
+  commentId: Overload:GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.ActorId
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler<TRequest, TResponse>.ActorId
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler(Of TRequest, TResponse).ActorId
+  nameWithType: BaseRpcComponentHandler<TRequest, TResponse>.ActorId
+  nameWithType.vb: BaseRpcComponentHandler(Of TRequest, TResponse).ActorId
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.CacheComponent
+  name: CacheComponent
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_CacheComponent
+  commentId: P:GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.CacheComponent
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler<TRequest, TResponse>.CacheComponent
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler(Of TRequest, TResponse).CacheComponent
+  nameWithType: BaseRpcComponentHandler<TRequest, TResponse>.CacheComponent
+  nameWithType.vb: BaseRpcComponentHandler(Of TRequest, TResponse).CacheComponent
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.CacheComponent*
+  name: CacheComponent
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_CacheComponent_
+  commentId: Overload:GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.CacheComponent
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler<TRequest, TResponse>.CacheComponent
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler(Of TRequest, TResponse).CacheComponent
+  nameWithType: BaseRpcComponentHandler<TRequest, TResponse>.CacheComponent
+  nameWithType.vb: BaseRpcComponentHandler(Of TRequest, TResponse).CacheComponent
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.ComponentAgentType
+  name: ComponentAgentType
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_ComponentAgentType
+  commentId: P:GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.ComponentAgentType
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler<TRequest, TResponse>.ComponentAgentType
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler(Of TRequest, TResponse).ComponentAgentType
+  nameWithType: BaseRpcComponentHandler<TRequest, TResponse>.ComponentAgentType
+  nameWithType.vb: BaseRpcComponentHandler(Of TRequest, TResponse).ComponentAgentType
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.ComponentAgentType*
+  name: ComponentAgentType
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_ComponentAgentType_
+  commentId: Overload:GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.ComponentAgentType
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler<TRequest, TResponse>.ComponentAgentType
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler(Of TRequest, TResponse).ComponentAgentType
+  nameWithType: BaseRpcComponentHandler<TRequest, TResponse>.ComponentAgentType
+  nameWithType.vb: BaseRpcComponentHandler(Of TRequest, TResponse).ComponentAgentType
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.GetComponentAgent*
+  name: GetComponentAgent
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_GetComponentAgent_
+  commentId: Overload:GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.GetComponentAgent
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler<TRequest, TResponse>.GetComponentAgent
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler(Of TRequest, TResponse).GetComponentAgent
+  nameWithType: BaseRpcComponentHandler<TRequest, TResponse>.GetComponentAgent
+  nameWithType.vb: BaseRpcComponentHandler(Of TRequest, TResponse).GetComponentAgent
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.GetComponentAgent``1
+  name: GetComponentAgent<TOtherAgent>()
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_GetComponentAgent__1
+  commentId: M:GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.GetComponentAgent``1
+  name.vb: GetComponentAgent(Of TOtherAgent)()
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler<TRequest, TResponse>.GetComponentAgent<TOtherAgent>()
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler(Of TRequest, TResponse).GetComponentAgent(Of TOtherAgent)()
+  nameWithType: BaseRpcComponentHandler<TRequest, TResponse>.GetComponentAgent<TOtherAgent>()
+  nameWithType.vb: BaseRpcComponentHandler(Of TRequest, TResponse).GetComponentAgent(Of TOtherAgent)()
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  name: Init(INetworkMessage, INetWorkChannel)
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_Init_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_
+  commentId: M:GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler<TRequest, TResponse>.Init(GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler(Of TRequest, TResponse).Init(GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  nameWithType: BaseRpcComponentHandler<TRequest, TResponse>.Init(INetworkMessage, INetWorkChannel)
+  nameWithType.vb: BaseRpcComponentHandler(Of TRequest, TResponse).Init(INetworkMessage, INetWorkChannel)
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.Init*
+  name: Init
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_Init_
+  commentId: Overload:GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.Init
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler<TRequest, TResponse>.Init
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler(Of TRequest, TResponse).Init
+  nameWithType: BaseRpcComponentHandler<TRequest, TResponse>.Init
+  nameWithType.vb: BaseRpcComponentHandler(Of TRequest, TResponse).Init
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.InitActor
+  name: InitActor()
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_InitActor
+  commentId: M:GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.InitActor
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler<TRequest, TResponse>.InitActor()
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler(Of TRequest, TResponse).InitActor()
+  nameWithType: BaseRpcComponentHandler<TRequest, TResponse>.InitActor()
+  nameWithType.vb: BaseRpcComponentHandler(Of TRequest, TResponse).InitActor()
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.InitActor*
+  name: InitActor
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_InitActor_
+  commentId: Overload:GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.InitActor
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler<TRequest, TResponse>.InitActor
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler(Of TRequest, TResponse).InitActor
+  nameWithType: BaseRpcComponentHandler<TRequest, TResponse>.InitActor
+  nameWithType.vb: BaseRpcComponentHandler(Of TRequest, TResponse).InitActor
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.InnerAction(System.Int32,System.Threading.CancellationToken)
+  name: InnerAction(int, CancellationToken)
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_InnerAction_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.InnerAction(System.Int32,System.Threading.CancellationToken)
+  name.vb: InnerAction(Integer, CancellationToken)
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler<TRequest, TResponse>.InnerAction(int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler(Of TRequest, TResponse).InnerAction(Integer, System.Threading.CancellationToken)
+  nameWithType: BaseRpcComponentHandler<TRequest, TResponse>.InnerAction(int, CancellationToken)
+  nameWithType.vb: BaseRpcComponentHandler(Of TRequest, TResponse).InnerAction(Integer, CancellationToken)
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.InnerAction*
+  name: InnerAction
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_InnerAction_
+  commentId: Overload:GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.InnerAction
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler<TRequest, TResponse>.InnerAction
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler(Of TRequest, TResponse).InnerAction
+  nameWithType: BaseRpcComponentHandler<TRequest, TResponse>.InnerAction
+  nameWithType.vb: BaseRpcComponentHandler(Of TRequest, TResponse).InnerAction
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2
+  name: BaseRpcMessageHandler<TRequest, TResponse>
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html
+  commentId: T:GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2
+  name.vb: BaseRpcMessageHandler(Of TRequest, TResponse)
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler<TRequest, TResponse>
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler(Of TRequest, TResponse)
+  nameWithType: BaseRpcMessageHandler<TRequest, TResponse>
+  nameWithType.vb: BaseRpcMessageHandler(Of TRequest, TResponse)
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.ActionAsync(`0,`1)
+  name: ActionAsync(TRequest, TResponse)
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_ActionAsync__0__1_
+  commentId: M:GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.ActionAsync(`0,`1)
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler<TRequest, TResponse>.ActionAsync(TRequest, TResponse)
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler(Of TRequest, TResponse).ActionAsync(TRequest, TResponse)
+  nameWithType: BaseRpcMessageHandler<TRequest, TResponse>.ActionAsync(TRequest, TResponse)
+  nameWithType.vb: BaseRpcMessageHandler(Of TRequest, TResponse).ActionAsync(TRequest, TResponse)
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.ActionAsync*
+  name: ActionAsync
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_ActionAsync_
+  commentId: Overload:GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.ActionAsync
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler<TRequest, TResponse>.ActionAsync
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler(Of TRequest, TResponse).ActionAsync
+  nameWithType: BaseRpcMessageHandler<TRequest, TResponse>.ActionAsync
+  nameWithType.vb: BaseRpcMessageHandler(Of TRequest, TResponse).ActionAsync
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.GetMessageType
+  name: GetMessageType()
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_GetMessageType
+  commentId: M:GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.GetMessageType
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler<TRequest, TResponse>.GetMessageType()
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler(Of TRequest, TResponse).GetMessageType()
+  nameWithType: BaseRpcMessageHandler<TRequest, TResponse>.GetMessageType()
+  nameWithType.vb: BaseRpcMessageHandler(Of TRequest, TResponse).GetMessageType()
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.GetMessageType*
+  name: GetMessageType
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_GetMessageType_
+  commentId: Overload:GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.GetMessageType
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler<TRequest, TResponse>.GetMessageType
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler(Of TRequest, TResponse).GetMessageType
+  nameWithType: BaseRpcMessageHandler<TRequest, TResponse>.GetMessageType
+  nameWithType.vb: BaseRpcMessageHandler(Of TRequest, TResponse).GetMessageType
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.GetResponseType
+  name: GetResponseType()
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_GetResponseType
+  commentId: M:GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.GetResponseType
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler<TRequest, TResponse>.GetResponseType()
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler(Of TRequest, TResponse).GetResponseType()
+  nameWithType: BaseRpcMessageHandler<TRequest, TResponse>.GetResponseType()
+  nameWithType.vb: BaseRpcMessageHandler(Of TRequest, TResponse).GetResponseType()
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.GetResponseType*
+  name: GetResponseType
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_GetResponseType_
+  commentId: Overload:GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.GetResponseType
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler<TRequest, TResponse>.GetResponseType
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler(Of TRequest, TResponse).GetResponseType
+  nameWithType: BaseRpcMessageHandler<TRequest, TResponse>.GetResponseType
+  nameWithType.vb: BaseRpcMessageHandler(Of TRequest, TResponse).GetResponseType
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  name: Init(INetworkMessage, INetWorkChannel)
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_Init_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_
+  commentId: M:GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler<TRequest, TResponse>.Init(GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler(Of TRequest, TResponse).Init(GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  nameWithType: BaseRpcMessageHandler<TRequest, TResponse>.Init(INetworkMessage, INetWorkChannel)
+  nameWithType.vb: BaseRpcMessageHandler(Of TRequest, TResponse).Init(INetworkMessage, INetWorkChannel)
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.Init*
+  name: Init
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_Init_
+  commentId: Overload:GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.Init
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler<TRequest, TResponse>.Init
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler(Of TRequest, TResponse).Init
+  nameWithType: BaseRpcMessageHandler<TRequest, TResponse>.Init
+  nameWithType.vb: BaseRpcMessageHandler(Of TRequest, TResponse).Init
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.InnerAction(System.Int32,System.Threading.CancellationToken)
+  name: InnerAction(int, CancellationToken)
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_InnerAction_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.InnerAction(System.Int32,System.Threading.CancellationToken)
+  name.vb: InnerAction(Integer, CancellationToken)
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler<TRequest, TResponse>.InnerAction(int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler(Of TRequest, TResponse).InnerAction(Integer, System.Threading.CancellationToken)
+  nameWithType: BaseRpcMessageHandler<TRequest, TResponse>.InnerAction(int, CancellationToken)
+  nameWithType.vb: BaseRpcMessageHandler(Of TRequest, TResponse).InnerAction(Integer, CancellationToken)
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.InnerAction*
+  name: InnerAction
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_InnerAction_
+  commentId: Overload:GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.InnerAction
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler<TRequest, TResponse>.InnerAction
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler(Of TRequest, TResponse).InnerAction
+  nameWithType: BaseRpcMessageHandler<TRequest, TResponse>.InnerAction
+  nameWithType.vb: BaseRpcMessageHandler(Of TRequest, TResponse).InnerAction
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.NetWorkChannel
+  name: NetWorkChannel
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_NetWorkChannel
+  commentId: P:GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.NetWorkChannel
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler<TRequest, TResponse>.NetWorkChannel
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler(Of TRequest, TResponse).NetWorkChannel
+  nameWithType: BaseRpcMessageHandler<TRequest, TResponse>.NetWorkChannel
+  nameWithType.vb: BaseRpcMessageHandler(Of TRequest, TResponse).NetWorkChannel
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.NetWorkChannel*
+  name: NetWorkChannel
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_NetWorkChannel_
+  commentId: Overload:GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.NetWorkChannel
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler<TRequest, TResponse>.NetWorkChannel
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler(Of TRequest, TResponse).NetWorkChannel
+  nameWithType: BaseRpcMessageHandler<TRequest, TResponse>.NetWorkChannel
+  nameWithType.vb: BaseRpcMessageHandler(Of TRequest, TResponse).NetWorkChannel
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.RequestMessage
+  name: RequestMessage
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_RequestMessage
+  commentId: P:GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.RequestMessage
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler<TRequest, TResponse>.RequestMessage
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler(Of TRequest, TResponse).RequestMessage
+  nameWithType: BaseRpcMessageHandler<TRequest, TResponse>.RequestMessage
+  nameWithType.vb: BaseRpcMessageHandler(Of TRequest, TResponse).RequestMessage
+- uid: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.RequestMessage*
+  name: RequestMessage
+  href: api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_RequestMessage_
+  commentId: Overload:GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler`2.RequestMessage
+  isSpec: "True"
+  fullName: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler<TRequest, TResponse>.RequestMessage
+  fullName.vb: GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler(Of TRequest, TResponse).RequestMessage
+  nameWithType: BaseRpcMessageHandler<TRequest, TResponse>.RequestMessage
+  nameWithType.vb: BaseRpcMessageHandler(Of TRequest, TResponse).RequestMessage
 - uid: GameFrameX.Core.Components
   name: GameFrameX.Core.Components
   href: api/GameFrameX.Core.Components.html
@@ -6124,6 +6633,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Hotfix.HotfixManager.GetListHttpHandler
   nameWithType: HotfixManager.GetListHttpHandler
+- uid: GameFrameX.Core.Hotfix.HotfixManager.GetRpcHandler(System.Type)
+  name: GetRpcHandler(Type)
+  href: api/GameFrameX.Core.Hotfix.HotfixManager.html#GameFrameX_Core_Hotfix_HotfixManager_GetRpcHandler_System_Type_
+  commentId: M:GameFrameX.Core.Hotfix.HotfixManager.GetRpcHandler(System.Type)
+  fullName: GameFrameX.Core.Hotfix.HotfixManager.GetRpcHandler(System.Type)
+  nameWithType: HotfixManager.GetRpcHandler(Type)
+- uid: GameFrameX.Core.Hotfix.HotfixManager.GetRpcHandler*
+  name: GetRpcHandler
+  href: api/GameFrameX.Core.Hotfix.HotfixManager.html#GameFrameX_Core_Hotfix_HotfixManager_GetRpcHandler_
+  commentId: Overload:GameFrameX.Core.Hotfix.HotfixManager.GetRpcHandler
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.HotfixManager.GetRpcHandler
+  nameWithType: HotfixManager.GetRpcHandler
 - uid: GameFrameX.Core.Hotfix.HotfixManager.GetTcpHandler(System.Int32)
   name: GetTcpHandler(int)
   href: api/GameFrameX.Core.Hotfix.HotfixManager.html#GameFrameX_Core_Hotfix_HotfixManager_GetTcpHandler_System_Int32_
@@ -6896,6 +7418,38 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.Abstractions.IActorHeartBeat.Timestamp
   nameWithType: IActorHeartBeat.Timestamp
+- uid: GameFrameX.NetWork.Abstractions.IBaseMessageHandler
+  name: IBaseMessageHandler
+  href: api/GameFrameX.NetWork.Abstractions.IBaseMessageHandler.html
+  commentId: T:GameFrameX.NetWork.Abstractions.IBaseMessageHandler
+  fullName: GameFrameX.NetWork.Abstractions.IBaseMessageHandler
+  nameWithType: IBaseMessageHandler
+- uid: GameFrameX.NetWork.Abstractions.IBaseMessageHandler.GetMessageType
+  name: GetMessageType()
+  href: api/GameFrameX.NetWork.Abstractions.IBaseMessageHandler.html#GameFrameX_NetWork_Abstractions_IBaseMessageHandler_GetMessageType
+  commentId: M:GameFrameX.NetWork.Abstractions.IBaseMessageHandler.GetMessageType
+  fullName: GameFrameX.NetWork.Abstractions.IBaseMessageHandler.GetMessageType()
+  nameWithType: IBaseMessageHandler.GetMessageType()
+- uid: GameFrameX.NetWork.Abstractions.IBaseMessageHandler.GetMessageType*
+  name: GetMessageType
+  href: api/GameFrameX.NetWork.Abstractions.IBaseMessageHandler.html#GameFrameX_NetWork_Abstractions_IBaseMessageHandler_GetMessageType_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IBaseMessageHandler.GetMessageType
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IBaseMessageHandler.GetMessageType
+  nameWithType: IBaseMessageHandler.GetMessageType
+- uid: GameFrameX.NetWork.Abstractions.IBaseMessageHandler.GetResponseType
+  name: GetResponseType()
+  href: api/GameFrameX.NetWork.Abstractions.IBaseMessageHandler.html#GameFrameX_NetWork_Abstractions_IBaseMessageHandler_GetResponseType
+  commentId: M:GameFrameX.NetWork.Abstractions.IBaseMessageHandler.GetResponseType
+  fullName: GameFrameX.NetWork.Abstractions.IBaseMessageHandler.GetResponseType()
+  nameWithType: IBaseMessageHandler.GetResponseType()
+- uid: GameFrameX.NetWork.Abstractions.IBaseMessageHandler.GetResponseType*
+  name: GetResponseType
+  href: api/GameFrameX.NetWork.Abstractions.IBaseMessageHandler.html#GameFrameX_NetWork_Abstractions_IBaseMessageHandler_GetResponseType_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IBaseMessageHandler.GetResponseType
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IBaseMessageHandler.GetResponseType
+  nameWithType: IBaseMessageHandler.GetResponseType
 - uid: GameFrameX.NetWork.Abstractions.ICommandInfo
   name: ICommandInfo
   href: api/GameFrameX.NetWork.Abstractions.ICommandInfo.html
@@ -7128,6 +7682,60 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.Abstractions.IMessageEncoderHandler.SetCompressionHandler
   nameWithType: IMessageEncoderHandler.SetCompressionHandler
+- uid: GameFrameX.NetWork.Abstractions.IMessageHandler
+  name: IMessageHandler
+  href: api/GameFrameX.NetWork.Abstractions.IMessageHandler.html
+  commentId: T:GameFrameX.NetWork.Abstractions.IMessageHandler
+  fullName: GameFrameX.NetWork.Abstractions.IMessageHandler
+  nameWithType: IMessageHandler
+- uid: GameFrameX.NetWork.Abstractions.IMessageHandler.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  name: Init(INetworkMessage, INetWorkChannel)
+  href: api/GameFrameX.NetWork.Abstractions.IMessageHandler.html#GameFrameX_NetWork_Abstractions_IMessageHandler_Init_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_
+  commentId: M:GameFrameX.NetWork.Abstractions.IMessageHandler.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  fullName: GameFrameX.NetWork.Abstractions.IMessageHandler.Init(GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel)
+  nameWithType: IMessageHandler.Init(INetworkMessage, INetWorkChannel)
+- uid: GameFrameX.NetWork.Abstractions.IMessageHandler.Init*
+  name: Init
+  href: api/GameFrameX.NetWork.Abstractions.IMessageHandler.html#GameFrameX_NetWork_Abstractions_IMessageHandler_Init_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IMessageHandler.Init
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IMessageHandler.Init
+  nameWithType: IMessageHandler.Init
+- uid: GameFrameX.NetWork.Abstractions.IMessageHandler.InnerAction(System.Int32,System.Threading.CancellationToken)
+  name: InnerAction(int, CancellationToken)
+  href: api/GameFrameX.NetWork.Abstractions.IMessageHandler.html#GameFrameX_NetWork_Abstractions_IMessageHandler_InnerAction_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.NetWork.Abstractions.IMessageHandler.InnerAction(System.Int32,System.Threading.CancellationToken)
+  name.vb: InnerAction(Integer, CancellationToken)
+  fullName: GameFrameX.NetWork.Abstractions.IMessageHandler.InnerAction(int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.NetWork.Abstractions.IMessageHandler.InnerAction(Integer, System.Threading.CancellationToken)
+  nameWithType: IMessageHandler.InnerAction(int, CancellationToken)
+  nameWithType.vb: IMessageHandler.InnerAction(Integer, CancellationToken)
+- uid: GameFrameX.NetWork.Abstractions.IMessageHandler.InnerAction*
+  name: InnerAction
+  href: api/GameFrameX.NetWork.Abstractions.IMessageHandler.html#GameFrameX_NetWork_Abstractions_IMessageHandler_InnerAction_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IMessageHandler.InnerAction
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IMessageHandler.InnerAction
+  nameWithType: IMessageHandler.InnerAction
+- uid: GameFrameX.NetWork.Abstractions.IMessageObject
+  name: IMessageObject
+  href: api/GameFrameX.NetWork.Abstractions.IMessageObject.html
+  commentId: T:GameFrameX.NetWork.Abstractions.IMessageObject
+  fullName: GameFrameX.NetWork.Abstractions.IMessageObject
+  nameWithType: IMessageObject
+- uid: GameFrameX.NetWork.Abstractions.IMessageObject.Clear
+  name: Clear()
+  href: api/GameFrameX.NetWork.Abstractions.IMessageObject.html#GameFrameX_NetWork_Abstractions_IMessageObject_Clear
+  commentId: M:GameFrameX.NetWork.Abstractions.IMessageObject.Clear
+  fullName: GameFrameX.NetWork.Abstractions.IMessageObject.Clear()
+  nameWithType: IMessageObject.Clear()
+- uid: GameFrameX.NetWork.Abstractions.IMessageObject.Clear*
+  name: Clear
+  href: api/GameFrameX.NetWork.Abstractions.IMessageObject.html#GameFrameX_NetWork_Abstractions_IMessageObject_Clear_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IMessageObject.Clear
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IMessageObject.Clear
+  nameWithType: IMessageObject.Clear
 - uid: GameFrameX.NetWork.Abstractions.INetWorkChannel
   name: INetWorkChannel
   href: api/GameFrameX.NetWork.Abstractions.INetWorkChannel.html
@@ -7954,44 +8562,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.Abstractions.IServiceRegister.Type
   nameWithType: IServiceRegister.Type
-- uid: GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute
-  name: MessageCodeDescriptionAttribute
-  href: api/GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.html
-  commentId: T:GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute
-  fullName: GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute
-  nameWithType: MessageCodeDescriptionAttribute
-- uid: GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.#ctor(System.String)
-  name: MessageCodeDescriptionAttribute(string)
-  href: api/GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.html#GameFrameX_NetWork_Abstractions_MessageCodeDescriptionAttribute__ctor_System_String_
-  commentId: M:GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.#ctor(System.String)
-  name.vb: New(String)
-  fullName: GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.MessageCodeDescriptionAttribute(string)
-  fullName.vb: GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.New(String)
-  nameWithType: MessageCodeDescriptionAttribute.MessageCodeDescriptionAttribute(string)
-  nameWithType.vb: MessageCodeDescriptionAttribute.New(String)
-- uid: GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.#ctor*
-  name: MessageCodeDescriptionAttribute
-  href: api/GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.html#GameFrameX_NetWork_Abstractions_MessageCodeDescriptionAttribute__ctor_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.MessageCodeDescriptionAttribute
-  fullName.vb: GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.New
-  nameWithType: MessageCodeDescriptionAttribute.MessageCodeDescriptionAttribute
-  nameWithType.vb: MessageCodeDescriptionAttribute.New
-- uid: GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.Description
-  name: Description
-  href: api/GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.html#GameFrameX_NetWork_Abstractions_MessageCodeDescriptionAttribute_Description
-  commentId: P:GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.Description
-  fullName: GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.Description
-  nameWithType: MessageCodeDescriptionAttribute.Description
-- uid: GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.Description*
-  name: Description
-  href: api/GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.html#GameFrameX_NetWork_Abstractions_MessageCodeDescriptionAttribute_Description_
-  commentId: Overload:GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.Description
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.Description
-  nameWithType: MessageCodeDescriptionAttribute.Description
 - uid: GameFrameX.NetWork.Abstractions.MessageHelper
   name: MessageHelper
   href: api/GameFrameX.NetWork.Abstractions.MessageHelper.html
@@ -8462,6 +9032,57 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.Abstractions.MessageTypeHandlerAttribute.SubId
   nameWithType: MessageTypeHandlerAttribute.SubId
+- uid: GameFrameX.NetWork.Abstractions.RpcException
+  name: RpcException
+  href: api/GameFrameX.NetWork.Abstractions.RpcException.html
+  commentId: T:GameFrameX.NetWork.Abstractions.RpcException
+  fullName: GameFrameX.NetWork.Abstractions.RpcException
+  nameWithType: RpcException
+- uid: GameFrameX.NetWork.Abstractions.RpcException.#ctor(System.Int32,System.String)
+  name: RpcException(int, string)
+  href: api/GameFrameX.NetWork.Abstractions.RpcException.html#GameFrameX_NetWork_Abstractions_RpcException__ctor_System_Int32_System_String_
+  commentId: M:GameFrameX.NetWork.Abstractions.RpcException.#ctor(System.Int32,System.String)
+  name.vb: New(Integer, String)
+  fullName: GameFrameX.NetWork.Abstractions.RpcException.RpcException(int, string)
+  fullName.vb: GameFrameX.NetWork.Abstractions.RpcException.New(Integer, String)
+  nameWithType: RpcException.RpcException(int, string)
+  nameWithType.vb: RpcException.New(Integer, String)
+- uid: GameFrameX.NetWork.Abstractions.RpcException.#ctor*
+  name: RpcException
+  href: api/GameFrameX.NetWork.Abstractions.RpcException.html#GameFrameX_NetWork_Abstractions_RpcException__ctor_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.RpcException.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFrameX.NetWork.Abstractions.RpcException.RpcException
+  fullName.vb: GameFrameX.NetWork.Abstractions.RpcException.New
+  nameWithType: RpcException.RpcException
+  nameWithType.vb: RpcException.New
+- uid: GameFrameX.NetWork.Abstractions.RpcException.ErrorCode
+  name: ErrorCode
+  href: api/GameFrameX.NetWork.Abstractions.RpcException.html#GameFrameX_NetWork_Abstractions_RpcException_ErrorCode
+  commentId: P:GameFrameX.NetWork.Abstractions.RpcException.ErrorCode
+  fullName: GameFrameX.NetWork.Abstractions.RpcException.ErrorCode
+  nameWithType: RpcException.ErrorCode
+- uid: GameFrameX.NetWork.Abstractions.RpcException.ErrorCode*
+  name: ErrorCode
+  href: api/GameFrameX.NetWork.Abstractions.RpcException.html#GameFrameX_NetWork_Abstractions_RpcException_ErrorCode_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.RpcException.ErrorCode
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.RpcException.ErrorCode
+  nameWithType: RpcException.ErrorCode
+- uid: GameFrameX.NetWork.Abstractions.RpcException.ToString
+  name: ToString()
+  href: api/GameFrameX.NetWork.Abstractions.RpcException.html#GameFrameX_NetWork_Abstractions_RpcException_ToString
+  commentId: M:GameFrameX.NetWork.Abstractions.RpcException.ToString
+  fullName: GameFrameX.NetWork.Abstractions.RpcException.ToString()
+  nameWithType: RpcException.ToString()
+- uid: GameFrameX.NetWork.Abstractions.RpcException.ToString*
+  name: ToString
+  href: api/GameFrameX.NetWork.Abstractions.RpcException.html#GameFrameX_NetWork_Abstractions_RpcException_ToString_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.RpcException.ToString
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.RpcException.ToString
+  nameWithType: RpcException.ToString
 - uid: GameFrameX.NetWork.BaseNetWorkChannel
   name: BaseNetWorkChannel
   href: api/GameFrameX.NetWork.BaseNetWorkChannel.html
@@ -9348,67 +9969,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.HTTP.SwaggerOperationFilter.Apply
   nameWithType: SwaggerOperationFilter.Apply
-- uid: GameFrameX.NetWork.IMessageHandler
-  name: IMessageHandler
-  href: api/GameFrameX.NetWork.IMessageHandler.html
-  commentId: T:GameFrameX.NetWork.IMessageHandler
-  fullName: GameFrameX.NetWork.IMessageHandler
-  nameWithType: IMessageHandler
-- uid: GameFrameX.NetWork.IMessageHandler.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
-  name: Init(INetworkMessage, INetWorkChannel)
-  href: api/GameFrameX.NetWork.IMessageHandler.html#GameFrameX_NetWork_IMessageHandler_Init_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_
-  commentId: M:GameFrameX.NetWork.IMessageHandler.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)
-  fullName: GameFrameX.NetWork.IMessageHandler.Init(GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel)
-  nameWithType: IMessageHandler.Init(INetworkMessage, INetWorkChannel)
-- uid: GameFrameX.NetWork.IMessageHandler.Init*
-  name: Init
-  href: api/GameFrameX.NetWork.IMessageHandler.html#GameFrameX_NetWork_IMessageHandler_Init_
-  commentId: Overload:GameFrameX.NetWork.IMessageHandler.Init
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.IMessageHandler.Init
-  nameWithType: IMessageHandler.Init
-- uid: GameFrameX.NetWork.IMessageHandler.InnerAction(System.Int32,System.Threading.CancellationToken)
-  name: InnerAction(int, CancellationToken)
-  href: api/GameFrameX.NetWork.IMessageHandler.html#GameFrameX_NetWork_IMessageHandler_InnerAction_System_Int32_System_Threading_CancellationToken_
-  commentId: M:GameFrameX.NetWork.IMessageHandler.InnerAction(System.Int32,System.Threading.CancellationToken)
-  name.vb: InnerAction(Integer, CancellationToken)
-  fullName: GameFrameX.NetWork.IMessageHandler.InnerAction(int, System.Threading.CancellationToken)
-  fullName.vb: GameFrameX.NetWork.IMessageHandler.InnerAction(Integer, System.Threading.CancellationToken)
-  nameWithType: IMessageHandler.InnerAction(int, CancellationToken)
-  nameWithType.vb: IMessageHandler.InnerAction(Integer, CancellationToken)
-- uid: GameFrameX.NetWork.IMessageHandler.InnerAction*
-  name: InnerAction
-  href: api/GameFrameX.NetWork.IMessageHandler.html#GameFrameX_NetWork_IMessageHandler_InnerAction_
-  commentId: Overload:GameFrameX.NetWork.IMessageHandler.InnerAction
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.IMessageHandler.InnerAction
-  nameWithType: IMessageHandler.InnerAction
-- uid: GameFrameX.NetWork.IMessageHandler.Message
-  name: Message
-  href: api/GameFrameX.NetWork.IMessageHandler.html#GameFrameX_NetWork_IMessageHandler_Message
-  commentId: P:GameFrameX.NetWork.IMessageHandler.Message
-  fullName: GameFrameX.NetWork.IMessageHandler.Message
-  nameWithType: IMessageHandler.Message
-- uid: GameFrameX.NetWork.IMessageHandler.Message*
-  name: Message
-  href: api/GameFrameX.NetWork.IMessageHandler.html#GameFrameX_NetWork_IMessageHandler_Message_
-  commentId: Overload:GameFrameX.NetWork.IMessageHandler.Message
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.IMessageHandler.Message
-  nameWithType: IMessageHandler.Message
-- uid: GameFrameX.NetWork.IMessageHandler.NetWorkChannel
-  name: NetWorkChannel
-  href: api/GameFrameX.NetWork.IMessageHandler.html#GameFrameX_NetWork_IMessageHandler_NetWorkChannel
-  commentId: P:GameFrameX.NetWork.IMessageHandler.NetWorkChannel
-  fullName: GameFrameX.NetWork.IMessageHandler.NetWorkChannel
-  nameWithType: IMessageHandler.NetWorkChannel
-- uid: GameFrameX.NetWork.IMessageHandler.NetWorkChannel*
-  name: NetWorkChannel
-  href: api/GameFrameX.NetWork.IMessageHandler.html#GameFrameX_NetWork_IMessageHandler_NetWorkChannel_
-  commentId: Overload:GameFrameX.NetWork.IMessageHandler.NetWorkChannel
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.IMessageHandler.NetWorkChannel
-  nameWithType: IMessageHandler.NetWorkChannel
 - uid: GameFrameX.NetWork.Message
   name: GameFrameX.NetWork.Message
   href: api/GameFrameX.NetWork.Message.html
@@ -9727,6 +10287,98 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.MessageObjectLoggerHelper.FormatMessage
   nameWithType: MessageObjectLoggerHelper.FormatMessage
+- uid: GameFrameX.NetWork.MessageObjectPoolHelper
+  name: MessageObjectPoolHelper
+  href: api/GameFrameX.NetWork.MessageObjectPoolHelper.html
+  commentId: T:GameFrameX.NetWork.MessageObjectPoolHelper
+  fullName: GameFrameX.NetWork.MessageObjectPoolHelper
+  nameWithType: MessageObjectPoolHelper
+- uid: GameFrameX.NetWork.MessageObjectPoolHelper.ClearPools
+  name: ClearPools()
+  href: api/GameFrameX.NetWork.MessageObjectPoolHelper.html#GameFrameX_NetWork_MessageObjectPoolHelper_ClearPools
+  commentId: M:GameFrameX.NetWork.MessageObjectPoolHelper.ClearPools
+  fullName: GameFrameX.NetWork.MessageObjectPoolHelper.ClearPools()
+  nameWithType: MessageObjectPoolHelper.ClearPools()
+- uid: GameFrameX.NetWork.MessageObjectPoolHelper.ClearPools*
+  name: ClearPools
+  href: api/GameFrameX.NetWork.MessageObjectPoolHelper.html#GameFrameX_NetWork_MessageObjectPoolHelper_ClearPools_
+  commentId: Overload:GameFrameX.NetWork.MessageObjectPoolHelper.ClearPools
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.MessageObjectPoolHelper.ClearPools
+  nameWithType: MessageObjectPoolHelper.ClearPools
+- uid: GameFrameX.NetWork.MessageObjectPoolHelper.Get(System.Type)
+  name: Get(Type)
+  href: api/GameFrameX.NetWork.MessageObjectPoolHelper.html#GameFrameX_NetWork_MessageObjectPoolHelper_Get_System_Type_
+  commentId: M:GameFrameX.NetWork.MessageObjectPoolHelper.Get(System.Type)
+  fullName: GameFrameX.NetWork.MessageObjectPoolHelper.Get(System.Type)
+  nameWithType: MessageObjectPoolHelper.Get(Type)
+- uid: GameFrameX.NetWork.MessageObjectPoolHelper.Get*
+  name: Get
+  href: api/GameFrameX.NetWork.MessageObjectPoolHelper.html#GameFrameX_NetWork_MessageObjectPoolHelper_Get_
+  commentId: Overload:GameFrameX.NetWork.MessageObjectPoolHelper.Get
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.MessageObjectPoolHelper.Get
+  nameWithType: MessageObjectPoolHelper.Get
+- uid: GameFrameX.NetWork.MessageObjectPoolHelper.GetPool*
+  name: GetPool
+  href: api/GameFrameX.NetWork.MessageObjectPoolHelper.html#GameFrameX_NetWork_MessageObjectPoolHelper_GetPool_
+  commentId: Overload:GameFrameX.NetWork.MessageObjectPoolHelper.GetPool
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.MessageObjectPoolHelper.GetPool
+  nameWithType: MessageObjectPoolHelper.GetPool
+- uid: GameFrameX.NetWork.MessageObjectPoolHelper.GetPool``1
+  name: GetPool<T>()
+  href: api/GameFrameX.NetWork.MessageObjectPoolHelper.html#GameFrameX_NetWork_MessageObjectPoolHelper_GetPool__1
+  commentId: M:GameFrameX.NetWork.MessageObjectPoolHelper.GetPool``1
+  name.vb: GetPool(Of T)()
+  fullName: GameFrameX.NetWork.MessageObjectPoolHelper.GetPool<T>()
+  fullName.vb: GameFrameX.NetWork.MessageObjectPoolHelper.GetPool(Of T)()
+  nameWithType: MessageObjectPoolHelper.GetPool<T>()
+  nameWithType.vb: MessageObjectPoolHelper.GetPool(Of T)()
+- uid: GameFrameX.NetWork.MessageObjectPoolHelper.Get``1
+  name: Get<T>()
+  href: api/GameFrameX.NetWork.MessageObjectPoolHelper.html#GameFrameX_NetWork_MessageObjectPoolHelper_Get__1
+  commentId: M:GameFrameX.NetWork.MessageObjectPoolHelper.Get``1
+  name.vb: Get(Of T)()
+  fullName: GameFrameX.NetWork.MessageObjectPoolHelper.Get<T>()
+  fullName.vb: GameFrameX.NetWork.MessageObjectPoolHelper.Get(Of T)()
+  nameWithType: MessageObjectPoolHelper.Get<T>()
+  nameWithType.vb: MessageObjectPoolHelper.Get(Of T)()
+- uid: GameFrameX.NetWork.MessageObjectPoolHelper.PoolCount
+  name: PoolCount
+  href: api/GameFrameX.NetWork.MessageObjectPoolHelper.html#GameFrameX_NetWork_MessageObjectPoolHelper_PoolCount
+  commentId: P:GameFrameX.NetWork.MessageObjectPoolHelper.PoolCount
+  fullName: GameFrameX.NetWork.MessageObjectPoolHelper.PoolCount
+  nameWithType: MessageObjectPoolHelper.PoolCount
+- uid: GameFrameX.NetWork.MessageObjectPoolHelper.PoolCount*
+  name: PoolCount
+  href: api/GameFrameX.NetWork.MessageObjectPoolHelper.html#GameFrameX_NetWork_MessageObjectPoolHelper_PoolCount_
+  commentId: Overload:GameFrameX.NetWork.MessageObjectPoolHelper.PoolCount
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.MessageObjectPoolHelper.PoolCount
+  nameWithType: MessageObjectPoolHelper.PoolCount
+- uid: GameFrameX.NetWork.MessageObjectPoolHelper.Return(GameFrameX.NetWork.Abstractions.IMessageObject)
+  name: Return(IMessageObject)
+  href: api/GameFrameX.NetWork.MessageObjectPoolHelper.html#GameFrameX_NetWork_MessageObjectPoolHelper_Return_GameFrameX_NetWork_Abstractions_IMessageObject_
+  commentId: M:GameFrameX.NetWork.MessageObjectPoolHelper.Return(GameFrameX.NetWork.Abstractions.IMessageObject)
+  fullName: GameFrameX.NetWork.MessageObjectPoolHelper.Return(GameFrameX.NetWork.Abstractions.IMessageObject)
+  nameWithType: MessageObjectPoolHelper.Return(IMessageObject)
+- uid: GameFrameX.NetWork.MessageObjectPoolHelper.Return*
+  name: Return
+  href: api/GameFrameX.NetWork.MessageObjectPoolHelper.html#GameFrameX_NetWork_MessageObjectPoolHelper_Return_
+  commentId: Overload:GameFrameX.NetWork.MessageObjectPoolHelper.Return
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.MessageObjectPoolHelper.Return
+  nameWithType: MessageObjectPoolHelper.Return
+- uid: GameFrameX.NetWork.MessageObjectPoolHelper.Return``1(``0)
+  name: Return<T>(T)
+  href: api/GameFrameX.NetWork.MessageObjectPoolHelper.html#GameFrameX_NetWork_MessageObjectPoolHelper_Return__1___0_
+  commentId: M:GameFrameX.NetWork.MessageObjectPoolHelper.Return``1(``0)
+  name.vb: Return(Of T)(T)
+  fullName: GameFrameX.NetWork.MessageObjectPoolHelper.Return<T>(T)
+  fullName.vb: GameFrameX.NetWork.MessageObjectPoolHelper.Return(Of T)(T)
+  nameWithType: MessageObjectPoolHelper.Return<T>(T)
+  nameWithType.vb: MessageObjectPoolHelper.Return(Of T)(T)
 - uid: GameFrameX.NetWork.Messages
   name: GameFrameX.NetWork.Messages
   href: api/GameFrameX.NetWork.Messages.html
@@ -9831,25 +10483,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.Messages.CommandInfo.SubId
   nameWithType: CommandInfo.SubId
-- uid: GameFrameX.NetWork.Messages.InnerMessageObjectHeader
-  name: InnerMessageObjectHeader
-  href: api/GameFrameX.NetWork.Messages.InnerMessageObjectHeader.html
-  commentId: T:GameFrameX.NetWork.Messages.InnerMessageObjectHeader
-  fullName: GameFrameX.NetWork.Messages.InnerMessageObjectHeader
-  nameWithType: InnerMessageObjectHeader
-- uid: GameFrameX.NetWork.Messages.InnerMessageObjectHeader.ServerId
-  name: ServerId
-  href: api/GameFrameX.NetWork.Messages.InnerMessageObjectHeader.html#GameFrameX_NetWork_Messages_InnerMessageObjectHeader_ServerId
-  commentId: P:GameFrameX.NetWork.Messages.InnerMessageObjectHeader.ServerId
-  fullName: GameFrameX.NetWork.Messages.InnerMessageObjectHeader.ServerId
-  nameWithType: InnerMessageObjectHeader.ServerId
-- uid: GameFrameX.NetWork.Messages.InnerMessageObjectHeader.ServerId*
-  name: ServerId
-  href: api/GameFrameX.NetWork.Messages.InnerMessageObjectHeader.html#GameFrameX_NetWork_Messages_InnerMessageObjectHeader_ServerId_
-  commentId: Overload:GameFrameX.NetWork.Messages.InnerMessageObjectHeader.ServerId
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.Messages.InnerMessageObjectHeader.ServerId
-  nameWithType: InnerMessageObjectHeader.ServerId
 - uid: GameFrameX.NetWork.Messages.MessageObject
   name: MessageObject
   href: api/GameFrameX.NetWork.Messages.MessageObject.html
@@ -9875,6 +10508,19 @@ references:
   fullName.vb: GameFrameX.NetWork.Messages.MessageObject.New
   nameWithType: MessageObject.MessageObject
   nameWithType.vb: MessageObject.New
+- uid: GameFrameX.NetWork.Messages.MessageObject.Clear
+  name: Clear()
+  href: api/GameFrameX.NetWork.Messages.MessageObject.html#GameFrameX_NetWork_Messages_MessageObject_Clear
+  commentId: M:GameFrameX.NetWork.Messages.MessageObject.Clear
+  fullName: GameFrameX.NetWork.Messages.MessageObject.Clear()
+  nameWithType: MessageObject.Clear()
+- uid: GameFrameX.NetWork.Messages.MessageObject.Clear*
+  name: Clear
+  href: api/GameFrameX.NetWork.Messages.MessageObject.html#GameFrameX_NetWork_Messages_MessageObject_Clear_
+  commentId: Overload:GameFrameX.NetWork.Messages.MessageObject.Clear
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Messages.MessageObject.Clear
+  nameWithType: MessageObject.Clear
 - uid: GameFrameX.NetWork.Messages.MessageObject.MessageId
   name: MessageId
   href: api/GameFrameX.NetWork.Messages.MessageObject.html#GameFrameX_NetWork_Messages_MessageObject_MessageId
@@ -10023,6 +10669,19 @@ references:
   commentId: T:GameFrameX.NetWork.Messages.MessageObjectHeader
   fullName: GameFrameX.NetWork.Messages.MessageObjectHeader
   nameWithType: MessageObjectHeader
+- uid: GameFrameX.NetWork.Messages.MessageObjectHeader.Clear
+  name: Clear()
+  href: api/GameFrameX.NetWork.Messages.MessageObjectHeader.html#GameFrameX_NetWork_Messages_MessageObjectHeader_Clear
+  commentId: M:GameFrameX.NetWork.Messages.MessageObjectHeader.Clear
+  fullName: GameFrameX.NetWork.Messages.MessageObjectHeader.Clear()
+  nameWithType: MessageObjectHeader.Clear()
+- uid: GameFrameX.NetWork.Messages.MessageObjectHeader.Clear*
+  name: Clear
+  href: api/GameFrameX.NetWork.Messages.MessageObjectHeader.html#GameFrameX_NetWork_Messages_MessageObjectHeader_Clear_
+  commentId: Overload:GameFrameX.NetWork.Messages.MessageObjectHeader.Clear
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Messages.MessageObjectHeader.Clear
+  nameWithType: MessageObjectHeader.Clear
 - uid: GameFrameX.NetWork.Messages.MessageObjectHeader.MessageId
   name: MessageId
   href: api/GameFrameX.NetWork.Messages.MessageObjectHeader.html#GameFrameX_NetWork_Messages_MessageObjectHeader_MessageId
@@ -10184,6 +10843,19 @@ references:
   commentId: T:GameFrameX.NetWork.NetworkMessagePackage
   fullName: GameFrameX.NetWork.NetworkMessagePackage
   nameWithType: NetworkMessagePackage
+- uid: GameFrameX.NetWork.NetworkMessagePackage.Clear
+  name: Clear()
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_Clear
+  commentId: M:GameFrameX.NetWork.NetworkMessagePackage.Clear
+  fullName: GameFrameX.NetWork.NetworkMessagePackage.Clear()
+  nameWithType: NetworkMessagePackage.Clear()
+- uid: GameFrameX.NetWork.NetworkMessagePackage.Clear*
+  name: Clear
+  href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_Clear_
+  commentId: Overload:GameFrameX.NetWork.NetworkMessagePackage.Clear
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.NetworkMessagePackage.Clear
+  nameWithType: NetworkMessagePackage.Clear
 - uid: GameFrameX.NetWork.NetworkMessagePackage.Create(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetworkMessageHeader)
   name: Create(INetworkMessage, INetworkMessageHeader)
   href: api/GameFrameX.NetWork.NetworkMessagePackage.html#GameFrameX_NetWork_NetworkMessagePackage_Create_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetworkMessageHeader_
@@ -10900,13 +11572,13 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.AppStartUpBase.Init
   nameWithType: AppStartUpBase.Init
-- uid: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.IMessageHandler,GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel,System.Int32,System.Threading.CancellationToken)
+- uid: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.Abstractions.IMessageHandler,GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel,System.Int32,System.Threading.CancellationToken)
   name: InvokeMessageHandler(IMessageHandler, INetworkMessage, INetWorkChannel, int, CancellationToken)
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_InvokeMessageHandler_GameFrameX_NetWork_IMessageHandler_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_System_Int32_System_Threading_CancellationToken_
-  commentId: M:GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.IMessageHandler,GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel,System.Int32,System.Threading.CancellationToken)
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_InvokeMessageHandler_GameFrameX_NetWork_Abstractions_IMessageHandler_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_System_Int32_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.Abstractions.IMessageHandler,GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel,System.Int32,System.Threading.CancellationToken)
   name.vb: InvokeMessageHandler(IMessageHandler, INetworkMessage, INetWorkChannel, Integer, CancellationToken)
-  fullName: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.IMessageHandler, GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel, int, System.Threading.CancellationToken)
-  fullName.vb: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.IMessageHandler, GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel, Integer, System.Threading.CancellationToken)
+  fullName: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.Abstractions.IMessageHandler, GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel, int, System.Threading.CancellationToken)
+  fullName.vb: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler(GameFrameX.NetWork.Abstractions.IMessageHandler, GameFrameX.NetWork.Abstractions.INetworkMessage, GameFrameX.NetWork.Abstractions.INetWorkChannel, Integer, System.Threading.CancellationToken)
   nameWithType: AppStartUpBase.InvokeMessageHandler(IMessageHandler, INetworkMessage, INetWorkChannel, int, CancellationToken)
   nameWithType.vb: AppStartUpBase.InvokeMessageHandler(IMessageHandler, INetworkMessage, INetWorkChannel, Integer, CancellationToken)
 - uid: GameFrameX.StartUp.AppStartUpBase.InvokeMessageHandler*

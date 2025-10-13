@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class BaseMessageHandler&lt;TRequest&gt; | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class BaseMessageHandler&lt;TRequest&gt; | GameFrameX.Server ">
+      
+      <meta name="description" content="基础消息处理器">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.1-dev5/apiSpec/new?filename=GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1.md&amp;value=---%0Auid%3A%20GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1">
+
+
+
+  <h1 id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1" data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1" class="text-break">
+Class BaseMessageHandler&lt;TRequest&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/Normal/BaseMessageHandler.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Core.html">Core</a>.<a class="xref" href="GameFrameX.Core.BaseHandler.html">BaseHandler</a>.<a class="xref" href="GameFrameX.Core.BaseHandler.Normal.html">Normal</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>基础消息处理器</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class BaseMessageHandler&lt;TRequest&gt; : IMessageHandler, IBaseMessageHandler where TRequest : class, IRequestMessage, new()</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TRequest</code></dt>
+    <dd><p>请求消息类型，必须实现 <a class="xref" href="GameFrameX.NetWork.Abstractions.IRequestMessage.html">IRequestMessage</a> 接口，且具备无参构造函数</p>
+</dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">BaseMessageHandler&lt;TRequest&gt;</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="GameFrameX.NetWork.Abstractions.IMessageHandler.html">IMessageHandler</a></div>
+      <div><a class="xref" href="GameFrameX.NetWork.Abstractions.IBaseMessageHandler.html">IBaseMessageHandler</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html">BaseComponentHandler&lt;TRequest&gt;</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>所有具体消息处理器均应继承自此抽象类，以实现统一的消息初始化、超时监控、性能统计与异常处理逻辑。</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_Message_" data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.Message*"></a>
+
+  <h3 id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_Message" data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.Message">
+  Message
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/Normal/BaseMessageHandler.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>消息对象</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TRequest Message { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TRequest</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_NetWorkChannel_" data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.NetWorkChannel*"></a>
+
+  <h3 id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_NetWorkChannel" data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.NetWorkChannel">
+  NetWorkChannel
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/Normal/BaseMessageHandler.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>网络频道</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public INetWorkChannel NetWorkChannel { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.NetWork.Abstractions.INetWorkChannel.html">INetWorkChannel</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_ActionAsync_" data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.ActionAsync*"></a>
+
+  <h3 id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_ActionAsync__0_" data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.ActionAsync(`0)">
+  ActionAsync(TRequest)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/Normal/BaseMessageHandler.cs/#L126"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>动作异步</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract Task ActionAsync(TRequest request)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>request</code> <span class="xref">TRequest</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>动作执行任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_GetMessageType_" data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.GetMessageType*"></a>
+
+  <h3 id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_GetMessageType" data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.GetMessageType">
+  GetMessageType()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/Normal/BaseMessageHandler.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前消息处理器所处理的消息类型。
+通常用于反射或泛型约束，便于框架自动识别和分发消息。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Type GetMessageType()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>消息类型的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a> 实例。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_GetResponseType_" data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.GetResponseType*"></a>
+
+  <h3 id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_GetResponseType" data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.GetResponseType">
+  GetResponseType()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/Normal/BaseMessageHandler.cs/#L176"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前消息处理器返回的响应类型。
+用于确定消息处理完成后返回的数据类型，便于类型安全和自动化处理。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Type GetResponseType()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>响应类型的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a> 实例。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_Init_" data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.Init*"></a>
+
+  <h3 id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_Init_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_" data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)">
+  Init(INetworkMessage, INetWorkChannel)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/Normal/BaseMessageHandler.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>初始化
+子类实现必须调用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;bool&gt; Init(INetworkMessage message, INetWorkChannel netWorkChannel)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <a class="xref" href="GameFrameX.NetWork.Abstractions.INetworkMessage.html">INetworkMessage</a></dt>
+    <dd><p>消息对象</p>
+</dd>
+    <dt><code>netWorkChannel</code> <a class="xref" href="GameFrameX.NetWork.Abstractions.INetWorkChannel.html">INetWorkChannel</a></dt>
+    <dd><p>网络渠道</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>返回是否初始化成功,true:成功,false:失败</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_InnerAction_" data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.InnerAction*"></a>
+
+  <h3 id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_InnerAction_System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.InnerAction(System.Int32,System.Threading.CancellationToken)">
+  InnerAction(int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/Normal/BaseMessageHandler.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>执行</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task InnerAction(int timeout = 30000, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>timeout</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>执行超时时间，单位毫秒，默认30秒</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>取消令牌</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>执行任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_InnerActionAsync_" data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.InnerActionAsync*"></a>
+
+  <h3 id="GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_InnerActionAsync__0_" data-uid="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler`1.InnerActionAsync(`0)">
+  InnerActionAsync(TRequest)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/Normal/BaseMessageHandler.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>内部动作异步
+记录执行时间并调用 <a class="xref" href="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_ActionAsync__0_">ActionAsync(TRequest)</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task InnerActionAsync(TRequest message)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <span class="xref">TRequest</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>动作执行任务</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/Normal/BaseMessageHandler.cs/#L46" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

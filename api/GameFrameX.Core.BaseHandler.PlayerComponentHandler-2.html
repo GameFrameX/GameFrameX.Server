@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class PlayerComponentHandler&lt;T, TRequest&gt; | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class PlayerComponentHandler&lt;T, TRequest&gt; | GameFrameX.Server ">
+      
+      <meta name="description" content="玩家组件处理器">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.1-dev5/apiSpec/new?filename=GameFrameX_Core_BaseHandler_PlayerComponentHandler_2.md&amp;value=---%0Auid%3A%20GameFrameX.Core.BaseHandler.PlayerComponentHandler%602%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.Core.BaseHandler.PlayerComponentHandler`2">
+
+
+
+  <h1 id="GameFrameX_Core_BaseHandler_PlayerComponentHandler_2" data-uid="GameFrameX.Core.BaseHandler.PlayerComponentHandler`2" class="text-break">
+Class PlayerComponentHandler&lt;T, TRequest&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/PlayerComponentHandler.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Core.html">Core</a>.<a class="xref" href="GameFrameX.Core.BaseHandler.html">BaseHandler</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>玩家组件处理器</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class PlayerComponentHandler&lt;T, TRequest&gt; : PlayerComponentHandler&lt;TRequest&gt;, IMessageHandler, IBaseMessageHandler where T : IComponentAgent where TRequest : class, IRequestMessage, new()</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>组件代理类型，必须实现 <a class="xref" href="GameFrameX.Core.Abstractions.Agent.IComponentAgent.html">IComponentAgent</a> 接口，用于提供强类型的组件代理访问能力</p>
+</dd>
+    <dt><code>TRequest</code></dt>
+    <dd><p>请求消息类型，必须实现 <a class="xref" href="GameFrameX.NetWork.Abstractions.IRequestMessage.html">IRequestMessage</a> 接口，且具备无参构造函数</p>
+</dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html">BaseMessageHandler</a>&lt;TRequest&gt;</div>
+      <div><a class="xref" href="GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html">BaseComponentHandler</a>&lt;TRequest&gt;</div>
+      <div><a class="xref" href="GameFrameX.Core.BaseHandler.PlayerComponentHandler-1.html">PlayerComponentHandler</a>&lt;TRequest&gt;</div>
+      <div><span class="xref">PlayerComponentHandler&lt;T, TRequest&gt;</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="GameFrameX.NetWork.Abstractions.IMessageHandler.html">IMessageHandler</a></div>
+      <div><a class="xref" href="GameFrameX.NetWork.Abstractions.IBaseMessageHandler.html">IBaseMessageHandler</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.PlayerComponentHandler-1.html#GameFrameX_Core_BaseHandler_PlayerComponentHandler_1_InitActor">PlayerComponentHandler&lt;TRequest&gt;.InitActor()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_ActorId">BaseComponentHandler&lt;TRequest&gt;.ActorId</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_CacheComponent">BaseComponentHandler&lt;TRequest&gt;.CacheComponent</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_Init_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_">BaseComponentHandler&lt;TRequest&gt;.Init(INetworkMessage, INetWorkChannel)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_InnerAction_System_Int32_System_Threading_CancellationToken_">BaseComponentHandler&lt;TRequest&gt;.InnerAction(int, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseComponentHandler_1_GetComponentAgent__1">BaseComponentHandler&lt;TRequest&gt;.GetComponentAgent&lt;TOtherAgent&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_NetWorkChannel">BaseMessageHandler&lt;TRequest&gt;.NetWorkChannel</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_Message">BaseMessageHandler&lt;TRequest&gt;.Message</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_ActionAsync__0_">BaseMessageHandler&lt;TRequest&gt;.ActionAsync(TRequest)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_InnerActionAsync__0_">BaseMessageHandler&lt;TRequest&gt;.InnerActionAsync(TRequest)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_GetMessageType">BaseMessageHandler&lt;TRequest&gt;.GetMessageType()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html#GameFrameX_Core_BaseHandler_Normal_BaseMessageHandler_1_GetResponseType">BaseMessageHandler&lt;TRequest&gt;.GetResponseType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="GameFrameX_Core_BaseHandler_PlayerComponentHandler_2_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>在单参版本基础上，额外提供泛型组件代理类型参数，使业务层可直接操作具体组件代理而无需强制转换，提升代码可读性与类型安全性。</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="GameFrameX_Core_BaseHandler_PlayerComponentHandler_2_ComponentAgent_" data-uid="GameFrameX.Core.BaseHandler.PlayerComponentHandler`2.ComponentAgent*"></a>
+
+  <h3 id="GameFrameX_Core_BaseHandler_PlayerComponentHandler_2_ComponentAgent" data-uid="GameFrameX.Core.BaseHandler.PlayerComponentHandler`2.ComponentAgent">
+  ComponentAgent
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/PlayerComponentHandler.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>缓存组件代理对象</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected T ComponentAgent { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_Core_BaseHandler_PlayerComponentHandler_2_ComponentAgentType_" data-uid="GameFrameX.Core.BaseHandler.PlayerComponentHandler`2.ComponentAgentType*"></a>
+
+  <h3 id="GameFrameX_Core_BaseHandler_PlayerComponentHandler_2_ComponentAgentType" data-uid="GameFrameX.Core.BaseHandler.PlayerComponentHandler`2.ComponentAgentType">
+  ComponentAgentType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/PlayerComponentHandler.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>组件代理类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Type ComponentAgentType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/PlayerComponentHandler.cs/#L78" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class BaseComponentHandler | GameFrameX.Server </title>
+      <title>Class BaseRpcComponentHandler&lt;TRequest, TResponse&gt; | GameFrameX.Server </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class BaseComponentHandler | GameFrameX.Server ">
+      <meta name="title" content="Class BaseRpcComponentHandler&lt;TRequest, TResponse&gt; | GameFrameX.Server ">
       
       <meta name="description" content="基础组件处理器基类">
       <link rel="icon" href="../images/favicon.ico">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.1-dev4/apiSpec/new?filename=GameFrameX_Core_BaseHandler_BaseComponentHandler.md&amp;value=---%0Auid%3A%20GameFrameX.Core.BaseHandler.BaseComponentHandler%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.1-dev5/apiSpec/new?filename=GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2.md&amp;value=---%0Auid%3A%20GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler%602%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,16 +84,16 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="GameFrameX.Core.BaseHandler.BaseComponentHandler">
+        <article data-uid="GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2">
 
 
 
-  <h1 id="GameFrameX_Core_BaseHandler_BaseComponentHandler" data-uid="GameFrameX.Core.BaseHandler.BaseComponentHandler" class="text-break">
-Class BaseComponentHandler  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev4/GameFrameX.Core/BaseHandler/BaseComponentHandler.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <h1 id="GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2" data-uid="GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2" class="text-break">
+Class BaseRpcComponentHandler&lt;TRequest, TResponse&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/RPC/BaseRpcComponentHandler.cs/#L49"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Core.html">Core</a>.<a class="xref" href="GameFrameX.Core.BaseHandler.html">BaseHandler</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.Core.html">Core</a>.<a class="xref" href="GameFrameX.Core.BaseHandler.html">BaseHandler</a>.<a class="xref" href="GameFrameX.Core.BaseHandler.RPC.html">RPC</a></dd></dl>
   <dl><dt>Assembly</dt><dd>GameFrameX.Core.dll</dd></dl>
   </div>
 
@@ -102,33 +102,43 @@ Class BaseComponentHandler  <a class="header-action link-secondary" title="View 
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class BaseComponentHandler : BaseMessageHandler, IMessageHandler</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class BaseRpcComponentHandler&lt;TRequest, TResponse&gt; : BaseRpcMessageHandler&lt;TRequest, TResponse&gt;, IMessageHandler, IBaseMessageHandler where TRequest : class, IRequestMessage, new() where TResponse : class, IResponseMessage, new()</code></pre>
   </div>
 
 
 
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TRequest</code></dt>
+    <dd><p>请求消息类型，必须实现 <a class="xref" href="GameFrameX.NetWork.Abstractions.IRequestMessage.html">IRequestMessage</a> 接口，且具备无参构造函数</p>
+</dd>
+    <dt><code>TResponse</code></dt>
+    <dd><p>响应消息类型，必须实现 <a class="xref" href="GameFrameX.NetWork.Abstractions.IResponseMessage.html">IResponseMessage</a> 接口，且具备无参构造函数</p>
+</dd>
+  </dl>
 
   <dl class="typelist inheritance">
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><a class="xref" href="GameFrameX.Core.BaseHandler.BaseMessageHandler.html">BaseMessageHandler</a></div>
-      <div><span class="xref">BaseComponentHandler</span></div>
+      <div><a class="xref" href="GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html">BaseRpcMessageHandler</a>&lt;TRequest, TResponse&gt;</div>
+      <div><span class="xref">BaseRpcComponentHandler&lt;TRequest, TResponse&gt;</span></div>
     </dd>
   </dl>
 
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
-      <div><a class="xref" href="GameFrameX.NetWork.IMessageHandler.html">IMessageHandler</a></div>
+      <div><a class="xref" href="GameFrameX.NetWork.Abstractions.IMessageHandler.html">IMessageHandler</a></div>
+      <div><a class="xref" href="GameFrameX.NetWork.Abstractions.IBaseMessageHandler.html">IBaseMessageHandler</a></div>
     </dd>
   </dl>
 
   <dl class="typelist derived">
     <dt>Derived</dt>
     <dd>
-      <div><a class="xref" href="GameFrameX.Core.BaseHandler.GlobalComponentHandler.html">GlobalComponentHandler</a></div>
-      <div><a class="xref" href="GameFrameX.Core.BaseHandler.PlayerComponentHandler.html">PlayerComponentHandler</a></div>
+      <div><a class="xref" href="GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler-2.html">GlobalRpcComponentHandler&lt;TRequest, TResponse&gt;</a></div>
+      <div><a class="xref" href="GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler-2.html">PlayerRpcComponentHandler&lt;TRequest, TResponse&gt;</a></div>
     </dd>
   </dl>
 
@@ -136,16 +146,25 @@ Class BaseComponentHandler  <a class="header-action link-secondary" title="View 
     <dt>Inherited Members</dt>
     <dd>
     <div>
-      <a class="xref" href="GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_NetWorkChannel">BaseMessageHandler.NetWorkChannel</a>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_NetWorkChannel">BaseRpcMessageHandler&lt;TRequest, TResponse&gt;.NetWorkChannel</a>
     </div>
     <div>
-      <a class="xref" href="GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_Message">BaseMessageHandler.Message</a>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_RequestMessage">BaseRpcMessageHandler&lt;TRequest, TResponse&gt;.RequestMessage</a>
     </div>
     <div>
-      <a class="xref" href="GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_ActionAsync">BaseMessageHandler.ActionAsync()</a>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_Init_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_">BaseRpcMessageHandler&lt;TRequest, TResponse&gt;.Init(INetworkMessage, INetWorkChannel)</a>
     </div>
     <div>
-      <a class="xref" href="GameFrameX.Core.BaseHandler.BaseMessageHandler.html#GameFrameX_Core_BaseHandler_BaseMessageHandler_InnerActionAsync">BaseMessageHandler.InnerActionAsync()</a>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_InnerAction_System_Int32_System_Threading_CancellationToken_">BaseRpcMessageHandler&lt;TRequest, TResponse&gt;.InnerAction(int, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_ActionAsync__0__1_">BaseRpcMessageHandler&lt;TRequest, TResponse&gt;.ActionAsync(TRequest, TResponse)</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_GetMessageType">BaseRpcMessageHandler&lt;TRequest, TResponse&gt;.GetMessageType()</a>
+    </div>
+    <div>
+      <a class="xref" href="GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html#GameFrameX_Core_BaseHandler_RPC_BaseRpcMessageHandler_2_GetResponseType">BaseRpcMessageHandler&lt;TRequest, TResponse&gt;.GetResponseType()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
@@ -173,17 +192,20 @@ Class BaseComponentHandler  <a class="header-action link-secondary" title="View 
 
 
 
+  <h2 id="GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>所有具体组件处理器均应继承自此抽象类，以实现统一的组件初始化、超时监控、性能统计与异常处理逻辑。</p>
+</div>
 
 
   <h2 class="section" id="properties">Properties
 </h2>
 
 
-  <a id="GameFrameX_Core_BaseHandler_BaseComponentHandler_ActorId_" data-uid="GameFrameX.Core.BaseHandler.BaseComponentHandler.ActorId*"></a>
+  <a id="GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_ActorId_" data-uid="GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.ActorId*"></a>
 
-  <h3 id="GameFrameX_Core_BaseHandler_BaseComponentHandler_ActorId" data-uid="GameFrameX.Core.BaseHandler.BaseComponentHandler.ActorId">
+  <h3 id="GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_ActorId" data-uid="GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.ActorId">
   ActorId
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev4/GameFrameX.Core/BaseHandler/BaseComponentHandler.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/RPC/BaseRpcComponentHandler.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>组件代理ID</p>
@@ -211,11 +233,11 @@ Class BaseComponentHandler  <a class="header-action link-secondary" title="View 
 
 
 
-  <a id="GameFrameX_Core_BaseHandler_BaseComponentHandler_CacheComponent_" data-uid="GameFrameX.Core.BaseHandler.BaseComponentHandler.CacheComponent*"></a>
+  <a id="GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_CacheComponent_" data-uid="GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.CacheComponent*"></a>
 
-  <h3 id="GameFrameX_Core_BaseHandler_BaseComponentHandler_CacheComponent" data-uid="GameFrameX.Core.BaseHandler.BaseComponentHandler.CacheComponent">
+  <h3 id="GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_CacheComponent" data-uid="GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.CacheComponent">
   CacheComponent
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev4/GameFrameX.Core/BaseHandler/BaseComponentHandler.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/RPC/BaseRpcComponentHandler.cs/#L64"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>缓存组件代理对象</p>
@@ -243,11 +265,11 @@ Class BaseComponentHandler  <a class="header-action link-secondary" title="View 
 
 
 
-  <a id="GameFrameX_Core_BaseHandler_BaseComponentHandler_ComponentAgentType_" data-uid="GameFrameX.Core.BaseHandler.BaseComponentHandler.ComponentAgentType*"></a>
+  <a id="GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_ComponentAgentType_" data-uid="GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.ComponentAgentType*"></a>
 
-  <h3 id="GameFrameX_Core_BaseHandler_BaseComponentHandler_ComponentAgentType" data-uid="GameFrameX.Core.BaseHandler.BaseComponentHandler.ComponentAgentType">
+  <h3 id="GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_ComponentAgentType" data-uid="GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.ComponentAgentType">
   ComponentAgentType
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev4/GameFrameX.Core/BaseHandler/BaseComponentHandler.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/RPC/BaseRpcComponentHandler.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>组件代理类型</p>
@@ -279,11 +301,11 @@ Class BaseComponentHandler  <a class="header-action link-secondary" title="View 
 </h2>
 
 
-  <a id="GameFrameX_Core_BaseHandler_BaseComponentHandler_GetComponentAgent_" data-uid="GameFrameX.Core.BaseHandler.BaseComponentHandler.GetComponentAgent*"></a>
+  <a id="GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_GetComponentAgent_" data-uid="GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.GetComponentAgent*"></a>
 
-  <h3 id="GameFrameX_Core_BaseHandler_BaseComponentHandler_GetComponentAgent__1" data-uid="GameFrameX.Core.BaseHandler.BaseComponentHandler.GetComponentAgent``1">
+  <h3 id="GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_GetComponentAgent__1" data-uid="GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.GetComponentAgent``1">
   GetComponentAgent&lt;TOtherAgent&gt;()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev4/GameFrameX.Core/BaseHandler/BaseComponentHandler.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/RPC/BaseRpcComponentHandler.cs/#L169"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>根据组件类型获取对应的 IComponentAgent</p>
@@ -318,11 +340,11 @@ Class BaseComponentHandler  <a class="header-action link-secondary" title="View 
 
 
 
-  <a id="GameFrameX_Core_BaseHandler_BaseComponentHandler_Init_" data-uid="GameFrameX.Core.BaseHandler.BaseComponentHandler.Init*"></a>
+  <a id="GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_Init_" data-uid="GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.Init*"></a>
 
-  <h3 id="GameFrameX_Core_BaseHandler_BaseComponentHandler_Init_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_" data-uid="GameFrameX.Core.BaseHandler.BaseComponentHandler.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)">
+  <h3 id="GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_Init_GameFrameX_NetWork_Abstractions_INetworkMessage_GameFrameX_NetWork_Abstractions_INetWorkChannel_" data-uid="GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.Init(GameFrameX.NetWork.Abstractions.INetworkMessage,GameFrameX.NetWork.Abstractions.INetWorkChannel)">
   Init(INetworkMessage, INetWorkChannel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev4/GameFrameX.Core/BaseHandler/BaseComponentHandler.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/RPC/BaseRpcComponentHandler.cs/#L78"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>初始化</p>
@@ -360,11 +382,11 @@ Class BaseComponentHandler  <a class="header-action link-secondary" title="View 
 
 
 
-  <a id="GameFrameX_Core_BaseHandler_BaseComponentHandler_InitActor_" data-uid="GameFrameX.Core.BaseHandler.BaseComponentHandler.InitActor*"></a>
+  <a id="GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_InitActor_" data-uid="GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.InitActor*"></a>
 
-  <h3 id="GameFrameX_Core_BaseHandler_BaseComponentHandler_InitActor" data-uid="GameFrameX.Core.BaseHandler.BaseComponentHandler.InitActor">
+  <h3 id="GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_InitActor" data-uid="GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.InitActor">
   InitActor()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev4/GameFrameX.Core/BaseHandler/BaseComponentHandler.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/RPC/BaseRpcComponentHandler.cs/#L70"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>初始化</p>
@@ -393,11 +415,11 @@ Class BaseComponentHandler  <a class="header-action link-secondary" title="View 
 
 
 
-  <a id="GameFrameX_Core_BaseHandler_BaseComponentHandler_InnerAction_" data-uid="GameFrameX.Core.BaseHandler.BaseComponentHandler.InnerAction*"></a>
+  <a id="GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_InnerAction_" data-uid="GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.InnerAction*"></a>
 
-  <h3 id="GameFrameX_Core_BaseHandler_BaseComponentHandler_InnerAction_System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.BaseHandler.BaseComponentHandler.InnerAction(System.Int32,System.Threading.CancellationToken)">
+  <h3 id="GameFrameX_Core_BaseHandler_RPC_BaseRpcComponentHandler_2_InnerAction_System_Int32_System_Threading_CancellationToken_" data-uid="GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler`2.InnerAction(System.Int32,System.Threading.CancellationToken)">
   InnerAction(int, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev4/GameFrameX.Core/BaseHandler/BaseComponentHandler.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/RPC/BaseRpcComponentHandler.cs/#L122"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>内部执行</p>
@@ -439,7 +461,7 @@ Class BaseComponentHandler  <a class="header-action link-secondary" title="View 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev4/GameFrameX.Core/BaseHandler/BaseComponentHandler.cs/#L44" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev5/GameFrameX.Core/BaseHandler/RPC/BaseRpcComponentHandler.cs/#L49" class="edit-link">Edit this page</a>
         </div>
 
 

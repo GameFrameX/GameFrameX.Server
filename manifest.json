@@ -530,34 +530,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Core.BaseHandler.BaseComponentHandler.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Core.BaseHandler.BaseComponentHandler.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Core.BaseHandler.BaseComponentHandler",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Core.BaseHandler.BaseComponentHandler.yml\" sourcestartlinenumber=\"1\">基础组件处理器基类</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Core.BaseHandler.BaseMessageHandler.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Core.BaseHandler.BaseMessageHandler.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Core.BaseHandler.BaseMessageHandler",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Core.BaseHandler.BaseMessageHandler.yml\" sourcestartlinenumber=\"1\">基础消息处理器</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-1.yml",
       "output": {
         ".html": {
@@ -567,22 +539,92 @@
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFrameX.Core.BaseHandler.GlobalComponentHandler<T>",
+      "Title": "GameFrameX.Core.BaseHandler.GlobalComponentHandler<TRequest>",
       "Summary": "<p sourcefile=\"api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-1.yml\" sourcestartlinenumber=\"1\">全局组件处理器</p>\n"
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Core.BaseHandler.GlobalComponentHandler.yml",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-2.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.Core.BaseHandler.GlobalComponentHandler.html"
+          "relative_path": "api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-2.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFrameX.Core.BaseHandler.GlobalComponentHandler",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Core.BaseHandler.GlobalComponentHandler.yml\" sourcestartlinenumber=\"1\">全局组件处理器</p>\n"
+      "Title": "GameFrameX.Core.BaseHandler.GlobalComponentHandler<T, TRequest>",
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.BaseHandler.GlobalComponentHandler-2.yml\" sourcestartlinenumber=\"1\">全局组件处理器（泛型双参版）</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler<TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler-2.yml\" sourcestartlinenumber=\"1\">全局组件处理器（RPC 版本）</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler-3.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler<T, TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.BaseHandler.GlobalRpcComponentHandler-3.yml\" sourcestartlinenumber=\"1\">全局组件处理器（RPC 版本）——泛型三参版本</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler<TRequest>",
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.BaseHandler.Normal.BaseComponentHandler-1.yml\" sourcestartlinenumber=\"1\">基础组件处理器基类</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler<TRequest>",
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.BaseHandler.Normal.BaseMessageHandler-1.yml\" sourcestartlinenumber=\"1\">基础消息处理器</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.Normal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.BaseHandler.Normal.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.Core.BaseHandler.Normal",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -595,22 +637,92 @@
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFrameX.Core.BaseHandler.PlayerComponentHandler<T>",
+      "Title": "GameFrameX.Core.BaseHandler.PlayerComponentHandler<TRequest>",
       "Summary": "<p sourcefile=\"api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-1.yml\" sourcestartlinenumber=\"1\">玩家组件处理器</p>\n"
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Core.BaseHandler.PlayerComponentHandler.yml",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-2.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GameFrameX.Core.BaseHandler.PlayerComponentHandler.html"
+          "relative_path": "api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-2.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "GameFrameX.Core.BaseHandler.PlayerComponentHandler",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Core.BaseHandler.PlayerComponentHandler.yml\" sourcestartlinenumber=\"1\">玩家组件处理器</p>\n"
+      "Title": "GameFrameX.Core.BaseHandler.PlayerComponentHandler<T, TRequest>",
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.BaseHandler.PlayerComponentHandler-2.yml\" sourcestartlinenumber=\"1\">玩家组件处理器</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler<TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler-2.yml\" sourcestartlinenumber=\"1\">玩家组件处理器</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler-3.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler<T, TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.BaseHandler.PlayerRpcComponentHandler-3.yml\" sourcestartlinenumber=\"1\">玩家组件处理器</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler<TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.BaseHandler.RPC.BaseRpcComponentHandler-2.yml\" sourcestartlinenumber=\"1\">基础组件处理器基类</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler<TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/GameFrameX.Core.BaseHandler.RPC.BaseRpcMessageHandler-2.yml\" sourcestartlinenumber=\"1\">基础消息处理器</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Core.BaseHandler.RPC.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Core.BaseHandler.RPC.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.Core.BaseHandler.RPC",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1188,6 +1300,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.Abstractions.IBaseMessageHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.Abstractions.IBaseMessageHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.NetWork.Abstractions.IBaseMessageHandler",
+      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Abstractions.IBaseMessageHandler.yml\" sourcestartlinenumber=\"1\">基础消息处理器接口</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.NetWork.Abstractions.ICommandInfo.yml",
       "output": {
         ".html": {
@@ -1283,6 +1409,34 @@
       "IsMRef": true,
       "Title": "GameFrameX.NetWork.Abstractions.IMessageEncoderHandler",
       "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Abstractions.IMessageEncoderHandler.yml\" sourcestartlinenumber=\"1\">消息编码器接口定义</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.Abstractions.IMessageHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.Abstractions.IMessageHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.NetWork.Abstractions.IMessageHandler",
+      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Abstractions.IMessageHandler.yml\" sourcestartlinenumber=\"1\">消息处理器</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.Abstractions.IMessageObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.Abstractions.IMessageObject.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.NetWork.Abstractions.IMessageObject",
+      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Abstractions.IMessageObject.yml\" sourcestartlinenumber=\"1\">消息内容对象</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1468,20 +1622,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute",
-      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Abstractions.MessageCodeDescriptionAttribute.yml\" sourcestartlinenumber=\"1\">消息错误码的描述</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.NetWork.Abstractions.MessageHelper.yml",
       "output": {
         ".html": {
@@ -1577,6 +1717,20 @@
       "IsMRef": true,
       "Title": "GameFrameX.NetWork.Abstractions.MessageTypeHandlerAttribute",
       "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Abstractions.MessageTypeHandlerAttribute.yml\" sourcestartlinenumber=\"1\">消息类型处理器标记</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.Abstractions.RpcException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.Abstractions.RpcException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.NetWork.Abstractions.RpcException",
+      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Abstractions.RpcException.yml\" sourcestartlinenumber=\"1\">表示远程过程调用（RPC）中的异常基类。</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1832,20 +1986,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.NetWork.IMessageHandler.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.NetWork.IMessageHandler.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.NetWork.IMessageHandler",
-      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.IMessageHandler.yml\" sourcestartlinenumber=\"1\">消息处理器</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.NetWork.Message.BaseMessageDecoderHandler.yml",
       "output": {
         ".html": {
@@ -1972,6 +2112,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.NetWork.MessageObjectPoolHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.NetWork.MessageObjectPoolHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.NetWork.MessageObjectPoolHelper",
+      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.MessageObjectPoolHelper.yml\" sourcestartlinenumber=\"1\">Static message object pool helper class / 静态消息对象池帮助类\nProvides centralized management for object pools using Microsoft.Extensions.ObjectPool / 使用 Microsoft.Extensions.ObjectPool 提供对象池的集中管理</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.NetWork.Messages.CommandInfo.yml",
       "output": {
         ".html": {
@@ -1983,20 +2137,6 @@
       "IsMRef": true,
       "Title": "GameFrameX.NetWork.Messages.CommandInfo",
       "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Messages.CommandInfo.yml\" sourcestartlinenumber=\"1\">指令信息</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.NetWork.Messages.InnerMessageObjectHeader.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.NetWork.Messages.InnerMessageObjectHeader.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.NetWork.Messages.InnerMessageObjectHeader",
-      "Summary": "<p sourcefile=\"api/GameFrameX.NetWork.Messages.InnerMessageObjectHeader.yml\" sourcestartlinenumber=\"1\">内部消息对象头</p>\n"
     },
     {
       "type": "ManagedReference",
