@@ -88,6 +88,10 @@ public sealed class DefaultMessageEncoderHandler : BaseMessageEncoderHandler
                 LogHelper.Error(e);
                 return null;
             }
+            finally
+            {
+                MessageObjectPoolHelper.Return(message);
+            }
         }
 
         LogHelper.Error("消息对象为空，编码异常");
