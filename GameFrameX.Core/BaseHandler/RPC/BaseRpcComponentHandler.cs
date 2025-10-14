@@ -147,6 +147,10 @@ public abstract class BaseRpcComponentHandler<TRequest, TResponse> : BaseRpcMess
             catch (Exception e)
             {
                 LogHelper.Error(e, $"InnerAction error: {RequestMessage.GetType().FullName} {RequestMessage}");
+                if (response != null && response.ErrorCode == default)
+                {
+                    response.ErrorCode = OperationErrorCode.InternalServerError;
+                }
             }
 
             if (NetWorkChannel == null || NetWorkChannel.IsClosed() || response == null)
