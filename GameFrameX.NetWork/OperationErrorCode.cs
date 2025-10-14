@@ -143,4 +143,10 @@ public static class OperationErrorCode
     /// </summary>
     [System.ComponentModel.Description("没有权限")]
     public const int NoPermission = 17;
+
+    /// <summary>
+    /// 执行超时 / Execution timeout
+    /// </summary>
+    [System.ComponentModel.Description("执行超时")]
+    public const int TimeOut = 18;
 }
