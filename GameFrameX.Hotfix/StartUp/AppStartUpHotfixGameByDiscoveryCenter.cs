@@ -53,16 +53,22 @@ internal partial class AppStartUpHotfixGame
         Send(reqRegisterServer);
     }
 
-    readonly ReqActorHeartBeat _reqActorHeartBeat = new ReqActorHeartBeat();
 
     protected override MessageObject GameAppClientOnHeartBeat()
     {
-        _reqActorHeartBeat.Timestamp = TimeHelper.UnixTimeMilliseconds();
-        _reqActorHeartBeat.UpdateUniqueId();
-        return _reqActorHeartBeat;
+        var reqActorHeartBeat = MessageObjectPoolHelper.Get<ReqActorHeartBeat>();
+        reqActorHeartBeat.Timestamp = TimeHelper.UnixTimeMilliseconds();
+        reqActorHeartBeat.UpdateUniqueId();
+        return reqActorHeartBeat;
     }
 
     protected override void GameAppClientOnMessage(MessageObject message)
     {
+        if (MessageProtoHelper.IsHeartbeat(message))
+        {
+            return;
+        }
+
+        base.GameAppClientOnMessage(message);
     }
 }
