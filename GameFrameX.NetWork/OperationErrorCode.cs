@@ -32,121 +32,141 @@
 namespace GameFrameX.NetWork;
 
 /// <summary>
-/// 操作错误码
+/// Operation error codes
 /// </summary>
+/// <remarks>操作错误码</remarks>
 public static class OperationErrorCode
 {
     /// <summary>
-    /// 成功
+    /// Success
     /// </summary>
-    [System.ComponentModel.Description("成功")]
+    /// <remarks>成功</remarks>
+    [System.ComponentModel.Description("Success / 成功")]
     public const int Success = 0;
 
     /// <summary>
-    /// 配置表错误
+    /// Configuration error
     /// </summary>
-    [System.ComponentModel.Description("配置表错误")]
+    /// <remarks>配置表错误</remarks>
+    [System.ComponentModel.Description("Configuration error / 配置表错误")]
     public const int ConfigErr = 1;
 
     /// <summary>
-    /// 参数错误
+    /// Parameter error
     /// </summary>
-    [System.ComponentModel.Description("客户端传递参数错误")]
+    /// <remarks>参数错误</remarks>
+    [System.ComponentModel.Description("Parameter error / 客户端传递参数错误")]
     public const int ParamErr = 2;
 
     /// <summary>
-    /// 消耗不足
+    /// Insufficient cost
     /// </summary>
-    [System.ComponentModel.Description("消耗不足")]
+    /// <remarks>消耗不足</remarks>
+    [System.ComponentModel.Description("Insufficient cost / 消耗不足")]
     public const int CostNotEnough = 3;
 
     /// <summary>
-    /// 未开通服务
+    /// Service not enabled
     /// </summary>
-    [System.ComponentModel.Description("未开通服务")]
+    /// <remarks>未开通服务</remarks>
+    [System.ComponentModel.Description("Service not enabled / 未开通服务")]
     public const int Forbidden = 4;
 
     /// <summary>
-    /// 不存在
+    /// Not found
     /// </summary>
-    [System.ComponentModel.Description("不存在")]
+    /// <remarks>不存在</remarks>
+    [System.ComponentModel.Description("Not found / 不存在")]
     public const int NotFound = 5;
 
     /// <summary>
-    /// 已经存在
+    /// Already exists
     /// </summary>
-    [System.ComponentModel.Description("已经存在")]
+    /// <remarks>已经存在</remarks>
+    [System.ComponentModel.Description("Already exists / 已经存在")]
     public const int HasExist = 6;
 
     /// <summary>
-    /// 账号不存在或为空
+    /// Account cannot be null or empty
     /// </summary>
-    [System.ComponentModel.Description("账号不存在或为空")]
+    /// <remarks>账号不存在或为空</remarks>
+    [System.ComponentModel.Description("Account cannot be null or empty / 账号不存在或为空")]
     public const int AccountCannotBeNull = 7;
 
     /// <summary>
-    /// 无法执行数据库修改
+    /// Unable to execute database modification
     /// </summary>
-    [System.ComponentModel.Description("无法执行数据库修改")]
+    /// <remarks>无法执行数据库修改</remarks>
+    [System.ComponentModel.Description("Unable to execute database modification / 无法执行数据库修改")]
     public const int Unprocessable = 8;
 
     /// <summary>
-    /// 未知平台
+    /// Unknown platform
     /// </summary>
-    [System.ComponentModel.Description("未知平台")]
+    /// <remarks>未知平台</remarks>
+    [System.ComponentModel.Description("Unknown platform / 未知平台")]
     public const int UnknownPlatform = 9;
 
     /// <summary>
-    /// 正常通知
+    /// Normal notification
     /// </summary>
-    [System.ComponentModel.Description("正常通知")]
+    /// <remarks>正常通知</remarks>
+    [System.ComponentModel.Description("Normal notification / 正常通知")]
     public const int Notice = 10;
 
     /// <summary>
-    /// 功能未开启，主消息屏蔽
+    /// Function not enabled, main message blocked
     /// </summary>
-    [System.ComponentModel.Description("功能未开启，主消息屏蔽")]
+    /// <remarks>功能未开启，主消息屏蔽</remarks>
+    [System.ComponentModel.Description("Function not enabled, main message blocked / 功能未开启，主消息屏蔽")]
     public const int FuncNotOpen = 11;
 
     /// <summary>
-    /// 其他
+    /// Other
     /// </summary>
-    [System.ComponentModel.Description("其他")]
+    /// <remarks>其他</remarks>
+    [System.ComponentModel.Description("Other / 其他")]
     public const int Other = 12;
 
     /// <summary>
-    /// 内部服务错误
+    /// Internal server error
     /// </summary>
-    [System.ComponentModel.Description("内部服务错误")]
+    /// <remarks>内部服务错误</remarks>
+    [System.ComponentModel.Description("Internal server error / 内部服务错误")]
     public const int InternalServerError = 13;
 
     /// <summary>
-    /// 通知客户端服务器人数已达上限
+    /// Server fully loaded
     /// </summary>
-    [System.ComponentModel.Description("通知客户端服务器人数已达上限")]
+    /// <remarks>通知客户端服务器人数已达上限</remarks>
+    [System.ComponentModel.Description("Server fully loaded / 通知客户端服务器人数已达上限")]
     public const int ServerFullyLoaded = 14;
 
     /// <summary>
-    /// 已经过期
+    /// Has expired
     /// </summary>
-    [System.ComponentModel.Description("已经过期")]
+    /// <remarks>已经过期</remarks>
+    [System.ComponentModel.Description("Has expired / 已经过期")]
     public const int HasExpiration = 15;
 
     /// <summary>
-    /// 角色未授权;直接踢下线
+    /// Player unauthorized, kick offline directly
     /// </summary>
-    [System.ComponentModel.Description("角色未授权;直接踢下线")]
+    /// <remarks>角色未授权;直接踢下线</remarks>
+    [System.ComponentModel.Description("Player unauthorized, kick offline directly / 角色未授权;直接踢下线")]
     public const int PlayerUnauthorized = 16;
 
     /// <summary>
-    /// 没有权限
+    /// No permission
     /// </summary>
-    [System.ComponentModel.Description("没有权限")]
+    /// <remarks>没有权限</remarks>
+    [System.ComponentModel.Description("No permission / 没有权限")]
     public const int NoPermission = 17;
 
     /// <summary>
-    /// 执行超时 / Execution timeout
+    /// Execution timeout
     /// </summary>
-    [System.ComponentModel.Description("执行超时")]
+    /// <remarks>执行超时</remarks>
+    [System.ComponentModel.Description("Execution timeout / 执行超时")]
     public const int TimeOut = 18;
 }
