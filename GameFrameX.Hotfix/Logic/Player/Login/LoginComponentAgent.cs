@@ -55,6 +55,8 @@ public class LoginComponentAgent : StateComponentAgent<LoginComponent, LoginStat
             return;
         }
 
+        // 绑定玩家ID
+        workChannel.SetData(GlobalConst.ActorIdKey, playerState.Id);
         var playerComponentAgent = await ActorManager.GetComponentAgent<PlayerComponentAgent>(playerState.Id);
         await playerComponentAgent.OnPlayerLogin(workChannel, playerState, response);
     }
