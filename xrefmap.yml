@@ -6022,6 +6022,78 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Daily(Of T)(Integer, Integer, GameFrameX.Core.Abstractions.Events.GameEventArgs, Long)
   nameWithType: BaseComponentAgent<TComponent>.Daily<T>(int, int, GameEventArgs, long)
   nameWithType.vb: BaseComponentAgent(Of TComponent).Daily(Of T)(Integer, Integer, GameEventArgs, Long)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Debug(System.Exception,System.String)
+  name: Debug(Exception, string)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Debug_System_Exception_System_String_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Debug(System.Exception,System.String)
+  name.vb: Debug(Exception, String)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Debug(System.Exception, string)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Debug(System.Exception, String)
+  nameWithType: BaseComponentAgent<TComponent>.Debug(Exception, string)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Debug(Exception, String)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Debug(System.Exception,System.String,System.Object[])
+  name: Debug(Exception, string, params object[])
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Debug_System_Exception_System_String_System_Object___
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Debug(System.Exception,System.String,System.Object[])
+  name.vb: Debug(Exception, String, ParamArray Object())
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Debug(System.Exception, string, params object[])
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Debug(System.Exception, String, ParamArray Object())
+  nameWithType: BaseComponentAgent<TComponent>.Debug(Exception, string, params object[])
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Debug(Exception, String, ParamArray Object())
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Debug(System.String)
+  name: Debug(string)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Debug_System_String_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Debug(System.String)
+  name.vb: Debug(String)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Debug(string)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Debug(String)
+  nameWithType: BaseComponentAgent<TComponent>.Debug(string)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Debug(String)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Debug(System.String,System.Object)
+  name: Debug(string, object)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Debug_System_String_System_Object_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Debug(System.String,System.Object)
+  name.vb: Debug(String, Object)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Debug(string, object)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Debug(String, Object)
+  nameWithType: BaseComponentAgent<TComponent>.Debug(string, object)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Debug(String, Object)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Debug(System.String,System.Object,System.Object)
+  name: Debug(string, object, object)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Debug_System_String_System_Object_System_Object_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Debug(System.String,System.Object,System.Object)
+  name.vb: Debug(String, Object, Object)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Debug(string, object, object)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Debug(String, Object, Object)
+  nameWithType: BaseComponentAgent<TComponent>.Debug(string, object, object)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Debug(String, Object, Object)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Debug(System.String,System.Object,System.Object,System.Object)
+  name: Debug(string, object, object, object)
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Debug_System_String_System_Object_System_Object_System_Object_
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Debug(System.String,System.Object,System.Object,System.Object)
+  name.vb: Debug(String, Object, Object, Object)
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Debug(string, object, object, object)
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Debug(String, Object, Object, Object)
+  nameWithType: BaseComponentAgent<TComponent>.Debug(string, object, object, object)
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Debug(String, Object, Object, Object)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Debug(System.String,System.Object[])
+  name: Debug(string, params object[])
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Debug_System_String_System_Object___
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Debug(System.String,System.Object[])
+  name.vb: Debug(String, ParamArray Object())
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Debug(string, params object[])
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Debug(String, ParamArray Object())
+  nameWithType: BaseComponentAgent<TComponent>.Debug(string, params object[])
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Debug(String, ParamArray Object())
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Debug*
+  name: Debug
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Debug_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Debug
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Debug
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Debug
+  nameWithType: BaseComponentAgent<TComponent>.Debug
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Debug
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Delay*
   name: Delay
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Delay_
@@ -6058,6 +6130,60 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Delay(Of T)(System.TimeSpan, GameFrameX.Core.Abstractions.Events.GameEventArgs, Long)
   nameWithType: BaseComponentAgent<TComponent>.Delay<T>(TimeSpan, GameEventArgs, long)
   nameWithType.vb: BaseComponentAgent(Of TComponent).Delay(Of T)(TimeSpan, GameEventArgs, Long)
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Error(System.Exception,System.String,System.Object[])
+  name: Error(Exception, string, params object[])
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Error_System_Exception_System_String_System_Object___
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Error(System.Exception,System.String,System.Object[])
+  name.vb: Error(Exception, String, ParamArray Object())
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Error(System.Exception, string, params object[])
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Error(System.Exception, String, ParamArray Object())
+  nameWithType: BaseComponentAgent<TComponent>.Error(Exception, string, params object[])
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Error(Exception, String, ParamArray Object())
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Error(System.String,System.Object[])
+  name: Error(string, params object[])
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Error_System_String_System_Object___
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Error(System.String,System.Object[])
+  name.vb: Error(String, ParamArray Object())
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Error(string, params object[])
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Error(String, ParamArray Object())
+  nameWithType: BaseComponentAgent<TComponent>.Error(string, params object[])
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Error(String, ParamArray Object())
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Error*
+  name: Error
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Error_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Error
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Error
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Error
+  nameWithType: BaseComponentAgent<TComponent>.Error
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Error
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Fatal(System.Exception,System.String,System.Object[])
+  name: Fatal(Exception, string, params object[])
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Fatal_System_Exception_System_String_System_Object___
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Fatal(System.Exception,System.String,System.Object[])
+  name.vb: Fatal(Exception, String, ParamArray Object())
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Fatal(System.Exception, string, params object[])
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Fatal(System.Exception, String, ParamArray Object())
+  nameWithType: BaseComponentAgent<TComponent>.Fatal(Exception, string, params object[])
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Fatal(Exception, String, ParamArray Object())
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Fatal(System.String,System.Object[])
+  name: Fatal(string, params object[])
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Fatal_System_String_System_Object___
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Fatal(System.String,System.Object[])
+  name.vb: Fatal(String, ParamArray Object())
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Fatal(string, params object[])
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Fatal(String, ParamArray Object())
+  nameWithType: BaseComponentAgent<TComponent>.Fatal(string, params object[])
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Fatal(String, ParamArray Object())
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Fatal*
+  name: Fatal
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Fatal_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Fatal
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Fatal
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Fatal
+  nameWithType: BaseComponentAgent<TComponent>.Fatal
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Fatal
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.GetComponentAgent(System.Type,System.Boolean)
   name: GetComponentAgent(Type, bool)
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_GetComponentAgent_System_Type_System_Boolean_
@@ -6102,6 +6228,50 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Inactive
   nameWithType: BaseComponentAgent<TComponent>.Inactive
   nameWithType.vb: BaseComponentAgent(Of TComponent).Inactive
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Information(System.Exception,System.String,System.Object[])
+  name: Information(Exception, string, params object[])
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Information_System_Exception_System_String_System_Object___
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Information(System.Exception,System.String,System.Object[])
+  name.vb: Information(Exception, String, ParamArray Object())
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Information(System.Exception, string, params object[])
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Information(System.Exception, String, ParamArray Object())
+  nameWithType: BaseComponentAgent<TComponent>.Information(Exception, string, params object[])
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Information(Exception, String, ParamArray Object())
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Information(System.String,System.Object[])
+  name: Information(string, params object[])
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Information_System_String_System_Object___
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Information(System.String,System.Object[])
+  name.vb: Information(String, ParamArray Object())
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Information(string, params object[])
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Information(String, ParamArray Object())
+  nameWithType: BaseComponentAgent<TComponent>.Information(string, params object[])
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Information(String, ParamArray Object())
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Information*
+  name: Information
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Information_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Information
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Information
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Information
+  nameWithType: BaseComponentAgent<TComponent>.Information
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Information
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.InitLogger
+  name: InitLogger()
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_InitLogger
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.InitLogger
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.InitLogger()
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).InitLogger()
+  nameWithType: BaseComponentAgent<TComponent>.InitLogger()
+  nameWithType.vb: BaseComponentAgent(Of TComponent).InitLogger()
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.InitLogger*
+  name: InitLogger
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_InitLogger_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.InitLogger
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.InitLogger
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).InitLogger
+  nameWithType: BaseComponentAgent<TComponent>.InitLogger
+  nameWithType.vb: BaseComponentAgent(Of TComponent).InitLogger
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.IsInvokedActivation
   name: IsInvokedActivation
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_IsInvokedActivation
@@ -6187,6 +6357,33 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).IsInvokedBeforeInActivation
   nameWithType: BaseComponentAgent<TComponent>.IsInvokedBeforeInActivation
   nameWithType.vb: BaseComponentAgent(Of TComponent).IsInvokedBeforeInActivation
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Log(Serilog.Events.LogEventLevel,System.Exception,System.String,System.Object[])
+  name: Log(LogEventLevel, Exception, string, params object[])
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Log_Serilog_Events_LogEventLevel_System_Exception_System_String_System_Object___
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Log(Serilog.Events.LogEventLevel,System.Exception,System.String,System.Object[])
+  name.vb: Log(LogEventLevel, Exception, String, ParamArray Object())
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Log(Serilog.Events.LogEventLevel, System.Exception, string, params object[])
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Log(Serilog.Events.LogEventLevel, System.Exception, String, ParamArray Object())
+  nameWithType: BaseComponentAgent<TComponent>.Log(LogEventLevel, Exception, string, params object[])
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Log(LogEventLevel, Exception, String, ParamArray Object())
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Log(Serilog.Events.LogEventLevel,System.String,System.Object[])
+  name: Log(LogEventLevel, string, params object[])
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Log_Serilog_Events_LogEventLevel_System_String_System_Object___
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Log(Serilog.Events.LogEventLevel,System.String,System.Object[])
+  name.vb: Log(LogEventLevel, String, ParamArray Object())
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Log(Serilog.Events.LogEventLevel, string, params object[])
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Log(Serilog.Events.LogEventLevel, String, ParamArray Object())
+  nameWithType: BaseComponentAgent<TComponent>.Log(LogEventLevel, string, params object[])
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Log(LogEventLevel, String, ParamArray Object())
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Log*
+  name: Log
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Log_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Log
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Log
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Log
+  nameWithType: BaseComponentAgent<TComponent>.Log
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Log
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Monthly*
   name: Monthly
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Monthly_
@@ -6452,6 +6649,60 @@ references:
   fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Unscheduled
   nameWithType: BaseComponentAgent<TComponent>.Unscheduled
   nameWithType.vb: BaseComponentAgent(Of TComponent).Unscheduled
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Verbose(System.Exception,System.String,System.Object[])
+  name: Verbose(Exception, string, params object[])
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Verbose_System_Exception_System_String_System_Object___
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Verbose(System.Exception,System.String,System.Object[])
+  name.vb: Verbose(Exception, String, ParamArray Object())
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Verbose(System.Exception, string, params object[])
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Verbose(System.Exception, String, ParamArray Object())
+  nameWithType: BaseComponentAgent<TComponent>.Verbose(Exception, string, params object[])
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Verbose(Exception, String, ParamArray Object())
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Verbose(System.String,System.Object[])
+  name: Verbose(string, params object[])
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Verbose_System_String_System_Object___
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Verbose(System.String,System.Object[])
+  name.vb: Verbose(String, ParamArray Object())
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Verbose(string, params object[])
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Verbose(String, ParamArray Object())
+  nameWithType: BaseComponentAgent<TComponent>.Verbose(string, params object[])
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Verbose(String, ParamArray Object())
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Verbose*
+  name: Verbose
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Verbose_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Verbose
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Verbose
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Verbose
+  nameWithType: BaseComponentAgent<TComponent>.Verbose
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Verbose
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Warning(System.Exception,System.String,System.Object[])
+  name: Warning(Exception, string, params object[])
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Warning_System_Exception_System_String_System_Object___
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Warning(System.Exception,System.String,System.Object[])
+  name.vb: Warning(Exception, String, ParamArray Object())
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Warning(System.Exception, string, params object[])
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Warning(System.Exception, String, ParamArray Object())
+  nameWithType: BaseComponentAgent<TComponent>.Warning(Exception, string, params object[])
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Warning(Exception, String, ParamArray Object())
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Warning(System.String,System.Object[])
+  name: Warning(string, params object[])
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Warning_System_String_System_Object___
+  commentId: M:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Warning(System.String,System.Object[])
+  name.vb: Warning(String, ParamArray Object())
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Warning(string, params object[])
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Warning(String, ParamArray Object())
+  nameWithType: BaseComponentAgent<TComponent>.Warning(string, params object[])
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Warning(String, ParamArray Object())
+- uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Warning*
+  name: Warning
+  href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Warning_
+  commentId: Overload:GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Warning
+  isSpec: "True"
+  fullName: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent<TComponent>.Warning
+  fullName.vb: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent(Of TComponent).Warning
+  nameWithType: BaseComponentAgent<TComponent>.Warning
+  nameWithType.vb: BaseComponentAgent(Of TComponent).Warning
 - uid: GameFrameX.Core.Hotfix.Agent.BaseComponentAgent`1.Weekly*
   name: Weekly
   href: api/GameFrameX.Core.Hotfix.Agent.BaseComponentAgent-1.html#GameFrameX_Core_Hotfix_Agent_BaseComponentAgent_1_Weekly_
