@@ -159,6 +159,7 @@ public abstract class BaseRpcComponentHandler<TRequest, TResponse> : BaseRpcMess
             }
 
             await NetWorkChannel.WriteAsync(response);
+            MessageObjectPoolHelper.Return(response);
         }
 
         CacheComponent.Tell(Work, timeout, cancellationToken);
