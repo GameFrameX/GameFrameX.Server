@@ -270,7 +270,7 @@ public static class HotfixManager
     /// 获取RPC处理器实例。
     /// </summary>
     /// <param name="type">请求消息的类型。</param>
-    /// <returns>对应的 <see cref="BaseMessageHandler"/> 实例，如果未找到则返回 null。</returns>
+    /// <returns>对应的 <see cref="IMessageHandler"/> 实例，如果未找到则返回 null。</returns>
     public static IMessageHandler GetRpcHandler(Type type)
     {
         return _module.GetRpcHandler(type);
