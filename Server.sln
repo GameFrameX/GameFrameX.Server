@@ -56,6 +56,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.CodeGenerator", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DataBase", "GameFrameX.DataBase\GameFrameX.DataBase.csproj", "{5E98F1F4-EC21-42E1-A324-15C8D274E9A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DataBase.Mongo", "GameFrameX.DataBase.Mongo\GameFrameX.DataBase.Mongo.csproj", "{1321B020-12D0-4A1E-82AE-8245F9BBE1A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -142,6 +144,10 @@ Global
 		{5E98F1F4-EC21-42E1-A324-15C8D274E9A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E98F1F4-EC21-42E1-A324-15C8D274E9A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E98F1F4-EC21-42E1-A324-15C8D274E9A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1321B020-12D0-4A1E-82AE-8245F9BBE1A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1321B020-12D0-4A1E-82AE-8245F9BBE1A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1321B020-12D0-4A1E-82AE-8245F9BBE1A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1321B020-12D0-4A1E-82AE-8245F9BBE1A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
