@@ -29,6 +29,8 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using GameFrameX.Foundation.Utility;
+
 namespace GameFrameX.Hotfix.StartUp;
 
 internal partial class AppStartUpHotfixGame
@@ -45,7 +47,7 @@ internal partial class AppStartUpHotfixGame
             // LogHelper.Info("收到心跳请求:" + req.Timestamp);
             netWorkChannel.UpdateReceiveMessageTime();
             NotifyHeartBeat notifyHeartBeat = MessageObjectPoolHelper.Get<NotifyHeartBeat>();
-            notifyHeartBeat.Timestamp = TimeHelper.UnixTimeMilliseconds();
+            notifyHeartBeat.Timestamp = TimerHelper.UnixTimeMilliseconds();
             notifyHeartBeat.UniqueId = req.UniqueId;
             await netWorkChannel.WriteAsync(notifyHeartBeat);
         }

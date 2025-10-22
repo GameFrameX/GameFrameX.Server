@@ -110,7 +110,7 @@ public sealed class StatisticsTool
 
         _workerActor.Tell(() =>
         {
-            var timeStr = TimerHelper.CurrentDateTimeWithUtcFullString();
+            var timeStr = TimerHelper.CurrentDateTimeWithUtcFormat();
             if (!_countDic.TryGetValue(timeStr, out var cd))
             {
                 cd = new Dictionary<string, int>();

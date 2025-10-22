@@ -36,6 +36,7 @@ using GameFrameX.Proto.BuiltIn;
 using GameFrameX.DiscoveryCenterManager.Player;
 using GameFrameX.DiscoveryCenterManager.Server;
 using GameFrameX.Foundation.Extensions;
+using GameFrameX.Foundation.Utility;
 
 namespace GameFrameX.Launcher.StartUp.Discovery;
 
@@ -125,7 +126,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     var response = new NotifyActorHeartBeat
                     {
                         UniqueId = reqHeartBeat.UniqueId,
-                        Timestamp = TimeHelper.UnixTimeMilliseconds(),
+                        Timestamp = TimerHelper.UnixTimeMilliseconds(),
                     };
                     SendMessage(session, response);
                     return ValueTask.CompletedTask;

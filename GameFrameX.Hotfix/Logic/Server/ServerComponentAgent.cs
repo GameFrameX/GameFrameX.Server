@@ -34,6 +34,7 @@ using GameFrameX.Apps.Server.Entity;
 using GameFrameX.Core.Abstractions.Attribute;
 using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Core.Timer.Handler;
+using GameFrameX.Foundation.Utility;
 using GameFrameX.Hotfix.Logic.Player.Login;
 
 namespace GameFrameX.Hotfix.Logic.Server;
@@ -49,7 +50,7 @@ public class ServerComponentAgent : StateComponentAgent<ServerComponent, ServerS
             WithCronExpression<CrossDayTimeHandler>("0 0 0 * * ? *");
             if (State.FirstStartTime == default)
             {
-                State.FirstStartTime = TimeHelper.UnixTimeSeconds();
+                State.FirstStartTime = TimerHelper.UnixTimeSeconds();
                 await OwnerComponent.WriteStateAsync();
             }
         }
@@ -201,7 +202,7 @@ public class ServerComponentAgent : StateComponentAgent<ServerComponent, ServerS
     {
         protected override async Task HandleTimer(ServerComponentAgent agent, GameEventArgs gameEventArgs)
         {
-            LogHelper.Debug($"ServerCompAgent.CrossDayTimeHandler.跨天定时器执行{TimeHelper.CurrentDateTimeWithUtcFullString()}");
+            LogHelper.Debug($"ServerCompAgent.CrossDayTimeHandler.跨天定时器执行{TimerHelper.CurrentDateTimeWithUtcFormat()}");
             await ActorManager.RoleCrossDay(1);
             await ActorManager.CrossDay(1, GlobalConst.ActorTypeServer);
         }

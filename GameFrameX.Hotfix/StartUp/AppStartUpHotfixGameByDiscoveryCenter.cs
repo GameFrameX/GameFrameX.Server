@@ -29,6 +29,7 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using GameFrameX.Foundation.Utility;
 using GameFrameX.Proto.BuiltIn;
 
 namespace GameFrameX.Hotfix.StartUp;
@@ -57,7 +58,7 @@ internal partial class AppStartUpHotfixGame
     protected override MessageObject GameAppClientOnHeartBeat()
     {
         var reqActorHeartBeat = MessageObjectPoolHelper.Get<ReqActorHeartBeat>();
-        reqActorHeartBeat.Timestamp = TimeHelper.UnixTimeMilliseconds();
+        reqActorHeartBeat.Timestamp = TimerHelper.UnixTimeMilliseconds();
         reqActorHeartBeat.UpdateUniqueId();
         return reqActorHeartBeat;
     }

@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using GameFrameX.DataBase.Abstractions;
+using GameFrameX.Foundation.Utility;
 
 namespace GameFrameX.Launcher.StartUp;
 
@@ -73,7 +74,7 @@ internal sealed class AppStartUpGame : AppStartUpBase
             LogHelper.DebugConsole("加载热更新模块结束...");
 
             LogHelper.DebugConsole("进入游戏主循环...");
-            GlobalSettings.LaunchTime = TimeHelper.GetUtcNow();
+            GlobalSettings.LaunchTime = TimerHelper.GetUtcNow();
             GlobalSettings.IsAppRunning = true;
             LogHelper.InfoConsole($"服务器{Setting.ServerType}启动结束...");
             exitMessage = await AppExitToken;
