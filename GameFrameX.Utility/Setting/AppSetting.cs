@@ -280,6 +280,11 @@ public sealed class AppSetting
     public ushort WorkerId { get; set; }
 
     /// <summary>
+    /// 雪花ID的数据中心ID
+    /// </summary>
+    public ushort DataCenterId { get; set; }
+
+    /// <summary>
     /// 外部主机地址
     /// </summary>
     public string OuterHost { get; set; }

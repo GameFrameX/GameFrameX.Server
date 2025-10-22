@@ -260,8 +260,14 @@ public sealed class LauncherOptions
     /// <summary>
     /// 雪花ID的工作ID
     /// </summary>
-    [Option(nameof(WorkerId), Description = "雪花ID的工作ID,默认为0,表示自动分配")]
+    [Option(nameof(WorkerId), DefaultValue = 1, Description = "雪花ID的工作ID,默认为1")]
     public ushort WorkerId { get; set; }
+
+    /// <summary>
+    /// 雪花ID的数据中心ID
+    /// </summary>
+    [Option(nameof(DataCenterId), DefaultValue = 1, Description = "雪花ID的数据中心ID,默认为1")]
+    public ushort DataCenterId { get; set; }
 
     /// <summary>
     /// API接口根路径,必须以/开头和以/结尾,默认为[/game/api/]

@@ -32,7 +32,7 @@
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Json;
 using GameFrameX.Foundation.Logger;
-using Yitter.IdGenerator;
+using GameFrameX.Foundation.Utility.DistributedSystem.Snowflake;
 
 namespace GameFrameX.Utility.Setting;
 
@@ -141,9 +141,17 @@ public static class GlobalSettings
         }
 
         // 创建ID生成器配置，WorkerId设为0
-        var options = new IdGeneratorOptions(setting.WorkerId);
-        // 初始化雪花算法ID生成器
-        YitIdHelper.SetIdGenerator(options);
+        if (setting.WorkerId > 0)
+        {
+            SnowFlakeIdHelper.WorkId = setting.WorkerId;
+        }
+
+        // 设置数据中心ID
+        if (setting.DataCenterId > 0)
+        {
+            SnowFlakeIdHelper.DataCenterId = setting.DataCenterId;
+        }
+
         CurrentSetting = setting;
     }
 

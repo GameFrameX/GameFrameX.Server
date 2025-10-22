@@ -35,6 +35,7 @@ using GameFrameX.NetWork.HTTP;
 using GameFrameX.StartUp.Extensions;
 using GameFrameX.Utility;
 using GameFrameX.Foundation.Extensions;
+using GameFrameX.Foundation.Utility;
 using GameFrameX.Utility.Setting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
