@@ -29,6 +29,7 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using GameFrameX.Foundation.Utility;
 using Microsoft.Extensions.Hosting;
 using Xunit;
 using GameFrameX.Utility;
