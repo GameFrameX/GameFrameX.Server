@@ -61,7 +61,7 @@ public abstract class BaseRpcComponentHandler<TRequest, TResponse> : BaseRpcMess
     /// <summary>
     /// 缓存组件代理对象
     /// </summary>
-    public IComponentAgent CacheComponent { get; protected set; }
+    public IComponentAgent CacheComponent { get; private set; }
 
     /// <summary>
     /// 初始化
