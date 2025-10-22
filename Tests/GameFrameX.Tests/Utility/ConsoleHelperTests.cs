@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using System.Text;
+using GameFrameX.Foundation.Utility;
 using Xunit;
 using GameFrameX.Utility;
 
