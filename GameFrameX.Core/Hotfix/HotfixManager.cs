@@ -34,6 +34,7 @@ using System.Reflection;
 using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Core.Components;
+using GameFrameX.Foundation.Utility;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.Utility;
 using GameFrameX.NetWork.Abstractions;
@@ -155,7 +156,7 @@ public static class HotfixManager
     /// <returns>返回加载是否成功</returns>
     private static async Task<bool> Load(HotfixModule newModule, AppSetting setting, bool reload)
     {
-        ReloadTime = TimeHelper.GetUtcNow();
+        ReloadTime = TimerHelper.GetUtcNow();
         if (reload)
         {
             var oldModule = _module;

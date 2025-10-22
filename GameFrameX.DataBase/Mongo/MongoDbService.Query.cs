@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using System.Linq.Expressions;
+using GameFrameX.Foundation.Utility;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Extensions;
 using MongoDB.Driver.Linq;
@@ -70,7 +71,7 @@ public sealed partial class MongoDbService
         if (state == null)
         {
             // 如果未找到状态，则创建一个新的状态实例，并设置其ID和创建时间
-            state = new TState { Id = id, CreateTime = TimeHelper.TimeMilliseconds(), };
+            state = new TState { Id = id, CreateTime = TimerHelper.TimeMilliseconds(), };
         }
 
         // 调用后处理方法以加载状态的其他数据
@@ -102,7 +103,7 @@ public sealed partial class MongoDbService
         if (state == null)
         {
             // 如果未找到状态，则创建一个新的状态实例，并设置其ID和创建时间
-            state = new TState { Id = IdGenerator.GetNextUniqueId(), CreateTime = TimeHelper.TimeMilliseconds(), };
+            state = new TState { Id = IdGenerator.GetNextUniqueId(), CreateTime = TimerHelper.TimeMilliseconds(), };
         }
 
         // 调用后处理方法以加载状态的其他数据

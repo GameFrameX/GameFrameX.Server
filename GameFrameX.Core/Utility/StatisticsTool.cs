@@ -33,6 +33,7 @@ using System.Text;
 using GameFrameX.Core.Actors.Impl;
 using GameFrameX.Utility;
 using GameFrameX.Foundation.Extensions;
+using GameFrameX.Foundation.Utility;
 
 namespace GameFrameX.Core.Utility;
 
@@ -90,7 +91,7 @@ public sealed class StatisticsTool
     {
         _workerActor.Tell(() =>
         {
-            var timeStr = TimeHelper.CurrentDateTimeWithUtcFormat();
+            var timeStr = TimerHelper.CurrentDateTimeWithUtcFormat();
             _countDic.RemoveIf((k, v) => string.Compare(k, timeStr, StringComparison.Ordinal) < 0);
         });
     }
@@ -109,7 +110,7 @@ public sealed class StatisticsTool
 
         _workerActor.Tell(() =>
         {
-            var timeStr = TimeHelper.CurrentDateTimeWithUtcFullString();
+            var timeStr = TimerHelper.CurrentDateTimeWithUtcFullString();
             if (!_countDic.TryGetValue(timeStr, out var cd))
             {
                 cd = new Dictionary<string, int>();

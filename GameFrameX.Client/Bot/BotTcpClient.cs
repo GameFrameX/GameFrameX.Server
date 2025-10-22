@@ -39,6 +39,7 @@ using GameFrameX.SuperSocket.ClientEngine;
 using GameFrameX.Utility;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Utility;
 using ErrorEventArgs = GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs;
 
 namespace GameFrameX.Client.Bot;
@@ -151,7 +152,7 @@ public sealed class BotTcpClient
     {
         ReqHeartBeat req = new ReqHeartBeat
         {
-            Timestamp = TimeHelper.UnixTimeMilliseconds(),
+            Timestamp = TimerHelper.UnixTimeMilliseconds(),
         };
         SendToServer(req);
     }

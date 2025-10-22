@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using GameFrameX.DataBase.Abstractions;
+using GameFrameX.Foundation.Utility;
 using GameFrameX.Utility;
 using MongoDB.Driver;
 using MongoDB.Entities;
@@ -64,7 +65,7 @@ public sealed partial class MongoDbService
     /// <returns>返回修改的条数</returns>
     public async Task AddAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
-        state.CreateTime = TimeHelper.UnixTimeMilliseconds();
+        state.CreateTime = TimerHelper.UnixTimeMilliseconds();
         state.UpdateTime = state.CreateTime;
         await _mongoDbContext.SaveAsync(state);
     }
@@ -79,7 +80,7 @@ public sealed partial class MongoDbService
         var cacheStates = states.ToList();
         foreach (var cacheState in cacheStates)
         {
-            cacheState.CreateTime = TimeHelper.UnixTimeMilliseconds();
+            cacheState.CreateTime = TimerHelper.UnixTimeMilliseconds();
             cacheState.UpdateTime = cacheState.CreateTime;
         }
 

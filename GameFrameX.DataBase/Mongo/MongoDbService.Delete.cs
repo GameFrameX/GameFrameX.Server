@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using System.Linq.Expressions;
+using GameFrameX.Foundation.Utility;
 using GameFrameX.Utility;
 
 namespace GameFrameX.DataBase.Mongo;
@@ -52,7 +53,7 @@ public sealed partial class MongoDbService
     public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         var state = await FindAsync(filter);
-        state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
+        state.DeleteTime = TimerHelper.UnixTimeMilliseconds();
         state.IsDeleted = true;
         var result = await _mongoDbContext.Update<TState>().Match(m => m.Id == state.Id).Modify(x => x.IsDeleted, state.IsDeleted).Modify(x => x.DeleteTime, state.DeleteTime).ExecuteAsync();
         return result.ModifiedCount;
@@ -68,7 +69,7 @@ public sealed partial class MongoDbService
     {
         var bulkUpdate = _mongoDbContext.Update<TState>();
         var list = await FindListAsync(filter);
-        var deleteTime = TimeHelper.UnixTimeMilliseconds();
+        var deleteTime = TimerHelper.UnixTimeMilliseconds();
         foreach (var state in list)
         {
             state.DeleteTime = deleteTime;
@@ -89,7 +90,7 @@ public sealed partial class MongoDbService
     public async Task<long> DeleteListIdAsync<TState>(IEnumerable<long> ids) where TState : BaseCacheState, new()
     {
         var bulkUpdate = _mongoDbContext.Update<TState>();
-        var deleteTime = TimeHelper.UnixTimeMilliseconds();
+        var deleteTime = TimerHelper.UnixTimeMilliseconds();
         foreach (var id in ids)
         {
             bulkUpdate.MatchID(id).Modify(x => x.IsDeleted, true).Modify(x => x.DeleteTime, deleteTime).AddToQueue();
@@ -107,7 +108,7 @@ public sealed partial class MongoDbService
     /// <returns>返回修改的记录数</returns>
     public async Task<long> DeleteAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
-        state.DeleteTime = TimeHelper.UnixTimeMilliseconds();
+        state.DeleteTime = TimerHelper.UnixTimeMilliseconds();
         state.IsDeleted = true;
         var result = await _mongoDbContext.Update<TState>().Match(m => m.Id == state.Id).Modify(x => x.IsDeleted, state.IsDeleted).Modify(x => x.DeleteTime, state.DeleteTime).ExecuteAsync();
         return result.ModifiedCount;

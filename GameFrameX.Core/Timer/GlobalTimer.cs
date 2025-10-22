@@ -34,6 +34,7 @@ using GameFrameX.Core.Components;
 using GameFrameX.DataBase;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Utility;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Setting;
 
@@ -76,11 +77,11 @@ public static class GlobalTimer
         while (IsWorking)
         {
             LogHelper.Info($"下次定时回存时间 {nextSaveTime}");
-            var currentTime = TimeHelper.UnixTimeMilliseconds();
+            var currentTime = TimerHelper.UnixTimeMilliseconds();
             while (currentTime < nextSaveTime && IsWorking)
             {
                 await Task.Delay(onceDelay);
-                currentTime = TimeHelper.UnixTimeMilliseconds();
+                currentTime = TimerHelper.UnixTimeMilliseconds();
             }
 
             if (!IsWorking)
@@ -88,15 +89,15 @@ public static class GlobalTimer
                 break;
             }
 
-            var startTime = TimeHelper.UnixTimeMilliseconds();
+            var startTime = TimerHelper.UnixTimeMilliseconds();
             LogHelper.Info($"开始定时回存 时间:{startTime}");
             await StateComponent.TimerSave();
-            var endTime = TimeHelper.UnixTimeMilliseconds();
+            var endTime = TimerHelper.UnixTimeMilliseconds();
             var cost = endTime - startTime;
             LogHelper.Info($"结束定时回存 时间:{endTime} 耗时: {cost}ms");
             LogHelper.Info($"开始回收空闲Actor 时间:{startTime}");
             await ActorManager.CheckIdle();
-            currentTime = TimeHelper.UnixTimeMilliseconds();
+            currentTime = TimerHelper.UnixTimeMilliseconds();
             LogHelper.Info($"结束回收空闲Actor 时间:{currentTime}");
             do
             {
@@ -111,7 +112,7 @@ public static class GlobalTimer
     /// <returns>下次回存时间</returns>
     private static long NextSaveTime()
     {
-        return TimeHelper.UnixTimeMilliseconds() + GlobalSettings.CurrentSetting.SaveDataInterval;
+        return TimerHelper.UnixTimeMilliseconds() + GlobalSettings.CurrentSetting.SaveDataInterval;
     }
 
     /// <summary>

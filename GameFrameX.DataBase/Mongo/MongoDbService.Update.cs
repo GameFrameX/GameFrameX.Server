@@ -29,6 +29,7 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using GameFrameX.Foundation.Utility;
 using GameFrameX.Utility;
 
 namespace GameFrameX.DataBase.Mongo;
@@ -53,7 +54,7 @@ public sealed partial class MongoDbService
         var isChanged = state.IsModify();
         if (isChanged)
         {
-            state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
+            state.UpdateTime = TimerHelper.UnixTimeMilliseconds();
             state.UpdateCount++;
             var result = await _mongoDbContext.Update<TState>().MatchID(state.Id).ModifyExcept(m => new { m.CreateId, m.CreateTime, m.Id, m.IsDeleted, m.DeleteTime, }, state).ExecuteAsync();
             if (result.IsAcknowledged)
@@ -80,7 +81,7 @@ public sealed partial class MongoDbService
             var isChanged = state.IsModify();
             if (isChanged)
             {
-                state.UpdateTime = TimeHelper.UnixTimeMilliseconds();
+                state.UpdateTime = TimerHelper.UnixTimeMilliseconds();
                 state.UpdateCount++;
                 bulkUpdate.MatchID(state.Id).ModifyExcept(m => new { m.CreateId, m.CreateTime, m.Id, m.IsDeleted, m.DeleteTime, }, state).AddToQueue();
                 resultCount++;

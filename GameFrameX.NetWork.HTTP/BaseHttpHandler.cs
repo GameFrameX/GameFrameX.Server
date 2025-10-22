@@ -31,8 +31,8 @@
 
 using GameFrameX.Foundation.Hash;
 using GameFrameX.Foundation.Http.Normalization;
+using GameFrameX.Foundation.Utility;
 using GameFrameX.NetWork.Messages;
-using GameFrameX.Utility;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.NetWork.HTTP;
@@ -158,7 +158,7 @@ public abstract class BaseHttpHandler : IHttpHandler
         var sign = paramMap[GlobalConst.HttpSignKey].ToString();
         var time = paramMap[GlobalConst.HttpTimestampKey].ToString();
         long.TryParse(time, out var timeTick);
-        var span = TimeHelper.TimeSpanWithTimestamp(timeTick);
+        var span = TimerHelper.TimeSpanWithTimestamp(timeTick);
         // 5分钟内有效
         if (span.TotalMinutes > 5)
         {

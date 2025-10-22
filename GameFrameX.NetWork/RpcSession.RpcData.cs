@@ -30,9 +30,8 @@
 // ==========================================================================================
 
 
-
+using GameFrameX.Foundation.Utility;
 using GameFrameX.NetWork.Abstractions;
-using GameFrameX.Utility;
 
 namespace GameFrameX.NetWork;
 
@@ -51,7 +50,7 @@ public sealed class RpcData : IDisposable
     /// <param name="timeout">超时时间,单位毫秒,默认10秒</param>
     private RpcData(IRequestMessage requestMessage, bool isReply = true, int timeout = 10000)
     {
-        CreatedTime = TimeHelper.UnixTimeMilliseconds();
+        CreatedTime = TimerHelper.UnixTimeMilliseconds();
         RequestMessage = requestMessage;
         IsReply = isReply;
         Timeout = timeout;
@@ -130,7 +129,7 @@ public sealed class RpcData : IDisposable
     public void Reply(IResponseMessage responseMessage)
     {
         ResponseMessage = responseMessage;
-        Time = TimeHelper.UnixTimeMilliseconds() - CreatedTime;
+        Time = TimerHelper.UnixTimeMilliseconds() - CreatedTime;
         var result = new RpcResult(responseMessage);
         _tcs.SetResult(result);
     }

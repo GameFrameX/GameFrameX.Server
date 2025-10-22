@@ -29,6 +29,8 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using GameFrameX.Foundation.Utility;
+
 namespace GameFrameX.Apps.Common.Session;
 
 public sealed class Session
@@ -42,7 +44,7 @@ public sealed class Session
     {
         WorkChannel = netWorkChannel;
         SessionId = sessionId;
-        CreateTime = TimeHelper.UnixTimeSeconds();
+        CreateTime = TimerHelper.UnixTimeSeconds();
     }
 
     /// <summary>

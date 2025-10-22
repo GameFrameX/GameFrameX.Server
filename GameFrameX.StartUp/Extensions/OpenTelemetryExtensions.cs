@@ -45,6 +45,7 @@ using OpenTelemetry.Trace;
 using System.IO;
 using System.Net.Http;
 using System.Threading;
+using GameFrameX.Foundation.Utility;
 
 namespace GameFrameX.StartUp.Extensions;
 
