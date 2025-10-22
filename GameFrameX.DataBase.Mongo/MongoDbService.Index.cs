@@ -33,6 +33,7 @@ using System.Collections.Concurrent;
 using System.Linq.Expressions;
 using System.Reflection;
 using GameFrameX.DataBase.Abstractions;
+using GameFrameX.Foundation.Orm.Attribute;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -109,7 +110,7 @@ public sealed partial class MongoDbService
         var indexModels = new List<CreateIndexModel<T>>();
         foreach (var property in properties)
         {
-            var indexAttribute = property.GetCustomAttribute<MongoIndexAttribute>();
+            var indexAttribute = property.GetCustomAttribute<EntityIndexAttribute>();
             if (indexAttribute != null)
             {
                 var indexKeys = indexAttribute.IsAscending ? Builders<T>.IndexKeys.Ascending(property.Name) : Builders<T>.IndexKeys.Descending(property.Name);
