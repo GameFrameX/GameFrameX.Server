@@ -38,20 +38,31 @@ namespace GameFrameX.Core.Hotfix.Agent;
 /// <summary>
 /// 基础组件代理类，用于管理组件与Actor之间的交互
 /// </summary>
-/// <typeparam name="TComponent">具体的组件类型</typeparam>
 public abstract partial class BaseComponentAgent<TComponent> where TComponent : BaseComponent
 {
     private ILogger _logger;
 
     /// <summary>
-    /// 
+    /// 初始化日志记录器
     /// </summary>
-    /// <returns></returns>
+    /// <returns>返回自定义的日志记录器实例，如果返回 null 或 default，则使用默认的 Serilog 全局日志记录器</returns>
+    /// <remarks>
+    /// 子类可以重写此方法来提供自定义的日志记录器配置，
+    /// 例如设置特定的日志级别、输出格式或目标位置
+    /// </remarks>
     protected virtual ILogger InitLogger()
     {
         return default;
     }
 
+    /// <summary>
+    /// 获取日志记录器实例
+    /// </summary>
+    /// <returns>返回可用的日志记录器实例</returns>
+    /// <remarks>
+    /// 使用延迟初始化模式，首次调用时会通过 InitLogger() 方法创建日志记录器，
+    /// 如果 InitLogger() 返回 null，则使用 Serilog 的全局静态日志记录器作为后备方案
+    /// </remarks>
     private ILogger GetLogger()
     {
         if (_logger == default)
