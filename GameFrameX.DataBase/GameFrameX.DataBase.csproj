@@ -55,10 +55,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.Foundation.Orm.Attribute" Version="1.7.0.7" />
-      <PackageReference Include="GameFrameX.Foundation.Orm.Entity" Version="1.7.0.7" />
+      <PackageReference Include="GameFrameX.Foundation.Orm.Attribute" Version="1.7.1" />
+      <PackageReference Include="GameFrameX.Foundation.Orm.Entity" Version="1.7.1" />
       <PackageReference Include="MongoDB.Entities" Version="24.1.1" />
-      <PackageReference Include="GameFrameX.Foundation.Hash" Version="1.7.0.7" />
+      <PackageReference Include="GameFrameX.Foundation.Hash" Version="1.7.1" />
     </ItemGroup>
 
 </Project>
