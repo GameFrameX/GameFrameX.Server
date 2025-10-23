@@ -141,7 +141,7 @@ public sealed partial class MongoDbService
         var result = await _mongoDbContext.Queryable<TState>().Where(findExpression).ToListAsync();
         foreach (var state in result)
         {
-            state?.LoadFromDbPostHandler(false);
+            state?.LoadFromDbPostHandler();
         }
 
         return result;
@@ -158,7 +158,7 @@ public sealed partial class MongoDbService
     {
         var findExpression = GetDefaultFindExpression(filter);
         var state = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Ascending).Limit(1).ExecuteSingleAsync();
-        state?.LoadFromDbPostHandler(false);
+        state?.LoadFromDbPostHandler();
         return state;
     }
 
@@ -173,7 +173,7 @@ public sealed partial class MongoDbService
     {
         var findExpression = GetDefaultFindExpression(filter);
         var state = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Descending).Limit(1).ExecuteSingleAsync();
-        state?.LoadFromDbPostHandler(false);
+        state?.LoadFromDbPostHandler();
         return state;
     }
 
@@ -202,7 +202,7 @@ public sealed partial class MongoDbService
         var result = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Descending).Skip(pageIndex * pageSize).Limit(pageSize).ExecuteAsync();
         foreach (var state in result)
         {
-            state?.LoadFromDbPostHandler(false);
+            state?.LoadFromDbPostHandler();
         }
 
         return result;
@@ -233,7 +233,7 @@ public sealed partial class MongoDbService
         var result = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Ascending).Skip(pageIndex * pageSize).Limit(pageSize).ExecuteAsync();
         foreach (var state in result)
         {
-            state?.LoadFromDbPostHandler(false);
+            state?.LoadFromDbPostHandler();
         }
 
         return result;
