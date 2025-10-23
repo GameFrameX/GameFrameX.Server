@@ -55,10 +55,4 @@
         <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="MongoDB.Entities" Version="24.1.1" />
-        <PackageReference Include="GameFrameX.Foundation.Hash" Version="1.7.1" />
-    </ItemGroup>
-
-
 </Project>
