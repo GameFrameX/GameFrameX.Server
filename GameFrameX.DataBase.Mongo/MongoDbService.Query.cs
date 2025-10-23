@@ -30,9 +30,9 @@
 // ==========================================================================================
 
 using System.Linq.Expressions;
+using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Utility;
 using GameFrameX.Utility;
-using GameFrameX.Utility.Extensions;
 using MongoDB.Driver.Linq;
 using MongoDB.Entities;
 
