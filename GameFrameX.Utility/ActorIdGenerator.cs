@@ -29,10 +29,9 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
-using GameFrameX.Utility;
 using GameFrameX.Utility.Setting;
 
-namespace GameFrameX.Core.Utility;
+namespace GameFrameX.Utility;
 
 /// <summary>
 /// ActorId 生成器

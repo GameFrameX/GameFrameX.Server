@@ -38,6 +38,7 @@ using GameFrameX.Core.Hotfix;
 using GameFrameX.Core.Utility;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Utility;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Core.Components;

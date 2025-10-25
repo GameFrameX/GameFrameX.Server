@@ -35,6 +35,7 @@ using GameFrameX.Core.Hotfix;
 using GameFrameX.Core.Timer.Handler;
 using GameFrameX.Core.Utility;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Utility;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Logging;

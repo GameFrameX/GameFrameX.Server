@@ -33,6 +33,7 @@ using System.Collections.Concurrent;
 using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Utility;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Utility;
 
 namespace GameFrameX.Core.Actors.Impl;
 
