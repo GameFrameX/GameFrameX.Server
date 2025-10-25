@@ -1216,20 +1216,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Core.Utility.ActorIdGenerator.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Core.Utility.ActorIdGenerator.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Core.Utility.ActorIdGenerator",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Core.Utility.ActorIdGenerator.yml\" sourcestartlinenumber=\"1\">ActorId 生成器\n14   +   7  + 30 +  12   = 63\n服务器id 类型 时间戳 自增\n玩家\n公会\n服务器id * 100000 + 全局功能id\n全局玩法</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.Core.Utility.AgentCallback-1.yml",
       "output": {
         ".html": {
@@ -1282,6 +1268,48 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.Core.Utility",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.DataBase.Mongo.CacheState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.DataBase.Mongo.CacheState.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.DataBase.Mongo.CacheState",
+      "Summary": "<p sourcefile=\"api/GameFrameX.DataBase.Mongo.CacheState.yml\" sourcestartlinenumber=\"1\">缓存数据对象</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.DataBase.Mongo.MongoDbService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.DataBase.Mongo.MongoDbService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.DataBase.Mongo.MongoDbService",
+      "Summary": "<p sourcefile=\"api/GameFrameX.DataBase.Mongo.MongoDbService.yml\" sourcestartlinenumber=\"1\">MongoDB服务连接类，实现了\n<see>\n<cref>IDatabaseService</cref>\n</see>\n接口。</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.DataBase.Mongo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.DataBase.Mongo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.DataBase.Mongo",
       "Summary": null
     },
     {
@@ -2490,6 +2518,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.Utility.ActorIdGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.Utility.ActorIdGenerator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.Utility.ActorIdGenerator",
+      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.ActorIdGenerator.yml\" sourcestartlinenumber=\"1\">ActorId 生成器\n14   +   7  + 30 +  12   = 63\n服务器id 类型 时间戳 自增\n玩家\n公会\n服务器id * 100000 + 全局功能id\n全局玩法</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.Utility.AssemblyHelper.yml",
       "output": {
         ".html": {
@@ -2529,90 +2571,6 @@
       "IsMRef": true,
       "Title": "GameFrameX.Utility.CompressionHelper",
       "Summary": "<p sourcefile=\"api/GameFrameX.Utility.CompressionHelper.yml\" sourcestartlinenumber=\"1\">Compression and decompression helper.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.ConsoleHelper.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Utility.ConsoleHelper.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Utility.ConsoleHelper",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.ConsoleHelper.yml\" sourcestartlinenumber=\"1\">控制台辅助器</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.EnvironmentHelper.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Utility.EnvironmentHelper.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Utility.EnvironmentHelper",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.EnvironmentHelper.yml\" sourcestartlinenumber=\"1\">Environment helper utility class.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.Extensions.ExpressionExtension.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Utility.Extensions.ExpressionExtension.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Utility.Extensions.ExpressionExtension",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.Extensions.ExpressionExtension.yml\" sourcestartlinenumber=\"1\">提供对 <xref href=\"System.Linq.Expressions.Expression\" data-throw-if-not-resolved=\"false\"></xref> 类型的扩展方法，用于组合和操作表达式树。</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.Extensions.ExpressionVisitorCustom.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Utility.Extensions.ExpressionVisitorCustom.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Utility.Extensions.ExpressionVisitorCustom",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.Extensions.ExpressionVisitorCustom.yml\" sourcestartlinenumber=\"1\">表达式访问器的自定义实现。</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.Extensions.TimerExtension.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Utility.Extensions.TimerExtension.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Utility.Extensions.TimerExtension",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.Extensions.TimerExtension.yml\" sourcestartlinenumber=\"1\">Timer 扩展方法类</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.Extensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Utility.Extensions.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Utility.Extensions",
-      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2907,20 +2865,6 @@
       "IsMRef": true,
       "Title": "GameFrameX.Utility.Singleton<T>",
       "Summary": "<p sourcefile=\"api/GameFrameX.Utility.Singleton-1.yml\" sourcestartlinenumber=\"1\">单例类</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.TimeHelper.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Utility.TimeHelper.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Utility.TimeHelper",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.TimeHelper.yml\" sourcestartlinenumber=\"1\">时间帮助工具类</p>\n"
     },
     {
       "type": "ManagedReference",

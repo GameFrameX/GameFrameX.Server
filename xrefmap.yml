@@ -7400,92 +7400,6 @@ references:
   commentId: N:GameFrameX.Core.Utility
   fullName: GameFrameX.Core.Utility
   nameWithType: GameFrameX.Core.Utility
-- uid: GameFrameX.Core.Utility.ActorIdGenerator
-  name: ActorIdGenerator
-  href: api/GameFrameX.Core.Utility.ActorIdGenerator.html
-  commentId: T:GameFrameX.Core.Utility.ActorIdGenerator
-  fullName: GameFrameX.Core.Utility.ActorIdGenerator
-  nameWithType: ActorIdGenerator
-- uid: GameFrameX.Core.Utility.ActorIdGenerator.GetActorId(System.UInt16,System.Int32)
-  name: GetActorId(ushort, int)
-  href: api/GameFrameX.Core.Utility.ActorIdGenerator.html#GameFrameX_Core_Utility_ActorIdGenerator_GetActorId_System_UInt16_System_Int32_
-  commentId: M:GameFrameX.Core.Utility.ActorIdGenerator.GetActorId(System.UInt16,System.Int32)
-  name.vb: GetActorId(UShort, Integer)
-  fullName: GameFrameX.Core.Utility.ActorIdGenerator.GetActorId(ushort, int)
-  fullName.vb: GameFrameX.Core.Utility.ActorIdGenerator.GetActorId(UShort, Integer)
-  nameWithType: ActorIdGenerator.GetActorId(ushort, int)
-  nameWithType.vb: ActorIdGenerator.GetActorId(UShort, Integer)
-- uid: GameFrameX.Core.Utility.ActorIdGenerator.GetActorId*
-  name: GetActorId
-  href: api/GameFrameX.Core.Utility.ActorIdGenerator.html#GameFrameX_Core_Utility_ActorIdGenerator_GetActorId_
-  commentId: Overload:GameFrameX.Core.Utility.ActorIdGenerator.GetActorId
-  isSpec: "True"
-  fullName: GameFrameX.Core.Utility.ActorIdGenerator.GetActorId
-  nameWithType: ActorIdGenerator.GetActorId
-- uid: GameFrameX.Core.Utility.ActorIdGenerator.GetActorType(System.Int64)
-  name: GetActorType(long)
-  href: api/GameFrameX.Core.Utility.ActorIdGenerator.html#GameFrameX_Core_Utility_ActorIdGenerator_GetActorType_System_Int64_
-  commentId: M:GameFrameX.Core.Utility.ActorIdGenerator.GetActorType(System.Int64)
-  name.vb: GetActorType(Long)
-  fullName: GameFrameX.Core.Utility.ActorIdGenerator.GetActorType(long)
-  fullName.vb: GameFrameX.Core.Utility.ActorIdGenerator.GetActorType(Long)
-  nameWithType: ActorIdGenerator.GetActorType(long)
-  nameWithType.vb: ActorIdGenerator.GetActorType(Long)
-- uid: GameFrameX.Core.Utility.ActorIdGenerator.GetActorType*
-  name: GetActorType
-  href: api/GameFrameX.Core.Utility.ActorIdGenerator.html#GameFrameX_Core_Utility_ActorIdGenerator_GetActorType_
-  commentId: Overload:GameFrameX.Core.Utility.ActorIdGenerator.GetActorType
-  isSpec: "True"
-  fullName: GameFrameX.Core.Utility.ActorIdGenerator.GetActorType
-  nameWithType: ActorIdGenerator.GetActorType
-- uid: GameFrameX.Core.Utility.ActorIdGenerator.GetServerId(System.Int64)
-  name: GetServerId(long)
-  href: api/GameFrameX.Core.Utility.ActorIdGenerator.html#GameFrameX_Core_Utility_ActorIdGenerator_GetServerId_System_Int64_
-  commentId: M:GameFrameX.Core.Utility.ActorIdGenerator.GetServerId(System.Int64)
-  name.vb: GetServerId(Long)
-  fullName: GameFrameX.Core.Utility.ActorIdGenerator.GetServerId(long)
-  fullName.vb: GameFrameX.Core.Utility.ActorIdGenerator.GetServerId(Long)
-  nameWithType: ActorIdGenerator.GetServerId(long)
-  nameWithType.vb: ActorIdGenerator.GetServerId(Long)
-- uid: GameFrameX.Core.Utility.ActorIdGenerator.GetServerId*
-  name: GetServerId
-  href: api/GameFrameX.Core.Utility.ActorIdGenerator.html#GameFrameX_Core_Utility_ActorIdGenerator_GetServerId_
-  commentId: Overload:GameFrameX.Core.Utility.ActorIdGenerator.GetServerId
-  isSpec: "True"
-  fullName: GameFrameX.Core.Utility.ActorIdGenerator.GetServerId
-  nameWithType: ActorIdGenerator.GetServerId
-- uid: GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueId(System.UInt16)
-  name: GetUniqueId(ushort)
-  href: api/GameFrameX.Core.Utility.ActorIdGenerator.html#GameFrameX_Core_Utility_ActorIdGenerator_GetUniqueId_System_UInt16_
-  commentId: M:GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueId(System.UInt16)
-  name.vb: GetUniqueId(UShort)
-  fullName: GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueId(ushort)
-  fullName.vb: GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueId(UShort)
-  nameWithType: ActorIdGenerator.GetUniqueId(ushort)
-  nameWithType.vb: ActorIdGenerator.GetUniqueId(UShort)
-- uid: GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueId*
-  name: GetUniqueId
-  href: api/GameFrameX.Core.Utility.ActorIdGenerator.html#GameFrameX_Core_Utility_ActorIdGenerator_GetUniqueId_
-  commentId: Overload:GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueId
-  isSpec: "True"
-  fullName: GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueId
-  nameWithType: ActorIdGenerator.GetUniqueId
-- uid: GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueIdByModule(System.UInt16)
-  name: GetUniqueIdByModule(ushort)
-  href: api/GameFrameX.Core.Utility.ActorIdGenerator.html#GameFrameX_Core_Utility_ActorIdGenerator_GetUniqueIdByModule_System_UInt16_
-  commentId: M:GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueIdByModule(System.UInt16)
-  name.vb: GetUniqueIdByModule(UShort)
-  fullName: GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueIdByModule(ushort)
-  fullName.vb: GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueIdByModule(UShort)
-  nameWithType: ActorIdGenerator.GetUniqueIdByModule(ushort)
-  nameWithType.vb: ActorIdGenerator.GetUniqueIdByModule(UShort)
-- uid: GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueIdByModule*
-  name: GetUniqueIdByModule
-  href: api/GameFrameX.Core.Utility.ActorIdGenerator.html#GameFrameX_Core_Utility_ActorIdGenerator_GetUniqueIdByModule_
-  commentId: Overload:GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueIdByModule
-  isSpec: "True"
-  fullName: GameFrameX.Core.Utility.ActorIdGenerator.GetUniqueIdByModule
-  nameWithType: ActorIdGenerator.GetUniqueIdByModule
 - uid: GameFrameX.Core.Utility.AgentCallback`1
   name: AgentCallback<TAgent>
   href: api/GameFrameX.Core.Utility.AgentCallback-1.html
@@ -7638,6 +7552,481 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Core.Utility.StatisticsTool.CountRecord
   nameWithType: StatisticsTool.CountRecord
+- uid: GameFrameX.DataBase.Mongo
+  name: GameFrameX.DataBase.Mongo
+  href: api/GameFrameX.DataBase.Mongo.html
+  commentId: N:GameFrameX.DataBase.Mongo
+  fullName: GameFrameX.DataBase.Mongo
+  nameWithType: GameFrameX.DataBase.Mongo
+- uid: GameFrameX.DataBase.Mongo.CacheState
+  name: CacheState
+  href: api/GameFrameX.DataBase.Mongo.CacheState.html
+  commentId: T:GameFrameX.DataBase.Mongo.CacheState
+  fullName: GameFrameX.DataBase.Mongo.CacheState
+  nameWithType: CacheState
+- uid: GameFrameX.DataBase.Mongo.CacheState.ToBytes
+  name: ToBytes()
+  href: api/GameFrameX.DataBase.Mongo.CacheState.html#GameFrameX_DataBase_Mongo_CacheState_ToBytes
+  commentId: M:GameFrameX.DataBase.Mongo.CacheState.ToBytes
+  fullName: GameFrameX.DataBase.Mongo.CacheState.ToBytes()
+  nameWithType: CacheState.ToBytes()
+- uid: GameFrameX.DataBase.Mongo.CacheState.ToBytes*
+  name: ToBytes
+  href: api/GameFrameX.DataBase.Mongo.CacheState.html#GameFrameX_DataBase_Mongo_CacheState_ToBytes_
+  commentId: Overload:GameFrameX.DataBase.Mongo.CacheState.ToBytes
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.CacheState.ToBytes
+  nameWithType: CacheState.ToBytes
+- uid: GameFrameX.DataBase.Mongo.MongoDbService
+  name: MongoDbService
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html
+  commentId: T:GameFrameX.DataBase.Mongo.MongoDbService
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService
+  nameWithType: MongoDbService
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.AddAsync*
+  name: AddAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_AddAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.AddAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.AddAsync
+  nameWithType: MongoDbService.AddAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.AddAsync``1(``0)
+  name: AddAsync<TState>(TState)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_AddAsync__1___0_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.AddAsync``1(``0)
+  name.vb: AddAsync(Of TState)(TState)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.AddAsync<TState>(TState)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.AddAsync(Of TState)(TState)
+  nameWithType: MongoDbService.AddAsync<TState>(TState)
+  nameWithType.vb: MongoDbService.AddAsync(Of TState)(TState)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.AddListAsync*
+  name: AddListAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_AddListAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.AddListAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.AddListAsync
+  nameWithType: MongoDbService.AddListAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.AddListAsync``1(System.Collections.Generic.IEnumerable{``0})
+  name: AddListAsync<TState>(IEnumerable<TState>)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_AddListAsync__1_System_Collections_Generic_IEnumerable___0__
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.AddListAsync``1(System.Collections.Generic.IEnumerable{``0})
+  name.vb: AddListAsync(Of TState)(IEnumerable(Of TState))
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.AddListAsync<TState>(System.Collections.Generic.IEnumerable<TState>)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.AddListAsync(Of TState)(System.Collections.Generic.IEnumerable(Of TState))
+  nameWithType: MongoDbService.AddListAsync<TState>(IEnumerable<TState>)
+  nameWithType.vb: MongoDbService.AddListAsync(Of TState)(IEnumerable(Of TState))
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.AddOrUpdateAsync*
+  name: AddOrUpdateAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_AddOrUpdateAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.AddOrUpdateAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.AddOrUpdateAsync
+  nameWithType: MongoDbService.AddOrUpdateAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.AddOrUpdateAsync``1(``0)
+  name: AddOrUpdateAsync<TState>(TState)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_AddOrUpdateAsync__1___0_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.AddOrUpdateAsync``1(``0)
+  name.vb: AddOrUpdateAsync(Of TState)(TState)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.AddOrUpdateAsync<TState>(TState)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.AddOrUpdateAsync(Of TState)(TState)
+  nameWithType: MongoDbService.AddOrUpdateAsync<TState>(TState)
+  nameWithType.vb: MongoDbService.AddOrUpdateAsync(Of TState)(TState)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.AnyAsync*
+  name: AnyAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_AnyAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.AnyAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.AnyAsync
+  nameWithType: MongoDbService.AnyAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.AnyAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
+  name: AnyAsync<TState>(Expression<Func<TState, bool>>)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_AnyAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.AnyAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
+  name.vb: AnyAsync(Of TState)(Expression(Of Func(Of TState, Boolean)))
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.AnyAsync<TState>(System.Linq.Expressions.Expression<System.Func<TState, bool>>)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.AnyAsync(Of TState)(System.Linq.Expressions.Expression(Of System.Func(Of TState, Boolean)))
+  nameWithType: MongoDbService.AnyAsync<TState>(Expression<Func<TState, bool>>)
+  nameWithType.vb: MongoDbService.AnyAsync(Of TState)(Expression(Of Func(Of TState, Boolean)))
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.BulkWriteOptions
+  name: BulkWriteOptions
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_BulkWriteOptions
+  commentId: F:GameFrameX.DataBase.Mongo.MongoDbService.BulkWriteOptions
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.BulkWriteOptions
+  nameWithType: MongoDbService.BulkWriteOptions
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.Close
+  name: Close()
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_Close
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.Close
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.Close()
+  nameWithType: MongoDbService.Close()
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.Close*
+  name: Close
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_Close_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.Close
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.Close
+  nameWithType: MongoDbService.Close
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.CountAsync*
+  name: CountAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_CountAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.CountAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.CountAsync
+  nameWithType: MongoDbService.CountAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.CountAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
+  name: CountAsync<TState>(Expression<Func<TState, bool>>)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_CountAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.CountAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
+  name.vb: CountAsync(Of TState)(Expression(Of Func(Of TState, Boolean)))
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.CountAsync<TState>(System.Linq.Expressions.Expression<System.Func<TState, bool>>)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.CountAsync(Of TState)(System.Linq.Expressions.Expression(Of System.Func(Of TState, Boolean)))
+  nameWithType: MongoDbService.CountAsync<TState>(Expression<Func<TState, bool>>)
+  nameWithType.vb: MongoDbService.CountAsync(Of TState)(Expression(Of Func(Of TState, Boolean)))
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.CreateIndex(System.String,System.String,System.Boolean)
+  name: CreateIndex(string, string, bool)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_CreateIndex_System_String_System_String_System_Boolean_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.CreateIndex(System.String,System.String,System.Boolean)
+  name.vb: CreateIndex(String, String, Boolean)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.CreateIndex(string, string, bool)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.CreateIndex(String, String, Boolean)
+  nameWithType: MongoDbService.CreateIndex(string, string, bool)
+  nameWithType.vb: MongoDbService.CreateIndex(String, String, Boolean)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.CreateIndex*
+  name: CreateIndex
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_CreateIndex_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.CreateIndex
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.CreateIndex
+  nameWithType: MongoDbService.CreateIndex
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.CreateIndexAsync(System.String,System.String,System.Boolean)
+  name: CreateIndexAsync(string, string, bool)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_CreateIndexAsync_System_String_System_String_System_Boolean_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.CreateIndexAsync(System.String,System.String,System.Boolean)
+  name.vb: CreateIndexAsync(String, String, Boolean)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.CreateIndexAsync(string, string, bool)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.CreateIndexAsync(String, String, Boolean)
+  nameWithType: MongoDbService.CreateIndexAsync(string, string, bool)
+  nameWithType.vb: MongoDbService.CreateIndexAsync(String, String, Boolean)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.CreateIndexAsync*
+  name: CreateIndexAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_CreateIndexAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.CreateIndexAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.CreateIndexAsync
+  nameWithType: MongoDbService.CreateIndexAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.CreateIndexAsync``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean)
+  name: CreateIndexAsync<TState>(string, Expression<Func<TState, object>>, bool)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_CreateIndexAsync__1_System_String_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_Boolean_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.CreateIndexAsync``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean)
+  name.vb: CreateIndexAsync(Of TState)(String, Expression(Of Func(Of TState, Object)), Boolean)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.CreateIndexAsync<TState>(string, System.Linq.Expressions.Expression<System.Func<TState, object>>, bool)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.CreateIndexAsync(Of TState)(String, System.Linq.Expressions.Expression(Of System.Func(Of TState, Object)), Boolean)
+  nameWithType: MongoDbService.CreateIndexAsync<TState>(string, Expression<Func<TState, object>>, bool)
+  nameWithType.vb: MongoDbService.CreateIndexAsync(Of TState)(String, Expression(Of Func(Of TState, Object)), Boolean)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.CreateIndex``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean)
+  name: CreateIndex<TState>(string, Expression<Func<TState, object>>, bool)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_CreateIndex__1_System_String_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_Boolean_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.CreateIndex``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean)
+  name.vb: CreateIndex(Of TState)(String, Expression(Of Func(Of TState, Object)), Boolean)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.CreateIndex<TState>(string, System.Linq.Expressions.Expression<System.Func<TState, object>>, bool)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.CreateIndex(Of TState)(String, System.Linq.Expressions.Expression(Of System.Func(Of TState, Object)), Boolean)
+  nameWithType: MongoDbService.CreateIndex<TState>(string, Expression<Func<TState, object>>, bool)
+  nameWithType.vb: MongoDbService.CreateIndex(Of TState)(String, Expression(Of Func(Of TState, Object)), Boolean)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.CurrentDatabase
+  name: CurrentDatabase
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_CurrentDatabase
+  commentId: P:GameFrameX.DataBase.Mongo.MongoDbService.CurrentDatabase
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.CurrentDatabase
+  nameWithType: MongoDbService.CurrentDatabase
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.CurrentDatabase*
+  name: CurrentDatabase
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_CurrentDatabase_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.CurrentDatabase
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.CurrentDatabase
+  nameWithType: MongoDbService.CurrentDatabase
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.DeleteAsync*
+  name: DeleteAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_DeleteAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.DeleteAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.DeleteAsync
+  nameWithType: MongoDbService.DeleteAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.DeleteAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
+  name: DeleteAsync<TState>(Expression<Func<TState, bool>>)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_DeleteAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.DeleteAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
+  name.vb: DeleteAsync(Of TState)(Expression(Of Func(Of TState, Boolean)))
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.DeleteAsync<TState>(System.Linq.Expressions.Expression<System.Func<TState, bool>>)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.DeleteAsync(Of TState)(System.Linq.Expressions.Expression(Of System.Func(Of TState, Boolean)))
+  nameWithType: MongoDbService.DeleteAsync<TState>(Expression<Func<TState, bool>>)
+  nameWithType.vb: MongoDbService.DeleteAsync(Of TState)(Expression(Of Func(Of TState, Boolean)))
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.DeleteAsync``1(``0)
+  name: DeleteAsync<TState>(TState)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_DeleteAsync__1___0_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.DeleteAsync``1(``0)
+  name.vb: DeleteAsync(Of TState)(TState)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.DeleteAsync<TState>(TState)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.DeleteAsync(Of TState)(TState)
+  nameWithType: MongoDbService.DeleteAsync<TState>(TState)
+  nameWithType.vb: MongoDbService.DeleteAsync(Of TState)(TState)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.DeleteListAsync*
+  name: DeleteListAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_DeleteListAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.DeleteListAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.DeleteListAsync
+  nameWithType: MongoDbService.DeleteListAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.DeleteListAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
+  name: DeleteListAsync<TState>(Expression<Func<TState, bool>>)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_DeleteListAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.DeleteListAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
+  name.vb: DeleteListAsync(Of TState)(Expression(Of Func(Of TState, Boolean)))
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.DeleteListAsync<TState>(System.Linq.Expressions.Expression<System.Func<TState, bool>>)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.DeleteListAsync(Of TState)(System.Linq.Expressions.Expression(Of System.Func(Of TState, Boolean)))
+  nameWithType: MongoDbService.DeleteListAsync<TState>(Expression<Func<TState, bool>>)
+  nameWithType.vb: MongoDbService.DeleteListAsync(Of TState)(Expression(Of Func(Of TState, Boolean)))
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.DeleteListIdAsync*
+  name: DeleteListIdAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_DeleteListIdAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.DeleteListIdAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.DeleteListIdAsync
+  nameWithType: MongoDbService.DeleteListIdAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.DeleteListIdAsync``1(System.Collections.Generic.IEnumerable{System.Int64})
+  name: DeleteListIdAsync<TState>(IEnumerable<long>)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_DeleteListIdAsync__1_System_Collections_Generic_IEnumerable_System_Int64__
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.DeleteListIdAsync``1(System.Collections.Generic.IEnumerable{System.Int64})
+  name.vb: DeleteListIdAsync(Of TState)(IEnumerable(Of Long))
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.DeleteListIdAsync<TState>(System.Collections.Generic.IEnumerable<long>)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.DeleteListIdAsync(Of TState)(System.Collections.Generic.IEnumerable(Of Long))
+  nameWithType: MongoDbService.DeleteListIdAsync<TState>(IEnumerable<long>)
+  nameWithType.vb: MongoDbService.DeleteListIdAsync(Of TState)(IEnumerable(Of Long))
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.DropIndex(System.String,System.String)
+  name: DropIndex(string, string)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_DropIndex_System_String_System_String_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.DropIndex(System.String,System.String)
+  name.vb: DropIndex(String, String)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.DropIndex(string, string)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.DropIndex(String, String)
+  nameWithType: MongoDbService.DropIndex(string, string)
+  nameWithType.vb: MongoDbService.DropIndex(String, String)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.DropIndex*
+  name: DropIndex
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_DropIndex_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.DropIndex
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.DropIndex
+  nameWithType: MongoDbService.DropIndex
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.DropIndexAsync(System.String,System.String)
+  name: DropIndexAsync(string, string)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_DropIndexAsync_System_String_System_String_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.DropIndexAsync(System.String,System.String)
+  name.vb: DropIndexAsync(String, String)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.DropIndexAsync(string, string)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.DropIndexAsync(String, String)
+  nameWithType: MongoDbService.DropIndexAsync(string, string)
+  nameWithType.vb: MongoDbService.DropIndexAsync(String, String)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.DropIndexAsync*
+  name: DropIndexAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_DropIndexAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.DropIndexAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.DropIndexAsync
+  nameWithType: MongoDbService.DropIndexAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.FindAsync*
+  name: FindAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_FindAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.FindAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.FindAsync
+  nameWithType: MongoDbService.FindAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.FindAsync``1(System.Int64,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Boolean)
+  name: FindAsync<TState>(long, Expression<Func<TState, bool>>, bool)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_FindAsync__1_System_Int64_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Boolean_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.FindAsync``1(System.Int64,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Boolean)
+  name.vb: FindAsync(Of TState)(Long, Expression(Of Func(Of TState, Boolean)), Boolean)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.FindAsync<TState>(long, System.Linq.Expressions.Expression<System.Func<TState, bool>>, bool)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.FindAsync(Of TState)(Long, System.Linq.Expressions.Expression(Of System.Func(Of TState, Boolean)), Boolean)
+  nameWithType: MongoDbService.FindAsync<TState>(long, Expression<Func<TState, bool>>, bool)
+  nameWithType.vb: MongoDbService.FindAsync(Of TState)(Long, Expression(Of Func(Of TState, Boolean)), Boolean)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.FindAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Boolean)
+  name: FindAsync<TState>(Expression<Func<TState, bool>>, bool)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_FindAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Boolean_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.FindAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Boolean)
+  name.vb: FindAsync(Of TState)(Expression(Of Func(Of TState, Boolean)), Boolean)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.FindAsync<TState>(System.Linq.Expressions.Expression<System.Func<TState, bool>>, bool)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.FindAsync(Of TState)(System.Linq.Expressions.Expression(Of System.Func(Of TState, Boolean)), Boolean)
+  nameWithType: MongoDbService.FindAsync<TState>(Expression<Func<TState, bool>>, bool)
+  nameWithType.vb: MongoDbService.FindAsync(Of TState)(Expression(Of Func(Of TState, Boolean)), Boolean)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.FindListAsync*
+  name: FindListAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_FindListAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.FindListAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.FindListAsync
+  nameWithType: MongoDbService.FindListAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.FindListAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
+  name: FindListAsync<TState>(Expression<Func<TState, bool>>)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_FindListAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.FindListAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
+  name.vb: FindListAsync(Of TState)(Expression(Of Func(Of TState, Boolean)))
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.FindListAsync<TState>(System.Linq.Expressions.Expression<System.Func<TState, bool>>)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.FindListAsync(Of TState)(System.Linq.Expressions.Expression(Of System.Func(Of TState, Boolean)))
+  nameWithType: MongoDbService.FindListAsync<TState>(Expression<Func<TState, bool>>)
+  nameWithType.vb: MongoDbService.FindListAsync(Of TState)(Expression(Of Func(Of TState, Boolean)))
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingAsync*
+  name: FindSortAscendingAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_FindSortAscendingAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingAsync
+  nameWithType: MongoDbService.FindSortAscendingAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Int32,System.Int32)
+  name: FindSortAscendingAsync<TState>(Expression<Func<TState, bool>>, Expression<Func<TState, object>>, int, int)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_FindSortAscendingAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Linq_Expressions_Expression_System_Func___0_System_Object___System_Int32_System_Int32_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Int32,System.Int32)
+  name.vb: FindSortAscendingAsync(Of TState)(Expression(Of Func(Of TState, Boolean)), Expression(Of Func(Of TState, Object)), Integer, Integer)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingAsync<TState>(System.Linq.Expressions.Expression<System.Func<TState, bool>>, System.Linq.Expressions.Expression<System.Func<TState, object>>, int, int)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingAsync(Of TState)(System.Linq.Expressions.Expression(Of System.Func(Of TState, Boolean)), System.Linq.Expressions.Expression(Of System.Func(Of TState, Object)), Integer, Integer)
+  nameWithType: MongoDbService.FindSortAscendingAsync<TState>(Expression<Func<TState, bool>>, Expression<Func<TState, object>>, int, int)
+  nameWithType.vb: MongoDbService.FindSortAscendingAsync(Of TState)(Expression(Of Func(Of TState, Boolean)), Expression(Of Func(Of TState, Object)), Integer, Integer)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingFirstOneAsync*
+  name: FindSortAscendingFirstOneAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_FindSortAscendingFirstOneAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingFirstOneAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingFirstOneAsync
+  nameWithType: MongoDbService.FindSortAscendingFirstOneAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingFirstOneAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})
+  name: FindSortAscendingFirstOneAsync<TState>(Expression<Func<TState, bool>>, Expression<Func<TState, object>>)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_FindSortAscendingFirstOneAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Linq_Expressions_Expression_System_Func___0_System_Object___
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingFirstOneAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})
+  name.vb: FindSortAscendingFirstOneAsync(Of TState)(Expression(Of Func(Of TState, Boolean)), Expression(Of Func(Of TState, Object)))
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingFirstOneAsync<TState>(System.Linq.Expressions.Expression<System.Func<TState, bool>>, System.Linq.Expressions.Expression<System.Func<TState, object>>)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingFirstOneAsync(Of TState)(System.Linq.Expressions.Expression(Of System.Func(Of TState, Boolean)), System.Linq.Expressions.Expression(Of System.Func(Of TState, Object)))
+  nameWithType: MongoDbService.FindSortAscendingFirstOneAsync<TState>(Expression<Func<TState, bool>>, Expression<Func<TState, object>>)
+  nameWithType.vb: MongoDbService.FindSortAscendingFirstOneAsync(Of TState)(Expression(Of Func(Of TState, Boolean)), Expression(Of Func(Of TState, Object)))
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingAsync*
+  name: FindSortDescendingAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_FindSortDescendingAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingAsync
+  nameWithType: MongoDbService.FindSortDescendingAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Int32,System.Int32)
+  name: FindSortDescendingAsync<TState>(Expression<Func<TState, bool>>, Expression<Func<TState, object>>, int, int)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_FindSortDescendingAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Linq_Expressions_Expression_System_Func___0_System_Object___System_Int32_System_Int32_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Int32,System.Int32)
+  name.vb: FindSortDescendingAsync(Of TState)(Expression(Of Func(Of TState, Boolean)), Expression(Of Func(Of TState, Object)), Integer, Integer)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingAsync<TState>(System.Linq.Expressions.Expression<System.Func<TState, bool>>, System.Linq.Expressions.Expression<System.Func<TState, object>>, int, int)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingAsync(Of TState)(System.Linq.Expressions.Expression(Of System.Func(Of TState, Boolean)), System.Linq.Expressions.Expression(Of System.Func(Of TState, Object)), Integer, Integer)
+  nameWithType: MongoDbService.FindSortDescendingAsync<TState>(Expression<Func<TState, bool>>, Expression<Func<TState, object>>, int, int)
+  nameWithType.vb: MongoDbService.FindSortDescendingAsync(Of TState)(Expression(Of Func(Of TState, Boolean)), Expression(Of Func(Of TState, Object)), Integer, Integer)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingFirstOneAsync*
+  name: FindSortDescendingFirstOneAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_FindSortDescendingFirstOneAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingFirstOneAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingFirstOneAsync
+  nameWithType: MongoDbService.FindSortDescendingFirstOneAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingFirstOneAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})
+  name: FindSortDescendingFirstOneAsync<TState>(Expression<Func<TState, bool>>, Expression<Func<TState, object>>)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_FindSortDescendingFirstOneAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Linq_Expressions_Expression_System_Func___0_System_Object___
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingFirstOneAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})
+  name.vb: FindSortDescendingFirstOneAsync(Of TState)(Expression(Of Func(Of TState, Boolean)), Expression(Of Func(Of TState, Object)))
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingFirstOneAsync<TState>(System.Linq.Expressions.Expression<System.Func<TState, bool>>, System.Linq.Expressions.Expression<System.Func<TState, object>>)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingFirstOneAsync(Of TState)(System.Linq.Expressions.Expression(Of System.Func(Of TState, Boolean)), System.Linq.Expressions.Expression(Of System.Func(Of TState, Object)))
+  nameWithType: MongoDbService.FindSortDescendingFirstOneAsync<TState>(Expression<Func<TState, bool>>, Expression<Func<TState, object>>)
+  nameWithType.vb: MongoDbService.FindSortDescendingFirstOneAsync(Of TState)(Expression(Of Func(Of TState, Boolean)), Expression(Of Func(Of TState, Object)))
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.Open(GameFrameX.DataBase.Abstractions.DbOptions)
+  name: Open(DbOptions)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_Open_GameFrameX_DataBase_Abstractions_DbOptions_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.Open(GameFrameX.DataBase.Abstractions.DbOptions)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.Open(GameFrameX.DataBase.Abstractions.DbOptions)
+  nameWithType: MongoDbService.Open(DbOptions)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.Open*
+  name: Open
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_Open_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.Open
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.Open
+  nameWithType: MongoDbService.Open
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.UpdateAsync*
+  name: UpdateAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_UpdateAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.UpdateAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.UpdateAsync
+  nameWithType: MongoDbService.UpdateAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.UpdateAsync``1(System.Collections.Generic.IEnumerable{``0})
+  name: UpdateAsync<TState>(IEnumerable<TState>)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_UpdateAsync__1_System_Collections_Generic_IEnumerable___0__
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.UpdateAsync``1(System.Collections.Generic.IEnumerable{``0})
+  name.vb: UpdateAsync(Of TState)(IEnumerable(Of TState))
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.UpdateAsync<TState>(System.Collections.Generic.IEnumerable<TState>)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.UpdateAsync(Of TState)(System.Collections.Generic.IEnumerable(Of TState))
+  nameWithType: MongoDbService.UpdateAsync<TState>(IEnumerable<TState>)
+  nameWithType.vb: MongoDbService.UpdateAsync(Of TState)(IEnumerable(Of TState))
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.UpdateAsync``1(``0)
+  name: UpdateAsync<TState>(TState)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_UpdateAsync__1___0_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.UpdateAsync``1(``0)
+  name.vb: UpdateAsync(Of TState)(TState)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.UpdateAsync<TState>(TState)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.UpdateAsync(Of TState)(TState)
+  nameWithType: MongoDbService.UpdateAsync<TState>(TState)
+  nameWithType.vb: MongoDbService.UpdateAsync(Of TState)(TState)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndex(System.String,System.String,System.Boolean)
+  name: UpdateIndex(string, string, bool)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_UpdateIndex_System_String_System_String_System_Boolean_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndex(System.String,System.String,System.Boolean)
+  name.vb: UpdateIndex(String, String, Boolean)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndex(string, string, bool)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndex(String, String, Boolean)
+  nameWithType: MongoDbService.UpdateIndex(string, string, bool)
+  nameWithType.vb: MongoDbService.UpdateIndex(String, String, Boolean)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndex*
+  name: UpdateIndex
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_UpdateIndex_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndex
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndex
+  nameWithType: MongoDbService.UpdateIndex
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndexAsync(System.String,System.String,System.Boolean)
+  name: UpdateIndexAsync(string, string, bool)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_UpdateIndexAsync_System_String_System_String_System_Boolean_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndexAsync(System.String,System.String,System.Boolean)
+  name.vb: UpdateIndexAsync(String, String, Boolean)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndexAsync(string, string, bool)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndexAsync(String, String, Boolean)
+  nameWithType: MongoDbService.UpdateIndexAsync(string, string, bool)
+  nameWithType.vb: MongoDbService.UpdateIndexAsync(String, String, Boolean)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndexAsync*
+  name: UpdateIndexAsync
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_UpdateIndexAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndexAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndexAsync
+  nameWithType: MongoDbService.UpdateIndexAsync
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndexAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean)
+  name: UpdateIndexAsync<TState>(Expression<Func<TState, object>>, bool)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_UpdateIndexAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_Boolean_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndexAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean)
+  name.vb: UpdateIndexAsync(Of TState)(Expression(Of Func(Of TState, Object)), Boolean)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndexAsync<TState>(System.Linq.Expressions.Expression<System.Func<TState, object>>, bool)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndexAsync(Of TState)(System.Linq.Expressions.Expression(Of System.Func(Of TState, Object)), Boolean)
+  nameWithType: MongoDbService.UpdateIndexAsync<TState>(Expression<Func<TState, object>>, bool)
+  nameWithType.vb: MongoDbService.UpdateIndexAsync(Of TState)(Expression(Of Func(Of TState, Object)), Boolean)
+- uid: GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndex``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean)
+  name: UpdateIndex<TState>(Expression<Func<TState, object>>, bool)
+  href: api/GameFrameX.DataBase.Mongo.MongoDbService.html#GameFrameX_DataBase_Mongo_MongoDbService_UpdateIndex__1_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_Boolean_
+  commentId: M:GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndex``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean)
+  name.vb: UpdateIndex(Of TState)(Expression(Of Func(Of TState, Object)), Boolean)
+  fullName: GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndex<TState>(System.Linq.Expressions.Expression<System.Func<TState, object>>, bool)
+  fullName.vb: GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndex(Of TState)(System.Linq.Expressions.Expression(Of System.Func(Of TState, Object)), Boolean)
+  nameWithType: MongoDbService.UpdateIndex<TState>(Expression<Func<TState, object>>, bool)
+  nameWithType.vb: MongoDbService.UpdateIndex(Of TState)(Expression(Of Func(Of TState, Object)), Boolean)
 - uid: GameFrameX.NetWork
   name: GameFrameX.NetWork
   href: api/GameFrameX.NetWork.html
@@ -12624,6 +13013,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.DataCenter
   nameWithType: LauncherOptions.DataCenter
+- uid: GameFrameX.StartUp.Options.LauncherOptions.DataCenterId
+  name: DataCenterId
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_DataCenterId
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.DataCenterId
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.DataCenterId
+  nameWithType: LauncherOptions.DataCenterId
+- uid: GameFrameX.StartUp.Options.LauncherOptions.DataCenterId*
+  name: DataCenterId
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_DataCenterId_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.DataCenterId
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.DataCenterId
+  nameWithType: LauncherOptions.DataCenterId
 - uid: GameFrameX.StartUp.Options.LauncherOptions.Description
   name: Description
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_Description
@@ -13382,6 +13784,92 @@ references:
   commentId: N:GameFrameX.Utility
   fullName: GameFrameX.Utility
   nameWithType: GameFrameX.Utility
+- uid: GameFrameX.Utility.ActorIdGenerator
+  name: ActorIdGenerator
+  href: api/GameFrameX.Utility.ActorIdGenerator.html
+  commentId: T:GameFrameX.Utility.ActorIdGenerator
+  fullName: GameFrameX.Utility.ActorIdGenerator
+  nameWithType: ActorIdGenerator
+- uid: GameFrameX.Utility.ActorIdGenerator.GetActorId(System.UInt16,System.Int32)
+  name: GetActorId(ushort, int)
+  href: api/GameFrameX.Utility.ActorIdGenerator.html#GameFrameX_Utility_ActorIdGenerator_GetActorId_System_UInt16_System_Int32_
+  commentId: M:GameFrameX.Utility.ActorIdGenerator.GetActorId(System.UInt16,System.Int32)
+  name.vb: GetActorId(UShort, Integer)
+  fullName: GameFrameX.Utility.ActorIdGenerator.GetActorId(ushort, int)
+  fullName.vb: GameFrameX.Utility.ActorIdGenerator.GetActorId(UShort, Integer)
+  nameWithType: ActorIdGenerator.GetActorId(ushort, int)
+  nameWithType.vb: ActorIdGenerator.GetActorId(UShort, Integer)
+- uid: GameFrameX.Utility.ActorIdGenerator.GetActorId*
+  name: GetActorId
+  href: api/GameFrameX.Utility.ActorIdGenerator.html#GameFrameX_Utility_ActorIdGenerator_GetActorId_
+  commentId: Overload:GameFrameX.Utility.ActorIdGenerator.GetActorId
+  isSpec: "True"
+  fullName: GameFrameX.Utility.ActorIdGenerator.GetActorId
+  nameWithType: ActorIdGenerator.GetActorId
+- uid: GameFrameX.Utility.ActorIdGenerator.GetActorType(System.Int64)
+  name: GetActorType(long)
+  href: api/GameFrameX.Utility.ActorIdGenerator.html#GameFrameX_Utility_ActorIdGenerator_GetActorType_System_Int64_
+  commentId: M:GameFrameX.Utility.ActorIdGenerator.GetActorType(System.Int64)
+  name.vb: GetActorType(Long)
+  fullName: GameFrameX.Utility.ActorIdGenerator.GetActorType(long)
+  fullName.vb: GameFrameX.Utility.ActorIdGenerator.GetActorType(Long)
+  nameWithType: ActorIdGenerator.GetActorType(long)
+  nameWithType.vb: ActorIdGenerator.GetActorType(Long)
+- uid: GameFrameX.Utility.ActorIdGenerator.GetActorType*
+  name: GetActorType
+  href: api/GameFrameX.Utility.ActorIdGenerator.html#GameFrameX_Utility_ActorIdGenerator_GetActorType_
+  commentId: Overload:GameFrameX.Utility.ActorIdGenerator.GetActorType
+  isSpec: "True"
+  fullName: GameFrameX.Utility.ActorIdGenerator.GetActorType
+  nameWithType: ActorIdGenerator.GetActorType
+- uid: GameFrameX.Utility.ActorIdGenerator.GetServerId(System.Int64)
+  name: GetServerId(long)
+  href: api/GameFrameX.Utility.ActorIdGenerator.html#GameFrameX_Utility_ActorIdGenerator_GetServerId_System_Int64_
+  commentId: M:GameFrameX.Utility.ActorIdGenerator.GetServerId(System.Int64)
+  name.vb: GetServerId(Long)
+  fullName: GameFrameX.Utility.ActorIdGenerator.GetServerId(long)
+  fullName.vb: GameFrameX.Utility.ActorIdGenerator.GetServerId(Long)
+  nameWithType: ActorIdGenerator.GetServerId(long)
+  nameWithType.vb: ActorIdGenerator.GetServerId(Long)
+- uid: GameFrameX.Utility.ActorIdGenerator.GetServerId*
+  name: GetServerId
+  href: api/GameFrameX.Utility.ActorIdGenerator.html#GameFrameX_Utility_ActorIdGenerator_GetServerId_
+  commentId: Overload:GameFrameX.Utility.ActorIdGenerator.GetServerId
+  isSpec: "True"
+  fullName: GameFrameX.Utility.ActorIdGenerator.GetServerId
+  nameWithType: ActorIdGenerator.GetServerId
+- uid: GameFrameX.Utility.ActorIdGenerator.GetUniqueId(System.UInt16)
+  name: GetUniqueId(ushort)
+  href: api/GameFrameX.Utility.ActorIdGenerator.html#GameFrameX_Utility_ActorIdGenerator_GetUniqueId_System_UInt16_
+  commentId: M:GameFrameX.Utility.ActorIdGenerator.GetUniqueId(System.UInt16)
+  name.vb: GetUniqueId(UShort)
+  fullName: GameFrameX.Utility.ActorIdGenerator.GetUniqueId(ushort)
+  fullName.vb: GameFrameX.Utility.ActorIdGenerator.GetUniqueId(UShort)
+  nameWithType: ActorIdGenerator.GetUniqueId(ushort)
+  nameWithType.vb: ActorIdGenerator.GetUniqueId(UShort)
+- uid: GameFrameX.Utility.ActorIdGenerator.GetUniqueId*
+  name: GetUniqueId
+  href: api/GameFrameX.Utility.ActorIdGenerator.html#GameFrameX_Utility_ActorIdGenerator_GetUniqueId_
+  commentId: Overload:GameFrameX.Utility.ActorIdGenerator.GetUniqueId
+  isSpec: "True"
+  fullName: GameFrameX.Utility.ActorIdGenerator.GetUniqueId
+  nameWithType: ActorIdGenerator.GetUniqueId
+- uid: GameFrameX.Utility.ActorIdGenerator.GetUniqueIdByModule(System.UInt16)
+  name: GetUniqueIdByModule(ushort)
+  href: api/GameFrameX.Utility.ActorIdGenerator.html#GameFrameX_Utility_ActorIdGenerator_GetUniqueIdByModule_System_UInt16_
+  commentId: M:GameFrameX.Utility.ActorIdGenerator.GetUniqueIdByModule(System.UInt16)
+  name.vb: GetUniqueIdByModule(UShort)
+  fullName: GameFrameX.Utility.ActorIdGenerator.GetUniqueIdByModule(ushort)
+  fullName.vb: GameFrameX.Utility.ActorIdGenerator.GetUniqueIdByModule(UShort)
+  nameWithType: ActorIdGenerator.GetUniqueIdByModule(ushort)
+  nameWithType.vb: ActorIdGenerator.GetUniqueIdByModule(UShort)
+- uid: GameFrameX.Utility.ActorIdGenerator.GetUniqueIdByModule*
+  name: GetUniqueIdByModule
+  href: api/GameFrameX.Utility.ActorIdGenerator.html#GameFrameX_Utility_ActorIdGenerator_GetUniqueIdByModule_
+  commentId: Overload:GameFrameX.Utility.ActorIdGenerator.GetUniqueIdByModule
+  isSpec: "True"
+  fullName: GameFrameX.Utility.ActorIdGenerator.GetUniqueIdByModule
+  nameWithType: ActorIdGenerator.GetUniqueIdByModule
 - uid: GameFrameX.Utility.AssemblyHelper
   name: AssemblyHelper
   href: api/GameFrameX.Utility.AssemblyHelper.html
@@ -14472,303 +14960,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.CompressionHelper.Decompress
   nameWithType: CompressionHelper.Decompress
-- uid: GameFrameX.Utility.ConsoleHelper
-  name: ConsoleHelper
-  href: api/GameFrameX.Utility.ConsoleHelper.html
-  commentId: T:GameFrameX.Utility.ConsoleHelper
-  fullName: GameFrameX.Utility.ConsoleHelper
-  nameWithType: ConsoleHelper
-- uid: GameFrameX.Utility.ConsoleHelper.ConsoleLogo
-  name: ConsoleLogo()
-  href: api/GameFrameX.Utility.ConsoleHelper.html#GameFrameX_Utility_ConsoleHelper_ConsoleLogo
-  commentId: M:GameFrameX.Utility.ConsoleHelper.ConsoleLogo
-  fullName: GameFrameX.Utility.ConsoleHelper.ConsoleLogo()
-  nameWithType: ConsoleHelper.ConsoleLogo()
-- uid: GameFrameX.Utility.ConsoleHelper.ConsoleLogo*
-  name: ConsoleLogo
-  href: api/GameFrameX.Utility.ConsoleHelper.html#GameFrameX_Utility_ConsoleHelper_ConsoleLogo_
-  commentId: Overload:GameFrameX.Utility.ConsoleHelper.ConsoleLogo
-  isSpec: "True"
-  fullName: GameFrameX.Utility.ConsoleHelper.ConsoleLogo
-  nameWithType: ConsoleHelper.ConsoleLogo
-- uid: GameFrameX.Utility.EnvironmentHelper
-  name: EnvironmentHelper
-  href: api/GameFrameX.Utility.EnvironmentHelper.html
-  commentId: T:GameFrameX.Utility.EnvironmentHelper
-  fullName: GameFrameX.Utility.EnvironmentHelper
-  nameWithType: EnvironmentHelper
-- uid: GameFrameX.Utility.EnvironmentHelper.GetEnvironmentName
-  name: GetEnvironmentName()
-  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_GetEnvironmentName
-  commentId: M:GameFrameX.Utility.EnvironmentHelper.GetEnvironmentName
-  fullName: GameFrameX.Utility.EnvironmentHelper.GetEnvironmentName()
-  nameWithType: EnvironmentHelper.GetEnvironmentName()
-- uid: GameFrameX.Utility.EnvironmentHelper.GetEnvironmentName*
-  name: GetEnvironmentName
-  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_GetEnvironmentName_
-  commentId: Overload:GameFrameX.Utility.EnvironmentHelper.GetEnvironmentName
-  isSpec: "True"
-  fullName: GameFrameX.Utility.EnvironmentHelper.GetEnvironmentName
-  nameWithType: EnvironmentHelper.GetEnvironmentName
-- uid: GameFrameX.Utility.EnvironmentHelper.IsDevelopment
-  name: IsDevelopment()
-  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsDevelopment
-  commentId: M:GameFrameX.Utility.EnvironmentHelper.IsDevelopment
-  fullName: GameFrameX.Utility.EnvironmentHelper.IsDevelopment()
-  nameWithType: EnvironmentHelper.IsDevelopment()
-- uid: GameFrameX.Utility.EnvironmentHelper.IsDevelopment*
-  name: IsDevelopment
-  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsDevelopment_
-  commentId: Overload:GameFrameX.Utility.EnvironmentHelper.IsDevelopment
-  isSpec: "True"
-  fullName: GameFrameX.Utility.EnvironmentHelper.IsDevelopment
-  nameWithType: EnvironmentHelper.IsDevelopment
-- uid: GameFrameX.Utility.EnvironmentHelper.IsDocker
-  name: IsDocker()
-  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsDocker
-  commentId: M:GameFrameX.Utility.EnvironmentHelper.IsDocker
-  fullName: GameFrameX.Utility.EnvironmentHelper.IsDocker()
-  nameWithType: EnvironmentHelper.IsDocker()
-- uid: GameFrameX.Utility.EnvironmentHelper.IsDocker*
-  name: IsDocker
-  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsDocker_
-  commentId: Overload:GameFrameX.Utility.EnvironmentHelper.IsDocker
-  isSpec: "True"
-  fullName: GameFrameX.Utility.EnvironmentHelper.IsDocker
-  nameWithType: EnvironmentHelper.IsDocker
-- uid: GameFrameX.Utility.EnvironmentHelper.IsEnvironment(System.String)
-  name: IsEnvironment(string)
-  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsEnvironment_System_String_
-  commentId: M:GameFrameX.Utility.EnvironmentHelper.IsEnvironment(System.String)
-  name.vb: IsEnvironment(String)
-  fullName: GameFrameX.Utility.EnvironmentHelper.IsEnvironment(string)
-  fullName.vb: GameFrameX.Utility.EnvironmentHelper.IsEnvironment(String)
-  nameWithType: EnvironmentHelper.IsEnvironment(string)
-  nameWithType.vb: EnvironmentHelper.IsEnvironment(String)
-- uid: GameFrameX.Utility.EnvironmentHelper.IsEnvironment*
-  name: IsEnvironment
-  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsEnvironment_
-  commentId: Overload:GameFrameX.Utility.EnvironmentHelper.IsEnvironment
-  isSpec: "True"
-  fullName: GameFrameX.Utility.EnvironmentHelper.IsEnvironment
-  nameWithType: EnvironmentHelper.IsEnvironment
-- uid: GameFrameX.Utility.EnvironmentHelper.IsKubernetes
-  name: IsKubernetes()
-  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsKubernetes
-  commentId: M:GameFrameX.Utility.EnvironmentHelper.IsKubernetes
-  fullName: GameFrameX.Utility.EnvironmentHelper.IsKubernetes()
-  nameWithType: EnvironmentHelper.IsKubernetes()
-- uid: GameFrameX.Utility.EnvironmentHelper.IsKubernetes*
-  name: IsKubernetes
-  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsKubernetes_
-  commentId: Overload:GameFrameX.Utility.EnvironmentHelper.IsKubernetes
-  isSpec: "True"
-  fullName: GameFrameX.Utility.EnvironmentHelper.IsKubernetes
-  nameWithType: EnvironmentHelper.IsKubernetes
-- uid: GameFrameX.Utility.EnvironmentHelper.IsProduction
-  name: IsProduction()
-  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsProduction
-  commentId: M:GameFrameX.Utility.EnvironmentHelper.IsProduction
-  fullName: GameFrameX.Utility.EnvironmentHelper.IsProduction()
-  nameWithType: EnvironmentHelper.IsProduction()
-- uid: GameFrameX.Utility.EnvironmentHelper.IsProduction*
-  name: IsProduction
-  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsProduction_
-  commentId: Overload:GameFrameX.Utility.EnvironmentHelper.IsProduction
-  isSpec: "True"
-  fullName: GameFrameX.Utility.EnvironmentHelper.IsProduction
-  nameWithType: EnvironmentHelper.IsProduction
-- uid: GameFrameX.Utility.EnvironmentHelper.IsStaging
-  name: IsStaging()
-  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsStaging
-  commentId: M:GameFrameX.Utility.EnvironmentHelper.IsStaging
-  fullName: GameFrameX.Utility.EnvironmentHelper.IsStaging()
-  nameWithType: EnvironmentHelper.IsStaging()
-- uid: GameFrameX.Utility.EnvironmentHelper.IsStaging*
-  name: IsStaging
-  href: api/GameFrameX.Utility.EnvironmentHelper.html#GameFrameX_Utility_EnvironmentHelper_IsStaging_
-  commentId: Overload:GameFrameX.Utility.EnvironmentHelper.IsStaging
-  isSpec: "True"
-  fullName: GameFrameX.Utility.EnvironmentHelper.IsStaging
-  nameWithType: EnvironmentHelper.IsStaging
-- uid: GameFrameX.Utility.Extensions
-  name: GameFrameX.Utility.Extensions
-  href: api/GameFrameX.Utility.Extensions.html
-  commentId: N:GameFrameX.Utility.Extensions
-  fullName: GameFrameX.Utility.Extensions
-  nameWithType: GameFrameX.Utility.Extensions
-- uid: GameFrameX.Utility.Extensions.ExpressionExtension
-  name: ExpressionExtension
-  href: api/GameFrameX.Utility.Extensions.ExpressionExtension.html
-  commentId: T:GameFrameX.Utility.Extensions.ExpressionExtension
-  fullName: GameFrameX.Utility.Extensions.ExpressionExtension
-  nameWithType: ExpressionExtension
-- uid: GameFrameX.Utility.Extensions.ExpressionExtension.And*
-  name: And
-  href: api/GameFrameX.Utility.Extensions.ExpressionExtension.html#GameFrameX_Utility_Extensions_ExpressionExtension_And_
-  commentId: Overload:GameFrameX.Utility.Extensions.ExpressionExtension.And
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Extensions.ExpressionExtension.And
-  nameWithType: ExpressionExtension.And
-- uid: GameFrameX.Utility.Extensions.ExpressionExtension.AndIf*
-  name: AndIf
-  href: api/GameFrameX.Utility.Extensions.ExpressionExtension.html#GameFrameX_Utility_Extensions_ExpressionExtension_AndIf_
-  commentId: Overload:GameFrameX.Utility.Extensions.ExpressionExtension.AndIf
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Extensions.ExpressionExtension.AndIf
-  nameWithType: ExpressionExtension.AndIf
-- uid: GameFrameX.Utility.Extensions.ExpressionExtension.AndIf``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{System.Boolean},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
-  name: AndIf<T>(Expression<Func<T, bool>>, Func<bool>, Expression<Func<T, bool>>)
-  href: api/GameFrameX.Utility.Extensions.ExpressionExtension.html#GameFrameX_Utility_Extensions_ExpressionExtension_AndIf__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Func_System_Boolean__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___
-  commentId: M:GameFrameX.Utility.Extensions.ExpressionExtension.AndIf``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{System.Boolean},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
-  name.vb: AndIf(Of T)(Expression(Of Func(Of T, Boolean)), Func(Of Boolean), Expression(Of Func(Of T, Boolean)))
-  fullName: GameFrameX.Utility.Extensions.ExpressionExtension.AndIf<T>(System.Linq.Expressions.Expression<System.Func<T, bool>>, System.Func<bool>, System.Linq.Expressions.Expression<System.Func<T, bool>>)
-  fullName.vb: GameFrameX.Utility.Extensions.ExpressionExtension.AndIf(Of T)(System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean)), System.Func(Of Boolean), System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean)))
-  nameWithType: ExpressionExtension.AndIf<T>(Expression<Func<T, bool>>, Func<bool>, Expression<Func<T, bool>>)
-  nameWithType.vb: ExpressionExtension.AndIf(Of T)(Expression(Of Func(Of T, Boolean)), Func(Of Boolean), Expression(Of Func(Of T, Boolean)))
-- uid: GameFrameX.Utility.Extensions.ExpressionExtension.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
-  name: And<T>(Expression<Func<T, bool>>, Expression<Func<T, bool>>)
-  href: api/GameFrameX.Utility.Extensions.ExpressionExtension.html#GameFrameX_Utility_Extensions_ExpressionExtension_And__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Linq_Expressions_Expression_System_Func___0_System_Boolean___
-  commentId: M:GameFrameX.Utility.Extensions.ExpressionExtension.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
-  name.vb: And(Of T)(Expression(Of Func(Of T, Boolean)), Expression(Of Func(Of T, Boolean)))
-  fullName: GameFrameX.Utility.Extensions.ExpressionExtension.And<T>(System.Linq.Expressions.Expression<System.Func<T, bool>>, System.Linq.Expressions.Expression<System.Func<T, bool>>)
-  fullName.vb: GameFrameX.Utility.Extensions.ExpressionExtension.And(Of T)(System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean)), System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean)))
-  nameWithType: ExpressionExtension.And<T>(Expression<Func<T, bool>>, Expression<Func<T, bool>>)
-  nameWithType.vb: ExpressionExtension.And(Of T)(Expression(Of Func(Of T, Boolean)), Expression(Of Func(Of T, Boolean)))
-- uid: GameFrameX.Utility.Extensions.ExpressionExtension.Not*
-  name: Not
-  href: api/GameFrameX.Utility.Extensions.ExpressionExtension.html#GameFrameX_Utility_Extensions_ExpressionExtension_Not_
-  commentId: Overload:GameFrameX.Utility.Extensions.ExpressionExtension.Not
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Extensions.ExpressionExtension.Not
-  nameWithType: ExpressionExtension.Not
-- uid: GameFrameX.Utility.Extensions.ExpressionExtension.Not``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
-  name: Not<T>(Expression<Func<T, bool>>)
-  href: api/GameFrameX.Utility.Extensions.ExpressionExtension.html#GameFrameX_Utility_Extensions_ExpressionExtension_Not__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___
-  commentId: M:GameFrameX.Utility.Extensions.ExpressionExtension.Not``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
-  name.vb: Not(Of T)(Expression(Of Func(Of T, Boolean)))
-  fullName: GameFrameX.Utility.Extensions.ExpressionExtension.Not<T>(System.Linq.Expressions.Expression<System.Func<T, bool>>)
-  fullName.vb: GameFrameX.Utility.Extensions.ExpressionExtension.Not(Of T)(System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean)))
-  nameWithType: ExpressionExtension.Not<T>(Expression<Func<T, bool>>)
-  nameWithType.vb: ExpressionExtension.Not(Of T)(Expression(Of Func(Of T, Boolean)))
-- uid: GameFrameX.Utility.Extensions.ExpressionExtension.Or*
-  name: Or
-  href: api/GameFrameX.Utility.Extensions.ExpressionExtension.html#GameFrameX_Utility_Extensions_ExpressionExtension_Or_
-  commentId: Overload:GameFrameX.Utility.Extensions.ExpressionExtension.Or
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Extensions.ExpressionExtension.Or
-  nameWithType: ExpressionExtension.Or
-- uid: GameFrameX.Utility.Extensions.ExpressionExtension.OrIf*
-  name: OrIf
-  href: api/GameFrameX.Utility.Extensions.ExpressionExtension.html#GameFrameX_Utility_Extensions_ExpressionExtension_OrIf_
-  commentId: Overload:GameFrameX.Utility.Extensions.ExpressionExtension.OrIf
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Extensions.ExpressionExtension.OrIf
-  nameWithType: ExpressionExtension.OrIf
-- uid: GameFrameX.Utility.Extensions.ExpressionExtension.OrIf``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{System.Boolean},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
-  name: OrIf<T>(Expression<Func<T, bool>>, Func<bool>, Expression<Func<T, bool>>)
-  href: api/GameFrameX.Utility.Extensions.ExpressionExtension.html#GameFrameX_Utility_Extensions_ExpressionExtension_OrIf__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Func_System_Boolean__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___
-  commentId: M:GameFrameX.Utility.Extensions.ExpressionExtension.OrIf``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{System.Boolean},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
-  name.vb: OrIf(Of T)(Expression(Of Func(Of T, Boolean)), Func(Of Boolean), Expression(Of Func(Of T, Boolean)))
-  fullName: GameFrameX.Utility.Extensions.ExpressionExtension.OrIf<T>(System.Linq.Expressions.Expression<System.Func<T, bool>>, System.Func<bool>, System.Linq.Expressions.Expression<System.Func<T, bool>>)
-  fullName.vb: GameFrameX.Utility.Extensions.ExpressionExtension.OrIf(Of T)(System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean)), System.Func(Of Boolean), System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean)))
-  nameWithType: ExpressionExtension.OrIf<T>(Expression<Func<T, bool>>, Func<bool>, Expression<Func<T, bool>>)
-  nameWithType.vb: ExpressionExtension.OrIf(Of T)(Expression(Of Func(Of T, Boolean)), Func(Of Boolean), Expression(Of Func(Of T, Boolean)))
-- uid: GameFrameX.Utility.Extensions.ExpressionExtension.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
-  name: Or<T>(Expression<Func<T, bool>>, Expression<Func<T, bool>>)
-  href: api/GameFrameX.Utility.Extensions.ExpressionExtension.html#GameFrameX_Utility_Extensions_ExpressionExtension_Or__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Linq_Expressions_Expression_System_Func___0_System_Boolean___
-  commentId: M:GameFrameX.Utility.Extensions.ExpressionExtension.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
-  name.vb: Or(Of T)(Expression(Of Func(Of T, Boolean)), Expression(Of Func(Of T, Boolean)))
-  fullName: GameFrameX.Utility.Extensions.ExpressionExtension.Or<T>(System.Linq.Expressions.Expression<System.Func<T, bool>>, System.Linq.Expressions.Expression<System.Func<T, bool>>)
-  fullName.vb: GameFrameX.Utility.Extensions.ExpressionExtension.Or(Of T)(System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean)), System.Linq.Expressions.Expression(Of System.Func(Of T, Boolean)))
-  nameWithType: ExpressionExtension.Or<T>(Expression<Func<T, bool>>, Expression<Func<T, bool>>)
-  nameWithType.vb: ExpressionExtension.Or(Of T)(Expression(Of Func(Of T, Boolean)), Expression(Of Func(Of T, Boolean)))
-- uid: GameFrameX.Utility.Extensions.ExpressionVisitorCustom
-  name: ExpressionVisitorCustom
-  href: api/GameFrameX.Utility.Extensions.ExpressionVisitorCustom.html
-  commentId: T:GameFrameX.Utility.Extensions.ExpressionVisitorCustom
-  fullName: GameFrameX.Utility.Extensions.ExpressionVisitorCustom
-  nameWithType: ExpressionVisitorCustom
-- uid: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.#ctor(System.Linq.Expressions.ParameterExpression)
-  name: ExpressionVisitorCustom(ParameterExpression)
-  href: api/GameFrameX.Utility.Extensions.ExpressionVisitorCustom.html#GameFrameX_Utility_Extensions_ExpressionVisitorCustom__ctor_System_Linq_Expressions_ParameterExpression_
-  commentId: M:GameFrameX.Utility.Extensions.ExpressionVisitorCustom.#ctor(System.Linq.Expressions.ParameterExpression)
-  name.vb: New(ParameterExpression)
-  fullName: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.ExpressionVisitorCustom(System.Linq.Expressions.ParameterExpression)
-  fullName.vb: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.New(System.Linq.Expressions.ParameterExpression)
-  nameWithType: ExpressionVisitorCustom.ExpressionVisitorCustom(ParameterExpression)
-  nameWithType.vb: ExpressionVisitorCustom.New(ParameterExpression)
-- uid: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.#ctor*
-  name: ExpressionVisitorCustom
-  href: api/GameFrameX.Utility.Extensions.ExpressionVisitorCustom.html#GameFrameX_Utility_Extensions_ExpressionVisitorCustom__ctor_
-  commentId: Overload:GameFrameX.Utility.Extensions.ExpressionVisitorCustom.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.ExpressionVisitorCustom
-  fullName.vb: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.New
-  nameWithType: ExpressionVisitorCustom.ExpressionVisitorCustom
-  nameWithType.vb: ExpressionVisitorCustom.New
-- uid: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.Parameter
-  name: Parameter
-  href: api/GameFrameX.Utility.Extensions.ExpressionVisitorCustom.html#GameFrameX_Utility_Extensions_ExpressionVisitorCustom_Parameter
-  commentId: P:GameFrameX.Utility.Extensions.ExpressionVisitorCustom.Parameter
-  fullName: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.Parameter
-  nameWithType: ExpressionVisitorCustom.Parameter
-- uid: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.Parameter*
-  name: Parameter
-  href: api/GameFrameX.Utility.Extensions.ExpressionVisitorCustom.html#GameFrameX_Utility_Extensions_ExpressionVisitorCustom_Parameter_
-  commentId: Overload:GameFrameX.Utility.Extensions.ExpressionVisitorCustom.Parameter
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.Parameter
-  nameWithType: ExpressionVisitorCustom.Parameter
-- uid: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.VisitLambda*
-  name: VisitLambda
-  href: api/GameFrameX.Utility.Extensions.ExpressionVisitorCustom.html#GameFrameX_Utility_Extensions_ExpressionVisitorCustom_VisitLambda_
-  commentId: Overload:GameFrameX.Utility.Extensions.ExpressionVisitorCustom.VisitLambda
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.VisitLambda
-  nameWithType: ExpressionVisitorCustom.VisitLambda
-- uid: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.VisitLambda``1(System.Linq.Expressions.Expression{``0})
-  name: VisitLambda<T>(Expression<T>)
-  href: api/GameFrameX.Utility.Extensions.ExpressionVisitorCustom.html#GameFrameX_Utility_Extensions_ExpressionVisitorCustom_VisitLambda__1_System_Linq_Expressions_Expression___0__
-  commentId: M:GameFrameX.Utility.Extensions.ExpressionVisitorCustom.VisitLambda``1(System.Linq.Expressions.Expression{``0})
-  name.vb: VisitLambda(Of T)(Expression(Of T))
-  fullName: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.VisitLambda<T>(System.Linq.Expressions.Expression<T>)
-  fullName.vb: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.VisitLambda(Of T)(System.Linq.Expressions.Expression(Of T))
-  nameWithType: ExpressionVisitorCustom.VisitLambda<T>(Expression<T>)
-  nameWithType.vb: ExpressionVisitorCustom.VisitLambda(Of T)(Expression(Of T))
-- uid: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.VisitParameter(System.Linq.Expressions.ParameterExpression)
-  name: VisitParameter(ParameterExpression)
-  href: api/GameFrameX.Utility.Extensions.ExpressionVisitorCustom.html#GameFrameX_Utility_Extensions_ExpressionVisitorCustom_VisitParameter_System_Linq_Expressions_ParameterExpression_
-  commentId: M:GameFrameX.Utility.Extensions.ExpressionVisitorCustom.VisitParameter(System.Linq.Expressions.ParameterExpression)
-  fullName: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.VisitParameter(System.Linq.Expressions.ParameterExpression)
-  nameWithType: ExpressionVisitorCustom.VisitParameter(ParameterExpression)
-- uid: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.VisitParameter*
-  name: VisitParameter
-  href: api/GameFrameX.Utility.Extensions.ExpressionVisitorCustom.html#GameFrameX_Utility_Extensions_ExpressionVisitorCustom_VisitParameter_
-  commentId: Overload:GameFrameX.Utility.Extensions.ExpressionVisitorCustom.VisitParameter
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Extensions.ExpressionVisitorCustom.VisitParameter
-  nameWithType: ExpressionVisitorCustom.VisitParameter
-- uid: GameFrameX.Utility.Extensions.TimerExtension
-  name: TimerExtension
-  href: api/GameFrameX.Utility.Extensions.TimerExtension.html
-  commentId: T:GameFrameX.Utility.Extensions.TimerExtension
-  fullName: GameFrameX.Utility.Extensions.TimerExtension
-  nameWithType: TimerExtension
-- uid: GameFrameX.Utility.Extensions.TimerExtension.Reset(System.Timers.Timer)
-  name: Reset(Timer)
-  href: api/GameFrameX.Utility.Extensions.TimerExtension.html#GameFrameX_Utility_Extensions_TimerExtension_Reset_System_Timers_Timer_
-  commentId: M:GameFrameX.Utility.Extensions.TimerExtension.Reset(System.Timers.Timer)
-  fullName: GameFrameX.Utility.Extensions.TimerExtension.Reset(System.Timers.Timer)
-  nameWithType: TimerExtension.Reset(Timer)
-- uid: GameFrameX.Utility.Extensions.TimerExtension.Reset*
-  name: Reset
-  href: api/GameFrameX.Utility.Extensions.TimerExtension.html#GameFrameX_Utility_Extensions_TimerExtension_Reset_
-  commentId: Overload:GameFrameX.Utility.Extensions.TimerExtension.Reset
-  isSpec: "True"
-  fullName: GameFrameX.Utility.Extensions.TimerExtension.Reset
-  nameWithType: TimerExtension.Reset
 - uid: GameFrameX.Utility.IdGenerator
   name: IdGenerator
   href: api/GameFrameX.Utility.IdGenerator.html
@@ -22323,6 +22514,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.DataCenter
   nameWithType: AppSetting.DataCenter
+- uid: GameFrameX.Utility.Setting.AppSetting.DataCenterId
+  name: DataCenterId
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_DataCenterId
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.DataCenterId
+  fullName: GameFrameX.Utility.Setting.AppSetting.DataCenterId
+  nameWithType: AppSetting.DataCenterId
+- uid: GameFrameX.Utility.Setting.AppSetting.DataCenterId*
+  name: DataCenterId
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_DataCenterId_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.DataCenterId
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.DataCenterId
+  nameWithType: AppSetting.DataCenterId
 - uid: GameFrameX.Utility.Setting.AppSetting.Description
   name: Description
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_Description
@@ -23451,1649 +23655,3 @@ references:
   fullName.vb: GameFrameX.Utility.Singleton(Of T).Instance
   nameWithType: Singleton<T>.Instance
   nameWithType.vb: Singleton(Of T).Instance
-- uid: GameFrameX.Utility.TimeHelper
-  name: TimeHelper
-  href: api/GameFrameX.Utility.TimeHelper.html
-  commentId: T:GameFrameX.Utility.TimeHelper
-  fullName: GameFrameX.Utility.TimeHelper
-  nameWithType: TimeHelper
-- uid: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFormat(System.String)
-  name: CurrentDateTimeWithFormat(string)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateTimeWithFormat_System_String_
-  commentId: M:GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFormat(System.String)
-  name.vb: CurrentDateTimeWithFormat(String)
-  fullName: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFormat(string)
-  fullName.vb: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFormat(String)
-  nameWithType: TimeHelper.CurrentDateTimeWithFormat(string)
-  nameWithType.vb: TimeHelper.CurrentDateTimeWithFormat(String)
-- uid: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFormat*
-  name: CurrentDateTimeWithFormat
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateTimeWithFormat_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFormat
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFormat
-  nameWithType: TimeHelper.CurrentDateTimeWithFormat
-- uid: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFullString
-  name: CurrentDateTimeWithFullString()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateTimeWithFullString
-  commentId: M:GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFullString
-  fullName: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFullString()
-  nameWithType: TimeHelper.CurrentDateTimeWithFullString()
-- uid: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFullString*
-  name: CurrentDateTimeWithFullString
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateTimeWithFullString_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFullString
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithFullString
-  nameWithType: TimeHelper.CurrentDateTimeWithFullString
-- uid: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFormat(System.String)
-  name: CurrentDateTimeWithUtcFormat(string)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateTimeWithUtcFormat_System_String_
-  commentId: M:GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFormat(System.String)
-  name.vb: CurrentDateTimeWithUtcFormat(String)
-  fullName: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFormat(string)
-  fullName.vb: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFormat(String)
-  nameWithType: TimeHelper.CurrentDateTimeWithUtcFormat(string)
-  nameWithType.vb: TimeHelper.CurrentDateTimeWithUtcFormat(String)
-- uid: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFormat*
-  name: CurrentDateTimeWithUtcFormat
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateTimeWithUtcFormat_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFormat
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFormat
-  nameWithType: TimeHelper.CurrentDateTimeWithUtcFormat
-- uid: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFullString
-  name: CurrentDateTimeWithUtcFullString()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateTimeWithUtcFullString
-  commentId: M:GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFullString
-  fullName: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFullString()
-  nameWithType: TimeHelper.CurrentDateTimeWithUtcFullString()
-- uid: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFullString*
-  name: CurrentDateTimeWithUtcFullString
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateTimeWithUtcFullString_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFullString
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.CurrentDateTimeWithUtcFullString
-  nameWithType: TimeHelper.CurrentDateTimeWithUtcFullString
-- uid: GameFrameX.Utility.TimeHelper.CurrentDateWithDay
-  name: CurrentDateWithDay()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateWithDay
-  commentId: M:GameFrameX.Utility.TimeHelper.CurrentDateWithDay
-  fullName: GameFrameX.Utility.TimeHelper.CurrentDateWithDay()
-  nameWithType: TimeHelper.CurrentDateWithDay()
-- uid: GameFrameX.Utility.TimeHelper.CurrentDateWithDay*
-  name: CurrentDateWithDay
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateWithDay_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentDateWithDay
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.CurrentDateWithDay
-  nameWithType: TimeHelper.CurrentDateWithDay
-- uid: GameFrameX.Utility.TimeHelper.CurrentDateWithUtcDay
-  name: CurrentDateWithUtcDay()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateWithUtcDay
-  commentId: M:GameFrameX.Utility.TimeHelper.CurrentDateWithUtcDay
-  fullName: GameFrameX.Utility.TimeHelper.CurrentDateWithUtcDay()
-  nameWithType: TimeHelper.CurrentDateWithUtcDay()
-- uid: GameFrameX.Utility.TimeHelper.CurrentDateWithUtcDay*
-  name: CurrentDateWithUtcDay
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentDateWithUtcDay_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentDateWithUtcDay
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.CurrentDateWithUtcDay
-  nameWithType: TimeHelper.CurrentDateWithUtcDay
-- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalFullString
-  name: CurrentTimeWithLocalFullString()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithLocalFullString
-  commentId: M:GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalFullString
-  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalFullString()
-  nameWithType: TimeHelper.CurrentTimeWithLocalFullString()
-- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalFullString*
-  name: CurrentTimeWithLocalFullString
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithLocalFullString_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalFullString
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalFullString
-  nameWithType: TimeHelper.CurrentTimeWithLocalFullString
-- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalTime
-  name: CurrentTimeWithLocalTime()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithLocalTime
-  commentId: M:GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalTime
-  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalTime()
-  nameWithType: TimeHelper.CurrentTimeWithLocalTime()
-- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalTime*
-  name: CurrentTimeWithLocalTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithLocalTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithLocalTime
-  nameWithType: TimeHelper.CurrentTimeWithLocalTime
-- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcFullString
-  name: CurrentTimeWithUtcFullString()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithUtcFullString
-  commentId: M:GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcFullString
-  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcFullString()
-  nameWithType: TimeHelper.CurrentTimeWithUtcFullString()
-- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcFullString*
-  name: CurrentTimeWithUtcFullString
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithUtcFullString_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcFullString
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcFullString
-  nameWithType: TimeHelper.CurrentTimeWithUtcFullString
-- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcTime
-  name: CurrentTimeWithUtcTime()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithUtcTime
-  commentId: M:GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcTime
-  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcTime()
-  nameWithType: TimeHelper.CurrentTimeWithUtcTime()
-- uid: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcTime*
-  name: CurrentTimeWithUtcTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_CurrentTimeWithUtcTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.CurrentTimeWithUtcTime
-  nameWithType: TimeHelper.CurrentTimeWithUtcTime
-- uid: GameFrameX.Utility.TimeHelper.EpochLocal
-  name: EpochLocal
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_EpochLocal
-  commentId: F:GameFrameX.Utility.TimeHelper.EpochLocal
-  fullName: GameFrameX.Utility.TimeHelper.EpochLocal
-  nameWithType: TimeHelper.EpochLocal
-- uid: GameFrameX.Utility.TimeHelper.EpochUtc
-  name: EpochUtc
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_EpochUtc
-  commentId: F:GameFrameX.Utility.TimeHelper.EpochUtc
-  fullName: GameFrameX.Utility.TimeHelper.EpochUtc
-  nameWithType: TimeHelper.EpochUtc
-- uid: GameFrameX.Utility.TimeHelper.GetAbsoluteMillisecondsDifference(System.DateTime,System.DateTime)
-  name: GetAbsoluteMillisecondsDifference(DateTime, DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetAbsoluteMillisecondsDifference_System_DateTime_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetAbsoluteMillisecondsDifference(System.DateTime,System.DateTime)
-  name.vb: GetAbsoluteMillisecondsDifference(Date, Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetAbsoluteMillisecondsDifference(System.DateTime, System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetAbsoluteMillisecondsDifference(Date, Date)
-  nameWithType: TimeHelper.GetAbsoluteMillisecondsDifference(DateTime, DateTime)
-  nameWithType.vb: TimeHelper.GetAbsoluteMillisecondsDifference(Date, Date)
-- uid: GameFrameX.Utility.TimeHelper.GetAbsoluteMillisecondsDifference*
-  name: GetAbsoluteMillisecondsDifference
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetAbsoluteMillisecondsDifference_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetAbsoluteMillisecondsDifference
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetAbsoluteMillisecondsDifference
-  nameWithType: TimeHelper.GetAbsoluteMillisecondsDifference
-- uid: GameFrameX.Utility.TimeHelper.GetAbsoluteSecondsDifference(System.DateTime,System.DateTime)
-  name: GetAbsoluteSecondsDifference(DateTime, DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetAbsoluteSecondsDifference_System_DateTime_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetAbsoluteSecondsDifference(System.DateTime,System.DateTime)
-  name.vb: GetAbsoluteSecondsDifference(Date, Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetAbsoluteSecondsDifference(System.DateTime, System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetAbsoluteSecondsDifference(Date, Date)
-  nameWithType: TimeHelper.GetAbsoluteSecondsDifference(DateTime, DateTime)
-  nameWithType.vb: TimeHelper.GetAbsoluteSecondsDifference(Date, Date)
-- uid: GameFrameX.Utility.TimeHelper.GetAbsoluteSecondsDifference*
-  name: GetAbsoluteSecondsDifference
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetAbsoluteSecondsDifference_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetAbsoluteSecondsDifference
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetAbsoluteSecondsDifference
-  nameWithType: TimeHelper.GetAbsoluteSecondsDifference
-- uid: GameFrameX.Utility.TimeHelper.GetChinaDayOfWeek
-  name: GetChinaDayOfWeek()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetChinaDayOfWeek
-  commentId: M:GameFrameX.Utility.TimeHelper.GetChinaDayOfWeek
-  fullName: GameFrameX.Utility.TimeHelper.GetChinaDayOfWeek()
-  nameWithType: TimeHelper.GetChinaDayOfWeek()
-- uid: GameFrameX.Utility.TimeHelper.GetChinaDayOfWeek(System.DayOfWeek)
-  name: GetChinaDayOfWeek(DayOfWeek)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetChinaDayOfWeek_System_DayOfWeek_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetChinaDayOfWeek(System.DayOfWeek)
-  fullName: GameFrameX.Utility.TimeHelper.GetChinaDayOfWeek(System.DayOfWeek)
-  nameWithType: TimeHelper.GetChinaDayOfWeek(DayOfWeek)
-- uid: GameFrameX.Utility.TimeHelper.GetChinaDayOfWeek*
-  name: GetChinaDayOfWeek
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetChinaDayOfWeek_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetChinaDayOfWeek
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetChinaDayOfWeek
-  nameWithType: TimeHelper.GetChinaDayOfWeek
-- uid: GameFrameX.Utility.TimeHelper.GetCrossDays(System.DateTime,System.DateTime,System.Int32)
-  name: GetCrossDays(DateTime, DateTime, int)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetCrossDays_System_DateTime_System_DateTime_System_Int32_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetCrossDays(System.DateTime,System.DateTime,System.Int32)
-  name.vb: GetCrossDays(Date, Date, Integer)
-  fullName: GameFrameX.Utility.TimeHelper.GetCrossDays(System.DateTime, System.DateTime, int)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetCrossDays(Date, Date, Integer)
-  nameWithType: TimeHelper.GetCrossDays(DateTime, DateTime, int)
-  nameWithType.vb: TimeHelper.GetCrossDays(Date, Date, Integer)
-- uid: GameFrameX.Utility.TimeHelper.GetCrossDays(System.DateTime,System.Int32)
-  name: GetCrossDays(DateTime, int)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetCrossDays_System_DateTime_System_Int32_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetCrossDays(System.DateTime,System.Int32)
-  name.vb: GetCrossDays(Date, Integer)
-  fullName: GameFrameX.Utility.TimeHelper.GetCrossDays(System.DateTime, int)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetCrossDays(Date, Integer)
-  nameWithType: TimeHelper.GetCrossDays(DateTime, int)
-  nameWithType.vb: TimeHelper.GetCrossDays(Date, Integer)
-- uid: GameFrameX.Utility.TimeHelper.GetCrossDays(System.Int64,System.Int32)
-  name: GetCrossDays(long, int)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetCrossDays_System_Int64_System_Int32_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetCrossDays(System.Int64,System.Int32)
-  name.vb: GetCrossDays(Long, Integer)
-  fullName: GameFrameX.Utility.TimeHelper.GetCrossDays(long, int)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetCrossDays(Long, Integer)
-  nameWithType: TimeHelper.GetCrossDays(long, int)
-  nameWithType.vb: TimeHelper.GetCrossDays(Long, Integer)
-- uid: GameFrameX.Utility.TimeHelper.GetCrossDays(System.Int64,System.Int64,System.Int32)
-  name: GetCrossDays(long, long, int)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetCrossDays_System_Int64_System_Int64_System_Int32_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetCrossDays(System.Int64,System.Int64,System.Int32)
-  name.vb: GetCrossDays(Long, Long, Integer)
-  fullName: GameFrameX.Utility.TimeHelper.GetCrossDays(long, long, int)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetCrossDays(Long, Long, Integer)
-  nameWithType: TimeHelper.GetCrossDays(long, long, int)
-  nameWithType.vb: TimeHelper.GetCrossDays(Long, Long, Integer)
-- uid: GameFrameX.Utility.TimeHelper.GetCrossDays*
-  name: GetCrossDays
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetCrossDays_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetCrossDays
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetCrossDays
-  nameWithType: TimeHelper.GetCrossDays
-- uid: GameFrameX.Utility.TimeHelper.GetCrossLocalDays(System.DateTime,System.Int32)
-  name: GetCrossLocalDays(DateTime, int)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetCrossLocalDays_System_DateTime_System_Int32_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetCrossLocalDays(System.DateTime,System.Int32)
-  name.vb: GetCrossLocalDays(Date, Integer)
-  fullName: GameFrameX.Utility.TimeHelper.GetCrossLocalDays(System.DateTime, int)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetCrossLocalDays(Date, Integer)
-  nameWithType: TimeHelper.GetCrossLocalDays(DateTime, int)
-  nameWithType.vb: TimeHelper.GetCrossLocalDays(Date, Integer)
-- uid: GameFrameX.Utility.TimeHelper.GetCrossLocalDays(System.Int64,System.Int64)
-  name: GetCrossLocalDays(long, long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetCrossLocalDays_System_Int64_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetCrossLocalDays(System.Int64,System.Int64)
-  name.vb: GetCrossLocalDays(Long, Long)
-  fullName: GameFrameX.Utility.TimeHelper.GetCrossLocalDays(long, long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetCrossLocalDays(Long, Long)
-  nameWithType: TimeHelper.GetCrossLocalDays(long, long)
-  nameWithType.vb: TimeHelper.GetCrossLocalDays(Long, Long)
-- uid: GameFrameX.Utility.TimeHelper.GetCrossLocalDays*
-  name: GetCrossLocalDays
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetCrossLocalDays_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetCrossLocalDays
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetCrossLocalDays
-  nameWithType: TimeHelper.GetCrossLocalDays
-- uid: GameFrameX.Utility.TimeHelper.GetDayOfWeekTime(System.DateTime,System.DayOfWeek)
-  name: GetDayOfWeekTime(DateTime, DayOfWeek)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetDayOfWeekTime_System_DateTime_System_DayOfWeek_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetDayOfWeekTime(System.DateTime,System.DayOfWeek)
-  name.vb: GetDayOfWeekTime(Date, DayOfWeek)
-  fullName: GameFrameX.Utility.TimeHelper.GetDayOfWeekTime(System.DateTime, System.DayOfWeek)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetDayOfWeekTime(Date, System.DayOfWeek)
-  nameWithType: TimeHelper.GetDayOfWeekTime(DateTime, DayOfWeek)
-  nameWithType.vb: TimeHelper.GetDayOfWeekTime(Date, DayOfWeek)
-- uid: GameFrameX.Utility.TimeHelper.GetDayOfWeekTime(System.DayOfWeek)
-  name: GetDayOfWeekTime(DayOfWeek)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetDayOfWeekTime_System_DayOfWeek_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetDayOfWeekTime(System.DayOfWeek)
-  fullName: GameFrameX.Utility.TimeHelper.GetDayOfWeekTime(System.DayOfWeek)
-  nameWithType: TimeHelper.GetDayOfWeekTime(DayOfWeek)
-- uid: GameFrameX.Utility.TimeHelper.GetDayOfWeekTime*
-  name: GetDayOfWeekTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetDayOfWeekTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetDayOfWeekTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetDayOfWeekTime
-  nameWithType: TimeHelper.GetDayOfWeekTime
-- uid: GameFrameX.Utility.TimeHelper.GetDaysDifference(System.DateTime,System.DateTime)
-  name: GetDaysDifference(DateTime, DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetDaysDifference_System_DateTime_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetDaysDifference(System.DateTime,System.DateTime)
-  name.vb: GetDaysDifference(Date, Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetDaysDifference(System.DateTime, System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetDaysDifference(Date, Date)
-  nameWithType: TimeHelper.GetDaysDifference(DateTime, DateTime)
-  nameWithType.vb: TimeHelper.GetDaysDifference(Date, Date)
-- uid: GameFrameX.Utility.TimeHelper.GetDaysDifference*
-  name: GetDaysDifference
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetDaysDifference_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetDaysDifference
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetDaysDifference
-  nameWithType: TimeHelper.GetDaysDifference
-- uid: GameFrameX.Utility.TimeHelper.GetElapsedMilliseconds(System.Int64,System.Boolean)
-  name: GetElapsedMilliseconds(long, bool)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetElapsedMilliseconds_System_Int64_System_Boolean_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetElapsedMilliseconds(System.Int64,System.Boolean)
-  name.vb: GetElapsedMilliseconds(Long, Boolean)
-  fullName: GameFrameX.Utility.TimeHelper.GetElapsedMilliseconds(long, bool)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetElapsedMilliseconds(Long, Boolean)
-  nameWithType: TimeHelper.GetElapsedMilliseconds(long, bool)
-  nameWithType.vb: TimeHelper.GetElapsedMilliseconds(Long, Boolean)
-- uid: GameFrameX.Utility.TimeHelper.GetElapsedMilliseconds*
-  name: GetElapsedMilliseconds
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetElapsedMilliseconds_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetElapsedMilliseconds
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetElapsedMilliseconds
-  nameWithType: TimeHelper.GetElapsedMilliseconds
-- uid: GameFrameX.Utility.TimeHelper.GetElapsedSeconds(System.DateTime,System.Boolean)
-  name: GetElapsedSeconds(DateTime, bool)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetElapsedSeconds_System_DateTime_System_Boolean_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetElapsedSeconds(System.DateTime,System.Boolean)
-  name.vb: GetElapsedSeconds(Date, Boolean)
-  fullName: GameFrameX.Utility.TimeHelper.GetElapsedSeconds(System.DateTime, bool)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetElapsedSeconds(Date, Boolean)
-  nameWithType: TimeHelper.GetElapsedSeconds(DateTime, bool)
-  nameWithType.vb: TimeHelper.GetElapsedSeconds(Date, Boolean)
-- uid: GameFrameX.Utility.TimeHelper.GetElapsedSeconds(System.Int64,System.Boolean)
-  name: GetElapsedSeconds(long, bool)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetElapsedSeconds_System_Int64_System_Boolean_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetElapsedSeconds(System.Int64,System.Boolean)
-  name.vb: GetElapsedSeconds(Long, Boolean)
-  fullName: GameFrameX.Utility.TimeHelper.GetElapsedSeconds(long, bool)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetElapsedSeconds(Long, Boolean)
-  nameWithType: TimeHelper.GetElapsedSeconds(long, bool)
-  nameWithType.vb: TimeHelper.GetElapsedSeconds(Long, Boolean)
-- uid: GameFrameX.Utility.TimeHelper.GetElapsedSeconds*
-  name: GetElapsedSeconds
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetElapsedSeconds_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetElapsedSeconds
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetElapsedSeconds
-  nameWithType: TimeHelper.GetElapsedSeconds
-- uid: GameFrameX.Utility.TimeHelper.GetEndTimeOfDay(System.DateTime)
-  name: GetEndTimeOfDay(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimeOfDay_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetEndTimeOfDay(System.DateTime)
-  name.vb: GetEndTimeOfDay(Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetEndTimeOfDay(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetEndTimeOfDay(Date)
-  nameWithType: TimeHelper.GetEndTimeOfDay(DateTime)
-  nameWithType.vb: TimeHelper.GetEndTimeOfDay(Date)
-- uid: GameFrameX.Utility.TimeHelper.GetEndTimeOfDay*
-  name: GetEndTimeOfDay
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimeOfDay_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetEndTimeOfDay
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetEndTimeOfDay
-  nameWithType: TimeHelper.GetEndTimeOfDay
-- uid: GameFrameX.Utility.TimeHelper.GetEndTimeOfMonth(System.DateTime)
-  name: GetEndTimeOfMonth(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimeOfMonth_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetEndTimeOfMonth(System.DateTime)
-  name.vb: GetEndTimeOfMonth(Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetEndTimeOfMonth(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetEndTimeOfMonth(Date)
-  nameWithType: TimeHelper.GetEndTimeOfMonth(DateTime)
-  nameWithType.vb: TimeHelper.GetEndTimeOfMonth(Date)
-- uid: GameFrameX.Utility.TimeHelper.GetEndTimeOfMonth*
-  name: GetEndTimeOfMonth
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimeOfMonth_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetEndTimeOfMonth
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetEndTimeOfMonth
-  nameWithType: TimeHelper.GetEndTimeOfMonth
-- uid: GameFrameX.Utility.TimeHelper.GetEndTimeOfWeek(System.DateTime)
-  name: GetEndTimeOfWeek(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimeOfWeek_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetEndTimeOfWeek(System.DateTime)
-  name.vb: GetEndTimeOfWeek(Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetEndTimeOfWeek(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetEndTimeOfWeek(Date)
-  nameWithType: TimeHelper.GetEndTimeOfWeek(DateTime)
-  nameWithType.vb: TimeHelper.GetEndTimeOfWeek(Date)
-- uid: GameFrameX.Utility.TimeHelper.GetEndTimeOfWeek*
-  name: GetEndTimeOfWeek
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimeOfWeek_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetEndTimeOfWeek
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetEndTimeOfWeek
-  nameWithType: TimeHelper.GetEndTimeOfWeek
-- uid: GameFrameX.Utility.TimeHelper.GetEndTimeOfYear(System.DateTime)
-  name: GetEndTimeOfYear(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimeOfYear_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetEndTimeOfYear(System.DateTime)
-  name.vb: GetEndTimeOfYear(Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetEndTimeOfYear(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetEndTimeOfYear(Date)
-  nameWithType: TimeHelper.GetEndTimeOfYear(DateTime)
-  nameWithType.vb: TimeHelper.GetEndTimeOfYear(Date)
-- uid: GameFrameX.Utility.TimeHelper.GetEndTimeOfYear*
-  name: GetEndTimeOfYear
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimeOfYear_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetEndTimeOfYear
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetEndTimeOfYear
-  nameWithType: TimeHelper.GetEndTimeOfYear
-- uid: GameFrameX.Utility.TimeHelper.GetEndTimestampOfDay(System.DateTime)
-  name: GetEndTimestampOfDay(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimestampOfDay_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetEndTimestampOfDay(System.DateTime)
-  name.vb: GetEndTimestampOfDay(Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetEndTimestampOfDay(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetEndTimestampOfDay(Date)
-  nameWithType: TimeHelper.GetEndTimestampOfDay(DateTime)
-  nameWithType.vb: TimeHelper.GetEndTimestampOfDay(Date)
-- uid: GameFrameX.Utility.TimeHelper.GetEndTimestampOfDay*
-  name: GetEndTimestampOfDay
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimestampOfDay_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetEndTimestampOfDay
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetEndTimestampOfDay
-  nameWithType: TimeHelper.GetEndTimestampOfDay
-- uid: GameFrameX.Utility.TimeHelper.GetEndTimestampOfMonth(System.DateTime)
-  name: GetEndTimestampOfMonth(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimestampOfMonth_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetEndTimestampOfMonth(System.DateTime)
-  name.vb: GetEndTimestampOfMonth(Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetEndTimestampOfMonth(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetEndTimestampOfMonth(Date)
-  nameWithType: TimeHelper.GetEndTimestampOfMonth(DateTime)
-  nameWithType.vb: TimeHelper.GetEndTimestampOfMonth(Date)
-- uid: GameFrameX.Utility.TimeHelper.GetEndTimestampOfMonth*
-  name: GetEndTimestampOfMonth
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimestampOfMonth_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetEndTimestampOfMonth
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetEndTimestampOfMonth
-  nameWithType: TimeHelper.GetEndTimestampOfMonth
-- uid: GameFrameX.Utility.TimeHelper.GetEndTimestampOfWeek(System.DateTime)
-  name: GetEndTimestampOfWeek(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimestampOfWeek_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetEndTimestampOfWeek(System.DateTime)
-  name.vb: GetEndTimestampOfWeek(Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetEndTimestampOfWeek(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetEndTimestampOfWeek(Date)
-  nameWithType: TimeHelper.GetEndTimestampOfWeek(DateTime)
-  nameWithType.vb: TimeHelper.GetEndTimestampOfWeek(Date)
-- uid: GameFrameX.Utility.TimeHelper.GetEndTimestampOfWeek*
-  name: GetEndTimestampOfWeek
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimestampOfWeek_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetEndTimestampOfWeek
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetEndTimestampOfWeek
-  nameWithType: TimeHelper.GetEndTimestampOfWeek
-- uid: GameFrameX.Utility.TimeHelper.GetEndTimestampOfYear(System.DateTime)
-  name: GetEndTimestampOfYear(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimestampOfYear_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetEndTimestampOfYear(System.DateTime)
-  name.vb: GetEndTimestampOfYear(Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetEndTimestampOfYear(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetEndTimestampOfYear(Date)
-  nameWithType: TimeHelper.GetEndTimestampOfYear(DateTime)
-  nameWithType.vb: TimeHelper.GetEndTimestampOfYear(Date)
-- uid: GameFrameX.Utility.TimeHelper.GetEndTimestampOfYear*
-  name: GetEndTimestampOfYear
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetEndTimestampOfYear_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetEndTimestampOfYear
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetEndTimestampOfYear
-  nameWithType: TimeHelper.GetEndTimestampOfYear
-- uid: GameFrameX.Utility.TimeHelper.GetHoursDifference(System.DateTime,System.DateTime)
-  name: GetHoursDifference(DateTime, DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetHoursDifference_System_DateTime_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetHoursDifference(System.DateTime,System.DateTime)
-  name.vb: GetHoursDifference(Date, Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetHoursDifference(System.DateTime, System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetHoursDifference(Date, Date)
-  nameWithType: TimeHelper.GetHoursDifference(DateTime, DateTime)
-  nameWithType.vb: TimeHelper.GetHoursDifference(Date, Date)
-- uid: GameFrameX.Utility.TimeHelper.GetHoursDifference*
-  name: GetHoursDifference
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetHoursDifference_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetHoursDifference
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetHoursDifference
-  nameWithType: TimeHelper.GetHoursDifference
-- uid: GameFrameX.Utility.TimeHelper.GetMillisecondsDifference(System.DateTime,System.DateTime)
-  name: GetMillisecondsDifference(DateTime, DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMillisecondsDifference_System_DateTime_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetMillisecondsDifference(System.DateTime,System.DateTime)
-  name.vb: GetMillisecondsDifference(Date, Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetMillisecondsDifference(System.DateTime, System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetMillisecondsDifference(Date, Date)
-  nameWithType: TimeHelper.GetMillisecondsDifference(DateTime, DateTime)
-  nameWithType.vb: TimeHelper.GetMillisecondsDifference(Date, Date)
-- uid: GameFrameX.Utility.TimeHelper.GetMillisecondsDifference(System.Int64,System.Int64)
-  name: GetMillisecondsDifference(long, long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMillisecondsDifference_System_Int64_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetMillisecondsDifference(System.Int64,System.Int64)
-  name.vb: GetMillisecondsDifference(Long, Long)
-  fullName: GameFrameX.Utility.TimeHelper.GetMillisecondsDifference(long, long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetMillisecondsDifference(Long, Long)
-  nameWithType: TimeHelper.GetMillisecondsDifference(long, long)
-  nameWithType.vb: TimeHelper.GetMillisecondsDifference(Long, Long)
-- uid: GameFrameX.Utility.TimeHelper.GetMillisecondsDifference*
-  name: GetMillisecondsDifference
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMillisecondsDifference_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetMillisecondsDifference
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetMillisecondsDifference
-  nameWithType: TimeHelper.GetMillisecondsDifference
-- uid: GameFrameX.Utility.TimeHelper.GetMinutesDifference(System.DateTime,System.DateTime)
-  name: GetMinutesDifference(DateTime, DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMinutesDifference_System_DateTime_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetMinutesDifference(System.DateTime,System.DateTime)
-  name.vb: GetMinutesDifference(Date, Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetMinutesDifference(System.DateTime, System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetMinutesDifference(Date, Date)
-  nameWithType: TimeHelper.GetMinutesDifference(DateTime, DateTime)
-  nameWithType.vb: TimeHelper.GetMinutesDifference(Date, Date)
-- uid: GameFrameX.Utility.TimeHelper.GetMinutesDifference*
-  name: GetMinutesDifference
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMinutesDifference_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetMinutesDifference
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetMinutesDifference
-  nameWithType: TimeHelper.GetMinutesDifference
-- uid: GameFrameX.Utility.TimeHelper.GetMonthEndTime
-  name: GetMonthEndTime()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMonthEndTime
-  commentId: M:GameFrameX.Utility.TimeHelper.GetMonthEndTime
-  fullName: GameFrameX.Utility.TimeHelper.GetMonthEndTime()
-  nameWithType: TimeHelper.GetMonthEndTime()
-- uid: GameFrameX.Utility.TimeHelper.GetMonthEndTime*
-  name: GetMonthEndTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMonthEndTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetMonthEndTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetMonthEndTime
-  nameWithType: TimeHelper.GetMonthEndTime
-- uid: GameFrameX.Utility.TimeHelper.GetMonthEndTimestamp
-  name: GetMonthEndTimestamp()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMonthEndTimestamp
-  commentId: M:GameFrameX.Utility.TimeHelper.GetMonthEndTimestamp
-  fullName: GameFrameX.Utility.TimeHelper.GetMonthEndTimestamp()
-  nameWithType: TimeHelper.GetMonthEndTimestamp()
-- uid: GameFrameX.Utility.TimeHelper.GetMonthEndTimestamp*
-  name: GetMonthEndTimestamp
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMonthEndTimestamp_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetMonthEndTimestamp
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetMonthEndTimestamp
-  nameWithType: TimeHelper.GetMonthEndTimestamp
-- uid: GameFrameX.Utility.TimeHelper.GetMonthStartTime
-  name: GetMonthStartTime()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMonthStartTime
-  commentId: M:GameFrameX.Utility.TimeHelper.GetMonthStartTime
-  fullName: GameFrameX.Utility.TimeHelper.GetMonthStartTime()
-  nameWithType: TimeHelper.GetMonthStartTime()
-- uid: GameFrameX.Utility.TimeHelper.GetMonthStartTime*
-  name: GetMonthStartTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMonthStartTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetMonthStartTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetMonthStartTime
-  nameWithType: TimeHelper.GetMonthStartTime
-- uid: GameFrameX.Utility.TimeHelper.GetMonthStartTimestamp
-  name: GetMonthStartTimestamp()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMonthStartTimestamp
-  commentId: M:GameFrameX.Utility.TimeHelper.GetMonthStartTimestamp
-  fullName: GameFrameX.Utility.TimeHelper.GetMonthStartTimestamp()
-  nameWithType: TimeHelper.GetMonthStartTimestamp()
-- uid: GameFrameX.Utility.TimeHelper.GetMonthStartTimestamp*
-  name: GetMonthStartTimestamp
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetMonthStartTimestamp_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetMonthStartTimestamp
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetMonthStartTimestamp
-  nameWithType: TimeHelper.GetMonthStartTimestamp
-- uid: GameFrameX.Utility.TimeHelper.GetNextMonthEndTime
-  name: GetNextMonthEndTime()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextMonthEndTime
-  commentId: M:GameFrameX.Utility.TimeHelper.GetNextMonthEndTime
-  fullName: GameFrameX.Utility.TimeHelper.GetNextMonthEndTime()
-  nameWithType: TimeHelper.GetNextMonthEndTime()
-- uid: GameFrameX.Utility.TimeHelper.GetNextMonthEndTime*
-  name: GetNextMonthEndTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextMonthEndTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetNextMonthEndTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetNextMonthEndTime
-  nameWithType: TimeHelper.GetNextMonthEndTime
-- uid: GameFrameX.Utility.TimeHelper.GetNextMonthEndTimestamp
-  name: GetNextMonthEndTimestamp()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextMonthEndTimestamp
-  commentId: M:GameFrameX.Utility.TimeHelper.GetNextMonthEndTimestamp
-  fullName: GameFrameX.Utility.TimeHelper.GetNextMonthEndTimestamp()
-  nameWithType: TimeHelper.GetNextMonthEndTimestamp()
-- uid: GameFrameX.Utility.TimeHelper.GetNextMonthEndTimestamp*
-  name: GetNextMonthEndTimestamp
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextMonthEndTimestamp_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetNextMonthEndTimestamp
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetNextMonthEndTimestamp
-  nameWithType: TimeHelper.GetNextMonthEndTimestamp
-- uid: GameFrameX.Utility.TimeHelper.GetNextMonthStartTime
-  name: GetNextMonthStartTime()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextMonthStartTime
-  commentId: M:GameFrameX.Utility.TimeHelper.GetNextMonthStartTime
-  fullName: GameFrameX.Utility.TimeHelper.GetNextMonthStartTime()
-  nameWithType: TimeHelper.GetNextMonthStartTime()
-- uid: GameFrameX.Utility.TimeHelper.GetNextMonthStartTime*
-  name: GetNextMonthStartTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextMonthStartTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetNextMonthStartTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetNextMonthStartTime
-  nameWithType: TimeHelper.GetNextMonthStartTime
-- uid: GameFrameX.Utility.TimeHelper.GetNextMonthStartTimestamp
-  name: GetNextMonthStartTimestamp()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextMonthStartTimestamp
-  commentId: M:GameFrameX.Utility.TimeHelper.GetNextMonthStartTimestamp
-  fullName: GameFrameX.Utility.TimeHelper.GetNextMonthStartTimestamp()
-  nameWithType: TimeHelper.GetNextMonthStartTimestamp()
-- uid: GameFrameX.Utility.TimeHelper.GetNextMonthStartTimestamp*
-  name: GetNextMonthStartTimestamp
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextMonthStartTimestamp_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetNextMonthStartTimestamp
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetNextMonthStartTimestamp
-  nameWithType: TimeHelper.GetNextMonthStartTimestamp
-- uid: GameFrameX.Utility.TimeHelper.GetNextWeekEndTime
-  name: GetNextWeekEndTime()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextWeekEndTime
-  commentId: M:GameFrameX.Utility.TimeHelper.GetNextWeekEndTime
-  fullName: GameFrameX.Utility.TimeHelper.GetNextWeekEndTime()
-  nameWithType: TimeHelper.GetNextWeekEndTime()
-- uid: GameFrameX.Utility.TimeHelper.GetNextWeekEndTime*
-  name: GetNextWeekEndTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextWeekEndTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetNextWeekEndTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetNextWeekEndTime
-  nameWithType: TimeHelper.GetNextWeekEndTime
-- uid: GameFrameX.Utility.TimeHelper.GetNextWeekEndTimestamp
-  name: GetNextWeekEndTimestamp()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextWeekEndTimestamp
-  commentId: M:GameFrameX.Utility.TimeHelper.GetNextWeekEndTimestamp
-  fullName: GameFrameX.Utility.TimeHelper.GetNextWeekEndTimestamp()
-  nameWithType: TimeHelper.GetNextWeekEndTimestamp()
-- uid: GameFrameX.Utility.TimeHelper.GetNextWeekEndTimestamp*
-  name: GetNextWeekEndTimestamp
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextWeekEndTimestamp_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetNextWeekEndTimestamp
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetNextWeekEndTimestamp
-  nameWithType: TimeHelper.GetNextWeekEndTimestamp
-- uid: GameFrameX.Utility.TimeHelper.GetNextWeekStartTime
-  name: GetNextWeekStartTime()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextWeekStartTime
-  commentId: M:GameFrameX.Utility.TimeHelper.GetNextWeekStartTime
-  fullName: GameFrameX.Utility.TimeHelper.GetNextWeekStartTime()
-  nameWithType: TimeHelper.GetNextWeekStartTime()
-- uid: GameFrameX.Utility.TimeHelper.GetNextWeekStartTime*
-  name: GetNextWeekStartTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextWeekStartTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetNextWeekStartTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetNextWeekStartTime
-  nameWithType: TimeHelper.GetNextWeekStartTime
-- uid: GameFrameX.Utility.TimeHelper.GetNextWeekStartTimestamp
-  name: GetNextWeekStartTimestamp()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextWeekStartTimestamp
-  commentId: M:GameFrameX.Utility.TimeHelper.GetNextWeekStartTimestamp
-  fullName: GameFrameX.Utility.TimeHelper.GetNextWeekStartTimestamp()
-  nameWithType: TimeHelper.GetNextWeekStartTimestamp()
-- uid: GameFrameX.Utility.TimeHelper.GetNextWeekStartTimestamp*
-  name: GetNextWeekStartTimestamp
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNextWeekStartTimestamp_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetNextWeekStartTimestamp
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetNextWeekStartTimestamp
-  nameWithType: TimeHelper.GetNextWeekStartTimestamp
-- uid: GameFrameX.Utility.TimeHelper.GetNow
-  name: GetNow()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNow
-  commentId: M:GameFrameX.Utility.TimeHelper.GetNow
-  fullName: GameFrameX.Utility.TimeHelper.GetNow()
-  nameWithType: TimeHelper.GetNow()
-- uid: GameFrameX.Utility.TimeHelper.GetNow*
-  name: GetNow
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetNow_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetNow
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetNow
-  nameWithType: TimeHelper.GetNow
-- uid: GameFrameX.Utility.TimeHelper.GetSecondsDifference(System.DateTime,System.DateTime)
-  name: GetSecondsDifference(DateTime, DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetSecondsDifference_System_DateTime_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetSecondsDifference(System.DateTime,System.DateTime)
-  name.vb: GetSecondsDifference(Date, Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetSecondsDifference(System.DateTime, System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetSecondsDifference(Date, Date)
-  nameWithType: TimeHelper.GetSecondsDifference(DateTime, DateTime)
-  nameWithType.vb: TimeHelper.GetSecondsDifference(Date, Date)
-- uid: GameFrameX.Utility.TimeHelper.GetSecondsDifference(System.Int64,System.Int64)
-  name: GetSecondsDifference(long, long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetSecondsDifference_System_Int64_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetSecondsDifference(System.Int64,System.Int64)
-  name.vb: GetSecondsDifference(Long, Long)
-  fullName: GameFrameX.Utility.TimeHelper.GetSecondsDifference(long, long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetSecondsDifference(Long, Long)
-  nameWithType: TimeHelper.GetSecondsDifference(long, long)
-  nameWithType.vb: TimeHelper.GetSecondsDifference(Long, Long)
-- uid: GameFrameX.Utility.TimeHelper.GetSecondsDifference*
-  name: GetSecondsDifference
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetSecondsDifference_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetSecondsDifference
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetSecondsDifference
-  nameWithType: TimeHelper.GetSecondsDifference
-- uid: GameFrameX.Utility.TimeHelper.GetStartTimeOfDay(System.DateTime)
-  name: GetStartTimeOfDay(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimeOfDay_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetStartTimeOfDay(System.DateTime)
-  name.vb: GetStartTimeOfDay(Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetStartTimeOfDay(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetStartTimeOfDay(Date)
-  nameWithType: TimeHelper.GetStartTimeOfDay(DateTime)
-  nameWithType.vb: TimeHelper.GetStartTimeOfDay(Date)
-- uid: GameFrameX.Utility.TimeHelper.GetStartTimeOfDay*
-  name: GetStartTimeOfDay
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimeOfDay_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetStartTimeOfDay
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetStartTimeOfDay
-  nameWithType: TimeHelper.GetStartTimeOfDay
-- uid: GameFrameX.Utility.TimeHelper.GetStartTimeOfMonth(System.DateTime)
-  name: GetStartTimeOfMonth(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimeOfMonth_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetStartTimeOfMonth(System.DateTime)
-  name.vb: GetStartTimeOfMonth(Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetStartTimeOfMonth(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetStartTimeOfMonth(Date)
-  nameWithType: TimeHelper.GetStartTimeOfMonth(DateTime)
-  nameWithType.vb: TimeHelper.GetStartTimeOfMonth(Date)
-- uid: GameFrameX.Utility.TimeHelper.GetStartTimeOfMonth*
-  name: GetStartTimeOfMonth
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimeOfMonth_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetStartTimeOfMonth
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetStartTimeOfMonth
-  nameWithType: TimeHelper.GetStartTimeOfMonth
-- uid: GameFrameX.Utility.TimeHelper.GetStartTimeOfWeek(System.DateTime)
-  name: GetStartTimeOfWeek(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimeOfWeek_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetStartTimeOfWeek(System.DateTime)
-  name.vb: GetStartTimeOfWeek(Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetStartTimeOfWeek(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetStartTimeOfWeek(Date)
-  nameWithType: TimeHelper.GetStartTimeOfWeek(DateTime)
-  nameWithType.vb: TimeHelper.GetStartTimeOfWeek(Date)
-- uid: GameFrameX.Utility.TimeHelper.GetStartTimeOfWeek*
-  name: GetStartTimeOfWeek
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimeOfWeek_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetStartTimeOfWeek
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetStartTimeOfWeek
-  nameWithType: TimeHelper.GetStartTimeOfWeek
-- uid: GameFrameX.Utility.TimeHelper.GetStartTimeOfYear(System.DateTime)
-  name: GetStartTimeOfYear(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimeOfYear_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetStartTimeOfYear(System.DateTime)
-  name.vb: GetStartTimeOfYear(Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetStartTimeOfYear(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetStartTimeOfYear(Date)
-  nameWithType: TimeHelper.GetStartTimeOfYear(DateTime)
-  nameWithType.vb: TimeHelper.GetStartTimeOfYear(Date)
-- uid: GameFrameX.Utility.TimeHelper.GetStartTimeOfYear*
-  name: GetStartTimeOfYear
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimeOfYear_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetStartTimeOfYear
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetStartTimeOfYear
-  nameWithType: TimeHelper.GetStartTimeOfYear
-- uid: GameFrameX.Utility.TimeHelper.GetStartTimestampOfDay(System.DateTime)
-  name: GetStartTimestampOfDay(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimestampOfDay_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetStartTimestampOfDay(System.DateTime)
-  name.vb: GetStartTimestampOfDay(Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetStartTimestampOfDay(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetStartTimestampOfDay(Date)
-  nameWithType: TimeHelper.GetStartTimestampOfDay(DateTime)
-  nameWithType.vb: TimeHelper.GetStartTimestampOfDay(Date)
-- uid: GameFrameX.Utility.TimeHelper.GetStartTimestampOfDay*
-  name: GetStartTimestampOfDay
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimestampOfDay_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetStartTimestampOfDay
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetStartTimestampOfDay
-  nameWithType: TimeHelper.GetStartTimestampOfDay
-- uid: GameFrameX.Utility.TimeHelper.GetStartTimestampOfMonth(System.DateTime)
-  name: GetStartTimestampOfMonth(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimestampOfMonth_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetStartTimestampOfMonth(System.DateTime)
-  name.vb: GetStartTimestampOfMonth(Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetStartTimestampOfMonth(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetStartTimestampOfMonth(Date)
-  nameWithType: TimeHelper.GetStartTimestampOfMonth(DateTime)
-  nameWithType.vb: TimeHelper.GetStartTimestampOfMonth(Date)
-- uid: GameFrameX.Utility.TimeHelper.GetStartTimestampOfMonth*
-  name: GetStartTimestampOfMonth
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimestampOfMonth_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetStartTimestampOfMonth
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetStartTimestampOfMonth
-  nameWithType: TimeHelper.GetStartTimestampOfMonth
-- uid: GameFrameX.Utility.TimeHelper.GetStartTimestampOfWeek(System.DateTime)
-  name: GetStartTimestampOfWeek(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimestampOfWeek_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetStartTimestampOfWeek(System.DateTime)
-  name.vb: GetStartTimestampOfWeek(Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetStartTimestampOfWeek(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetStartTimestampOfWeek(Date)
-  nameWithType: TimeHelper.GetStartTimestampOfWeek(DateTime)
-  nameWithType.vb: TimeHelper.GetStartTimestampOfWeek(Date)
-- uid: GameFrameX.Utility.TimeHelper.GetStartTimestampOfWeek*
-  name: GetStartTimestampOfWeek
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimestampOfWeek_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetStartTimestampOfWeek
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetStartTimestampOfWeek
-  nameWithType: TimeHelper.GetStartTimestampOfWeek
-- uid: GameFrameX.Utility.TimeHelper.GetStartTimestampOfYear(System.DateTime)
-  name: GetStartTimestampOfYear(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimestampOfYear_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetStartTimestampOfYear(System.DateTime)
-  name.vb: GetStartTimestampOfYear(Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetStartTimestampOfYear(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetStartTimestampOfYear(Date)
-  nameWithType: TimeHelper.GetStartTimestampOfYear(DateTime)
-  nameWithType.vb: TimeHelper.GetStartTimestampOfYear(Date)
-- uid: GameFrameX.Utility.TimeHelper.GetStartTimestampOfYear*
-  name: GetStartTimestampOfYear
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetStartTimestampOfYear_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetStartTimestampOfYear
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetStartTimestampOfYear
-  nameWithType: TimeHelper.GetStartTimestampOfYear
-- uid: GameFrameX.Utility.TimeHelper.GetTimeDifference(System.DateTime,System.DateTime)
-  name: GetTimeDifference(DateTime, DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifference_System_DateTime_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetTimeDifference(System.DateTime,System.DateTime)
-  name.vb: GetTimeDifference(Date, Date)
-  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifference(System.DateTime, System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetTimeDifference(Date, Date)
-  nameWithType: TimeHelper.GetTimeDifference(DateTime, DateTime)
-  nameWithType.vb: TimeHelper.GetTimeDifference(Date, Date)
-- uid: GameFrameX.Utility.TimeHelper.GetTimeDifference(System.Int64,System.Int64,System.Boolean)
-  name: GetTimeDifference(long, long, bool)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifference_System_Int64_System_Int64_System_Boolean_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetTimeDifference(System.Int64,System.Int64,System.Boolean)
-  name.vb: GetTimeDifference(Long, Long, Boolean)
-  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifference(long, long, bool)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetTimeDifference(Long, Long, Boolean)
-  nameWithType: TimeHelper.GetTimeDifference(long, long, bool)
-  nameWithType.vb: TimeHelper.GetTimeDifference(Long, Long, Boolean)
-- uid: GameFrameX.Utility.TimeHelper.GetTimeDifference*
-  name: GetTimeDifference
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifference_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTimeDifference
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifference
-  nameWithType: TimeHelper.GetTimeDifference
-- uid: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow(System.DateTime,System.Boolean)
-  name: GetTimeDifferenceFromNow(DateTime, bool)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifferenceFromNow_System_DateTime_System_Boolean_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow(System.DateTime,System.Boolean)
-  name.vb: GetTimeDifferenceFromNow(Date, Boolean)
-  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow(System.DateTime, bool)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow(Date, Boolean)
-  nameWithType: TimeHelper.GetTimeDifferenceFromNow(DateTime, bool)
-  nameWithType.vb: TimeHelper.GetTimeDifferenceFromNow(Date, Boolean)
-- uid: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow(System.Int64,System.Boolean)
-  name: GetTimeDifferenceFromNow(long, bool)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifferenceFromNow_System_Int64_System_Boolean_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow(System.Int64,System.Boolean)
-  name.vb: GetTimeDifferenceFromNow(Long, Boolean)
-  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow(long, bool)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow(Long, Boolean)
-  nameWithType: TimeHelper.GetTimeDifferenceFromNow(long, bool)
-  nameWithType.vb: TimeHelper.GetTimeDifferenceFromNow(Long, Boolean)
-- uid: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow*
-  name: GetTimeDifferenceFromNow
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifferenceFromNow_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNow
-  nameWithType: TimeHelper.GetTimeDifferenceFromNow
-- uid: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNowMs(System.Int64,System.Boolean)
-  name: GetTimeDifferenceFromNowMs(long, bool)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifferenceFromNowMs_System_Int64_System_Boolean_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNowMs(System.Int64,System.Boolean)
-  name.vb: GetTimeDifferenceFromNowMs(Long, Boolean)
-  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNowMs(long, bool)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNowMs(Long, Boolean)
-  nameWithType: TimeHelper.GetTimeDifferenceFromNowMs(long, bool)
-  nameWithType.vb: TimeHelper.GetTimeDifferenceFromNowMs(Long, Boolean)
-- uid: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNowMs*
-  name: GetTimeDifferenceFromNowMs
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifferenceFromNowMs_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNowMs
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifferenceFromNowMs
-  nameWithType: TimeHelper.GetTimeDifferenceFromNowMs
-- uid: GameFrameX.Utility.TimeHelper.GetTimeDifferenceMs(System.Int64,System.Int64,System.Boolean)
-  name: GetTimeDifferenceMs(long, long, bool)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifferenceMs_System_Int64_System_Int64_System_Boolean_
-  commentId: M:GameFrameX.Utility.TimeHelper.GetTimeDifferenceMs(System.Int64,System.Int64,System.Boolean)
-  name.vb: GetTimeDifferenceMs(Long, Long, Boolean)
-  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifferenceMs(long, long, bool)
-  fullName.vb: GameFrameX.Utility.TimeHelper.GetTimeDifferenceMs(Long, Long, Boolean)
-  nameWithType: TimeHelper.GetTimeDifferenceMs(long, long, bool)
-  nameWithType.vb: TimeHelper.GetTimeDifferenceMs(Long, Long, Boolean)
-- uid: GameFrameX.Utility.TimeHelper.GetTimeDifferenceMs*
-  name: GetTimeDifferenceMs
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTimeDifferenceMs_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTimeDifferenceMs
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetTimeDifferenceMs
-  nameWithType: TimeHelper.GetTimeDifferenceMs
-- uid: GameFrameX.Utility.TimeHelper.GetTodayEndTime
-  name: GetTodayEndTime()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTodayEndTime
-  commentId: M:GameFrameX.Utility.TimeHelper.GetTodayEndTime
-  fullName: GameFrameX.Utility.TimeHelper.GetTodayEndTime()
-  nameWithType: TimeHelper.GetTodayEndTime()
-- uid: GameFrameX.Utility.TimeHelper.GetTodayEndTime*
-  name: GetTodayEndTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTodayEndTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTodayEndTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetTodayEndTime
-  nameWithType: TimeHelper.GetTodayEndTime
-- uid: GameFrameX.Utility.TimeHelper.GetTodayEndTimestamp
-  name: GetTodayEndTimestamp()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTodayEndTimestamp
-  commentId: M:GameFrameX.Utility.TimeHelper.GetTodayEndTimestamp
-  fullName: GameFrameX.Utility.TimeHelper.GetTodayEndTimestamp()
-  nameWithType: TimeHelper.GetTodayEndTimestamp()
-- uid: GameFrameX.Utility.TimeHelper.GetTodayEndTimestamp*
-  name: GetTodayEndTimestamp
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTodayEndTimestamp_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTodayEndTimestamp
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetTodayEndTimestamp
-  nameWithType: TimeHelper.GetTodayEndTimestamp
-- uid: GameFrameX.Utility.TimeHelper.GetTodayStartTime
-  name: GetTodayStartTime()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTodayStartTime
-  commentId: M:GameFrameX.Utility.TimeHelper.GetTodayStartTime
-  fullName: GameFrameX.Utility.TimeHelper.GetTodayStartTime()
-  nameWithType: TimeHelper.GetTodayStartTime()
-- uid: GameFrameX.Utility.TimeHelper.GetTodayStartTime*
-  name: GetTodayStartTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTodayStartTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTodayStartTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetTodayStartTime
-  nameWithType: TimeHelper.GetTodayStartTime
-- uid: GameFrameX.Utility.TimeHelper.GetTodayStartTimestamp
-  name: GetTodayStartTimestamp()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTodayStartTimestamp
-  commentId: M:GameFrameX.Utility.TimeHelper.GetTodayStartTimestamp
-  fullName: GameFrameX.Utility.TimeHelper.GetTodayStartTimestamp()
-  nameWithType: TimeHelper.GetTodayStartTimestamp()
-- uid: GameFrameX.Utility.TimeHelper.GetTodayStartTimestamp*
-  name: GetTodayStartTimestamp
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTodayStartTimestamp_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTodayStartTimestamp
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetTodayStartTimestamp
-  nameWithType: TimeHelper.GetTodayStartTimestamp
-- uid: GameFrameX.Utility.TimeHelper.GetTomorrowEndTime
-  name: GetTomorrowEndTime()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTomorrowEndTime
-  commentId: M:GameFrameX.Utility.TimeHelper.GetTomorrowEndTime
-  fullName: GameFrameX.Utility.TimeHelper.GetTomorrowEndTime()
-  nameWithType: TimeHelper.GetTomorrowEndTime()
-- uid: GameFrameX.Utility.TimeHelper.GetTomorrowEndTime*
-  name: GetTomorrowEndTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTomorrowEndTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTomorrowEndTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetTomorrowEndTime
-  nameWithType: TimeHelper.GetTomorrowEndTime
-- uid: GameFrameX.Utility.TimeHelper.GetTomorrowEndTimestamp
-  name: GetTomorrowEndTimestamp()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTomorrowEndTimestamp
-  commentId: M:GameFrameX.Utility.TimeHelper.GetTomorrowEndTimestamp
-  fullName: GameFrameX.Utility.TimeHelper.GetTomorrowEndTimestamp()
-  nameWithType: TimeHelper.GetTomorrowEndTimestamp()
-- uid: GameFrameX.Utility.TimeHelper.GetTomorrowEndTimestamp*
-  name: GetTomorrowEndTimestamp
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTomorrowEndTimestamp_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTomorrowEndTimestamp
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetTomorrowEndTimestamp
-  nameWithType: TimeHelper.GetTomorrowEndTimestamp
-- uid: GameFrameX.Utility.TimeHelper.GetTomorrowStartTime
-  name: GetTomorrowStartTime()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTomorrowStartTime
-  commentId: M:GameFrameX.Utility.TimeHelper.GetTomorrowStartTime
-  fullName: GameFrameX.Utility.TimeHelper.GetTomorrowStartTime()
-  nameWithType: TimeHelper.GetTomorrowStartTime()
-- uid: GameFrameX.Utility.TimeHelper.GetTomorrowStartTime*
-  name: GetTomorrowStartTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTomorrowStartTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTomorrowStartTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetTomorrowStartTime
-  nameWithType: TimeHelper.GetTomorrowStartTime
-- uid: GameFrameX.Utility.TimeHelper.GetTomorrowStartTimestamp
-  name: GetTomorrowStartTimestamp()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTomorrowStartTimestamp
-  commentId: M:GameFrameX.Utility.TimeHelper.GetTomorrowStartTimestamp
-  fullName: GameFrameX.Utility.TimeHelper.GetTomorrowStartTimestamp()
-  nameWithType: TimeHelper.GetTomorrowStartTimestamp()
-- uid: GameFrameX.Utility.TimeHelper.GetTomorrowStartTimestamp*
-  name: GetTomorrowStartTimestamp
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetTomorrowStartTimestamp_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetTomorrowStartTimestamp
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetTomorrowStartTimestamp
-  nameWithType: TimeHelper.GetTomorrowStartTimestamp
-- uid: GameFrameX.Utility.TimeHelper.GetUtcNow
-  name: GetUtcNow()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetUtcNow
-  commentId: M:GameFrameX.Utility.TimeHelper.GetUtcNow
-  fullName: GameFrameX.Utility.TimeHelper.GetUtcNow()
-  nameWithType: TimeHelper.GetUtcNow()
-- uid: GameFrameX.Utility.TimeHelper.GetUtcNow*
-  name: GetUtcNow
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetUtcNow_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetUtcNow
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetUtcNow
-  nameWithType: TimeHelper.GetUtcNow
-- uid: GameFrameX.Utility.TimeHelper.GetWeekEndTime
-  name: GetWeekEndTime()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetWeekEndTime
-  commentId: M:GameFrameX.Utility.TimeHelper.GetWeekEndTime
-  fullName: GameFrameX.Utility.TimeHelper.GetWeekEndTime()
-  nameWithType: TimeHelper.GetWeekEndTime()
-- uid: GameFrameX.Utility.TimeHelper.GetWeekEndTime*
-  name: GetWeekEndTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetWeekEndTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetWeekEndTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetWeekEndTime
-  nameWithType: TimeHelper.GetWeekEndTime
-- uid: GameFrameX.Utility.TimeHelper.GetWeekEndTimestamp
-  name: GetWeekEndTimestamp()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetWeekEndTimestamp
-  commentId: M:GameFrameX.Utility.TimeHelper.GetWeekEndTimestamp
-  fullName: GameFrameX.Utility.TimeHelper.GetWeekEndTimestamp()
-  nameWithType: TimeHelper.GetWeekEndTimestamp()
-- uid: GameFrameX.Utility.TimeHelper.GetWeekEndTimestamp*
-  name: GetWeekEndTimestamp
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetWeekEndTimestamp_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetWeekEndTimestamp
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetWeekEndTimestamp
-  nameWithType: TimeHelper.GetWeekEndTimestamp
-- uid: GameFrameX.Utility.TimeHelper.GetWeekStartTime
-  name: GetWeekStartTime()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetWeekStartTime
-  commentId: M:GameFrameX.Utility.TimeHelper.GetWeekStartTime
-  fullName: GameFrameX.Utility.TimeHelper.GetWeekStartTime()
-  nameWithType: TimeHelper.GetWeekStartTime()
-- uid: GameFrameX.Utility.TimeHelper.GetWeekStartTime*
-  name: GetWeekStartTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetWeekStartTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetWeekStartTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetWeekStartTime
-  nameWithType: TimeHelper.GetWeekStartTime
-- uid: GameFrameX.Utility.TimeHelper.GetWeekStartTimestamp
-  name: GetWeekStartTimestamp()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetWeekStartTimestamp
-  commentId: M:GameFrameX.Utility.TimeHelper.GetWeekStartTimestamp
-  fullName: GameFrameX.Utility.TimeHelper.GetWeekStartTimestamp()
-  nameWithType: TimeHelper.GetWeekStartTimestamp()
-- uid: GameFrameX.Utility.TimeHelper.GetWeekStartTimestamp*
-  name: GetWeekStartTimestamp
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetWeekStartTimestamp_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetWeekStartTimestamp
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetWeekStartTimestamp
-  nameWithType: TimeHelper.GetWeekStartTimestamp
-- uid: GameFrameX.Utility.TimeHelper.GetYearEndTime
-  name: GetYearEndTime()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetYearEndTime
-  commentId: M:GameFrameX.Utility.TimeHelper.GetYearEndTime
-  fullName: GameFrameX.Utility.TimeHelper.GetYearEndTime()
-  nameWithType: TimeHelper.GetYearEndTime()
-- uid: GameFrameX.Utility.TimeHelper.GetYearEndTime*
-  name: GetYearEndTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetYearEndTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetYearEndTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetYearEndTime
-  nameWithType: TimeHelper.GetYearEndTime
-- uid: GameFrameX.Utility.TimeHelper.GetYearEndTimestamp
-  name: GetYearEndTimestamp()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetYearEndTimestamp
-  commentId: M:GameFrameX.Utility.TimeHelper.GetYearEndTimestamp
-  fullName: GameFrameX.Utility.TimeHelper.GetYearEndTimestamp()
-  nameWithType: TimeHelper.GetYearEndTimestamp()
-- uid: GameFrameX.Utility.TimeHelper.GetYearEndTimestamp*
-  name: GetYearEndTimestamp
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetYearEndTimestamp_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetYearEndTimestamp
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetYearEndTimestamp
-  nameWithType: TimeHelper.GetYearEndTimestamp
-- uid: GameFrameX.Utility.TimeHelper.GetYearStartTime
-  name: GetYearStartTime()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetYearStartTime
-  commentId: M:GameFrameX.Utility.TimeHelper.GetYearStartTime
-  fullName: GameFrameX.Utility.TimeHelper.GetYearStartTime()
-  nameWithType: TimeHelper.GetYearStartTime()
-- uid: GameFrameX.Utility.TimeHelper.GetYearStartTime*
-  name: GetYearStartTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetYearStartTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetYearStartTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetYearStartTime
-  nameWithType: TimeHelper.GetYearStartTime
-- uid: GameFrameX.Utility.TimeHelper.GetYearStartTimestamp
-  name: GetYearStartTimestamp()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetYearStartTimestamp
-  commentId: M:GameFrameX.Utility.TimeHelper.GetYearStartTimestamp
-  fullName: GameFrameX.Utility.TimeHelper.GetYearStartTimestamp()
-  nameWithType: TimeHelper.GetYearStartTimestamp()
-- uid: GameFrameX.Utility.TimeHelper.GetYearStartTimestamp*
-  name: GetYearStartTimestamp
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_GetYearStartTimestamp_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.GetYearStartTimestamp
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.GetYearStartTimestamp
-  nameWithType: TimeHelper.GetYearStartTimestamp
-- uid: GameFrameX.Utility.TimeHelper.IsLocalSameDay(System.Int64,System.Int64)
-  name: IsLocalSameDay(long, long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsLocalSameDay_System_Int64_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.IsLocalSameDay(System.Int64,System.Int64)
-  name.vb: IsLocalSameDay(Long, Long)
-  fullName: GameFrameX.Utility.TimeHelper.IsLocalSameDay(long, long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.IsLocalSameDay(Long, Long)
-  nameWithType: TimeHelper.IsLocalSameDay(long, long)
-  nameWithType.vb: TimeHelper.IsLocalSameDay(Long, Long)
-- uid: GameFrameX.Utility.TimeHelper.IsLocalSameDay*
-  name: IsLocalSameDay
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsLocalSameDay_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.IsLocalSameDay
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.IsLocalSameDay
-  nameWithType: TimeHelper.IsLocalSameDay
-- uid: GameFrameX.Utility.TimeHelper.IsNowSameWeek(System.DateTime)
-  name: IsNowSameWeek(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsNowSameWeek_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.IsNowSameWeek(System.DateTime)
-  name.vb: IsNowSameWeek(Date)
-  fullName: GameFrameX.Utility.TimeHelper.IsNowSameWeek(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.IsNowSameWeek(Date)
-  nameWithType: TimeHelper.IsNowSameWeek(DateTime)
-  nameWithType.vb: TimeHelper.IsNowSameWeek(Date)
-- uid: GameFrameX.Utility.TimeHelper.IsNowSameWeek(System.Int64)
-  name: IsNowSameWeek(long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsNowSameWeek_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.IsNowSameWeek(System.Int64)
-  name.vb: IsNowSameWeek(Long)
-  fullName: GameFrameX.Utility.TimeHelper.IsNowSameWeek(long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.IsNowSameWeek(Long)
-  nameWithType: TimeHelper.IsNowSameWeek(long)
-  nameWithType.vb: TimeHelper.IsNowSameWeek(Long)
-- uid: GameFrameX.Utility.TimeHelper.IsNowSameWeek*
-  name: IsNowSameWeek
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsNowSameWeek_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.IsNowSameWeek
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.IsNowSameWeek
-  nameWithType: TimeHelper.IsNowSameWeek
-- uid: GameFrameX.Utility.TimeHelper.IsNowSameWeekUtc(System.DateTime)
-  name: IsNowSameWeekUtc(DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsNowSameWeekUtc_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.IsNowSameWeekUtc(System.DateTime)
-  name.vb: IsNowSameWeekUtc(Date)
-  fullName: GameFrameX.Utility.TimeHelper.IsNowSameWeekUtc(System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.IsNowSameWeekUtc(Date)
-  nameWithType: TimeHelper.IsNowSameWeekUtc(DateTime)
-  nameWithType.vb: TimeHelper.IsNowSameWeekUtc(Date)
-- uid: GameFrameX.Utility.TimeHelper.IsNowSameWeekUtc*
-  name: IsNowSameWeekUtc
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsNowSameWeekUtc_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.IsNowSameWeekUtc
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.IsNowSameWeekUtc
-  nameWithType: TimeHelper.IsNowSameWeekUtc
-- uid: GameFrameX.Utility.TimeHelper.IsSameDay(System.DateTime,System.DateTime)
-  name: IsSameDay(DateTime, DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsSameDay_System_DateTime_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.IsSameDay(System.DateTime,System.DateTime)
-  name.vb: IsSameDay(Date, Date)
-  fullName: GameFrameX.Utility.TimeHelper.IsSameDay(System.DateTime, System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.IsSameDay(Date, Date)
-  nameWithType: TimeHelper.IsSameDay(DateTime, DateTime)
-  nameWithType.vb: TimeHelper.IsSameDay(Date, Date)
-- uid: GameFrameX.Utility.TimeHelper.IsSameDay*
-  name: IsSameDay
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsSameDay_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.IsSameDay
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.IsSameDay
-  nameWithType: TimeHelper.IsSameDay
-- uid: GameFrameX.Utility.TimeHelper.IsSameWeek(System.DateTime,System.DateTime)
-  name: IsSameWeek(DateTime, DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsSameWeek_System_DateTime_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.IsSameWeek(System.DateTime,System.DateTime)
-  name.vb: IsSameWeek(Date, Date)
-  fullName: GameFrameX.Utility.TimeHelper.IsSameWeek(System.DateTime, System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.IsSameWeek(Date, Date)
-  nameWithType: TimeHelper.IsSameWeek(DateTime, DateTime)
-  nameWithType.vb: TimeHelper.IsSameWeek(Date, Date)
-- uid: GameFrameX.Utility.TimeHelper.IsSameWeek*
-  name: IsSameWeek
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsSameWeek_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.IsSameWeek
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.IsSameWeek
-  nameWithType: TimeHelper.IsSameWeek
-- uid: GameFrameX.Utility.TimeHelper.IsTimeInRange(System.DateTime,System.DateTime,System.DateTime)
-  name: IsTimeInRange(DateTime, DateTime, DateTime)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsTimeInRange_System_DateTime_System_DateTime_System_DateTime_
-  commentId: M:GameFrameX.Utility.TimeHelper.IsTimeInRange(System.DateTime,System.DateTime,System.DateTime)
-  name.vb: IsTimeInRange(Date, Date, Date)
-  fullName: GameFrameX.Utility.TimeHelper.IsTimeInRange(System.DateTime, System.DateTime, System.DateTime)
-  fullName.vb: GameFrameX.Utility.TimeHelper.IsTimeInRange(Date, Date, Date)
-  nameWithType: TimeHelper.IsTimeInRange(DateTime, DateTime, DateTime)
-  nameWithType.vb: TimeHelper.IsTimeInRange(Date, Date, Date)
-- uid: GameFrameX.Utility.TimeHelper.IsTimeInRange*
-  name: IsTimeInRange
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsTimeInRange_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.IsTimeInRange
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.IsTimeInRange
-  nameWithType: TimeHelper.IsTimeInRange
-- uid: GameFrameX.Utility.TimeHelper.IsTimestampInRange(System.Int64,System.Int64,System.Int64)
-  name: IsTimestampInRange(long, long, long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsTimestampInRange_System_Int64_System_Int64_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.IsTimestampInRange(System.Int64,System.Int64,System.Int64)
-  name.vb: IsTimestampInRange(Long, Long, Long)
-  fullName: GameFrameX.Utility.TimeHelper.IsTimestampInRange(long, long, long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.IsTimestampInRange(Long, Long, Long)
-  nameWithType: TimeHelper.IsTimestampInRange(long, long, long)
-  nameWithType.vb: TimeHelper.IsTimestampInRange(Long, Long, Long)
-- uid: GameFrameX.Utility.TimeHelper.IsTimestampInRange*
-  name: IsTimestampInRange
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsTimestampInRange_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.IsTimestampInRange
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.IsTimestampInRange
-  nameWithType: TimeHelper.IsTimestampInRange
-- uid: GameFrameX.Utility.TimeHelper.IsUnixSameDay(System.Int64,System.Int64)
-  name: IsUnixSameDay(long, long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsUnixSameDay_System_Int64_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.IsUnixSameDay(System.Int64,System.Int64)
-  name.vb: IsUnixSameDay(Long, Long)
-  fullName: GameFrameX.Utility.TimeHelper.IsUnixSameDay(long, long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.IsUnixSameDay(Long, Long)
-  nameWithType: TimeHelper.IsUnixSameDay(long, long)
-  nameWithType.vb: TimeHelper.IsUnixSameDay(Long, Long)
-- uid: GameFrameX.Utility.TimeHelper.IsUnixSameDay*
-  name: IsUnixSameDay
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsUnixSameDay_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.IsUnixSameDay
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.IsUnixSameDay
-  nameWithType: TimeHelper.IsUnixSameDay
-- uid: GameFrameX.Utility.TimeHelper.IsUnixSameWeek(System.Int64)
-  name: IsUnixSameWeek(long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsUnixSameWeek_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.IsUnixSameWeek(System.Int64)
-  name.vb: IsUnixSameWeek(Long)
-  fullName: GameFrameX.Utility.TimeHelper.IsUnixSameWeek(long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.IsUnixSameWeek(Long)
-  nameWithType: TimeHelper.IsUnixSameWeek(long)
-  nameWithType.vb: TimeHelper.IsUnixSameWeek(Long)
-- uid: GameFrameX.Utility.TimeHelper.IsUnixSameWeek*
-  name: IsUnixSameWeek
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsUnixSameWeek_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.IsUnixSameWeek
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.IsUnixSameWeek
-  nameWithType: TimeHelper.IsUnixSameWeek
-- uid: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestamp(System.Int64)
-  name: IsUnixSameWeekFromTimestamp(long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsUnixSameWeekFromTimestamp_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestamp(System.Int64)
-  name.vb: IsUnixSameWeekFromTimestamp(Long)
-  fullName: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestamp(long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestamp(Long)
-  nameWithType: TimeHelper.IsUnixSameWeekFromTimestamp(long)
-  nameWithType.vb: TimeHelper.IsUnixSameWeekFromTimestamp(Long)
-- uid: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestamp*
-  name: IsUnixSameWeekFromTimestamp
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsUnixSameWeekFromTimestamp_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestamp
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestamp
-  nameWithType: TimeHelper.IsUnixSameWeekFromTimestamp
-- uid: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestampMilliseconds(System.Int64)
-  name: IsUnixSameWeekFromTimestampMilliseconds(long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsUnixSameWeekFromTimestampMilliseconds_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestampMilliseconds(System.Int64)
-  name.vb: IsUnixSameWeekFromTimestampMilliseconds(Long)
-  fullName: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestampMilliseconds(long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestampMilliseconds(Long)
-  nameWithType: TimeHelper.IsUnixSameWeekFromTimestampMilliseconds(long)
-  nameWithType.vb: TimeHelper.IsUnixSameWeekFromTimestampMilliseconds(Long)
-- uid: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestampMilliseconds*
-  name: IsUnixSameWeekFromTimestampMilliseconds
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_IsUnixSameWeekFromTimestampMilliseconds_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestampMilliseconds
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.IsUnixSameWeekFromTimestampMilliseconds
-  nameWithType: TimeHelper.IsUnixSameWeekFromTimestampMilliseconds
-- uid: GameFrameX.Utility.TimeHelper.MillisecondsTimeStampToDateTime(System.Int64,System.Boolean)
-  name: MillisecondsTimeStampToDateTime(long, bool)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_MillisecondsTimeStampToDateTime_System_Int64_System_Boolean_
-  commentId: M:GameFrameX.Utility.TimeHelper.MillisecondsTimeStampToDateTime(System.Int64,System.Boolean)
-  name.vb: MillisecondsTimeStampToDateTime(Long, Boolean)
-  fullName: GameFrameX.Utility.TimeHelper.MillisecondsTimeStampToDateTime(long, bool)
-  fullName.vb: GameFrameX.Utility.TimeHelper.MillisecondsTimeStampToDateTime(Long, Boolean)
-  nameWithType: TimeHelper.MillisecondsTimeStampToDateTime(long, bool)
-  nameWithType.vb: TimeHelper.MillisecondsTimeStampToDateTime(Long, Boolean)
-- uid: GameFrameX.Utility.TimeHelper.MillisecondsTimeStampToDateTime*
-  name: MillisecondsTimeStampToDateTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_MillisecondsTimeStampToDateTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.MillisecondsTimeStampToDateTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.MillisecondsTimeStampToDateTime
-  nameWithType: TimeHelper.MillisecondsTimeStampToDateTime
-- uid: GameFrameX.Utility.TimeHelper.ResetTimeOffset
-  name: ResetTimeOffset()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_ResetTimeOffset
-  commentId: M:GameFrameX.Utility.TimeHelper.ResetTimeOffset
-  fullName: GameFrameX.Utility.TimeHelper.ResetTimeOffset()
-  nameWithType: TimeHelper.ResetTimeOffset()
-- uid: GameFrameX.Utility.TimeHelper.ResetTimeOffset*
-  name: ResetTimeOffset
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_ResetTimeOffset_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.ResetTimeOffset
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.ResetTimeOffset
-  nameWithType: TimeHelper.ResetTimeOffset
-- uid: GameFrameX.Utility.TimeHelper.SetTimeOffset(System.Int64,System.Int64)
-  name: SetTimeOffset(long, long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_SetTimeOffset_System_Int64_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.SetTimeOffset(System.Int64,System.Int64)
-  name.vb: SetTimeOffset(Long, Long)
-  fullName: GameFrameX.Utility.TimeHelper.SetTimeOffset(long, long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.SetTimeOffset(Long, Long)
-  nameWithType: TimeHelper.SetTimeOffset(long, long)
-  nameWithType.vb: TimeHelper.SetTimeOffset(Long, Long)
-- uid: GameFrameX.Utility.TimeHelper.SetTimeOffset*
-  name: SetTimeOffset
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_SetTimeOffset_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.SetTimeOffset
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.SetTimeOffset
-  nameWithType: TimeHelper.SetTimeOffset
-- uid: GameFrameX.Utility.TimeHelper.TimeMilliseconds
-  name: TimeMilliseconds()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeMilliseconds
-  commentId: M:GameFrameX.Utility.TimeHelper.TimeMilliseconds
-  fullName: GameFrameX.Utility.TimeHelper.TimeMilliseconds()
-  nameWithType: TimeHelper.TimeMilliseconds()
-- uid: GameFrameX.Utility.TimeHelper.TimeMilliseconds*
-  name: TimeMilliseconds
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeMilliseconds_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.TimeMilliseconds
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.TimeMilliseconds
-  nameWithType: TimeHelper.TimeMilliseconds
-- uid: GameFrameX.Utility.TimeHelper.TimeOffsetMilliseconds
-  name: TimeOffsetMilliseconds
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeOffsetMilliseconds
-  commentId: P:GameFrameX.Utility.TimeHelper.TimeOffsetMilliseconds
-  fullName: GameFrameX.Utility.TimeHelper.TimeOffsetMilliseconds
-  nameWithType: TimeHelper.TimeOffsetMilliseconds
-- uid: GameFrameX.Utility.TimeHelper.TimeOffsetMilliseconds*
-  name: TimeOffsetMilliseconds
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeOffsetMilliseconds_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.TimeOffsetMilliseconds
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.TimeOffsetMilliseconds
-  nameWithType: TimeHelper.TimeOffsetMilliseconds
-- uid: GameFrameX.Utility.TimeHelper.TimeOffsetSeconds
-  name: TimeOffsetSeconds
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeOffsetSeconds
-  commentId: P:GameFrameX.Utility.TimeHelper.TimeOffsetSeconds
-  fullName: GameFrameX.Utility.TimeHelper.TimeOffsetSeconds
-  nameWithType: TimeHelper.TimeOffsetSeconds
-- uid: GameFrameX.Utility.TimeHelper.TimeOffsetSeconds*
-  name: TimeOffsetSeconds
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeOffsetSeconds_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.TimeOffsetSeconds
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.TimeOffsetSeconds
-  nameWithType: TimeHelper.TimeOffsetSeconds
-- uid: GameFrameX.Utility.TimeHelper.TimeSeconds
-  name: TimeSeconds()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeSeconds
-  commentId: M:GameFrameX.Utility.TimeHelper.TimeSeconds
-  fullName: GameFrameX.Utility.TimeHelper.TimeSeconds()
-  nameWithType: TimeHelper.TimeSeconds()
-- uid: GameFrameX.Utility.TimeHelper.TimeSeconds*
-  name: TimeSeconds
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeSeconds_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.TimeSeconds
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.TimeSeconds
-  nameWithType: TimeHelper.TimeSeconds
-- uid: GameFrameX.Utility.TimeHelper.TimeSpanLocalWithTimestamp(System.Int64)
-  name: TimeSpanLocalWithTimestamp(long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeSpanLocalWithTimestamp_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.TimeSpanLocalWithTimestamp(System.Int64)
-  name.vb: TimeSpanLocalWithTimestamp(Long)
-  fullName: GameFrameX.Utility.TimeHelper.TimeSpanLocalWithTimestamp(long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.TimeSpanLocalWithTimestamp(Long)
-  nameWithType: TimeHelper.TimeSpanLocalWithTimestamp(long)
-  nameWithType.vb: TimeHelper.TimeSpanLocalWithTimestamp(Long)
-- uid: GameFrameX.Utility.TimeHelper.TimeSpanLocalWithTimestamp*
-  name: TimeSpanLocalWithTimestamp
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeSpanLocalWithTimestamp_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.TimeSpanLocalWithTimestamp
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.TimeSpanLocalWithTimestamp
-  nameWithType: TimeHelper.TimeSpanLocalWithTimestamp
-- uid: GameFrameX.Utility.TimeHelper.TimeSpanWithTimestamp(System.Int64)
-  name: TimeSpanWithTimestamp(long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeSpanWithTimestamp_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.TimeSpanWithTimestamp(System.Int64)
-  name.vb: TimeSpanWithTimestamp(Long)
-  fullName: GameFrameX.Utility.TimeHelper.TimeSpanWithTimestamp(long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.TimeSpanWithTimestamp(Long)
-  nameWithType: TimeHelper.TimeSpanWithTimestamp(long)
-  nameWithType.vb: TimeHelper.TimeSpanWithTimestamp(Long)
-- uid: GameFrameX.Utility.TimeHelper.TimeSpanWithTimestamp*
-  name: TimeSpanWithTimestamp
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeSpanWithTimestamp_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.TimeSpanWithTimestamp
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.TimeSpanWithTimestamp
-  nameWithType: TimeHelper.TimeSpanWithTimestamp
-- uid: GameFrameX.Utility.TimeHelper.TimeToMilliseconds(System.DateTime,System.Boolean)
-  name: TimeToMilliseconds(DateTime, bool)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeToMilliseconds_System_DateTime_System_Boolean_
-  commentId: M:GameFrameX.Utility.TimeHelper.TimeToMilliseconds(System.DateTime,System.Boolean)
-  name.vb: TimeToMilliseconds(Date, Boolean)
-  fullName: GameFrameX.Utility.TimeHelper.TimeToMilliseconds(System.DateTime, bool)
-  fullName.vb: GameFrameX.Utility.TimeHelper.TimeToMilliseconds(Date, Boolean)
-  nameWithType: TimeHelper.TimeToMilliseconds(DateTime, bool)
-  nameWithType.vb: TimeHelper.TimeToMilliseconds(Date, Boolean)
-- uid: GameFrameX.Utility.TimeHelper.TimeToMilliseconds*
-  name: TimeToMilliseconds
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeToMilliseconds_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.TimeToMilliseconds
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.TimeToMilliseconds
-  nameWithType: TimeHelper.TimeToMilliseconds
-- uid: GameFrameX.Utility.TimeHelper.TimeToSecond(System.DateTime,System.Boolean)
-  name: TimeToSecond(DateTime, bool)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeToSecond_System_DateTime_System_Boolean_
-  commentId: M:GameFrameX.Utility.TimeHelper.TimeToSecond(System.DateTime,System.Boolean)
-  name.vb: TimeToSecond(Date, Boolean)
-  fullName: GameFrameX.Utility.TimeHelper.TimeToSecond(System.DateTime, bool)
-  fullName.vb: GameFrameX.Utility.TimeHelper.TimeToSecond(Date, Boolean)
-  nameWithType: TimeHelper.TimeToSecond(DateTime, bool)
-  nameWithType.vb: TimeHelper.TimeToSecond(Date, Boolean)
-- uid: GameFrameX.Utility.TimeHelper.TimeToSecond*
-  name: TimeToSecond
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimeToSecond_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.TimeToSecond
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.TimeToSecond
-  nameWithType: TimeHelper.TimeToSecond
-- uid: GameFrameX.Utility.TimeHelper.TimestampMillisToTicks(System.Int64)
-  name: TimestampMillisToTicks(long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimestampMillisToTicks_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.TimestampMillisToTicks(System.Int64)
-  name.vb: TimestampMillisToTicks(Long)
-  fullName: GameFrameX.Utility.TimeHelper.TimestampMillisToTicks(long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.TimestampMillisToTicks(Long)
-  nameWithType: TimeHelper.TimestampMillisToTicks(long)
-  nameWithType.vb: TimeHelper.TimestampMillisToTicks(Long)
-- uid: GameFrameX.Utility.TimeHelper.TimestampMillisToTicks*
-  name: TimestampMillisToTicks
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimestampMillisToTicks_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.TimestampMillisToTicks
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.TimestampMillisToTicks
-  nameWithType: TimeHelper.TimestampMillisToTicks
-- uid: GameFrameX.Utility.TimeHelper.TimestampToDateTime(System.Int64,System.Boolean)
-  name: TimestampToDateTime(long, bool)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimestampToDateTime_System_Int64_System_Boolean_
-  commentId: M:GameFrameX.Utility.TimeHelper.TimestampToDateTime(System.Int64,System.Boolean)
-  name.vb: TimestampToDateTime(Long, Boolean)
-  fullName: GameFrameX.Utility.TimeHelper.TimestampToDateTime(long, bool)
-  fullName.vb: GameFrameX.Utility.TimeHelper.TimestampToDateTime(Long, Boolean)
-  nameWithType: TimeHelper.TimestampToDateTime(long, bool)
-  nameWithType.vb: TimeHelper.TimestampToDateTime(Long, Boolean)
-- uid: GameFrameX.Utility.TimeHelper.TimestampToDateTime*
-  name: TimestampToDateTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimestampToDateTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.TimestampToDateTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.TimestampToDateTime
-  nameWithType: TimeHelper.TimestampToDateTime
-- uid: GameFrameX.Utility.TimeHelper.TimestampToTicks(System.Int64)
-  name: TimestampToTicks(long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimestampToTicks_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.TimestampToTicks(System.Int64)
-  name.vb: TimestampToTicks(Long)
-  fullName: GameFrameX.Utility.TimeHelper.TimestampToTicks(long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.TimestampToTicks(Long)
-  nameWithType: TimeHelper.TimestampToTicks(long)
-  nameWithType.vb: TimeHelper.TimestampToTicks(Long)
-- uid: GameFrameX.Utility.TimeHelper.TimestampToTicks*
-  name: TimestampToTicks
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_TimestampToTicks_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.TimestampToTicks
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.TimestampToTicks
-  nameWithType: TimeHelper.TimestampToTicks
-- uid: GameFrameX.Utility.TimeHelper.UnixTimeMilliseconds
-  name: UnixTimeMilliseconds()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UnixTimeMilliseconds
-  commentId: M:GameFrameX.Utility.TimeHelper.UnixTimeMilliseconds
-  fullName: GameFrameX.Utility.TimeHelper.UnixTimeMilliseconds()
-  nameWithType: TimeHelper.UnixTimeMilliseconds()
-- uid: GameFrameX.Utility.TimeHelper.UnixTimeMilliseconds*
-  name: UnixTimeMilliseconds
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UnixTimeMilliseconds_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.UnixTimeMilliseconds
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.UnixTimeMilliseconds
-  nameWithType: TimeHelper.UnixTimeMilliseconds
-- uid: GameFrameX.Utility.TimeHelper.UnixTimeSeconds
-  name: UnixTimeSeconds()
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UnixTimeSeconds
-  commentId: M:GameFrameX.Utility.TimeHelper.UnixTimeSeconds
-  fullName: GameFrameX.Utility.TimeHelper.UnixTimeSeconds()
-  nameWithType: TimeHelper.UnixTimeSeconds()
-- uid: GameFrameX.Utility.TimeHelper.UnixTimeSeconds*
-  name: UnixTimeSeconds
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UnixTimeSeconds_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.UnixTimeSeconds
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.UnixTimeSeconds
-  nameWithType: TimeHelper.UnixTimeSeconds
-- uid: GameFrameX.Utility.TimeHelper.UtcMillisecondsToDateTime(System.Int64)
-  name: UtcMillisecondsToDateTime(long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcMillisecondsToDateTime_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.UtcMillisecondsToDateTime(System.Int64)
-  name.vb: UtcMillisecondsToDateTime(Long)
-  fullName: GameFrameX.Utility.TimeHelper.UtcMillisecondsToDateTime(long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.UtcMillisecondsToDateTime(Long)
-  nameWithType: TimeHelper.UtcMillisecondsToDateTime(long)
-  nameWithType.vb: TimeHelper.UtcMillisecondsToDateTime(Long)
-- uid: GameFrameX.Utility.TimeHelper.UtcMillisecondsToDateTime*
-  name: UtcMillisecondsToDateTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcMillisecondsToDateTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.UtcMillisecondsToDateTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.UtcMillisecondsToDateTime
-  nameWithType: TimeHelper.UtcMillisecondsToDateTime
-- uid: GameFrameX.Utility.TimeHelper.UtcMillisecondsToUtcDateTime(System.Int64)
-  name: UtcMillisecondsToUtcDateTime(long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcMillisecondsToUtcDateTime_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.UtcMillisecondsToUtcDateTime(System.Int64)
-  name.vb: UtcMillisecondsToUtcDateTime(Long)
-  fullName: GameFrameX.Utility.TimeHelper.UtcMillisecondsToUtcDateTime(long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.UtcMillisecondsToUtcDateTime(Long)
-  nameWithType: TimeHelper.UtcMillisecondsToUtcDateTime(long)
-  nameWithType.vb: TimeHelper.UtcMillisecondsToUtcDateTime(Long)
-- uid: GameFrameX.Utility.TimeHelper.UtcMillisecondsToUtcDateTime*
-  name: UtcMillisecondsToUtcDateTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcMillisecondsToUtcDateTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.UtcMillisecondsToUtcDateTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.UtcMillisecondsToUtcDateTime
-  nameWithType: TimeHelper.UtcMillisecondsToUtcDateTime
-- uid: GameFrameX.Utility.TimeHelper.UtcSecondsToLocalDateTime(System.Int64)
-  name: UtcSecondsToLocalDateTime(long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcSecondsToLocalDateTime_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.UtcSecondsToLocalDateTime(System.Int64)
-  name.vb: UtcSecondsToLocalDateTime(Long)
-  fullName: GameFrameX.Utility.TimeHelper.UtcSecondsToLocalDateTime(long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.UtcSecondsToLocalDateTime(Long)
-  nameWithType: TimeHelper.UtcSecondsToLocalDateTime(long)
-  nameWithType.vb: TimeHelper.UtcSecondsToLocalDateTime(Long)
-- uid: GameFrameX.Utility.TimeHelper.UtcSecondsToLocalDateTime*
-  name: UtcSecondsToLocalDateTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcSecondsToLocalDateTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.UtcSecondsToLocalDateTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.UtcSecondsToLocalDateTime
-  nameWithType: TimeHelper.UtcSecondsToLocalDateTime
-- uid: GameFrameX.Utility.TimeHelper.UtcSecondsToUtcDateTime(System.Int64)
-  name: UtcSecondsToUtcDateTime(long)
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcSecondsToUtcDateTime_System_Int64_
-  commentId: M:GameFrameX.Utility.TimeHelper.UtcSecondsToUtcDateTime(System.Int64)
-  name.vb: UtcSecondsToUtcDateTime(Long)
-  fullName: GameFrameX.Utility.TimeHelper.UtcSecondsToUtcDateTime(long)
-  fullName.vb: GameFrameX.Utility.TimeHelper.UtcSecondsToUtcDateTime(Long)
-  nameWithType: TimeHelper.UtcSecondsToUtcDateTime(long)
-  nameWithType.vb: TimeHelper.UtcSecondsToUtcDateTime(Long)
-- uid: GameFrameX.Utility.TimeHelper.UtcSecondsToUtcDateTime*
-  name: UtcSecondsToUtcDateTime
-  href: api/GameFrameX.Utility.TimeHelper.html#GameFrameX_Utility_TimeHelper_UtcSecondsToUtcDateTime_
-  commentId: Overload:GameFrameX.Utility.TimeHelper.UtcSecondsToUtcDateTime
-  isSpec: "True"
-  fullName: GameFrameX.Utility.TimeHelper.UtcSecondsToUtcDateTime
-  nameWithType: TimeHelper.UtcSecondsToUtcDateTime

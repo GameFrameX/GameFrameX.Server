@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class MongoDbService | GameFrameX.Server </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class MongoDbService | GameFrameX.Server ">
+      
+      <meta name="description" content="MongoDB服务连接类，实现了  IDatabaseService  接口。">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.1-dev9/apiSpec/new?filename=GameFrameX_DataBase_Mongo_MongoDbService.md&amp;value=---%0Auid%3A%20GameFrameX.DataBase.Mongo.MongoDbService%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="GameFrameX.Server">
+            GameFrameX.Server
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GameFrameX.DataBase.Mongo.MongoDbService">
+
+
+
+  <h1 id="GameFrameX_DataBase_Mongo_MongoDbService" data-uid="GameFrameX.DataBase.Mongo.MongoDbService" class="text-break">
+Class MongoDbService  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Update.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GameFrameX.html">GameFrameX</a>.<a class="xref" href="GameFrameX.DataBase.html">DataBase</a>.<a class="xref" href="GameFrameX.DataBase.Mongo.html">Mongo</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GameFrameX.DataBase.Mongo.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>MongoDB服务连接类，实现了
+<see>
+<cref>IDatabaseService</cref>
+</see>
+接口。</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class MongoDbService : IDatabaseService</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">MongoDbService</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><span class="xref">IDatabaseService</span></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_BulkWriteOptions" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.BulkWriteOptions">
+  BulkWriteOptions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Add.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>批量写入选项，用于批量写入文档。设置
+<see>
+<cref>IsOrdered</cref>
+</see>
+属性为 false 可以并行执行写入操作。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BulkWriteOptions BulkWriteOptions</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">BulkWriteOptions</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_CurrentDatabase_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.CurrentDatabase*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_CurrentDatabase" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.CurrentDatabase">
+  CurrentDatabase
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置当前使用的MongoDB数据库。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IMongoDatabase CurrentDatabase { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">IMongoDatabase</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_AddAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.AddAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_AddAsync__1___0_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.AddAsync``1(``0)">
+  AddAsync&lt;TState&gt;(TState)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Add.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>增加一条数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task AddAsync&lt;TState&gt;(TState state) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>state</code> <span class="xref">TState</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd><p>返回修改的条数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_AddListAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.AddListAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_AddListAsync__1_System_Collections_Generic_IEnumerable___0__" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.AddListAsync``1(System.Collections.Generic.IEnumerable{``0})">
+  AddListAsync&lt;TState&gt;(IEnumerable&lt;TState&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Add.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>增加一个列表数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task AddListAsync&lt;TState&gt;(IEnumerable&lt;TState&gt; states) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>states</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TState&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_AddOrUpdateAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.AddOrUpdateAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_AddOrUpdateAsync__1___0_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.AddOrUpdateAsync``1(``0)">
+  AddOrUpdateAsync&lt;TState&gt;(TState)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Mix.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>增加或更新数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TState&gt; AddOrUpdateAsync&lt;TState&gt;(TState state) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>state</code> <span class="xref">TState</span></dt>
+    <dd><p>数据对象</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TState&gt;</dt>
+    <dd><p>返回增加或更新的条数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd><p>数据类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_AnyAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.AnyAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_AnyAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.AnyAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+  AnyAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Query.cs/#L423"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断是否存在符合条件的数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; AnyAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt; filter) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>条件</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_Close_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.Close*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_Close" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.Close">
+  Close()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>关闭MongoDB连接。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Close()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_CountAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.CountAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_CountAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.CountAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+  CountAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Query.cs/#L248"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>查询数据长度</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;long&gt; CountAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt; filter) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>查询条件</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_CreateIndex_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.CreateIndex*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_CreateIndex_System_String_System_String_System_Boolean_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.CreateIndex(System.String,System.String,System.Boolean)">
+  CreateIndex(string, string, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Index.cs/#L156"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string CreateIndex(string collectionName, string index, bool asc = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>collectionName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>集合名</p>
+</dd>
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>索引键</p>
+</dd>
+    <dt><code>asc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_CreateIndexAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.CreateIndexAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_CreateIndexAsync_System_String_System_String_System_Boolean_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.CreateIndexAsync(System.String,System.String,System.Boolean)">
+  CreateIndexAsync(string, string, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Index.cs/#L178"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; CreateIndexAsync(string collectionName, string index, bool asc = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>collectionName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>集合名</p>
+</dd>
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>索引键</p>
+</dd>
+    <dt><code>asc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_CreateIndexAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.CreateIndexAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_CreateIndexAsync__1_System_String_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_Boolean_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.CreateIndexAsync``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean)">
+  CreateIndexAsync&lt;TState&gt;(string, Expression&lt;Func&lt;TState, object&gt;&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Index.cs/#L270"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; CreateIndexAsync&lt;TState&gt;(string index, Expression&lt;Func&lt;TState, object&gt;&gt; key, bool asc = true) where TState : class, ICacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>索引键</p>
+</dd>
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd></dd>
+    <dt><code>asc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_CreateIndex_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.CreateIndex*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_CreateIndex__1_System_String_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_Boolean_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.CreateIndex``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean)">
+  CreateIndex&lt;TState&gt;(string, Expression&lt;Func&lt;TState, object&gt;&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Index.cs/#L248"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string CreateIndex&lt;TState&gt;(string index, Expression&lt;Func&lt;TState, object&gt;&gt; key, bool asc = true) where TState : class, ICacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>索引键</p>
+</dd>
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd></dd>
+    <dt><code>asc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_DeleteAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.DeleteAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_DeleteAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.DeleteAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+  DeleteAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Delete.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据条件删除单条数据(软删除)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;long&gt; DeleteAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt; filter) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>查询条件表达式</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
+    <dd><p>返回修改的记录数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd><p>数据类型,必须继承自BaseCacheState</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_DeleteAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.DeleteAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_DeleteAsync__1___0_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.DeleteAsync``1(``0)">
+  DeleteAsync&lt;TState&gt;(TState)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Delete.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>删除指定对象(软删除)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;long&gt; DeleteAsync&lt;TState&gt;(TState state) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>state</code> <span class="xref">TState</span></dt>
+    <dd><p>要删除的对象</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
+    <dd><p>返回修改的记录数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd><p>数据类型,必须继承自BaseCacheState</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_DeleteListAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.DeleteListAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_DeleteListAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.DeleteListAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+  DeleteListAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Delete.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据条件批量删除数据(软删除)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;long&gt; DeleteListAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt; filter) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>查询条件表达式</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
+    <dd><p>返回修改的记录数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd><p>数据类型,必须继承自BaseCacheState</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_DeleteListIdAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.DeleteListIdAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_DeleteListIdAsync__1_System_Collections_Generic_IEnumerable_System_Int64__" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.DeleteListIdAsync``1(System.Collections.Generic.IEnumerable{System.Int64})">
+  DeleteListIdAsync&lt;TState&gt;(IEnumerable&lt;long&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Delete.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据ID列表批量删除数据(软删除)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;long&gt; DeleteListIdAsync&lt;TState&gt;(IEnumerable&lt;long&gt; ids) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ids</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
+    <dd><p>要删除的ID列表</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
+    <dd><p>返回修改的记录数</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd><p>数据类型,必须继承自BaseCacheState</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_DropIndex_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.DropIndex*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_DropIndex_System_String_System_String_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.DropIndex(System.String,System.String)">
+  DropIndex(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Index.cs/#L225"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>删除索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DropIndex(string collectionName, string index)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>collectionName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>集合名</p>
+</dd>
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>索引键</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_DropIndexAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.DropIndexAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_DropIndexAsync_System_String_System_String_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.DropIndexAsync(System.String,System.String)">
+  DropIndexAsync(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Index.cs/#L236"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>删除索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task DropIndexAsync(string collectionName, string index)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>collectionName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>集合名</p>
+</dd>
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>索引键</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_FindAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.FindAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_FindAsync__1_System_Int64_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Boolean_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.FindAsync``1(System.Int64,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Boolean)">
+  FindAsync&lt;TState&gt;(long, Expression&lt;Func&lt;TState, bool&gt;&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Query.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步加载指定ID的缓存状态。
+此方法尝试从MongoDB中查找与给定ID匹配的缓存状态。
+如果找到状态，则返回该状态；如果未找到，则创建一个新的状态实例。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TState&gt; FindAsync&lt;TState&gt;(long id, Expression&lt;Func&lt;TState, bool&gt;&gt; filter = null, bool isCreateIfNotExists = true) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>要加载的缓存状态的ID。</p>
+</dd>
+    <dt><code>filter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>可选的过滤器，用于进一步限制查询结果的条件。</p>
+</dd>
+    <dt><code>isCreateIfNotExists</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否创建不存在的文档</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TState&gt;</dt>
+    <dd><p>加载的缓存状态，如果未找到则返回新创建的状态。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd><p>缓存状态的类型，必须是BaseCacheState的子类，并具有无参数构造函数。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_FindAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.FindAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_FindAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Boolean_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.FindAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Boolean)">
+  FindAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Query.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步查找满足指定条件的缓存状态。
+如果没有找到满足条件的状态，则会创建一个新的状态实例。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TState&gt; FindAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt; filter, bool isCreateIfNotExists = true) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>查询条件，用于限制查找的结果。</p>
+</dd>
+    <dt><code>isCreateIfNotExists</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否创建不存在的文档</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TState&gt;</dt>
+    <dd><p>满足条件的缓存状态，如果未找到则返回新创建的状态。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd><p>缓存状态的类型，必须是BaseCacheState的子类，并具有无参数构造函数。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_FindListAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.FindListAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_FindListAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.FindListAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+  FindListAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Query.cs/#L138"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步查找满足指定条件的缓存状态列表。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;List&lt;TState&gt;&gt; FindListAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt; filter) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>查询条件。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;TState&gt;&gt;</dt>
+    <dd><p>满足条件的缓存状态列表。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd><p>缓存状态的类型。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_FindSortAscendingAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_FindSortAscendingAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Linq_Expressions_Expression_System_Func___0_System_Object___System_Int32_System_Int32_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Int32,System.Int32)">
+  FindSortAscendingAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt;, Expression&lt;Func&lt;TState, object&gt;&gt;, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Query.cs/#L220"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>以升序方式查找符合条件的元素并进行分页。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;List&lt;TState&gt;&gt; FindSortAscendingAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt; filter, Expression&lt;Func&lt;TState, object&gt;&gt; sortExpression, int pageIndex = 0, int pageSize = 10) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>过滤表达式。</p>
+</dd>
+    <dt><code>sortExpression</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>排序字段表达式。</p>
+</dd>
+    <dt><code>pageIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>页码，从0开始。</p>
+</dd>
+    <dt><code>pageSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>每页数量，默认为10。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;TState&gt;&gt;</dt>
+    <dd><p>符合条件的元素列表。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd><p>实现ICacheState接口的类型。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_FindSortAscendingFirstOneAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingFirstOneAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_FindSortAscendingFirstOneAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Linq_Expressions_Expression_System_Func___0_System_Object___" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.FindSortAscendingFirstOneAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+  FindSortAscendingFirstOneAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt;, Expression&lt;Func&lt;TState, object&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Query.cs/#L157"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>以升序方式查找符合条件的第一个元素。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TState&gt; FindSortAscendingFirstOneAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt; filter, Expression&lt;Func&lt;TState, object&gt;&gt; sortExpression) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>过滤表达式。</p>
+</dd>
+    <dt><code>sortExpression</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>排序字段表达式。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TState&gt;</dt>
+    <dd><p>符合条件的第一个元素。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd><p>实现ICacheState接口的类型。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_FindSortDescendingAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_FindSortDescendingAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Linq_Expressions_Expression_System_Func___0_System_Object___System_Int32_System_Int32_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Int32,System.Int32)">
+  FindSortDescendingAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt;, Expression&lt;Func&lt;TState, object&gt;&gt;, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Query.cs/#L189"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>以降序方式查找符合条件的元素并进行分页。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;List&lt;TState&gt;&gt; FindSortDescendingAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt; filter, Expression&lt;Func&lt;TState, object&gt;&gt; sortExpression, int pageIndex = 0, int pageSize = 10) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>过滤表达式。</p>
+</dd>
+    <dt><code>sortExpression</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>排序字段表达式。</p>
+</dd>
+    <dt><code>pageIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>页码，从0开始。</p>
+</dd>
+    <dt><code>pageSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>每页数量，默认为10。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;TState&gt;&gt;</dt>
+    <dd><p>符合条件的元素列表。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd><p>实现ICacheState接口的类型。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_FindSortDescendingFirstOneAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingFirstOneAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_FindSortDescendingFirstOneAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Linq_Expressions_Expression_System_Func___0_System_Object___" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.FindSortDescendingFirstOneAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+  FindSortDescendingFirstOneAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt;, Expression&lt;Func&lt;TState, object&gt;&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Query.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>以降序方式查找符合条件的第一个元素。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TState&gt; FindSortDescendingFirstOneAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, bool&gt;&gt; filter, Expression&lt;Func&lt;TState, object&gt;&gt; sortExpression) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>过滤表达式。</p>
+</dd>
+    <dt><code>sortExpression</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd><p>排序字段表达式。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TState&gt;</dt>
+    <dd><p>符合条件的第一个元素。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd><p>实现ICacheState接口的类型。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_Open_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.Open*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_Open_GameFrameX_DataBase_Abstractions_DbOptions_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.Open(GameFrameX.DataBase.Abstractions.DbOptions)">
+  Open(DbOptions)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>链接数据库</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; Open(DbOptions dbOptions)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dbOptions</code> <span class="xref">DbOptions</span></dt>
+    <dd><p>数据库配置选项</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>返回数据库是否初始化成功</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_UpdateAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.UpdateAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_UpdateAsync__1_System_Collections_Generic_IEnumerable___0__" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.UpdateAsync``1(System.Collections.Generic.IEnumerable{``0})">
+  UpdateAsync&lt;TState&gt;(IEnumerable&lt;TState&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Update.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>保存多条数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;long&gt; UpdateAsync&lt;TState&gt;(IEnumerable&lt;TState&gt; stateList) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>stateList</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TState&gt;</dt>
+    <dd><p>数据列表对象</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
+    <dd><p>返回更新成功的数量</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_UpdateAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.UpdateAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_UpdateAsync__1___0_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.UpdateAsync``1(``0)">
+  UpdateAsync&lt;TState&gt;(TState)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Update.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>保存数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TState&gt; UpdateAsync&lt;TState&gt;(TState state) where TState : BaseCacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>state</code> <span class="xref">TState</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TState&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_UpdateIndex_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndex*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_UpdateIndex_System_String_System_String_System_Boolean_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndex(System.String,System.String,System.Boolean)">
+  UpdateIndex(string, string, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Index.cs/#L200"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string UpdateIndex(string collectionName, string index, bool asc = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>collectionName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>集合名</p>
+</dd>
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>索引键</p>
+</dd>
+    <dt><code>asc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_UpdateIndexAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndexAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_UpdateIndexAsync_System_String_System_String_System_Boolean_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndexAsync(System.String,System.String,System.Boolean)">
+  UpdateIndexAsync(string, string, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Index.cs/#L213"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; UpdateIndexAsync(string collectionName, string index, bool asc = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>collectionName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>集合名</p>
+</dd>
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>索引键</p>
+</dd>
+    <dt><code>asc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_UpdateIndexAsync_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndexAsync*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_UpdateIndexAsync__1_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_Boolean_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndexAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean)">
+  UpdateIndexAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, object&gt;&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Index.cs/#L303"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; UpdateIndexAsync&lt;TState&gt;(Expression&lt;Func&lt;TState, object&gt;&gt; key, bool asc = true) where TState : class, ICacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd></dd>
+    <dt><code>asc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_DataBase_Mongo_MongoDbService_UpdateIndex_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndex*"></a>
+
+  <h3 id="GameFrameX_DataBase_Mongo_MongoDbService_UpdateIndex__1_System_Linq_Expressions_Expression_System_Func___0_System_Object___System_Boolean_" data-uid="GameFrameX.DataBase.Mongo.MongoDbService.UpdateIndex``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean)">
+  UpdateIndex&lt;TState&gt;(Expression&lt;Func&lt;TState, object&gt;&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Index.cs/#L291"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新索引</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string UpdateIndex&lt;TState&gt;(Expression&lt;Func&lt;TState, object&gt;&gt; key, bool asc = true) where TState : class, ICacheState, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TState, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;&gt;</dt>
+    <dd></dd>
+    <dt><code>asc</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TState</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.DataBase.Mongo/MongoDbService.Update.cs/#L44" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
