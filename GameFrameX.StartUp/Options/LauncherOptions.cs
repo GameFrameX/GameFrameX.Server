@@ -270,10 +270,12 @@ public sealed class LauncherOptions
     public ushort DataCenterId { get; set; }
 
     /// <summary>
-    /// API接口根路径,必须以/开头和以/结尾,默认为[/game/api/]
+    /// 是否启用 HTTP 服务，默认值为 true
+    /// <para>开启后服务器将监听 HTTP 端口，允许客户端通过 HTTP 协议进行连接</para>
+    /// <para>默认值为 true，即启用，因为健康检查需要通过 HTTP 端口进行访问</para>
     /// </summary>
-    [Option(nameof(HttpUrl), DefaultValue = "/game/api/", Description = "API接口根路径,必须以/开头和以/结尾,默认为[/game/api/]")]
-    public string HttpUrl { get; set; }
+    [Option(nameof(IsEnableHttp), DefaultValue = true, Description = "是否启用 HTTP 服务，默认值为 true")]
+    public bool IsEnableHttp { get; set; } = true;
 
     /// <summary>
     /// HTTP 是否是开发模式,当是开发模式的时候将会启用Swagger
@@ -281,6 +283,12 @@ public sealed class LauncherOptions
     [Option(nameof(HttpIsDevelopment), DefaultValue = false, Description = "HTTP 是否是开发模式,当是开发模式的时候将会启用Swagger")]
     // [GrafanaLokiLabelTag]
     public bool HttpIsDevelopment { get; set; }
+
+    /// <summary>
+    /// API接口根路径,必须以/开头和以/结尾,默认为[/game/api/]
+    /// </summary>
+    [Option(nameof(HttpUrl), DefaultValue = "/game/api/", Description = "API接口根路径,必须以/开头和以/结尾,默认为[/game/api/]")]
+    public string HttpUrl { get; set; }
 
     /// <summary>
     /// HTTP 端口

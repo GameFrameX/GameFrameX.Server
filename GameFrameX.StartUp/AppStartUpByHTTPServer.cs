@@ -64,6 +64,13 @@ public abstract partial class AppStartUpBase
     /// <exception cref="NotImplementedException">当启用HTTPS但未实现时抛出</exception>
     private async Task StartHttpServer(List<BaseHttpHandler> baseHandler, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes = null, LogLevel minimumLevelLogLevel = LogLevel.Debug)
     {
+        // 检查是否启用HTTP服务
+        if (!Setting.IsEnableHttp)
+        {
+            LogHelper.InfoConsole("The HTTP service is disabled, and the startup is ignored");
+            return;
+        }
+        
         // 验证HTTP URL格式
         if (!Setting.HttpUrl.StartsWith('/'))
         {

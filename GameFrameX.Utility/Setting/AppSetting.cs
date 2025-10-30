@@ -300,6 +300,11 @@ public sealed class AppSetting
     public string HttpUrl { get; set; }
 
     /// <summary>
+    /// 是否启用 HTTP 服务
+    /// </summary>
+    public bool IsEnableHttp { get; set; }
+
+    /// <summary>
     /// HTTP 是否是开发模式
     /// </summary>
     public bool HttpIsDevelopment { get; set; }
