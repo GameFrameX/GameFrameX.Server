@@ -265,6 +265,11 @@ public sealed class AppSetting
     public int ActorQueueTimeOut { get; set; } = 30_000;
 
     /// <summary>
+    /// 是否启用TCP
+    /// </summary>
+    public bool IsEnableTcp { get; set; }
+
+    /// <summary>
     /// 内部主机地址
     /// </summary>
     public string InnerHost { get; set; }

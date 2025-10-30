@@ -229,6 +229,15 @@ public sealed class LauncherOptions
     [Option(nameof(ActorRecycleTime), DefaultValue = 15, Description = "Actor 空闲多久回收,单位分钟,默认值为15分钟,最小值为1分钟,小于1则强制设置为5分钟")]
     public int ActorRecycleTime { get; set; } = 15;
 
+    
+    /// <summary>
+    /// 是否启用 TCP 服务，默认值为 true
+    /// <para>开启后服务器将监听 TCP 端口，允许客户端通过 TCP 协议进行连接</para>
+    /// <para>默认值为 true，即启用，因为健康检查需要通过 TCP 端口进行访问</para>
+    /// </summary>
+    [Option(nameof(IsEnableTcp), DefaultValue = true, Description = "是否启用 TCP 服务，默认值为 true")]
+    public bool IsEnableTcp { get; set; } = true;
+    
     /// <summary>
     /// 内部主机地址
     /// </summary>

@@ -205,43 +205,50 @@ public abstract partial class AppStartUpBase
     private async Task StartServer(List<BaseHttpHandler> baseHandler, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes = null, LogLevel minimumLevelLogLevel = LogLevel.Debug)
     {
         var multipleServerHostBuilder = MultipleServerHostBuilder.Create();
-        // 检查TCP端口是否可用
-        if (Setting.InnerPort > 0 && NetHelper.PortIsAvailable(Setting.InnerPort))
+        if (Setting.IsEnableTcp)
         {
-            LogHelper.InfoConsole($"start tcp server type: {ServerType}, address: {Setting.InnerHost}, port: {Setting.InnerPort}");
-            multipleServerHostBuilder.AddServer<IMessage, MessageObjectPipelineFilter>(builder =>
+            // 检查TCP端口是否可用
+            if (Setting.InnerPort > 0 && NetHelper.PortIsAvailable(Setting.InnerPort))
             {
-                builder
-                    .UseClearIdleSession()
-                    .UseSessionHandler(OnConnected, OnDisconnected)
-                    .UsePackageHandler(PackageHandler, PackageErrorHandler)
-                    .UseInProcSessionContainer()
-                    .ConfigureServices((context, serviceCollection) =>
-                    {
-                        serviceCollection.Configure<ServerOptions>(options =>
+                LogHelper.InfoConsole($"start tcp server type: {ServerType}, address: {Setting.InnerHost}, port: {Setting.InnerPort}");
+                multipleServerHostBuilder.AddServer<IMessage, MessageObjectPipelineFilter>(builder =>
+                {
+                    builder
+                        .UseClearIdleSession()
+                        .UseSessionHandler(OnConnected, OnDisconnected)
+                        .UsePackageHandler(PackageHandler, PackageErrorHandler)
+                        .UseInProcSessionContainer()
+                        .ConfigureServices((context, serviceCollection) =>
                         {
-                            var listenOptions = new ListenOptions()
+                            serviceCollection.Configure<ServerOptions>(options =>
                             {
-                                Ip = "Any",
-                                Port = Setting.InnerPort,
-                            };
-                            options.AddListener(listenOptions);
+                                var listenOptions = new ListenOptions()
+                                {
+                                    Ip = "Any",
+                                    Port = Setting.InnerPort,
+                                };
+                                options.AddListener(listenOptions);
+                            });
+                            // foreach (var serviceDescriptor in serviceCollection)
+                            // {
+                            //     if (serviceDescriptor.ServiceType == typeof(IPackageDecoder<IMessage>))
+                            //     {
+                            //         serviceDescriptor.ImplementationInstance ;
+                            //         LogHelper.Console("XX");
+                            //     }
+                            // }
                         });
-                        // foreach (var serviceDescriptor in serviceCollection)
-                        // {
-                        //     if (serviceDescriptor.ServiceType == typeof(IPackageDecoder<IMessage>))
-                        //     {
-                        //         serviceDescriptor.ImplementationInstance ;
-                        //         LogHelper.Console("XX");
-                        //     }
-                        // }
-                    });
-            });
-            LogHelper.InfoConsole($"start tcp server startup complete type: {ServerType}, address: {Setting.InnerHost}, port: {Setting.InnerPort}");
+                });
+                LogHelper.InfoConsole($"start tcp server startup complete type: {ServerType}, address: {Setting.InnerHost}, port: {Setting.InnerPort}");
+            }
+            else
+            {
+                LogHelper.WarningConsole($"start tcp server start failed type: {ServerType}, address: {Setting.InnerHost}, port: {Setting.InnerPort}, cause: the port is invalid or occupied");
+            }
         }
         else
         {
-            LogHelper.WarningConsole($"start tcp server start failed type: {ServerType}, address: {Setting.InnerHost}, port: {Setting.InnerPort}, cause: the port is invalid or occupied");
+            LogHelper.InfoConsole($"start tcp server type: {ServerType}, address: {Setting.InnerHost}, port: {Setting.InnerPort}, cause: the tcp server is disabled");
         }
 
         // 检查WebSocket端口是否可用
