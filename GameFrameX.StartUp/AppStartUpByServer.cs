@@ -44,6 +44,7 @@ using GameFrameX.SuperSocket.Server;
 using GameFrameX.SuperSocket.Server.Abstractions;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
 using GameFrameX.SuperSocket.Server.Host;
+using GameFrameX.SuperSocket.Udp;
 using GameFrameX.SuperSocket.WebSocket;
 using GameFrameX.SuperSocket.WebSocket.Server;
 using GameFrameX.Utility;
@@ -213,31 +214,38 @@ public abstract partial class AppStartUpBase
                 LogHelper.InfoConsole($"start tcp server type: {ServerType}, address: {Setting.InnerHost}, port: {Setting.InnerPort}");
                 multipleServerHostBuilder.AddServer<IMessage, MessageObjectPipelineFilter>(builder =>
                 {
-                    builder
-                        .UseClearIdleSession()
-                        .UseSessionHandler(OnConnected, OnDisconnected)
-                        .UsePackageHandler(PackageHandler, PackageErrorHandler)
-                        .UseInProcSessionContainer()
-                        .ConfigureServices((context, serviceCollection) =>
+                    var serverBuilder = builder
+                                        .UseClearIdleSession()
+                                        .UseSessionHandler(OnConnected, OnDisconnected)
+                                        .UsePackageHandler(PackageHandler, PackageErrorHandler)
+                                        .UseInProcSessionContainer();
+
+                    // 启用UDP 检查是否可用
+                    if (Setting.IsEnableUdp)
+                    {
+                        serverBuilder.UseUdp();
+                    }
+
+                    serverBuilder.ConfigureServices((context, serviceCollection) =>
+                    {
+                        serviceCollection.Configure<ServerOptions>(options =>
                         {
-                            serviceCollection.Configure<ServerOptions>(options =>
+                            var listenOptions = new ListenOptions()
                             {
-                                var listenOptions = new ListenOptions()
-                                {
-                                    Ip = "Any",
-                                    Port = Setting.InnerPort,
-                                };
-                                options.AddListener(listenOptions);
-                            });
-                            // foreach (var serviceDescriptor in serviceCollection)
-                            // {
-                            //     if (serviceDescriptor.ServiceType == typeof(IPackageDecoder<IMessage>))
-                            //     {
-                            //         serviceDescriptor.ImplementationInstance ;
-                            //         LogHelper.Console("XX");
-                            //     }
-                            // }
+                                Ip = "Any",
+                                Port = Setting.InnerPort,
+                            };
+                            options.AddListener(listenOptions);
                         });
+                        // foreach (var serviceDescriptor in serviceCollection)
+                        // {
+                        //     if (serviceDescriptor.ServiceType == typeof(IPackageDecoder<IMessage>))
+                        //     {
+                        //         serviceDescriptor.ImplementationInstance ;
+                        //         LogHelper.Console("XX");
+                        //     }
+                        // }
+                    });
                 });
                 LogHelper.InfoConsole($"start tcp server startup complete type: {ServerType}, address: {Setting.InnerHost}, port: {Setting.InnerPort}");
             }

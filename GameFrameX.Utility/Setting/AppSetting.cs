@@ -270,6 +270,11 @@ public sealed class AppSetting
     public bool IsEnableTcp { get; set; }
 
     /// <summary>
+    /// 是否启用UDP
+    /// </summary>
+    public bool IsEnableUdp { get; set; } = false;
+
+    /// <summary>
     /// 内部主机地址
     /// </summary>
     public string InnerHost { get; set; }
