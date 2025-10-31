@@ -32,8 +32,9 @@
 using System.Net;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
-using GameFrameX.StartUp.DiscoverCenter;
+using GameFrameX.StartUp.ServiceClient;
 using ErrorEventArgs = GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs;
 
 namespace GameFrameX.StartUp;
@@ -43,15 +44,15 @@ namespace GameFrameX.StartUp;
 /// </summary>
 public abstract partial class AppStartUpBase
 {
-    private GameAppClient _gameAppClient;
+    private GameAppServiceClient _gameAppClient;
 
     /// <summary>
     /// 启动与发现中心（DiscoveryCenter）通信的客户端，用于注册当前服务器实例并接收发现中心推送的消息
     /// </summary>
-    private async void StartGameAppClient()
+    private void StartGameAppClient()
     {
         // 创建客户端事件回调对象
-        var gameAppClientEvent = new GameAppClientEvent
+        var gameAppServiceConfiguration = new GameAppServiceConfiguration
         {
             OnConnected = GameAppClientOnConnected,
             OnClosed = GameAppClientOnClosed,
@@ -75,10 +76,7 @@ public abstract partial class AppStartUpBase
         var endPoint = new DnsEndPoint(Setting.DiscoveryCenterHost, Setting.DiscoveryCenterPort);
 
         // 根据配置创建发现中心终结点并初始化客户端
-        _gameAppClient = new GameAppClient(gameAppClientEvent, endPoint, Setting);
-
-        // 异步启动客户端，开始与发现中心建立连接
-        await _gameAppClient.EntryAsync();
+        _gameAppClient = new GameAppServiceClient(endPoint, gameAppServiceConfiguration);
     }
 
     /// <summary>
@@ -91,13 +89,25 @@ public abstract partial class AppStartUpBase
     }
 
     /// <summary>
+    /// 调用发现中心（DiscoveryCenter）的RPC方法
+    /// </summary>
+    /// <typeparam name="T">要返回的响应消息类型</typeparam>
+    /// <param name="messageObject">要调用的RPC方法参数</param>
+    /// <param name="timeOut">调用超时时间（毫秒）</param>
+    /// <returns>表示异步操作的任务，任务结果为IRpcResult对象</returns>
+    public Task<IRpcResult> Call<T>(MessageObject messageObject, int timeOut = 10000) where T : IResponseMessage, new()
+    {
+        return _gameAppClient.Call<T>(messageObject, timeOut);
+    }
+
+    /// <summary>
     /// 向发现中心（DiscoveryCenter）发送消息
     /// </summary>
     /// <param name="message">待发送的消息对象</param>
     public void Send(MessageObject message)
     {
         // 如果客户端已初始化，则调用其方法将消息发送至发现中心服务器
-        _gameAppClient?.SendToServer(message);
+        _gameAppClient?.Send(message);
     }
 
     /// <summary>
