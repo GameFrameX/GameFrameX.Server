@@ -44,7 +44,7 @@ namespace GameFrameX.StartUp;
 /// </summary>
 public abstract partial class AppStartUpBase
 {
-    private GameAppServiceClient _gameAppClient;
+    private GameAppServiceClient _gameAppServiceClient;
 
     /// <summary>
     /// 启动与发现中心（DiscoveryCenter）通信的客户端，用于注册当前服务器实例并接收发现中心推送的消息
@@ -76,7 +76,7 @@ public abstract partial class AppStartUpBase
         var endPoint = new DnsEndPoint(Setting.DiscoveryCenterHost, Setting.DiscoveryCenterPort);
 
         // 根据配置创建发现中心终结点并初始化客户端
-        _gameAppClient = new GameAppServiceClient(endPoint, gameAppServiceConfiguration);
+        _gameAppServiceClient = new GameAppServiceClient(endPoint, gameAppServiceConfiguration);
     }
 
     /// <summary>
@@ -97,7 +97,7 @@ public abstract partial class AppStartUpBase
     /// <returns>表示异步操作的任务，任务结果为IRpcResult对象</returns>
     public Task<IRpcResult> Call<T>(MessageObject messageObject, int timeOut = 10000) where T : IResponseMessage, new()
     {
-        return _gameAppClient.Call<T>(messageObject, timeOut);
+        return _gameAppServiceClient.Call<T>(messageObject, timeOut);
     }
 
     /// <summary>
@@ -107,7 +107,7 @@ public abstract partial class AppStartUpBase
     public void Send(MessageObject message)
     {
         // 如果客户端已初始化，则调用其方法将消息发送至发现中心服务器
-        _gameAppClient?.Send(message);
+        _gameAppServiceClient?.Send(message);
     }
 
     /// <summary>

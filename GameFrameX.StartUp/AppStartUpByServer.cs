@@ -112,7 +112,7 @@ public abstract partial class AppStartUpBase
     protected async Task StopServerAsync()
     {
         GlobalSettings.IsAppRunning = false;
-        _gameAppClient?.Stop();
+        _gameAppServiceClient?.Stop();
 
         if (_gameServer != null)
         {
