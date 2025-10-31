@@ -43,8 +43,23 @@ public class DiscoveryCenterComponentAgent : StateComponentAgent<DiscoveryCenter
         _appStartUpBase = appStartUpBase;
     }
 
+    /// <summary>
+    /// 发送消息给发现中心组件
+    /// </summary>
+    /// <param name="message">发送的消息</param>
     public void SendToDiscoveryCenter(MessageObject message)
     {
         _appStartUpBase?.Send(message);
+    }
+
+    /// <summary>
+    /// 调用发现中心组件
+    /// </summary>
+    /// <param name="message">调用消息</param>
+    /// <typeparam name="T">响应消息类型</typeparam>
+    /// <returns>响应结果</returns>
+    public Task<IRpcResult> CallDiscoveryCenter<T>(MessageObject message) where T : IResponseMessage, new()
+    {
+        return _appStartUpBase?.Call<T>(message);
     }
 }
