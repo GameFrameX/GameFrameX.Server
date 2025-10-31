@@ -73,21 +73,9 @@ internal sealed class GameAppServiceClient : IDisposable
     }
 
     /// <summary>
-    /// 消息接收回调，当服务器发送消息时触发,
-    /// 回调参数为服务器发送的消息对象
-    /// 只有RPC没有正确处理时才会触发
+    /// 游戏应用服务配置
     /// </summary>
-    private readonly Action<MessageObject> _onMessageReceived;
-
-    /// <summary>
-    /// 每次重连之间的延迟时间，单位毫秒
-    /// </summary>
-    private readonly int _retryDelay;
-
-    /// <summary>
-    /// 最大重连次数，-1表示无限重试
-    /// </summary>
-    public int MaxRetryCount { get; }
+    private readonly GameAppServiceConfiguration _configuration;
 
     /// <summary>
     /// 标记当前实例是否已被释放，防止重复释放或空操作
@@ -98,17 +86,14 @@ internal sealed class GameAppServiceClient : IDisposable
     /// 初始化游戏服务TCP客户端
     /// </summary>
     /// <param name="endPoint">服务器端点信息（IP和端口）</param>
-    /// <param name="onMessageReceived">消息接收回调，当服务器发送消息时触发</param>
-    /// <param name="maxRetryCount">最大重连次数，-1表示无限重试</param>
-    /// <param name="retryDelay">每次重连之间的延迟时间，单位毫秒</param>
-    public GameAppServiceClient(EndPoint endPoint, Action<MessageObject> onMessageReceived, int maxRetryCount = -1, int retryDelay = 1000)
+    /// <param name="configuration">游戏应用服务配置</param>
+    public GameAppServiceClient(EndPoint endPoint, GameAppServiceConfiguration configuration)
     {
         ArgumentNullException.ThrowIfNull(endPoint, nameof(endPoint));
+        ArgumentNullException.ThrowIfNull(configuration, nameof(configuration));
         _serverHost = endPoint;
-        _onMessageReceived = onMessageReceived;
         _rpcSession = new RpcSession();
-        _retryDelay = retryDelay;
-        MaxRetryCount = maxRetryCount;
+        _configuration = configuration;
         _mTcpClient = new AsyncTcpSession();
         _mTcpClient.Connected += OnClientOnConnected;
         _mTcpClient.Closed += OnClientOnClosed;
@@ -166,6 +151,12 @@ internal sealed class GameAppServiceClient : IDisposable
             {
                 LogHelper.Debug($"try to connect to the target server...{_serverHost}");
                 _mTcpClient.Connect(_serverHost);
+                if (_configuration.IsEnableConnectDelay)
+                {
+                    // 添加连接延迟，避免瞬间发起多个连接请求
+                    await Task.Delay(_configuration.ConnectDelay);
+                }
+
                 // 若连接成功或正在连接，则跳过本次循环
                 if (_mTcpClient.IsConnected || _mTcpClient.IsInConnecting)
                 {
@@ -173,16 +164,16 @@ internal sealed class GameAppServiceClient : IDisposable
                 }
 
                 // 未达到最大重连次数（或无限重试）则进行重连
-                if (RetryCount < MaxRetryCount || MaxRetryCount < 0)
+                if (RetryCount < _configuration.MaxRetryCount || _configuration.MaxRetryCount < 0)
                 {
-                    LogHelper.Info($"Not connecting to the target server, attempts to reconnect (number of attempts: {RetryCount + 1}/{(MaxRetryCount < 0 ? "∞" : MaxRetryCount.ToString())})...");
+                    LogHelper.Info($"Not connecting to the target server, attempts to reconnect (number of attempts: {RetryCount + 1}/{(_configuration.MaxRetryCount < 0 ? "∞" : _configuration.MaxRetryCount.ToString())})...");
                     _mTcpClient.Connect(_serverHost);
                     RetryCount++;
-                    await Task.Delay(_retryDelay);
+                    await Task.Delay(_configuration.RetryDelay);
                 }
                 else
                 {
-                    LogHelper.Info($"Reconnect attempts have reached the upper limit ({MaxRetryCount}), and no more attempts will be made.");
+                    LogHelper.Info($"Reconnect attempts have reached the upper limit ({_configuration.MaxRetryCount}), and no more attempts will be made.");
                     break;
                 }
             }
@@ -190,7 +181,27 @@ internal sealed class GameAppServiceClient : IDisposable
             {
                 // 连接成功，重置重连计数
                 RetryCount = 0;
+                if (_configuration.IsEnableHeartBeat)
+                {
+                    // 发送心跳
+                    SendHeartBeat();
+                    // 等待下一次心跳间隔
+                    await Task.Delay(_configuration.HeartBeatInterval);
+                }
             }
+        }
+    }
+
+    /// <summary>
+    /// 发送心跳包到服务器
+    /// 更新心跳时间戳后通过Send发送
+    /// </summary>
+    private void SendHeartBeat()
+    {
+        var messageObject = _configuration.OnHeartBeat?.Invoke();
+        if (messageObject != null)
+        {
+            Send(messageObject);
         }
     }
 
@@ -241,6 +252,7 @@ internal sealed class GameAppServiceClient : IDisposable
     private void OnClientOnError(object client, SuperSocket.ClientEngine.ErrorEventArgs e)
     {
         LogHelper.Error($"Client error occurred: {e.Exception.Message}");
+        _configuration.OnError?.Invoke(e);
     }
 
     /// <summary>
@@ -252,6 +264,7 @@ internal sealed class GameAppServiceClient : IDisposable
     private void OnClientOnClosed(object client, EventArgs e)
     {
         LogHelper.Info($"Client disconnected from the server: {_serverHost}");
+        _configuration.OnClosed?.Invoke();
     }
 
     /// <summary>
@@ -263,6 +276,7 @@ internal sealed class GameAppServiceClient : IDisposable
     private void OnClientOnConnected(object client, EventArgs e)
     {
         LogHelper.Info($"Client successfully connected to the server: {_serverHost}");
+        _configuration.OnConnected?.Invoke();
     }
 
     /// <summary>
@@ -281,7 +295,7 @@ internal sealed class GameAppServiceClient : IDisposable
             var reply = _rpcSession.Reply(messageObject as IResponseMessage);
             if (!reply)
             {
-                _onMessageReceived?.Invoke(messageObject);
+                _configuration.OnMessage?.Invoke(messageObject);
             }
         }
     }
