@@ -212,6 +212,11 @@ internal sealed class GameAppServiceClient : IDisposable
     /// <param name="messageObject">要发送的消息对象</param>
     public void Send(MessageObject messageObject)
     {
+        if (messageObject.MessageId >= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(messageObject), "messageObject.MessageId must be less than 0");
+        }
+
         _rpcSession.Send(messageObject as IRequestMessage);
     }
 
@@ -239,6 +244,11 @@ internal sealed class GameAppServiceClient : IDisposable
     /// <returns>表示异步操作的任务，任务结果为IRpcResult对象</returns>
     public Task<IRpcResult> Call<T>(MessageObject messageObject, int timeOut = 10000) where T : IResponseMessage, new()
     {
+        if (messageObject.MessageId >= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(messageObject), "messageObject.MessageId must be less than 0");
+        }
+
         var result = _rpcSession.Call<T>(messageObject as IRequestMessage, timeOut);
         return result;
     }
