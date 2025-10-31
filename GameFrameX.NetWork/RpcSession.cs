@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 using System.Collections.Concurrent;
 using GameFrameX.NetWork.Abstractions;
 
@@ -49,12 +48,12 @@ public sealed class RpcSession : IRpcSession, IDisposable
     /// <summary>
     /// RPC处理队列
     /// </summary>
-    private readonly ConcurrentDictionary<long, RpcData> _rpcHandlingObjects = new();
+    private readonly ConcurrentDictionary<long, IRpcSessionData> _rpcHandlingObjects = new();
 
     /// <summary>
     /// 等待队列
     /// </summary>
-    private readonly ConcurrentQueue<RpcData> _waitingObjects = new();
+    private readonly ConcurrentQueue<IRpcSessionData> _waitingObjects = new();
 
     /// <summary>
     /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -72,9 +71,9 @@ public sealed class RpcSession : IRpcSession, IDisposable
     /// <param name="message">调用消息对象</param>
     /// <param name="timeOutMillisecond">调用超时,单位毫秒,默认10秒</param>
     /// <returns>返回消息对象</returns>
-    public Task<IRpcResult> Call(IRequestMessage message, int timeOutMillisecond = 10000)
+    public Task<IRpcResult> Call<T>(IRequestMessage message, int timeOutMillisecond = 10000) where T : IResponseMessage, new()
     {
-        var rpcData = RpcData.Create(message, true, timeOutMillisecond);
+        var rpcData = RpcSessionData.Create(message, true, timeOutMillisecond);
         _waitingObjects.Enqueue(rpcData);
         return rpcData.Task;
     }
@@ -85,15 +84,15 @@ public sealed class RpcSession : IRpcSession, IDisposable
     /// <param name="message">调用消息对象</param>
     public void Send(IRequestMessage message)
     {
-        var actorObject = RpcData.Create(message, false);
+        var actorObject = RpcSessionData.Create(message, false);
         _waitingObjects.Enqueue(actorObject);
     }
 
     /// <summary>
     /// 处理消息队列
     /// </summary>
-    /// <returns></returns>
-    public RpcData TryPeek()
+    /// <returns>等待处理的消息对象</returns>
+    public IRpcSessionData TryPeek()
     {
         if (_waitingObjects.TryPeek(out var message))
         {
@@ -106,8 +105,8 @@ public sealed class RpcSession : IRpcSession, IDisposable
     /// <summary>
     /// 处理消息队列
     /// </summary>
-    /// <returns></returns>
-    public RpcData Handler()
+    /// <returns>处理的消息对象</returns>
+    public IRpcSessionData Handler()
     {
         if (_waitingObjects.TryDequeue(out var message))
         {
@@ -123,16 +122,15 @@ public sealed class RpcSession : IRpcSession, IDisposable
     }
 
     /// <summary>
-    /// 回复
+    /// 回复消息
     /// </summary>
-    /// <param name="message"></param>
-    /// <returns></returns>
+    /// <param name="message">回复消息对象</param>
+    /// <returns>是否成功回复</returns>
     public bool Reply(IResponseMessage message)
     {
         if (_rpcHandlingObjects.TryRemove(message.UniqueId, out var rpcData))
         {
-            rpcData.Reply(message);
-            return true;
+            return rpcData.Reply(message);
         }
 
         return false;

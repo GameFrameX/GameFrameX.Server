@@ -38,7 +38,7 @@ namespace GameFrameX.NetWork;
 /// <summary>
 /// RPC 数据
 /// </summary>
-public sealed class RpcData : IDisposable
+public sealed class RpcSessionData : IRpcSessionData, IDisposable
 {
     private readonly TaskCompletionSource<IRpcResult> _tcs;
 
@@ -48,7 +48,7 @@ public sealed class RpcData : IDisposable
     /// <param name="requestMessage">请求消息</param>
     /// <param name="isReply">是否需要回复</param>
     /// <param name="timeout">超时时间,单位毫秒,默认10秒</param>
-    private RpcData(IRequestMessage requestMessage, bool isReply = true, int timeout = 10000)
+    private RpcSessionData(IRequestMessage requestMessage, bool isReply = true, int timeout = 10000)
     {
         CreatedTime = TimerHelper.UnixTimeMilliseconds();
         RequestMessage = requestMessage;
@@ -89,12 +89,12 @@ public sealed class RpcData : IDisposable
     /// <summary>
     /// 请求消息
     /// </summary>
-    public IRequestMessage RequestMessage { get; private set; }
+    public INetworkMessage RequestMessage { get; private set; }
 
     /// <summary>
     /// 响应消息
     /// </summary>
-    public IResponseMessage ResponseMessage { get; private set; }
+    public INetworkMessage ResponseMessage { get; private set; }
 
     /// <summary>
     /// RPC 耗时时间.单位毫秒
@@ -126,12 +126,13 @@ public sealed class RpcData : IDisposable
     /// RPC 回复
     /// </summary>
     /// <param name="responseMessage"></param>
-    public void Reply(IResponseMessage responseMessage)
+    public bool Reply(IResponseMessage responseMessage)
     {
         ResponseMessage = responseMessage;
         Time = TimerHelper.UnixTimeMilliseconds() - CreatedTime;
         var result = new RpcResult(responseMessage);
         _tcs.SetResult(result);
+        return true;
     }
 
     /// <summary>
@@ -141,9 +142,9 @@ public sealed class RpcData : IDisposable
     /// <param name="isReply">是否需要回复</param>
     /// <param name="timeout">超时时间,单位毫秒</param>
     /// <returns></returns>
-    public static RpcData Create(IRequestMessage requestMessage, bool isReply = true, int timeout = 10000)
+    public static IRpcSessionData Create(IRequestMessage requestMessage, bool isReply = true, int timeout = 10000)
     {
-        var rpcData = new RpcData(requestMessage, isReply, timeout);
+        var rpcData = new RpcSessionData(requestMessage, isReply, timeout);
         return rpcData;
     }
 
@@ -152,7 +153,7 @@ public sealed class RpcData : IDisposable
     /// </summary>
     /// <param name="millisecondsTime">流逝时间.单位毫秒</param>
     /// <returns></returns>
-    internal bool IncrementalElapseTime(long millisecondsTime)
+    public bool IncrementalElapseTime(long millisecondsTime)
     {
         ElapseTime += millisecondsTime;
         if (ElapseTime >= Timeout)
@@ -168,7 +169,7 @@ public sealed class RpcData : IDisposable
     /// <summary>
     /// 析构函数
     /// </summary>
-    ~RpcData()
+    ~RpcSessionData()
     {
         Dispose();
     }
