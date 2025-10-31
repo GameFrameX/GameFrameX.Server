@@ -210,6 +210,7 @@ internal sealed class GameAppServiceClient : IDisposable
     /// 内部使用MessageHelper编码后通过TcpClient发送
     /// </summary>
     /// <param name="messageObject">要发送的消息对象</param>
+    /// <exception cref="ArgumentOutOfRangeException">当messageObject.MessageId大于等于0时抛出</exception>
     public void Send(MessageObject messageObject)
     {
         if (messageObject.MessageId >= 0)
@@ -240,6 +241,7 @@ internal sealed class GameAppServiceClient : IDisposable
     /// </summary>
     /// <param name="messageObject">要发送的消息对象</param>
     /// <param name="timeOut">超时时间,单位毫秒</param>
+    /// <exception cref="ArgumentOutOfRangeException">当messageObject.MessageId大于等于0时抛出</exception>
     /// <typeparam name="T">响应消息类型，必须实现IResponseMessage接口</typeparam>
     /// <returns>表示异步操作的任务，任务结果为IRpcResult对象</returns>
     public Task<IRpcResult> Call<T>(MessageObject messageObject, int timeOut = 10000) where T : IResponseMessage, new()
