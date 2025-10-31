@@ -8921,15 +8921,6 @@ references:
   commentId: T:GameFrameX.NetWork.Abstractions.IRpcSession
   fullName: GameFrameX.NetWork.Abstractions.IRpcSession
   nameWithType: IRpcSession
-- uid: GameFrameX.NetWork.Abstractions.IRpcSession.Call(GameFrameX.NetWork.Abstractions.IRequestMessage,System.Int32)
-  name: Call(IRequestMessage, int)
-  href: api/GameFrameX.NetWork.Abstractions.IRpcSession.html#GameFrameX_NetWork_Abstractions_IRpcSession_Call_GameFrameX_NetWork_Abstractions_IRequestMessage_System_Int32_
-  commentId: M:GameFrameX.NetWork.Abstractions.IRpcSession.Call(GameFrameX.NetWork.Abstractions.IRequestMessage,System.Int32)
-  name.vb: Call(IRequestMessage, Integer)
-  fullName: GameFrameX.NetWork.Abstractions.IRpcSession.Call(GameFrameX.NetWork.Abstractions.IRequestMessage, int)
-  fullName.vb: GameFrameX.NetWork.Abstractions.IRpcSession.Call(GameFrameX.NetWork.Abstractions.IRequestMessage, Integer)
-  nameWithType: IRpcSession.Call(IRequestMessage, int)
-  nameWithType.vb: IRpcSession.Call(IRequestMessage, Integer)
 - uid: GameFrameX.NetWork.Abstractions.IRpcSession.Call*
   name: Call
   href: api/GameFrameX.NetWork.Abstractions.IRpcSession.html#GameFrameX_NetWork_Abstractions_IRpcSession_Call_
@@ -8937,6 +8928,41 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.Abstractions.IRpcSession.Call
   nameWithType: IRpcSession.Call
+- uid: GameFrameX.NetWork.Abstractions.IRpcSession.Call``1(GameFrameX.NetWork.Abstractions.IRequestMessage,System.Int32)
+  name: Call<T>(IRequestMessage, int)
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSession.html#GameFrameX_NetWork_Abstractions_IRpcSession_Call__1_GameFrameX_NetWork_Abstractions_IRequestMessage_System_Int32_
+  commentId: M:GameFrameX.NetWork.Abstractions.IRpcSession.Call``1(GameFrameX.NetWork.Abstractions.IRequestMessage,System.Int32)
+  name.vb: Call(Of T)(IRequestMessage, Integer)
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSession.Call<T>(GameFrameX.NetWork.Abstractions.IRequestMessage, int)
+  fullName.vb: GameFrameX.NetWork.Abstractions.IRpcSession.Call(Of T)(GameFrameX.NetWork.Abstractions.IRequestMessage, Integer)
+  nameWithType: IRpcSession.Call<T>(IRequestMessage, int)
+  nameWithType.vb: IRpcSession.Call(Of T)(IRequestMessage, Integer)
+- uid: GameFrameX.NetWork.Abstractions.IRpcSession.Handler
+  name: Handler()
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSession.html#GameFrameX_NetWork_Abstractions_IRpcSession_Handler
+  commentId: M:GameFrameX.NetWork.Abstractions.IRpcSession.Handler
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSession.Handler()
+  nameWithType: IRpcSession.Handler()
+- uid: GameFrameX.NetWork.Abstractions.IRpcSession.Handler*
+  name: Handler
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSession.html#GameFrameX_NetWork_Abstractions_IRpcSession_Handler_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IRpcSession.Handler
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSession.Handler
+  nameWithType: IRpcSession.Handler
+- uid: GameFrameX.NetWork.Abstractions.IRpcSession.Reply(GameFrameX.NetWork.Abstractions.IResponseMessage)
+  name: Reply(IResponseMessage)
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSession.html#GameFrameX_NetWork_Abstractions_IRpcSession_Reply_GameFrameX_NetWork_Abstractions_IResponseMessage_
+  commentId: M:GameFrameX.NetWork.Abstractions.IRpcSession.Reply(GameFrameX.NetWork.Abstractions.IResponseMessage)
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSession.Reply(GameFrameX.NetWork.Abstractions.IResponseMessage)
+  nameWithType: IRpcSession.Reply(IResponseMessage)
+- uid: GameFrameX.NetWork.Abstractions.IRpcSession.Reply*
+  name: Reply
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSession.html#GameFrameX_NetWork_Abstractions_IRpcSession_Reply_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IRpcSession.Reply
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSession.Reply
+  nameWithType: IRpcSession.Reply
 - uid: GameFrameX.NetWork.Abstractions.IRpcSession.Send(GameFrameX.NetWork.Abstractions.IRequestMessage)
   name: Send(IRequestMessage)
   href: api/GameFrameX.NetWork.Abstractions.IRpcSession.html#GameFrameX_NetWork_Abstractions_IRpcSession_Send_GameFrameX_NetWork_Abstractions_IRequestMessage_
@@ -8950,6 +8976,122 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.Abstractions.IRpcSession.Send
   nameWithType: IRpcSession.Send
+- uid: GameFrameX.NetWork.Abstractions.IRpcSession.Stop
+  name: Stop()
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSession.html#GameFrameX_NetWork_Abstractions_IRpcSession_Stop
+  commentId: M:GameFrameX.NetWork.Abstractions.IRpcSession.Stop
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSession.Stop()
+  nameWithType: IRpcSession.Stop()
+- uid: GameFrameX.NetWork.Abstractions.IRpcSession.Stop*
+  name: Stop
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSession.html#GameFrameX_NetWork_Abstractions_IRpcSession_Stop_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IRpcSession.Stop
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSession.Stop
+  nameWithType: IRpcSession.Stop
+- uid: GameFrameX.NetWork.Abstractions.IRpcSession.Tick(System.Int32)
+  name: Tick(int)
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSession.html#GameFrameX_NetWork_Abstractions_IRpcSession_Tick_System_Int32_
+  commentId: M:GameFrameX.NetWork.Abstractions.IRpcSession.Tick(System.Int32)
+  name.vb: Tick(Integer)
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSession.Tick(int)
+  fullName.vb: GameFrameX.NetWork.Abstractions.IRpcSession.Tick(Integer)
+  nameWithType: IRpcSession.Tick(int)
+  nameWithType.vb: IRpcSession.Tick(Integer)
+- uid: GameFrameX.NetWork.Abstractions.IRpcSession.Tick*
+  name: Tick
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSession.html#GameFrameX_NetWork_Abstractions_IRpcSession_Tick_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IRpcSession.Tick
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSession.Tick
+  nameWithType: IRpcSession.Tick
+- uid: GameFrameX.NetWork.Abstractions.IRpcSessionData
+  name: IRpcSessionData
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSessionData.html
+  commentId: T:GameFrameX.NetWork.Abstractions.IRpcSessionData
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSessionData
+  nameWithType: IRpcSessionData
+- uid: GameFrameX.NetWork.Abstractions.IRpcSessionData.IncrementalElapseTime(System.Int64)
+  name: IncrementalElapseTime(long)
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSessionData.html#GameFrameX_NetWork_Abstractions_IRpcSessionData_IncrementalElapseTime_System_Int64_
+  commentId: M:GameFrameX.NetWork.Abstractions.IRpcSessionData.IncrementalElapseTime(System.Int64)
+  name.vb: IncrementalElapseTime(Long)
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSessionData.IncrementalElapseTime(long)
+  fullName.vb: GameFrameX.NetWork.Abstractions.IRpcSessionData.IncrementalElapseTime(Long)
+  nameWithType: IRpcSessionData.IncrementalElapseTime(long)
+  nameWithType.vb: IRpcSessionData.IncrementalElapseTime(Long)
+- uid: GameFrameX.NetWork.Abstractions.IRpcSessionData.IncrementalElapseTime*
+  name: IncrementalElapseTime
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSessionData.html#GameFrameX_NetWork_Abstractions_IRpcSessionData_IncrementalElapseTime_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IRpcSessionData.IncrementalElapseTime
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSessionData.IncrementalElapseTime
+  nameWithType: IRpcSessionData.IncrementalElapseTime
+- uid: GameFrameX.NetWork.Abstractions.IRpcSessionData.IsReply
+  name: IsReply
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSessionData.html#GameFrameX_NetWork_Abstractions_IRpcSessionData_IsReply
+  commentId: P:GameFrameX.NetWork.Abstractions.IRpcSessionData.IsReply
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSessionData.IsReply
+  nameWithType: IRpcSessionData.IsReply
+- uid: GameFrameX.NetWork.Abstractions.IRpcSessionData.IsReply*
+  name: IsReply
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSessionData.html#GameFrameX_NetWork_Abstractions_IRpcSessionData_IsReply_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IRpcSessionData.IsReply
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSessionData.IsReply
+  nameWithType: IRpcSessionData.IsReply
+- uid: GameFrameX.NetWork.Abstractions.IRpcSessionData.Reply(GameFrameX.NetWork.Abstractions.IResponseMessage)
+  name: Reply(IResponseMessage)
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSessionData.html#GameFrameX_NetWork_Abstractions_IRpcSessionData_Reply_GameFrameX_NetWork_Abstractions_IResponseMessage_
+  commentId: M:GameFrameX.NetWork.Abstractions.IRpcSessionData.Reply(GameFrameX.NetWork.Abstractions.IResponseMessage)
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSessionData.Reply(GameFrameX.NetWork.Abstractions.IResponseMessage)
+  nameWithType: IRpcSessionData.Reply(IResponseMessage)
+- uid: GameFrameX.NetWork.Abstractions.IRpcSessionData.Reply*
+  name: Reply
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSessionData.html#GameFrameX_NetWork_Abstractions_IRpcSessionData_Reply_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IRpcSessionData.Reply
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSessionData.Reply
+  nameWithType: IRpcSessionData.Reply
+- uid: GameFrameX.NetWork.Abstractions.IRpcSessionData.RequestMessage
+  name: RequestMessage
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSessionData.html#GameFrameX_NetWork_Abstractions_IRpcSessionData_RequestMessage
+  commentId: P:GameFrameX.NetWork.Abstractions.IRpcSessionData.RequestMessage
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSessionData.RequestMessage
+  nameWithType: IRpcSessionData.RequestMessage
+- uid: GameFrameX.NetWork.Abstractions.IRpcSessionData.RequestMessage*
+  name: RequestMessage
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSessionData.html#GameFrameX_NetWork_Abstractions_IRpcSessionData_RequestMessage_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IRpcSessionData.RequestMessage
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSessionData.RequestMessage
+  nameWithType: IRpcSessionData.RequestMessage
+- uid: GameFrameX.NetWork.Abstractions.IRpcSessionData.Task
+  name: Task
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSessionData.html#GameFrameX_NetWork_Abstractions_IRpcSessionData_Task
+  commentId: P:GameFrameX.NetWork.Abstractions.IRpcSessionData.Task
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSessionData.Task
+  nameWithType: IRpcSessionData.Task
+- uid: GameFrameX.NetWork.Abstractions.IRpcSessionData.Task*
+  name: Task
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSessionData.html#GameFrameX_NetWork_Abstractions_IRpcSessionData_Task_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IRpcSessionData.Task
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSessionData.Task
+  nameWithType: IRpcSessionData.Task
+- uid: GameFrameX.NetWork.Abstractions.IRpcSessionData.UniqueId
+  name: UniqueId
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSessionData.html#GameFrameX_NetWork_Abstractions_IRpcSessionData_UniqueId
+  commentId: P:GameFrameX.NetWork.Abstractions.IRpcSessionData.UniqueId
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSessionData.UniqueId
+  nameWithType: IRpcSessionData.UniqueId
+- uid: GameFrameX.NetWork.Abstractions.IRpcSessionData.UniqueId*
+  name: UniqueId
+  href: api/GameFrameX.NetWork.Abstractions.IRpcSessionData.html#GameFrameX_NetWork_Abstractions_IRpcSessionData_UniqueId_
+  commentId: Overload:GameFrameX.NetWork.Abstractions.IRpcSessionData.UniqueId
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.Abstractions.IRpcSessionData.UniqueId
+  nameWithType: IRpcSessionData.UniqueId
 - uid: GameFrameX.NetWork.Abstractions.IServiceNotifyOffline
   name: IServiceNotifyOffline
   href: api/GameFrameX.NetWork.Abstractions.IServiceNotifyOffline.html
@@ -11722,174 +11864,6 @@ references:
   commentId: F:GameFrameX.NetWork.OperationErrorCode.Unprocessable
   fullName: GameFrameX.NetWork.OperationErrorCode.Unprocessable
   nameWithType: OperationErrorCode.Unprocessable
-- uid: GameFrameX.NetWork.RpcData
-  name: RpcData
-  href: api/GameFrameX.NetWork.RpcData.html
-  commentId: T:GameFrameX.NetWork.RpcData
-  fullName: GameFrameX.NetWork.RpcData
-  nameWithType: RpcData
-- uid: GameFrameX.NetWork.RpcData.Create(GameFrameX.NetWork.Abstractions.IRequestMessage,System.Boolean,System.Int32)
-  name: Create(IRequestMessage, bool, int)
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_Create_GameFrameX_NetWork_Abstractions_IRequestMessage_System_Boolean_System_Int32_
-  commentId: M:GameFrameX.NetWork.RpcData.Create(GameFrameX.NetWork.Abstractions.IRequestMessage,System.Boolean,System.Int32)
-  name.vb: Create(IRequestMessage, Boolean, Integer)
-  fullName: GameFrameX.NetWork.RpcData.Create(GameFrameX.NetWork.Abstractions.IRequestMessage, bool, int)
-  fullName.vb: GameFrameX.NetWork.RpcData.Create(GameFrameX.NetWork.Abstractions.IRequestMessage, Boolean, Integer)
-  nameWithType: RpcData.Create(IRequestMessage, bool, int)
-  nameWithType.vb: RpcData.Create(IRequestMessage, Boolean, Integer)
-- uid: GameFrameX.NetWork.RpcData.Create*
-  name: Create
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_Create_
-  commentId: Overload:GameFrameX.NetWork.RpcData.Create
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.RpcData.Create
-  nameWithType: RpcData.Create
-- uid: GameFrameX.NetWork.RpcData.CreatedTime
-  name: CreatedTime
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_CreatedTime
-  commentId: P:GameFrameX.NetWork.RpcData.CreatedTime
-  fullName: GameFrameX.NetWork.RpcData.CreatedTime
-  nameWithType: RpcData.CreatedTime
-- uid: GameFrameX.NetWork.RpcData.CreatedTime*
-  name: CreatedTime
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_CreatedTime_
-  commentId: Overload:GameFrameX.NetWork.RpcData.CreatedTime
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.RpcData.CreatedTime
-  nameWithType: RpcData.CreatedTime
-- uid: GameFrameX.NetWork.RpcData.Dispose
-  name: Dispose()
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_Dispose
-  commentId: M:GameFrameX.NetWork.RpcData.Dispose
-  fullName: GameFrameX.NetWork.RpcData.Dispose()
-  nameWithType: RpcData.Dispose()
-- uid: GameFrameX.NetWork.RpcData.Dispose*
-  name: Dispose
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_Dispose_
-  commentId: Overload:GameFrameX.NetWork.RpcData.Dispose
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.RpcData.Dispose
-  nameWithType: RpcData.Dispose
-- uid: GameFrameX.NetWork.RpcData.Finalize
-  name: ~RpcData()
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_Finalize
-  commentId: M:GameFrameX.NetWork.RpcData.Finalize
-  name.vb: ''
-  fullName: GameFrameX.NetWork.RpcData.~RpcData()
-  fullName.vb: ''
-  nameWithType: RpcData.~RpcData()
-  nameWithType.vb: ''
-- uid: GameFrameX.NetWork.RpcData.Finalize*
-  name: ~RpcData
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_Finalize_
-  commentId: Overload:GameFrameX.NetWork.RpcData.Finalize
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.RpcData.~RpcData
-  nameWithType: RpcData.~RpcData
-- uid: GameFrameX.NetWork.RpcData.IsReply
-  name: IsReply
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_IsReply
-  commentId: P:GameFrameX.NetWork.RpcData.IsReply
-  fullName: GameFrameX.NetWork.RpcData.IsReply
-  nameWithType: RpcData.IsReply
-- uid: GameFrameX.NetWork.RpcData.IsReply*
-  name: IsReply
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_IsReply_
-  commentId: Overload:GameFrameX.NetWork.RpcData.IsReply
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.RpcData.IsReply
-  nameWithType: RpcData.IsReply
-- uid: GameFrameX.NetWork.RpcData.Reply(GameFrameX.NetWork.Abstractions.IResponseMessage)
-  name: Reply(IResponseMessage)
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_Reply_GameFrameX_NetWork_Abstractions_IResponseMessage_
-  commentId: M:GameFrameX.NetWork.RpcData.Reply(GameFrameX.NetWork.Abstractions.IResponseMessage)
-  fullName: GameFrameX.NetWork.RpcData.Reply(GameFrameX.NetWork.Abstractions.IResponseMessage)
-  nameWithType: RpcData.Reply(IResponseMessage)
-- uid: GameFrameX.NetWork.RpcData.Reply*
-  name: Reply
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_Reply_
-  commentId: Overload:GameFrameX.NetWork.RpcData.Reply
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.RpcData.Reply
-  nameWithType: RpcData.Reply
-- uid: GameFrameX.NetWork.RpcData.RequestMessage
-  name: RequestMessage
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_RequestMessage
-  commentId: P:GameFrameX.NetWork.RpcData.RequestMessage
-  fullName: GameFrameX.NetWork.RpcData.RequestMessage
-  nameWithType: RpcData.RequestMessage
-- uid: GameFrameX.NetWork.RpcData.RequestMessage*
-  name: RequestMessage
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_RequestMessage_
-  commentId: Overload:GameFrameX.NetWork.RpcData.RequestMessage
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.RpcData.RequestMessage
-  nameWithType: RpcData.RequestMessage
-- uid: GameFrameX.NetWork.RpcData.ResponseMessage
-  name: ResponseMessage
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_ResponseMessage
-  commentId: P:GameFrameX.NetWork.RpcData.ResponseMessage
-  fullName: GameFrameX.NetWork.RpcData.ResponseMessage
-  nameWithType: RpcData.ResponseMessage
-- uid: GameFrameX.NetWork.RpcData.ResponseMessage*
-  name: ResponseMessage
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_ResponseMessage_
-  commentId: Overload:GameFrameX.NetWork.RpcData.ResponseMessage
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.RpcData.ResponseMessage
-  nameWithType: RpcData.ResponseMessage
-- uid: GameFrameX.NetWork.RpcData.Task
-  name: Task
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_Task
-  commentId: P:GameFrameX.NetWork.RpcData.Task
-  fullName: GameFrameX.NetWork.RpcData.Task
-  nameWithType: RpcData.Task
-- uid: GameFrameX.NetWork.RpcData.Task*
-  name: Task
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_Task_
-  commentId: Overload:GameFrameX.NetWork.RpcData.Task
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.RpcData.Task
-  nameWithType: RpcData.Task
-- uid: GameFrameX.NetWork.RpcData.Time
-  name: Time
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_Time
-  commentId: P:GameFrameX.NetWork.RpcData.Time
-  fullName: GameFrameX.NetWork.RpcData.Time
-  nameWithType: RpcData.Time
-- uid: GameFrameX.NetWork.RpcData.Time*
-  name: Time
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_Time_
-  commentId: Overload:GameFrameX.NetWork.RpcData.Time
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.RpcData.Time
-  nameWithType: RpcData.Time
-- uid: GameFrameX.NetWork.RpcData.Timeout
-  name: Timeout
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_Timeout
-  commentId: P:GameFrameX.NetWork.RpcData.Timeout
-  fullName: GameFrameX.NetWork.RpcData.Timeout
-  nameWithType: RpcData.Timeout
-- uid: GameFrameX.NetWork.RpcData.Timeout*
-  name: Timeout
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_Timeout_
-  commentId: Overload:GameFrameX.NetWork.RpcData.Timeout
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.RpcData.Timeout
-  nameWithType: RpcData.Timeout
-- uid: GameFrameX.NetWork.RpcData.UniqueId
-  name: UniqueId
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_UniqueId
-  commentId: P:GameFrameX.NetWork.RpcData.UniqueId
-  fullName: GameFrameX.NetWork.RpcData.UniqueId
-  nameWithType: RpcData.UniqueId
-- uid: GameFrameX.NetWork.RpcData.UniqueId*
-  name: UniqueId
-  href: api/GameFrameX.NetWork.RpcData.html#GameFrameX_NetWork_RpcData_UniqueId_
-  commentId: Overload:GameFrameX.NetWork.RpcData.UniqueId
-  isSpec: "True"
-  fullName: GameFrameX.NetWork.RpcData.UniqueId
-  nameWithType: RpcData.UniqueId
 - uid: GameFrameX.NetWork.RpcResult
   name: RpcResult
   href: api/GameFrameX.NetWork.RpcResult.html
@@ -11970,15 +11944,6 @@ references:
   commentId: T:GameFrameX.NetWork.RpcSession
   fullName: GameFrameX.NetWork.RpcSession
   nameWithType: RpcSession
-- uid: GameFrameX.NetWork.RpcSession.Call(GameFrameX.NetWork.Abstractions.IRequestMessage,System.Int32)
-  name: Call(IRequestMessage, int)
-  href: api/GameFrameX.NetWork.RpcSession.html#GameFrameX_NetWork_RpcSession_Call_GameFrameX_NetWork_Abstractions_IRequestMessage_System_Int32_
-  commentId: M:GameFrameX.NetWork.RpcSession.Call(GameFrameX.NetWork.Abstractions.IRequestMessage,System.Int32)
-  name.vb: Call(IRequestMessage, Integer)
-  fullName: GameFrameX.NetWork.RpcSession.Call(GameFrameX.NetWork.Abstractions.IRequestMessage, int)
-  fullName.vb: GameFrameX.NetWork.RpcSession.Call(GameFrameX.NetWork.Abstractions.IRequestMessage, Integer)
-  nameWithType: RpcSession.Call(IRequestMessage, int)
-  nameWithType.vb: RpcSession.Call(IRequestMessage, Integer)
 - uid: GameFrameX.NetWork.RpcSession.Call*
   name: Call
   href: api/GameFrameX.NetWork.RpcSession.html#GameFrameX_NetWork_RpcSession_Call_
@@ -11986,6 +11951,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.RpcSession.Call
   nameWithType: RpcSession.Call
+- uid: GameFrameX.NetWork.RpcSession.Call``1(GameFrameX.NetWork.Abstractions.IRequestMessage,System.Int32)
+  name: Call<T>(IRequestMessage, int)
+  href: api/GameFrameX.NetWork.RpcSession.html#GameFrameX_NetWork_RpcSession_Call__1_GameFrameX_NetWork_Abstractions_IRequestMessage_System_Int32_
+  commentId: M:GameFrameX.NetWork.RpcSession.Call``1(GameFrameX.NetWork.Abstractions.IRequestMessage,System.Int32)
+  name.vb: Call(Of T)(IRequestMessage, Integer)
+  fullName: GameFrameX.NetWork.RpcSession.Call<T>(GameFrameX.NetWork.Abstractions.IRequestMessage, int)
+  fullName.vb: GameFrameX.NetWork.RpcSession.Call(Of T)(GameFrameX.NetWork.Abstractions.IRequestMessage, Integer)
+  nameWithType: RpcSession.Call<T>(IRequestMessage, int)
+  nameWithType.vb: RpcSession.Call(Of T)(IRequestMessage, Integer)
 - uid: GameFrameX.NetWork.RpcSession.Dispose
   name: Dispose()
   href: api/GameFrameX.NetWork.RpcSession.html#GameFrameX_NetWork_RpcSession_Dispose
@@ -12096,6 +12070,190 @@ references:
   isSpec: "True"
   fullName: GameFrameX.NetWork.RpcSession.TryPeek
   nameWithType: RpcSession.TryPeek
+- uid: GameFrameX.NetWork.RpcSessionData
+  name: RpcSessionData
+  href: api/GameFrameX.NetWork.RpcSessionData.html
+  commentId: T:GameFrameX.NetWork.RpcSessionData
+  fullName: GameFrameX.NetWork.RpcSessionData
+  nameWithType: RpcSessionData
+- uid: GameFrameX.NetWork.RpcSessionData.Create(GameFrameX.NetWork.Abstractions.IRequestMessage,System.Boolean,System.Int32)
+  name: Create(IRequestMessage, bool, int)
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_Create_GameFrameX_NetWork_Abstractions_IRequestMessage_System_Boolean_System_Int32_
+  commentId: M:GameFrameX.NetWork.RpcSessionData.Create(GameFrameX.NetWork.Abstractions.IRequestMessage,System.Boolean,System.Int32)
+  name.vb: Create(IRequestMessage, Boolean, Integer)
+  fullName: GameFrameX.NetWork.RpcSessionData.Create(GameFrameX.NetWork.Abstractions.IRequestMessage, bool, int)
+  fullName.vb: GameFrameX.NetWork.RpcSessionData.Create(GameFrameX.NetWork.Abstractions.IRequestMessage, Boolean, Integer)
+  nameWithType: RpcSessionData.Create(IRequestMessage, bool, int)
+  nameWithType.vb: RpcSessionData.Create(IRequestMessage, Boolean, Integer)
+- uid: GameFrameX.NetWork.RpcSessionData.Create*
+  name: Create
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_Create_
+  commentId: Overload:GameFrameX.NetWork.RpcSessionData.Create
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.RpcSessionData.Create
+  nameWithType: RpcSessionData.Create
+- uid: GameFrameX.NetWork.RpcSessionData.CreatedTime
+  name: CreatedTime
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_CreatedTime
+  commentId: P:GameFrameX.NetWork.RpcSessionData.CreatedTime
+  fullName: GameFrameX.NetWork.RpcSessionData.CreatedTime
+  nameWithType: RpcSessionData.CreatedTime
+- uid: GameFrameX.NetWork.RpcSessionData.CreatedTime*
+  name: CreatedTime
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_CreatedTime_
+  commentId: Overload:GameFrameX.NetWork.RpcSessionData.CreatedTime
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.RpcSessionData.CreatedTime
+  nameWithType: RpcSessionData.CreatedTime
+- uid: GameFrameX.NetWork.RpcSessionData.Dispose
+  name: Dispose()
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_Dispose
+  commentId: M:GameFrameX.NetWork.RpcSessionData.Dispose
+  fullName: GameFrameX.NetWork.RpcSessionData.Dispose()
+  nameWithType: RpcSessionData.Dispose()
+- uid: GameFrameX.NetWork.RpcSessionData.Dispose*
+  name: Dispose
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_Dispose_
+  commentId: Overload:GameFrameX.NetWork.RpcSessionData.Dispose
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.RpcSessionData.Dispose
+  nameWithType: RpcSessionData.Dispose
+- uid: GameFrameX.NetWork.RpcSessionData.Finalize
+  name: ~RpcSessionData()
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_Finalize
+  commentId: M:GameFrameX.NetWork.RpcSessionData.Finalize
+  name.vb: ''
+  fullName: GameFrameX.NetWork.RpcSessionData.~RpcSessionData()
+  fullName.vb: ''
+  nameWithType: RpcSessionData.~RpcSessionData()
+  nameWithType.vb: ''
+- uid: GameFrameX.NetWork.RpcSessionData.Finalize*
+  name: ~RpcSessionData
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_Finalize_
+  commentId: Overload:GameFrameX.NetWork.RpcSessionData.Finalize
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.RpcSessionData.~RpcSessionData
+  nameWithType: RpcSessionData.~RpcSessionData
+- uid: GameFrameX.NetWork.RpcSessionData.IncrementalElapseTime(System.Int64)
+  name: IncrementalElapseTime(long)
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_IncrementalElapseTime_System_Int64_
+  commentId: M:GameFrameX.NetWork.RpcSessionData.IncrementalElapseTime(System.Int64)
+  name.vb: IncrementalElapseTime(Long)
+  fullName: GameFrameX.NetWork.RpcSessionData.IncrementalElapseTime(long)
+  fullName.vb: GameFrameX.NetWork.RpcSessionData.IncrementalElapseTime(Long)
+  nameWithType: RpcSessionData.IncrementalElapseTime(long)
+  nameWithType.vb: RpcSessionData.IncrementalElapseTime(Long)
+- uid: GameFrameX.NetWork.RpcSessionData.IncrementalElapseTime*
+  name: IncrementalElapseTime
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_IncrementalElapseTime_
+  commentId: Overload:GameFrameX.NetWork.RpcSessionData.IncrementalElapseTime
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.RpcSessionData.IncrementalElapseTime
+  nameWithType: RpcSessionData.IncrementalElapseTime
+- uid: GameFrameX.NetWork.RpcSessionData.IsReply
+  name: IsReply
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_IsReply
+  commentId: P:GameFrameX.NetWork.RpcSessionData.IsReply
+  fullName: GameFrameX.NetWork.RpcSessionData.IsReply
+  nameWithType: RpcSessionData.IsReply
+- uid: GameFrameX.NetWork.RpcSessionData.IsReply*
+  name: IsReply
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_IsReply_
+  commentId: Overload:GameFrameX.NetWork.RpcSessionData.IsReply
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.RpcSessionData.IsReply
+  nameWithType: RpcSessionData.IsReply
+- uid: GameFrameX.NetWork.RpcSessionData.Reply(GameFrameX.NetWork.Abstractions.IResponseMessage)
+  name: Reply(IResponseMessage)
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_Reply_GameFrameX_NetWork_Abstractions_IResponseMessage_
+  commentId: M:GameFrameX.NetWork.RpcSessionData.Reply(GameFrameX.NetWork.Abstractions.IResponseMessage)
+  fullName: GameFrameX.NetWork.RpcSessionData.Reply(GameFrameX.NetWork.Abstractions.IResponseMessage)
+  nameWithType: RpcSessionData.Reply(IResponseMessage)
+- uid: GameFrameX.NetWork.RpcSessionData.Reply*
+  name: Reply
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_Reply_
+  commentId: Overload:GameFrameX.NetWork.RpcSessionData.Reply
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.RpcSessionData.Reply
+  nameWithType: RpcSessionData.Reply
+- uid: GameFrameX.NetWork.RpcSessionData.RequestMessage
+  name: RequestMessage
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_RequestMessage
+  commentId: P:GameFrameX.NetWork.RpcSessionData.RequestMessage
+  fullName: GameFrameX.NetWork.RpcSessionData.RequestMessage
+  nameWithType: RpcSessionData.RequestMessage
+- uid: GameFrameX.NetWork.RpcSessionData.RequestMessage*
+  name: RequestMessage
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_RequestMessage_
+  commentId: Overload:GameFrameX.NetWork.RpcSessionData.RequestMessage
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.RpcSessionData.RequestMessage
+  nameWithType: RpcSessionData.RequestMessage
+- uid: GameFrameX.NetWork.RpcSessionData.ResponseMessage
+  name: ResponseMessage
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_ResponseMessage
+  commentId: P:GameFrameX.NetWork.RpcSessionData.ResponseMessage
+  fullName: GameFrameX.NetWork.RpcSessionData.ResponseMessage
+  nameWithType: RpcSessionData.ResponseMessage
+- uid: GameFrameX.NetWork.RpcSessionData.ResponseMessage*
+  name: ResponseMessage
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_ResponseMessage_
+  commentId: Overload:GameFrameX.NetWork.RpcSessionData.ResponseMessage
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.RpcSessionData.ResponseMessage
+  nameWithType: RpcSessionData.ResponseMessage
+- uid: GameFrameX.NetWork.RpcSessionData.Task
+  name: Task
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_Task
+  commentId: P:GameFrameX.NetWork.RpcSessionData.Task
+  fullName: GameFrameX.NetWork.RpcSessionData.Task
+  nameWithType: RpcSessionData.Task
+- uid: GameFrameX.NetWork.RpcSessionData.Task*
+  name: Task
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_Task_
+  commentId: Overload:GameFrameX.NetWork.RpcSessionData.Task
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.RpcSessionData.Task
+  nameWithType: RpcSessionData.Task
+- uid: GameFrameX.NetWork.RpcSessionData.Time
+  name: Time
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_Time
+  commentId: P:GameFrameX.NetWork.RpcSessionData.Time
+  fullName: GameFrameX.NetWork.RpcSessionData.Time
+  nameWithType: RpcSessionData.Time
+- uid: GameFrameX.NetWork.RpcSessionData.Time*
+  name: Time
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_Time_
+  commentId: Overload:GameFrameX.NetWork.RpcSessionData.Time
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.RpcSessionData.Time
+  nameWithType: RpcSessionData.Time
+- uid: GameFrameX.NetWork.RpcSessionData.Timeout
+  name: Timeout
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_Timeout
+  commentId: P:GameFrameX.NetWork.RpcSessionData.Timeout
+  fullName: GameFrameX.NetWork.RpcSessionData.Timeout
+  nameWithType: RpcSessionData.Timeout
+- uid: GameFrameX.NetWork.RpcSessionData.Timeout*
+  name: Timeout
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_Timeout_
+  commentId: Overload:GameFrameX.NetWork.RpcSessionData.Timeout
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.RpcSessionData.Timeout
+  nameWithType: RpcSessionData.Timeout
+- uid: GameFrameX.NetWork.RpcSessionData.UniqueId
+  name: UniqueId
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_UniqueId
+  commentId: P:GameFrameX.NetWork.RpcSessionData.UniqueId
+  fullName: GameFrameX.NetWork.RpcSessionData.UniqueId
+  nameWithType: RpcSessionData.UniqueId
+- uid: GameFrameX.NetWork.RpcSessionData.UniqueId*
+  name: UniqueId
+  href: api/GameFrameX.NetWork.RpcSessionData.html#GameFrameX_NetWork_RpcSessionData_UniqueId_
+  commentId: Overload:GameFrameX.NetWork.RpcSessionData.UniqueId
+  isSpec: "True"
+  fullName: GameFrameX.NetWork.RpcSessionData.UniqueId
+  nameWithType: RpcSessionData.UniqueId
 - uid: GameFrameX.StartUp
   name: GameFrameX.StartUp
   href: api/GameFrameX.StartUp.html
@@ -12245,6 +12403,22 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.AppStartUpBase.AppExitToken
   nameWithType: AppStartUpBase.AppExitToken
+- uid: GameFrameX.StartUp.AppStartUpBase.Call*
+  name: Call
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_Call_
+  commentId: Overload:GameFrameX.StartUp.AppStartUpBase.Call
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.AppStartUpBase.Call
+  nameWithType: AppStartUpBase.Call
+- uid: GameFrameX.StartUp.AppStartUpBase.Call``1(GameFrameX.NetWork.Messages.MessageObject,System.Int32)
+  name: Call<T>(MessageObject, int)
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_Call__1_GameFrameX_NetWork_Messages_MessageObject_System_Int32_
+  commentId: M:GameFrameX.StartUp.AppStartUpBase.Call``1(GameFrameX.NetWork.Messages.MessageObject,System.Int32)
+  name.vb: Call(Of T)(MessageObject, Integer)
+  fullName: GameFrameX.StartUp.AppStartUpBase.Call<T>(GameFrameX.NetWork.Messages.MessageObject, int)
+  fullName.vb: GameFrameX.StartUp.AppStartUpBase.Call(Of T)(GameFrameX.NetWork.Messages.MessageObject, Integer)
+  nameWithType: AppStartUpBase.Call<T>(MessageObject, int)
+  nameWithType.vb: AppStartUpBase.Call(Of T)(MessageObject, Integer)
 - uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnClosed
   name: GameAppClientOnClosed()
   href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnClosed
@@ -13273,6 +13447,45 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.IsDebugSendHeartBeat
   nameWithType: LauncherOptions.IsDebugSendHeartBeat
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsEnableHttp
+  name: IsEnableHttp
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsEnableHttp
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.IsEnableHttp
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsEnableHttp
+  nameWithType: LauncherOptions.IsEnableHttp
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsEnableHttp*
+  name: IsEnableHttp
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsEnableHttp_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.IsEnableHttp
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsEnableHttp
+  nameWithType: LauncherOptions.IsEnableHttp
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsEnableTcp
+  name: IsEnableTcp
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsEnableTcp
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.IsEnableTcp
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsEnableTcp
+  nameWithType: LauncherOptions.IsEnableTcp
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsEnableTcp*
+  name: IsEnableTcp
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsEnableTcp_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.IsEnableTcp
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsEnableTcp
+  nameWithType: LauncherOptions.IsEnableTcp
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsEnableUdp
+  name: IsEnableUdp
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsEnableUdp
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.IsEnableUdp
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsEnableUdp
+  nameWithType: LauncherOptions.IsEnableUdp
+- uid: GameFrameX.StartUp.Options.LauncherOptions.IsEnableUdp*
+  name: IsEnableUdp
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsEnableUdp_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.IsEnableUdp
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.IsEnableUdp
+  nameWithType: LauncherOptions.IsEnableUdp
 - uid: GameFrameX.StartUp.Options.LauncherOptions.IsEnableWebSocket
   name: IsEnableWebSocket
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_IsEnableWebSocket
@@ -13741,6 +13954,161 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.WssPort
   nameWithType: LauncherOptions.WssPort
+- uid: GameFrameX.StartUp.ServiceClient
+  name: GameFrameX.StartUp.ServiceClient
+  href: api/GameFrameX.StartUp.ServiceClient.html
+  commentId: N:GameFrameX.StartUp.ServiceClient
+  fullName: GameFrameX.StartUp.ServiceClient
+  nameWithType: GameFrameX.StartUp.ServiceClient
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration
+  name: GameAppServiceConfiguration
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html
+  commentId: T:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration
+  nameWithType: GameAppServiceConfiguration
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.ConnectDelay
+  name: ConnectDelay
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_ConnectDelay
+  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.ConnectDelay
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.ConnectDelay
+  nameWithType: GameAppServiceConfiguration.ConnectDelay
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.ConnectDelay*
+  name: ConnectDelay
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_ConnectDelay_
+  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.ConnectDelay
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.ConnectDelay
+  nameWithType: GameAppServiceConfiguration.ConnectDelay
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.HeartBeatInterval
+  name: HeartBeatInterval
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_HeartBeatInterval
+  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.HeartBeatInterval
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.HeartBeatInterval
+  nameWithType: GameAppServiceConfiguration.HeartBeatInterval
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.HeartBeatInterval*
+  name: HeartBeatInterval
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_HeartBeatInterval_
+  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.HeartBeatInterval
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.HeartBeatInterval
+  nameWithType: GameAppServiceConfiguration.HeartBeatInterval
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableConnectDelay
+  name: IsEnableConnectDelay
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_IsEnableConnectDelay
+  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableConnectDelay
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableConnectDelay
+  nameWithType: GameAppServiceConfiguration.IsEnableConnectDelay
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableConnectDelay*
+  name: IsEnableConnectDelay
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_IsEnableConnectDelay_
+  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableConnectDelay
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableConnectDelay
+  nameWithType: GameAppServiceConfiguration.IsEnableConnectDelay
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableHeartBeat
+  name: IsEnableHeartBeat
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_IsEnableHeartBeat
+  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableHeartBeat
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableHeartBeat
+  nameWithType: GameAppServiceConfiguration.IsEnableHeartBeat
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableHeartBeat*
+  name: IsEnableHeartBeat
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_IsEnableHeartBeat_
+  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableHeartBeat
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableHeartBeat
+  nameWithType: GameAppServiceConfiguration.IsEnableHeartBeat
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.MaxRetryCount
+  name: MaxRetryCount
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_MaxRetryCount
+  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.MaxRetryCount
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.MaxRetryCount
+  nameWithType: GameAppServiceConfiguration.MaxRetryCount
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.MaxRetryCount*
+  name: MaxRetryCount
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_MaxRetryCount_
+  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.MaxRetryCount
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.MaxRetryCount
+  nameWithType: GameAppServiceConfiguration.MaxRetryCount
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnClosed
+  name: OnClosed
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnClosed
+  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnClosed
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnClosed
+  nameWithType: GameAppServiceConfiguration.OnClosed
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnClosed*
+  name: OnClosed
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnClosed_
+  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnClosed
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnClosed
+  nameWithType: GameAppServiceConfiguration.OnClosed
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnConnected
+  name: OnConnected
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnConnected
+  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnConnected
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnConnected
+  nameWithType: GameAppServiceConfiguration.OnConnected
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnConnected*
+  name: OnConnected
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnConnected_
+  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnConnected
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnConnected
+  nameWithType: GameAppServiceConfiguration.OnConnected
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnError
+  name: OnError
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnError
+  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnError
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnError
+  nameWithType: GameAppServiceConfiguration.OnError
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnError*
+  name: OnError
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnError_
+  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnError
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnError
+  nameWithType: GameAppServiceConfiguration.OnError
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnHeartBeat
+  name: OnHeartBeat
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnHeartBeat
+  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnHeartBeat
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnHeartBeat
+  nameWithType: GameAppServiceConfiguration.OnHeartBeat
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnHeartBeat*
+  name: OnHeartBeat
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnHeartBeat_
+  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnHeartBeat
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnHeartBeat
+  nameWithType: GameAppServiceConfiguration.OnHeartBeat
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnMessage
+  name: OnMessage
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnMessage
+  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnMessage
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnMessage
+  nameWithType: GameAppServiceConfiguration.OnMessage
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnMessage*
+  name: OnMessage
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnMessage_
+  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnMessage
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnMessage
+  nameWithType: GameAppServiceConfiguration.OnMessage
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.RetryDelay
+  name: RetryDelay
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_RetryDelay
+  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.RetryDelay
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.RetryDelay
+  nameWithType: GameAppServiceConfiguration.RetryDelay
+- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.RetryDelay*
+  name: RetryDelay
+  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_RetryDelay_
+  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.RetryDelay
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.RetryDelay
+  nameWithType: GameAppServiceConfiguration.RetryDelay
 - uid: GameFrameX.StartUp.StartUpTagAttribute
   name: StartUpTagAttribute
   href: api/GameFrameX.StartUp.StartUpTagAttribute.html
@@ -22774,6 +23142,45 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.Setting.AppSetting.IsDebugSendHeartBeat
   nameWithType: AppSetting.IsDebugSendHeartBeat
+- uid: GameFrameX.Utility.Setting.AppSetting.IsEnableHttp
+  name: IsEnableHttp
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsEnableHttp
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.IsEnableHttp
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsEnableHttp
+  nameWithType: AppSetting.IsEnableHttp
+- uid: GameFrameX.Utility.Setting.AppSetting.IsEnableHttp*
+  name: IsEnableHttp
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsEnableHttp_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.IsEnableHttp
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsEnableHttp
+  nameWithType: AppSetting.IsEnableHttp
+- uid: GameFrameX.Utility.Setting.AppSetting.IsEnableTcp
+  name: IsEnableTcp
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsEnableTcp
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.IsEnableTcp
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsEnableTcp
+  nameWithType: AppSetting.IsEnableTcp
+- uid: GameFrameX.Utility.Setting.AppSetting.IsEnableTcp*
+  name: IsEnableTcp
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsEnableTcp_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.IsEnableTcp
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsEnableTcp
+  nameWithType: AppSetting.IsEnableTcp
+- uid: GameFrameX.Utility.Setting.AppSetting.IsEnableUdp
+  name: IsEnableUdp
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsEnableUdp
+  commentId: P:GameFrameX.Utility.Setting.AppSetting.IsEnableUdp
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsEnableUdp
+  nameWithType: AppSetting.IsEnableUdp
+- uid: GameFrameX.Utility.Setting.AppSetting.IsEnableUdp*
+  name: IsEnableUdp
+  href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsEnableUdp_
+  commentId: Overload:GameFrameX.Utility.Setting.AppSetting.IsEnableUdp
+  isSpec: "True"
+  fullName: GameFrameX.Utility.Setting.AppSetting.IsEnableUdp
+  nameWithType: AppSetting.IsEnableUdp
 - uid: GameFrameX.Utility.Setting.AppSetting.IsEnableWebSocket
   name: IsEnableWebSocket
   href: api/GameFrameX.Utility.Setting.AppSetting.html#GameFrameX_Utility_Setting_AppSetting_IsEnableWebSocket

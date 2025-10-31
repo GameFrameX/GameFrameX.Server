@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.1-dev9/apiSpec/new?filename=GameFrameX_NetWork_Abstractions_IRpcSession.md&amp;value=---%0Auid%3A%20GameFrameX.NetWork.Abstractions.IRpcSession%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.2-dev1/apiSpec/new?filename=GameFrameX_NetWork_Abstractions_IRpcSession.md&amp;value=---%0Auid%3A%20GameFrameX.NetWork.Abstractions.IRpcSession%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_NetWork_Abstractions_IRpcSession" data-uid="GameFrameX.NetWork.Abstractions.IRpcSession" class="text-break">
-Interface IRpcSession  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.NetWork.Abstractions/IRpcSession.cs/#L37"><i class="bi bi-code-slash"></i></a>
+Interface IRpcSession  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.NetWork.Abstractions/IRpcSession.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -123,9 +123,9 @@ Interface IRpcSession  <a class="header-action link-secondary" title="View sourc
 
   <a id="GameFrameX_NetWork_Abstractions_IRpcSession_Call_" data-uid="GameFrameX.NetWork.Abstractions.IRpcSession.Call*"></a>
 
-  <h3 id="GameFrameX_NetWork_Abstractions_IRpcSession_Call_GameFrameX_NetWork_Abstractions_IRequestMessage_System_Int32_" data-uid="GameFrameX.NetWork.Abstractions.IRpcSession.Call(GameFrameX.NetWork.Abstractions.IRequestMessage,System.Int32)">
-  Call(IRequestMessage, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.NetWork.Abstractions/IRpcSession.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GameFrameX_NetWork_Abstractions_IRpcSession_Call__1_GameFrameX_NetWork_Abstractions_IRequestMessage_System_Int32_" data-uid="GameFrameX.NetWork.Abstractions.IRpcSession.Call``1(GameFrameX.NetWork.Abstractions.IRequestMessage,System.Int32)">
+  Call&lt;T&gt;(IRequestMessage, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.NetWork.Abstractions/IRpcSession.cs/#L46"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步调用,且等待返回</p>
@@ -133,7 +133,7 @@ Interface IRpcSession  <a class="header-action link-secondary" title="View sourc
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;IRpcResult&gt; Call(IRequestMessage message, int timeOutMillisecond = 10000)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;IRpcResult&gt; Call&lt;T&gt;(IRequestMessage message, int timeOutMillisecond = 10000) where T : IResponseMessage, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -153,6 +153,84 @@ Interface IRpcSession  <a class="header-action link-secondary" title="View sourc
 </dd>
   </dl>
 
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>返回消息对象类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_Abstractions_IRpcSession_Handler_" data-uid="GameFrameX.NetWork.Abstractions.IRpcSession.Handler*"></a>
+
+  <h3 id="GameFrameX_NetWork_Abstractions_IRpcSession_Handler" data-uid="GameFrameX.NetWork.Abstractions.IRpcSession.Handler">
+  Handler()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.NetWork.Abstractions/IRpcSession.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>处理消息队列</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IRpcSessionData Handler()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GameFrameX.NetWork.Abstractions.IRpcSessionData.html">IRpcSessionData</a></dt>
+    <dd><p>处理结果</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_Abstractions_IRpcSession_Reply_" data-uid="GameFrameX.NetWork.Abstractions.IRpcSession.Reply*"></a>
+
+  <h3 id="GameFrameX_NetWork_Abstractions_IRpcSession_Reply_GameFrameX_NetWork_Abstractions_IResponseMessage_" data-uid="GameFrameX.NetWork.Abstractions.IRpcSession.Reply(GameFrameX.NetWork.Abstractions.IResponseMessage)">
+  Reply(IResponseMessage)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.NetWork.Abstractions/IRpcSession.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>回复消息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool Reply(IResponseMessage message)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <a class="xref" href="GameFrameX.NetWork.Abstractions.IResponseMessage.html">IResponseMessage</a></dt>
+    <dd><p>回复消息对象</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否成功回复</p>
+</dd>
+  </dl>
+
 
 
 
@@ -167,7 +245,7 @@ Interface IRpcSession  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_NetWork_Abstractions_IRpcSession_Send_GameFrameX_NetWork_Abstractions_IRequestMessage_" data-uid="GameFrameX.NetWork.Abstractions.IRpcSession.Send(GameFrameX.NetWork.Abstractions.IRequestMessage)">
   Send(IRequestMessage)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.NetWork.Abstractions/IRpcSession.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.NetWork.Abstractions/IRpcSession.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>异步发送,不等待结果</p>
@@ -196,11 +274,71 @@ Interface IRpcSession  <a class="header-action link-secondary" title="View sourc
 
 
 
+  <a id="GameFrameX_NetWork_Abstractions_IRpcSession_Stop_" data-uid="GameFrameX.NetWork.Abstractions.IRpcSession.Stop*"></a>
+
+  <h3 id="GameFrameX_NetWork_Abstractions_IRpcSession_Stop" data-uid="GameFrameX.NetWork.Abstractions.IRpcSession.Stop">
+  Stop()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.NetWork.Abstractions/IRpcSession.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>停止会话</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Stop()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GameFrameX_NetWork_Abstractions_IRpcSession_Tick_" data-uid="GameFrameX.NetWork.Abstractions.IRpcSession.Tick*"></a>
+
+  <h3 id="GameFrameX_NetWork_Abstractions_IRpcSession_Tick_System_Int32_" data-uid="GameFrameX.NetWork.Abstractions.IRpcSession.Tick(System.Int32)">
+  Tick(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.NetWork.Abstractions/IRpcSession.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>处理消息队列</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Tick(int elapseMillisecondsTime)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>elapseMillisecondsTime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>时间间隔,单位毫秒</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.1-dev9/GameFrameX.NetWork.Abstractions/IRpcSession.cs/#L37" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.NetWork.Abstractions/IRpcSession.cs/#L37" class="edit-link">Edit this page</a>
         </div>
 
 
