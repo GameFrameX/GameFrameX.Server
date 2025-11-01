@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -34,42 +34,68 @@ using GameFrameX.Utility.Setting;
 namespace GameFrameX.StartUp.Abstractions;
 
 /// <summary>
-/// 程序启动器基类接口定义
+/// Application startup interface definition
 /// </summary>
+/// <remarks>
+/// 程序启动器基类接口定义，定义了应用程序启动、停止和配置管理的基本契约
+/// </remarks>
 public interface IAppStartUp
 {
     /// <summary>
-    /// 应用退出
+    /// Gets the application exit token
     /// </summary>
+    /// <value>A task that represents the application exit token</value>
+    /// <remarks>
+    /// 应用退出令牌，用于监控应用程序的退出状态
+    /// </remarks>
     Task<string> AppExitToken { get; }
 
     /// <summary>
-    /// 服务器类型
+    /// Gets the server type
     /// </summary>
+    /// <value>The type identifier of the server</value>
+    /// <remarks>
+    /// 服务器类型标识符，用于区分不同类型的服务器实例
+    /// </remarks>
     string ServerType { get; }
 
     /// <summary>
-    /// 配置信息
+    /// Gets the application configuration settings
     /// </summary>
+    /// <value>The application settings instance</value>
+    /// <remarks>
+    /// 配置信息，包含应用程序运行所需的各种配置参数
+    /// </remarks>
     AppSetting Setting { get; }
 
     /// <summary>
-    /// 初始化
+    /// Initializes the application startup with specified parameters
     /// </summary>
-    /// <param name="serverType">服务器类型</param>
-    /// <param name="setting">启动设置</param>
-    /// <param name="args">启动参数</param>
-    /// <returns></returns>
+    /// <param name="serverType">The type of server to initialize / 服务器类型</param>
+    /// <param name="setting">The application settings / 启动设置</param>
+    /// <param name="args">The startup arguments / 启动参数</param>
+    /// <returns>True if initialization is successful; otherwise, false / 初始化成功返回true，否则返回false</returns>
+    /// <remarks>
+    /// 初始化应用程序启动器，设置服务器类型、配置信息和启动参数
+    /// </remarks>
     bool Init(string serverType, AppSetting setting, string[] args);
 
     /// <summary>
-    /// 启动
+    /// Starts the application asynchronously
     /// </summary>
+    /// <returns>A task that represents the asynchronous start operation / 表示异步启动操作的任务</returns>
+    /// <remarks>
+    /// 异步启动应用程序，执行所有必要的初始化和服务启动流程
+    /// </remarks>
     Task StartAsync();
 
     /// <summary>
-    /// 终止服务器
+    /// Stops the server asynchronously with an optional message
     /// </summary>
-    /// <param name="message">终止原因</param>
+    /// <param name="message">The reason for stopping the server / 终止原因</param>
+    /// <returns>A task that represents the asynchronous stop operation / 表示异步停止操作的任务</returns>
+    /// <remarks>
+    /// 异步终止服务器，执行清理和资源释放操作
+    /// </remarks>
     Task StopAsync(string message = "");
 }

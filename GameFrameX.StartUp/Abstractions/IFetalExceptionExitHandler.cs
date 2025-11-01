@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -34,15 +34,22 @@ using GameFrameX.Utility.Setting;
 namespace GameFrameX.StartUp.Abstractions;
 
 /// <summary>
-/// 程序异常退出的执行器
+/// Fatal exception exit handler interface definition
 /// </summary>
+/// <remarks>
+/// 程序异常退出的执行器接口定义，用于处理应用程序遇到致命异常时的退出逻辑
+/// </remarks>
 public interface IFetalExceptionExitHandler
 {
     /// <summary>
-    /// 执行
+    /// Executes the fatal exception exit handling logic
     /// </summary>
-    /// <param name="tag">标签</param>
-    /// <param name="setting">服务器设置</param>
-    /// <param name="message">退出原因</param>
+    /// <param name="tag">The tag identifier / 标签</param>
+    /// <param name="setting">The application settings / 服务器设置</param>
+    /// <param name="message">The exit reason message / 退出原因</param>
+    /// <remarks>
+    /// 执行致命异常退出处理逻辑，包括日志记录、资源清理和优雅关闭等操作
+    /// </remarks>
+    /// <exception cref="ArgumentNullException">Thrown when any parameter is null / 当任何参数为null时抛出</exception>
     void Run(string tag, AppSetting setting, string message);
 }
