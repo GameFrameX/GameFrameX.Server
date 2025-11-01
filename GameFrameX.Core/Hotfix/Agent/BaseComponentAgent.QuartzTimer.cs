@@ -29,7 +29,6 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
-using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Core.Components;
 using GameFrameX.Core.Timer;
@@ -41,7 +40,7 @@ namespace GameFrameX.Core.Hotfix.Agent;
 /// 基础组件代理类，用于管理组件与Actor之间的交互
 /// </summary>
 /// <typeparam name="TComponent">具体的组件类型</typeparam>
-public abstract partial class BaseComponentAgent<TComponent> : IComponentAgent where TComponent : BaseComponent
+public abstract partial class BaseComponentAgent<TComponent> where TComponent : BaseComponent
 {
     /// <summary>
     /// 取消订阅指定ID的定时任务，并从调度集合中移除
