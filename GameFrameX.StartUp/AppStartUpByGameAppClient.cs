@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -40,15 +40,30 @@ using ErrorEventArgs = GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs;
 namespace GameFrameX.StartUp;
 
 /// <summary>
-/// 程序启动器基类 - 提供TCP和WebSocket服务器的基础功能实现
+/// Application startup base class - provides TCP and WebSocket server basic functionality implementation / 程序启动器基类 - 提供TCP和WebSocket服务器的基础功能实现
 /// </summary>
+/// <remarks>
+/// 此部分类专门处理与发现中心（DiscoveryCenter）的通信功能
+/// </remarks>
 public abstract partial class AppStartUpBase
 {
+    /// <summary>
+    /// Game application service client / 游戏应用服务客户端
+    /// </summary>
+    /// <value>
+    /// Client for communicating with the discovery center / 与发现中心通信的客户端
+    /// </value>
+    /// <remarks>
+    /// 用于与发现中心建立连接并进行消息交换
+    /// </remarks>
     private GameAppServiceClient _gameAppServiceClient;
 
     /// <summary>
-    /// 启动与发现中心（DiscoveryCenter）通信的客户端，用于注册当前服务器实例并接收发现中心推送的消息
+    /// Start the client for communicating with the discovery center (DiscoveryCenter) / 启动与发现中心（DiscoveryCenter）通信的客户端
     /// </summary>
+    /// <remarks>
+    /// 用于注册当前服务器实例并接收发现中心推送的消息
+    /// </remarks>
     private void StartGameAppClient()
     {
         // 创建客户端事件回调对象
@@ -80,65 +95,86 @@ public abstract partial class AppStartUpBase
     }
 
     /// <summary>
-    /// 心跳回调：当需要向发现中心发送心跳消息时触发，可在此构造并返回心跳数据
+    /// Heartbeat callback: triggered when a heartbeat message needs to be sent to the discovery center / 心跳回调：当需要向发现中心发送心跳消息时触发
     /// </summary>
-    /// <returns>返回要发送的心跳消息对象；如无需发送心跳，返回 null</returns>
+    /// <returns>Returns the heartbeat message object to be sent; returns null if no heartbeat is needed / 返回要发送的心跳消息对象；如无需发送心跳，返回 null</returns>
+    /// <remarks>
+    /// 可在此构造并返回心跳数据，用于维持与发现中心的连接
+    /// </remarks>
     protected virtual MessageObject GameAppClientOnHeartBeat()
     {
         return default;
     }
 
     /// <summary>
-    /// 调用发现中心（DiscoveryCenter）的RPC方法
+    /// Call RPC method of the discovery center (DiscoveryCenter) / 调用发现中心（DiscoveryCenter）的RPC方法
     /// </summary>
-    /// <typeparam name="T">要返回的响应消息类型</typeparam>
-    /// <param name="messageObject">要调用的RPC方法参数</param>
-    /// <param name="timeOut">调用超时时间（毫秒）</param>
-    /// <returns>表示异步操作的任务，任务结果为IRpcResult对象</returns>
+    /// <typeparam name="T">The response message type to return / 要返回的响应消息类型</typeparam>
+    /// <param name="messageObject">RPC method parameters to call / 要调用的RPC方法参数</param>
+    /// <param name="timeOut">Call timeout (milliseconds) / 调用超时时间（毫秒）</param>
+    /// <returns>A task representing the asynchronous operation, with the task result being an IRpcResult object / 表示异步操作的任务，任务结果为IRpcResult对象</returns>
+    /// <remarks>
+    /// 用于向发现中心发起RPC调用并等待响应
+    /// </remarks>
     public Task<IRpcResult> Call<T>(MessageObject messageObject, int timeOut = 10000) where T : IResponseMessage, new()
     {
         return _gameAppServiceClient.Call<T>(messageObject, timeOut);
     }
 
     /// <summary>
-    /// 向发现中心（DiscoveryCenter）发送消息
+    /// Send message to the discovery center (DiscoveryCenter) / 向发现中心（DiscoveryCenter）发送消息
     /// </summary>
-    /// <param name="message">待发送的消息对象</param>
+    /// <param name="message">Message object to be sent / 待发送的消息对象</param>
+    /// <remarks>
+    /// If the client is already initialized, then call its method to send the message to the discovery center server
+    /// </remarks>
     public void Send(MessageObject message)
     {
-        // 如果客户端已初始化，则调用其方法将消息发送至发现中心服务器
+        // If the client is already initialized, then call its method to send the message to the discovery center server
         _gameAppServiceClient?.Send(message);
     }
 
     /// <summary>
-    /// 与发现中心通信发生错误时的回调
+    /// Callback when communication error occurs with the discovery center / 与发现中心通信发生错误时的回调
     /// </summary>
-    /// <param name="obj">包含异常信息的错误事件参数</param>
+    /// <param name="obj">Error event arguments containing exception information / 包含异常信息的错误事件参数</param>
+    /// <remarks>
+    /// 处理与发现中心通信过程中发生的错误
+    /// </remarks>
     protected virtual void GameAppClientOnError(ErrorEventArgs obj)
     {
         LogHelper.Error($"服务器{Setting.ServerType}与发现中心通信发生错误，e:{obj.Exception}");
     }
 
     /// <summary>
-    /// 收到发现中心推送消息时的回调
+    /// Callback when receiving messages pushed by the discovery center / 收到发现中心推送消息时的回调
     /// </summary>
-    /// <param name="message">发现中心下发的消息对象</param>
+    /// <param name="message">Message object sent by the discovery center / 发现中心下发的消息对象</param>
+    /// <remarks>
+    /// 处理从发现中心接收到的各种消息
+    /// </remarks>
     protected virtual void GameAppClientOnMessage(MessageObject message)
     {
         LogHelper.Debug($"服务器{Setting.ServerType}接收到发现中心消息,{message.ToFormatMessageString()}");
     }
 
     /// <summary>
-    /// 与发现中心连接断开时的回调
+    /// Callback when connection to the discovery center is disconnected / 与发现中心连接断开时的回调
     /// </summary>
+    /// <remarks>
+    /// 处理与发现中心连接断开的情况
+    /// </remarks>
     protected virtual void GameAppClientOnClosed()
     {
         LogHelper.Debug($"服务器{Setting.ServerType}与发现中心断开连接...");
     }
 
     /// <summary>
-    /// 与发现中心连接建立成功时的回调
+    /// Callback when connection to the discovery center is successfully established / 与发现中心连接建立成功时的回调
     /// </summary>
+    /// <remarks>
+    /// 处理与发现中心成功建立连接的情况
+    /// </remarks>
     protected virtual void GameAppClientOnConnected()
     {
         LogHelper.Debug($"服务器{Setting.ServerType}连接到发现中心成功...");

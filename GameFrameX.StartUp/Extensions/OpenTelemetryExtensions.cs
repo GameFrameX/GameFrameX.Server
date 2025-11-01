@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -50,18 +50,37 @@ using GameFrameX.Foundation.Utility;
 namespace GameFrameX.StartUp.Extensions;
 
 /// <summary>
-/// OpenTelemetry 配置扩展方法
+/// OpenTelemetry configuration extension methods / OpenTelemetry 配置扩展方法
 /// </summary>
+/// <remarks>
+/// 提供用于配置和使用OpenTelemetry可观测性功能的扩展方法，支持指标收集、链路追踪和日志记录。
+/// 包含Grafana集成、Prometheus指标导出和独立指标服务器创建等功能。
+/// </remarks>
 public static class OpenTelemetryExtensions
 {
     /// <summary>
-    /// 添加 GameFrameX OpenTelemetry 配置
+    /// Add GameFrameX OpenTelemetry configuration / 添加 GameFrameX OpenTelemetry 配置
     /// </summary>
-    /// <param name="services">服务集合</param>
-    /// <param name="setting">应用设置</param>
-    /// <param name="servicePrefix">服务名前缀</param>
-    /// <param name="tracingSourcePrefix">追踪源前缀</param>
-    /// <returns>服务集合</returns>
+    /// <param name="services">Service collection / 服务集合</param>
+    /// <param name="setting">Application settings / 应用设置</param>
+    /// <param name="servicePrefix">Service name prefix / 服务名前缀</param>
+    /// <param name="tracingSourcePrefix">Tracing source prefix / 追踪源前缀</param>
+    /// <returns>Service collection / 服务集合</returns>
+    /// <remarks>
+    /// 根据配置启用OpenTelemetry的指标收集和链路追踪功能。
+    /// 自动配置ASP.NET Core、HTTP客户端和系统运行时的指标收集。
+    /// 支持开发环境下的控制台输出和Prometheus指标导出。
+    /// </remarks>
+    /// <exception cref="ArgumentNullException">Thrown when services or setting is null / 当services或setting为null时抛出</exception>
+    /// <example>
+    /// <code>
+    /// // 基本配置
+    /// services.AddGameFrameXOpenTelemetry(appSetting);
+    /// 
+    /// // 带前缀配置
+    /// services.AddGameFrameXOpenTelemetry(appSetting, "MyService", "MyApp");
+    /// </code>
+    /// </example>
     public static IServiceCollection AddGameFrameXOpenTelemetry(this IServiceCollection services, AppSetting setting, string servicePrefix = "", string tracingSourcePrefix = "")
     {
         if (!setting.IsOpenTelemetry)
@@ -136,11 +155,22 @@ public static class OpenTelemetryExtensions
     }
 
     /// <summary>
-    /// 添加 GameFrameX OpenTelemetry 日志配置
+    /// Add GameFrameX OpenTelemetry logging configuration / 添加 GameFrameX OpenTelemetry 日志配置
     /// </summary>
-    /// <param name="logging">日志构建器</param>
-    /// <param name="setting">应用设置</param>
-    /// <returns>日志构建器</returns>
+    /// <param name="logging">Logging builder / 日志构建器</param>
+    /// <param name="setting">Application settings / 应用设置</param>
+    /// <returns>Logging builder / 日志构建器</returns>
+    /// <remarks>
+    /// 为日志系统集成OpenTelemetry功能，支持结构化日志和分布式追踪关联。
+    /// 当启用OpenTelemetry时，自动配置Grafana集成，便于日志的可视化和分析。
+    /// </remarks>
+    /// <exception cref="ArgumentNullException">Thrown when logging or setting is null / 当logging或setting为null时抛出</exception>
+    /// <example>
+    /// <code>
+    /// // 在Program.cs中配置
+    /// builder.Logging.AddGameFrameXOpenTelemetryLogging(appSetting);
+    /// </code>
+    /// </example>
     public static ILoggingBuilder AddGameFrameXOpenTelemetryLogging(this ILoggingBuilder logging, AppSetting setting)
     {
         if (setting.IsOpenTelemetry)
@@ -152,11 +182,28 @@ public static class OpenTelemetryExtensions
     }
 
     /// <summary>
-    /// 创建独立的指标服务器
+    /// Create standalone metrics server / 创建独立的指标服务器
     /// </summary>
-    /// <param name="setting">应用设置</param>
-    /// <param name="servicePrefix">服务名前缀</param>
-    /// <returns>指标服务器任务</returns>
+    /// <param name="setting">Application settings / 应用设置</param>
+    /// <param name="servicePrefix">Service name prefix / 服务名前缀</param>
+    /// <returns>Metrics server task / 指标服务器任务</returns>
+    /// <remarks>
+    /// 创建一个独立的Web应用程序专门用于暴露Prometheus指标端点。
+    /// 这样可以将指标收集与主应用程序分离，提高系统的可观测性和稳定性。
+    /// 服务器会自动检查端口可用性，并在启动后输出访问地址。
+    /// </remarks>
+    /// <exception cref="ArgumentNullException">Thrown when setting is null / 当setting为null时抛出</exception>
+    /// <exception cref="InvalidOperationException">Thrown when metrics port is not available / 当指标端口不可用时抛出</exception>
+    /// <example>
+    /// <code>
+    /// // 创建独立指标服务器
+    /// var metricsServer = await OpenTelemetryExtensions.CreateMetricsServerAsync(appSetting);
+    /// 
+    /// // 带服务前缀
+    /// var metricsServer = await OpenTelemetryExtensions.CreateMetricsServerAsync(appSetting, "GameServer");
+    /// </code>
+    /// </example>
+    /// <seealso cref="AddGameFrameXOpenTelemetry"/>
     public static async Task<WebApplication> CreateMetricsServerAsync(AppSetting setting, string servicePrefix = "")
     {
         if (!setting.IsOpenTelemetry || !setting.IsOpenTelemetryMetrics || setting.MetricsPort == 0)
@@ -233,5 +280,4 @@ public static class OpenTelemetryExtensions
 
         return app;
     }
-
 }

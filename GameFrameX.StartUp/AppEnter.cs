@@ -38,16 +38,44 @@ namespace GameFrameX.StartUp;
 /// <summary>
 /// App入口
 /// </summary>
+/// <remarks>
+/// 提供应用程序的统一入口和退出处理机制，负责管理应用程序的生命周期
+/// </remarks>
 internal static class AppEnter
 {
+    /// <summary>
+    /// Indicates whether the exit method has been called / 指示是否已调用退出方法
+    /// </summary>
+    /// <value>
+    /// true if exit has been called; otherwise, false / 如果已调用退出则为true，否则为false
+    /// </value>
     private static volatile bool _exitCalled;
+    
+    /// <summary>
+    /// The main game loop task / 主游戏循环任务
+    /// </summary>
+    /// <value>
+    /// The task representing the game loop execution / 表示游戏循环执行的任务
+    /// </value>
     private static volatile Task _gameLoopTask;
+    
+    /// <summary>
+    /// The application startup instance / 应用程序启动实例
+    /// </summary>
+    /// <value>
+    /// The startup instance used to manage application lifecycle / 用于管理应用程序生命周期的启动实例
+    /// </value>
     private static volatile IAppStartUp _appStartUp;
 
     /// <summary>
-    /// 启动
+    /// Application startup entry point / 应用程序启动入口点
     /// </summary>
-    /// <param name="appStartUp">启动对象</param>
+    /// <param name="appStartUp">Application startup instance / 应用程序启动实例</param>
+    /// <returns>A task representing the asynchronous operation / 表示异步操作的任务</returns>
+    /// <exception cref="ArgumentNullException">Thrown when appStartUp is null / 当appStartUp为null时抛出</exception>
+    /// <remarks>
+    /// 初始化应用程序，设置退出处理器，并启动主游戏循环
+    /// </remarks>
     internal static async Task Entry(IAppStartUp appStartUp)
     {
         ArgumentNullException.ThrowIfNull(appStartUp, nameof(appStartUp));
@@ -75,6 +103,13 @@ internal static class AppEnter
         }
     }
 
+    /// <summary>
+    /// Handles application exit / 处理应用程序退出
+    /// </summary>
+    /// <param name="message">Exit message / 退出消息</param>
+    /// <remarks>
+    /// 确保应用程序只退出一次，并执行必要的清理操作
+    /// </remarks>
     private static void HandleExit(string message)
     {
         if (_exitCalled)

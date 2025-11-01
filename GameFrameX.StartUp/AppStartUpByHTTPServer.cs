@@ -1,5 +1,5 @@
-﻿// ==========================================================================================
-//  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
+// ==========================================================================================
+//  GameFrameX 组织及其衍生项目的版权、商标、专利以及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
 //  are protected by the laws of the People's Republic of China and relevant international regulations.
@@ -49,19 +49,26 @@ using Serilog;
 namespace GameFrameX.StartUp;
 
 /// <summary>
-/// 程序启动器基类 - 提供TCP和WebSocket服务器的基础功能实现
+/// Application startup base class - provides TCP and WebSocket server basic functionality implementation / 程序启动器基类 - 提供TCP和WebSocket服务器的基础功能实现
 /// </summary>
+/// <remarks>
+/// 此部分类专门处理HTTP服务器的启动和配置功能
+/// </remarks>
 public abstract partial class AppStartUpBase
 {
     /// <summary>
-    /// 启动 HTTP 服务器的同步方法
+    /// Start HTTP server synchronously / 启动 HTTP 服务器的同步方法
     /// </summary>
-    /// <param name="baseHandler">HTTP处理器列表,用于处理不同的HTTP请求</param>
-    /// <param name="httpFactory">HTTP处理器工厂,根据命令标识符创建对应的处理器实例</param>
-    /// <param name="aopHandlerTypes">AOP处理器列表,用于在HTTP请求处理前后执行额外的逻辑</param>
-    /// <param name="minimumLevelLogLevel">日志记录的最小级别,用于控制日志输出</param>
-    /// <exception cref="ArgumentException">当HTTP URL格式不正确时抛出</exception>
-    /// <exception cref="NotImplementedException">当启用HTTPS但未实现时抛出</exception>
+    /// <param name="baseHandler">HTTP handler list for processing different HTTP requests / HTTP处理器列表,用于处理不同的HTTP请求</param>
+    /// <param name="httpFactory">HTTP handler factory that creates corresponding handler instances based on command identifiers / HTTP处理器工厂,根据命令标识符创建对应的处理器实例</param>
+    /// <param name="aopHandlerTypes">AOP handler list for executing additional logic before and after HTTP request processing / AOP处理器列表,用于在HTTP请求处理前后执行额外的逻辑</param>
+    /// <param name="minimumLevelLogLevel">Minimum level for logging to control log output / 日志记录的最小级别,用于控制日志输出</param>
+    /// <returns>A task representing the asynchronous operation / 表示异步操作的任务</returns>
+    /// <exception cref="ArgumentException">Thrown when HTTP URL format is incorrect / 当HTTP URL格式不正确时抛出</exception>
+    /// <exception cref="NotImplementedException">Thrown when HTTPS is enabled but not implemented / 当启用HTTPS但未实现时抛出</exception>
+    /// <remarks>
+    /// 此方法负责配置和启动HTTP服务器，包括Swagger文档、健康检查、异常处理等功能
+    /// </remarks>
     private async Task StartHttpServer(List<BaseHttpHandler> baseHandler, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes = null, LogLevel minimumLevelLogLevel = LogLevel.Debug)
     {
         // 检查是否启用HTTP服务
@@ -219,9 +226,12 @@ public abstract partial class AppStartUpBase
     }
 
     /// <summary>
-    /// 获取或创建 Swagger信息
+    /// Get or create Swagger information / 获取或创建 Swagger信息
     /// </summary>
-    /// <returns></returns>
+    /// <returns>OpenAPI information object containing API documentation details / 包含API文档详细信息的OpenAPI信息对象</returns>
+    /// <remarks>
+    /// 用于配置Swagger文档的基本信息，包括标题、版本、联系方式等
+    /// </remarks>
     private OpenApiInfo GetOpenApiInfo()
     {
         // 添加 Swagger 服务
@@ -244,9 +254,12 @@ public abstract partial class AppStartUpBase
     }
 
     /// <summary>
-    /// 异常处理
+    /// Exception handler for processing unhandled exceptions in HTTP requests / 异常处理器，用于处理HTTP请求中的未处理异常
     /// </summary>
-    /// <param name="errorContext"></param>
+    /// <param name="errorContext">Application builder for configuring error handling pipeline / 用于配置错误处理管道的应用程序构建器</param>
+    /// <remarks>
+    /// 提供全局异常处理机制，确保所有未处理的异常都能被适当处理并返回给客户端
+    /// </remarks>
     private static void ExceptionHandler(IApplicationBuilder errorContext)
     {
         errorContext.Run(async context =>

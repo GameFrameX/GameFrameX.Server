@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -41,19 +41,61 @@ using GameFrameX.Utility.Setting;
 namespace GameFrameX.StartUp;
 
 /// <summary>
+/// Application exit handler / 应用程序退出处理器
 /// </summary>
+/// <remarks>
+/// 负责处理应用程序的各种退出信号和异常情况，确保程序能够优雅地关闭
+/// </remarks>
 internal static class AppExitHandler
 {
+    /// <summary>
+    /// Exit callback action / 退出回调动作
+    /// </summary>
+    /// <value>
+    /// The action to be called when application exits / 应用程序退出时要调用的动作
+    /// </value>
     private static Action<string> _existCallBack;
+    
+    /// <summary>
+    /// Application settings / 应用程序设置
+    /// </summary>
+    /// <value>
+    /// The current application settings / 当前应用程序设置
+    /// </value>
     private static AppSetting _setting;
+    
+    /// <summary>
+    /// POSIX signal registration for handling SIGTERM / 用于处理SIGTERM的POSIX信号注册
+    /// </summary>
+    /// <value>
+    /// The registration for POSIX signal handling / POSIX信号处理的注册
+    /// </value>
     private static PosixSignalRegistration _exitSignalRegistration;
+    
+    /// <summary>
+    /// Indicates whether the application is being killed / 指示应用程序是否正在被终止
+    /// </summary>
+    /// <value>
+    /// true if the application is being killed; otherwise, false / 如果应用程序正在被终止则为true，否则为false
+    /// </value>
     private static bool _isKill;
+    
+    /// <summary>
+    /// List of fatal exception exit handlers / 致命异常退出处理器列表
+    /// </summary>
+    /// <value>
+    /// Collection of handlers for fatal exceptions / 致命异常处理器集合
+    /// </value>
     private static readonly List<IFetalExceptionExitHandler> FetalExceptionExitHandlers = new();
 
     /// <summary>
+    /// Initialize the exit handler / 初始化退出处理器
     /// </summary>
-    /// <param name="existCallBack">退出回调</param>
-    /// <param name="setting">启动设置</param>
+    /// <param name="existCallBack">Exit callback action / 退出回调动作</param>
+    /// <param name="setting">Application settings / 应用程序设置</param>
+    /// <remarks>
+    /// 设置各种退出信号监听器和异常处理器，确保应用程序能够响应各种退出条件
+    /// </remarks>
     public static void Init(Action<string> existCallBack, AppSetting setting)
     {
         _isKill = false;
@@ -79,30 +121,50 @@ internal static class AppExitHandler
         Console.CancelKeyPress += (s, e) => { _existCallBack?.Invoke("ctrl+c exit"); };
     }
 
+    /// <summary>
+    /// Handles POSIX signal registration / 处理POSIX信号注册
+    /// </summary>
+    /// <param name="posixSignalContext">POSIX signal context / POSIX信号上下文</param>
+    /// <remarks>
+    /// 响应SIGTERM信号，触发应用程序退出流程
+    /// </remarks>
     private static void ExitSignalRegistrationHandler(PosixSignalContext posixSignalContext)
     {
         LogHelper.Info("PosixSignalRegistration SIGTERM....");
         _existCallBack?.Invoke("SIGTERM exit");
     }
 
+    /// <summary>
+    /// Handles assembly load context unloading / 处理程序集加载上下文卸载
+    /// </summary>
+    /// <param name="obj">Assembly load context / 程序集加载上下文</param>
+    /// <remarks>
+    /// 当程序集加载上下文卸载时触发，作为致命异常处理
+    /// </remarks>
     private static void DefaultOnUnloading(AssemblyLoadContext obj)
     {
         HandleFetalException("AssemblyLoadContext.Default.Unloading", obj.ToString());
     }
 
     /// <summary>
-    /// 关闭程序
+    /// Kill the application / 终止应用程序
     /// </summary>
+    /// <remarks>
+    /// 设置终止标志，防止进一步的异常处理
+    /// </remarks>
     public static void Kill()
     {
         _isKill = true;
     }
 
     /// <summary>
-    /// 程序发生内部异常导致程序终止
+    /// Handle fatal exceptions that cause application termination / 处理导致应用程序终止的致命异常
     /// </summary>
-    /// <param name="tag"></param>
-    /// <param name="e"></param>
+    /// <param name="tag">Exception tag / 异常标签</param>
+    /// <param name="e">Exception object / 异常对象</param>
+    /// <remarks>
+    /// 处理未处理的异常，记录日志并通知相关处理器，然后触发应用程序退出
+    /// </remarks>
     private static void HandleFetalException(string tag, object e)
     {
         if (_isKill)
