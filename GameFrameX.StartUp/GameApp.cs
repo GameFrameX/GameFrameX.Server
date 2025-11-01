@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -44,20 +44,77 @@ using Mapster;
 namespace GameFrameX.StartUp;
 
 /// <summary>
-/// 程序入口类
+/// Game application entry point class / 游戏应用程序入口类
 /// </summary>
+/// <remarks>
+/// 此类提供了游戏服务器的启动入口点，负责初始化各种服务器组件，
+/// 包括日志系统、配置管理、启动类型发现和服务器启动流程。
+/// 支持多种服务器类型的启动和管理。
+/// </remarks>
+/// <example>
+/// <code>
+/// // 启动游戏服务器
+/// await GameApp.Entry(args, () => {
+///     // 初始化协议注册等
+/// }, logOptions => {
+///     // 配置日志选项
+///     logOptions.IsConsole = true;
+/// });
+/// </code>
+/// </example>
 public static class GameApp
 {
+    /// <summary>
+    /// Dictionary containing startup types and their associated attributes / 包含启动类型及其关联属性的字典
+    /// </summary>
+    /// <remarks>
+    /// 此字典存储了所有实现IAppStartUp接口并标记了StartUpTagAttribute的类型，
+    /// 键为类型，值为对应的启动标签属性。
+    /// </remarks>
     private static readonly Dictionary<Type, StartUpTagAttribute> StartUpTypes = new();
+    
+    /// <summary>
+    /// List of startup tasks for concurrent execution / 用于并发执行的启动任务列表
+    /// </summary>
+    /// <remarks>
+    /// 此列表包含所有启动任务，用于并发启动多个服务器实例，
+    /// 通过Task.WhenAll等待所有任务完成。
+    /// </remarks>
     private static readonly List<Task> AppStartUpTasks = new List<Task>();
     // private static readonly List<IAppStartUp> AppStartUps = new();
 
     /// <summary>
-    /// 启动入口函数
+    /// Main entry point for starting the game application / 启动游戏应用程序的主入口点
     /// </summary>
-    /// <param name="args">启动参数</param>
-    /// <param name="initAction">在启动服务器之前执行,需要外部初始化协议注册</param>
-    /// <param name="logConfiguration">初始化日志系统之前回调,可以重写参数</param>
+    /// <param name="args">Command line arguments / 命令行参数</param>
+    /// <param name="initAction">Initialization action executed before starting the server, used for external protocol registration / 在启动服务器之前执行的初始化操作，用于外部协议注册</param>
+    /// <param name="logConfiguration">Callback for log system initialization, allows overriding parameters / 日志系统初始化回调，可以重写参数</param>
+    /// <returns>A task representing the asynchronous operation / 表示异步操作的任务</returns>
+    /// <exception cref="ArgumentNullException">Thrown when args is null / 当args为null时抛出</exception>
+    /// <exception cref="InvalidOperationException">Thrown when startup configuration is invalid / 当启动配置无效时抛出</exception>
+    /// <remarks>
+    /// 此方法是整个游戏服务器的启动入口点，执行以下主要步骤：
+    /// 1. 解析启动参数
+    /// 2. 配置日志系统
+    /// 3. 加载全局设置
+    /// 4. 发现并注册启动类型
+    /// 5. 根据服务器类型启动相应的服务
+    /// 6. 等待所有启动任务完成
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// // 基本启动
+    /// await GameApp.Entry(args, null);
+    /// 
+    /// // 带初始化和日志配置的启动
+    /// await GameApp.Entry(args, 
+    ///     () => ProtocolManager.RegisterAll(),
+    ///     logOptions => {
+    ///         logOptions.IsConsole = true;
+    ///         logOptions.LogEventLevel = LogEventLevel.Debug;
+    ///     });
+    /// </code>
+    /// </example>
     public static async Task Entry(string[] args, Action initAction, Action<LogOptions> logConfiguration = null)
     {
         LauncherOptions launcherOptions = null;
@@ -225,6 +282,16 @@ public static class GameApp
         await Task.WhenAll(AppStartUpTasks);
     }
 
+    /// <summary>
+    /// Launches a startup task for the specified server type / 为指定的服务器类型启动一个启动任务
+    /// </summary>
+    /// <param name="args">Command line arguments / 命令行参数</param>
+    /// <param name="keyValuePair">Key-value pair containing the startup type and its attribute / 包含启动类型及其属性的键值对</param>
+    /// <param name="appSetting">Application settings for the server / 服务器的应用程序设置</param>
+    /// <remarks>
+    /// 此方法创建并启动一个新的服务器实例任务，将任务添加到AppStartUpTasks列表中
+    /// 以便后续并发执行和等待。
+    /// </remarks>
     private static void Launcher(string[] args, KeyValuePair<Type, StartUpTagAttribute> keyValuePair, AppSetting appSetting = null)
     {
         var task = Start(args, keyValuePair.Key, keyValuePair.Value.ServerType, appSetting);
@@ -232,6 +299,30 @@ public static class GameApp
         AppStartUpTasks.Add(task);
     }
 
+    /// <summary>
+    /// Starts a specific server instance / 启动特定的服务器实例
+    /// </summary>
+    /// <param name="args">Command line arguments / 命令行参数</param>
+    /// <param name="appStartUpType">The type of the startup class / 启动类的类型</param>
+    /// <param name="serverType">The server type identifier / 服务器类型标识符</param>
+    /// <param name="setting">Application settings for the server / 服务器的应用程序设置</param>
+    /// <returns>A task representing the server startup operation / 表示服务器启动操作的任务</returns>
+    /// <exception cref="InvalidOperationException">Thrown when startup class cannot be instantiated / 当启动类无法实例化时抛出</exception>
+    /// <exception cref="ArgumentNullException">Thrown when appStartUpType is null / 当appStartUpType为null时抛出</exception>
+    /// <remarks>
+    /// 此方法执行以下步骤：
+    /// 1. 创建启动类实例
+    /// 2. 初始化启动类
+    /// 3. 记录配置信息
+    /// 4. 调用AppEnter.Entry启动服务器
+    /// 如果初始化失败，返回已完成的任务。
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// var task = Start(args, typeof(GameServerStartUp), "GameServer", appSetting);
+    /// await task;
+    /// </code>
+    /// </example>
     private static Task Start(string[] args, Type appStartUpType, string serverType, AppSetting setting)
     {
         var startUp = (IAppStartUp)Activator.CreateInstance(appStartUpType);
