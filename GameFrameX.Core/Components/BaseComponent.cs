@@ -149,6 +149,7 @@ public abstract class BaseComponent : IComponent, IState
     /// <remarks>
     /// 此方法用于异步更新对象的状态信息
     /// 在状态发生变化时应调用此方法以保持状态的同步
+    /// ⚠️ 注意：这是一个高消耗的操作，不应随意调用。该方法应由系统自动调用，避免手动调用造成性能问题。
     /// </remarks>
     public virtual Task WriteStateAsync()
     {
