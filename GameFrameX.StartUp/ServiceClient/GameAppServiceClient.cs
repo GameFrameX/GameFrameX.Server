@@ -40,53 +40,88 @@ using GameFrameX.SuperSocket.ClientEngine;
 namespace GameFrameX.StartUp.ServiceClient;
 
 /// <summary>
-/// 游戏程序TCP客户端类,用于处理与服务器的TCP连接和消息收发
+/// Game application service client for connecting to game servers
 /// </summary>
+/// <remarks>
+/// 游戏应用服务客户端，用于连接游戏服务器
+/// </remarks>
 internal sealed class GameAppServiceClient : IDisposable
 {
     /// <summary>
-    /// 内部TCP会话实例，负责底层网络通信
+    /// Internal TCP session instance responsible for underlying network communication
     /// </summary>
+    /// <remarks>
+    /// 内部TCP会话实例，负责底层网络通信
+    /// </remarks>
     private readonly AsyncTcpSession _mTcpClient;
 
     /// <summary>
-    /// 当前重连次数计数器
+    /// Gets the current retry count for connection attempts
     /// </summary>
+    /// <remarks>
+    /// 获取当前重连次数计数器
+    /// </remarks>
+    /// <value>
+    /// Returns the number of retry attempts made for connection
+    /// </value>
     public int RetryCount { get; private set; }
 
     /// <summary>
-    /// RPC会话实例，用于处理RPC请求和响应
+    /// RPC session instance for handling RPC requests and responses
     /// </summary>
+    /// <remarks>
+    /// RPC会话实例，用于处理RPC请求和响应
+    /// </remarks>
     private readonly IRpcSession _rpcSession;
 
     /// <summary>
-    /// 服务器终结点（IP与端口）
+    /// Server endpoint (IP and port)
     /// </summary>
+    /// <remarks>
+    /// 服务器终结点（IP与端口）
+    /// </remarks>
     private readonly EndPoint _serverHost;
 
     /// <summary>
-    /// 获取服务器终结点（IP与端口）
+    /// Gets the server endpoint (IP and port)
     /// </summary>
+    /// <remarks>
+    /// 获取服务器终结点（IP与端口）
+    /// </remarks>
+    /// <value>
+    /// Returns the server endpoint information including IP address and port number
+    /// </value>
     public EndPoint ServerHost
     {
         get { return _serverHost; }
     }
 
     /// <summary>
-    /// 游戏应用服务配置
+    /// Game application service configuration
     /// </summary>
+    /// <remarks>
+    /// 游戏应用服务配置
+    /// </remarks>
     private readonly GameAppServiceConfiguration _configuration;
 
     /// <summary>
-    /// 标记当前实例是否已被释放，防止重复释放或空操作
+    /// Flag indicating whether the current instance has been disposed to prevent duplicate disposal or null operations
     /// </summary>
+    /// <remarks>
+    /// 标记当前实例是否已被释放，防止重复释放或空操作
+    /// </remarks>
     private bool _isDisposed;
 
     /// <summary>
-    /// 初始化游戏服务TCP客户端
+    /// Initializes a new instance of the GameAppServiceClient class
     /// </summary>
-    /// <param name="endPoint">服务器端点信息（IP和端口）</param>
-    /// <param name="configuration">游戏应用服务配置</param>
+    /// <remarks>
+    /// 初始化GameAppServiceClient类的新实例
+    /// </remarks>
+    /// <param name="endPoint">The server endpoint to connect to / 要连接的服务器终结点</param>
+    /// <param name="configuration">The client configuration settings / 客户端配置设置</param>
+    /// <exception cref="ArgumentNullException">Thrown when endPoint is null / 当endPoint为null时抛出</exception>
+    /// <exception cref="ArgumentNullException">Thrown when configuration is null / 当configuration为null时抛出</exception>
     public GameAppServiceClient(EndPoint endPoint, GameAppServiceConfiguration configuration)
     {
         ArgumentNullException.ThrowIfNull(endPoint, nameof(endPoint));
@@ -193,9 +228,11 @@ internal sealed class GameAppServiceClient : IDisposable
     }
 
     /// <summary>
-    /// 发送心跳包到服务器
-    /// 更新心跳时间戳后通过Send发送
+    /// Sends a heartbeat message to the server
     /// </summary>
+    /// <remarks>
+    /// 发送心跳包到服务器，更新心跳时间戳后通过Send发送
+    /// </remarks>
     private void SendHeartBeat()
     {
         var messageObject = _configuration.OnHeartBeat?.Invoke();
@@ -206,11 +243,13 @@ internal sealed class GameAppServiceClient : IDisposable
     }
 
     /// <summary>
-    /// 发送消息到服务器
-    /// 内部使用MessageHelper编码后通过TcpClient发送
+    /// Sends a message to the server
     /// </summary>
-    /// <param name="messageObject">要发送的消息对象</param>
-    /// <exception cref="ArgumentOutOfRangeException">当messageObject.MessageId大于等于0时抛出</exception>
+    /// <remarks>
+    /// 发送消息到服务器，内部使用MessageHelper编码后通过TcpClient发送
+    /// </remarks>
+    /// <param name="messageObject">The message object to send / 要发送的消息对象</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when messageObject.MessageId is greater than or equal to 0 / 当messageObject.MessageId大于等于0时抛出</exception>
     public void Send(MessageObject messageObject)
     {
         if (messageObject.MessageId >= 0)
@@ -222,10 +261,12 @@ internal sealed class GameAppServiceClient : IDisposable
     }
 
     /// <summary>
-    /// 发送消息到服务器
-    /// 内部使用MessageHelper编码后通过TcpClient发送
+    /// Handles message sending to the server internally
     /// </summary>
-    /// <param name="messageObject">要发送的消息对象</param>
+    /// <remarks>
+    /// 内部处理发送消息到服务器，使用MessageHelper编码后通过TcpClient发送
+    /// </remarks>
+    /// <param name="messageObject">The message object to send / 要发送的消息对象</param>
     private void MessageSendHandle(INetworkMessage messageObject)
     {
         var buffer = MessageHelper.EncoderHandler.Handler(messageObject);
@@ -236,14 +277,16 @@ internal sealed class GameAppServiceClient : IDisposable
     }
 
     /// <summary>
-    /// 发送消息到服务器
-    /// 内部使用MessageHelper编码后通过TcpClient发送
+    /// Sends a message to the server and waits for a response
     /// </summary>
-    /// <param name="messageObject">要发送的消息对象</param>
-    /// <param name="timeOut">超时时间,单位毫秒</param>
-    /// <exception cref="ArgumentOutOfRangeException">当messageObject.MessageId大于等于0时抛出</exception>
-    /// <typeparam name="T">响应消息类型，必须实现IResponseMessage接口</typeparam>
-    /// <returns>表示异步操作的任务，任务结果为IRpcResult对象</returns>
+    /// <remarks>
+    /// 发送消息到服务器并等待响应，内部使用MessageHelper编码后通过TcpClient发送
+    /// </remarks>
+    /// <param name="messageObject">The message object to send / 要发送的消息对象</param>
+    /// <param name="timeOut">Timeout in milliseconds / 超时时间，单位毫秒</param>
+    /// <typeparam name="T">Response message type that must implement IResponseMessage interface / 响应消息类型，必须实现IResponseMessage接口</typeparam>
+    /// <returns>A task representing the asynchronous operation with IRpcResult as result / 表示异步操作的任务，任务结果为IRpcResult对象</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when messageObject.MessageId is greater than or equal to 0 / 当messageObject.MessageId大于等于0时抛出</exception>
     public Task<IRpcResult> Call<T>(MessageObject messageObject, int timeOut = 10000) where T : IResponseMessage, new()
     {
         if (messageObject.MessageId >= 0)
@@ -256,11 +299,13 @@ internal sealed class GameAppServiceClient : IDisposable
     }
 
     /// <summary>
-    /// 处理客户端错误事件
-    /// 将错误信息通过GameAppClientEvent回调给上层
+    /// Handles client error events
     /// </summary>
-    /// <param name="client">触发事件的TcpSession对象</param>
-    /// <param name="e">包含异常信息的错误事件参数</param>
+    /// <remarks>
+    /// 处理客户端错误事件，将错误信息通过GameAppClientEvent回调给上层
+    /// </remarks>
+    /// <param name="client">The TcpSession object that triggered the event / 触发事件的TcpSession对象</param>
+    /// <param name="e">Error event arguments containing exception information / 包含异常信息的错误事件参数</param>
     private void OnClientOnError(object client, SuperSocket.ClientEngine.ErrorEventArgs e)
     {
         LogHelper.Error($"Client error occurred: {e.Exception.Message}");
@@ -268,11 +313,13 @@ internal sealed class GameAppServiceClient : IDisposable
     }
 
     /// <summary>
-    /// 处理客户端连接关闭事件
-    /// 记录日志并通过GameAppClientEvent通知上层连接已断开
+    /// Handles client connection closed events
     /// </summary>
-    /// <param name="client">触发事件的TcpSession对象</param>
-    /// <param name="e">事件参数</param>
+    /// <remarks>
+    /// 处理客户端连接关闭事件，记录日志并通过GameAppClientEvent通知上层连接已断开
+    /// </remarks>
+    /// <param name="client">The TcpSession object that triggered the event / 触发事件的TcpSession对象</param>
+    /// <param name="e">Event arguments / 事件参数</param>
     private void OnClientOnClosed(object client, EventArgs e)
     {
         LogHelper.Info($"Client disconnected from the server: {_serverHost}");
@@ -280,11 +327,13 @@ internal sealed class GameAppServiceClient : IDisposable
     }
 
     /// <summary>
-    /// 处理客户端连接成功事件
-    /// 记录日志并通过GameAppClientEvent通知上层连接已建立
+    /// Handles client connection success events
     /// </summary>
-    /// <param name="client">触发事件的TcpSession对象</param>
-    /// <param name="e">事件参数</param>
+    /// <remarks>
+    /// 处理客户端连接成功事件，记录日志并通过GameAppClientEvent通知上层连接已建立
+    /// </remarks>
+    /// <param name="client">The TcpSession object that triggered the event / 触发事件的TcpSession对象</param>
+    /// <param name="e">Event arguments / 事件参数</param>
     private void OnClientOnConnected(object client, EventArgs e)
     {
         LogHelper.Info($"Client successfully connected to the server: {_serverHost}");
@@ -292,11 +341,13 @@ internal sealed class GameAppServiceClient : IDisposable
     }
 
     /// <summary>
-    /// 处理接收到数据事件
-    /// 将接收到的二进制数据解码为消息对象，若为内部网络消息则反序列化后通过回调通知上层
+    /// Handles data received events
     /// </summary>
-    /// <param name="client">触发事件的TcpSession对象</param>
-    /// <param name="e">包含接收数据的数据事件参数</param>
+    /// <remarks>
+    /// 处理接收到数据事件，将接收到的二进制数据解码为消息对象，若为内部网络消息则反序列化后通过回调通知上层
+    /// </remarks>
+    /// <param name="client">The TcpSession object that triggered the event / 触发事件的TcpSession对象</param>
+    /// <param name="e">Data event arguments containing received data / 包含接收数据的数据事件参数</param>
     private void OnClientOnDataReceived(object client, DataEventArgs e)
     {
         var message = MessageHelper.DecoderHandler.Handler(e.Data.ReadBytesValue(e.Offset, e.Length));
@@ -313,8 +364,11 @@ internal sealed class GameAppServiceClient : IDisposable
     }
 
     /// <summary>
-    /// 停止客户端
+    /// Stops the client and releases resources
     /// </summary>
+    /// <remarks>
+    /// 停止客户端并释放资源
+    /// </remarks>
     public void Dispose()
     {
         if (_isDisposed)
@@ -326,8 +380,11 @@ internal sealed class GameAppServiceClient : IDisposable
     }
 
     /// <summary>
-    /// 停止客户端连接，关闭底层TCP会话
+    /// Stops the client connection and closes the underlying TCP session
     /// </summary>
+    /// <remarks>
+    /// 停止客户端连接，关闭底层TCP会话
+    /// </remarks>
     public async void Stop()
     {
         _isDisposed = true;

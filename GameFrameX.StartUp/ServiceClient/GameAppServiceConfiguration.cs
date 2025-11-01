@@ -34,62 +34,131 @@ using GameFrameX.NetWork.Messages;
 namespace GameFrameX.StartUp.ServiceClient;
 
 /// <summary>
-/// 服务端配置类
+/// Game application service configuration class
 /// </summary>
+/// <remarks>
+/// 游戏应用服务配置类
+/// </remarks>
 public sealed class GameAppServiceConfiguration
 {
     /// <summary>
-    /// 是否启用心跳包，默认启用
+    /// Gets or sets whether heartbeat is enabled
     /// </summary>
+    /// <remarks>
+    /// 获取或设置是否启用心跳包，默认启用
+    /// </remarks>
+    /// <value>
+    /// Returns true if heartbeat is enabled, otherwise false. Default is true
+    /// </value>
     public bool IsEnableHeartBeat { get; init; } = true;
 
     /// <summary>
-    /// 心跳间隔（毫秒），默认 5000 毫秒
+    /// Gets or sets the heartbeat interval in milliseconds
     /// </summary>
+    /// <remarks>
+    /// 获取或设置心跳间隔（毫秒），默认 5000 毫秒
+    /// </remarks>
+    /// <value>
+    /// Returns the heartbeat interval in milliseconds. Default is 5000
+    /// </value>
     public int HeartBeatInterval { get; init; } = 5000;
 
     /// <summary>
-    /// 是否启用连接延迟，默认启用
+    /// Gets or sets whether connection delay is enabled
     /// </summary>
+    /// <remarks>
+    /// 获取或设置是否启用连接延迟，默认启用
+    /// </remarks>
+    /// <value>
+    /// Returns true if connection delay is enabled, otherwise false. Default is true
+    /// </value>
     public bool IsEnableConnectDelay { get; init; } = true;
 
     /// <summary>
-    /// 连接延迟（毫秒），默认 5000 毫秒
+    /// Gets or sets the connection delay in milliseconds
     /// </summary>
+    /// <remarks>
+    /// 获取或设置连接延迟（毫秒），默认 5000 毫秒
+    /// </remarks>
+    /// <value>
+    /// Returns the connection delay in milliseconds. Default is 5000
+    /// </value>
     public int ConnectDelay { get; init; } = 5000;
 
     /// <summary>
-    /// 重试延迟（毫秒），默认 5000 毫秒
+    /// Gets or sets the retry delay in milliseconds
     /// </summary>
+    /// <remarks>
+    /// 获取或设置重试延迟（毫秒），默认 5000 毫秒
+    /// </remarks>
+    /// <value>
+    /// Returns the retry delay in milliseconds. Default is 5000
+    /// </value>
     public int RetryDelay { get; init; } = 5000;
 
     /// <summary>
-    /// 最大重试次数，默认 -1 表示无限重试
+    /// Gets or sets the maximum retry count
     /// </summary>
+    /// <remarks>
+    /// 获取或设置最大重试次数，默认 -1 表示无限重试
+    /// </remarks>
+    /// <value>
+    /// Returns the maximum retry count. Default is -1 which means infinite retries
+    /// </value>
     public int MaxRetryCount { get; init; } = -1;
 
     /// <summary>
-    /// 连接成功时的回调
+    /// Gets or sets the callback action when connection is established
     /// </summary>
+    /// <remarks>
+    /// 获取或设置连接成功时的回调
+    /// </remarks>
+    /// <value>
+    /// Returns the action to be invoked when connection is successfully established
+    /// </value>
     public Action OnConnected { get; init; }
 
     /// <summary>
-    /// 连接关闭时的回调
+    /// Gets or sets the callback action when connection is closed
     /// </summary>
+    /// <remarks>
+    /// 获取或设置连接关闭时的回调
+    /// </remarks>
+    /// <value>
+    /// Returns the action to be invoked when connection is closed
+    /// </value>
     public Action OnClosed { get; init; }
 
     /// <summary>
-    /// 发生错误时的回调
+    /// Gets or sets the callback action when an error occurs
     /// </summary>
+    /// <remarks>
+    /// 获取或设置发生错误时的回调
+    /// </remarks>
+    /// <value>
+    /// Returns the action to be invoked when an error occurs, with error event arguments as parameter
+    /// </value>
     public Action<SuperSocket.ClientEngine.ErrorEventArgs> OnError { get; init; }
 
     /// <summary>
-    /// 接收到消息时的回调
+    /// Gets or sets the callback action when a message is received
     /// </summary>
+    /// <remarks>
+    /// 获取或设置接收到消息时的回调
+    /// </remarks>
+    /// <value>
+    /// Returns the action to be invoked when a message is received, with MessageObject as parameter
+    /// </value>
     public Action<MessageObject> OnMessage { get; init; }
 
     /// <summary>
-    /// 心跳包生成回调，返回待发送的心跳消息
+    /// Gets or sets the heartbeat message generation callback
     /// </summary>
+    /// <remarks>
+    /// 获取或设置心跳包生成回调，返回待发送的心跳消息
+    /// </remarks>
+    /// <value>
+    /// Returns the function that generates heartbeat messages to be sent
+    /// </value>
     public Func<MessageObject> OnHeartBeat { get; init; }
 }
