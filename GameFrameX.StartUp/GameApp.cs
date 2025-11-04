@@ -164,7 +164,7 @@ public static class GameApp
             LogOptions.Default.IsConsole = launcherOptions.LogIsConsole;
             LogOptions.Default.IsGrafanaLoki = launcherOptions.LogIsGrafanaLoki;
             LogOptions.Default.GrafanaLokiUrl = launcherOptions.LogGrafanaLokiUrl;
-            LogOptions.Default.GrafanaLokiUsername = launcherOptions.LogGrafanaLokiUsername;
+            LogOptions.Default.GrafanaLokiUserName = launcherOptions.LogGrafanaLokiUserName;
             LogOptions.Default.GrafanaLokiPassword = launcherOptions.LogGrafanaLokiPassword;
             LogOptions.Default.RetainedFileCountLimit = launcherOptions.LogRetainedFileCountLimit;
             LogOptions.Default.IsFileSizeLimit = launcherOptions.LogIsFileSizeLimit;

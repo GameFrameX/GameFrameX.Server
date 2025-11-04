@@ -211,8 +211,8 @@ public sealed class LauncherOptions
     /// <remarks>
     /// GrafanaLoki用户名或Email，当LogIsGrafanaLoki为true时生效
     /// </remarks>
-    [Option(nameof(LogGrafanaLokiUsername), Description = "GrafanaLoki 用户名或Email,当LogIsGrafanaLoki为true时生效。")]
-    public string LogGrafanaLokiUsername { get; set; }
+    [Option(nameof(LogGrafanaLokiUserName), Description = "GrafanaLoki 用户名或Email,当LogIsGrafanaLoki为true时生效。")]
+    public string LogGrafanaLokiUserName { get; set; }
 
     /// <summary>
     /// Gets or sets the GrafanaLoki password
