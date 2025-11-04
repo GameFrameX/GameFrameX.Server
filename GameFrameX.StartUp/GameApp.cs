@@ -124,8 +124,7 @@ public static class GameApp
         {
             LogHelper.Info($"the type of server that is launched : {serverType}");
         }
-
-        LogOptions.Default.LogTagName = serverType;
+        
         LogOptions.Default.GrafanaLokiLabels = new Dictionary<string, string>();
 
         if (launcherOptions != null)
@@ -200,6 +199,7 @@ public static class GameApp
         }
 
         logConfiguration?.Invoke(LogOptions.Default);
+        LogOptions.Default.LogType = serverType;
         LogHandler.Create(LogOptions.Default);
 
         GlobalSettings.Load("Configs/app_config.json");
