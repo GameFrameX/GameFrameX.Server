@@ -194,14 +194,14 @@ public static class HealthChecksExtensions
             app.UseHealthChecks(OpenTelemetryHealthCheckPath, openTelemetryHealthCheckOptions);
         }
 
-        LogHelper.InfoConsole("the health check endpoint is enabled:");
+        LogHelper.Info("the health check endpoint is enabled:");
         foreach (var ip in ipList)
         {
-            LogHelper.InfoConsole($"- detailed health checks: http://{ip}:{setting.HttpPort}{DefaultHealthCheckPath}");
-            LogHelper.InfoConsole($"- simple health check: http://{ip}:{setting.HttpPort}{SimpleHealthCheckPath}");
+            LogHelper.Info($"- detailed health checks: http://{ip}:{setting.HttpPort}{DefaultHealthCheckPath}");
+            LogHelper.Info($"- simple health check: http://{ip}:{setting.HttpPort}{SimpleHealthCheckPath}");
             if (setting.IsOpenTelemetry)
             {
-                LogHelper.InfoConsole($"- OpenTelemetry check: http://{ip}:{setting.HttpPort}{OpenTelemetryHealthCheckPath}");
+                LogHelper.Info($"- OpenTelemetry check: http://{ip}:{setting.HttpPort}{OpenTelemetryHealthCheckPath}");
             }
         }
 

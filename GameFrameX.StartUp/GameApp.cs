@@ -72,7 +72,7 @@ public static class GameApp
     /// 键为类型，值为对应的启动标签属性。
     /// </remarks>
     private static readonly Dictionary<Type, StartUpTagAttribute> StartUpTypes = new();
-    
+
     /// <summary>
     /// List of startup tasks for concurrent execution / 用于并发执行的启动任务列表
     /// </summary>
@@ -124,13 +124,13 @@ public static class GameApp
         }
         catch (Exception e)
         {
-            LogHelper.ErrorConsole(e.Message);
+            LogHelper.Error(e.Message);
         }
 
         var serverType = launcherOptions?.ServerType;
         if (!serverType.IsNullOrEmpty())
         {
-            LogHelper.Console("the type of server that is launched : " + serverType);
+            LogHelper.Info($"the type of server that is launched : {serverType}");
         }
 
         LogOptions.Default.LogType = serverType;
@@ -156,7 +156,7 @@ public static class GameApp
 
                 if (!LogOptions.Default.GrafanaLokiLabels.TryAdd(property.Name, value))
                 {
-                    LogHelper.WarningConsole($"Grafana Loki label {property.Name} already exists, will be ignored");
+                    LogHelper.Warning($"Grafana Loki label {property.Name} already exists, will be ignored");
                 }
             }
 
@@ -239,11 +239,11 @@ public static class GameApp
                 var appSetting = appSettings.FirstOrDefault(m => m.ServerType == serverType);
                 if (appSetting != null)
                 {
-                    LogHelper.InfoConsole($"Finding the boot configuration for the corresponding server type in the configuration file will be configured to boot=>{startKv.Value.ServerType}");
+                    LogHelper.Info($"Finding the boot configuration for the corresponding server type in the configuration file will be configured to boot=>{startKv.Value.ServerType}");
                 }
                 else
                 {
-                    LogHelper.WarningConsole($"If no startup configuration is found for the server type, it will start with the default configuration=>{startKv.Value.ServerType}");
+                    LogHelper.Warning($"If no startup configuration is found for the server type, it will start with the default configuration=>{startKv.Value.ServerType}");
                     appSetting = launcherOptions.Adapt<AppSetting>();
                 }
 
@@ -268,14 +268,14 @@ public static class GameApp
 
                 if (isFind == false)
                 {
-                    LogHelper.WarningConsole($"If no startup configuration is found for the server type, it will start with the default configuration=>{keyValuePair.Value.ServerType}");
+                    LogHelper.Warning($"If no startup configuration is found for the server type, it will start with the default configuration=>{keyValuePair.Value.ServerType}");
                     Launcher(args, keyValuePair);
                     break;
                 }
             }
         }
 
-        LogHelper.InfoConsole("----------------------------The Startup Server Is Over------------------------------");
+        LogHelper.Info($"----------------------------The Startup Server Is Over------------------------------");
         // ApplicationPerformanceMonitorStart(serverType);
         ConsoleHelper.ConsoleLogo();
 
@@ -334,12 +334,8 @@ public static class GameApp
         var isSuccess = startUp.Init(serverType, setting, args);
         if (isSuccess)
         {
-            LogHelper.InfoConsole($"----------------------------START-----{serverType}------------------------------");
-            LogHelper.InfoConsole($"----------------------------Configuration Information---------------------------");
-            LogHelper.InfoConsole($"{startUp.Setting.ToFormatString()}");
-            LogHelper.InfoConsole("--------------------------------------------------------------------------------");
+            LogHelper.ShowOption($"{serverType} - Configuration Information", startUp.Setting.ToFormatString());
             var task = AppEnter.Entry(startUp);
-            LogHelper.InfoConsole($"-----------------------------END------{serverType}------------------------------");
             return task;
         }
 

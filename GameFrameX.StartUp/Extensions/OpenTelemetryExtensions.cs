@@ -274,8 +274,8 @@ public static class OpenTelemetryExtensions
         var ipList = NetHelper.GetLocalIpList();
         foreach (var ip in ipList)
         {
-            LogHelper.InfoConsole($"独立 Prometheus metrics 端点已启用: http://{ip}:{setting.MetricsPort}/metrics");
-            LogHelper.InfoConsole($"独立 Metrics 健康检查端点: http://{ip}:{setting.MetricsPort}/health");
+            LogHelper.Info($"独立 Prometheus metrics 端点已启用: http://{ip}:{setting.MetricsPort}/metrics");
+            LogHelper.Info($"独立 Metrics 健康检查端点: http://{ip}:{setting.MetricsPort}/health");
         }
 
         return app;

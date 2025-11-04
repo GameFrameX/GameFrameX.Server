@@ -131,7 +131,7 @@ public abstract partial class AppStartUpBase : IAppStartUp
     public virtual async Task StopAsync(string message = "")
     {
         GlobalSettings.IsAppRunning = false;
-        LogHelper.ErrorConsole($"服务器类型:{Setting.ServerType} 停止! 终止原因：{message}  配置信息: {Setting.ToFormatString()}");
+        LogHelper.Error($"服务器类型:{Setting.ServerType} 停止! 终止原因：{message}  配置信息: {Setting.ToFormatString()}");
         await StopServerAsync();
         AppExitSource?.TrySetResult(message);
         LogHelper.FlushAndSave();

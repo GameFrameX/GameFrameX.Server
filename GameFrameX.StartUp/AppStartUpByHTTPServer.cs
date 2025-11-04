@@ -74,7 +74,7 @@ public abstract partial class AppStartUpBase
         // 检查是否启用HTTP服务
         if (!Setting.IsEnableHttp)
         {
-            LogHelper.InfoConsole("The HTTP service is disabled, and the startup is ignored");
+            LogHelper.Info($"The HTTP service is disabled, and the startup is ignored");
             return;
         }
         
@@ -89,10 +89,10 @@ public abstract partial class AppStartUpBase
             throw new ArgumentException("The HTTP address must end in /", nameof(Setting.HttpUrl));
         }
 
-        LogHelper.InfoConsole("start the [HTTP] server...");
+        LogHelper.Info($"start the [HTTP] server...");
         if (!Setting.HttpPort.IsRange(5000, ushort.MaxValue - 1))
         {
-            LogHelper.WarningConsole($"start the [HTTP] server port [{Setting.HttpPort}] out of range [5000-{ushort.MaxValue - 1}],The HTTP service cannot be started, and the startup is ignored");
+            LogHelper.Warning($"start the [HTTP] server port [{Setting.HttpPort}] out of range [5000-{ushort.MaxValue - 1}],The HTTP service cannot be started, and the startup is ignored");
             return;
         }
 
@@ -161,7 +161,7 @@ public abstract partial class AppStartUpBase
 
                 foreach (var ip in ipList)
                 {
-                    LogHelper.DebugConsole($"Swagger UI can be passed http://{ip}:{Setting.HttpPort}/swagger access");
+                    LogHelper.Debug($"Swagger UI can be passed http://{ip}:{Setting.HttpPort}/swagger access");
                 }
             }
 
@@ -177,15 +177,15 @@ public abstract partial class AppStartUpBase
                 app.MapPrometheusScrapingEndpoint();
                 foreach (var ip in ipList)
                 {
-                    LogHelper.InfoConsole($"Prometheus metrics the endpoint is enabled: http://{ip}:{Setting.HttpPort}/metrics");
+                    LogHelper.Info($"Prometheus metrics the endpoint is enabled: http://{ip}:{Setting.HttpPort}/metrics");
                 }
             }
             else if (Setting.IsOpenTelemetry && Setting.IsOpenTelemetryMetrics && Setting.MetricsPort > 0)
             {
-                LogHelper.InfoConsole($"Prometheus metrics The service will be provided on the standalone port {Setting.MetricsPort}");
+                LogHelper.Info($"Prometheus metrics The service will be provided on the standalone port {Setting.MetricsPort}");
                 foreach (var ip in ipList)
                 {
-                    LogHelper.InfoConsole($"Prometheus metrics the endpoint is enabled: http://{ip}:{Setting.MetricsPort}/metrics");
+                    LogHelper.Info($"Prometheus metrics the endpoint is enabled: http://{ip}:{Setting.MetricsPort}/metrics");
                 }
             }
 
@@ -217,7 +217,7 @@ public abstract partial class AppStartUpBase
             }
 
             await app.StartAsync();
-            LogHelper.InfoConsole($"Start [HTTP] Server Startup Complete - Port: {Setting.HttpPort}");
+            LogHelper.Info($"Start [HTTP] Server Startup Complete - Port: {Setting.HttpPort}");
         }
         else
         {

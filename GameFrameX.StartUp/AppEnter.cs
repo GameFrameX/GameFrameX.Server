@@ -99,7 +99,7 @@ internal static class AppEnter
                 error = $"failed to start the server:{e}";
             }
 
-            LogHelper.ErrorConsole(error);
+            LogHelper.Error(error);
         }
     }
 
@@ -118,11 +118,11 @@ internal static class AppEnter
         }
 
         _exitCalled = true;
-        LogHelper.InfoConsole("listen to the exit message from the program");
+        LogHelper.Info("listen to the exit message from the program");
         GlobalSettings.IsAppRunning = false;
         _appStartUp.StopAsync(message).Wait();
         AppExitHandler.Kill();
-        LogHelper.InfoConsole("exit procedure");
+        LogHelper.Info("exit procedure");
         _gameLoopTask?.Wait();
         LogHelper.FlushAndSave();
     }

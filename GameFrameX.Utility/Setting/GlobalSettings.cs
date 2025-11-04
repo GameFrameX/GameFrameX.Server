@@ -113,32 +113,32 @@ public static class GlobalSettings
     {
         if (CurrentSetting.IsNotNull())
         {
-            LogHelper.WarningConsole("The current setting already exists, cannot be set again, and this setting has been ignored.");
+            LogHelper.Warning("The current setting already exists, cannot be set again, and this setting has been ignored.");
             return;
         }
 
         ArgumentNullException.ThrowIfNull(setting, nameof(setting));
         if (setting.SaveDataInterval < 5000)
         {
-            LogHelper.WarningConsole($"SaveDataInterval小于5000毫秒，使用默认值为:{GlobalConst.SaveIntervalInMilliSeconds} 毫秒");
+            LogHelper.Warning($"SaveDataInterval小于5000毫秒，使用默认值为:{GlobalConst.SaveIntervalInMilliSeconds} 毫秒");
             setting.SaveDataInterval = GlobalConst.SaveIntervalInMilliSeconds;
         }
 
         if (setting.HttpUrl.IsNullOrEmptyOrWhiteSpace())
         {
-            LogHelper.WarningConsole("HttpUrl is empty and uses the default value of : /game/api/");
+            LogHelper.Warning($"HttpUrl is empty and uses the default value of : /game/api/");
             setting.HttpUrl = "/game/api/";
         }
 
         if (setting.NetWorkSendTimeOutSeconds < 1)
         {
-            LogHelper.WarningConsole("NetWorkSendTimeOutSeconds is less than 1 second, and the default value is 5 seconds");
+            LogHelper.Warning($"NetWorkSendTimeOutSeconds is less than 1 second, and the default value is 5 seconds");
             setting.NetWorkSendTimeOutSeconds = 5;
         }
 
         if (setting.ActorRecycleTime < 1)
         {
-            LogHelper.WarningConsole("ActorRecycleTime is less than 1 minute, and the default value is 5 minutes");
+            LogHelper.Warning($"ActorRecycleTime is less than 1 minute, and the default value is 5 minutes");
             setting.ActorRecycleTime = 5;
         }
 
