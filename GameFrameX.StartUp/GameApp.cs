@@ -133,7 +133,7 @@ public static class GameApp
             LogHelper.Info($"the type of server that is launched : {serverType}");
         }
 
-        LogOptions.Default.LogType = serverType;
+        LogOptions.Default.LogTagName = serverType;
         LogOptions.Default.GrafanaLokiLabels = new Dictionary<string, string>();
 
         if (launcherOptions != null)
