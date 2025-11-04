@@ -313,13 +313,15 @@ public static class GameApp
         }
 
         var isSuccess = startUp.Init(serverType, setting, args);
-        if (isSuccess)
+        if (!isSuccess)
         {
-            LogHelper.ShowOption($"{serverType} - Configuration Information", startUp.Setting.ToFormatString());
-            var task = AppEnter.Entry(startUp);
-            return task;
+            return Task.CompletedTask;
         }
 
-        return Task.CompletedTask;
+        LogHelper.ShowOption($"Start Starting [{serverType}] Server- Configuration Information", startUp.Setting.ToFormatString());
+        LogHelper.Info($"Start Starting [{serverType}] Server- Configuration Information");
+        LogHelper.Info(startUp.Setting.ToFormatString());
+        var task = AppEnter.Entry(startUp);
+        return task;
     }
 }
