@@ -31,17 +31,22 @@
 
 
 
-namespace GameFrameX.Apps.Server.Entity;
+using GameFrameX.Apps.Common.Event;
+using GameFrameX.Core.Abstractions.Events;
 
-public class ServerState : CacheState
+namespace GameFrameX.Hotfix.Logic.Player.Login;
+
+[Event(EventId.PlayerSendItem)]
+internal sealed class PlayerSendItemEventListener : EventListener<PlayerComponentAgent>
 {
-    /// <summary>
-    /// 世界等级
-    /// </summary>
-    public int WorldLevel { get; set; } = 1;
+    protected override Task HandleEvent(PlayerComponentAgent agent, GameEventArgs gameEventArgs)
+    {
+        if (agent == null)
+        {
+            LogHelper.Error("agent is null");
+            return Task.CompletedTask;
+        }
 
-    /// <summary>
-    /// 第一次启动时间，即开服时间
-    /// </summary>
-    public long FirstStartTime { get; set; }
+        return agent.OnLogout();
+    }
 }

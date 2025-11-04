@@ -55,6 +55,16 @@ namespace GameFrameX.Proto.Proto
         [ProtoMember(6)]
         [System.ComponentModel.Description("密码")]
         public string Password { get; set; }
+
+        public override void Clear()
+        {
+            UserName = default;
+            Platform = default;
+            SdkType = default;
+            SdkToken = default;
+            Device = default;
+            Password = default;
+        }
     }
 
     /// <summary>
@@ -103,9 +113,19 @@ namespace GameFrameX.Proto.Proto
         /// <summary>
         /// 返回的错误码
         /// </summary>
-        [ProtoMember(888)]
+        [ProtoMember(2047)]
         [System.ComponentModel.Description("返回的错误码")]
         public int ErrorCode { get; set; }
+
+        public override void Clear()
+        {
+            Code = default;
+            RoleName = default;
+            Id = default;
+            Level = default;
+            CreateTime = default;
+            ErrorCode = default;
+        }
     }
 
     /// <summary>
@@ -129,6 +149,12 @@ namespace GameFrameX.Proto.Proto
         [ProtoMember(2)]
         [System.ComponentModel.Description("角色名")]
         public string Name { get; set; }
+
+        public override void Clear()
+        {
+            Id = default;
+            Name = default;
+        }
     }
 
     /// <summary>
@@ -149,9 +175,15 @@ namespace GameFrameX.Proto.Proto
         /// <summary>
         /// 返回的错误码
         /// </summary>
-        [ProtoMember(888)]
+        [ProtoMember(2047)]
         [System.ComponentModel.Description("返回的错误码")]
         public int ErrorCode { get; set; }
+
+        public override void Clear()
+        {
+            PlayerInfo = default;
+            ErrorCode = default;
+        }
     }
 
     /// <summary>
@@ -168,6 +200,11 @@ namespace GameFrameX.Proto.Proto
         [ProtoMember(1)]
         [System.ComponentModel.Description("账号ID")]
         public long Id { get; set; }
+
+        public override void Clear()
+        {
+            Id = default;
+        }
     }
 
     /// <summary>
@@ -188,9 +225,15 @@ namespace GameFrameX.Proto.Proto
         /// <summary>
         /// 返回的错误码
         /// </summary>
-        [ProtoMember(888)]
+        [ProtoMember(2047)]
         [System.ComponentModel.Description("返回的错误码")]
         public int ErrorCode { get; set; }
+
+        public override void Clear()
+        {
+            PlayerList.Clear();
+            ErrorCode = default;
+        }
     }
 
     /// <summary>
@@ -257,6 +300,11 @@ namespace GameFrameX.Proto.Proto
         [ProtoMember(1)]
         [System.ComponentModel.Description("角色ID")]
         public long Id { get; set; }
+
+        public override void Clear()
+        {
+            Id = default;
+        }
     }
 
     /// <summary>
@@ -291,9 +339,17 @@ namespace GameFrameX.Proto.Proto
         /// <summary>
         /// 返回的错误码
         /// </summary>
-        [ProtoMember(888)]
+        [ProtoMember(2047)]
         [System.ComponentModel.Description("返回的错误码")]
         public int ErrorCode { get; set; }
+
+        public override void Clear()
+        {
+            Code = default;
+            CreateTime = default;
+            PlayerInfo = default;
+            ErrorCode = default;
+        }
     }
 
     /// <summary>
@@ -321,9 +377,16 @@ namespace GameFrameX.Proto.Proto
         /// <summary>
         /// 返回的错误码
         /// </summary>
-        [ProtoMember(888)]
+        [ProtoMember(2047)]
         [System.ComponentModel.Description("返回的错误码")]
         public int ErrorCode { get; set; }
+
+        public override void Clear()
+        {
+            ErrCode = default;
+            Desc = default;
+            ErrorCode = default;
+        }
     }
 
     /// <summary>
@@ -351,9 +414,16 @@ namespace GameFrameX.Proto.Proto
         /// <summary>
         /// 返回的错误码
         /// </summary>
-        [ProtoMember(888)]
+        [ProtoMember(2047)]
         [System.ComponentModel.Description("返回的错误码")]
         public int ErrorCode { get; set; }
+
+        public override void Clear()
+        {
+            Type = default;
+            Content = default;
+            ErrorCode = default;
+        }
     }
 
 }

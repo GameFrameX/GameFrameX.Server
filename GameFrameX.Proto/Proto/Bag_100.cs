@@ -36,6 +36,10 @@ namespace GameFrameX.Proto.Proto
     [MessageTypeHandler(6553610)]
     public sealed class ReqBagInfo : MessageObject, IRequestMessage
     {
+
+        public override void Clear()
+        {
+        }
     }
 
     /// <summary>
@@ -57,9 +61,15 @@ namespace GameFrameX.Proto.Proto
         /// <summary>
         /// 返回的错误码
         /// </summary>
-        [ProtoMember(888)]
+        [ProtoMember(2047)]
         [System.ComponentModel.Description("返回的错误码")]
         public int ErrorCode { get; set; }
+
+        public override void Clear()
+        {
+            ItemDic.Clear();
+            ErrorCode = default;
+        }
     }
 
     /// <summary>
@@ -90,6 +100,13 @@ namespace GameFrameX.Proto.Proto
         [ProtoMember(3)]
         [System.ComponentModel.Description("变化的值")]
         public long Value { get; set; }
+
+        public override void Clear()
+        {
+            ItemId = default;
+            Count = default;
+            Value = default;
+        }
     }
 
     /// <summary>
@@ -107,6 +124,11 @@ namespace GameFrameX.Proto.Proto
         [System.ComponentModel.Description("变化的道具，key:道具id，value:数量")]
         [ProtoMap(DisableMap = true)]
         public Dictionary<int, NotifyBagItem> ItemDic { get; set; } = new Dictionary<int, NotifyBagItem>();
+
+        public override void Clear()
+        {
+            ItemDic.Clear();
+        }
     }
 
     /// <summary>
@@ -123,6 +145,11 @@ namespace GameFrameX.Proto.Proto
         [ProtoMember(1)]
         [System.ComponentModel.Description("碎片id")]
         public int FragmentId { get; set; }
+
+        public override void Clear()
+        {
+            FragmentId = default;
+        }
     }
 
     /// <summary>
@@ -143,9 +170,15 @@ namespace GameFrameX.Proto.Proto
         /// <summary>
         /// 返回的错误码
         /// </summary>
-        [ProtoMember(888)]
+        [ProtoMember(2047)]
         [System.ComponentModel.Description("返回的错误码")]
         public int ErrorCode { get; set; }
+
+        public override void Clear()
+        {
+            PetId = default;
+            ErrorCode = default;
+        }
     }
 
     /// <summary>
@@ -169,6 +202,12 @@ namespace GameFrameX.Proto.Proto
         [ProtoMember(2)]
         [System.ComponentModel.Description("道具数量")]
         public long Count { get; set; }
+
+        public override void Clear()
+        {
+            ItemId = default;
+            Count = default;
+        }
     }
 
     /// <summary>
@@ -196,9 +235,16 @@ namespace GameFrameX.Proto.Proto
         /// <summary>
         /// 返回的错误码
         /// </summary>
-        [ProtoMember(888)]
+        [ProtoMember(2047)]
         [System.ComponentModel.Description("返回的错误码")]
         public int ErrorCode { get; set; }
+
+        public override void Clear()
+        {
+            ItemId = default;
+            Count = default;
+            ErrorCode = default;
+        }
     }
 
     /// <summary>
@@ -222,6 +268,12 @@ namespace GameFrameX.Proto.Proto
         [ProtoMember(2)]
         [System.ComponentModel.Description("道具数量")]
         public long Count { get; set; }
+
+        public override void Clear()
+        {
+            ItemId = default;
+            Count = default;
+        }
     }
 
     /// <summary>
@@ -249,9 +301,16 @@ namespace GameFrameX.Proto.Proto
         /// <summary>
         /// 返回的错误码
         /// </summary>
-        [ProtoMember(888)]
+        [ProtoMember(2047)]
         [System.ComponentModel.Description("返回的错误码")]
         public int ErrorCode { get; set; }
+
+        public override void Clear()
+        {
+            ItemId = default;
+            Count = default;
+            ErrorCode = default;
+        }
     }
 
     /// <summary>
@@ -268,6 +327,11 @@ namespace GameFrameX.Proto.Proto
         [ProtoMember(1)]
         [System.ComponentModel.Description("道具id")]
         public int ItemId { get; set; }
+
+        public override void Clear()
+        {
+            ItemId = default;
+        }
     }
 
     /// <summary>
@@ -289,9 +353,15 @@ namespace GameFrameX.Proto.Proto
         /// <summary>
         /// 返回的错误码
         /// </summary>
-        [ProtoMember(888)]
+        [ProtoMember(2047)]
         [System.ComponentModel.Description("返回的错误码")]
         public int ErrorCode { get; set; }
+
+        public override void Clear()
+        {
+            ItemDic.Clear();
+            ErrorCode = default;
+        }
     }
 
     /// <summary>
@@ -309,6 +379,11 @@ namespace GameFrameX.Proto.Proto
         [System.ComponentModel.Description("")]
         [ProtoMap(DisableMap = true)]
         public Dictionary<int, long> ItemDic { get; set; } = new Dictionary<int, long>();
+
+        public override void Clear()
+        {
+            ItemDic.Clear();
+        }
     }
 
     /// <summary>
@@ -330,9 +405,15 @@ namespace GameFrameX.Proto.Proto
         /// <summary>
         /// 返回的错误码
         /// </summary>
-        [ProtoMember(888)]
+        [ProtoMember(2047)]
         [System.ComponentModel.Description("返回的错误码")]
         public int ErrorCode { get; set; }
+
+        public override void Clear()
+        {
+            ItemDic.Clear();
+            ErrorCode = default;
+        }
     }
 
     /// <summary>
@@ -350,6 +431,11 @@ namespace GameFrameX.Proto.Proto
         [System.ComponentModel.Description("")]
         [ProtoMap(DisableMap = true)]
         public Dictionary<int, long> ItemDic { get; set; } = new Dictionary<int, long>();
+
+        public override void Clear()
+        {
+            ItemDic.Clear();
+        }
     }
 
     /// <summary>
@@ -371,9 +457,15 @@ namespace GameFrameX.Proto.Proto
         /// <summary>
         /// 返回的错误码
         /// </summary>
-        [ProtoMember(888)]
+        [ProtoMember(2047)]
         [System.ComponentModel.Description("返回的错误码")]
         public int ErrorCode { get; set; }
+
+        public override void Clear()
+        {
+            ItemDic.Clear();
+            ErrorCode = default;
+        }
     }
 
 }

@@ -29,19 +29,46 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using GameFrameX.NetWork.Abstractions;
+using GameFrameX.NetWork.Messages;
+using ProtoBuf;
 
+namespace GameFrameX.Proto.BuiltIn;
 
-namespace GameFrameX.Apps.Server.Entity;
-
-public class ServerState : CacheState
+/// <summary>
+/// 请求心跳
+/// </summary>
+[ProtoContract]
+[MessageTypeHandler((-1 << 16) + 1, (byte)MessageOperationType.HeartBeat)]
+public sealed class ReqActorHeartBeat : MessageObject, IRequestMessage, IHeartBeatMessage
 {
     /// <summary>
-    /// 世界等级
+    /// 时间戳
     /// </summary>
-    public int WorldLevel { get; set; } = 1;
+    [ProtoMember(1)]
+    public long Timestamp { get; set; }
 
+    public override void Clear()
+    {
+        Timestamp = default;
+    }
+}
+
+/// <summary>
+/// 服务器通知心跳结果，因为有些业务需要对心跳结果做处理所以不做成RPC的方式处理
+/// </summary>
+[ProtoContract]
+[MessageTypeHandler((-1 << 16) + 2, (byte)MessageOperationType.HeartBeat)]
+public sealed class NotifyActorHeartBeat : MessageObject, INotifyMessage, IHeartBeatMessage
+{
     /// <summary>
-    /// 第一次启动时间，即开服时间
+    /// 时间戳
     /// </summary>
-    public long FirstStartTime { get; set; }
+    [ProtoMember(1)]
+    public long Timestamp { get; set; }
+
+    public override void Clear()
+    {
+        Timestamp = default;
+    }
 }

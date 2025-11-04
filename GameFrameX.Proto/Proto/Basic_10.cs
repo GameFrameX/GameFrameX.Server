@@ -20,6 +20,11 @@ namespace GameFrameX.Proto.Proto
         [ProtoMember(1)]
         [System.ComponentModel.Description("时间戳")]
         public long Timestamp { get; set; }
+
+        public override void Clear()
+        {
+            Timestamp = default;
+        }
     }
 
     /// <summary>
@@ -36,6 +41,11 @@ namespace GameFrameX.Proto.Proto
         [ProtoMember(1)]
         [System.ComponentModel.Description("时间戳")]
         public long Timestamp { get; set; }
+
+        public override void Clear()
+        {
+            Timestamp = default;
+        }
     }
 
     /// <summary>
@@ -46,6 +56,10 @@ namespace GameFrameX.Proto.Proto
     [MessageTypeHandler(655372)]
     public sealed class NotifyServerFullyLoaded : MessageObject, INotifyMessage
     {
+
+        public override void Clear()
+        {
+        }
     }
 
 }

@@ -29,19 +29,94 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using GameFrameX.NetWork.Abstractions;
+using GameFrameX.NetWork.Messages;
+using ProtoBuf;
 
+namespace GameFrameX.Proto.BuiltIn;
 
-namespace GameFrameX.Apps.Server.Entity;
-
-public class ServerState : CacheState
+/// <summary>
+/// 请求链接的服务
+/// </summary>
+[MessageTypeHandler(((-2) << 16) + 100, (byte)MessageOperationType.ConnectService)]
+public partial class ReqConnectServer : MessageObject, IRequestMessage
 {
     /// <summary>
-    /// 世界等级
+    ///  服务器类型
     /// </summary>
-    public int WorldLevel { get; set; } = 1;
+    [ProtoMember(1)]
+    public string ServerType { get; set; }
 
     /// <summary>
-    /// 第一次启动时间，即开服时间
+    /// 服务器ID
     /// </summary>
-    public long FirstStartTime { get; set; }
+    [ProtoMember(2)]
+    public long ServerId { get; set; }
+
+    public override void Clear()
+    {
+        ServerId = default;
+        ServerType = default;
+    }
+}
+
+/// <summary>
+/// 请求链接的服务返回
+/// </summary>
+[MessageTypeHandler(((-2) << 16) + 101, (byte)MessageOperationType.ConnectService)]
+public partial class RespConnectServer : MessageObject, IResponseMessage
+{
+    /// <summary>
+    /// 是否成功
+    /// </summary>
+    public bool IsSuccess
+    {
+        get { return ErrorCode == 0; }
+    }
+
+    /// <summary>
+    ///  服务器类型
+    /// </summary>
+    [ProtoMember(1)]
+    public string ServerType { get; set; }
+
+    /// <summary>
+    /// 服务器名称
+    /// </summary>
+    [ProtoMember(2)]
+    public string ServerName { get; set; }
+
+    /// <summary>
+    /// 服务器ID
+    /// </summary>
+    [ProtoMember(3)]
+    public long ServerId { get; set; }
+
+    /// <summary>
+    /// 服务器地址
+    /// </summary>
+    [ProtoMember(5)]
+    public string TargetHost { get; set; }
+
+    /// <summary>
+    /// 服务器端口
+    /// </summary>
+    [ProtoMember(6)]
+    public ushort TargetPort { get; set; }
+
+    /// <summary>
+    /// 返回的错误码
+    /// </summary>
+    [ProtoMember(888)]
+    public int ErrorCode { get; set; }
+
+    public override void Clear()
+    {
+        ServerId = default;
+        ServerName = default;
+        ServerType = default;
+        TargetHost = default;
+        TargetPort = default;
+        ErrorCode = default;
+    }
 }

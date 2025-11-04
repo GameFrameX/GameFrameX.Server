@@ -31,17 +31,33 @@
 
 
 
-namespace GameFrameX.Apps.Server.Entity;
+using GameFrameX.Core.Abstractions.Events;
 
-public class ServerState : CacheState
+namespace GameFrameX.Apps.Common.EventData;
+
+/// <summary>
+/// 发送道具给玩家
+/// </summary>
+public sealed class PlayerSendItemEventArgs : GameEventArgs
 {
     /// <summary>
-    /// 世界等级
+    /// 玩家ID
     /// </summary>
-    public int WorldLevel { get; set; } = 1;
+    public long PlayerId { get; }
 
     /// <summary>
-    /// 第一次启动时间，即开服时间
+    /// 道具列表，键为道具ID，值为道具数量
     /// </summary>
-    public long FirstStartTime { get; set; }
+    public Dictionary<int, long> Items { get; }
+
+    /// <summary>
+    /// 构造函数
+    /// </summary>
+    /// <param name="playerId">玩家ID</param>
+    /// <param name="items">道具列表</param>
+    public PlayerSendItemEventArgs(long playerId, Dictionary<int, long> items)
+    {
+        PlayerId = playerId;
+        Items = items;
+    }
 }

@@ -1,6 +1,40 @@
-﻿using System.Linq;
+﻿// ==========================================================================================
+//  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
+//  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
+//  均受中华人民共和国及相关国际法律法规保护。
+//  are protected by the laws of the People's Republic of China and relevant international regulations.
+//  
+//  使用本项目须严格遵守相应法律法规及开源许可证之规定。
+//  Usage of this project must strictly comply with applicable laws, regulations, and open-source licenses.
+//  
+//  本项目采用 MIT 许可证与 Apache License 2.0 双许可证分发，
+//  This project is dual-licensed under the MIT License and Apache License 2.0,
+//  完整许可证文本请参见源代码根目录下的 LICENSE 文件。
+//  please refer to the LICENSE file in the root directory of the source code for the full license text.
+//  
+//  禁止利用本项目实施任何危害国家安全、破坏社会秩序、
+//  It is prohibited to use this project to engage in any activities that endanger national security, disrupt social order,
+//  侵犯他人合法权益等法律法规所禁止的行为！
+//  or infringe upon the legitimate rights and interests of others, as prohibited by laws and regulations!
+//  因基于本项目二次开发所产生的一切法律纠纷与责任，
+//  Any legal disputes and liabilities arising from secondary development based on this project
+//  本项目组织与贡献者概不承担。
+//  shall be borne solely by the developer; the project organization and contributors assume no responsibility.
+//  
+//  GitHub 仓库：https://github.com/GameFrameX
+//  GitHub Repository: https://github.com/GameFrameX
+//  Gitee  仓库：https://gitee.com/GameFrameX
+//  Gitee Repository:  https://gitee.com/GameFrameX
+//  官方文档：https://gameframex.doc.alianblank.com/
+//  Official Documentation: https://gameframex.doc.alianblank.com/
+// ==========================================================================================
+
+using System.Collections.Concurrent;
+using System.Linq;
 using System.Threading.Tasks;
 using GameFrameX.Apps.Common.Event;
+using GameFrameX.Core.Actors;
+using GameFrameX.Core.Events;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Utility.Setting;
 
@@ -31,7 +65,7 @@ public static class SessionManager
     public static List<Session> GetPageList(int pageSize, int pageIndex)
     {
         var result = SessionMap.Values.OrderBy(m => m.CreateTime)
-            .Where(m => ActorManager.HasActor(m.RoleId))
+            .Where(m => ActorManager.HasActor(m.PlayerId))
             .Skip(pageIndex * pageSize)
             .Take(pageSize)
             .ToList();
@@ -44,12 +78,12 @@ public static class SessionManager
     /// <param name="roleId">要踢掉的玩家的角色ID。</param>
     public static void KickOffLineByUserId(long roleId)
     {
-        var roleSession = Get(m => m.RoleId == roleId);
+        var roleSession = Get(m => m.PlayerId == roleId);
         if (roleSession != null)
         {
-            if (SessionMap.TryRemove(roleSession.Id, out var value) && ActorManager.HasActor(roleSession.RoleId))
+            if (SessionMap.TryRemove(roleSession.SessionId, out var value) && ActorManager.HasActor(roleSession.PlayerId))
             {
-                EventDispatcher.Dispatch(roleSession.RoleId, (int)EventId.SessionRemove);
+                EventDispatcher.Dispatch(roleSession.PlayerId, (int)EventId.SessionRemove);
             }
         }
     }
@@ -62,8 +96,8 @@ public static class SessionManager
     /// <returns>对应的会话对象，如果不存在则返回null。</returns>
     public static Session GetByRoleId(long roleId)
     {
-        var roleSession = Get(m => m.RoleId == roleId);
-        if (roleSession != null && ActorManager.HasActor(roleSession.RoleId))
+        var roleSession = Get(m => m.PlayerId == roleId);
+        if (roleSession != null && ActorManager.HasActor(roleSession.PlayerId))
         {
             return roleSession;
         }
@@ -109,9 +143,9 @@ public static class SessionManager
     /// <returns>被移除的会话对象，如果不存在则返回null。</returns>
     public static Session Remove(string sessionId)
     {
-        if (SessionMap.TryRemove(sessionId, out var value) && ActorManager.HasActor(value.RoleId))
+        if (SessionMap.TryRemove(sessionId, out var value) && ActorManager.HasActor(value.PlayerId))
         {
-            EventDispatcher.Dispatch(value.RoleId, (int)EventId.SessionRemove);
+            EventDispatcher.Dispatch(value.PlayerId, (int)EventId.SessionRemove);
         }
 
         return value;
@@ -125,9 +159,9 @@ public static class SessionManager
     {
         foreach (var session in SessionMap.Values)
         {
-            if (ActorManager.HasActor(session.RoleId))
+            if (ActorManager.HasActor(session.PlayerId))
             {
-                EventDispatcher.Dispatch(session.RoleId, (int)EventId.SessionRemove);
+                EventDispatcher.Dispatch(session.PlayerId, (int)EventId.SessionRemove);
             }
         }
 
@@ -152,8 +186,8 @@ public static class SessionManager
     /// <param name="session">要添加的会话对象。</param>
     public static void Add(Session session)
     {
-        session.WorkChannel.SetData(GlobalConst.SessionIdKey, session.Id);
-        SessionMap[session.Id] = session;
+        session.WorkChannel.SetData(GlobalConst.SessionIdKey, session.SessionId);
+        SessionMap[session.SessionId] = session;
     }
 
     /// <summary>
@@ -180,14 +214,17 @@ public static class SessionManager
             // 清除旧会话的连接数据并关闭连接
             oldSession.WorkChannel.ClearData();
             oldSession.WorkChannel.Close();
-
-            // 这里先移除，等待Disconnected回调断开太慢了
-            Remove(oldSession.Id);
+            // 这里先移除，等待Disconnected回调断开在移除的话有延迟
+            Remove(oldSession.SessionId);
         }
 
         // 获取当前会话并更新角色ID和签名
         var session = Get(sessionId);
-        session.SetRoleId(roleId);
+        if (session.IsNull())
+        {
+            return;
+        }
+        session.SetPlayerId(roleId);
         session.SetSign(sign);
     }
 }
