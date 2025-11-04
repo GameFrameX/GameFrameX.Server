@@ -172,24 +172,23 @@ public static class GameApp
             LogOptions.Default.LogEventLevel = launcherOptions.LogEventLevel;
             LogOptions.Default.RollingInterval = launcherOptions.LogRollingInterval;
             // 构建LogType，当值为空或默认值时不拼接
-            var logTypeParts = new List<string>();
+            // var logTypeParts = new List<string>();
+            //
+            // if (!string.IsNullOrWhiteSpace(launcherOptions.ServerType))
+            // {
+            //     logTypeParts.Add(launcherOptions.ServerType);
+            // }
+            //
+            // if (launcherOptions.ServerId > 0)
+            // {
+            //     logTypeParts.Add(launcherOptions.ServerId.ToString());
+            // }
+            //
+            // if (launcherOptions.ServerInstanceId > 0)
+            // {
+            //     logTypeParts.Add(launcherOptions.ServerInstanceId.ToString());
+            // }
 
-            if (!string.IsNullOrWhiteSpace(launcherOptions.ServerType))
-            {
-                logTypeParts.Add(launcherOptions.ServerType);
-            }
-
-            if (launcherOptions.ServerId > 0)
-            {
-                logTypeParts.Add(launcherOptions.ServerId.ToString());
-            }
-
-            if (launcherOptions.ServerInstanceId > 0)
-            {
-                logTypeParts.Add(launcherOptions.ServerInstanceId.ToString());
-            }
-
-            LogOptions.Default.LogType = logTypeParts.Count > 0 ? string.Join("_", logTypeParts) : null;
             if (launcherOptions.TagName.IsNotNullOrWhiteSpace())
             {
                 LogOptions.Default.LogTagName = launcherOptions.TagName;
