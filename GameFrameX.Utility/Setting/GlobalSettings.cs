@@ -74,13 +74,15 @@ public static class GlobalSettings
     public static void Load(string path)
     {
         Settings.Clear();
+        if (path.IsNullOrEmptyOrWhiteSpace())
+        {
+            return;
+        }
 
         if (!File.Exists(path))
         {
-            Console.BackgroundColor = ConsoleColor.Yellow;
-            Console.Write("The profile does not exist. may cause startup failure==>>>" + path);
-            Console.ResetColor();
-            Console.WriteLine();
+            var fullPath = Path.GetFullPath(path);
+            LogHelper.ShowOption("Load Global Settings", fullPath);
             return;
         }
 
