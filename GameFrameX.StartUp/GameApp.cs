@@ -73,15 +73,7 @@ public static class GameApp
     /// </remarks>
     private static readonly Dictionary<Type, StartUpTagAttribute> StartUpTypes = new();
 
-    /// <summary>
-    /// List of startup tasks for concurrent execution / 用于并发执行的启动任务列表
-    /// </summary>
-    /// <remarks>
-    /// 此列表包含所有启动任务，用于并发启动多个服务器实例，
-    /// 通过Task.WhenAll等待所有任务完成。
-    /// </remarks>
-    private static readonly List<Task> AppStartUpTasks = new List<Task>();
-    // private static readonly List<IAppStartUp> AppStartUps = new();
+    private static Task _launchTask;
 
     /// <summary>
     /// Main entry point for starting the game application / 启动游戏应用程序的主入口点
@@ -228,7 +220,7 @@ public static class GameApp
 
         var sortedStartUpTypes = StartUpTypes.OrderBy(m => m.Value.Priority);
 
-        LogHelper.InfoConsole("----------------------------Start Starting The Server------------------------------");
+
         var appSettings = GlobalSettings.GetSettings();
         if (serverType.IsNotNullOrWhiteSpace())
         {
@@ -253,32 +245,24 @@ public static class GameApp
         {
             foreach (var keyValuePair in sortedStartUpTypes)
             {
-                var isFind = false;
-
-                foreach (var appSetting in appSettings)
+                var appSetting = appSettings.FirstOrDefault(appSetting => keyValuePair.Value.ServerType == appSetting.ServerType);
+                if (appSetting != null)
                 {
-                    if (keyValuePair.Value.ServerType == appSetting.ServerType)
-                    {
-                        Launcher(args, keyValuePair, appSetting);
-                        isFind = true;
-                        break;
-                    }
-                }
-
-                if (isFind == false)
-                {
-                    LogHelper.Warning($"If no startup configuration is found for the server type, it will start with the default configuration=>{keyValuePair.Value.ServerType}");
-                    Launcher(args, keyValuePair);
+                    Launcher(args, keyValuePair, appSetting);
                     break;
                 }
+
+                LogHelper.Warning($"If no startup configuration is found for the server type, it will start with the default configuration=>{keyValuePair.Value.ServerType}");
+                Launcher(args, keyValuePair);
+                break;
             }
         }
 
         LogHelper.Info($"----------------------------The Startup Server Is Over------------------------------");
-        // ApplicationPerformanceMonitorStart(serverType);
+
         ConsoleHelper.ConsoleLogo();
 
-        await Task.WhenAll(AppStartUpTasks);
+        await _launchTask;
     }
 
     /// <summary>
@@ -293,9 +277,7 @@ public static class GameApp
     /// </remarks>
     private static void Launcher(string[] args, KeyValuePair<Type, StartUpTagAttribute> keyValuePair, AppSetting appSetting = null)
     {
-        var task = Start(args, keyValuePair.Key, keyValuePair.Value.ServerType, appSetting);
-        // AppStartUps.Add(startUp);
-        AppStartUpTasks.Add(task);
+        _launchTask = Start(args, keyValuePair.Key, keyValuePair.Value.ServerType, appSetting);
     }
 
     /// <summary>
