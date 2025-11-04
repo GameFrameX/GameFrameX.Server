@@ -13629,19 +13629,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiUrl
   nameWithType: LauncherOptions.LogGrafanaLokiUrl
-- uid: GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiUsername
-  name: LogGrafanaLokiUsername
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_LogGrafanaLokiUsername
-  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiUsername
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiUsername
-  nameWithType: LauncherOptions.LogGrafanaLokiUsername
-- uid: GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiUsername*
-  name: LogGrafanaLokiUsername
-  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_LogGrafanaLokiUsername_
-  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiUsername
+- uid: GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiUserName
+  name: LogGrafanaLokiUserName
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_LogGrafanaLokiUserName
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiUserName
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiUserName
+  nameWithType: LauncherOptions.LogGrafanaLokiUserName
+- uid: GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiUserName*
+  name: LogGrafanaLokiUserName
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_LogGrafanaLokiUserName_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiUserName
   isSpec: "True"
-  fullName: GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiUsername
-  nameWithType: LauncherOptions.LogGrafanaLokiUsername
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.LogGrafanaLokiUserName
+  nameWithType: LauncherOptions.LogGrafanaLokiUserName
 - uid: GameFrameX.StartUp.Options.LauncherOptions.LogIsConsole
   name: LogIsConsole
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_LogIsConsole
@@ -22271,64 +22271,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.NetHelper.PortIsUsed
   nameWithType: NetHelper.PortIsUsed
-- uid: GameFrameX.Utility.PlatformRuntimeHelper
-  name: PlatformRuntimeHelper
-  href: api/GameFrameX.Utility.PlatformRuntimeHelper.html
-  commentId: T:GameFrameX.Utility.PlatformRuntimeHelper
-  fullName: GameFrameX.Utility.PlatformRuntimeHelper
-  nameWithType: PlatformRuntimeHelper
-- uid: GameFrameX.Utility.PlatformRuntimeHelper.IsFreeBsd
-  name: IsFreeBsd
-  href: api/GameFrameX.Utility.PlatformRuntimeHelper.html#GameFrameX_Utility_PlatformRuntimeHelper_IsFreeBsd
-  commentId: P:GameFrameX.Utility.PlatformRuntimeHelper.IsFreeBsd
-  fullName: GameFrameX.Utility.PlatformRuntimeHelper.IsFreeBsd
-  nameWithType: PlatformRuntimeHelper.IsFreeBsd
-- uid: GameFrameX.Utility.PlatformRuntimeHelper.IsFreeBsd*
-  name: IsFreeBsd
-  href: api/GameFrameX.Utility.PlatformRuntimeHelper.html#GameFrameX_Utility_PlatformRuntimeHelper_IsFreeBsd_
-  commentId: Overload:GameFrameX.Utility.PlatformRuntimeHelper.IsFreeBsd
-  isSpec: "True"
-  fullName: GameFrameX.Utility.PlatformRuntimeHelper.IsFreeBsd
-  nameWithType: PlatformRuntimeHelper.IsFreeBsd
-- uid: GameFrameX.Utility.PlatformRuntimeHelper.IsLinux
-  name: IsLinux
-  href: api/GameFrameX.Utility.PlatformRuntimeHelper.html#GameFrameX_Utility_PlatformRuntimeHelper_IsLinux
-  commentId: P:GameFrameX.Utility.PlatformRuntimeHelper.IsLinux
-  fullName: GameFrameX.Utility.PlatformRuntimeHelper.IsLinux
-  nameWithType: PlatformRuntimeHelper.IsLinux
-- uid: GameFrameX.Utility.PlatformRuntimeHelper.IsLinux*
-  name: IsLinux
-  href: api/GameFrameX.Utility.PlatformRuntimeHelper.html#GameFrameX_Utility_PlatformRuntimeHelper_IsLinux_
-  commentId: Overload:GameFrameX.Utility.PlatformRuntimeHelper.IsLinux
-  isSpec: "True"
-  fullName: GameFrameX.Utility.PlatformRuntimeHelper.IsLinux
-  nameWithType: PlatformRuntimeHelper.IsLinux
-- uid: GameFrameX.Utility.PlatformRuntimeHelper.IsOsx
-  name: IsOsx
-  href: api/GameFrameX.Utility.PlatformRuntimeHelper.html#GameFrameX_Utility_PlatformRuntimeHelper_IsOsx
-  commentId: P:GameFrameX.Utility.PlatformRuntimeHelper.IsOsx
-  fullName: GameFrameX.Utility.PlatformRuntimeHelper.IsOsx
-  nameWithType: PlatformRuntimeHelper.IsOsx
-- uid: GameFrameX.Utility.PlatformRuntimeHelper.IsOsx*
-  name: IsOsx
-  href: api/GameFrameX.Utility.PlatformRuntimeHelper.html#GameFrameX_Utility_PlatformRuntimeHelper_IsOsx_
-  commentId: Overload:GameFrameX.Utility.PlatformRuntimeHelper.IsOsx
-  isSpec: "True"
-  fullName: GameFrameX.Utility.PlatformRuntimeHelper.IsOsx
-  nameWithType: PlatformRuntimeHelper.IsOsx
-- uid: GameFrameX.Utility.PlatformRuntimeHelper.IsWindows
-  name: IsWindows
-  href: api/GameFrameX.Utility.PlatformRuntimeHelper.html#GameFrameX_Utility_PlatformRuntimeHelper_IsWindows
-  commentId: P:GameFrameX.Utility.PlatformRuntimeHelper.IsWindows
-  fullName: GameFrameX.Utility.PlatformRuntimeHelper.IsWindows
-  nameWithType: PlatformRuntimeHelper.IsWindows
-- uid: GameFrameX.Utility.PlatformRuntimeHelper.IsWindows*
-  name: IsWindows
-  href: api/GameFrameX.Utility.PlatformRuntimeHelper.html#GameFrameX_Utility_PlatformRuntimeHelper_IsWindows_
-  commentId: Overload:GameFrameX.Utility.PlatformRuntimeHelper.IsWindows
-  isSpec: "True"
-  fullName: GameFrameX.Utility.PlatformRuntimeHelper.IsWindows
-  nameWithType: PlatformRuntimeHelper.IsWindows
 - uid: GameFrameX.Utility.RandomHelper
   name: RandomHelper
   href: api/GameFrameX.Utility.RandomHelper.html

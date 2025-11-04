@@ -2332,7 +2332,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.StartUp.Abstractions.IAppStartUp",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Abstractions.IAppStartUp.yml\" sourcestartlinenumber=\"1\">程序启动器基类接口定义</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Abstractions.IAppStartUp.yml\" sourcestartlinenumber=\"1\">Application startup interface definition</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2346,7 +2346,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.StartUp.Abstractions.IFetalExceptionExitHandler",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Abstractions.IFetalExceptionExitHandler.yml\" sourcestartlinenumber=\"1\">程序异常退出的执行器</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Abstractions.IFetalExceptionExitHandler.yml\" sourcestartlinenumber=\"1\">Fatal exception exit handler interface definition</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2374,7 +2374,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.StartUp.AppStartUpBase",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.AppStartUpBase.yml\" sourcestartlinenumber=\"1\">程序启动器基类</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.AppStartUpBase.yml\" sourcestartlinenumber=\"1\">Application startup base class / 应用程序启动基类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2388,7 +2388,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.yml\" sourcestartlinenumber=\"1\">健康检查项目信息</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.yml\" sourcestartlinenumber=\"1\">Health check item information / 健康检查项目信息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2402,7 +2402,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.yml\" sourcestartlinenumber=\"1\">健康检查设置信息类</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.yml\" sourcestartlinenumber=\"1\">Health check settings information class / 健康检查设置信息类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2416,7 +2416,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.StartUp.Extensions.HealthCheckResponse",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.HealthCheckResponse.yml\" sourcestartlinenumber=\"1\">健康检查响应信息</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.HealthCheckResponse.yml\" sourcestartlinenumber=\"1\">Health check response information / 健康检查响应信息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2430,7 +2430,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.StartUp.Extensions.HealthChecksExtensions",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.yml\" sourcestartlinenumber=\"1\">健康检查配置扩展方法</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.yml\" sourcestartlinenumber=\"1\">Health check configuration extension methods / 健康检查配置扩展方法</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2444,7 +2444,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.StartUp.Extensions.OpenTelemetryExtensions",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.yml\" sourcestartlinenumber=\"1\">OpenTelemetry 配置扩展方法</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.yml\" sourcestartlinenumber=\"1\">OpenTelemetry configuration extension methods / OpenTelemetry 配置扩展方法</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2472,7 +2472,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.StartUp.GameApp",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.GameApp.yml\" sourcestartlinenumber=\"1\">程序入口类</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.GameApp.yml\" sourcestartlinenumber=\"1\">Game application entry point class / 游戏应用程序入口类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2486,7 +2486,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.StartUp.Options.LauncherOptions",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Options.LauncherOptions.yml\" sourcestartlinenumber=\"1\">启动参数</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Options.LauncherOptions.yml\" sourcestartlinenumber=\"1\">Launcher configuration options for GameFrameX server startup</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2514,7 +2514,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.yml\" sourcestartlinenumber=\"1\">服务端配置类</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.yml\" sourcestartlinenumber=\"1\">Game application service configuration class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2542,7 +2542,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.StartUp.StartUpTagAttribute",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.StartUpTagAttribute.yml\" sourcestartlinenumber=\"1\">启动属性</p>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.StartUpTagAttribute.yml\" sourcestartlinenumber=\"1\">Startup attribute for marking classes with startup configuration / 用于标记类的启动配置属性</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2809,20 +2809,6 @@
       "IsMRef": true,
       "Title": "GameFrameX.Utility.NetHelper",
       "Summary": "<p sourcefile=\"api/GameFrameX.Utility.NetHelper.yml\" sourcestartlinenumber=\"1\">网络帮助类\n提供网络相关的实用工具方法，包括IP地址验证、端口可用性检查、本地IP获取等功能</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.Utility.PlatformRuntimeHelper.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.Utility.PlatformRuntimeHelper.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.Utility.PlatformRuntimeHelper",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.PlatformRuntimeHelper.yml\" sourcestartlinenumber=\"1\">平台运行时帮助类</p>\n"
     },
     {
       "type": "ManagedReference",

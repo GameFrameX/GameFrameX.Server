@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class HealthChecksExtensions | GameFrameX.Server ">
       
-      <meta name="description" content="健康检查配置扩展方法">
+      <meta name="description" content="Health check configuration extension methods / 健康检查配置扩展方法">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.2-dev1/apiSpec/new?filename=GameFrameX_StartUp_Extensions_HealthChecksExtensions.md&amp;value=---%0Auid%3A%20GameFrameX.StartUp.Extensions.HealthChecksExtensions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.2-dev2/apiSpec/new?filename=GameFrameX_StartUp_Extensions_HealthChecksExtensions.md&amp;value=---%0Auid%3A%20GameFrameX.StartUp.Extensions.HealthChecksExtensions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_StartUp_Extensions_HealthChecksExtensions" data-uid="GameFrameX.StartUp.Extensions.HealthChecksExtensions" class="text-break">
-Class HealthChecksExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L49"><i class="bi bi-code-slash"></i></a>
+Class HealthChecksExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L53"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Class HealthChecksExtensions  <a class="header-action link-secondary" title="Vie
   <dl><dt>Assembly</dt><dd>GameFrameX.StartUp.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>健康检查配置扩展方法</p>
+  <div class="markdown summary"><p>Health check configuration extension methods / 健康检查配置扩展方法</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -147,6 +147,10 @@ Class HealthChecksExtensions  <a class="header-action link-secondary" title="Vie
 
 
 
+  <h2 id="GameFrameX_StartUp_Extensions_HealthChecksExtensions_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>提供用于配置和使用健康检查功能的扩展方法，支持多种健康检查端点和自定义响应格式。
+包含详细的JSON格式健康检查报告和简单的兼容性端点，支持OpenTelemetry集成。</p>
+</div>
 
 
   <h2 class="section" id="fields">Fields
@@ -156,10 +160,10 @@ Class HealthChecksExtensions  <a class="header-action link-secondary" title="Vie
 
   <h3 id="GameFrameX_StartUp_Extensions_HealthChecksExtensions_DefaultHealthCheckPath" data-uid="GameFrameX.StartUp.Extensions.HealthChecksExtensions.DefaultHealthCheckPath">
   DefaultHealthCheckPath
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L65"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>默认健康检查端点路径</p>
+  <div class="markdown level1 summary"><p>Default health check endpoint path / 默认健康检查端点路径</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -173,7 +177,7 @@ Class HealthChecksExtensions  <a class="header-action link-secondary" title="Vie
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>返回默认的健康检查端点路径 &quot;/health&quot;</p>
+    <dd><p>Returns the default health check endpoint path &quot;/health&quot; / 返回默认的健康检查端点路径 &quot;/health&quot;</p>
 </dd>
   </dl>
 
@@ -188,10 +192,10 @@ Class HealthChecksExtensions  <a class="header-action link-secondary" title="Vie
 
   <h3 id="GameFrameX_StartUp_Extensions_HealthChecksExtensions_OpenTelemetryHealthCheckPath" data-uid="GameFrameX.StartUp.Extensions.HealthChecksExtensions.OpenTelemetryHealthCheckPath">
   OpenTelemetryHealthCheckPath
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L77"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>OpenTelemetry 健康检查端点路径</p>
+  <div class="markdown level1 summary"><p>OpenTelemetry health check endpoint path / OpenTelemetry 健康检查端点路径</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -205,7 +209,8 @@ Class HealthChecksExtensions  <a class="header-action link-secondary" title="Vie
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>Returns the OpenTelemetry health check endpoint path / 返回OpenTelemetry健康检查端点路径</p>
+</dd>
   </dl>
 
 
@@ -219,10 +224,10 @@ Class HealthChecksExtensions  <a class="header-action link-secondary" title="Vie
 
   <h3 id="GameFrameX_StartUp_Extensions_HealthChecksExtensions_SimpleHealthCheckPath" data-uid="GameFrameX.StartUp.Extensions.HealthChecksExtensions.SimpleHealthCheckPath">
   SimpleHealthCheckPath
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L71"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>简单健康检查端点路径（兼容性端点）</p>
+  <div class="markdown level1 summary"><p>Simple health check endpoint path (compatibility endpoint) / 简单健康检查端点路径（兼容性端点）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -236,7 +241,8 @@ Class HealthChecksExtensions  <a class="header-action link-secondary" title="Vie
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>Returns the simple health check endpoint path / 返回简单健康检查端点路径</p>
+</dd>
   </dl>
 
 
@@ -255,10 +261,10 @@ Class HealthChecksExtensions  <a class="header-action link-secondary" title="Vie
 
   <h3 id="GameFrameX_StartUp_Extensions_HealthChecksExtensions_AddGameFrameXHealthChecks_Microsoft_Extensions_DependencyInjection_IServiceCollection_GameFrameX_Utility_Setting_AppSetting_" data-uid="GameFrameX.StartUp.Extensions.HealthChecksExtensions.AddGameFrameXHealthChecks(Microsoft.Extensions.DependencyInjection.IServiceCollection,GameFrameX.Utility.Setting.AppSetting)">
   AddGameFrameXHealthChecks(IServiceCollection, AppSetting)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>添加 GameFrameX 健康检查服务（包含多种检查项目）</p>
+  <div class="markdown level1 summary"><p>Add GameFrameX health check services (including multiple check items) / 添加 GameFrameX 健康检查服务（包含多种检查项目）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -269,17 +275,17 @@ Class HealthChecksExtensions  <a class="header-action link-secondary" title="Vie
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>services</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
-    <dd><p>服务集合</p>
+    <dd><p>Service collection / 服务集合</p>
 </dd>
     <dt><code>setting</code> <a class="xref" href="GameFrameX.Utility.Setting.AppSetting.html">AppSetting</a></dt>
-    <dd><p>应用设置</p>
+    <dd><p>Application settings / 应用设置</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
-    <dd><p>服务集合</p>
+    <dd><p>Service collection / 服务集合</p>
 </dd>
   </dl>
 
@@ -289,7 +295,17 @@ Class HealthChecksExtensions  <a class="header-action link-secondary" title="Vie
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_HealthChecksExtensions_AddGameFrameXHealthChecks_Microsoft_Extensions_DependencyInjection_IServiceCollection_GameFrameX_Utility_Setting_AppSetting__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>注册多个健康检查项目，包括基础应用程序检查、简单兼容性检查和OpenTelemetry检查。
+根据配置自动启用或禁用相应的检查项目，确保系统健康状态的全面监控。</p>
+</div>
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown when services or setting is null / 当services或setting为null时抛出</p>
+</dd>
+  </dl>
 
 
 
@@ -297,10 +313,10 @@ Class HealthChecksExtensions  <a class="header-action link-secondary" title="Vie
 
   <h3 id="GameFrameX_StartUp_Extensions_HealthChecksExtensions_UseGameFrameXHealthChecks_Microsoft_AspNetCore_Builder_IApplicationBuilder_GameFrameX_Utility_Setting_AppSetting_System_Collections_Generic_List_System_String__" data-uid="GameFrameX.StartUp.Extensions.HealthChecksExtensions.UseGameFrameXHealthChecks(Microsoft.AspNetCore.Builder.IApplicationBuilder,GameFrameX.Utility.Setting.AppSetting,System.Collections.Generic.List{System.String})">
   UseGameFrameXHealthChecks(IApplicationBuilder, AppSetting, List&lt;string&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L118"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L136"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>使用 GameFrameX 健康检查中间件</p>
+  <div class="markdown level1 summary"><p>Use GameFrameX health check middleware / 使用 GameFrameX 健康检查中间件</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -311,19 +327,20 @@ Class HealthChecksExtensions  <a class="header-action link-secondary" title="Vie
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>app</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder">IApplicationBuilder</a></dt>
-    <dd><p>应用程序构建器，用于配置HTTP请求管道</p>
+    <dd><p>Application builder for configuring HTTP request pipeline / 应用程序构建器，用于配置HTTP请求管道</p>
 </dd>
     <dt><code>setting</code> <a class="xref" href="GameFrameX.Utility.Setting.AppSetting.html">AppSetting</a></dt>
-    <dd><p>应用设置对象，包含应用程序的配置信息</p>
+    <dd><p>Application settings object containing application configuration / 应用设置对象，包含应用程序的配置信息</p>
 </dd>
     <dt><code>ipList</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>List of IP addresses for health check endpoints / 健康检查端点的IP地址列表</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder">IApplicationBuilder</a></dt>
-    <dd><p>返回配置了健康检查端点的应用程序构建器</p>
+    <dd><p>Returns the application builder configured with health check endpoints / 返回配置了健康检查端点的应用程序构建器</p>
 </dd>
   </dl>
 
@@ -334,18 +351,25 @@ Class HealthChecksExtensions  <a class="header-action link-secondary" title="Vie
 
   <h4 class="section" id="GameFrameX_StartUp_Extensions_HealthChecksExtensions_UseGameFrameXHealthChecks_Microsoft_AspNetCore_Builder_IApplicationBuilder_GameFrameX_Utility_Setting_AppSetting_System_Collections_Generic_List_System_String___examples">Examples</h4>
   <pre><code class="lang-csharp">// 使用默认路径
-app.UseGameFrameXHealthChecks(appSetting);
+app.UseGameFrameXHealthChecks(appSetting, ipList);
 
-// 使用自定义路径
-app.UseGameFrameXHealthChecks(appSetting, "/api/health");</code></pre>
+// 配置健康检查端点
+var ipList = new List&lt;string&gt; { "127.0.0.1", "192.168.1.100" };
+app.UseGameFrameXHealthChecks(appSetting, ipList);</code></pre>
 
 
   <h4 class="section" id="GameFrameX_StartUp_Extensions_HealthChecksExtensions_UseGameFrameXHealthChecks_Microsoft_AspNetCore_Builder_IApplicationBuilder_GameFrameX_Utility_Setting_AppSetting_System_Collections_Generic_List_System_String___remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>此方法会配置以下健康检查端点：</p>
-<ul><li><code>/health</code> - 详细的JSON格式健康检查报告</li><li><code>/health/simple</code> - 简单的"OK"响应（兼容性端点）</li></ul>
+<ul><li><code>/health</code> - 详细的JSON格式健康检查报告</li><li><code>/health/simple</code> - 简单的"OK"响应（兼容性端点）</li><li><code>/health/opentelemetry</code> - OpenTelemetry相关检查（如果启用）</li></ul>
 健康检查响应包含状态、检查项详情、持续时间、服务器信息和时间戳。
 </div>
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown when app, setting, or ipList is null / 当app、setting或ipList为null时抛出</p>
+</dd>
+  </dl>
 
   <dl class="typelist seealso">
     <dt>See Also</dt>
@@ -360,7 +384,7 @@ app.UseGameFrameXHealthChecks(appSetting, "/api/health");</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L49" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L53" class="edit-link">Edit this page</a>
         </div>
 
 

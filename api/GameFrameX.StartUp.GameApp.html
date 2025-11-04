@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class GameApp | GameFrameX.Server ">
       
-      <meta name="description" content="程序入口类">
+      <meta name="description" content="Game application entry point class / 游戏应用程序入口类">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.2-dev1/apiSpec/new?filename=GameFrameX_StartUp_GameApp.md&amp;value=---%0Auid%3A%20GameFrameX.StartUp.GameApp%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.2-dev2/apiSpec/new?filename=GameFrameX_StartUp_GameApp.md&amp;value=---%0Auid%3A%20GameFrameX.StartUp.GameApp%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_StartUp_GameApp" data-uid="GameFrameX.StartUp.GameApp" class="text-break">
-Class GameApp  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/GameApp.cs/#L49"><i class="bi bi-code-slash"></i></a>
+Class GameApp  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/GameApp.cs/#L65"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Class GameApp  <a class="header-action link-secondary" title="View source" href=
   <dl><dt>Assembly</dt><dd>GameFrameX.StartUp.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>程序入口类</p>
+  <div class="markdown summary"><p>Game application entry point class / 游戏应用程序入口类</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -146,7 +146,21 @@ Class GameApp  <a class="header-action link-secondary" title="View source" href=
 
 
 
+  <h2 id="GameFrameX_StartUp_GameApp_examples">Examples</h2>
+  <pre><code class="lang-csharp">// 启动游戏服务器
+await GameApp.Entry(args, () =&gt; {
+    // 初始化协议注册等
+}, logOptions =&gt; {
+    // 配置日志选项
+    logOptions.IsConsole = true;
+});</code></pre>
 
+
+  <h2 id="GameFrameX_StartUp_GameApp_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>此类提供了游戏服务器的启动入口点，负责初始化各种服务器组件，
+包括日志系统、配置管理、启动类型发现和服务器启动流程。
+支持多种服务器类型的启动和管理。</p>
+</div>
 
 
   <h2 class="section" id="methods">Methods
@@ -157,10 +171,10 @@ Class GameApp  <a class="header-action link-secondary" title="View source" href=
 
   <h3 id="GameFrameX_StartUp_GameApp_Entry_System_String___System_Action_System_Action_GameFrameX_Foundation_Logger_LogOptions__" data-uid="GameFrameX.StartUp.GameApp.Entry(System.String[],System.Action,System.Action{GameFrameX.Foundation.Logger.LogOptions})">
   Entry(string[], Action, Action&lt;LogOptions&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/GameApp.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/GameApp.cs/#L110"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>启动入口函数</p>
+  <div class="markdown level1 summary"><p>Main entry point for starting the game application / 启动游戏应用程序的主入口点</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -171,20 +185,21 @@ Class GameApp  <a class="header-action link-secondary" title="View source" href=
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
-    <dd><p>启动参数</p>
+    <dd><p>Command line arguments / 命令行参数</p>
 </dd>
     <dt><code>initAction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
-    <dd><p>在启动服务器之前执行,需要外部初始化协议注册</p>
+    <dd><p>Initialization action executed before starting the server, used for external protocol registration / 在启动服务器之前执行的初始化操作，用于外部协议注册</p>
 </dd>
     <dt><code>logConfiguration</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<span class="xref">LogOptions</span>&gt;</dt>
-    <dd><p>初始化日志系统之前回调,可以重写参数</p>
+    <dd><p>Callback for log system initialization, allows overriding parameters / 日志系统初始化回调，可以重写参数</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd></dd>
+    <dd><p>A task representing the asynchronous operation / 表示异步操作的任务</p>
+</dd>
   </dl>
 
 
@@ -192,8 +207,40 @@ Class GameApp  <a class="header-action link-secondary" title="View source" href=
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_GameApp_Entry_System_String___System_Action_System_Action_GameFrameX_Foundation_Logger_LogOptions___examples">Examples</h4>
+  <pre><code class="lang-csharp">// 基本启动
+await GameApp.Entry(args, null);
+
+// 带初始化和日志配置的启动
+await GameApp.Entry(args, 
+    () =&gt; ProtocolManager.RegisterAll(),
+    logOptions =&gt; {
+        logOptions.IsConsole = true;
+        logOptions.LogEventLevel = LogEventLevel.Debug;
+    });</code></pre>
 
 
+  <h4 class="section" id="GameFrameX_StartUp_GameApp_Entry_System_String___System_Action_System_Action_GameFrameX_Foundation_Logger_LogOptions___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>此方法是整个游戏服务器的启动入口点，执行以下主要步骤：</p>
+<ol>
+<li>解析启动参数</li>
+<li>配置日志系统</li>
+<li>加载全局设置</li>
+<li>发现并注册启动类型</li>
+<li>根据服务器类型启动相应的服务</li>
+<li>等待所有启动任务完成</li>
+</ol>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown when args is null / 当args为null时抛出</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>Thrown when startup configuration is invalid / 当启动配置无效时抛出</p>
+</dd>
+  </dl>
 
 
 
@@ -201,7 +248,7 @@ Class GameApp  <a class="header-action link-secondary" title="View source" href=
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/GameApp.cs/#L49" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/GameApp.cs/#L65" class="edit-link">Edit this page</a>
         </div>
 
 

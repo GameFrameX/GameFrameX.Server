@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class StartUpTagAttribute | GameFrameX.Server ">
       
-      <meta name="description" content="启动属性">
+      <meta name="description" content="Startup attribute for marking classes with startup configuration / 用于标记类的启动配置属性">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.2-dev1/apiSpec/new?filename=GameFrameX_StartUp_StartUpTagAttribute.md&amp;value=---%0Auid%3A%20GameFrameX.StartUp.StartUpTagAttribute%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.2-dev2/apiSpec/new?filename=GameFrameX_StartUp_StartUpTagAttribute.md&amp;value=---%0Auid%3A%20GameFrameX.StartUp.StartUpTagAttribute%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_StartUp_StartUpTagAttribute" data-uid="GameFrameX.StartUp.StartUpTagAttribute" class="text-break">
-Class StartUpTagAttribute  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/StartUpTagAttribute.cs/#L37"><i class="bi bi-code-slash"></i></a>
+Class StartUpTagAttribute  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/StartUpTagAttribute.cs/#L50"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Class StartUpTagAttribute  <a class="header-action link-secondary" title="View s
   <dl><dt>Assembly</dt><dd>GameFrameX.StartUp.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>启动属性</p>
+  <div class="markdown summary"><p>Startup attribute for marking classes with startup configuration / 用于标记类的启动配置属性</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -253,7 +253,18 @@ public class StartUpTagAttribute : Attribute</code></pre>
 
 
 
+  <h2 id="GameFrameX_StartUp_StartUpTagAttribute_examples">Examples</h2>
+  <pre><code class="lang-csharp">[StartUpTag("GameServer", 100)]
+public class GameServerStartUp : IAppStartUp
+{
+    // Implementation
+}</code></pre>
 
+
+  <h2 id="GameFrameX_StartUp_StartUpTagAttribute_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>此属性用于标记需要在应用程序启动时初始化的类，可以指定服务器类型和启动优先级。
+属性可以应用于类，支持多重应用，但不支持继承。</p>
+</div>
 
 
   <h2 class="section" id="constructors">Constructors
@@ -264,10 +275,10 @@ public class StartUpTagAttribute : Attribute</code></pre>
 
   <h3 id="GameFrameX_StartUp_StartUpTagAttribute__ctor_System_String_System_Int32_" data-uid="GameFrameX.StartUp.StartUpTagAttribute.#ctor(System.String,System.Int32)">
   StartUpTagAttribute(string, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/StartUpTagAttribute.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/StartUpTagAttribute.cs/#L97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>构建启动属性</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the StartUpTagAttribute class / 初始化StartUpTagAttribute类的新实例</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -278,10 +289,10 @@ public class StartUpTagAttribute : Attribute</code></pre>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>serverType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>服务器类型</p>
+    <dd><p>The server type identifier / 服务器类型标识符</p>
 </dd>
     <dt><code>priority</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>优先级，默认为1000</p>
+    <dd><p>The startup priority, default is 1000 / 启动优先级，默认为1000</p>
 </dd>
   </dl>
 
@@ -291,8 +302,28 @@ public class StartUpTagAttribute : Attribute</code></pre>
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_StartUpTagAttribute__ctor_System_String_System_Int32__examples">Examples</h4>
+  <pre><code class="lang-csharp">// 创建一个游戏服务器启动标签，优先级为100
+var attribute = new StartUpTagAttribute("GameServer", 100);
+
+// 创建一个登录服务器启动标签，使用默认优先级
+var attribute2 = new StartUpTagAttribute("LoginServer");</code></pre>
 
 
+  <h4 class="section" id="GameFrameX_StartUp_StartUpTagAttribute__ctor_System_String_System_Int32__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>构造函数用于创建启动标签属性实例，需要指定服务器类型，
+优先级参数是可选的，如果不指定则使用默认值1000。</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown when serverType is null / 当serverType为null时抛出</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when serverType is empty or whitespace / 当serverType为空或空白字符时抛出</p>
+</dd>
+  </dl>
 
 
 
@@ -303,10 +334,10 @@ public class StartUpTagAttribute : Attribute</code></pre>
 
   <h3 id="GameFrameX_StartUp_StartUpTagAttribute_Priority" data-uid="GameFrameX.StartUp.StartUpTagAttribute.Priority">
   Priority
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/StartUpTagAttribute.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/StartUpTagAttribute.cs/#L63"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>启动优先级。值越小优先级越高</p>
+  <div class="markdown level1 summary"><p>Gets the startup priority, lower values have higher priority / 获取启动优先级，值越小优先级越高</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -320,13 +351,18 @@ public class StartUpTagAttribute : Attribute</code></pre>
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>An integer representing the startup priority. Lower values indicate higher priority.</p>
+</dd>
   </dl>
 
 
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_StartUpTagAttribute_Priority_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>启动优先级决定了类的初始化顺序，数值越小的类会越早被初始化。
+默认优先级为1000。</p>
+</div>
 
 
 
@@ -334,10 +370,10 @@ public class StartUpTagAttribute : Attribute</code></pre>
 
   <h3 id="GameFrameX_StartUp_StartUpTagAttribute_ServerType" data-uid="GameFrameX.StartUp.StartUpTagAttribute.ServerType">
   ServerType
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/StartUpTagAttribute.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/StartUpTagAttribute.cs/#L75"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>服务器类型</p>
+  <div class="markdown level1 summary"><p>Gets the server type identifier / 获取服务器类型标识符</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -351,13 +387,18 @@ public class StartUpTagAttribute : Attribute</code></pre>
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>A string representing the server type that this startup class is associated with.</p>
+</dd>
   </dl>
 
 
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_StartUpTagAttribute_ServerType_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>服务器类型用于标识当前启动类适用于哪种类型的服务器，
+系统会根据此标识符来决定是否启动对应的类。</p>
+</div>
 
 
 
@@ -366,7 +407,7 @@ public class StartUpTagAttribute : Attribute</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/StartUpTagAttribute.cs/#L37" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/StartUpTagAttribute.cs/#L50" class="edit-link">Edit this page</a>
         </div>
 
 

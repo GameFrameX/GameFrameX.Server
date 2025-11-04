@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Interface IAppStartUp | GameFrameX.Server ">
       
-      <meta name="description" content="程序启动器基类接口定义">
+      <meta name="description" content="Application startup interface definition">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.2-dev1/apiSpec/new?filename=GameFrameX_StartUp_Abstractions_IAppStartUp.md&amp;value=---%0Auid%3A%20GameFrameX.StartUp.Abstractions.IAppStartUp%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.2-dev2/apiSpec/new?filename=GameFrameX_StartUp_Abstractions_IAppStartUp.md&amp;value=---%0Auid%3A%20GameFrameX.StartUp.Abstractions.IAppStartUp%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_StartUp_Abstractions_IAppStartUp" data-uid="GameFrameX.StartUp.Abstractions.IAppStartUp" class="text-break">
-Interface IAppStartUp  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Abstractions/IAppStartUp.cs/#L39"><i class="bi bi-code-slash"></i></a>
+Interface IAppStartUp  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Abstractions/IAppStartUp.cs/#L42"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
   <dl><dt>Assembly</dt><dd>GameFrameX.StartUp.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>程序启动器基类接口定义</p>
+  <div class="markdown summary"><p>Application startup interface definition</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -115,6 +115,9 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
 
 
 
+  <h2 id="GameFrameX_StartUp_Abstractions_IAppStartUp_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>程序启动器基类接口定义，定义了应用程序启动、停止和配置管理的基本契约</p>
+</div>
 
 
   <h2 class="section" id="properties">Properties
@@ -125,10 +128,10 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_StartUp_Abstractions_IAppStartUp_AppExitToken" data-uid="GameFrameX.StartUp.Abstractions.IAppStartUp.AppExitToken">
   AppExitToken
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Abstractions/IAppStartUp.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Abstractions/IAppStartUp.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>应用退出</p>
+  <div class="markdown level1 summary"><p>Gets the application exit token</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -143,12 +146,16 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>A task that represents the application exit token</p>
+</dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_Abstractions_IAppStartUp_AppExitToken_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>应用退出令牌，用于监控应用程序的退出状态</p>
+</div>
 
 
 
@@ -157,10 +164,10 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_StartUp_Abstractions_IAppStartUp_ServerType" data-uid="GameFrameX.StartUp.Abstractions.IAppStartUp.ServerType">
   ServerType
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Abstractions/IAppStartUp.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Abstractions/IAppStartUp.cs/#L60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>服务器类型</p>
+  <div class="markdown level1 summary"><p>Gets the server type</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -175,12 +182,16 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The type identifier of the server</p>
+</dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_Abstractions_IAppStartUp_ServerType_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>服务器类型标识符，用于区分不同类型的服务器实例</p>
+</div>
 
 
 
@@ -189,10 +200,10 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_StartUp_Abstractions_IAppStartUp_Setting" data-uid="GameFrameX.StartUp.Abstractions.IAppStartUp.Setting">
   Setting
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Abstractions/IAppStartUp.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Abstractions/IAppStartUp.cs/#L69"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>配置信息</p>
+  <div class="markdown level1 summary"><p>Gets the application configuration settings</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -207,12 +218,16 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="GameFrameX.Utility.Setting.AppSetting.html">AppSetting</a></dt>
-    <dd></dd>
+    <dd><p>The application settings instance</p>
+</dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_Abstractions_IAppStartUp_Setting_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>配置信息，包含应用程序运行所需的各种配置参数</p>
+</div>
 
 
 
@@ -225,10 +240,10 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_StartUp_Abstractions_IAppStartUp_Init_System_String_GameFrameX_Utility_Setting_AppSetting_System_String___" data-uid="GameFrameX.StartUp.Abstractions.IAppStartUp.Init(System.String,GameFrameX.Utility.Setting.AppSetting,System.String[])">
   Init(string, AppSetting, string[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Abstractions/IAppStartUp.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Abstractions/IAppStartUp.cs/#L81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>初始化</p>
+  <div class="markdown level1 summary"><p>Initializes the application startup with specified parameters</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -239,20 +254,21 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>serverType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>服务器类型</p>
+    <dd><p>The type of server to initialize / 服务器类型</p>
 </dd>
     <dt><code>setting</code> <a class="xref" href="GameFrameX.Utility.Setting.AppSetting.html">AppSetting</a></dt>
-    <dd><p>启动设置</p>
+    <dd><p>The application settings / 启动设置</p>
 </dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
-    <dd><p>启动参数</p>
+    <dd><p>The startup arguments / 启动参数</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
+    <dd><p>True if initialization is successful; otherwise, false / 初始化成功返回true，否则返回false</p>
+</dd>
   </dl>
 
 
@@ -261,6 +277,9 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_Abstractions_IAppStartUp_Init_System_String_GameFrameX_Utility_Setting_AppSetting_System_String____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>初始化应用程序启动器，设置服务器类型、配置信息和启动参数</p>
+</div>
 
 
 
@@ -269,10 +288,10 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_StartUp_Abstractions_IAppStartUp_StartAsync" data-uid="GameFrameX.StartUp.Abstractions.IAppStartUp.StartAsync">
   StartAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Abstractions/IAppStartUp.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Abstractions/IAppStartUp.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>启动</p>
+  <div class="markdown level1 summary"><p>Starts the application asynchronously</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -284,7 +303,8 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd></dd>
+    <dd><p>A task that represents the asynchronous start operation / 表示异步启动操作的任务</p>
+</dd>
   </dl>
 
 
@@ -293,6 +313,9 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_Abstractions_IAppStartUp_StartAsync_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>异步启动应用程序，执行所有必要的初始化和服务启动流程</p>
+</div>
 
 
 
@@ -301,10 +324,10 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="GameFrameX_StartUp_Abstractions_IAppStartUp_StopAsync_System_String_" data-uid="GameFrameX.StartUp.Abstractions.IAppStartUp.StopAsync(System.String)">
   StopAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Abstractions/IAppStartUp.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Abstractions/IAppStartUp.cs/#L100"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>终止服务器</p>
+  <div class="markdown level1 summary"><p>Stops the server asynchronously with an optional message</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -315,14 +338,15 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>终止原因</p>
+    <dd><p>The reason for stopping the server / 终止原因</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd></dd>
+    <dd><p>A task that represents the asynchronous stop operation / 表示异步停止操作的任务</p>
+</dd>
   </dl>
 
 
@@ -331,6 +355,9 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_Abstractions_IAppStartUp_StopAsync_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>异步终止服务器，执行清理和资源释放操作</p>
+</div>
 
 
 
@@ -339,7 +366,7 @@ Interface IAppStartUp  <a class="header-action link-secondary" title="View sourc
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Abstractions/IAppStartUp.cs/#L39" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Abstractions/IAppStartUp.cs/#L42" class="edit-link">Edit this page</a>
         </div>
 
 

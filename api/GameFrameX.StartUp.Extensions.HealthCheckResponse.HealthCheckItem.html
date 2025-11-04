@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class HealthCheckResponse.HealthCheckItem | GameFrameX.Server ">
       
-      <meta name="description" content="健康检查项目信息">
+      <meta name="description" content="Health check item information / 健康检查项目信息">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.2-dev1/apiSpec/new?filename=GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem.md&amp;value=---%0Auid%3A%20GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.2-dev2/apiSpec/new?filename=GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem.md&amp;value=---%0Auid%3A%20GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem" class="text-break">
-Class HealthCheckResponse.HealthCheckItem  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L202"><i class="bi bi-code-slash"></i></a>
+Class HealthCheckResponse.HealthCheckItem  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L228"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Class HealthCheckResponse.HealthCheckItem  <a class="header-action link-secondar
   <dl><dt>Assembly</dt><dd>GameFrameX.StartUp.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>健康检查项目信息</p>
+  <div class="markdown summary"><p>Health check item information / 健康检查项目信息</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -144,6 +144,10 @@ Class HealthCheckResponse.HealthCheckItem  <a class="header-action link-secondar
 
 
 
+  <h2 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>表示单个健康检查项目的详细信息，包括名称、状态、描述和执行时间。
+每个检查项目都会生成一个对应的实例，用于构建完整的健康检查报告。</p>
+</div>
 
 
   <h2 class="section" id="properties">Properties
@@ -154,10 +158,10 @@ Class HealthCheckResponse.HealthCheckItem  <a class="header-action link-secondar
 
   <h3 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem_Description" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Description">
   Description
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L220"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L258"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置健康检查项目的描述信息</p>
+  <div class="markdown level1 summary"><p>Gets or sets the description of the health check item / 获取或设置健康检查项目的描述信息</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -172,13 +176,17 @@ Class HealthCheckResponse.HealthCheckItem  <a class="header-action link-secondar
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>健康检查项目的详细描述信息</p>
+    <dd><p>Detailed description of the health check item / 健康检查项目的详细描述信息</p>
 </dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem_Description_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>提供检查项目的详细说明，包括检查内容、检查结果的具体信息。
+有助于运维人员理解检查项目的具体含义和当前状态。</p>
+</div>
 
 
 
@@ -187,10 +195,10 @@ Class HealthCheckResponse.HealthCheckItem  <a class="header-action link-secondar
 
   <h3 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem_Duration" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Duration">
   Duration
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L226"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L268"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置健康检查项目的执行持续时间</p>
+  <div class="markdown level1 summary"><p>Gets or sets the execution duration of the health check item / 获取或设置健康检查项目的执行持续时间</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -205,13 +213,17 @@ Class HealthCheckResponse.HealthCheckItem  <a class="header-action link-secondar
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd><p>健康检查项目的执行持续时间，单位为毫秒</p>
+    <dd><p>The execution duration of the health check item in milliseconds / 健康检查项目的执行持续时间，单位为毫秒</p>
 </dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem_Duration_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>记录单个检查项目的执行时间，用于性能监控和优化。
+过长的执行时间可能表明检查项目存在性能问题。</p>
+</div>
 
 
 
@@ -220,10 +232,10 @@ Class HealthCheckResponse.HealthCheckItem  <a class="header-action link-secondar
 
   <h3 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem_Name" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Name">
   Name
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L208"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L238"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置健康检查项目的名称</p>
+  <div class="markdown level1 summary"><p>Gets or sets the name of the health check item / 获取或设置健康检查项目的名称</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -238,13 +250,17 @@ Class HealthCheckResponse.HealthCheckItem  <a class="header-action link-secondar
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>健康检查项目的名称</p>
+    <dd><p>The name of the health check item / 健康检查项目的名称</p>
 </dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem_Name_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>健康检查项目的唯一标识名称，用于区分不同的检查项目。
+通常与注册时使用的名称保持一致，便于日志记录和问题定位。</p>
+</div>
 
 
 
@@ -253,10 +269,10 @@ Class HealthCheckResponse.HealthCheckItem  <a class="header-action link-secondar
 
   <h3 id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem_Status" data-uid="GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Status">
   Status
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L214"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L248"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置健康检查项目的状态</p>
+  <div class="markdown level1 summary"><p>Gets or sets the status of the health check item / 获取或设置健康检查项目的状态</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -271,13 +287,17 @@ Class HealthCheckResponse.HealthCheckItem  <a class="header-action link-secondar
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>健康检查项目的状态，如&quot;Healthy&quot;、&quot;Unhealthy&quot;等</p>
+    <dd><p>The status of the health check item, such as &quot;Healthy&quot;, &quot;Unhealthy&quot;, etc. / 健康检查项目的状态，如&quot;Healthy&quot;、&quot;Unhealthy&quot;等</p>
 </dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem_Status_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>表示当前检查项目的健康状态，可能的值包括：
+Healthy（健康）、Degraded（降级）、Unhealthy（不健康）。</p>
+</div>
 
 
 
@@ -286,7 +306,7 @@ Class HealthCheckResponse.HealthCheckItem  <a class="header-action link-secondar
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L202" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/HealthChecksExtensions.cs/#L228" class="edit-link">Edit this page</a>
         </div>
 
 

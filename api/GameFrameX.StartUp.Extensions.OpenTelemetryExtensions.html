@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class OpenTelemetryExtensions | GameFrameX.Server ">
       
-      <meta name="description" content="OpenTelemetry 配置扩展方法">
+      <meta name="description" content="OpenTelemetry configuration extension methods / OpenTelemetry 配置扩展方法">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.2-dev1/apiSpec/new?filename=GameFrameX_StartUp_Extensions_OpenTelemetryExtensions.md&amp;value=---%0Auid%3A%20GameFrameX.StartUp.Extensions.OpenTelemetryExtensions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/GameFrameX/GameFrameX.Server/new/2.0.0.2-dev2/apiSpec/new?filename=GameFrameX_StartUp_Extensions_OpenTelemetryExtensions.md&amp;value=---%0Auid%3A%20GameFrameX.StartUp.Extensions.OpenTelemetryExtensions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="GameFrameX_StartUp_Extensions_OpenTelemetryExtensions" data-uid="GameFrameX.StartUp.Extensions.OpenTelemetryExtensions" class="text-break">
-Class OpenTelemetryExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/OpenTelemetryExtensions.cs/#L55"><i class="bi bi-code-slash"></i></a>
+Class OpenTelemetryExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/OpenTelemetryExtensions.cs/#L59"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Class OpenTelemetryExtensions  <a class="header-action link-secondary" title="Vi
   <dl><dt>Assembly</dt><dd>GameFrameX.StartUp.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>OpenTelemetry 配置扩展方法</p>
+  <div class="markdown summary"><p>OpenTelemetry configuration extension methods / OpenTelemetry 配置扩展方法</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -147,6 +147,10 @@ Class OpenTelemetryExtensions  <a class="header-action link-secondary" title="Vi
 
 
 
+  <h2 id="GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>提供用于配置和使用OpenTelemetry可观测性功能的扩展方法，支持指标收集、链路追踪和日志记录。
+包含Grafana集成、Prometheus指标导出和独立指标服务器创建等功能。</p>
+</div>
 
 
   <h2 class="section" id="methods">Methods
@@ -157,10 +161,10 @@ Class OpenTelemetryExtensions  <a class="header-action link-secondary" title="Vi
 
   <h3 id="GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_AddGameFrameXOpenTelemetry_Microsoft_Extensions_DependencyInjection_IServiceCollection_GameFrameX_Utility_Setting_AppSetting_System_String_System_String_" data-uid="GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetry(Microsoft.Extensions.DependencyInjection.IServiceCollection,GameFrameX.Utility.Setting.AppSetting,System.String,System.String)">
   AddGameFrameXOpenTelemetry(IServiceCollection, AppSetting, string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/OpenTelemetryExtensions.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/OpenTelemetryExtensions.cs/#L84"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>添加 GameFrameX OpenTelemetry 配置</p>
+  <div class="markdown level1 summary"><p>Add GameFrameX OpenTelemetry configuration / 添加 GameFrameX OpenTelemetry 配置</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -171,23 +175,23 @@ Class OpenTelemetryExtensions  <a class="header-action link-secondary" title="Vi
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>services</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
-    <dd><p>服务集合</p>
+    <dd><p>Service collection / 服务集合</p>
 </dd>
     <dt><code>setting</code> <a class="xref" href="GameFrameX.Utility.Setting.AppSetting.html">AppSetting</a></dt>
-    <dd><p>应用设置</p>
+    <dd><p>Application settings / 应用设置</p>
 </dd>
     <dt><code>servicePrefix</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>服务名前缀</p>
+    <dd><p>Service name prefix / 服务名前缀</p>
 </dd>
     <dt><code>tracingSourcePrefix</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>追踪源前缀</p>
+    <dd><p>Tracing source prefix / 追踪源前缀</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
-    <dd><p>服务集合</p>
+    <dd><p>Service collection / 服务集合</p>
 </dd>
   </dl>
 
@@ -196,8 +200,26 @@ Class OpenTelemetryExtensions  <a class="header-action link-secondary" title="Vi
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_AddGameFrameXOpenTelemetry_Microsoft_Extensions_DependencyInjection_IServiceCollection_GameFrameX_Utility_Setting_AppSetting_System_String_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">// 基本配置
+services.AddGameFrameXOpenTelemetry(appSetting);
+
+// 带前缀配置
+services.AddGameFrameXOpenTelemetry(appSetting, "MyService", "MyApp");</code></pre>
 
 
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_AddGameFrameXOpenTelemetry_Microsoft_Extensions_DependencyInjection_IServiceCollection_GameFrameX_Utility_Setting_AppSetting_System_String_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>根据配置启用OpenTelemetry的指标收集和链路追踪功能。
+自动配置ASP.NET Core、HTTP客户端和系统运行时的指标收集。
+支持开发环境下的控制台输出和Prometheus指标导出。</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown when services or setting is null / 当services或setting为null时抛出</p>
+</dd>
+  </dl>
 
 
 
@@ -205,10 +227,10 @@ Class OpenTelemetryExtensions  <a class="header-action link-secondary" title="Vi
 
   <h3 id="GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_AddGameFrameXOpenTelemetryLogging_Microsoft_Extensions_Logging_ILoggingBuilder_GameFrameX_Utility_Setting_AppSetting_" data-uid="GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetryLogging(Microsoft.Extensions.Logging.ILoggingBuilder,GameFrameX.Utility.Setting.AppSetting)">
   AddGameFrameXOpenTelemetryLogging(ILoggingBuilder, AppSetting)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/OpenTelemetryExtensions.cs/#L144"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/OpenTelemetryExtensions.cs/#L174"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>添加 GameFrameX OpenTelemetry 日志配置</p>
+  <div class="markdown level1 summary"><p>Add GameFrameX OpenTelemetry logging configuration / 添加 GameFrameX OpenTelemetry 日志配置</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -219,17 +241,17 @@ Class OpenTelemetryExtensions  <a class="header-action link-secondary" title="Vi
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>logging</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.iloggingbuilder">ILoggingBuilder</a></dt>
-    <dd><p>日志构建器</p>
+    <dd><p>Logging builder / 日志构建器</p>
 </dd>
     <dt><code>setting</code> <a class="xref" href="GameFrameX.Utility.Setting.AppSetting.html">AppSetting</a></dt>
-    <dd><p>应用设置</p>
+    <dd><p>Application settings / 应用设置</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.iloggingbuilder">ILoggingBuilder</a></dt>
-    <dd><p>日志构建器</p>
+    <dd><p>Logging builder / 日志构建器</p>
 </dd>
   </dl>
 
@@ -238,8 +260,22 @@ Class OpenTelemetryExtensions  <a class="header-action link-secondary" title="Vi
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_AddGameFrameXOpenTelemetryLogging_Microsoft_Extensions_Logging_ILoggingBuilder_GameFrameX_Utility_Setting_AppSetting__examples">Examples</h4>
+  <pre><code class="lang-csharp">// 在Program.cs中配置
+builder.Logging.AddGameFrameXOpenTelemetryLogging(appSetting);</code></pre>
 
 
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_AddGameFrameXOpenTelemetryLogging_Microsoft_Extensions_Logging_ILoggingBuilder_GameFrameX_Utility_Setting_AppSetting__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>为日志系统集成OpenTelemetry功能，支持结构化日志和分布式追踪关联。
+当启用OpenTelemetry时，自动配置Grafana集成，便于日志的可视化和分析。</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown when logging or setting is null / 当logging或setting为null时抛出</p>
+</dd>
+  </dl>
 
 
 
@@ -247,10 +283,10 @@ Class OpenTelemetryExtensions  <a class="header-action link-secondary" title="Vi
 
   <h3 id="GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_CreateMetricsServerAsync_GameFrameX_Utility_Setting_AppSetting_System_String_" data-uid="GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.CreateMetricsServerAsync(GameFrameX.Utility.Setting.AppSetting,System.String)">
   CreateMetricsServerAsync(AppSetting, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/OpenTelemetryExtensions.cs/#L160"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/OpenTelemetryExtensions.cs/#L207"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>创建独立的指标服务器</p>
+  <div class="markdown level1 summary"><p>Create standalone metrics server / 创建独立的指标服务器</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -261,17 +297,17 @@ Class OpenTelemetryExtensions  <a class="header-action link-secondary" title="Vi
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>setting</code> <a class="xref" href="GameFrameX.Utility.Setting.AppSetting.html">AppSetting</a></dt>
-    <dd><p>应用设置</p>
+    <dd><p>Application settings / 应用设置</p>
 </dd>
     <dt><code>servicePrefix</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>服务名前缀</p>
+    <dd><p>Service name prefix / 服务名前缀</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplication">WebApplication</a>&gt;</dt>
-    <dd><p>指标服务器任务</p>
+    <dd><p>Metrics server task / 指标服务器任务</p>
 </dd>
   </dl>
 
@@ -280,16 +316,43 @@ Class OpenTelemetryExtensions  <a class="header-action link-secondary" title="Vi
 
 
 
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_CreateMetricsServerAsync_GameFrameX_Utility_Setting_AppSetting_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">// 创建独立指标服务器
+var metricsServer = await OpenTelemetryExtensions.CreateMetricsServerAsync(appSetting);
+
+// 带服务前缀
+var metricsServer = await OpenTelemetryExtensions.CreateMetricsServerAsync(appSetting, "GameServer");</code></pre>
 
 
+  <h4 class="section" id="GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_CreateMetricsServerAsync_GameFrameX_Utility_Setting_AppSetting_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>创建一个独立的Web应用程序专门用于暴露Prometheus指标端点。
+这样可以将指标收集与主应用程序分离，提高系统的可观测性和稳定性。
+服务器会自动检查端口可用性，并在启动后输出访问地址。</p>
+</div>
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown when setting is null / 当setting为null时抛出</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p>Thrown when metrics port is not available / 当指标端口不可用时抛出</p>
+</dd>
+  </dl>
+
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.html#GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_AddGameFrameXOpenTelemetry_Microsoft_Extensions_DependencyInjection_IServiceCollection_GameFrameX_Utility_Setting_AppSetting_System_String_System_String_">AddGameFrameXOpenTelemetry(IServiceCollection, AppSetting, string, string)</a></div>
+    </dd>
+  </dl>
 
 
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev1/GameFrameX.StartUp/Extensions/OpenTelemetryExtensions.cs/#L55" class="edit-link">Edit this page</a>
+          <a href="https://github.com/GameFrameX/GameFrameX.Server/blob/2.0.0.2-dev2/GameFrameX.StartUp/Extensions/OpenTelemetryExtensions.cs/#L59" class="edit-link">Edit this page</a>
         </div>
 
 
