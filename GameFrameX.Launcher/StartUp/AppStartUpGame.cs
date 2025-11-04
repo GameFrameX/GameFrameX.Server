@@ -45,18 +45,18 @@ internal sealed class AppStartUpGame : AppStartUpBase
         string exitMessage = null;
         try
         {
-            LogHelper.InfoConsole($"开始启动服务器{Setting.ServerType}");
+            LogHelper.Info($"开始启动服务器{Setting.ServerType}");
             var hotfixPath = Directory.GetCurrentDirectory() + "/hotfix";
             if (!Directory.Exists(hotfixPath))
             {
                 Directory.CreateDirectory(hotfixPath);
             }
 
-            LogHelper.DebugConsole("开始配置Actor限制逻辑...");
+            LogHelper.Debug("开始配置Actor限制逻辑...");
             ActorLimit.Init(ActorLimit.RuleType.None);
-            LogHelper.DebugConsole("配置Actor限制逻辑结束...");
+            LogHelper.Debug("配置Actor限制逻辑结束...");
 
-            LogHelper.DebugConsole("开始启动数据库服务...");
+            LogHelper.Debug("开始启动数据库服务...");
             var initResult = await GameDb.Init<MongoDbService>(new DbOptions { ConnectionString = Setting.DataBaseUrl, Name = Setting.DataBaseName, });
             if (initResult == false)
             {
@@ -76,18 +76,18 @@ internal sealed class AppStartUpGame : AppStartUpBase
             LogHelper.DebugConsole("进入游戏主循环...");
             GlobalSettings.LaunchTime = TimerHelper.GetUtcNow();
             GlobalSettings.IsAppRunning = true;
-            LogHelper.InfoConsole($"服务器{Setting.ServerType}启动结束...");
+            LogHelper.Info($"服务器{Setting.ServerType}启动结束...");
             exitMessage = await AppExitToken;
         }
         catch (Exception e)
         {
-            LogHelper.InfoConsole($"服务器执行异常，e:{e}");
+            LogHelper.Info($"服务器执行异常，e:{e}");
             LogHelper.Fatal(e);
         }
 
-        LogHelper.InfoConsole("退出服务器开始");
+        LogHelper.Info("退出服务器开始");
         await HotfixManager.Stop(exitMessage);
-        LogHelper.InfoConsole("退出服务器成功");
+        LogHelper.Info("退出服务器成功");
     }
 
     protected override void Init()
