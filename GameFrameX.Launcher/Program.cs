@@ -6,6 +6,9 @@ internal static class Program
 {
     private static async Task Main(string[] args)
     {
+#if DEBUG
+        LogOptions.Default.IsConsole = true;
+#endif
         await GameApp.Entry(args, () =>
         {
             CacheStateTypeManager.Init();
