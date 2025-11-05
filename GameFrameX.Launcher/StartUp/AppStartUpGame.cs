@@ -98,9 +98,11 @@ internal sealed class AppStartUpGame : AppStartUpBase
             {
                 ServerId = GlobalConst.GameServiceServerId,
                 ServerType = GlobalConst.GameServiceName,
+                IsEnableTcp = true,
                 InnerPort = 29100,
                 MetricsPort = 29090,
                 HttpPort = 28080,
+                IsEnableHttp = true,
                 WsPort = 29110,
                 MinModuleId = 10,
                 HttpIsDevelopment = true,
