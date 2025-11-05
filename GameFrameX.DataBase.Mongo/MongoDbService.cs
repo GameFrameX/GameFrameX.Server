@@ -68,13 +68,17 @@ public sealed partial class MongoDbService : IDatabaseService
             await DB.InitAsync(dbOptions.Name, settings);
             _mongoDbContext = new MongoDbContext();
             CurrentDatabase = DB.Database(dbOptions.Name);
-            LogHelper.Info($"初始化MongoDB服务完成 Url:{dbOptions.ConnectionString} DbName:{dbOptions.Name}");
+            LogHelper.Info($"The MongoDB service is initialized successfully, Url:{dbOptions.ConnectionString} DbName:{dbOptions.Name}");
             return true;
         }
         catch (Exception exception)
         {
             LogHelper.Fatal(exception);
-            LogHelper.Error($"初始化MongoDB服务失败 Url:{dbOptions.ConnectionString} DbName:{dbOptions.Name}");
+            string message = $"MongoDB service initialization failed, Url:{dbOptions.ConnectionString} DbName:{dbOptions.Name}";
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.ResetColor();
+            LogHelper.Error(message);
             return false;
         }
     }
