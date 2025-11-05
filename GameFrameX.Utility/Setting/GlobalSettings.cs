@@ -79,10 +79,11 @@ public static class GlobalSettings
             return;
         }
 
+        var fullPath = Path.GetFullPath(path);
+        LogHelper.ShowOption("Load Global Settings", fullPath);
         if (!File.Exists(path))
         {
-            var fullPath = Path.GetFullPath(path);
-            LogHelper.ShowOption("Load Global Settings", fullPath);
+            LogHelper.ShowOption("Load Global Settings Failed", $"Failed to load the configuration file.(加载配置文件失败)");
             return;
         }
 
