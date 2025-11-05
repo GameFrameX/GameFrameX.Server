@@ -48,7 +48,7 @@ public interface IDatabaseService
     /// <summary>
     /// 关闭数据库连接
     /// </summary>
-    void Close();
+    Task Close();
 
     /// <summary>
     /// 查询单条数据

@@ -86,10 +86,10 @@ public sealed partial class MongoDbService : IDatabaseService
     /// <summary>
     /// 关闭MongoDB连接。
     /// </summary>
-    public void Close()
+    public Task Close()
     {
         _mongoDbContext?.Session?.Dispose();
-        // _client.Cluster.Dispose();
+        return Task.CompletedTask;
     }
 
     /// <summary>
