@@ -124,7 +124,7 @@ public static class GameApp
         {
             LogHelper.Info($"the type of server that is launched : {serverType}");
         }
-        
+
         LogOptions.Default.GrafanaLokiLabels = new Dictionary<string, string>();
 
         if (launcherOptions != null)
@@ -174,7 +174,7 @@ public static class GameApp
             {
                 logTypeParts.Add(launcherOptions.ServerInstanceId.ToString());
             }
-          
+
             if (launcherOptions.TagName.IsNotNullOrWhiteSpace())
             {
                 LogOptions.Default.LogTagName = launcherOptions.TagName;
@@ -191,13 +191,11 @@ public static class GameApp
             {
                 LogOptions.Default.LogTagName = launcherOptions.Description;
             }
-            
+
             LogOptions.Default.LogTagName = logTypeParts.Count > 0 ? string.Join("_", logTypeParts) : null;
         }
 
         logConfiguration?.Invoke(LogOptions.Default);
-        LogOptions.Default.LogType = serverType;
-        LogHandler.Create(LogOptions.Default);
 
         GlobalSettings.Load("Configs/app_config.json");
         initAction?.Invoke();
@@ -309,6 +307,8 @@ public static class GameApp
             return Task.CompletedTask;
         }
 
+        LogOptions.Default.LogType = serverType;
+        LogHandler.Create(LogOptions.Default);
         var isSuccess = startUp.Init(serverType, setting, args);
         if (!isSuccess)
         {
