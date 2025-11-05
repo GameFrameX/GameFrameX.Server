@@ -16,7 +16,9 @@ internal static class Program
     private static void LogAction(LogOptions options)
     {
         // 发布之后控制台不输出
-#if !DEBUG
+#if DEBUG
+        options.IsConsole = true;
+#else
         options.IsConsole = false;
 #endif
     }
