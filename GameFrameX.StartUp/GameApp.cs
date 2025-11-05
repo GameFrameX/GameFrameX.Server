@@ -257,6 +257,14 @@ public static class GameApp
 
         ConsoleHelper.ConsoleLogo();
 
+        if (_launchTask == default)
+        {
+            var message = "The server has been stopped, please check the log for details. (服务器已停止，详情请查看日志.因为启动任务为空。没有找到启动任务。)";
+            Console.WriteLine($"[Warning] {message}");
+            LogHelper.Warning(message);
+            return;
+        }
+
         await _launchTask;
     }
 
