@@ -105,7 +105,7 @@ public abstract partial class AppStartUpBase
     /// <remarks>
     /// 可在此构造并返回心跳数据，用于维持与发现中心的连接
     /// </remarks>
-    protected virtual MessageObject GameAppClientOnHeartBeat()
+    protected virtual MessageObject GameAppClientOnHeartBeat(string s)
     {
         return default;
     }
@@ -141,46 +141,50 @@ public abstract partial class AppStartUpBase
     /// <summary>
     /// Callback when communication error occurs with the discovery center / 与发现中心通信发生错误时的回调
     /// </summary>
+    /// <param name="id">The unique identifier of the current instance of the GameAppServiceClient class / GameAppServiceClient类当前实例的唯一标识符</param>
     /// <param name="obj">Error event arguments containing exception information / 包含异常信息的错误事件参数</param>
     /// <remarks>
     /// 处理与发现中心通信过程中发生的错误
     /// </remarks>
-    protected virtual void GameAppClientOnError(ErrorEventArgs obj)
+    protected virtual void GameAppClientOnError(string id, ErrorEventArgs obj)
     {
-        LogHelper.Error($"服务器{Setting.ServerType}与发现中心通信发生错误，e:{obj.Exception}");
+        LogHelper.Error($"服务器{Setting.ServerType}与发现中心通信发生错误 ，id:{id}，e:{obj.Exception}");
     }
 
     /// <summary>
     /// Callback when receiving messages pushed by the discovery center / 收到发现中心推送消息时的回调
     /// </summary>
+    /// <param name="id">The unique identifier of the current instance of the GameAppServiceClient class / GameAppServiceClient类当前实例的唯一标识符</param>
     /// <param name="message">Message object sent by the discovery center / 发现中心下发的消息对象</param>
     /// <remarks>
     /// 处理从发现中心接收到的各种消息
     /// </remarks>
-    protected virtual void GameAppClientOnMessage(MessageObject message)
+    protected virtual void GameAppClientOnMessage(string id, MessageObject message)
     {
-        LogHelper.Debug($"服务器{Setting.ServerType}接收到发现中心消息,{message.ToFormatMessageString()}");
+        LogHelper.Debug($"服务器{Setting.ServerType}接收到发现中心消息 ,id:{id},{message.ToFormatMessageString()}");
     }
 
     /// <summary>
     /// Callback when connection to the discovery center is disconnected / 与发现中心连接断开时的回调
     /// </summary>
+    /// <param name="id">The unique identifier of the current instance of the GameAppServiceClient class / GameAppServiceClient类当前实例的唯一标识符</param>
     /// <remarks>
     /// 处理与发现中心连接断开的情况
     /// </remarks>
-    protected virtual void GameAppClientOnClosed()
+    protected virtual void GameAppClientOnClosed(string id)
     {
-        LogHelper.Debug($"服务器{Setting.ServerType}与发现中心断开连接...");
+        LogHelper.Debug($"服务器{Setting.ServerType}与发现中心断开连接 ,id:{id}...");
     }
 
     /// <summary>
     /// Callback when connection to the discovery center is successfully established / 与发现中心连接建立成功时的回调
     /// </summary>
+    /// <param name="id">The unique identifier of the current instance of the GameAppServiceClient class / GameAppServiceClient类当前实例的唯一标识符</param>
     /// <remarks>
     /// 处理与发现中心成功建立连接的情况
     /// </remarks>
-    protected virtual void GameAppClientOnConnected()
+    protected virtual void GameAppClientOnConnected(string id)
     {
-        LogHelper.Debug($"服务器{Setting.ServerType}连接到发现中心成功...");
+        LogHelper.Debug($"服务器{Setting.ServerType}连接到发现中心成功 ,id:{id}...");
     }
 }
