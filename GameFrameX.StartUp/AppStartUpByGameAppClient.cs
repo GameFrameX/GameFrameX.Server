@@ -74,6 +74,10 @@ public abstract partial class AppStartUpBase
             OnMessage = GameAppClientOnMessage,
             OnError = GameAppClientOnError,
             OnHeartBeat = GameAppClientOnHeartBeat,
+            ConnectDelay = Setting.GameAppClientConnectDelay,
+            RetryDelay = Setting.GameAppClientRetryDelay,
+            HeartBeatInterval = Setting.GameAppClientHeartBeatInterval,
+            MaxRetryCount = Setting.GameAppClientMaxRetryCount,
         };
 
         if (Setting.DiscoveryCenterHost.IsNullOrEmptyOrWhiteSpace())
