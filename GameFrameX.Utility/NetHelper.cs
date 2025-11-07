@@ -55,6 +55,43 @@ namespace GameFrameX.Utility;
 public static class NetHelper
 {
     /// <summary>
+    /// 解析主机名或IP地址和端口号为EndPoint对象
+    /// </summary>
+    /// <param name="host">主机名或IP地址字符串</param>
+    /// <param name="port">端口号</param>
+    /// <returns>解析成功的EndPoint对象；如果解析失败，返回null</returns>
+    /// <exception cref="ArgumentException">当host为null或空字符串时抛出此异常</exception>
+    /// <exception cref="ArgumentOutOfRangeException">当port小于等于0时抛出此异常</exception>
+    public static EndPoint ParseEndPoint(string host, int port)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(host, nameof(host));
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(port, nameof(port));
+        EndPoint connectEndPoint = default;
+        if (IPAddress.TryParse(host, out var ipAddress))
+        {
+            connectEndPoint = new IPEndPoint(ipAddress, port);
+        }
+        else
+        {
+            var ipHost = GetHostIPv4(host);
+            if (IPAddress.TryParse(ipHost, out ipAddress))
+            {
+                connectEndPoint = new IPEndPoint(ipAddress, port);
+            }
+            else
+            {
+                ipHost = GetHostIPv6(host);
+                if (IPAddress.TryParse(ipHost, out ipAddress))
+                {
+                    connectEndPoint = new IPEndPoint(ipAddress, port);
+                }
+            }
+        }
+
+        return connectEndPoint;
+    }
+
+    /// <summary>
     /// 判断IP地址是否合法
     /// </summary>
     /// <param name="ipAddress">IP地址字符串</param>
