@@ -153,7 +153,7 @@ internal sealed class GameAppServiceClient : IDisposable
 
                 if (sessionData != null)
                 {
-                    MessageSendHandle(sessionData?.RequestMessage);
+                    MessageSendHandle(sessionData.RequestMessage);
                 }
                 else
                 {
@@ -252,6 +252,11 @@ internal sealed class GameAppServiceClient : IDisposable
     /// <exception cref="ArgumentOutOfRangeException">Thrown when messageObject.MessageId is greater than or equal to 0 / 当messageObject.MessageId大于等于0时抛出</exception>
     public void Send(MessageObject messageObject)
     {
+        if (messageObject.MessageId == default)
+        {
+            MessageProtoHelper.SetMessageId(messageObject);
+        }
+
         if (messageObject.MessageId >= 0)
         {
             throw new ArgumentOutOfRangeException(nameof(messageObject), "messageObject.MessageId must be less than 0");
@@ -289,6 +294,11 @@ internal sealed class GameAppServiceClient : IDisposable
     /// <exception cref="ArgumentOutOfRangeException">Thrown when messageObject.MessageId is greater than or equal to 0 / 当messageObject.MessageId大于等于0时抛出</exception>
     public Task<IRpcResult> Call<T>(MessageObject messageObject, int timeOut = 10000) where T : IResponseMessage, new()
     {
+        if (messageObject.MessageId == default)
+        {
+            MessageProtoHelper.SetMessageId(messageObject);
+        }
+
         if (messageObject.MessageId >= 0)
         {
             throw new ArgumentOutOfRangeException(nameof(messageObject), "messageObject.MessageId must be less than 0");
