@@ -128,9 +128,17 @@ public sealed class RpcSession : IRpcSession, IDisposable
     /// <returns>是否成功回复</returns>
     public bool Reply(IResponseMessage message)
     {
+        if (_rpcHandlingObjects == default || message == default)
+        {
+            return false;
+        }
+
         if (_rpcHandlingObjects.TryRemove(message.UniqueId, out var rpcData))
         {
-            return rpcData.Reply(message);
+            if (rpcData != default)
+            {
+                return rpcData.Reply(message);
+            }
         }
 
         return false;
