@@ -35,6 +35,7 @@ using GameFrameX.Foundation.Logger;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.StartUp.ServiceClient;
+using GameFrameX.Utility;
 using ErrorEventArgs = GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs;
 
 namespace GameFrameX.StartUp;
@@ -92,10 +93,16 @@ public abstract partial class AppStartUpBase
             return;
         }
 
-        var endPoint = new DnsEndPoint(Setting.DiscoveryCenterHost, Setting.DiscoveryCenterPort);
+        var connectEndPoint = NetHelper.ParseEndPoint(Setting.DiscoveryCenterHost, Setting.DiscoveryCenterPort);
+
+        if (connectEndPoint == default)
+        {
+            LogHelper.Error($"DiscoveryCenterHost: {Setting.DiscoveryCenterHost} is not a valid IP address; unable to start connection to DiscoveryCenter. Please check the configuration item DiscoveryCenterHost");
+            return;
+        }
 
         // 根据配置创建发现中心终结点并初始化客户端
-        _gameAppServiceClient = new GameAppServiceClient(endPoint, gameAppServiceConfiguration);
+        _gameAppServiceClient = new GameAppServiceClient(connectEndPoint, gameAppServiceConfiguration);
     }
 
     /// <summary>
