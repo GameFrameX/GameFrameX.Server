@@ -36,9 +36,9 @@ namespace GameFrameX.Hotfix.StartUp;
 
 internal partial class AppStartUpHotfixGame
 {
-    protected override void GameAppClientOnConnected()
+    protected override void GameAppClientOnConnected(string id)
     {
-        base.GameAppClientOnConnected();
+        base.GameAppClientOnConnected(id);
         // 注册服务器到发现中心
         var reqRegisterServer = new ReqServiceRegister
         {
@@ -55,7 +55,7 @@ internal partial class AppStartUpHotfixGame
     }
 
 
-    protected override MessageObject GameAppClientOnHeartBeat()
+    protected override MessageObject GameAppClientOnHeartBeat(string id)
     {
         var reqActorHeartBeat = MessageObjectPoolHelper.Get<ReqActorHeartBeat>();
         reqActorHeartBeat.Timestamp = TimerHelper.UnixTimeMilliseconds();
@@ -63,13 +63,13 @@ internal partial class AppStartUpHotfixGame
         return reqActorHeartBeat;
     }
 
-    protected override void GameAppClientOnMessage(MessageObject message)
+    protected override void GameAppClientOnMessage(string id, MessageObject message)
     {
         if (MessageProtoHelper.IsHeartbeat(message))
         {
             return;
         }
 
-        base.GameAppClientOnMessage(message);
+        base.GameAppClientOnMessage(id, message);
     }
 }
