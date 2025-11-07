@@ -40,6 +40,8 @@ namespace GameFrameX.Launcher.StartUp;
 [StartUpTag(GlobalConst.GameServiceName)]
 internal sealed class AppStartUpGame : AppStartUpBase
 {
+    protected override bool IsRegisterToDiscoveryCenter { get; set; } = false;
+
     public override async Task StartAsync()
     {
         string exitMessage = null;
@@ -106,6 +108,7 @@ internal sealed class AppStartUpGame : AppStartUpBase
                 HttpIsDevelopment = true,
                 MaxModuleId = 9999,
                 DiscoveryCenterHost = "127.0.0.1",
+                TagName = "GameFrameX",
                 DiscoveryCenterPort = 21001,
                 DataBaseUrl = "mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority",
                 DataBaseName = "gameframex",
