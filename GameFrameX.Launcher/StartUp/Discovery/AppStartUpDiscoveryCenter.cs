@@ -123,11 +123,9 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                 {
                     // 心跳响应
                     var reqHeartBeat = messageObject.DeserializeMessageObject();
-                    var response = new NotifyActorHeartBeat
-                    {
-                        UniqueId = reqHeartBeat.UniqueId,
-                        Timestamp = TimerHelper.UnixTimeMilliseconds(),
-                    };
+                    var response = MessageObjectPoolHelper.Get<NotifyActorHeartBeat>();
+                    response.UniqueId = reqHeartBeat.UniqueId;
+                    response.Timestamp = TimerHelper.UnixTimeMilliseconds();
                     SendMessage(session, response);
                     return ValueTask.CompletedTask;
                 }
@@ -144,15 +142,15 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     {
                         var serverInfo = (ServiceInfo)serverList.Random();
 
-                        var respConnectServer = new RespConnectServer
-                        {
-                            UniqueId = reqConnectServer.UniqueId,
-                            ServerType = serverInfo.Type,
-                            ServerName = serverInfo.Name,
-                            ServerId = serverInfo.ServerId,
-                            TargetHost = serverInfo.ExternalHost,
-                            TargetPort = serverInfo.ExternalPort,
-                        };
+
+                        var respConnectServer = MessageObjectPoolHelper.Get<RespConnectServer>();
+                        respConnectServer.UniqueId = reqConnectServer.UniqueId;
+                        respConnectServer.ServerType = serverInfo.Type;
+                        respConnectServer.ServerName = serverInfo.Name;
+                        respConnectServer.ServerId = serverInfo.ServerId;
+                        respConnectServer.TargetHost = serverInfo.ExternalHost;
+                        respConnectServer.TargetPort = serverInfo.ExternalPort;
+                        respConnectServer.ServerInstanceId = serverInfo.ServerInstanceId;
                         SendMessage(session, respConnectServer);
                     }
                 }
@@ -200,13 +198,14 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                         serverList = serverList.Where(m => m.ServerId == reqConnectServer.ServerId).ToList();
                     }
 
-                    var respConnectServer = new RespConnectServer
-                    {
-                        UniqueId = messageObject.Header.UniqueId,
-                    };
+                    var respConnectServer = MessageObjectPoolHelper.Get<RespConnectServer>();
+
+                    respConnectServer.UniqueId = messageObject.Header.UniqueId;
+
                     if (serverList.Count > 0)
                     {
                         var serverInfo = (ServiceInfo)serverList.Random();
+                        respConnectServer.ServerInstanceId = serverInfo.ServerInstanceId;
                         respConnectServer.ServerType = serverInfo.Type;
                         respConnectServer.ServerName = serverInfo.Name;
                         respConnectServer.ServerId = serverInfo.ServerId;
