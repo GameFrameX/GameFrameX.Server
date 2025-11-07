@@ -66,20 +66,20 @@ public static class NetHelper
         ArgumentNullException.ThrowIfNull(ipAddress, nameof(ipAddress));
 
         value = null;
-        
+
         // 首先尝试解析IP地址
         if (!IPAddress.TryParse(ipAddress, out var parsedIp))
         {
             return false;
         }
-        
+
         // 验证解析后的IP地址字符串表示是否与原始输入完全匹配
         // 这可以防止IPAddress.TryParse自动补全不完整的IP地址（如"192.168.1"被解析为"192.168.0.1"）
         if (parsedIp.ToString() != ipAddress)
         {
             return false;
         }
-        
+
         value = parsedIp;
         return true;
     }
@@ -265,7 +265,7 @@ public static class NetHelper
             foreach (var network in networkInterfaces)
             {
                 // 排除环回接口和非活动接口
-                if (network.NetworkInterfaceType == NetworkInterfaceType.Loopback || 
+                if (network.NetworkInterfaceType == NetworkInterfaceType.Loopback ||
                     network.OperationalStatus != OperationalStatus.Up)
                 {
                     continue;
@@ -275,9 +275,9 @@ public static class NetHelper
                 if (!string.IsNullOrEmpty(macAddress))
                 {
                     // 格式化MAC地址为标准格式 (XX:XX:XX:XX:XX:XX)
-                    var formattedMac = string.Join(":", 
-                        Enumerable.Range(0, macAddress.Length / 2)
-                        .Select(i => macAddress.Substring(i * 2, 2)));
+                    var formattedMac = string.Join(":",
+                                                   Enumerable.Range(0, macAddress.Length / 2)
+                                                             .Select(i => macAddress.Substring(i * 2, 2)));
                     macAddresses.Add(formattedMac);
                 }
             }
@@ -381,7 +381,7 @@ public static class NetHelper
         };
 
         using var httpClient = new HttpClient { Timeout = TimeSpan.FromMilliseconds(timeout) };
-        
+
         foreach (var service in services)
         {
             try
@@ -404,6 +404,44 @@ public static class NetHelper
     }
 
     /// <summary>
+    /// 获取指定域名的IPv4地址
+    /// </summary>
+    /// <param name="domainName">域名</param>
+    /// <returns>IPv4地址字符串，获取失败返回空字符串</returns>
+    public static string GetHostIPv4(string domainName)
+    {
+        var iPHostEntry = Dns.GetHostEntry(domainName);
+        foreach (var address in iPHostEntry.AddressList)
+        {
+            if (address.AddressFamily == AddressFamily.InterNetwork)
+            {
+                return address.ToString();
+            }
+        }
+
+        return string.Empty;
+    }
+
+    /// <summary>
+    /// 获取指定域名的IPv6地址
+    /// </summary>
+    /// <param name="domainName">域名</param>
+    /// <returns>IPv6地址字符串，获取失败返回空字符串</returns>
+    public static string GetHostIPv6(string domainName)
+    {
+        var iPHostEntry = Dns.GetHostEntry(domainName);
+        foreach (var address in iPHostEntry.AddressList)
+        {
+            if (address.AddressFamily == AddressFamily.InterNetworkV6)
+            {
+                return address.ToString();
+            }
+        }
+
+        return string.Empty;
+    }
+
+    /// <summary>
     /// 判断IP地址是否为私有地址
     /// </summary>
     /// <param name="ipAddress">IP地址字符串</param>
@@ -419,7 +457,7 @@ public static class NetHelper
         }
 
         var bytes = ip.GetAddressBytes();
-        
+
         // IPv4私有地址范围
         if (ip.AddressFamily == AddressFamily.InterNetwork)
         {
@@ -447,7 +485,7 @@ public static class NetHelper
                 return true;
             }
         }
-        
+
         return false;
     }
 }
