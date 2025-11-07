@@ -45,8 +45,16 @@ namespace GameFrameX.StartUp.ServiceClient;
 /// <remarks>
 /// 游戏应用服务客户端，用于连接游戏服务器
 /// </remarks>
-internal sealed class GameAppServiceClient : IDisposable
+public sealed class GameAppServiceClient : IDisposable
 {
+    /// <summary>
+    /// Gets the unique identifier for the current instance of the GameAppServiceClient class
+    /// </summary>
+    /// <value>
+    /// Returns a unique Guid value that identifies the current instance
+    /// </value>
+    public string Id { get; }
+
     /// <summary>
     /// Internal TCP session instance responsible for underlying network communication
     /// </summary>
@@ -126,6 +134,7 @@ internal sealed class GameAppServiceClient : IDisposable
     {
         ArgumentNullException.ThrowIfNull(endPoint, nameof(endPoint));
         ArgumentNullException.ThrowIfNull(configuration, nameof(configuration));
+        Id = Guid.NewGuid().ToString("N");
         _serverHost = endPoint;
         _rpcSession = new RpcSession();
         _configuration = configuration;
@@ -235,7 +244,7 @@ internal sealed class GameAppServiceClient : IDisposable
     /// </remarks>
     private void SendHeartBeat()
     {
-        var messageObject = _configuration.OnHeartBeat?.Invoke();
+        var messageObject = _configuration.OnHeartBeat?.Invoke(Id);
         if (messageObject != null)
         {
             Send(messageObject);
@@ -319,7 +328,7 @@ internal sealed class GameAppServiceClient : IDisposable
     private void OnClientOnError(object client, SuperSocket.ClientEngine.ErrorEventArgs e)
     {
         LogHelper.Error($"Client error occurred: {e.Exception.Message}");
-        _configuration.OnError?.Invoke(e);
+        _configuration.OnError?.Invoke(Id, e);
     }
 
     /// <summary>
@@ -333,7 +342,7 @@ internal sealed class GameAppServiceClient : IDisposable
     private void OnClientOnClosed(object client, EventArgs e)
     {
         LogHelper.Info($"Client disconnected from the server: {_serverHost}");
-        _configuration.OnClosed?.Invoke();
+        _configuration.OnClosed?.Invoke(Id);
     }
 
     /// <summary>
@@ -347,7 +356,7 @@ internal sealed class GameAppServiceClient : IDisposable
     private void OnClientOnConnected(object client, EventArgs e)
     {
         LogHelper.Info($"Client successfully connected to the server: {_serverHost}");
-        _configuration.OnConnected?.Invoke();
+        _configuration.OnConnected?.Invoke(Id);
     }
 
     /// <summary>
@@ -368,7 +377,7 @@ internal sealed class GameAppServiceClient : IDisposable
             var reply = _rpcSession.Reply(messageObject as IResponseMessage);
             if (!reply)
             {
-                _configuration.OnMessage?.Invoke(messageObject);
+                _configuration.OnMessage?.Invoke(Id, messageObject);
             }
         }
     }

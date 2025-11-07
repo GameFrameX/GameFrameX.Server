@@ -116,7 +116,7 @@ public sealed class GameAppServiceConfiguration
     /// <value>
     /// Returns the action to be invoked when connection is successfully established
     /// </value>
-    public Action OnConnected { get; init; }
+    public Action<string> OnConnected { get; init; }
 
     /// <summary>
     /// Gets or sets the callback action when connection is closed
@@ -127,7 +127,7 @@ public sealed class GameAppServiceConfiguration
     /// <value>
     /// Returns the action to be invoked when connection is closed
     /// </value>
-    public Action OnClosed { get; init; }
+    public Action<string> OnClosed { get; init; }
 
     /// <summary>
     /// Gets or sets the callback action when an error occurs
@@ -138,7 +138,7 @@ public sealed class GameAppServiceConfiguration
     /// <value>
     /// Returns the action to be invoked when an error occurs, with error event arguments as parameter
     /// </value>
-    public Action<SuperSocket.ClientEngine.ErrorEventArgs> OnError { get; init; }
+    public Action<string, SuperSocket.ClientEngine.ErrorEventArgs> OnError { get; init; }
 
     /// <summary>
     /// Gets or sets the callback action when a message is received
@@ -149,7 +149,7 @@ public sealed class GameAppServiceConfiguration
     /// <value>
     /// Returns the action to be invoked when a message is received, with MessageObject as parameter
     /// </value>
-    public Action<MessageObject> OnMessage { get; init; }
+    public Action<string, MessageObject> OnMessage { get; init; }
 
     /// <summary>
     /// Gets or sets the heartbeat message generation callback
@@ -160,5 +160,5 @@ public sealed class GameAppServiceConfiguration
     /// <value>
     /// Returns the function that generates heartbeat messages to be sent
     /// </value>
-    public Func<MessageObject> OnHeartBeat { get; init; }
+    public Func<string, MessageObject> OnHeartBeat { get; init; }
 }
