@@ -29,6 +29,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\GameFrameX.Apps\GameFrameX.Apps.csproj" />
       <ProjectReference Include="..\..\GameFrameX.Core\GameFrameX.Core.csproj" />
+      <ProjectReference Include="..\..\GameFrameX.ProtoBuf.Net\GameFrameX.ProtoBuf.Net.csproj" />
       <ProjectReference Include="..\..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
     </ItemGroup>
 

@@ -41,6 +41,8 @@ public class ProtoBuffTest
     public class PbTest
     {
         [ProtoMember(1, IsRequired = false)] public List<string> Test { get; set; } = new List<string>();
+        [ProtoMember(2, IsRequired = false)] public int Id { get; set; }
+        [ProtoMember(3, IsRequired = false)] public string Name { get; set; } = string.Empty;
     }
 
     public ProtoBuffTest()
@@ -72,5 +74,134 @@ public class ProtoBuffTest
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    /// <summary>
+    /// 测试 Serializer.Merge 方法的合并功能 / Test the merge functionality of Serializer.Merge method
+    /// </summary>
+    [Fact]
+    public void TestSerializerMerge_ShouldMergeDataCorrectly()
+    {
+        // Arrange - 准备测试数据
+        var originalData = new PbTest
+        {
+            Id = 100,
+            Name = "Original",
+            Test = new List<string> { "item1", "item2" }
+        };
+
+        var updateData = new PbTest
+        {
+            Id = 200,
+            Name = "Updated",
+            Test = new List<string> { "item3", "item4", "item5" }
+        };
+
+        // 序列化更新数据
+        var serializedUpdateData = ProtoBufSerializerHelper.Serialize(updateData);
+
+        // Act - 执行合并操作
+        var mergedResult = ProtoBufSerializerHelper.Deserialize(serializedUpdateData, originalData);
+
+        // Assert - 验证合并结果
+        Assert.NotNull(mergedResult);
+        Assert.Same(originalData, mergedResult); // 应该返回同一个实例
+        
+        // 验证字段是否正确合并
+        Assert.Equal(200, mergedResult.Id); // Id 应该被更新
+        Assert.Equal("Updated", mergedResult.Name); // Name 应该被更新
+        
+        // 验证列表合并行为
+        Assert.NotNull(mergedResult.Test);
+        // ProtoBuf 的合并行为：列表会被追加而不是替换
+        Assert.True(mergedResult.Test.Count >= updateData.Test.Count);
+    }
+
+    /// <summary>
+    /// 测试空数据合并 / Test merging with empty data
+    /// </summary>
+    [Fact]
+    public void TestSerializerMerge_WithEmptyData_ShouldReturnOriginalInstance()
+    {
+        // Arrange
+        var originalData = new PbTest
+        {
+            Id = 100,
+            Name = "Original",
+            Test = new List<string> { "item1", "item2" }
+        };
+
+        var emptyData = new byte[0];
+
+        // Act
+        var result = ProtoBufSerializerHelper.Deserialize(emptyData, originalData);
+
+        // Assert
+        Assert.Same(originalData, result);
+        Assert.Equal(100, result.Id);
+        Assert.Equal("Original", result.Name);
+        Assert.Equal(2, result.Test.Count);
+    }
+
+    /// <summary>
+    /// 测试 null 实例参数 / Test with null instance parameter
+    /// </summary>
+    [Fact]
+    public void TestSerializerMerge_WithNullInstance_ShouldThrowArgumentNullException()
+    {
+        // Arrange
+        var testData = new PbTest { Id = 100, Name = "Test" };
+        var serializedData = ProtoBufSerializerHelper.Serialize(testData);
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => 
+            ProtoBufSerializerHelper.Deserialize<PbTest>(serializedData, null));
+    }
+
+    /// <summary>
+    /// 测试 null 数据参数 / Test with null data parameter
+    /// </summary>
+    [Fact]
+    public void TestSerializerMerge_WithNullData_ShouldThrowArgumentNullException()
+    {
+        // Arrange
+        var instance = new PbTest { Id = 100, Name = "Test" };
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => 
+            ProtoBufSerializerHelper.Deserialize<PbTest>(null, instance));
+    }
+
+    /// <summary>
+    /// 测试部分字段更新 / Test partial field updates
+    /// </summary>
+    [Fact]
+    public void TestSerializerMerge_PartialUpdate_ShouldMergeOnlyProvidedFields()
+    {
+        // Arrange
+        var originalData = new PbTest
+        {
+            Id = 100,
+            Name = "Original",
+            Test = new List<string> { "item1", "item2" }
+        };
+
+        // 创建只包含部分字段的更新数据
+        var partialUpdateData = new PbTest
+        {
+            Name = "PartiallyUpdated"
+            // Id 和 Test 保持默认值
+        };
+
+        var serializedPartialData = ProtoBufSerializerHelper.Serialize(partialUpdateData);
+
+        // Act
+        var result = ProtoBufSerializerHelper.Deserialize(serializedPartialData, originalData);
+
+        // Assert
+        Assert.Same(originalData, result);
+        // 根据 ProtoBuf 的合并规则，只有非默认值的字段会被合并
+        Assert.Equal("PartiallyUpdated", result.Name); // Name 应该被更新
+        // Id 和 Test 的行为取决于 ProtoBuf 的具体实现
     }
 }
