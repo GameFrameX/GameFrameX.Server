@@ -105,6 +105,12 @@ public partial class RespConnectServer : MessageObject, IResponseMessage
     public ushort TargetPort { get; set; }
 
     /// <summary>
+    /// 服务器实例ID
+    /// </summary>
+    [ProtoMember(7)]
+    public long ServerInstanceId { get; set; }
+
+    /// <summary>
     /// 返回的错误码
     /// </summary>
     [ProtoMember(888)]
@@ -118,5 +124,6 @@ public partial class RespConnectServer : MessageObject, IResponseMessage
         TargetHost = default;
         TargetPort = default;
         ErrorCode = default;
+        ServerInstanceId = default;
     }
 }
