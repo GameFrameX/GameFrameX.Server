@@ -31,7 +31,7 @@
 
 using GameFrameX.NetWork.Messages;
 
-namespace GameFrameX.StartUp.ServiceClient;
+namespace GameFrameX.DiscoveryCenterManager.ServiceClient;
 
 /// <summary>
 /// Game application service configuration class

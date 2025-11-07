@@ -37,7 +37,7 @@ using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.SuperSocket.ClientEngine;
 
-namespace GameFrameX.StartUp.ServiceClient;
+namespace GameFrameX.DiscoveryCenterManager.ServiceClient;
 
 /// <summary>
 /// Game application service client for connecting to game servers

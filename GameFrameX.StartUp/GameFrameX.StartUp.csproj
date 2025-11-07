@@ -38,6 +38,7 @@
         <OutputPath>..\bin\app</OutputPath>
     </PropertyGroup>
     <ItemGroup>
+      <ProjectReference Include="..\GameFrameX.DiscoveryCenterManager\GameFrameX.DiscoveryCenterManager.csproj" />
       <ProjectReference Include="..\GameFrameX.Monitor\GameFrameX.Monitor.csproj" />
       <ProjectReference Include="..\GameFrameX.NetWork.Abstractions\GameFrameX.NetWork.Abstractions.csproj" />
       <ProjectReference Include="..\GameFrameX.NetWork.HTTP\GameFrameX.NetWork.HTTP.csproj" />
