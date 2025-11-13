@@ -56,5 +56,6 @@
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.2.0" />
+      <PackageReference Include="GameFrameX.Foundation.Logger" Version="1.7.1.7" />
     </ItemGroup>
 </Project>
