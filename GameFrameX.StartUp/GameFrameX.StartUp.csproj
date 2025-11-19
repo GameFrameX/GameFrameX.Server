@@ -47,7 +47,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.Foundation.Options" Version="1.7.1.7" />
+      <PackageReference Include="GameFrameX.Foundation.Options" Version="1.7.1.8" />
       <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.2.0" />
       <PackageReference Include="GameFrameX.SuperSocket.Server" Version="1.2.0" />
       <PackageReference Include="GameFrameX.SuperSocket.Udp" Version="1.2.0" />
