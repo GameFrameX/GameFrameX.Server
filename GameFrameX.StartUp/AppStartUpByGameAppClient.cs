@@ -32,6 +32,7 @@
 using GameFrameX.DiscoveryCenterManager.ServiceClient;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Utility;
@@ -154,7 +155,7 @@ public abstract partial class AppStartUpBase
     /// </remarks>
     protected virtual void GameAppClientOnError(string id, ErrorEventArgs obj)
     {
-        LogHelper.Error($"服务器{Setting.ServerType}与发现中心通信发生错误 ，id:{id}，e:{obj.Exception}");
+        LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.DiscoveryCenterCommunicationError, Setting.ServerType, id, obj.Exception?.ToString() ?? "Unknown exception"));
     }
 
     /// <summary>
@@ -167,7 +168,7 @@ public abstract partial class AppStartUpBase
     /// </remarks>
     protected virtual void GameAppClientOnMessage(string id, MessageObject message)
     {
-        LogHelper.Debug($"服务器{Setting.ServerType}接收到发现中心消息 ,id:{id},{message.ToFormatMessageString()}");
+        LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.DiscoveryCenterMessageReceived, Setting.ServerType, id, message.ToFormatMessageString()));
     }
 
     /// <summary>
@@ -179,7 +180,7 @@ public abstract partial class AppStartUpBase
     /// </remarks>
     protected virtual void GameAppClientOnClosed(string id)
     {
-        LogHelper.Debug($"服务器{Setting.ServerType}与发现中心断开连接 ,id:{id}...");
+        LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.DiscoveryCenterDisconnected, Setting.ServerType, id));
     }
 
     /// <summary>
@@ -191,6 +192,6 @@ public abstract partial class AppStartUpBase
     /// </remarks>
     protected virtual void GameAppClientOnConnected(string id)
     {
-        LogHelper.Debug($"服务器{Setting.ServerType}连接到发现中心成功 ,id:{id}...");
+        LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.DiscoveryCenterConnected, Setting.ServerType, id));
     }
 }

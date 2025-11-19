@@ -31,6 +31,7 @@
 
 using System.Reflection;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.StartUp.Extensions;
 using GameFrameX.Utility;
@@ -74,7 +75,7 @@ public abstract partial class AppStartUpBase
         // 检查是否启用HTTP服务
         if (!Setting.IsEnableHttp)
         {
-            LogHelper.Info($"The HTTP service is disabled, and the startup is ignored");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.ServiceDisabled));
             return;
         }
         
@@ -89,10 +90,10 @@ public abstract partial class AppStartUpBase
             throw new ArgumentException("The HTTP address must end in /", nameof(Setting.HttpUrl));
         }
 
-        LogHelper.Info($"start the [HTTP] server...");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.StartingServer));
         if (!Setting.HttpPort.IsRange(5000, ushort.MaxValue - 1))
         {
-            LogHelper.Warning($"start the [HTTP] server port [{Setting.HttpPort}] out of range [5000-{ushort.MaxValue - 1}],The HTTP service cannot be started, and the startup is ignored");
+            LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.PortOutOfRange, Setting.HttpPort, 5000, ushort.MaxValue - 1));
             return;
         }
 
@@ -161,7 +162,7 @@ public abstract partial class AppStartUpBase
 
                 foreach (var ip in ipList)
                 {
-                    LogHelper.Debug($"Swagger UI can be passed http://{ip}:{Setting.HttpPort}/swagger access");
+                    LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.SwaggerUiAccess, ip, Setting.HttpPort));
                 }
             }
 
@@ -209,8 +210,8 @@ public abstract partial class AppStartUpBase
                     // 开发模式，启用 Swagger
                     route.WithOpenApi(operation =>
                     {
-                        operation.Summary = "处理 POST 请求";
-                        operation.Description = "处理来自游戏客户端的 POST 请求";
+                        operation.Summary = LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.HandlePostRequest);
+                        operation.Description = LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.HandleGameClientPostRequest);
                         return operation;
                     });
                 }

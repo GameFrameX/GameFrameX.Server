@@ -32,6 +32,7 @@
 using System.Reflection;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Foundation.Options;
 using GameFrameX.Foundation.Options.Attributes;
 using GameFrameX.Foundation.Utility;
@@ -259,7 +260,7 @@ public static class GameApp
 
         if (_launchTask == default)
         {
-            var message = "The server has been stopped, please check the log for details. (服务器已停止，详情请查看日志.因为启动任务为空。没有找到启动任务。)";
+            var message = LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.NoStartupTaskFound);
             Console.WriteLine($"[Warning] {message}");
             LogHelper.Warning(message);
             return;

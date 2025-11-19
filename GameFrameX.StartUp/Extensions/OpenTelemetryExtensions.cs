@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Setting;
 using Grafana.OpenTelemetry;
@@ -214,7 +215,7 @@ public static class OpenTelemetryExtensions
         // 检查指标端口是否可用
         if (!NetHelper.PortIsAvailable(setting.MetricsPort))
         {
-            LogHelper.Error($"指标端口 [{setting.MetricsPort}] 被占用，无法启动独立指标服务器");
+            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.MetricsPortInUse, setting.MetricsPort));
             return null;
         }
 
@@ -274,8 +275,8 @@ public static class OpenTelemetryExtensions
         var ipList = NetHelper.GetLocalIpList();
         foreach (var ip in ipList)
         {
-            LogHelper.Info($"独立 Prometheus metrics 端点已启用: http://{ip}:{setting.MetricsPort}/metrics");
-            LogHelper.Info($"独立 Metrics 健康检查端点: http://{ip}:{setting.MetricsPort}/health");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.PrometheusMetricsEndpointEnabled, ip, setting.MetricsPort));
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.MetricsHealthCheckEndpointEnabled, ip, setting.MetricsPort));
         }
 
         return app;

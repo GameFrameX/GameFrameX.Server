@@ -31,6 +31,7 @@
 
 using GameFrameX.StartUp.Abstractions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.StartUp;
@@ -118,11 +119,11 @@ internal static class AppEnter
         }
 
         _exitCalled = true;
-        LogHelper.Info("listen to the exit message from the program");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.Application.ListeningExitMessage));
         GlobalSettings.IsAppRunning = false;
         _appStartUp.StopAsync(message).Wait();
         AppExitHandler.Kill();
-        LogHelper.Info("exit procedure");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.Application.ExecutingExitProcedure));
         _gameLoopTask?.Wait();
         LogHelper.FlushAndSave();
     }

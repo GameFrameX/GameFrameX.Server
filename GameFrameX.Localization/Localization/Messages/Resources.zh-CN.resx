@@ -226,4 +226,108 @@
   <data name="Utility.Settings.SaveDataIntervalTooSmall" xml:space="preserve">
     <value>SaveDataInterval小于5000毫秒，使用默认值为:{0} 毫秒</value>
   </data>
+
+  <!-- StartUp模块日志和错误键名 -->
+  <data name="StartUp.ServerStopped" xml:space="preserve">
+    <value>服务器类型:{0} 停止! 终止原因：{1} 配置信息: {2}</value>
+  </data>
+  <data name="StartUp.DiscoveryCenterCommunicationError" xml:space="preserve">
+    <value>服务器{0}与发现中心通信发生错误 ，id:{1}，e:{2}</value>
+  </data>
+  <data name="StartUp.DiscoveryCenterMessageReceived" xml:space="preserve">
+    <value>服务器{0}接收到发现中心消息 ,id:{1},{2}</value>
+  </data>
+  <data name="StartUp.DiscoveryCenterDisconnected" xml:space="preserve">
+    <value>服务器{0}与发现中心断开连接 ,id:{1}...</value>
+  </data>
+  <data name="StartUp.DiscoveryCenterConnected" xml:space="preserve">
+    <value>服务器{0}连接到发现中心成功 ,id:{1}...</value>
+  </data>
+  <data name="StartUp.NoStartupTaskFound" xml:space="preserve">
+    <value>The server has been stopped, please check the log for details. (服务器已停止，详情请查看日志.因为启动任务为空。没有找到启动任务。)</value>
+  </data>
+  <data name="StartUp.MetricsPortInUse" xml:space="preserve">
+    <value>指标端口 [{0}] 被占用，无法启动独立指标服务器</value>
+  </data>
+  <data name="StartUp.PrometheusMetricsEndpointEnabled" xml:space="preserve">
+    <value>独立 Prometheus metrics 端点已启用: http://{0}:{1}/metrics</value>
+  </data>
+  <data name="StartUp.MetricsHealthCheckEndpointEnabled" xml:space="preserve">
+    <value>独立 Metrics 健康检查端点: http://{0}:{1}/health</value>
+  </data>
+  <data name="StartUp.HttpServer.HandlePostRequest" xml:space="preserve">
+    <value>处理 POST 请求</value>
+  </data>
+  <data name="StartUp.HttpServer.HandleGameClientPostRequest" xml:space="preserve">
+    <value>处理来自游戏客户端的 POST 请求</value>
+  </data>
+  <data name="StartUp.HttpServer.ServiceDisabled" xml:space="preserve">
+    <value>HTTP服务已禁用，启动已忽略</value>
+  </data>
+  <data name="StartUp.HttpServer.StartingServer" xml:space="preserve">
+    <value>启动 [HTTP] 服务器...</value>
+  </data>
+  <data name="StartUp.HttpServer.PortOutOfRange" xml:space="preserve">
+    <value>启动 [HTTP] 服务器端口 [{0}] 超出范围 [{1}-{2}]，HTTP服务无法启动，启动已忽略</value>
+  </data>
+  <data name="StartUp.HttpServer.SwaggerUiAccess" xml:space="preserve">
+    <value>Swagger UI 可通过 http://{0}:{1}/swagger 访问</value>
+  </data>
+  <data name="StartUp.TcpServer.ClientDisconnected" xml:space="preserve">
+    <value>客户端断开连接 - 会话ID: {0}, 远程终端: {1}, 断开原因: {2}</value>
+  </data>
+  <data name="StartUp.TcpServer.NewClientConnection" xml:space="preserve">
+    <value>新客户端连接 - 会话ID: {0}, 远程终端: {1}</value>
+  </data>
+  <data name="StartUp.TcpServer.MessageReceived" xml:space="preserve">
+    <value>接收到消息 - 服务器类型: [{0}], 消息内容: {1}</value>
+  </data>
+  <data name="StartUp.TcpServer.StartingServer" xml:space="preserve">
+    <value>启动TCP服务器 类型: {0}, 地址: {1}, 端口: {2}</value>
+  </data>
+  <data name="StartUp.TcpServer.StartupComplete" xml:space="preserve">
+    <value>启动TCP服务器完成 类型: {0}, 地址: {1}, 端口: {2}</value>
+  </data>
+  <data name="StartUp.TcpServer.StartupFailed" xml:space="preserve">
+    <value>启动TCP服务器失败 类型: {0}, 地址: {1}, 端口: {2}, 原因: 端口无效或被占用</value>
+  </data>
+  <data name="StartUp.TcpServer.ServerDisabled" xml:space="preserve">
+    <value>启动TCP服务器 类型: {0}, 地址: {1}, 端口: {2}, 原因: TCP服务器被禁用</value>
+  </data>
+  <data name="StartUp.WebSocketServer.StartingServer" xml:space="preserve">
+    <value>启动WebSocket服务器 类型: {0}, 端口: {1}</value>
+  </data>
+  <data name="StartUp.WebSocketServer.StartupComplete" xml:space="preserve">
+    <value>启动WebSocket服务器完成 类型: {0}, 端口: {1}</value>
+  </data>
+  <data name="StartUp.WebSocketServer.StartupFailed" xml:space="preserve">
+    <value>启动WebSocket服务器失败 类型: {0}, 端口: {1}, 原因: 端口无效或被占用</value>
+  </data>
+  <data name="StartUp.WebSocketServer.ServiceNotEnabled" xml:space="preserve">
+    <value>启动WebSocket服务器失败 类型: {0}, 端口: {1}, 原因: WebSocket服务未启用</value>
+  </data>
+  <data name="StartUp.Application.MetricServerStarted" xml:space="preserve">
+    <value>独立指标服务器已在端口: {0} 启动</value>
+  </data>
+  <data name="StartUp.Application.ListeningExitMessage" xml:space="preserve">
+    <value>监听程序退出消息</value>
+  </data>
+  <data name="StartUp.Application.ExecutingExitProcedure" xml:space="preserve">
+    <value>执行退出程序</value>
+  </data>
+  <data name="StartUp.Application.GetUnhandledException" xml:space="preserve">
+    <value>获取未处理异常 标签:{0}</value>
+  </data>
+  <data name="StartUp.Application.UnhandledException" xml:space="preserve">
+    <value>未处理异常:{0}</value>
+  </data>
+  <data name="StartUp.Application.AllUnhandledExceptions" xml:space="preserve">
+    <value>所有未处理异常:{0}</value>
+  </data>
+  <data name="StartUp.Application.UnhandledExceptionCallback" xml:space="preserve">
+    <value>未处理异常回调:{0}</value>
+  </data>
+  <data name="StartUp.Application.SigtermSignalReceived" xml:space="preserve">
+    <value>接收到SIGTERM信号并注册退出处理程序</value>
+  </data>
 </root>

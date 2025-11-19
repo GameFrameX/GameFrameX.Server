@@ -33,6 +33,7 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using System.Runtime.Loader;
 using System.Text;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.StartUp.Abstractions;
 using GameFrameX.Utility;
 using GameFrameX.Foundation.Logger;
@@ -130,7 +131,7 @@ internal static class AppExitHandler
     /// </remarks>
     private static void ExitSignalRegistrationHandler(PosixSignalContext posixSignalContext)
     {
-        LogHelper.Info("PosixSignalRegistration SIGTERM....");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.Application.SigtermSignalReceived));
         _existCallBack?.Invoke("SIGTERM exit");
     }
 
@@ -181,7 +182,7 @@ internal static class AppExitHandler
         }
 
         //这里可以发送短信或者钉钉消息通知到运维
-        LogHelper.Error("get unhandled exception Tag:" + tag);
+        LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.Application.GetUnhandledException, tag));
         if (e is IEnumerable arr)
         {
             var sb = new StringBuilder();
@@ -190,13 +191,13 @@ internal static class AppExitHandler
                 sb.Append(ex);
             }
 
-            LogHelper.Error($"Unhandled Exception:{sb}");
-            _existCallBack?.Invoke("all Unhandled Exception:" + sb);
+            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.Application.AllUnhandledExceptions, sb.ToString()));
+            _existCallBack?.Invoke(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.Application.AllUnhandledExceptions, sb.ToString()));
         }
         else
         {
-            LogHelper.Error($"Unhandled Exception:{e}");
-            _existCallBack?.Invoke($"Unhandled Exception:{e}");
+            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.Application.UnhandledException, e?.ToString() ?? "Unknown exception"));
+            _existCallBack?.Invoke(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.Application.UnhandledExceptionCallback, e?.ToString() ?? "Unknown exception"));
         }
     }
 }

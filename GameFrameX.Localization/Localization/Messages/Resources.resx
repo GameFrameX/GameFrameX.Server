@@ -209,4 +209,108 @@
     <value>SaveDataInterval is less than 5000 milliseconds, using default value: {0} milliseconds</value>
   </data>
 
+  <!-- StartUp module log and error keys -->
+  <data name="StartUp.ServerStopped" xml:space="preserve">
+    <value>Server type: {0} stopped! Termination reason: {1} Configuration: {2}</value>
+  </data>
+  <data name="StartUp.DiscoveryCenterCommunicationError" xml:space="preserve">
+    <value>Server {0} communication error with discovery center, id: {1}, error: {2}</value>
+  </data>
+  <data name="StartUp.DiscoveryCenterMessageReceived" xml:space="preserve">
+    <value>Server {0} received message from discovery center, id: {1}, {2}</value>
+  </data>
+  <data name="StartUp.DiscoveryCenterDisconnected" xml:space="preserve">
+    <value>Server {0} disconnected from discovery center, id: {1}...</value>
+  </data>
+  <data name="StartUp.DiscoveryCenterConnected" xml:space="preserve">
+    <value>Server {0} connected to discovery center successfully, id: {1}...</value>
+  </data>
+  <data name="StartUp.NoStartupTaskFound" xml:space="preserve">
+    <value>The server has been stopped, please check the log for details. (服务器已停止，详情请查看日志.因为启动任务为空。没有找到启动任务。)</value>
+  </data>
+  <data name="StartUp.MetricsPortInUse" xml:space="preserve">
+    <value>Metrics port [{0}] is in use, unable to start independent metrics server</value>
+  </data>
+  <data name="StartUp.PrometheusMetricsEndpointEnabled" xml:space="preserve">
+    <value>Independent Prometheus metrics endpoint enabled: http://{0}:{1}/metrics</value>
+  </data>
+  <data name="StartUp.MetricsHealthCheckEndpointEnabled" xml:space="preserve">
+    <value>Independent Metrics health check endpoint: http://{0}:{1}/health</value>
+  </data>
+  <data name="StartUp.HttpServer.HandlePostRequest" xml:space="preserve">
+    <value>Handle POST request</value>
+  </data>
+  <data name="StartUp.HttpServer.HandleGameClientPostRequest" xml:space="preserve">
+    <value>Handle POST request from game client</value>
+  </data>
+  <data name="StartUp.HttpServer.ServiceDisabled" xml:space="preserve">
+    <value>HTTP service is disabled, startup ignored</value>
+  </data>
+  <data name="StartUp.HttpServer.StartingServer" xml:space="preserve">
+    <value>Start the [HTTP] server...</value>
+  </data>
+  <data name="StartUp.HttpServer.PortOutOfRange" xml:space="preserve">
+    <value>Start the [HTTP] server port [{0}] out of range [{1}-{2}], HTTP service cannot be started, startup ignored</value>
+  </data>
+  <data name="StartUp.HttpServer.SwaggerUiAccess" xml:space="preserve">
+    <value>Swagger UI can be accessed via http://{0}:{1}/swagger</value>
+  </data>
+  <data name="StartUp.TcpServer.ClientDisconnected" xml:space="preserve">
+    <value>Client disconnects - SessionID: {0}, remote terminal: {1}, disconnect cause: {2}</value>
+  </data>
+  <data name="StartUp.TcpServer.NewClientConnection" xml:space="preserve">
+    <value>New client connection - SessionID: {0}, remote terminal: {1}</value>
+  </data>
+  <data name="StartUp.TcpServer.MessageReceived" xml:space="preserve">
+    <value>Message received - server type: [{0}], message content: {1}</value>
+  </data>
+  <data name="StartUp.TcpServer.StartingServer" xml:space="preserve">
+    <value>Start TCP server type: {0}, address: {1}, port: {2}</value>
+  </data>
+  <data name="StartUp.TcpServer.StartupComplete" xml:space="preserve">
+    <value>Start TCP server startup complete type: {0}, address: {1}, port: {2}</value>
+  </data>
+  <data name="StartUp.TcpServer.StartupFailed" xml:space="preserve">
+    <value>Start TCP server start failed type: {0}, address: {1}, port: {2}, cause: the port is invalid or occupied</value>
+  </data>
+  <data name="StartUp.TcpServer.ServerDisabled" xml:space="preserve">
+    <value>Start TCP server type: {0}, address: {1}, port: {2}, cause: the TCP server is disabled</value>
+  </data>
+  <data name="StartUp.WebSocketServer.StartingServer" xml:space="preserve">
+    <value>Start the WebSocket server type: {0}, port: {1}</value>
+  </data>
+  <data name="StartUp.WebSocketServer.StartupComplete" xml:space="preserve">
+    <value>Start WebSocket server startup complete type: {0}, port: {1}</value>
+  </data>
+  <data name="StartUp.WebSocketServer.StartupFailed" xml:space="preserve">
+    <value>Start WebSocket server start failed type: {0}, port: {1}, cause: the port is invalid or occupied</value>
+  </data>
+  <data name="StartUp.WebSocketServer.ServiceNotEnabled" xml:space="preserve">
+    <value>Start WebSocket server start failed type: {0}, port: {1}, cause: WebSocket service is not enabled</value>
+  </data>
+  <data name="StartUp.Application.MetricServerStarted" xml:space="preserve">
+    <value>The standalone metric server is started on the port: {0}</value>
+  </data>
+  <data name="StartUp.Application.ListeningExitMessage" xml:space="preserve">
+    <value>Listen to the exit message from the program</value>
+  </data>
+  <data name="StartUp.Application.ExecutingExitProcedure" xml:space="preserve">
+    <value>Exit procedure</value>
+  </data>
+  <data name="StartUp.Application.GetUnhandledException" xml:space="preserve">
+    <value>Get unhandled exception Tag:{0}</value>
+  </data>
+  <data name="StartUp.Application.UnhandledException" xml:space="preserve">
+    <value>Unhandled Exception:{0}</value>
+  </data>
+  <data name="StartUp.Application.AllUnhandledExceptions" xml:space="preserve">
+    <value>All Unhandled Exceptions:{0}</value>
+  </data>
+  <data name="StartUp.Application.UnhandledExceptionCallback" xml:space="preserve">
+    <value>Unhandled Exception callback:{0}</value>
+  </data>
+  <data name="StartUp.Application.SigtermSignalReceived" xml:space="preserve">
+    <value>SIGTERM signal received and exit handler registered</value>
+  </data>
+
   </root>

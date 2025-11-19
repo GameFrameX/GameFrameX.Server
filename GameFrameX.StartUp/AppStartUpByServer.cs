@@ -32,6 +32,7 @@
 using System.Reflection;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Foundation.Utility;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
@@ -162,7 +163,7 @@ public abstract partial class AppStartUpBase
     /// </remarks>
     protected virtual ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
     {
-        LogHelper.Info($"the client disconnects - SessionID: {appSession.SessionID}, remote terminal: {appSession.RemoteEndPoint}, disconnect cause: {disconnectEventArgs.Reason}");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.TcpServer.ClientDisconnected, appSession.SessionID, appSession.RemoteEndPoint, disconnectEventArgs.Reason));
         return ValueTask.CompletedTask;
     }
 
@@ -176,7 +177,7 @@ public abstract partial class AppStartUpBase
     /// </remarks>
     protected virtual ValueTask OnConnected(IAppSession appSession)
     {
-        LogHelper.Info($"new client connection - SessionID: {appSession.SessionID}, remote terminal: {appSession.RemoteEndPoint}");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.TcpServer.NewClientConnection, appSession.SessionID, appSession.RemoteEndPoint));
         return ValueTask.CompletedTask;
     }
 
@@ -193,7 +194,7 @@ public abstract partial class AppStartUpBase
     {
         if (Setting.IsDebug && Setting.IsDebugReceive)
         {
-            LogHelper.Debug($"message received- server type: [{ServerType}], message content: {message.ToFormatMessageString()}");
+            LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.TcpServer.MessageReceived, ServerType, message.ToFormatMessageString()));
         }
 
         return ValueTask.CompletedTask;
@@ -259,7 +260,7 @@ public abstract partial class AppStartUpBase
             // 检查TCP端口是否可用
             if (Setting.InnerPort > 0 && NetHelper.PortIsAvailable(Setting.InnerPort))
             {
-                LogHelper.Info($"start tcp server type: {ServerType}, address: {Setting.InnerHost}, port: {Setting.InnerPort}");
+                LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.TcpServer.StartingServer, ServerType, Setting.InnerHost, Setting.InnerPort));
                 multipleServerHostBuilder.AddServer<IMessage, MessageObjectPipelineFilter>(builder =>
                 {
                     var serverBuilder = builder
@@ -295,16 +296,16 @@ public abstract partial class AppStartUpBase
                         // }
                     });
                 });
-                LogHelper.Info($"start tcp server startup complete type: {ServerType}, address: {Setting.InnerHost}, port: {Setting.InnerPort}");
+                LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.TcpServer.StartupComplete, ServerType, Setting.InnerHost, Setting.InnerPort));
             }
             else
             {
-                LogHelper.Warning($"start tcp server start failed type: {ServerType}, address: {Setting.InnerHost}, port: {Setting.InnerPort}, cause: the port is invalid or occupied");
+                LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.TcpServer.StartupFailed, ServerType, Setting.InnerHost, Setting.InnerPort));
             }
         }
         else
         {
-            LogHelper.Info($"start tcp server type: {ServerType}, address: {Setting.InnerHost}, port: {Setting.InnerPort}, cause: the tcp server is disabled");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.TcpServer.ServerDisabled, ServerType, Setting.InnerHost, Setting.InnerPort));
         }
 
         // 检查WebSocket端口是否可用
@@ -312,7 +313,7 @@ public abstract partial class AppStartUpBase
         {
             if (Setting.WsPort is > 0 and < ushort.MaxValue && NetHelper.PortIsAvailable(Setting.WsPort))
             {
-                LogHelper.Info($"start the websocket server type: {ServerType}, port: {Setting.WsPort}");
+                LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.WebSocketServer.StartingServer, ServerType, Setting.WsPort));
 
                 // 配置并启动WebSocket服务器
                 multipleServerHostBuilder.AddWebSocketServer(builder =>
@@ -333,16 +334,16 @@ public abstract partial class AppStartUpBase
                             });
                         });
                 });
-                LogHelper.Info($"start websocket server startup complete type: {ServerType}, port: {Setting.WsPort}");
+                LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.WebSocketServer.StartupComplete, ServerType, Setting.WsPort));
             }
             else
             {
-                LogHelper.Warning($"start websocket server start failed type: {ServerType}, port: {Setting.WsPort}, cause: the port is invalid or occupied");
+                LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.WebSocketServer.StartupFailed, ServerType, Setting.WsPort));
             }
         }
         else
         {
-            LogHelper.Info($"start websocket server start failed type: {ServerType}, port: {Setting.WsPort}, cause: WebSocket service is not enabled");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.WebSocketServer.ServiceNotEnabled, ServerType, Setting.WsPort));
         }
 
         // await StartHttpServerAsync(hostBuilder,baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
@@ -352,7 +353,7 @@ public abstract partial class AppStartUpBase
         var metricsServer = await OpenTelemetryExtensions.CreateMetricsServerAsync(Setting, "TCP");
         if (metricsServer is not null)
         {
-            LogHelper.Info($"The standalone metric server is started on the port: {Setting.MetricsPort}");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.Application.MetricServerStarted, Setting.MetricsPort));
         }
 
         // 配置监控和跟踪

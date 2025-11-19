@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.StartUp.Abstractions;
 using GameFrameX.Utility.Setting;
 
@@ -131,7 +132,7 @@ public abstract partial class AppStartUpBase : IAppStartUp
     public virtual async Task StopAsync(string message = "")
     {
         GlobalSettings.IsAppRunning = false;
-        LogHelper.Error($"服务器类型:{Setting.ServerType} 停止! 终止原因：{message}  配置信息: {Setting.ToFormatString()}");
+        LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.ServerStopped, Setting.ServerType, message, Setting.ToFormatString()));
         await StopServerAsync();
         AppExitSource?.TrySetResult(message);
         LogHelper.FlushAndSave();
