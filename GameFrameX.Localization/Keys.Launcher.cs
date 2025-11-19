@@ -42,7 +42,7 @@ public static partial class Keys
     public static class Launcher
     {
         /// <summary>
-        /// 开始启动服务器的日志消息
+        /// 开始启动服务器{0}
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.ServerStartBegin
@@ -52,7 +52,7 @@ public static partial class Keys
         public const string ServerStartBegin = "Launcher.ServerStartBegin";
 
         /// <summary>
-        /// 开始配置Actor限制逻辑的日志消息
+        /// 开始配置Actor限制逻辑...
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.ActorLimitConfigBegin
@@ -61,7 +61,7 @@ public static partial class Keys
         public const string ActorLimitConfigBegin = "Launcher.ActorLimitConfigBegin";
 
         /// <summary>
-        /// 配置Actor限制逻辑结束的日志消息
+        /// 配置Actor限制逻辑结束...
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.ActorLimitConfigEnd
@@ -70,7 +70,7 @@ public static partial class Keys
         public const string ActorLimitConfigEnd = "Launcher.ActorLimitConfigEnd";
 
         /// <summary>
-        /// 开始启动数据库服务的日志消息
+        /// 开始启动数据库服务...
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.DatabaseServiceStartBegin
@@ -88,7 +88,7 @@ public static partial class Keys
         public const string DatabaseServiceStartFailed = "Launcher.DatabaseServiceStartFailed";
 
         /// <summary>
-        /// 启动数据库服务结束的控制台日志消息
+        /// 启动数据库服务 结束...
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.DatabaseServiceStartEnd
@@ -97,7 +97,7 @@ public static partial class Keys
         public const string DatabaseServiceStartEnd = "Launcher.DatabaseServiceStartEnd";
 
         /// <summary>
-        /// 注册组件开始的日志消息
+        /// 注册组件开始...
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.ComponentRegisterBegin
@@ -106,7 +106,7 @@ public static partial class Keys
         public const string ComponentRegisterBegin = "Launcher.ComponentRegisterBegin";
 
         /// <summary>
-        /// 注册组件结束的日志消息
+        /// 注册组件结束...
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.ComponentRegisterEnd
@@ -115,7 +115,7 @@ public static partial class Keys
         public const string ComponentRegisterEnd = "Launcher.ComponentRegisterEnd";
 
         /// <summary>
-        /// 开始加载热更新模块的日志消息
+        /// 开始加载热更新模块...
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.HotfixModuleLoadBegin
@@ -124,7 +124,7 @@ public static partial class Keys
         public const string HotfixModuleLoadBegin = "Launcher.HotfixModuleLoadBegin";
 
         /// <summary>
-        /// 加载热更新模块结束的日志消息
+        /// 加载热更新模块结束...
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.HotfixModuleLoadEnd
@@ -133,7 +133,7 @@ public static partial class Keys
         public const string HotfixModuleLoadEnd = "Launcher.HotfixModuleLoadEnd";
 
         /// <summary>
-        /// 进入游戏主循环的日志消息
+        /// 进入游戏主循环...
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.EnterMainLoop
@@ -142,7 +142,7 @@ public static partial class Keys
         public const string EnterMainLoop = "Launcher.EnterMainLoop";
 
         /// <summary>
-        /// 服务器启动结束的日志消息
+        /// 服务器{0}启动结束...
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.ServerStartEnd
@@ -152,7 +152,7 @@ public static partial class Keys
         public const string ServerStartEnd = "Launcher.ServerStartEnd";
 
         /// <summary>
-        /// 服务器执行异常的日志消息
+        /// 服务器执行异常，e:{0}
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.ServerExecutionException
@@ -162,7 +162,7 @@ public static partial class Keys
         public const string ServerExecutionException = "Launcher.ServerExecutionException";
 
         /// <summary>
-        /// 退出服务器开始的日志消息
+        /// 退出服务器开始
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.ServerExitBegin
@@ -171,7 +171,7 @@ public static partial class Keys
         public const string ServerExitBegin = "Launcher.ServerExitBegin";
 
         /// <summary>
-        /// 退出服务器成功的日志消息
+        /// 退出服务器成功
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.ServerExitSuccess
@@ -180,7 +180,7 @@ public static partial class Keys
         public const string ServerExitSuccess = "Launcher.ServerExitSuccess";
 
         /// <summary>
-        /// 发送消息的调试日志消息
+        /// ---发送[{0} To {1}]  {2}
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.SendMessage
@@ -190,7 +190,7 @@ public static partial class Keys
         public const string SendMessage = "Launcher.SendMessage";
 
         /// <summary>
-        /// 接收消息的调试日志消息
+        /// ---收到[{0} To {1}]  {2}
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.ReceiveMessage
@@ -200,7 +200,7 @@ public static partial class Keys
         public const string ReceiveMessage = "Launcher.ReceiveMessage";
 
         /// <summary>
-        /// 注册玩家成功的日志消息
+        /// 注册玩家成功：{0}  {1}
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.PlayerRegisterSuccess
@@ -210,7 +210,7 @@ public static partial class Keys
         public const string PlayerRegisterSuccess = "Launcher.PlayerRegisterSuccess";
 
         /// <summary>
-        /// 注销玩家成功的日志消息
+        /// 注销玩家成功：{0}  {1}
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.PlayerUnregisterSuccess
@@ -220,7 +220,7 @@ public static partial class Keys
         public const string PlayerUnregisterSuccess = "Launcher.PlayerUnregisterSuccess";
 
         /// <summary>
-        /// 注册服务成功的日志消息
+        /// 注册服务成功：{0}  {1}  {2}
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.ServiceRegisterSuccess
@@ -230,7 +230,7 @@ public static partial class Keys
         public const string ServiceRegisterSuccess = "Launcher.ServiceRegisterSuccess";
 
         /// <summary>
-        /// 注销服务成功的日志消息
+        /// 注销服务成功：{0}  {1}
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.ServiceUnregisterSuccess
@@ -240,7 +240,7 @@ public static partial class Keys
         public const string ServiceUnregisterSuccess = "Launcher.ServiceUnregisterSuccess";
 
         /// <summary>
-        /// 外部服务连接成功的日志消息
+        /// 有外部服务连接到中心服务器成功。链接信息：SessionID:{0} RemoteEndPoint:{1}
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.ExternalServiceConnected
@@ -250,7 +250,7 @@ public static partial class Keys
         public const string ExternalServiceConnected = "Launcher.ExternalServiceConnected";
 
         /// <summary>
-        /// 外部服务断开的日志消息
+        /// 有外部服务从中心服务器断开。链接信息：断开原因:{0}
         /// </summary>
         /// <remarks>
         /// 键名: Launcher.ExternalServiceDisconnected

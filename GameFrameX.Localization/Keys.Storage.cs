@@ -42,7 +42,7 @@ public static partial class Keys
     public static class Storage
     {
         /// <summary>
-        /// 缓存哈希相等的警告消息
+        /// 调用AfterSaveToDB前CacheHash已经等于ToSaveHash {0}
         /// </summary>
         /// <remarks>
         /// 键名: Storage.CacheHashEquals

@@ -42,7 +42,7 @@ public static partial class Keys
     public static class Events
     {
         /// <summary>
-        /// 事件没有监听者的警告消息
+        /// 事件ID：{0} 没有找到任何监听者
         /// </summary>
         /// <remarks>
         /// 键名: Events.NoListenersFound

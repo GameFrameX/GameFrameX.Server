@@ -42,7 +42,7 @@ public static partial class Keys
     public static class NetWorkHttp
     {
         /// <summary>
-        /// 参数重复的错误消息
+        /// 参数重复了:{0}
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.Http.ParameterDuplicate
@@ -52,7 +52,7 @@ public static partial class Keys
         public const string ParameterDuplicate = "NetWork.Http.ParameterDuplicate";
 
         /// <summary>
-        /// 不支持的内容类型的错误消息
+        /// 不支持的Content Type: {0}
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.Http.UnsupportedContentType
@@ -62,7 +62,7 @@ public static partial class Keys
         public const string UnsupportedContentType = "NetWork.Http.UnsupportedContentType";
 
         /// <summary>
-        /// 请求参数日志消息
+        /// 请求参数:{0}
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.Http.RequestParameters
@@ -72,7 +72,7 @@ public static partial class Keys
         public const string RequestParameters = "NetWork.Http.RequestParameters";
 
         /// <summary>
-        /// 服务器状态错误的错误消息
+        /// 服务器状态错误[正在起/关服]
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.Http.ServerStatusError
@@ -81,7 +81,7 @@ public static partial class Keys
         public const string ServerStatusError = "NetWork.Http.ServerStatusError";
 
         /// <summary>
-        /// HTTP命令处理器不存在的警告消息
+        /// http cmd handler 不存在：{0}
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.Http.CommandHandlerNotFound
@@ -91,7 +91,7 @@ public static partial class Keys
         public const string CommandHandlerNotFound = "NetWork.Http.CommandHandlerNotFound";
 
         /// <summary>
-        /// 执行时间日志消息
+        /// {0},执行时间：{1}ms, 结果: {2}
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.Http.ExecutionTime
@@ -101,7 +101,7 @@ public static partial class Keys
         public const string ExecutionTime = "NetWork.Http.ExecutionTime";
 
         /// <summary>
-        /// 发生异常的错误消息
+        /// {0}, 发生异常. {1} {2}
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.Http.ExceptionOccurred
@@ -111,7 +111,7 @@ public static partial class Keys
         public const string ExceptionOccurred = "NetWork.Http.ExceptionOccurred";
 
         /// <summary>
-        /// 消息类型继承错误
+        /// 消息类型 {0} 必须继承自 HttpMessageRequestBase
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.Http.MessageTypeInheritanceError
@@ -121,7 +121,7 @@ public static partial class Keys
         public const string MessageTypeInheritanceError = "NetWork.Http.MessageTypeInheritanceError";
 
         /// <summary>
-        /// 响应消息类型继承错误
+        /// 消息类型 {0} 必须继承自 HttpMessageResponseBase
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.Http.ResponseMessageTypeInheritanceError
@@ -131,7 +131,7 @@ public static partial class Keys
         public const string ResponseMessageTypeInheritanceError = "NetWork.Http.ResponseMessageTypeInheritanceError";
 
         /// <summary>
-        /// 类必须是密封类的错误消息
+        /// {0} 必须是标记为sealed的类
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.Http.ClassMustBeSealed
@@ -141,7 +141,7 @@ public static partial class Keys
         public const string ClassMustBeSealed = "NetWork.Http.ClassMustBeSealed";
 
         /// <summary>
-        /// 类必须以特定后缀结尾的错误消息
+        /// {0} 必须以{1}结尾
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.Http.ClassMustEndWithSuffix

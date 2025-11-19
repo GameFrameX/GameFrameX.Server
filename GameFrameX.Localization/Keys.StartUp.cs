@@ -42,7 +42,7 @@ public static partial class Keys
     public static class StartUp
     {
         /// <summary>
-        /// 服务器停止的消息
+        /// 服务器类型:{0} 停止! 终止原因：{1} 配置信息: {2}
         /// </summary>
         /// <remarks>
         /// 键名: StartUp.ServerStopped
@@ -52,7 +52,7 @@ public static partial class Keys
         public const string ServerStopped = "StartUp.ServerStopped";
 
         /// <summary>
-        /// 与发现中心通信错误的消息
+        /// 服务器{0}与发现中心通信发生错误 ，id:{1}，e:{2}
         /// </summary>
         /// <remarks>
         /// 键名: StartUp.DiscoveryCenterCommunicationError
@@ -62,7 +62,7 @@ public static partial class Keys
         public const string DiscoveryCenterCommunicationError = "StartUp.DiscoveryCenterCommunicationError";
 
         /// <summary>
-        /// 接收到发现中心消息的消息
+        /// 服务器{0}接收到发现中心消息 ,id:{1},{2}
         /// </summary>
         /// <remarks>
         /// 键名: StartUp.DiscoveryCenterMessageReceived
@@ -72,7 +72,7 @@ public static partial class Keys
         public const string DiscoveryCenterMessageReceived = "StartUp.DiscoveryCenterMessageReceived";
 
         /// <summary>
-        /// 与发现中心断开连接的消息
+        /// 服务器{0}与发现中心断开连接 ,id:{1}...
         /// </summary>
         /// <remarks>
         /// 键名: StartUp.DiscoveryCenterDisconnected
@@ -82,7 +82,7 @@ public static partial class Keys
         public const string DiscoveryCenterDisconnected = "StartUp.DiscoveryCenterDisconnected";
 
         /// <summary>
-        /// 连接到发现中心成功的消息
+        /// 服务器{0}连接到发现中心成功 ,id:{1}...
         /// </summary>
         /// <remarks>
         /// 键名: StartUp.DiscoveryCenterConnected
@@ -92,7 +92,7 @@ public static partial class Keys
         public const string DiscoveryCenterConnected = "StartUp.DiscoveryCenterConnected";
 
         /// <summary>
-        /// 服务器启动任务为空的错误消息
+        /// The server has been stopped, please check the log for details. (服务器已停止，详情请查看日志.因为启动任务为空。没有找到启动任务。)
         /// </summary>
         /// <remarks>
         /// 键名: StartUp.NoStartupTaskFound
@@ -101,7 +101,7 @@ public static partial class Keys
         public const string NoStartupTaskFound = "StartUp.NoStartupTaskFound";
 
         /// <summary>
-        /// 指标端口被占用的错误消息
+        /// 指标端口 [{0}] 被占用，无法启动独立指标服务器
         /// </summary>
         /// <remarks>
         /// 键名: StartUp.MetricsPortInUse
@@ -111,7 +111,7 @@ public static partial class Keys
         public const string MetricsPortInUse = "StartUp.MetricsPortInUse";
 
         /// <summary>
-        /// Prometheus指标端点已启用的消息
+        /// 独立 Prometheus metrics 端点已启用: http://{0}:{1}/metrics
         /// </summary>
         /// <remarks>
         /// 键名: StartUp.PrometheusMetricsEndpointEnabled
@@ -121,7 +121,7 @@ public static partial class Keys
         public const string PrometheusMetricsEndpointEnabled = "StartUp.PrometheusMetricsEndpointEnabled";
 
         /// <summary>
-        /// Metrics健康检查端点已启用的消息
+        /// 独立 Metrics 健康检查端点: http://{0}:{1}/health
         /// </summary>
         /// <remarks>
         /// 键名: StartUp.MetricsHealthCheckEndpointEnabled
@@ -154,7 +154,7 @@ public static partial class Keys
             public const string HandleGameClientPostRequest = "StartUp.HttpServer.HandleGameClientPostRequest";
 
             /// <summary>
-            /// HTTP服务被禁用的消息
+            /// HTTP服务已禁用，启动已忽略
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.HttpServer.ServiceDisabled
@@ -163,7 +163,7 @@ public static partial class Keys
             public const string ServiceDisabled = "StartUp.HttpServer.ServiceDisabled";
 
             /// <summary>
-            /// 启动HTTP服务器的消息
+            /// 启动 [HTTP] 服务器...
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.HttpServer.StartingServer
@@ -172,7 +172,7 @@ public static partial class Keys
             public const string StartingServer = "StartUp.HttpServer.StartingServer";
 
             /// <summary>
-            /// HTTP端口超出范围的消息
+            /// 启动 [HTTP] 服务器端口 [{0}] 超出范围 [{1}-{2}]，HTTP服务无法启动，启动已忽略
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.HttpServer.PortOutOfRange
@@ -182,7 +182,7 @@ public static partial class Keys
             public const string PortOutOfRange = "StartUp.HttpServer.PortOutOfRange";
 
             /// <summary>
-            /// Swagger UI访问地址的消息
+            /// Swagger UI 可通过 http://{0}:{1}/swagger 访问
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.HttpServer.SwaggerUiAccess
@@ -198,7 +198,7 @@ public static partial class Keys
         public static class TcpServer
         {
             /// <summary>
-            /// 客户端断开连接的消息
+            /// 客户端断开连接 - 会话ID: {0}, 远程终端: {1}, 断开原因: {2}
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.TcpServer.ClientDisconnected
@@ -208,7 +208,7 @@ public static partial class Keys
             public const string ClientDisconnected = "StartUp.TcpServer.ClientDisconnected";
 
             /// <summary>
-            /// 新客户端连接的消息
+            /// 新客户端连接 - 会话ID: {0}, 远程终端: {1}
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.TcpServer.NewClientConnection
@@ -218,7 +218,7 @@ public static partial class Keys
             public const string NewClientConnection = "StartUp.TcpServer.NewClientConnection";
 
             /// <summary>
-            /// 接收到消息的消息
+            /// 接收到消息 - 服务器类型: [{0}], 消息内容: {1}
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.TcpServer.MessageReceived
@@ -228,7 +228,7 @@ public static partial class Keys
             public const string MessageReceived = "StartUp.TcpServer.MessageReceived";
 
             /// <summary>
-            /// 启动TCP服务器的消息
+            /// 启动TCP服务器 类型: {0}, 地址: {1}, 端口: {2}
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.TcpServer.StartingServer
@@ -238,7 +238,7 @@ public static partial class Keys
             public const string StartingServer = "StartUp.TcpServer.StartingServer";
 
             /// <summary>
-            /// TCP服务器启动完成的消息
+            /// 启动TCP服务器完成 类型: {0}, 地址: {1}, 端口: {2}
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.TcpServer.StartupComplete
@@ -248,7 +248,7 @@ public static partial class Keys
             public const string StartupComplete = "StartUp.TcpServer.StartupComplete";
 
             /// <summary>
-            /// TCP服务器启动失败的消息
+            /// 启动TCP服务器失败 类型: {0}, 地址: {1}, 端口: {2}, 原因: 端口无效或被占用
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.TcpServer.StartupFailed
@@ -258,7 +258,7 @@ public static partial class Keys
             public const string StartupFailed = "StartUp.TcpServer.StartupFailed";
 
             /// <summary>
-            /// TCP服务器被禁用的消息
+            /// 启动TCP服务器 类型: {0}, 地址: {1}, 端口: {2}, 原因: TCP服务器被禁用
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.TcpServer.ServerDisabled
@@ -274,7 +274,7 @@ public static partial class Keys
         public static class WebSocketServer
         {
             /// <summary>
-            /// 启动WebSocket服务器的消息
+            /// 启动WebSocket服务器 类型: {0}, 端口: {1}
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.WebSocketServer.StartingServer
@@ -284,7 +284,7 @@ public static partial class Keys
             public const string StartingServer = "StartUp.WebSocketServer.StartingServer";
 
             /// <summary>
-            /// WebSocket服务器启动完成的消息
+            /// 启动WebSocket服务器完成 类型: {0}, 端口: {1}
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.WebSocketServer.StartupComplete
@@ -294,7 +294,7 @@ public static partial class Keys
             public const string StartupComplete = "StartUp.WebSocketServer.StartupComplete";
 
             /// <summary>
-            /// WebSocket服务器启动失败的消息
+            /// 启动WebSocket服务器失败 类型: {0}, 端口: {1}, 原因: 端口无效或被占用
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.WebSocketServer.StartupFailed
@@ -304,7 +304,7 @@ public static partial class Keys
             public const string StartupFailed = "StartUp.WebSocketServer.StartupFailed";
 
             /// <summary>
-            /// WebSocket服务未启用的消息
+            /// 启动WebSocket服务器失败 类型: {0}, 端口: {1}, 原因: WebSocket服务未启用
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.WebSocketServer.ServiceNotEnabled
@@ -320,7 +320,7 @@ public static partial class Keys
         public static class Application
         {
             /// <summary>
-            /// 指标服务器启动的消息
+            /// 独立指标服务器已在端口: {0} 启动
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.Application.MetricServerStarted
@@ -330,7 +330,7 @@ public static partial class Keys
             public const string MetricServerStarted = "StartUp.Application.MetricServerStarted";
 
             /// <summary>
-            /// 监听程序退出消息的消息
+            /// 监听程序退出消息
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.Application.ListeningExitMessage
@@ -339,7 +339,7 @@ public static partial class Keys
             public const string ListeningExitMessage = "StartUp.Application.ListeningExitMessage";
 
             /// <summary>
-            /// 执行退出程序的消息
+            /// 执行退出程序
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.Application.ExecutingExitProcedure
@@ -348,7 +348,7 @@ public static partial class Keys
             public const string ExecutingExitProcedure = "StartUp.Application.ExecutingExitProcedure";
 
             /// <summary>
-            /// 获取未处理异常的消息
+            /// 获取未处理异常 标签:{0}
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.Application.GetUnhandledException
@@ -358,7 +358,7 @@ public static partial class Keys
             public const string GetUnhandledException = "StartUp.Application.GetUnhandledException";
 
             /// <summary>
-            /// 未处理异常的消息
+            /// 未处理异常:{0}
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.Application.UnhandledException
@@ -368,7 +368,7 @@ public static partial class Keys
             public const string UnhandledException = "StartUp.Application.UnhandledException";
 
             /// <summary>
-            /// 所有未处理异常的消息
+            /// 所有未处理异常:{0}
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.Application.AllUnhandledExceptions
@@ -378,7 +378,7 @@ public static partial class Keys
             public const string AllUnhandledExceptions = "StartUp.Application.AllUnhandledExceptions";
 
             /// <summary>
-            /// 未处理异常回调的消息
+            /// 未处理异常回调:{0}
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.Application.UnhandledExceptionCallback
@@ -388,7 +388,7 @@ public static partial class Keys
             public const string UnhandledExceptionCallback = "StartUp.Application.UnhandledExceptionCallback";
 
             /// <summary>
-            /// SIGTERM信号注册的消息
+            /// 接收到SIGTERM信号并注册退出处理程序
             /// </summary>
             /// <remarks>
             /// 键名: StartUp.Application.SigtermSignalReceived

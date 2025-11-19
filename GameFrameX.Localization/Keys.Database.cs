@@ -42,7 +42,7 @@ public static partial class Keys
     public static class Database
     {
         /// <summary>
-        /// MongoDB服务初始化成功
+        /// MongoDB服务初始化成功，连接字符串：{0}，数据库名称：{1}
         /// </summary>
         /// <remarks>
         /// 键名: Database.MongoDb.InitializedSuccessfully
@@ -52,7 +52,7 @@ public static partial class Keys
         public const string MongoDbInitializedSuccessfully = "Database.MongoDb.InitializedSuccessfully";
 
         /// <summary>
-        /// MongoDB服务初始化失败
+        /// MongoDB服务初始化失败，连接字符串：{0}，数据库名称：{1}
         /// </summary>
         /// <remarks>
         /// 键名: Database.MongoDb.InitializationFailed

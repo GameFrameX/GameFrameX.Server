@@ -42,7 +42,7 @@ public static partial class Keys
     public static class NetWorkAbstractions
     {
         /// <summary>
-        /// 消息ID重复的错误消息
+        /// 消息Id重复==>当前ID:{0},已有ID类型:{1}
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.Abstractions.MessageIdDuplicate
@@ -52,7 +52,7 @@ public static partial class Keys
         public const string MessageIdDuplicate = "NetWork.Abstractions.MessageIdDuplicate";
 
         /// <summary>
-        /// 心跳消息重复的错误消息
+        /// 心跳消息重复==>类型:{0}
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.Abstractions.HeartbeatMessageDuplicate
@@ -62,7 +62,7 @@ public static partial class Keys
         public const string HeartbeatMessageDuplicate = "NetWork.Abstractions.HeartbeatMessageDuplicate";
 
         /// <summary>
-        /// 请求ID重复的错误消息
+        /// 请求Id重复==>当前ID:{0},已有ID类型:{1}
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.Abstractions.RequestIdDuplicate
@@ -72,7 +72,7 @@ public static partial class Keys
         public const string RequestIdDuplicate = "NetWork.Abstractions.RequestIdDuplicate";
 
         /// <summary>
-        /// 返回ID重复的错误消息
+        /// 返回Id重复==>当前ID:{0},已有ID类型:{1}
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.Abstractions.ResponseIdDuplicate

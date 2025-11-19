@@ -42,7 +42,7 @@ public static partial class Keys
     public static class NetWork
     {
         /// <summary>
-        /// 发送消息的日志消息
+        /// ---发送{0}
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.MessageSent
@@ -52,7 +52,7 @@ public static partial class Keys
         public const string MessageSent = "NetWork.MessageSent";
 
         /// <summary>
-        /// 消息发送超时被取消的错误消息
+        /// 消息发送超时被取消:{0}
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.MessageSendTimeout
@@ -62,7 +62,7 @@ public static partial class Keys
         public const string MessageSendTimeout = "NetWork.MessageSendTimeout";
 
         /// <summary>
-        /// 类型必须实现接口的错误消息
+        /// Type {0} must implement {1} interface / 类型 {0} 必须实现 {1} 接口
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.TypeMustImplementInterface
@@ -72,7 +72,7 @@ public static partial class Keys
         public const string TypeMustImplementInterface = "NetWork.TypeMustImplementInterface";
 
         /// <summary>
-        /// 类型必须是类的错误消息
+        /// Type {0} must be a class / 类型 {0} 必须是类
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.TypeMustBeClass
@@ -82,7 +82,7 @@ public static partial class Keys
         public const string TypeMustBeClass = "NetWork.TypeMustBeClass";
 
         /// <summary>
-        /// 类型必须有无参构造函数的错误消息
+        /// Type {0} must have a parameterless constructor / 类型 {0} 必须有无参构造函数
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.TypeMustHaveParameterlessConstructor
@@ -92,7 +92,7 @@ public static partial class Keys
         public const string TypeMustHaveParameterlessConstructor = "NetWork.TypeMustHaveParameterlessConstructor";
 
         /// <summary>
-        /// 无法找到Create方法的错误消息
+        /// Cannot find Create method on ObjectPoolProvider / 无法在 ObjectPoolProvider 上找到 Create 方法
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.CannotFindCreateMethod
@@ -101,7 +101,7 @@ public static partial class Keys
         public const string CannotFindCreateMethod = "NetWork.CannotFindCreateMethod";
 
         /// <summary>
-        /// 创建对象池失败的错误消息
+        /// Failed to create object pool for type {0} / 无法为类型 {0} 创建对象池
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.FailedToCreateObjectPool

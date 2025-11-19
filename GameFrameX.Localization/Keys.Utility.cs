@@ -42,7 +42,7 @@ public static partial class Keys
     public static class Utility
     {
         /// <summary>
-        /// ActorId小于最小服务器ID的错误消息
+        /// actorId小于最小服务器ID，最小服务器ID为{0}
         /// </summary>
         /// <remarks>
         /// 键名: Utility.Exceptions.ActorIdLessThanMinServerId
@@ -52,7 +52,7 @@ public static partial class Keys
         public const string ActorIdLessThanMinServerId = "Utility.Exceptions.ActorIdLessThanMinServerId";
 
         /// <summary>
-        /// ActorId小于最小服务器ID的详细错误消息
+        /// actorId：{0}小于最小服务器ID：{1}
         /// </summary>
         /// <remarks>
         /// 键名: Utility.Exceptions.ActorIdLessThanMinServerIdDetail
@@ -62,7 +62,7 @@ public static partial class Keys
         public const string ActorIdLessThanMinServerIdDetail = "Utility.Exceptions.ActorIdLessThanMinServerIdDetail";
 
         /// <summary>
-        /// Actor类型错误的错误消息
+        /// 输入Actor类型错误：{0}
         /// </summary>
         /// <remarks>
         /// 键名: Utility.Exceptions.ActorTypeError
@@ -123,7 +123,7 @@ public static partial class Keys
         public static class Exceptions
         {
             /// <summary>
-            /// ActorId小于最小服务器ID的错误消息
+            /// actorId小于最小服务器ID，最小服务器ID为{0}
             /// </summary>
             /// <remarks>
             /// 键名: Utility.Exceptions.ActorIdLessThanMinServerId

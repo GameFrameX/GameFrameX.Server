@@ -42,7 +42,7 @@ public static partial class Keys
     public static class Client
     {
         /// <summary>
-        /// 客户端尝试连接到服务器的消息
+        /// 尝试连接到服务器...
         /// </summary>
         /// <remarks>
         /// 键名: Client.AttemptingToConnect
@@ -51,7 +51,7 @@ public static partial class Keys
         public const string AttemptingToConnect = "Client.AttemptingToConnect";
 
         /// <summary>
-        /// 客户端重试连接的消息
+        /// 未连接到服务器, 尝试重连 (尝试次数: {0}/{1})
         /// </summary>
         /// <remarks>
         /// 键名: Client.RetryConnect
@@ -61,7 +61,7 @@ public static partial class Keys
         public const string RetryConnect = "Client.RetryConnect";
 
         /// <summary>
-        /// 客户端达到最大重试次数的消息
+        /// 重连次数已达到上限，停止尝试。
         /// </summary>
         /// <remarks>
         /// 键名: Client.MaxRetryReached
@@ -70,7 +70,7 @@ public static partial class Keys
         public const string MaxRetryReached = "Client.MaxRetryReached";
 
         /// <summary>
-        /// 客户端发生错误的消息
+        /// 客户端发生错误: {0}
         /// </summary>
         /// <remarks>
         /// 键名: Client.ErrorOccurred
@@ -80,7 +80,7 @@ public static partial class Keys
         public const string ErrorOccurred = "Client.ErrorOccurred";
 
         /// <summary>
-        /// 客户端断开连接的消息
+        /// 客户端断开连接
         /// </summary>
         /// <remarks>
         /// 键名: Client.Disconnected
@@ -89,7 +89,7 @@ public static partial class Keys
         public const string Disconnected = "Client.Disconnected";
 
         /// <summary>
-        /// 客户端成功连接到服务器的消息
+        /// 客户端成功连接到服务器
         /// </summary>
         /// <remarks>
         /// 键名: Client.ConnectedSuccessfully

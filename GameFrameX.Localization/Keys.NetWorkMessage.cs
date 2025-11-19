@@ -42,7 +42,7 @@ public static partial class Keys
     public static class NetWorkMessage
     {
         /// <summary>
-        /// 消息解码异常的致命错误消息
+        /// 消息解码过程中发生致命异常: {0}
         /// </summary>
         /// <remarks>
         /// 键名: NetWork.Message.MessageDecodeFatalError
