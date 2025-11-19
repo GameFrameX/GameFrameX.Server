@@ -12419,12 +12419,15 @@ references:
   fullName.vb: GameFrameX.StartUp.AppStartUpBase.Call(Of T)(GameFrameX.NetWork.Messages.MessageObject, Integer)
   nameWithType: AppStartUpBase.Call<T>(MessageObject, int)
   nameWithType.vb: AppStartUpBase.Call(Of T)(MessageObject, Integer)
-- uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnClosed
-  name: GameAppClientOnClosed()
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnClosed
-  commentId: M:GameFrameX.StartUp.AppStartUpBase.GameAppClientOnClosed
-  fullName: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnClosed()
-  nameWithType: AppStartUpBase.GameAppClientOnClosed()
+- uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnClosed(System.String)
+  name: GameAppClientOnClosed(string)
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnClosed_System_String_
+  commentId: M:GameFrameX.StartUp.AppStartUpBase.GameAppClientOnClosed(System.String)
+  name.vb: GameAppClientOnClosed(String)
+  fullName: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnClosed(string)
+  fullName.vb: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnClosed(String)
+  nameWithType: AppStartUpBase.GameAppClientOnClosed(string)
+  nameWithType.vb: AppStartUpBase.GameAppClientOnClosed(String)
 - uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnClosed*
   name: GameAppClientOnClosed
   href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnClosed_
@@ -12432,12 +12435,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnClosed
   nameWithType: AppStartUpBase.GameAppClientOnClosed
-- uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnConnected
-  name: GameAppClientOnConnected()
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnConnected
-  commentId: M:GameFrameX.StartUp.AppStartUpBase.GameAppClientOnConnected
-  fullName: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnConnected()
-  nameWithType: AppStartUpBase.GameAppClientOnConnected()
+- uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnConnected(System.String)
+  name: GameAppClientOnConnected(string)
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnConnected_System_String_
+  commentId: M:GameFrameX.StartUp.AppStartUpBase.GameAppClientOnConnected(System.String)
+  name.vb: GameAppClientOnConnected(String)
+  fullName: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnConnected(string)
+  fullName.vb: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnConnected(String)
+  nameWithType: AppStartUpBase.GameAppClientOnConnected(string)
+  nameWithType.vb: AppStartUpBase.GameAppClientOnConnected(String)
 - uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnConnected*
   name: GameAppClientOnConnected
   href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnConnected_
@@ -12445,12 +12451,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnConnected
   nameWithType: AppStartUpBase.GameAppClientOnConnected
-- uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnError(GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs)
-  name: GameAppClientOnError(ErrorEventArgs)
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnError_GameFrameX_SuperSocket_ClientEngine_ErrorEventArgs_
-  commentId: M:GameFrameX.StartUp.AppStartUpBase.GameAppClientOnError(GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs)
-  fullName: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnError(GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs)
-  nameWithType: AppStartUpBase.GameAppClientOnError(ErrorEventArgs)
+- uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnError(System.String,GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs)
+  name: GameAppClientOnError(string, ErrorEventArgs)
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnError_System_String_GameFrameX_SuperSocket_ClientEngine_ErrorEventArgs_
+  commentId: M:GameFrameX.StartUp.AppStartUpBase.GameAppClientOnError(System.String,GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs)
+  name.vb: GameAppClientOnError(String, ErrorEventArgs)
+  fullName: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnError(string, GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs)
+  fullName.vb: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnError(String, GameFrameX.SuperSocket.ClientEngine.ErrorEventArgs)
+  nameWithType: AppStartUpBase.GameAppClientOnError(string, ErrorEventArgs)
+  nameWithType.vb: AppStartUpBase.GameAppClientOnError(String, ErrorEventArgs)
 - uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnError*
   name: GameAppClientOnError
   href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnError_
@@ -12458,12 +12467,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnError
   nameWithType: AppStartUpBase.GameAppClientOnError
-- uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnHeartBeat
-  name: GameAppClientOnHeartBeat()
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnHeartBeat
-  commentId: M:GameFrameX.StartUp.AppStartUpBase.GameAppClientOnHeartBeat
-  fullName: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnHeartBeat()
-  nameWithType: AppStartUpBase.GameAppClientOnHeartBeat()
+- uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnHeartBeat(System.String)
+  name: GameAppClientOnHeartBeat(string)
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnHeartBeat_System_String_
+  commentId: M:GameFrameX.StartUp.AppStartUpBase.GameAppClientOnHeartBeat(System.String)
+  name.vb: GameAppClientOnHeartBeat(String)
+  fullName: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnHeartBeat(string)
+  fullName.vb: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnHeartBeat(String)
+  nameWithType: AppStartUpBase.GameAppClientOnHeartBeat(string)
+  nameWithType.vb: AppStartUpBase.GameAppClientOnHeartBeat(String)
 - uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnHeartBeat*
   name: GameAppClientOnHeartBeat
   href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnHeartBeat_
@@ -12471,12 +12483,15 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnHeartBeat
   nameWithType: AppStartUpBase.GameAppClientOnHeartBeat
-- uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnMessage(GameFrameX.NetWork.Messages.MessageObject)
-  name: GameAppClientOnMessage(MessageObject)
-  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnMessage_GameFrameX_NetWork_Messages_MessageObject_
-  commentId: M:GameFrameX.StartUp.AppStartUpBase.GameAppClientOnMessage(GameFrameX.NetWork.Messages.MessageObject)
-  fullName: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnMessage(GameFrameX.NetWork.Messages.MessageObject)
-  nameWithType: AppStartUpBase.GameAppClientOnMessage(MessageObject)
+- uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnMessage(System.String,GameFrameX.NetWork.Messages.MessageObject)
+  name: GameAppClientOnMessage(string, MessageObject)
+  href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnMessage_System_String_GameFrameX_NetWork_Messages_MessageObject_
+  commentId: M:GameFrameX.StartUp.AppStartUpBase.GameAppClientOnMessage(System.String,GameFrameX.NetWork.Messages.MessageObject)
+  name.vb: GameAppClientOnMessage(String, MessageObject)
+  fullName: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnMessage(string, GameFrameX.NetWork.Messages.MessageObject)
+  fullName.vb: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnMessage(String, GameFrameX.NetWork.Messages.MessageObject)
+  nameWithType: AppStartUpBase.GameAppClientOnMessage(string, MessageObject)
+  nameWithType.vb: AppStartUpBase.GameAppClientOnMessage(String, MessageObject)
 - uid: GameFrameX.StartUp.AppStartUpBase.GameAppClientOnMessage*
   name: GameAppClientOnMessage
   href: api/GameFrameX.StartUp.AppStartUpBase.html#GameFrameX_StartUp_AppStartUpBase_GameAppClientOnMessage_
@@ -13954,161 +13969,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.WssPort
   nameWithType: LauncherOptions.WssPort
-- uid: GameFrameX.StartUp.ServiceClient
-  name: GameFrameX.StartUp.ServiceClient
-  href: api/GameFrameX.StartUp.ServiceClient.html
-  commentId: N:GameFrameX.StartUp.ServiceClient
-  fullName: GameFrameX.StartUp.ServiceClient
-  nameWithType: GameFrameX.StartUp.ServiceClient
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration
-  name: GameAppServiceConfiguration
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html
-  commentId: T:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration
-  nameWithType: GameAppServiceConfiguration
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.ConnectDelay
-  name: ConnectDelay
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_ConnectDelay
-  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.ConnectDelay
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.ConnectDelay
-  nameWithType: GameAppServiceConfiguration.ConnectDelay
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.ConnectDelay*
-  name: ConnectDelay
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_ConnectDelay_
-  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.ConnectDelay
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.ConnectDelay
-  nameWithType: GameAppServiceConfiguration.ConnectDelay
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.HeartBeatInterval
-  name: HeartBeatInterval
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_HeartBeatInterval
-  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.HeartBeatInterval
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.HeartBeatInterval
-  nameWithType: GameAppServiceConfiguration.HeartBeatInterval
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.HeartBeatInterval*
-  name: HeartBeatInterval
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_HeartBeatInterval_
-  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.HeartBeatInterval
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.HeartBeatInterval
-  nameWithType: GameAppServiceConfiguration.HeartBeatInterval
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableConnectDelay
-  name: IsEnableConnectDelay
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_IsEnableConnectDelay
-  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableConnectDelay
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableConnectDelay
-  nameWithType: GameAppServiceConfiguration.IsEnableConnectDelay
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableConnectDelay*
-  name: IsEnableConnectDelay
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_IsEnableConnectDelay_
-  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableConnectDelay
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableConnectDelay
-  nameWithType: GameAppServiceConfiguration.IsEnableConnectDelay
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableHeartBeat
-  name: IsEnableHeartBeat
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_IsEnableHeartBeat
-  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableHeartBeat
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableHeartBeat
-  nameWithType: GameAppServiceConfiguration.IsEnableHeartBeat
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableHeartBeat*
-  name: IsEnableHeartBeat
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_IsEnableHeartBeat_
-  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableHeartBeat
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.IsEnableHeartBeat
-  nameWithType: GameAppServiceConfiguration.IsEnableHeartBeat
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.MaxRetryCount
-  name: MaxRetryCount
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_MaxRetryCount
-  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.MaxRetryCount
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.MaxRetryCount
-  nameWithType: GameAppServiceConfiguration.MaxRetryCount
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.MaxRetryCount*
-  name: MaxRetryCount
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_MaxRetryCount_
-  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.MaxRetryCount
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.MaxRetryCount
-  nameWithType: GameAppServiceConfiguration.MaxRetryCount
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnClosed
-  name: OnClosed
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnClosed
-  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnClosed
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnClosed
-  nameWithType: GameAppServiceConfiguration.OnClosed
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnClosed*
-  name: OnClosed
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnClosed_
-  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnClosed
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnClosed
-  nameWithType: GameAppServiceConfiguration.OnClosed
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnConnected
-  name: OnConnected
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnConnected
-  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnConnected
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnConnected
-  nameWithType: GameAppServiceConfiguration.OnConnected
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnConnected*
-  name: OnConnected
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnConnected_
-  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnConnected
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnConnected
-  nameWithType: GameAppServiceConfiguration.OnConnected
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnError
-  name: OnError
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnError
-  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnError
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnError
-  nameWithType: GameAppServiceConfiguration.OnError
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnError*
-  name: OnError
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnError_
-  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnError
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnError
-  nameWithType: GameAppServiceConfiguration.OnError
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnHeartBeat
-  name: OnHeartBeat
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnHeartBeat
-  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnHeartBeat
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnHeartBeat
-  nameWithType: GameAppServiceConfiguration.OnHeartBeat
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnHeartBeat*
-  name: OnHeartBeat
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnHeartBeat_
-  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnHeartBeat
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnHeartBeat
-  nameWithType: GameAppServiceConfiguration.OnHeartBeat
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnMessage
-  name: OnMessage
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnMessage
-  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnMessage
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnMessage
-  nameWithType: GameAppServiceConfiguration.OnMessage
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnMessage*
-  name: OnMessage
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_OnMessage_
-  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnMessage
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.OnMessage
-  nameWithType: GameAppServiceConfiguration.OnMessage
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.RetryDelay
-  name: RetryDelay
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_RetryDelay
-  commentId: P:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.RetryDelay
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.RetryDelay
-  nameWithType: GameAppServiceConfiguration.RetryDelay
-- uid: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.RetryDelay*
-  name: RetryDelay
-  href: api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html#GameFrameX_StartUp_ServiceClient_GameAppServiceConfiguration_RetryDelay_
-  commentId: Overload:GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.RetryDelay
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.RetryDelay
-  nameWithType: GameAppServiceConfiguration.RetryDelay
 - uid: GameFrameX.StartUp.StartUpTagAttribute
   name: StartUpTagAttribute
   href: api/GameFrameX.StartUp.StartUpTagAttribute.html
@@ -22136,6 +21996,38 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.NetHelper.GetFirstAvailablePort
   nameWithType: NetHelper.GetFirstAvailablePort
+- uid: GameFrameX.Utility.NetHelper.GetHostIPv4(System.String)
+  name: GetHostIPv4(string)
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_GetHostIPv4_System_String_
+  commentId: M:GameFrameX.Utility.NetHelper.GetHostIPv4(System.String)
+  name.vb: GetHostIPv4(String)
+  fullName: GameFrameX.Utility.NetHelper.GetHostIPv4(string)
+  fullName.vb: GameFrameX.Utility.NetHelper.GetHostIPv4(String)
+  nameWithType: NetHelper.GetHostIPv4(string)
+  nameWithType.vb: NetHelper.GetHostIPv4(String)
+- uid: GameFrameX.Utility.NetHelper.GetHostIPv4*
+  name: GetHostIPv4
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_GetHostIPv4_
+  commentId: Overload:GameFrameX.Utility.NetHelper.GetHostIPv4
+  isSpec: "True"
+  fullName: GameFrameX.Utility.NetHelper.GetHostIPv4
+  nameWithType: NetHelper.GetHostIPv4
+- uid: GameFrameX.Utility.NetHelper.GetHostIPv6(System.String)
+  name: GetHostIPv6(string)
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_GetHostIPv6_System_String_
+  commentId: M:GameFrameX.Utility.NetHelper.GetHostIPv6(System.String)
+  name.vb: GetHostIPv6(String)
+  fullName: GameFrameX.Utility.NetHelper.GetHostIPv6(string)
+  fullName.vb: GameFrameX.Utility.NetHelper.GetHostIPv6(String)
+  nameWithType: NetHelper.GetHostIPv6(string)
+  nameWithType.vb: NetHelper.GetHostIPv6(String)
+- uid: GameFrameX.Utility.NetHelper.GetHostIPv6*
+  name: GetHostIPv6
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_GetHostIPv6_
+  commentId: Overload:GameFrameX.Utility.NetHelper.GetHostIPv6
+  isSpec: "True"
+  fullName: GameFrameX.Utility.NetHelper.GetHostIPv6
+  nameWithType: NetHelper.GetHostIPv6
 - uid: GameFrameX.Utility.NetHelper.GetLocalIpList(System.Net.Sockets.AddressFamily)
   name: GetLocalIpList(AddressFamily)
   href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_GetLocalIpList_System_Net_Sockets_AddressFamily_
@@ -22242,6 +22134,22 @@ references:
   isSpec: "True"
   fullName: GameFrameX.Utility.NetHelper.IsValidIpAddress
   nameWithType: NetHelper.IsValidIpAddress
+- uid: GameFrameX.Utility.NetHelper.ParseEndPoint(System.String,System.Int32)
+  name: ParseEndPoint(string, int)
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_ParseEndPoint_System_String_System_Int32_
+  commentId: M:GameFrameX.Utility.NetHelper.ParseEndPoint(System.String,System.Int32)
+  name.vb: ParseEndPoint(String, Integer)
+  fullName: GameFrameX.Utility.NetHelper.ParseEndPoint(string, int)
+  fullName.vb: GameFrameX.Utility.NetHelper.ParseEndPoint(String, Integer)
+  nameWithType: NetHelper.ParseEndPoint(string, int)
+  nameWithType.vb: NetHelper.ParseEndPoint(String, Integer)
+- uid: GameFrameX.Utility.NetHelper.ParseEndPoint*
+  name: ParseEndPoint
+  href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_ParseEndPoint_
+  commentId: Overload:GameFrameX.Utility.NetHelper.ParseEndPoint
+  isSpec: "True"
+  fullName: GameFrameX.Utility.NetHelper.ParseEndPoint
+  nameWithType: NetHelper.ParseEndPoint
 - uid: GameFrameX.Utility.NetHelper.PortIsAvailable(System.Int32)
   name: PortIsAvailable(int)
   href: api/GameFrameX.Utility.NetHelper.html#GameFrameX_Utility_NetHelper_PortIsAvailable_System_Int32_

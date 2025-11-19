@@ -2504,34 +2504,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.ServiceClient.GameAppServiceConfiguration.yml\" sourcestartlinenumber=\"1\">Game application service configuration class</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.StartUp.ServiceClient.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.StartUp.ServiceClient.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.StartUp.ServiceClient",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.StartUp.StartUpTagAttribute.yml",
       "output": {
         ".html": {
