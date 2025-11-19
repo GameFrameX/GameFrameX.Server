@@ -31,6 +31,8 @@
 
 
 
+using GameFrameX.Foundation.Localization.Core;
+
 namespace GameFrameX.NetWork.HTTP;
 
 /// <summary>
@@ -59,7 +61,7 @@ public sealed class HttpMessageRequestAttribute : Attribute
         var isRequest = classType.IsSubclassOf(typeof(HttpMessageRequestBase));
         if (isRequest == false)
         {
-            throw new InvalidCastException($"消息类型 {classType.Name} 必须继承自 {nameof(HttpMessageRequestBase)}");
+            throw new InvalidCastException(LocalizationService.GetString(Localization.Keys.NetWorkHttp.MessageTypeInheritanceError, classType.Name));
         }
 
         MessageType = classType;

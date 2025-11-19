@@ -229,6 +229,41 @@
     <value>Message object is null, encoding exception</value>
   </data>
 
+  <!-- NetWork.Http module log and error keys -->
+  <data name="NetWork.Http.ParameterDuplicate" xml:space="preserve">
+    <value>Parameter duplicate: {0}</value>
+  </data>
+  <data name="NetWork.Http.UnsupportedContentType" xml:space="preserve">
+    <value>Unsupported Content Type: {0}</value>
+  </data>
+  <data name="NetWork.Http.RequestParameters" xml:space="preserve">
+    <value>Request parameters: {0}</value>
+  </data>
+  <data name="NetWork.Http.ServerStatusError" xml:space="preserve">
+    <value>Server status error [server starting/shutting down]</value>
+  </data>
+  <data name="NetWork.Http.CommandHandlerNotFound" xml:space="preserve">
+    <value>HTTP cmd handler not found: {0}</value>
+  </data>
+  <data name="NetWork.Http.ExecutionTime" xml:space="preserve">
+    <value>{0}, execution time: {1}ms, result: {2}</value>
+  </data>
+  <data name="NetWork.Http.ExceptionOccurred" xml:space="preserve">
+    <value>{0}, exception occurred. {1} {2}</value>
+  </data>
+  <data name="NetWork.Http.MessageTypeInheritanceError" xml:space="preserve">
+    <value>Message type {0} must inherit from HttpMessageRequestBase</value>
+  </data>
+  <data name="NetWork.Http.ResponseMessageTypeInheritanceError" xml:space="preserve">
+    <value>Message type {0} must inherit from HttpMessageResponseBase</value>
+  </data>
+  <data name="NetWork.Http.ClassMustBeSealed" xml:space="preserve">
+    <value>{0} must be marked as sealed class</value>
+  </data>
+  <data name="NetWork.Http.ClassMustEndWithSuffix" xml:space="preserve">
+    <value>{0} must end with {1}</value>
+  </data>
+
   <!-- StartUp module log and error keys -->
   <data name="StartUp.ServerStopped" xml:space="preserve">
     <value>Server type: {0} stopped! Termination reason: {1} Configuration: {2}</value>

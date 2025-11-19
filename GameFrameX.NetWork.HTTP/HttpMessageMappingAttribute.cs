@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using GameFrameX.Foundation.Extensions;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.NetWork.HTTP;
 
@@ -61,7 +62,7 @@ public sealed class HttpMessageMappingAttribute : Attribute
         var className = classType.Name;
         if (!classType.IsSealed)
         {
-            throw new InvalidOperationException($"{className} 必须是标记为sealed的类");
+            throw new InvalidOperationException(LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.ClassMustBeSealed, className));
         }
 
         // if (!className.StartsWith(HTTPprefix, StringComparison.Ordinal))
@@ -71,7 +72,7 @@ public sealed class HttpMessageMappingAttribute : Attribute
 
         if (!className.EndsWith(HTTPsuffix, StringComparison.Ordinal))
         {
-            throw new InvalidOperationException($"{className} 必须以{HTTPsuffix}结尾");
+            throw new InvalidOperationException(LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.ClassMustEndWithSuffix, className, HTTPsuffix));
         }
 
         OriginalCmd = className.Substring(HTTPprefix.Length, className.Length - HTTPprefix.Length - HTTPsuffix.Length);

@@ -1034,6 +1034,121 @@ namespace GameFrameX.Localization
         }
 
         /// <summary>
+        /// NetWork.HTTP模块相关日志和错误消息资源键
+        /// </summary>
+        public static class NetWorkHttp
+        {
+            /// <summary>
+            /// 参数重复的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Http.ParameterDuplicate
+            /// 用途: 当HTTP请求中参数重复时记录错误
+            /// 参数: {0} - 重复的参数名
+            /// </remarks>
+            public const string ParameterDuplicate = "NetWork.Http.ParameterDuplicate";
+
+            /// <summary>
+            /// 不支持的内容类型的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Http.UnsupportedContentType
+            /// 用途: 当HTTP请求的Content-Type不支持时记录错误
+            /// 参数: {0} - 不支持的Content-Type值
+            /// </remarks>
+            public const string UnsupportedContentType = "NetWork.Http.UnsupportedContentType";
+
+            /// <summary>
+            /// 请求参数日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Http.RequestParameters
+            /// 用途: 记录HTTP请求的参数信息
+            /// 参数: {0} - 序列化后的参数
+            /// </remarks>
+            public const string RequestParameters = "NetWork.Http.RequestParameters";
+
+            /// <summary>
+            /// 服务器状态错误的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Http.ServerStatusError
+            /// 用途: 当服务器状态不正常时返回错误
+            /// </remarks>
+            public const string ServerStatusError = "NetWork.Http.ServerStatusError";
+
+            /// <summary>
+            /// HTTP命令处理器不存在的警告消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Http.CommandHandlerNotFound
+            /// 用途: 当找不到对应的HTTP命令处理器时记录警告
+            /// 参数: {0} - 命令名称
+            /// </remarks>
+            public const string CommandHandlerNotFound = "NetWork.Http.CommandHandlerNotFound";
+
+            /// <summary>
+            /// 执行时间日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Http.ExecutionTime
+            /// 用途: 记录HTTP请求的执行时间
+            /// 参数: {0} - 日志头, {1} - 执行时间(毫秒), {2} - 结果
+            /// </remarks>
+            public const string ExecutionTime = "NetWork.Http.ExecutionTime";
+
+            /// <summary>
+            /// 发生异常的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Http.ExceptionOccurred
+            /// 用途: 当HTTP处理过程中发生异常时记录错误
+            /// 参数: {0} - 日志头, {1} - 异常消息, {2} - 堆栈跟踪
+            /// </remarks>
+            public const string ExceptionOccurred = "NetWork.Http.ExceptionOccurred";
+
+            /// <summary>
+            /// 消息类型继承错误
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Http.MessageTypeInheritanceError
+            /// 用途: 当HTTP消息请求类型未继承自HttpMessageRequestBase时抛出异常
+            /// 参数: {0} - 消息类型名称
+            /// </remarks>
+            public const string MessageTypeInheritanceError = "NetWork.Http.MessageTypeInheritanceError";
+
+            /// <summary>
+            /// 响应消息类型继承错误
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Http.ResponseMessageTypeInheritanceError
+            /// 用途: 当HTTP消息响应类型未继承自HttpMessageResponseBase时抛出异常
+            /// 参数: {0} - 消息类型名称
+            /// </remarks>
+            public const string ResponseMessageTypeInheritanceError = "NetWork.Http.ResponseMessageTypeInheritanceError";
+
+            /// <summary>
+            /// 类必须是密封类的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Http.ClassMustBeSealed
+            /// 用途: 当类不是sealed时抛出异常
+            /// 参数: {0} - 类名
+            /// </remarks>
+            public const string ClassMustBeSealed = "NetWork.Http.ClassMustBeSealed";
+
+            /// <summary>
+            /// 类必须以特定后缀结尾的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Http.ClassMustEndWithSuffix
+            /// 用途: 当类名不以指定后缀结尾时抛出异常
+            /// 参数: {0} - 类名, {1} - 要求的后缀
+            /// </remarks>
+            public const string ClassMustEndWithSuffix = "NetWork.Http.ClassMustEndWithSuffix";
+        }
+
+        /// <summary>
         /// StartUp模块相关日志和错误消息资源键
         /// </summary>
         public static class StartUp

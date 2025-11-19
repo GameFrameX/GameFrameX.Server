@@ -247,6 +247,41 @@
     <value>消息对象为空，编码异常</value>
   </data>
 
+  <!-- NetWork.Http模块日志和错误键名 -->
+  <data name="NetWork.Http.ParameterDuplicate" xml:space="preserve">
+    <value>参数重复了:{0}</value>
+  </data>
+  <data name="NetWork.Http.UnsupportedContentType" xml:space="preserve">
+    <value>不支持的Content Type: {0}</value>
+  </data>
+  <data name="NetWork.Http.RequestParameters" xml:space="preserve">
+    <value>请求参数:{0}</value>
+  </data>
+  <data name="NetWork.Http.ServerStatusError" xml:space="preserve">
+    <value>服务器状态错误[正在起/关服]</value>
+  </data>
+  <data name="NetWork.Http.CommandHandlerNotFound" xml:space="preserve">
+    <value>http cmd handler 不存在：{0}</value>
+  </data>
+  <data name="NetWork.Http.ExecutionTime" xml:space="preserve">
+    <value>{0},执行时间：{1}ms, 结果: {2}</value>
+  </data>
+  <data name="NetWork.Http.ExceptionOccurred" xml:space="preserve">
+    <value>{0}, 发生异常. {1} {2}</value>
+  </data>
+  <data name="NetWork.Http.MessageTypeInheritanceError" xml:space="preserve">
+    <value>消息类型 {0} 必须继承自 HttpMessageRequestBase</value>
+  </data>
+  <data name="NetWork.Http.ResponseMessageTypeInheritanceError" xml:space="preserve">
+    <value>消息类型 {0} 必须继承自 HttpMessageResponseBase</value>
+  </data>
+  <data name="NetWork.Http.ClassMustBeSealed" xml:space="preserve">
+    <value>{0} 必须是标记为sealed的类</value>
+  </data>
+  <data name="NetWork.Http.ClassMustEndWithSuffix" xml:space="preserve">
+    <value>{0} 必须以{1}结尾</value>
+  </data>
+
   <!-- StartUp模块日志和错误键名 -->
   <data name="StartUp.ServerStopped" xml:space="preserve">
     <value>服务器类型:{0} 停止! 终止原因：{1} 配置信息: {2}</value>
