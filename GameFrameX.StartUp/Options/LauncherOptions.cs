@@ -179,10 +179,10 @@ public sealed class LauncherOptions
     /// </summary>
     /// <value>True if console logging is enabled; otherwise, false. Default is false</value>
     /// <remarks>
-    /// 是否输出到控制台，默认为false。控制日志是否同时在控制台显示，便于开发调试
+    /// 是否输出到控制台，默认为true。控制日志是否同时在控制台显示，便于开发调试
     /// </remarks>
-    [Option(nameof(LogIsConsole), DefaultValue = false, Description = "是否输出到控制台,默认为 false。")]
-    public bool LogIsConsole { get; set; } = false;
+    [Option(nameof(LogIsConsole), DefaultValue = true, Description = "是否输出到控制台,默认为 true。")]
+    public bool LogIsConsole { get; set; } = true;
 
     /// <summary>
     /// Gets or sets whether GrafanaLoki logging is enabled
