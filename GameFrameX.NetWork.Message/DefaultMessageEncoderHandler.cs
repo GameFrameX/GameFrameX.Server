@@ -35,6 +35,7 @@ using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.ProtoBuf.Net;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.NetWork.Message;
 
@@ -84,13 +85,13 @@ public sealed class DefaultMessageEncoderHandler : BaseMessageEncoderHandler
             }
             catch (Exception e)
             {
-                LogHelper.Error("消息对象编码异常,请检查错误日志");
+                LogHelper.Error(LocalizationService.GetString(Localization.Keys.NetWorkMessage.MessageObjectEncodeException));
                 LogHelper.Error(e);
                 return null;
             }
         }
 
-        LogHelper.Error("消息对象为空，编码异常");
+        LogHelper.Error(LocalizationService.GetString(Localization.Keys.NetWorkMessage.MessageObjectNullEncodeException));
         return null;
     }
 }

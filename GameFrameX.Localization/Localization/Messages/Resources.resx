@@ -209,6 +209,26 @@
     <value>SaveDataInterval is less than 5000 milliseconds, using default value: {0} milliseconds</value>
   </data>
 
+  <!-- NetWork.Message module log and error keys -->
+  <data name="NetWork.Message.MessageDecodeFatalError" xml:space="preserve">
+    <value>Fatal exception occurred during message decoding: {0}</value>
+  </data>
+  <data name="NetWork.Message.MessageEncodeError" xml:space="preserve">
+    <value>Message object encoding exception, please check error logs</value>
+  </data>
+  <data name="NetWork.Message.MessageEncodeException" xml:space="preserve">
+    <value>Message encoding exception: {0}</value>
+  </data>
+  <data name="NetWork.Message.MessageObjectNull" xml:space="preserve">
+    <value>Message object is null, encoding exception</value>
+  </data>
+  <data name="NetWork.Message.MessageObjectEncodeException" xml:space="preserve">
+    <value>Message object encoding exception, please check error logs</value>
+  </data>
+  <data name="NetWork.Message.MessageObjectNullEncodeException" xml:space="preserve">
+    <value>Message object is null, encoding exception</value>
+  </data>
+
   <!-- StartUp module log and error keys -->
   <data name="StartUp.ServerStopped" xml:space="preserve">
     <value>Server type: {0} stopped! Termination reason: {1} Configuration: {2}</value>

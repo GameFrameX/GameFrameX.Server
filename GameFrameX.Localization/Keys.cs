@@ -972,6 +972,68 @@ namespace GameFrameX.Localization
         }
 
         /// <summary>
+        /// NetWork.Message模块相关日志和错误消息资源键
+        /// </summary>
+        public static class NetWorkMessage
+        {
+            /// <summary>
+            /// 消息解码异常的致命错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Message.MessageDecodeFatalError
+            /// 用途: 当消息解码过程中发生致命异常时记录
+            /// 参数: {0} - 异常信息
+            /// </remarks>
+            public const string MessageDecodeFatalError = "NetWork.Message.MessageDecodeFatalError";
+
+            /// <summary>
+            /// 消息编码异常的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Message.MessageEncodeError
+            /// 用途: 当消息对象编码异常时记录错误信息
+            /// </remarks>
+            public const string MessageEncodeError = "NetWork.Message.MessageEncodeError";
+
+            /// <summary>
+            /// 消息编码异常详情的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Message.MessageEncodeException
+            /// 用途: 当消息编码过程中发生异常时记录详细信息
+            /// 参数: {0} - 异常信息
+            /// </remarks>
+            public const string MessageEncodeException = "NetWork.Message.MessageEncodeException";
+
+            /// <summary>
+            /// 消息对象为空的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Message.MessageObjectNull
+            /// 用途: 当消息对象为空导致编码异常时记录错误
+            /// </remarks>
+            public const string MessageObjectNull = "NetWork.Message.MessageObjectNull";
+
+            /// <summary>
+            /// 消息对象编码异常的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Message.MessageObjectEncodeException
+            /// 用途: 当消息对象编码过程中发生异常时记录错误，提示检查错误日志
+            /// </remarks>
+            public const string MessageObjectEncodeException = "NetWork.Message.MessageObjectEncodeException";
+
+            /// <summary>
+            /// 消息对象为空导致编码异常的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Message.MessageObjectNullEncodeException
+            /// 用途: 当消息对象为空导致编码异常时记录错误
+            /// </remarks>
+            public const string MessageObjectNullEncodeException = "NetWork.Message.MessageObjectNullEncodeException";
+        }
+
+        /// <summary>
         /// StartUp模块相关日志和错误消息资源键
         /// </summary>
         public static class StartUp

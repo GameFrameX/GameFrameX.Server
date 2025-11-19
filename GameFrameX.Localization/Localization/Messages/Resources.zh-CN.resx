@@ -227,6 +227,26 @@
     <value>SaveDataInterval小于5000毫秒，使用默认值为:{0} 毫秒</value>
   </data>
 
+  <!-- NetWork.Message模块日志和错误键名 -->
+  <data name="NetWork.Message.MessageDecodeFatalError" xml:space="preserve">
+    <value>消息解码过程中发生致命异常: {0}</value>
+  </data>
+  <data name="NetWork.Message.MessageEncodeError" xml:space="preserve">
+    <value>消息对象编码异常,请检查错误日志</value>
+  </data>
+  <data name="NetWork.Message.MessageEncodeException" xml:space="preserve">
+    <value>消息编码异常: {0}</value>
+  </data>
+  <data name="NetWork.Message.MessageObjectNull" xml:space="preserve">
+    <value>消息对象为空，编码异常</value>
+  </data>
+  <data name="NetWork.Message.MessageObjectEncodeException" xml:space="preserve">
+    <value>消息对象编码异常,请检查错误日志</value>
+  </data>
+  <data name="NetWork.Message.MessageObjectNullEncodeException" xml:space="preserve">
+    <value>消息对象为空，编码异常</value>
+  </data>
+
   <!-- StartUp模块日志和错误键名 -->
   <data name="StartUp.ServerStopped" xml:space="preserve">
     <value>服务器类型:{0} 停止! 终止原因：{1} 配置信息: {2}</value>
