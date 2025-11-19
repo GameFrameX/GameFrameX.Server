@@ -35,6 +35,9 @@ using Prometheus;
 
 namespace GameFrameX.Monitor.NetWork;
 
+/// <summary>
+/// 网络监控助手类
+/// </summary>
 public static class MetricsNetWorkHelper
 {
     private static Counter _totalBytesReceivedCounter;
