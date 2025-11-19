@@ -39,7 +39,6 @@ namespace GameFrameX.Core.Hotfix.Agent;
 /// <summary>
 /// 基础组件代理类，用于管理组件与Actor之间的交互
 /// </summary>
-/// <typeparam name="TComponent">具体的组件类型</typeparam>
 public abstract partial class BaseComponentAgent<TComponent> where TComponent : BaseComponent
 {
     /// <summary>
