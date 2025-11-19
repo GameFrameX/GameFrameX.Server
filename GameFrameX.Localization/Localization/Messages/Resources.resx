@@ -814,4 +814,15 @@
     <value>Invalid component type {0}, value should be greater than {1} and less than {2} and not equal to {3}</value>
   </data>
 
+  <!-- Apps module log messages -->
+  <!-- BSON class mapping helper related messages -->
+  <data name="Apps.BsonClassMapHelper.InitializationFailed" xml:space="preserve">
+    <value>BSON class mapping initialization failed</value>
+  </data>
+
+  <!-- Session management related messages -->
+  <data name="Apps.SessionManager.AccountAlreadyLoggedIn" xml:space="preserve">
+    <value>Your account is already logged in on another device</value>
+  </data>
+
   </root>

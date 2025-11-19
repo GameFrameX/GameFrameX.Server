@@ -831,4 +831,15 @@
   <data name="CoreExceptions.Attribute.InvalidComponentType" xml:space="preserve">
     <value>无效的组件类型 {0},值应大于{1}且小于{2}和不为{3}</value>
   </data>
+
+  <!-- Apps 模块日志消息 -->
+  <!-- BSON类映射辅助相关消息 -->
+  <data name="Apps.BsonClassMapHelper.InitializationFailed" xml:space="preserve">
+    <value>BSON类映射初始化失败</value>
+  </data>
+
+  <!-- 会话管理相关消息 -->
+  <data name="Apps.SessionManager.AccountAlreadyLoggedIn" xml:space="preserve">
+    <value>你的账号已在其他设备上登陆</value>
+  </data>
 </root>

@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.Apps;
 

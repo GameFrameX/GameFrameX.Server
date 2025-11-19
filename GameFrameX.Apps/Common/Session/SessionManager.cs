@@ -35,6 +35,7 @@ using System.Threading.Tasks;
 using GameFrameX.Apps.Common.Event;
 using GameFrameX.Core.Actors;
 using GameFrameX.Core.Events;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Utility.Setting;
 
@@ -207,7 +208,7 @@ public static class SessionManager
             var msg = new RespPrompt
             {
                 Type = 5,
-                Content = "你的账号已在其他设备上登陆",
+                Content = LocalizationService.GetString(GameFrameX.Localization.Keys.Apps.SessionManager.AccountAlreadyLoggedIn),
             };
             // 发送消息给旧会话
             await oldSession.WriteAsync(msg);
