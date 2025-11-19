@@ -493,4 +493,67 @@
   <data name="StartUp.Application.SigtermSignalReceived" xml:space="preserve">
     <value>接收到SIGTERM信号并注册退出处理程序</value>
   </data>
+  <data name="DiscoveryCenterManager.Client.TryConnectToServer" xml:space="preserve">
+    <value>尝试连接到目标服务器...{0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.ReconnectAttempt" xml:space="preserve">
+    <value>第{0}次重连,断开连接,原因:{1}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.ErrorOccurred" xml:space="preserve">
+    <value>发生错误:{0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.InvalidIpAddress" xml:space="preserve">
+    <value>无效的IP地址格式: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Server.CannotAddSelfNode" xml:space="preserve">
+    <value>不能添加自己节点,{0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Server.NodeJoined" xml:space="preserve">
+    <value>节点加入,{0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Server.NodeRemoved" xml:space="preserve">
+    <value>节点移除,{0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.NamingService.ErrorOccurred" xml:space="preserve">
+    <value>发生错误:{0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.NamingService.InvalidUrlFormat" xml:space="preserve">
+    <value>无效的URL格式: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.NamingService.ServiceConnectionAttempt" xml:space="preserve">
+    <value>尝试连接服务: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Server.NetworkNodeCount" xml:space="preserve">
+    <value>当前网络节点总数: {0}，新节点信息: {1}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.ConnectedToServer" xml:space="preserve">
+    <value>客户端成功连接到服务器: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.DisconnectedFromServer" xml:space="preserve">
+    <value>客户端与服务器断开连接: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.ReconnectLimitReached" xml:space="preserve">
+    <value>重连次数已达上限: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Server.DuplicateNodeAddition" xml:space="preserve">
+    <value>尝试添加重复节点，已忽略: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Service.InvalidIpAddress" xml:space="preserve">
+    <value>无效的IP地址格式: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Exception.MessageIdMustBeLessThanZero" xml:space="preserve">
+    <value>messageObject.MessageId必须小于0</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.ReconnectLimitReachedMessage" xml:space="preserve">
+    <value>重连尝试已达上限({0})，将不再进行重连。</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.DisconnectedMessage" xml:space="preserve">
+    <value>客户端与服务器断开连接: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.ConnectedMessage" xml:space="preserve">
+    <value>客户端成功连接到服务器: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Server.DuplicateNodeWarning" xml:space="preserve">
+    <value>重复节点添加，已忽略: {0}</value>
+  </data>
 </root>

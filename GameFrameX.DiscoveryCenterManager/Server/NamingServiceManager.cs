@@ -33,6 +33,7 @@ using System.Collections.Concurrent;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Json;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Setting;
 
@@ -269,7 +270,7 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
 
         if (node.Type == SelfServiceInfo.Type)
         {
-            LogHelper.Error($"Cannot add {SelfServiceInfo.Type.ToString()} node...{node}");
+            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.DiscoveryCenterManager.CannotAddSelfNode, node));
             return;
         }
 
@@ -281,13 +282,13 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
 
         if (list.Contains(node))
         {
-            LogHelper.Warning("Duplicate node addition...Ignored " + node);
+            LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.DiscoveryCenterManager.DuplicateNodeWarning, node));
             return;
         }
 
         list.Add(node);
         _onAdd?.Invoke(node);
-        LogHelper.Info($"Current total network node count: {GetNodeCount()} New node info: {JsonHelper.Serialize(node)}");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.DiscoveryCenterManager.NetworkNodeCount, GetNodeCount(), JsonHelper.Serialize(node)));
     }
 
     /// <summary>

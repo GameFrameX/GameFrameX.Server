@@ -31,6 +31,7 @@
 
 using GameFrameX.DiscoveryCenterManager.ServiceClient;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
@@ -119,7 +120,7 @@ internal sealed class ServiceConnect : IDisposable
         var connectEndPoint = NetHelper.ParseEndPoint(Host, Port);
         if (connectEndPoint == default)
         {
-            LogHelper.Error($"DiscoveryCenterHost: {Port} is not a valid IP address; unable to start connection to DiscoveryCenter. Please check the configuration item DiscoveryCenterHost");
+            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.DiscoveryCenterManager.InvalidIpAddress, Host));
             return;
         }
 

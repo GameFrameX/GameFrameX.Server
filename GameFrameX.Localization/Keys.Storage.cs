@@ -32,31 +32,23 @@
 namespace GameFrameX.Localization;
 
 /// <summary>
-/// 本地化字符串键常量类 - 主分部类
-/// Localization string keys constants class - Main partial class
-///
-/// 此文件为Keys类的主分部类文件，其他嵌套类已拆分到以下独立文件中：
-/// This file is the main partial class file for the Keys class, other nested classes have been split into the following independent files:
-///
-/// - Keys.Client.cs - 客户端相关消息常量 / Client related message constants
-/// - Keys.DiscoveryCenterManager.cs - 发现中心管理器相关消息常量 / Discovery Center Manager related message constants
-/// - Keys.Events.cs - 事件相关消息常量 / Events related message constants
-/// - Keys.Storage.cs - 存储相关消息常量 / Storage related message constants
-/// - Keys.Database.cs - 数据库相关消息常量 / Database related message constants
-/// - Keys.Exceptions.cs - 异常相关消息常量 / Exceptions related message constants
-/// - Keys.Utility.cs - 工具类相关消息常量 / Utility related message constants
-/// - Keys.NetWorkMessage.cs - 网络消息相关常量 / Network message related constants
-///
-/// 其他网络和启动器相关的类可以根据需要继续拆分：
-/// Other network and startup related classes can continue to be split as needed:
-/// - Keys.NetWorkHttp.cs - HTTP网络相关 / HTTP network related
-/// - Keys.NetWorkAbstractions.cs - 网络抽象层相关 / Network abstraction layer related
-/// - Keys.NetWork.cs - 网络核心相关 / Network core related
-/// - Keys.Launcher.cs - 启动器相关 / Launcher related
-/// - Keys.StartUp.cs - 启动流程相关 / Startup process related
+/// 本地化键常量定义 - Storage 分部类
 /// </summary>
 public static partial class Keys
 {
-    // 此为主分部类文件，具体的嵌套类定义已移动到各自的分部类文件中
-    // This is the main partial class file, specific nested class definitions have been moved to their respective partial class files
+    /// <summary>
+    /// 数据存储相关日志消息资源键
+    /// </summary>
+    public static class Storage
+    {
+        /// <summary>
+        /// 缓存哈希相等的警告消息
+        /// </summary>
+        /// <remarks>
+        /// 键名: Storage.CacheHashEquals
+        /// 用途: 当在保存到数据库前发现缓存哈希已经等于目标哈希时记录
+        /// 参数: {0} - 状态类型名称
+        /// </remarks>
+        public const string CacheHashEquals = "Storage.CacheHashEquals";
+    }
 }

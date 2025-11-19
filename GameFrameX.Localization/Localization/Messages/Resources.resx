@@ -475,5 +475,68 @@
   <data name="StartUp.Application.SigtermSignalReceived" xml:space="preserve">
     <value>SIGTERM signal received and exit handler registered</value>
   </data>
+  <data name="DiscoveryCenterManager.Client.TryConnectToServer" xml:space="preserve">
+    <value>Trying to connect to target server...{0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.ReconnectAttempt" xml:space="preserve">
+    <value>Reconnection attempt {0}, disconnected, reason: {1}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.ErrorOccurred" xml:space="preserve">
+    <value>Error occurred: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.InvalidIpAddress" xml:space="preserve">
+    <value>Invalid IP address format: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Server.CannotAddSelfNode" xml:space="preserve">
+    <value>Cannot add self node: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Server.NodeJoined" xml:space="preserve">
+    <value>Node joined: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Server.NodeRemoved" xml:space="preserve">
+    <value>Node removed: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.NamingService.ErrorOccurred" xml:space="preserve">
+    <value>Error occurred: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.NamingService.InvalidUrlFormat" xml:space="preserve">
+    <value>Invalid URL format: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.NamingService.ServiceConnectionAttempt" xml:space="preserve">
+    <value>Attempting to connect to service: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Server.NetworkNodeCount" xml:space="preserve">
+    <value>Current total network node count: {0}, new node info: {1}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.ConnectedToServer" xml:space="preserve">
+    <value>Client successfully connected to server: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.DisconnectedFromServer" xml:space="preserve">
+    <value>Client disconnected from server: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.ReconnectLimitReached" xml:space="preserve">
+    <value>Reconnection limit reached: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Server.DuplicateNodeAddition" xml:space="preserve">
+    <value>Attempted to add duplicate node, ignored: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Service.InvalidIpAddress" xml:space="preserve">
+    <value>Invalid IP address format: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Exception.MessageIdMustBeLessThanZero" xml:space="preserve">
+    <value>messageObject.MessageId must be less than 0</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.ReconnectLimitReachedMessage" xml:space="preserve">
+    <value>Reconnect attempts have reached the upper limit ({0}), and no more attempts will be made.</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.DisconnectedMessage" xml:space="preserve">
+    <value>Client disconnected from the server: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Client.ConnectedMessage" xml:space="preserve">
+    <value>Client successfully connected to the server: {0}</value>
+  </data>
+  <data name="DiscoveryCenterManager.Server.DuplicateNodeWarning" xml:space="preserve">
+    <value>Duplicate node addition...Ignored: {0}</value>
+  </data>
 
   </root>

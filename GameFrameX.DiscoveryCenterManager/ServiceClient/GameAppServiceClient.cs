@@ -32,6 +32,7 @@
 using System.Net;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
@@ -193,7 +194,7 @@ public sealed class GameAppServiceClient : IDisposable
             // 如果未连接且未处于连接中，则尝试连接
             if (!_mTcpClient.IsConnected && !_mTcpClient.IsInConnecting)
             {
-                LogHelper.Debug($"try to connect to the target server...{_serverHost}");
+                LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.DiscoveryCenterManager.TryConnectToServer, _serverHost));
                 _mTcpClient.Connect(_serverHost);
                 if (_configuration.IsEnableConnectDelay)
                 {
@@ -210,14 +211,14 @@ public sealed class GameAppServiceClient : IDisposable
                 // 未达到最大重连次数（或无限重试）则进行重连
                 if (RetryCount < _configuration.MaxRetryCount || _configuration.MaxRetryCount < 0)
                 {
-                    LogHelper.Info($"Not connecting to the target server, attempts to reconnect (number of attempts: {RetryCount + 1}/{(_configuration.MaxRetryCount < 0 ? "∞" : _configuration.MaxRetryCount.ToString())})...");
+                    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.DiscoveryCenterManager.ReconnectAttempt, RetryCount + 1, _configuration.MaxRetryCount < 0 ? "∞" : _configuration.MaxRetryCount.ToString()));
                     _mTcpClient.Connect(_serverHost);
                     RetryCount++;
                     await Task.Delay(_configuration.RetryDelay);
                 }
                 else
                 {
-                    LogHelper.Info($"Reconnect attempts have reached the upper limit ({_configuration.MaxRetryCount}), and no more attempts will be made.");
+                    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.DiscoveryCenterManager.ReconnectLimitReachedMessage, _configuration.MaxRetryCount));
                     break;
                 }
             }
@@ -268,7 +269,7 @@ public sealed class GameAppServiceClient : IDisposable
 
         if (messageObject.MessageId >= 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(messageObject), "messageObject.MessageId must be less than 0");
+            throw new ArgumentOutOfRangeException(nameof(messageObject), LocalizationService.GetString(GameFrameX.Localization.Keys.DiscoveryCenterManager.MessageIdMustBeLessThanZero));
         }
 
         _rpcSession.Send(messageObject as IRequestMessage);
@@ -310,7 +311,7 @@ public sealed class GameAppServiceClient : IDisposable
 
         if (messageObject.MessageId >= 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(messageObject), "messageObject.MessageId must be less than 0");
+            throw new ArgumentOutOfRangeException(nameof(messageObject), LocalizationService.GetString(GameFrameX.Localization.Keys.DiscoveryCenterManager.MessageIdMustBeLessThanZero));
         }
 
         var result = _rpcSession.Call<T>(messageObject as IRequestMessage, timeOut);
@@ -327,7 +328,7 @@ public sealed class GameAppServiceClient : IDisposable
     /// <param name="e">Error event arguments containing exception information / 包含异常信息的错误事件参数</param>
     private void OnClientOnError(object client, SuperSocket.ClientEngine.ErrorEventArgs e)
     {
-        LogHelper.Error($"Client error occurred: {e.Exception.Message}");
+        LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.DiscoveryCenterManager.ErrorOccurred, e.Exception.Message));
         _configuration.OnError?.Invoke(Id, e);
     }
 
@@ -341,7 +342,7 @@ public sealed class GameAppServiceClient : IDisposable
     /// <param name="e">Event arguments / 事件参数</param>
     private void OnClientOnClosed(object client, EventArgs e)
     {
-        LogHelper.Info($"Client disconnected from the server: {_serverHost}");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.DiscoveryCenterManager.DisconnectedMessage, _serverHost));
         _configuration.OnClosed?.Invoke(Id);
     }
 
@@ -355,7 +356,7 @@ public sealed class GameAppServiceClient : IDisposable
     /// <param name="e">Event arguments / 事件参数</param>
     private void OnClientOnConnected(object client, EventArgs e)
     {
-        LogHelper.Info($"Client successfully connected to the server: {_serverHost}");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.DiscoveryCenterManager.ConnectedMessage, _serverHost));
         _configuration.OnConnected?.Invoke(Id);
     }
 
