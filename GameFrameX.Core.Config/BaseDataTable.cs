@@ -37,7 +37,7 @@ namespace GameFrameX.Core.Config;
 /// 基础数据表
 /// </summary>
 /// <typeparam name="T">数据表中的数据类型</typeparam>
-public abstract class BaseDataTable<T> : IDataTable<T>
+public abstract class BaseDataTable<T> : IDataTable<T> where T : class
 {
     /// <summary>
     /// 异步加载器
@@ -115,13 +115,56 @@ public abstract class BaseDataTable<T> : IDataTable<T>
     }
 
     /// <summary>
-    /// 根据整型ID获取对象
+    /// 尝试根据整数ID获取对象
     /// </summary>
-    /// <param name="id">对象的ID</param>
-    /// <returns>找到的对象，如果未找到则返回默认值</returns>
-    public T this[int id]
+    /// <param name="id">要获取的对象的整数ID</param>
+    /// <param name="value">当找到对应ID的对象时，返回该对象；否则返回默认值</param>
+    /// <returns>如果找到对应ID的对象则返回true，否则返回false</returns>
+    public bool TryGet(int id, out T value)
     {
-        get { return Get(id); }
+        return LongDataMaps.TryGetValue(id, out value);
+    }
+
+    /// <summary>
+    /// 尝试根据长整数ID获取对象
+    /// </summary>
+    /// <param name="id">要获取的对象的长整数ID</param>
+    /// <param name="value">当找到对应ID的对象时，返回该对象；否则返回默认值</param>
+    /// <returns>如果找到对应ID的对象则返回true，否则返回false</returns>
+    public bool TryGet(long id, out T value)
+    {
+        return LongDataMaps.TryGetValue(id, out value);
+    }
+
+    /// <summary>
+    /// 尝试根据字符串ID获取对象
+    /// </summary>
+    /// <param name="id">要获取的对象的字符串ID</param>
+    /// <param name="value">当找到对应ID的对象时，返回该对象；否则返回默认值</param>
+    /// <returns>如果找到对应ID的对象则返回true，否则返回false</returns>
+    public bool TryGet(string id, out T value)
+    {
+        return StringDataMaps.TryGetValue(id, out value);
+    }
+
+
+    /// <summary>
+    /// 根据整数索引获取数据表中的对象
+    /// </summary>
+    /// <param name="index">要获取的对象在数据表中的从零开始的整数索引</param>
+    /// <returns>位于指定索引位置的数据对象</returns>
+    /// <exception cref="ArgumentOutOfRangeException">当索引超出数据表范围时抛出</exception>
+    public T this[int index]
+    {
+        get
+        {
+            if (index >= Count || index < 0)
+            {
+                throw new IndexOutOfRangeException(nameof(index));
+            }
+
+            return DataList[index];
+        }
     }
 
     /// <summary>
@@ -190,6 +233,15 @@ public abstract class BaseDataTable<T> : IDataTable<T>
     }
 
     /// <summary>
+    /// 获取数据表中所有对象的列表副本。
+    /// </summary>
+    /// <returns>包含数据表中所有对象的列表。</returns>
+    public List<T> ToList()
+    {
+        return DataList.ToList();
+    }
+
+    /// <summary>
     /// 根据条件查找对象
     /// </summary>
     /// <param name="func">查找条件</param>
@@ -200,12 +252,103 @@ public abstract class BaseDataTable<T> : IDataTable<T>
     }
 
     /// <summary>
+    /// 根据指定条件查找所有匹配的对象并返回数组。
+    /// </summary>
+    /// <param name="func">用于测试每个对象是否满足条件的函数。</param>
+    /// <returns>包含所有满足条件的对象的数组。</returns>
+    public T[] FindListArray(Func<T, bool> func)
+    {
+        return DataList.Where(func).ToArray();
+    }
+
+    /// <summary>
     /// 根据条件查找多个对象
     /// </summary>
     /// <param name="func">查找条件</param>
     /// <returns>满足条件的所有对象数组</returns>
-    public T[] FindList(Func<T, bool> func)
+    public List<T> FindList(Func<T, bool> func)
     {
-        return DataList.Where(func).ToArray();
+        return DataList.Where(func).ToList();
+    }
+
+    /// <summary>
+    /// 对数据表中的每个对象执行指定操作。
+    /// </summary>
+    /// <param name="func">要对每个对象执行的操作。</param>
+    public void ForEach(Action<T> func)
+    {
+        DataList.ForEach(func);
+    }
+
+    /// <summary>
+    /// 根据指定函数计算所有对象的投影值，并返回最大值。
+    /// </summary>
+    /// <typeparam name="Tk">投影值的类型，必须实现 IComparable 接口。</typeparam>
+    /// <param name="func">应用于每个对象的投影函数。</param>
+    /// <returns>所有对象投影值中的最大值。</returns>
+    public Tk Max<Tk>(Func<T, Tk> func)
+    {
+        return DataList.Max(func);
+    }
+
+    /// <summary>
+    /// 根据指定函数计算所有对象的投影值，并返回最小值。
+    /// </summary>
+    /// <typeparam name="Tk">投影值的类型，必须实现 IComparable 接口。</typeparam>
+    /// <param name="func">应用于每个对象的投影函数。</param>
+    /// <returns>所有对象投影值中的最小值。</returns>
+    public Tk Min<Tk>(Func<T, Tk> func)
+    {
+        return DataList.Min(func);
+    }
+
+    /// <summary>
+    /// 根据指定函数计算所有对象的整数值投影，并返回总和。
+    /// </summary>
+    /// <param name="func">应用于每个对象的整数投影函数。</param>
+    /// <returns>所有对象整数投影值的总和。</returns>
+    public int Sum(Func<T, int> func)
+    {
+        return DataList.Sum(func);
+    }
+
+    /// <summary>
+    /// 根据指定函数计算所有对象的长整数值投影，并返回总和。
+    /// </summary>
+    /// <param name="func">应用于每个对象的长整数投影函数。</param>
+    /// <returns>所有对象长整数投影值的总和。</returns>
+    public long Sum(Func<T, long> func)
+    {
+        return DataList.Sum(func);
+    }
+
+    /// <summary>
+    /// 根据指定函数计算所有对象的浮点数值投影，并返回总和。
+    /// </summary>
+    /// <param name="func">应用于每个对象的浮点数投影函数。</param>
+    /// <returns>所有对象浮点数投影值的总和。</returns>
+    public float Sum(Func<T, float> func)
+    {
+        return DataList.Sum(func);
+    }
+
+    /// <summary>
+    /// 根据指定函数计算所有对象的双精度浮点数值投影，并返回总和。
+    /// </summary>
+    /// <param name="func">应用于每个对象的双精度浮点数投影函数。</param>
+    /// <returns>所有对象双精度浮点数投影值的总和。</returns>
+    public double Sum(Func<T, double> func)
+    {
+        return DataList.Sum(func);
+    }
+
+    /// <summary>
+    /// 根据指定函数计算所有对象的十进制数值投影，并返回总和。
+    /// </summary>
+    /// <param name="func">应用于每个对象的十进制数投影函数。</param>
+    /// <returns>所有对象十进制数投影值的总和。</returns>
+    public decimal Sum(Func<T, decimal> func)
+    {
+        return DataList.Sum(func);
     }
 }

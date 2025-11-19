@@ -53,71 +53,182 @@ public interface IDataTable
 /// 泛型数据表基础接口。
 /// </summary>
 /// <typeparam name="T">数据表中对象的类型。</typeparam>
-public interface IDataTable<out T> : IDataTable
+public interface IDataTable<T> : IDataTable
 {
     /// <summary>
-    /// 根据ID获取对象。
+    /// 根据指定的整数 ID 获取数据表中的对象。
     /// </summary>
-    /// <param name="id">表唯一主键ID。</param>
-    /// <returns>指定ID的对象。</returns>
-    T this[int id] { get; }
-
-    /// <summary>
-    /// 根据ID获取对象。
-    /// </summary>
-    /// <param name="id">表唯一主键ID。</param>
-    /// <returns>指定ID的对象。</returns>
-    T this[string id] { get; }
-
-    /// <summary>
-    /// 获取数据表中第一个对象。
-    /// </summary>
-    /// <returns>数据表中的第一个对象。</returns>
-    T FirstOrDefault { get; }
-
-    /// <summary>
-    /// 获取数据表中最后一个对象。
-    /// </summary>
-    /// <returns>数据表中的最后一个对象。</returns>
-    T LastOrDefault { get; }
-
-    /// <summary>
-    /// 获取数据表中所有对象。
-    /// </summary>
-    /// <returns>数据表中的所有对象数组。</returns>
-    T[] All { get; }
-
-    /// <summary>
-    /// 根据ID获取对象。
-    /// </summary>
-    /// <param name="id">表唯一主键ID。</param>
-    /// <returns>指定ID的对象。</returns>
+    /// <param name="id">要获取的对象的唯一整数标识符。</param>
+    /// <returns>与指定 ID 关联的数据对象；如果未找到匹配项，则可能返回 null 或抛出异常（取决于实现）。</returns>
     T Get(int id);
 
     /// <summary>
-    /// 根据ID获取对象。
+    /// 根据指定的长整数 ID 获取数据表中的对象。
     /// </summary>
-    /// <param name="id">表唯一主键ID。</param>
-    /// <returns>指定ID的对象。</returns>
+    /// <param name="id">要获取的对象的唯一长整数标识符。</param>
+    /// <returns>与指定 ID 关联的数据对象；如果未找到匹配项，则可能返回 null 或抛出异常（取决于实现）。</returns>
+    T Get(long id);
+
+    /// <summary>
+    /// 根据指定的字符串 ID 获取数据表中的对象。
+    /// </summary>
+    /// <param name="id">要获取的对象的唯一字符串标识符。</param>
+    /// <returns>与指定 ID 关联的数据对象；如果未找到匹配项，则可能返回 null 或抛出异常（取决于实现）。</returns>
     T Get(string id);
 
     /// <summary>
-    /// 获取数据表中所有对象。
+    /// 尝试根据整数ID获取对象
     /// </summary>
-    /// <returns>数据表中的所有对象数组。</returns>
+    /// <param name="id">要获取的对象的整数ID</param>
+    /// <param name="value">当找到对应ID的对象时，返回该对象；否则返回默认值</param>
+    /// <returns>如果找到对应ID的对象则返回true，否则返回false</returns>
+    bool TryGet(int id, out T value);
+
+    /// <summary>
+    /// 尝试根据长整数ID获取对象
+    /// </summary>
+    /// <param name="id">要获取的对象的长整数ID</param>
+    /// <param name="value">当找到对应ID的对象时，返回该对象；否则返回默认值</param>
+    /// <returns>如果找到对应ID的对象则返回true，否则返回false</returns>
+    bool TryGet(long id, out T value);
+
+    /// <summary>
+    /// 尝试根据字符串ID获取对象
+    /// </summary>
+    /// <param name="id">要获取的对象的字符串ID</param>
+    /// <param name="value">当找到对应ID的对象时，返回该对象；否则返回默认值</param>
+    /// <returns>如果找到对应ID的对象则返回true，否则返回false</returns>
+    bool TryGet(string id, out T value);
+
+    /// <summary>
+    /// 根据整数索引获取数据表中的对象
+    /// </summary>
+    /// <param name="index">要获取的对象在数据表中的从零开始的整数索引</param>
+    /// <returns>位于指定索引位置的数据对象</returns>
+    /// <exception cref="ArgumentOutOfRangeException">当索引超出数据表范围时抛出</exception>
+    T this[int index] { get; }
+
+    /// <summary>
+    /// 根据长整数索引获取数据表中的对象
+    /// </summary>
+    /// <param name="id">要获取的对象在数据表中的长整数ID</param>
+    /// <returns>与指定ID关联的数据对象</returns>
+    /// <exception cref="ArgumentOutOfRangeException">当ID超出数据表范围时抛出</exception>
+    T this[long id] { get; }
+
+    /// <summary>
+    /// 根据字符串键获取数据表中的对象
+    /// </summary>
+    /// <param name="id">要获取的对象在数据表中的字符串键</param>
+    /// <returns>与指定键关联的数据对象</returns>
+    /// <exception cref="KeyNotFoundException">当不存在具有指定键的对象时抛出</exception>
+    T this[string id] { get; }
+
+    /// <summary>
+    /// 获取数据表中的第一个对象，如果数据表为空则返回默认值。
+    /// </summary>
+    /// <returns>数据表中的第一个对象，如果数据表为空则返回 null。</returns>
+    T FirstOrDefault { get; }
+
+    /// <summary>
+    /// 获取数据表中的最后一个对象，如果数据表为空则返回默认值。
+    /// </summary>
+    /// <returns>数据表中的最后一个对象，如果数据表为空则返回 null。</returns>
+    T LastOrDefault { get; }
+
+    /// <summary>
+    /// 获取数据表中所有对象的数组副本。
+    /// </summary>
+    /// <returns>包含数据表中所有对象的数组。</returns>
+    T[] All { get; }
+
+    /// <summary>
+    /// 获取数据表中所有对象的数组副本。
+    /// </summary>
+    /// <returns>包含数据表中所有对象的数组。</returns>
     T[] ToArray();
 
     /// <summary>
-    /// 根据条件查找，返回第一个满足条件的对象。
+    /// 获取数据表中所有对象的列表副本。
     /// </summary>
-    /// <param name="func">查询条件表达式。</param>
-    /// <returns>第一个满足条件的对象。</returns>
-    T Find(Func<T, bool> func);
+    /// <returns>包含数据表中所有对象的列表。</returns>
+    List<T> ToList();
 
     /// <summary>
-    /// 根据条件查找，返回所有满足条件的对象。
+    /// 根据指定条件查找第一个匹配的对象。
     /// </summary>
-    /// <param name="func">查询条件表达式。</param>
-    /// <returns>所有满足条件的对象数组。</returns>
-    T[] FindList(Func<T, bool> func);
+    /// <param name="func">用于测试每个对象是否满足条件的函数。</param>
+    /// <returns>第一个满足条件的对象，如果没有找到则返回 null。</returns>
+    T Find(System.Func<T, bool> func);
+
+    /// <summary>
+    /// 根据指定条件查找所有匹配的对象并返回数组。
+    /// </summary>
+    /// <param name="func">用于测试每个对象是否满足条件的函数。</param>
+    /// <returns>包含所有满足条件的对象的数组。</returns>
+    T[] FindListArray(System.Func<T, bool> func);
+
+    /// <summary>
+    /// 根据指定条件查找所有匹配的对象并返回列表。
+    /// </summary>
+    /// <param name="func">用于测试每个对象是否满足条件的函数。</param>
+    /// <returns>包含所有满足条件的对象的列表。</returns>
+    List<T> FindList(Func<T, bool> func);
+
+    /// <summary>
+    /// 对数据表中的每个对象执行指定操作。
+    /// </summary>
+    /// <param name="func">要对每个对象执行的操作。</param>
+    void ForEach(Action<T> func);
+
+    /// <summary>
+    /// 根据指定函数计算所有对象的投影值，并返回最大值。
+    /// </summary>
+    /// <typeparam name="Tk">投影值的类型，必须实现 IComparable 接口。</typeparam>
+    /// <param name="func">应用于每个对象的投影函数。</param>
+    /// <returns>所有对象投影值中的最大值。</returns>
+    Tk Max<Tk>(Func<T, Tk> func);
+
+    /// <summary>
+    /// 根据指定函数计算所有对象的投影值，并返回最小值。
+    /// </summary>
+    /// <typeparam name="Tk">投影值的类型，必须实现 IComparable 接口。</typeparam>
+    /// <param name="func">应用于每个对象的投影函数。</param>
+    /// <returns>所有对象投影值中的最小值。</returns>
+    Tk Min<Tk>(Func<T, Tk> func);
+
+    /// <summary>
+    /// 根据指定函数计算所有对象的整数值投影，并返回总和。
+    /// </summary>
+    /// <param name="func">应用于每个对象的整数投影函数。</param>
+    /// <returns>所有对象整数投影值的总和。</returns>
+    int Sum(Func<T, int> func);
+
+    /// <summary>
+    /// 根据指定函数计算所有对象的长整数值投影，并返回总和。
+    /// </summary>
+    /// <param name="func">应用于每个对象的长整数投影函数。</param>
+    /// <returns>所有对象长整数投影值的总和。</returns>
+    long Sum(Func<T, long> func);
+
+    /// <summary>
+    /// 根据指定函数计算所有对象的浮点数值投影，并返回总和。
+    /// </summary>
+    /// <param name="func">应用于每个对象的浮点数投影函数。</param>
+    /// <returns>所有对象浮点数投影值的总和。</returns>
+    float Sum(Func<T, float> func);
+
+    /// <summary>
+    /// 根据指定函数计算所有对象的双精度浮点数值投影，并返回总和。
+    /// </summary>
+    /// <param name="func">应用于每个对象的双精度浮点数投影函数。</param>
+    /// <returns>所有对象双精度浮点数投影值的总和。</returns>
+    double Sum(Func<T, double> func);
+
+    /// <summary>
+    /// 根据指定函数计算所有对象的十进制数值投影，并返回总和。
+    /// </summary>
+    /// <param name="func">应用于每个对象的十进制数投影函数。</param>
+    /// <returns>所有对象十进制数投影值的总和。</returns>
+    decimal Sum(Func<T, decimal> func);
 }
