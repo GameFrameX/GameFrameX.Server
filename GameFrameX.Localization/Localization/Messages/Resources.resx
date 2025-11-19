@@ -264,6 +264,20 @@
     <value>{0} must end with {1}</value>
   </data>
 
+  <!-- NetWork.Abstractions module log and error keys -->
+  <data name="NetWork.Abstractions.MessageIdDuplicate" xml:space="preserve">
+    <value>MessageId duplicate==>Current ID:{0},Existing ID type:{1}</value>
+  </data>
+  <data name="NetWork.Abstractions.HeartbeatMessageDuplicate" xml:space="preserve">
+    <value>Heartbeat message duplicate==>Type:{0}</value>
+  </data>
+  <data name="NetWork.Abstractions.RequestIdDuplicate" xml:space="preserve">
+    <value>RequestId duplicate==>Current ID:{0},Existing ID type:{1}</value>
+  </data>
+  <data name="NetWork.Abstractions.ResponseIdDuplicate" xml:space="preserve">
+    <value>ResponseId duplicate==>Current ID:{0},Existing ID type:{1}</value>
+  </data>
+
   <!-- StartUp module log and error keys -->
   <data name="StartUp.ServerStopped" xml:space="preserve">
     <value>Server type: {0} stopped! Termination reason: {1} Configuration: {2}</value>

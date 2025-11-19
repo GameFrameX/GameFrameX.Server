@@ -33,6 +33,7 @@ using System.Collections.Concurrent;
 using System.Reflection;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.NetWork.Abstractions;
 
@@ -177,7 +178,10 @@ public static class MessageProtoHelper
                     if (!AllMessageDictionary.TryAdd(messageTypeHandler.MessageId, type))
                     {
                         RequestDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
-                        throw new ArgumentAlreadyException($"消息Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
+                        throw new ArgumentAlreadyException(LocalizationService.GetString(
+                            GameFrameX.Localization.Keys.NetWorkAbstractions.MessageIdDuplicate,
+                            messageTypeHandler.MessageId,
+                            value?.FullName ?? "Unknown"));
                     }
 
                     OperationType.TryAdd(type, messageTypeHandler.OperationType);
@@ -186,7 +190,9 @@ public static class MessageProtoHelper
                     {
                         if (HeartBeatList.Contains(type))
                         {
-                            LogHelper.Error($"心跳消息重复==>类型:{type.FullName}");
+                            LogHelper.Error(LocalizationService.GetString(
+                                GameFrameX.Localization.Keys.NetWorkAbstractions.HeartbeatMessageDuplicate,
+                                type?.FullName ?? "Unknown"));
                         }
                         else
                         {
@@ -200,7 +206,10 @@ public static class MessageProtoHelper
                         if (!RequestDictionary.TryAdd(messageTypeHandler.MessageId, type))
                         {
                             RequestDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
-                            throw new ArgumentAlreadyException($"请求Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
+                            throw new ArgumentAlreadyException(LocalizationService.GetString(
+                                GameFrameX.Localization.Keys.NetWorkAbstractions.RequestIdDuplicate,
+                                messageTypeHandler.MessageId,
+                                value?.FullName ?? "Unknown"));
                         }
                     }
                     else if (type.IsImplWithInterface(typeof(IResponseMessage)) || type.IsImplWithInterface(typeof(INotifyMessage)))
@@ -209,7 +218,10 @@ public static class MessageProtoHelper
                         if (!ResponseDictionary.TryAdd(messageTypeHandler.MessageId, type))
                         {
                             ResponseDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
-                            throw new ArgumentAlreadyException($"返回Id重复==>当前ID:{messageTypeHandler.MessageId},已有ID类型:{value.FullName}");
+                            throw new ArgumentAlreadyException(LocalizationService.GetString(
+                                GameFrameX.Localization.Keys.NetWorkAbstractions.ResponseIdDuplicate,
+                                messageTypeHandler.MessageId,
+                                value?.FullName ?? "Unknown"));
                         }
                     }
                 }

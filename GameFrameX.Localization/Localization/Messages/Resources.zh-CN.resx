@@ -282,6 +282,20 @@
     <value>{0} 必须以{1}结尾</value>
   </data>
 
+  <!-- NetWork.Abstractions模块日志和错误键名 -->
+  <data name="NetWork.Abstractions.MessageIdDuplicate" xml:space="preserve">
+    <value>消息Id重复==>当前ID:{0},已有ID类型:{1}</value>
+  </data>
+  <data name="NetWork.Abstractions.HeartbeatMessageDuplicate" xml:space="preserve">
+    <value>心跳消息重复==>类型:{0}</value>
+  </data>
+  <data name="NetWork.Abstractions.RequestIdDuplicate" xml:space="preserve">
+    <value>请求Id重复==>当前ID:{0},已有ID类型:{1}</value>
+  </data>
+  <data name="NetWork.Abstractions.ResponseIdDuplicate" xml:space="preserve">
+    <value>返回Id重复==>当前ID:{0},已有ID类型:{1}</value>
+  </data>
+
   <!-- StartUp模块日志和错误键名 -->
   <data name="StartUp.ServerStopped" xml:space="preserve">
     <value>服务器类型:{0} 停止! 终止原因：{1} 配置信息: {2}</value>

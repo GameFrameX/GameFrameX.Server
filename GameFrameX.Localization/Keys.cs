@@ -1149,6 +1149,52 @@ namespace GameFrameX.Localization
         }
 
         /// <summary>
+        /// NetWork.Abstractions模块相关日志和错误消息资源键
+        /// </summary>
+        public static class NetWorkAbstractions
+        {
+            /// <summary>
+            /// 消息ID重复的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Abstractions.MessageIdDuplicate
+            /// 用途: 当消息ID重复时抛出异常
+            /// 参数: {0} - 重复的消息ID, {1} - 已存在的类型全名
+            /// </remarks>
+            public const string MessageIdDuplicate = "NetWork.Abstractions.MessageIdDuplicate";
+
+            /// <summary>
+            /// 心跳消息重复的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Abstractions.HeartbeatMessageDuplicate
+            /// 用途: 当心跳消息类型重复时记录错误日志
+            /// 参数: {0} - 重复的消息类型全名
+            /// </remarks>
+            public const string HeartbeatMessageDuplicate = "NetWork.Abstractions.HeartbeatMessageDuplicate";
+
+            /// <summary>
+            /// 请求ID重复的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Abstractions.RequestIdDuplicate
+            /// 用途: 当请求ID重复时抛出异常
+            /// 参数: {0} - 重复的请求ID, {1} - 已存在的类型全名
+            /// </remarks>
+            public const string RequestIdDuplicate = "NetWork.Abstractions.RequestIdDuplicate";
+
+            /// <summary>
+            /// 返回ID重复的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.Abstractions.ResponseIdDuplicate
+            /// 用途: 当返回ID重复时抛出异常
+            /// 参数: {0} - 重复的返回ID, {1} - 已存在的类型全名
+            /// </remarks>
+            public const string ResponseIdDuplicate = "NetWork.Abstractions.ResponseIdDuplicate";
+        }
+
+        /// <summary>
         /// StartUp模块相关日志和错误消息资源键
         /// </summary>
         public static class StartUp
