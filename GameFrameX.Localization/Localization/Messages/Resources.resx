@@ -301,6 +301,77 @@
     <value>Failed to create object pool for type {0}</value>
   </data>
 
+  <!-- Launcher module log and error keys -->
+  <data name="Launcher.ServerStartBegin" xml:space="preserve">
+    <value>Starting server {0}</value>
+  </data>
+  <data name="Launcher.ActorLimitConfigBegin" xml:space="preserve">
+    <value>Starting Actor limit configuration...</value>
+  </data>
+  <data name="Launcher.ActorLimitConfigEnd" xml:space="preserve">
+    <value>Actor limit configuration completed...</value>
+  </data>
+  <data name="Launcher.DatabaseServiceStartBegin" xml:space="preserve">
+    <value>Starting database service...</value>
+  </data>
+  <data name="Launcher.DatabaseServiceStartFailed" xml:space="preserve">
+    <value>Database service startup failed</value>
+  </data>
+  <data name="Launcher.DatabaseServiceStartEnd" xml:space="preserve">
+    <value>Database service startup completed...</value>
+  </data>
+  <data name="Launcher.ComponentRegisterBegin" xml:space="preserve">
+    <value>Starting component registration...</value>
+  </data>
+  <data name="Launcher.ComponentRegisterEnd" xml:space="preserve">
+    <value>Component registration completed...</value>
+  </data>
+  <data name="Launcher.HotfixModuleLoadBegin" xml:space="preserve">
+    <value>Starting hotfix module loading...</value>
+  </data>
+  <data name="Launcher.HotfixModuleLoadEnd" xml:space="preserve">
+    <value>Hotfix module loading completed...</value>
+  </data>
+  <data name="Launcher.EnterMainLoop" xml:space="preserve">
+    <value>Entering game main loop...</value>
+  </data>
+  <data name="Launcher.ServerStartEnd" xml:space="preserve">
+    <value>Server {0} startup completed...</value>
+  </data>
+  <data name="Launcher.ServerExecutionException" xml:space="preserve">
+    <value>Server execution exception, e:{0}</value>
+  </data>
+  <data name="Launcher.ServerExitBegin" xml:space="preserve">
+    <value>Starting server shutdown</value>
+  </data>
+  <data name="Launcher.ServerExitSuccess" xml:space="preserve">
+    <value>Server shutdown completed successfully</value>
+  </data>
+  <data name="Launcher.SendMessage" xml:space="preserve">
+    <value>---Send[{0} To {1}]  {2}</value>
+  </data>
+  <data name="Launcher.ReceiveMessage" xml:space="preserve">
+    <value>---Received[{0} To {1}]  {2}</value>
+  </data>
+  <data name="Launcher.PlayerRegisterSuccess" xml:space="preserve">
+    <value>Player registration successful: {0}  {1}</value>
+  </data>
+  <data name="Launcher.PlayerUnregisterSuccess" xml:space="preserve">
+    <value>Player unregistration successful: {0}  {1}</value>
+  </data>
+  <data name="Launcher.ServiceRegisterSuccess" xml:space="preserve">
+    <value>Service registration successful: {0}  {1}  {2}</value>
+  </data>
+  <data name="Launcher.ServiceUnregisterSuccess" xml:space="preserve">
+    <value>Service unregistration successful: {0}  {1}</value>
+  </data>
+  <data name="Launcher.ExternalServiceConnected" xml:space="preserve">
+    <value>External service connected to discovery center successfully. Connection info: SessionID:{0} RemoteEndPoint:{1}</value>
+  </data>
+  <data name="Launcher.ExternalServiceDisconnected" xml:space="preserve">
+    <value>External service disconnected from discovery center. Connection info: Disconnect reason:{0}</value>
+  </data>
+
   <!-- StartUp module log and error keys -->
   <data name="StartUp.ServerStopped" xml:space="preserve">
     <value>Server type: {0} stopped! Termination reason: {1} Configuration: {2}</value>

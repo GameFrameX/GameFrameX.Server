@@ -3,6 +3,7 @@ using GameFrameX.DataBase.Abstractions;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Message;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.Launcher.StartUp.Social;
 
@@ -20,14 +21,14 @@ internal sealed partial class AppStartUpSocial : AppStartUpBase
         {
             var aopHandlerTypes = AssemblyHelper.GetRuntimeImplementTypeNamesInstance<IHttpAopHandler>();
             aopHandlerTypes.Sort((handlerX, handlerY) => handlerX.Priority.CompareTo(handlerY.Priority));
-            LogHelper.Debug("开始启动数据库服务...");
-            LogHelper.Debug("开始配置Actor限制逻辑...");
+            LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.DatabaseServiceStartBegin));
+            LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.ActorLimitConfigBegin));
             ActorLimit.Init(ActorLimit.RuleType.None);
-            LogHelper.Debug("配置Actor限制逻辑结束...");
+            LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.ActorLimitConfigEnd));
             var initResult = await GameDb.Init<MongoDbService>(new DbOptions { ConnectionString = Setting.DataBaseUrl, Name = Setting.DataBaseName, });
             if (initResult == false)
             {
-                throw new InvalidOperationException("数据库服务启动失败");
+                throw new InvalidOperationException(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.DatabaseServiceStartFailed));
             }
 
             await ComponentRegister.Init(typeof(AppsHandler).Assembly);
@@ -38,7 +39,7 @@ internal sealed partial class AppStartUpSocial : AppStartUpBase
         }
         catch (Exception e)
         {
-            LogHelper.Info($"服务器{ServerType}执行异常，e:{e}");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.ServerExecutionException, e));
             LogHelper.Fatal(e);
         }
 

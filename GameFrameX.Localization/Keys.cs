@@ -1270,6 +1270,230 @@ namespace GameFrameX.Localization
         }
 
         /// <summary>
+        /// Launcher模块相关日志和错误消息资源键
+        /// </summary>
+        public static class Launcher
+        {
+            /// <summary>
+            /// 开始启动服务器的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.ServerStartBegin
+            /// 用途: 记录服务器启动开始的信息
+            /// 参数: {0} - 服务器类型
+            /// </remarks>
+            public const string ServerStartBegin = "Launcher.ServerStartBegin";
+
+            /// <summary>
+            /// 开始配置Actor限制逻辑的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.ActorLimitConfigBegin
+            /// 用途: 记录开始配置Actor限制逻辑的日志
+            /// </remarks>
+            public const string ActorLimitConfigBegin = "Launcher.ActorLimitConfigBegin";
+
+            /// <summary>
+            /// 配置Actor限制逻辑结束的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.ActorLimitConfigEnd
+            /// 用途: 记录配置Actor限制逻辑结束的日志
+            /// </remarks>
+            public const string ActorLimitConfigEnd = "Launcher.ActorLimitConfigEnd";
+
+            /// <summary>
+            /// 开始启动数据库服务的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.DatabaseServiceStartBegin
+            /// 用途: 记录开始启动数据库服务的日志
+            /// </remarks>
+            public const string DatabaseServiceStartBegin = "Launcher.DatabaseServiceStartBegin";
+
+            /// <summary>
+            /// 数据库服务启动失败的异常消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.DatabaseServiceStartFailed
+            /// 用途: 当数据库服务启动失败时抛出异常
+            /// </remarks>
+            public const string DatabaseServiceStartFailed = "Launcher.DatabaseServiceStartFailed";
+
+            /// <summary>
+            /// 启动数据库服务结束的控制台日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.DatabaseServiceStartEnd
+            /// 用途: 记录数据库服务启动结束的控制台日志
+            /// </remarks>
+            public const string DatabaseServiceStartEnd = "Launcher.DatabaseServiceStartEnd";
+
+            /// <summary>
+            /// 注册组件开始的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.ComponentRegisterBegin
+            /// 用途: 记录组件注册开始的日志
+            /// </remarks>
+            public const string ComponentRegisterBegin = "Launcher.ComponentRegisterBegin";
+
+            /// <summary>
+            /// 注册组件结束的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.ComponentRegisterEnd
+            /// 用途: 记录组件注册结束的日志
+            /// </remarks>
+            public const string ComponentRegisterEnd = "Launcher.ComponentRegisterEnd";
+
+            /// <summary>
+            /// 开始加载热更新模块的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.HotfixModuleLoadBegin
+            /// 用途: 记录开始加载热更新模块的日志
+            /// </remarks>
+            public const string HotfixModuleLoadBegin = "Launcher.HotfixModuleLoadBegin";
+
+            /// <summary>
+            /// 加载热更新模块结束的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.HotfixModuleLoadEnd
+            /// 用途: 记录热更新模块加载结束的日志
+            /// </remarks>
+            public const string HotfixModuleLoadEnd = "Launcher.HotfixModuleLoadEnd";
+
+            /// <summary>
+            /// 进入游戏主循环的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.EnterMainLoop
+            /// 用途: 记录进入游戏主循环的日志
+            /// </remarks>
+            public const string EnterMainLoop = "Launcher.EnterMainLoop";
+
+            /// <summary>
+            /// 服务器启动结束的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.ServerStartEnd
+            /// 用途: 记录服务器启动结束的信息
+            /// 参数: {0} - 服务器类型
+            /// </remarks>
+            public const string ServerStartEnd = "Launcher.ServerStartEnd";
+
+            /// <summary>
+            /// 服务器执行异常的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.ServerExecutionException
+            /// 用途: 记录服务器执行异常的信息
+            /// 参数: {0} - 异常详情
+            /// </remarks>
+            public const string ServerExecutionException = "Launcher.ServerExecutionException";
+
+            /// <summary>
+            /// 退出服务器开始的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.ServerExitBegin
+            /// 用途: 记录服务器开始退出的日志
+            /// </remarks>
+            public const string ServerExitBegin = "Launcher.ServerExitBegin";
+
+            /// <summary>
+            /// 退出服务器成功的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.ServerExitSuccess
+            /// 用途: 记录服务器退出成功的日志
+            /// </remarks>
+            public const string ServerExitSuccess = "Launcher.ServerExitSuccess";
+
+            /// <summary>
+            /// 发送消息的调试日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.SendMessage
+            /// 用途: 记录发送消息的调试信息
+            /// 参数: {0} - 发送方服务器类型, {1} - 接收方服务器类型, {2} - 消息内容
+            /// </remarks>
+            public const string SendMessage = "Launcher.SendMessage";
+
+            /// <summary>
+            /// 接收消息的调试日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.ReceiveMessage
+            /// 用途: 记录接收消息的调试信息
+            /// 参数: {0} - 发送方服务器类型, {1} - 接收方服务器类型, {2} - 消息内容
+            /// </remarks>
+            public const string ReceiveMessage = "Launcher.ReceiveMessage";
+
+            /// <summary>
+            /// 注册玩家成功的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.PlayerRegisterSuccess
+            /// 用途: 记录玩家注册成功的日志
+            /// 参数: {0} - 玩家ID, {1} - 玩家信息
+            /// </remarks>
+            public const string PlayerRegisterSuccess = "Launcher.PlayerRegisterSuccess";
+
+            /// <summary>
+            /// 注销玩家成功的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.PlayerUnregisterSuccess
+            /// 用途: 记录玩家注销成功的日志
+            /// 参数: {0} - 玩家ID, {1} - 玩家信息
+            /// </remarks>
+            public const string PlayerUnregisterSuccess = "Launcher.PlayerUnregisterSuccess";
+
+            /// <summary>
+            /// 注册服务成功的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.ServiceRegisterSuccess
+            /// 用途: 记录服务注册成功的日志
+            /// 参数: {0} - 服务器类型, {1} - 服务器名称, {2} - 注册信息
+            /// </remarks>
+            public const string ServiceRegisterSuccess = "Launcher.ServiceRegisterSuccess";
+
+            /// <summary>
+            /// 注销服务成功的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.ServiceUnregisterSuccess
+            /// 用途: 记录服务注销成功的日志
+            /// 参数: {0} - 服务器ID, {1} - 服务器实例ID
+            /// </remarks>
+            public const string ServiceUnregisterSuccess = "Launcher.ServiceUnregisterSuccess";
+
+            /// <summary>
+            /// 外部服务连接成功的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.ExternalServiceConnected
+            /// 用途: 记录外部服务连接到中心服务器成功的日志
+            /// 参数: {0} - SessionID, {1} - RemoteEndPoint
+            /// </remarks>
+            public const string ExternalServiceConnected = "Launcher.ExternalServiceConnected";
+
+            /// <summary>
+            /// 外部服务断开的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Launcher.ExternalServiceDisconnected
+            /// 用途: 记录外部服务从中心服务器断开的日志
+            /// 参数: {0} - 断开原因
+            /// </remarks>
+            public const string ExternalServiceDisconnected = "Launcher.ExternalServiceDisconnected";
+        }
+
+        /// <summary>
         /// StartUp模块相关日志和错误消息资源键
         /// </summary>
         public static class StartUp

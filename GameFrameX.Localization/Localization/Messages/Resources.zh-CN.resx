@@ -319,6 +319,77 @@
     <value>Failed to create object pool for type {0} / 无法为类型 {0} 创建对象池</value>
   </data>
 
+  <!-- Launcher模块日志和错误键名 -->
+  <data name="Launcher.ServerStartBegin" xml:space="preserve">
+    <value>开始启动服务器{0}</value>
+  </data>
+  <data name="Launcher.ActorLimitConfigBegin" xml:space="preserve">
+    <value>开始配置Actor限制逻辑...</value>
+  </data>
+  <data name="Launcher.ActorLimitConfigEnd" xml:space="preserve">
+    <value>配置Actor限制逻辑结束...</value>
+  </data>
+  <data name="Launcher.DatabaseServiceStartBegin" xml:space="preserve">
+    <value>开始启动数据库服务...</value>
+  </data>
+  <data name="Launcher.DatabaseServiceStartFailed" xml:space="preserve">
+    <value>数据库服务启动失败</value>
+  </data>
+  <data name="Launcher.DatabaseServiceStartEnd" xml:space="preserve">
+    <value>启动数据库服务 结束...</value>
+  </data>
+  <data name="Launcher.ComponentRegisterBegin" xml:space="preserve">
+    <value>注册组件开始...</value>
+  </data>
+  <data name="Launcher.ComponentRegisterEnd" xml:space="preserve">
+    <value>注册组件结束...</value>
+  </data>
+  <data name="Launcher.HotfixModuleLoadBegin" xml:space="preserve">
+    <value>开始加载热更新模块...</value>
+  </data>
+  <data name="Launcher.HotfixModuleLoadEnd" xml:space="preserve">
+    <value>加载热更新模块结束...</value>
+  </data>
+  <data name="Launcher.EnterMainLoop" xml:space="preserve">
+    <value>进入游戏主循环...</value>
+  </data>
+  <data name="Launcher.ServerStartEnd" xml:space="preserve">
+    <value>服务器{0}启动结束...</value>
+  </data>
+  <data name="Launcher.ServerExecutionException" xml:space="preserve">
+    <value>服务器执行异常，e:{0}</value>
+  </data>
+  <data name="Launcher.ServerExitBegin" xml:space="preserve">
+    <value>退出服务器开始</value>
+  </data>
+  <data name="Launcher.ServerExitSuccess" xml:space="preserve">
+    <value>退出服务器成功</value>
+  </data>
+  <data name="Launcher.SendMessage" xml:space="preserve">
+    <value>---发送[{0} To {1}]  {2}</value>
+  </data>
+  <data name="Launcher.ReceiveMessage" xml:space="preserve">
+    <value>---收到[{0} To {1}]  {2}</value>
+  </data>
+  <data name="Launcher.PlayerRegisterSuccess" xml:space="preserve">
+    <value>注册玩家成功：{0}  {1}</value>
+  </data>
+  <data name="Launcher.PlayerUnregisterSuccess" xml:space="preserve">
+    <value>注销玩家成功：{0}  {1}</value>
+  </data>
+  <data name="Launcher.ServiceRegisterSuccess" xml:space="preserve">
+    <value>注册服务成功：{0}  {1}  {2}</value>
+  </data>
+  <data name="Launcher.ServiceUnregisterSuccess" xml:space="preserve">
+    <value>注销服务成功：{0}  {1}</value>
+  </data>
+  <data name="Launcher.ExternalServiceConnected" xml:space="preserve">
+    <value>有外部服务连接到中心服务器成功。链接信息：SessionID:{0} RemoteEndPoint:{1}</value>
+  </data>
+  <data name="Launcher.ExternalServiceDisconnected" xml:space="preserve">
+    <value>有外部服务从中心服务器断开。链接信息：断开原因:{0}</value>
+  </data>
+
   <!-- StartUp模块日志和错误键名 -->
   <data name="StartUp.ServerStopped" xml:space="preserve">
     <value>服务器类型:{0} 停止! 终止原因：{1} 配置信息: {2}</value>
