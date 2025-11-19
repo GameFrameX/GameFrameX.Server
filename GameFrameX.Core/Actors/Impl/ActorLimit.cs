@@ -33,6 +33,7 @@ using System.Collections.Concurrent;
 using GameFrameX.Core.Abstractions;
 using GameFrameX.Core.Utility;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Utility;
 
 namespace GameFrameX.Core.Actors.Impl;
@@ -96,7 +97,7 @@ public static class ActorLimit
             case RuleType.None:
                 break;
             default:
-                LogHelper.Error($"不支持的rule类型:{type}");
+                LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorLimit.UnsupportedRuleType, type));
                 break;
         }
     }
@@ -147,7 +148,7 @@ public static class ActorLimit
                 //等级高的不能【等待】调用等级低的
                 if (currentValue > targetValue)
                 {
-                    LogHelper.Error($"不合法的调用路径:{currentType}==>{targetType}");
+                    LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorLimit.InvalidCallPath, currentType, targetType));
                     return false;
                 }
             }
@@ -193,7 +194,7 @@ public static class ActorLimit
 
             if (_crossDic.TryGetValue(target, out var set) && set.ContainsKey(self))
             {
-                LogHelper.Error($"发生交叉死锁，ActorId1:{self} ActorType1:{ActorIdGenerator.GetActorType(self)} ActorId2:{target} ActorType2:{ActorIdGenerator.GetActorType(target)}");
+                LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorLimit.CrossDeadlock, self, ActorIdGenerator.GetActorType(self), target, ActorIdGenerator.GetActorType(target)));
                 return false;
             }
 

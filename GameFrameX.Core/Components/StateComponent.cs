@@ -37,6 +37,7 @@ using GameFrameX.DataBase;
 using GameFrameX.DataBase.Mongo;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Utility.Setting;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -82,11 +83,11 @@ public sealed class StateComponent
             }
 
             await Task.WhenAll(tasks);
-            LogHelper.Info($"save all state, use: {(DateTime.Now - begin).TotalMilliseconds}ms");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.StateComponent.SaveAllStateTime, (DateTime.Now - begin).TotalMilliseconds));
         }
         catch (Exception e)
         {
-            LogHelper.Error($"save all state error \n{e}");
+            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.StateComponent.SaveAllStateError, e));
         }
     }
 
@@ -108,7 +109,7 @@ public sealed class StateComponent
         }
         catch (Exception e)
         {
-            LogHelper.Info("timer save state error");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.StateComponent.TimerSaveStateError));
             LogHelper.Error(e.ToString());
         }
     }
@@ -223,7 +224,7 @@ public abstract class StateComponent<TState> : BaseComponent where TState : Base
         }
         catch (Exception e)
         {
-            LogHelper.Fatal($"StateComp.SaveState.Failed.StateId:{State.Id},{e}");
+            LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.StateComponent.SaveStateFailed, State.Id, e));
         }
     }
 
@@ -298,7 +299,7 @@ public abstract class StateComponent<TState> : BaseComponent where TState : Base
         {
             var stateName = typeof(TState).Name;
             StateComponent.StatisticsTool.Count(stateName, writeList.Count);
-            LogHelper.Debug($"[StateComp] 状态回存 {stateName} count:{writeList.Count}");
+            LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.StateComponent.StateSaveBack, stateName, writeList.Count));
             var currentDatabase = GameDb.As<MongoDbService>().CurrentDatabase;
             var collection = currentDatabase.GetCollection<BsonDocument>(stateName);
             for (var idx = 0; idx < writeList.Count; idx += GlobalSettings.CurrentSetting.SaveDataBatchCount)
@@ -327,17 +328,17 @@ public abstract class StateComponent<TState> : BaseComponent where TState : Base
                     }
                     else
                     {
-                        LogHelper.Error($"保存数据失败，类型:{typeof(TState).FullName}");
+                        LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.StateComponent.SaveDataFailed, typeof(TState).FullName));
                     }
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.Error($"保存数据异常，类型:{typeof(TState).FullName}，{ex}");
+                    LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.StateComponent.SaveDataException, typeof(TState).FullName, ex));
                 }
 
                 if (!save && shutdown)
                 {
-                    LogHelper.Error($"保存数据失败，类型:{typeof(TState).FullName}");
+                    LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.StateComponent.SaveDataFailed, typeof(TState).FullName));
                 }
             }
         }

@@ -39,6 +39,7 @@ using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Core.Hotfix;
@@ -156,12 +157,12 @@ internal sealed class HotfixModule
 
             ParseDll();
 
-            LogHelper.Info($"the hot change dll initialization succeeds: {_dllPath}");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Hotfix.DllInitializationSuccess, _dllPath));
             success = true;
         }
         catch (Exception e)
         {
-            LogHelper.Error($"the hot change dll initialization failed...\n{e}");
+            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Hotfix.DllInitializationFailed, e));
             if (!reload)
             {
                 throw;
@@ -192,7 +193,7 @@ internal sealed class HotfixModule
                         GC.WaitForPendingFinalizers();
                     }
 
-                    LogHelper.Warning($"hot dll uninstall{(weak.IsAlive ? "failure" : "successful")}");
+                    LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Hotfix.DllUninstall, weak.IsAlive ? "failure" : "successful"));
                 });
             }
         }
@@ -320,7 +321,7 @@ internal sealed class HotfixModule
         var isHas = _rpcHandlerMap.TryGetValue(attribute.RequestMessage.GetType(), out var requestHandler);
         if (isHas && requestHandler?.GetType() == attribute.ResponseMessage.GetType())
         {
-            LogHelper.Error($"repeatedly register message rpc processors:[{attribute.RequestMessage}] message type:[{attribute.ResponseMessage}]");
+            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.CoreExceptions.Hotfix.HttpProcessorRepeatedlyRegistered, attribute.RequestMessage));
             return false;
         }
 
@@ -360,7 +361,7 @@ internal sealed class HotfixModule
 
         if (_tcpHandlerTypes.Contains(attribute.MessageType))
         {
-            LogHelper.Error($"repeatedly register messages of the tcp processor type:[{type.FullName}]");
+            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.CoreExceptions.Hotfix.WrongTcpProcessorType, type.FullName));
             return false;
         }
 
@@ -373,7 +374,7 @@ internal sealed class HotfixModule
         var msgId = msgIdField.MessageId;
         if (!_tcpHandlerMap.TryAdd(msgId, type))
         {
-            LogHelper.Error($"repeatedly register messages with tcp processors:[{msgId}] message type:[{type}]");
+            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.CoreExceptions.Hotfix.WrongTcpProcessorType, type));
         }
 
         _tcpHandlerTypes.Add(attribute.MessageType);

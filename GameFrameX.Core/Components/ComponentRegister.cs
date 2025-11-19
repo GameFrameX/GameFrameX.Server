@@ -38,6 +38,7 @@ using GameFrameX.Core.Hotfix;
 using GameFrameX.Core.Utility;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Setting;
 
@@ -137,7 +138,7 @@ public static class ComponentRegister
             }
         }
 
-        LogHelper.Info("initialize component registration complete");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ComponentRegister.InitializationComplete));
         return Task.CompletedTask;
     }
 
@@ -156,28 +157,28 @@ public static class ComponentRegister
                     var agentType = HotfixManager.GetAgentType(compType);
                     if (agentType == null)
                     {
-                        LogHelper.Warning($"{compType}未实现Agent,请检查业务代码是否正确");
+                        LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ComponentRegister.AgentNotImplemented, compType));
                     }
 
                     /*if (actorType > ActorType.Separator)
                     {
-                        LogHelper.Info($"激活全局组件：{actorType} {compType}");
+                        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ComponentRegister.ActivateGlobalComponent, actorType, compType));
                         await ActorManager.GetComponentAgent(agentType, actorType);
                     }*/
                 }
 
                 if (actorType > GlobalConst.ActorTypeSeparator)
                 {
-                    LogHelper.Debug($"activate the global actor: {actorType}");
+                    LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ComponentRegister.ActivateGlobalActor, actorType));
                     await ActorManager.GetOrNew(ActorIdGenerator.GetActorId(actorType));
                 }
             }
 
-            LogHelper.Debug("Activate the global component and check if the components all contain the Agent implementation completion");
+            LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ComponentRegister.ActivateGlobalComponentCheckComplete));
         }
         catch (Exception)
         {
-            LogHelper.Error("Activate the global component and detect if the components all contain the agent implementation failed");
+            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ComponentRegister.ActivateGlobalComponentCheckFailed));
             throw;
         }
     }
@@ -243,7 +244,7 @@ public static class ComponentRegister
         }
         else
         {
-            LogHelper.Fatal($"get an actor that doesn't belong to this actor: [{actor.Type}] components");
+            LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ComponentRegister.ActorNotBelongToThis, actor.Type));
         }
     }
 

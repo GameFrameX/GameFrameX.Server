@@ -35,6 +35,7 @@ using GameFrameX.Core.Hotfix;
 using GameFrameX.Core.Timer.Handler;
 using GameFrameX.Core.Utility;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Utility;
 using Quartz;
 using Quartz.Impl;
@@ -553,7 +554,7 @@ public static class QuartzTimer
                     }
                 }
 
-                LogHelper.Error($"错误的ITimerHandler类型，回调失败 type:{handlerType}");
+                LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.InvalidHandlerType, handlerType));
             }
             catch (Exception e)
             {

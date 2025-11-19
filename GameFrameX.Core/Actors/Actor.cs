@@ -36,6 +36,7 @@ using GameFrameX.Core.Abstractions.Timer;
 using GameFrameX.Core.Actors.Impl;
 using GameFrameX.Core.Components;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Core.Actors;
@@ -235,7 +236,7 @@ public sealed class Actor : IActor, IDisposable
     /// <param name="openServerDay">开服天数</param>
     public async Task CrossDay(int openServerDay)
     {
-        LogHelper.Debug($"actor跨天 id:{Id} type:{Type}");
+        LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Actor.CrossDay, Id, Type));
         foreach (var comp in _componentsMap.Values)
         {
             var agent = comp.GetAgent();
@@ -248,7 +249,7 @@ public sealed class Actor : IActor, IDisposable
                 }
                 catch (Exception e)
                 {
-                    LogHelper.Error($"{agent.GetType().FullName}跨天失败 actorId:{Id} actorType:{Type} 异常：\n{e}");
+                    LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Actor.CrossDayFailed, agent.GetType().FullName, Id, Type, e));
                 }
             }
         }
@@ -348,14 +349,14 @@ public sealed class Actor : IActor, IDisposable
                 catch (Exception ex)
                 {
                     // 记录回调执行异常但继续执行其他回调
-                    LogHelper.Error($"Actor回收回调执行异常 actorId:{Id} actorType:{Type} 异常：\n{ex}");
+                    LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Actor.RecycleCallbackFailed, Id, Type, ex));
                 }
             }
         }
         catch (Exception ex)
         {
             // 记录整体执行异常
-            LogHelper.Error($"Actor回收过程异常 actorId:{Id} actorType:{Type} 异常：\n{ex}");
+            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Actor.RecycleFailed, Id, Type, ex));
         }
         finally
         {

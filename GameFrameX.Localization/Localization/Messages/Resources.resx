@@ -539,4 +539,279 @@
     <value>Duplicate node addition...Ignored: {0}</value>
   </data>
 
+  <!-- Core module log messages -->
+  <!-- Actor related messages -->
+  <data name="Core.Actor.CrossDay" xml:space="preserve">
+    <value>actor cross day id:{0} type:{1}</value>
+  </data>
+
+  <data name="Core.Actor.CrossDayFailed" xml:space="preserve">
+    <value>{0} cross day failed actorId:{1} actorType:{2} exception:\n{3}</value>
+  </data>
+
+  <data name="Core.Actor.RecycleCallbackFailed" xml:space="preserve">
+    <value>Actor recycle callback execution exception actorId:{0} actorType:{1} exception:\n{2}</value>
+  </data>
+
+  <data name="Core.Actor.RecycleFailed" xml:space="preserve">
+    <value>Actor recycle process exception actorId:{0} actorType:{1} exception:\n{2}</value>
+  </data>
+
+  <data name="Core.Actor.Recycled" xml:space="preserve">
+    <value>actor recycled id:{0} type:{1}</value>
+  </data>
+
+  <!-- Actor limit related messages -->
+  <data name="Core.ActorLimit.UnsupportedRuleType" xml:space="preserve">
+    <value>Unsupported rule type:{0}</value>
+  </data>
+
+  <data name="Core.ActorLimit.InvalidCallPath" xml:space="preserve">
+    <value>Invalid call path:{0}==>{1}</value>
+  </data>
+
+  <data name="Core.ActorLimit.CrossDeadlock" xml:space="preserve">
+    <value>Cross deadlock detected, ActorId1:{0} ActorType1:{1} ActorId2:{2} ActorType2:{3}</value>
+  </data>
+
+  <!-- Timer related messages -->
+  <data name="Core.Timer.GlobalTimerInitializationStart" xml:space="preserve">
+    <value>Starting global timer initialization...</value>
+  </data>
+
+  <data name="Core.Timer.GlobalTimerInitializationComplete" xml:space="preserve">
+    <value>Global timer initialization completed...</value>
+  </data>
+
+  <data name="Core.Timer.NextSaveTime" xml:space="preserve">
+    <value>Next scheduled save time {0}</value>
+  </data>
+
+  <data name="Core.Timer.SaveStart" xml:space="preserve">
+    <value>Starting scheduled save time:{0}</value>
+  </data>
+
+  <data name="Core.Timer.SaveEnd" xml:space="preserve">
+    <value>Scheduled save completed time:{0} duration: {1}ms</value>
+  </data>
+
+  <data name="Core.Timer.ActorRecycleStart" xml:space="preserve">
+    <value>Starting idle Actor recycle time:{0}</value>
+  </data>
+
+  <data name="Core.Timer.ActorRecycleEnd" xml:space="preserve">
+    <value>Idle Actor recycle completed time:{0}</value>
+  </data>
+
+  <data name="Core.Timer.GlobalTimerStopStart" xml:space="preserve">
+    <value>Stopping global timer...</value>
+  </data>
+
+  <data name="Core.Timer.GlobalTimerStopComplete" xml:space="preserve">
+    <value>Global timer stopped...</value>
+  </data>
+
+  <data name="Core.Timer.InvalidHandlerType" xml:space="preserve">
+    <value>Invalid ITimerHandler type, callback failed type:{0}</value>
+  </data>
+
+  <!-- Actor manager related messages -->
+  <data name="Core.ActorManager.SaveAllStateTime" xml:space="preserve">
+    <value>save all state, use: {0}ms</value>
+  </data>
+
+  <data name="Core.ActorManager.SaveAllStateError" xml:space="preserve">
+    <value>save all state error\n{0}</value>
+  </data>
+
+  <data name="Core.ActorManager.TimerSaveStateError" xml:space="preserve">
+    <value>timer save state error</value>
+  </data>
+
+  <data name="Core.ActorManager.GlobalActorCrossDay" xml:space="preserve">
+    <value>Global Actor:{0} cross day execution</value>
+  </data>
+
+  <data name="Core.ActorManager.GlobalCompCrossDayTimeout" xml:space="preserve">
+    <value>Global comp cross day takes too long, will not block other comp cross day, current elapsed {0} seconds</value>
+  </data>
+
+  <data name="Core.ActorManager.GlobalCompCrossDayComplete" xml:space="preserve">
+    <value>Global comp cross day completed duration: {0}ms</value>
+  </data>
+
+  <data name="Core.ActorManager.NonPlayerCompCrossDayTimeout" xml:space="preserve">
+    <value>Non-player comp cross day takes too long, will not block player comp cross day, current elapsed {0} seconds</value>
+  </data>
+
+  <data name="Core.ActorManager.NonPlayerCompCrossDayComplete" xml:space="preserve">
+    <value>Non-player comp cross day completed duration: {0}ms</value>
+  </data>
+
+  <!-- Component registration related messages -->
+  <data name="Core.ComponentRegister.InitializationComplete" xml:space="preserve">
+    <value>initialize component registration complete</value>
+  </data>
+
+  <data name="Core.ComponentRegister.AgentNotImplemented" xml:space="preserve">
+    <value>{0} Agent not implemented, please check if business code is correct</value>
+  </data>
+
+  <data name="Core.ComponentRegister.ActivateGlobalComponent" xml:space="preserve">
+    <value>Activate global component: {0} {1}</value>
+  </data>
+
+  <data name="Core.ComponentRegister.ActivateGlobalActor" xml:space="preserve">
+    <value>activate the global actor: {0}</value>
+  </data>
+
+  <data name="Core.ComponentRegister.ActivateGlobalComponentCheckComplete" xml:space="preserve">
+    <value>Activate the global component and check if the components all contain the Agent implementation completion</value>
+  </data>
+
+  <data name="Core.ComponentRegister.ActivateGlobalComponentCheckFailed" xml:space="preserve">
+    <value>Activate the global component and detect if the components all contain the agent implementation failed</value>
+  </data>
+
+  <data name="Core.ComponentRegister.ActorNotBelongToThis" xml:space="preserve">
+    <value>get an actor that doesn't belong to this actor: [{0}] components</value>
+  </data>
+
+  <!-- State component related messages -->
+  <data name="Core.StateComponent.SaveAllStateTime" xml:space="preserve">
+    <value>save all state, use: {0}ms</value>
+  </data>
+
+  <data name="Core.StateComponent.SaveAllStateError" xml:space="preserve">
+    <value>save all state error\n{0}</value>
+  </data>
+
+  <data name="Core.StateComponent.TimerSaveStateError" xml:space="preserve">
+    <value>timer save state error</value>
+  </data>
+
+  <data name="Core.StateComponent.SaveStateFailed" xml:space="preserve">
+    <value>StateComp.SaveState.Failed.StateId:{0},{1}</value>
+  </data>
+
+  <data name="Core.StateComponent.StateSaveBack" xml:space="preserve">
+    <value>[StateComp] state save back {0} count:{1}</value>
+  </data>
+
+  <data name="Core.StateComponent.SaveDataFailed" xml:space="preserve">
+    <value>Save data failed, type:{0}</value>
+  </data>
+
+  <data name="Core.StateComponent.SaveDataException" xml:space="preserve">
+    <value>Save data exception, type:{0}, {1}</value>
+  </data>
+
+  <!-- Message handler related messages -->
+  <data name="Core.MessageHandler.ExecutionTimeout" xml:space="preserve">
+    <value>Execution timeout:{0}</value>
+  </data>
+
+  <data name="Core.MessageHandler.ExecutionTimeWarning" xml:space="preserve">
+    <value>Message handler:{0},UniqueId:{1} execution duration: {2} ms</value>
+  </data>
+
+  <data name="Core.MessageHandler.ExecutionTimeDebug" xml:space="preserve">
+    <value>Message handler:{0},UniqueId:{1} execution duration: {2} ms</value>
+  </data>
+
+  <data name="Core.MessageHandler.ActorIdIsZero" xml:space="preserve">
+    <value>ActorId is 0, can not get component，{0}, close channel</value>
+  </data>
+
+  <data name="Core.MessageHandler.CacheComponentIsNull" xml:space="preserve">
+    <value>CacheComponent is null, can not get component, close channel</value>
+  </data>
+
+  <data name="Core.MessageHandler.InnerActionError" xml:space="preserve">
+    <value>InnerAction error: {0} {1}</value>
+  </data>
+
+  <!-- Hotfix related messages -->
+  <data name="Core.Hotfix.DllInitializationSuccess" xml:space="preserve">
+    <value>the hot change dll initialization succeeds: {0}</value>
+  </data>
+
+  <data name="Core.Hotfix.DllInitializationFailed" xml:space="preserve">
+    <value>the hot change dll initialization failed...\n{0}</value>
+  </data>
+
+  <data name="Core.Hotfix.DllUninstall" xml:space="preserve">
+    <value>hot dll uninstall{0}</value>
+  </data>
+
+  <!-- Core module exception messages -->
+  <!-- Timer related exceptions -->
+  <data name="CoreExceptions.Timer.InvalidParameters" xml:space="preserve">
+    <value>Timer parameter error TimerHandler:{0} {1}:{2} {3}:{4}</value>
+  </data>
+
+  <data name="CoreExceptions.Timer.DayOfWeeksParameterNull" xml:space="preserve">
+    <value>Timer weekly execution parameter is null: {0} TimerHandler:{1} actorId:{2} actorType:{3}</value>
+  </data>
+
+  <data name="CoreExceptions.Timer.CodeMustBeInHotfix" xml:space="preserve">
+    <value>Timer code must be in hotfix project</value>
+  </data>
+
+  <!-- Component related exceptions -->
+  <data name="CoreExceptions.Component.ActorTypeNotBound" xml:space="preserve">
+    <value>component:[{0}] the actor type is not bound</value>
+  </data>
+
+  <data name="CoreExceptions.Component.ActorNotBelongToThis" xml:space="preserve">
+    <value>get an actor that doesn't belong to this actor: [{0}] component:[{1}]</value>
+  </data>
+
+  <!-- Message related exceptions -->
+  <data name="CoreExceptions.Message.TypeCastError" xml:space="preserve">
+    <value>Message type error, {0} to: {1}</value>
+  </data>
+
+  <data name="CoreExceptions.Message.HandlerNotInitialized" xml:space="preserve">
+    <value>Message handler not initialized, please call Init method first. If the subclass has implemented the Init method, please call the parent class Init method in the subclass Init</value>
+  </data>
+
+  <!-- Hotfix related exceptions -->
+  <data name="CoreExceptions.Hotfix.HttpProcessorRepeatedlyRegistered" xml:space="preserve">
+    <value>HTTP processor command repeatedly registers, command:{0}</value>
+  </data>
+
+  <data name="CoreExceptions.Hotfix.WrongTcpProcessorType" xml:space="preserve">
+    <value>wrong tcp processor type:{0}</value>
+  </data>
+
+  <data name="CoreExceptions.Hotfix.ClassMustBeSealed" xml:space="preserve">
+    <value>{0} must be a class marked as sealed</value>
+  </data>
+
+  <data name="CoreExceptions.Hotfix.MessageProcessorWrongSuffix" xml:space="preserve">
+    <value>the message processor must be in the[{0}]ending，{1}</value>
+  </data>
+
+  <data name="CoreExceptions.Hotfix.EventHandlerWrongSuffix" xml:space="preserve">
+    <value>the event handler must be based on [{0}] ending，{1}</value>
+  </data>
+
+  <data name="CoreExceptions.Hotfix.NoEventsToListen" xml:space="preserve">
+    <value>IEventListener:{0} There are no events that are specified to listen to</value>
+  </data>
+
+  <data name="CoreExceptions.Hotfix.ComponentAgentWrongSuffix" xml:space="preserve">
+    <value>the component agent must be based on [{0}] ending，{1}</value>
+  </data>
+
+  <data name="CoreExceptions.Hotfix.MultipleAgents" xml:space="preserve">
+    <value>component:[{0}] there are multiple agents</value>
+  </data>
+
+  <!-- Attribute related exceptions -->
+  <data name="CoreExceptions.Attribute.InvalidComponentType" xml:space="preserve">
+    <value>Invalid component type {0}, value should be greater than {1} and less than {2} and not equal to {3}</value>
+  </data>
+
   </root>

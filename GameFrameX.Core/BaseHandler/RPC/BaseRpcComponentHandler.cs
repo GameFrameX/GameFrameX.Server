@@ -32,6 +32,7 @@
 using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Actors;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
 using Serilog;
@@ -93,7 +94,7 @@ public abstract class BaseRpcComponentHandler<TRequest, TResponse> : BaseRpcMess
         {
             if (ActorId == default)
             {
-                LogHelper.Fatal($"ActorId is 0, can not get component，{message.GetType().FullName}, close channel");
+                LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.ActorIdIsZero, message.GetType().FullName));
                 NetWorkChannel.Close();
                 return false;
             }
@@ -123,7 +124,7 @@ public abstract class BaseRpcComponentHandler<TRequest, TResponse> : BaseRpcMess
     {
         if (CacheComponent == null)
         {
-            LogHelper.Fatal("CacheComponent is null, can not get component, close channel");
+            LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.CacheComponentIsNull));
             NetWorkChannel.Close();
             return Task.CompletedTask;
         }
@@ -146,7 +147,7 @@ public abstract class BaseRpcComponentHandler<TRequest, TResponse> : BaseRpcMess
             }
             catch (Exception e)
             {
-                LogHelper.Error(e, $"InnerAction error: {RequestMessage.GetType().FullName} {RequestMessage}");
+                LogHelper.Error(e, LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.InnerActionError, RequestMessage.GetType().FullName, RequestMessage));
                 if (response != null && response.ErrorCode == default)
                 {
                     response.ErrorCode = OperationErrorCode.InternalServerError;
@@ -175,7 +176,7 @@ public abstract class BaseRpcComponentHandler<TRequest, TResponse> : BaseRpcMess
     {
         if (CacheComponent == null)
         {
-            LogHelper.Fatal("CacheComponent is null, can not get component, close channel");
+            LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.CacheComponentIsNull));
             NetWorkChannel.Close();
             return default;
         }

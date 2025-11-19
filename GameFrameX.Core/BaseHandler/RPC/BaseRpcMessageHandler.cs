@@ -31,6 +31,7 @@
 
 using System.Diagnostics;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Utility.Setting;
@@ -123,7 +124,7 @@ public abstract class BaseRpcMessageHandler<TRequest, TResponse> : IMessageHandl
             }
             catch (TimeoutException timeoutException)
             {
-                LogHelper.Fatal("执行超时:" + timeoutException.Message);
+                LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.ExecutionTimeout, timeoutException.Message));
                 
                 // 设置超时错误码并发送错误响应给客户端 / Set timeout error code and send error response to client
                 response.ErrorCode = OperationErrorCode.TimeOut;
@@ -161,7 +162,7 @@ public abstract class BaseRpcMessageHandler<TRequest, TResponse> : IMessageHandl
             _stopwatch.Stop();
             if (_stopwatch.Elapsed.Seconds >= GlobalSettings.CurrentSetting.MonitorTimeOutSeconds)
             {
-                LogHelper.Warning($"消息处理器：{GetType().Name},UniqueId：{RequestMessage.UniqueId} 执行耗时：{_stopwatch.ElapsedMilliseconds} ms");
+                LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.ExecutionTimeWarning, GetType().Name, RequestMessage.UniqueId, _stopwatch.ElapsedMilliseconds));
             }
 
             return;
@@ -172,7 +173,7 @@ public abstract class BaseRpcMessageHandler<TRequest, TResponse> : IMessageHandl
             _stopwatch.Restart();
             await ActionAsync(request, response);
             _stopwatch.Stop();
-            LogHelper.Debug($"消息处理器：{GetType().Name},UniqueId：{RequestMessage.UniqueId} 执行耗时：{_stopwatch.ElapsedMilliseconds} ms");
+            LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.ExecutionTimeDebug, GetType().Name, RequestMessage.UniqueId, _stopwatch.ElapsedMilliseconds));
             return;
         }
 

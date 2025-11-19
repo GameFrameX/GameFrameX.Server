@@ -34,6 +34,7 @@ using GameFrameX.Core.Components;
 using GameFrameX.DataBase;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Foundation.Utility;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Setting;
@@ -60,10 +61,10 @@ public static class GlobalTimer
     /// </summary>
     public static void Start()
     {
-        LogHelper.Debug("初始化全局定时开始...");
+        LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.GlobalTimerInitializationStart));
         IsWorking = true;
         _loopTask = Task.Run(Loop);
-        LogHelper.Debug("初始化全局定时完成...");
+        LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.GlobalTimerInitializationComplete));
     }
 
     /// <summary>
@@ -76,7 +77,7 @@ public static class GlobalTimer
 
         while (IsWorking)
         {
-            LogHelper.Info($"下次定时回存时间 {nextSaveTime}");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.NextSaveTime, nextSaveTime));
             var currentTime = TimerHelper.UnixTimeMilliseconds();
             while (currentTime < nextSaveTime && IsWorking)
             {
@@ -90,15 +91,15 @@ public static class GlobalTimer
             }
 
             var startTime = TimerHelper.UnixTimeMilliseconds();
-            LogHelper.Info($"开始定时回存 时间:{startTime}");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.SaveStart, startTime));
             await StateComponent.TimerSave();
             var endTime = TimerHelper.UnixTimeMilliseconds();
             var cost = endTime - startTime;
-            LogHelper.Info($"结束定时回存 时间:{endTime} 耗时: {cost}ms");
-            LogHelper.Info($"开始回收空闲Actor 时间:{startTime}");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.SaveEnd, endTime, cost));
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.ActorRecycleStart, startTime));
             await ActorManager.CheckIdle();
             currentTime = TimerHelper.UnixTimeMilliseconds();
-            LogHelper.Info($"结束回收空闲Actor 时间:{currentTime}");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.ActorRecycleEnd, currentTime));
             do
             {
                 nextSaveTime = NextSaveTime();
@@ -120,7 +121,7 @@ public static class GlobalTimer
     /// </summary>
     public static async Task Stop()
     {
-        LogHelper.Info("停止全局定时开始...");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.GlobalTimerStopStart));
         IsWorking = false;
         if (_loopTask != null)
         {
@@ -128,6 +129,6 @@ public static class GlobalTimer
         }
         await StateComponent.SaveAll(true);
         GameDb.Close();
-        LogHelper.Info("停止全局定时完成...");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.GlobalTimerStopComplete));
     }
 }

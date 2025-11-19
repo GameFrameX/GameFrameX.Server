@@ -556,4 +556,279 @@
   <data name="DiscoveryCenterManager.Server.DuplicateNodeWarning" xml:space="preserve">
     <value>重复节点添加，已忽略: {0}</value>
   </data>
+
+  <!-- Core 模块日志消息 -->
+  <!-- Actor 相关消息 -->
+  <data name="Core.Actor.CrossDay" xml:space="preserve">
+    <value>actor跨天 id:{0} type:{1}</value>
+  </data>
+
+  <data name="Core.Actor.CrossDayFailed" xml:space="preserve">
+    <value>{0}跨天失败 actorId:{1} actorType:{2} 异常：\n{3}</value>
+  </data>
+
+  <data name="Core.Actor.RecycleCallbackFailed" xml:space="preserve">
+    <value>Actor回收回调执行异常 actorId:{0} actorType:{1} 异常：\n{2}</value>
+  </data>
+
+  <data name="Core.Actor.RecycleFailed" xml:space="preserve">
+    <value>Actor回收过程异常 actorId:{0} actorType:{1} 异常：\n{2}</value>
+  </data>
+
+  <data name="Core.Actor.Recycled" xml:space="preserve">
+    <value>actor回收 id:{0} type:{1}</value>
+  </data>
+
+  <!-- Actor 限制相关消息 -->
+  <data name="Core.ActorLimit.UnsupportedRuleType" xml:space="preserve">
+    <value>不支持的rule类型:{0}</value>
+  </data>
+
+  <data name="Core.ActorLimit.InvalidCallPath" xml:space="preserve">
+    <value>不合法的调用路径:{0}==>{1}</value>
+  </data>
+
+  <data name="Core.ActorLimit.CrossDeadlock" xml:space="preserve">
+    <value>发生交叉死锁，ActorId1:{0} ActorType1:{1} ActorId2:{2} ActorType2:{3}</value>
+  </data>
+
+  <!-- 定时器相关消息 -->
+  <data name="Core.Timer.GlobalTimerInitializationStart" xml:space="preserve">
+    <value>初始化全局定时开始...</value>
+  </data>
+
+  <data name="Core.Timer.GlobalTimerInitializationComplete" xml:space="preserve">
+    <value>初始化全局定时完成...</value>
+  </data>
+
+  <data name="Core.Timer.NextSaveTime" xml:space="preserve">
+    <value>下次定时回存时间 {0}</value>
+  </data>
+
+  <data name="Core.Timer.SaveStart" xml:space="preserve">
+    <value>开始定时回存 时间:{0}</value>
+  </data>
+
+  <data name="Core.Timer.SaveEnd" xml:space="preserve">
+    <value>结束定时回存 时间:{0} 耗时: {1}ms</value>
+  </data>
+
+  <data name="Core.Timer.ActorRecycleStart" xml:space="preserve">
+    <value>开始回收空闲Actor 时间:{0}</value>
+  </data>
+
+  <data name="Core.Timer.ActorRecycleEnd" xml:space="preserve">
+    <value>结束回收空闲Actor 时间:{0}</value>
+  </data>
+
+  <data name="Core.Timer.GlobalTimerStopStart" xml:space="preserve">
+    <value>停止全局定时开始...</value>
+  </data>
+
+  <data name="Core.Timer.GlobalTimerStopComplete" xml:space="preserve">
+    <value>停止全局定时完成...</value>
+  </data>
+
+  <data name="Core.Timer.InvalidHandlerType" xml:space="preserve">
+    <value>错误的ITimerHandler类型，回调失败 type:{0}</value>
+  </data>
+
+  <!-- Actor 管理器相关消息 -->
+  <data name="Core.ActorManager.SaveAllStateTime" xml:space="preserve">
+    <value>save all state, use: {0}ms</value>
+  </data>
+
+  <data name="Core.ActorManager.SaveAllStateError" xml:space="preserve">
+    <value>save all state error\n{0}</value>
+  </data>
+
+  <data name="Core.ActorManager.TimerSaveStateError" xml:space="preserve">
+    <value>timer save state error</value>
+  </data>
+
+  <data name="Core.ActorManager.GlobalActorCrossDay" xml:space="preserve">
+    <value>全局Actor：{0}执行跨天</value>
+  </data>
+
+  <data name="Core.ActorManager.GlobalCompCrossDayTimeout" xml:space="preserve">
+    <value>全局comp跨天耗时过久，不阻止其他comp跨天，当前已过{0}秒</value>
+  </data>
+
+  <data name="Core.ActorManager.GlobalCompCrossDayComplete" xml:space="preserve">
+    <value>全局comp跨天完成 耗时：{0}ms</value>
+  </data>
+
+  <data name="Core.ActorManager.NonPlayerCompCrossDayTimeout" xml:space="preserve">
+    <value>非玩家comp跨天耗时过久，不阻止玩家comp跨天，当前已过{0}秒</value>
+  </data>
+
+  <data name="Core.ActorManager.NonPlayerCompCrossDayComplete" xml:space="preserve">
+    <value>非玩家comp跨天完成 耗时：{0}ms</value>
+  </data>
+
+  <!-- 组件注册相关消息 -->
+  <data name="Core.ComponentRegister.InitializationComplete" xml:space="preserve">
+    <value>initialize component registration complete</value>
+  </data>
+
+  <data name="Core.ComponentRegister.AgentNotImplemented" xml:space="preserve">
+    <value>{0}未实现Agent,请检查业务代码是否正确</value>
+  </data>
+
+  <data name="Core.ComponentRegister.ActivateGlobalComponent" xml:space="preserve">
+    <value>激活全局组件：{0} {1}</value>
+  </data>
+
+  <data name="Core.ComponentRegister.ActivateGlobalActor" xml:space="preserve">
+    <value>activate the global actor: {0}</value>
+  </data>
+
+  <data name="Core.ComponentRegister.ActivateGlobalComponentCheckComplete" xml:space="preserve">
+    <value>Activate the global component and check if the components all contain the Agent implementation completion</value>
+  </data>
+
+  <data name="Core.ComponentRegister.ActivateGlobalComponentCheckFailed" xml:space="preserve">
+    <value>Activate the global component and detect if the components all contain the agent implementation failed</value>
+  </data>
+
+  <data name="Core.ComponentRegister.ActorNotBelongToThis" xml:space="preserve">
+    <value>get an actor that doesn't belong to this actor: [{0}] components</value>
+  </data>
+
+  <!-- 状态组件相关消息 -->
+  <data name="Core.StateComponent.SaveAllStateTime" xml:space="preserve">
+    <value>save all state, use: {0}ms</value>
+  </data>
+
+  <data name="Core.StateComponent.SaveAllStateError" xml:space="preserve">
+    <value>save all state error\n{0}</value>
+  </data>
+
+  <data name="Core.StateComponent.TimerSaveStateError" xml:space="preserve">
+    <value>timer save state error</value>
+  </data>
+
+  <data name="Core.StateComponent.SaveStateFailed" xml:space="preserve">
+    <value>StateComp.SaveState.Failed.StateId:{0},{1}</value>
+  </data>
+
+  <data name="Core.StateComponent.StateSaveBack" xml:space="preserve">
+    <value>[StateComp] 状态回存 {0} count:{1}</value>
+  </data>
+
+  <data name="Core.StateComponent.SaveDataFailed" xml:space="preserve">
+    <value>保存数据失败，类型:{0}</value>
+  </data>
+
+  <data name="Core.StateComponent.SaveDataException" xml:space="preserve">
+    <value>保存数据异常，类型:{0}，{1}</value>
+  </data>
+
+  <!-- 消息处理器相关消息 -->
+  <data name="Core.MessageHandler.ExecutionTimeout" xml:space="preserve">
+    <value>执行超时:{0}</value>
+  </data>
+
+  <data name="Core.MessageHandler.ExecutionTimeWarning" xml:space="preserve">
+    <value>消息处理器：{0},UniqueId：{1} 执行耗时：{2} ms</value>
+  </data>
+
+  <data name="Core.MessageHandler.ExecutionTimeDebug" xml:space="preserve">
+    <value>消息处理器：{0},UniqueId：{1} 执行耗时：{2} ms</value>
+  </data>
+
+  <data name="Core.MessageHandler.ActorIdIsZero" xml:space="preserve">
+    <value>ActorId is 0, can not get component，{0}, close channel</value>
+  </data>
+
+  <data name="Core.MessageHandler.CacheComponentIsNull" xml:space="preserve">
+    <value>CacheComponent is null, can not get component, close channel</value>
+  </data>
+
+  <data name="Core.MessageHandler.InnerActionError" xml:space="preserve">
+    <value>InnerAction error: {0} {1}</value>
+  </data>
+
+  <!-- 热更新相关消息 -->
+  <data name="Core.Hotfix.DllInitializationSuccess" xml:space="preserve">
+    <value>the hot change dll initialization succeeds: {0}</value>
+  </data>
+
+  <data name="Core.Hotfix.DllInitializationFailed" xml:space="preserve">
+    <value>the hot change dll initialization failed...\n{0}</value>
+  </data>
+
+  <data name="Core.Hotfix.DllUninstall" xml:space="preserve">
+    <value>hot dll uninstall{0}</value>
+  </data>
+
+  <!-- Core 模块异常消息 -->
+  <!-- 定时器相关异常 -->
+  <data name="CoreExceptions.Timer.InvalidParameters" xml:space="preserve">
+    <value>定时器参数错误 TimerHandler:{0} {1}:{2} {3}:{4}</value>
+  </data>
+
+  <data name="CoreExceptions.Timer.DayOfWeeksParameterNull" xml:space="preserve">
+    <value>定时每周执行 参数为空：{0} TimerHandler:{1} actorId:{2} actorType:{3}</value>
+  </data>
+
+  <data name="CoreExceptions.Timer.CodeMustBeInHotfix" xml:space="preserve">
+    <value>定时器代码需要在热更项目里</value>
+  </data>
+
+  <!-- 组件相关异常 -->
+  <data name="CoreExceptions.Component.ActorTypeNotBound" xml:space="preserve">
+    <value>component:[{0}] the actor type is not bound</value>
+  </data>
+
+  <data name="CoreExceptions.Component.ActorNotBelongToThis" xml:space="preserve">
+    <value>get an actor that doesn't belong to this actor: [{0}] component:[{1}]</value>
+  </data>
+
+  <!-- 消息相关异常 -->
+  <data name="CoreExceptions.Message.TypeCastError" xml:space="preserve">
+    <value>消息类型错误, {0} to: {1}</value>
+  </data>
+
+  <data name="CoreExceptions.Message.HandlerNotInitialized" xml:space="preserve">
+    <value>消息处理器未初始化,请调用先Init方法，如果已经子类实现了Init方法，请调用在子类Init中调用父类Init方法</value>
+  </data>
+
+  <!-- 热更新相关异常 -->
+  <data name="CoreExceptions.Hotfix.HttpProcessorRepeatedlyRegistered" xml:space="preserve">
+    <value>HTTP processor command repeatedly registers, command:{0}</value>
+  </data>
+
+  <data name="CoreExceptions.Hotfix.WrongTcpProcessorType" xml:space="preserve">
+    <value>wrong tcp processor type:{0}</value>
+  </data>
+
+  <data name="CoreExceptions.Hotfix.ClassMustBeSealed" xml:space="preserve">
+    <value>{0} must be a class marked as sealed</value>
+  </data>
+
+  <data name="CoreExceptions.Hotfix.MessageProcessorWrongSuffix" xml:space="preserve">
+    <value>the message processor must be in the[{0}]ending，{1}</value>
+  </data>
+
+  <data name="CoreExceptions.Hotfix.EventHandlerWrongSuffix" xml:space="preserve">
+    <value>the event handler must be based on [{0}] ending，{1}</value>
+  </data>
+
+  <data name="CoreExceptions.Hotfix.NoEventsToListen" xml:space="preserve">
+    <value>IEventListener:{0} There are no events that are specified to listen to</value>
+  </data>
+
+  <data name="CoreExceptions.Hotfix.ComponentAgentWrongSuffix" xml:space="preserve">
+    <value>the component agent must be based on [{0}] ending，{1}</value>
+  </data>
+
+  <data name="CoreExceptions.Hotfix.MultipleAgents" xml:space="preserve">
+    <value>component:[{0}] there are multiple agents</value>
+  </data>
+
+  <!-- 属性相关异常 -->
+  <data name="CoreExceptions.Attribute.InvalidComponentType" xml:space="preserve">
+    <value>无效的组件类型 {0},值应大于{1}且小于{2}和不为{3}</value>
+  </data>
 </root>

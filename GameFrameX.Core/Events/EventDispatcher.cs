@@ -34,6 +34,7 @@ using GameFrameX.Core.Actors;
 using GameFrameX.Core.Hotfix;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.Core.Events;
 
@@ -62,7 +63,7 @@ public static class EventDispatcher
                 var listeners = HotfixManager.FindListeners(actor.Type, eventId);
                 if (listeners.IsNullOrEmpty())
                 {
-                    LogHelper.Warning($"事件：{eventId} 没有找到任何监听者");
+                    LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Events.NoListenersFound, eventId));
                     return;
                 }
 
@@ -97,7 +98,7 @@ public static class EventDispatcher
                 var listeners = HotfixManager.FindListeners(eventId);
                 if (listeners.IsNullOrEmpty())
                 {
-                    LogHelper.Warning($"事件：{eventId} 没有找到任何监听者");
+                    LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Events.NoListenersFound, eventId));
                     return;
                 }
 

@@ -38,6 +38,7 @@ using GameFrameX.Core.Hotfix;
 using GameFrameX.Core.Timer;
 using GameFrameX.Core.Utility;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Utility;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Utility;
@@ -286,7 +287,7 @@ public static class ActorManager
                                 await actor.Inactive();
                                 await actor.OnRecycle();
                                 ActorMap.TryRemove(actor.Id, out var _);
-                                LogHelper.Debug($"actor回收 id:{actor.Id} type:{actor.Type}");
+                                LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Actor.Recycled, actor.Id, actor.Type));
                             }
                             else
                             {
@@ -329,11 +330,11 @@ public static class ActorManager
             }
 
             await Task.WhenAll(taskList);
-            LogHelper.Info($"save all state, use: {(DateTime.Now - begin).TotalMilliseconds}ms");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorManager.SaveAllStateTime, (DateTime.Now - begin).TotalMilliseconds));
         }
         catch (Exception e)
         {
-            LogHelper.Error($"save all state error \n{e}");
+            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorManager.SaveAllStateError, e));
             throw;
         }
     }
@@ -377,7 +378,7 @@ public static class ActorManager
         }
         catch (Exception e)
         {
-            LogHelper.Info("timer save state error");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorManager.TimerSaveStateError));
             LogHelper.Error(e.ToString());
         }
     }
@@ -424,7 +425,7 @@ public static class ActorManager
 
                 async Task Work()
                 {
-                    LogHelper.Info($"全局Actor：{actor.Type}执行跨天");
+                    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorManager.GlobalActorCrossDay, actor.Type));
                     await actor.CrossDay(openServerDay);
                     Interlocked.Increment(ref a);
                 }
@@ -437,7 +438,7 @@ public static class ActorManager
         {
             if ((DateTime.Now - begin).TotalSeconds > CrossDayGlobalWaitSeconds)
             {
-                LogHelper.Warning($"全局comp跨天耗时过久，不阻止其他comp跨天，当前已过{CrossDayGlobalWaitSeconds}秒");
+                LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorManager.GlobalCompCrossDayTimeout, CrossDayGlobalWaitSeconds));
                 break;
             }
 
@@ -445,7 +446,7 @@ public static class ActorManager
         }
 
         var globalCost = (DateTime.Now - begin).TotalMilliseconds;
-        LogHelper.Info($"全局comp跨天完成 耗时：{globalCost:f4}ms");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorManager.GlobalCompCrossDayComplete, globalCost));
         a = 0;
         b = 0;
         foreach (var actor in ActorMap.Values)
@@ -468,7 +469,7 @@ public static class ActorManager
         {
             if ((DateTime.Now - begin).TotalSeconds > CrossDayNotRoleWaitSeconds)
             {
-                LogHelper.Warning($"非玩家comp跨天耗时过久，不阻止玩家comp跨天，当前已过{CrossDayNotRoleWaitSeconds}秒");
+                LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorManager.NonPlayerCompCrossDayTimeout, CrossDayNotRoleWaitSeconds));
                 break;
             }
 
@@ -476,7 +477,7 @@ public static class ActorManager
         }
 
         var otherCost = (DateTime.Now - begin).TotalMilliseconds - globalCost;
-        LogHelper.Info($"非玩家comp跨天完成 耗时：{otherCost:f4}ms");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorManager.NonPlayerCompCrossDayComplete, otherCost));
     }
 
     /// <summary>
