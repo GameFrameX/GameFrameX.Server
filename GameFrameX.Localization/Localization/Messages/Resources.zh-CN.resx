@@ -296,6 +296,29 @@
     <value>返回Id重复==>当前ID:{0},已有ID类型:{1}</value>
   </data>
 
+  <!-- NetWork模块日志和错误键名 -->
+  <data name="NetWork.MessageSent" xml:space="preserve">
+    <value>---发送{0}</value>
+  </data>
+  <data name="NetWork.MessageSendTimeout" xml:space="preserve">
+    <value>消息发送超时被取消:{0}</value>
+  </data>
+  <data name="NetWork.TypeMustImplementInterface" xml:space="preserve">
+    <value>Type {0} must implement {1} interface / 类型 {0} 必须实现 {1} 接口</value>
+  </data>
+  <data name="NetWork.TypeMustBeClass" xml:space="preserve">
+    <value>Type {0} must be a class / 类型 {0} 必须是类</value>
+  </data>
+  <data name="NetWork.TypeMustHaveParameterlessConstructor" xml:space="preserve">
+    <value>Type {0} must have a parameterless constructor / 类型 {0} 必须有无参构造函数</value>
+  </data>
+  <data name="NetWork.CannotFindCreateMethod" xml:space="preserve">
+    <value>Cannot find Create method on ObjectPoolProvider / 无法在 ObjectPoolProvider 上找到 Create 方法</value>
+  </data>
+  <data name="NetWork.FailedToCreateObjectPool" xml:space="preserve">
+    <value>Failed to create object pool for type {0} / 无法为类型 {0} 创建对象池</value>
+  </data>
+
   <!-- StartUp模块日志和错误键名 -->
   <data name="StartUp.ServerStopped" xml:space="preserve">
     <value>服务器类型:{0} 停止! 终止原因：{1} 配置信息: {2}</value>

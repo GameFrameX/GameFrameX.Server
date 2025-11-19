@@ -38,6 +38,7 @@ using GameFrameX.SuperSocket.WebSocket.Server;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility.Setting;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.NetWork;
 
@@ -161,12 +162,16 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
                 // 判断是否打印心跳消息的发送
                 if (Setting.IsDebugSendHeartBeat)
                 {
-                    LogHelper.Debug($"---发送{messageObject.ToFormatMessageString(actorId)}");
+                    LogHelper.Debug(LocalizationService.GetString(
+                        GameFrameX.Localization.Keys.NetWork.MessageSent,
+                        messageObject.ToFormatMessageString(actorId)));
                 }
             }
             else
             {
-                LogHelper.Debug($"---发送{messageObject.ToFormatMessageString(actorId)}");
+                LogHelper.Debug(LocalizationService.GetString(
+                    GameFrameX.Localization.Keys.NetWork.MessageSent,
+                    messageObject.ToFormatMessageString(actorId)));
             }
         }
 
@@ -192,7 +197,9 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
             }
             catch (OperationCanceledException exception)
             {
-                LogHelper.Error($"消息发送超时被取消:{exception.Message}");
+                LogHelper.Error(LocalizationService.GetString(
+                    GameFrameX.Localization.Keys.NetWork.MessageSendTimeout,
+                    exception.Message));
             }
             catch (Exception e)
             {

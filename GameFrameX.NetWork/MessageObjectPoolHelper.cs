@@ -33,6 +33,7 @@ using System.Collections.Concurrent;
 using System.Reflection;
 using GameFrameX.NetWork.Abstractions;
 using Microsoft.Extensions.ObjectPool;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.NetWork;
 
@@ -123,13 +124,18 @@ public static class MessageObjectPoolHelper
         // Validate that the type implements IMessageObject / 验证类型是否实现了 IMessageObject
         if (!typeof(IMessageObject).IsAssignableFrom(type))
         {
-            throw new ArgumentException($"Type {type.Name} must implement {nameof(IMessageObject)} interface / 类型 {type.Name} 必须实现 {nameof(IMessageObject)} 接口", nameof(type));
+            throw new ArgumentException(LocalizationService.GetString(
+                GameFrameX.Localization.Keys.NetWork.TypeMustImplementInterface,
+                type.Name,
+                nameof(IMessageObject)), nameof(type));
         }
 
         // Validate that the type is a class / 验证类型是否为类
         if (!type.IsClass)
         {
-            throw new ArgumentException($"Type {type.Name} must be a class / 类型 {type.Name} 必须是类", nameof(type));
+            throw new ArgumentException(LocalizationService.GetString(
+                GameFrameX.Localization.Keys.NetWork.TypeMustBeClass,
+                type.Name), nameof(type));
         }
 
         // Get or create cached get action for this type / 获取或创建此类型的缓存获取操作
@@ -139,7 +145,9 @@ public static class MessageObjectPoolHelper
             var constructor = t.GetConstructor(Type.EmptyTypes);
             if (constructor == null)
             {
-                throw new ArgumentException($"Type {t.Name} must have a parameterless constructor / 类型 {t.Name} 必须有无参构造函数", nameof(type));
+                throw new ArgumentException(LocalizationService.GetString(
+                    GameFrameX.Localization.Keys.NetWork.TypeMustHaveParameterlessConstructor,
+                    t.Name), nameof(type));
             }
 
             // Get the pool for the specified type / 获取指定类型的池
@@ -175,7 +183,8 @@ public static class MessageObjectPoolHelper
 
             if (createMethod == null)
             {
-                throw new InvalidOperationException($"Cannot find Create method on ObjectPoolProvider / 无法在 ObjectPoolProvider 上找到 Create 方法");
+                throw new InvalidOperationException(LocalizationService.GetString(
+                    GameFrameX.Localization.Keys.NetWork.CannotFindCreateMethod));
             }
 
             var genericCreateMethod = createMethod.MakeGenericMethod(type);
@@ -183,7 +192,9 @@ public static class MessageObjectPoolHelper
 
             if (result == null)
             {
-                throw new InvalidOperationException($"Failed to create object pool for type {type.Name} / 无法为类型 {type.Name} 创建对象池");
+                throw new InvalidOperationException(LocalizationService.GetString(
+                    GameFrameX.Localization.Keys.NetWork.FailedToCreateObjectPool,
+                    type.Name));
             }
 
             return result;
@@ -229,7 +240,9 @@ public static class MessageObjectPoolHelper
             var constructor = type.GetConstructor(Type.EmptyTypes);
             if (constructor == null)
             {
-                throw new ArgumentException($"Type {type.Name} must have a parameterless constructor / 类型 {type.Name} 必须有无参构造函数", nameof(obj));
+                throw new ArgumentException(LocalizationService.GetString(
+                    GameFrameX.Localization.Keys.NetWork.TypeMustHaveParameterlessConstructor,
+                    type.Name), nameof(obj));
             }
 
             // Get the pool for the object's actual type / 获取对象实际类型的池

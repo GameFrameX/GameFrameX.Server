@@ -278,6 +278,29 @@
     <value>ResponseId duplicate==>Current ID:{0},Existing ID type:{1}</value>
   </data>
 
+  <!-- NetWork module log and error keys -->
+  <data name="NetWork.MessageSent" xml:space="preserve">
+    <value>---Send {0}</value>
+  </data>
+  <data name="NetWork.MessageSendTimeout" xml:space="preserve">
+    <value>Message send timeout canceled:{0}</value>
+  </data>
+  <data name="NetWork.TypeMustImplementInterface" xml:space="preserve">
+    <value>Type {0} must implement {1} interface</value>
+  </data>
+  <data name="NetWork.TypeMustBeClass" xml:space="preserve">
+    <value>Type {0} must be a class</value>
+  </data>
+  <data name="NetWork.TypeMustHaveParameterlessConstructor" xml:space="preserve">
+    <value>Type {0} must have a parameterless constructor</value>
+  </data>
+  <data name="NetWork.CannotFindCreateMethod" xml:space="preserve">
+    <value>Cannot find Create method on ObjectPoolProvider</value>
+  </data>
+  <data name="NetWork.FailedToCreateObjectPool" xml:space="preserve">
+    <value>Failed to create object pool for type {0}</value>
+  </data>
+
   <!-- StartUp module log and error keys -->
   <data name="StartUp.ServerStopped" xml:space="preserve">
     <value>Server type: {0} stopped! Termination reason: {1} Configuration: {2}</value>

@@ -1195,6 +1195,81 @@ namespace GameFrameX.Localization
         }
 
         /// <summary>
+        /// NetWork模块相关日志和错误消息资源键
+        /// </summary>
+        public static class NetWork
+        {
+            /// <summary>
+            /// 发送消息的日志消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.MessageSent
+            /// 用途: 记录发送消息的日志信息
+            /// 参数: {0} - 格式化的消息内容
+            /// </remarks>
+            public const string MessageSent = "NetWork.MessageSent";
+
+            /// <summary>
+            /// 消息发送超时被取消的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.MessageSendTimeout
+            /// 用途: 当消息发送超时被取消时记录错误
+            /// 参数: {0} - 异常消息
+            /// </remarks>
+            public const string MessageSendTimeout = "NetWork.MessageSendTimeout";
+
+            /// <summary>
+            /// 类型必须实现接口的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.TypeMustImplementInterface
+            /// 用途: 当类型未实现指定接口时抛出异常
+            /// 参数: {0} - 类型名称, {1} - 接口名称
+            /// </remarks>
+            public const string TypeMustImplementInterface = "NetWork.TypeMustImplementInterface";
+
+            /// <summary>
+            /// 类型必须是类的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.TypeMustBeClass
+            /// 用途: 当类型不是类时抛出异常
+            /// 参数: {0} - 类型名称
+            /// </remarks>
+            public const string TypeMustBeClass = "NetWork.TypeMustBeClass";
+
+            /// <summary>
+            /// 类型必须有无参构造函数的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.TypeMustHaveParameterlessConstructor
+            /// 用途: 当类型没有无参构造函数时抛出异常
+            /// 参数: {0} - 类型名称
+            /// </remarks>
+            public const string TypeMustHaveParameterlessConstructor = "NetWork.TypeMustHaveParameterlessConstructor";
+
+            /// <summary>
+            /// 无法找到Create方法的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.CannotFindCreateMethod
+            /// 用途: 当无法在ObjectPoolProvider上找到Create方法时抛出异常
+            /// </remarks>
+            public const string CannotFindCreateMethod = "NetWork.CannotFindCreateMethod";
+
+            /// <summary>
+            /// 创建对象池失败的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: NetWork.FailedToCreateObjectPool
+            /// 用途: 当无法为类型创建对象池时抛出异常
+            /// 参数: {0} - 类型名称
+            /// </remarks>
+            public const string FailedToCreateObjectPool = "NetWork.FailedToCreateObjectPool";
+        }
+
+        /// <summary>
         /// StartUp模块相关日志和错误消息资源键
         /// </summary>
         public static class StartUp
