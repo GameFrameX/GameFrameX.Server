@@ -33,9 +33,11 @@ using System.Reflection;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Foundation.Localization.Core;
+using GameFrameX.Foundation.Localization.Providers;
 using GameFrameX.Foundation.Options;
 using GameFrameX.Foundation.Options.Attributes;
 using GameFrameX.Foundation.Utility;
+using GameFrameX.Localization;
 using GameFrameX.StartUp.Abstractions;
 using GameFrameX.StartUp.Options;
 using GameFrameX.Utility;
@@ -110,6 +112,7 @@ public static class GameApp
     /// </example>
     public static async Task Entry(string[] args, Action initAction, Action<LogOptions> logConfiguration = null)
     {
+        LocalizationService.Instance.RegisterProvider(new AssemblyResourceProvider(typeof(Keys).Assembly));
         LauncherOptions launcherOptions = null;
         try
         {
