@@ -35,6 +35,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GameFrameX.CodeGenerator.Utils;
 using GameFrameX.Core.Abstractions.Attribute;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Utility.Setting;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -181,12 +182,12 @@ public class AgentGenerator : ISourceGenerator
 
                         if (mth.IsThreadSafe && mth.HasTimeout)
                         {
-                            context.LogError($"{fullName}.{method.Identifier.Text}无法为标记【{threadSafeAttributeName}】的函数指定超时时间");
+                            context.LogError(LocalizationService.GetString(GameFrameX.Localization.Keys.CodeGenerator.AgentGenerator.CannotSetTimeoutForThreadSafeAttribute, fullName, method.Identifier.Text, threadSafeAttributeName));
                         }
 
                         if (!mth.IsApi && !mth.Discard && mth.HasTimeout)
                         {
-                            context.LogError($"{fullName}.{method.Identifier.Text}【{timeOutAttributeName}】注解只能配合【Api】或【{discardAttributeName}】使用");
+                            context.LogError(LocalizationService.GetString(GameFrameX.Localization.Keys.CodeGenerator.AgentGenerator.TimeoutAttributeMustBeUsedWithApiOrDiscard, fullName, method.Identifier.Text, timeOutAttributeName, serviceAttributeName, discardAttributeName));
                         }
 
                         //跳过没有标记任何注解的函数
@@ -203,12 +204,12 @@ public class AgentGenerator : ISourceGenerator
 
                         if (mth.IsApi && !mth.IsThreadSafe && !mth.ReturnType.Contains("Task"))
                         {
-                            context.LogError($"{fullName}.{method.Identifier.Text}, 非【{threadSafeAttributeName}】的【Api】接口只能是异步函数");
+                            context.LogError(LocalizationService.GetString(GameFrameX.Localization.Keys.CodeGenerator.AgentGenerator.NonThreadSafeApiMustBeAsync, fullName, method.Identifier.Text, threadSafeAttributeName, serviceAttributeName));
                         }
 
                         if ((mth.IsApi || mth.Discard || mth.IsThreadSafe) && !mth.IsVirtual)
                         {
-                            context.LogError($"{fullName}.{method.Identifier.Text}标记了【AsyncApi】【{threadSafeAttributeName}】【{discardAttributeName}】注解的函数必须申明为virtual");
+                            context.LogError(LocalizationService.GetString(GameFrameX.Localization.Keys.CodeGenerator.AgentGenerator.MarkedFunctionMustBeVirtual, fullName, method.Identifier.Text, serviceAttributeName, threadSafeAttributeName, discardAttributeName));
                         }
 
                         if (mth.IsVirtual)
@@ -219,7 +220,7 @@ public class AgentGenerator : ISourceGenerator
                             // mth.ReturnType = method.ReturnType.ToString();   //Task<T>
                             if (mth.Discard && !mth.ReturnType.Equals(nameof(Task)) && !mth.ReturnType.Equals(nameof(ValueTask)))
                             {
-                                context.LogError($"{fullName}.{method.Identifier.Text}只有返回值为Task类型或ValueTask类型才能添加【Discard】注解");
+                                context.LogError(LocalizationService.GetString(GameFrameX.Localization.Keys.CodeGenerator.AgentGenerator.DiscardAttributeRequiresTaskOrValueTask, fullName, method.Identifier.Text, discardAttributeName));
                             }
 
                             mth.Constraint = method.ConstraintClauses.ToString(); //where T : class, new() where K : BagState

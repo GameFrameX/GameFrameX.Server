@@ -842,4 +842,26 @@
   <data name="Apps.SessionManager.AccountAlreadyLoggedIn" xml:space="preserve">
     <value>你的账号已在其他设备上登陆</value>
   </data>
+
+  <!-- CodeGenerator 模块错误消息 -->
+  <!-- Agent生成器相关错误消息 -->
+  <data name="CodeGenerator.AgentGenerator.CannotSetTimeoutForThreadSafeAttribute" xml:space="preserve">
+    <value>{0}.{1}无法为标记【{2}】的函数指定超时时间</value>
+  </data>
+
+  <data name="CodeGenerator.AgentGenerator.TimeoutAttributeMustBeUsedWithApiOrDiscard" xml:space="preserve">
+    <value>{0}.{1}【{2}】注解只能配合【{3}】或【{4}】使用</value>
+  </data>
+
+  <data name="CodeGenerator.AgentGenerator.NonThreadSafeApiMustBeAsync" xml:space="preserve">
+    <value>{0}.{1}, 非【{2}】的【{3}】接口只能是异步函数</value>
+  </data>
+
+  <data name="CodeGenerator.AgentGenerator.MarkedFunctionMustBeVirtual" xml:space="preserve">
+    <value>{0}.{1}标记了【{2}】【{3}】【{4}】注解的函数必须申明为virtual</value>
+  </data>
+
+  <data name="CodeGenerator.AgentGenerator.DiscardAttributeRequiresTaskOrValueTask" xml:space="preserve">
+    <value>{0}.{1}只有返回值为Task类型或ValueTask类型才能添加【{2}】注解</value>
+  </data>
 </root>

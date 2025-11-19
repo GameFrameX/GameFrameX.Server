@@ -825,4 +825,26 @@
     <value>Your account is already logged in on another device</value>
   </data>
 
+  <!-- CodeGenerator module error messages -->
+  <!-- Agent generator related error messages -->
+  <data name="CodeGenerator.AgentGenerator.CannotSetTimeoutForThreadSafeAttribute" xml:space="preserve">
+    <value>{0}.{1} cannot specify timeout for function marked with [{2}]</value>
+  </data>
+
+  <data name="CodeGenerator.AgentGenerator.TimeoutAttributeMustBeUsedWithApiOrDiscard" xml:space="preserve">
+    <value>{0}.{1} [{2}] attribute can only be used with [{3}] or [{4}]</value>
+  </data>
+
+  <data name="CodeGenerator.AgentGenerator.NonThreadSafeApiMustBeAsync" xml:space="preserve">
+    <value>{0}.{1}, non-[{2}] [{3}] interface can only be async function</value>
+  </data>
+
+  <data name="CodeGenerator.AgentGenerator.MarkedFunctionMustBeVirtual" xml:space="preserve">
+    <value>{0}.{1} function marked with [{2}][{3}][{4}] attribute must be declared as virtual</value>
+  </data>
+
+  <data name="CodeGenerator.AgentGenerator.DiscardAttributeRequiresTaskOrValueTask" xml:space="preserve">
+    <value>{0}.{1} only functions with Task or ValueTask return type can add [{2}] attribute</value>
+  </data>
+
   </root>
