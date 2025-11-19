@@ -30,9 +30,6 @@
 // ==========================================================================================
 
 using GameFrameX.Apps.Player.Friend;
-using GameFrameX.Hotfix.Logic.Rpc;
-using GameFrameX.NetWork;
-using GameFrameX.Proto.BuiltIn;
 
 namespace GameFrameX.Hotfix.Logic.Player.Friend;
 
@@ -41,72 +38,72 @@ public class FriendComponentAgent : StateComponentAgent<FriendComponent, FriendS
     public async Task OnFriendList(INetWorkChannel netWorkChannel, ReqFriendList request, RespFriendList response)
     {
         // 使用统一的RPC客户端调用社交服务
-        var reqInnerFriendList = MessageObjectPoolHelper.Get<ReqInnerFriendList>();
-        reqInnerFriendList.PlayerId = ActorId;
-
-        try
-        {
-            var rpcResult = await ServiceRpcClient.Instance.CallAsync<RespInnerFriendList>(
-                GlobalConst.SocialServiceName,
-                reqInnerFriendList
-            );
-
-            if (rpcResult != null && rpcResult.IsSuccess && rpcResult.Message is RespInnerFriendList friendResponse)
-            {
-                // 将远程获取的好友列表数据转换给客户端
-                response.Friends = friendResponse.Friends ?? new List<FriendInfo>();
-                response.ErrorCode = friendResponse.ErrorCode;
-                LogHelper.DebugConsole($"Successfully retrieved friend list for player {ActorId}, count: {response.Friends.Count}");
-            }
-            else
-            {
-                response.ErrorCode = -1;
-                LogHelper.Error($"Failed to get friend list for player {ActorId}: RPC call failed");
-            }
-        }
-        finally
-        {
-            // 释放消息对象回池
-            MessageObjectPoolHelper.Return(reqInnerFriendList);
-        }
+        // var reqInnerFriendList = MessageObjectPoolHelper.Get<ReqInnerFriendList>();
+        // reqInnerFriendList.PlayerId = ActorId;
+        //
+        // try
+        // {
+        //     var rpcResult = await ServiceRpcClient.Instance.CallAsync<RespInnerFriendList>(
+        //                         GlobalConst.SocialServiceName,
+        //                         reqInnerFriendList
+        //                     );
+        //
+        //     if (rpcResult != null && rpcResult.IsSuccess && rpcResult.Message is RespInnerFriendList friendResponse)
+        //     {
+        //         // 将远程获取的好友列表数据转换给客户端
+        //         response.Friends = friendResponse.Friends ?? new List<FriendInfo>();
+        //         response.ErrorCode = friendResponse.ErrorCode;
+        //         LogHelper.DebugConsole($"Successfully retrieved friend list for player {ActorId}, count: {response.Friends.Count}");
+        //     }
+        //     else
+        //     {
+        //         response.ErrorCode = -1;
+        //         LogHelper.Error($"Failed to get friend list for player {ActorId}: RPC call failed");
+        //     }
+        // }
+        // finally
+        // {
+        //     // 释放消息对象回池
+        //     MessageObjectPoolHelper.Return(reqInnerFriendList);
+        // }
     }
 
     public async Task OnAddFriend(INetWorkChannel netWorkChannel, ReqFriendByAdd request, RespFriendByAdd response)
     {
         // 使用统一的RPC客户端调用社交服务添加好友
-        var reqInnerAddFriend = MessageObjectPoolHelper.Get<ReqInnerFriendByAdd>();
-        reqInnerAddFriend.PlayerId = ActorId;
-
-        try
-        {
-            var rpcResult = await ServiceRpcClient.Instance.CallAsync<RespInnerFriendByAdd>(
-                GlobalConst.SocialServiceName,
-                reqInnerAddFriend
-            );
-
-            if (rpcResult != null && rpcResult.IsSuccess && rpcResult.Message is RespInnerFriendByAdd addFriendResponse)
-            {
-                response.Success = addFriendResponse.Success;
-
-                if (response.Success)
-                {
-                    LogHelper.DebugConsole($"Player {ActorId} successfully added friend {request.PlayerId}");
-                }
-                else
-                {
-                    LogHelper.Warning($"Player {ActorId} failed to add friend {request.PlayerId}, error code: {addFriendResponse.ErrorCode}");
-                }
-            }
-            else
-            {
-                response.Success = false;
-                LogHelper.Error($"RPC call failed when adding friend for player {ActorId}");
-            }
-        }
-        finally
-        {
-            MessageObjectPoolHelper.Return(reqInnerAddFriend);
-        }
+        // var reqInnerAddFriend = MessageObjectPoolHelper.Get<ReqInnerFriendByAdd>();
+        // reqInnerAddFriend.PlayerId = ActorId;
+        //
+        // try
+        // {
+        //     var rpcResult = await ServiceRpcClient.Instance.CallAsync<RespInnerFriendByAdd>(
+        //                         GlobalConst.SocialServiceName,
+        //                         reqInnerAddFriend
+        //                     );
+        //
+        //     if (rpcResult != null && rpcResult.IsSuccess && rpcResult.Message is RespInnerFriendByAdd addFriendResponse)
+        //     {
+        //         response.Success = addFriendResponse.Success;
+        //
+        //         if (response.Success)
+        //         {
+        //             LogHelper.DebugConsole($"Player {ActorId} successfully added friend {request.PlayerId}");
+        //         }
+        //         else
+        //         {
+        //             LogHelper.Warning($"Player {ActorId} failed to add friend {request.PlayerId}, error code: {addFriendResponse.ErrorCode}");
+        //         }
+        //     }
+        //     else
+        //     {
+        //         response.Success = false;
+        //         LogHelper.Error($"RPC call failed when adding friend for player {ActorId}");
+        //     }
+        // }
+        // finally
+        // {
+        //     MessageObjectPoolHelper.Return(reqInnerAddFriend);
+        // }
     }
 
     public async Task OnInnerFriendList(INetWorkChannel netWorkChannel, ReqInnerFriendList request, RespInnerFriendList response)
@@ -122,5 +119,4 @@ public class FriendComponentAgent : StateComponentAgent<FriendComponent, FriendS
         };
         await Task.CompletedTask;
     }
-
-    }
+}
