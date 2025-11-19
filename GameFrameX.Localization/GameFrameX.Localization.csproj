@@ -1,22 +1,21 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <Import Project="../Version.props" Label="版本号定义"/>
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>10</LangVersion>
         <PublicSign>true</PublicSign>
         <SignAssembly>true</SignAssembly>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>$(AssemblyName)</Title>
-        <Description>GameFrameX.DataBase.Mongo,GameFrameX 框架的基础设施框架库,用于和数据库交互的接口.框架文档主页: https://gameframex.doc.alianblank.com</Description>
         <Copyright>AlianBlank;GameFrameX;Blank</Copyright>
         <PackageProjectUrl>https://github.com/GameFrameX/GameFrameX</PackageProjectUrl>
         <RepositoryUrl>https://github.com/GameFrameX/GameFrameX</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-        <PackageTags>GameFrameX,Lib,Database,Core,MongoDB,Server,GameServer</PackageTags>
+        <Description>GameFrameX.Setting,GameFrameX 框架的基础设施框架库.框架文档主页: https://gameframex.doc.alianblank.com</Description>
+        <PackageTags>GameFrameX,Lib,Setting,Server,GameServer</PackageTags>
         <PackageReleaseNotes>https://gameframex.doc.alianblank.com/</PackageReleaseNotes>
         <PackageIcon>logo.png</PackageIcon>
         <Authors>AlianBlank;Blank</Authors>
@@ -38,22 +37,35 @@
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
         <OutputPath>..\bin\app</OutputPath>
     </PropertyGroup>
+    <PropertyGroup>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Update="Resources\Resources.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Resources.resx</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
+
+    <ItemGroup>
+        <Folder Include="Localization\"/>
+    </ItemGroup>
     <ItemGroup>
         <None Include="..\logo.png">
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
             <Link>logo.png</Link>
         </None>
-        <None Include="../README.md">
+        <None Include="..\README.md">
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\GameFrameX.DataBase\GameFrameX.DataBase.csproj" />
-        <ProjectReference Include="..\GameFrameX.Localization\GameFrameX.Localization.csproj" />
-        <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
+      <PackageReference Include="GameFrameX.Foundation.Localization" Version="1.7.1.8" />
     </ItemGroup>
-
 </Project>

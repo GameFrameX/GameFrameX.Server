@@ -31,6 +31,7 @@
 
 using GameFrameX.DataBase.Abstractions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Entities;
@@ -68,13 +69,13 @@ public sealed partial class MongoDbService : IDatabaseService
             await DB.InitAsync(dbOptions.Name, settings);
             _mongoDbContext = new MongoDbContext();
             CurrentDatabase = DB.Database(dbOptions.Name);
-            LogHelper.Info($"The MongoDB service is initialized successfully, Url:{dbOptions.ConnectionString} DbName:{dbOptions.Name}");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Database.MongoDbInitializedSuccessfully, dbOptions.ConnectionString, dbOptions.Name));
             return true;
         }
         catch (Exception exception)
         {
             LogHelper.Fatal(exception);
-            string message = $"MongoDB service initialization failed, Url:{dbOptions.ConnectionString} DbName:{dbOptions.Name}";
+            string message = LocalizationService.GetString(GameFrameX.Localization.Keys.Database.MongoDbInitializationFailed, dbOptions.ConnectionString, dbOptions.Name);
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(message);
             Console.ResetColor();

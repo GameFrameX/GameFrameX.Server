@@ -160,6 +160,10 @@
 //     Electronics Letters, 32(6), 1996, pp 537-538.
 //
 //************************************************************************************
+
+
+using GameFrameX.Foundation.Localization.Core;
+
 namespace GameFrameX.Utility;
 
 /// <summary>
@@ -245,14 +249,14 @@ public sealed class BigInteger
         {
             if (value != 0 || (data[maxLength - 1] & 0x80000000) != 0)
             {
-                throw new ArithmeticException("构造函数中的正溢出。");
+                throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.ConstructorOverflow));
             }
         }
         else if (tempVal < 0) // 负值下溢检查
         {
             if (value != -1 || (data[dataLength - 1] & 0x80000000) == 0)
             {
-                throw new ArithmeticException("构造函数中的负下溢。");
+                throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.ConstructorUnderflow));
             }
         }
 
@@ -286,7 +290,7 @@ public sealed class BigInteger
 
         if (value != 0 || (data[maxLength - 1] & 0x80000000) != 0)
         {
-            throw new ArithmeticException("构造函数中的正溢出。");
+            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ConstructorOverflow));
         }
 
         if (dataLength == 0)
@@ -371,7 +375,7 @@ public sealed class BigInteger
 
             if (posVal >= radix)
             {
-                throw new ArithmeticException("构造函数中的无效字符串。");
+                throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.ConstructorInvalidString));
             }
 
             if (value[0] == '-')
@@ -391,14 +395,14 @@ public sealed class BigInteger
         {
             if ((result.data[maxLength - 1] & 0x80000000) == 0)
             {
-                throw new ArithmeticException("构造函数中的负溢出。");
+                throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.ConstructorUnderflow));
             }
         }
         else // 处理正值
         {
             if ((result.data[maxLength - 1] & 0x80000000) != 0)
             {
-                throw new ArithmeticException("构造函数中的正溢出。");
+                throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.ConstructorOverflow));
             }
         }
 
@@ -428,7 +432,7 @@ public sealed class BigInteger
 
         if (dataLength > maxLength)
         {
-            throw new ArithmeticException("构造函数中的字节溢出。");
+            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Exceptions.BigInteger.ConstructorByteOverflow));
         }
 
         data = new uint[maxLength];
@@ -478,7 +482,7 @@ public sealed class BigInteger
 
         if (dataLength > maxLength || inLen > inData.Length)
         {
-            throw new ArithmeticException("构造函数中的字节溢出。");
+            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Exceptions.BigInteger.ConstructorByteOverflow));
         }
 
         data = new uint[maxLength];
@@ -526,7 +530,7 @@ public sealed class BigInteger
 
         if (dataLength > maxLength)
         {
-            throw new ArithmeticException("构造函数中的字节溢出。");
+            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Exceptions.BigInteger.ConstructorByteOverflow));
         }
 
         data = new uint[maxLength];
@@ -674,7 +678,7 @@ public sealed class BigInteger
         if ((bi1.data[lastPos] & 0x80000000) == 0 &&
             (result.data[lastPos] & 0x80000000) != (bi1.data[lastPos] & 0x80000000))
         {
-            throw new ArithmeticException("自增溢出。");
+            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.IncrementOverflow));
         }
 
         return result;
@@ -785,7 +789,7 @@ public sealed class BigInteger
         if ((bi1.data[lastPos] & 0x80000000) != 0 &&
             (result.data[lastPos] & 0x80000000) != (bi1.data[lastPos] & 0x80000000))
         {
-            throw new ArithmeticException("自减下溢。");
+            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.DecrementUnderflow));
         }
 
         return result;
@@ -853,7 +857,7 @@ public sealed class BigInteger
         }
         catch (Exception)
         {
-            throw new ArithmeticException("乘法溢出。");
+            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.MultiplicationOverflow));
         }
 
 
@@ -894,7 +898,7 @@ public sealed class BigInteger
                 }
             }
 
-            throw new ArithmeticException("乘法溢出。");
+            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.MultiplicationOverflow));
         }
 
         // 如果输入符号不同，则结果为负
@@ -1125,7 +1129,7 @@ public sealed class BigInteger
 
         if ((bi1.data[maxLength - 1] & 0x80000000) == (result.data[maxLength - 1] & 0x80000000))
         {
-            throw new ArithmeticException("取负溢出。\n");
+            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.NegationOverflow));
         }
 
         result.dataLength = maxLength;
@@ -1809,7 +1813,7 @@ public sealed class BigInteger
     {
         if (radix < 2 || radix > 36)
         {
-            throw new ArgumentException("Radix must be >= 2 and <= 36");
+            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.RadixOutOfRange));
         }
 
         var charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -1908,7 +1912,7 @@ public sealed class BigInteger
     {
         if ((exp.data[maxLength - 1] & 0x80000000) != 0)
         {
-            throw new ArithmeticException("Positive exponents only."); // 仅支持正指数
+            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.PositiveExponentsOnly)); // 仅支持正指数
         }
 
         BigInteger resultNum = 1;
@@ -2153,7 +2157,7 @@ public sealed class BigInteger
 
         if (dwords > maxLength)
         {
-            throw new ArithmeticException("Number of required bits > maxLength."); // 超过最大长度
+            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.RequiredBitsExceedMaxLength)); // 超过最大长度
         }
 
         for (var i = 0; i < dwords; i++)
@@ -3041,7 +3045,7 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
         // 雅可比符号仅定义于奇数
         if ((b.data[0] & 0x1) == 0)
         {
-            throw new ArgumentException("雅可比符号仅定义于奇数。");
+            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.JacobiSymbolDefinedForOddOnly));
         }
 
         if (a >= b)
@@ -3220,7 +3224,7 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
         if (r[0].dataLength > 1 || (r[0].dataLength == 1 && r[0].data[0] != 1))
         {
-            throw new ArithmeticException("没有逆！");
+            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.NoInverse));
         }
 
         var result = (p[0] - p[1] * q[0]) % modulus;
@@ -3505,7 +3509,7 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
 
         if ((k.data[0] & 0x00000001) == 0)
         {
-            throw new ArgumentException("参数 k 必须是奇数。");
+            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.ParameterKMustBeOdd));
         }
 
         var numbits = k.BitCount();

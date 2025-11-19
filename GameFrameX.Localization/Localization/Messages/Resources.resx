@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- Extensions module exception messages -->
+  <data name="Extensions.Exceptions.OffsetCountExceedBufferLength" xml:space="preserve">
+    <value>Offset and count exceed buffer length. Buffer length: {0}, offset: {1}, count: {2}.</value>
+  </data>
+
+  <data name="Extensions.Exceptions.IndexCountExceedBufferLength" xml:space="preserve">
+    <value>Index and count exceed buffer length. Buffer length: {0}, index: {1}, count: {2}.</value>
+  </data>
+
+  <data name="Extensions.Exceptions.BufferWriteOutOfRange" xml:space="preserve">
+    <value>Buffer write position out of range. Buffer length: {0}, write position: {1}.</value>
+  </data>
+
+  <data name="Extensions.Exceptions.StringLengthExceedMaxValue" xml:space="preserve">
+    <value>String length exceeds maximum value. Actual length: {0}, maximum length: {1}.</value>
+  </data>
+
+  <data name="Extensions.Exceptions.ByteArrayLengthMustEqual" xml:space="preserve">
+    <value>Byte array lengths must be equal. First array length: {0}, second array length: {1}.</value>
+  </data>
+
+  <data name="Extensions.Exceptions.ListCannotBeEmpty" xml:space="preserve">
+    <value>List cannot be empty.</value>
+  </data>
+
+  <data name="Extensions.Exceptions.TargetTypeMustBeInterface" xml:space="preserve">
+    <value>Target type must be an interface type. Target type: {0}.</value>
+  </data>
+
+  <data name="Extensions.Exceptions.ObjectTypeMismatch" xml:space="preserve">
+    <value>Object type mismatch. Object type: {0}, target type: {1}.</value>
+  </data>
+
+  <!-- Log messages -->
+  <data name="Extensions.Logs.CollectionProcessed" xml:space="preserve">
+    <value>Collection processing completed. Collection type: {0}, element count: {1}.</value>
+  </data>
+
+  <data name="Extensions.Logs.ByteConversionCompleted" xml:space="preserve">
+    <value>Byte conversion completed. Source format: {0}, target format: {1}, byte count: {2}.</value>
+  </data>
+
+  <data name="Extensions.Logs.TypeConversionCompleted" xml:space="preserve">
+    <value>Type conversion completed. Source type: {0}, target type: {1}.</value>
+  </data>
+
+  <!-- Status messages -->
+  <data name="Extensions.Status.ExtensionsInitialized" xml:space="preserve">
+    <value>{0} extensions module initialized successfully.</value>
+  </data>
+
+  <data name="Extensions.Status.BufferOperationSuccessful" xml:space="preserve">
+    <value>Buffer operation completed successfully. Operation type: {0}, byte count: {1}.</value>
+  </data>
+
+  <!-- Validation messages -->
+  <data name="Extensions.Validation.NotNullRequired" xml:space="preserve">
+    <value>Parameter cannot be null. Parameter name: {0}.</value>
+  </data>
+
+  <data name="Extensions.Validation.RangeCheckFailed" xml:space="preserve">
+    <value>Value exceeds allowed range. Value: {0}, minimum value: {1}, maximum value: {2}.</value>
+  </data>
+
+  <data name="Extensions.Validation.TypeCheckFailed" xml:space="preserve">
+    <value>Type validation failed. Actual type: {0}, expected type: {1}.</value>
+  </data>
+
+  <!-- Performance messages -->
+  <data name="Extensions.Performance.OperationExecutionTime" xml:space="preserve">
+    <value>Operation execution time. Operation name: {0}, execution time: {1} ms.</value>
+  </data>
+
+  <data name="Extensions.Performance.MemoryUsage" xml:space="preserve">
+    <value>Memory usage. Operation name: {0}, memory usage: {1} bytes.</value>
+  </data>
+
+  <!-- Utility module exception keys -->
+  <data name="Utility.Exceptions.ActorIdLessThanMinServerId" xml:space="preserve">
+    <value>actorId is less than min server id</value>
+  </data>
+  <data name="Utility.Exceptions.ActorIdLessThanMinServerIdDetail" xml:space="preserve">
+    <value>actorId: {0} is less than min server id: {1}</value>
+  </data>
+  <data name="Utility.Exceptions.ActorTypeError" xml:space="preserve">
+    <value>input actor type error: {0}</value>
+  </data>
+  <data name="Utility.Exceptions.ServerIdNegative" xml:space="preserve">
+    <value>serverId is negative when generate id {0}</value>
+  </data>
+  <data name="Utility.Exceptions.ServerIdLessThanOrEqualZero" xml:space="preserve">
+    <value>serverId is less than or equal to 0</value>
+  </data>
+  <data name="Utility.Exceptions.ActorTypeInvalid" xml:space="preserve">
+    <value>actor type is invalid</value>
+  </data>
+  <data name="Utility.Exceptions.ModuleInvalid" xml:space="preserve">
+    <value>module is invalid</value>
+  </data>
+  <data name="Utility.Exceptions.RadixOutOfRange" xml:space="preserve">
+    <value>Radix must be between 2 and 36</value>
+  </data>
+  <data name="Utility.Exceptions.PositiveExponentsOnly" xml:space="preserve">
+    <value>Positive exponents only</value>
+  </data>
+  <data name="Utility.Exceptions.ParameterKMustBeOdd" xml:space="preserve">
+    <value>Parameter k must be odd</value>
+  </data>
+  <data name="Utility.Exceptions.JacobiSymbolDefinedForOddOnly" xml:space="preserve">
+    <value>Jacobi symbol is defined for odd numbers only</value>
+  </data>
+  <data name="Utility.Exceptions.NoInverse" xml:space="preserve">
+    <value>No inverse exists</value>
+  </data>
+  <data name="Utility.Exceptions.RequiredBitsExceedMaxLength" xml:space="preserve">
+    <value>Number of required bits exceeds maxLength</value>
+  </data>
+  <data name="Utility.Exceptions.MultiplicationOverflow" xml:space="preserve">
+    <value>Multiplication overflow</value>
+  </data>
+  <data name="Utility.Exceptions.IncrementOverflow" xml:space="preserve">
+    <value>Increment overflow</value>
+  </data>
+  <data name="Utility.Exceptions.DecrementUnderflow" xml:space="preserve">
+    <value>Decrement underflow</value>
+  </data>
+  <data name="Utility.Exceptions.NegationOverflow" xml:space="preserve">
+    <value>Negation overflow</value>
+  </data>
+  <data name="Utility.Exceptions.ConstructorOverflow" xml:space="preserve">
+    <value>Positive overflow in constructor</value>
+  </data>
+  <data name="Utility.Exceptions.ConstructorUnderflow" xml:space="preserve">
+    <value>Negative underflow in constructor</value>
+  </data>
+  <data name="Utility.Exceptions.ConstructorInvalidString" xml:space="preserve">
+    <value>Invalid string in constructor</value>
+  </data>
+
+  <!-- Client module log keys -->
+  <data name="Client.AttemptingToConnect" xml:space="preserve">
+    <value>Attempting to connect to server...</value>
+  </data>
+  <data name="Client.RetryConnect" xml:space="preserve">
+    <value>Not connected to server, attempting retry (Attempt: {0}/{1})</value>
+  </data>
+  <data name="Client.MaxRetryReached" xml:space="preserve">
+    <value>Maximum retry attempts reached, stopping retries.</value>
+  </data>
+  <data name="Client.ErrorOccurred" xml:space="preserve">
+    <value>Client error occurred: {0}</value>
+  </data>
+  <data name="Client.Disconnected" xml:space="preserve">
+    <value>Client disconnected</value>
+  </data>
+  <data name="Client.ConnectedSuccessfully" xml:space="preserve">
+    <value>Client successfully connected to server</value>
+  </data>
+
+  <!-- Events module log keys -->
+  <data name="Events.NoListenersFound" xml:space="preserve">
+    <value>No listeners found for event ID: {0}</value>
+  </data>
+
+  <!-- Storage module log keys -->
+  <data name="Storage.CacheHashEquals" xml:space="preserve">
+    <value>CacheHash equals ToSaveHash before calling AfterSaveToDB: {0}</value>
+  </data>
+
+  <!-- Database module log keys -->
+  <data name="Database.MongoDb.InitializedSuccessfully" xml:space="preserve">
+    <value>MongoDB service initialized successfully, ConnectionString: {0}, DatabaseName: {1}</value>
+  </data>
+  <data name="Database.MongoDb.InitializationFailed" xml:space="preserve">
+    <value>MongoDB service initialization failed, ConnectionString: {0}, DatabaseName: {1}</value>
+  </data>
+
+  <!-- LNumber module log and error keys -->
+  <data name="Utility.LNumber.CreateFailed" xml:space="preserve">
+    <value>Xnumber creation failed! {0}.{1}</value>
+  </data>
+  <data name="Utility.LNumber.DataExceedsLimit" xml:space="preserve">
+    <value>Number data exceeds limit {0} {1}</value>
+  </data>
+  <data name="Utility.LNumber.MultiplicationOverflow" xml:space="preserve">
+    <value>LNumber multiplication overflow > {0}</value>
+  </data>
+  <data name="Utility.LNumber.DivisionOverflow" xml:space="preserve">
+    <value>LNumber division overflow > {0}</value>
+  </data>
+
+  <!-- Network module error keys -->
+  <data name="Utility.Network.InvalidIpAddressFormat" xml:space="preserve">
+    <value>Invalid IP address format</value>
+  </data>
+
+  <!-- Illegal word detection module log keys -->
+  <data name="Utility.IllegalWordDetection.InitializationComplete" xml:space="preserve">
+    <value>Sensitive word initialization completed in {0}ms, active count: {1}</value>
+  </data>
+
+  <!-- Settings module log and error keys -->
+  <data name="Utility.Settings.AppAlreadyExited" xml:space="preserve">
+    <value>AppRunning has already been set to exit, cannot be enabled again...</value>
+  </data>
+  <data name="Utility.Settings.SaveDataIntervalTooSmall" xml:space="preserve">
+    <value>SaveDataInterval is less than 5000 milliseconds, using default value: {0} milliseconds</value>
+  </data>
+
+  </root>

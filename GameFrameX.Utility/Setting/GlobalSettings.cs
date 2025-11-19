@@ -32,6 +32,7 @@
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Json;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Foundation.Utility.DistributedSystem.Snowflake;
 
 namespace GameFrameX.Utility.Setting;
@@ -121,7 +122,7 @@ public static class GlobalSettings
         ArgumentNullException.ThrowIfNull(setting, nameof(setting));
         if (setting.SaveDataInterval < 5000)
         {
-            LogHelper.Warning($"SaveDataInterval小于5000毫秒，使用默认值为:{GlobalConst.SaveIntervalInMilliSeconds} 毫秒");
+            LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Settings.SaveDataIntervalTooSmall, GlobalConst.SaveIntervalInMilliSeconds));
             setting.SaveDataInterval = GlobalConst.SaveIntervalInMilliSeconds;
         }
 

@@ -33,6 +33,7 @@ using System.Collections;
 using System.Text;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.Utility;
 
@@ -264,7 +265,7 @@ public sealed class IllegalWordDetection
             }
         }
 
-        LogHelper.Info($"敏感词初始化耗时:{(DateTime.UtcNow - startTime).TotalMilliseconds}ms, 有效数量:{activeNum}");
+        LogHelper.Info(LocalizationService.GetString(Localization.Keys.Utility.IllegalWordDetection.InitializationComplete, (DateTime.UtcNow - startTime).TotalMilliseconds, activeNum));
     }
 
     private static unsafe void InnerInit(string[] badWords)
@@ -338,7 +339,7 @@ public sealed class IllegalWordDetection
             }
         }
 
-        LogHelper.Info($"敏感词初始化耗时:{(DateTime.UtcNow - startTime).TotalMilliseconds}ms, 有效数量:{activeNum}");
+        LogHelper.Info(LocalizationService.GetString(Localization.Keys.Utility.IllegalWordDetection.InitializationComplete, (DateTime.UtcNow - startTime).TotalMilliseconds, activeNum));
     }
 
     private static unsafe string OriginalToLower(string text)

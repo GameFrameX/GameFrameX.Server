@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- Extensions 模块异常消息 -->
+  <data name="Extensions.Exceptions.OffsetCountExceedBufferLength" xml:space="preserve">
+    <value>偏移量和计数超出缓冲区长度。缓冲区长度：{0}，偏移量：{1}，计数：{2}。</value>
+  </data>
+
+  <data name="Extensions.Exceptions.IndexCountExceedBufferLength" xml:space="preserve">
+    <value>索引和计数超出缓冲区长度。缓冲区长度：{0}，索引：{1}，计数：{2}。</value>
+  </data>
+
+  <data name="Extensions.Exceptions.BufferWriteOutOfRange" xml:space="preserve">
+    <value>缓冲区写入位置超出范围。缓冲区长度：{0}，写入位置：{1}。</value>
+  </data>
+
+  <data name="Extensions.Exceptions.StringLengthExceedMaxValue" xml:space="preserve">
+    <value>字符串长度超出最大值。实际长度：{0}，最大长度：{1}。</value>
+  </data>
+
+  <data name="Extensions.Exceptions.ByteArrayLengthMustEqual" xml:space="preserve">
+    <value>字节数组长度必须相等。第一个数组长度：{0}，第二个数组长度：{1}。</value>
+  </data>
+
+  <data name="Extensions.Exceptions.ListCannotBeEmpty" xml:space="preserve">
+    <value>列表不能为空。</value>
+  </data>
+
+  <data name="Extensions.Exceptions.TargetTypeMustBeInterface" xml:space="preserve">
+    <value>目标类型必须是接口类型。目标类型：{0}。</value>
+  </data>
+
+  <data name="Extensions.Exceptions.ObjectTypeMismatch" xml:space="preserve">
+    <value>对象类型不匹配。对象类型：{0}，目标类型：{1}。</value>
+  </data>
+
+  <!-- 日志消息 -->
+  <data name="Extensions.Logs.CollectionProcessed" xml:space="preserve">
+    <value>集合处理完成。集合类型：{0}，元素数量：{1}。</value>
+  </data>
+
+  <data name="Extensions.Logs.ByteConversionCompleted" xml:space="preserve">
+    <value>字节转换完成。源格式：{0}，目标格式：{1}，字节数：{2}。</value>
+  </data>
+
+  <data name="Extensions.Logs.TypeConversionCompleted" xml:space="preserve">
+    <value>类型转换完成。源类型：{0}，目标类型：{1}。</value>
+  </data>
+
+  <!-- 状态消息 -->
+  <data name="Extensions.Status.ExtensionsInitialized" xml:space="preserve">
+    <value>{0}扩展方法模块初始化成功。</value>
+  </data>
+
+  <data name="Extensions.Status.BufferOperationSuccessful" xml:space="preserve">
+    <value>缓冲区操作成功完成。操作类型：{0}，字节数：{1}。</value>
+  </data>
+
+  <!-- 验证消息 -->
+  <data name="Extensions.Validation.NotNullRequired" xml:space="preserve">
+    <value>参数不能为null。参数名称：{0}。</value>
+  </data>
+
+  <data name="Extensions.Validation.RangeCheckFailed" xml:space="preserve">
+    <value>数值超出允许范围。值：{0}，最小值：{1}，最大值：{2}。</value>
+  </data>
+
+  <data name="Extensions.Validation.TypeCheckFailed" xml:space="preserve">
+    <value>类型验证失败。实际类型：{0}，期望类型：{1}。</value>
+  </data>
+
+  <!-- 性能消息 -->
+  <data name="Extensions.Performance.OperationExecutionTime" xml:space="preserve">
+    <value>操作执行时间。操作名称：{0}，执行时间：{1}毫秒。</value>
+  </data>
+
+  <data name="Extensions.Performance.MemoryUsage" xml:space="preserve">
+    <value>内存使用情况。操作名称：{0}，内存使用量：{1}字节。</value>
+  </data>
+
+  <!-- 新的Utility异常键名 -->
+  <data name="Utility.Exceptions.ActorIdLessThanMinServerId" xml:space="preserve">
+    <value>actorId小于最小服务器ID，最小服务器ID为{0}</value>
+  </data>
+  <data name="Utility.Exceptions.ActorIdLessThanMinServerIdDetail" xml:space="preserve">
+    <value>actorId：{0}小于最小服务器ID：{1}</value>
+  </data>
+  <data name="Utility.Exceptions.InputIsGlobalId" xml:space="preserve">
+    <value>输入为全局ID：{0}</value>
+  </data>
+  <data name="Utility.Exceptions.ActorTypeError" xml:space="preserve">
+    <value>输入Actor类型错误：{0}</value>
+  </data>
+  <data name="Utility.Exceptions.ServerIdNegative" xml:space="preserve">
+    <value>生成ID时服务器ID为负数{0}</value>
+  </data>
+  <data name="Utility.Exceptions.ServerIdLessThanOrEqualZero" xml:space="preserve">
+    <value>服务器ID小于等于0</value>
+  </data>
+  <data name="Utility.Exceptions.ActorTypeInvalid" xml:space="preserve">
+    <value>Actor类型无效</value>
+  </data>
+  <data name="Utility.Exceptions.ModuleInvalid" xml:space="preserve">
+    <value>模块无效</value>
+  </data>
+  <data name="Utility.Exceptions.RadixOutOfRange" xml:space="preserve">
+    <value>基数必须在2-36范围内</value>
+  </data>
+  <data name="Utility.Exceptions.PositiveExponentsOnly" xml:space="preserve">
+    <value>仅支持正指数。</value>
+  </data>
+  <data name="Utility.Exceptions.ParameterKMustBeOdd" xml:space="preserve">
+    <value>参数k必须是奇数。</value>
+  </data>
+  <data name="Utility.Exceptions.JacobiSymbolDefinedForOddOnly" xml:space="preserve">
+    <value>雅可比符号仅定义于奇数。</value>
+  </data>
+  <data name="Utility.Exceptions.NoInverse" xml:space="preserve">
+    <value>不存在逆。</value>
+  </data>
+  <data name="Utility.Exceptions.RequiredBitsExceedMaxLength" xml:space="preserve">
+    <value>所需位数超过最大长度。</value>
+  </data>
+  <data name="Utility.Exceptions.MultiplicationOverflow" xml:space="preserve">
+    <value>乘法溢出。</value>
+  </data>
+  <data name="Utility.Exceptions.IncrementOverflow" xml:space="preserve">
+    <value>自增溢出。</value>
+  </data>
+  <data name="Utility.Exceptions.DecrementUnderflow" xml:space="preserve">
+    <value>自减下溢。</value>
+  </data>
+  <data name="Utility.Exceptions.NegationOverflow" xml:space="preserve">
+    <value>取负溢出。</value>
+  </data>
+  <data name="Utility.Exceptions.ConstructorByteOverflow" xml:space="preserve">
+    <value>构造函数中字节溢出。</value>
+  </data>
+  <data name="Utility.Exceptions.ConstructorOverflow" xml:space="preserve">
+    <value>构造函数中正溢出。</value>
+  </data>
+  <data name="Utility.Exceptions.ConstructorUnderflow" xml:space="preserve">
+    <value>构造函数中负下溢。</value>
+  </data>
+  <data name="Utility.Exceptions.ConstructorInvalidString" xml:space="preserve">
+    <value>构造函数中无效字符串。</value>
+  </data>
+  <data name="Utility.Exceptions.TimestampOutOfRange" xml:space="preserve">
+    <value>时间戳超出范围。</value>
+  </data>
+  <data name="Utility.Exceptions.ClockMovedBackwards" xml:space="preserve">
+    <value>系统时钟回退。拒绝生成ID {0} 毫秒。</value>
+  </data>
+  <data name="Utility.Exceptions.WorkerIdOutOfRange" xml:space="preserve">
+    <value>Worker ID不能大于{0}或小于0。</value>
+  </data>
+  <data name="Utility.Exceptions.DatacenterIdOutOfRange" xml:space="preserve">
+    <value>Datacenter ID不能大于{0}或小于0。</value>
+  </data>
+
+  <!-- 客户端模块日志键名 -->
+  <data name="Client.AttemptingToConnect" xml:space="preserve">
+    <value>尝试连接到服务器...</value>
+  </data>
+  <data name="Client.RetryConnect" xml:space="preserve">
+    <value>未连接到服务器, 尝试重连 (尝试次数: {0}/{1})</value>
+  </data>
+  <data name="Client.MaxRetryReached" xml:space="preserve">
+    <value>重连次数已达到上限，停止尝试。</value>
+  </data>
+  <data name="Client.ErrorOccurred" xml:space="preserve">
+    <value>客户端发生错误: {0}</value>
+  </data>
+  <data name="Client.Disconnected" xml:space="preserve">
+    <value>客户端断开连接</value>
+  </data>
+  <data name="Client.ConnectedSuccessfully" xml:space="preserve">
+    <value>客户端成功连接到服务器</value>
+  </data>
+
+  <!-- 事件模块日志键名 -->
+  <data name="Events.NoListenersFound" xml:space="preserve">
+    <value>事件ID：{0} 没有找到任何监听者</value>
+  </data>
+
+  <!-- 存储模块日志键名 -->
+  <data name="Storage.CacheHashEquals" xml:space="preserve">
+    <value>调用AfterSaveToDB前CacheHash已经等于ToSaveHash {0}</value>
+  </data>
+
+  <!-- 数据库模块日志键名 -->
+  <data name="Database.MongoDb.InitializedSuccessfully" xml:space="preserve">
+    <value>MongoDB服务初始化成功，连接字符串：{0}，数据库名称：{1}</value>
+  </data>
+  <data name="Database.MongoDb.InitializationFailed" xml:space="preserve">
+    <value>MongoDB服务初始化失败，连接字符串：{0}，数据库名称：{1}</value>
+  </data>
+
+  <!-- LNumber模块日志和错误键名 -->
+  <data name="Utility.LNumber.CreateFailed" xml:space="preserve">
+    <value>Xnumber 创建失败！ {0}.{1}</value>
+  </data>
+  <data name="Utility.LNumber.DataExceedsLimit" xml:space="preserve">
+    <value>Number数据超上限了 {0} {1}</value>
+  </data>
+  <data name="Utility.LNumber.MultiplicationOverflow" xml:space="preserve">
+    <value>LNumber乘法已越界 > {0}</value>
+  </data>
+  <data name="Utility.LNumber.DivisionOverflow" xml:space="preserve">
+    <value>LNumber除法已越界 > {0}</value>
+  </data>
+
+  <!-- 网络模块错误键名 -->
+  <data name="Utility.Network.InvalidIpAddressFormat" xml:space="preserve">
+    <value>无效的IP地址格式</value>
+  </data>
+
+  <!-- 敏感词检测模块日志键名 -->
+  <data name="Utility.IllegalWordDetection.InitializationComplete" xml:space="preserve">
+    <value>敏感词初始化耗时:{0}ms, 有效数量:{1}</value>
+  </data>
+
+  <!-- 设置模块日志和错误键名 -->
+  <data name="Utility.Settings.AppAlreadyExited" xml:space="preserve">
+    <value>AppRunning已经被设置为退出，不能再次开启...</value>
+  </data>
+  <data name="Utility.Settings.SaveDataIntervalTooSmall" xml:space="preserve">
+    <value>SaveDataInterval小于5000毫秒，使用默认值为:{0} 毫秒</value>
+  </data>
+</root>

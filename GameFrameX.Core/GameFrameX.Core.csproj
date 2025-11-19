@@ -52,6 +52,7 @@
     <ItemGroup>
         <ProjectReference Include="..\GameFrameX.DataBase.Mongo\GameFrameX.DataBase.Mongo.csproj" />
         <ProjectReference Include="..\GameFrameX.DataBase\GameFrameX.DataBase.csproj" />
+        <ProjectReference Include="..\GameFrameX.Localization\GameFrameX.Localization.csproj" />
         <ProjectReference Include="..\GameFrameX.NetWork.HTTP\GameFrameX.NetWork.HTTP.csproj" />
         <ProjectReference Include="..\GameFrameX.NetWork\GameFrameX.NetWork.csproj" />
         <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />

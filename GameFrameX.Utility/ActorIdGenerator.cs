@@ -29,6 +29,7 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.Utility;
@@ -59,7 +60,7 @@ public static class ActorIdGenerator
     {
         if (actorId < GlobalConst.MinServerId)
         {
-            throw new ArgumentOutOfRangeException(nameof(actorId), "actorId is less than min server id, min server id is " + GlobalConst.MinServerId);
+            throw new ArgumentOutOfRangeException(nameof(actorId), LocalizationService.GetString(Localization.Keys.Utility.ActorIdLessThanMinServerId, GlobalConst.MinServerId));
         }
 
         if (actorId < GlobalConst.MaxGlobalId)
@@ -110,7 +111,7 @@ public static class ActorIdGenerator
     {
         if (actorId < GlobalConst.MinServerId)
         {
-            throw new ArgumentOutOfRangeException(nameof(actorId), $"actorId :{actorId}  is less than min server id, min server id is {GlobalConst.MinServerId}");
+            throw new ArgumentOutOfRangeException(nameof(actorId), LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ActorIdLessThanMinServerIdDetail, actorId, GlobalConst.MinServerId));
         }
 
         if (actorId < GlobalConst.MaxGlobalId)
@@ -134,12 +135,12 @@ public static class ActorIdGenerator
     {
         if (type == GlobalConst.ActorTypeSeparator)
         {
-            throw new ArgumentException($"input actor type error: {type}");
+            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ActorTypeError, type));
         }
 
         if (serverId < 0)
         {
-            throw new ArgumentException($"serverId negtive when generate id {serverId}");
+            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ServerIdNegative, serverId));
         }
 
         if (serverId == 0)
@@ -165,12 +166,12 @@ public static class ActorIdGenerator
     {
         if (serverId <= 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(serverId), "serverId is less than 0");
+            throw new ArgumentOutOfRangeException(nameof(serverId), LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ServerIdLessThanOrEqualZero));
         }
 
         if (actorType >= GlobalConst.ActorTypeMax || actorType == GlobalConst.ActorTypeSeparator || actorType == GlobalConst.ActorTypeNone)
         {
-            throw new ArgumentOutOfRangeException(nameof(actorType), "type is invalid");
+            throw new ArgumentOutOfRangeException(nameof(actorType), LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ActorTypeInvalid));
         }
 
         return serverId * 1000 + actorType;
@@ -223,7 +224,7 @@ public static class ActorIdGenerator
     {
         if (module > 999)
         {
-            throw new ArgumentOutOfRangeException(nameof(module), "module is invalid");
+            throw new ArgumentOutOfRangeException(nameof(module), LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ModuleInvalid));
         }
 
         var second = (long)(DateTime.UtcNow - IdGenerator.UtcTimeStart).TotalSeconds;

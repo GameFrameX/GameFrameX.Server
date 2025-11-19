@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.Utility;
 
@@ -107,7 +108,7 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
             {
                 return Raw >> FRACTION_BITS;
             }
-            
+
             // 有小数部分时，正数向上取整，负数向零取整（即向上取整）
             if (Raw > 0)
             {
@@ -142,7 +143,7 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
     {
 #if XNUMBER_CHECK
         if (i > Max || i < -Max || f > FMax || f < -FMax)
-            Debug.LogError("Xnumber 创建失败！ " + i + "." + f);
+            Debug.LogError(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.LNumber.CreateFailed, i, f));
 #endif
 
         // 确定符号：如果整数部分为负，则结果为负；如果整数部分为0且小数部分为负，则结果为负
@@ -294,7 +295,7 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
 #if XNUMBER_CHECK
         var tmp = (int)lhs * (int)rhs;
         if (tmp > max || tmp < -max)
-            Debug.LogError("Number数据超上限了 " + lhs + " * " + rhs);
+            Debug.LogError(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.LNumber.DataExceedsLimit, lhs + " * " + rhs, ""));
 #endif
         LNumber r;
         if (lhs.Raw > int.MaxValue || rhs.Raw > int.MaxValue || lhs.Raw < int.MinValue || rhs.Raw < int.MinValue)
@@ -310,12 +311,12 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
             }
             else if ((lhs > 0 && rhs > 0) || (lhs < 0 && rhs < 0))
             {
-                LogHelper.Error("LNumber*已越界>" + c);
+                LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
                 r.Raw = long.MaxValue;
             }
             else
             {
-                LogHelper.Error("LNumber*已越界>" + c);
+                LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
                 r.Raw = long.MinValue;
             }
         }
@@ -366,12 +367,12 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
             }
             else if ((lhs > 0 && rhs > 0) || (lhs < 0 && rhs < 0))
             {
-                LogHelper.Error("LNumber/已越界>" + c);
+                LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.LNumber.DivisionOverflow, c));
                 r.Raw = long.MaxValue;
             }
             else
             {
-                LogHelper.Error("LNumber/已越界>" + c);
+                LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.LNumber.DivisionOverflow, c));
                 r.Raw = long.MinValue;
             }
         }
@@ -521,7 +522,7 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
 #if XNUMBER_CHECK
         var tmp = value;
         if (tmp > Max || tmp < -Max)
-            Debug.LogError("Number数据超上限了 " + value);
+            Debug.LogError(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.LNumber.DataExceedsLimit, "value", value.ToString()));
 #endif
         //LNumber r;
         //r.raw = value << FRACTION_BITS;
@@ -539,7 +540,7 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
 #if XNUMBER_CHECK
         var tmp = value;
         if (tmp > Max || tmp < -Max)
-            Debug.LogError("Number数据超上限了 " + value);
+            Debug.LogError(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.LNumber.DataExceedsLimit, "value", value.ToString()));
 #endif
         //LNumber r;
         //r.raw = value << FRACTION_BITS;
@@ -551,7 +552,7 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
 #if XNUMBER_CHECK
     var tmp = (long)number;
     if (tmp > Max || tmp < -Max)
-        Debug.LogError("Number数据超上限了 " + number);
+        Debug.LogError(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.LNumber.DataExceedsLimit, "number", number));
 #endif
     return Convert(number);
 }

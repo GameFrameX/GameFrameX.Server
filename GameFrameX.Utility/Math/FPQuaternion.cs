@@ -70,6 +70,7 @@ public struct FPQuaternion
 
     /// <summary>表示单位四元数的静态只读字段。</summary>
     public static readonly FPQuaternion identity;
+
     /// <summary>静态构造函数，初始化单位四元数。</summary>
     static FPQuaternion()
     {

@@ -31,6 +31,7 @@
 
 using GameFrameX.Foundation.Hash;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using Standart.Hash.xxHash;
 
 namespace GameFrameX.DataBase.Storage;
@@ -79,7 +80,7 @@ internal sealed class StateHash
     {
         if (CacheHash.high64 == ToSaveHash.high64 && CacheHash.low64 == ToSaveHash.low64)
         {
-            LogHelper.Warning($"调用AfterSaveToDB前CacheHash已经等于ToSaveHash {State.GetType().FullName}");
+            LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Storage.CacheHashEquals, State.GetType().FullName));
         }
 
         CacheHash = ToSaveHash;

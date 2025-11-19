@@ -452,7 +452,7 @@ namespace GameFrameX.Utility.Math
             var hasFractionalPart = (value._serializedValue & 0x00000000FFFFFFFF) != 0;
             if (!hasFractionalPart)
                 return value;
-            
+
             // 对于正数，Floor + 1；对于负数，也是Floor + 1（因为Floor对负数向下取整）
             return Floor(value) + One;
         }

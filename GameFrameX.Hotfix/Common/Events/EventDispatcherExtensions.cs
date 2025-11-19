@@ -34,6 +34,7 @@ using GameFrameX.Core.Abstractions.Agent;
 using GameFrameX.Core.Abstractions.Events;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Hotfix.Logic.Server;
 using GameFrameX.Utility.Setting;
 using GameEventArgs = GameFrameX.Core.Abstractions.Events.GameEventArgs;
@@ -76,7 +77,7 @@ public static class EventDispatcherExtensions
             var listeners = HotfixManager.FindListeners(agent.OwnerType, evtId);
             if (listeners.IsNullOrEmpty())
             {
-                LogHelper.Warning($"事件ID：{evtId} 没有找到任何监听者");
+                LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Events.NoListenersFound, evtId));
                 return;
             }
 

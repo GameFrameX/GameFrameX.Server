@@ -32,6 +32,7 @@
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.Utility;
 
@@ -345,7 +346,7 @@ public static class NetHelper
             !IPAddress.TryParse(networkAddress, out var network) ||
             !IPAddress.TryParse(subnetMask, out var mask))
         {
-            throw new ArgumentException("无效的IP地址格式");
+            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Network.InvalidIpAddressFormat));
         }
 
         var ipBytes = ip.GetAddressBytes();
@@ -490,7 +491,7 @@ public static class NetHelper
 
         if (!IsValidIpAddress(ipAddress, out var ip))
         {
-            throw new ArgumentException("无效的IP地址格式", nameof(ipAddress));
+            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Network.InvalidIpAddressFormat), nameof(ipAddress));
         }
 
         var bytes = ip.GetAddressBytes();

@@ -34,6 +34,7 @@ using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Message;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Proto.Proto;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.ProtoBuf.Net;
 using GameFrameX.SuperSocket.ClientEngine;
 using GameFrameX.Utility;
@@ -114,7 +115,7 @@ public sealed class BotTcpClient
         {
             if (!m_TcpClient.IsConnected && !m_TcpClient.IsInConnecting)
             {
-                LogHelper.Info("尝试连接到服务器...");
+                LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Client.AttemptingToConnect));
                 m_TcpClient.Connect(new IPEndPoint(IPAddress.Parse(ServerHost), ServerPort));
                 await Task.Delay(DelayTimes);
                 if (m_TcpClient.IsConnected || m_TcpClient.IsInConnecting)
@@ -124,7 +125,7 @@ public sealed class BotTcpClient
 
                 if (m_RetryCount < MaxRetryCount)
                 {
-                    LogHelper.Info($"未连接到服务器, 尝试重连 (尝试次数: {m_RetryCount + 1}/{MaxRetryCount})");
+                    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Client.RetryConnect, m_RetryCount + 1, MaxRetryCount));
                     m_TcpClient.Connect(new IPEndPoint(IPAddress.Parse(ServerHost), ServerPort));
                     m_RetryCount++;
                     await Task.Delay(m_RetryDelay);
@@ -132,7 +133,7 @@ public sealed class BotTcpClient
                 }
                 else
                 {
-                    LogHelper.Info("重连次数已达到上限，停止尝试。");
+                    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Client.MaxRetryReached));
                     break;
                 }
             }
@@ -175,7 +176,7 @@ public sealed class BotTcpClient
     /// </summary>
     private void OnMTcpClientOnError(object client, ErrorEventArgs e)
     {
-        LogHelper.Info("客户端发生错误:" + e.Exception.Message);
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Client.ErrorOccurred, e.Exception.Message));
         m_BotTcpClientEvent.OnErrorCallback(e);
     }
 
@@ -184,7 +185,7 @@ public sealed class BotTcpClient
     /// </summary>
     private void OnMTcpClientOnClosed(object client, EventArgs e)
     {
-        LogHelper.Info("客户端断开连接");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Client.Disconnected));
         m_BotTcpClientEvent.OnClosedCallback();
     }
 
@@ -193,7 +194,7 @@ public sealed class BotTcpClient
     /// </summary>
     private void OnMTcpClientOnConnected(object client, EventArgs e)
     {
-        LogHelper.Info("客户端成功连接到服务器");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Client.ConnectedSuccessfully));
         m_BotTcpClientEvent.OnConnectedCallback();
     }
 

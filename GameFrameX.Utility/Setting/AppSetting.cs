@@ -32,6 +32,7 @@
 using System.Text.Json.Serialization;
 using GameFrameX.Foundation.Json;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.Utility.Setting;
 
@@ -92,7 +93,7 @@ public sealed class AppSetting
                 {
                     if (value)
                     {
-                        LogHelper.Error("AppRunning已经被设置为退出，不能再次开启...");
+                        LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Settings.AppAlreadyExited));
                     }
 
                     _appRunning = false;
