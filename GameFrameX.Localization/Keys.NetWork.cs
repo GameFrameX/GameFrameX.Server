@@ -109,5 +109,25 @@ public static partial class Keys
         /// 参数: {0} - 类型名称
         /// </remarks>
         public const string FailedToCreateObjectPool = "NetWork.FailedToCreateObjectPool";
+
+        /// <summary>
+        /// RPC call timeout! Message is: {0} / RPC调用超时！消息为：{0}
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.RpcCallTimeout
+        /// 用途: 当RPC调用超时时记录错误
+        /// 参数: {0} - 消息内容
+        /// </remarks>
+        public const string RpcCallTimeout = "NetWork.RpcCallTimeout";
+
+        /// <summary>
+        /// If the message object is encoded abnormally, check the error log, exception: {0} / 如果消息对象编码异常，请检查错误日志，异常：{0}
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.MessageEncodingError
+        /// 用途: 当消息对象编码异常时记录错误
+        /// 参数: {0} - 异常消息
+        /// </remarks>
+        public const string MessageEncodingError = "NetWork.MessageEncodingError";
     }
 }

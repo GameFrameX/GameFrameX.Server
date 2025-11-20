@@ -349,6 +349,14 @@
     <value>Failed to create object pool for type {0}</value>
   </data>
 
+  <data name="NetWork.RpcCallTimeout" xml:space="preserve">
+    <value>RPC call timeout! Message is: {0}</value>
+  </data>
+
+  <data name="NetWork.MessageEncodingError" xml:space="preserve">
+    <value>If the message object is encoded abnormally, check the error log, exception: {0}</value>
+  </data>
+
   <!-- Launcher module log and error keys -->
   <data name="Launcher.ServerStartBegin" xml:space="preserve">
     <value>Starting server {0}</value>

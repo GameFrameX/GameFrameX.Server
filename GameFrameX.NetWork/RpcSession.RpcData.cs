@@ -32,6 +32,7 @@
 
 using GameFrameX.Foundation.Utility;
 using GameFrameX.NetWork.Abstractions;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.NetWork;
 
@@ -158,7 +159,9 @@ public sealed class RpcSessionData : IRpcSessionData, IDisposable
         ElapseTime += millisecondsTime;
         if (ElapseTime >= Timeout)
         {
-            var error = "Rpc call timeout! Message is :" + RequestMessage;
+            var error = LocalizationService.GetString(
+                GameFrameX.Localization.Keys.NetWork.RpcCallTimeout,
+                RequestMessage?.ToString() ?? "null");
             _tcs.TrySetResult(new RpcResult(error));
             return true;
         }

@@ -35,6 +35,7 @@ using GameFrameX.Foundation.Logger;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.ProtoBuf.Net;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.NetWork;
 
@@ -165,7 +166,9 @@ public sealed class NetworkMessagePackage : INetworkMessagePackage
         }
         catch (Exception e)
         {
-            LogHelper.Error("If the message object is encoded abnormally, check the error log, exception:" + e);
+            LogHelper.Error(LocalizationService.GetString(
+                GameFrameX.Localization.Keys.NetWork.MessageEncodingError,
+                e?.Message ?? "Unknown exception"));
             throw;
         }
     }

@@ -381,6 +381,14 @@
     <value>无法为类型 {0} 创建对象池</value>
   </data>
 
+  <data name="NetWork.RpcCallTimeout" xml:space="preserve">
+    <value>RPC调用超时！消息为：{0}</value>
+  </data>
+
+  <data name="NetWork.MessageEncodingError" xml:space="preserve">
+    <value>如果消息对象编码异常，请检查错误日志，异常：{0}</value>
+  </data>
+
   <!-- Launcher模块日志和错误键名 -->
   <data name="Launcher.ServerStartBegin" xml:space="preserve">
     <value>开始启动服务器{0}</value>
