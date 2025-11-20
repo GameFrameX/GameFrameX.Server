@@ -2458,10 +2458,10 @@ public sealed class BigInteger
             var b = a.ModPow(t, thisVal);
 
             /*
-        LogHelper.Info("a = " + a.ToString(10));
-        LogHelper.Info("b = " + b.ToString(10));
-        LogHelper.Info("t = " + t.ToString(10));
-        LogHelper.Info("s = " + s);
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.BigIntegerDebug.DebugA, a.ToString(10)));
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.BigIntegerDebug.DebugB, b.ToString(10)));
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.BigIntegerDebug.DebugT, t.ToString(10)));
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.BigIntegerDebug.DebugS, s));
         */
 
             var result = false;
@@ -2710,11 +2710,11 @@ public sealed class BigInteger
         var Q = (1 - D) >> 2;
 
         /*
-    LogHelper.Info("D = " + D);
-    LogHelper.Info("Q = " + Q);
-    LogHelper.Info("(n,D) = " + thisVal.gcd(D));
-    LogHelper.Info("(n,Q) = " + thisVal.gcd(Q));
-    LogHelper.Info("J(D|n) = " + BigInteger.Jacobi(D, thisVal));
+    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.BigIntegerDebug.DebugD, D));
+    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.BigIntegerDebug.DebugQ, Q));
+    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.BigIntegerDebug.DebugND, thisVal.gcd(D)));
+    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.BigIntegerDebug.DebugNQ, thisVal.gcd(Q)));
+    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.BigIntegerDebug.DebugJacobi, BigInteger.Jacobi(D, thisVal)));
     */
 
         var p_add1 = thisVal + 1;
@@ -2846,7 +2846,7 @@ public sealed class BigInteger
             if (resultNum.IntValue() == 0)
             {
                 /*
-LogHelper.Info("Not prime!  Divisible by {0}\n",
+LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.BigIntegerDebug.NotPrimeDivisible,
                               primesBelow2000[p]);
             */
                 return false;
@@ -2932,7 +2932,7 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
             var resultNum = thisVal % divisor;
             if (resultNum.IntValue() == 0)
             {
-                //LogHelper.Info("Not prime!  Divisible by {0}\n",
+                //LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.BigIntegerDebug.NotPrimeDivisible,
                 //                  primesBelow2000[p]);
 
                 return false;
@@ -3205,8 +3205,8 @@ LogHelper.Info("Not prime!  Divisible by {0}\n",
             }
 
             /*
-        LogHelper.Info(quotient.dataLength);
-        LogHelper.Info("{0} = {1}({2}) + {3}  p = {4}", a.ToString(10),
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.BigIntegerDebug.DataLength, quotient.dataLength));
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.BigIntegerDebug.DivisionDebug, a.ToString(10),
                           b.ToString(10), quotient.ToString(10), remainder.ToString(10),
                           p[1].ToString(10));
         */

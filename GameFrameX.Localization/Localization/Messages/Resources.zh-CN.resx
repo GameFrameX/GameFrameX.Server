@@ -157,6 +157,17 @@
     <value>Datacenter ID不能大于{0}或小于0。</value>
   </data>
 
+  <!-- FP数学函数异常消息 -->
+  <data name="Utility.Exceptions.LnValueNonPositive" xml:space="preserve">
+    <value>传递给 Ln 的值为非正数</value>
+  </data>
+  <data name="Utility.Exceptions.SqrtValueNegative" xml:space="preserve">
+    <value>传递给 Sqrt 的值为负数</value>
+  </data>
+  <data name="Utility.Exceptions.ValueOutOfRange" xml:space="preserve">
+    <value>必须在 -FP.One 和 FP.One 之间</value>
+  </data>
+
   <!-- 客户端模块日志键名 -->
   <data name="Client.AttemptingToConnect" xml:space="preserve">
     <value>尝试连接到服务器...</value>
@@ -225,6 +236,9 @@
   </data>
   <data name="Utility.Settings.SaveDataIntervalTooSmall" xml:space="preserve">
     <value>SaveDataInterval小于5000毫秒，使用默认值为:{0} 毫秒</value>
+  </data>
+  <data name="Utility.Settings.LoadConfigurationFailed" xml:space="preserve">
+    <value>加载配置文件失败</value>
   </data>
 
   <!-- NetWork.Message模块日志和错误键名 -->
@@ -863,5 +877,92 @@
 
   <data name="CodeGenerator.AgentGenerator.DiscardAttributeRequiresTaskOrValueTask" xml:space="preserve">
     <value>{0}.{1}只有返回值为Task类型或ValueTask类型才能添加【{2}】注解</value>
+  </data>
+
+  <!-- Utility.RandomHelper 相关错误消息 -->
+  <data name="Utility.RandomHelper.CantRepeatRandomArgError" xml:space="preserve">
+    <value>不能重复随机参数错误，需求数量：{0} 大于ID数量：{1}</value>
+  </data>
+
+  <!-- Utility.ActorIdGenerator 相关错误消息 -->
+  <data name="Utility.ActorIdGenerator.InputIsGlobalId" xml:space="preserve">
+    <value>输入为全局ID：{0}</value>
+  </data>
+
+  <!-- Utility.BigIntegerDebug 相关日志消息 -->
+  <data name="Utility.BigIntegerDebug.DebugA" xml:space="preserve">
+    <value>a = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DebugB" xml:space="preserve">
+    <value>b = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DebugT" xml:space="preserve">
+    <value>t = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DebugS" xml:space="preserve">
+    <value>s = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DebugD" xml:space="preserve">
+    <value>D = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DebugQ" xml:space="preserve">
+    <value>Q = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DebugND" xml:space="preserve">
+    <value>(n,D) = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DebugNQ" xml:space="preserve">
+    <value>(n,Q) = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DebugJacobi" xml:space="preserve">
+    <value>J(D|n) = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.NotPrimeDivisible" xml:space="preserve">
+    <value>不是质数！可被{0}整除
+</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DivisionDebug" xml:space="preserve">
+    <value>{0} = {1}({2}) + {3}  p = {4}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DataLength" xml:space="preserve">
+    <value>数据长度：{0}</value>
+  </data>
+
+  <!-- Utility.AppSettings 相关消息 -->
+  <data name="Utility.AppSettings.SetAppRunningFalse" xml:space="preserve">
+    <value>设置 AppRunning false...</value>
+  </data>
+
+  <!-- Utility.GlobalSettings 相关消息 -->
+  <data name="Utility.GlobalSettings.SettingAlreadyExists" xml:space="preserve">
+    <value>当前设置已存在，无法再次设置，此设置已被忽略。</value>
+  </data>
+
+  <data name="Utility.GlobalSettings.HttpUrlEmptyUseDefault" xml:space="preserve">
+    <value>HttpUrl为空，使用默认值：/game/api/</value>
+  </data>
+
+  <data name="Utility.GlobalSettings.NetworkTimeoutTooShort" xml:space="preserve">
+    <value>NetWorkSendTimeOutSeconds小于1秒，使用默认值5秒</value>
+  </data>
+
+  <data name="Utility.GlobalSettings.ActorRecycleTimeTooShort" xml:space="preserve">
+    <value>ActorRecycleTime小于1分钟，使用默认值5分钟</value>
+  </data>
+
+  <!-- Utility.ExceptionLogs 相关消息 -->
+  <data name="Utility.ExceptionLogs.ExceptionDetails" xml:space="preserve">
+    <value>异常详情：{0}</value>
   </data>
 </root>

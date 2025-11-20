@@ -363,6 +363,33 @@ public static partial class Keys
             /// 参数: {0} - 最大允许的DatacenterId值
             /// </remarks>
             public const string DatacenterIdOutOfRange = "Utility.Exceptions.DatacenterIdOutOfRange";
+
+            /// <summary>
+            /// 传递给 Ln 的值为非正数的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.Exceptions.LnValueNonPositive
+            /// 用途: 当调用FP.Ln方法时传入非正数值时使用
+            /// </remarks>
+            public const string LnValueNonPositive = "Utility.Exceptions.LnValueNonPositive";
+
+            /// <summary>
+            /// 传递给 Sqrt 的值为负数的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.Exceptions.SqrtValueNegative
+            /// 用途: 当调用FP.Sqrt方法时传入负数值时使用
+            /// </remarks>
+            public const string SqrtValueNegative = "Utility.Exceptions.SqrtValueNegative";
+
+            /// <summary>
+            /// 数学函数参数超出范围的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.Exceptions.ValueOutOfRange
+            /// 用途: 当数学函数参数超出有效范围时使用
+            /// </remarks>
+            public const string ValueOutOfRange = "Utility.Exceptions.ValueOutOfRange";
         }
 
         /// <summary>
@@ -409,6 +436,237 @@ public static partial class Keys
             /// 参数: {0} - 计算结果
             /// </remarks>
             public const string DivisionOverflow = "Utility.LNumber.DivisionOverflow";
+        }
+
+        /// <summary>
+        /// 随机数模块相关错误消息资源键
+        /// </summary>
+        public static class RandomHelper
+        {
+            /// <summary>
+            /// 不能重复随机参数错误，需求数量大于ID数量
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.RandomHelper.CantRepeatRandomArgError
+            /// 用途: 当需求数量超过数组长度时抛出异常
+            /// 参数: {0} - 需求的数量, {1} - 数组长度
+            /// </remarks>
+            public const string CantRepeatRandomArgError = "Utility.RandomHelper.CantRepeatRandomArgError";
+        }
+
+        /// <summary>
+        /// ActorId生成器相关错误消息资源键
+        /// </summary>
+        public static class ActorIdGenerator
+        {
+            /// <summary>
+            /// 输入为全局ID的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.ActorIdGenerator.InputIsGlobalId
+            /// 用途: 当尝试对全局ID执行不允许的操作时使用
+            /// 参数: {0} - 全局ID值
+            /// </remarks>
+            public const string InputIsGlobalId = "Utility.ActorIdGenerator.InputIsGlobalId";
+        }
+
+        /// <summary>
+        /// BigInteger调试相关日志消息资源键
+        /// </summary>
+        public static class BigIntegerDebug
+        {
+            /// <summary>
+            /// 调试信息：a = {0}
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.BigIntegerDebug.DebugA
+            /// 用途: BigInteger调试时显示变量a的值
+            /// 参数: {0} - 变量a的值
+            /// </remarks>
+            public const string DebugA = "Utility.BigIntegerDebug.DebugA";
+
+            /// <summary>
+            /// 调试信息：b = {0}
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.BigIntegerDebug.DebugB
+            /// 用途: BigInteger调试时显示变量b的值
+            /// 参数: {0} - 变量b的值
+            /// </remarks>
+            public const string DebugB = "Utility.BigIntegerDebug.DebugB";
+
+            /// <summary>
+            /// 调试信息：t = {0}
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.BigIntegerDebug.DebugT
+            /// 用途: BigInteger调试时显示变量t的值
+            /// 参数: {0} - 变量t的值
+            /// </remarks>
+            public const string DebugT = "Utility.BigIntegerDebug.DebugT";
+
+            /// <summary>
+            /// 调试信息：s = {0}
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.BigIntegerDebug.DebugS
+            /// 用途: BigInteger调试时显示变量s的值
+            /// 参数: {0} - 变量s的值
+            /// </remarks>
+            public const string DebugS = "Utility.BigIntegerDebug.DebugS";
+
+            /// <summary>
+            /// 调试信息：D = {0}
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.BigIntegerDebug.DebugD
+            /// 用途: BigInteger调试时显示变量D的值
+            /// 参数: {0} - 变量D的值
+            /// </remarks>
+            public const string DebugD = "Utility.BigIntegerDebug.DebugD";
+
+            /// <summary>
+            /// 调试信息：Q = {0}
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.BigIntegerDebug.DebugQ
+            /// 用途: BigInteger调试时显示变量Q的值
+            /// 参数: {0} - 变量Q的值
+            /// </remarks>
+            public const string DebugQ = "Utility.BigIntegerDebug.DebugQ";
+
+            /// <summary>
+            /// 调试信息：(n,D) = {0}
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.BigIntegerDebug.DebugND
+            /// 用途: BigInteger调试时显示(n,D)的计算结果
+            /// 参数: {0} - 计算结果
+            /// </remarks>
+            public const string DebugND = "Utility.BigIntegerDebug.DebugND";
+
+            /// <summary>
+            /// 调试信息：(n,Q) = {0}
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.BigIntegerDebug.DebugNQ
+            /// 用途: BigInteger调试时显示(n,Q)的计算结果
+            /// 参数: {0} - 计算结果
+            /// </remarks>
+            public const string DebugNQ = "Utility.BigIntegerDebug.DebugNQ";
+
+            /// <summary>
+            /// 调试信息：J(D|n) = {0}
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.BigIntegerDebug.DebugJacobi
+            /// 用途: BigInteger调试时显示雅可比符号计算结果
+            /// 参数: {0} - 雅可比符号值
+            /// </remarks>
+            public const string DebugJacobi = "Utility.BigIntegerDebug.DebugJacobi";
+
+            /// <summary>
+            /// 调试信息：不是质数！可被{0}整除
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.BigIntegerDebug.NotPrimeDivisible
+            /// 用途: BigInteger质数测试失败时的调试信息
+            /// 参数: {0} - 除数
+            /// </remarks>
+            public const string NotPrimeDivisible = "Utility.BigIntegerDebug.NotPrimeDivisible";
+
+            /// <summary>
+            /// 调试信息：{0} = {1}({2}) + {3}  p = {4}
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.BigIntegerDebug.DivisionDebug
+            /// 用途: BigInteger除法调试信息
+            /// 参数: {0}-{4} - 除法相关的各个参数
+            /// </remarks>
+            public const string DivisionDebug = "Utility.BigIntegerDebug.DivisionDebug";
+
+            /// <summary>
+            /// 调试信息：数据长度
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.BigIntegerDebug.DataLength
+            /// 用途: BigInteger数据长度调试信息
+            /// 参数: {0} - 数据长度值
+            /// </remarks>
+            public const string DataLength = "Utility.BigIntegerDebug.DataLength";
+        }
+
+        /// <summary>
+        /// 应用设置相关消息资源键
+        /// </summary>
+        public static class AppSettings
+        {
+            /// <summary>
+            /// 设置应用程序运行状态为false的消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.AppSettings.SetAppRunningFalse
+            /// 用途: 当应用程序运行状态设置为false时记录日志
+            /// </remarks>
+            public const string SetAppRunningFalse = "Utility.AppSettings.SetAppRunningFalse";
+        }
+
+        /// <summary>
+        /// 全局设置相关消息资源键
+        /// </summary>
+        public static class GlobalSettings
+        {
+            /// <summary>
+            /// 设置已存在无法重复设置的警告消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.GlobalSettings.SettingAlreadyExists
+            /// 用途: 当尝试重复设置已存在的配置时记录警告
+            /// </remarks>
+            public const string SettingAlreadyExists = "Utility.GlobalSettings.SettingAlreadyExists";
+
+            /// <summary>
+            /// HttpUrl为空使用默认值的警告消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.GlobalSettings.HttpUrlEmptyUseDefault
+            /// 用途: 当HttpUrl为空时记录使用默认值的警告
+            /// </remarks>
+            public const string HttpUrlEmptyUseDefault = "Utility.GlobalSettings.HttpUrlEmptyUseDefault";
+
+            /// <summary>
+            /// 网络发送超时时间过短的警告消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.GlobalSettings.NetworkTimeoutTooShort
+            /// 用途: 当网络发送超时时间小于1秒时记录警告
+            /// </remarks>
+            public const string NetworkTimeoutTooShort = "Utility.GlobalSettings.NetworkTimeoutTooShort";
+
+            /// <summary>
+            /// Actor回收时间过短的警告消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.GlobalSettings.ActorRecycleTimeTooShort
+            /// 用途: 当Actor回收时间小于1分钟时记录警告
+            /// </remarks>
+            public const string ActorRecycleTimeTooShort = "Utility.GlobalSettings.ActorRecycleTimeTooShort";
+        }
+
+        /// <summary>
+        /// 通用异常日志消息资源键
+        /// </summary>
+        public static class ExceptionLogs
+        {
+            /// <summary>
+            /// 异常详情的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.ExceptionLogs.ExceptionDetails
+            /// 用途: 记录异常详细信息的通用日志
+            /// 参数: {0} - 异常详细信息
+            /// </remarks>
+            public const string ExceptionDetails = "Utility.ExceptionLogs.ExceptionDetails";
         }
 
         /// <summary>
@@ -465,6 +723,15 @@ public static partial class Keys
             /// 参数: {0} - 使用的默认值(毫秒)
             /// </remarks>
             public const string SaveDataIntervalTooSmall = "Utility.Settings.SaveDataIntervalTooSmall";
+
+            /// <summary>
+            /// 加载配置文件失败的错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.Settings.LoadConfigurationFailed
+            /// 用途: 当配置文件加载失败时记录日志
+            /// </remarks>
+            public const string LoadConfigurationFailed = "Utility.Settings.LoadConfigurationFailed";
         }
     }
 }

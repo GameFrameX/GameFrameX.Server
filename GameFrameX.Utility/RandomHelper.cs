@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using GameFrameX.Foundation.Extensions;
+using GameFrameX.Foundation.Localization.Core;
 using Tedd.RandomUtils;
 
 namespace GameFrameX.Utility;
@@ -565,7 +566,7 @@ public static class RandomHelper
         // 不可重复，需求数量不应超过id数量
         if (num > array.Length)
         {
-            throw new ArgumentException($"can't repeat random arg error, num:{num} is great than id count:{array.Length}");
+            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.RandomHelper.CantRepeatRandomArgError, num, array.Length));
         }
 
         return NoRepeatRandom(num, weightIndex, array);

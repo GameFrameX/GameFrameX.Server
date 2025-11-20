@@ -82,7 +82,7 @@ public static class ActorIdGenerator
     {
         if (actorId < GlobalConst.MaxGlobalId)
         {
-            throw new ArgumentException($"input is a global id:{actorId}");
+            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ActorIdGenerator.InputIsGlobalId, actorId));
         }
 
         var  serverId = GetServerId(actorId);

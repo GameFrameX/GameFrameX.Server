@@ -847,4 +847,91 @@
     <value>{0}.{1} only functions with Task or ValueTask return type can add [{2}] attribute</value>
   </data>
 
+  <!-- Utility.RandomHelper related error messages -->
+  <data name="Utility.RandomHelper.CantRepeatRandomArgError" xml:space="preserve">
+    <value>Cannot repeat random argument error, requested count: {0} is greater than ID count: {1}</value>
+  </data>
+
+  <!-- Utility.ActorIdGenerator related error messages -->
+  <data name="Utility.ActorIdGenerator.InputIsGlobalId" xml:space="preserve">
+    <value>Input is a global ID: {0}</value>
+  </data>
+
+  <!-- Utility.BigIntegerDebug related log messages -->
+  <data name="Utility.BigIntegerDebug.DebugA" xml:space="preserve">
+    <value>a = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DebugB" xml:space="preserve">
+    <value>b = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DebugT" xml:space="preserve">
+    <value>t = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DebugS" xml:space="preserve">
+    <value>s = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DebugD" xml:space="preserve">
+    <value>D = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DebugQ" xml:space="preserve">
+    <value>Q = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DebugND" xml:space="preserve">
+    <value>(n,D) = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DebugNQ" xml:space="preserve">
+    <value>(n,Q) = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DebugJacobi" xml:space="preserve">
+    <value>J(D|n) = {0}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.NotPrimeDivisible" xml:space="preserve">
+    <value>Not prime!  Divisible by {0}
+</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DivisionDebug" xml:space="preserve">
+    <value>{0} = {1}({2}) + {3}  p = {4}</value>
+  </data>
+
+  <data name="Utility.BigIntegerDebug.DataLength" xml:space="preserve">
+    <value>Data length: {0}</value>
+  </data>
+
+  <!-- Utility.AppSettings related messages -->
+  <data name="Utility.AppSettings.SetAppRunningFalse" xml:space="preserve">
+    <value>Set AppRunning false...</value>
+  </data>
+
+  <!-- Utility.GlobalSettings related messages -->
+  <data name="Utility.GlobalSettings.SettingAlreadyExists" xml:space="preserve">
+    <value>The current setting already exists, cannot be set again, and this setting has been ignored.</value>
+  </data>
+
+  <data name="Utility.GlobalSettings.HttpUrlEmptyUseDefault" xml:space="preserve">
+    <value>HttpUrl is empty and uses the default value of : /game/api/</value>
+  </data>
+
+  <data name="Utility.GlobalSettings.NetworkTimeoutTooShort" xml:space="preserve">
+    <value>NetWorkSendTimeOutSeconds is less than 1 second, and the default value is 5 seconds</value>
+  </data>
+
+  <data name="Utility.GlobalSettings.ActorRecycleTimeTooShort" xml:space="preserve">
+    <value>ActorRecycleTime is less than 1 minute, and the default value is 5 minutes</value>
+  </data>
+
+  <!-- Utility.ExceptionLogs related messages -->
+  <data name="Utility.ExceptionLogs.ExceptionDetails" xml:space="preserve">
+    <value>Exception details: {0}</value>
+  </data>
+
   </root>

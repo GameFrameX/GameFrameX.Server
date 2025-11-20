@@ -84,7 +84,7 @@ public static class GlobalSettings
         LogHelper.ShowOption("Load Global Settings", fullPath);
         if (!File.Exists(path))
         {
-            LogHelper.ShowOption("Load Global Settings Failed", $"Failed to load the configuration file.(加载配置文件失败)");
+            LogHelper.ShowOption("Load Global Settings Failed", $"Failed to load the configuration file.({LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Settings.LoadConfigurationFailed)})");
             return;
         }
 
