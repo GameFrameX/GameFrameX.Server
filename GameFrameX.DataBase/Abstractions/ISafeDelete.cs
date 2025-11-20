@@ -29,6 +29,8 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using GameFrameX.Foundation.Orm.Entity.Filter;
+
 namespace GameFrameX.DataBase.Abstractions;
 
 /// <summary>

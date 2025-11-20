@@ -69,13 +69,13 @@ public sealed partial class MongoDbService : IDatabaseService
             await DB.InitAsync(dbOptions.Name, settings);
             _mongoDbContext = new MongoDbContext();
             CurrentDatabase = DB.Database(dbOptions.Name);
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Database.MongoDbInitializedSuccessfully, dbOptions.ConnectionString, dbOptions.Name));
+            LogHelper.Info(LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializedSuccessfully, dbOptions.ConnectionString, dbOptions.Name));
             return true;
         }
         catch (Exception exception)
         {
             LogHelper.Fatal(exception);
-            string message = LocalizationService.GetString(GameFrameX.Localization.Keys.Database.MongoDbInitializationFailed, dbOptions.ConnectionString, dbOptions.Name);
+            string message = LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializationFailed, dbOptions.ConnectionString, dbOptions.Name);
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(message);
             Console.ResetColor();

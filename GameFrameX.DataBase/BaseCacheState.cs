@@ -165,7 +165,7 @@ public abstract class BaseCacheState : ICacheState, IEntity
             return;
         }
 
-        LoadFromDbPostHandler(false);
+        LoadFromDbPostHandler();
     }
 
     /// <summary>

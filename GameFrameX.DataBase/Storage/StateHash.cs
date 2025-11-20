@@ -80,7 +80,7 @@ internal sealed class StateHash
     {
         if (CacheHash.high64 == ToSaveHash.high64 && CacheHash.low64 == ToSaveHash.low64)
         {
-            LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Storage.CacheHashEquals, State.GetType().FullName));
+            LogHelper.Warning(LocalizationService.GetString(Localization.Keys.Storage.CacheHashEquals, State.GetType().FullName));
         }
 
         CacheHash = ToSaveHash;
