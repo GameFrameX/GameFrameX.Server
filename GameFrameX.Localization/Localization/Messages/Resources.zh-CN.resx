@@ -460,6 +460,22 @@
     <value>有外部服务从中心服务器断开。链接信息：断开原因:{0}</value>
   </data>
 
+  <data name="Launcher.PlayerOfflineCallback" xml:space="preserve">
+    <value>玩家下线回调，通知其他服务器: {0}</value>
+  </data>
+
+  <data name="Launcher.PlayerOnlineCallback" xml:space="preserve">
+    <value>玩家上线回调，通知其他服务器: {0}</value>
+  </data>
+
+  <data name="Launcher.ServiceOfflineCallback" xml:space="preserve">
+    <value>服务下线回调，通知其他服务器: {0}</value>
+  </data>
+
+  <data name="Launcher.ServiceOnlineCallback" xml:space="preserve">
+    <value>服务上线回调，通知其他服务器: {0}</value>
+  </data>
+
   <!-- StartUp模块日志和错误键名 -->
   <data name="StartUp.ServerStopped" xml:space="preserve">
     <value>服务器类型:{0} 停止! 终止原因：{1} 配置信息: {2}</value>

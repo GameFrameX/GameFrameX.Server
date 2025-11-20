@@ -37,6 +37,7 @@ using GameFrameX.DiscoveryCenterManager.Player;
 using GameFrameX.DiscoveryCenterManager.Server;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Utility;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.Launcher.StartUp.Discovery;
 
@@ -61,7 +62,8 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
         }
         catch (Exception e)
         {
-            LogHelper.Warning($"SERVER {ServerType} EXECUTION EXCEPTION");
+            LogHelper.Warning(LocalizationService.GetString(
+                GameFrameX.Localization.Keys.Launcher.ServerExecutionException, e.Message));
             LogHelper.Fatal(e);
         }
 
@@ -95,7 +97,9 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
             {
                 var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
                 var toServerType = serverInfo != null ? serverInfo.Type : ServerType;
-                LogHelper.Debug($"---发送[{ServerType} To {toServerType}]  {debugMessage.ToFormatMessageString()}");
+                LogHelper.Debug(LocalizationService.GetString(
+                    GameFrameX.Localization.Keys.Launcher.SendMessage,
+                    ServerType, toServerType, debugMessage.ToFormatMessageString()));
             }
         }
 
@@ -113,7 +117,9 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                 {
                     var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
                     var from = serverInfo != null ? serverInfo.Type.ToString() : ServerType.ToString();
-                    LogHelper.Debug($"---收到[{from} To {ServerType}]  {message.ToFormatMessageString()}");
+                    LogHelper.Debug(LocalizationService.GetString(
+                        GameFrameX.Localization.Keys.Launcher.ReceiveMessage,
+                        from, ServerType, message.ToFormatMessageString()));
                 }
             }
 
@@ -161,7 +167,9 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     var reqRegisterPlayer = (ReqPlayerRegister)messageObject.DeserializeMessageObject();
                     // 注册玩家
                     NamingPlayerManager.Instance.Add(reqRegisterPlayer.PlayerId, reqRegisterPlayer.ServerId, reqRegisterPlayer.ServerInstanceId);
-                    LogHelper.Info($"注册玩家成功：{reqRegisterPlayer.PlayerId}  {reqRegisterPlayer}");
+                    LogHelper.Info(LocalizationService.GetString(
+                    GameFrameX.Localization.Keys.Launcher.PlayerRegisterSuccess,
+                    reqRegisterPlayer.PlayerId, reqRegisterPlayer));
                     return ValueTask.CompletedTask;
                 }
                 case (byte)MessageOperationType.PlayerUnRegister:
@@ -169,7 +177,9 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     var reqRegisterPlayer = (ReqPlayerUnRegister)messageObject.DeserializeMessageObject();
                     // 注销玩家
                     NamingPlayerManager.Instance.TryRemove(reqRegisterPlayer.PlayerId, out var playerInfo);
-                    LogHelper.Info($"注销玩家成功：{reqRegisterPlayer.PlayerId}  {reqRegisterPlayer}");
+                    LogHelper.Info(LocalizationService.GetString(
+                    GameFrameX.Localization.Keys.Launcher.PlayerUnregisterSuccess,
+                    reqRegisterPlayer.PlayerId, reqRegisterPlayer));
                     return ValueTask.CompletedTask;
                 }
                 case (byte)MessageOperationType.ServiceRegister:
@@ -178,7 +188,9 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     // 注册服务
                     var serviceInfo = new ServiceInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerId, reqRegisterServer.ServerInstanceId, reqRegisterServer.InnerHost, reqRegisterServer.InnerPort, reqRegisterServer.OuterHost, reqRegisterServer.OuterPort);
                     _namingServiceManager.Add(serviceInfo);
-                    LogHelper.Info($"注册服务成功：{reqRegisterServer.ServerType}  {reqRegisterServer.ServerName}  {reqRegisterServer}");
+                    LogHelper.Info(LocalizationService.GetString(
+                    GameFrameX.Localization.Keys.Launcher.ServiceRegisterSuccess,
+                    reqRegisterServer.ServerType, reqRegisterServer.ServerName, reqRegisterServer));
                     return ValueTask.CompletedTask;
                 }
                 case (byte)MessageOperationType.ServiceUnRegister:
@@ -186,7 +198,9 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     var reqServiceUnRegister = (ReqServiceUnRegister)messageObject.DeserializeMessageObject();
                     // 注销服务
                     _namingServiceManager.TryRemoveByInstanceId(reqServiceUnRegister.ServerInstanceId);
-                    LogHelper.Info($"注销服务成功：{reqServiceUnRegister.ServerId}  {reqServiceUnRegister.ServerInstanceId} ");
+                    LogHelper.Info(LocalizationService.GetString(
+                    GameFrameX.Localization.Keys.Launcher.ServiceUnregisterSuccess,
+                    reqServiceUnRegister.ServerId, reqServiceUnRegister.ServerInstanceId));
                     return ValueTask.CompletedTask;
                 }
                 case (byte)MessageOperationType.ConnectService:
@@ -225,13 +239,17 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
 
     protected override ValueTask OnConnected(IAppSession appSession)
     {
-        LogHelper.Info("有外部服务连接到中心服务器成功" + "。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
+        LogHelper.Info(LocalizationService.GetString(
+                GameFrameX.Localization.Keys.Launcher.ExternalServiceConnected,
+                appSession.SessionID, appSession.RemoteEndPoint));
         return ValueTask.CompletedTask;
     }
 
     protected override ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs args)
     {
-        LogHelper.Info("有外部服务从中心服务器断开。链接信息：断开原因:" + args.Reason);
+        LogHelper.Info(LocalizationService.GetString(
+                GameFrameX.Localization.Keys.Launcher.ExternalServiceDisconnected,
+                args.Reason));
         _namingServiceManager.TryRemoveBySessionId(appSession.SessionID);
         return ValueTask.CompletedTask;
     }

@@ -34,6 +34,7 @@ using GameFrameX.DiscoveryCenterManager.Server;
 using GameFrameX.Foundation.Json;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Proto.BuiltIn;
+using GameFrameX.Foundation.Localization.Core;
 using Mapster;
 
 namespace GameFrameX.Launcher.StartUp.Discovery;
@@ -56,7 +57,9 @@ internal partial class AppStartUpDiscoveryCenter
 
     private void OnPlayerRemove(IPlayerInfo playerInfo)
     {
-        LogHelper.DebugConsole("玩家下线回调，通知其他服务器:" + JsonHelper.Serialize(playerInfo));
+        LogHelper.DebugConsole(LocalizationService.GetString(
+            GameFrameX.Localization.Keys.Launcher.PlayerOfflineCallback,
+            JsonHelper.Serialize(playerInfo)));
 
         var serverList = _namingServiceManager.GetOuterNodes();
         serverList = serverList.Where(m => m.ServerId == 8000).ToList();
@@ -73,7 +76,9 @@ internal partial class AppStartUpDiscoveryCenter
 
     private void OnPlayerAdd(IPlayerInfo playerInfo)
     {
-        LogHelper.DebugConsole("玩家上线回调，通知其他服务器:" + JsonHelper.Serialize(playerInfo));
+        LogHelper.DebugConsole(LocalizationService.GetString(
+            GameFrameX.Localization.Keys.Launcher.PlayerOnlineCallback,
+            JsonHelper.Serialize(playerInfo)));
         var serverList = _namingServiceManager.GetOuterNodes();
         serverList = serverList.Where(m => m.ServerId == GlobalConst.SocialServiceServerId).ToList();
 

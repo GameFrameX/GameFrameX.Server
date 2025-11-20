@@ -428,6 +428,22 @@
     <value>External service disconnected from discovery center. Connection info: Disconnect reason:{0}</value>
   </data>
 
+  <data name="Launcher.PlayerOfflineCallback" xml:space="preserve">
+    <value>Player offline callback, notify other servers: {0}</value>
+  </data>
+
+  <data name="Launcher.PlayerOnlineCallback" xml:space="preserve">
+    <value>Player online callback, notify other servers: {0}</value>
+  </data>
+
+  <data name="Launcher.ServiceOfflineCallback" xml:space="preserve">
+    <value>Service offline callback, notify other servers: {0}</value>
+  </data>
+
+  <data name="Launcher.ServiceOnlineCallback" xml:space="preserve">
+    <value>Service online callback, notify other servers: {0}</value>
+  </data>
+
   <!-- StartUp module log and error keys -->
   <data name="StartUp.ServerStopped" xml:space="preserve">
     <value>Server type: {0} stopped! Termination reason: {1} Configuration: {2}</value>

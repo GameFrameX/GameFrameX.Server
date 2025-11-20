@@ -258,5 +258,45 @@ public static partial class Keys
         /// 参数: {0} - 断开原因
         /// </remarks>
         public const string ExternalServiceDisconnected = "Launcher.ExternalServiceDisconnected";
+
+        /// <summary>
+        /// 玩家下线回调，通知其他服务器: {0} / Player offline callback, notify other servers: {0}
+        /// </summary>
+        /// <remarks>
+        /// 键名: Launcher.PlayerOfflineCallback
+        /// 用途: 记录玩家下线时的调试信息
+        /// 参数: {0} - 玩家信息的JSON序列化结果
+        /// </remarks>
+        public const string PlayerOfflineCallback = "Launcher.PlayerOfflineCallback";
+
+        /// <summary>
+        /// 玩家上线回调，通知其他服务器: {0} / Player online callback, notify other servers: {0}
+        /// </summary>
+        /// <remarks>
+        /// 键名: Launcher.PlayerOnlineCallback
+        /// 用途: 记录玩家上线时的调试信息
+        /// 参数: {0} - 玩家信息的JSON序列化结果
+        /// </remarks>
+        public const string PlayerOnlineCallback = "Launcher.PlayerOnlineCallback";
+
+        /// <summary>
+        /// 服务下线回调，通知其他服务器: {0} / Service offline callback, notify other servers: {0}
+        /// </summary>
+        /// <remarks>
+        /// 键名: Launcher.ServiceOfflineCallback
+        /// 用途: 记录服务下线时的调试信息
+        /// 参数: {0} - 服务信息
+        /// </remarks>
+        public const string ServiceOfflineCallback = "Launcher.ServiceOfflineCallback";
+
+        /// <summary>
+        /// 服务上线回调，通知其他服务器: {0} / Service online callback, notify other servers: {0}
+        /// </summary>
+        /// <remarks>
+        /// 键名: Launcher.ServiceOnlineCallback
+        /// 用途: 记录服务上线时的调试信息
+        /// 参数: {0} - 服务信息
+        /// </remarks>
+        public const string ServiceOnlineCallback = "Launcher.ServiceOnlineCallback";
     }
 }
