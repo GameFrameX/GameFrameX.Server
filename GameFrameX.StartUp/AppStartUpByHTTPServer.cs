@@ -82,12 +82,12 @@ public abstract partial class AppStartUpBase
         // 验证HTTP URL格式
         if (!Setting.HttpUrl.StartsWith('/'))
         {
-            throw new ArgumentException("The HTTP address must start with /", nameof(Setting.HttpUrl));
+            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpExceptions.AddressMustStartWithSlash), nameof(Setting.HttpUrl));
         }
 
         if (!Setting.HttpUrl.EndsWith('/'))
         {
-            throw new ArgumentException("The HTTP address must end in /", nameof(Setting.HttpUrl));
+            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpExceptions.AddressMustEndWithSlash), nameof(Setting.HttpUrl));
         }
 
         LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.StartingServer));
@@ -130,7 +130,7 @@ public abstract partial class AppStartUpBase
 
                 if (Setting.HttpsPort > 0 && NetHelper.PortIsAvailable(Setting.HttpsPort))
                 {
-                    throw new NotImplementedException("If HTTPS is not implemented, cancel the HTTPS port configuration");
+                    throw new NotImplementedException(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpExceptions.HttpsNotImplemented));
                 }
             });
 
@@ -156,8 +156,8 @@ public abstract partial class AppStartUpBase
                 app.UseSwagger();
                 app.UseSwaggerUI(options =>
                 {
-                    options.SwaggerEndpoint($"/swagger/{openApiInfo.Version}/swagger.json", openApiInfo.Title);
-                    options.RoutePrefix = "swagger";
+                    options.SwaggerEndpoint(string.Format(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.SwaggerEndpointFormat), openApiInfo.Version), openApiInfo.Title);
+                    options.RoutePrefix = LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.SwaggerRoutePrefix);
                 });
 
                 foreach (var ip in ipList)
@@ -178,15 +178,15 @@ public abstract partial class AppStartUpBase
                 app.MapPrometheusScrapingEndpoint();
                 foreach (var ip in ipList)
                 {
-                    LogHelper.Info($"Prometheus metrics the endpoint is enabled: http://{ip}:{Setting.HttpPort}/metrics");
+                    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.PrometheusMetricsEndpointEnabledInline, ip, Setting.HttpPort));
                 }
             }
             else if (Setting.IsOpenTelemetry && Setting.IsOpenTelemetryMetrics && Setting.MetricsPort > 0)
             {
-                LogHelper.Info($"Prometheus metrics The service will be provided on the standalone port {Setting.MetricsPort}");
+                LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.PrometheusMetricsServiceOnStandalonePort, Setting.MetricsPort));
                 foreach (var ip in ipList)
                 {
-                    LogHelper.Info($"Prometheus metrics the endpoint is enabled: http://{ip}:{Setting.MetricsPort}/metrics");
+                    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.PrometheusMetricsEndpointEnabled, ip, Setting.MetricsPort));
                 }
             }
 
@@ -218,11 +218,11 @@ public abstract partial class AppStartUpBase
             }
 
             await app.StartAsync();
-            LogHelper.Info($"Start [HTTP] Server Startup Complete - Port: {Setting.HttpPort}");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.StartupComplete, Setting.HttpPort));
         }
         else
         {
-            LogHelper.Error($"Start [HTTP] server port [{Setting.HttpPort}] is occupied and the HTTP service cannot be started");
+            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.PortOccupied, Setting.HttpPort));
         }
     }
 
@@ -244,12 +244,12 @@ public abstract partial class AppStartUpBase
 
         var openApiInfo = new OpenApiInfo
         {
-            Title = "GameFrameX API",
+            Title = LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.ApiTitle),
             Version = $"v{version.Major}.{version.Minor}",
             TermsOfService = new Uri("https://gameframex.doc.alianblank.com"),
-            Contact = new OpenApiContact() { Url = new Uri("https://gameframex.doc.alianblank.com"), Name = "Blank", Email = "wangfj11@foxmail.com", },
-            License = new OpenApiLicense() { Name = "GameFrameX", Url = new Uri("https://github.com/GameFrameX/GameFrameX"), },
-            Description = "GameFrameX HTTP API documentation",
+            Contact = new OpenApiContact() { Url = new Uri("https://gameframex.doc.alianblank.com"), Name = LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.ApiContactName), Email = "wangfj11@foxmail.com", },
+            License = new OpenApiLicense() { Name = LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.ApiLicenseName), Url = new Uri("https://github.com/GameFrameX/GameFrameX"), },
+            Description = LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.ApiDescription),
         };
         return openApiInfo;
     }

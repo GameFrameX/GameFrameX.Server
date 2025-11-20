@@ -38,6 +38,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using GameFrameX.Foundation.Json;
 using GameFrameX.Foundation.Logger;
+using GameFrameX.Foundation.Localization.Core;
 using Mapster;
 using System.Text.Json;
 
@@ -91,14 +92,14 @@ public static class HealthChecksExtensions
     {
         var healthChecksBuilder = services.AddHealthChecks();
         // 基础应用程序健康检查
-        healthChecksBuilder.AddCheck(DefaultHealthCheckPath, () => HealthCheckResult.Healthy("the application is working fine"));
+        healthChecksBuilder.AddCheck(DefaultHealthCheckPath, () => HealthCheckResult.Healthy(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HealthCheck.ApplicationWorkingFine)));
         // 简单健康检查（兼容性端点）
-        healthChecksBuilder.AddCheck(SimpleHealthCheckPath, () => HealthCheckResult.Healthy("the application is working fine"));
+        healthChecksBuilder.AddCheck(SimpleHealthCheckPath, () => HealthCheckResult.Healthy(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HealthCheck.ApplicationWorkingFine)));
 
         // OpenTelemetry相关检查
         if (setting.IsOpenTelemetry)
         {
-            healthChecksBuilder.AddCheck(OpenTelemetryHealthCheckPath, () => HealthCheckResult.Healthy("OpenTelemetry the configuration is normal"));
+            healthChecksBuilder.AddCheck(OpenTelemetryHealthCheckPath, () => HealthCheckResult.Healthy(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HealthCheck.OpenTelemetryConfigurationNormal)));
         }
 
         return services;
@@ -173,7 +174,7 @@ public static class HealthChecksExtensions
             ResponseWriter = async (context, _) =>
             {
                 context.Response.ContentType = JsonContentType;
-                await context.Response.WriteAsync("OK");
+                await context.Response.WriteAsync(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HealthCheck.Ok));
             },
         };
 
@@ -188,20 +189,20 @@ public static class HealthChecksExtensions
                 ResponseWriter = async (context, _) =>
                 {
                     context.Response.ContentType = JsonContentType;
-                    await context.Response.WriteAsync("OpenTelemetry is configured normally");
+                    await context.Response.WriteAsync(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HealthCheck.OpenTelemetryConfiguredNormally));
                 },
             };
             app.UseHealthChecks(OpenTelemetryHealthCheckPath, openTelemetryHealthCheckOptions);
         }
 
-        LogHelper.Info("the health check endpoint is enabled:");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HealthCheck.EndpointEnabled));
         foreach (var ip in ipList)
         {
-            LogHelper.Info($"- detailed health checks: http://{ip}:{setting.HttpPort}{DefaultHealthCheckPath}");
-            LogHelper.Info($"- simple health check: http://{ip}:{setting.HttpPort}{SimpleHealthCheckPath}");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HealthCheck.DetailedEndpointUrl, ip, setting.HttpPort, DefaultHealthCheckPath));
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HealthCheck.SimpleEndpointUrl, ip, setting.HttpPort, SimpleHealthCheckPath));
             if (setting.IsOpenTelemetry)
             {
-                LogHelper.Info($"- OpenTelemetry check: http://{ip}:{setting.HttpPort}{OpenTelemetryHealthCheckPath}");
+                LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HealthCheck.OpenTelemetryEndpointUrl, ip, setting.HttpPort, OpenTelemetryHealthCheckPath));
             }
         }
 

@@ -965,4 +965,84 @@
   <data name="Utility.ExceptionLogs.ExceptionDetails" xml:space="preserve">
     <value>异常详情：{0}</value>
   </data>
+
+  <!-- StartUp.HealthCheck 相关消息 -->
+  <data name="StartUp.HealthCheck.EndpointEnabled" xml:space="preserve">
+    <value>the health check endpoint is enabled:</value>
+  </data>
+
+  <data name="StartUp.HealthCheck.DetailedEndpointUrl" xml:space="preserve">
+    <value>- detailed health checks: http://{0}:{1}{2}</value>
+  </data>
+
+  <data name="StartUp.HealthCheck.SimpleEndpointUrl" xml:space="preserve">
+    <value>- simple health check: http://{0}:{1}{2}</value>
+  </data>
+
+  <data name="StartUp.HealthCheck.OpenTelemetryEndpointUrl" xml:space="preserve">
+    <value>- OpenTelemetry check: http://{0}:{1}{2}</value>
+  </data>
+
+  <data name="StartUp.HealthCheck.ApplicationWorkingFine" xml:space="preserve">
+    <value>应用程序运行正常</value>
+  </data>
+
+  <data name="StartUp.HealthCheck.OpenTelemetryConfigurationNormal" xml:space="preserve">
+    <value>OpenTelemetry the configuration is normal</value>
+  </data>
+
+  <data name="StartUp.HealthCheck.OpenTelemetryConfiguredNormally" xml:space="preserve">
+    <value>OpenTelemetry is configured normally</value>
+  </data>
+
+  <data name="StartUp.HealthCheck.Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+
+  <!-- StartUp.HttpServer 相关消息 - 新增 -->
+  <data name="StartUp.HttpServer.SwaggerEndpointFormat" xml:space="preserve">
+    <value>/swagger/{0}/swagger.json</value>
+  </data>
+
+  <data name="StartUp.HttpServer.SwaggerRoutePrefix" xml:space="preserve">
+    <value>swagger</value>
+  </data>
+
+  <data name="StartUp.HttpServer.ApiTitle" xml:space="preserve">
+    <value>GameFrameX API</value>
+  </data>
+
+  <data name="StartUp.HttpServer.ApiDescription" xml:space="preserve">
+    <value>GameFrameX HTTP API documentation</value>
+  </data>
+
+  <data name="StartUp.HttpServer.ApiLicenseName" xml:space="preserve">
+    <value>GameFrameX</value>
+  </data>
+
+  <data name="StartUp.HttpServer.ApiContactName" xml:space="preserve">
+    <value>Blank</value>
+  </data>
+
+  <data name="StartUp.HttpServer.OpenTelemetryServiceType" xml:space="preserve">
+    <value>HTTP</value>
+  </data>
+
+  <!-- StartUp.ApplicationSettings 相关消息 -->
+  <data name="StartUp.ApplicationSettings.ConfigFilePath" xml:space="preserve">
+    <value>Configs/app_config.json</value>
+  </data>
+
+  <data name="StartUp.ApplicationSettings.LogTypeSeparator" xml:space="preserve">
+    <value>_</value>
+  </data>
+
+  <data name="StartUp.ApplicationSettings.WarningMessage" xml:space="preserve">
+    <value>[Warning] {0}</value>
+  </data>
+
+  <!-- StartUp.HttpServer 相关消息 - 原有缺失的 -->
+  <data name="StartUp.HttpServer.StartupComplete" xml:space="preserve">
+    <value>HTTP服务器启动完成 - 端口: {0}</value>
+  </data>
 </root>

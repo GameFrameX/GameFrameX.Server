@@ -126,7 +126,7 @@ public static class GameApp
         var serverType = launcherOptions?.ServerType;
         if (!serverType.IsNullOrEmpty())
         {
-            LogHelper.Info($"the type of server that is launched : {serverType}");
+            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.LaunchServerType, serverType));
         }
 
         LogOptions.Default.GrafanaLokiLabels = new Dictionary<string, string>();
@@ -151,7 +151,7 @@ public static class GameApp
 
                 if (!LogOptions.Default.GrafanaLokiLabels.TryAdd(property.Name, value))
                 {
-                    LogHelper.Warning($"Grafana Loki label {property.Name} already exists, will be ignored");
+                    LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.GrafanaLokiLabelExists, property.Name));
                 }
             }
 
@@ -229,11 +229,11 @@ public static class GameApp
                 var appSetting = appSettings.FirstOrDefault(m => m.ServerType == serverType);
                 if (appSetting != null)
                 {
-                    LogHelper.Info($"Finding the boot configuration for the corresponding server type in the configuration file will be configured to boot=>{startKv.Value.ServerType}");
+                    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.FindingConfigurationForServerType, startKv.Value.ServerType));
                 }
                 else
                 {
-                    LogHelper.Warning($"If no startup configuration is found for the server type, it will start with the default configuration=>{startKv.Value.ServerType}");
+                    LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.NoConfigurationUseDefault, startKv.Value.ServerType));
                     appSetting = launcherOptions.Adapt<AppSetting>();
                 }
 
@@ -251,20 +251,20 @@ public static class GameApp
                     break;
                 }
 
-                LogHelper.Warning($"If no startup configuration is found for the server type, it will start with the default configuration=>{keyValuePair.Value.ServerType}");
+                LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.NoConfigurationUseDefault, keyValuePair.Value.ServerType));
                 Launcher(args, keyValuePair);
                 break;
             }
         }
 
-        LogHelper.Info($"----------------------------The Startup Server Is Over------------------------------");
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.StartupOver));
 
         ConsoleHelper.ConsoleLogo();
 
         if (_launchTask == default)
         {
             var message = LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.NoStartupTaskFound);
-            Console.WriteLine($"[Warning] {message}");
+            Console.WriteLine(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.ApplicationSettings.WarningMessage, message));
             LogHelper.Warning(message);
             return;
         }
@@ -327,8 +327,8 @@ public static class GameApp
             return Task.CompletedTask;
         }
 
-        LogHelper.ShowOption($"Start Starting [{serverType}] Server- Configuration Information", startUp.Setting.ToFormatString());
-        LogHelper.Info($"Start Starting [{serverType}] Server- Configuration Information");
+        LogHelper.ShowOption(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.StartingServerWithConfiguration, serverType), startUp.Setting.ToFormatString());
+        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.StartingServerWithConfiguration, serverType));
         LogHelper.Info(startUp.Setting.ToFormatString());
         var task = AppEnter.Entry(startUp);
         return task;

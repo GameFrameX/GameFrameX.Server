@@ -92,6 +92,65 @@ public static partial class Keys
         public const string DiscoveryCenterConnected = "StartUp.DiscoveryCenterConnected";
 
         /// <summary>
+        /// The type of server that is launched: {0}
+        /// </summary>
+        /// <remarks>
+        /// 键名: StartUp.LaunchServerType
+        /// 用途: 当启动指定类型的服务器时记录信息
+        /// 参数: {0} - 服务器类型
+        /// </remarks>
+        public const string LaunchServerType = "StartUp.LaunchServerType";
+
+        /// <summary>
+        /// Grafana Loki label {0} already exists, will be ignored
+        /// </summary>
+        /// <remarks>
+        /// 键名: StartUp.GrafanaLokiLabelExists
+        /// 用途: 当Grafana Loki标签已存在时记录警告
+        /// 参数: {0} - 标签名称
+        /// </remarks>
+        public const string GrafanaLokiLabelExists = "StartUp.GrafanaLokiLabelExists";
+
+        /// <summary>
+        /// Finding the boot configuration for the corresponding server type in the configuration file will be configured to boot=>{0}
+        /// </summary>
+        /// <remarks>
+        /// 键名: StartUp.FindingConfigurationForServerType
+        /// 用途: 当在配置文件中找到对应服务器类型的启动配置时记录
+        /// 参数: {0} - 服务器类型
+        /// </remarks>
+        public const string FindingConfigurationForServerType = "StartUp.FindingConfigurationForServerType";
+
+        /// <summary>
+        /// If no startup configuration is found for the server type, it will start with the default configuration=>{0}
+        /// </summary>
+        /// <remarks>
+        /// 键名: StartUp.NoConfigurationUseDefault
+        /// 用途: 当未找到服务器类型的启动配置时记录警告
+        /// 参数: {0} - 服务器类型
+        /// </remarks>
+        public const string NoConfigurationUseDefault = "StartUp.NoConfigurationUseDefault";
+
+        /// <summary>
+        /// ----------------------------The Startup Server Is Over------------------------------
+        /// </summary>
+        /// <remarks>
+        /// 键名: StartUp.StartupOver
+        /// 用途: 当所有服务器启动完成后记录
+        /// </remarks>
+        public const string StartupOver = "StartUp.StartupOver";
+
+        /// <summary>
+        /// Start Starting [{0}] Server- Configuration Information
+        /// </summary>
+        /// <remarks>
+        /// 键名: StartUp.StartingServerWithConfiguration
+        /// 用途: 当开始启动服务器并显示配置信息时记录
+        /// 参数: {0} - 服务器类型
+        /// </remarks>
+        public const string StartingServerWithConfiguration = "StartUp.StartingServerWithConfiguration";
+
+        /// <summary>
         /// The server has been stopped, please check the log for details. (服务器已停止，详情请查看日志.因为启动任务为空。没有找到启动任务。)
         /// </summary>
         /// <remarks>
@@ -129,6 +188,26 @@ public static partial class Keys
         /// 参数: {0} - IP地址, {1} - 端口号
         /// </remarks>
         public const string MetricsHealthCheckEndpointEnabled = "StartUp.MetricsHealthCheckEndpointEnabled";
+
+        /// <summary>
+        /// Prometheus metrics endpoint is enabled: http://{0}:{1}/metrics
+        /// </summary>
+        /// <remarks>
+        /// 键名: StartUp.PrometheusMetricsEndpointEnabledInline
+        /// 用途: 当内联Prometheus指标端点启用时记录
+        /// 参数: {0} - IP地址, {1} - 端口号
+        /// </remarks>
+        public const string PrometheusMetricsEndpointEnabledInline = "StartUp.PrometheusMetricsEndpointEnabledInline";
+
+        /// <summary>
+        /// Prometheus metrics service will be provided on the standalone port {0}
+        /// </summary>
+        /// <remarks>
+        /// 键名: StartUp.PrometheusMetricsServiceOnStandalonePort
+        /// 用途: 当Prometheus指标服务将在独立端口提供时记录
+        /// 参数: {0} - 端口号
+        /// </remarks>
+        public const string PrometheusMetricsServiceOnStandalonePort = "StartUp.PrometheusMetricsServiceOnStandalonePort";
 
         /// <summary>
         /// HTTP服务器相关消息
@@ -190,6 +269,124 @@ public static partial class Keys
             /// 参数: {0} - IP地址, {1} - 端口号
             /// </remarks>
             public const string SwaggerUiAccess = "StartUp.HttpServer.SwaggerUiAccess";
+
+            /// <summary>
+            /// /swagger/{0}/swagger.json
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpServer.SwaggerEndpointFormat
+            /// 用途: Swagger端点路径格式
+            /// 参数: {0} - 版本号
+            /// </remarks>
+            public const string SwaggerEndpointFormat = "StartUp.HttpServer.SwaggerEndpointFormat";
+
+            /// <summary>
+            /// swagger
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpServer.SwaggerRoutePrefix
+            /// 用途: Swagger路由前缀
+            /// </remarks>
+            public const string SwaggerRoutePrefix = "StartUp.HttpServer.SwaggerRoutePrefix";
+
+            /// <summary>
+            /// GameFrameX API
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpServer.ApiTitle
+            /// 用途: API文档标题
+            /// </remarks>
+            public const string ApiTitle = "StartUp.HttpServer.ApiTitle";
+
+            /// <summary>
+            /// GameFrameX HTTP API documentation
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpServer.ApiDescription
+            /// 用途: API文档描述
+            /// </remarks>
+            public const string ApiDescription = "StartUp.HttpServer.ApiDescription";
+
+            /// <summary>
+            /// GameFrameX
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpServer.ApiLicenseName
+            /// 用途: API许可证名称
+            /// </remarks>
+            public const string ApiLicenseName = "StartUp.HttpServer.ApiLicenseName";
+
+            /// <summary>
+            /// Blank
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpServer.ApiContactName
+            /// 用途: API联系人姓名
+            /// </remarks>
+            public const string ApiContactName = "StartUp.HttpServer.ApiContactName";
+
+            /// <summary>
+            /// HTTP
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpServer.OpenTelemetryServiceType
+            /// 用途: OpenTelemetry服务类型
+            /// </remarks>
+            public const string OpenTelemetryServiceType = "StartUp.HttpServer.OpenTelemetryServiceType";
+
+            /// <summary>
+            /// HTTP服务器启动完成 - 端口: {0}
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpServer.StartupComplete
+            /// 用途: 当HTTP服务器启动完成时记录
+            /// 参数: {0} - 端口号
+            /// </remarks>
+            public const string StartupComplete = "StartUp.HttpServer.StartupComplete";
+
+            /// <summary>
+            /// HTTP服务器端口 [{0}] 被占用，HTTP服务无法启动
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpServer.PortOccupied
+            /// 用途: 当HTTP端口被占用无法启动服务时记录错误
+            /// 参数: {0} - 端口号
+            /// </remarks>
+            public const string PortOccupied = "StartUp.HttpServer.PortOccupied";
+        }
+
+        /// <summary>
+        /// 应用程序配置相关消息
+        /// </summary>
+        public static class ApplicationSettings
+        {
+            /// <summary>
+            /// Configs/app_config.json
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.ApplicationSettings.ConfigFilePath
+            /// 用途: 应用程序配置文件路径
+            /// </remarks>
+            public const string ConfigFilePath = "StartUp.ApplicationSettings.ConfigFilePath";
+
+            /// <summary>
+            /// _
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.ApplicationSettings.LogTypeSeparator
+            /// 用途: 日志类型分隔符
+            /// </remarks>
+            public const string LogTypeSeparator = "StartUp.ApplicationSettings.LogTypeSeparator";
+
+            /// <summary>
+            /// [Warning] {0}
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.ApplicationSettings.WarningMessage
+            /// 用途: 警告消息格式
+            /// 参数: {0} - 警告消息内容
+            /// </remarks>
+            public const string WarningMessage = "StartUp.ApplicationSettings.WarningMessage";
         }
 
         /// <summary>
@@ -312,6 +509,154 @@ public static partial class Keys
             /// 参数: {0} - 服务器类型, {1} - 端口
             /// </remarks>
             public const string ServiceNotEnabled = "StartUp.WebSocketServer.ServiceNotEnabled";
+        }
+
+        /// <summary>
+        /// 发现中心相关消息
+        /// </summary>
+        public static class DiscoveryCenter
+        {
+            /// <summary>
+            /// DiscoveryCenterHost is not configured; unable to start connection to DiscoveryCenter. Please check the configuration item DiscoveryCenterHost
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.DiscoveryCenter.HostNotConfigured
+            /// 用途: 当发现中心主机地址未配置时记录错误
+            /// </remarks>
+            public const string HostNotConfigured = "StartUp.DiscoveryCenter.HostNotConfigured";
+
+            /// <summary>
+            /// DiscoveryCenterPort is not configured; unable to start connection to DiscoveryCenter. Please check the configuration item DiscoveryCenterPort
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.DiscoveryCenter.PortNotConfigured
+            /// 用途: 当发现中心端口未配置时记录错误
+            /// </remarks>
+            public const string PortNotConfigured = "StartUp.DiscoveryCenter.PortNotConfigured";
+
+            /// <summary>
+            /// DiscoveryCenterHost: {0} is not a valid IP address; unable to start connection to DiscoveryCenter. Please check the configuration item DiscoveryCenterHost
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.DiscoveryCenter.InvalidHostAddress
+            /// 用途: 当发现中心主机地址无效时记录错误
+            /// 参数: {0} - 无效的主机地址
+            /// </remarks>
+            public const string InvalidHostAddress = "StartUp.DiscoveryCenter.InvalidHostAddress";
+        }
+
+        /// <summary>
+        /// HTTP服务器相关异常消息
+        /// </summary>
+        public static class HttpExceptions
+        {
+            /// <summary>
+            /// The HTTP address must start with /
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpExceptions.AddressMustStartWithSlash
+            /// 用途: 当HTTP地址不以/开始时抛出异常
+            /// </remarks>
+            public const string AddressMustStartWithSlash = "StartUp.HttpExceptions.AddressMustStartWithSlash";
+
+            /// <summary>
+            /// The HTTP address must end in /
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpExceptions.AddressMustEndWithSlash
+            /// 用途: 当HTTP地址不以/结束时抛出异常
+            /// </remarks>
+            public const string AddressMustEndWithSlash = "StartUp.HttpExceptions.AddressMustEndWithSlash";
+
+            /// <summary>
+            /// If HTTPS is not implemented, cancel the HTTPS port configuration
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpExceptions.HttpsNotImplemented
+            /// 用途: 当尝试配置HTTPS但HTTPS功能未实现时抛出异常
+            /// </remarks>
+            public const string HttpsNotImplemented = "StartUp.HttpExceptions.HttpsNotImplemented";
+        }
+
+        /// <summary>
+        /// 健康检查相关消息
+        /// </summary>
+        public static class HealthCheck
+        {
+            /// <summary>
+            /// the health check endpoint is enabled:
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HealthCheck.EndpointEnabled
+            /// 用途: 当健康检查端点启用时记录信息
+            /// </remarks>
+            public const string EndpointEnabled = "StartUp.HealthCheck.EndpointEnabled";
+
+            /// <summary>
+            /// - detailed health checks: http://{0}:{1}{2}
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HealthCheck.DetailedEndpointUrl
+            /// 用途: 显示详细健康检查端点URL时记录
+            /// 参数: {0} - IP地址, {1} - 端口号, {2} - 路径
+            /// </remarks>
+            public const string DetailedEndpointUrl = "StartUp.HealthCheck.DetailedEndpointUrl";
+
+            /// <summary>
+            /// - simple health check: http://{0}:{1}{2}
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HealthCheck.SimpleEndpointUrl
+            /// 用途: 显示简单健康检查端点URL时记录
+            /// 参数: {0} - IP地址, {1} - 端口号, {2} - 路径
+            /// </remarks>
+            public const string SimpleEndpointUrl = "StartUp.HealthCheck.SimpleEndpointUrl";
+
+            /// <summary>
+            /// - OpenTelemetry check: http://{0}:{1}{2}
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HealthCheck.OpenTelemetryEndpointUrl
+            /// 用途: 显示OpenTelemetry检查端点URL时记录
+            /// 参数: {0} - IP地址, {1} - 端口号, {2} - 路径
+            /// </remarks>
+            public const string OpenTelemetryEndpointUrl = "StartUp.HealthCheck.OpenTelemetryEndpointUrl";
+
+            /// <summary>
+            /// 应用程序运行正常
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HealthCheck.ApplicationWorkingFine
+            /// 用途: 健康检查返回成功状态时的消息
+            /// </remarks>
+            public const string ApplicationWorkingFine = "StartUp.HealthCheck.ApplicationWorkingFine";
+
+            /// <summary>
+            /// OpenTelemetry the configuration is normal
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HealthCheck.OpenTelemetryConfigurationNormal
+            /// 用途: OpenTelemetry健康检查返回成功状态时的消息
+            /// </remarks>
+            public const string OpenTelemetryConfigurationNormal = "StartUp.HealthCheck.OpenTelemetryConfigurationNormal";
+
+            /// <summary>
+            /// OpenTelemetry is configured normally
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HealthCheck.OpenTelemetryConfiguredNormally
+            /// 用途: OpenTelemetry健康检查端点返回的配置正常消息
+            /// </remarks>
+            public const string OpenTelemetryConfiguredNormally = "StartUp.HealthCheck.OpenTelemetryConfiguredNormally";
+
+            /// <summary>
+            /// OK
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HealthCheck.Ok
+            /// 用途: 简单健康检查端点返回的成功消息
+            /// </remarks>
+            public const string Ok = "StartUp.HealthCheck.Ok";
         }
 
         /// <summary>
