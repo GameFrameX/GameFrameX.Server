@@ -58,7 +58,7 @@ public abstract class BaseCacheState : ICacheState, IEntity
     /// <summary>
     /// 是否删除
     /// </summary>
-    public virtual bool IsDeleted { get; set; }
+    public virtual bool? IsDeleted { get; set; }
 
     /// <summary>
     /// 删除时间

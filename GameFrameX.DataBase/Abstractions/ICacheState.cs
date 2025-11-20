@@ -29,12 +29,14 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using GameFrameX.Foundation.Orm.Entity.Filter;
+
 namespace GameFrameX.DataBase.Abstractions;
 
 /// <summary>
 /// 缓存数据对象接口
 /// </summary>
-public interface ICacheState : ISafeDelete, ISafeCreate, ISafeUpdate
+public interface ICacheState : ISafeDeletedFilter, ISafeCreate, ISafeUpdateFilter
 {
     /// <summary>
     /// 唯一ID
