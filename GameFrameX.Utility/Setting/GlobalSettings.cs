@@ -81,10 +81,10 @@ public static class GlobalSettings
         }
 
         var fullPath = Path.GetFullPath(path);
-        LogHelper.ShowOption("Load Global Settings", fullPath);
+        LogHelper.ShowOption(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.GlobalSettings.LoadGlobalSettings), fullPath);
         if (!File.Exists(path))
         {
-            LogHelper.ShowOption("Load Global Settings Failed", $"Failed to load the configuration file.({LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Settings.LoadConfigurationFailed)})");
+            LogHelper.ShowOption(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.GlobalSettings.LoadGlobalSettingsFailed), LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Settings.LoadConfigurationFailed));
             return;
         }
 
@@ -115,7 +115,7 @@ public static class GlobalSettings
     {
         if (CurrentSetting.IsNotNull())
         {
-            LogHelper.Warning("The current setting already exists, cannot be set again, and this setting has been ignored.");
+            LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.GlobalSettings.SettingAlreadyExists));
             return;
         }
 
@@ -128,19 +128,19 @@ public static class GlobalSettings
 
         if (setting.HttpUrl.IsNullOrEmptyOrWhiteSpace())
         {
-            LogHelper.Warning($"HttpUrl is empty and uses the default value of : /game/api/");
+            LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.GlobalSettings.HttpUrlEmptyUseDefault, "/game/api/"));
             setting.HttpUrl = "/game/api/";
         }
 
         if (setting.NetWorkSendTimeOutSeconds < 1)
         {
-            LogHelper.Warning($"NetWorkSendTimeOutSeconds is less than 1 second, and the default value is 5 seconds");
+            LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.GlobalSettings.NetworkTimeoutTooShort, 5));
             setting.NetWorkSendTimeOutSeconds = 5;
         }
 
         if (setting.ActorRecycleTime < 1)
         {
-            LogHelper.Warning($"ActorRecycleTime is less than 1 minute, and the default value is 5 minutes");
+            LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.GlobalSettings.ActorRecycleTimeTooShort, 5));
             setting.ActorRecycleTime = 5;
         }
 

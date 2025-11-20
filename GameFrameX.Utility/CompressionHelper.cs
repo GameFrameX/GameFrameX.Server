@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using System.Buffers;
+using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.Foundation.Logger;
 using ICSharpCode.SharpZipLib.Zip.Compression;
 
@@ -88,7 +89,7 @@ public static class CompressionHelper
         }
         catch (Exception e)
         {
-            LogHelper.Fatal(e);
+            LogHelper.Fatal(LocalizationService.GetString(Localization.Keys.Utility.CompressionHelper.ExceptionError, e.ToString()));
         }
         finally
         {
@@ -132,7 +133,7 @@ public static class CompressionHelper
         }
         catch (Exception e)
         {
-            LogHelper.Fatal(e);
+            LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.CompressionHelper.ExceptionError, e.ToString()));
         }
         finally
         {

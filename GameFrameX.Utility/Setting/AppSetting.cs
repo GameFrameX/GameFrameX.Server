@@ -103,7 +103,7 @@ public sealed class AppSetting
                 _appRunning = value;
                 if (!value && !AppExitSource.Task.IsCompleted)
                 {
-                    LogHelper.Info("Set AppRunning false...");
+                    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.AppSettings.SetAppRunningFalse));
                     AppExitSource.TrySetCanceled();
                 }
             }

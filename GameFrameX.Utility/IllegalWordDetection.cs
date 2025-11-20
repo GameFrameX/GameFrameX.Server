@@ -95,7 +95,7 @@ public sealed class IllegalWordDetection
                 }
                 catch (Exception e)
                 {
-                    LogHelper.Error(e.ToString());
+                    LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ExceptionLogs.ExceptionDetails, e.ToString()));
                 }
             });
         }
@@ -129,7 +129,7 @@ public sealed class IllegalWordDetection
                 }
                 catch (Exception e)
                 {
-                    LogHelper.Error(e.ToString());
+                    LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ExceptionLogs.ExceptionDetails, e.ToString()));
                 }
             });
         }

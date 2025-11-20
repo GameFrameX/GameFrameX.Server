@@ -617,6 +617,24 @@ public static partial class Keys
         public static class GlobalSettings
         {
             /// <summary>
+            /// 加载全局设置的消息标题
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.GlobalSettings.LoadGlobalSettings
+            /// 用途: 当加载全局设置配置时显示操作标题
+            /// </remarks>
+            public const string LoadGlobalSettings = "Utility.GlobalSettings.LoadGlobalSettings";
+
+            /// <summary>
+            /// 加载全局设置失败的消息标题
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.GlobalSettings.LoadGlobalSettingsFailed
+            /// 用途: 当加载全局设置配置失败时显示错误标题
+            /// </remarks>
+            public const string LoadGlobalSettingsFailed = "Utility.GlobalSettings.LoadGlobalSettingsFailed";
+
+            /// <summary>
             /// 设置已存在无法重复设置的警告消息
             /// </summary>
             /// <remarks>
@@ -631,6 +649,7 @@ public static partial class Keys
             /// <remarks>
             /// 键名: Utility.GlobalSettings.HttpUrlEmptyUseDefault
             /// 用途: 当HttpUrl为空时记录使用默认值的警告
+            /// 参数: {0} - 使用的默认值
             /// </remarks>
             public const string HttpUrlEmptyUseDefault = "Utility.GlobalSettings.HttpUrlEmptyUseDefault";
 
@@ -640,6 +659,7 @@ public static partial class Keys
             /// <remarks>
             /// 键名: Utility.GlobalSettings.NetworkTimeoutTooShort
             /// 用途: 当网络发送超时时间小于1秒时记录警告
+            /// 参数: {0} - 使用的默认值(秒)
             /// </remarks>
             public const string NetworkTimeoutTooShort = "Utility.GlobalSettings.NetworkTimeoutTooShort";
 
@@ -649,6 +669,7 @@ public static partial class Keys
             /// <remarks>
             /// 键名: Utility.GlobalSettings.ActorRecycleTimeTooShort
             /// 用途: 当Actor回收时间小于1分钟时记录警告
+            /// 参数: {0} - 使用的默认值(分钟)
             /// </remarks>
             public const string ActorRecycleTimeTooShort = "Utility.GlobalSettings.ActorRecycleTimeTooShort";
         }
@@ -698,6 +719,22 @@ public static partial class Keys
             /// 参数: {0} - 耗时(毫秒), {1} - 有效数量
             /// </remarks>
             public const string InitializationComplete = "Utility.IllegalWordDetection.InitializationComplete";
+        }
+
+        /// <summary>
+        /// 压缩助手模块相关日志消息资源键
+        /// </summary>
+        public static class CompressionHelper
+        {
+            /// <summary>
+            /// 异常错误消息
+            /// </summary>
+            /// <remarks>
+            /// 键名: Utility.CompressionHelper.ExceptionError
+            /// 用途: 记录压缩操作中发生的异常
+            /// 参数: {0} - 异常消息
+            /// </remarks>
+            public const string ExceptionError = "Utility.CompressionHelper.ExceptionError";
         }
 
         /// <summary>
