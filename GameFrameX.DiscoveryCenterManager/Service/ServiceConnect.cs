@@ -32,6 +32,7 @@
 using GameFrameX.DiscoveryCenterManager.ServiceClient;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Foundation.Localization.Core;
+using GameFrameX.Localization;
 using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
@@ -98,7 +99,7 @@ internal sealed class ServiceConnect : IDisposable
     {
         if (IsInit)
         {
-            Log.Warning($"ServiceConnectManager Init {Name} already initialized");
+            Log.Warning(LocalizationService.GetString(Keys.DiscoveryCenterManager.ServiceAlreadyInitialized, Name));
             return;
         }
 
@@ -139,7 +140,7 @@ internal sealed class ServiceConnect : IDisposable
     /// </remarks>
     private void GameAppServiceClientOnError(string s, ErrorEventArgs errorEventArgs)
     {
-        Log.Error($"ServiceConnectManager OnError {errorEventArgs.Exception}");
+        Log.Error(LocalizationService.GetString(Keys.DiscoveryCenterManager.ClientError, errorEventArgs.Exception));
         _initTaskCompletionSource.TrySetResult();
     }
 

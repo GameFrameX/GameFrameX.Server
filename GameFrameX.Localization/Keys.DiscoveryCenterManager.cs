@@ -240,5 +240,95 @@ public static partial class Keys
         /// 参数: {0} - 节点信息
         /// </remarks>
         public const string DuplicateNodeWarning = "DiscoveryCenterManager.Server.DuplicateNodeWarning";
+
+        /// <summary>
+        /// ServiceConnectManager Register ServerInstanceId:{0} already registered
+        /// </summary>
+        /// <remarks>
+        /// 键名: DiscoveryCenterManager.ServiceConnect.ServerInstanceAlreadyRegistered
+        /// 用途: 当注册的服务器实例ID已存在时记录警告
+        /// 参数: {0} - 服务器实例ID
+        /// </remarks>
+        public const string ServerInstanceAlreadyRegistered = "DiscoveryCenterManager.ServiceConnect.ServerInstanceAlreadyRegistered";
+
+        /// <summary>
+        /// ServiceConnectManager UnRegister ServerInstanceId:{0}
+        /// </summary>
+        /// <remarks>
+        /// 键名: DiscoveryCenterManager.ServiceConnect.ServerInstanceUnregistered
+        /// 用途: 当服务器实例注销成功时记录信息
+        /// 参数: {0} - 服务器实例ID
+        /// </remarks>
+        public const string ServerInstanceUnregistered = "DiscoveryCenterManager.ServiceConnect.ServerInstanceUnregistered";
+
+        /// <summary>
+        /// ServiceConnectManager UnRegister ServerInstanceId:{0} not found
+        /// </summary>
+        /// <remarks>
+        /// 键名: DiscoveryCenterManager.ServiceConnect.ServerInstanceNotFound
+        /// 用途: 当尝试注销不存在服务器实例时记录错误
+        /// 参数: {0} - 服务器实例ID
+        /// </remarks>
+        public const string ServerInstanceNotFound = "DiscoveryCenterManager.ServiceConnect.ServerInstanceNotFound";
+
+        /// <summary>
+        /// ServiceConnectManager Send ServerInstanceId:{0} not found
+        /// </summary>
+        /// <remarks>
+        /// 键名: DiscoveryCenterManager.ServiceConnect.SendServerInstanceNotFound
+        /// 用途: 当发送消息时找不到目标服务器实例时记录错误
+        /// 参数: {0} - 服务器实例ID
+        /// </remarks>
+        public const string SendServerInstanceNotFound = "DiscoveryCenterManager.ServiceConnect.SendServerInstanceNotFound";
+
+        /// <summary>
+        /// ServiceConnectManager Call ServerInstanceId:{0} not found
+        /// </summary>
+        /// <remarks>
+        /// 键名: DiscoveryCenterManager.ServiceConnect.CallServerInstanceNotFound
+        /// 用途: 当RPC调用时找不到目标服务器实例时记录错误
+        /// 参数: {0} - 服务器实例ID
+        /// </remarks>
+        public const string CallServerInstanceNotFound = "DiscoveryCenterManager.ServiceConnect.CallServerInstanceNotFound";
+
+        /// <summary>
+        /// ServiceConnectManager Init {0} already initialized
+        /// </summary>
+        /// <remarks>
+        /// 键名: DiscoveryCenterManager.ServiceConnect.ServiceAlreadyInitialized
+        /// 用途: 当服务已初始化时记录警告
+        /// 参数: {0} - 服务名称
+        /// </remarks>
+        public const string ServiceAlreadyInitialized = "DiscoveryCenterManager.ServiceConnect.ServiceAlreadyInitialized";
+
+        /// <summary>
+        /// ServiceConnectManager OnError {0}
+        /// </summary>
+        /// <remarks>
+        /// 键名: DiscoveryCenterManager.ServiceConnect.ClientError
+        /// 用途: 当客户端发生错误时记录错误日志
+        /// 参数: {0} - 异常信息
+        /// </remarks>
+        public const string ClientError = "DiscoveryCenterManager.ServiceConnect.ClientError";
+
+        /// <summary>
+        /// 服务上线回调，通知其他服务器: {0}
+        /// </summary>
+        /// <remarks>
+        /// 键名: DiscoveryCenterManager.Startup.ServiceOnlineCallback
+        /// 用途: 当服务上线时记录调试日志并通知其他服务器
+        /// 参数: {0} - 服务器信息
+        /// </remarks>
+        public const string ServiceOnlineCallback = "DiscoveryCenterManager.Startup.ServiceOnlineCallback";
+
+        /// <summary>
+        /// 服务下线回调，通知其他服务器: {0}
+        /// </summary>
+        /// <remarks>
+        /// 键名: DiscoveryCenterManager.Startup.ServiceOfflineCallback
+        /// 用途: 当服务下线时记录调试日志并通知其他服务器
+        /// 参数: {0} - 服务器信息
+        /// </remarks>
+        public const string ServiceOfflineCallback = "DiscoveryCenterManager.Startup.ServiceOfflineCallback";
     }
 }

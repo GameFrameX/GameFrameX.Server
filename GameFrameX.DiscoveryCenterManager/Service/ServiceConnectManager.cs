@@ -33,6 +33,8 @@ using System.Collections.Concurrent;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.Messages;
 using GameFrameX.Utility;
+using GameFrameX.Foundation.Localization.Core;
+using GameFrameX.Localization;
 using Serilog;
 
 namespace GameFrameX.DiscoveryCenterManager.Service;
@@ -82,7 +84,7 @@ public sealed class ServiceConnectManager : Singleton<ServiceConnectManager>
     {
         if (_serviceConnects.TryGetValue(serverInstanceId, out var serviceConnect))
         {
-            Log.Warning($"ServiceConnectManager Register ServerInstanceId:{serverInstanceId} already registered");
+            Log.Warning(LocalizationService.GetString(Keys.DiscoveryCenterManager.ServerInstanceAlreadyRegistered, serverInstanceId));
             return;
         }
 
@@ -101,12 +103,12 @@ public sealed class ServiceConnectManager : Singleton<ServiceConnectManager>
     {
         if (_serviceConnects.Remove(serverInstanceId, out var serviceConnect))
         {
-            Log.Information($"ServiceConnectManager UnRegister ServerInstanceId:{serverInstanceId}");
+            Log.Information(LocalizationService.GetString(Keys.DiscoveryCenterManager.ServerInstanceUnregistered, serverInstanceId));
             serviceConnect?.Dispose();
         }
         else
         {
-            Log.Error($"ServiceConnectManager UnRegister ServerInstanceId:{serverInstanceId} not found");
+            Log.Error(LocalizationService.GetString(Keys.DiscoveryCenterManager.ServerInstanceNotFound, serverInstanceId));
         }
     }
 
@@ -133,7 +135,7 @@ public sealed class ServiceConnectManager : Singleton<ServiceConnectManager>
         }
         else
         {
-            Log.Error($"ServiceConnectManager Send ServerInstanceId:{serverInstanceId} not found");
+            Log.Error(LocalizationService.GetString(Keys.DiscoveryCenterManager.SendServerInstanceNotFound, serverInstanceId));
         }
     }
 
@@ -169,7 +171,7 @@ public sealed class ServiceConnectManager : Singleton<ServiceConnectManager>
             return await serviceConnect.ServiceClient.Call<T>(request, timeout);
         }
 
-        Log.Error($"ServiceConnectManager Call ServerInstanceId:{serverInstanceId} not found");
+        Log.Error(LocalizationService.GetString(Keys.DiscoveryCenterManager.CallServerInstanceNotFound, serverInstanceId));
         return default;
     }
 }

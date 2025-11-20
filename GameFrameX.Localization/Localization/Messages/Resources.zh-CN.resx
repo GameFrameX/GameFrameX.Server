@@ -643,6 +643,35 @@
     <value>重复节点添加，已忽略: {0}</value>
   </data>
 
+  <!-- ServiceConnect 相关消息 -->
+  <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceAlreadyRegistered" xml:space="preserve">
+    <value>ServiceConnectManager 注册 服务器实例ID:{0} 已被注册</value>
+  </data>
+
+  <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceUnregistered" xml:space="preserve">
+    <value>ServiceConnectManager 注销 服务器实例ID:{0}</value>
+  </data>
+
+  <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceNotFound" xml:space="preserve">
+    <value>ServiceConnectManager 注销 服务器实例ID:{0} 未找到</value>
+  </data>
+
+  <data name="DiscoveryCenterManager.ServiceConnect.SendServerInstanceNotFound" xml:space="preserve">
+    <value>ServiceConnectManager 发送 服务器实例ID:{0} 未找到</value>
+  </data>
+
+  <data name="DiscoveryCenterManager.ServiceConnect.CallServerInstanceNotFound" xml:space="preserve">
+    <value>ServiceConnectManager 调用 服务器实例ID:{0} 未找到</value>
+  </data>
+
+  <data name="DiscoveryCenterManager.ServiceConnect.ServiceAlreadyInitialized" xml:space="preserve">
+    <value>ServiceConnectManager 初始化 {0} 已初始化</value>
+  </data>
+
+  <data name="DiscoveryCenterManager.ServiceConnect.ClientError" xml:space="preserve">
+    <value>ServiceConnectManager 错误 {0}</value>
+  </data>
+
   <!-- Core 模块日志消息 -->
   <!-- Actor 相关消息 -->
   <data name="Core.Actor.CrossDay" xml:space="preserve">

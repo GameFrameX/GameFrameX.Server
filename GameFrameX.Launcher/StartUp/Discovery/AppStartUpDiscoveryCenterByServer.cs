@@ -94,7 +94,7 @@ internal partial class AppStartUpDiscoveryCenter
 
     private void OnServerRemove(IServiceInfo serverInfo)
     {
-        LogHelper.DebugConsole("服务下线回调，通知其他服务器:" + serverInfo);
+        LogHelper.DebugConsole(LocalizationService.GetString(Keys.DiscoveryCenterManager.ServiceOfflineCallback, serverInfo));
         var serverList = _namingServiceManager.GetOuterNodes();
         serverList = serverList.Where(m => m.ServerId != 0 && m.ServerInstanceId != serverInfo.ServerInstanceId)
                                .ToList();
@@ -122,7 +122,7 @@ internal partial class AppStartUpDiscoveryCenter
 
     private void OnServerAdd(IServiceInfo serverInfo)
     {
-        LogHelper.DebugConsole("服务上线回调，通知其他服务器:" + serverInfo);
+        LogHelper.DebugConsole(LocalizationService.GetString(Keys.DiscoveryCenterManager.ServiceOnlineCallback, serverInfo));
         var serverList = _namingServiceManager.GetOuterNodes();
         serverList = serverList.Where(m => m.ServerInstanceId != serverInfo.ServerInstanceId).ToList();
 

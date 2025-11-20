@@ -611,6 +611,35 @@
     <value>Duplicate node addition...Ignored: {0}</value>
   </data>
 
+  <!-- ServiceConnect related messages -->
+  <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceAlreadyRegistered" xml:space="preserve">
+    <value>ServiceConnectManager Register ServerInstanceId:{0} already registered</value>
+  </data>
+
+  <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceUnregistered" xml:space="preserve">
+    <value>ServiceConnectManager UnRegister ServerInstanceId:{0}</value>
+  </data>
+
+  <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceNotFound" xml:space="preserve">
+    <value>ServiceConnectManager UnRegister ServerInstanceId:{0} not found</value>
+  </data>
+
+  <data name="DiscoveryCenterManager.ServiceConnect.SendServerInstanceNotFound" xml:space="preserve">
+    <value>ServiceConnectManager Send ServerInstanceId:{0} not found</value>
+  </data>
+
+  <data name="DiscoveryCenterManager.ServiceConnect.CallServerInstanceNotFound" xml:space="preserve">
+    <value>ServiceConnectManager Call ServerInstanceId:{0} not found</value>
+  </data>
+
+  <data name="DiscoveryCenterManager.ServiceConnect.ServiceAlreadyInitialized" xml:space="preserve">
+    <value>ServiceConnectManager Init {0} already initialized</value>
+  </data>
+
+  <data name="DiscoveryCenterManager.ServiceConnect.ClientError" xml:space="preserve">
+    <value>ServiceConnectManager OnError {0}</value>
+  </data>
+
   <!-- Core module log messages -->
   <!-- Actor related messages -->
   <data name="Core.Actor.CrossDay" xml:space="preserve">
