@@ -3725,6 +3725,24 @@ references:
   fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).FindList
   nameWithType: BaseDataTable<T>.FindList
   nameWithType.vb: BaseDataTable(Of T).FindList
+- uid: GameFrameX.Core.Config.BaseDataTable`1.FindListArray(System.Func{`0,System.Boolean})
+  name: FindListArray(Func<T, bool>)
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_FindListArray_System_Func__0_System_Boolean__
+  commentId: M:GameFrameX.Core.Config.BaseDataTable`1.FindListArray(System.Func{`0,System.Boolean})
+  name.vb: FindListArray(Func(Of T, Boolean))
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.FindListArray(System.Func<T, bool>)
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).FindListArray(System.Func(Of T, Boolean))
+  nameWithType: BaseDataTable<T>.FindListArray(Func<T, bool>)
+  nameWithType.vb: BaseDataTable(Of T).FindListArray(Func(Of T, Boolean))
+- uid: GameFrameX.Core.Config.BaseDataTable`1.FindListArray*
+  name: FindListArray
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_FindListArray_
+  commentId: Overload:GameFrameX.Core.Config.BaseDataTable`1.FindListArray
+  isSpec: "True"
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.FindListArray
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).FindListArray
+  nameWithType: BaseDataTable<T>.FindListArray
+  nameWithType.vb: BaseDataTable(Of T).FindListArray
 - uid: GameFrameX.Core.Config.BaseDataTable`1.FirstOrDefault
   name: FirstOrDefault
   href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_FirstOrDefault
@@ -3742,6 +3760,24 @@ references:
   fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).FirstOrDefault
   nameWithType: BaseDataTable<T>.FirstOrDefault
   nameWithType.vb: BaseDataTable(Of T).FirstOrDefault
+- uid: GameFrameX.Core.Config.BaseDataTable`1.ForEach(System.Action{`0})
+  name: ForEach(Action<T>)
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_ForEach_System_Action__0__
+  commentId: M:GameFrameX.Core.Config.BaseDataTable`1.ForEach(System.Action{`0})
+  name.vb: ForEach(Action(Of T))
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.ForEach(System.Action<T>)
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).ForEach(System.Action(Of T))
+  nameWithType: BaseDataTable<T>.ForEach(Action<T>)
+  nameWithType.vb: BaseDataTable(Of T).ForEach(Action(Of T))
+- uid: GameFrameX.Core.Config.BaseDataTable`1.ForEach*
+  name: ForEach
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_ForEach_
+  commentId: Overload:GameFrameX.Core.Config.BaseDataTable`1.ForEach
+  isSpec: "True"
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.ForEach
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).ForEach
+  nameWithType: BaseDataTable<T>.ForEach
+  nameWithType.vb: BaseDataTable(Of T).ForEach
 - uid: GameFrameX.Core.Config.BaseDataTable`1.Get(System.Int32)
   name: Get(int)
   href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_Get_System_Int32_
@@ -3857,6 +3893,42 @@ references:
   fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).LongDataMaps
   nameWithType: BaseDataTable<T>.LongDataMaps
   nameWithType.vb: BaseDataTable(Of T).LongDataMaps
+- uid: GameFrameX.Core.Config.BaseDataTable`1.Max*
+  name: Max
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_Max_
+  commentId: Overload:GameFrameX.Core.Config.BaseDataTable`1.Max
+  isSpec: "True"
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.Max
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).Max
+  nameWithType: BaseDataTable<T>.Max
+  nameWithType.vb: BaseDataTable(Of T).Max
+- uid: GameFrameX.Core.Config.BaseDataTable`1.Max``1(System.Func{`0,``0})
+  name: Max<Tk>(Func<T, Tk>)
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_Max__1_System_Func__0___0__
+  commentId: M:GameFrameX.Core.Config.BaseDataTable`1.Max``1(System.Func{`0,``0})
+  name.vb: Max(Of Tk)(Func(Of T, Tk))
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.Max<Tk>(System.Func<T, Tk>)
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).Max(Of Tk)(System.Func(Of T, Tk))
+  nameWithType: BaseDataTable<T>.Max<Tk>(Func<T, Tk>)
+  nameWithType.vb: BaseDataTable(Of T).Max(Of Tk)(Func(Of T, Tk))
+- uid: GameFrameX.Core.Config.BaseDataTable`1.Min*
+  name: Min
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_Min_
+  commentId: Overload:GameFrameX.Core.Config.BaseDataTable`1.Min
+  isSpec: "True"
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.Min
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).Min
+  nameWithType: BaseDataTable<T>.Min
+  nameWithType.vb: BaseDataTable(Of T).Min
+- uid: GameFrameX.Core.Config.BaseDataTable`1.Min``1(System.Func{`0,``0})
+  name: Min<Tk>(Func<T, Tk>)
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_Min__1_System_Func__0___0__
+  commentId: M:GameFrameX.Core.Config.BaseDataTable`1.Min``1(System.Func{`0,``0})
+  name.vb: Min(Of Tk)(Func(Of T, Tk))
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.Min<Tk>(System.Func<T, Tk>)
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).Min(Of Tk)(System.Func(Of T, Tk))
+  nameWithType: BaseDataTable<T>.Min<Tk>(Func<T, Tk>)
+  nameWithType.vb: BaseDataTable(Of T).Min(Of Tk)(Func(Of T, Tk))
 - uid: GameFrameX.Core.Config.BaseDataTable`1.StringDataMaps
   name: StringDataMaps
   href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_StringDataMaps
@@ -3865,6 +3937,60 @@ references:
   fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).StringDataMaps
   nameWithType: BaseDataTable<T>.StringDataMaps
   nameWithType.vb: BaseDataTable(Of T).StringDataMaps
+- uid: GameFrameX.Core.Config.BaseDataTable`1.Sum(System.Func{`0,System.Decimal})
+  name: Sum(Func<T, decimal>)
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_Sum_System_Func__0_System_Decimal__
+  commentId: M:GameFrameX.Core.Config.BaseDataTable`1.Sum(System.Func{`0,System.Decimal})
+  name.vb: Sum(Func(Of T, Decimal))
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.Sum(System.Func<T, decimal>)
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).Sum(System.Func(Of T, Decimal))
+  nameWithType: BaseDataTable<T>.Sum(Func<T, decimal>)
+  nameWithType.vb: BaseDataTable(Of T).Sum(Func(Of T, Decimal))
+- uid: GameFrameX.Core.Config.BaseDataTable`1.Sum(System.Func{`0,System.Double})
+  name: Sum(Func<T, double>)
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_Sum_System_Func__0_System_Double__
+  commentId: M:GameFrameX.Core.Config.BaseDataTable`1.Sum(System.Func{`0,System.Double})
+  name.vb: Sum(Func(Of T, Double))
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.Sum(System.Func<T, double>)
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).Sum(System.Func(Of T, Double))
+  nameWithType: BaseDataTable<T>.Sum(Func<T, double>)
+  nameWithType.vb: BaseDataTable(Of T).Sum(Func(Of T, Double))
+- uid: GameFrameX.Core.Config.BaseDataTable`1.Sum(System.Func{`0,System.Int32})
+  name: Sum(Func<T, int>)
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_Sum_System_Func__0_System_Int32__
+  commentId: M:GameFrameX.Core.Config.BaseDataTable`1.Sum(System.Func{`0,System.Int32})
+  name.vb: Sum(Func(Of T, Integer))
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.Sum(System.Func<T, int>)
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).Sum(System.Func(Of T, Integer))
+  nameWithType: BaseDataTable<T>.Sum(Func<T, int>)
+  nameWithType.vb: BaseDataTable(Of T).Sum(Func(Of T, Integer))
+- uid: GameFrameX.Core.Config.BaseDataTable`1.Sum(System.Func{`0,System.Int64})
+  name: Sum(Func<T, long>)
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_Sum_System_Func__0_System_Int64__
+  commentId: M:GameFrameX.Core.Config.BaseDataTable`1.Sum(System.Func{`0,System.Int64})
+  name.vb: Sum(Func(Of T, Long))
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.Sum(System.Func<T, long>)
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).Sum(System.Func(Of T, Long))
+  nameWithType: BaseDataTable<T>.Sum(Func<T, long>)
+  nameWithType.vb: BaseDataTable(Of T).Sum(Func(Of T, Long))
+- uid: GameFrameX.Core.Config.BaseDataTable`1.Sum(System.Func{`0,System.Single})
+  name: Sum(Func<T, float>)
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_Sum_System_Func__0_System_Single__
+  commentId: M:GameFrameX.Core.Config.BaseDataTable`1.Sum(System.Func{`0,System.Single})
+  name.vb: Sum(Func(Of T, Single))
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.Sum(System.Func<T, float>)
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).Sum(System.Func(Of T, Single))
+  nameWithType: BaseDataTable<T>.Sum(Func<T, float>)
+  nameWithType.vb: BaseDataTable(Of T).Sum(Func(Of T, Single))
+- uid: GameFrameX.Core.Config.BaseDataTable`1.Sum*
+  name: Sum
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_Sum_
+  commentId: Overload:GameFrameX.Core.Config.BaseDataTable`1.Sum
+  isSpec: "True"
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.Sum
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).Sum
+  nameWithType: BaseDataTable<T>.Sum
+  nameWithType.vb: BaseDataTable(Of T).Sum
 - uid: GameFrameX.Core.Config.BaseDataTable`1.ToArray
   name: ToArray()
   href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_ToArray
@@ -3882,6 +4008,59 @@ references:
   fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).ToArray
   nameWithType: BaseDataTable<T>.ToArray
   nameWithType.vb: BaseDataTable(Of T).ToArray
+- uid: GameFrameX.Core.Config.BaseDataTable`1.ToList
+  name: ToList()
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_ToList
+  commentId: M:GameFrameX.Core.Config.BaseDataTable`1.ToList
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.ToList()
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).ToList()
+  nameWithType: BaseDataTable<T>.ToList()
+  nameWithType.vb: BaseDataTable(Of T).ToList()
+- uid: GameFrameX.Core.Config.BaseDataTable`1.ToList*
+  name: ToList
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_ToList_
+  commentId: Overload:GameFrameX.Core.Config.BaseDataTable`1.ToList
+  isSpec: "True"
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.ToList
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).ToList
+  nameWithType: BaseDataTable<T>.ToList
+  nameWithType.vb: BaseDataTable(Of T).ToList
+- uid: GameFrameX.Core.Config.BaseDataTable`1.TryGet(System.Int32,`0@)
+  name: TryGet(int, out T)
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_TryGet_System_Int32__0__
+  commentId: M:GameFrameX.Core.Config.BaseDataTable`1.TryGet(System.Int32,`0@)
+  name.vb: TryGet(Integer, T)
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.TryGet(int, out T)
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).TryGet(Integer, T)
+  nameWithType: BaseDataTable<T>.TryGet(int, out T)
+  nameWithType.vb: BaseDataTable(Of T).TryGet(Integer, T)
+- uid: GameFrameX.Core.Config.BaseDataTable`1.TryGet(System.Int64,`0@)
+  name: TryGet(long, out T)
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_TryGet_System_Int64__0__
+  commentId: M:GameFrameX.Core.Config.BaseDataTable`1.TryGet(System.Int64,`0@)
+  name.vb: TryGet(Long, T)
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.TryGet(long, out T)
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).TryGet(Long, T)
+  nameWithType: BaseDataTable<T>.TryGet(long, out T)
+  nameWithType.vb: BaseDataTable(Of T).TryGet(Long, T)
+- uid: GameFrameX.Core.Config.BaseDataTable`1.TryGet(System.String,`0@)
+  name: TryGet(string, out T)
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_TryGet_System_String__0__
+  commentId: M:GameFrameX.Core.Config.BaseDataTable`1.TryGet(System.String,`0@)
+  name.vb: TryGet(String, T)
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.TryGet(string, out T)
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).TryGet(String, T)
+  nameWithType: BaseDataTable<T>.TryGet(string, out T)
+  nameWithType.vb: BaseDataTable(Of T).TryGet(String, T)
+- uid: GameFrameX.Core.Config.BaseDataTable`1.TryGet*
+  name: TryGet
+  href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1_TryGet_
+  commentId: Overload:GameFrameX.Core.Config.BaseDataTable`1.TryGet
+  isSpec: "True"
+  fullName: GameFrameX.Core.Config.BaseDataTable<T>.TryGet
+  fullName.vb: GameFrameX.Core.Config.BaseDataTable(Of T).TryGet
+  nameWithType: BaseDataTable<T>.TryGet
+  nameWithType.vb: BaseDataTable(Of T).TryGet
 - uid: GameFrameX.Core.Config.BaseDataTable`1._loadFunc
   name: _loadFunc
   href: api/GameFrameX.Core.Config.BaseDataTable-1.html#GameFrameX_Core_Config_BaseDataTable_1__loadFunc
@@ -5468,6 +5647,24 @@ references:
   fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).FindList
   nameWithType: IDataTable<T>.FindList
   nameWithType.vb: IDataTable(Of T).FindList
+- uid: GameFrameX.Core.Config.IDataTable`1.FindListArray(System.Func{`0,System.Boolean})
+  name: FindListArray(Func<T, bool>)
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_FindListArray_System_Func__0_System_Boolean__
+  commentId: M:GameFrameX.Core.Config.IDataTable`1.FindListArray(System.Func{`0,System.Boolean})
+  name.vb: FindListArray(Func(Of T, Boolean))
+  fullName: GameFrameX.Core.Config.IDataTable<T>.FindListArray(System.Func<T, bool>)
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).FindListArray(System.Func(Of T, Boolean))
+  nameWithType: IDataTable<T>.FindListArray(Func<T, bool>)
+  nameWithType.vb: IDataTable(Of T).FindListArray(Func(Of T, Boolean))
+- uid: GameFrameX.Core.Config.IDataTable`1.FindListArray*
+  name: FindListArray
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_FindListArray_
+  commentId: Overload:GameFrameX.Core.Config.IDataTable`1.FindListArray
+  isSpec: "True"
+  fullName: GameFrameX.Core.Config.IDataTable<T>.FindListArray
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).FindListArray
+  nameWithType: IDataTable<T>.FindListArray
+  nameWithType.vb: IDataTable(Of T).FindListArray
 - uid: GameFrameX.Core.Config.IDataTable`1.FirstOrDefault
   name: FirstOrDefault
   href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_FirstOrDefault
@@ -5485,6 +5682,24 @@ references:
   fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).FirstOrDefault
   nameWithType: IDataTable<T>.FirstOrDefault
   nameWithType.vb: IDataTable(Of T).FirstOrDefault
+- uid: GameFrameX.Core.Config.IDataTable`1.ForEach(System.Action{`0})
+  name: ForEach(Action<T>)
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_ForEach_System_Action__0__
+  commentId: M:GameFrameX.Core.Config.IDataTable`1.ForEach(System.Action{`0})
+  name.vb: ForEach(Action(Of T))
+  fullName: GameFrameX.Core.Config.IDataTable<T>.ForEach(System.Action<T>)
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).ForEach(System.Action(Of T))
+  nameWithType: IDataTable<T>.ForEach(Action<T>)
+  nameWithType.vb: IDataTable(Of T).ForEach(Action(Of T))
+- uid: GameFrameX.Core.Config.IDataTable`1.ForEach*
+  name: ForEach
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_ForEach_
+  commentId: Overload:GameFrameX.Core.Config.IDataTable`1.ForEach
+  isSpec: "True"
+  fullName: GameFrameX.Core.Config.IDataTable<T>.ForEach
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).ForEach
+  nameWithType: IDataTable<T>.ForEach
+  nameWithType.vb: IDataTable(Of T).ForEach
 - uid: GameFrameX.Core.Config.IDataTable`1.Get(System.Int32)
   name: Get(int)
   href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_Get_System_Int32_
@@ -5494,6 +5709,15 @@ references:
   fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).Get(Integer)
   nameWithType: IDataTable<T>.Get(int)
   nameWithType.vb: IDataTable(Of T).Get(Integer)
+- uid: GameFrameX.Core.Config.IDataTable`1.Get(System.Int64)
+  name: Get(long)
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_Get_System_Int64_
+  commentId: M:GameFrameX.Core.Config.IDataTable`1.Get(System.Int64)
+  name.vb: Get(Long)
+  fullName: GameFrameX.Core.Config.IDataTable<T>.Get(long)
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).Get(Long)
+  nameWithType: IDataTable<T>.Get(long)
+  nameWithType.vb: IDataTable(Of T).Get(Long)
 - uid: GameFrameX.Core.Config.IDataTable`1.Get(System.String)
   name: Get(string)
   href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_Get_System_String_
@@ -5521,6 +5745,15 @@ references:
   fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).this[](Integer)
   nameWithType: IDataTable<T>.this[int]
   nameWithType.vb: IDataTable(Of T).this[](Integer)
+- uid: GameFrameX.Core.Config.IDataTable`1.Item(System.Int64)
+  name: this[long]
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_Item_System_Int64_
+  commentId: P:GameFrameX.Core.Config.IDataTable`1.Item(System.Int64)
+  name.vb: this[](Long)
+  fullName: GameFrameX.Core.Config.IDataTable<T>.this[long]
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).this[](Long)
+  nameWithType: IDataTable<T>.this[long]
+  nameWithType.vb: IDataTable(Of T).this[](Long)
 - uid: GameFrameX.Core.Config.IDataTable`1.Item(System.String)
   name: this[string]
   href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_Item_System_String_
@@ -5557,6 +5790,96 @@ references:
   fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).LastOrDefault
   nameWithType: IDataTable<T>.LastOrDefault
   nameWithType.vb: IDataTable(Of T).LastOrDefault
+- uid: GameFrameX.Core.Config.IDataTable`1.Max*
+  name: Max
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_Max_
+  commentId: Overload:GameFrameX.Core.Config.IDataTable`1.Max
+  isSpec: "True"
+  fullName: GameFrameX.Core.Config.IDataTable<T>.Max
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).Max
+  nameWithType: IDataTable<T>.Max
+  nameWithType.vb: IDataTable(Of T).Max
+- uid: GameFrameX.Core.Config.IDataTable`1.Max``1(System.Func{`0,``0})
+  name: Max<Tk>(Func<T, Tk>)
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_Max__1_System_Func__0___0__
+  commentId: M:GameFrameX.Core.Config.IDataTable`1.Max``1(System.Func{`0,``0})
+  name.vb: Max(Of Tk)(Func(Of T, Tk))
+  fullName: GameFrameX.Core.Config.IDataTable<T>.Max<Tk>(System.Func<T, Tk>)
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).Max(Of Tk)(System.Func(Of T, Tk))
+  nameWithType: IDataTable<T>.Max<Tk>(Func<T, Tk>)
+  nameWithType.vb: IDataTable(Of T).Max(Of Tk)(Func(Of T, Tk))
+- uid: GameFrameX.Core.Config.IDataTable`1.Min*
+  name: Min
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_Min_
+  commentId: Overload:GameFrameX.Core.Config.IDataTable`1.Min
+  isSpec: "True"
+  fullName: GameFrameX.Core.Config.IDataTable<T>.Min
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).Min
+  nameWithType: IDataTable<T>.Min
+  nameWithType.vb: IDataTable(Of T).Min
+- uid: GameFrameX.Core.Config.IDataTable`1.Min``1(System.Func{`0,``0})
+  name: Min<Tk>(Func<T, Tk>)
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_Min__1_System_Func__0___0__
+  commentId: M:GameFrameX.Core.Config.IDataTable`1.Min``1(System.Func{`0,``0})
+  name.vb: Min(Of Tk)(Func(Of T, Tk))
+  fullName: GameFrameX.Core.Config.IDataTable<T>.Min<Tk>(System.Func<T, Tk>)
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).Min(Of Tk)(System.Func(Of T, Tk))
+  nameWithType: IDataTable<T>.Min<Tk>(Func<T, Tk>)
+  nameWithType.vb: IDataTable(Of T).Min(Of Tk)(Func(Of T, Tk))
+- uid: GameFrameX.Core.Config.IDataTable`1.Sum(System.Func{`0,System.Decimal})
+  name: Sum(Func<T, decimal>)
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_Sum_System_Func__0_System_Decimal__
+  commentId: M:GameFrameX.Core.Config.IDataTable`1.Sum(System.Func{`0,System.Decimal})
+  name.vb: Sum(Func(Of T, Decimal))
+  fullName: GameFrameX.Core.Config.IDataTable<T>.Sum(System.Func<T, decimal>)
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).Sum(System.Func(Of T, Decimal))
+  nameWithType: IDataTable<T>.Sum(Func<T, decimal>)
+  nameWithType.vb: IDataTable(Of T).Sum(Func(Of T, Decimal))
+- uid: GameFrameX.Core.Config.IDataTable`1.Sum(System.Func{`0,System.Double})
+  name: Sum(Func<T, double>)
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_Sum_System_Func__0_System_Double__
+  commentId: M:GameFrameX.Core.Config.IDataTable`1.Sum(System.Func{`0,System.Double})
+  name.vb: Sum(Func(Of T, Double))
+  fullName: GameFrameX.Core.Config.IDataTable<T>.Sum(System.Func<T, double>)
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).Sum(System.Func(Of T, Double))
+  nameWithType: IDataTable<T>.Sum(Func<T, double>)
+  nameWithType.vb: IDataTable(Of T).Sum(Func(Of T, Double))
+- uid: GameFrameX.Core.Config.IDataTable`1.Sum(System.Func{`0,System.Int32})
+  name: Sum(Func<T, int>)
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_Sum_System_Func__0_System_Int32__
+  commentId: M:GameFrameX.Core.Config.IDataTable`1.Sum(System.Func{`0,System.Int32})
+  name.vb: Sum(Func(Of T, Integer))
+  fullName: GameFrameX.Core.Config.IDataTable<T>.Sum(System.Func<T, int>)
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).Sum(System.Func(Of T, Integer))
+  nameWithType: IDataTable<T>.Sum(Func<T, int>)
+  nameWithType.vb: IDataTable(Of T).Sum(Func(Of T, Integer))
+- uid: GameFrameX.Core.Config.IDataTable`1.Sum(System.Func{`0,System.Int64})
+  name: Sum(Func<T, long>)
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_Sum_System_Func__0_System_Int64__
+  commentId: M:GameFrameX.Core.Config.IDataTable`1.Sum(System.Func{`0,System.Int64})
+  name.vb: Sum(Func(Of T, Long))
+  fullName: GameFrameX.Core.Config.IDataTable<T>.Sum(System.Func<T, long>)
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).Sum(System.Func(Of T, Long))
+  nameWithType: IDataTable<T>.Sum(Func<T, long>)
+  nameWithType.vb: IDataTable(Of T).Sum(Func(Of T, Long))
+- uid: GameFrameX.Core.Config.IDataTable`1.Sum(System.Func{`0,System.Single})
+  name: Sum(Func<T, float>)
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_Sum_System_Func__0_System_Single__
+  commentId: M:GameFrameX.Core.Config.IDataTable`1.Sum(System.Func{`0,System.Single})
+  name.vb: Sum(Func(Of T, Single))
+  fullName: GameFrameX.Core.Config.IDataTable<T>.Sum(System.Func<T, float>)
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).Sum(System.Func(Of T, Single))
+  nameWithType: IDataTable<T>.Sum(Func<T, float>)
+  nameWithType.vb: IDataTable(Of T).Sum(Func(Of T, Single))
+- uid: GameFrameX.Core.Config.IDataTable`1.Sum*
+  name: Sum
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_Sum_
+  commentId: Overload:GameFrameX.Core.Config.IDataTable`1.Sum
+  isSpec: "True"
+  fullName: GameFrameX.Core.Config.IDataTable<T>.Sum
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).Sum
+  nameWithType: IDataTable<T>.Sum
+  nameWithType.vb: IDataTable(Of T).Sum
 - uid: GameFrameX.Core.Config.IDataTable`1.ToArray
   name: ToArray()
   href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_ToArray
@@ -5574,6 +5897,59 @@ references:
   fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).ToArray
   nameWithType: IDataTable<T>.ToArray
   nameWithType.vb: IDataTable(Of T).ToArray
+- uid: GameFrameX.Core.Config.IDataTable`1.ToList
+  name: ToList()
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_ToList
+  commentId: M:GameFrameX.Core.Config.IDataTable`1.ToList
+  fullName: GameFrameX.Core.Config.IDataTable<T>.ToList()
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).ToList()
+  nameWithType: IDataTable<T>.ToList()
+  nameWithType.vb: IDataTable(Of T).ToList()
+- uid: GameFrameX.Core.Config.IDataTable`1.ToList*
+  name: ToList
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_ToList_
+  commentId: Overload:GameFrameX.Core.Config.IDataTable`1.ToList
+  isSpec: "True"
+  fullName: GameFrameX.Core.Config.IDataTable<T>.ToList
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).ToList
+  nameWithType: IDataTable<T>.ToList
+  nameWithType.vb: IDataTable(Of T).ToList
+- uid: GameFrameX.Core.Config.IDataTable`1.TryGet(System.Int32,`0@)
+  name: TryGet(int, out T)
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_TryGet_System_Int32__0__
+  commentId: M:GameFrameX.Core.Config.IDataTable`1.TryGet(System.Int32,`0@)
+  name.vb: TryGet(Integer, T)
+  fullName: GameFrameX.Core.Config.IDataTable<T>.TryGet(int, out T)
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).TryGet(Integer, T)
+  nameWithType: IDataTable<T>.TryGet(int, out T)
+  nameWithType.vb: IDataTable(Of T).TryGet(Integer, T)
+- uid: GameFrameX.Core.Config.IDataTable`1.TryGet(System.Int64,`0@)
+  name: TryGet(long, out T)
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_TryGet_System_Int64__0__
+  commentId: M:GameFrameX.Core.Config.IDataTable`1.TryGet(System.Int64,`0@)
+  name.vb: TryGet(Long, T)
+  fullName: GameFrameX.Core.Config.IDataTable<T>.TryGet(long, out T)
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).TryGet(Long, T)
+  nameWithType: IDataTable<T>.TryGet(long, out T)
+  nameWithType.vb: IDataTable(Of T).TryGet(Long, T)
+- uid: GameFrameX.Core.Config.IDataTable`1.TryGet(System.String,`0@)
+  name: TryGet(string, out T)
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_TryGet_System_String__0__
+  commentId: M:GameFrameX.Core.Config.IDataTable`1.TryGet(System.String,`0@)
+  name.vb: TryGet(String, T)
+  fullName: GameFrameX.Core.Config.IDataTable<T>.TryGet(string, out T)
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).TryGet(String, T)
+  nameWithType: IDataTable<T>.TryGet(string, out T)
+  nameWithType.vb: IDataTable(Of T).TryGet(String, T)
+- uid: GameFrameX.Core.Config.IDataTable`1.TryGet*
+  name: TryGet
+  href: api/GameFrameX.Core.Config.IDataTable-1.html#GameFrameX_Core_Config_IDataTable_1_TryGet_
+  commentId: Overload:GameFrameX.Core.Config.IDataTable`1.TryGet
+  isSpec: "True"
+  fullName: GameFrameX.Core.Config.IDataTable<T>.TryGet
+  fullName.vb: GameFrameX.Core.Config.IDataTable(Of T).TryGet
+  nameWithType: IDataTable<T>.TryGet
+  nameWithType.vb: IDataTable(Of T).TryGet
 - uid: GameFrameX.Core.Config.ITypeId
   name: ITypeId
   href: api/GameFrameX.Core.Config.ITypeId.html
@@ -10524,25 +10900,53 @@ references:
 - uid: GameFrameX.NetWork.HTTP.HttpStatusMessage.CheckFailedCommand
   name: CheckFailedCommand
   href: api/GameFrameX.NetWork.HTTP.HttpStatusMessage.html#GameFrameX_NetWork_HTTP_HttpStatusMessage_CheckFailedCommand
-  commentId: F:GameFrameX.NetWork.HTTP.HttpStatusMessage.CheckFailedCommand
+  commentId: P:GameFrameX.NetWork.HTTP.HttpStatusMessage.CheckFailedCommand
+  fullName: GameFrameX.NetWork.HTTP.HttpStatusMessage.CheckFailedCommand
+  nameWithType: HttpStatusMessage.CheckFailedCommand
+- uid: GameFrameX.NetWork.HTTP.HttpStatusMessage.CheckFailedCommand*
+  name: CheckFailedCommand
+  href: api/GameFrameX.NetWork.HTTP.HttpStatusMessage.html#GameFrameX_NetWork_HTTP_HttpStatusMessage_CheckFailedCommand_
+  commentId: Overload:GameFrameX.NetWork.HTTP.HttpStatusMessage.CheckFailedCommand
+  isSpec: "True"
   fullName: GameFrameX.NetWork.HTTP.HttpStatusMessage.CheckFailedCommand
   nameWithType: HttpStatusMessage.CheckFailedCommand
 - uid: GameFrameX.NetWork.HTTP.HttpStatusMessage.NotFoundCommand
   name: NotFoundCommand
   href: api/GameFrameX.NetWork.HTTP.HttpStatusMessage.html#GameFrameX_NetWork_HTTP_HttpStatusMessage_NotFoundCommand
-  commentId: F:GameFrameX.NetWork.HTTP.HttpStatusMessage.NotFoundCommand
+  commentId: P:GameFrameX.NetWork.HTTP.HttpStatusMessage.NotFoundCommand
+  fullName: GameFrameX.NetWork.HTTP.HttpStatusMessage.NotFoundCommand
+  nameWithType: HttpStatusMessage.NotFoundCommand
+- uid: GameFrameX.NetWork.HTTP.HttpStatusMessage.NotFoundCommand*
+  name: NotFoundCommand
+  href: api/GameFrameX.NetWork.HTTP.HttpStatusMessage.html#GameFrameX_NetWork_HTTP_HttpStatusMessage_NotFoundCommand_
+  commentId: Overload:GameFrameX.NetWork.HTTP.HttpStatusMessage.NotFoundCommand
+  isSpec: "True"
   fullName: GameFrameX.NetWork.HTTP.HttpStatusMessage.NotFoundCommand
   nameWithType: HttpStatusMessage.NotFoundCommand
 - uid: GameFrameX.NetWork.HTTP.HttpStatusMessage.ParamErrorMessage
   name: ParamErrorMessage
   href: api/GameFrameX.NetWork.HTTP.HttpStatusMessage.html#GameFrameX_NetWork_HTTP_HttpStatusMessage_ParamErrorMessage
-  commentId: F:GameFrameX.NetWork.HTTP.HttpStatusMessage.ParamErrorMessage
+  commentId: P:GameFrameX.NetWork.HTTP.HttpStatusMessage.ParamErrorMessage
+  fullName: GameFrameX.NetWork.HTTP.HttpStatusMessage.ParamErrorMessage
+  nameWithType: HttpStatusMessage.ParamErrorMessage
+- uid: GameFrameX.NetWork.HTTP.HttpStatusMessage.ParamErrorMessage*
+  name: ParamErrorMessage
+  href: api/GameFrameX.NetWork.HTTP.HttpStatusMessage.html#GameFrameX_NetWork_HTTP_HttpStatusMessage_ParamErrorMessage_
+  commentId: Overload:GameFrameX.NetWork.HTTP.HttpStatusMessage.ParamErrorMessage
+  isSpec: "True"
   fullName: GameFrameX.NetWork.HTTP.HttpStatusMessage.ParamErrorMessage
   nameWithType: HttpStatusMessage.ParamErrorMessage
 - uid: GameFrameX.NetWork.HTTP.HttpStatusMessage.ServerError
   name: ServerError
   href: api/GameFrameX.NetWork.HTTP.HttpStatusMessage.html#GameFrameX_NetWork_HTTP_HttpStatusMessage_ServerError
-  commentId: F:GameFrameX.NetWork.HTTP.HttpStatusMessage.ServerError
+  commentId: P:GameFrameX.NetWork.HTTP.HttpStatusMessage.ServerError
+  fullName: GameFrameX.NetWork.HTTP.HttpStatusMessage.ServerError
+  nameWithType: HttpStatusMessage.ServerError
+- uid: GameFrameX.NetWork.HTTP.HttpStatusMessage.ServerError*
+  name: ServerError
+  href: api/GameFrameX.NetWork.HTTP.HttpStatusMessage.html#GameFrameX_NetWork_HTTP_HttpStatusMessage_ServerError_
+  commentId: Overload:GameFrameX.NetWork.HTTP.HttpStatusMessage.ServerError
+  isSpec: "True"
   fullName: GameFrameX.NetWork.HTTP.HttpStatusMessage.ServerError
   nameWithType: HttpStatusMessage.ServerError
 - uid: GameFrameX.NetWork.HTTP.HttpStatusMessage.Success
@@ -10554,7 +10958,14 @@ references:
 - uid: GameFrameX.NetWork.HTTP.HttpStatusMessage.UndefinedCommand
   name: UndefinedCommand
   href: api/GameFrameX.NetWork.HTTP.HttpStatusMessage.html#GameFrameX_NetWork_HTTP_HttpStatusMessage_UndefinedCommand
-  commentId: F:GameFrameX.NetWork.HTTP.HttpStatusMessage.UndefinedCommand
+  commentId: P:GameFrameX.NetWork.HTTP.HttpStatusMessage.UndefinedCommand
+  fullName: GameFrameX.NetWork.HTTP.HttpStatusMessage.UndefinedCommand
+  nameWithType: HttpStatusMessage.UndefinedCommand
+- uid: GameFrameX.NetWork.HTTP.HttpStatusMessage.UndefinedCommand*
+  name: UndefinedCommand
+  href: api/GameFrameX.NetWork.HTTP.HttpStatusMessage.html#GameFrameX_NetWork_HTTP_HttpStatusMessage_UndefinedCommand_
+  commentId: Overload:GameFrameX.NetWork.HTTP.HttpStatusMessage.UndefinedCommand
+  isSpec: "True"
   fullName: GameFrameX.NetWork.HTTP.HttpStatusMessage.UndefinedCommand
   nameWithType: HttpStatusMessage.UndefinedCommand
 - uid: GameFrameX.NetWork.HTTP.IHttpAopHandler
@@ -23618,12 +24029,12 @@ references:
   commentId: F:GameFrameX.Utility.Setting.GlobalConst.ImServiceServerId
   fullName: GameFrameX.Utility.Setting.GlobalConst.ImServiceServerId
   nameWithType: GlobalConst.ImServiceServerId
-- uid: GameFrameX.Utility.Setting.GlobalConst.MAGIC
-  name: MAGIC
-  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_MAGIC
-  commentId: F:GameFrameX.Utility.Setting.GlobalConst.MAGIC
-  fullName: GameFrameX.Utility.Setting.GlobalConst.MAGIC
-  nameWithType: GlobalConst.MAGIC
+- uid: GameFrameX.Utility.Setting.GlobalConst.Magic
+  name: Magic
+  href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_Magic
+  commentId: F:GameFrameX.Utility.Setting.GlobalConst.Magic
+  fullName: GameFrameX.Utility.Setting.GlobalConst.Magic
+  nameWithType: GlobalConst.Magic
 - uid: GameFrameX.Utility.Setting.GlobalConst.MaxActorIncrease
   name: MaxActorIncrease
   href: api/GameFrameX.Utility.Setting.GlobalConst.html#GameFrameX_Utility_Setting_GlobalConst_MaxActorIncrease
