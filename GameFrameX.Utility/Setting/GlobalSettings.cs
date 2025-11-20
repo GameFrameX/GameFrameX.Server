@@ -81,10 +81,10 @@ public static class GlobalSettings
         }
 
         var fullPath = Path.GetFullPath(path);
-        LogHelper.ShowOption(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.GlobalSettings.LoadGlobalSettings), fullPath);
+        LogHelper.ShowOption(LocalizationService.GetString(Localization.Keys.Utility.GlobalSettings.LoadGlobalSettings), fullPath);
         if (!File.Exists(path))
         {
-            LogHelper.ShowOption(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.GlobalSettings.LoadGlobalSettingsFailed), LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Settings.LoadConfigurationFailed));
+            LogHelper.ShowOption(LocalizationService.GetString(Localization.Keys.Utility.GlobalSettings.LoadGlobalSettingsFailed), LocalizationService.GetString(Localization.Keys.Utility.Settings.LoadConfigurationFailed));
             return;
         }
 
@@ -115,32 +115,32 @@ public static class GlobalSettings
     {
         if (CurrentSetting.IsNotNull())
         {
-            LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.GlobalSettings.SettingAlreadyExists));
+            LogHelper.Warning(LocalizationService.GetString(Localization.Keys.Utility.GlobalSettings.SettingAlreadyExists));
             return;
         }
 
         ArgumentNullException.ThrowIfNull(setting, nameof(setting));
         if (setting.SaveDataInterval < 5000)
         {
-            LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Settings.SaveDataIntervalTooSmall, GlobalConst.SaveIntervalInMilliSeconds));
+            LogHelper.Warning(LocalizationService.GetString(Localization.Keys.Utility.Settings.SaveDataIntervalTooSmall, GlobalConst.SaveIntervalInMilliSeconds));
             setting.SaveDataInterval = GlobalConst.SaveIntervalInMilliSeconds;
         }
 
         if (setting.HttpUrl.IsNullOrEmptyOrWhiteSpace())
         {
-            LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.GlobalSettings.HttpUrlEmptyUseDefault, "/game/api/"));
+            LogHelper.Warning(LocalizationService.GetString(Localization.Keys.Utility.GlobalSettings.HttpUrlEmptyUseDefault, "/game/api/"));
             setting.HttpUrl = "/game/api/";
         }
 
         if (setting.NetWorkSendTimeOutSeconds < 1)
         {
-            LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.GlobalSettings.NetworkTimeoutTooShort, 5));
+            LogHelper.Warning(LocalizationService.GetString(Localization.Keys.Utility.GlobalSettings.NetworkTimeoutTooShort, 5));
             setting.NetWorkSendTimeOutSeconds = 5;
         }
 
         if (setting.ActorRecycleTime < 1)
         {
-            LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.GlobalSettings.ActorRecycleTimeTooShort, 5));
+            LogHelper.Warning(LocalizationService.GetString(Localization.Keys.Utility.GlobalSettings.ActorRecycleTimeTooShort, 5));
             setting.ActorRecycleTime = 5;
         }
 

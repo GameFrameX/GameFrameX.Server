@@ -274,7 +274,7 @@ public static class GlobalConst
 
     /// <summary>
     /// </summary>
-    public const int MAGIC = 60;
+    public const int Magic = 60;
 
     #endregion
 }

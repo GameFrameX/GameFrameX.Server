@@ -93,7 +93,7 @@ public sealed class AppSetting
                 {
                     if (value)
                     {
-                        LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Settings.AppAlreadyExited));
+                        LogHelper.Error(LocalizationService.GetString(Localization.Keys.Utility.Settings.AppAlreadyExited));
                     }
 
                     _appRunning = false;
@@ -103,7 +103,7 @@ public sealed class AppSetting
                 _appRunning = value;
                 if (!value && !AppExitSource.Task.IsCompleted)
                 {
-                    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.AppSettings.SetAppRunningFalse));
+                    LogHelper.Info(LocalizationService.GetString(Localization.Keys.Utility.AppSettings.SetAppRunningFalse));
                     AppExitSource.TrySetCanceled();
                 }
             }
