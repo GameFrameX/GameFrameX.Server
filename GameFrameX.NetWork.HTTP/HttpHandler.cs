@@ -64,8 +64,8 @@ public static class HttpHandler
         var ip = context.Connection.RemoteIpAddress?.ToString();
         string url = context.Request.PathBase + context.Request.Path;
         var command = context.Request.Path.ToString().Substring(GlobalSettings.CurrentSetting.HttpUrl.Length);
-        var logHeader = $"[HTTPServer] TraceIdentifier:[{context.TraceIdentifier}], 来源[{ip}], url:[{url}]";
-        LogHelper.Debug($"{logHeader}，请求方式:[{context.Request.Method}]");
+        var logHeader = LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.RequestLogHeader, context.TraceIdentifier, ip, url);
+        LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.RequestMethod, logHeader, context.Request.Method));
 
         try
         {
@@ -85,7 +85,7 @@ public static class HttpHandler
             var headContentType = context.Request.ContentType;
             if (headContentType.IsNullOrWhiteSpace())
             {
-                await context.Response.WriteAsync("http header content type is null");
+                await context.Response.WriteAsync(LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.HttpHeaderContentTypeNull));
                 return;
             }
 
@@ -204,7 +204,7 @@ public static class HttpHandler
                     }
                     catch (Exception e)
                     {
-                        LogHelper.Error("消息对象编码异常,请检查错误日志");
+                        LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.MessageEncodingException));
                         LogHelper.Error(e);
                     }
                 }
@@ -238,7 +238,7 @@ public static class HttpHandler
                         }
                         else
                         {
-                            await context.Response.WriteAsync(HttpJsonResult.ErrorString(400, "data verification failed"));
+                            await context.Response.WriteAsync(HttpJsonResult.ErrorString(400, LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.DataVerificationFailed)));
                         }
                     }
                 }

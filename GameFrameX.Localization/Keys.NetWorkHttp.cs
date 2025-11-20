@@ -149,5 +149,152 @@ public static partial class Keys
         /// 参数: {0} - 类名, {1} - 要求的后缀
         /// </remarks>
         public const string ClassMustEndWithSuffix = "NetWork.Http.ClassMustEndWithSuffix";
+
+        /// <summary>
+        /// [HTTPServer] TraceIdentifier:[{0}], 来源[{1}], url:[{2}]
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.Http.RequestLogHeader
+        /// 用途: HTTP请求的日志头信息
+        /// 参数: {0} - TraceIdentifier, {1} - IP地址, {2} - URL
+        /// </remarks>
+        public const string RequestLogHeader = "NetWork.Http.RequestLogHeader";
+
+        /// <summary>
+        /// {0}，请求方式:[{1}]
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.Http.RequestMethod
+        /// 用途: HTTP请求方法日志
+        /// 参数: {0} - 日志头, {1} - 请求方法
+        /// </remarks>
+        public const string RequestMethod = "NetWork.Http.RequestMethod";
+
+        /// <summary>
+        /// 消息对象编码异常,请检查错误日志
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.Http.MessageEncodingException
+        /// 用途: 当消息对象编码异常时记录错误
+        /// </remarks>
+        public const string MessageEncodingException = "NetWork.Http.MessageEncodingException";
+
+        /// <summary>
+        /// http header content type is null
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.Http.HttpHeaderContentTypeNull
+        /// 用途: 当HTTP头的Content-Type为null时的错误消息
+        /// </remarks>
+        public const string HttpHeaderContentTypeNull = "NetWork.Http.HttpHeaderContentTypeNull";
+
+        /// <summary>
+        /// data verification failed
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.Http.DataVerificationFailed
+        /// 用途: 当数据验证失败时的错误消息
+        /// </remarks>
+        public const string DataVerificationFailed = "NetWork.Http.DataVerificationFailed";
+
+        /// <summary>
+        /// 请求参数
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.Http.SwaggerRequestParameters
+        /// 用途: Swagger文档中的请求参数描述
+        /// </remarks>
+        public const string SwaggerRequestParameters = "NetWork.Http.SwaggerRequestParameters";
+
+        /// <summary>
+        /// 响应状态码
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.Http.SwaggerResponseStatusCode
+        /// 用途: Swagger文档中的响应状态码描述
+        /// </remarks>
+        public const string SwaggerResponseStatusCode = "NetWork.Http.SwaggerResponseStatusCode";
+
+        /// <summary>
+        /// 响应消息
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.Http.SwaggerResponseMessage
+        /// 用途: Swagger文档中的响应消息描述
+        /// </remarks>
+        public const string SwaggerResponseMessage = "NetWork.Http.SwaggerResponseMessage";
+
+        /// <summary>
+        /// 成功响应
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.Http.SwaggerSuccessResponse
+        /// 用途: Swagger文档中的成功响应描述
+        /// </remarks>
+        public const string SwaggerSuccessResponse = "NetWork.Http.SwaggerSuccessResponse";
+
+        /// <summary>
+        /// application/json
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.Http.ApplicationJsonContentType
+        /// 用途: application/json内容类型
+        /// </remarks>
+        public const string ApplicationJsonContentType = "NetWork.Http.ApplicationJsonContentType";
+
+        /// <summary>
+        /// application/x-protobuf
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.Http.ApplicationProtoBufContentType
+        /// 用途: application/x-protobuf内容类型
+        /// </remarks>
+        public const string ApplicationProtoBufContentType = "NetWork.Http.ApplicationProtoBufContentType";
+
+        /// <summary>
+        /// http命令未包含验证参数{0} 和 {1}
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.Http.HttpCommandMissingValidationParameters
+        /// 用途: 当HTTP命令缺少验证参数时的错误消息
+        /// 参数: {0} - 第一个参数名, {1} - 第二个参数名
+        /// </remarks>
+        public const string HttpCommandMissingValidationParameters = "NetWork.Http.HttpCommandMissingValidationParameters";
+
+        /// <summary>
+        /// undefined command
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.Http.UndefinedCommand
+        /// 用途: 使用未定义命令时的错误消息
+        /// </remarks>
+        public const string UndefinedCommand = "NetWork.Http.UndefinedCommand";
+
+        /// <summary>
+        /// not found command
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.Http.NotFoundCommand
+        /// 用途: 命令未找到时的错误消息
+        /// </remarks>
+        public const string NotFoundCommand = "NetWork.Http.NotFoundCommand";
+
+        /// <summary>
+        /// check failed command
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.Http.CheckFailedCommand
+        /// 用途: 命令验证失败时的错误消息
+        /// </remarks>
+        public const string CheckFailedCommand = "NetWork.Http.CheckFailedCommand";
+
+        /// <summary>
+        /// server error
+        /// </summary>
+        /// <remarks>
+        /// 键名: NetWork.Http.ServerError
+        /// 用途: 服务器内部错误时的错误消息
+        /// </remarks>
+        public const string ServerError = "NetWork.Http.ServerError";
     }
 }

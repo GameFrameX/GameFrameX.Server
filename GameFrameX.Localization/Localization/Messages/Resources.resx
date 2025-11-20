@@ -263,6 +263,54 @@
   <data name="NetWork.Http.ClassMustEndWithSuffix" xml:space="preserve">
     <value>{0} must end with {1}</value>
   </data>
+  <data name="NetWork.Http.RequestLogHeader" xml:space="preserve">
+    <value>[HTTPServer] TraceIdentifier:[{0}], Source[{1}], url:[{2}]</value>
+  </data>
+  <data name="NetWork.Http.RequestMethod" xml:space="preserve">
+    <value>{0}, Request Method:[{1}]</value>
+  </data>
+  <data name="NetWork.Http.MessageEncodingException" xml:space="preserve">
+    <value>Message object encoding exception, please check error logs</value>
+  </data>
+  <data name="NetWork.Http.HttpHeaderContentTypeNull" xml:space="preserve">
+    <value>http header content type is null</value>
+  </data>
+  <data name="NetWork.Http.DataVerificationFailed" xml:space="preserve">
+    <value>data verification failed</value>
+  </data>
+  <data name="NetWork.Http.SwaggerRequestParameters" xml:space="preserve">
+    <value>Request Parameters</value>
+  </data>
+  <data name="NetWork.Http.SwaggerResponseStatusCode" xml:space="preserve">
+    <value>Response Status Code</value>
+  </data>
+  <data name="NetWork.Http.SwaggerResponseMessage" xml:space="preserve">
+    <value>Response Message</value>
+  </data>
+  <data name="NetWork.Http.SwaggerSuccessResponse" xml:space="preserve">
+    <value>Success Response</value>
+  </data>
+  <data name="NetWork.Http.ApplicationJsonContentType" xml:space="preserve">
+    <value>application/json</value>
+  </data>
+  <data name="NetWork.Http.ApplicationProtoBufContentType" xml:space="preserve">
+    <value>application/x-protobuf</value>
+  </data>
+  <data name="NetWork.Http.HttpCommandMissingValidationParameters" xml:space="preserve">
+    <value>http command missing validation parameters {0} and {1}</value>
+  </data>
+  <data name="NetWork.Http.UndefinedCommand" xml:space="preserve">
+    <value>undefined command</value>
+  </data>
+  <data name="NetWork.Http.NotFoundCommand" xml:space="preserve">
+    <value>not found command</value>
+  </data>
+  <data name="NetWork.Http.CheckFailedCommand" xml:space="preserve">
+    <value>check failed command</value>
+  </data>
+  <data name="NetWork.Http.ServerError" xml:space="preserve">
+    <value>server error</value>
+  </data>
 
   <!-- NetWork.Abstractions module log and error keys -->
   <data name="NetWork.Abstractions.MessageIdDuplicate" xml:space="preserve">

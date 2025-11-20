@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using GameFrameX.Utility.Setting;
+using GameFrameX.Foundation.Localization.Core;
 
 namespace GameFrameX.NetWork.HTTP;
 
@@ -46,25 +47,25 @@ public static class HttpStatusMessage
     /// <summary>
     /// 未定义的命令
     /// </summary>
-    public const string UndefinedCommand = "undefined command";
+    public static string UndefinedCommand => LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.UndefinedCommand);
 
     /// <summary>
     /// 未找到的命令
     /// </summary>
-    public const string NotFoundCommand = "not found command";
+    public static string NotFoundCommand => LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.NotFoundCommand);
 
     /// <summary>
     /// 验证失败的命令
     /// </summary>
-    public const string CheckFailedCommand = "check failed command";
+    public static string CheckFailedCommand => LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.CheckFailedCommand);
 
     /// <summary>
     /// 服务器错误
     /// </summary>
-    public const string ServerError = "server error";
+    public static string ServerError => LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.ServerError);
 
     /// <summary>
     /// 参数错误
     /// </summary>
-    public const string ParamErrorMessage = $"http命令未包含验证参数{GlobalConst.HttpSignKey} 和 {GlobalConst.HttpTimestampKey}";
+    public static string ParamErrorMessage => LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.HttpCommandMissingValidationParameters, GlobalConst.HttpSignKey, GlobalConst.HttpTimestampKey);
 }

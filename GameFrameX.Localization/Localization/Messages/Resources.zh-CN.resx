@@ -295,6 +295,54 @@
   <data name="NetWork.Http.ClassMustEndWithSuffix" xml:space="preserve">
     <value>{0} 必须以{1}结尾</value>
   </data>
+  <data name="NetWork.Http.RequestLogHeader" xml:space="preserve">
+    <value>[HTTPServer] TraceIdentifier:[{0}], 来源[{1}], url:[{2}]</value>
+  </data>
+  <data name="NetWork.Http.RequestMethod" xml:space="preserve">
+    <value>{0}，请求方式:[{1}]</value>
+  </data>
+  <data name="NetWork.Http.MessageEncodingException" xml:space="preserve">
+    <value>消息对象编码异常,请检查错误日志</value>
+  </data>
+  <data name="NetWork.Http.HttpHeaderContentTypeNull" xml:space="preserve">
+    <value>http header content type is null</value>
+  </data>
+  <data name="NetWork.Http.DataVerificationFailed" xml:space="preserve">
+    <value>data verification failed</value>
+  </data>
+  <data name="NetWork.Http.SwaggerRequestParameters" xml:space="preserve">
+    <value>请求参数</value>
+  </data>
+  <data name="NetWork.Http.SwaggerResponseStatusCode" xml:space="preserve">
+    <value>响应状态码</value>
+  </data>
+  <data name="NetWork.Http.SwaggerResponseMessage" xml:space="preserve">
+    <value>响应消息</value>
+  </data>
+  <data name="NetWork.Http.SwaggerSuccessResponse" xml:space="preserve">
+    <value>成功响应</value>
+  </data>
+  <data name="NetWork.Http.ApplicationJsonContentType" xml:space="preserve">
+    <value>application/json</value>
+  </data>
+  <data name="NetWork.Http.ApplicationProtoBufContentType" xml:space="preserve">
+    <value>application/x-protobuf</value>
+  </data>
+  <data name="NetWork.Http.HttpCommandMissingValidationParameters" xml:space="preserve">
+    <value>http命令未包含验证参数{0} 和 {1}</value>
+  </data>
+  <data name="NetWork.Http.UndefinedCommand" xml:space="preserve">
+    <value>未定义的命令</value>
+  </data>
+  <data name="NetWork.Http.NotFoundCommand" xml:space="preserve">
+    <value>未找到的命令</value>
+  </data>
+  <data name="NetWork.Http.CheckFailedCommand" xml:space="preserve">
+    <value>验证失败的命令</value>
+  </data>
+  <data name="NetWork.Http.ServerError" xml:space="preserve">
+    <value>服务器错误</value>
+  </data>
 
   <!-- NetWork.Abstractions模块日志和错误键名 -->
   <data name="NetWork.Abstractions.MessageIdDuplicate" xml:space="preserve">
