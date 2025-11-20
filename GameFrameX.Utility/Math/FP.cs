@@ -30,6 +30,9 @@
 // ==========================================================================================
 
 #if FP
+using GameFrameX.Foundation.Localization.Core;
+using GameFrameX.Localization;
+
 namespace GameFrameX.Utility.Math
 {
     /// <summary>
@@ -338,7 +341,9 @@ namespace GameFrameX.Utility.Math
         {
             if (x.RawValue <= 0)
             {
-                throw new ArgumentOutOfRangeException("传递给 Ln 的值为非正数", "x");
+                throw new ArgumentOutOfRangeException(
+                    LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.LnValueNonPositive),
+                    "x");
             }
 
             // 此实现基于 Clay. S. Turner 的快速二进制对数算法
@@ -383,7 +388,7 @@ namespace GameFrameX.Utility.Math
         /// 提供至少 7 位小数的精度。
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// 参数为非正数。
+        /// <paramref name="x" />为非正数时传递。
         /// </exception>
         public static FP Ln(FP x)
         {
@@ -900,7 +905,7 @@ namespace GameFrameX.Utility.Math
         /// 返回指定数字的平方根。
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// 参数为负数。
+        /// <paramref name="x" />为负数时传递。
         /// </exception>
         public static FP Sqrt(FP x)
         {
@@ -909,7 +914,7 @@ namespace GameFrameX.Utility.Math
             {
                 // 我们无法像 Single 和 Double 一样表示无穷大，且 Sqrt 在 x < 0 时
                 // 数学上是未定义的。因此我们抛出异常。
-                throw new ArgumentOutOfRangeException("传递给 Sqrt 的值为负数", "x");
+                throw new ArgumentOutOfRangeException(LocalizationService.GetString(Keys.Utility.Exceptions.SqrtValueNegative), "x");
             }
 
             var num = (ulong)xl;
@@ -1269,7 +1274,7 @@ namespace GameFrameX.Utility.Math
         {
             if (x < -One || x > One)
             {
-                throw new ArgumentOutOfRangeException("必须在 -FP.One 和 FP.One 之间", "x");
+                throw new ArgumentOutOfRangeException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.ValueOutOfRange), "x");
             }
 
             if (x.RawValue == 0)

@@ -223,10 +223,10 @@ public static class AssemblyHelper
     /// </remarks>
     /// <param name="typeName">Type name to get, supports fully qualified names (e.g., "System.String") / 要获取的类型名，支持完全限定名（如 "System.String"）</param>
     /// <returns>Specified type from loaded assemblies, returns null if not found / 已加载的程序集中的指定类型，如果未找到则返回 null</returns>
-    /// <exception cref="ArgumentException">Thrown when typeName parameter is null or empty string / 当 typeName 参数为 null 或空字符串时抛出</exception>
+    /// <exception cref="ArgumentException">Thrown when typeName parameter is null, empty, or whitespace string / 当 typeName 参数为 null、空字符串或仅空白字符时抛出</exception>
     public static Type GetType(string typeName)
     {
-        ArgumentException.ThrowIfNullOrEmpty(typeName, nameof(typeName));
+        ArgumentException.ThrowIfNullOrWhiteSpace(typeName, nameof(typeName));
 
         return CachedTypes.GetOrAdd(typeName, name =>
         {

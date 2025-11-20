@@ -447,7 +447,7 @@ namespace GameFrameX.Utility.Math
         /// 返回指定数字的平方根。
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// 参数为负数时抛出此异常。
+        /// <paramref name="x" />为负数时传递。
         /// </exception>
         public static GameFrameX.Utility.Math.FP Sqrt(GameFrameX.Utility.Math.FP x)
         {
