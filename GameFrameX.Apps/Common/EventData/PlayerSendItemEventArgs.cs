@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 using GameFrameX.Core.Abstractions.Events;
 
 namespace GameFrameX.Apps.Common.EventData;

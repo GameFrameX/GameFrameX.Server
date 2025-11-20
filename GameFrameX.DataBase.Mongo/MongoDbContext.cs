@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 using MongoDB.Entities;
 
 namespace GameFrameX.DataBase.Mongo;

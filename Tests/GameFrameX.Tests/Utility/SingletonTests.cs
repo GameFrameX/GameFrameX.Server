@@ -106,7 +106,7 @@ public class SingletonTests
         // Act
         var instance1 = TestSingleton.Instance;
         instance1.Value = expectedValue;
-        
+
         var instance2 = TestSingleton.Instance;
 
         // Assert
@@ -173,7 +173,7 @@ public class SingletonTests
         // Assert
         var uniqueInstances = instances.Distinct().ToList();
         Assert.Single(uniqueInstances);
-        
+
         // 验证所有实例的创建时间相同（因为是同一个实例）
         var creationTimes = instances.Select(i => i.CreatedTime).Distinct().ToList();
         Assert.Single(creationTimes);
@@ -210,14 +210,14 @@ public class SingletonTests
         // 同类型的单例应该是相同的实例
         Assert.Same(testInstance1, testInstance2);
         Assert.Same(anotherInstance1, anotherInstance2);
-        
+
         // 不同类型的单例应该是不同的实例
         Assert.NotSame(testInstance1, anotherInstance1);
-        
+
         // 修改一个单例的状态不应该影响另一个
         testInstance1.Value = 100;
         anotherInstance1.Name = "Modified";
-        
+
         Assert.Equal(100, testInstance2.Value);
         Assert.Equal("Modified", anotherInstance2.Name);
     }
@@ -230,24 +230,24 @@ public class SingletonTests
     {
         // Arrange
         const int iterations = 10000;
-        
+
         // 第一次访问（可能较慢，因为需要创建实例）
         var firstInstance = TestSingleton.Instance;
-        
+
         // Act
         var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-        
+
         for (int i = 0; i < iterations; i++)
         {
             var instance = TestSingleton.Instance;
             Assert.Same(firstInstance, instance);
         }
-        
+
         stopwatch.Stop();
 
         // Assert
         // 后续访问应该很快（这里只是确保没有异常，实际性能测试可能因环境而异）
-        Assert.True(stopwatch.ElapsedMilliseconds < 1000, 
-            $"Subsequent access took too long: {stopwatch.ElapsedMilliseconds}ms for {iterations} iterations");
+        Assert.True(stopwatch.ElapsedMilliseconds < 1000,
+                    $"Subsequent access took too long: {stopwatch.ElapsedMilliseconds}ms for {iterations} iterations");
     }
 }

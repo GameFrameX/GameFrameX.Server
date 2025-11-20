@@ -54,17 +54,17 @@ public struct BotTcpClientEvent
     /// 连接成功时的回调
     /// </summary>
     public Action OnConnectedCallback;
-    
+
     /// <summary>
     /// 连接关闭时的回调
     /// </summary>
     public Action OnClosedCallback;
-    
+
     /// <summary>
     /// 发生错误时的回调
     /// </summary>
     public Action<ErrorEventArgs> OnErrorCallback;
-    
+
     /// <summary>
     /// 接收到消息时的回调
     /// </summary>

@@ -106,11 +106,11 @@ public class ProtoBuffTest
         // Assert - 验证合并结果
         Assert.NotNull(mergedResult);
         Assert.Same(originalData, mergedResult); // 应该返回同一个实例
-        
+
         // 验证字段是否正确合并
         Assert.Equal(200, mergedResult.Id); // Id 应该被更新
         Assert.Equal("Updated", mergedResult.Name); // Name 应该被更新
-        
+
         // 验证列表合并行为
         Assert.NotNull(mergedResult.Test);
         // ProtoBuf 的合并行为：列表会被追加而不是替换
@@ -154,8 +154,8 @@ public class ProtoBuffTest
         var serializedData = ProtoBufSerializerHelper.Serialize(testData);
 
         // Act & Assert
-        Assert.Throws<ArgumentNullException>(() => 
-            ProtoBufSerializerHelper.Deserialize<PbTest>(serializedData, null));
+        Assert.Throws<ArgumentNullException>(() =>
+                                                 ProtoBufSerializerHelper.Deserialize<PbTest>(serializedData, null));
     }
 
     /// <summary>
@@ -168,8 +168,8 @@ public class ProtoBuffTest
         var instance = new PbTest { Id = 100, Name = "Test" };
 
         // Act & Assert
-        Assert.Throws<ArgumentNullException>(() => 
-            ProtoBufSerializerHelper.Deserialize<PbTest>(null, instance));
+        Assert.Throws<ArgumentNullException>(() =>
+                                                 ProtoBufSerializerHelper.Deserialize<PbTest>(null, instance));
     }
 
     /// <summary>

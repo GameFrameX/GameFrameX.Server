@@ -127,6 +127,7 @@ public static class GlobalTimer
         {
             await _loopTask;
         }
+
         await StateComponent.SaveAll(true);
         GameDb.Close();
         LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.GlobalTimerStopComplete));

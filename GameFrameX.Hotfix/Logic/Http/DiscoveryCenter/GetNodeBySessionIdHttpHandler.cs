@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 using GameFrameX.DiscoveryCenterManager;
 using GameFrameX.DiscoveryCenterManager.Server;
 
@@ -60,7 +59,7 @@ public sealed class GetNodeBySessionIdHttpHandler : BaseHttpHandler
         var sessionRequest = (GetNodeBySessionIdRequest)request;
         // 从请求对象中获取SessionId
         string sessionId = sessionRequest.SessionId ?? string.Empty;
-        
+
         var namingServiceManager = NamingServiceManager.Instance;
         var serviceInfo = namingServiceManager.GetNodeBySessionId(sessionId);
 
@@ -71,7 +70,7 @@ public sealed class GetNodeBySessionIdHttpHandler : BaseHttpHandler
             Node = serviceInfo,
             SessionId = sessionId
         };
-        
+
         return Task.FromResult(HttpJsonResult.SuccessString(response));
     }
 }
@@ -98,19 +97,19 @@ public class GetNodeBySessionIdResponse : HttpMessageResponseBase
     /// </summary>
     /// <value>表示操作是否成功执行的布尔值</value>
     public bool Success { get; set; }
-    
+
     /// <summary>
     /// 响应消息
     /// </summary>
     /// <value>描述操作结果的消息字符串</value>
     public string Message { get; set; } = string.Empty;
-    
+
     /// <summary>
     /// 查询的SessionId
     /// </summary>
     /// <value>请求中指定的会话ID</value>
     public string SessionId { get; set; } = string.Empty;
-    
+
     /// <summary>
     /// 节点信息
     /// </summary>

@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 using GameFrameX.Foundation.Hash;
 
 namespace GameFrameX.Apps;

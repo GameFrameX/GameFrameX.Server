@@ -61,8 +61,13 @@ public class AssemblyHelperTests
     /// </summary>
     public class TestImplementation : TestBaseClass, ITestInterface
     {
-        public override void AbstractMethod() { }
-        public void TestMethod() { }
+        public override void AbstractMethod()
+        {
+        }
+
+        public void TestMethod()
+        {
+        }
     }
 
     /// <summary>
@@ -70,7 +75,9 @@ public class AssemblyHelperTests
     /// </summary>
     public class AnotherTestImplementation : ITestInterface
     {
-        public void TestMethod() { }
+        public void TestMethod()
+        {
+        }
     }
 
     /// <summary>
@@ -87,7 +94,9 @@ public class AssemblyHelperTests
     [TestAttribute]
     public class AttributedTestClass : ITestInterface
     {
-        public void TestMethod() { }
+        public void TestMethod()
+        {
+        }
     }
 
     /// <summary>
@@ -102,7 +111,7 @@ public class AssemblyHelperTests
         // Assert
         Assert.NotNull(assemblies);
         Assert.NotEmpty(assemblies);
-        
+
         // 验证包含当前测试程序集
         var currentAssembly = Assembly.GetExecutingAssembly();
         Assert.Contains(currentAssembly, assemblies);
@@ -120,11 +129,11 @@ public class AssemblyHelperTests
         // Assert
         Assert.NotNull(types);
         Assert.NotEmpty(types);
-        
+
         // 验证包含已知的系统类型
         Assert.Contains(typeof(string), types);
         Assert.Contains(typeof(int), types);
-        
+
         // 验证包含测试类型
         Assert.Contains(typeof(TestImplementation), types);
     }
@@ -235,7 +244,7 @@ public class AssemblyHelperTests
         // Assert
         Assert.NotNull(derivedClasses);
         Assert.Contains(typeof(TestImplementation), derivedClasses);
-        
+
         // 抽象基类本身不应该包含在结果中
         Assert.DoesNotContain(typeof(TestBaseClass), derivedClasses);
     }
@@ -262,7 +271,7 @@ public class AssemblyHelperTests
         // Assert
         Assert.NotNull(attributedTypes);
         Assert.Contains(typeof(AttributedTestClass), attributedTypes);
-        
+
         // 没有特性的类型不应该包含在结果中
         Assert.DoesNotContain(typeof(TestImplementation), attributedTypes);
         Assert.DoesNotContain(typeof(AnotherTestImplementation), attributedTypes);
@@ -296,13 +305,13 @@ public class AssemblyHelperTests
         // Assert
         Assert.NotNull(instances);
         Assert.NotEmpty(instances);
-        
+
         // 验证实例类型
         var types = instances.Select(i => i.GetType()).ToList();
         Assert.Contains(typeof(TestImplementation), types);
         Assert.Contains(typeof(AnotherTestImplementation), types);
         Assert.Contains(typeof(AttributedTestClass), types);
-        
+
         // 验证所有实例都实现了接口
         Assert.All(instances, instance => Assert.IsAssignableFrom<ITestInterface>(instance));
     }
@@ -356,7 +365,7 @@ public class AssemblyHelperTests
 
         // Assert
         Assert.Equal(threadCount, results.Count);
-        
+
         // 所有结果应该相同（引用相等）
         var firstResult = results[0];
         foreach (var result in results)
@@ -373,24 +382,24 @@ public class AssemblyHelperTests
     {
         // Arrange
         const int iterations = 1000;
-        
+
         // 预热
         AssemblyHelper.GetTypes();
-        
+
         // Act
         var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-        
+
         for (int i = 0; i < iterations; i++)
         {
             var types = AssemblyHelper.GetTypes();
             Assert.NotNull(types);
         }
-        
+
         stopwatch.Stop();
 
         // Assert
         // 由于使用了缓存，后续调用应该很快
-        Assert.True(stopwatch.ElapsedMilliseconds < 1000, 
-            $"Performance test failed: {stopwatch.ElapsedMilliseconds}ms for {iterations} iterations");
+        Assert.True(stopwatch.ElapsedMilliseconds < 1000,
+                    $"Performance test failed: {stopwatch.ElapsedMilliseconds}ms for {iterations} iterations");
     }
 }

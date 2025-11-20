@@ -66,10 +66,10 @@ public static class SessionManager
     public static List<Session> GetPageList(int pageSize, int pageIndex)
     {
         var result = SessionMap.Values.OrderBy(m => m.CreateTime)
-            .Where(m => ActorManager.HasActor(m.PlayerId))
-            .Skip(pageIndex * pageSize)
-            .Take(pageSize)
-            .ToList();
+                               .Where(m => ActorManager.HasActor(m.PlayerId))
+                               .Skip(pageIndex * pageSize)
+                               .Take(pageSize)
+                               .ToList();
         return result;
     }
 
@@ -225,6 +225,7 @@ public static class SessionManager
         {
             return;
         }
+
         session.SetPlayerId(roleId);
         session.SetSign(sign);
     }

@@ -42,3 +42,4 @@ internal class ReqPlayerCreateHandler : GlobalComponentHandler<LoginComponentAge
         await ComponentAgent.OnPlayerCreate(NetWorkChannel, Message as ReqPlayerCreate);
     }
 }*/
+

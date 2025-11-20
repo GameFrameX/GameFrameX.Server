@@ -148,10 +148,10 @@ public static class OpenTelemetryExtensions
         }
 
         builder.UseGrafana();
-        
+
         // 添加健康检查服务
         services.AddHealthChecks();
-        
+
         return services;
     }
 

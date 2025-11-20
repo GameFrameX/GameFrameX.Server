@@ -129,7 +129,7 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
     /// <returns>成功移除返回true，否则返回false</returns>
     public bool TryRemoveBySessionId(string sessionId)
     {
-        IServiceInfo serverInfo = default;
+        IServiceInfo serverInfo = null;
         foreach (var keyValuePair in _serverMap)
         {
             foreach (var serviceInfo in keyValuePair.Value)
@@ -270,7 +270,7 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
 
         if (node.Type == SelfServiceInfo.Type)
         {
-            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.DiscoveryCenterManager.CannotAddSelfNode, node));
+            LogHelper.Error(LocalizationService.GetString(Localization.Keys.DiscoveryCenterManager.CannotAddSelfNode, node));
             return;
         }
 
@@ -282,13 +282,13 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
 
         if (list.Contains(node))
         {
-            LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.DiscoveryCenterManager.DuplicateNodeWarning, node));
+            LogHelper.Warning(LocalizationService.GetString(Localization.Keys.DiscoveryCenterManager.DuplicateNodeWarning, node));
             return;
         }
 
         list.Add(node);
         _onAdd?.Invoke(node);
-        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.DiscoveryCenterManager.NetworkNodeCount, GetNodeCount(), JsonHelper.Serialize(node)));
+        LogHelper.Info(LocalizationService.GetString(Localization.Keys.DiscoveryCenterManager.NetworkNodeCount, GetNodeCount(), JsonHelper.Serialize(node)));
     }
 
     /// <summary>

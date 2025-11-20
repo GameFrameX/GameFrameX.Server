@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 using System.Collections.Concurrent;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
@@ -163,15 +162,15 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
                 if (Setting.IsDebugSendHeartBeat)
                 {
                     LogHelper.Debug(LocalizationService.GetString(
-                        GameFrameX.Localization.Keys.NetWork.MessageSent,
-                        messageObject.ToFormatMessageString(actorId)));
+                                        GameFrameX.Localization.Keys.NetWork.MessageSent,
+                                        messageObject.ToFormatMessageString(actorId)));
                 }
             }
             else
             {
                 LogHelper.Debug(LocalizationService.GetString(
-                    GameFrameX.Localization.Keys.NetWork.MessageSent,
-                    messageObject.ToFormatMessageString(actorId)));
+                                    GameFrameX.Localization.Keys.NetWork.MessageSent,
+                                    messageObject.ToFormatMessageString(actorId)));
             }
         }
 
@@ -198,8 +197,8 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
             catch (OperationCanceledException exception)
             {
                 LogHelper.Error(LocalizationService.GetString(
-                    GameFrameX.Localization.Keys.NetWork.MessageSendTimeout,
-                    exception.Message));
+                                    GameFrameX.Localization.Keys.NetWork.MessageSendTimeout,
+                                    exception.Message));
             }
             catch (Exception e)
             {

@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 using GameFrameX.DiscoveryCenterManager;
 using GameFrameX.DiscoveryCenterManager.Server;
 
@@ -62,7 +61,7 @@ public sealed class RemoveNodeHttpHandler : BaseHttpHandler
         // 从请求对象中获取ServerId和SessionId
         string serverId = removeRequest.ServerId?.ToString() ?? string.Empty;
         string sessionId = removeRequest.SessionId ?? string.Empty;
-        
+
         var namingServiceManager = NamingServiceManager.Instance;
         bool success = false;
         string message;
@@ -71,17 +70,17 @@ public sealed class RemoveNodeHttpHandler : BaseHttpHandler
         {
             // 通过ServerId移除节点
             success = namingServiceManager.TryRemoveByInstanceId(serverIdLong);
-            message = success 
-                ? $"成功移除ServerId为 {serverId} 的节点" 
-                : $"移除ServerId为 {serverId} 的节点失败，节点可能不存在";
+            message = success
+                          ? $"成功移除ServerId为 {serverId} 的节点"
+                          : $"移除ServerId为 {serverId} 的节点失败，节点可能不存在";
         }
         else if (!string.IsNullOrEmpty(sessionId))
         {
             // 通过SessionId移除节点
             success = namingServiceManager.TryRemoveBySessionId(sessionId);
-            message = success 
-                ? $"成功移除SessionId为 {sessionId} 的节点" 
-                : $"移除SessionId为 {sessionId} 的节点失败，节点可能不存在";
+            message = success
+                          ? $"成功移除SessionId为 {sessionId} 的节点"
+                          : $"移除SessionId为 {sessionId} 的节点失败，节点可能不存在";
         }
         else
         {
@@ -95,7 +94,7 @@ public sealed class RemoveNodeHttpHandler : BaseHttpHandler
             ServerId = !string.IsNullOrEmpty(serverId) && long.TryParse(serverId, out long serverIdValue) ? serverIdValue : 0,
             SessionId = sessionId ?? string.Empty
         };
-        
+
         return Task.FromResult(HttpJsonResult.SuccessString(response));
     }
 }
@@ -110,7 +109,7 @@ public class RemoveNodeRequest : HttpMessageRequestBase
     /// </summary>
     /// <value>要移除的服务器唯一标识符，与SessionId二选一</value>
     public long? ServerId { get; set; }
-    
+
     /// <summary>
     /// 会话ID（可选）
     /// </summary>
@@ -128,19 +127,19 @@ public class RemoveNodeResponse : HttpMessageResponseBase
     /// </summary>
     /// <value>表示移除操作是否成功执行的布尔值</value>
     public bool Success { get; set; }
-    
+
     /// <summary>
     /// 响应消息
     /// </summary>
     /// <value>描述移除操作结果的消息字符串</value>
     public string Message { get; set; } = string.Empty;
-    
+
     /// <summary>
     /// 请求中的服务器ID
     /// </summary>
     /// <value>请求中指定的服务器ID，如果未指定则为null</value>
     public long ServerId { get; set; }
-    
+
     /// <summary>
     /// 请求中的SessionId
     /// </summary>

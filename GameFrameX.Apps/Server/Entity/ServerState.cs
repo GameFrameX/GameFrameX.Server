@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 namespace GameFrameX.Apps.Server.Entity;
 
 public class ServerState : CacheState

@@ -189,6 +189,7 @@ internal sealed class ServiceConnect : IDisposable
     /// </remarks>
     /// <seealso cref="GameAppServiceClient"/>
     public GameAppServiceClient ServiceClient { get; private set; }
+
     /// <summary>
     /// Gets or sets the RPC session
     /// </summary>
@@ -197,6 +198,7 @@ internal sealed class ServiceConnect : IDisposable
     /// RPC会话对象，负责维护与服务的消息会话状态，可根据业务进行替换或复用。
     /// </remarks>
     public IRpcSession RpcSession { get; set; }
+
     /// <summary>
     /// Gets or sets the server id
     /// </summary>
@@ -205,6 +207,7 @@ internal sealed class ServiceConnect : IDisposable
     /// 服务器ID，用于在发现中心中区分不同的服务器。
     /// </remarks>
     public long ServerId { get; set; }
+
     /// <summary>
     /// Gets or sets the server instance id
     /// </summary>
@@ -213,6 +216,7 @@ internal sealed class ServiceConnect : IDisposable
     /// 服务器实例ID，用于区分同一服务器的不同运行实例。
     /// </remarks>
     public long ServerInstanceId { get; set; }
+
     /// <summary>
     /// Gets the service name
     /// </summary>
@@ -221,6 +225,7 @@ internal sealed class ServiceConnect : IDisposable
     /// 只读属性，用于标识该连接对应的服务名称。
     /// </remarks>
     public string Name { get; }
+
     /// <summary>
     /// Gets the target host
     /// </summary>
@@ -229,6 +234,7 @@ internal sealed class ServiceConnect : IDisposable
     /// 只读属性，表示目标连接的主机地址。
     /// </remarks>
     public string Host { get; }
+
     /// <summary>
     /// Gets the target port
     /// </summary>

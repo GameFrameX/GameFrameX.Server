@@ -55,7 +55,7 @@ public class RandomHelperTests
         Assert.True(result1 >= uint.MinValue && result1 <= uint.MaxValue);
         Assert.True(result2 >= uint.MinValue && result2 <= uint.MaxValue);
         Assert.True(result3 >= uint.MinValue && result3 <= uint.MaxValue);
-        
+
         // 验证随机性（虽然理论上可能相等，但概率极低）
         Assert.True(result1 != result2 || result2 != result3 || result1 != result3);
     }
@@ -242,7 +242,7 @@ public class RandomHelperTests
         Assert.True(result1 >= ulong.MinValue && result1 <= ulong.MaxValue);
         Assert.True(result2 >= ulong.MinValue && result2 <= ulong.MaxValue);
         Assert.True(result3 >= ulong.MinValue && result3 <= ulong.MaxValue);
-        
+
         // 验证随机性
         Assert.True(result1 != result2 || result2 != result3 || result1 != result3);
     }
@@ -526,12 +526,12 @@ public class RandomHelperTests
         // Assert - 每个值应该出现一定次数（不要求完全均匀，但不应该有值完全没出现）
         var expectedCount = iterations / maxValue;
         var tolerance = expectedCount * 0.3; // 30%的容差
-        
+
         for (int i = 0; i < maxValue; i++)
         {
             Assert.True(counts[i] > 0, $"Value {i} should appear at least once");
-            Assert.True(System.Math.Abs(counts[i] - expectedCount) < expectedCount, 
-                $"Value {i} appeared {counts[i]} times, expected around {expectedCount}");
+            Assert.True(System.Math.Abs(counts[i] - expectedCount) < expectedCount,
+                        $"Value {i} appeared {counts[i]} times, expected around {expectedCount}");
         }
     }
 
@@ -545,7 +545,7 @@ public class RandomHelperTests
     {
         // Arrange
         const long maxValue = 1000L;
-        
+
         // Act & Assert
         for (int i = 0; i < 100; i++)
         {
@@ -563,7 +563,7 @@ public class RandomHelperTests
         // Arrange
         const long minValue = 100L;
         const long maxValue = 500L;
-        
+
         // Act & Assert
         for (int i = 0; i < 100; i++)
         {
@@ -594,7 +594,7 @@ public class RandomHelperTests
     {
         // Arrange
         const double maxValue = 10.5;
-        
+
         // Act & Assert
         for (int i = 0; i < 100; i++)
         {
@@ -612,7 +612,7 @@ public class RandomHelperTests
         // Arrange
         const double minValue = 5.5;
         const double maxValue = 15.5;
-        
+
         // Act & Assert
         for (int i = 0; i < 100; i++)
         {
@@ -634,10 +634,10 @@ public class RandomHelperTests
         // Arrange
         const int length = 10;
         var buffer = new byte[length];
-        
+
         // Act
         RandomHelper.NextBytes(buffer);
-        
+
         // Assert
         Assert.NotNull(buffer);
         Assert.Equal(length, buffer.Length);
@@ -666,10 +666,10 @@ public class RandomHelperTests
         // Arrange
         var array = new[] { 1, 2, 3, 4, 5 };
         const int count = 3;
-        
+
         // Act
         var result = RandomHelper.Items(array, count);
-        
+
         // Assert
         Assert.NotNull(result);
         Assert.Equal(count, result.Length);
@@ -684,7 +684,7 @@ public class RandomHelperTests
     {
         // Arrange
         var array = new[] { 1, 2, 3 };
-        
+
         // Act & Assert
         Assert.Throws<ArgumentOutOfRangeException>(() => RandomHelper.Items(array, -1));
     }
@@ -702,10 +702,10 @@ public class RandomHelperTests
         // Arrange
         var array = new[] { 1, 2, 3, 4, 5 };
         const int count = 3;
-        
+
         // Act
         var result = RandomHelper.Ids(array, count);
-        
+
         // Assert
         Assert.NotNull(result);
         Assert.Equal(count, result.Length);
@@ -721,10 +721,10 @@ public class RandomHelperTests
         // Arrange
         var list = new List<string> { "a", "b", "c", "d" };
         const int count = 2;
-        
+
         // Act
         var result = RandomHelper.Items(list, count);
-        
+
         // Assert
         Assert.NotNull(result);
         Assert.Equal(count, result.Length);
@@ -738,13 +738,13 @@ public class RandomHelperTests
     public void Ids_WithNegativeCount_ShouldThrowArgumentOutOfRangeException()
     {
         // Arrange
-        var array = new int[][] 
+        var array = new int[][]
         {
             new[] { 1, 10 },
             new[] { 2, 20 },
             new[] { 3, 30 }
         };
-        
+
         // Act & Assert
         Assert.Throws<ArgumentOutOfRangeException>(() => RandomHelper.Ids(array, -1));
     }
@@ -762,10 +762,10 @@ public class RandomHelperTests
         // Arrange
         var array = new[] { 1, 2, 3, 4, 5 };
         const int count = 3;
-        
+
         // Act
         var result = RandomHelper.Items(array, count);
-        
+
         // Assert
         Assert.NotNull(result);
         Assert.Equal(count, result.Length);
@@ -781,10 +781,10 @@ public class RandomHelperTests
         // Arrange
         var list = new List<string> { "apple", "banana", "cherry" };
         const int count = 2;
-        
+
         // Act
         var result = RandomHelper.Items(list, count);
-        
+
         // Assert
         Assert.NotNull(result);
         Assert.Equal(count, result.Length);
@@ -804,10 +804,10 @@ public class RandomHelperTests
         // Arrange
         const int m = 3;
         const int n = 10;
-        
+
         // Act
         var result = RandomHelper.RandomSelect(m, n);
-        
+
         // Assert
         Assert.NotNull(result);
         Assert.Equal(m, result.Count);
@@ -822,7 +822,7 @@ public class RandomHelperTests
     {
         // Act
         var result = RandomHelper.RandomSelect(0, 10);
-        
+
         // Assert
         Assert.NotNull(result);
         Assert.Empty(result);
@@ -850,7 +850,7 @@ public class RandomHelperTests
     {
         // Arrange
         var weights = new[] { 10, 20, 30, 40 };
-        
+
         // Act & Assert
         for (int i = 0; i < 100; i++)
         {
@@ -877,7 +877,7 @@ public class RandomHelperTests
     {
         // Arrange
         var emptyWeights = Array.Empty<int>();
-        
+
         // Act & Assert
         Assert.Throws<ArgumentOutOfRangeException>(() => RandomHelper.Idx(emptyWeights));
     }
@@ -889,13 +889,13 @@ public class RandomHelperTests
     public void Idx_WithWeightArray_ShouldReturnValidIndex()
     {
         // Arrange
-        var array = new int[][] 
+        var array = new int[][]
         {
             new[] { 1, 10 },
             new[] { 2, 20 },
             new[] { 3, 30 }
         };
-        
+
         // Act & Assert
         for (int i = 0; i < 100; i++)
         {
@@ -911,17 +911,17 @@ public class RandomHelperTests
     public void Ids_WithWeightArray_ShouldReturnCorrectCount()
     {
         // Arrange
-        var array = new int[][] 
+        var array = new int[][]
         {
             new[] { 1, 10 },
             new[] { 2, 20 },
             new[] { 3, 30 }
         };
         const int num = 2;
-        
+
         // Act
         var result = RandomHelper.Ids(array, num, true);
-        
+
         // Assert
         Assert.NotNull(result);
         Assert.Equal(num, result.Count);
@@ -936,10 +936,10 @@ public class RandomHelperTests
         // Arrange
         const string weightStr = "1+10;2+20;3+30";
         const int num = 2;
-        
+
         // Act
         var result = RandomHelper.Ids(weightStr, num, true);
-        
+
         // Assert
         Assert.NotNull(result);
         Assert.Equal(num, result.Count);
@@ -952,17 +952,17 @@ public class RandomHelperTests
     public void Items_WithWeightArray_ShouldReturnCorrectCount()
     {
         // Arrange
-        var array = new int[][] 
+        var array = new int[][]
         {
             new[] { 1, 10, 100 },
             new[] { 2, 20, 200 },
             new[] { 3, 30, 300 }
         };
         const int num = 2;
-        
+
         // Act
         var result = RandomHelper.Items(array, num, true);
-        
+
         // Assert
         Assert.NotNull(result);
         Assert.Equal(num, result.Count);
@@ -977,10 +977,10 @@ public class RandomHelperTests
         // Arrange
         const string weightStr = "1+10+100;2+20+200;3+30+300";
         const int num = 2;
-        
+
         // Act
         var result = RandomHelper.Items(weightStr, num, true);
-        
+
         // Assert
         Assert.NotNull(result);
         Assert.Equal(num, result.Count);
@@ -1024,7 +1024,7 @@ public class RandomHelperTests
     {
         // Act
         var result = RandomHelper.Gcd();
-        
+
         // Assert
         Assert.Equal(1, result);
     }
@@ -1037,7 +1037,7 @@ public class RandomHelperTests
     {
         // Act
         var result = RandomHelper.Gcd(42);
-        
+
         // Assert
         Assert.Equal(42, result);
     }
@@ -1067,13 +1067,13 @@ public class RandomHelperTests
         const int operationsPerThread = 100;
         var tasks = new Task[threadCount];
         var results = new List<int>[threadCount];
-        
+
         // Act
         for (var i = 0; i < threadCount; i++)
         {
             var threadIndex = i;
             results[threadIndex] = new List<int>();
-            
+
             tasks[threadIndex] = Task.Run(() =>
             {
                 for (var j = 0; j < operationsPerThread; j++)
@@ -1082,9 +1082,9 @@ public class RandomHelperTests
                 }
             });
         }
-        
+
         Task.WaitAll(tasks);
-        
+
         // Assert
         for (var i = 0; i < threadCount; i++)
         {

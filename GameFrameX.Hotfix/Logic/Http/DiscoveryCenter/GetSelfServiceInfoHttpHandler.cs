@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 using GameFrameX.DiscoveryCenterManager;
 using GameFrameX.DiscoveryCenterManager.Server;
 
@@ -70,7 +69,7 @@ public sealed class GetSelfServiceInfoHttpHandler : BaseHttpHandler
             Message = selfServiceInfo != null ? "成功获取自身服务信息" : "自身服务信息尚未初始化",
             ServiceInfo = selfServiceInfo
         };
-        
+
         return Task.FromResult(HttpJsonResult.SuccessString(response));
     }
 }

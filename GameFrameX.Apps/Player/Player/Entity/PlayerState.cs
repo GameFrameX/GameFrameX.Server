@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 namespace GameFrameX.Apps.Player.Player.Entity;
 
 public sealed class PlayerState : CacheState

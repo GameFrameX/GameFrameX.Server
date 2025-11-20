@@ -38,9 +38,9 @@
         <OutputPath>..\bin\app</OutputPath>
     </PropertyGroup>
     <ItemGroup>
-      <ProjectReference Include="..\GameFrameX.NetWork.Abstractions\GameFrameX.NetWork.Abstractions.csproj" />
-      <ProjectReference Include="..\GameFrameX.ProtoBuf.Net\GameFrameX.ProtoBuf.Net.csproj" />
-      <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
+        <ProjectReference Include="..\GameFrameX.NetWork.Abstractions\GameFrameX.NetWork.Abstractions.csproj"/>
+        <ProjectReference Include="..\GameFrameX.ProtoBuf.Net\GameFrameX.ProtoBuf.Net.csproj"/>
+        <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj"/>
     </ItemGroup>
     <ItemGroup>
         <None Include="..\logo.png">
@@ -55,6 +55,6 @@
         </None>
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="GameFrameX.SuperSocket.WebSocket.Server" Version="1.2.0" />
+        <PackageReference Include="GameFrameX.SuperSocket.WebSocket.Server" Version="1.2.0"/>
     </ItemGroup>
 </Project>

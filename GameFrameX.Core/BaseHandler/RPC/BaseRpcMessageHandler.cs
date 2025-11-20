@@ -112,12 +112,12 @@ public abstract class BaseRpcMessageHandler<TRequest, TResponse> : IMessageHandl
             }
 
             var task = InnerActionAsync(RequestMessage, response);
-            
+
             try
             {
                 // 先等待业务逻辑执行完成（包括超时检查）/ Wait for business logic to complete (including timeout check)
                 await task.WaitAsync(TimeSpan.FromMilliseconds(timeout), cancellationToken);
-                
+
                 // 业务逻辑执行成功后，设置响应ID并发送 / After successful execution, set response ID and send
                 response.SetUniqueId(requestId);
                 await NetWorkChannel.WriteAsync(response);
@@ -125,12 +125,12 @@ public abstract class BaseRpcMessageHandler<TRequest, TResponse> : IMessageHandl
             catch (TimeoutException timeoutException)
             {
                 LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.ExecutionTimeout, timeoutException.Message));
-                
+
                 // 设置超时错误码并发送错误响应给客户端 / Set timeout error code and send error response to client
                 response.ErrorCode = OperationErrorCode.TimeOut;
                 response.SetUniqueId(requestId);
                 await NetWorkChannel.WriteAsync(response);
-                
+
                 //强制设状态-取消该操作
             }
         }

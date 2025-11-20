@@ -56,7 +56,7 @@ internal static class AppExitHandler
     /// The action to be called when application exits / 应用程序退出时要调用的动作
     /// </value>
     private static Action<string> _existCallBack;
-    
+
     /// <summary>
     /// Application settings / 应用程序设置
     /// </summary>
@@ -64,7 +64,7 @@ internal static class AppExitHandler
     /// The current application settings / 当前应用程序设置
     /// </value>
     private static AppSetting _setting;
-    
+
     /// <summary>
     /// POSIX signal registration for handling SIGTERM / 用于处理SIGTERM的POSIX信号注册
     /// </summary>
@@ -72,7 +72,7 @@ internal static class AppExitHandler
     /// The registration for POSIX signal handling / POSIX信号处理的注册
     /// </value>
     private static PosixSignalRegistration _exitSignalRegistration;
-    
+
     /// <summary>
     /// Indicates whether the application is being killed / 指示应用程序是否正在被终止
     /// </summary>
@@ -80,7 +80,7 @@ internal static class AppExitHandler
     /// true if the application is being killed; otherwise, false / 如果应用程序正在被终止则为true，否则为false
     /// </value>
     private static bool _isKill;
-    
+
     /// <summary>
     /// List of fatal exception exit handlers / 致命异常退出处理器列表
     /// </summary>

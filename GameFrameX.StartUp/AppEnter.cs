@@ -51,7 +51,7 @@ internal static class AppEnter
     /// true if exit has been called; otherwise, false / 如果已调用退出则为true，否则为false
     /// </value>
     private static volatile bool _exitCalled;
-    
+
     /// <summary>
     /// The main game loop task / 主游戏循环任务
     /// </summary>
@@ -59,7 +59,7 @@ internal static class AppEnter
     /// The task representing the game loop execution / 表示游戏循环执行的任务
     /// </value>
     private static volatile Task _gameLoopTask;
-    
+
     /// <summary>
     /// The application startup instance / 应用程序启动实例
     /// </summary>

@@ -139,6 +139,7 @@ namespace GameFrameX.Tests.ProtoBuff
                 {
                     nested.Clear();
                 }
+
                 NestedList.Clear();
             }
         }
@@ -183,7 +184,7 @@ namespace GameFrameX.Tests.ProtoBuff
 
             // 第一次使用：反序列化第一个对象的数据 / First use: deserialize first object's data
             ProtoBufSerializerHelper.Deserialize(firstBytes, pooledObject);
-            
+
             Assert.Equal(1, pooledObject.Id);
             Assert.Equal("First", pooledObject.Name);
             Assert.True(pooledObject.IsActive);
@@ -202,7 +203,7 @@ namespace GameFrameX.Tests.ProtoBuff
 
             // 第二次使用：反序列化第二个对象的数据，应该完全覆盖 / Second use: deserialize second object's data, should completely overwrite
             ProtoBufSerializerHelper.Deserialize(secondBytes, pooledObject);
-            
+
             Assert.Equal(2, pooledObject.Id);
             Assert.Equal("Second", pooledObject.Name);
             Assert.False(pooledObject.IsActive); // 重要：布尔值应该被正确覆盖 / Important: boolean should be correctly overwritten
@@ -290,7 +291,7 @@ namespace GameFrameX.Tests.ProtoBuff
             };
             var bytes1 = ProtoBufSerializerHelper.Serialize(data1);
             ProtoBufSerializerHelper.Deserialize(bytes1, pooledObject);
-            
+
             Assert.Equal(100, pooledObject.Id);
             Assert.Equal("Test1", pooledObject.Name);
             Assert.True(pooledObject.IsActive);
@@ -312,7 +313,7 @@ namespace GameFrameX.Tests.ProtoBuff
             };
             var bytes2 = ProtoBufSerializerHelper.Serialize(data2);
             ProtoBufSerializerHelper.Deserialize(bytes2, pooledObject);
-            
+
             Assert.Equal(200, pooledObject.Id);
             Assert.Equal("Test2", pooledObject.Name);
             Assert.False(pooledObject.IsActive);
@@ -334,7 +335,7 @@ namespace GameFrameX.Tests.ProtoBuff
             };
             var bytes3 = ProtoBufSerializerHelper.Serialize(data3);
             ProtoBufSerializerHelper.Deserialize(bytes3, pooledObject);
-            
+
             Assert.Equal(300, pooledObject.Id);
             Assert.Equal("Test3", pooledObject.Name);
             Assert.True(pooledObject.IsActive);
@@ -371,12 +372,12 @@ namespace GameFrameX.Tests.ProtoBuff
 
             // 反序列化后对象引用应该保持不变 / Object reference should remain unchanged after deserialization
             var result = ProtoBufSerializerHelper.Deserialize(bytes, pooledObject);
-            
+
             Assert.Same(originalReference, result); // 返回的应该是同一个对象 / Should return the same object
             Assert.Same(originalReference, pooledObject); // 原始引用应该保持不变 / Original reference should remain unchanged
             Assert.Same(originalItemsReference, pooledObject.Items); // 列表引用应该保持不变 / List reference should remain unchanged
             Assert.Same(originalNumbersReference, pooledObject.Numbers); // 列表引用应该保持不变 / List reference should remain unchanged
-            
+
             // 但内容应该被正确更新 / But content should be correctly updated
             Assert.Equal(42, pooledObject.Id);
             Assert.Equal("ReferenceTest", pooledObject.Name);
@@ -384,6 +385,7 @@ namespace GameFrameX.Tests.ProtoBuff
             Assert.Equal(2, pooledObject.Items.Count);
             Assert.Equal(2, pooledObject.Numbers.Count);
         }
+
         /// <summary>
         /// 测试对象池与嵌套数据的序列化和反序列化 / Test object pool serialization and deserialization with nested data
         /// </summary>
@@ -504,6 +506,7 @@ namespace GameFrameX.Tests.ProtoBuff
 
             _output.WriteLine("嵌套数据清除测试通过 / Nested data clear test passed");
         }
+
         /// <summary>
         /// 动物接口 / Animal interface
         /// </summary>
@@ -513,7 +516,7 @@ namespace GameFrameX.Tests.ProtoBuff
             /// 动物名称 / Animal name
             /// </summary>
             string Name { get; set; }
-            
+
             /// <summary>
             /// 发出声音 / Make sound
             /// </summary>
@@ -627,24 +630,24 @@ namespace GameFrameX.Tests.ProtoBuff
             var dog = MessageObjectPoolHelper.Get<Dog>();
             dog.Name = "Rex";
             dog.Breed = "German Shepherd";
-            
+
             // 序列化 / Serialize
             var serializedData = ProtoBufSerializerHelper.Serialize(dog);
-            
+
             // 创建新的对象用于反序列化 / Create new object for deserialization
             var targetDog = MessageObjectPoolHelper.Get<Dog>();
-            
+
             // 使用合并模式反序列化 / Deserialize using merge mode
             var result = ProtoBufSerializerHelper.Deserialize(serializedData, targetDog);
-            
+
             Assert.Equal("Rex", result.Name);
             Assert.Equal("German Shepherd", result.Breed);
             Assert.Same(targetDog, result); // 确保是同一个对象 / Ensure it's the same object
-            
+
             // 归还对象到池中 / Return objects to pool
             MessageObjectPoolHelper.Return(dog);
             MessageObjectPoolHelper.Return(result);
-            
+
             _output.WriteLine("Object pool with inheritance test completed successfully");
         }
     }

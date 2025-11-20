@@ -125,17 +125,17 @@ public static class MessageObjectPoolHelper
         if (!typeof(IMessageObject).IsAssignableFrom(type))
         {
             throw new ArgumentException(LocalizationService.GetString(
-                GameFrameX.Localization.Keys.NetWork.TypeMustImplementInterface,
-                type.Name,
-                nameof(IMessageObject)), nameof(type));
+                                            GameFrameX.Localization.Keys.NetWork.TypeMustImplementInterface,
+                                            type.Name,
+                                            nameof(IMessageObject)), nameof(type));
         }
 
         // Validate that the type is a class / 验证类型是否为类
         if (!type.IsClass)
         {
             throw new ArgumentException(LocalizationService.GetString(
-                GameFrameX.Localization.Keys.NetWork.TypeMustBeClass,
-                type.Name), nameof(type));
+                                            GameFrameX.Localization.Keys.NetWork.TypeMustBeClass,
+                                            type.Name), nameof(type));
         }
 
         // Get or create cached get action for this type / 获取或创建此类型的缓存获取操作
@@ -146,8 +146,8 @@ public static class MessageObjectPoolHelper
             if (constructor == null)
             {
                 throw new ArgumentException(LocalizationService.GetString(
-                    GameFrameX.Localization.Keys.NetWork.TypeMustHaveParameterlessConstructor,
-                    t.Name), nameof(type));
+                                                GameFrameX.Localization.Keys.NetWork.TypeMustHaveParameterlessConstructor,
+                                                t.Name), nameof(type));
             }
 
             // Get the pool for the specified type / 获取指定类型的池
@@ -184,7 +184,7 @@ public static class MessageObjectPoolHelper
             if (createMethod == null)
             {
                 throw new InvalidOperationException(LocalizationService.GetString(
-                    GameFrameX.Localization.Keys.NetWork.CannotFindCreateMethod));
+                                                        GameFrameX.Localization.Keys.NetWork.CannotFindCreateMethod));
             }
 
             var genericCreateMethod = createMethod.MakeGenericMethod(type);
@@ -193,8 +193,8 @@ public static class MessageObjectPoolHelper
             if (result == null)
             {
                 throw new InvalidOperationException(LocalizationService.GetString(
-                    GameFrameX.Localization.Keys.NetWork.FailedToCreateObjectPool,
-                    type.Name));
+                                                        GameFrameX.Localization.Keys.NetWork.FailedToCreateObjectPool,
+                                                        type.Name));
             }
 
             return result;
@@ -241,8 +241,8 @@ public static class MessageObjectPoolHelper
             if (constructor == null)
             {
                 throw new ArgumentException(LocalizationService.GetString(
-                    GameFrameX.Localization.Keys.NetWork.TypeMustHaveParameterlessConstructor,
-                    type.Name), nameof(obj));
+                                                GameFrameX.Localization.Keys.NetWork.TypeMustHaveParameterlessConstructor,
+                                                type.Name), nameof(obj));
             }
 
             // Get the pool for the object's actual type / 获取对象实际类型的池

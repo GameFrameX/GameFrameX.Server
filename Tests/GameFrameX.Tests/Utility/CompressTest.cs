@@ -70,11 +70,11 @@ public class CompressTest
     {
         var originalStr = "This is a test string for compression and decompression.";
         var originalBytes = Encoding.UTF8.GetBytes(originalStr);
-        
+
         var compressedBytes = CompressionHelper.Compress(originalBytes);
         var decompressedBytes = CompressionHelper.Decompress(compressedBytes);
         var decompressedStr = Encoding.UTF8.GetString(decompressedBytes);
-        
+
         Assert.Equal(originalStr, decompressedStr);
     }
 

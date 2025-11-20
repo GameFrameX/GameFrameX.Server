@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 using GameFrameX.DiscoveryCenterManager;
 using GameFrameX.DiscoveryCenterManager.Server;
 
@@ -66,9 +65,9 @@ public sealed class GetNodesByTypeHttpHandler : BaseHttpHandler
             };
             return Task.FromResult(HttpJsonResult.SuccessString(errorResponse));
         }
-        
+
         var serverType = typeRequest.ServerType;
-        
+
         // 验证ServerType参数
         if (serverType.IsNullOrEmpty())
         {
@@ -82,7 +81,7 @@ public sealed class GetNodesByTypeHttpHandler : BaseHttpHandler
             };
             return Task.FromResult(HttpJsonResult.SuccessString(errorResponse));
         }
-        
+
         var namingServiceManager = NamingServiceManager.Instance;
         var nodes = namingServiceManager.GetNodesByType(serverType);
 
@@ -94,7 +93,7 @@ public sealed class GetNodesByTypeHttpHandler : BaseHttpHandler
             Nodes = nodes,
             Count = nodes.Count
         };
-        
+
         return Task.FromResult(HttpJsonResult.SuccessString(response));
     }
 }
@@ -121,25 +120,25 @@ public class GetNodesByTypeResponse : HttpMessageResponseBase
     /// </summary>
     /// <value>表示操作是否成功执行的布尔值</value>
     public bool Success { get; set; }
-    
+
     /// <summary>
     /// 响应消息
     /// </summary>
     /// <value>描述操作结果的消息字符串</value>
     public string Message { get; set; }
-    
+
     /// <summary>
     /// 查询的服务器类型
     /// </summary>
     /// <value>请求中指定的服务器类型</value>
     public string ServerType { get; set; }
-    
+
     /// <summary>
     /// 指定类型的节点列表
     /// </summary>
     /// <value>包含所有指定类型服务节点信息的 <see cref="List{T}"/> 其中 T 为 <see cref="IServiceInfo"/></value>
     public List<IServiceInfo> Nodes { get; set; } = new();
-    
+
     /// <summary>
     /// 节点总数
     /// </summary>

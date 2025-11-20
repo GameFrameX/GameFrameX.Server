@@ -35,5 +35,4 @@ namespace GameFrameX.Apps.Player.Friend;
 [ComponentType(GlobalConst.ActorTypePlayer)]
 public sealed class FriendComponent : StateComponent<FriendState>
 {
-
 }

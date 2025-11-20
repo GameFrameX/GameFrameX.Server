@@ -42,3 +42,4 @@ internal class ReqPlayerListHandler : GlobalComponentHandler<LoginComponentAgent
         await ComponentAgent.OnGetPlayerList(NetWorkChannel, Message as ReqPlayerList);
     }
 }*/
+

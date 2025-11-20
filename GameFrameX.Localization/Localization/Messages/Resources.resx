@@ -1,1038 +1,1038 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- Extensions module exception messages -->
-  <data name="Extensions.Exceptions.OffsetCountExceedBufferLength" xml:space="preserve">
+    <!-- Extensions module exception messages -->
+    <data name="Extensions.Exceptions.OffsetCountExceedBufferLength" xml:space="preserve">
     <value>Offset and count exceed buffer length. Buffer length: {0}, offset: {1}, count: {2}.</value>
   </data>
 
-  <data name="Extensions.Exceptions.IndexCountExceedBufferLength" xml:space="preserve">
+    <data name="Extensions.Exceptions.IndexCountExceedBufferLength" xml:space="preserve">
     <value>Index and count exceed buffer length. Buffer length: {0}, index: {1}, count: {2}.</value>
   </data>
 
-  <data name="Extensions.Exceptions.BufferWriteOutOfRange" xml:space="preserve">
+    <data name="Extensions.Exceptions.BufferWriteOutOfRange" xml:space="preserve">
     <value>Buffer write position out of range. Buffer length: {0}, write position: {1}.</value>
   </data>
 
-  <data name="Extensions.Exceptions.StringLengthExceedMaxValue" xml:space="preserve">
+    <data name="Extensions.Exceptions.StringLengthExceedMaxValue" xml:space="preserve">
     <value>String length exceeds maximum value. Actual length: {0}, maximum length: {1}.</value>
   </data>
 
-  <data name="Extensions.Exceptions.ByteArrayLengthMustEqual" xml:space="preserve">
+    <data name="Extensions.Exceptions.ByteArrayLengthMustEqual" xml:space="preserve">
     <value>Byte array lengths must be equal. First array length: {0}, second array length: {1}.</value>
   </data>
 
-  <data name="Extensions.Exceptions.ListCannotBeEmpty" xml:space="preserve">
+    <data name="Extensions.Exceptions.ListCannotBeEmpty" xml:space="preserve">
     <value>List cannot be empty.</value>
   </data>
 
-  <data name="Extensions.Exceptions.TargetTypeMustBeInterface" xml:space="preserve">
+    <data name="Extensions.Exceptions.TargetTypeMustBeInterface" xml:space="preserve">
     <value>Target type must be an interface type. Target type: {0}.</value>
   </data>
 
-  <data name="Extensions.Exceptions.ObjectTypeMismatch" xml:space="preserve">
+    <data name="Extensions.Exceptions.ObjectTypeMismatch" xml:space="preserve">
     <value>Object type mismatch. Object type: {0}, target type: {1}.</value>
   </data>
 
-  <!-- Log messages -->
-  <data name="Extensions.Logs.CollectionProcessed" xml:space="preserve">
+    <!-- Log messages -->
+    <data name="Extensions.Logs.CollectionProcessed" xml:space="preserve">
     <value>Collection processing completed. Collection type: {0}, element count: {1}.</value>
   </data>
 
-  <data name="Extensions.Logs.ByteConversionCompleted" xml:space="preserve">
+    <data name="Extensions.Logs.ByteConversionCompleted" xml:space="preserve">
     <value>Byte conversion completed. Source format: {0}, target format: {1}, byte count: {2}.</value>
   </data>
 
-  <data name="Extensions.Logs.TypeConversionCompleted" xml:space="preserve">
+    <data name="Extensions.Logs.TypeConversionCompleted" xml:space="preserve">
     <value>Type conversion completed. Source type: {0}, target type: {1}.</value>
   </data>
 
-  <!-- Status messages -->
-  <data name="Extensions.Status.ExtensionsInitialized" xml:space="preserve">
+    <!-- Status messages -->
+    <data name="Extensions.Status.ExtensionsInitialized" xml:space="preserve">
     <value>{0} extensions module initialized successfully.</value>
   </data>
 
-  <data name="Extensions.Status.BufferOperationSuccessful" xml:space="preserve">
+    <data name="Extensions.Status.BufferOperationSuccessful" xml:space="preserve">
     <value>Buffer operation completed successfully. Operation type: {0}, byte count: {1}.</value>
   </data>
 
-  <!-- Validation messages -->
-  <data name="Extensions.Validation.NotNullRequired" xml:space="preserve">
+    <!-- Validation messages -->
+    <data name="Extensions.Validation.NotNullRequired" xml:space="preserve">
     <value>Parameter cannot be null. Parameter name: {0}.</value>
   </data>
 
-  <data name="Extensions.Validation.RangeCheckFailed" xml:space="preserve">
+    <data name="Extensions.Validation.RangeCheckFailed" xml:space="preserve">
     <value>Value exceeds allowed range. Value: {0}, minimum value: {1}, maximum value: {2}.</value>
   </data>
 
-  <data name="Extensions.Validation.TypeCheckFailed" xml:space="preserve">
+    <data name="Extensions.Validation.TypeCheckFailed" xml:space="preserve">
     <value>Type validation failed. Actual type: {0}, expected type: {1}.</value>
   </data>
 
-  <!-- Performance messages -->
-  <data name="Extensions.Performance.OperationExecutionTime" xml:space="preserve">
+    <!-- Performance messages -->
+    <data name="Extensions.Performance.OperationExecutionTime" xml:space="preserve">
     <value>Operation execution time. Operation name: {0}, execution time: {1} ms.</value>
   </data>
 
-  <data name="Extensions.Performance.MemoryUsage" xml:space="preserve">
+    <data name="Extensions.Performance.MemoryUsage" xml:space="preserve">
     <value>Memory usage. Operation name: {0}, memory usage: {1} bytes.</value>
   </data>
 
-  <!-- Utility module exception keys -->
-  <data name="Utility.Exceptions.ActorIdLessThanMinServerId" xml:space="preserve">
+    <!-- Utility module exception keys -->
+    <data name="Utility.Exceptions.ActorIdLessThanMinServerId" xml:space="preserve">
     <value>actorId is less than min server id</value>
   </data>
-  <data name="Utility.Exceptions.ActorIdLessThanMinServerIdDetail" xml:space="preserve">
+    <data name="Utility.Exceptions.ActorIdLessThanMinServerIdDetail" xml:space="preserve">
     <value>actorId: {0} is less than min server id: {1}</value>
   </data>
-  <data name="Utility.Exceptions.ActorTypeError" xml:space="preserve">
+    <data name="Utility.Exceptions.ActorTypeError" xml:space="preserve">
     <value>input actor type error: {0}</value>
   </data>
-  <data name="Utility.Exceptions.ServerIdNegative" xml:space="preserve">
+    <data name="Utility.Exceptions.ServerIdNegative" xml:space="preserve">
     <value>serverId is negative when generate id {0}</value>
   </data>
-  <data name="Utility.Exceptions.ServerIdLessThanOrEqualZero" xml:space="preserve">
+    <data name="Utility.Exceptions.ServerIdLessThanOrEqualZero" xml:space="preserve">
     <value>serverId is less than or equal to 0</value>
   </data>
-  <data name="Utility.Exceptions.ActorTypeInvalid" xml:space="preserve">
+    <data name="Utility.Exceptions.ActorTypeInvalid" xml:space="preserve">
     <value>actor type is invalid</value>
   </data>
-  <data name="Utility.Exceptions.ModuleInvalid" xml:space="preserve">
+    <data name="Utility.Exceptions.ModuleInvalid" xml:space="preserve">
     <value>module is invalid</value>
   </data>
-  <data name="Utility.Exceptions.RadixOutOfRange" xml:space="preserve">
+    <data name="Utility.Exceptions.RadixOutOfRange" xml:space="preserve">
     <value>Radix must be between 2 and 36</value>
   </data>
-  <data name="Utility.Exceptions.PositiveExponentsOnly" xml:space="preserve">
+    <data name="Utility.Exceptions.PositiveExponentsOnly" xml:space="preserve">
     <value>Positive exponents only</value>
   </data>
-  <data name="Utility.Exceptions.ParameterKMustBeOdd" xml:space="preserve">
+    <data name="Utility.Exceptions.ParameterKMustBeOdd" xml:space="preserve">
     <value>Parameter k must be odd</value>
   </data>
-  <data name="Utility.Exceptions.JacobiSymbolDefinedForOddOnly" xml:space="preserve">
+    <data name="Utility.Exceptions.JacobiSymbolDefinedForOddOnly" xml:space="preserve">
     <value>Jacobi symbol is defined for odd numbers only</value>
   </data>
-  <data name="Utility.Exceptions.NoInverse" xml:space="preserve">
+    <data name="Utility.Exceptions.NoInverse" xml:space="preserve">
     <value>No inverse exists</value>
   </data>
-  <data name="Utility.Exceptions.RequiredBitsExceedMaxLength" xml:space="preserve">
+    <data name="Utility.Exceptions.RequiredBitsExceedMaxLength" xml:space="preserve">
     <value>Number of required bits exceeds maxLength</value>
   </data>
-  <data name="Utility.Exceptions.MultiplicationOverflow" xml:space="preserve">
+    <data name="Utility.Exceptions.MultiplicationOverflow" xml:space="preserve">
     <value>Multiplication overflow</value>
   </data>
-  <data name="Utility.Exceptions.IncrementOverflow" xml:space="preserve">
+    <data name="Utility.Exceptions.IncrementOverflow" xml:space="preserve">
     <value>Increment overflow</value>
   </data>
-  <data name="Utility.Exceptions.DecrementUnderflow" xml:space="preserve">
+    <data name="Utility.Exceptions.DecrementUnderflow" xml:space="preserve">
     <value>Decrement underflow</value>
   </data>
-  <data name="Utility.Exceptions.NegationOverflow" xml:space="preserve">
+    <data name="Utility.Exceptions.NegationOverflow" xml:space="preserve">
     <value>Negation overflow</value>
   </data>
-  <data name="Utility.Exceptions.ConstructorOverflow" xml:space="preserve">
+    <data name="Utility.Exceptions.ConstructorOverflow" xml:space="preserve">
     <value>Positive overflow in constructor</value>
   </data>
-  <data name="Utility.Exceptions.ConstructorUnderflow" xml:space="preserve">
+    <data name="Utility.Exceptions.ConstructorUnderflow" xml:space="preserve">
     <value>Negative underflow in constructor</value>
   </data>
-  <data name="Utility.Exceptions.ConstructorInvalidString" xml:space="preserve">
+    <data name="Utility.Exceptions.ConstructorInvalidString" xml:space="preserve">
     <value>Invalid string in constructor</value>
   </data>
 
-  <!-- Client module log keys -->
-  <data name="Client.AttemptingToConnect" xml:space="preserve">
+    <!-- Client module log keys -->
+    <data name="Client.AttemptingToConnect" xml:space="preserve">
     <value>Attempting to connect to server...</value>
   </data>
-  <data name="Client.RetryConnect" xml:space="preserve">
+    <data name="Client.RetryConnect" xml:space="preserve">
     <value>Not connected to server, attempting retry (Attempt: {0}/{1})</value>
   </data>
-  <data name="Client.MaxRetryReached" xml:space="preserve">
+    <data name="Client.MaxRetryReached" xml:space="preserve">
     <value>Maximum retry attempts reached, stopping retries.</value>
   </data>
-  <data name="Client.ErrorOccurred" xml:space="preserve">
+    <data name="Client.ErrorOccurred" xml:space="preserve">
     <value>Client error occurred: {0}</value>
   </data>
-  <data name="Client.Disconnected" xml:space="preserve">
+    <data name="Client.Disconnected" xml:space="preserve">
     <value>Client disconnected</value>
   </data>
-  <data name="Client.ConnectedSuccessfully" xml:space="preserve">
+    <data name="Client.ConnectedSuccessfully" xml:space="preserve">
     <value>Client successfully connected to server</value>
   </data>
 
-  <!-- Events module log keys -->
-  <data name="Events.NoListenersFound" xml:space="preserve">
+    <!-- Events module log keys -->
+    <data name="Events.NoListenersFound" xml:space="preserve">
     <value>No listeners found for event ID: {0}</value>
   </data>
 
-  <!-- Storage module log keys -->
-  <data name="Storage.CacheHashEquals" xml:space="preserve">
+    <!-- Storage module log keys -->
+    <data name="Storage.CacheHashEquals" xml:space="preserve">
     <value>CacheHash equals ToSaveHash before calling AfterSaveToDB: {0}</value>
   </data>
 
-  <!-- Database module log keys -->
-  <data name="Database.MongoDb.InitializedSuccessfully" xml:space="preserve">
+    <!-- Database module log keys -->
+    <data name="Database.MongoDb.InitializedSuccessfully" xml:space="preserve">
     <value>MongoDB service initialized successfully, ConnectionString: {0}, DatabaseName: {1}</value>
   </data>
-  <data name="Database.MongoDb.InitializationFailed" xml:space="preserve">
+    <data name="Database.MongoDb.InitializationFailed" xml:space="preserve">
     <value>MongoDB service initialization failed, ConnectionString: {0}, DatabaseName: {1}</value>
   </data>
 
-  <!-- LNumber module log and error keys -->
-  <data name="Utility.LNumber.CreateFailed" xml:space="preserve">
+    <!-- LNumber module log and error keys -->
+    <data name="Utility.LNumber.CreateFailed" xml:space="preserve">
     <value>Xnumber creation failed! {0}.{1}</value>
   </data>
-  <data name="Utility.LNumber.DataExceedsLimit" xml:space="preserve">
+    <data name="Utility.LNumber.DataExceedsLimit" xml:space="preserve">
     <value>Number data exceeds limit {0} {1}</value>
   </data>
-  <data name="Utility.LNumber.MultiplicationOverflow" xml:space="preserve">
+    <data name="Utility.LNumber.MultiplicationOverflow" xml:space="preserve">
     <value>LNumber multiplication overflow > {0}</value>
   </data>
-  <data name="Utility.LNumber.DivisionOverflow" xml:space="preserve">
+    <data name="Utility.LNumber.DivisionOverflow" xml:space="preserve">
     <value>LNumber division overflow > {0}</value>
   </data>
 
-  <!-- Network module error keys -->
-  <data name="Utility.Network.InvalidIpAddressFormat" xml:space="preserve">
+    <!-- Network module error keys -->
+    <data name="Utility.Network.InvalidIpAddressFormat" xml:space="preserve">
     <value>Invalid IP address format</value>
   </data>
 
-  <!-- Illegal word detection module log keys -->
-  <data name="Utility.IllegalWordDetection.InitializationComplete" xml:space="preserve">
+    <!-- Illegal word detection module log keys -->
+    <data name="Utility.IllegalWordDetection.InitializationComplete" xml:space="preserve">
     <value>Sensitive word initialization completed in {0}ms, active count: {1}</value>
   </data>
 
-  <!-- Settings module log and error keys -->
-  <data name="Utility.Settings.AppAlreadyExited" xml:space="preserve">
+    <!-- Settings module log and error keys -->
+    <data name="Utility.Settings.AppAlreadyExited" xml:space="preserve">
     <value>AppRunning has already been set to exit, cannot be enabled again...</value>
   </data>
-  <data name="Utility.Settings.SaveDataIntervalTooSmall" xml:space="preserve">
+    <data name="Utility.Settings.SaveDataIntervalTooSmall" xml:space="preserve">
     <value>SaveDataInterval is less than 5000 milliseconds, using default value: {0} milliseconds</value>
   </data>
 
-  <!-- NetWork.Message module log and error keys -->
-  <data name="NetWork.Message.MessageDecodeFatalError" xml:space="preserve">
+    <!-- NetWork.Message module log and error keys -->
+    <data name="NetWork.Message.MessageDecodeFatalError" xml:space="preserve">
     <value>Fatal exception occurred during message decoding: {0}</value>
   </data>
-  <data name="NetWork.Message.MessageEncodeError" xml:space="preserve">
+    <data name="NetWork.Message.MessageEncodeError" xml:space="preserve">
     <value>Message object encoding exception, please check error logs</value>
   </data>
-  <data name="NetWork.Message.MessageEncodeException" xml:space="preserve">
+    <data name="NetWork.Message.MessageEncodeException" xml:space="preserve">
     <value>Message encoding exception: {0}</value>
   </data>
-  <data name="NetWork.Message.MessageObjectNull" xml:space="preserve">
+    <data name="NetWork.Message.MessageObjectNull" xml:space="preserve">
     <value>Message object is null, encoding exception</value>
   </data>
-  <data name="NetWork.Message.MessageObjectEncodeException" xml:space="preserve">
+    <data name="NetWork.Message.MessageObjectEncodeException" xml:space="preserve">
     <value>Message object encoding exception, please check error logs</value>
   </data>
-  <data name="NetWork.Message.MessageObjectNullEncodeException" xml:space="preserve">
+    <data name="NetWork.Message.MessageObjectNullEncodeException" xml:space="preserve">
     <value>Message object is null, encoding exception</value>
   </data>
 
-  <!-- NetWork.Http module log and error keys -->
-  <data name="NetWork.Http.ParameterDuplicate" xml:space="preserve">
+    <!-- NetWork.Http module log and error keys -->
+    <data name="NetWork.Http.ParameterDuplicate" xml:space="preserve">
     <value>Parameter duplicate: {0}</value>
   </data>
-  <data name="NetWork.Http.UnsupportedContentType" xml:space="preserve">
+    <data name="NetWork.Http.UnsupportedContentType" xml:space="preserve">
     <value>Unsupported Content Type: {0}</value>
   </data>
-  <data name="NetWork.Http.RequestParameters" xml:space="preserve">
+    <data name="NetWork.Http.RequestParameters" xml:space="preserve">
     <value>Request parameters: {0}</value>
   </data>
-  <data name="NetWork.Http.ServerStatusError" xml:space="preserve">
+    <data name="NetWork.Http.ServerStatusError" xml:space="preserve">
     <value>Server status error [server starting/shutting down]</value>
   </data>
-  <data name="NetWork.Http.CommandHandlerNotFound" xml:space="preserve">
+    <data name="NetWork.Http.CommandHandlerNotFound" xml:space="preserve">
     <value>HTTP cmd handler not found: {0}</value>
   </data>
-  <data name="NetWork.Http.ExecutionTime" xml:space="preserve">
+    <data name="NetWork.Http.ExecutionTime" xml:space="preserve">
     <value>{0}, execution time: {1}ms, result: {2}</value>
   </data>
-  <data name="NetWork.Http.ExceptionOccurred" xml:space="preserve">
+    <data name="NetWork.Http.ExceptionOccurred" xml:space="preserve">
     <value>{0}, exception occurred. {1} {2}</value>
   </data>
-  <data name="NetWork.Http.MessageTypeInheritanceError" xml:space="preserve">
+    <data name="NetWork.Http.MessageTypeInheritanceError" xml:space="preserve">
     <value>Message type {0} must inherit from HttpMessageRequestBase</value>
   </data>
-  <data name="NetWork.Http.ResponseMessageTypeInheritanceError" xml:space="preserve">
+    <data name="NetWork.Http.ResponseMessageTypeInheritanceError" xml:space="preserve">
     <value>Message type {0} must inherit from HttpMessageResponseBase</value>
   </data>
-  <data name="NetWork.Http.ClassMustBeSealed" xml:space="preserve">
+    <data name="NetWork.Http.ClassMustBeSealed" xml:space="preserve">
     <value>{0} must be marked as sealed class</value>
   </data>
-  <data name="NetWork.Http.ClassMustEndWithSuffix" xml:space="preserve">
+    <data name="NetWork.Http.ClassMustEndWithSuffix" xml:space="preserve">
     <value>{0} must end with {1}</value>
   </data>
-  <data name="NetWork.Http.RequestLogHeader" xml:space="preserve">
+    <data name="NetWork.Http.RequestLogHeader" xml:space="preserve">
     <value>[HTTPServer] TraceIdentifier:[{0}], Source[{1}], url:[{2}]</value>
   </data>
-  <data name="NetWork.Http.RequestMethod" xml:space="preserve">
+    <data name="NetWork.Http.RequestMethod" xml:space="preserve">
     <value>{0}, Request Method:[{1}]</value>
   </data>
-  <data name="NetWork.Http.MessageEncodingException" xml:space="preserve">
+    <data name="NetWork.Http.MessageEncodingException" xml:space="preserve">
     <value>Message object encoding exception, please check error logs</value>
   </data>
-  <data name="NetWork.Http.HttpHeaderContentTypeNull" xml:space="preserve">
+    <data name="NetWork.Http.HttpHeaderContentTypeNull" xml:space="preserve">
     <value>http header content type is null</value>
   </data>
-  <data name="NetWork.Http.DataVerificationFailed" xml:space="preserve">
+    <data name="NetWork.Http.DataVerificationFailed" xml:space="preserve">
     <value>data verification failed</value>
   </data>
-  <data name="NetWork.Http.SwaggerRequestParameters" xml:space="preserve">
+    <data name="NetWork.Http.SwaggerRequestParameters" xml:space="preserve">
     <value>Request Parameters</value>
   </data>
-  <data name="NetWork.Http.SwaggerResponseStatusCode" xml:space="preserve">
+    <data name="NetWork.Http.SwaggerResponseStatusCode" xml:space="preserve">
     <value>Response Status Code</value>
   </data>
-  <data name="NetWork.Http.SwaggerResponseMessage" xml:space="preserve">
+    <data name="NetWork.Http.SwaggerResponseMessage" xml:space="preserve">
     <value>Response Message</value>
   </data>
-  <data name="NetWork.Http.SwaggerSuccessResponse" xml:space="preserve">
+    <data name="NetWork.Http.SwaggerSuccessResponse" xml:space="preserve">
     <value>Success Response</value>
   </data>
-  <data name="NetWork.Http.ApplicationJsonContentType" xml:space="preserve">
+    <data name="NetWork.Http.ApplicationJsonContentType" xml:space="preserve">
     <value>application/json</value>
   </data>
-  <data name="NetWork.Http.ApplicationProtoBufContentType" xml:space="preserve">
+    <data name="NetWork.Http.ApplicationProtoBufContentType" xml:space="preserve">
     <value>application/x-protobuf</value>
   </data>
-  <data name="NetWork.Http.HttpCommandMissingValidationParameters" xml:space="preserve">
+    <data name="NetWork.Http.HttpCommandMissingValidationParameters" xml:space="preserve">
     <value>http command missing validation parameters {0} and {1}</value>
   </data>
-  <data name="NetWork.Http.UndefinedCommand" xml:space="preserve">
+    <data name="NetWork.Http.UndefinedCommand" xml:space="preserve">
     <value>undefined command</value>
   </data>
-  <data name="NetWork.Http.NotFoundCommand" xml:space="preserve">
+    <data name="NetWork.Http.NotFoundCommand" xml:space="preserve">
     <value>not found command</value>
   </data>
-  <data name="NetWork.Http.CheckFailedCommand" xml:space="preserve">
+    <data name="NetWork.Http.CheckFailedCommand" xml:space="preserve">
     <value>check failed command</value>
   </data>
-  <data name="NetWork.Http.ServerError" xml:space="preserve">
+    <data name="NetWork.Http.ServerError" xml:space="preserve">
     <value>server error</value>
   </data>
 
-  <!-- NetWork.Abstractions module log and error keys -->
-  <data name="NetWork.Abstractions.MessageIdDuplicate" xml:space="preserve">
+    <!-- NetWork.Abstractions module log and error keys -->
+    <data name="NetWork.Abstractions.MessageIdDuplicate" xml:space="preserve">
     <value>MessageId duplicate==>Current ID:{0},Existing ID type:{1}</value>
   </data>
-  <data name="NetWork.Abstractions.HeartbeatMessageDuplicate" xml:space="preserve">
+    <data name="NetWork.Abstractions.HeartbeatMessageDuplicate" xml:space="preserve">
     <value>Heartbeat message duplicate==>Type:{0}</value>
   </data>
-  <data name="NetWork.Abstractions.RequestIdDuplicate" xml:space="preserve">
+    <data name="NetWork.Abstractions.RequestIdDuplicate" xml:space="preserve">
     <value>RequestId duplicate==>Current ID:{0},Existing ID type:{1}</value>
   </data>
-  <data name="NetWork.Abstractions.ResponseIdDuplicate" xml:space="preserve">
+    <data name="NetWork.Abstractions.ResponseIdDuplicate" xml:space="preserve">
     <value>ResponseId duplicate==>Current ID:{0},Existing ID type:{1}</value>
   </data>
 
-  <!-- NetWork module log and error keys -->
-  <data name="NetWork.MessageSent" xml:space="preserve">
+    <!-- NetWork module log and error keys -->
+    <data name="NetWork.MessageSent" xml:space="preserve">
     <value>---Send {0}</value>
   </data>
-  <data name="NetWork.MessageSendTimeout" xml:space="preserve">
+    <data name="NetWork.MessageSendTimeout" xml:space="preserve">
     <value>Message send timeout canceled:{0}</value>
   </data>
-  <data name="NetWork.TypeMustImplementInterface" xml:space="preserve">
+    <data name="NetWork.TypeMustImplementInterface" xml:space="preserve">
     <value>Type {0} must implement {1} interface</value>
   </data>
-  <data name="NetWork.TypeMustBeClass" xml:space="preserve">
+    <data name="NetWork.TypeMustBeClass" xml:space="preserve">
     <value>Type {0} must be a class</value>
   </data>
-  <data name="NetWork.TypeMustHaveParameterlessConstructor" xml:space="preserve">
+    <data name="NetWork.TypeMustHaveParameterlessConstructor" xml:space="preserve">
     <value>Type {0} must have a parameterless constructor</value>
   </data>
-  <data name="NetWork.CannotFindCreateMethod" xml:space="preserve">
+    <data name="NetWork.CannotFindCreateMethod" xml:space="preserve">
     <value>Cannot find Create method on ObjectPoolProvider</value>
   </data>
-  <data name="NetWork.FailedToCreateObjectPool" xml:space="preserve">
+    <data name="NetWork.FailedToCreateObjectPool" xml:space="preserve">
     <value>Failed to create object pool for type {0}</value>
   </data>
 
-  <data name="NetWork.RpcCallTimeout" xml:space="preserve">
+    <data name="NetWork.RpcCallTimeout" xml:space="preserve">
     <value>RPC call timeout! Message is: {0}</value>
   </data>
 
-  <data name="NetWork.MessageEncodingError" xml:space="preserve">
+    <data name="NetWork.MessageEncodingError" xml:space="preserve">
     <value>If the message object is encoded abnormally, check the error log, exception: {0}</value>
   </data>
 
-  <!-- Launcher module log and error keys -->
-  <data name="Launcher.ServerStartBegin" xml:space="preserve">
+    <!-- Launcher module log and error keys -->
+    <data name="Launcher.ServerStartBegin" xml:space="preserve">
     <value>Starting server {0}</value>
   </data>
-  <data name="Launcher.ActorLimitConfigBegin" xml:space="preserve">
+    <data name="Launcher.ActorLimitConfigBegin" xml:space="preserve">
     <value>Starting Actor limit configuration...</value>
   </data>
-  <data name="Launcher.ActorLimitConfigEnd" xml:space="preserve">
+    <data name="Launcher.ActorLimitConfigEnd" xml:space="preserve">
     <value>Actor limit configuration completed...</value>
   </data>
-  <data name="Launcher.DatabaseServiceStartBegin" xml:space="preserve">
+    <data name="Launcher.DatabaseServiceStartBegin" xml:space="preserve">
     <value>Starting database service...</value>
   </data>
-  <data name="Launcher.DatabaseServiceStartFailed" xml:space="preserve">
+    <data name="Launcher.DatabaseServiceStartFailed" xml:space="preserve">
     <value>Database service startup failed</value>
   </data>
-  <data name="Launcher.DatabaseServiceStartEnd" xml:space="preserve">
+    <data name="Launcher.DatabaseServiceStartEnd" xml:space="preserve">
     <value>Database service startup completed...</value>
   </data>
-  <data name="Launcher.ComponentRegisterBegin" xml:space="preserve">
+    <data name="Launcher.ComponentRegisterBegin" xml:space="preserve">
     <value>Starting component registration...</value>
   </data>
-  <data name="Launcher.ComponentRegisterEnd" xml:space="preserve">
+    <data name="Launcher.ComponentRegisterEnd" xml:space="preserve">
     <value>Component registration completed...</value>
   </data>
-  <data name="Launcher.HotfixModuleLoadBegin" xml:space="preserve">
+    <data name="Launcher.HotfixModuleLoadBegin" xml:space="preserve">
     <value>Starting hotfix module loading...</value>
   </data>
-  <data name="Launcher.HotfixModuleLoadEnd" xml:space="preserve">
+    <data name="Launcher.HotfixModuleLoadEnd" xml:space="preserve">
     <value>Hotfix module loading completed...</value>
   </data>
-  <data name="Launcher.EnterMainLoop" xml:space="preserve">
+    <data name="Launcher.EnterMainLoop" xml:space="preserve">
     <value>Entering game main loop...</value>
   </data>
-  <data name="Launcher.ServerStartEnd" xml:space="preserve">
+    <data name="Launcher.ServerStartEnd" xml:space="preserve">
     <value>Server {0} startup completed...</value>
   </data>
-  <data name="Launcher.ServerExecutionException" xml:space="preserve">
+    <data name="Launcher.ServerExecutionException" xml:space="preserve">
     <value>Server execution exception, e:{0}</value>
   </data>
-  <data name="Launcher.ServerExitBegin" xml:space="preserve">
+    <data name="Launcher.ServerExitBegin" xml:space="preserve">
     <value>Starting server shutdown</value>
   </data>
-  <data name="Launcher.ServerExitSuccess" xml:space="preserve">
+    <data name="Launcher.ServerExitSuccess" xml:space="preserve">
     <value>Server shutdown completed successfully</value>
   </data>
-  <data name="Launcher.SendMessage" xml:space="preserve">
+    <data name="Launcher.SendMessage" xml:space="preserve">
     <value>---Send[{0} To {1}]  {2}</value>
   </data>
-  <data name="Launcher.ReceiveMessage" xml:space="preserve">
+    <data name="Launcher.ReceiveMessage" xml:space="preserve">
     <value>---Received[{0} To {1}]  {2}</value>
   </data>
-  <data name="Launcher.PlayerRegisterSuccess" xml:space="preserve">
+    <data name="Launcher.PlayerRegisterSuccess" xml:space="preserve">
     <value>Player registration successful: {0}  {1}</value>
   </data>
-  <data name="Launcher.PlayerUnregisterSuccess" xml:space="preserve">
+    <data name="Launcher.PlayerUnregisterSuccess" xml:space="preserve">
     <value>Player unregistration successful: {0}  {1}</value>
   </data>
-  <data name="Launcher.ServiceRegisterSuccess" xml:space="preserve">
+    <data name="Launcher.ServiceRegisterSuccess" xml:space="preserve">
     <value>Service registration successful: {0}  {1}  {2}</value>
   </data>
-  <data name="Launcher.ServiceUnregisterSuccess" xml:space="preserve">
+    <data name="Launcher.ServiceUnregisterSuccess" xml:space="preserve">
     <value>Service unregistration successful: {0}  {1}</value>
   </data>
-  <data name="Launcher.ExternalServiceConnected" xml:space="preserve">
+    <data name="Launcher.ExternalServiceConnected" xml:space="preserve">
     <value>External service connected to discovery center successfully. Connection info: SessionID:{0} RemoteEndPoint:{1}</value>
   </data>
-  <data name="Launcher.ExternalServiceDisconnected" xml:space="preserve">
+    <data name="Launcher.ExternalServiceDisconnected" xml:space="preserve">
     <value>External service disconnected from discovery center. Connection info: Disconnect reason:{0}</value>
   </data>
 
-  <data name="Launcher.PlayerOfflineCallback" xml:space="preserve">
+    <data name="Launcher.PlayerOfflineCallback" xml:space="preserve">
     <value>Player offline callback, notify other servers: {0}</value>
   </data>
 
-  <data name="Launcher.PlayerOnlineCallback" xml:space="preserve">
+    <data name="Launcher.PlayerOnlineCallback" xml:space="preserve">
     <value>Player online callback, notify other servers: {0}</value>
   </data>
 
-  <data name="Launcher.ServiceOfflineCallback" xml:space="preserve">
+    <data name="Launcher.ServiceOfflineCallback" xml:space="preserve">
     <value>Service offline callback, notify other servers: {0}</value>
   </data>
 
-  <data name="Launcher.ServiceOnlineCallback" xml:space="preserve">
+    <data name="Launcher.ServiceOnlineCallback" xml:space="preserve">
     <value>Service online callback, notify other servers: {0}</value>
   </data>
 
-  <!-- StartUp module log and error keys -->
-  <data name="StartUp.ServerStopped" xml:space="preserve">
+    <!-- StartUp module log and error keys -->
+    <data name="StartUp.ServerStopped" xml:space="preserve">
     <value>Server type: {0} stopped! Termination reason: {1} Configuration: {2}</value>
   </data>
-  <data name="StartUp.DiscoveryCenterCommunicationError" xml:space="preserve">
+    <data name="StartUp.DiscoveryCenterCommunicationError" xml:space="preserve">
     <value>Server {0} communication error with discovery center, id: {1}, error: {2}</value>
   </data>
-  <data name="StartUp.DiscoveryCenterMessageReceived" xml:space="preserve">
+    <data name="StartUp.DiscoveryCenterMessageReceived" xml:space="preserve">
     <value>Server {0} received message from discovery center, id: {1}, {2}</value>
   </data>
-  <data name="StartUp.DiscoveryCenterDisconnected" xml:space="preserve">
+    <data name="StartUp.DiscoveryCenterDisconnected" xml:space="preserve">
     <value>Server {0} disconnected from discovery center, id: {1}...</value>
   </data>
-  <data name="StartUp.DiscoveryCenterConnected" xml:space="preserve">
+    <data name="StartUp.DiscoveryCenterConnected" xml:space="preserve">
     <value>Server {0} connected to discovery center successfully, id: {1}...</value>
   </data>
-  <data name="StartUp.NoStartupTaskFound" xml:space="preserve">
+    <data name="StartUp.NoStartupTaskFound" xml:space="preserve">
     <value>The server has been stopped, please check the log for details. (服务器已停止，详情请查看日志.因为启动任务为空。没有找到启动任务。)</value>
   </data>
-  <data name="StartUp.MetricsPortInUse" xml:space="preserve">
+    <data name="StartUp.MetricsPortInUse" xml:space="preserve">
     <value>Metrics port [{0}] is in use, unable to start independent metrics server</value>
   </data>
-  <data name="StartUp.PrometheusMetricsEndpointEnabled" xml:space="preserve">
+    <data name="StartUp.PrometheusMetricsEndpointEnabled" xml:space="preserve">
     <value>Independent Prometheus metrics endpoint enabled: http://{0}:{1}/metrics</value>
   </data>
-  <data name="StartUp.MetricsHealthCheckEndpointEnabled" xml:space="preserve">
+    <data name="StartUp.MetricsHealthCheckEndpointEnabled" xml:space="preserve">
     <value>Independent Metrics health check endpoint: http://{0}:{1}/health</value>
   </data>
-  <data name="StartUp.HttpServer.HandlePostRequest" xml:space="preserve">
+    <data name="StartUp.HttpServer.HandlePostRequest" xml:space="preserve">
     <value>Handle POST request</value>
   </data>
-  <data name="StartUp.HttpServer.HandleGameClientPostRequest" xml:space="preserve">
+    <data name="StartUp.HttpServer.HandleGameClientPostRequest" xml:space="preserve">
     <value>Handle POST request from game client</value>
   </data>
-  <data name="StartUp.HttpServer.ServiceDisabled" xml:space="preserve">
+    <data name="StartUp.HttpServer.ServiceDisabled" xml:space="preserve">
     <value>HTTP service is disabled, startup ignored</value>
   </data>
-  <data name="StartUp.HttpServer.StartingServer" xml:space="preserve">
+    <data name="StartUp.HttpServer.StartingServer" xml:space="preserve">
     <value>Start the [HTTP] server...</value>
   </data>
-  <data name="StartUp.HttpServer.PortOutOfRange" xml:space="preserve">
+    <data name="StartUp.HttpServer.PortOutOfRange" xml:space="preserve">
     <value>Start the [HTTP] server port [{0}] out of range [{1}-{2}], HTTP service cannot be started, startup ignored</value>
   </data>
-  <data name="StartUp.HttpServer.SwaggerUiAccess" xml:space="preserve">
+    <data name="StartUp.HttpServer.SwaggerUiAccess" xml:space="preserve">
     <value>Swagger UI can be accessed via http://{0}:{1}/swagger</value>
   </data>
-  <data name="StartUp.TcpServer.ClientDisconnected" xml:space="preserve">
+    <data name="StartUp.TcpServer.ClientDisconnected" xml:space="preserve">
     <value>Client disconnects - SessionID: {0}, remote terminal: {1}, disconnect cause: {2}</value>
   </data>
-  <data name="StartUp.TcpServer.NewClientConnection" xml:space="preserve">
+    <data name="StartUp.TcpServer.NewClientConnection" xml:space="preserve">
     <value>New client connection - SessionID: {0}, remote terminal: {1}</value>
   </data>
-  <data name="StartUp.TcpServer.MessageReceived" xml:space="preserve">
+    <data name="StartUp.TcpServer.MessageReceived" xml:space="preserve">
     <value>Message received - server type: [{0}], message content: {1}</value>
   </data>
-  <data name="StartUp.TcpServer.StartingServer" xml:space="preserve">
+    <data name="StartUp.TcpServer.StartingServer" xml:space="preserve">
     <value>Start TCP server type: {0}, address: {1}, port: {2}</value>
   </data>
-  <data name="StartUp.TcpServer.StartupComplete" xml:space="preserve">
+    <data name="StartUp.TcpServer.StartupComplete" xml:space="preserve">
     <value>Start TCP server startup complete type: {0}, address: {1}, port: {2}</value>
   </data>
-  <data name="StartUp.TcpServer.StartupFailed" xml:space="preserve">
+    <data name="StartUp.TcpServer.StartupFailed" xml:space="preserve">
     <value>Start TCP server start failed type: {0}, address: {1}, port: {2}, cause: the port is invalid or occupied</value>
   </data>
-  <data name="StartUp.TcpServer.ServerDisabled" xml:space="preserve">
+    <data name="StartUp.TcpServer.ServerDisabled" xml:space="preserve">
     <value>Start TCP server type: {0}, address: {1}, port: {2}, cause: the TCP server is disabled</value>
   </data>
-  <data name="StartUp.WebSocketServer.StartingServer" xml:space="preserve">
+    <data name="StartUp.WebSocketServer.StartingServer" xml:space="preserve">
     <value>Start the WebSocket server type: {0}, port: {1}</value>
   </data>
-  <data name="StartUp.WebSocketServer.StartupComplete" xml:space="preserve">
+    <data name="StartUp.WebSocketServer.StartupComplete" xml:space="preserve">
     <value>Start WebSocket server startup complete type: {0}, port: {1}</value>
   </data>
-  <data name="StartUp.WebSocketServer.StartupFailed" xml:space="preserve">
+    <data name="StartUp.WebSocketServer.StartupFailed" xml:space="preserve">
     <value>Start WebSocket server start failed type: {0}, port: {1}, cause: the port is invalid or occupied</value>
   </data>
-  <data name="StartUp.WebSocketServer.ServiceNotEnabled" xml:space="preserve">
+    <data name="StartUp.WebSocketServer.ServiceNotEnabled" xml:space="preserve">
     <value>Start WebSocket server start failed type: {0}, port: {1}, cause: WebSocket service is not enabled</value>
   </data>
-  <data name="StartUp.Application.MetricServerStarted" xml:space="preserve">
+    <data name="StartUp.Application.MetricServerStarted" xml:space="preserve">
     <value>The standalone metric server is started on the port: {0}</value>
   </data>
-  <data name="StartUp.Application.ListeningExitMessage" xml:space="preserve">
+    <data name="StartUp.Application.ListeningExitMessage" xml:space="preserve">
     <value>Listen to the exit message from the program</value>
   </data>
-  <data name="StartUp.Application.ExecutingExitProcedure" xml:space="preserve">
+    <data name="StartUp.Application.ExecutingExitProcedure" xml:space="preserve">
     <value>Exit procedure</value>
   </data>
-  <data name="StartUp.Application.GetUnhandledException" xml:space="preserve">
+    <data name="StartUp.Application.GetUnhandledException" xml:space="preserve">
     <value>Get unhandled exception Tag:{0}</value>
   </data>
-  <data name="StartUp.Application.UnhandledException" xml:space="preserve">
+    <data name="StartUp.Application.UnhandledException" xml:space="preserve">
     <value>Unhandled Exception:{0}</value>
   </data>
-  <data name="StartUp.Application.AllUnhandledExceptions" xml:space="preserve">
+    <data name="StartUp.Application.AllUnhandledExceptions" xml:space="preserve">
     <value>All Unhandled Exceptions:{0}</value>
   </data>
-  <data name="StartUp.Application.UnhandledExceptionCallback" xml:space="preserve">
+    <data name="StartUp.Application.UnhandledExceptionCallback" xml:space="preserve">
     <value>Unhandled Exception callback:{0}</value>
   </data>
-  <data name="StartUp.Application.SigtermSignalReceived" xml:space="preserve">
+    <data name="StartUp.Application.SigtermSignalReceived" xml:space="preserve">
     <value>SIGTERM signal received and exit handler registered</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.TryConnectToServer" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.TryConnectToServer" xml:space="preserve">
     <value>Trying to connect to target server...{0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.ReconnectAttempt" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.ReconnectAttempt" xml:space="preserve">
     <value>Reconnection attempt {0}, disconnected, reason: {1}</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.ErrorOccurred" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.ErrorOccurred" xml:space="preserve">
     <value>Error occurred: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.InvalidIpAddress" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.InvalidIpAddress" xml:space="preserve">
     <value>Invalid IP address format: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Server.CannotAddSelfNode" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Server.CannotAddSelfNode" xml:space="preserve">
     <value>Cannot add self node: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Server.NodeJoined" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Server.NodeJoined" xml:space="preserve">
     <value>Node joined: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Server.NodeRemoved" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Server.NodeRemoved" xml:space="preserve">
     <value>Node removed: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.NamingService.ErrorOccurred" xml:space="preserve">
+    <data name="DiscoveryCenterManager.NamingService.ErrorOccurred" xml:space="preserve">
     <value>Error occurred: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.NamingService.InvalidUrlFormat" xml:space="preserve">
+    <data name="DiscoveryCenterManager.NamingService.InvalidUrlFormat" xml:space="preserve">
     <value>Invalid URL format: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.NamingService.ServiceConnectionAttempt" xml:space="preserve">
+    <data name="DiscoveryCenterManager.NamingService.ServiceConnectionAttempt" xml:space="preserve">
     <value>Attempting to connect to service: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Server.NetworkNodeCount" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Server.NetworkNodeCount" xml:space="preserve">
     <value>Current total network node count: {0}, new node info: {1}</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.ConnectedToServer" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.ConnectedToServer" xml:space="preserve">
     <value>Client successfully connected to server: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.DisconnectedFromServer" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.DisconnectedFromServer" xml:space="preserve">
     <value>Client disconnected from server: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.ReconnectLimitReached" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.ReconnectLimitReached" xml:space="preserve">
     <value>Reconnection limit reached: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Server.DuplicateNodeAddition" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Server.DuplicateNodeAddition" xml:space="preserve">
     <value>Attempted to add duplicate node, ignored: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Service.InvalidIpAddress" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Service.InvalidIpAddress" xml:space="preserve">
     <value>Invalid IP address format: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Exception.MessageIdMustBeLessThanZero" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Exception.MessageIdMustBeLessThanZero" xml:space="preserve">
     <value>messageObject.MessageId must be less than 0</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.ReconnectLimitReachedMessage" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.ReconnectLimitReachedMessage" xml:space="preserve">
     <value>Reconnect attempts have reached the upper limit ({0}), and no more attempts will be made.</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.DisconnectedMessage" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.DisconnectedMessage" xml:space="preserve">
     <value>Client disconnected from the server: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.ConnectedMessage" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.ConnectedMessage" xml:space="preserve">
     <value>Client successfully connected to the server: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Server.DuplicateNodeWarning" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Server.DuplicateNodeWarning" xml:space="preserve">
     <value>Duplicate node addition...Ignored: {0}</value>
   </data>
 
-  <!-- ServiceConnect related messages -->
-  <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceAlreadyRegistered" xml:space="preserve">
+    <!-- ServiceConnect related messages -->
+    <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceAlreadyRegistered" xml:space="preserve">
     <value>ServiceConnectManager Register ServerInstanceId:{0} already registered</value>
   </data>
 
-  <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceUnregistered" xml:space="preserve">
+    <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceUnregistered" xml:space="preserve">
     <value>ServiceConnectManager UnRegister ServerInstanceId:{0}</value>
   </data>
 
-  <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceNotFound" xml:space="preserve">
+    <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceNotFound" xml:space="preserve">
     <value>ServiceConnectManager UnRegister ServerInstanceId:{0} not found</value>
   </data>
 
-  <data name="DiscoveryCenterManager.ServiceConnect.SendServerInstanceNotFound" xml:space="preserve">
+    <data name="DiscoveryCenterManager.ServiceConnect.SendServerInstanceNotFound" xml:space="preserve">
     <value>ServiceConnectManager Send ServerInstanceId:{0} not found</value>
   </data>
 
-  <data name="DiscoveryCenterManager.ServiceConnect.CallServerInstanceNotFound" xml:space="preserve">
+    <data name="DiscoveryCenterManager.ServiceConnect.CallServerInstanceNotFound" xml:space="preserve">
     <value>ServiceConnectManager Call ServerInstanceId:{0} not found</value>
   </data>
 
-  <data name="DiscoveryCenterManager.ServiceConnect.ServiceAlreadyInitialized" xml:space="preserve">
+    <data name="DiscoveryCenterManager.ServiceConnect.ServiceAlreadyInitialized" xml:space="preserve">
     <value>ServiceConnectManager Init {0} already initialized</value>
   </data>
 
-  <data name="DiscoveryCenterManager.ServiceConnect.ClientError" xml:space="preserve">
+    <data name="DiscoveryCenterManager.ServiceConnect.ClientError" xml:space="preserve">
     <value>ServiceConnectManager OnError {0}</value>
   </data>
 
-  <!-- Core module log messages -->
-  <!-- Actor related messages -->
-  <data name="Core.Actor.CrossDay" xml:space="preserve">
+    <!-- Core module log messages -->
+    <!-- Actor related messages -->
+    <data name="Core.Actor.CrossDay" xml:space="preserve">
     <value>actor cross day id:{0} type:{1}</value>
   </data>
 
-  <data name="Core.Actor.CrossDayFailed" xml:space="preserve">
+    <data name="Core.Actor.CrossDayFailed" xml:space="preserve">
     <value>{0} cross day failed actorId:{1} actorType:{2} exception:\n{3}</value>
   </data>
 
-  <data name="Core.Actor.RecycleCallbackFailed" xml:space="preserve">
+    <data name="Core.Actor.RecycleCallbackFailed" xml:space="preserve">
     <value>Actor recycle callback execution exception actorId:{0} actorType:{1} exception:\n{2}</value>
   </data>
 
-  <data name="Core.Actor.RecycleFailed" xml:space="preserve">
+    <data name="Core.Actor.RecycleFailed" xml:space="preserve">
     <value>Actor recycle process exception actorId:{0} actorType:{1} exception:\n{2}</value>
   </data>
 
-  <data name="Core.Actor.Recycled" xml:space="preserve">
+    <data name="Core.Actor.Recycled" xml:space="preserve">
     <value>actor recycled id:{0} type:{1}</value>
   </data>
 
-  <!-- Actor limit related messages -->
-  <data name="Core.ActorLimit.UnsupportedRuleType" xml:space="preserve">
+    <!-- Actor limit related messages -->
+    <data name="Core.ActorLimit.UnsupportedRuleType" xml:space="preserve">
     <value>Unsupported rule type:{0}</value>
   </data>
 
-  <data name="Core.ActorLimit.InvalidCallPath" xml:space="preserve">
+    <data name="Core.ActorLimit.InvalidCallPath" xml:space="preserve">
     <value>Invalid call path:{0}==>{1}</value>
   </data>
 
-  <data name="Core.ActorLimit.CrossDeadlock" xml:space="preserve">
+    <data name="Core.ActorLimit.CrossDeadlock" xml:space="preserve">
     <value>Cross deadlock detected, ActorId1:{0} ActorType1:{1} ActorId2:{2} ActorType2:{3}</value>
   </data>
 
-  <!-- Timer related messages -->
-  <data name="Core.Timer.GlobalTimerInitializationStart" xml:space="preserve">
+    <!-- Timer related messages -->
+    <data name="Core.Timer.GlobalTimerInitializationStart" xml:space="preserve">
     <value>Starting global timer initialization...</value>
   </data>
 
-  <data name="Core.Timer.GlobalTimerInitializationComplete" xml:space="preserve">
+    <data name="Core.Timer.GlobalTimerInitializationComplete" xml:space="preserve">
     <value>Global timer initialization completed...</value>
   </data>
 
-  <data name="Core.Timer.NextSaveTime" xml:space="preserve">
+    <data name="Core.Timer.NextSaveTime" xml:space="preserve">
     <value>Next scheduled save time {0}</value>
   </data>
 
-  <data name="Core.Timer.SaveStart" xml:space="preserve">
+    <data name="Core.Timer.SaveStart" xml:space="preserve">
     <value>Starting scheduled save time:{0}</value>
   </data>
 
-  <data name="Core.Timer.SaveEnd" xml:space="preserve">
+    <data name="Core.Timer.SaveEnd" xml:space="preserve">
     <value>Scheduled save completed time:{0} duration: {1}ms</value>
   </data>
 
-  <data name="Core.Timer.ActorRecycleStart" xml:space="preserve">
+    <data name="Core.Timer.ActorRecycleStart" xml:space="preserve">
     <value>Starting idle Actor recycle time:{0}</value>
   </data>
 
-  <data name="Core.Timer.ActorRecycleEnd" xml:space="preserve">
+    <data name="Core.Timer.ActorRecycleEnd" xml:space="preserve">
     <value>Idle Actor recycle completed time:{0}</value>
   </data>
 
-  <data name="Core.Timer.GlobalTimerStopStart" xml:space="preserve">
+    <data name="Core.Timer.GlobalTimerStopStart" xml:space="preserve">
     <value>Stopping global timer...</value>
   </data>
 
-  <data name="Core.Timer.GlobalTimerStopComplete" xml:space="preserve">
+    <data name="Core.Timer.GlobalTimerStopComplete" xml:space="preserve">
     <value>Global timer stopped...</value>
   </data>
 
-  <data name="Core.Timer.InvalidHandlerType" xml:space="preserve">
+    <data name="Core.Timer.InvalidHandlerType" xml:space="preserve">
     <value>Invalid ITimerHandler type, callback failed type:{0}</value>
   </data>
 
-  <!-- Actor manager related messages -->
-  <data name="Core.ActorManager.SaveAllStateTime" xml:space="preserve">
+    <!-- Actor manager related messages -->
+    <data name="Core.ActorManager.SaveAllStateTime" xml:space="preserve">
     <value>save all state, use: {0}ms</value>
   </data>
 
-  <data name="Core.ActorManager.SaveAllStateError" xml:space="preserve">
+    <data name="Core.ActorManager.SaveAllStateError" xml:space="preserve">
     <value>save all state error\n{0}</value>
   </data>
 
-  <data name="Core.ActorManager.TimerSaveStateError" xml:space="preserve">
+    <data name="Core.ActorManager.TimerSaveStateError" xml:space="preserve">
     <value>timer save state error</value>
   </data>
 
-  <data name="Core.ActorManager.GlobalActorCrossDay" xml:space="preserve">
+    <data name="Core.ActorManager.GlobalActorCrossDay" xml:space="preserve">
     <value>Global Actor:{0} cross day execution</value>
   </data>
 
-  <data name="Core.ActorManager.GlobalCompCrossDayTimeout" xml:space="preserve">
+    <data name="Core.ActorManager.GlobalCompCrossDayTimeout" xml:space="preserve">
     <value>Global comp cross day takes too long, will not block other comp cross day, current elapsed {0} seconds</value>
   </data>
 
-  <data name="Core.ActorManager.GlobalCompCrossDayComplete" xml:space="preserve">
+    <data name="Core.ActorManager.GlobalCompCrossDayComplete" xml:space="preserve">
     <value>Global comp cross day completed duration: {0}ms</value>
   </data>
 
-  <data name="Core.ActorManager.NonPlayerCompCrossDayTimeout" xml:space="preserve">
+    <data name="Core.ActorManager.NonPlayerCompCrossDayTimeout" xml:space="preserve">
     <value>Non-player comp cross day takes too long, will not block player comp cross day, current elapsed {0} seconds</value>
   </data>
 
-  <data name="Core.ActorManager.NonPlayerCompCrossDayComplete" xml:space="preserve">
+    <data name="Core.ActorManager.NonPlayerCompCrossDayComplete" xml:space="preserve">
     <value>Non-player comp cross day completed duration: {0}ms</value>
   </data>
 
-  <!-- Component registration related messages -->
-  <data name="Core.ComponentRegister.InitializationComplete" xml:space="preserve">
+    <!-- Component registration related messages -->
+    <data name="Core.ComponentRegister.InitializationComplete" xml:space="preserve">
     <value>initialize component registration complete</value>
   </data>
 
-  <data name="Core.ComponentRegister.AgentNotImplemented" xml:space="preserve">
+    <data name="Core.ComponentRegister.AgentNotImplemented" xml:space="preserve">
     <value>{0} Agent not implemented, please check if business code is correct</value>
   </data>
 
-  <data name="Core.ComponentRegister.ActivateGlobalComponent" xml:space="preserve">
+    <data name="Core.ComponentRegister.ActivateGlobalComponent" xml:space="preserve">
     <value>Activate global component: {0} {1}</value>
   </data>
 
-  <data name="Core.ComponentRegister.ActivateGlobalActor" xml:space="preserve">
+    <data name="Core.ComponentRegister.ActivateGlobalActor" xml:space="preserve">
     <value>activate the global actor: {0}</value>
   </data>
 
-  <data name="Core.ComponentRegister.ActivateGlobalComponentCheckComplete" xml:space="preserve">
+    <data name="Core.ComponentRegister.ActivateGlobalComponentCheckComplete" xml:space="preserve">
     <value>Activate the global component and check if the components all contain the Agent implementation completion</value>
   </data>
 
-  <data name="Core.ComponentRegister.ActivateGlobalComponentCheckFailed" xml:space="preserve">
+    <data name="Core.ComponentRegister.ActivateGlobalComponentCheckFailed" xml:space="preserve">
     <value>Activate the global component and detect if the components all contain the agent implementation failed</value>
   </data>
 
-  <data name="Core.ComponentRegister.ActorNotBelongToThis" xml:space="preserve">
+    <data name="Core.ComponentRegister.ActorNotBelongToThis" xml:space="preserve">
     <value>get an actor that doesn't belong to this actor: [{0}] components</value>
   </data>
 
-  <!-- State component related messages -->
-  <data name="Core.StateComponent.SaveAllStateTime" xml:space="preserve">
+    <!-- State component related messages -->
+    <data name="Core.StateComponent.SaveAllStateTime" xml:space="preserve">
     <value>save all state, use: {0}ms</value>
   </data>
 
-  <data name="Core.StateComponent.SaveAllStateError" xml:space="preserve">
+    <data name="Core.StateComponent.SaveAllStateError" xml:space="preserve">
     <value>save all state error\n{0}</value>
   </data>
 
-  <data name="Core.StateComponent.TimerSaveStateError" xml:space="preserve">
+    <data name="Core.StateComponent.TimerSaveStateError" xml:space="preserve">
     <value>timer save state error</value>
   </data>
 
-  <data name="Core.StateComponent.SaveStateFailed" xml:space="preserve">
+    <data name="Core.StateComponent.SaveStateFailed" xml:space="preserve">
     <value>StateComp.SaveState.Failed.StateId:{0},{1}</value>
   </data>
 
-  <data name="Core.StateComponent.StateSaveBack" xml:space="preserve">
+    <data name="Core.StateComponent.StateSaveBack" xml:space="preserve">
     <value>[StateComp] state save back {0} count:{1}</value>
   </data>
 
-  <data name="Core.StateComponent.SaveDataFailed" xml:space="preserve">
+    <data name="Core.StateComponent.SaveDataFailed" xml:space="preserve">
     <value>Save data failed, type:{0}</value>
   </data>
 
-  <data name="Core.StateComponent.SaveDataException" xml:space="preserve">
+    <data name="Core.StateComponent.SaveDataException" xml:space="preserve">
     <value>Save data exception, type:{0}, {1}</value>
   </data>
 
-  <!-- Message handler related messages -->
-  <data name="Core.MessageHandler.ExecutionTimeout" xml:space="preserve">
+    <!-- Message handler related messages -->
+    <data name="Core.MessageHandler.ExecutionTimeout" xml:space="preserve">
     <value>Execution timeout:{0}</value>
   </data>
 
-  <data name="Core.MessageHandler.ExecutionTimeWarning" xml:space="preserve">
+    <data name="Core.MessageHandler.ExecutionTimeWarning" xml:space="preserve">
     <value>Message handler:{0},UniqueId:{1} execution duration: {2} ms</value>
   </data>
 
-  <data name="Core.MessageHandler.ExecutionTimeDebug" xml:space="preserve">
+    <data name="Core.MessageHandler.ExecutionTimeDebug" xml:space="preserve">
     <value>Message handler:{0},UniqueId:{1} execution duration: {2} ms</value>
   </data>
 
-  <data name="Core.MessageHandler.ActorIdIsZero" xml:space="preserve">
+    <data name="Core.MessageHandler.ActorIdIsZero" xml:space="preserve">
     <value>ActorId is 0, can not get component，{0}, close channel</value>
   </data>
 
-  <data name="Core.MessageHandler.CacheComponentIsNull" xml:space="preserve">
+    <data name="Core.MessageHandler.CacheComponentIsNull" xml:space="preserve">
     <value>CacheComponent is null, can not get component, close channel</value>
   </data>
 
-  <data name="Core.MessageHandler.InnerActionError" xml:space="preserve">
+    <data name="Core.MessageHandler.InnerActionError" xml:space="preserve">
     <value>InnerAction error: {0} {1}</value>
   </data>
 
-  <!-- Hotfix related messages -->
-  <data name="Core.Hotfix.DllInitializationSuccess" xml:space="preserve">
+    <!-- Hotfix related messages -->
+    <data name="Core.Hotfix.DllInitializationSuccess" xml:space="preserve">
     <value>the hot change dll initialization succeeds: {0}</value>
   </data>
 
-  <data name="Core.Hotfix.DllInitializationFailed" xml:space="preserve">
+    <data name="Core.Hotfix.DllInitializationFailed" xml:space="preserve">
     <value>the hot change dll initialization failed...\n{0}</value>
   </data>
 
-  <data name="Core.Hotfix.DllUninstall" xml:space="preserve">
+    <data name="Core.Hotfix.DllUninstall" xml:space="preserve">
     <value>hot dll uninstall{0}</value>
   </data>
 
-  <!-- Core module exception messages -->
-  <!-- Timer related exceptions -->
-  <data name="CoreExceptions.Timer.InvalidParameters" xml:space="preserve">
+    <!-- Core module exception messages -->
+    <!-- Timer related exceptions -->
+    <data name="CoreExceptions.Timer.InvalidParameters" xml:space="preserve">
     <value>Timer parameter error TimerHandler:{0} {1}:{2} {3}:{4}</value>
   </data>
 
-  <data name="CoreExceptions.Timer.DayOfWeeksParameterNull" xml:space="preserve">
+    <data name="CoreExceptions.Timer.DayOfWeeksParameterNull" xml:space="preserve">
     <value>Timer weekly execution parameter is null: {0} TimerHandler:{1} actorId:{2} actorType:{3}</value>
   </data>
 
-  <data name="CoreExceptions.Timer.CodeMustBeInHotfix" xml:space="preserve">
+    <data name="CoreExceptions.Timer.CodeMustBeInHotfix" xml:space="preserve">
     <value>Timer code must be in hotfix project</value>
   </data>
 
-  <!-- Component related exceptions -->
-  <data name="CoreExceptions.Component.ActorTypeNotBound" xml:space="preserve">
+    <!-- Component related exceptions -->
+    <data name="CoreExceptions.Component.ActorTypeNotBound" xml:space="preserve">
     <value>component:[{0}] the actor type is not bound</value>
   </data>
 
-  <data name="CoreExceptions.Component.ActorNotBelongToThis" xml:space="preserve">
+    <data name="CoreExceptions.Component.ActorNotBelongToThis" xml:space="preserve">
     <value>get an actor that doesn't belong to this actor: [{0}] component:[{1}]</value>
   </data>
 
-  <!-- Message related exceptions -->
-  <data name="CoreExceptions.Message.TypeCastError" xml:space="preserve">
+    <!-- Message related exceptions -->
+    <data name="CoreExceptions.Message.TypeCastError" xml:space="preserve">
     <value>Message type error, {0} to: {1}</value>
   </data>
 
-  <data name="CoreExceptions.Message.HandlerNotInitialized" xml:space="preserve">
+    <data name="CoreExceptions.Message.HandlerNotInitialized" xml:space="preserve">
     <value>Message handler not initialized, please call Init method first. If the subclass has implemented the Init method, please call the parent class Init method in the subclass Init</value>
   </data>
 
-  <!-- Hotfix related exceptions -->
-  <data name="CoreExceptions.Hotfix.HttpProcessorRepeatedlyRegistered" xml:space="preserve">
+    <!-- Hotfix related exceptions -->
+    <data name="CoreExceptions.Hotfix.HttpProcessorRepeatedlyRegistered" xml:space="preserve">
     <value>HTTP processor command repeatedly registers, command:{0}</value>
   </data>
 
-  <data name="CoreExceptions.Hotfix.WrongTcpProcessorType" xml:space="preserve">
+    <data name="CoreExceptions.Hotfix.WrongTcpProcessorType" xml:space="preserve">
     <value>wrong tcp processor type:{0}</value>
   </data>
 
-  <data name="CoreExceptions.Hotfix.ClassMustBeSealed" xml:space="preserve">
+    <data name="CoreExceptions.Hotfix.ClassMustBeSealed" xml:space="preserve">
     <value>{0} must be a class marked as sealed</value>
   </data>
 
-  <data name="CoreExceptions.Hotfix.MessageProcessorWrongSuffix" xml:space="preserve">
+    <data name="CoreExceptions.Hotfix.MessageProcessorWrongSuffix" xml:space="preserve">
     <value>the message processor must be in the[{0}]ending，{1}</value>
   </data>
 
-  <data name="CoreExceptions.Hotfix.EventHandlerWrongSuffix" xml:space="preserve">
+    <data name="CoreExceptions.Hotfix.EventHandlerWrongSuffix" xml:space="preserve">
     <value>the event handler must be based on [{0}] ending，{1}</value>
   </data>
 
-  <data name="CoreExceptions.Hotfix.NoEventsToListen" xml:space="preserve">
+    <data name="CoreExceptions.Hotfix.NoEventsToListen" xml:space="preserve">
     <value>IEventListener:{0} There are no events that are specified to listen to</value>
   </data>
 
-  <data name="CoreExceptions.Hotfix.ComponentAgentWrongSuffix" xml:space="preserve">
+    <data name="CoreExceptions.Hotfix.ComponentAgentWrongSuffix" xml:space="preserve">
     <value>the component agent must be based on [{0}] ending，{1}</value>
   </data>
 
-  <data name="CoreExceptions.Hotfix.MultipleAgents" xml:space="preserve">
+    <data name="CoreExceptions.Hotfix.MultipleAgents" xml:space="preserve">
     <value>component:[{0}] there are multiple agents</value>
   </data>
 
-  <!-- Attribute related exceptions -->
-  <data name="CoreExceptions.Attribute.InvalidComponentType" xml:space="preserve">
+    <!-- Attribute related exceptions -->
+    <data name="CoreExceptions.Attribute.InvalidComponentType" xml:space="preserve">
     <value>Invalid component type {0}, value should be greater than {1} and less than {2} and not equal to {3}</value>
   </data>
 
-  <!-- Apps module log messages -->
-  <!-- BSON class mapping helper related messages -->
-  <data name="Apps.BsonClassMapHelper.InitializationFailed" xml:space="preserve">
+    <!-- Apps module log messages -->
+    <!-- BSON class mapping helper related messages -->
+    <data name="Apps.BsonClassMapHelper.InitializationFailed" xml:space="preserve">
     <value>BSON class mapping initialization failed</value>
   </data>
 
-  <!-- Session management related messages -->
-  <data name="Apps.SessionManager.AccountAlreadyLoggedIn" xml:space="preserve">
+    <!-- Session management related messages -->
+    <data name="Apps.SessionManager.AccountAlreadyLoggedIn" xml:space="preserve">
     <value>Your account is already logged in on another device</value>
   </data>
 
-  <!-- CodeGenerator module error messages -->
-  <!-- Agent generator related error messages -->
-  <data name="CodeGenerator.AgentGenerator.CannotSetTimeoutForThreadSafeAttribute" xml:space="preserve">
+    <!-- CodeGenerator module error messages -->
+    <!-- Agent generator related error messages -->
+    <data name="CodeGenerator.AgentGenerator.CannotSetTimeoutForThreadSafeAttribute" xml:space="preserve">
     <value>{0}.{1} cannot specify timeout for function marked with [{2}]</value>
   </data>
 
-  <data name="CodeGenerator.AgentGenerator.TimeoutAttributeMustBeUsedWithApiOrDiscard" xml:space="preserve">
+    <data name="CodeGenerator.AgentGenerator.TimeoutAttributeMustBeUsedWithApiOrDiscard" xml:space="preserve">
     <value>{0}.{1} [{2}] attribute can only be used with [{3}] or [{4}]</value>
   </data>
 
-  <data name="CodeGenerator.AgentGenerator.NonThreadSafeApiMustBeAsync" xml:space="preserve">
+    <data name="CodeGenerator.AgentGenerator.NonThreadSafeApiMustBeAsync" xml:space="preserve">
     <value>{0}.{1}, non-[{2}] [{3}] interface can only be async function</value>
   </data>
 
-  <data name="CodeGenerator.AgentGenerator.MarkedFunctionMustBeVirtual" xml:space="preserve">
+    <data name="CodeGenerator.AgentGenerator.MarkedFunctionMustBeVirtual" xml:space="preserve">
     <value>{0}.{1} function marked with [{2}][{3}][{4}] attribute must be declared as virtual</value>
   </data>
 
-  <data name="CodeGenerator.AgentGenerator.DiscardAttributeRequiresTaskOrValueTask" xml:space="preserve">
+    <data name="CodeGenerator.AgentGenerator.DiscardAttributeRequiresTaskOrValueTask" xml:space="preserve">
     <value>{0}.{1} only functions with Task or ValueTask return type can add [{2}] attribute</value>
   </data>
 
-  <!-- Utility.RandomHelper related error messages -->
-  <data name="Utility.RandomHelper.CantRepeatRandomArgError" xml:space="preserve">
+    <!-- Utility.RandomHelper related error messages -->
+    <data name="Utility.RandomHelper.CantRepeatRandomArgError" xml:space="preserve">
     <value>Cannot repeat random argument error, requested count: {0} is greater than ID count: {1}</value>
   </data>
 
-  <!-- Utility.ActorIdGenerator related error messages -->
-  <data name="Utility.ActorIdGenerator.InputIsGlobalId" xml:space="preserve">
+    <!-- Utility.ActorIdGenerator related error messages -->
+    <data name="Utility.ActorIdGenerator.InputIsGlobalId" xml:space="preserve">
     <value>Input is a global ID: {0}</value>
   </data>
 
-  <!-- Utility.BigIntegerDebug related log messages -->
-  <data name="Utility.BigIntegerDebug.DebugA" xml:space="preserve">
+    <!-- Utility.BigIntegerDebug related log messages -->
+    <data name="Utility.BigIntegerDebug.DebugA" xml:space="preserve">
     <value>a = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DebugB" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DebugB" xml:space="preserve">
     <value>b = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DebugT" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DebugT" xml:space="preserve">
     <value>t = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DebugS" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DebugS" xml:space="preserve">
     <value>s = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DebugD" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DebugD" xml:space="preserve">
     <value>D = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DebugQ" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DebugQ" xml:space="preserve">
     <value>Q = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DebugND" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DebugND" xml:space="preserve">
     <value>(n,D) = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DebugNQ" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DebugNQ" xml:space="preserve">
     <value>(n,Q) = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DebugJacobi" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DebugJacobi" xml:space="preserve">
     <value>J(D|n) = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.NotPrimeDivisible" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.NotPrimeDivisible" xml:space="preserve">
     <value>Not prime!  Divisible by {0}
 </value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DivisionDebug" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DivisionDebug" xml:space="preserve">
     <value>{0} = {1}({2}) + {3}  p = {4}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DataLength" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DataLength" xml:space="preserve">
     <value>Data length: {0}</value>
   </data>
 
-  <!-- Utility.AppSettings related messages -->
-  <data name="Utility.AppSettings.SetAppRunningFalse" xml:space="preserve">
+    <!-- Utility.AppSettings related messages -->
+    <data name="Utility.AppSettings.SetAppRunningFalse" xml:space="preserve">
     <value>Set AppRunning false...</value>
   </data>
 
-  <!-- Utility.GlobalSettings related messages -->
-  <data name="Utility.GlobalSettings.SettingAlreadyExists" xml:space="preserve">
+    <!-- Utility.GlobalSettings related messages -->
+    <data name="Utility.GlobalSettings.SettingAlreadyExists" xml:space="preserve">
     <value>The current setting already exists, cannot be set again, and this setting has been ignored.</value>
   </data>
 
-  <data name="Utility.GlobalSettings.HttpUrlEmptyUseDefault" xml:space="preserve">
+    <data name="Utility.GlobalSettings.HttpUrlEmptyUseDefault" xml:space="preserve">
     <value>HttpUrl is empty and uses the default value of : /game/api/</value>
   </data>
 
-  <data name="Utility.GlobalSettings.NetworkTimeoutTooShort" xml:space="preserve">
+    <data name="Utility.GlobalSettings.NetworkTimeoutTooShort" xml:space="preserve">
     <value>NetWorkSendTimeOutSeconds is less than 1 second, and the default value is 5 seconds</value>
   </data>
 
-  <data name="Utility.GlobalSettings.ActorRecycleTimeTooShort" xml:space="preserve">
+    <data name="Utility.GlobalSettings.ActorRecycleTimeTooShort" xml:space="preserve">
     <value>ActorRecycleTime is less than 1 minute, and the default value is 5 minutes</value>
   </data>
 
-  <!-- Utility.ExceptionLogs related messages -->
-  <data name="Utility.ExceptionLogs.ExceptionDetails" xml:space="preserve">
+    <!-- Utility.ExceptionLogs related messages -->
+    <data name="Utility.ExceptionLogs.ExceptionDetails" xml:space="preserve">
     <value>Exception details: {0}</value>
   </data>
 
-  </root>
+</root>

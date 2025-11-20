@@ -32,6 +32,7 @@
 using GameFrameX.Utility.Setting;
 
 namespace GameFrameX.DiscoveryCenterManager.Server;
+
 /// <summary>
 /// 服务信息接口
 /// </summary>

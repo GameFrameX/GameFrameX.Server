@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 namespace GameFrameX.Core.Config;
 
 /// <summary>
@@ -42,10 +41,12 @@ public enum EDeserializeError
     /// 成功
     /// </summary>
     OK,
+
     /// <summary>
     /// 数据不足
     /// </summary>
     NOT_ENOUGH,
+
     /// <summary>
     /// 超出大小限制
     /// </summary>

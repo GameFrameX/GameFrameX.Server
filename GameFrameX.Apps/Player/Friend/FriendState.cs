@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 namespace GameFrameX.Apps.Player.Friend;
 
 public sealed class FriendState : CacheState

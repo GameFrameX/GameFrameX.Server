@@ -179,9 +179,9 @@ public static class MessageProtoHelper
                     {
                         RequestDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
                         throw new ArgumentAlreadyException(LocalizationService.GetString(
-                            GameFrameX.Localization.Keys.NetWorkAbstractions.MessageIdDuplicate,
-                            messageTypeHandler.MessageId,
-                            value?.FullName ?? "Unknown"));
+                                                               GameFrameX.Localization.Keys.NetWorkAbstractions.MessageIdDuplicate,
+                                                               messageTypeHandler.MessageId,
+                                                               value?.FullName ?? "Unknown"));
                     }
 
                     OperationType.TryAdd(type, messageTypeHandler.OperationType);
@@ -191,8 +191,8 @@ public static class MessageProtoHelper
                         if (HeartBeatList.Contains(type))
                         {
                             LogHelper.Error(LocalizationService.GetString(
-                                GameFrameX.Localization.Keys.NetWorkAbstractions.HeartbeatMessageDuplicate,
-                                type?.FullName ?? "Unknown"));
+                                                GameFrameX.Localization.Keys.NetWorkAbstractions.HeartbeatMessageDuplicate,
+                                                type?.FullName ?? "Unknown"));
                         }
                         else
                         {
@@ -207,9 +207,9 @@ public static class MessageProtoHelper
                         {
                             RequestDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
                             throw new ArgumentAlreadyException(LocalizationService.GetString(
-                                GameFrameX.Localization.Keys.NetWorkAbstractions.RequestIdDuplicate,
-                                messageTypeHandler.MessageId,
-                                value?.FullName ?? "Unknown"));
+                                                                   GameFrameX.Localization.Keys.NetWorkAbstractions.RequestIdDuplicate,
+                                                                   messageTypeHandler.MessageId,
+                                                                   value?.FullName ?? "Unknown"));
                         }
                     }
                     else if (type.IsImplWithInterface(typeof(IResponseMessage)) || type.IsImplWithInterface(typeof(INotifyMessage)))
@@ -219,9 +219,9 @@ public static class MessageProtoHelper
                         {
                             ResponseDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
                             throw new ArgumentAlreadyException(LocalizationService.GetString(
-                                GameFrameX.Localization.Keys.NetWorkAbstractions.ResponseIdDuplicate,
-                                messageTypeHandler.MessageId,
-                                value?.FullName ?? "Unknown"));
+                                                                   GameFrameX.Localization.Keys.NetWorkAbstractions.ResponseIdDuplicate,
+                                                                   messageTypeHandler.MessageId,
+                                                                   value?.FullName ?? "Unknown"));
                         }
                     }
                 }

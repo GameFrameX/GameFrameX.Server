@@ -474,6 +474,7 @@ namespace GameFrameX.Tests.Utility
             {
                 IllegalWordDetection.HasBlockWords(testText);
             }
+
             var endTime = DateTime.Now;
 
             // Assert

@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 using GameFrameX.DiscoveryCenterManager;
 using GameFrameX.DiscoveryCenterManager.Server;
 
@@ -60,10 +59,10 @@ public sealed class GetNodeByIdHttpHandler : BaseHttpHandler
         var idRequest = (GetNodeByIdRequest)request;
         // 从请求对象中获取ServerId
         long serverId = idRequest.ServerId;
-        
+
         var namingServiceManager = NamingServiceManager.Instance;
         List<IServiceInfo> serviceInfoList = null;
-        
+
         if (serverId > 0)
         {
             serviceInfoList = namingServiceManager.GetNodesByServerId(serverId);
@@ -72,13 +71,13 @@ public sealed class GetNodeByIdHttpHandler : BaseHttpHandler
         var response = new GetNodeByIdResponse
         {
             Success = serviceInfoList != null && serviceInfoList.Count > 0,
-            Message = serviceInfoList != null && serviceInfoList.Count > 0 
-                ? "成功获取节点信息" 
-                : $"未找到ServerId为 {serverId} 的节点",
+            Message = serviceInfoList != null && serviceInfoList.Count > 0
+                          ? "成功获取节点信息"
+                          : $"未找到ServerId为 {serverId} 的节点",
             Node = serviceInfoList?.FirstOrDefault(),
             ServerId = serverId
         };
-        
+
         return Task.FromResult(HttpJsonResult.SuccessString(response));
     }
 }
@@ -105,19 +104,19 @@ public class GetNodeByIdResponse : HttpMessageResponseBase
     /// </summary>
     /// <value>表示操作是否成功执行的布尔值</value>
     public bool Success { get; set; }
-    
+
     /// <summary>
     /// 响应消息
     /// </summary>
     /// <value>描述操作结果的消息字符串</value>
     public string Message { get; set; }
-    
+
     /// <summary>
     /// 查询的服务器ID
     /// </summary>
     /// <value>请求中指定的服务器ID</value>
     public long ServerId { get; set; }
-    
+
     /// <summary>
     /// 节点信息
     /// </summary>

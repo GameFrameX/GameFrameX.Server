@@ -325,7 +325,7 @@ namespace GameFrameX.Tests.Utility.Math
         {
             Assert.True(FPMath.Abs((FP)1 - FPMath.SmoothStep((FP)1, (FP)3, FP.Zero)) < (FP)0.00001m);
             Assert.True(FPMath.Abs((FP)3 - FPMath.SmoothStep((FP)1, (FP)3, FP.One)) < (FP)0.00001m);
-            
+
             var result = FPMath.SmoothStep((FP)1, (FP)3, (FP)0.5m);
             Assert.True(result > (FP)1 && result < (FP)3);
         }
@@ -387,7 +387,7 @@ namespace GameFrameX.Tests.Utility.Math
         {
             Assert.True(FPMath.Abs((FP)45m - FPMath.MoveTowardsAngle(FP.Zero, (FP)90m, (FP)45m)) < (FP)0.00001m);
             Assert.True(FPMath.Abs((FP)90m - FPMath.MoveTowardsAngle(FP.Zero, (FP)90m, (FP)100m)) < (FP)0.00001m); // 超过目标
-            
+
             // 跨越边界：从10度到350度，最短路径是向后20度，所以结果应该是350度（等价于-10度）
             var result = FPMath.MoveTowardsAngle((FP)10m, (FP)350m, (FP)30m);
             // 检查结果是否等价于350度（考虑角度的周期性）
@@ -400,7 +400,7 @@ namespace GameFrameX.Tests.Utility.Math
         {
             var velocity = FP.Zero;
             var result = FPMath.SmoothDamp(FP.Zero, (FP)10m, ref velocity, (FP)1m);
-            
+
             // 结果应该在起始值和目标值之间
             Assert.True(result > FP.Zero && result < (FP)10m);
             // 速度应该被更新
@@ -412,7 +412,7 @@ namespace GameFrameX.Tests.Utility.Math
         {
             var velocity = FP.Zero;
             var result = FPMath.SmoothDamp(FP.Zero, (FP)10m, ref velocity, (FP)1m, (FP)5m);
-            
+
             // 结果应该在起始值和目标值之间
             Assert.True(result > FP.Zero && result < (FP)10m);
         }
@@ -422,7 +422,7 @@ namespace GameFrameX.Tests.Utility.Math
         {
             var velocity = FP.Zero;
             var result = FPMath.SmoothDamp(FP.Zero, (FP)10m, ref velocity, (FP)1m, (FP)5m, (FP)0.1m);
-            
+
             // 结果应该在起始值和目标值之间
             Assert.True(result > FP.Zero && result < (FP)10m);
         }

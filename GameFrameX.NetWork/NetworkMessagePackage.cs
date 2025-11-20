@@ -167,8 +167,8 @@ public sealed class NetworkMessagePackage : INetworkMessagePackage
         catch (Exception e)
         {
             LogHelper.Error(LocalizationService.GetString(
-                GameFrameX.Localization.Keys.NetWork.MessageEncodingError,
-                e?.Message ?? "Unknown exception"));
+                                GameFrameX.Localization.Keys.NetWork.MessageEncodingError,
+                                e?.Message ?? "Unknown exception"));
             throw;
         }
     }

@@ -63,7 +63,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
         catch (Exception e)
         {
             LogHelper.Warning(LocalizationService.GetString(
-                GameFrameX.Localization.Keys.Launcher.ServerExecutionException, e.Message));
+                                  GameFrameX.Localization.Keys.Launcher.ServerExecutionException, e.Message));
             LogHelper.Fatal(e);
         }
 
@@ -98,8 +98,8 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                 var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
                 var toServerType = serverInfo != null ? serverInfo.Type : ServerType;
                 LogHelper.Debug(LocalizationService.GetString(
-                    GameFrameX.Localization.Keys.Launcher.SendMessage,
-                    ServerType, toServerType, debugMessage.ToFormatMessageString()));
+                                    GameFrameX.Localization.Keys.Launcher.SendMessage,
+                                    ServerType, toServerType, debugMessage.ToFormatMessageString()));
             }
         }
 
@@ -118,8 +118,8 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     var serverInfo = _namingServiceManager.GetNodeBySessionId(session.SessionID);
                     var from = serverInfo != null ? serverInfo.Type.ToString() : ServerType.ToString();
                     LogHelper.Debug(LocalizationService.GetString(
-                        GameFrameX.Localization.Keys.Launcher.ReceiveMessage,
-                        from, ServerType, message.ToFormatMessageString()));
+                                        GameFrameX.Localization.Keys.Launcher.ReceiveMessage,
+                                        from, ServerType, message.ToFormatMessageString()));
                 }
             }
 
@@ -168,8 +168,8 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     // 注册玩家
                     NamingPlayerManager.Instance.Add(reqRegisterPlayer.PlayerId, reqRegisterPlayer.ServerId, reqRegisterPlayer.ServerInstanceId);
                     LogHelper.Info(LocalizationService.GetString(
-                    GameFrameX.Localization.Keys.Launcher.PlayerRegisterSuccess,
-                    reqRegisterPlayer.PlayerId, reqRegisterPlayer));
+                                       GameFrameX.Localization.Keys.Launcher.PlayerRegisterSuccess,
+                                       reqRegisterPlayer.PlayerId, reqRegisterPlayer));
                     return ValueTask.CompletedTask;
                 }
                 case (byte)MessageOperationType.PlayerUnRegister:
@@ -178,8 +178,8 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     // 注销玩家
                     NamingPlayerManager.Instance.TryRemove(reqRegisterPlayer.PlayerId, out var playerInfo);
                     LogHelper.Info(LocalizationService.GetString(
-                    GameFrameX.Localization.Keys.Launcher.PlayerUnregisterSuccess,
-                    reqRegisterPlayer.PlayerId, reqRegisterPlayer));
+                                       GameFrameX.Localization.Keys.Launcher.PlayerUnregisterSuccess,
+                                       reqRegisterPlayer.PlayerId, reqRegisterPlayer));
                     return ValueTask.CompletedTask;
                 }
                 case (byte)MessageOperationType.ServiceRegister:
@@ -189,8 +189,8 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     var serviceInfo = new ServiceInfo(reqRegisterServer.ServerType, session, session.SessionID, reqRegisterServer.ServerName, reqRegisterServer.ServerId, reqRegisterServer.ServerInstanceId, reqRegisterServer.InnerHost, reqRegisterServer.InnerPort, reqRegisterServer.OuterHost, reqRegisterServer.OuterPort);
                     _namingServiceManager.Add(serviceInfo);
                     LogHelper.Info(LocalizationService.GetString(
-                    GameFrameX.Localization.Keys.Launcher.ServiceRegisterSuccess,
-                    reqRegisterServer.ServerType, reqRegisterServer.ServerName, reqRegisterServer));
+                                       GameFrameX.Localization.Keys.Launcher.ServiceRegisterSuccess,
+                                       reqRegisterServer.ServerType, reqRegisterServer.ServerName, reqRegisterServer));
                     return ValueTask.CompletedTask;
                 }
                 case (byte)MessageOperationType.ServiceUnRegister:
@@ -199,8 +199,8 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
                     // 注销服务
                     _namingServiceManager.TryRemoveByInstanceId(reqServiceUnRegister.ServerInstanceId);
                     LogHelper.Info(LocalizationService.GetString(
-                    GameFrameX.Localization.Keys.Launcher.ServiceUnregisterSuccess,
-                    reqServiceUnRegister.ServerId, reqServiceUnRegister.ServerInstanceId));
+                                       GameFrameX.Localization.Keys.Launcher.ServiceUnregisterSuccess,
+                                       reqServiceUnRegister.ServerId, reqServiceUnRegister.ServerInstanceId));
                     return ValueTask.CompletedTask;
                 }
                 case (byte)MessageOperationType.ConnectService:
@@ -240,16 +240,16 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
     protected override ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info(LocalizationService.GetString(
-                GameFrameX.Localization.Keys.Launcher.ExternalServiceConnected,
-                appSession.SessionID, appSession.RemoteEndPoint));
+                           GameFrameX.Localization.Keys.Launcher.ExternalServiceConnected,
+                           appSession.SessionID, appSession.RemoteEndPoint));
         return ValueTask.CompletedTask;
     }
 
     protected override ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs args)
     {
         LogHelper.Info(LocalizationService.GetString(
-                GameFrameX.Localization.Keys.Launcher.ExternalServiceDisconnected,
-                args.Reason));
+                           GameFrameX.Localization.Keys.Launcher.ExternalServiceDisconnected,
+                           args.Reason));
         _namingServiceManager.TryRemoveBySessionId(appSession.SessionID);
         return ValueTask.CompletedTask;
     }

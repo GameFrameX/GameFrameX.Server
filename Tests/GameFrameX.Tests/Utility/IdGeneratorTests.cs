@@ -81,7 +81,7 @@ public class IdGeneratorTests
                 {
                     localIds.Add(IdGenerator.GetNextUniqueIntId());
                 }
-                
+
                 lock (lockObject)
                 {
                     allIds.AddRange(localIds);
@@ -139,7 +139,7 @@ public class IdGeneratorTests
                 {
                     localIds.Add(IdGenerator.GetNextUniqueId());
                 }
-                
+
                 lock (lockObject)
                 {
                     allIds.AddRange(localIds);
@@ -215,7 +215,7 @@ public class IdGeneratorTests
                 {
                     localIds.Add(IdGenerator.GetUniqueIdString());
                 }
-                
+
                 lock (lockObject)
                 {
                     allIds.AddRange(localIds);

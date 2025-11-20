@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 using GameFrameX.DiscoveryCenterManager;
 using GameFrameX.DiscoveryCenterManager.Server;
 
@@ -61,13 +60,13 @@ public sealed class GetNodeCountHttpHandler : BaseHttpHandler
         var countRequest = (GetNodeCountRequest)request;
         // 从请求对象中获取ServerType（可选）
         var serverType = countRequest.ServerType;
-        
+
         var namingServiceManager = NamingServiceManager.Instance;
         var allNodeGroups = namingServiceManager.GetAllNodes();
-        
+
         // 按服务器类型分组统计
         var countByType = new Dictionary<string, int>();
-        
+
         // 遍历所有节点组，然后遍历每个组中的节点
         foreach (var nodeGroup in allNodeGroups)
         {
@@ -79,7 +78,7 @@ public sealed class GetNodeCountHttpHandler : BaseHttpHandler
                 }
             }
         }
-        
+
         // 如果指定了服务器类型，只返回该类型的统计
         int totalCount;
         if (serverType.IsNotNullOrEmpty())
@@ -94,6 +93,7 @@ public sealed class GetNodeCountHttpHandler : BaseHttpHandler
             {
                 totalNodeCount += nodeGroup.Count;
             }
+
             totalCount = totalNodeCount;
         }
 
@@ -103,7 +103,7 @@ public sealed class GetNodeCountHttpHandler : BaseHttpHandler
             CountByType = countByType,
             QueryServerType = serverType
         };
-        
+
         return Task.FromResult(HttpJsonResult.SuccessString(response));
     }
 }
@@ -130,25 +130,25 @@ public class GetNodeCountResponse : HttpMessageResponseBase
     /// </summary>
     /// <value>表示操作是否成功执行的布尔值</value>
     public bool Success { get; set; }
-    
+
     /// <summary>
     /// 响应消息
     /// </summary>
     /// <value>描述操作结果的消息字符串</value>
     public string Message { get; set; } = string.Empty;
-    
+
     /// <summary>
     /// 节点总数
     /// </summary>
     /// <value>查询范围内的节点总数量</value>
     public int TotalCount { get; set; }
-    
+
     /// <summary>
     /// 按服务器类型分组的节点数量统计
     /// </summary>
     /// <value>以服务器类型为键，对应节点数量为值的 <see cref="Dictionary{TKey, TValue}"/> 其中 TKey 为 <see cref="ServerType"/>，TValue 为 <see cref="int"/></value>
     public Dictionary<string, int> CountByType { get; set; } = new();
-    
+
     /// <summary>
     /// 查询的服务器类型
     /// </summary>

@@ -78,7 +78,7 @@ public abstract partial class AppStartUpBase
             LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.ServiceDisabled));
             return;
         }
-        
+
         // 验证HTTP URL格式
         if (!Setting.HttpUrl.StartsWith('/'))
         {

@@ -30,7 +30,6 @@
 // ==========================================================================================
 
 
-
 namespace GameFrameX.Apps.Player.Bag.Entity;
 
 public sealed class BagState : CacheState

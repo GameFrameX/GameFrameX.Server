@@ -260,7 +260,7 @@ namespace GameFrameX.Tests.Utility
             // Assert
             Assert.NotNull(ipList);
             Assert.IsType<List<string>>(ipList);
-            
+
             // 验证返回的都是有效的IPv4地址
             foreach (var ip in ipList)
             {
@@ -281,7 +281,7 @@ namespace GameFrameX.Tests.Utility
             // Assert
             Assert.NotNull(ipList);
             Assert.IsType<List<string>>(ipList);
-            
+
             // 验证返回的都是有效的IPv6地址
             foreach (var ip in ipList)
             {
@@ -363,7 +363,7 @@ namespace GameFrameX.Tests.Utility
             // Assert
             Assert.NotNull(macAddresses);
             Assert.IsType<List<string>>(macAddresses);
-            
+
             // 验证MAC地址格式（如果有的话）
             foreach (var mac in macAddresses)
             {
@@ -630,7 +630,7 @@ namespace GameFrameX.Tests.Utility
         {
             // Arrange
             var usedPorts = NetHelper.PortIsUsed();
-            
+
             // Act & Assert
             foreach (var port in usedPorts.Take(5)) // 只测试前5个已使用的端口
             {
@@ -648,10 +648,10 @@ namespace GameFrameX.Tests.Utility
             // Arrange
             const int startPort = 60000;
             const int endPort = 60010;
-            
+
             // Act
             var availablePorts = NetHelper.GetAvailablePorts(startPort, endPort, 5);
-            
+
             // Assert
             foreach (var port in availablePorts)
             {

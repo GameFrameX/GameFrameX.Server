@@ -1,1149 +1,1149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- Extensions 模块异常消息 -->
-  <data name="Extensions.Exceptions.OffsetCountExceedBufferLength" xml:space="preserve">
+    <!-- Extensions 模块异常消息 -->
+    <data name="Extensions.Exceptions.OffsetCountExceedBufferLength" xml:space="preserve">
     <value>偏移量和计数超出缓冲区长度。缓冲区长度：{0}，偏移量：{1}，计数：{2}。</value>
   </data>
 
-  <data name="Extensions.Exceptions.IndexCountExceedBufferLength" xml:space="preserve">
+    <data name="Extensions.Exceptions.IndexCountExceedBufferLength" xml:space="preserve">
     <value>索引和计数超出缓冲区长度。缓冲区长度：{0}，索引：{1}，计数：{2}。</value>
   </data>
 
-  <data name="Extensions.Exceptions.BufferWriteOutOfRange" xml:space="preserve">
+    <data name="Extensions.Exceptions.BufferWriteOutOfRange" xml:space="preserve">
     <value>缓冲区写入位置超出范围。缓冲区长度：{0}，写入位置：{1}。</value>
   </data>
 
-  <data name="Extensions.Exceptions.StringLengthExceedMaxValue" xml:space="preserve">
+    <data name="Extensions.Exceptions.StringLengthExceedMaxValue" xml:space="preserve">
     <value>字符串长度超出最大值。实际长度：{0}，最大长度：{1}。</value>
   </data>
 
-  <data name="Extensions.Exceptions.ByteArrayLengthMustEqual" xml:space="preserve">
+    <data name="Extensions.Exceptions.ByteArrayLengthMustEqual" xml:space="preserve">
     <value>字节数组长度必须相等。第一个数组长度：{0}，第二个数组长度：{1}。</value>
   </data>
 
-  <data name="Extensions.Exceptions.ListCannotBeEmpty" xml:space="preserve">
+    <data name="Extensions.Exceptions.ListCannotBeEmpty" xml:space="preserve">
     <value>列表不能为空。</value>
   </data>
 
-  <data name="Extensions.Exceptions.TargetTypeMustBeInterface" xml:space="preserve">
+    <data name="Extensions.Exceptions.TargetTypeMustBeInterface" xml:space="preserve">
     <value>目标类型必须是接口类型。目标类型：{0}。</value>
   </data>
 
-  <data name="Extensions.Exceptions.ObjectTypeMismatch" xml:space="preserve">
+    <data name="Extensions.Exceptions.ObjectTypeMismatch" xml:space="preserve">
     <value>对象类型不匹配。对象类型：{0}，目标类型：{1}。</value>
   </data>
 
-  <!-- 日志消息 -->
-  <data name="Extensions.Logs.CollectionProcessed" xml:space="preserve">
+    <!-- 日志消息 -->
+    <data name="Extensions.Logs.CollectionProcessed" xml:space="preserve">
     <value>集合处理完成。集合类型：{0}，元素数量：{1}。</value>
   </data>
 
-  <data name="Extensions.Logs.ByteConversionCompleted" xml:space="preserve">
+    <data name="Extensions.Logs.ByteConversionCompleted" xml:space="preserve">
     <value>字节转换完成。源格式：{0}，目标格式：{1}，字节数：{2}。</value>
   </data>
 
-  <data name="Extensions.Logs.TypeConversionCompleted" xml:space="preserve">
+    <data name="Extensions.Logs.TypeConversionCompleted" xml:space="preserve">
     <value>类型转换完成。源类型：{0}，目标类型：{1}。</value>
   </data>
 
-  <!-- 状态消息 -->
-  <data name="Extensions.Status.ExtensionsInitialized" xml:space="preserve">
+    <!-- 状态消息 -->
+    <data name="Extensions.Status.ExtensionsInitialized" xml:space="preserve">
     <value>{0}扩展方法模块初始化成功。</value>
   </data>
 
-  <data name="Extensions.Status.BufferOperationSuccessful" xml:space="preserve">
+    <data name="Extensions.Status.BufferOperationSuccessful" xml:space="preserve">
     <value>缓冲区操作成功完成。操作类型：{0}，字节数：{1}。</value>
   </data>
 
-  <!-- 验证消息 -->
-  <data name="Extensions.Validation.NotNullRequired" xml:space="preserve">
+    <!-- 验证消息 -->
+    <data name="Extensions.Validation.NotNullRequired" xml:space="preserve">
     <value>参数不能为null。参数名称：{0}。</value>
   </data>
 
-  <data name="Extensions.Validation.RangeCheckFailed" xml:space="preserve">
+    <data name="Extensions.Validation.RangeCheckFailed" xml:space="preserve">
     <value>数值超出允许范围。值：{0}，最小值：{1}，最大值：{2}。</value>
   </data>
 
-  <data name="Extensions.Validation.TypeCheckFailed" xml:space="preserve">
+    <data name="Extensions.Validation.TypeCheckFailed" xml:space="preserve">
     <value>类型验证失败。实际类型：{0}，期望类型：{1}。</value>
   </data>
 
-  <!-- 性能消息 -->
-  <data name="Extensions.Performance.OperationExecutionTime" xml:space="preserve">
+    <!-- 性能消息 -->
+    <data name="Extensions.Performance.OperationExecutionTime" xml:space="preserve">
     <value>操作执行时间。操作名称：{0}，执行时间：{1}毫秒。</value>
   </data>
 
-  <data name="Extensions.Performance.MemoryUsage" xml:space="preserve">
+    <data name="Extensions.Performance.MemoryUsage" xml:space="preserve">
     <value>内存使用情况。操作名称：{0}，内存使用量：{1}字节。</value>
   </data>
 
-  <!-- 新的Utility异常键名 -->
-  <data name="Utility.Exceptions.ActorIdLessThanMinServerId" xml:space="preserve">
+    <!-- 新的Utility异常键名 -->
+    <data name="Utility.Exceptions.ActorIdLessThanMinServerId" xml:space="preserve">
     <value>actorId小于最小服务器ID，最小服务器ID为{0}</value>
   </data>
-  <data name="Utility.Exceptions.ActorIdLessThanMinServerIdDetail" xml:space="preserve">
+    <data name="Utility.Exceptions.ActorIdLessThanMinServerIdDetail" xml:space="preserve">
     <value>actorId：{0}小于最小服务器ID：{1}</value>
   </data>
-  <data name="Utility.Exceptions.InputIsGlobalId" xml:space="preserve">
+    <data name="Utility.Exceptions.InputIsGlobalId" xml:space="preserve">
     <value>输入为全局ID：{0}</value>
   </data>
-  <data name="Utility.Exceptions.ActorTypeError" xml:space="preserve">
+    <data name="Utility.Exceptions.ActorTypeError" xml:space="preserve">
     <value>输入Actor类型错误：{0}</value>
   </data>
-  <data name="Utility.Exceptions.ServerIdNegative" xml:space="preserve">
+    <data name="Utility.Exceptions.ServerIdNegative" xml:space="preserve">
     <value>生成ID时服务器ID为负数{0}</value>
   </data>
-  <data name="Utility.Exceptions.ServerIdLessThanOrEqualZero" xml:space="preserve">
+    <data name="Utility.Exceptions.ServerIdLessThanOrEqualZero" xml:space="preserve">
     <value>服务器ID小于等于0</value>
   </data>
-  <data name="Utility.Exceptions.ActorTypeInvalid" xml:space="preserve">
+    <data name="Utility.Exceptions.ActorTypeInvalid" xml:space="preserve">
     <value>Actor类型无效</value>
   </data>
-  <data name="Utility.Exceptions.ModuleInvalid" xml:space="preserve">
+    <data name="Utility.Exceptions.ModuleInvalid" xml:space="preserve">
     <value>模块无效</value>
   </data>
-  <data name="Utility.Exceptions.RadixOutOfRange" xml:space="preserve">
+    <data name="Utility.Exceptions.RadixOutOfRange" xml:space="preserve">
     <value>基数必须在2-36范围内</value>
   </data>
-  <data name="Utility.Exceptions.PositiveExponentsOnly" xml:space="preserve">
+    <data name="Utility.Exceptions.PositiveExponentsOnly" xml:space="preserve">
     <value>仅支持正指数。</value>
   </data>
-  <data name="Utility.Exceptions.ParameterKMustBeOdd" xml:space="preserve">
+    <data name="Utility.Exceptions.ParameterKMustBeOdd" xml:space="preserve">
     <value>参数k必须是奇数。</value>
   </data>
-  <data name="Utility.Exceptions.JacobiSymbolDefinedForOddOnly" xml:space="preserve">
+    <data name="Utility.Exceptions.JacobiSymbolDefinedForOddOnly" xml:space="preserve">
     <value>雅可比符号仅定义于奇数。</value>
   </data>
-  <data name="Utility.Exceptions.NoInverse" xml:space="preserve">
+    <data name="Utility.Exceptions.NoInverse" xml:space="preserve">
     <value>不存在逆。</value>
   </data>
-  <data name="Utility.Exceptions.RequiredBitsExceedMaxLength" xml:space="preserve">
+    <data name="Utility.Exceptions.RequiredBitsExceedMaxLength" xml:space="preserve">
     <value>所需位数超过最大长度。</value>
   </data>
-  <data name="Utility.Exceptions.MultiplicationOverflow" xml:space="preserve">
+    <data name="Utility.Exceptions.MultiplicationOverflow" xml:space="preserve">
     <value>乘法溢出。</value>
   </data>
-  <data name="Utility.Exceptions.IncrementOverflow" xml:space="preserve">
+    <data name="Utility.Exceptions.IncrementOverflow" xml:space="preserve">
     <value>自增溢出。</value>
   </data>
-  <data name="Utility.Exceptions.DecrementUnderflow" xml:space="preserve">
+    <data name="Utility.Exceptions.DecrementUnderflow" xml:space="preserve">
     <value>自减下溢。</value>
   </data>
-  <data name="Utility.Exceptions.NegationOverflow" xml:space="preserve">
+    <data name="Utility.Exceptions.NegationOverflow" xml:space="preserve">
     <value>取负溢出。</value>
   </data>
-  <data name="Utility.Exceptions.ConstructorByteOverflow" xml:space="preserve">
+    <data name="Utility.Exceptions.ConstructorByteOverflow" xml:space="preserve">
     <value>构造函数中字节溢出。</value>
   </data>
-  <data name="Utility.Exceptions.ConstructorOverflow" xml:space="preserve">
+    <data name="Utility.Exceptions.ConstructorOverflow" xml:space="preserve">
     <value>构造函数中正溢出。</value>
   </data>
-  <data name="Utility.Exceptions.ConstructorUnderflow" xml:space="preserve">
+    <data name="Utility.Exceptions.ConstructorUnderflow" xml:space="preserve">
     <value>构造函数中负下溢。</value>
   </data>
-  <data name="Utility.Exceptions.ConstructorInvalidString" xml:space="preserve">
+    <data name="Utility.Exceptions.ConstructorInvalidString" xml:space="preserve">
     <value>构造函数中无效字符串。</value>
   </data>
-  <data name="Utility.Exceptions.TimestampOutOfRange" xml:space="preserve">
+    <data name="Utility.Exceptions.TimestampOutOfRange" xml:space="preserve">
     <value>时间戳超出范围。</value>
   </data>
-  <data name="Utility.Exceptions.ClockMovedBackwards" xml:space="preserve">
+    <data name="Utility.Exceptions.ClockMovedBackwards" xml:space="preserve">
     <value>系统时钟回退。拒绝生成ID {0} 毫秒。</value>
   </data>
-  <data name="Utility.Exceptions.WorkerIdOutOfRange" xml:space="preserve">
+    <data name="Utility.Exceptions.WorkerIdOutOfRange" xml:space="preserve">
     <value>Worker ID不能大于{0}或小于0。</value>
   </data>
-  <data name="Utility.Exceptions.DatacenterIdOutOfRange" xml:space="preserve">
+    <data name="Utility.Exceptions.DatacenterIdOutOfRange" xml:space="preserve">
     <value>Datacenter ID不能大于{0}或小于0。</value>
   </data>
 
-  <!-- FP数学函数异常消息 -->
-  <data name="Utility.Exceptions.LnValueNonPositive" xml:space="preserve">
+    <!-- FP数学函数异常消息 -->
+    <data name="Utility.Exceptions.LnValueNonPositive" xml:space="preserve">
     <value>传递给 Ln 的值为非正数</value>
   </data>
-  <data name="Utility.Exceptions.SqrtValueNegative" xml:space="preserve">
+    <data name="Utility.Exceptions.SqrtValueNegative" xml:space="preserve">
     <value>传递给 Sqrt 的值为负数</value>
   </data>
-  <data name="Utility.Exceptions.ValueOutOfRange" xml:space="preserve">
+    <data name="Utility.Exceptions.ValueOutOfRange" xml:space="preserve">
     <value>必须在 -FP.One 和 FP.One 之间</value>
   </data>
 
-  <!-- 客户端模块日志键名 -->
-  <data name="Client.AttemptingToConnect" xml:space="preserve">
+    <!-- 客户端模块日志键名 -->
+    <data name="Client.AttemptingToConnect" xml:space="preserve">
     <value>尝试连接到服务器...</value>
   </data>
-  <data name="Client.RetryConnect" xml:space="preserve">
+    <data name="Client.RetryConnect" xml:space="preserve">
     <value>未连接到服务器, 尝试重连 (尝试次数: {0}/{1})</value>
   </data>
-  <data name="Client.MaxRetryReached" xml:space="preserve">
+    <data name="Client.MaxRetryReached" xml:space="preserve">
     <value>重连次数已达到上限，停止尝试。</value>
   </data>
-  <data name="Client.ErrorOccurred" xml:space="preserve">
+    <data name="Client.ErrorOccurred" xml:space="preserve">
     <value>客户端发生错误: {0}</value>
   </data>
-  <data name="Client.Disconnected" xml:space="preserve">
+    <data name="Client.Disconnected" xml:space="preserve">
     <value>客户端断开连接</value>
   </data>
-  <data name="Client.ConnectedSuccessfully" xml:space="preserve">
+    <data name="Client.ConnectedSuccessfully" xml:space="preserve">
     <value>客户端成功连接到服务器</value>
   </data>
 
-  <!-- 事件模块日志键名 -->
-  <data name="Events.NoListenersFound" xml:space="preserve">
+    <!-- 事件模块日志键名 -->
+    <data name="Events.NoListenersFound" xml:space="preserve">
     <value>事件ID：{0} 没有找到任何监听者</value>
   </data>
 
-  <!-- 存储模块日志键名 -->
-  <data name="Storage.CacheHashEquals" xml:space="preserve">
+    <!-- 存储模块日志键名 -->
+    <data name="Storage.CacheHashEquals" xml:space="preserve">
     <value>调用AfterSaveToDB前CacheHash已经等于ToSaveHash {0}</value>
   </data>
 
-  <!-- 数据库模块日志键名 -->
-  <data name="Database.MongoDb.InitializedSuccessfully" xml:space="preserve">
+    <!-- 数据库模块日志键名 -->
+    <data name="Database.MongoDb.InitializedSuccessfully" xml:space="preserve">
     <value>MongoDB服务初始化成功，连接字符串：{0}，数据库名称：{1}</value>
   </data>
-  <data name="Database.MongoDb.InitializationFailed" xml:space="preserve">
+    <data name="Database.MongoDb.InitializationFailed" xml:space="preserve">
     <value>MongoDB服务初始化失败，连接字符串：{0}，数据库名称：{1}</value>
   </data>
 
-  <!-- LNumber模块日志和错误键名 -->
-  <data name="Utility.LNumber.CreateFailed" xml:space="preserve">
+    <!-- LNumber模块日志和错误键名 -->
+    <data name="Utility.LNumber.CreateFailed" xml:space="preserve">
     <value>Xnumber 创建失败！ {0}.{1}</value>
   </data>
-  <data name="Utility.LNumber.DataExceedsLimit" xml:space="preserve">
+    <data name="Utility.LNumber.DataExceedsLimit" xml:space="preserve">
     <value>Number数据超上限了 {0} {1}</value>
   </data>
-  <data name="Utility.LNumber.MultiplicationOverflow" xml:space="preserve">
+    <data name="Utility.LNumber.MultiplicationOverflow" xml:space="preserve">
     <value>LNumber乘法已越界 > {0}</value>
   </data>
-  <data name="Utility.LNumber.DivisionOverflow" xml:space="preserve">
+    <data name="Utility.LNumber.DivisionOverflow" xml:space="preserve">
     <value>LNumber除法已越界 > {0}</value>
   </data>
 
-  <!-- 网络模块错误键名 -->
-  <data name="Utility.Network.InvalidIpAddressFormat" xml:space="preserve">
+    <!-- 网络模块错误键名 -->
+    <data name="Utility.Network.InvalidIpAddressFormat" xml:space="preserve">
     <value>无效的IP地址格式</value>
   </data>
 
-  <!-- 敏感词检测模块日志键名 -->
-  <data name="Utility.IllegalWordDetection.InitializationComplete" xml:space="preserve">
+    <!-- 敏感词检测模块日志键名 -->
+    <data name="Utility.IllegalWordDetection.InitializationComplete" xml:space="preserve">
     <value>敏感词初始化耗时:{0}ms, 有效数量:{1}</value>
   </data>
 
-  <!-- 设置模块日志和错误键名 -->
-  <data name="Utility.Settings.AppAlreadyExited" xml:space="preserve">
+    <!-- 设置模块日志和错误键名 -->
+    <data name="Utility.Settings.AppAlreadyExited" xml:space="preserve">
     <value>AppRunning已经被设置为退出，不能再次开启...</value>
   </data>
-  <data name="Utility.Settings.SaveDataIntervalTooSmall" xml:space="preserve">
+    <data name="Utility.Settings.SaveDataIntervalTooSmall" xml:space="preserve">
     <value>SaveDataInterval小于5000毫秒，使用默认值为:{0} 毫秒</value>
   </data>
-  <data name="Utility.Settings.LoadConfigurationFailed" xml:space="preserve">
+    <data name="Utility.Settings.LoadConfigurationFailed" xml:space="preserve">
     <value>加载配置文件失败</value>
   </data>
 
-  <!-- NetWork.Message模块日志和错误键名 -->
-  <data name="NetWork.Message.MessageDecodeFatalError" xml:space="preserve">
+    <!-- NetWork.Message模块日志和错误键名 -->
+    <data name="NetWork.Message.MessageDecodeFatalError" xml:space="preserve">
     <value>消息解码过程中发生致命异常: {0}</value>
   </data>
-  <data name="NetWork.Message.MessageEncodeError" xml:space="preserve">
+    <data name="NetWork.Message.MessageEncodeError" xml:space="preserve">
     <value>消息对象编码异常,请检查错误日志</value>
   </data>
-  <data name="NetWork.Message.MessageEncodeException" xml:space="preserve">
+    <data name="NetWork.Message.MessageEncodeException" xml:space="preserve">
     <value>消息编码异常: {0}</value>
   </data>
-  <data name="NetWork.Message.MessageObjectNull" xml:space="preserve">
+    <data name="NetWork.Message.MessageObjectNull" xml:space="preserve">
     <value>消息对象为空，编码异常</value>
   </data>
-  <data name="NetWork.Message.MessageObjectEncodeException" xml:space="preserve">
+    <data name="NetWork.Message.MessageObjectEncodeException" xml:space="preserve">
     <value>消息对象编码异常,请检查错误日志</value>
   </data>
-  <data name="NetWork.Message.MessageObjectNullEncodeException" xml:space="preserve">
+    <data name="NetWork.Message.MessageObjectNullEncodeException" xml:space="preserve">
     <value>消息对象为空，编码异常</value>
   </data>
 
-  <!-- NetWork.Http模块日志和错误键名 -->
-  <data name="NetWork.Http.ParameterDuplicate" xml:space="preserve">
+    <!-- NetWork.Http模块日志和错误键名 -->
+    <data name="NetWork.Http.ParameterDuplicate" xml:space="preserve">
     <value>参数重复了:{0}</value>
   </data>
-  <data name="NetWork.Http.UnsupportedContentType" xml:space="preserve">
+    <data name="NetWork.Http.UnsupportedContentType" xml:space="preserve">
     <value>不支持的Content Type: {0}</value>
   </data>
-  <data name="NetWork.Http.RequestParameters" xml:space="preserve">
+    <data name="NetWork.Http.RequestParameters" xml:space="preserve">
     <value>请求参数:{0}</value>
   </data>
-  <data name="NetWork.Http.ServerStatusError" xml:space="preserve">
+    <data name="NetWork.Http.ServerStatusError" xml:space="preserve">
     <value>服务器状态错误[正在起/关服]</value>
   </data>
-  <data name="NetWork.Http.CommandHandlerNotFound" xml:space="preserve">
+    <data name="NetWork.Http.CommandHandlerNotFound" xml:space="preserve">
     <value>http cmd handler 不存在：{0}</value>
   </data>
-  <data name="NetWork.Http.ExecutionTime" xml:space="preserve">
+    <data name="NetWork.Http.ExecutionTime" xml:space="preserve">
     <value>{0},执行时间：{1}ms, 结果: {2}</value>
   </data>
-  <data name="NetWork.Http.ExceptionOccurred" xml:space="preserve">
+    <data name="NetWork.Http.ExceptionOccurred" xml:space="preserve">
     <value>{0}, 发生异常. {1} {2}</value>
   </data>
-  <data name="NetWork.Http.MessageTypeInheritanceError" xml:space="preserve">
+    <data name="NetWork.Http.MessageTypeInheritanceError" xml:space="preserve">
     <value>消息类型 {0} 必须继承自 HttpMessageRequestBase</value>
   </data>
-  <data name="NetWork.Http.ResponseMessageTypeInheritanceError" xml:space="preserve">
+    <data name="NetWork.Http.ResponseMessageTypeInheritanceError" xml:space="preserve">
     <value>消息类型 {0} 必须继承自 HttpMessageResponseBase</value>
   </data>
-  <data name="NetWork.Http.ClassMustBeSealed" xml:space="preserve">
+    <data name="NetWork.Http.ClassMustBeSealed" xml:space="preserve">
     <value>{0} 必须是标记为sealed的类</value>
   </data>
-  <data name="NetWork.Http.ClassMustEndWithSuffix" xml:space="preserve">
+    <data name="NetWork.Http.ClassMustEndWithSuffix" xml:space="preserve">
     <value>{0} 必须以{1}结尾</value>
   </data>
-  <data name="NetWork.Http.RequestLogHeader" xml:space="preserve">
+    <data name="NetWork.Http.RequestLogHeader" xml:space="preserve">
     <value>[HTTPServer] TraceIdentifier:[{0}], 来源[{1}], url:[{2}]</value>
   </data>
-  <data name="NetWork.Http.RequestMethod" xml:space="preserve">
+    <data name="NetWork.Http.RequestMethod" xml:space="preserve">
     <value>{0}，请求方式:[{1}]</value>
   </data>
-  <data name="NetWork.Http.MessageEncodingException" xml:space="preserve">
+    <data name="NetWork.Http.MessageEncodingException" xml:space="preserve">
     <value>消息对象编码异常,请检查错误日志</value>
   </data>
-  <data name="NetWork.Http.HttpHeaderContentTypeNull" xml:space="preserve">
+    <data name="NetWork.Http.HttpHeaderContentTypeNull" xml:space="preserve">
     <value>http header content type is null</value>
   </data>
-  <data name="NetWork.Http.DataVerificationFailed" xml:space="preserve">
+    <data name="NetWork.Http.DataVerificationFailed" xml:space="preserve">
     <value>data verification failed</value>
   </data>
-  <data name="NetWork.Http.SwaggerRequestParameters" xml:space="preserve">
+    <data name="NetWork.Http.SwaggerRequestParameters" xml:space="preserve">
     <value>请求参数</value>
   </data>
-  <data name="NetWork.Http.SwaggerResponseStatusCode" xml:space="preserve">
+    <data name="NetWork.Http.SwaggerResponseStatusCode" xml:space="preserve">
     <value>响应状态码</value>
   </data>
-  <data name="NetWork.Http.SwaggerResponseMessage" xml:space="preserve">
+    <data name="NetWork.Http.SwaggerResponseMessage" xml:space="preserve">
     <value>响应消息</value>
   </data>
-  <data name="NetWork.Http.SwaggerSuccessResponse" xml:space="preserve">
+    <data name="NetWork.Http.SwaggerSuccessResponse" xml:space="preserve">
     <value>成功响应</value>
   </data>
-  <data name="NetWork.Http.ApplicationJsonContentType" xml:space="preserve">
+    <data name="NetWork.Http.ApplicationJsonContentType" xml:space="preserve">
     <value>application/json</value>
   </data>
-  <data name="NetWork.Http.ApplicationProtoBufContentType" xml:space="preserve">
+    <data name="NetWork.Http.ApplicationProtoBufContentType" xml:space="preserve">
     <value>application/x-protobuf</value>
   </data>
-  <data name="NetWork.Http.HttpCommandMissingValidationParameters" xml:space="preserve">
+    <data name="NetWork.Http.HttpCommandMissingValidationParameters" xml:space="preserve">
     <value>http命令未包含验证参数{0} 和 {1}</value>
   </data>
-  <data name="NetWork.Http.UndefinedCommand" xml:space="preserve">
+    <data name="NetWork.Http.UndefinedCommand" xml:space="preserve">
     <value>未定义的命令</value>
   </data>
-  <data name="NetWork.Http.NotFoundCommand" xml:space="preserve">
+    <data name="NetWork.Http.NotFoundCommand" xml:space="preserve">
     <value>未找到的命令</value>
   </data>
-  <data name="NetWork.Http.CheckFailedCommand" xml:space="preserve">
+    <data name="NetWork.Http.CheckFailedCommand" xml:space="preserve">
     <value>验证失败的命令</value>
   </data>
-  <data name="NetWork.Http.ServerError" xml:space="preserve">
+    <data name="NetWork.Http.ServerError" xml:space="preserve">
     <value>服务器错误</value>
   </data>
 
-  <!-- NetWork.Abstractions模块日志和错误键名 -->
-  <data name="NetWork.Abstractions.MessageIdDuplicate" xml:space="preserve">
+    <!-- NetWork.Abstractions模块日志和错误键名 -->
+    <data name="NetWork.Abstractions.MessageIdDuplicate" xml:space="preserve">
     <value>消息Id重复==>当前ID:{0},已有ID类型:{1}</value>
   </data>
-  <data name="NetWork.Abstractions.HeartbeatMessageDuplicate" xml:space="preserve">
+    <data name="NetWork.Abstractions.HeartbeatMessageDuplicate" xml:space="preserve">
     <value>心跳消息重复==>类型:{0}</value>
   </data>
-  <data name="NetWork.Abstractions.RequestIdDuplicate" xml:space="preserve">
+    <data name="NetWork.Abstractions.RequestIdDuplicate" xml:space="preserve">
     <value>请求Id重复==>当前ID:{0},已有ID类型:{1}</value>
   </data>
-  <data name="NetWork.Abstractions.ResponseIdDuplicate" xml:space="preserve">
+    <data name="NetWork.Abstractions.ResponseIdDuplicate" xml:space="preserve">
     <value>返回Id重复==>当前ID:{0},已有ID类型:{1}</value>
   </data>
 
-  <!-- NetWork模块日志和错误键名 -->
-  <data name="NetWork.MessageSent" xml:space="preserve">
+    <!-- NetWork模块日志和错误键名 -->
+    <data name="NetWork.MessageSent" xml:space="preserve">
     <value>---发送{0}</value>
   </data>
-  <data name="NetWork.MessageSendTimeout" xml:space="preserve">
+    <data name="NetWork.MessageSendTimeout" xml:space="preserve">
     <value>消息发送超时被取消:{0}</value>
   </data>
-  <data name="NetWork.TypeMustImplementInterface" xml:space="preserve">
+    <data name="NetWork.TypeMustImplementInterface" xml:space="preserve">
     <value>类型 {0} 必须实现 {1} 接口</value>
   </data>
-  <data name="NetWork.TypeMustBeClass" xml:space="preserve">
+    <data name="NetWork.TypeMustBeClass" xml:space="preserve">
     <value>类型 {0} 必须是类</value>
   </data>
-  <data name="NetWork.TypeMustHaveParameterlessConstructor" xml:space="preserve">
+    <data name="NetWork.TypeMustHaveParameterlessConstructor" xml:space="preserve">
     <value>类型 {0} 必须有无参构造函数</value>
   </data>
-  <data name="NetWork.CannotFindCreateMethod" xml:space="preserve">
+    <data name="NetWork.CannotFindCreateMethod" xml:space="preserve">
     <value>无法在 ObjectPoolProvider 上找到 Create 方法</value>
   </data>
-  <data name="NetWork.FailedToCreateObjectPool" xml:space="preserve">
+    <data name="NetWork.FailedToCreateObjectPool" xml:space="preserve">
     <value>无法为类型 {0} 创建对象池</value>
   </data>
 
-  <data name="NetWork.RpcCallTimeout" xml:space="preserve">
+    <data name="NetWork.RpcCallTimeout" xml:space="preserve">
     <value>RPC调用超时！消息为：{0}</value>
   </data>
 
-  <data name="NetWork.MessageEncodingError" xml:space="preserve">
+    <data name="NetWork.MessageEncodingError" xml:space="preserve">
     <value>如果消息对象编码异常，请检查错误日志，异常：{0}</value>
   </data>
 
-  <!-- Launcher模块日志和错误键名 -->
-  <data name="Launcher.ServerStartBegin" xml:space="preserve">
+    <!-- Launcher模块日志和错误键名 -->
+    <data name="Launcher.ServerStartBegin" xml:space="preserve">
     <value>开始启动服务器{0}</value>
   </data>
-  <data name="Launcher.ActorLimitConfigBegin" xml:space="preserve">
+    <data name="Launcher.ActorLimitConfigBegin" xml:space="preserve">
     <value>开始配置Actor限制逻辑...</value>
   </data>
-  <data name="Launcher.ActorLimitConfigEnd" xml:space="preserve">
+    <data name="Launcher.ActorLimitConfigEnd" xml:space="preserve">
     <value>配置Actor限制逻辑结束...</value>
   </data>
-  <data name="Launcher.DatabaseServiceStartBegin" xml:space="preserve">
+    <data name="Launcher.DatabaseServiceStartBegin" xml:space="preserve">
     <value>开始启动数据库服务...</value>
   </data>
-  <data name="Launcher.DatabaseServiceStartFailed" xml:space="preserve">
+    <data name="Launcher.DatabaseServiceStartFailed" xml:space="preserve">
     <value>数据库服务启动失败</value>
   </data>
-  <data name="Launcher.DatabaseServiceStartEnd" xml:space="preserve">
+    <data name="Launcher.DatabaseServiceStartEnd" xml:space="preserve">
     <value>启动数据库服务 结束...</value>
   </data>
-  <data name="Launcher.ComponentRegisterBegin" xml:space="preserve">
+    <data name="Launcher.ComponentRegisterBegin" xml:space="preserve">
     <value>注册组件开始...</value>
   </data>
-  <data name="Launcher.ComponentRegisterEnd" xml:space="preserve">
+    <data name="Launcher.ComponentRegisterEnd" xml:space="preserve">
     <value>注册组件结束...</value>
   </data>
-  <data name="Launcher.HotfixModuleLoadBegin" xml:space="preserve">
+    <data name="Launcher.HotfixModuleLoadBegin" xml:space="preserve">
     <value>开始加载热更新模块...</value>
   </data>
-  <data name="Launcher.HotfixModuleLoadEnd" xml:space="preserve">
+    <data name="Launcher.HotfixModuleLoadEnd" xml:space="preserve">
     <value>加载热更新模块结束...</value>
   </data>
-  <data name="Launcher.EnterMainLoop" xml:space="preserve">
+    <data name="Launcher.EnterMainLoop" xml:space="preserve">
     <value>进入游戏主循环...</value>
   </data>
-  <data name="Launcher.ServerStartEnd" xml:space="preserve">
+    <data name="Launcher.ServerStartEnd" xml:space="preserve">
     <value>服务器{0}启动结束...</value>
   </data>
-  <data name="Launcher.ServerExecutionException" xml:space="preserve">
+    <data name="Launcher.ServerExecutionException" xml:space="preserve">
     <value>服务器执行异常，e:{0}</value>
   </data>
-  <data name="Launcher.ServerExitBegin" xml:space="preserve">
+    <data name="Launcher.ServerExitBegin" xml:space="preserve">
     <value>退出服务器开始</value>
   </data>
-  <data name="Launcher.ServerExitSuccess" xml:space="preserve">
+    <data name="Launcher.ServerExitSuccess" xml:space="preserve">
     <value>退出服务器成功</value>
   </data>
-  <data name="Launcher.SendMessage" xml:space="preserve">
+    <data name="Launcher.SendMessage" xml:space="preserve">
     <value>---发送[{0} To {1}]  {2}</value>
   </data>
-  <data name="Launcher.ReceiveMessage" xml:space="preserve">
+    <data name="Launcher.ReceiveMessage" xml:space="preserve">
     <value>---收到[{0} To {1}]  {2}</value>
   </data>
-  <data name="Launcher.PlayerRegisterSuccess" xml:space="preserve">
+    <data name="Launcher.PlayerRegisterSuccess" xml:space="preserve">
     <value>注册玩家成功：{0}  {1}</value>
   </data>
-  <data name="Launcher.PlayerUnregisterSuccess" xml:space="preserve">
+    <data name="Launcher.PlayerUnregisterSuccess" xml:space="preserve">
     <value>注销玩家成功：{0}  {1}</value>
   </data>
-  <data name="Launcher.ServiceRegisterSuccess" xml:space="preserve">
+    <data name="Launcher.ServiceRegisterSuccess" xml:space="preserve">
     <value>注册服务成功：{0}  {1}  {2}</value>
   </data>
-  <data name="Launcher.ServiceUnregisterSuccess" xml:space="preserve">
+    <data name="Launcher.ServiceUnregisterSuccess" xml:space="preserve">
     <value>注销服务成功：{0}  {1}</value>
   </data>
-  <data name="Launcher.ExternalServiceConnected" xml:space="preserve">
+    <data name="Launcher.ExternalServiceConnected" xml:space="preserve">
     <value>有外部服务连接到中心服务器成功。链接信息：SessionID:{0} RemoteEndPoint:{1}</value>
   </data>
-  <data name="Launcher.ExternalServiceDisconnected" xml:space="preserve">
+    <data name="Launcher.ExternalServiceDisconnected" xml:space="preserve">
     <value>有外部服务从中心服务器断开。链接信息：断开原因:{0}</value>
   </data>
 
-  <data name="Launcher.PlayerOfflineCallback" xml:space="preserve">
+    <data name="Launcher.PlayerOfflineCallback" xml:space="preserve">
     <value>玩家下线回调，通知其他服务器: {0}</value>
   </data>
 
-  <data name="Launcher.PlayerOnlineCallback" xml:space="preserve">
+    <data name="Launcher.PlayerOnlineCallback" xml:space="preserve">
     <value>玩家上线回调，通知其他服务器: {0}</value>
   </data>
 
-  <data name="Launcher.ServiceOfflineCallback" xml:space="preserve">
+    <data name="Launcher.ServiceOfflineCallback" xml:space="preserve">
     <value>服务下线回调，通知其他服务器: {0}</value>
   </data>
 
-  <data name="Launcher.ServiceOnlineCallback" xml:space="preserve">
+    <data name="Launcher.ServiceOnlineCallback" xml:space="preserve">
     <value>服务上线回调，通知其他服务器: {0}</value>
   </data>
 
-  <!-- StartUp模块日志和错误键名 -->
-  <data name="StartUp.ServerStopped" xml:space="preserve">
+    <!-- StartUp模块日志和错误键名 -->
+    <data name="StartUp.ServerStopped" xml:space="preserve">
     <value>服务器类型:{0} 停止! 终止原因：{1} 配置信息: {2}</value>
   </data>
-  <data name="StartUp.DiscoveryCenterCommunicationError" xml:space="preserve">
+    <data name="StartUp.DiscoveryCenterCommunicationError" xml:space="preserve">
     <value>服务器{0}与发现中心通信发生错误 ，id:{1}，e:{2}</value>
   </data>
-  <data name="StartUp.DiscoveryCenterMessageReceived" xml:space="preserve">
+    <data name="StartUp.DiscoveryCenterMessageReceived" xml:space="preserve">
     <value>服务器{0}接收到发现中心消息 ,id:{1},{2}</value>
   </data>
-  <data name="StartUp.DiscoveryCenterDisconnected" xml:space="preserve">
+    <data name="StartUp.DiscoveryCenterDisconnected" xml:space="preserve">
     <value>服务器{0}与发现中心断开连接 ,id:{1}...</value>
   </data>
-  <data name="StartUp.DiscoveryCenterConnected" xml:space="preserve">
+    <data name="StartUp.DiscoveryCenterConnected" xml:space="preserve">
     <value>服务器{0}连接到发现中心成功 ,id:{1}...</value>
   </data>
-  <data name="StartUp.NoStartupTaskFound" xml:space="preserve">
+    <data name="StartUp.NoStartupTaskFound" xml:space="preserve">
     <value>服务器已停止，详情请查看日志。因为启动任务为空，没有找到启动任务。</value>
   </data>
-  <data name="StartUp.MetricsPortInUse" xml:space="preserve">
+    <data name="StartUp.MetricsPortInUse" xml:space="preserve">
     <value>指标端口 [{0}] 被占用，无法启动独立指标服务器</value>
   </data>
-  <data name="StartUp.PrometheusMetricsEndpointEnabled" xml:space="preserve">
+    <data name="StartUp.PrometheusMetricsEndpointEnabled" xml:space="preserve">
     <value>独立普罗米修斯指标端点已启用: http://{0}:{1}/metrics</value>
   </data>
-  <data name="StartUp.MetricsHealthCheckEndpointEnabled" xml:space="preserve">
+    <data name="StartUp.MetricsHealthCheckEndpointEnabled" xml:space="preserve">
     <value>独立指标健康检查端点: http://{0}:{1}/health</value>
   </data>
-  <data name="StartUp.HttpServer.HandlePostRequest" xml:space="preserve">
+    <data name="StartUp.HttpServer.HandlePostRequest" xml:space="preserve">
     <value>处理 POST 请求</value>
   </data>
-  <data name="StartUp.HttpServer.HandleGameClientPostRequest" xml:space="preserve">
+    <data name="StartUp.HttpServer.HandleGameClientPostRequest" xml:space="preserve">
     <value>处理来自游戏客户端的 POST 请求</value>
   </data>
-  <data name="StartUp.HttpServer.ServiceDisabled" xml:space="preserve">
+    <data name="StartUp.HttpServer.ServiceDisabled" xml:space="preserve">
     <value>HTTP服务已禁用，启动已忽略</value>
   </data>
-  <data name="StartUp.HttpServer.StartingServer" xml:space="preserve">
+    <data name="StartUp.HttpServer.StartingServer" xml:space="preserve">
     <value>启动 [HTTP] 服务器...</value>
   </data>
-  <data name="StartUp.HttpServer.PortOutOfRange" xml:space="preserve">
+    <data name="StartUp.HttpServer.PortOutOfRange" xml:space="preserve">
     <value>启动 [HTTP] 服务器端口 [{0}] 超出范围 [{1}-{2}]，HTTP服务无法启动，启动已忽略</value>
   </data>
-  <data name="StartUp.HttpServer.SwaggerUiAccess" xml:space="preserve">
+    <data name="StartUp.HttpServer.SwaggerUiAccess" xml:space="preserve">
     <value>Swagger UI 可通过 http://{0}:{1}/swagger 访问</value>
   </data>
-  <data name="StartUp.TcpServer.ClientDisconnected" xml:space="preserve">
+    <data name="StartUp.TcpServer.ClientDisconnected" xml:space="preserve">
     <value>客户端断开连接 - 会话ID: {0}, 远程终端: {1}, 断开原因: {2}</value>
   </data>
-  <data name="StartUp.TcpServer.NewClientConnection" xml:space="preserve">
+    <data name="StartUp.TcpServer.NewClientConnection" xml:space="preserve">
     <value>新客户端连接 - 会话ID: {0}, 远程终端: {1}</value>
   </data>
-  <data name="StartUp.TcpServer.MessageReceived" xml:space="preserve">
+    <data name="StartUp.TcpServer.MessageReceived" xml:space="preserve">
     <value>接收到消息 - 服务器类型: [{0}], 消息内容: {1}</value>
   </data>
-  <data name="StartUp.TcpServer.StartingServer" xml:space="preserve">
+    <data name="StartUp.TcpServer.StartingServer" xml:space="preserve">
     <value>启动TCP服务器 类型: {0}, 地址: {1}, 端口: {2}</value>
   </data>
-  <data name="StartUp.TcpServer.StartupComplete" xml:space="preserve">
+    <data name="StartUp.TcpServer.StartupComplete" xml:space="preserve">
     <value>启动TCP服务器完成 类型: {0}, 地址: {1}, 端口: {2}</value>
   </data>
-  <data name="StartUp.TcpServer.StartupFailed" xml:space="preserve">
+    <data name="StartUp.TcpServer.StartupFailed" xml:space="preserve">
     <value>启动TCP服务器失败 类型: {0}, 地址: {1}, 端口: {2}, 原因: 端口无效或被占用</value>
   </data>
-  <data name="StartUp.TcpServer.ServerDisabled" xml:space="preserve">
+    <data name="StartUp.TcpServer.ServerDisabled" xml:space="preserve">
     <value>启动TCP服务器 类型: {0}, 地址: {1}, 端口: {2}, 原因: TCP服务器被禁用</value>
   </data>
-  <data name="StartUp.WebSocketServer.StartingServer" xml:space="preserve">
+    <data name="StartUp.WebSocketServer.StartingServer" xml:space="preserve">
     <value>启动WebSocket服务器 类型: {0}, 端口: {1}</value>
   </data>
-  <data name="StartUp.WebSocketServer.StartupComplete" xml:space="preserve">
+    <data name="StartUp.WebSocketServer.StartupComplete" xml:space="preserve">
     <value>启动WebSocket服务器完成 类型: {0}, 端口: {1}</value>
   </data>
-  <data name="StartUp.WebSocketServer.StartupFailed" xml:space="preserve">
+    <data name="StartUp.WebSocketServer.StartupFailed" xml:space="preserve">
     <value>启动WebSocket服务器失败 类型: {0}, 端口: {1}, 原因: 端口无效或被占用</value>
   </data>
-  <data name="StartUp.WebSocketServer.ServiceNotEnabled" xml:space="preserve">
+    <data name="StartUp.WebSocketServer.ServiceNotEnabled" xml:space="preserve">
     <value>启动WebSocket服务器失败 类型: {0}, 端口: {1}, 原因: WebSocket服务未启用</value>
   </data>
-  <data name="StartUp.Application.MetricServerStarted" xml:space="preserve">
+    <data name="StartUp.Application.MetricServerStarted" xml:space="preserve">
     <value>独立指标服务器已在端口: {0} 启动</value>
   </data>
-  <data name="StartUp.Application.ListeningExitMessage" xml:space="preserve">
+    <data name="StartUp.Application.ListeningExitMessage" xml:space="preserve">
     <value>监听程序退出消息</value>
   </data>
-  <data name="StartUp.Application.ExecutingExitProcedure" xml:space="preserve">
+    <data name="StartUp.Application.ExecutingExitProcedure" xml:space="preserve">
     <value>执行退出程序</value>
   </data>
-  <data name="StartUp.Application.GetUnhandledException" xml:space="preserve">
+    <data name="StartUp.Application.GetUnhandledException" xml:space="preserve">
     <value>获取未处理异常 标签:{0}</value>
   </data>
-  <data name="StartUp.Application.UnhandledException" xml:space="preserve">
+    <data name="StartUp.Application.UnhandledException" xml:space="preserve">
     <value>未处理异常:{0}</value>
   </data>
-  <data name="StartUp.Application.AllUnhandledExceptions" xml:space="preserve">
+    <data name="StartUp.Application.AllUnhandledExceptions" xml:space="preserve">
     <value>所有未处理异常:{0}</value>
   </data>
-  <data name="StartUp.Application.UnhandledExceptionCallback" xml:space="preserve">
+    <data name="StartUp.Application.UnhandledExceptionCallback" xml:space="preserve">
     <value>未处理异常回调:{0}</value>
   </data>
-  <data name="StartUp.Application.SigtermSignalReceived" xml:space="preserve">
+    <data name="StartUp.Application.SigtermSignalReceived" xml:space="preserve">
     <value>接收到SIGTERM信号并注册退出处理程序</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.TryConnectToServer" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.TryConnectToServer" xml:space="preserve">
     <value>尝试连接到目标服务器...{0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.ReconnectAttempt" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.ReconnectAttempt" xml:space="preserve">
     <value>第{0}次重连,断开连接,原因:{1}</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.ErrorOccurred" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.ErrorOccurred" xml:space="preserve">
     <value>发生错误:{0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.InvalidIpAddress" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.InvalidIpAddress" xml:space="preserve">
     <value>无效的IP地址格式: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Server.CannotAddSelfNode" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Server.CannotAddSelfNode" xml:space="preserve">
     <value>不能添加自己节点,{0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Server.NodeJoined" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Server.NodeJoined" xml:space="preserve">
     <value>节点加入,{0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Server.NodeRemoved" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Server.NodeRemoved" xml:space="preserve">
     <value>节点移除,{0}</value>
   </data>
-  <data name="DiscoveryCenterManager.NamingService.ErrorOccurred" xml:space="preserve">
+    <data name="DiscoveryCenterManager.NamingService.ErrorOccurred" xml:space="preserve">
     <value>发生错误:{0}</value>
   </data>
-  <data name="DiscoveryCenterManager.NamingService.InvalidUrlFormat" xml:space="preserve">
+    <data name="DiscoveryCenterManager.NamingService.InvalidUrlFormat" xml:space="preserve">
     <value>无效的URL格式: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.NamingService.ServiceConnectionAttempt" xml:space="preserve">
+    <data name="DiscoveryCenterManager.NamingService.ServiceConnectionAttempt" xml:space="preserve">
     <value>尝试连接服务: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Server.NetworkNodeCount" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Server.NetworkNodeCount" xml:space="preserve">
     <value>当前网络节点总数: {0}，新节点信息: {1}</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.ConnectedToServer" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.ConnectedToServer" xml:space="preserve">
     <value>客户端成功连接到服务器: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.DisconnectedFromServer" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.DisconnectedFromServer" xml:space="preserve">
     <value>客户端与服务器断开连接: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.ReconnectLimitReached" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.ReconnectLimitReached" xml:space="preserve">
     <value>重连次数已达上限: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Server.DuplicateNodeAddition" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Server.DuplicateNodeAddition" xml:space="preserve">
     <value>尝试添加重复节点，已忽略: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Service.InvalidIpAddress" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Service.InvalidIpAddress" xml:space="preserve">
     <value>无效的IP地址格式: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Exception.MessageIdMustBeLessThanZero" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Exception.MessageIdMustBeLessThanZero" xml:space="preserve">
     <value>messageObject.MessageId必须小于0</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.ReconnectLimitReachedMessage" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.ReconnectLimitReachedMessage" xml:space="preserve">
     <value>重连尝试已达上限({0})，将不再进行重连。</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.DisconnectedMessage" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.DisconnectedMessage" xml:space="preserve">
     <value>客户端与服务器断开连接: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Client.ConnectedMessage" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Client.ConnectedMessage" xml:space="preserve">
     <value>客户端成功连接到服务器: {0}</value>
   </data>
-  <data name="DiscoveryCenterManager.Server.DuplicateNodeWarning" xml:space="preserve">
+    <data name="DiscoveryCenterManager.Server.DuplicateNodeWarning" xml:space="preserve">
     <value>重复节点添加，已忽略: {0}</value>
   </data>
 
-  <!-- ServiceConnect 相关消息 -->
-  <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceAlreadyRegistered" xml:space="preserve">
+    <!-- ServiceConnect 相关消息 -->
+    <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceAlreadyRegistered" xml:space="preserve">
     <value>ServiceConnectManager 注册 服务器实例ID:{0} 已被注册</value>
   </data>
 
-  <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceUnregistered" xml:space="preserve">
+    <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceUnregistered" xml:space="preserve">
     <value>ServiceConnectManager 注销 服务器实例ID:{0}</value>
   </data>
 
-  <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceNotFound" xml:space="preserve">
+    <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceNotFound" xml:space="preserve">
     <value>ServiceConnectManager 注销 服务器实例ID:{0} 未找到</value>
   </data>
 
-  <data name="DiscoveryCenterManager.ServiceConnect.SendServerInstanceNotFound" xml:space="preserve">
+    <data name="DiscoveryCenterManager.ServiceConnect.SendServerInstanceNotFound" xml:space="preserve">
     <value>ServiceConnectManager 发送 服务器实例ID:{0} 未找到</value>
   </data>
 
-  <data name="DiscoveryCenterManager.ServiceConnect.CallServerInstanceNotFound" xml:space="preserve">
+    <data name="DiscoveryCenterManager.ServiceConnect.CallServerInstanceNotFound" xml:space="preserve">
     <value>ServiceConnectManager 调用 服务器实例ID:{0} 未找到</value>
   </data>
 
-  <data name="DiscoveryCenterManager.ServiceConnect.ServiceAlreadyInitialized" xml:space="preserve">
+    <data name="DiscoveryCenterManager.ServiceConnect.ServiceAlreadyInitialized" xml:space="preserve">
     <value>ServiceConnectManager 初始化 {0} 已初始化</value>
   </data>
 
-  <data name="DiscoveryCenterManager.ServiceConnect.ClientError" xml:space="preserve">
+    <data name="DiscoveryCenterManager.ServiceConnect.ClientError" xml:space="preserve">
     <value>ServiceConnectManager 错误 {0}</value>
   </data>
 
-  <!-- Core 模块日志消息 -->
-  <!-- Actor 相关消息 -->
-  <data name="Core.Actor.CrossDay" xml:space="preserve">
+    <!-- Core 模块日志消息 -->
+    <!-- Actor 相关消息 -->
+    <data name="Core.Actor.CrossDay" xml:space="preserve">
     <value>actor跨天 id:{0} type:{1}</value>
   </data>
 
-  <data name="Core.Actor.CrossDayFailed" xml:space="preserve">
+    <data name="Core.Actor.CrossDayFailed" xml:space="preserve">
     <value>{0}跨天失败 actorId:{1} actorType:{2} 异常：\n{3}</value>
   </data>
 
-  <data name="Core.Actor.RecycleCallbackFailed" xml:space="preserve">
+    <data name="Core.Actor.RecycleCallbackFailed" xml:space="preserve">
     <value>Actor回收回调执行异常 actorId:{0} actorType:{1} 异常：\n{2}</value>
   </data>
 
-  <data name="Core.Actor.RecycleFailed" xml:space="preserve">
+    <data name="Core.Actor.RecycleFailed" xml:space="preserve">
     <value>Actor回收过程异常 actorId:{0} actorType:{1} 异常：\n{2}</value>
   </data>
 
-  <data name="Core.Actor.Recycled" xml:space="preserve">
+    <data name="Core.Actor.Recycled" xml:space="preserve">
     <value>actor回收 id:{0} type:{1}</value>
   </data>
 
-  <!-- Actor 限制相关消息 -->
-  <data name="Core.ActorLimit.UnsupportedRuleType" xml:space="preserve">
+    <!-- Actor 限制相关消息 -->
+    <data name="Core.ActorLimit.UnsupportedRuleType" xml:space="preserve">
     <value>不支持的rule类型:{0}</value>
   </data>
 
-  <data name="Core.ActorLimit.InvalidCallPath" xml:space="preserve">
+    <data name="Core.ActorLimit.InvalidCallPath" xml:space="preserve">
     <value>不合法的调用路径:{0}==>{1}</value>
   </data>
 
-  <data name="Core.ActorLimit.CrossDeadlock" xml:space="preserve">
+    <data name="Core.ActorLimit.CrossDeadlock" xml:space="preserve">
     <value>发生交叉死锁，ActorId1:{0} ActorType1:{1} ActorId2:{2} ActorType2:{3}</value>
   </data>
 
-  <!-- 定时器相关消息 -->
-  <data name="Core.Timer.GlobalTimerInitializationStart" xml:space="preserve">
+    <!-- 定时器相关消息 -->
+    <data name="Core.Timer.GlobalTimerInitializationStart" xml:space="preserve">
     <value>初始化全局定时开始...</value>
   </data>
 
-  <data name="Core.Timer.GlobalTimerInitializationComplete" xml:space="preserve">
+    <data name="Core.Timer.GlobalTimerInitializationComplete" xml:space="preserve">
     <value>初始化全局定时完成...</value>
   </data>
 
-  <data name="Core.Timer.NextSaveTime" xml:space="preserve">
+    <data name="Core.Timer.NextSaveTime" xml:space="preserve">
     <value>下次定时回存时间 {0}</value>
   </data>
 
-  <data name="Core.Timer.SaveStart" xml:space="preserve">
+    <data name="Core.Timer.SaveStart" xml:space="preserve">
     <value>开始定时回存 时间:{0}</value>
   </data>
 
-  <data name="Core.Timer.SaveEnd" xml:space="preserve">
+    <data name="Core.Timer.SaveEnd" xml:space="preserve">
     <value>结束定时回存 时间:{0} 耗时: {1}ms</value>
   </data>
 
-  <data name="Core.Timer.ActorRecycleStart" xml:space="preserve">
+    <data name="Core.Timer.ActorRecycleStart" xml:space="preserve">
     <value>开始回收空闲Actor 时间:{0}</value>
   </data>
 
-  <data name="Core.Timer.ActorRecycleEnd" xml:space="preserve">
+    <data name="Core.Timer.ActorRecycleEnd" xml:space="preserve">
     <value>结束回收空闲Actor 时间:{0}</value>
   </data>
 
-  <data name="Core.Timer.GlobalTimerStopStart" xml:space="preserve">
+    <data name="Core.Timer.GlobalTimerStopStart" xml:space="preserve">
     <value>停止全局定时开始...</value>
   </data>
 
-  <data name="Core.Timer.GlobalTimerStopComplete" xml:space="preserve">
+    <data name="Core.Timer.GlobalTimerStopComplete" xml:space="preserve">
     <value>停止全局定时完成...</value>
   </data>
 
-  <data name="Core.Timer.InvalidHandlerType" xml:space="preserve">
+    <data name="Core.Timer.InvalidHandlerType" xml:space="preserve">
     <value>错误的ITimerHandler类型，回调失败 type:{0}</value>
   </data>
 
-  <!-- Actor 管理器相关消息 -->
-  <data name="Core.ActorManager.SaveAllStateTime" xml:space="preserve">
+    <!-- Actor 管理器相关消息 -->
+    <data name="Core.ActorManager.SaveAllStateTime" xml:space="preserve">
     <value>保存所有状态，用时: {0}ms</value>
   </data>
 
-  <data name="Core.ActorManager.SaveAllStateError" xml:space="preserve">
+    <data name="Core.ActorManager.SaveAllStateError" xml:space="preserve">
     <value>保存所有状态错误\n{0}</value>
   </data>
 
-  <data name="Core.ActorManager.TimerSaveStateError" xml:space="preserve">
+    <data name="Core.ActorManager.TimerSaveStateError" xml:space="preserve">
     <value>定时器保存状态错误</value>
   </data>
 
-  <data name="Core.ActorManager.GlobalActorCrossDay" xml:space="preserve">
+    <data name="Core.ActorManager.GlobalActorCrossDay" xml:space="preserve">
     <value>全局Actor：{0}执行跨天</value>
   </data>
 
-  <data name="Core.ActorManager.GlobalCompCrossDayTimeout" xml:space="preserve">
+    <data name="Core.ActorManager.GlobalCompCrossDayTimeout" xml:space="preserve">
     <value>全局comp跨天耗时过久，不阻止其他comp跨天，当前已过{0}秒</value>
   </data>
 
-  <data name="Core.ActorManager.GlobalCompCrossDayComplete" xml:space="preserve">
+    <data name="Core.ActorManager.GlobalCompCrossDayComplete" xml:space="preserve">
     <value>全局comp跨天完成 耗时：{0}ms</value>
   </data>
 
-  <data name="Core.ActorManager.NonPlayerCompCrossDayTimeout" xml:space="preserve">
+    <data name="Core.ActorManager.NonPlayerCompCrossDayTimeout" xml:space="preserve">
     <value>非玩家comp跨天耗时过久，不阻止玩家comp跨天，当前已过{0}秒</value>
   </data>
 
-  <data name="Core.ActorManager.NonPlayerCompCrossDayComplete" xml:space="preserve">
+    <data name="Core.ActorManager.NonPlayerCompCrossDayComplete" xml:space="preserve">
     <value>非玩家comp跨天完成 耗时：{0}ms</value>
   </data>
 
-  <!-- 组件注册相关消息 -->
-  <data name="Core.ComponentRegister.InitializationComplete" xml:space="preserve">
+    <!-- 组件注册相关消息 -->
+    <data name="Core.ComponentRegister.InitializationComplete" xml:space="preserve">
     <value>组件注册初始化完成</value>
   </data>
 
-  <data name="Core.ComponentRegister.AgentNotImplemented" xml:space="preserve">
+    <data name="Core.ComponentRegister.AgentNotImplemented" xml:space="preserve">
     <value>{0}未实现Agent,请检查业务代码是否正确</value>
   </data>
 
-  <data name="Core.ComponentRegister.ActivateGlobalComponent" xml:space="preserve">
+    <data name="Core.ComponentRegister.ActivateGlobalComponent" xml:space="preserve">
     <value>激活全局组件：{0} {1}</value>
   </data>
 
-  <data name="Core.ComponentRegister.ActivateGlobalActor" xml:space="preserve">
+    <data name="Core.ComponentRegister.ActivateGlobalActor" xml:space="preserve">
     <value>激活全局Actor: {0}</value>
   </data>
 
-  <data name="Core.ComponentRegister.ActivateGlobalComponentCheckComplete" xml:space="preserve">
+    <data name="Core.ComponentRegister.ActivateGlobalComponentCheckComplete" xml:space="preserve">
     <value>Activate the global component and check if the components all contain the Agent implementation completion</value>
   </data>
 
-  <data name="Core.ComponentRegister.ActivateGlobalComponentCheckFailed" xml:space="preserve">
+    <data name="Core.ComponentRegister.ActivateGlobalComponentCheckFailed" xml:space="preserve">
     <value>Activate the global component and detect if the components all contain the agent implementation failed</value>
   </data>
 
-  <data name="Core.ComponentRegister.ActorNotBelongToThis" xml:space="preserve">
+    <data name="Core.ComponentRegister.ActorNotBelongToThis" xml:space="preserve">
     <value>get an actor that doesn't belong to this actor: [{0}] components</value>
   </data>
 
-  <!-- 状态组件相关消息 -->
-  <data name="Core.StateComponent.SaveAllStateTime" xml:space="preserve">
+    <!-- 状态组件相关消息 -->
+    <data name="Core.StateComponent.SaveAllStateTime" xml:space="preserve">
     <value>save all state, use: {0}ms</value>
   </data>
 
-  <data name="Core.StateComponent.SaveAllStateError" xml:space="preserve">
+    <data name="Core.StateComponent.SaveAllStateError" xml:space="preserve">
     <value>save all state error\n{0}</value>
   </data>
 
-  <data name="Core.StateComponent.TimerSaveStateError" xml:space="preserve">
+    <data name="Core.StateComponent.TimerSaveStateError" xml:space="preserve">
     <value>timer save state error</value>
   </data>
 
-  <data name="Core.StateComponent.SaveStateFailed" xml:space="preserve">
+    <data name="Core.StateComponent.SaveStateFailed" xml:space="preserve">
     <value>StateComp.SaveState.Failed.StateId:{0},{1}</value>
   </data>
 
-  <data name="Core.StateComponent.StateSaveBack" xml:space="preserve">
+    <data name="Core.StateComponent.StateSaveBack" xml:space="preserve">
     <value>[StateComp] 状态回存 {0} count:{1}</value>
   </data>
 
-  <data name="Core.StateComponent.SaveDataFailed" xml:space="preserve">
+    <data name="Core.StateComponent.SaveDataFailed" xml:space="preserve">
     <value>保存数据失败，类型:{0}</value>
   </data>
 
-  <data name="Core.StateComponent.SaveDataException" xml:space="preserve">
+    <data name="Core.StateComponent.SaveDataException" xml:space="preserve">
     <value>保存数据异常，类型:{0}，{1}</value>
   </data>
 
-  <!-- 消息处理器相关消息 -->
-  <data name="Core.MessageHandler.ExecutionTimeout" xml:space="preserve">
+    <!-- 消息处理器相关消息 -->
+    <data name="Core.MessageHandler.ExecutionTimeout" xml:space="preserve">
     <value>执行超时:{0}</value>
   </data>
 
-  <data name="Core.MessageHandler.ExecutionTimeWarning" xml:space="preserve">
+    <data name="Core.MessageHandler.ExecutionTimeWarning" xml:space="preserve">
     <value>消息处理器：{0},UniqueId：{1} 执行耗时：{2} ms</value>
   </data>
 
-  <data name="Core.MessageHandler.ExecutionTimeDebug" xml:space="preserve">
+    <data name="Core.MessageHandler.ExecutionTimeDebug" xml:space="preserve">
     <value>消息处理器：{0},UniqueId：{1} 执行耗时：{2} ms</value>
   </data>
 
-  <data name="Core.MessageHandler.ActorIdIsZero" xml:space="preserve">
+    <data name="Core.MessageHandler.ActorIdIsZero" xml:space="preserve">
     <value>ActorId is 0, can not get component，{0}, close channel</value>
   </data>
 
-  <data name="Core.MessageHandler.CacheComponentIsNull" xml:space="preserve">
+    <data name="Core.MessageHandler.CacheComponentIsNull" xml:space="preserve">
     <value>CacheComponent is null, can not get component, close channel</value>
   </data>
 
-  <data name="Core.MessageHandler.InnerActionError" xml:space="preserve">
+    <data name="Core.MessageHandler.InnerActionError" xml:space="preserve">
     <value>InnerAction error: {0} {1}</value>
   </data>
 
-  <!-- 热更新相关消息 -->
-  <data name="Core.Hotfix.DllInitializationSuccess" xml:space="preserve">
+    <!-- 热更新相关消息 -->
+    <data name="Core.Hotfix.DllInitializationSuccess" xml:space="preserve">
     <value>the hot change dll initialization succeeds: {0}</value>
   </data>
 
-  <data name="Core.Hotfix.DllInitializationFailed" xml:space="preserve">
+    <data name="Core.Hotfix.DllInitializationFailed" xml:space="preserve">
     <value>the hot change dll initialization failed...\n{0}</value>
   </data>
 
-  <data name="Core.Hotfix.DllUninstall" xml:space="preserve">
+    <data name="Core.Hotfix.DllUninstall" xml:space="preserve">
     <value>hot dll uninstall{0}</value>
   </data>
 
-  <!-- Core 模块异常消息 -->
-  <!-- 定时器相关异常 -->
-  <data name="CoreExceptions.Timer.InvalidParameters" xml:space="preserve">
+    <!-- Core 模块异常消息 -->
+    <!-- 定时器相关异常 -->
+    <data name="CoreExceptions.Timer.InvalidParameters" xml:space="preserve">
     <value>定时器参数错误 TimerHandler:{0} {1}:{2} {3}:{4}</value>
   </data>
 
-  <data name="CoreExceptions.Timer.DayOfWeeksParameterNull" xml:space="preserve">
+    <data name="CoreExceptions.Timer.DayOfWeeksParameterNull" xml:space="preserve">
     <value>定时每周执行 参数为空：{0} TimerHandler:{1} actorId:{2} actorType:{3}</value>
   </data>
 
-  <data name="CoreExceptions.Timer.CodeMustBeInHotfix" xml:space="preserve">
+    <data name="CoreExceptions.Timer.CodeMustBeInHotfix" xml:space="preserve">
     <value>定时器代码需要在热更项目里</value>
   </data>
 
-  <!-- 组件相关异常 -->
-  <data name="CoreExceptions.Component.ActorTypeNotBound" xml:space="preserve">
+    <!-- 组件相关异常 -->
+    <data name="CoreExceptions.Component.ActorTypeNotBound" xml:space="preserve">
     <value>component:[{0}] the actor type is not bound</value>
   </data>
 
-  <data name="CoreExceptions.Component.ActorNotBelongToThis" xml:space="preserve">
+    <data name="CoreExceptions.Component.ActorNotBelongToThis" xml:space="preserve">
     <value>get an actor that doesn't belong to this actor: [{0}] component:[{1}]</value>
   </data>
 
-  <!-- 消息相关异常 -->
-  <data name="CoreExceptions.Message.TypeCastError" xml:space="preserve">
+    <!-- 消息相关异常 -->
+    <data name="CoreExceptions.Message.TypeCastError" xml:space="preserve">
     <value>消息类型错误, {0} to: {1}</value>
   </data>
 
-  <data name="CoreExceptions.Message.HandlerNotInitialized" xml:space="preserve">
+    <data name="CoreExceptions.Message.HandlerNotInitialized" xml:space="preserve">
     <value>消息处理器未初始化,请调用先Init方法，如果已经子类实现了Init方法，请调用在子类Init中调用父类Init方法</value>
   </data>
 
-  <!-- 热更新相关异常 -->
-  <data name="CoreExceptions.Hotfix.HttpProcessorRepeatedlyRegistered" xml:space="preserve">
+    <!-- 热更新相关异常 -->
+    <data name="CoreExceptions.Hotfix.HttpProcessorRepeatedlyRegistered" xml:space="preserve">
     <value>HTTP processor command repeatedly registers, command:{0}</value>
   </data>
 
-  <data name="CoreExceptions.Hotfix.WrongTcpProcessorType" xml:space="preserve">
+    <data name="CoreExceptions.Hotfix.WrongTcpProcessorType" xml:space="preserve">
     <value>wrong tcp processor type:{0}</value>
   </data>
 
-  <data name="CoreExceptions.Hotfix.ClassMustBeSealed" xml:space="preserve">
+    <data name="CoreExceptions.Hotfix.ClassMustBeSealed" xml:space="preserve">
     <value>{0} must be a class marked as sealed</value>
   </data>
 
-  <data name="CoreExceptions.Hotfix.MessageProcessorWrongSuffix" xml:space="preserve">
+    <data name="CoreExceptions.Hotfix.MessageProcessorWrongSuffix" xml:space="preserve">
     <value>the message processor must be in the[{0}]ending，{1}</value>
   </data>
 
-  <data name="CoreExceptions.Hotfix.EventHandlerWrongSuffix" xml:space="preserve">
+    <data name="CoreExceptions.Hotfix.EventHandlerWrongSuffix" xml:space="preserve">
     <value>the event handler must be based on [{0}] ending，{1}</value>
   </data>
 
-  <data name="CoreExceptions.Hotfix.NoEventsToListen" xml:space="preserve">
+    <data name="CoreExceptions.Hotfix.NoEventsToListen" xml:space="preserve">
     <value>IEventListener:{0} There are no events that are specified to listen to</value>
   </data>
 
-  <data name="CoreExceptions.Hotfix.ComponentAgentWrongSuffix" xml:space="preserve">
+    <data name="CoreExceptions.Hotfix.ComponentAgentWrongSuffix" xml:space="preserve">
     <value>the component agent must be based on [{0}] ending，{1}</value>
   </data>
 
-  <data name="CoreExceptions.Hotfix.MultipleAgents" xml:space="preserve">
+    <data name="CoreExceptions.Hotfix.MultipleAgents" xml:space="preserve">
     <value>component:[{0}] there are multiple agents</value>
   </data>
 
-  <!-- 属性相关异常 -->
-  <data name="CoreExceptions.Attribute.InvalidComponentType" xml:space="preserve">
+    <!-- 属性相关异常 -->
+    <data name="CoreExceptions.Attribute.InvalidComponentType" xml:space="preserve">
     <value>无效的组件类型 {0},值应大于{1}且小于{2}和不为{3}</value>
   </data>
 
-  <!-- Apps 模块日志消息 -->
-  <!-- BSON类映射辅助相关消息 -->
-  <data name="Apps.BsonClassMapHelper.InitializationFailed" xml:space="preserve">
+    <!-- Apps 模块日志消息 -->
+    <!-- BSON类映射辅助相关消息 -->
+    <data name="Apps.BsonClassMapHelper.InitializationFailed" xml:space="preserve">
     <value>BSON类映射初始化失败</value>
   </data>
 
-  <!-- 会话管理相关消息 -->
-  <data name="Apps.SessionManager.AccountAlreadyLoggedIn" xml:space="preserve">
+    <!-- 会话管理相关消息 -->
+    <data name="Apps.SessionManager.AccountAlreadyLoggedIn" xml:space="preserve">
     <value>你的账号已在其他设备上登陆</value>
   </data>
 
-  <!-- CodeGenerator 模块错误消息 -->
-  <!-- Agent生成器相关错误消息 -->
-  <data name="CodeGenerator.AgentGenerator.CannotSetTimeoutForThreadSafeAttribute" xml:space="preserve">
+    <!-- CodeGenerator 模块错误消息 -->
+    <!-- Agent生成器相关错误消息 -->
+    <data name="CodeGenerator.AgentGenerator.CannotSetTimeoutForThreadSafeAttribute" xml:space="preserve">
     <value>{0}.{1}无法为标记【{2}】的函数指定超时时间</value>
   </data>
 
-  <data name="CodeGenerator.AgentGenerator.TimeoutAttributeMustBeUsedWithApiOrDiscard" xml:space="preserve">
+    <data name="CodeGenerator.AgentGenerator.TimeoutAttributeMustBeUsedWithApiOrDiscard" xml:space="preserve">
     <value>{0}.{1}【{2}】注解只能配合【{3}】或【{4}】使用</value>
   </data>
 
-  <data name="CodeGenerator.AgentGenerator.NonThreadSafeApiMustBeAsync" xml:space="preserve">
+    <data name="CodeGenerator.AgentGenerator.NonThreadSafeApiMustBeAsync" xml:space="preserve">
     <value>{0}.{1}, 非【{2}】的【{3}】接口只能是异步函数</value>
   </data>
 
-  <data name="CodeGenerator.AgentGenerator.MarkedFunctionMustBeVirtual" xml:space="preserve">
+    <data name="CodeGenerator.AgentGenerator.MarkedFunctionMustBeVirtual" xml:space="preserve">
     <value>{0}.{1}标记了【{2}】【{3}】【{4}】注解的函数必须申明为virtual</value>
   </data>
 
-  <data name="CodeGenerator.AgentGenerator.DiscardAttributeRequiresTaskOrValueTask" xml:space="preserve">
+    <data name="CodeGenerator.AgentGenerator.DiscardAttributeRequiresTaskOrValueTask" xml:space="preserve">
     <value>{0}.{1}只有返回值为Task类型或ValueTask类型才能添加【{2}】注解</value>
   </data>
 
-  <!-- Utility.RandomHelper 相关错误消息 -->
-  <data name="Utility.RandomHelper.CantRepeatRandomArgError" xml:space="preserve">
+    <!-- Utility.RandomHelper 相关错误消息 -->
+    <data name="Utility.RandomHelper.CantRepeatRandomArgError" xml:space="preserve">
     <value>不能重复随机参数错误，需求数量：{0} 大于ID数量：{1}</value>
   </data>
 
-  <!-- Utility.ActorIdGenerator 相关错误消息 -->
-  <data name="Utility.ActorIdGenerator.InputIsGlobalId" xml:space="preserve">
+    <!-- Utility.ActorIdGenerator 相关错误消息 -->
+    <data name="Utility.ActorIdGenerator.InputIsGlobalId" xml:space="preserve">
     <value>输入为全局ID：{0}</value>
   </data>
 
-  <!-- Utility.BigIntegerDebug 相关日志消息 -->
-  <data name="Utility.BigIntegerDebug.DebugA" xml:space="preserve">
+    <!-- Utility.BigIntegerDebug 相关日志消息 -->
+    <data name="Utility.BigIntegerDebug.DebugA" xml:space="preserve">
     <value>a = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DebugB" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DebugB" xml:space="preserve">
     <value>b = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DebugT" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DebugT" xml:space="preserve">
     <value>t = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DebugS" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DebugS" xml:space="preserve">
     <value>s = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DebugD" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DebugD" xml:space="preserve">
     <value>D = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DebugQ" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DebugQ" xml:space="preserve">
     <value>Q = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DebugND" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DebugND" xml:space="preserve">
     <value>(n,D) = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DebugNQ" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DebugNQ" xml:space="preserve">
     <value>(n,Q) = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DebugJacobi" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DebugJacobi" xml:space="preserve">
     <value>J(D|n) = {0}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.NotPrimeDivisible" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.NotPrimeDivisible" xml:space="preserve">
     <value>不是质数！可被{0}整除
 </value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DivisionDebug" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DivisionDebug" xml:space="preserve">
     <value>{0} = {1}({2}) + {3}  p = {4}</value>
   </data>
 
-  <data name="Utility.BigIntegerDebug.DataLength" xml:space="preserve">
+    <data name="Utility.BigIntegerDebug.DataLength" xml:space="preserve">
     <value>数据长度：{0}</value>
   </data>
 
-  <!-- Utility.AppSettings 相关消息 -->
-  <data name="Utility.AppSettings.SetAppRunningFalse" xml:space="preserve">
+    <!-- Utility.AppSettings 相关消息 -->
+    <data name="Utility.AppSettings.SetAppRunningFalse" xml:space="preserve">
     <value>设置 AppRunning false...</value>
   </data>
 
-  <!-- Utility.GlobalSettings 相关消息 -->
-  <data name="Utility.GlobalSettings.SettingAlreadyExists" xml:space="preserve">
+    <!-- Utility.GlobalSettings 相关消息 -->
+    <data name="Utility.GlobalSettings.SettingAlreadyExists" xml:space="preserve">
     <value>当前设置已存在，无法再次设置，此设置已被忽略。</value>
   </data>
 
-  <data name="Utility.GlobalSettings.HttpUrlEmptyUseDefault" xml:space="preserve">
+    <data name="Utility.GlobalSettings.HttpUrlEmptyUseDefault" xml:space="preserve">
     <value>HttpUrl为空，使用默认值：/game/api/</value>
   </data>
 
-  <data name="Utility.GlobalSettings.NetworkTimeoutTooShort" xml:space="preserve">
+    <data name="Utility.GlobalSettings.NetworkTimeoutTooShort" xml:space="preserve">
     <value>NetWorkSendTimeOutSeconds小于1秒，使用默认值5秒</value>
   </data>
 
-  <data name="Utility.GlobalSettings.ActorRecycleTimeTooShort" xml:space="preserve">
+    <data name="Utility.GlobalSettings.ActorRecycleTimeTooShort" xml:space="preserve">
     <value>ActorRecycleTime小于1分钟，使用默认值5分钟</value>
   </data>
 
-  <!-- Utility.ExceptionLogs 相关消息 -->
-  <data name="Utility.ExceptionLogs.ExceptionDetails" xml:space="preserve">
+    <!-- Utility.ExceptionLogs 相关消息 -->
+    <data name="Utility.ExceptionLogs.ExceptionDetails" xml:space="preserve">
     <value>异常详情：{0}</value>
   </data>
 
-  <!-- StartUp.HealthCheck 相关消息 -->
-  <data name="StartUp.HealthCheck.EndpointEnabled" xml:space="preserve">
+    <!-- StartUp.HealthCheck 相关消息 -->
+    <data name="StartUp.HealthCheck.EndpointEnabled" xml:space="preserve">
     <value>the health check endpoint is enabled:</value>
   </data>
 
-  <data name="StartUp.HealthCheck.DetailedEndpointUrl" xml:space="preserve">
+    <data name="StartUp.HealthCheck.DetailedEndpointUrl" xml:space="preserve">
     <value>- detailed health checks: http://{0}:{1}{2}</value>
   </data>
 
-  <data name="StartUp.HealthCheck.SimpleEndpointUrl" xml:space="preserve">
+    <data name="StartUp.HealthCheck.SimpleEndpointUrl" xml:space="preserve">
     <value>- simple health check: http://{0}:{1}{2}</value>
   </data>
 
-  <data name="StartUp.HealthCheck.OpenTelemetryEndpointUrl" xml:space="preserve">
+    <data name="StartUp.HealthCheck.OpenTelemetryEndpointUrl" xml:space="preserve">
     <value>- OpenTelemetry check: http://{0}:{1}{2}</value>
   </data>
 
-  <data name="StartUp.HealthCheck.ApplicationWorkingFine" xml:space="preserve">
+    <data name="StartUp.HealthCheck.ApplicationWorkingFine" xml:space="preserve">
     <value>应用程序运行正常</value>
   </data>
 
-  <data name="StartUp.HealthCheck.OpenTelemetryConfigurationNormal" xml:space="preserve">
+    <data name="StartUp.HealthCheck.OpenTelemetryConfigurationNormal" xml:space="preserve">
     <value>OpenTelemetry the configuration is normal</value>
   </data>
 
-  <data name="StartUp.HealthCheck.OpenTelemetryConfiguredNormally" xml:space="preserve">
+    <data name="StartUp.HealthCheck.OpenTelemetryConfiguredNormally" xml:space="preserve">
     <value>OpenTelemetry is configured normally</value>
   </data>
 
-  <data name="StartUp.HealthCheck.Ok" xml:space="preserve">
+    <data name="StartUp.HealthCheck.Ok" xml:space="preserve">
     <value>OK</value>
   </data>
 
-  <!-- StartUp.HttpServer 相关消息 - 新增 -->
-  <data name="StartUp.HttpServer.SwaggerEndpointFormat" xml:space="preserve">
+    <!-- StartUp.HttpServer 相关消息 - 新增 -->
+    <data name="StartUp.HttpServer.SwaggerEndpointFormat" xml:space="preserve">
     <value>/swagger/{0}/swagger.json</value>
   </data>
 
-  <data name="StartUp.HttpServer.SwaggerRoutePrefix" xml:space="preserve">
+    <data name="StartUp.HttpServer.SwaggerRoutePrefix" xml:space="preserve">
     <value>swagger</value>
   </data>
 
-  <data name="StartUp.HttpServer.ApiTitle" xml:space="preserve">
+    <data name="StartUp.HttpServer.ApiTitle" xml:space="preserve">
     <value>GameFrameX API</value>
   </data>
 
-  <data name="StartUp.HttpServer.ApiDescription" xml:space="preserve">
+    <data name="StartUp.HttpServer.ApiDescription" xml:space="preserve">
     <value>GameFrameX HTTP API documentation</value>
   </data>
 
-  <data name="StartUp.HttpServer.ApiLicenseName" xml:space="preserve">
+    <data name="StartUp.HttpServer.ApiLicenseName" xml:space="preserve">
     <value>GameFrameX</value>
   </data>
 
-  <data name="StartUp.HttpServer.ApiContactName" xml:space="preserve">
+    <data name="StartUp.HttpServer.ApiContactName" xml:space="preserve">
     <value>Blank</value>
   </data>
 
-  <data name="StartUp.HttpServer.OpenTelemetryServiceType" xml:space="preserve">
+    <data name="StartUp.HttpServer.OpenTelemetryServiceType" xml:space="preserve">
     <value>HTTP</value>
   </data>
 
-  <!-- StartUp.ApplicationSettings 相关消息 -->
-  <data name="StartUp.ApplicationSettings.ConfigFilePath" xml:space="preserve">
+    <!-- StartUp.ApplicationSettings 相关消息 -->
+    <data name="StartUp.ApplicationSettings.ConfigFilePath" xml:space="preserve">
     <value>Configs/app_config.json</value>
   </data>
 
-  <data name="StartUp.ApplicationSettings.LogTypeSeparator" xml:space="preserve">
+    <data name="StartUp.ApplicationSettings.LogTypeSeparator" xml:space="preserve">
     <value>_</value>
   </data>
 
-  <data name="StartUp.ApplicationSettings.WarningMessage" xml:space="preserve">
+    <data name="StartUp.ApplicationSettings.WarningMessage" xml:space="preserve">
     <value>[Warning] {0}</value>
   </data>
 
-  <!-- StartUp.HttpServer 相关消息 - 原有缺失的 -->
-  <data name="StartUp.HttpServer.StartupComplete" xml:space="preserve">
+    <!-- StartUp.HttpServer 相关消息 - 原有缺失的 -->
+    <data name="StartUp.HttpServer.StartupComplete" xml:space="preserve">
     <value>HTTP服务器启动完成 - 端口: {0}</value>
   </data>
 </root>
