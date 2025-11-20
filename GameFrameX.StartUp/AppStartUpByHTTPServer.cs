@@ -44,6 +44,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi;
 using Microsoft.OpenApi.Models;
 using Serilog;
 
@@ -156,13 +157,14 @@ public abstract partial class AppStartUpBase
                 app.UseSwagger();
                 app.UseSwaggerUI(options =>
                 {
-                    options.SwaggerEndpoint(string.Format(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.SwaggerEndpointFormat), openApiInfo.Version), openApiInfo.Title);
-                    options.RoutePrefix = LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.SwaggerRoutePrefix);
+                    var swaggerEndpoint = LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.SwaggerEndpointFormat, openApiInfo.Version);
+                    options.SwaggerEndpoint(swaggerEndpoint, openApiInfo.Title);
+                    options.RoutePrefix = LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.SwaggerRoutePrefix);
                 });
 
                 foreach (var ip in ipList)
                 {
-                    LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.SwaggerUiAccess, ip, Setting.HttpPort));
+                    LogHelper.Debug(LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.SwaggerUiAccess, ip, Setting.HttpPort));
                 }
             }
 
@@ -178,15 +180,15 @@ public abstract partial class AppStartUpBase
                 app.MapPrometheusScrapingEndpoint();
                 foreach (var ip in ipList)
                 {
-                    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.PrometheusMetricsEndpointEnabledInline, ip, Setting.HttpPort));
+                    LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.PrometheusMetricsEndpointEnabledInline, ip, Setting.HttpPort));
                 }
             }
             else if (Setting.IsOpenTelemetry && Setting.IsOpenTelemetryMetrics && Setting.MetricsPort > 0)
             {
-                LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.PrometheusMetricsServiceOnStandalonePort, Setting.MetricsPort));
+                LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.PrometheusMetricsServiceOnStandalonePort, Setting.MetricsPort));
                 foreach (var ip in ipList)
                 {
-                    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.PrometheusMetricsEndpointEnabled, ip, Setting.MetricsPort));
+                    LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.PrometheusMetricsEndpointEnabled, ip, Setting.MetricsPort));
                 }
             }
 
@@ -210,8 +212,8 @@ public abstract partial class AppStartUpBase
                     // 开发模式，启用 Swagger
                     route.WithOpenApi(operation =>
                     {
-                        operation.Summary = LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.HandlePostRequest);
-                        operation.Description = LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.HandleGameClientPostRequest);
+                        operation.Summary = LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandlePostRequest);
+                        operation.Description = LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGameClientPostRequest);
                         return operation;
                     });
                 }

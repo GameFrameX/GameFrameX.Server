@@ -182,7 +182,7 @@ public class AgentGenerator : ISourceGenerator
 
                         if (mth.IsThreadSafe && mth.HasTimeout)
                         {
-                            context.LogError(LocalizationService.GetString(GameFrameX.Localization.Keys.CodeGenerator.AgentGenerator.CannotSetTimeoutForThreadSafeAttribute, fullName, method.Identifier.Text, threadSafeAttributeName));
+                            context.LogError(LocalizationService.GetString(Localization.Keys.CodeGenerator.AgentGenerator.CannotSetTimeoutForThreadSafeAttribute, fullName, method.Identifier.Text, threadSafeAttributeName));
                         }
 
                         if (!mth.IsApi && !mth.Discard && mth.HasTimeout)

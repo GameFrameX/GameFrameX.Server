@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GameFrameX.Core\GameFrameX.Core.csproj" />
+    <ProjectReference Include="..\GameFrameX.Localization\GameFrameX.Localization.csproj" />
   </ItemGroup>
 
 </Project>
