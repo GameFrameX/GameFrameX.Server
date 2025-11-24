@@ -66,14 +66,14 @@ public abstract class BaseCacheState : ICacheState, IEntity
     public virtual long DeleteTime { get; set; }
 
     /// <summary>
-    /// 创建人
+    /// 创建人, 通常是用户ID，用于记录创建该数据对象的用户，默认值为0
     /// </summary>
-    public virtual long CreateId { get; set; }
+    public virtual long CreatedId { get; set; }
 
     /// <summary>
-    /// 创建时间
+    /// 创建时间, Unix时间戳毫秒
     /// </summary>
-    public virtual long CreateTime { get; set; }
+    public virtual long CreatedTime { get; set; }
 
     /// <summary>
     /// 更新次数
@@ -81,11 +81,12 @@ public abstract class BaseCacheState : ICacheState, IEntity
     public virtual int UpdateCount { get; set; }
 
     /// <summary>
-    /// 更新时间
+    /// 更新时间, Unix时间戳毫秒
     /// </summary>
     public virtual long UpdateTime { get; set; }
 
     /// <summary>
+    /// 转换为字符串, 包含所有属性
     /// </summary>
     /// <returns></returns>
     public override string ToString()

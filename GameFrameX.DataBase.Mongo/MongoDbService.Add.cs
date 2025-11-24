@@ -65,8 +65,8 @@ public sealed partial class MongoDbService
     /// <returns>返回修改的条数</returns>
     public async Task AddAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
-        state.CreateTime = TimerHelper.UnixTimeMilliseconds();
-        state.UpdateTime = state.CreateTime;
+        state.CreatedTime = TimerHelper.UnixTimeMilliseconds();
+        state.UpdateTime = state.CreatedTime;
         await _mongoDbContext.SaveAsync(state);
     }
 
@@ -80,8 +80,8 @@ public sealed partial class MongoDbService
         var cacheStates = states.ToList();
         foreach (var cacheState in cacheStates)
         {
-            cacheState.CreateTime = TimerHelper.UnixTimeMilliseconds();
-            cacheState.UpdateTime = cacheState.CreateTime;
+            cacheState.CreatedTime = TimerHelper.UnixTimeMilliseconds();
+            cacheState.UpdateTime = cacheState.CreatedTime;
         }
 
         await _mongoDbContext.SaveAsync(cacheStates);

@@ -36,7 +36,7 @@ namespace GameFrameX.DataBase.Abstractions;
 /// <summary>
 /// 缓存数据对象接口
 /// </summary>
-public interface ICacheState : ISafeDeletedFilter, ISafeCreate, ISafeUpdateFilter
+public interface ICacheState : ISafeDeletedFilter, ISafeCreatedFilter, ISafeUpdateFilter
 {
     /// <summary>
     /// 唯一ID

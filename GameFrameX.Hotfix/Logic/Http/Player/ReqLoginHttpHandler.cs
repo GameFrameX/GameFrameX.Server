@@ -65,7 +65,7 @@ public sealed class ReqLoginHttpHandler : BaseHttpHandler
 
         // 构建账号登录返回信息
         respLogin.Code = loginState.State;
-        respLogin.CreateTime = loginState.CreateTime;
+        respLogin.CreateTime = loginState.CreatedTime;
         respLogin.Level = loginState.Level;
         respLogin.Id = loginState.Id;
         respLogin.RoleName = loginState.NickName;
