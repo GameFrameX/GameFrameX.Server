@@ -260,7 +260,7 @@ public sealed partial class MongoDbService
     /// <returns>默认的查询表达式。</returns>
     private static Expression<Func<TState, bool>> GetDefaultFindExpression<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState
     {
-        Expression<Func<TState, bool>> expression = m => m.IsDeleted == false;
+        Expression<Func<TState, bool>> expression = m => m.IsDeleted == null || m.IsDeleted == false;
         if (filter != null)
         {
             expression = expression.And(filter);
