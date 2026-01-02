@@ -66,6 +66,6 @@
         </None>
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="GameFrameX.Foundation.Localization" Version="1.7.1.11" />
+      <PackageReference Include="GameFrameX.Foundation.Localization" Version="2.0.0.2" />
     </ItemGroup>
 </Project>
