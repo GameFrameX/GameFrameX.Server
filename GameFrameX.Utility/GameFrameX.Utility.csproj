@@ -1,45 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <Import Project="../Version.props" Label="版本号定义" />
+
     <PropertyGroup>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>disable</Nullable>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <PublicSign>true</PublicSign>
-        <SignAssembly>true</SignAssembly>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Title>$(AssemblyName)</Title>
         <Description>GameFrameX.Utility,GameFrameX 框架的基础设施框架库.框架文档主页: https://gameframex.doc.alianblank.com</Description>
-        <Copyright>AlianBlank;GameFrameX;Blank</Copyright>
-        <PackageProjectUrl>https://github.com/GameFrameX/GameFrameX</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/GameFrameX/GameFrameX</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageTags>GameFrameX,Lib,Utility,Server,GameServer</PackageTags>
-        <PackageReleaseNotes>https://gameframex.doc.alianblank.com/</PackageReleaseNotes>
-        <PackageIcon>logo.png</PackageIcon>
-        <Authors>AlianBlank;Blank</Authors>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-        <IsPackable>true</IsPackable>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <PackageId>$(AssemblyName)</PackageId>
-        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-        <AssemblyOriginatorKeyFile>../gameframex.key.snk</AssemblyOriginatorKeyFile>
-        <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <DefineConstants>TRACE;FP</DefineConstants>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <DefineConstants>TRACE;FP</DefineConstants>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <DefineConstants>TRACE;FP</DefineConstants>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <DefineConstants>TRACE;FP</DefineConstants>
     </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-        <OutputPath>..\bin\app_debug</OutputPath>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <OutputPath>..\bin\app</OutputPath>
-    </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="GameFrameX.Foundation.Logger" Version="2.0.0.2" />
         <PackageReference Include="GameFrameX.Foundation.Utility" Version="2.0.0.2" />
@@ -51,19 +25,6 @@
 
     <ItemGroup>
         <ProjectReference Include="../GameFrameX.Localization/GameFrameX.Localization.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Include="..\logo.png">
-            <Pack>True</Pack>
-            <PackagePath>\</PackagePath>
-            <Link>logo.png</Link>
-        </None>
-        <None Include="..\README.md">
-            <Pack>True</Pack>
-            <PackagePath>\</PackagePath>
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
     </ItemGroup>
 
 </Project>

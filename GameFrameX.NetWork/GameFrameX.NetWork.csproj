@@ -1,56 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <Import Project="../Version.props" Label="版本号定义"/>
     <PropertyGroup>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>disable</Nullable>
         <Description>GameFrameX.NetWork,GameFrameX 框架的基础设施框架库.框架文档主页: https://gameframex.doc.alianblank.com</Description>
         <PackageTags>GameFrameX,Lib,NetWork,Server,GameServer</PackageTags>
-        <PublicSign>true</PublicSign>
-        <SignAssembly>true</SignAssembly>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Title>$(AssemblyName)</Title>
-        <Copyright>AlianBlank;GameFrameX;Blank</Copyright>
-        <PackageProjectUrl>https://github.com/GameFrameX/GameFrameX</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/GameFrameX/GameFrameX</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-        <PackageReleaseNotes>https://gameframex.doc.alianblank.com/</PackageReleaseNotes>
-        <PackageIcon>logo.png</PackageIcon>
-        <Authors>AlianBlank;Blank</Authors>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-        <IsPackable>true</IsPackable>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <PackageId>$(AssemblyName)</PackageId>
-        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-        <AssemblyOriginatorKeyFile>../gameframex.key.snk</AssemblyOriginatorKeyFile>
-        <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <LangVersion>10</LangVersion>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-        <OutputPath>..\bin\app_debug</OutputPath>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <OutputPath>..\bin\app</OutputPath>
-    </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\GameFrameX.NetWork.Abstractions\GameFrameX.NetWork.Abstractions.csproj"/>
         <ProjectReference Include="..\GameFrameX.ProtoBuf.Net\GameFrameX.ProtoBuf.Net.csproj"/>
         <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj"/>
-    </ItemGroup>
-    <ItemGroup>
-        <None Include="..\logo.png">
-            <Pack>True</Pack>
-            <PackagePath>\</PackagePath>
-            <Link>logo.png</Link>
-        </None>
-        <None Include="../README.md">
-            <Pack>True</Pack>
-            <PackagePath>\</PackagePath>
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="GameFrameX.SuperSocket.WebSocket.Server" Version="1.2.0"/>

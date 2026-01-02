@@ -2,17 +2,14 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>disable</Nullable>
-        <LangVersion>10</LangVersion>
     </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <OutputPath>..\bin\app_client_debug\</OutputPath>
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <OutputPath>..\bin\app_client_debug\</OutputPath>
     </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <OutputPath>..\bin\app_client\</OutputPath>
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <OutputPath>..\bin\app_client\</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>

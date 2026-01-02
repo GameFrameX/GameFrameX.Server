@@ -1,56 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <Import Project="../Version.props" Label="版本号定义"/>
+
     <PropertyGroup>
-        <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <PublicSign>true</PublicSign>
-        <SignAssembly>true</SignAssembly>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Title>$(AssemblyName)</Title>
-        <Copyright>AlianBlank;GameFrameX;Blank</Copyright>
-        <PackageProjectUrl>https://github.com/GameFrameX/GameFrameX</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/GameFrameX/GameFrameX</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <Description>GameFrameX.ProtoBuf.Net,GameFrameX 框架的基础设施框架库.框架文档主页: https://gameframex.doc.alianblank.com</Description>
         <PackageTags>GameFrameX,Lib,ProtoBuf.Net,Server,GameServer</PackageTags>
-        <PackageReleaseNotes>https://gameframex.doc.alianblank.com/</PackageReleaseNotes>
-        <PackageIcon>logo.png</PackageIcon>
-        <Authors>AlianBlank;Blank</Authors>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-        <IsPackable>true</IsPackable>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <PackageId>$(AssemblyName)</PackageId>
-        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-        <AssemblyOriginatorKeyFile>../gameframex.key.snk</AssemblyOriginatorKeyFile>
-        <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <NoWarn>1701;1702;CS8625;CS8600;CS8601;CS8602;CS8603;CS8605;CS8769;CS8604;CS8618;CS8767</NoWarn>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <NoWarn>1701;1702;CS8625;CS8600;CS8601;CS8602;CS8603;CS8605;CS8769;CS8604;CS8618;CS8767</NoWarn>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-        <OutputPath>..\bin\app_debug</OutputPath>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <OutputPath>..\bin\app</OutputPath>
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <NoWarn>1701;1702;CS8625;CS8600;CS8601;CS8602;CS8603;CS8605;CS8769;CS8604;CS8618;CS8767</NoWarn>
     </PropertyGroup>
-    <ItemGroup>
-        <None Include="..\logo.png">
-            <Pack>True</Pack>
-            <PackagePath>\</PackagePath>
-            <Link>logo.png</Link>
-        </None>
-        <None Include="../README.md">
-            <Pack>True</Pack>
-            <PackagePath>\</PackagePath>
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-    </ItemGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <NoWarn>1701;1702;CS8625;CS8600;CS8601;CS8602;CS8603;CS8605;CS8769;CS8604;CS8618;CS8767</NoWarn>
+    </PropertyGroup>
+
 </Project>

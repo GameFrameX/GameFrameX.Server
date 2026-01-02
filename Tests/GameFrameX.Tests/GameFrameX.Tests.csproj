@@ -8,6 +8,10 @@
 
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
+
+        <!-- 测试项目不签名 -->
+        <PublicSign>false</PublicSign>
+        <SignAssembly>false</SignAssembly>
     </PropertyGroup>
 
     <ItemGroup>
