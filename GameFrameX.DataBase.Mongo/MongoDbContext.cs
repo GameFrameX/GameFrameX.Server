@@ -34,9 +34,9 @@ using MongoDB.Entities;
 
 namespace GameFrameX.DataBase.Mongo;
 
-internal sealed class MongoDbContext : DBContext
+internal sealed class MongoDbContext : DB
 {
-    public MongoDbContext()
+    public MongoDbContext(string dbName) : base(Instance(dbName))
     {
         SetGlobalFilterForBaseClass<BaseCacheState>(m => (m.IsDeleted == null || m.IsDeleted == false));
     }

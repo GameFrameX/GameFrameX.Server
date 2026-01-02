@@ -66,9 +66,9 @@ public sealed partial class MongoDbService : IDatabaseService
             ArgumentNullException.ThrowIfNull(dbOptions.ConnectionString, nameof(dbOptions.ConnectionString));
             ArgumentNullException.ThrowIfNull(dbOptions.Name, nameof(dbOptions.Name));
             var settings = MongoClientSettings.FromConnectionString(dbOptions.ConnectionString);
-            await DB.InitAsync(dbOptions.Name, settings);
-            _mongoDbContext = new MongoDbContext();
-            CurrentDatabase = DB.Database(dbOptions.Name);
+            var db = await DB.InitAsync(dbOptions.Name, settings);
+            _mongoDbContext = new MongoDbContext(dbOptions.Name);
+            CurrentDatabase = db.Database();
             LogHelper.Info(LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializedSuccessfully, dbOptions.ConnectionString, dbOptions.Name));
             return true;
         }
@@ -89,7 +89,7 @@ public sealed partial class MongoDbService : IDatabaseService
     /// </summary>
     public Task Close()
     {
-        _mongoDbContext?.Session?.Dispose();
+        _mongoDbContext?.Database().Client?.Dispose();
         return Task.CompletedTask;
     }
 
