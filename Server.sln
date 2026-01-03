@@ -60,10 +60,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.DataBase.Mongo",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Localization", "GameFrameX.Localization\GameFrameX.Localization.csproj", "{BB08466F-E38B-48BE-8F33-5C4BD438F6CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.AppHost", "GameFrameX.AppHost\GameFrameX.AppHost.csproj", "{7A7126C6-D57A-4F8A-AE9B-594C6A35114B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{835335CB-D99B-4CB9-99D3-A7883306E723}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -154,6 +160,18 @@ Global
 		{BB08466F-E38B-48BE-8F33-5C4BD438F6CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB08466F-E38B-48BE-8F33-5C4BD438F6CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB08466F-E38B-48BE-8F33-5C4BD438F6CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A7126C6-D57A-4F8A-AE9B-594C6A35114B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A7126C6-D57A-4F8A-AE9B-594C6A35114B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A7126C6-D57A-4F8A-AE9B-594C6A35114B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7A7126C6-D57A-4F8A-AE9B-594C6A35114B}.Debug|x64.Build.0 = Debug|Any CPU
+		{7A7126C6-D57A-4F8A-AE9B-594C6A35114B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7A7126C6-D57A-4F8A-AE9B-594C6A35114B}.Debug|x86.Build.0 = Debug|Any CPU
+		{7A7126C6-D57A-4F8A-AE9B-594C6A35114B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A7126C6-D57A-4F8A-AE9B-594C6A35114B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A7126C6-D57A-4F8A-AE9B-594C6A35114B}.Release|x64.ActiveCfg = Release|Any CPU
+		{7A7126C6-D57A-4F8A-AE9B-594C6A35114B}.Release|x64.Build.0 = Release|Any CPU
+		{7A7126C6-D57A-4F8A-AE9B-594C6A35114B}.Release|x86.ActiveCfg = Release|Any CPU
+		{7A7126C6-D57A-4F8A-AE9B-594C6A35114B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
