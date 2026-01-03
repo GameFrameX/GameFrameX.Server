@@ -572,6 +572,16 @@ public sealed class LauncherOptions
     public string DataBaseName { get; set; }
 
     /// <summary>
+    /// Gets or sets the database password
+    /// </summary>
+    /// <value>The password for the database connection</value>
+    /// <remarks>
+    /// 要连接的数据库名称的密码
+    /// </remarks>
+    [Option(nameof(DataBasePassword), Description = "数据库密码")]
+    public string DataBasePassword { get; set; }
+
+    /// <summary>
     /// Gets or sets the language setting
     /// </summary>
     /// <value>The language code for localization</value>
