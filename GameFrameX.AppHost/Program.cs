@@ -102,6 +102,13 @@ internal static class Program
         }
 
         LogHandler.Create(LogOptions.Default);
+
+        var mongoDb = builder.AddMongoDB("mongo").WithLifetime(ContainerLifetime.Persistent);
+        mongoDb.AddDatabase("mongodb");
+        // mongoDb.AddDatabase(launcherOptions.DataBaseName, launcherOptions.DataBasePassword);
+        // var myService = builder.AddProject<DataBaseProject>()
+        //                        .WithReference(mongoDb)
+        //                        .WaitFor(mongoDb);
         await builder.Build().RunAsync();
     }
 }

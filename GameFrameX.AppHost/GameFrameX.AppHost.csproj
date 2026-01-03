@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Aspire.Hosting.MongoDB" Version="13.1.0" />
       <PackageReference Include="GameFrameX.Foundation.Localization" Version="2.0.0.2" />
       <PackageReference Include="GameFrameX.Foundation.Logger" Version="2.0.0.2" />
       <PackageReference Include="GameFrameX.Foundation.Options" Version="2.0.0.2" />
