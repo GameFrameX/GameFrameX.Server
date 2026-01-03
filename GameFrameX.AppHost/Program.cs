@@ -17,7 +17,7 @@ internal static class Program
         var builder = DistributedApplication.CreateBuilder(args);
         LogOptions.Default.LogType = "AppHost";
 
-        LauncherOptions launcherOptions = null;
+        LauncherOptions launcherOptions;
         try
         {
             launcherOptions = Foundation.Options.OptionsBuilder.CreateWithDebug<LauncherOptions>(args);
@@ -25,15 +25,15 @@ internal static class Program
         catch (Exception e)
         {
             LogHelper.Error(e.Message);
+            throw;
         }
 
-        var serverType = launcherOptions?.ServerType;
+        var serverType = launcherOptions.ServerType;
         if (!serverType.IsNullOrEmpty())
         {
             LogHelper.Info(LocalizationService.GetString(Keys.StartUp.LaunchServerType, serverType));
         }
 
-        if (launcherOptions != null)
         {
             // 将LauncherOptions的所有属性添加到标签中
             var properties = typeof(LauncherOptions).GetProperties();
