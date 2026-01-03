@@ -53,7 +53,7 @@ internal static class Program
 
                 if (!LogOptions.Default.GrafanaLokiLabels.TryAdd(property.Name, value))
                 {
-                    LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.GrafanaLokiLabelExists, property.Name));
+                    LogHelper.Warning(LocalizationService.GetString(Keys.StartUp.GrafanaLokiLabelExists, property.Name));
                 }
             }
 
