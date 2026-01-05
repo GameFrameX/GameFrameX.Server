@@ -30,10 +30,10 @@
 // ==========================================================================================
 
 using System.Reflection;
+using GameFrameX.AppHost.ServiceDefaults;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.NetWork.HTTP;
-using GameFrameX.StartUp.Extensions;
 using GameFrameX.Utility;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Utility;
@@ -44,7 +44,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi;
 using Microsoft.OpenApi.Models;
 using Serilog;
 
@@ -108,9 +107,6 @@ public abstract partial class AppStartUpBase
 
             var openApiInfo = GetOpenApiInfo();
 
-            // 添加健康检查服务
-            builder.Services.AddGameFrameXHealthChecks(Setting);
-
             // 在开发环境下配置Swagger
             if (development)
             {
@@ -135,19 +131,13 @@ public abstract partial class AppStartUpBase
                 }
             });
 
-            if (Setting.IsOpenTelemetry)
-            {
-                // 配置OpenTelemetry服务
-                hostBuilder.ConfigureServices(services => { services.AddGameFrameXOpenTelemetry(Setting, "HTTP", "HTTP"); });
-            }
-
             hostBuilder.ConfigureLogging(logging =>
             {
                 logging.ClearProviders();
                 logging.AddSerilog(Log.Logger);
                 logging.SetMinimumLevel(minimumLevelLogLevel);
-                logging.AddGameFrameXOpenTelemetryLogging(Setting);
             });
+            builder.AddServiceDefaults();
             var app = builder.Build();
             var ipList = NetHelper.GetLocalIpList();
             // 开发环境下的Swagger UI配置
@@ -167,9 +157,6 @@ public abstract partial class AppStartUpBase
                     LogHelper.Debug(LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.SwaggerUiAccess, ip, Setting.HttpPort));
                 }
             }
-
-            // 配置健康检查端点
-            app.UseGameFrameXHealthChecks(Setting, ipList);
 
             // 配置全局异常处理
             app.UseExceptionHandler(ExceptionHandler);

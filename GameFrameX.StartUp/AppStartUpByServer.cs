@@ -29,16 +29,12 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
-using System.Reflection;
-using GameFrameX.Foundation.Extensions;
+using GameFrameX.AppHost.ServiceDefaults;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Foundation.Localization.Core;
-using GameFrameX.Foundation.Utility;
-using GameFrameX.NetWork;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Message;
-using GameFrameX.StartUp.Extensions;
 using GameFrameX.SuperSocket.Connection;
 using GameFrameX.SuperSocket.Primitives;
 using GameFrameX.SuperSocket.Server;
@@ -50,12 +46,9 @@ using GameFrameX.SuperSocket.WebSocket;
 using GameFrameX.SuperSocket.WebSocket.Server;
 using GameFrameX.Utility;
 using GameFrameX.Utility.Setting;
-using Grafana.OpenTelemetry;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using OpenTelemetry;
-using OpenTelemetry.Trace;
 using Serilog;
 using CloseReason = GameFrameX.SuperSocket.WebSocket.CloseReason;
 
@@ -349,34 +342,17 @@ public abstract partial class AppStartUpBase
         // await StartHttpServerAsync(hostBuilder,baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
         await StartHttpServer(baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
 
-        // 启动独立的指标服务器（如果配置了独立端口）
-        var metricsServer = await OpenTelemetryExtensions.CreateMetricsServerAsync(Setting, "TCP");
-        if (metricsServer is not null)
-        {
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.Application.MetricServerStarted, Setting.MetricsPort));
-        }
-
-        // 配置监控和跟踪
-        multipleServerHostBuilder.ConfigureServices(services => { services.AddGameFrameXOpenTelemetry(Setting); });
-
         // 配置日志
         multipleServerHostBuilder.ConfigureLogging(logging =>
         {
             logging.ClearProviders();
             logging.AddSerilog(Log.Logger, true);
             logging.SetMinimumLevel(minimumLevelLogLevel);
-            logging.AddGameFrameXOpenTelemetryLogging(Setting);
+            logging.ConfigureOpenTelemetryLogger();
         });
+        // 配置监控和跟踪
+        multipleServerHostBuilder.ConfigureServices(services => { services.AddServiceDefaults(); });
 
-        using var tracerProvider = Sdk.CreateTracerProviderBuilder()
-                                      .UseGrafana(config =>
-                                      {
-                                          config.ServiceName = Setting.ServerName + "-" + Setting.TagName;
-                                          config.ServiceVersion = Assembly.GetCallingAssembly().ImageRuntimeVersion;
-                                          config.ServiceInstanceId = Setting.ServerId + "-" + Setting.ServerInstanceId;
-                                          config.DeploymentEnvironment = EnvironmentHelper.GetEnvironmentName().IsNullOrEmpty() ? Setting.IsDebug ? "Debug" : "Release" : EnvironmentHelper.GetEnvironmentName();
-                                      })
-                                      .Build();
         // 构建并启动服务器
         _gameServer = multipleServerHostBuilder.Build();
 
