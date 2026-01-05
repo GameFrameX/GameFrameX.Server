@@ -62,6 +62,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.Localization", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.AppHost", "GameFrameX.AppHost\GameFrameX.AppHost.csproj", "{7A7126C6-D57A-4F8A-AE9B-594C6A35114B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.AppHost.ServiceDefaults", "GameFrameX.AppHost.ServiceDefaults\GameFrameX.AppHost.ServiceDefaults.csproj", "{C07F3854-2F1B-45C1-B9ED-D0B8A03B64ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -172,6 +174,18 @@ Global
 		{7A7126C6-D57A-4F8A-AE9B-594C6A35114B}.Release|x64.Build.0 = Release|Any CPU
 		{7A7126C6-D57A-4F8A-AE9B-594C6A35114B}.Release|x86.ActiveCfg = Release|Any CPU
 		{7A7126C6-D57A-4F8A-AE9B-594C6A35114B}.Release|x86.Build.0 = Release|Any CPU
+		{C07F3854-2F1B-45C1-B9ED-D0B8A03B64ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C07F3854-2F1B-45C1-B9ED-D0B8A03B64ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C07F3854-2F1B-45C1-B9ED-D0B8A03B64ED}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C07F3854-2F1B-45C1-B9ED-D0B8A03B64ED}.Debug|x64.Build.0 = Debug|Any CPU
+		{C07F3854-2F1B-45C1-B9ED-D0B8A03B64ED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C07F3854-2F1B-45C1-B9ED-D0B8A03B64ED}.Debug|x86.Build.0 = Debug|Any CPU
+		{C07F3854-2F1B-45C1-B9ED-D0B8A03B64ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C07F3854-2F1B-45C1-B9ED-D0B8A03B64ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C07F3854-2F1B-45C1-B9ED-D0B8A03B64ED}.Release|x64.ActiveCfg = Release|Any CPU
+		{C07F3854-2F1B-45C1-B9ED-D0B8A03B64ED}.Release|x64.Build.0 = Release|Any CPU
+		{C07F3854-2F1B-45C1-B9ED-D0B8A03B64ED}.Release|x86.ActiveCfg = Release|Any CPU
+		{C07F3854-2F1B-45C1-B9ED-D0B8A03B64ED}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
