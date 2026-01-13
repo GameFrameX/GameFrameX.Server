@@ -141,6 +141,37 @@ GameFrameX/
 
 ### 🔧 业务逻辑开发
 
+#### 基础示例：Hello World
+
+快速创建一个 HTTP 接口来体验开发流程。
+
+```csharp
+using GameFrameX.NetWork.HTTP;
+
+[HttpMessageMapping(typeof(TestHttpHandler))]
+[HttpMessageResponse(typeof(HttpTestResponse))]
+[Description("Hello World 示例接口")]
+public sealed class TestHttpHandler : BaseHttpHandler
+{
+    public override Task<string> Action(string ip, string url, Dictionary<string, object> parameters)
+    {
+        var response = new HttpTestResponse
+        {
+            Message = "Hello World From GameFrameX",
+            Time = DateTime.Now
+        };
+        // 返回标准 JSON 格式
+        return Task.FromResult(HttpJsonResult.SuccessString(response));
+    }
+}
+
+public sealed class HttpTestResponse : HttpMessageResponseBase
+{
+    public string Message { get; set; }
+    public DateTime Time { get; set; }
+}
+```
+
 #### 组件-代理模式
 
 **1. 定义状态（Apps 层 - 不可热更）**
@@ -290,34 +321,48 @@ curl http://localhost:29090/api/reload/status
 
 ### 📊 配置管理
 
-#### 环境变量
-```bash
-# 服务器配置
-ServerType=Game
-ServerId=1000
-DataBaseUrl=mongodb://localhost:27017
-DataBaseName=gameframex
+GameFrameX 使用扁平化的配置结构，支持命令行参数 (`--Key=Value`)、环境变量 (`Key=Value`) 和 `appsettings.json` 配置文件。
 
-# 网络配置
-InnerIp=0.0.0.0
-InnerPort=29100
-OuterIp=0.0.0.0
-OuterPort=29100
-HttpPort=28080
+#### 核心配置 (Server)
+| 配置项 | 说明 | 默认值 | 示例 |
+| :--- | :--- | :--- | :--- |
+| `ServerType` | 服务器类型 (如 Game, Gate) | 无 | `Game` |
+| `ServerId` | 服务器唯一标识 ID | 无 | `1000` |
+| `ServerName` | 服务器名称 | 同 ServerType | `Game-1` |
+| `MinModuleId` | 业务模块起始 ID | 0 | `100` |
+| `MaxModuleId` | 业务模块结束 ID | 0 | `1000` |
 
-# 监控配置
-IsOpenTelemetry=true
-MetricsPort=29090
-```
+#### 网络配置 (Network)
+| 配置项 | 说明 | 默认值 | 示例 |
+| :--- | :--- | :--- | :--- |
+| `InnerHost` | 内部通信 IP (集群间) | 无 | `0.0.0.0` |
+| `InnerPort` | 内部通信端口 | 无 | `29100` |
+| `OuterHost` | 外部通信 IP (面向客户端) | 无 | `0.0.0.0` |
+| `OuterPort` | 外部通信端口 | 无 | `29200` |
+| `HttpPort` | HTTP 服务端口 | 0 | `8080` |
+| `WsPort` | WebSocket 服务端口 | 0 | `29300` |
 
-#### 命令行参数
+#### 数据库配置 (Database)
+| 配置项 | 说明 | 默认值 | 示例 |
+| :--- | :--- | :--- | :--- |
+| `DataBaseUrl` | MongoDB 连接字符串 | 无 | `mongodb://localhost:27017` |
+| `DataBaseName` | 数据库名称 | 无 | `gameframex` |
+
+#### 监控配置 (Monitoring)
+| 配置项 | 说明 | 默认值 | 示例 |
+| :--- | :--- | :--- | :--- |
+| `IsOpenTelemetry` | 是否启用 OpenTelemetry | `false` | `true` |
+| `MetricsPort` | Prometheus 指标端口 | 0 (复用 HTTP) | `9090` |
+| `IsDebug` | 开启调试日志 | `false` | `true` |
+
+#### 启动命令示例
 ```bash
 dotnet GameFrameX.Launcher.dll \
-  --ServerType=Game \
-  --ServerId=1000 \
-  --DataBaseUrl=mongodb://localhost:27017 \
-  --IsOpenTelemetry=true \
-  --IsDebug=true
+    --ServerType=Game \
+    --ServerId=1000 \
+    --OuterPort=10000 \
+    --DataBaseUrl=mongodb://127.0.0.1:27017 \
+    --DataBaseName=game_db
 ```
 
 ### 🐳 Docker 部署
