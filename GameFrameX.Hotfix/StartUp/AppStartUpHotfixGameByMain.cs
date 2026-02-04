@@ -66,14 +66,14 @@ internal partial class AppStartUpHotfixGame
 
     protected override ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
     {
-        LogHelper.Info("有外部客户端网络断开连接成功！。断开信息：" + appSession.SessionID + "  " + disconnectEventArgs.Reason);
+        LogHelper.Info("Client disconnected. SessionID: {sessionId}, Reason: {reason}", appSession.SessionID, disconnectEventArgs.Reason);
         SessionManager.Remove(appSession.SessionID);
         return ValueTask.CompletedTask;
     }
 
     protected override async ValueTask OnConnected(IAppSession appSession)
     {
-        LogHelper.Info("有外部客户端网络连接成功！。链接信息：SessionID:" + appSession.SessionID + " RemoteEndPoint:" + appSession.RemoteEndPoint);
+        LogHelper.Info("Client connected. SessionID: {sessionId}, RemoteEndPoint: {remoteEndPoint}", appSession.SessionID, appSession.RemoteEndPoint);
         var netChannel = new DefaultNetWorkChannel(appSession, Setting, null, appSession is WebSocketSession);
         var count = SessionManager.Count();
         if (count > Setting.MaxClientCount)
@@ -109,7 +109,7 @@ internal partial class AppStartUpHotfixGame
             {
                 if (Setting.IsDebug && Setting.IsDebugReceive && Setting.IsDebugReceiveHeartBeat)
                 {
-                    LogHelper.Debug($"---收到{messagePackage.ToFormatMessageString(actorId)}");
+                    LogHelper.Debug("Data Package Receive HeartBeat: {message}", messagePackage.ToFormatMessageString(actorId));
                 }
 
                 // 心跳消息回复
@@ -119,13 +119,13 @@ internal partial class AppStartUpHotfixGame
 
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
-                LogHelper.Debug($"---收到{messagePackage.ToFormatMessageString(actorId)}");
+                LogHelper.Debug("Data Package Receive: {message}", messagePackage.ToFormatMessageString(actorId));
             }
 
             var handler = HotfixManager.GetTcpHandler(messagePackage.Header.MessageId);
             if (handler == null)
             {
-                LogHelper.Error($"找不到[{messagePackage.Header.MessageId}][{messagePackage.MessageType}]对应的handler");
+                LogHelper.Error("Data Package Receive: Can not find handler for message id: {messageId}, message type: {messageType}", messagePackage.Header.MessageId, messagePackage.MessageType);
                 return;
             }
 
@@ -136,7 +136,7 @@ internal partial class AppStartUpHotfixGame
             }
             catch (Exception exception)
             {
-                LogHelper.Fatal(exception);
+                LogHelper.Fatal("Data Package Receive: Error when invoke message handler for message id: {messageId}, message type: {messageType} , exception: {exception}", messagePackage.Header.MessageId, messagePackage.MessageType, exception);
             }
         }
     }
