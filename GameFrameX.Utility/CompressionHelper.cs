@@ -89,7 +89,7 @@ public static class CompressionHelper
         }
         catch (Exception e)
         {
-            LogHelper.Fatal(LocalizationService.GetString(Localization.Keys.Utility.CompressionHelper.ExceptionError, e.ToString()));
+            LogHelper.Fatal(e, "CompressionHelper.Compress {error}", LocalizationService.GetString(Localization.Keys.Utility.CompressionHelper.ExceptionError, e.ToString()));
         }
         finally
         {
@@ -133,7 +133,7 @@ public static class CompressionHelper
         }
         catch (Exception e)
         {
-            LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.CompressionHelper.ExceptionError, e.ToString()));
+            LogHelper.Fatal(e, "CompressionHelper.Decompress {error}", LocalizationService.GetString(Localization.Keys.Utility.CompressionHelper.ExceptionError, e.ToString()));
         }
         finally
         {
