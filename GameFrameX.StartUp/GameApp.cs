@@ -112,7 +112,6 @@ public static class GameApp
     /// </example>
     public static async Task Entry(string[] args, Action initAction, Action<LogOptions> logConfiguration = null)
     {
-
         LocalizationService.Instance.RegisterProvider(new AssemblyResourceProvider(typeof(Keys).Assembly));
         LauncherOptions launcherOptions = null;
         try
