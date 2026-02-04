@@ -145,32 +145,36 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
     public virtual async Task WriteAsync(INetworkMessage messageObject, int errorCode = 0)
     {
         ArgumentNullException.ThrowIfNull(messageObject, nameof(messageObject));
-
-        if (messageObject is IResponseMessage responseMessage && responseMessage.ErrorCode == default && errorCode != default)
+        int responseErrorCode = 0;
+        if (messageObject is IResponseMessage responseMessage)
         {
-            responseMessage.ErrorCode = errorCode;
+            if (responseMessage.ErrorCode == 0 && errorCode != 0)
+            {
+                responseMessage.ErrorCode = errorCode;
+                responseErrorCode = errorCode;
+            }
+            else
+            {
+                responseErrorCode = responseMessage.ErrorCode;
+            }
         }
 
+        var actorId = GetData<long>(GlobalConst.ActorIdKey);
         var messageData = MessageHelper.EncoderHandler.Handler(messageObject);
         if (Setting.IsDebug && Setting.IsDebugSend)
         {
-            var actorId = GetData<long>(GlobalConst.ActorIdKey);
             // 判断是否是心跳消息
             if (messageObject is IHeartBeatMessage)
             {
                 // 判断是否打印心跳消息的发送
                 if (Setting.IsDebugSendHeartBeat)
                 {
-                    LogHelper.Debug(LocalizationService.GetString(
-                                        GameFrameX.Localization.Keys.NetWork.MessageSent,
-                                        messageObject.ToFormatMessageString(actorId)));
+                    LogHelper.Debug("Send HeartBeat Message:{actorId} {message}", actorId, LocalizationService.GetString(Localization.Keys.NetWork.MessageSent, messageObject.ToFormatMessageString(actorId)));
                 }
             }
             else
             {
-                LogHelper.Debug(LocalizationService.GetString(
-                                    GameFrameX.Localization.Keys.NetWork.MessageSent,
-                                    messageObject.ToFormatMessageString(actorId)));
+                LogHelper.Debug("Send Message:{{actorId}} {errorCode} {{message}}", actorId, responseErrorCode, LocalizationService.GetString(Localization.Keys.NetWork.MessageSent, messageObject.ToFormatMessageString(actorId)));
             }
         }
 
@@ -196,13 +200,11 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
             }
             catch (OperationCanceledException exception)
             {
-                LogHelper.Error(LocalizationService.GetString(
-                                    GameFrameX.Localization.Keys.NetWork.MessageSendTimeout,
-                                    exception.Message));
+                LogHelper.Error("Send Message Timeout:{actorId} {message}", actorId, LocalizationService.GetString(Localization.Keys.NetWork.MessageSendTimeout, exception.Message));
             }
             catch (Exception e)
             {
-                LogHelper.Error(e);
+                LogHelper.Error("Send Message Error:{actorId} {message}", actorId, e.Message);
             }
         }
     }
