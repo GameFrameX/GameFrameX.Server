@@ -158,6 +158,7 @@ public static class GameApp
 
             // 设置日志配置信息
             LogOptions.Default.IsConsole = launcherOptions.LogIsConsole;
+            LogOptions.Default.IsWriteToFile = launcherOptions.LogIsWriteToFile;
             LogOptions.Default.IsGrafanaLoki = launcherOptions.LogIsGrafanaLoki;
             LogOptions.Default.GrafanaLokiUrl = launcherOptions.LogGrafanaLokiUrl;
             LogOptions.Default.GrafanaLokiUserName = launcherOptions.LogGrafanaLokiUserName;

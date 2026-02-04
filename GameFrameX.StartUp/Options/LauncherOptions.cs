@@ -186,7 +186,7 @@ public sealed class LauncherOptions
     /// </remarks>
     [Option(nameof(TimeZone), DefaultValue = "Asia/Shanghai", Description = "服务器时区设置，默认为 Asia/Shanghai，支持 IANA 时区数据库标准标识符")]
     public string TimeZone { get; set; } = "Asia/Shanghai";
-    
+
     /// <summary>
     /// Gets or sets whether console logging is enabled
     /// </summary>
@@ -196,6 +196,18 @@ public sealed class LauncherOptions
     /// </remarks>
     [Option(nameof(LogIsConsole), DefaultValue = true, Description = "是否输出到控制台,默认为 true。")]
     public bool LogIsConsole { get; set; } = true;
+
+    /// <summary>
+    /// 获取或设置是否启用日志文件写入功能
+    /// </summary>
+    /// <value>如果启用日志文件写入，则为 true；否则为 false。默认值为 true</value>
+    /// <remarks>
+    /// 是否将日志输出到文件，默认值为 true。启用后，日志信息将被写入到本地文件系统中，便于长期保存和后续分析。
+    /// 该配置通常与日志滚动、文件大小限制等设置配合使用，以控制日志文件的生成和管理。
+    /// 在生产环境中建议保持启用，以确保关键日志信息可被持久化记录。
+    /// </remarks>
+    [Option(nameof(LogIsWriteToFile), DefaultValue = true, Description = "是否将日志输出到文件,默认为 true。")]
+    public bool LogIsWriteToFile { get; set; } = true;
 
     /// <summary>
     /// Gets or sets whether GrafanaLoki logging is enabled
