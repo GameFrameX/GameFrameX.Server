@@ -63,7 +63,7 @@ public static class EventDispatcher
                 var listeners = HotfixManager.FindListeners(actor.Type, eventId);
                 if (listeners.IsNullOrEmpty())
                 {
-                    LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Events.NoListenersFound, eventId));
+                    LogHelper.Warning("EventDispatcher.Dispatch Actor {actorId} {eventId} {message}", actorId, eventId, LocalizationService.GetString(GameFrameX.Localization.Keys.Events.NoListenersFound, eventId));
                     return;
                 }
 
@@ -80,7 +80,7 @@ public static class EventDispatcher
                     catch (Exception exception)
                     {
                         // 捕获并记录事件处理过程中的异常
-                        LogHelper.Error(exception);
+                        LogHelper.Error("EventDispatcher.Dispatch Actor {actorId} {eventId} {exception}", actorId, eventId, exception);
                     }
                 }
             }
@@ -98,7 +98,7 @@ public static class EventDispatcher
                 var listeners = HotfixManager.FindListeners(eventId);
                 if (listeners.IsNullOrEmpty())
                 {
-                    LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Events.NoListenersFound, eventId));
+                    LogHelper.Warning("EventDispatcher.Dispatch Actor {actorId} {eventId} {message}", actorId, eventId, LocalizationService.GetString(GameFrameX.Localization.Keys.Events.NoListenersFound, eventId));
                     return;
                 }
 
@@ -113,7 +113,7 @@ public static class EventDispatcher
                     catch (Exception exception)
                     {
                         // 捕获并记录事件处理过程中的异常
-                        LogHelper.Error(exception);
+                        LogHelper.Error("EventDispatcher.Dispatch Actor {actorId} {eventId} {exception}", actorId, eventId, exception);
                     }
                 }
             }
