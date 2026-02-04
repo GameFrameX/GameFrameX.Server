@@ -69,17 +69,17 @@ public sealed partial class MongoDbService : IDatabaseService
             var db = await DB.InitAsync(dbOptions.Name, settings);
             _mongoDbContext = new MongoDbContext(dbOptions.Name);
             CurrentDatabase = db.Database();
-            LogHelper.Info(LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializedSuccessfully, dbOptions.ConnectionString, dbOptions.Name));
+            LogHelper.Info("MongoDbService.Open {dbName} {ConnectionString} {mongoDbInitializedSuccessfully}", dbOptions.Name, dbOptions.ConnectionString, LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializedSuccessfully, dbOptions.ConnectionString, dbOptions.Name));
             return true;
         }
         catch (Exception exception)
         {
-            LogHelper.Fatal(exception);
+            LogHelper.Fatal("MongoDbService.Open Exception {dbName} {ConnectionString} {exception}", dbOptions.Name, dbOptions.ConnectionString, exception);
             string message = LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializationFailed, dbOptions.ConnectionString, dbOptions.Name);
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(message);
             Console.ResetColor();
-            LogHelper.Error(message);
+            LogHelper.Error("MongoDbService.Open Exception {dbName} {ConnectionString} {message}", dbOptions.Name, dbOptions.ConnectionString, message);
             return false;
         }
     }
