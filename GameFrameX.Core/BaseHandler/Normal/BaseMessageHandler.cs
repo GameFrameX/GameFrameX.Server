@@ -31,7 +31,6 @@
 
 using System.Diagnostics;
 using GameFrameX.Foundation.Logger;
-using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.Utility.Setting;
 
@@ -108,8 +107,12 @@ public abstract class BaseMessageHandler<TRequest> : IMessageHandler where TRequ
             }
             catch (TimeoutException timeoutException)
             {
-                LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.ExecutionTimeout, timeoutException.Message));
+                LogHelper.Fatal("BaseMessageHandler.InnerAction, Execution timeout, message type: {messageType}, timeout: {timeout}, exception: {exception}", Message.GetType().FullName, timeout, timeoutException);
                 //强制设状态-取消该操作
+            }
+            catch (Exception exception)
+            {
+                LogHelper.Fatal("BaseMessageHandler.InnerAction, Execution exception, message type: {messageType}, exception: {exception}", Message.GetType().FullName, exception);
             }
         }
         catch (Exception e)
@@ -117,7 +120,6 @@ public abstract class BaseMessageHandler<TRequest> : IMessageHandler where TRequ
             LogHelper.Fatal(e);
         }
     }
-
 
     /// <summary>
     /// 动作异步
@@ -141,7 +143,7 @@ public abstract class BaseMessageHandler<TRequest> : IMessageHandler where TRequ
             _stopwatch.Stop();
             if (_stopwatch.Elapsed.Seconds >= GlobalSettings.CurrentSetting.MonitorTimeOutSeconds)
             {
-                LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.ExecutionTimeWarning, GetType().Name, Message.UniqueId, _stopwatch.ElapsedMilliseconds));
+                LogHelper.Warning("BaseMessageHandler.InnerActionAsync, Execution time warning, handler type: {handlerType}, message unique id: {messageUniqueId}, elapsed milliseconds: {elapsedMilliseconds}", GetType().Name, Message.UniqueId, _stopwatch.ElapsedMilliseconds);
             }
 
             return;
@@ -152,7 +154,7 @@ public abstract class BaseMessageHandler<TRequest> : IMessageHandler where TRequ
             _stopwatch.Restart();
             await ActionAsync(message);
             _stopwatch.Stop();
-            LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.ExecutionTimeDebug, GetType().Name, Message.UniqueId, _stopwatch.ElapsedMilliseconds));
+            LogHelper.Debug("BaseMessageHandler.InnerActionAsync, Execution time debug, handler type: {handlerType}, message unique id: {messageUniqueId}, elapsed milliseconds: {elapsedMilliseconds}", GetType().Name, Message.UniqueId, _stopwatch.ElapsedMilliseconds);
             return;
         }
 
