@@ -95,7 +95,7 @@ public sealed class IllegalWordDetection
                 }
                 catch (Exception e)
                 {
-                    LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ExceptionLogs.ExceptionDetails, e.ToString()));
+                    LogHelper.Error("IllegalWordDetection.Init {error}", LocalizationService.GetString(Localization.Keys.Utility.ExceptionLogs.ExceptionDetails, e.ToString()));
                 }
             });
         }
@@ -107,7 +107,7 @@ public sealed class IllegalWordDetection
             }
             catch (Exception e)
             {
-                LogHelper.Error(e.ToString());
+                LogHelper.Error("IllegalWordDetection.Init {error}", LocalizationService.GetString(Localization.Keys.Utility.ExceptionLogs.ExceptionDetails, e.ToString()));
             }
         }
     }
@@ -129,7 +129,7 @@ public sealed class IllegalWordDetection
                 }
                 catch (Exception e)
                 {
-                    LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ExceptionLogs.ExceptionDetails, e.ToString()));
+                    LogHelper.Error("IllegalWordDetection.Init {error}", LocalizationService.GetString(Localization.Keys.Utility.ExceptionLogs.ExceptionDetails, e.ToString()));
                 }
             });
         }
@@ -141,7 +141,7 @@ public sealed class IllegalWordDetection
             }
             catch (Exception e)
             {
-                LogHelper.Error(e.ToString());
+                LogHelper.Error("IllegalWordDetection.Init {error}", LocalizationService.GetString(Localization.Keys.Utility.ExceptionLogs.ExceptionDetails, e.ToString()));
             }
         }
     }
@@ -265,7 +265,7 @@ public sealed class IllegalWordDetection
             }
         }
 
-        LogHelper.Info(LocalizationService.GetString(Localization.Keys.Utility.IllegalWordDetection.InitializationComplete, (DateTime.UtcNow - startTime).TotalMilliseconds, activeNum));
+        LogHelper.Info("IllegalWordDetection.Init {time} {activeNum}", (DateTime.UtcNow - startTime).TotalMilliseconds, activeNum);
     }
 
     private static unsafe void InnerInit(string[] badWords)
@@ -339,7 +339,7 @@ public sealed class IllegalWordDetection
             }
         }
 
-        LogHelper.Info(LocalizationService.GetString(Localization.Keys.Utility.IllegalWordDetection.InitializationComplete, (DateTime.UtcNow - startTime).TotalMilliseconds, activeNum));
+        LogHelper.Info("IllegalWordDetection.Init {time} {activeNum}", (DateTime.UtcNow - startTime).TotalMilliseconds, activeNum);
     }
 
     private static unsafe string OriginalToLower(string text)
