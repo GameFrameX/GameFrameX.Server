@@ -311,12 +311,12 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
             }
             else if ((lhs > 0 && rhs > 0) || (lhs < 0 && rhs < 0))
             {
-                LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
+                LogHelper.Error("LNumber.MultiplicationOverflow {c}", LocalizationService.GetString(Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
                 r.Raw = long.MaxValue;
             }
             else
             {
-                LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
+                LogHelper.Error("LNumber.MultiplicationOverflow {c}", LocalizationService.GetString(Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
                 r.Raw = long.MinValue;
             }
         }
@@ -367,12 +367,12 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
             }
             else if ((lhs > 0 && rhs > 0) || (lhs < 0 && rhs < 0))
             {
-                LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.LNumber.DivisionOverflow, c));
+                LogHelper.Error("LNumber.DivisionOverflow {c}", LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
                 r.Raw = long.MaxValue;
             }
             else
             {
-                LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.LNumber.DivisionOverflow, c));
+                LogHelper.Error("LNumber.DivisionOverflow {c}", LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
                 r.Raw = long.MinValue;
             }
         }
