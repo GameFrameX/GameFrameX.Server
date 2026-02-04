@@ -178,10 +178,7 @@ public static class MessageProtoHelper
                     if (!AllMessageDictionary.TryAdd(messageTypeHandler.MessageId, type))
                     {
                         RequestDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
-                        throw new ArgumentAlreadyException(LocalizationService.GetString(
-                                                               GameFrameX.Localization.Keys.NetWorkAbstractions.MessageIdDuplicate,
-                                                               messageTypeHandler.MessageId,
-                                                               value?.FullName ?? "Unknown"));
+                        throw new ArgumentAlreadyException(LocalizationService.GetString(Localization.Keys.NetWorkAbstractions.MessageIdDuplicate, messageTypeHandler.MessageId, value?.FullName ?? "Unknown"));
                     }
 
                     OperationType.TryAdd(type, messageTypeHandler.OperationType);
@@ -206,10 +203,7 @@ public static class MessageProtoHelper
                         if (!RequestDictionary.TryAdd(messageTypeHandler.MessageId, type))
                         {
                             RequestDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
-                            throw new ArgumentAlreadyException(LocalizationService.GetString(
-                                                                   GameFrameX.Localization.Keys.NetWorkAbstractions.RequestIdDuplicate,
-                                                                   messageTypeHandler.MessageId,
-                                                                   value?.FullName ?? "Unknown"));
+                            throw new ArgumentAlreadyException(LocalizationService.GetString(Localization.Keys.NetWorkAbstractions.RequestIdDuplicate, messageTypeHandler.MessageId, value?.FullName ?? "Unknown"));
                         }
                     }
                     else if (type.IsImplWithInterface(typeof(IResponseMessage)) || type.IsImplWithInterface(typeof(INotifyMessage)))
@@ -218,10 +212,7 @@ public static class MessageProtoHelper
                         if (!ResponseDictionary.TryAdd(messageTypeHandler.MessageId, type))
                         {
                             ResponseDictionary.TryGetValue(messageTypeHandler.MessageId, out var value);
-                            throw new ArgumentAlreadyException(LocalizationService.GetString(
-                                                                   GameFrameX.Localization.Keys.NetWorkAbstractions.ResponseIdDuplicate,
-                                                                   messageTypeHandler.MessageId,
-                                                                   value?.FullName ?? "Unknown"));
+                            throw new ArgumentAlreadyException(LocalizationService.GetString(Localization.Keys.NetWorkAbstractions.ResponseIdDuplicate, messageTypeHandler.MessageId, value?.FullName ?? "Unknown"));
                         }
                     }
                 }
