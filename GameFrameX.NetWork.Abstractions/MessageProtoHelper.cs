@@ -46,7 +46,7 @@ public static class MessageProtoHelper
     private static readonly BidirectionalDictionary<int, Type> AllMessageDictionary = new();
     private static readonly BidirectionalDictionary<int, Type> ResponseDictionary = new();
     private static readonly ConcurrentDictionary<Type, byte> OperationType = new();
-    private static readonly List<Type> HeartBeatList = new();
+    private static readonly HashSet<Type> HeartBeatList = new();
 
     /// <summary>
     /// 获取消息ID,如果没有找到则返回 -1
@@ -185,15 +185,9 @@ public static class MessageProtoHelper
 
                     if (type.IsImplWithInterface(typeof(IHeartBeatMessage)))
                     {
-                        if (HeartBeatList.Contains(type))
+                        if (!HeartBeatList.Add(type))
                         {
-                            LogHelper.Error(LocalizationService.GetString(
-                                                GameFrameX.Localization.Keys.NetWorkAbstractions.HeartbeatMessageDuplicate,
-                                                type?.FullName ?? "Unknown"));
-                        }
-                        else
-                        {
-                            HeartBeatList.Add(type);
+                            throw new ArgumentAlreadyException(LocalizationService.GetString(Localization.Keys.NetWorkAbstractions.HeartbeatMessageDuplicate, type.FullName ?? "Unknown"));
                         }
                     }
 
