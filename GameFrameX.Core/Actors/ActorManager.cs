@@ -287,7 +287,7 @@ public static class ActorManager
                                 await actor.Inactive();
                                 await actor.OnRecycle();
                                 ActorMap.TryRemove(actor.Id, out var _);
-                                LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Actor.Recycled, actor.Id, actor.Type));
+                                LogHelper.Debug("ActorManager.CheckIdle, Actor recycled, actorId: {actorId}, actorType: {actorType}, message: {message}", actor.Id, actor.Type, LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Actor.Recycled, actor.Id, actor.Type));
                             }
                             else
                             {
@@ -330,11 +330,11 @@ public static class ActorManager
             }
 
             await Task.WhenAll(taskList);
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorManager.SaveAllStateTime, (DateTime.Now - begin).TotalMilliseconds));
+            LogHelper.Info("ActorManager.SaveAll, Save all actor state time: {saveAllStateTime} ms, message: {message}", (DateTime.Now - begin).TotalMilliseconds, LocalizationService.GetString(Localization.Keys.Core.ActorManager.SaveAllStateTime, (DateTime.Now - begin).TotalMilliseconds));
         }
         catch (Exception e)
         {
-            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorManager.SaveAllStateError, e));
+            LogHelper.Error("ActorManager.SaveAll, Save all actor state, message: {message}, error: {exception}", LocalizationService.GetString(Localization.Keys.Core.ActorManager.SaveAllStateError, e), e);
             throw;
         }
     }
@@ -348,7 +348,7 @@ public static class ActorManager
         try
         {
             var count = 0;
-            var taskList = new List<Task>();
+            var taskList = new List<Task>(2048);
             foreach (var actor in ActorMap.Values)
             {
                 // 如果定时回存的过程中关服了，直接终止定时回存，因为关服时会调用SaveAll以保证数据回存
@@ -371,15 +371,14 @@ public static class ActorManager
                 {
                     await Task.WhenAll(taskList);
                     await Task.Delay(1000);
-                    taskList = new List<Task>();
+                    taskList = new List<Task>(2048);
                     count = 0;
                 }
             }
         }
-        catch (Exception e)
+        catch (Exception exception)
         {
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorManager.TimerSaveStateError));
-            LogHelper.Error(e.ToString());
+            LogHelper.Error("ActorManager.TimerSave, Timer save all actor state error, message: {message}, error: {exception}", LocalizationService.GetString(Localization.Keys.Core.ActorManager.TimerSaveStateError), exception);
         }
     }
 
@@ -425,7 +424,7 @@ public static class ActorManager
 
                 async Task Work()
                 {
-                    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorManager.GlobalActorCrossDay, actor.Type));
+                    LogHelper.Info("ActorManager.CrossDay, CrossDay actor, actorId: {actorId}, actorType: {actorType}, message: {message}", actor.Id, actor.Type, LocalizationService.GetString(Localization.Keys.Core.ActorManager.GlobalActorCrossDay, actor.Type));
                     await actor.CrossDay(openServerDay);
                     Interlocked.Increment(ref a);
                 }
@@ -438,7 +437,7 @@ public static class ActorManager
         {
             if ((DateTime.Now - begin).TotalSeconds > CrossDayGlobalWaitSeconds)
             {
-                LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorManager.GlobalCompCrossDayTimeout, CrossDayGlobalWaitSeconds));
+                LogHelper.Warning("ActorManager.CrossDay, GlobalCompCrossDayTimeout, timeout: {timeout}, message: {message}", CrossDayGlobalWaitSeconds, LocalizationService.GetString(Localization.Keys.Core.ActorManager.GlobalCompCrossDayTimeout, CrossDayGlobalWaitSeconds));
                 break;
             }
 
@@ -446,7 +445,7 @@ public static class ActorManager
         }
 
         var globalCost = (DateTime.Now - begin).TotalMilliseconds;
-        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorManager.GlobalCompCrossDayComplete, globalCost));
+        LogHelper.Info("ActorManager.CrossDay, GlobalCompCrossDayComplete, cost: {cost}, message: {message}", globalCost, LocalizationService.GetString(Localization.Keys.Core.ActorManager.GlobalCompCrossDayComplete, globalCost));
         a = 0;
         b = 0;
         foreach (var actor in ActorMap.Values)
@@ -469,7 +468,7 @@ public static class ActorManager
         {
             if ((DateTime.Now - begin).TotalSeconds > CrossDayNotRoleWaitSeconds)
             {
-                LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorManager.NonPlayerCompCrossDayTimeout, CrossDayNotRoleWaitSeconds));
+                LogHelper.Warning("ActorManager.CrossDay, NonPlayerCompCrossDayTimeout, timeout: {timeout}, message: {message}", CrossDayNotRoleWaitSeconds, LocalizationService.GetString(Localization.Keys.Core.ActorManager.NonPlayerCompCrossDayTimeout, CrossDayNotRoleWaitSeconds));
                 break;
             }
 
@@ -477,7 +476,7 @@ public static class ActorManager
         }
 
         var otherCost = (DateTime.Now - begin).TotalMilliseconds - globalCost;
-        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ActorManager.NonPlayerCompCrossDayComplete, otherCost));
+        LogHelper.Info("ActorManager.CrossDay, NonPlayerCompCrossDayComplete, cost: {cost}, message: {message}", otherCost, LocalizationService.GetString(Localization.Keys.Core.ActorManager.NonPlayerCompCrossDayComplete, otherCost));
     }
 
     /// <summary>
@@ -522,9 +521,9 @@ public static class ActorManager
             {
                 action.Invoke(actor);
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                LogHelper.Error(e);
+                LogHelper.Error("ActorManager.ActorForEach, error, actorId: {actorId}, actorType: {actorType}, exception: {exception}", actor.Id, actor.Type, exception);
             }
         }
     }

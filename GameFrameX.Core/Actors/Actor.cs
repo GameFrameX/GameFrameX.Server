@@ -172,7 +172,7 @@ public sealed class Actor : IActor, IDisposable
                     }
                     catch (Exception e)
                     {
-                        LogHelper.Fatal(e);
+                        LogHelper.Fatal(e, "Actor.GetComponentAgent, Active component failed, actorId: {actorId}, componentType: {componentType}", Id, compType.FullName);
                     }
 
                     try
@@ -183,7 +183,7 @@ public sealed class Actor : IActor, IDisposable
                     }
                     catch (Exception e)
                     {
-                        LogHelper.Fatal(e);
+                        LogHelper.Fatal(e, "Actor.GetComponentAgent, Active component failed, actorId: {actorId}, componentType: {componentType}", Id, compType.FullName);
                     }
                 }
 
@@ -209,7 +209,7 @@ public sealed class Actor : IActor, IDisposable
                 }
                 catch (Exception e)
                 {
-                    LogHelper.Fatal(e);
+                    LogHelper.Fatal(e, "Actor.GetComponentAgent, Active component failed, actorId: {actorId}, componentType: {componentType}", Id, compType.FullName);
                 }
 
                 try
@@ -220,7 +220,7 @@ public sealed class Actor : IActor, IDisposable
                 }
                 catch (Exception e)
                 {
-                    LogHelper.Fatal(e);
+                    LogHelper.Fatal(e, "Actor.GetComponentAgent, Active component failed, actorId: {actorId}, componentType: {componentType}", Id, compType.FullName);
                 }
             }
 
@@ -249,7 +249,7 @@ public sealed class Actor : IActor, IDisposable
                 }
                 catch (Exception e)
                 {
-                    LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Actor.CrossDayFailed, agent.GetType().FullName, Id, Type, e));
+                    LogHelper.Error(e, "Actor.CrossDay, CrossDay failed, componentType: {componentType}, actorId: {actorId}, actorType: {actorType}", agent.GetType().FullName, Id, Type);
                 }
             }
         }
@@ -349,14 +349,14 @@ public sealed class Actor : IActor, IDisposable
                 catch (Exception ex)
                 {
                     // 记录回调执行异常但继续执行其他回调
-                    LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Actor.RecycleCallbackFailed, Id, Type, ex));
+                    LogHelper.Error(ex, "Actor.OnRecycle, RecycleCallback failed, actorId: {actorId}, actorType: {actorType}", Id, Type);
                 }
             }
         }
         catch (Exception ex)
         {
             // 记录整体执行异常
-            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Actor.RecycleFailed, Id, Type, ex));
+            LogHelper.Error(ex, "Actor.OnRecycle, Recycle failed, actorId: {actorId}, actorType: {actorType}", Id, Type);
         }
         finally
         {
