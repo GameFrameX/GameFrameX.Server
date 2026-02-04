@@ -166,9 +166,7 @@ public sealed class NetworkMessagePackage : INetworkMessagePackage
         }
         catch (Exception e)
         {
-            LogHelper.Error(LocalizationService.GetString(
-                                GameFrameX.Localization.Keys.NetWork.MessageEncodingError,
-                                e?.Message ?? "Unknown exception"));
+            LogHelper.Error("Create NetworkMessagePackage Error {messageId} {operationType} {uniqueId} {exception}", messageObjectHeader.MessageId, messageObjectHeader.OperationType, messageObjectHeader.UniqueId, e.Message);
             throw;
         }
     }
