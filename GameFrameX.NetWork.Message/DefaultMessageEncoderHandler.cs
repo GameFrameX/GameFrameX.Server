@@ -85,13 +85,12 @@ public sealed class DefaultMessageEncoderHandler : BaseMessageEncoderHandler
             }
             catch (Exception e)
             {
-                LogHelper.Error(LocalizationService.GetString(Localization.Keys.NetWorkMessage.MessageObjectEncodeException));
-                LogHelper.Error(e);
+                LogHelper.Error("MessageObjectEncodeException {messageId} {operationType} {uniqueId} {exception}", messageObject.MessageId, messageObject.OperationType, messageObject.UniqueId, e);
                 return null;
             }
         }
 
-        LogHelper.Error(LocalizationService.GetString(Localization.Keys.NetWorkMessage.MessageObjectNullEncodeException));
+        LogHelper.Error("MessageObjectNullEncodeException {message} ", LocalizationService.GetString(Localization.Keys.NetWorkMessage.MessageObjectNullEncodeException));
         return null;
     }
 }
