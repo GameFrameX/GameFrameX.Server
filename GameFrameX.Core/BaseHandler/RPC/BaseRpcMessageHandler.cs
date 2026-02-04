@@ -124,7 +124,7 @@ public abstract class BaseRpcMessageHandler<TRequest, TResponse> : IMessageHandl
             }
             catch (TimeoutException timeoutException)
             {
-                LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.ExecutionTimeout, timeoutException.Message));
+                LogHelper.Fatal("BaseRpcMessageHandler.InnerAction RequestMessage: {requestMessage} Message: {message}", RequestMessage, LocalizationService.GetString(Localization.Keys.Core.MessageHandler.ExecutionTimeout, timeoutException.Message));
 
                 // 设置超时错误码并发送错误响应给客户端 / Set timeout error code and send error response to client
                 response.ErrorCode = OperationErrorCode.TimeOut;
@@ -136,7 +136,8 @@ public abstract class BaseRpcMessageHandler<TRequest, TResponse> : IMessageHandl
         }
         catch (Exception e)
         {
-            LogHelper.Fatal(e);
+            var fullName = GetType().FullName;
+            LogHelper.Fatal("BaseRpcMessageHandler.InnerAction, Handler: {handlerName} RequestMessage: {requestMessage} Message: {message}", fullName, RequestMessage, e);
         }
     }
 
@@ -162,7 +163,8 @@ public abstract class BaseRpcMessageHandler<TRequest, TResponse> : IMessageHandl
             _stopwatch.Stop();
             if (_stopwatch.Elapsed.Seconds >= GlobalSettings.CurrentSetting.MonitorTimeOutSeconds)
             {
-                LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.ExecutionTimeWarning, GetType().Name, RequestMessage.UniqueId, _stopwatch.ElapsedMilliseconds));
+                var fullName = GetType().FullName;
+                LogHelper.Warning("BaseRpcMessageHandler.InnerActionAsync, Handler: {handlerName} RequestMessage: {requestMessage} Message: {message}", fullName, RequestMessage, LocalizationService.GetString(Localization.Keys.Core.MessageHandler.ExecutionTimeWarning, GetType().Name, RequestMessage.UniqueId, _stopwatch.ElapsedMilliseconds));
             }
 
             return;
@@ -173,7 +175,8 @@ public abstract class BaseRpcMessageHandler<TRequest, TResponse> : IMessageHandl
             _stopwatch.Restart();
             await ActionAsync(request, response);
             _stopwatch.Stop();
-            LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.ExecutionTimeDebug, GetType().Name, RequestMessage.UniqueId, _stopwatch.ElapsedMilliseconds));
+            var fullName = GetType().FullName;
+            LogHelper.Debug("BaseRpcMessageHandler.InnerActionAsync, Handler: {handlerName} RequestMessage: {requestMessage} Message: {message}", fullName, RequestMessage, LocalizationService.GetString(Localization.Keys.Core.MessageHandler.ExecutionTimeDebug, fullName, RequestMessage.UniqueId, _stopwatch.ElapsedMilliseconds));
             return;
         }
 
