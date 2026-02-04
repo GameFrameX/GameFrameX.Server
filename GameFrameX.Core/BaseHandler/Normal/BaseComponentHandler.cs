@@ -89,7 +89,7 @@ public abstract class BaseComponentHandler<TRequest> : BaseMessageHandler<TReque
         {
             if (ActorId == default)
             {
-                LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.ActorIdIsZero, message.GetType().FullName));
+                LogHelper.Fatal("BaseComponentHandler.Init, ActorId is zero, message type: {messageType}", message.GetType().FullName);
                 NetWorkChannel.Close();
                 return false;
             }
@@ -100,7 +100,7 @@ public abstract class BaseComponentHandler<TRequest> : BaseMessageHandler<TReque
             }
             catch (Exception e)
             {
-                Log.Fatal(e, "get component failed, close channel");
+                LogHelper.Fatal(e, "BaseComponentHandler.Init, get component failed, close channel, actorId: {actorId}, componentAgentType: {componentAgentType}", ActorId, ComponentAgentType.FullName);
                 NetWorkChannel.Close();
                 return false;
             }
@@ -119,7 +119,7 @@ public abstract class BaseComponentHandler<TRequest> : BaseMessageHandler<TReque
     {
         if (CacheComponent == null)
         {
-            LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.CacheComponentIsNull));
+            LogHelper.Fatal("BaseComponentHandler.InnerAction, CacheComponent is null, message type: {messageType}", Message.GetType().FullName);
             NetWorkChannel.Close();
             return Task.CompletedTask;
         }
@@ -137,7 +137,7 @@ public abstract class BaseComponentHandler<TRequest> : BaseMessageHandler<TReque
     {
         if (CacheComponent == null)
         {
-            LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.CacheComponentIsNull));
+            LogHelper.Fatal("BaseComponentHandler.GetComponentAgent, CacheComponent is null, message type: {messageType}", Message.GetType().FullName);
             NetWorkChannel.Close();
             return default;
         }
