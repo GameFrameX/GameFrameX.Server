@@ -86,6 +86,7 @@ public abstract class BaseDataTable<T> : IDataTable<T> where T : class
     /// </summary>
     /// <param name="id">对象的ID</param>
     /// <returns>找到的对象，如果未找到则返回默认值</returns>
+    [Obsolete("请使用 TryGet 方法替代")]
     public T Get(int id)
     {
         LongDataMaps.TryGetValue(id, out var value);
@@ -97,6 +98,7 @@ public abstract class BaseDataTable<T> : IDataTable<T> where T : class
     /// </summary>
     /// <param name="id">对象的ID</param>
     /// <returns>找到的对象，如果未找到则返回默认值</returns>
+    [Obsolete("请使用 TryGet 方法替代")]
     public T Get(long id)
     {
         LongDataMaps.TryGetValue(id, out var value);
@@ -108,6 +110,7 @@ public abstract class BaseDataTable<T> : IDataTable<T> where T : class
     /// </summary>
     /// <param name="id">对象的ID</param>
     /// <returns>找到的对象，如果未找到则返回默认值</returns>
+    [Obsolete("请使用 TryGet 方法替代")]
     public T Get(string id)
     {
         StringDataMaps.TryGetValue(id, out var value);
