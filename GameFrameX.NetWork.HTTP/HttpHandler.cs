@@ -64,8 +64,8 @@ public static class HttpHandler
         var ip = context.Connection.RemoteIpAddress?.ToString();
         string url = context.Request.PathBase + context.Request.Path;
         var command = context.Request.Path.ToString().Substring(GlobalSettings.CurrentSetting.HttpUrl.Length);
-        var logHeader = LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.RequestLogHeader, context.TraceIdentifier, ip, url);
-        LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.RequestMethod, logHeader, context.Request.Method));
+        var logHeader = LocalizationService.GetString(Localization.Keys.NetWorkHttp.RequestLogHeader, context.TraceIdentifier, ip, url);
+        LogHelper.Debug("HTTP RequestMethod {logHeader} {method}", logHeader, context.Request.Method);
 
         try
         {
@@ -134,7 +134,7 @@ public static class HttpHandler
             // 记录请求参数
             if (paramMap.Count > 0)
             {
-                LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.RequestParameters, JsonHelper.Serialize(paramMap)));
+                LogHelper.Debug("HTTP RequestParameters {parameters}", JsonHelper.Serialize(paramMap));
             }
 
             // 检查指令是否有效
@@ -146,7 +146,7 @@ public static class HttpHandler
 
             if (!GlobalSettings.IsAppRunning)
             {
-                await context.Response.WriteAsync(HttpJsonResult.ErrorString(HttpStatusCode.ActionFailed, LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.ServerStatusError)));
+                await context.Response.WriteAsync(HttpJsonResult.ErrorString(HttpStatusCode.ActionFailed, LocalizationService.GetString(Localization.Keys.NetWorkHttp.ServerStatusError)));
                 return;
             }
 
@@ -170,7 +170,7 @@ public static class HttpHandler
             var handler = baseHandler(command);
             if (handler == null)
             {
-                LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.CommandHandlerNotFound, command));
+                LogHelper.Warning("HTTP CommandHandlerNotFound {command}", LocalizationService.GetString(Localization.Keys.NetWorkHttp.CommandHandlerNotFound, command));
                 await context.Response.WriteAsync(HttpJsonResult.NotFoundString());
                 return;
             }
@@ -191,7 +191,7 @@ public static class HttpHandler
                 stopwatch.Start();
                 var result = await handler.Action(ip, url, paramMap, message);
                 stopwatch.Stop();
-                LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.ExecutionTime, logHeader, stopwatch.ElapsedMilliseconds, result));
+                LogHelper.Debug("HTTP ProtoBuf ExecutionTime {logHeader} {elapsedMilliseconds} {result}", logHeader, stopwatch.ElapsedMilliseconds, result);
                 if (result.IsNotNull())
                 {
                     try
@@ -204,8 +204,7 @@ public static class HttpHandler
                     }
                     catch (Exception e)
                     {
-                        LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.MessageEncodingException));
-                        LogHelper.Error(e);
+                        LogHelper.Error("HTTP ProtoBuf MessageEncodingException {exception}", e);
                     }
                 }
             }
@@ -227,7 +226,7 @@ public static class HttpHandler
                         stopwatch.Start();
                         var result = await handler.Action(ip, url, httpMessageRequestBase);
                         stopwatch.Stop();
-                        LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.ExecutionTime, logHeader, stopwatch.ElapsedMilliseconds, result));
+                        LogHelper.Debug("HTTP JSON ExecutionTime {logHeader} {elapsedMilliseconds} {result}", logHeader, stopwatch.ElapsedMilliseconds, result);
                         await context.Response.WriteAsync(result);
                     }
                     else
@@ -238,7 +237,7 @@ public static class HttpHandler
                         }
                         else
                         {
-                            await context.Response.WriteAsync(HttpJsonResult.ErrorString(400, LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.DataVerificationFailed)));
+                            await context.Response.WriteAsync(HttpJsonResult.ErrorString(400, LocalizationService.GetString(Localization.Keys.NetWorkHttp.DataVerificationFailed)));
                         }
                     }
                 }
@@ -248,14 +247,14 @@ public static class HttpHandler
                     stopwatch.Start();
                     var result = await handler.Action(ip, url, paramMap);
                     stopwatch.Stop();
-                    LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.ExecutionTime, logHeader, stopwatch.ElapsedMilliseconds, result));
+                    LogHelper.Debug("HTTP JSON ExecutionTime {logHeader} {elapsedMilliseconds} {result}", logHeader, stopwatch.ElapsedMilliseconds, result);
                     await context.Response.WriteAsync(result);
                 }
             }
         }
         catch (Exception e)
         {
-            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.ExceptionOccurred, logHeader, e.Message, e.StackTrace));
+            LogHelper.Error("HTTP JSON ExceptionOccurred {logHeader} {message} {stackTrace}", logHeader, e.Message, e.StackTrace);
             await context.Response.WriteAsync(HttpJsonResult.FailString(e.Message));
         }
     }
