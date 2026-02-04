@@ -94,7 +94,7 @@ public abstract class BaseRpcComponentHandler<TRequest, TResponse> : BaseRpcMess
         {
             if (ActorId == default)
             {
-                LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.ActorIdIsZero, message.GetType().FullName));
+                LogHelper.Fatal("BaseRpcComponentHandler.Init, ActorId is zero, message type: {messageType}", message.GetType().FullName);
                 NetWorkChannel.Close();
                 return false;
             }
@@ -105,7 +105,7 @@ public abstract class BaseRpcComponentHandler<TRequest, TResponse> : BaseRpcMess
             }
             catch (Exception e)
             {
-                Log.Fatal(e, "get component failed, close channel");
+                LogHelper.Fatal(e, "BaseRpcComponentHandler.Init, get component failed, close channel, actorId: {actorId}, componentAgentType: {componentAgentType}", ActorId, ComponentAgentType.FullName);
                 NetWorkChannel.Close();
                 return false;
             }
@@ -124,7 +124,7 @@ public abstract class BaseRpcComponentHandler<TRequest, TResponse> : BaseRpcMess
     {
         if (CacheComponent == null)
         {
-            LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.CacheComponentIsNull));
+            LogHelper.Fatal("BaseRpcComponentHandler.InnerAction, CacheComponent is null, message type: {messageType}", RequestMessage.GetType().FullName);
             NetWorkChannel.Close();
             return Task.CompletedTask;
         }
@@ -147,8 +147,8 @@ public abstract class BaseRpcComponentHandler<TRequest, TResponse> : BaseRpcMess
             }
             catch (Exception e)
             {
-                LogHelper.Error(e, LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.InnerActionError, RequestMessage.GetType().FullName, RequestMessage));
-                if (response != null && response.ErrorCode == default)
+                LogHelper.Error(e, "BaseRpcComponentHandler.InnerAction, InnerActionAsync error, message type: {messageType}, message: {message}", RequestMessage.GetType().FullName, RequestMessage);
+                if (response != null && response.ErrorCode == 0)
                 {
                     response.ErrorCode = OperationErrorCode.InternalServerError;
                 }
@@ -176,7 +176,7 @@ public abstract class BaseRpcComponentHandler<TRequest, TResponse> : BaseRpcMess
     {
         if (CacheComponent == null)
         {
-            LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.MessageHandler.CacheComponentIsNull));
+            LogHelper.Fatal("BaseRpcComponentHandler.GetComponentAgent, CacheComponent is null, message type: {messageType}", RequestMessage.GetType().FullName);
             NetWorkChannel.Close();
             return default;
         }
