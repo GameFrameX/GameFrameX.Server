@@ -225,6 +225,19 @@ public sealed class LauncherOptions
     public string LogGrafanaLokiPassword { get; set; }
 
     /// <summary>
+    /// 获取或设置服务器时区
+    /// </summary>
+    /// <value>服务器使用的时区标识符，默认值为 "Asia/Shanghai"</value>
+    /// <remarks>
+    /// 服务器时区设置，用于统一时间处理逻辑，确保日志、定时任务等时间相关功能的一致性。
+    /// 支持 IANA 时区数据库中的标准时区标识符，如 "Asia/Shanghai"、"UTC"、"America/New_York" 等。
+    /// 默认值为 "Asia/Shanghai"，适用于中国大陆地区部署的服务器。
+    /// 修改此值将影响服务器内部所有时间计算、日志时间戳、定时任务触发时间等。
+    /// </remarks>
+    [Option(nameof(TimeZone), DefaultValue = "Asia/Shanghai", Description = "服务器时区设置，默认为 Asia/Shanghai，支持 IANA 时区数据库标准标识符")]
+    public string TimeZone { get; set; } = "Asia/Shanghai";
+
+    /// <summary>
     /// Gets or sets the log rolling interval
     /// </summary>
     /// <value>The interval for log file rolling. Default is RollingInterval.Day</value>
