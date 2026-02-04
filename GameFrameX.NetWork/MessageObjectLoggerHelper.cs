@@ -99,7 +99,7 @@ public static class MessageObjectLoggerHelper
         }
         catch (Exception e)
         {
-            LogHelper.Error(e);
+            LogHelper.Error("FormatMessage Error {messageId} {operationType} {uniqueId} {actorId} {exception}", messageId, operationType, uniqueId, actorId, e);
         }
 
         return string.Empty;
