@@ -83,11 +83,11 @@ public sealed class StateComponent
             }
 
             await Task.WhenAll(tasks);
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.StateComponent.SaveAllStateTime, (DateTime.Now - begin).TotalMilliseconds));
+            LogHelper.Info("StateComponent.SaveAll StateTime {time}", LocalizationService.GetString(Localization.Keys.Core.StateComponent.SaveAllStateTime, (DateTime.Now - begin).TotalMilliseconds));
         }
         catch (Exception e)
         {
-            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.StateComponent.SaveAllStateError, e));
+            LogHelper.Error("StateComponent.SaveAll StateError {error}", LocalizationService.GetString(Localization.Keys.Core.StateComponent.SaveAllStateError, e));
         }
     }
 
@@ -109,8 +109,7 @@ public sealed class StateComponent
         }
         catch (Exception e)
         {
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.StateComponent.TimerSaveStateError));
-            LogHelper.Error(e.ToString());
+            LogHelper.Info("StateComponent.TimerSave StateError {error}", LocalizationService.GetString(Localization.Keys.Core.StateComponent.TimerSaveStateError, e));
         }
     }
 }
@@ -224,7 +223,7 @@ public abstract class StateComponent<TState> : BaseComponent where TState : Base
         }
         catch (Exception e)
         {
-            LogHelper.Fatal(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.StateComponent.SaveStateFailed, State.Id, e));
+            LogHelper.Fatal("StateComponent.SaveState Failed StateId: {stateId} , Error: {error} , Message: {message}", State.Id, e, LocalizationService.GetString(Localization.Keys.Core.StateComponent.SaveStateFailed, State.Id, e));
         }
     }
 
@@ -299,7 +298,7 @@ public abstract class StateComponent<TState> : BaseComponent where TState : Base
         {
             var stateName = typeof(TState).Name;
             StateComponent.StatisticsTool.Count(stateName, writeList.Count);
-            LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.StateComponent.StateSaveBack, stateName, writeList.Count));
+            LogHelper.Debug("StateComponent.StateSaveBack StateName: {stateName} , Count: {count}", stateName, writeList.Count);
             var currentDatabase = GameDb.As<MongoDbService>().CurrentDatabase;
             var collection = currentDatabase.GetCollection<BsonDocument>(stateName);
             for (var idx = 0; idx < writeList.Count; idx += GlobalSettings.CurrentSetting.SaveDataBatchCount)
@@ -328,17 +327,17 @@ public abstract class StateComponent<TState> : BaseComponent where TState : Base
                     }
                     else
                     {
-                        LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.StateComponent.SaveDataFailed, typeof(TState).FullName));
+                        LogHelper.Error("StateComponent.SaveDataFailed StateName: {stateName} , Message: {message}", stateName, LocalizationService.GetString(Localization.Keys.Core.StateComponent.SaveDataFailed, typeof(TState).FullName));
                     }
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.StateComponent.SaveDataException, typeof(TState).FullName, ex));
+                    LogHelper.Error("StateComponent.SaveDataException StateName: {stateName} , Error: {error} , Message: {message}", stateName, ex, LocalizationService.GetString(Localization.Keys.Core.StateComponent.SaveDataException, typeof(TState).FullName, ex));
                 }
 
                 if (!save && shutdown)
                 {
-                    LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.StateComponent.SaveDataFailed, typeof(TState).FullName));
+                    LogHelper.Error("StateComponent.SaveDataFailed StateName: {stateName} , Message: {message}", stateName, LocalizationService.GetString(Localization.Keys.Core.StateComponent.SaveDataFailed, typeof(TState).FullName));
                 }
             }
         }
