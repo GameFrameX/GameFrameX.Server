@@ -96,7 +96,7 @@ public class DefaultMessageDecoderHandler : BaseMessageDecoderHandler
         }
         catch (Exception e)
         {
-            LogHelper.Fatal(e);
+            LogHelper.Fatal("MessageObjectDecodeException: {exception}", e);
             return null;
         }
     }
