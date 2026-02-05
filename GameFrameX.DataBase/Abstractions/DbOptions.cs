@@ -51,4 +51,9 @@ public sealed record DbOptions
     /// 数据库名称
     /// </summary>
     public string Name { get; init; }
+
+    /// <summary>
+    /// 是否使用时区时间记录
+    /// </summary>
+    public bool IsUseTimeZone { get; init; } = true;
 }

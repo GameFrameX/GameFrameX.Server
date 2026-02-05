@@ -52,6 +52,7 @@ public sealed partial class MongoDbService : IDatabaseService
     /// </summary>
     public IMongoDatabase CurrentDatabase { get; private set; }
 
+    private DbOptions _dbOptions;
     private MongoDbContext _mongoDbContext;
 
     /// <summary>
@@ -61,10 +62,12 @@ public sealed partial class MongoDbService : IDatabaseService
     /// <returns>返回数据库是否初始化成功</returns>
     public async Task<bool> Open(DbOptions dbOptions)
     {
+        ArgumentNullException.ThrowIfNull(dbOptions, nameof(dbOptions));
+        ArgumentNullException.ThrowIfNull(dbOptions.ConnectionString, nameof(dbOptions.ConnectionString));
+        ArgumentNullException.ThrowIfNull(dbOptions.Name, nameof(dbOptions.Name));
+        _dbOptions = dbOptions;
         try
         {
-            ArgumentNullException.ThrowIfNull(dbOptions.ConnectionString, nameof(dbOptions.ConnectionString));
-            ArgumentNullException.ThrowIfNull(dbOptions.Name, nameof(dbOptions.Name));
             var settings = MongoClientSettings.FromConnectionString(dbOptions.ConnectionString);
             var db = await DB.InitAsync(dbOptions.Name, settings);
             _mongoDbContext = new MongoDbContext(dbOptions.Name);
