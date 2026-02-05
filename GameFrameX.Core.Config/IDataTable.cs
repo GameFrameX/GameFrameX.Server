@@ -60,7 +60,7 @@ public interface IDataTable<T> : IDataTable
     /// </summary>
     /// <param name="id">要获取的对象的唯一整数标识符。</param>
     /// <returns>与指定 ID 关联的数据对象；如果未找到匹配项，则可能返回 null 或抛出异常（取决于实现）。</returns>
-    [Obsolete("请使用 TryGet 方法替代")]
+    [Obsolete("Please use the TryGet method instead / 请使用 TryGet 方法替代")]
     T Get(int id);
 
     /// <summary>
@@ -68,7 +68,7 @@ public interface IDataTable<T> : IDataTable
     /// </summary>
     /// <param name="id">要获取的对象的唯一长整数标识符。</param>
     /// <returns>与指定 ID 关联的数据对象；如果未找到匹配项，则可能返回 null 或抛出异常（取决于实现）。</returns>
-    [Obsolete("请使用 TryGet 方法替代")]
+    [Obsolete("Please use the TryGet method instead / 请使用 TryGet 方法替代")]
     T Get(long id);
 
     /// <summary>
@@ -76,7 +76,7 @@ public interface IDataTable<T> : IDataTable
     /// </summary>
     /// <param name="id">要获取的对象的唯一字符串标识符。</param>
     /// <returns>与指定 ID 关联的数据对象；如果未找到匹配项，则可能返回 null 或抛出异常（取决于实现）。</returns>
-    [Obsolete("请使用 TryGet 方法替代")]
+    [Obsolete("Please use the TryGet method instead / 请使用 TryGet 方法替代")]
     T Get(string id);
 
     /// <summary>
