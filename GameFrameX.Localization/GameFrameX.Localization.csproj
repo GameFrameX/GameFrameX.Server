@@ -19,6 +19,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.Foundation.Localization" Version="2.2.1" />
+      <PackageReference Include="GameFrameX.Foundation.Localization" Version="2.2.2" />
     </ItemGroup>
 </Project>
