@@ -71,7 +71,7 @@ public sealed class DefaultMessageEncoderHandler : BaseMessageEncoderHandler
                 // 总长度
                 buffer.WriteUIntValue((uint)totalLength, ref offset);
                 // operationType 操作类型
-                buffer.WriteByteValue((byte)messageObject.OperationType, ref offset);
+                buffer.WriteByteValue(messageObject.OperationType, ref offset);
                 // zipFlag 压缩标记
                 buffer.WriteByteValue(zipFlag, ref offset);
                 // uniqueId 唯一ID
