@@ -65,11 +65,11 @@ public sealed class DefaultMessageEncoderHandler : BaseMessageEncoderHandler
                 var messageBodyData = ProtoBufSerializerHelper.Serialize(messageObject);
                 byte zipFlag = 0;
                 BytesCompressHandler(ref messageBodyData, ref zipFlag);
-                var totalLength = (ushort)(PackageHeaderLength + messageBodyData.Length);
+                var totalLength = PackageHeaderLength + messageBodyData.Length;
                 var buffer = ArrayPool<byte>.Shared.Rent(totalLength);
                 var offset = 0;
                 // 总长度
-                buffer.WriteUIntValue(totalLength, ref offset);
+                buffer.WriteUIntValue((uint)totalLength, ref offset);
                 // operationType 操作类型
                 buffer.WriteByteValue((byte)messageObject.OperationType, ref offset);
                 // zipFlag 压缩标记
