@@ -78,6 +78,7 @@ public sealed class DefaultMessageEncoderHandler : BaseMessageEncoderHandler
                 buffer.WriteIntValue(messageObject.UniqueId, ref offset);
                 // MessageId 消息ID
                 buffer.WriteIntValue(messageObject.MessageId, ref offset);
+                // 消息内容
                 buffer.WriteBytesWithoutLength(messageBodyData, ref offset);
                 var result = buffer.AsSpan(0, totalLength).ToArray();
                 ArrayPool<byte>.Shared.Return(buffer);
