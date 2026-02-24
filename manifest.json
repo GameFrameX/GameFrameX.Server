@@ -1286,6 +1286,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck",
+      "Summary": "<p sourcefile=\"api/GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.yml\" sourcestartlinenumber=\"1\">MongoDB 健康检查类</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GameFrameX.DataBase.Mongo.HealthChecks.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GameFrameX.DataBase.Mongo.HealthChecks.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GameFrameX.DataBase.Mongo.HealthChecks",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.DataBase.Mongo.MongoDbService.yml",
       "output": {
         ".html": {
@@ -2378,90 +2406,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.yml\" sourcestartlinenumber=\"1\">Health check item information / 健康检查项目信息</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.yml\" sourcestartlinenumber=\"1\">Health check settings information class / 健康检查设置信息类</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.StartUp.Extensions.HealthCheckResponse.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.StartUp.Extensions.HealthCheckResponse.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.StartUp.Extensions.HealthCheckResponse",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.HealthCheckResponse.yml\" sourcestartlinenumber=\"1\">Health check response information / 健康检查响应信息</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.StartUp.Extensions.HealthChecksExtensions",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.yml\" sourcestartlinenumber=\"1\">Health check configuration extension methods / 健康检查配置扩展方法</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.StartUp.Extensions.OpenTelemetryExtensions",
-      "Summary": "<p sourcefile=\"api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.yml\" sourcestartlinenumber=\"1\">OpenTelemetry configuration extension methods / OpenTelemetry 配置扩展方法</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GameFrameX.StartUp.Extensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GameFrameX.StartUp.Extensions.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "GameFrameX.StartUp.Extensions",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/GameFrameX.StartUp.GameApp.yml",
       "output": {
         ".html": {
@@ -2794,7 +2738,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GameFrameX.Utility.RandomHelper",
-      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"1\">随机数帮助类</p>\n<p sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"3\">功能概述：</p>\n<ul sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"4\">\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"4\">提供线程安全的随机数生成功能</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"5\">支持多种数据类型的随机数生成（int、long、double、byte[]等）</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"6\">提供便捷的集合随机选择方法</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"7\">支持随机选择单个或多个元素</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"8\">支持获取随机索引</li>\n</ul>\n<p sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"10\">核心特性：</p>\n<ul sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"11\">\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"11\">线程安全：使用 Random.Shared 确保多线程环境下的安全性</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"12\">高性能：避免重复创建 Random 实例</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"13\">类型安全：支持泛型方法，编译时类型检查</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"14\">参数验证：使用 .NET 静态方法进行参数检查</li>\n</ul>\n<p sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"16\">应用场景：</p>\n<ul sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"17\">\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"17\">游戏开发中的随机事件生成</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"18\">数据采样和随机测试</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"19\">随机算法实现</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"20\">集合元素的随机选择</li>\n</ul>\n<p sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"22\">使用示例：</p>\n<pre><code class=\"lang-csharp\">// 生成随机整数\nint randomInt = RandomHelper.Next(100);\n\n// 从数组中随机选择元素\nstring[] items = {\"A\", \"B\", \"C\"};\nstring selected = RandomHelper.RandomSelect(items);\n\n// 随机选择多个元素\nstring[] multipleItems = RandomHelper.Items(items, 2);</code></pre>\n<p sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"33\">注意事项：</p>\n<ul sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"34\">\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"34\">所有方法都进行了严格的参数验证</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"35\">空集合或数组会抛出 ArgumentOutOfRangeException</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"36\">负数参数会抛出相应的异常</li>\n</ul>\n"
+      "Summary": "<p sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"1\">随机数帮助类</p>\n<p sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"3\">功能概述：</p>\n<ul sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"4\">\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"4\">提供线程安全的随机数生成功能</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"5\">支持多种数据类型的随机数生成（int、long、double、byte[]等）</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"6\">提供便捷的集合随机选择方法</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"7\">支持随机选择单个或多个元素</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"8\">支持获取随机索引</li>\n</ul>\n<p sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"10\">核心特性：</p>\n<ul sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"11\">\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"11\">线程安全：使用 Random.Shared 确保多线程环境下的安全性</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"12\">高性能：避免重复创建 Random 实例</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"13\">类型安全：支持泛型方法，编译时类型检查</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"14\">参数验证：使用 .NET 静态方法进行参数检查</li>\n</ul>\n<p sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"16\">应用场景：</p>\n<ul sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"17\">\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"17\">游戏开发中的随机事件生成</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"18\">数据采样和随机测试</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"19\">随机算法实现</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"20\">集合元素的随机选择</li>\n</ul>\n<p sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"22\">使用示例：</p>\n<pre><code class=\"lang-csharp\">// 生成随机整数\nint randomInt = RandomHelper.Next(100);\n\n// 从数组中随机选择元素\nstring[] items = {\"A\", \"B\", \"C\"};\nstring selected = RandomHelper.RandomSelect(items);\n\n// 随机选择多个元素\nstring[] multipleItems = RandomHelper.Items(items, 2);</code></pre>\n<p sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"34\">注意事项：</p>\n<ul sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"35\">\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"35\">所有方法都进行了严格的参数验证</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"36\">空集合或数组会抛出 ArgumentOutOfRangeException</li>\n<li sourcefile=\"api/GameFrameX.Utility.RandomHelper.yml\" sourcestartlinenumber=\"37\">负数参数会抛出相应的异常</li>\n</ul>\n"
     },
     {
       "type": "ManagedReference",

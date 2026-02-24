@@ -7953,6 +7953,50 @@ references:
   isSpec: "True"
   fullName: GameFrameX.DataBase.Mongo.CacheState.ToBytes
   nameWithType: CacheState.ToBytes
+- uid: GameFrameX.DataBase.Mongo.HealthChecks
+  name: GameFrameX.DataBase.Mongo.HealthChecks
+  href: api/GameFrameX.DataBase.Mongo.HealthChecks.html
+  commentId: N:GameFrameX.DataBase.Mongo.HealthChecks
+  fullName: GameFrameX.DataBase.Mongo.HealthChecks
+  nameWithType: GameFrameX.DataBase.Mongo.HealthChecks
+- uid: GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck
+  name: MongoDbHealthCheck
+  href: api/GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.html
+  commentId: T:GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck
+  fullName: GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck
+  nameWithType: MongoDbHealthCheck
+- uid: GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.#ctor(MongoDB.Driver.IMongoClient)
+  name: MongoDbHealthCheck(IMongoClient)
+  href: api/GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.html#GameFrameX_DataBase_Mongo_HealthChecks_MongoDbHealthCheck__ctor_MongoDB_Driver_IMongoClient_
+  commentId: M:GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.#ctor(MongoDB.Driver.IMongoClient)
+  name.vb: New(IMongoClient)
+  fullName: GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.MongoDbHealthCheck(MongoDB.Driver.IMongoClient)
+  fullName.vb: GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.New(MongoDB.Driver.IMongoClient)
+  nameWithType: MongoDbHealthCheck.MongoDbHealthCheck(IMongoClient)
+  nameWithType.vb: MongoDbHealthCheck.New(IMongoClient)
+- uid: GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.#ctor*
+  name: MongoDbHealthCheck
+  href: api/GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.html#GameFrameX_DataBase_Mongo_HealthChecks_MongoDbHealthCheck__ctor_
+  commentId: Overload:GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.MongoDbHealthCheck
+  fullName.vb: GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.New
+  nameWithType: MongoDbHealthCheck.MongoDbHealthCheck
+  nameWithType.vb: MongoDbHealthCheck.New
+- uid: GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.CheckHealthAsync(Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckContext,System.Threading.CancellationToken)
+  name: CheckHealthAsync(HealthCheckContext, CancellationToken)
+  href: api/GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.html#GameFrameX_DataBase_Mongo_HealthChecks_MongoDbHealthCheck_CheckHealthAsync_Microsoft_Extensions_Diagnostics_HealthChecks_HealthCheckContext_System_Threading_CancellationToken_
+  commentId: M:GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.CheckHealthAsync(Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckContext,System.Threading.CancellationToken)
+  fullName: GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.CheckHealthAsync(Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckContext, System.Threading.CancellationToken)
+  nameWithType: MongoDbHealthCheck.CheckHealthAsync(HealthCheckContext, CancellationToken)
+- uid: GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.CheckHealthAsync*
+  name: CheckHealthAsync
+  href: api/GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.html#GameFrameX_DataBase_Mongo_HealthChecks_MongoDbHealthCheck_CheckHealthAsync_
+  commentId: Overload:GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.CheckHealthAsync
+  isSpec: "True"
+  fullName: GameFrameX.DataBase.Mongo.HealthChecks.MongoDbHealthCheck.CheckHealthAsync
+  nameWithType: MongoDbHealthCheck.CheckHealthAsync
 - uid: GameFrameX.DataBase.Mongo.MongoDbService
   name: MongoDbService
   href: api/GameFrameX.DataBase.Mongo.MongoDbService.html
@@ -13113,381 +13157,6 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.AppStartUpBase.StopServerAsync
   nameWithType: AppStartUpBase.StopServerAsync
-- uid: GameFrameX.StartUp.Extensions
-  name: GameFrameX.StartUp.Extensions
-  href: api/GameFrameX.StartUp.Extensions.html
-  commentId: N:GameFrameX.StartUp.Extensions
-  fullName: GameFrameX.StartUp.Extensions
-  nameWithType: GameFrameX.StartUp.Extensions
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse
-  name: HealthCheckResponse
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.html
-  commentId: T:GameFrameX.StartUp.Extensions.HealthCheckResponse
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse
-  nameWithType: HealthCheckResponse
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.Checks
-  name: Checks
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_Checks
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.Checks
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.Checks
-  nameWithType: HealthCheckResponse.Checks
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.Checks*
-  name: Checks
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_Checks_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.Checks
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.Checks
-  nameWithType: HealthCheckResponse.Checks
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem
-  name: HealthCheckResponse.HealthCheckItem
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.html
-  commentId: T:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem
-  nameWithType: HealthCheckResponse.HealthCheckItem
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Description
-  name: Description
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem_Description
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Description
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Description
-  nameWithType: HealthCheckResponse.HealthCheckItem.Description
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Description*
-  name: Description
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem_Description_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Description
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Description
-  nameWithType: HealthCheckResponse.HealthCheckItem.Description
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Duration
-  name: Duration
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem_Duration
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Duration
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Duration
-  nameWithType: HealthCheckResponse.HealthCheckItem.Duration
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Duration*
-  name: Duration
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem_Duration_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Duration
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Duration
-  nameWithType: HealthCheckResponse.HealthCheckItem.Duration
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Name
-  name: Name
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem_Name
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Name
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Name
-  nameWithType: HealthCheckResponse.HealthCheckItem.Name
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Name*
-  name: Name
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem_Name_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Name
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Name
-  nameWithType: HealthCheckResponse.HealthCheckItem.Name
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Status
-  name: Status
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem_Status
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Status
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Status
-  nameWithType: HealthCheckResponse.HealthCheckItem.Status
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Status*
-  name: Status
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckItem_Status_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Status
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckItem.Status
-  nameWithType: HealthCheckResponse.HealthCheckItem.Status
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting
-  name: HealthCheckResponse.HealthCheckSetting
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html
-  commentId: T:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting
-  nameWithType: HealthCheckResponse.HealthCheckSetting
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Description
-  name: Description
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Description
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Description
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Description
-  nameWithType: HealthCheckResponse.HealthCheckSetting.Description
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Description*
-  name: Description
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Description_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Description
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Description
-  nameWithType: HealthCheckResponse.HealthCheckSetting.Description
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Label
-  name: Label
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Label
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Label
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Label
-  nameWithType: HealthCheckResponse.HealthCheckSetting.Label
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Label*
-  name: Label
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Label_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Label
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Label
-  nameWithType: HealthCheckResponse.HealthCheckSetting.Label
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Language
-  name: Language
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Language
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Language
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Language
-  nameWithType: HealthCheckResponse.HealthCheckSetting.Language
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Language*
-  name: Language
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Language_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Language
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Language
-  nameWithType: HealthCheckResponse.HealthCheckSetting.Language
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.LaunchTime
-  name: LaunchTime
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_LaunchTime
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.LaunchTime
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.LaunchTime
-  nameWithType: HealthCheckResponse.HealthCheckSetting.LaunchTime
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.LaunchTime*
-  name: LaunchTime
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_LaunchTime_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.LaunchTime
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.LaunchTime
-  nameWithType: HealthCheckResponse.HealthCheckSetting.LaunchTime
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Note
-  name: Note
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Note
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Note
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Note
-  nameWithType: HealthCheckResponse.HealthCheckSetting.Note
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Note*
-  name: Note
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_Note_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Note
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.Note
-  nameWithType: HealthCheckResponse.HealthCheckSetting.Note
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerId
-  name: ServerId
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerId
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerId
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerId
-  nameWithType: HealthCheckResponse.HealthCheckSetting.ServerId
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerId*
-  name: ServerId
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerId_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerId
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerId
-  nameWithType: HealthCheckResponse.HealthCheckSetting.ServerId
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerInstanceId
-  name: ServerInstanceId
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerInstanceId
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerInstanceId
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerInstanceId
-  nameWithType: HealthCheckResponse.HealthCheckSetting.ServerInstanceId
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerInstanceId*
-  name: ServerInstanceId
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerInstanceId_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerInstanceId
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerInstanceId
-  nameWithType: HealthCheckResponse.HealthCheckSetting.ServerInstanceId
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerName
-  name: ServerName
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerName
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerName
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerName
-  nameWithType: HealthCheckResponse.HealthCheckSetting.ServerName
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerName*
-  name: ServerName
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerName_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerName
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerName
-  nameWithType: HealthCheckResponse.HealthCheckSetting.ServerName
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerType
-  name: ServerType
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerType
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerType
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerType
-  nameWithType: HealthCheckResponse.HealthCheckSetting.ServerType
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerType*
-  name: ServerType
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_ServerType_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerType
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.ServerType
-  nameWithType: HealthCheckResponse.HealthCheckSetting.ServerType
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.TagName
-  name: TagName
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_TagName
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.TagName
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.TagName
-  nameWithType: HealthCheckResponse.HealthCheckSetting.TagName
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.TagName*
-  name: TagName
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_HealthCheckSetting_TagName_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.TagName
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.HealthCheckSetting.TagName
-  nameWithType: HealthCheckResponse.HealthCheckSetting.TagName
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.Setting
-  name: Setting
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_Setting
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.Setting
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.Setting
-  nameWithType: HealthCheckResponse.Setting
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.Setting*
-  name: Setting
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_Setting_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.Setting
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.Setting
-  nameWithType: HealthCheckResponse.Setting
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.Status
-  name: Status
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_Status
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.Status
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.Status
-  nameWithType: HealthCheckResponse.Status
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.Status*
-  name: Status
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_Status_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.Status
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.Status
-  nameWithType: HealthCheckResponse.Status
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.Timestamp
-  name: Timestamp
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_Timestamp
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.Timestamp
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.Timestamp
-  nameWithType: HealthCheckResponse.Timestamp
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.Timestamp*
-  name: Timestamp
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_Timestamp_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.Timestamp
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.Timestamp
-  nameWithType: HealthCheckResponse.Timestamp
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.TotalDuration
-  name: TotalDuration
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_TotalDuration
-  commentId: P:GameFrameX.StartUp.Extensions.HealthCheckResponse.TotalDuration
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.TotalDuration
-  nameWithType: HealthCheckResponse.TotalDuration
-- uid: GameFrameX.StartUp.Extensions.HealthCheckResponse.TotalDuration*
-  name: TotalDuration
-  href: api/GameFrameX.StartUp.Extensions.HealthCheckResponse.html#GameFrameX_StartUp_Extensions_HealthCheckResponse_TotalDuration_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthCheckResponse.TotalDuration
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthCheckResponse.TotalDuration
-  nameWithType: HealthCheckResponse.TotalDuration
-- uid: GameFrameX.StartUp.Extensions.HealthChecksExtensions
-  name: HealthChecksExtensions
-  href: api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html
-  commentId: T:GameFrameX.StartUp.Extensions.HealthChecksExtensions
-  fullName: GameFrameX.StartUp.Extensions.HealthChecksExtensions
-  nameWithType: HealthChecksExtensions
-- uid: GameFrameX.StartUp.Extensions.HealthChecksExtensions.AddGameFrameXHealthChecks(Microsoft.Extensions.DependencyInjection.IServiceCollection,GameFrameX.Utility.Setting.AppSetting)
-  name: AddGameFrameXHealthChecks(IServiceCollection, AppSetting)
-  href: api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html#GameFrameX_StartUp_Extensions_HealthChecksExtensions_AddGameFrameXHealthChecks_Microsoft_Extensions_DependencyInjection_IServiceCollection_GameFrameX_Utility_Setting_AppSetting_
-  commentId: M:GameFrameX.StartUp.Extensions.HealthChecksExtensions.AddGameFrameXHealthChecks(Microsoft.Extensions.DependencyInjection.IServiceCollection,GameFrameX.Utility.Setting.AppSetting)
-  fullName: GameFrameX.StartUp.Extensions.HealthChecksExtensions.AddGameFrameXHealthChecks(Microsoft.Extensions.DependencyInjection.IServiceCollection, GameFrameX.Utility.Setting.AppSetting)
-  nameWithType: HealthChecksExtensions.AddGameFrameXHealthChecks(IServiceCollection, AppSetting)
-- uid: GameFrameX.StartUp.Extensions.HealthChecksExtensions.AddGameFrameXHealthChecks*
-  name: AddGameFrameXHealthChecks
-  href: api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html#GameFrameX_StartUp_Extensions_HealthChecksExtensions_AddGameFrameXHealthChecks_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthChecksExtensions.AddGameFrameXHealthChecks
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthChecksExtensions.AddGameFrameXHealthChecks
-  nameWithType: HealthChecksExtensions.AddGameFrameXHealthChecks
-- uid: GameFrameX.StartUp.Extensions.HealthChecksExtensions.DefaultHealthCheckPath
-  name: DefaultHealthCheckPath
-  href: api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html#GameFrameX_StartUp_Extensions_HealthChecksExtensions_DefaultHealthCheckPath
-  commentId: F:GameFrameX.StartUp.Extensions.HealthChecksExtensions.DefaultHealthCheckPath
-  fullName: GameFrameX.StartUp.Extensions.HealthChecksExtensions.DefaultHealthCheckPath
-  nameWithType: HealthChecksExtensions.DefaultHealthCheckPath
-- uid: GameFrameX.StartUp.Extensions.HealthChecksExtensions.OpenTelemetryHealthCheckPath
-  name: OpenTelemetryHealthCheckPath
-  href: api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html#GameFrameX_StartUp_Extensions_HealthChecksExtensions_OpenTelemetryHealthCheckPath
-  commentId: F:GameFrameX.StartUp.Extensions.HealthChecksExtensions.OpenTelemetryHealthCheckPath
-  fullName: GameFrameX.StartUp.Extensions.HealthChecksExtensions.OpenTelemetryHealthCheckPath
-  nameWithType: HealthChecksExtensions.OpenTelemetryHealthCheckPath
-- uid: GameFrameX.StartUp.Extensions.HealthChecksExtensions.SimpleHealthCheckPath
-  name: SimpleHealthCheckPath
-  href: api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html#GameFrameX_StartUp_Extensions_HealthChecksExtensions_SimpleHealthCheckPath
-  commentId: F:GameFrameX.StartUp.Extensions.HealthChecksExtensions.SimpleHealthCheckPath
-  fullName: GameFrameX.StartUp.Extensions.HealthChecksExtensions.SimpleHealthCheckPath
-  nameWithType: HealthChecksExtensions.SimpleHealthCheckPath
-- uid: GameFrameX.StartUp.Extensions.HealthChecksExtensions.UseGameFrameXHealthChecks(Microsoft.AspNetCore.Builder.IApplicationBuilder,GameFrameX.Utility.Setting.AppSetting,System.Collections.Generic.List{System.String})
-  name: UseGameFrameXHealthChecks(IApplicationBuilder, AppSetting, List<string>)
-  href: api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html#GameFrameX_StartUp_Extensions_HealthChecksExtensions_UseGameFrameXHealthChecks_Microsoft_AspNetCore_Builder_IApplicationBuilder_GameFrameX_Utility_Setting_AppSetting_System_Collections_Generic_List_System_String__
-  commentId: M:GameFrameX.StartUp.Extensions.HealthChecksExtensions.UseGameFrameXHealthChecks(Microsoft.AspNetCore.Builder.IApplicationBuilder,GameFrameX.Utility.Setting.AppSetting,System.Collections.Generic.List{System.String})
-  name.vb: UseGameFrameXHealthChecks(IApplicationBuilder, AppSetting, List(Of String))
-  fullName: GameFrameX.StartUp.Extensions.HealthChecksExtensions.UseGameFrameXHealthChecks(Microsoft.AspNetCore.Builder.IApplicationBuilder, GameFrameX.Utility.Setting.AppSetting, System.Collections.Generic.List<string>)
-  fullName.vb: GameFrameX.StartUp.Extensions.HealthChecksExtensions.UseGameFrameXHealthChecks(Microsoft.AspNetCore.Builder.IApplicationBuilder, GameFrameX.Utility.Setting.AppSetting, System.Collections.Generic.List(Of String))
-  nameWithType: HealthChecksExtensions.UseGameFrameXHealthChecks(IApplicationBuilder, AppSetting, List<string>)
-  nameWithType.vb: HealthChecksExtensions.UseGameFrameXHealthChecks(IApplicationBuilder, AppSetting, List(Of String))
-- uid: GameFrameX.StartUp.Extensions.HealthChecksExtensions.UseGameFrameXHealthChecks*
-  name: UseGameFrameXHealthChecks
-  href: api/GameFrameX.StartUp.Extensions.HealthChecksExtensions.html#GameFrameX_StartUp_Extensions_HealthChecksExtensions_UseGameFrameXHealthChecks_
-  commentId: Overload:GameFrameX.StartUp.Extensions.HealthChecksExtensions.UseGameFrameXHealthChecks
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.HealthChecksExtensions.UseGameFrameXHealthChecks
-  nameWithType: HealthChecksExtensions.UseGameFrameXHealthChecks
-- uid: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions
-  name: OpenTelemetryExtensions
-  href: api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.html
-  commentId: T:GameFrameX.StartUp.Extensions.OpenTelemetryExtensions
-  fullName: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions
-  nameWithType: OpenTelemetryExtensions
-- uid: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetry(Microsoft.Extensions.DependencyInjection.IServiceCollection,GameFrameX.Utility.Setting.AppSetting,System.String,System.String)
-  name: AddGameFrameXOpenTelemetry(IServiceCollection, AppSetting, string, string)
-  href: api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.html#GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_AddGameFrameXOpenTelemetry_Microsoft_Extensions_DependencyInjection_IServiceCollection_GameFrameX_Utility_Setting_AppSetting_System_String_System_String_
-  commentId: M:GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetry(Microsoft.Extensions.DependencyInjection.IServiceCollection,GameFrameX.Utility.Setting.AppSetting,System.String,System.String)
-  name.vb: AddGameFrameXOpenTelemetry(IServiceCollection, AppSetting, String, String)
-  fullName: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetry(Microsoft.Extensions.DependencyInjection.IServiceCollection, GameFrameX.Utility.Setting.AppSetting, string, string)
-  fullName.vb: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetry(Microsoft.Extensions.DependencyInjection.IServiceCollection, GameFrameX.Utility.Setting.AppSetting, String, String)
-  nameWithType: OpenTelemetryExtensions.AddGameFrameXOpenTelemetry(IServiceCollection, AppSetting, string, string)
-  nameWithType.vb: OpenTelemetryExtensions.AddGameFrameXOpenTelemetry(IServiceCollection, AppSetting, String, String)
-- uid: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetry*
-  name: AddGameFrameXOpenTelemetry
-  href: api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.html#GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_AddGameFrameXOpenTelemetry_
-  commentId: Overload:GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetry
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetry
-  nameWithType: OpenTelemetryExtensions.AddGameFrameXOpenTelemetry
-- uid: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetryLogging(Microsoft.Extensions.Logging.ILoggingBuilder,GameFrameX.Utility.Setting.AppSetting)
-  name: AddGameFrameXOpenTelemetryLogging(ILoggingBuilder, AppSetting)
-  href: api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.html#GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_AddGameFrameXOpenTelemetryLogging_Microsoft_Extensions_Logging_ILoggingBuilder_GameFrameX_Utility_Setting_AppSetting_
-  commentId: M:GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetryLogging(Microsoft.Extensions.Logging.ILoggingBuilder,GameFrameX.Utility.Setting.AppSetting)
-  fullName: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetryLogging(Microsoft.Extensions.Logging.ILoggingBuilder, GameFrameX.Utility.Setting.AppSetting)
-  nameWithType: OpenTelemetryExtensions.AddGameFrameXOpenTelemetryLogging(ILoggingBuilder, AppSetting)
-- uid: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetryLogging*
-  name: AddGameFrameXOpenTelemetryLogging
-  href: api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.html#GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_AddGameFrameXOpenTelemetryLogging_
-  commentId: Overload:GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetryLogging
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.AddGameFrameXOpenTelemetryLogging
-  nameWithType: OpenTelemetryExtensions.AddGameFrameXOpenTelemetryLogging
-- uid: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.CreateMetricsServerAsync(GameFrameX.Utility.Setting.AppSetting,System.String)
-  name: CreateMetricsServerAsync(AppSetting, string)
-  href: api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.html#GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_CreateMetricsServerAsync_GameFrameX_Utility_Setting_AppSetting_System_String_
-  commentId: M:GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.CreateMetricsServerAsync(GameFrameX.Utility.Setting.AppSetting,System.String)
-  name.vb: CreateMetricsServerAsync(AppSetting, String)
-  fullName: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.CreateMetricsServerAsync(GameFrameX.Utility.Setting.AppSetting, string)
-  fullName.vb: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.CreateMetricsServerAsync(GameFrameX.Utility.Setting.AppSetting, String)
-  nameWithType: OpenTelemetryExtensions.CreateMetricsServerAsync(AppSetting, string)
-  nameWithType.vb: OpenTelemetryExtensions.CreateMetricsServerAsync(AppSetting, String)
-- uid: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.CreateMetricsServerAsync*
-  name: CreateMetricsServerAsync
-  href: api/GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.html#GameFrameX_StartUp_Extensions_OpenTelemetryExtensions_CreateMetricsServerAsync_
-  commentId: Overload:GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.CreateMetricsServerAsync
-  isSpec: "True"
-  fullName: GameFrameX.StartUp.Extensions.OpenTelemetryExtensions.CreateMetricsServerAsync
-  nameWithType: OpenTelemetryExtensions.CreateMetricsServerAsync
 - uid: GameFrameX.StartUp.GameApp
   name: GameApp
   href: api/GameFrameX.StartUp.GameApp.html
@@ -13587,6 +13256,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.DataBaseName
   nameWithType: LauncherOptions.DataBaseName
+- uid: GameFrameX.StartUp.Options.LauncherOptions.DataBasePassword
+  name: DataBasePassword
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_DataBasePassword
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.DataBasePassword
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.DataBasePassword
+  nameWithType: LauncherOptions.DataBasePassword
+- uid: GameFrameX.StartUp.Options.LauncherOptions.DataBasePassword*
+  name: DataBasePassword
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_DataBasePassword_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.DataBasePassword
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.DataBasePassword
+  nameWithType: LauncherOptions.DataBasePassword
 - uid: GameFrameX.StartUp.Options.LauncherOptions.DataBaseUrl
   name: DataBaseUrl
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_DataBaseUrl
@@ -14107,6 +13789,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.LogIsGrafanaLoki
   nameWithType: LauncherOptions.LogIsGrafanaLoki
+- uid: GameFrameX.StartUp.Options.LauncherOptions.LogIsWriteToFile
+  name: LogIsWriteToFile
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_LogIsWriteToFile
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.LogIsWriteToFile
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.LogIsWriteToFile
+  nameWithType: LauncherOptions.LogIsWriteToFile
+- uid: GameFrameX.StartUp.Options.LauncherOptions.LogIsWriteToFile*
+  name: LogIsWriteToFile
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_LogIsWriteToFile_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.LogIsWriteToFile
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.LogIsWriteToFile
+  nameWithType: LauncherOptions.LogIsWriteToFile
 - uid: GameFrameX.StartUp.Options.LauncherOptions.LogRetainedFileCountLimit
   name: LogRetainedFileCountLimit
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_LogRetainedFileCountLimit
@@ -14328,6 +14023,19 @@ references:
   isSpec: "True"
   fullName: GameFrameX.StartUp.Options.LauncherOptions.TagName
   nameWithType: LauncherOptions.TagName
+- uid: GameFrameX.StartUp.Options.LauncherOptions.TimeZone
+  name: TimeZone
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_TimeZone
+  commentId: P:GameFrameX.StartUp.Options.LauncherOptions.TimeZone
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.TimeZone
+  nameWithType: LauncherOptions.TimeZone
+- uid: GameFrameX.StartUp.Options.LauncherOptions.TimeZone*
+  name: TimeZone
+  href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_TimeZone_
+  commentId: Overload:GameFrameX.StartUp.Options.LauncherOptions.TimeZone
+  isSpec: "True"
+  fullName: GameFrameX.StartUp.Options.LauncherOptions.TimeZone
+  nameWithType: LauncherOptions.TimeZone
 - uid: GameFrameX.StartUp.Options.LauncherOptions.WorkerId
   name: WorkerId
   href: api/GameFrameX.StartUp.Options.LauncherOptions.html#GameFrameX_StartUp_Options_LauncherOptions_WorkerId
