@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <!-- 支持多目标框架: .NET 8 -->
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFrameworks>net10.0;net8.0</TargetFrameworks>
     <!-- 禁用特定于版本或特定于发行版的运行时标识符警告 -->
     <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
     <!-- 或者使用更具体的警告抑制 -->
