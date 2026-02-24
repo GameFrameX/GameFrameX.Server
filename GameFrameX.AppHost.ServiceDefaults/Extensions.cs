@@ -7,6 +7,7 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OpenTelemetry;
+using OpenTelemetry.Exporter;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
@@ -111,7 +112,7 @@ public static class Extensions
     /// </summary>
     /// <param name="builder">主机应用程序构建器实例</param>
     /// <returns>更新后的构建器实例</returns>
-    public static ILoggingBuilder ConfigureOpenTelemetryLogger(this ILoggingBuilder builder) 
+    public static ILoggingBuilder ConfigureOpenTelemetryLogger(this ILoggingBuilder builder)
     {
         // 为日志添加OpenTelemetry支持
         builder.AddOpenTelemetry(logging =>
@@ -151,61 +152,61 @@ public static class Extensions
         // 为日志添加OpenTelemetry支持
         var serviceName = Environment.GetEnvironmentVariable("ServerType") ?? AppDomain.CurrentDomain.FriendlyName;
         // 添加并配置OpenTelemetry服务
-        serviceCollection.AddOpenTelemetry()
-                         // 配置资源
-                         .ConfigureResource(configure =>
-                         {
-                             if (!string.IsNullOrWhiteSpace(serviceName))
-                             {
-                                 configure.AddService(serviceName).AddTelemetrySdk();
-                             }
+        var openTelemetryBuilder = serviceCollection.AddOpenTelemetry()
+                                                    // 配置资源
+                                                    .ConfigureResource(configure =>
+                                                    {
+                                                        if (!string.IsNullOrWhiteSpace(serviceName))
+                                                        {
+                                                            configure.AddService(serviceName).AddTelemetrySdk();
+                                                        }
 
-                             // 添加操作系统检测器以收集操作系统相关遥测数据
-                             configure.AddOperatingSystemDetector();
-                             // 添加进程运行时检测器以收集进程运行时信息
-                             configure.AddProcessRuntimeDetector();
-                             // 添加主机检测器以收集主机环境信息
-                             configure.AddHostDetector();
-                             // 添加进程检测器以收集当前进程信息
-                             configure.AddProcessDetector();
-                         })
-                         // 配置指标
-                         .WithMetrics(metrics =>
-                         {
-                             // 添加ASP.NET Core、HTTP客户端和运行时指标检测
-                             metrics.AddAspNetCoreInstrumentation()
-                                    .AddHttpClientInstrumentation()
-                                    .AddRuntimeInstrumentation();
-                             // Metrics provides by ASP.NET Core in .NET 8
-                             metrics.AddMeter("Microsoft.AspNetCore.Hosting");
-                             metrics.AddMeter("Microsoft.AspNetCore.Server.Kestrel");
+                                                        // 添加操作系统检测器以收集操作系统相关遥测数据
+                                                        configure.AddOperatingSystemDetector();
+                                                        // 添加进程运行时检测器以收集进程运行时信息
+                                                        configure.AddProcessRuntimeDetector();
+                                                        // 添加主机检测器以收集主机环境信息
+                                                        configure.AddHostDetector();
+                                                        // 添加进程检测器以收集当前进程信息
+                                                        configure.AddProcessDetector();
+                                                    })
+                                                    // 配置指标
+                                                    .WithMetrics(metrics =>
+                                                    {
+                                                        // 添加ASP.NET Core、HTTP客户端和运行时指标检测
+                                                        metrics.AddAspNetCoreInstrumentation()
+                                                               .AddHttpClientInstrumentation()
+                                                               .AddRuntimeInstrumentation();
+                                                        // Metrics provides by ASP.NET Core in .NET 8
+                                                        metrics.AddMeter("Microsoft.AspNetCore.Hosting");
+                                                        metrics.AddMeter("Microsoft.AspNetCore.Server.Kestrel");
 
-                             // Metrics provided by System.Net libraries
-                             metrics.AddMeter("System.Net.Http");
-                             metrics.AddMeter("System.Net.NameResolution");
-                         })
-                         // 配置追踪
-                         .WithTracing(tracing =>
-                         {
-                             // 添加追踪源并配置ASP.NET Core追踪
-                             tracing.AddSource(serviceName)
-                                    .AddAspNetCoreInstrumentation(aspNetCoreTraceInstrumentationOptions =>
-                                                                      // 排除健康检查请求的追踪
-                                                                  {
-                                                                      aspNetCoreTraceInstrumentationOptions.Filter = context => { return !context.Request.Path.StartsWithSegments(HealthEndpointPath) && !context.Request.Path.StartsWithSegments(AlivenessEndpointPath); };
-                                                                  })
-                                    // 取消以下注释以启用gRPC检测（需要OpenTelemetry.Instrumentation.GrpcNetClient包）
-                                    //.AddGrpcClientInstrumentation()
-                                    .AddHttpClientInstrumentation();
-                             // 开发环境中增加控制台输出
-                             if (EnvironmentHelper.IsDevelopment())
-                             {
-                                 tracing.AddConsoleExporter();
-                             }
-                         }).UseGrafana();
+                                                        // Metrics provided by System.Net libraries
+                                                        metrics.AddMeter("System.Net.Http");
+                                                        metrics.AddMeter("System.Net.NameResolution");
+                                                    })
+                                                    // 配置追踪
+                                                    .WithTracing(tracing =>
+                                                    {
+                                                        // 添加追踪源并配置ASP.NET Core追踪
+                                                        tracing.AddSource(serviceName)
+                                                               .AddAspNetCoreInstrumentation(aspNetCoreTraceInstrumentationOptions =>
+                                                                                                 // 排除健康检查请求的追踪
+                                                                                             {
+                                                                                                 aspNetCoreTraceInstrumentationOptions.Filter = context => { return !context.Request.Path.StartsWithSegments(HealthEndpointPath) && !context.Request.Path.StartsWithSegments(AlivenessEndpointPath); };
+                                                                                             })
+                                                               // 取消以下注释以启用gRPC检测（需要OpenTelemetry.Instrumentation.GrpcNetClient包）
+                                                               //.AddGrpcClientInstrumentation()
+                                                               .AddHttpClientInstrumentation();
+                                                        // 开发环境中增加控制台输出
+                                                        if (EnvironmentHelper.IsDevelopment())
+                                                        {
+                                                            tracing.AddConsoleExporter();
+                                                        }
+                                                    }).UseGrafana();
 
         // 添加OpenTelemetry导出器
-        serviceCollection.AddOpenTelemetryExporters();
+        // serviceCollection.AddOpenTelemetryExporters(openTelemetryBuilder);
 
         return serviceCollection;
     }
@@ -214,17 +215,25 @@ public static class Extensions
     /// 根据配置添加OpenTelemetry导出器
     /// </summary>
     /// <param name="builder">主机应用程序构建器实例</param>
+    /// <param name="openTelemetryBuilder"></param>
     /// <returns>更新后的构建器实例</returns>
-    private static IServiceCollection AddOpenTelemetryExporters(this IServiceCollection builder)
+    private static IServiceCollection AddOpenTelemetryExporters(this IServiceCollection builder, IOpenTelemetryBuilder openTelemetryBuilder)
     {
-        // 检查是否配置了OTLP导出端点
-        var useOtlpExporter = !string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("OTEL_EXPORTER_OTLP_ENDPOINT"));
-
-        if (useOtlpExporter)
+        if (openTelemetryBuilder != null)
         {
-            // 使用OTLP导出器
-            builder.AddOpenTelemetry().UseOtlpExporter();
+            var otelExporterOtlpEndpoint = Environment.GetEnvironmentVariable("OTEL_EXPORTER_OTLP_ENDPOINT");
+            var otelExporterOtlpProtocol = Environment.GetEnvironmentVariable("OTEL_EXPORTER_OTLP_PROTOCOL");
+            // 检查是否配置了OTLP导出端点
+            var useOtlpExporter = !string.IsNullOrWhiteSpace(otelExporterOtlpEndpoint);
+            var otlpProtocol = Convert.ToInt32(otelExporterOtlpProtocol);
+
+            if (useOtlpExporter)
+            {
+                // 使用OTLP导出器
+                openTelemetryBuilder.UseOtlpExporter(otlpProtocol > 0 ? OtlpExportProtocol.HttpProtobuf : OtlpExportProtocol.Grpc, new Uri(otelExporterOtlpEndpoint));
+            }
         }
+
 
         // builder.AddPrometheusExporter();
         // 取消以下注释以启用Azure Monitor导出器（需要Azure.Monitor.OpenTelemetry.AspNetCore包）
