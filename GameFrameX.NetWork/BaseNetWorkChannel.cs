@@ -174,7 +174,7 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
             }
             else
             {
-                LogHelper.Debug("Send Message:{{actorId}} {errorCode} {{message}}", actorId, responseErrorCode, LocalizationService.GetString(Localization.Keys.NetWork.MessageSent, messageObject.ToFormatMessageString(actorId)));
+                LogHelper.Debug("Send Message:{actorId} {errorCode} {message}", actorId, responseErrorCode, LocalizationService.GetString(Localization.Keys.NetWork.MessageSent, messageObject.ToFormatMessageString(actorId)));
             }
         }
 
