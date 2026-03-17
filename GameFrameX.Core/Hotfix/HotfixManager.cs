@@ -156,7 +156,7 @@ public static class HotfixManager
     /// <returns>返回加载是否成功</returns>
     private static async Task<bool> Load(HotfixModule newModule, AppSetting setting, bool reload)
     {
-        ReloadTime = TimerHelper.GetUtcNow();
+        ReloadTime = TimerHelper.GetNowWithUtc();
         if (reload)
         {
             var oldModule = _module;
@@ -245,7 +245,7 @@ public static class HotfixManager
     /// <param name="refAssemblyType">引用程序集类型</param>
     /// <typeparam name="T">代理类型</typeparam>
     /// <returns>返回代理实例</returns>
-    public static T GetAgent<T>(BaseComponent component, Type refAssemblyType) where T : IComponentAgent
+    public static T GetAgent<T>(BaseComponent component, Type refAssemblyType) where T : class, IComponentAgent
     {
         if (OldModuleMap.IsEmpty)
         {

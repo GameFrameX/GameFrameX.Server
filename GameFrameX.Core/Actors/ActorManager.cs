@@ -188,7 +188,7 @@ public static class ActorManager
         var actorType = ActorIdGenerator.GetActorType(actorId);
         if (actorType < GlobalConst.ActorTypeSeparator)
         {
-            var now = TimerHelper.GetUtcNow();
+            var now = TimerHelper.GetNowWithUtc();
             if (ActiveTimeDic.TryGetValue(actorId, out var activeTime)
                 && (now - activeTime).TotalMinutes < 10
                 && ActorMap.TryGetValue(actorId, out var actor))
@@ -218,7 +218,7 @@ public static class ActorManager
         Actor valueActor;
         if (actorType < GlobalConst.ActorTypeSeparator)
         {
-            var now = TimerHelper.GetUtcNow();
+            var now = TimerHelper.GetNowWithUtc();
             if (ActiveTimeDic.TryGetValue(actorId, out var activeTime)
                 && (now - activeTime).TotalMinutes < 10
                 && ActorMap.TryGetValue(actorId, out var actor))
@@ -275,11 +275,11 @@ public static class ActorManager
 
             async Task Func()
             {
-                if (actor.AutoRecycle && (TimerHelper.GetUtcNow() - ActiveTimeDic[actor.Id]).TotalMinutes > GlobalSettings.CurrentSetting.ActorRecycleTime)
+                if (actor.AutoRecycle && (TimerHelper.GetNowWithUtc() - ActiveTimeDic[actor.Id]).TotalMinutes > GlobalSettings.CurrentSetting.ActorRecycleTime)
                 {
                     async Task<bool> Work()
                     {
-                        if (ActiveTimeDic.TryGetValue(actor.Id, out var activeTime) && (TimerHelper.GetUtcNow() - ActiveTimeDic[actor.Id]).TotalMinutes > GlobalSettings.CurrentSetting.ActorRecycleTime)
+                        if (ActiveTimeDic.TryGetValue(actor.Id, out var activeTime) && (TimerHelper.GetNowWithUtc() - ActiveTimeDic[actor.Id]).TotalMinutes > GlobalSettings.CurrentSetting.ActorRecycleTime)
                         {
                             // 防止定时回存失败时State被直接移除
                             if (actor.ReadyToDeActive)
@@ -292,7 +292,7 @@ public static class ActorManager
                             else
                             {
                                 // 不能存就久一点再判断
-                                ActiveTimeDic[actor.Id] = TimerHelper.GetUtcNow();
+                                ActiveTimeDic[actor.Id] = TimerHelper.GetNowWithUtc();
                             }
                         }
 

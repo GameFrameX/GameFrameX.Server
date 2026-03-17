@@ -158,7 +158,7 @@ public abstract class BaseHttpHandler : IHttpHandler
         var sign = paramMap[GlobalConst.HttpSignKey].ToString();
         var time = paramMap[GlobalConst.HttpTimestampKey].ToString();
         long.TryParse(time, out var timeTick);
-        var span = TimerHelper.TimeSpanWithTimestamp(timeTick);
+        var span = TimerHelper.TimeSpanWithTimestampUtc(timeTick);
         // 5分钟内有效
         if (span.TotalMinutes > 5)
         {

@@ -77,7 +77,7 @@ internal sealed class AppStartUpGame : AppStartUpBase
             LogHelper.DebugConsole(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.HotfixModuleLoadEnd));
 
             LogHelper.DebugConsole(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.EnterMainLoop));
-            GlobalSettings.LaunchTime = TimerHelper.GetUtcNow();
+            GlobalSettings.LaunchTime = TimerHelper.GetNowWithUtc();
             GlobalSettings.IsAppRunning = true;
             LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.ServerStartEnd, Setting.ServerType));
             exitMessage = await AppExitToken;
