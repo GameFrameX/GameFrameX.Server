@@ -38,7 +38,7 @@ internal sealed class MongoDbContext : DB
 {
     public MongoDbContext(string dbName) : base(Instance(dbName))
     {
-        SetGlobalFilterForBaseClass<BaseCacheState>(m => (m.IsDeleted == null || m.IsDeleted == false));
+        SetGlobalFilterForBaseClass<BaseCacheState>(m => m.IsDeleted == null || m.IsDeleted == false);
     }
 
     // protected override Action<T> OnBeforeSave<T>()

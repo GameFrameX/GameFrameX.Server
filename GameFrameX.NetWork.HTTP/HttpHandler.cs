@@ -85,15 +85,15 @@ public static class HttpHandler
             var headContentType = context.Request.ContentType;
             if (headContentType.IsNullOrWhiteSpace())
             {
-                await context.Response.WriteAsync(LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.HttpHeaderContentTypeNull));
+                await context.Response.WriteAsync(LocalizationService.GetString(Localization.Keys.NetWorkHttp.HttpHeaderContentTypeNull));
                 return;
             }
 
-            bool isProtoBuf = headContentType.Equals(ProtoBufContentType, StringComparison.OrdinalIgnoreCase);
+            var isProtoBuf = headContentType.Equals(ProtoBufContentType, StringComparison.OrdinalIgnoreCase);
 
             if (isProtoBuf)
             {
-                using (MemoryStream memoryStream = new MemoryStream())
+                using (var memoryStream = new MemoryStream())
                 {
                     await context.Request.Body.CopyToAsync(memoryStream);
                     var buffer = memoryStream.ToArray();
@@ -110,7 +110,7 @@ public static class HttpHandler
 
                 if (isJson)
                 {
-                    StreamReader streamReader = new StreamReader(context.Request.Body);
+                    var streamReader = new StreamReader(context.Request.Body);
                     var jsonBody = await streamReader.ReadToEndAsync();
                     var jsonKv = JsonHelper.Deserialize<Dictionary<string, object>>(jsonBody);
                     foreach (var keyValuePair in jsonKv)
@@ -118,14 +118,14 @@ public static class HttpHandler
                         if (!paramMap.TryAdd(keyValuePair.Key, keyValuePair.Value))
                         {
                             // 参数Key发生重复
-                            await context.Response.WriteAsync(HttpJsonResult.ErrorString(HttpStatusCode.ParamErr, LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.ParameterDuplicate, keyValuePair.Key)));
+                            await context.Response.WriteAsync(HttpJsonResult.ErrorString(HttpStatusCode.ParamErr, LocalizationService.GetString(Localization.Keys.NetWorkHttp.ParameterDuplicate, keyValuePair.Key)));
                             return;
                         }
                     }
                 }
                 else
                 {
-                    await context.Response.WriteAsync(HttpJsonResult.ErrorString(HttpStatusCode.ParamErr, LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.UnsupportedContentType, headContentType)));
+                    await context.Response.WriteAsync(HttpJsonResult.ErrorString(HttpStatusCode.ParamErr, LocalizationService.GetString(Localization.Keys.NetWorkHttp.UnsupportedContentType, headContentType)));
                     return;
                 }
             }
@@ -187,7 +187,7 @@ public static class HttpHandler
             // 执行处理器逻辑
             if (isProtoBuf)
             {
-                Stopwatch stopwatch = new Stopwatch();
+                var stopwatch = new Stopwatch();
                 stopwatch.Start();
                 var result = await handler.Action(ip, url, paramMap, message);
                 stopwatch.Stop();
@@ -197,7 +197,7 @@ public static class HttpHandler
                     try
                     {
                         ReadOnlyMemory<byte> body = ProtoBufSerializerHelper.Serialize(result);
-                        MessageHttpObject messageHttpObject = new MessageHttpObject { Id = MessageProtoHelper.GetMessageIdByType(result), UniqueId = message.UniqueId, Body = body.ToArray(), };
+                        var messageHttpObject = new MessageHttpObject { Id = MessageProtoHelper.GetMessageIdByType(result), UniqueId = message.UniqueId, Body = body.ToArray(), };
                         var resultResponse = ProtoBufSerializerHelper.Serialize(messageHttpObject);
                         context.Response.ContentLength = resultResponse.Length;
                         await context.Response.BodyWriter.WriteAsync(resultResponse);
@@ -222,7 +222,7 @@ public static class HttpHandler
                     var isValid = Validator.TryValidateObject(httpMessageRequestBase, validationContext, validationResults, true);
                     if (isValid)
                     {
-                        Stopwatch stopwatch = new Stopwatch();
+                        var stopwatch = new Stopwatch();
                         stopwatch.Start();
                         var result = await handler.Action(ip, url, httpMessageRequestBase);
                         stopwatch.Stop();
@@ -243,7 +243,7 @@ public static class HttpHandler
                 }
                 else
                 {
-                    Stopwatch stopwatch = new Stopwatch();
+                    var stopwatch = new Stopwatch();
                     stopwatch.Start();
                     var result = await handler.Action(ip, url, paramMap);
                     stopwatch.Stop();

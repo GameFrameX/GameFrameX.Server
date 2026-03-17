@@ -119,11 +119,11 @@ public sealed class SwaggerOperationFilter : IOperationFilter
                 Description = "请求参数",
                 Content = new Dictionary<string, OpenApiMediaType>
                 {
-                    ["application/json"] = new OpenApiMediaType
+                    ["application/json"] = new()
                     {
-                        Schema = requestSchema
-                    }
-                }
+                        Schema = requestSchema,
+                    },
+                },
             };
         }
         else
@@ -134,11 +134,11 @@ public sealed class SwaggerOperationFilter : IOperationFilter
                 Description = "请求参数",
                 Content = new Dictionary<string, OpenApiMediaType>
                 {
-                    ["application/json"] = new OpenApiMediaType
+                    ["application/json"] = new()
                     {
-                        Schema = new OpenApiSchema() { Type = "object", },
-                    }
-                }
+                        Schema = new OpenApiSchema { Type = "object", },
+                    },
+                },
             };
         }
 
@@ -148,19 +148,19 @@ public sealed class SwaggerOperationFilter : IOperationFilter
             Type = "object",
             Properties = new Dictionary<string, OpenApiSchema>
             {
-                ["code"] = new OpenApiSchema
+                ["code"] = new()
                 {
                     Type = "integer",
                     Description = "响应状态码",
                     Example = new OpenApiInteger(0),
                 },
-                ["message"] = new OpenApiSchema
+                ["message"] = new()
                 {
                     Type = "string",
                     Description = "响应消息",
-                    Example = new OpenApiString("success")
-                }
-            }
+                    Example = new OpenApiString("success"),
+                },
+            },
         };
 
         // 如果有响应类型，添加到 data 字段
@@ -180,9 +180,9 @@ public sealed class SwaggerOperationFilter : IOperationFilter
                 Description = "成功响应",
                 Content = new Dictionary<string, OpenApiMediaType>
                 {
-                    ["application/json"] = new OpenApiMediaType
+                    ["application/json"] = new()
                     {
-                        Schema = successResponseSchema
+                        Schema = successResponseSchema,
                     },
                 },
             },

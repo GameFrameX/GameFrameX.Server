@@ -54,7 +54,7 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
     /// <summary>
     /// 关闭源
     /// </summary>
-    protected readonly CancellationTokenSource CancellationTokenSource = new CancellationTokenSource();
+    protected readonly CancellationTokenSource CancellationTokenSource = new();
 
     /// <summary>
     /// 网络发送超时时间,单位秒
@@ -145,7 +145,7 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
     public virtual async Task WriteAsync(INetworkMessage messageObject, int errorCode = 0)
     {
         ArgumentNullException.ThrowIfNull(messageObject, nameof(messageObject));
-        int responseErrorCode = 0;
+        var responseErrorCode = 0;
         if (messageObject is IResponseMessage responseMessage)
         {
             if (responseMessage.ErrorCode == 0 && errorCode != 0)
@@ -183,7 +183,7 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
             return;
         }
 
-        SendBytesLength += ((ulong)messageData.Length);
+        SendBytesLength += (ulong)messageData.Length;
         SendPacketLength++;
         using (var cancellationTokenSource = new CancellationTokenSource(NetWorkSendTimeOutSecondsTimeSpan))
         {
@@ -229,7 +229,7 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
 
     #region Data
 
-    private readonly ConcurrentDictionary<string, object> _userDataKv = new ConcurrentDictionary<string, object>();
+    private readonly ConcurrentDictionary<string, object> _userDataKv = new();
 
     /// <summary>
     /// 获取用户数据对象.

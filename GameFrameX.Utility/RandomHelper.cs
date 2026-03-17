@@ -566,7 +566,7 @@ public static class RandomHelper
         // 不可重复，需求数量不应超过id数量
         if (num > array.Length)
         {
-            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.RandomHelper.CantRepeatRandomArgError, num, array.Length));
+            throw new ArgumentException(LocalizationService.GetString(Localization.Keys.Utility.RandomHelper.CantRepeatRandomArgError, num, array.Length));
         }
 
         return NoRepeatRandom(num, weightIndex, array);

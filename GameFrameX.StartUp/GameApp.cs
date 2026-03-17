@@ -126,7 +126,7 @@ public static class GameApp
         var serverType = launcherOptions?.ServerType;
         if (!serverType.IsNullOrEmpty())
         {
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.LaunchServerType, serverType));
+            LogHelper.Info(LocalizationService.GetString(Keys.StartUp.LaunchServerType, serverType));
         }
 
         LogOptions.Default.GrafanaLokiLabels = new Dictionary<string, string>();
@@ -152,7 +152,7 @@ public static class GameApp
 
                 if (!LogOptions.Default.GrafanaLokiLabels.TryAdd(property.Name, value))
                 {
-                    LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.GrafanaLokiLabelExists, property.Name));
+                    LogHelper.Warning(LocalizationService.GetString(Keys.StartUp.GrafanaLokiLabelExists, property.Name));
                 }
             }
 
@@ -231,11 +231,11 @@ public static class GameApp
                 var appSetting = appSettings.FirstOrDefault(m => m.ServerType == serverType);
                 if (appSetting != null)
                 {
-                    LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.FindingConfigurationForServerType, startKv.Value.ServerType));
+                    LogHelper.Info(LocalizationService.GetString(Keys.StartUp.FindingConfigurationForServerType, startKv.Value.ServerType));
                 }
                 else
                 {
-                    LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.NoConfigurationUseDefault, startKv.Value.ServerType));
+                    LogHelper.Warning(LocalizationService.GetString(Keys.StartUp.NoConfigurationUseDefault, startKv.Value.ServerType));
                     appSetting = launcherOptions.Adapt<AppSetting>();
                 }
 
@@ -253,20 +253,20 @@ public static class GameApp
                     break;
                 }
 
-                LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.NoConfigurationUseDefault, keyValuePair.Value.ServerType));
+                LogHelper.Warning(LocalizationService.GetString(Keys.StartUp.NoConfigurationUseDefault, keyValuePair.Value.ServerType));
                 Launcher(args, keyValuePair);
                 break;
             }
         }
 
-        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.StartupOver));
+        LogHelper.Info(LocalizationService.GetString(Keys.StartUp.StartupOver));
 
         ConsoleHelper.ConsoleLogo();
 
         if (_launchTask == default)
         {
-            var message = LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.NoStartupTaskFound);
-            Console.WriteLine(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.ApplicationSettings.WarningMessage, message));
+            var message = LocalizationService.GetString(Keys.StartUp.NoStartupTaskFound);
+            Console.WriteLine(LocalizationService.GetString(Keys.StartUp.ApplicationSettings.WarningMessage, message));
             LogHelper.Warning(message);
             return;
         }
@@ -329,8 +329,8 @@ public static class GameApp
             return Task.CompletedTask;
         }
 
-        LogHelper.ShowOption(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.StartingServerWithConfiguration, serverType), startUp.Setting.ToFormatString());
-        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.StartingServerWithConfiguration, serverType));
+        LogHelper.ShowOption(LocalizationService.GetString(Keys.StartUp.StartingServerWithConfiguration, serverType), startUp.Setting.ToFormatString());
+        LogHelper.Info(LocalizationService.GetString(Keys.StartUp.StartingServerWithConfiguration, serverType));
         LogHelper.Info(startUp.Setting.ToFormatString());
         var task = AppEnter.Entry(startUp);
         return task;

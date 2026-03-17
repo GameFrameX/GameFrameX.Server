@@ -59,7 +59,7 @@ internal partial class AppStartUpDiscoveryCenter
     private void OnPlayerRemove(IPlayerInfo playerInfo)
     {
         LogHelper.DebugConsole(LocalizationService.GetString(
-                                   GameFrameX.Localization.Keys.Launcher.PlayerOfflineCallback,
+                                   Keys.Launcher.PlayerOfflineCallback,
                                    JsonHelper.Serialize(playerInfo)));
 
         var serverList = _namingServiceManager.GetOuterNodes();
@@ -78,7 +78,7 @@ internal partial class AppStartUpDiscoveryCenter
     private void OnPlayerAdd(IPlayerInfo playerInfo)
     {
         LogHelper.DebugConsole(LocalizationService.GetString(
-                                   GameFrameX.Localization.Keys.Launcher.PlayerOnlineCallback,
+                                   Keys.Launcher.PlayerOnlineCallback,
                                    JsonHelper.Serialize(playerInfo)));
         var serverList = _namingServiceManager.GetOuterNodes();
         serverList = serverList.Where(m => m.ServerId == GlobalConst.SocialServiceServerId).ToList();

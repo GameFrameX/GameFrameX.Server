@@ -48,49 +48,49 @@ internal sealed class AppStartUpGame : AppStartUpBase
         string exitMessage = null;
         try
         {
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.ServerStartBegin, Setting.ServerType));
+            LogHelper.Info(LocalizationService.GetString(Localization.Keys.Launcher.ServerStartBegin, Setting.ServerType));
             var hotfixPath = Directory.GetCurrentDirectory() + "/hotfix";
             if (!Directory.Exists(hotfixPath))
             {
                 Directory.CreateDirectory(hotfixPath);
             }
 
-            LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.ActorLimitConfigBegin));
+            LogHelper.Debug(LocalizationService.GetString(Localization.Keys.Launcher.ActorLimitConfigBegin));
             ActorLimit.Init(ActorLimit.RuleType.None);
-            LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.ActorLimitConfigEnd));
+            LogHelper.Debug(LocalizationService.GetString(Localization.Keys.Launcher.ActorLimitConfigEnd));
 
-            LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.DatabaseServiceStartBegin));
+            LogHelper.Debug(LocalizationService.GetString(Localization.Keys.Launcher.DatabaseServiceStartBegin));
             var initResult = await GameDb.Init<MongoDbService>(new DbOptions { ConnectionString = Setting.DataBaseUrl, Name = Setting.DataBaseName, });
             if (initResult == false)
             {
-                throw new InvalidOperationException(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.DatabaseServiceStartFailed));
+                throw new InvalidOperationException(LocalizationService.GetString(Localization.Keys.Launcher.DatabaseServiceStartFailed));
             }
 
-            LogHelper.DebugConsole(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.DatabaseServiceStartEnd));
+            LogHelper.DebugConsole(LocalizationService.GetString(Localization.Keys.Launcher.DatabaseServiceStartEnd));
 
-            LogHelper.DebugConsole(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.ComponentRegisterBegin));
+            LogHelper.DebugConsole(LocalizationService.GetString(Localization.Keys.Launcher.ComponentRegisterBegin));
             await ComponentRegister.Init(typeof(AppsHandler).Assembly);
-            LogHelper.DebugConsole(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.ComponentRegisterEnd));
+            LogHelper.DebugConsole(LocalizationService.GetString(Localization.Keys.Launcher.ComponentRegisterEnd));
 
-            LogHelper.DebugConsole(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.HotfixModuleLoadBegin));
+            LogHelper.DebugConsole(LocalizationService.GetString(Localization.Keys.Launcher.HotfixModuleLoadBegin));
             await HotfixManager.LoadHotfixModule(Setting);
-            LogHelper.DebugConsole(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.HotfixModuleLoadEnd));
+            LogHelper.DebugConsole(LocalizationService.GetString(Localization.Keys.Launcher.HotfixModuleLoadEnd));
 
-            LogHelper.DebugConsole(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.EnterMainLoop));
+            LogHelper.DebugConsole(LocalizationService.GetString(Localization.Keys.Launcher.EnterMainLoop));
             GlobalSettings.LaunchTime = TimerHelper.GetNowWithUtc();
             GlobalSettings.IsAppRunning = true;
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.ServerStartEnd, Setting.ServerType));
+            LogHelper.Info(LocalizationService.GetString(Localization.Keys.Launcher.ServerStartEnd, Setting.ServerType));
             exitMessage = await AppExitToken;
         }
         catch (Exception e)
         {
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.ServerExecutionException, e));
+            LogHelper.Info(LocalizationService.GetString(Localization.Keys.Launcher.ServerExecutionException, e));
             LogHelper.Fatal(e);
         }
 
-        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.ServerExitBegin));
+        LogHelper.Info(LocalizationService.GetString(Localization.Keys.Launcher.ServerExitBegin));
         await HotfixManager.Stop(exitMessage);
-        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.ServerExitSuccess));
+        LogHelper.Info(LocalizationService.GetString(Localization.Keys.Launcher.ServerExitSuccess));
     }
 
     protected override void Init()

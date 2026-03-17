@@ -62,7 +62,7 @@ public sealed class HttpMessageMappingAttribute : Attribute
         var className = classType.Name;
         if (!classType.IsSealed)
         {
-            throw new InvalidOperationException(LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.ClassMustBeSealed, className));
+            throw new InvalidOperationException(LocalizationService.GetString(Localization.Keys.NetWorkHttp.ClassMustBeSealed, className));
         }
 
         // if (!className.StartsWith(HTTPprefix, StringComparison.Ordinal))
@@ -72,7 +72,7 @@ public sealed class HttpMessageMappingAttribute : Attribute
 
         if (!className.EndsWith(HTTPsuffix, StringComparison.Ordinal))
         {
-            throw new InvalidOperationException(LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.ClassMustEndWithSuffix, className, HTTPsuffix));
+            throw new InvalidOperationException(LocalizationService.GetString(Localization.Keys.NetWorkHttp.ClassMustEndWithSuffix, className, HTTPsuffix));
         }
 
         OriginalCmd = className.Substring(HTTPprefix.Length, className.Length - HTTPprefix.Length - HTTPsuffix.Length);

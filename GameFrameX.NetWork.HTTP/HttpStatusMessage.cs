@@ -47,25 +47,40 @@ public static class HttpStatusMessage
     /// <summary>
     /// 未定义的命令
     /// </summary>
-    public static string UndefinedCommand => LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.UndefinedCommand);
+    public static string UndefinedCommand
+    {
+        get { return LocalizationService.GetString(Localization.Keys.NetWorkHttp.UndefinedCommand); }
+    }
 
     /// <summary>
     /// 未找到的命令
     /// </summary>
-    public static string NotFoundCommand => LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.NotFoundCommand);
+    public static string NotFoundCommand
+    {
+        get { return LocalizationService.GetString(Localization.Keys.NetWorkHttp.NotFoundCommand); }
+    }
 
     /// <summary>
     /// 验证失败的命令
     /// </summary>
-    public static string CheckFailedCommand => LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.CheckFailedCommand);
+    public static string CheckFailedCommand
+    {
+        get { return LocalizationService.GetString(Localization.Keys.NetWorkHttp.CheckFailedCommand); }
+    }
 
     /// <summary>
     /// 服务器错误
     /// </summary>
-    public static string ServerError => LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.ServerError);
+    public static string ServerError
+    {
+        get { return LocalizationService.GetString(Localization.Keys.NetWorkHttp.ServerError); }
+    }
 
     /// <summary>
     /// 参数错误
     /// </summary>
-    public static string ParamErrorMessage => LocalizationService.GetString(GameFrameX.Localization.Keys.NetWorkHttp.HttpCommandMissingValidationParameters, GlobalConst.HttpSignKey, GlobalConst.HttpTimestampKey);
+    public static string ParamErrorMessage
+    {
+        get { return LocalizationService.GetString(Localization.Keys.NetWorkHttp.HttpCommandMissingValidationParameters, GlobalConst.HttpSignKey, GlobalConst.HttpTimestampKey); }
+    }
 }

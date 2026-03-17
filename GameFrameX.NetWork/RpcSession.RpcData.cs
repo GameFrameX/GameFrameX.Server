@@ -160,7 +160,7 @@ public sealed class RpcSessionData : IRpcSessionData, IDisposable
         if (ElapseTime >= Timeout)
         {
             var error = LocalizationService.GetString(
-                GameFrameX.Localization.Keys.NetWork.RpcCallTimeout,
+                Localization.Keys.NetWork.RpcCallTimeout,
                 RequestMessage?.ToString() ?? "null");
             _tcs.TrySetResult(new RpcResult(error));
             return true;

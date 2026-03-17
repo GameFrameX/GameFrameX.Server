@@ -64,7 +64,7 @@ public sealed class MongoDbHealthCheck : IHealthCheck
             // 尝试列出数据库以验证连接
             var databases = await _mongoClient.ListDatabaseNamesAsync(cancellationToken);
 
-            if (databases != null && await databases.AnyAsync(cancellationToken: cancellationToken))
+            if (databases != null && await databases.AnyAsync(cancellationToken))
             {
                 return HealthCheckResult.Healthy("MongoDB connection is healthy");
             }

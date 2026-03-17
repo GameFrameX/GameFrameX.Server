@@ -78,7 +78,7 @@ public sealed partial class MongoDbService : IDatabaseService
         catch (Exception exception)
         {
             LogHelper.Fatal("MongoDbService.Open Exception {dbName} {ConnectionString} {exception}", dbOptions.Name, dbOptions.ConnectionString, exception);
-            string message = LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializationFailed, dbOptions.ConnectionString, dbOptions.Name);
+            var message = LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializationFailed, dbOptions.ConnectionString, dbOptions.Name);
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(message);
             Console.ResetColor();

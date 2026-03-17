@@ -346,7 +346,7 @@ public static class NetHelper
             !IPAddress.TryParse(networkAddress, out var network) ||
             !IPAddress.TryParse(subnetMask, out var mask))
         {
-            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Network.InvalidIpAddressFormat));
+            throw new ArgumentException(LocalizationService.GetString(Localization.Keys.Utility.Network.InvalidIpAddressFormat));
         }
 
         var ipBytes = ip.GetAddressBytes();
@@ -358,7 +358,7 @@ public static class NetHelper
             return false;
         }
 
-        for (int i = 0; i < ipBytes.Length; i++)
+        for (var i = 0; i < ipBytes.Length; i++)
         {
             if ((ipBytes[i] & maskBytes[i]) != (networkBytes[i] & maskBytes[i]))
             {
@@ -389,7 +389,7 @@ public static class NetHelper
         var availablePorts = new List<int>();
         var usedPorts = PortIsUsed().ToHashSet();
 
-        for (int port = startPort; port < endPort && availablePorts.Count < maxCount; port++)
+        for (var port = startPort; port < endPort && availablePorts.Count < maxCount; port++)
         {
             if (!usedPorts.Contains(port))
             {
@@ -415,10 +415,10 @@ public static class NetHelper
         {
             "https://api.ipify.org",
             "https://icanhazip.com",
-            "https://ipinfo.io/ip"
+            "https://ipinfo.io/ip",
         };
 
-        using var httpClient = new HttpClient { Timeout = TimeSpan.FromMilliseconds(timeout) };
+        using var httpClient = new HttpClient { Timeout = TimeSpan.FromMilliseconds(timeout), };
 
         foreach (var service in services)
         {
@@ -491,7 +491,7 @@ public static class NetHelper
 
         if (!IsValidIpAddress(ipAddress, out var ip))
         {
-            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Network.InvalidIpAddressFormat), nameof(ipAddress));
+            throw new ArgumentException(LocalizationService.GetString(Localization.Keys.Utility.Network.InvalidIpAddressFormat), nameof(ipAddress));
         }
 
         var bytes = ip.GetAddressBytes();

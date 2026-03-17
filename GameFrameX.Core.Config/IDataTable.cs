@@ -162,14 +162,14 @@ public interface IDataTable<T> : IDataTable
     /// </summary>
     /// <param name="func">用于测试每个对象是否满足条件的函数。</param>
     /// <returns>第一个满足条件的对象，如果没有找到则返回 null。</returns>
-    T Find(System.Func<T, bool> func);
+    T Find(Func<T, bool> func);
 
     /// <summary>
     /// 根据指定条件查找所有匹配的对象并返回数组。
     /// </summary>
     /// <param name="func">用于测试每个对象是否满足条件的函数。</param>
     /// <returns>包含所有满足条件的对象的数组。</returns>
-    T[] FindListArray(System.Func<T, bool> func);
+    T[] FindListArray(Func<T, bool> func);
 
     /// <summary>
     /// 根据指定条件查找所有匹配的对象并返回列表。

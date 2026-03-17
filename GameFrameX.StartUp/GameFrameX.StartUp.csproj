@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\GameFrameX.AppHost.ServiceDefaults\GameFrameX.AppHost.ServiceDefaults.csproj" />
+        <ProjectReference Include="..\GameFrameX.AppHost.ServiceDefaults\GameFrameX.AppHost.ServiceDefaults.csproj"/>
         <ProjectReference Include="..\GameFrameX.DiscoveryCenterManager\GameFrameX.DiscoveryCenterManager.csproj"/>
         <ProjectReference Include="..\GameFrameX.Localization\GameFrameX.Localization.csproj"/>
         <ProjectReference Include="..\GameFrameX.Monitor\GameFrameX.Monitor.csproj"/>
@@ -18,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="GameFrameX.Foundation.Options" Version="2.2.5" />
+        <PackageReference Include="GameFrameX.Foundation.Options" Version="2.2.5"/>
         <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.2.0"/>
         <PackageReference Include="GameFrameX.SuperSocket.Server" Version="1.2.0"/>
         <PackageReference Include="GameFrameX.SuperSocket.Udp" Version="1.2.0"/>

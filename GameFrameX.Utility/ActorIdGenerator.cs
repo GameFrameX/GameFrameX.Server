@@ -111,7 +111,7 @@ public static class ActorIdGenerator
     {
         if (actorId < GlobalConst.MinServerId)
         {
-            throw new ArgumentOutOfRangeException(nameof(actorId), LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ActorIdLessThanMinServerIdDetail, actorId, GlobalConst.MinServerId));
+            throw new ArgumentOutOfRangeException(nameof(actorId), LocalizationService.GetString(Localization.Keys.Utility.ActorIdLessThanMinServerIdDetail, actorId, GlobalConst.MinServerId));
         }
 
         if (actorId < GlobalConst.MaxGlobalId)
@@ -135,12 +135,12 @@ public static class ActorIdGenerator
     {
         if (type == GlobalConst.ActorTypeSeparator)
         {
-            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ActorTypeError, type));
+            throw new ArgumentException(LocalizationService.GetString(Localization.Keys.Utility.ActorTypeError, type));
         }
 
         if (serverId < 0)
         {
-            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ServerIdNegative, serverId));
+            throw new ArgumentException(LocalizationService.GetString(Localization.Keys.Utility.ServerIdNegative, serverId));
         }
 
         if (serverId == 0)
@@ -166,12 +166,12 @@ public static class ActorIdGenerator
     {
         if (serverId <= 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(serverId), LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ServerIdLessThanOrEqualZero));
+            throw new ArgumentOutOfRangeException(nameof(serverId), LocalizationService.GetString(Localization.Keys.Utility.ServerIdLessThanOrEqualZero));
         }
 
         if (actorType >= GlobalConst.ActorTypeMax || actorType == GlobalConst.ActorTypeSeparator || actorType == GlobalConst.ActorTypeNone)
         {
-            throw new ArgumentOutOfRangeException(nameof(actorType), LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ActorTypeInvalid));
+            throw new ArgumentOutOfRangeException(nameof(actorType), LocalizationService.GetString(Localization.Keys.Utility.ActorTypeInvalid));
         }
 
         return serverId * 1000 + actorType;
@@ -224,7 +224,7 @@ public static class ActorIdGenerator
     {
         if (module > 999)
         {
-            throw new ArgumentOutOfRangeException(nameof(module), LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ModuleInvalid));
+            throw new ArgumentOutOfRangeException(nameof(module), LocalizationService.GetString(Localization.Keys.Utility.ModuleInvalid));
         }
 
         var second = (long)(DateTime.UtcNow - IdGenerator.UtcTimeStart).TotalSeconds;

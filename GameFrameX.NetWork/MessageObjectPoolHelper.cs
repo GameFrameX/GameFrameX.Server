@@ -125,7 +125,7 @@ public static class MessageObjectPoolHelper
         if (!typeof(IMessageObject).IsAssignableFrom(type))
         {
             throw new ArgumentException(LocalizationService.GetString(
-                                            GameFrameX.Localization.Keys.NetWork.TypeMustImplementInterface,
+                                            Localization.Keys.NetWork.TypeMustImplementInterface,
                                             type.Name,
                                             nameof(IMessageObject)), nameof(type));
         }
@@ -134,7 +134,7 @@ public static class MessageObjectPoolHelper
         if (!type.IsClass)
         {
             throw new ArgumentException(LocalizationService.GetString(
-                                            GameFrameX.Localization.Keys.NetWork.TypeMustBeClass,
+                                            Localization.Keys.NetWork.TypeMustBeClass,
                                             type.Name), nameof(type));
         }
 
@@ -146,7 +146,7 @@ public static class MessageObjectPoolHelper
             if (constructor == null)
             {
                 throw new ArgumentException(LocalizationService.GetString(
-                                                GameFrameX.Localization.Keys.NetWork.TypeMustHaveParameterlessConstructor,
+                                                Localization.Keys.NetWork.TypeMustHaveParameterlessConstructor,
                                                 t.Name), nameof(type));
             }
 
@@ -184,16 +184,16 @@ public static class MessageObjectPoolHelper
             if (createMethod == null)
             {
                 throw new InvalidOperationException(LocalizationService.GetString(
-                                                        GameFrameX.Localization.Keys.NetWork.CannotFindCreateMethod));
+                                                        Localization.Keys.NetWork.CannotFindCreateMethod));
             }
 
             var genericCreateMethod = createMethod.MakeGenericMethod(type);
-            var result = genericCreateMethod.Invoke(PoolProvider, new[] { policy });
+            var result = genericCreateMethod.Invoke(PoolProvider, new[] { policy, });
 
             if (result == null)
             {
                 throw new InvalidOperationException(LocalizationService.GetString(
-                                                        GameFrameX.Localization.Keys.NetWork.FailedToCreateObjectPool,
+                                                        Localization.Keys.NetWork.FailedToCreateObjectPool,
                                                         type.Name));
             }
 
@@ -241,7 +241,7 @@ public static class MessageObjectPoolHelper
             if (constructor == null)
             {
                 throw new ArgumentException(LocalizationService.GetString(
-                                                GameFrameX.Localization.Keys.NetWork.TypeMustHaveParameterlessConstructor,
+                                                Localization.Keys.NetWork.TypeMustHaveParameterlessConstructor,
                                                 type.Name), nameof(obj));
             }
 
@@ -252,7 +252,7 @@ public static class MessageObjectPoolHelper
             var poolType = typeof(ObjectPool<>).MakeGenericType(type);
             var returnMethod = poolType.GetMethod(nameof(ObjectPool<object>.Return))!;
 
-            return (Action<object>)(o => returnMethod.Invoke(pool, new[] { o }));
+            return (Action<object>)(o => returnMethod.Invoke(pool, new[] { o, }));
         });
 
         // Use the cached delegate to return the object / 使用缓存的委托返回对象

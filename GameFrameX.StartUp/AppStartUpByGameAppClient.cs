@@ -155,7 +155,7 @@ public abstract partial class AppStartUpBase
     /// </remarks>
     protected virtual void GameAppClientOnError(string id, ErrorEventArgs obj)
     {
-        LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.DiscoveryCenterCommunicationError, Setting.ServerType, id, obj.Exception?.ToString() ?? "Unknown exception"));
+        LogHelper.Error(LocalizationService.GetString(Localization.Keys.StartUp.DiscoveryCenterCommunicationError, Setting.ServerType, id, obj.Exception?.ToString() ?? "Unknown exception"));
     }
 
     /// <summary>
@@ -168,7 +168,7 @@ public abstract partial class AppStartUpBase
     /// </remarks>
     protected virtual void GameAppClientOnMessage(string id, MessageObject message)
     {
-        LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.DiscoveryCenterMessageReceived, Setting.ServerType, id, message.ToFormatMessageString()));
+        LogHelper.Debug(LocalizationService.GetString(Localization.Keys.StartUp.DiscoveryCenterMessageReceived, Setting.ServerType, id, message.ToFormatMessageString()));
     }
 
     /// <summary>
@@ -180,7 +180,7 @@ public abstract partial class AppStartUpBase
     /// </remarks>
     protected virtual void GameAppClientOnClosed(string id)
     {
-        LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.DiscoveryCenterDisconnected, Setting.ServerType, id));
+        LogHelper.Debug(LocalizationService.GetString(Localization.Keys.StartUp.DiscoveryCenterDisconnected, Setting.ServerType, id));
     }
 
     /// <summary>
@@ -192,6 +192,6 @@ public abstract partial class AppStartUpBase
     /// </remarks>
     protected virtual void GameAppClientOnConnected(string id)
     {
-        LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.DiscoveryCenterConnected, Setting.ServerType, id));
+        LogHelper.Debug(LocalizationService.GetString(Localization.Keys.StartUp.DiscoveryCenterConnected, Setting.ServerType, id));
     }
 }

@@ -143,7 +143,10 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// <summary>
     /// 缓冲区容量
     /// </summary>
-    public int Capacity => Bytes.Length;
+    public int Capacity
+    {
+        get { return Bytes.Length; }
+    }
 
     /// <summary>
     /// 当前数据大小
@@ -156,12 +159,18 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// <summary>
     /// 缓冲区是否为空
     /// </summary>
-    public bool Empty => WriterIndex <= ReaderIndex;
+    public bool Empty
+    {
+        get { return WriterIndex <= ReaderIndex; }
+    }
 
     /// <summary>
     /// 缓冲区是否非空
     /// </summary>
-    public bool NotEmpty => WriterIndex > ReaderIndex;
+    public bool NotEmpty
+    {
+        get { return WriterIndex > ReaderIndex; }
+    }
 
     /// <summary>
     /// 增加写入位置
@@ -270,7 +279,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
 
     private static int PropSize(int initSize, int needSize)
     {
-        for (int i = Math.Max(initSize, MinCapacity);; i <<= 1)
+        for (var i = Math.Max(initSize, MinCapacity);; i <<= 1)
         {
             if (i >= needSize)
             {
@@ -290,7 +299,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
         }
         else
         {
-            int newCapacity = PropSize(Capacity, needSize);
+            var newCapacity = PropSize(Capacity, needSize);
             var newBytes = new byte[newCapacity];
             WriterIndex -= ReaderIndex;
             Buffer.BlockCopy(Bytes, ReaderIndex, newBytes, 0, WriterIndex);
@@ -324,7 +333,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private bool CanRead(int size)
     {
-        return (ReaderIndex + size <= WriterIndex);
+        return ReaderIndex + size <= WriterIndex;
     }
 
     /// <summary>
@@ -424,14 +433,14 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
         else if (h < 0xc0)
         {
             EnsureRead(2);
-            int x = ((h & 0x3f) << 8) | Bytes[ReaderIndex + 1];
+            var x = ((h & 0x3f) << 8) | Bytes[ReaderIndex + 1];
             ReaderIndex += 2;
             return (short)x;
         }
-        else if ((h == 0xff))
+        else if (h == 0xff)
         {
             EnsureRead(3);
-            int x = (Bytes[ReaderIndex + 1] << 8) | Bytes[ReaderIndex + 2];
+            var x = (Bytes[ReaderIndex + 1] << 8) | Bytes[ReaderIndex + 2];
             ReaderIndex += 3;
             return (short)x;
         }
@@ -573,28 +582,28 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
         else if (h < 0xc0)
         {
             EnsureRead(2);
-            uint x = ((h & 0x3f) << 8) | Bytes[ReaderIndex + 1];
+            var x = ((h & 0x3f) << 8) | Bytes[ReaderIndex + 1];
             ReaderIndex += 2;
             return x;
         }
         else if (h < 0xe0)
         {
             EnsureRead(3);
-            uint x = ((h & 0x1f) << 16) | ((uint)Bytes[ReaderIndex + 1] << 8) | Bytes[ReaderIndex + 2];
+            var x = ((h & 0x1f) << 16) | ((uint)Bytes[ReaderIndex + 1] << 8) | Bytes[ReaderIndex + 2];
             ReaderIndex += 3;
             return x;
         }
         else if (h < 0xf0)
         {
             EnsureRead(4);
-            uint x = ((h & 0x0f) << 24) | ((uint)Bytes[ReaderIndex + 1] << 16) | ((uint)Bytes[ReaderIndex + 2] << 8) | Bytes[ReaderIndex + 3];
+            var x = ((h & 0x0f) << 24) | ((uint)Bytes[ReaderIndex + 1] << 16) | ((uint)Bytes[ReaderIndex + 2] << 8) | Bytes[ReaderIndex + 3];
             ReaderIndex += 4;
             return x;
         }
         else
         {
             EnsureRead(5);
-            uint x = ((uint)Bytes[ReaderIndex + 1] << 24) | ((uint)(Bytes[ReaderIndex + 2] << 16)) | ((uint)Bytes[ReaderIndex + 3] << 8) | Bytes[ReaderIndex + 4];
+            var x = ((uint)Bytes[ReaderIndex + 1] << 24) | (uint)(Bytes[ReaderIndex + 2] << 16) | ((uint)Bytes[ReaderIndex + 3] << 8) | Bytes[ReaderIndex + 4];
             ReaderIndex += 5;
             return x;
         }
@@ -618,7 +627,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
 
             fixed (byte* wb = &Bytes[WriterIndex])
             {
-                *(uint*)(wb) = (x << 2 | 0b01);
+                *(uint*)wb = (x << 2) | 0b01;
             }
 
             WriterIndex += 2;
@@ -629,7 +638,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
 
             fixed (byte* wb = &Bytes[WriterIndex])
             {
-                *(uint*)(wb) = (x << 3 | 0b011);
+                *(uint*)wb = (x << 3) | 0b011;
             }
 
             WriterIndex += 3;
@@ -639,7 +648,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
             EnsureWrite(4);
             fixed (byte* wb = &Bytes[WriterIndex])
             {
-                *(uint*)(wb) = (x << 4 | 0b0111);
+                *(uint*)wb = (x << 4) | 0b0111;
             }
 
             WriterIndex += 4;
@@ -649,7 +658,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
             EnsureWrite(5);
             fixed (byte* wb = &Bytes[WriterIndex])
             {
-                *(uint*)(wb) = (x << 5 | 0b01111);
+                *(uint*)wb = (x << 5) | 0b01111;
             }
 
             WriterIndex += 5;
@@ -668,7 +677,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
         if ((h & 0b1) == 0b0)
         {
             ReaderIndex++;
-            return (h >> 1);
+            return h >> 1;
         }
         else if ((h & 0b11) == 0b01)
         {
@@ -676,7 +685,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
             fixed (byte* rb = &Bytes[ReaderIndex])
             {
                 ReaderIndex += 2;
-                return (*(uint*)rb) >> 2;
+                return *(uint*)rb >> 2;
             }
         }
         else if ((h & 0b111) == 0b011)
@@ -685,7 +694,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
             fixed (byte* rb = &Bytes[ReaderIndex])
             {
                 ReaderIndex += 3;
-                return (*(uint*)rb) >> 3;
+                return *(uint*)rb >> 3;
             }
         }
         else if ((h & 0b1111) == 0b0111)
@@ -694,7 +703,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
             fixed (byte* rb = &Bytes[ReaderIndex])
             {
                 ReaderIndex += 4;
-                return (*(uint*)rb) >> 4;
+                return *(uint*)rb >> 4;
             }
         }
         else
@@ -703,7 +712,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
             fixed (byte* rb = &Bytes[ReaderIndex])
             {
                 ReaderIndex += 5;
-                return (*(uint*)rb) >> 5;
+                return *(uint*)rb >> 5;
             }
         }
     }
@@ -725,7 +734,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
                 }
             }
 #else
-        x = (Bytes[ReaderIndex + 3] << 24) | (Bytes[ReaderIndex + 2] << 16) | (Bytes[ReaderIndex + 1] << 8) | (Bytes[ReaderIndex]);
+        x = (Bytes[ReaderIndex + 3] << 24) | (Bytes[ReaderIndex + 2] << 16) | (Bytes[ReaderIndex + 1] << 8) | Bytes[ReaderIndex];
 
 #endif
         ReaderIndex += 4;
@@ -765,7 +774,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
         EnsureRead(4);
         int x;
 
-        x = (Bytes[ReaderIndex + 3] << 24) | (Bytes[ReaderIndex + 2] << 16) | (Bytes[ReaderIndex + 1] << 8) | (Bytes[ReaderIndex]);
+        x = (Bytes[ReaderIndex + 3] << 24) | (Bytes[ReaderIndex + 2] << 16) | (Bytes[ReaderIndex + 1] << 8) | Bytes[ReaderIndex];
 
         ReaderIndex += 4;
         return x;
@@ -931,61 +940,61 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
         else if (h < 0xc0)
         {
             EnsureRead(2);
-            uint x = ((h & 0x3f) << 8) | Bytes[ReaderIndex + 1];
+            var x = ((h & 0x3f) << 8) | Bytes[ReaderIndex + 1];
             ReaderIndex += 2;
             return x;
         }
         else if (h < 0xe0)
         {
             EnsureRead(3);
-            uint x = ((h & 0x1f) << 16) | ((uint)Bytes[ReaderIndex + 1] << 8) | Bytes[ReaderIndex + 2];
+            var x = ((h & 0x1f) << 16) | ((uint)Bytes[ReaderIndex + 1] << 8) | Bytes[ReaderIndex + 2];
             ReaderIndex += 3;
             return x;
         }
         else if (h < 0xf0)
         {
             EnsureRead(4);
-            uint x = ((h & 0x0f) << 24) | ((uint)Bytes[ReaderIndex + 1] << 16) | ((uint)Bytes[ReaderIndex + 2] << 8) | Bytes[ReaderIndex + 3];
+            var x = ((h & 0x0f) << 24) | ((uint)Bytes[ReaderIndex + 1] << 16) | ((uint)Bytes[ReaderIndex + 2] << 8) | Bytes[ReaderIndex + 3];
             ReaderIndex += 4;
             return x;
         }
         else if (h < 0xf8)
         {
             EnsureRead(5);
-            uint xl = ((uint)Bytes[ReaderIndex + 1] << 24) | ((uint)(Bytes[ReaderIndex + 2] << 16)) | ((uint)Bytes[ReaderIndex + 3] << 8) | (Bytes[ReaderIndex + 4]);
-            uint xh = h & 0x07;
+            var xl = ((uint)Bytes[ReaderIndex + 1] << 24) | (uint)(Bytes[ReaderIndex + 2] << 16) | ((uint)Bytes[ReaderIndex + 3] << 8) | Bytes[ReaderIndex + 4];
+            var xh = h & 0x07;
             ReaderIndex += 5;
             return ((ulong)xh << 32) | xl;
         }
         else if (h < 0xfc)
         {
             EnsureRead(6);
-            uint xl = ((uint)Bytes[ReaderIndex + 2] << 24) | ((uint)(Bytes[ReaderIndex + 3] << 16)) | ((uint)Bytes[ReaderIndex + 4] << 8) | (Bytes[ReaderIndex + 5]);
-            uint xh = ((h & 0x03) << 8) | Bytes[ReaderIndex + 1];
+            var xl = ((uint)Bytes[ReaderIndex + 2] << 24) | (uint)(Bytes[ReaderIndex + 3] << 16) | ((uint)Bytes[ReaderIndex + 4] << 8) | Bytes[ReaderIndex + 5];
+            var xh = ((h & 0x03) << 8) | Bytes[ReaderIndex + 1];
             ReaderIndex += 6;
             return ((ulong)xh << 32) | xl;
         }
         else if (h < 0xfe)
         {
             EnsureRead(7);
-            uint xl = ((uint)Bytes[ReaderIndex + 3] << 24) | ((uint)(Bytes[ReaderIndex + 4] << 16)) | ((uint)Bytes[ReaderIndex + 5] << 8) | (Bytes[ReaderIndex + 6]);
-            uint xh = ((h & 0x01) << 16) | ((uint)Bytes[ReaderIndex + 1] << 8) | Bytes[ReaderIndex + 2];
+            var xl = ((uint)Bytes[ReaderIndex + 3] << 24) | (uint)(Bytes[ReaderIndex + 4] << 16) | ((uint)Bytes[ReaderIndex + 5] << 8) | Bytes[ReaderIndex + 6];
+            var xh = ((h & 0x01) << 16) | ((uint)Bytes[ReaderIndex + 1] << 8) | Bytes[ReaderIndex + 2];
             ReaderIndex += 7;
             return ((ulong)xh << 32) | xl;
         }
         else if (h < 0xff)
         {
             EnsureRead(8);
-            uint xl = ((uint)Bytes[ReaderIndex + 4] << 24) | ((uint)(Bytes[ReaderIndex + 5] << 16)) | ((uint)Bytes[ReaderIndex + 6] << 8) | (Bytes[ReaderIndex + 7]);
-            uint xh = /*((h & 0x01) << 24) |*/ ((uint)Bytes[ReaderIndex + 1] << 16) | ((uint)Bytes[ReaderIndex + 2] << 8) | Bytes[ReaderIndex + 3];
+            var xl = ((uint)Bytes[ReaderIndex + 4] << 24) | (uint)(Bytes[ReaderIndex + 5] << 16) | ((uint)Bytes[ReaderIndex + 6] << 8) | Bytes[ReaderIndex + 7];
+            var xh = /*((h & 0x01) << 24) |*/ ((uint)Bytes[ReaderIndex + 1] << 16) | ((uint)Bytes[ReaderIndex + 2] << 8) | Bytes[ReaderIndex + 3];
             ReaderIndex += 8;
             return ((ulong)xh << 32) | xl;
         }
         else
         {
             EnsureRead(9);
-            uint xl = ((uint)Bytes[ReaderIndex + 5] << 24) | ((uint)(Bytes[ReaderIndex + 6] << 16)) | ((uint)Bytes[ReaderIndex + 7] << 8) | (Bytes[ReaderIndex + 8]);
-            uint xh = ((uint)Bytes[ReaderIndex + 1] << 24) | ((uint)Bytes[ReaderIndex + 2] << 16) | ((uint)Bytes[ReaderIndex + 3] << 8) | Bytes[ReaderIndex + 4];
+            var xl = ((uint)Bytes[ReaderIndex + 5] << 24) | (uint)(Bytes[ReaderIndex + 6] << 16) | ((uint)Bytes[ReaderIndex + 7] << 8) | Bytes[ReaderIndex + 8];
+            var xh = ((uint)Bytes[ReaderIndex + 1] << 24) | ((uint)Bytes[ReaderIndex + 2] << 16) | ((uint)Bytes[ReaderIndex + 3] << 8) | Bytes[ReaderIndex + 4];
             ReaderIndex += 9;
             return ((ulong)xh << 32) | xl;
         }
@@ -1037,8 +1046,8 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
                 }
             }
 #else
-        int xl = (Bytes[ReaderIndex + 3] << 24) | ((Bytes[ReaderIndex + 2] << 16)) | (Bytes[ReaderIndex + 1] << 8) | (Bytes[ReaderIndex]);
-        int xh = (Bytes[ReaderIndex + 7] << 24) | (Bytes[ReaderIndex + 6] << 16) | (Bytes[ReaderIndex + 5] << 8) | Bytes[ReaderIndex + 4];
+        var xl = (Bytes[ReaderIndex + 3] << 24) | (Bytes[ReaderIndex + 2] << 16) | (Bytes[ReaderIndex + 1] << 8) | Bytes[ReaderIndex];
+        var xh = (Bytes[ReaderIndex + 7] << 24) | (Bytes[ReaderIndex + 6] << 16) | (Bytes[ReaderIndex + 5] << 8) | Bytes[ReaderIndex + 4];
         x = ((long)xh << 32) | (long)xl;
 #endif
         ReaderIndex += 8;
@@ -1121,7 +1130,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
                 }
                 else
                 {
-                    *((int*)&x) = (b[0]) | (b[1] << 8) | (b[2] << 16) | (b[3] << 24);
+                    *(int*)&x = b[0] | (b[1] << 8) | (b[2] << 16) | (b[3] << 24);
                 }
 #else
                     x = *(float*)b;
@@ -1189,9 +1198,9 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
                 }
                 else
                 {
-                    int low = (b[0]) | (b[1] << 8) | (b[2] << 16) | (b[3] << 24);
-                    int high = (b[4]) | (b[5] << 8) | (b[6] << 16) | (b[7] << 24);
-                    *((long*)&x) = ((long)high << 32) | (uint)low;
+                    var low = b[0] | (b[1] << 8) | (b[2] << 16) | (b[3] << 24);
+                    var high = b[4] | (b[5] << 8) | (b[6] << 16) | (b[7] << 24);
+                    *(long*)&x = ((long)high << 32) | (uint)low;
                 }
 #else
                     x = *(double*)b;
@@ -1236,7 +1245,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// <returns>读取的有符号整型值</returns>
     public int ReadSint()
     {
-        uint x = ReadUint();
+        var x = ReadUint();
         return (int)((x >> 1) ^ ((x & 1) << 31));
     }
 
@@ -1256,8 +1265,8 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// <returns>读取的长整型值</returns>
     public long ReadSlong()
     {
-        long x = ReadLong();
-        return ((long)((ulong)x >> 1) ^ ((x & 1) << 63));
+        var x = ReadLong();
+        return (long)((ulong)x >> 1) ^ ((x & 1) << 63);
     }
 
     /// <summary>
@@ -1386,8 +1395,8 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// <returns>读取的二维向量</returns>
     public Vector2 ReadVector2()
     {
-        float x = ReadFloat();
-        float y = ReadFloat();
+        var x = ReadFloat();
+        var y = ReadFloat();
         return new Vector2(x, y);
     }
 
@@ -1408,9 +1417,9 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// <returns>读取的三维向量</returns>
     public Vector3 ReadVector3()
     {
-        float x = ReadFloat();
-        float y = ReadFloat();
-        float z = ReadFloat();
+        var x = ReadFloat();
+        var y = ReadFloat();
+        var z = ReadFloat();
         return new Vector3(x, y, z);
     }
 
@@ -1432,10 +1441,10 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// <returns>读取的四维向量</returns>
     public Vector4 ReadVector4()
     {
-        float x = ReadFloat();
-        float y = ReadFloat();
-        float z = ReadFloat();
-        float w = ReadFloat();
+        var x = ReadFloat();
+        var y = ReadFloat();
+        var z = ReadFloat();
+        var w = ReadFloat();
         return new Vector4(x, y, z, w);
     }
 
@@ -1458,10 +1467,10 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// <returns>读取的四元数</returns>
     public Quaternion ReadQuaternion()
     {
-        float x = ReadFloat();
-        float y = ReadFloat();
-        float z = ReadFloat();
-        float w = ReadFloat();
+        var x = ReadFloat();
+        var y = ReadFloat();
+        var z = ReadFloat();
+        var w = ReadFloat();
         return new Quaternion(x, y, z, w);
     }
 
@@ -1496,22 +1505,22 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// <returns>读取的4x4矩阵</returns>
     public Matrix4x4 ReadMatrix4x4()
     {
-        float m11 = ReadFloat();
-        float m12 = ReadFloat();
-        float m13 = ReadFloat();
-        float m14 = ReadFloat();
-        float m21 = ReadFloat();
-        float m22 = ReadFloat();
-        float m23 = ReadFloat();
-        float m24 = ReadFloat();
-        float m31 = ReadFloat();
-        float m32 = ReadFloat();
-        float m33 = ReadFloat();
-        float m34 = ReadFloat();
-        float m41 = ReadFloat();
-        float m42 = ReadFloat();
-        float m43 = ReadFloat();
-        float m44 = ReadFloat();
+        var m11 = ReadFloat();
+        var m12 = ReadFloat();
+        var m13 = ReadFloat();
+        var m14 = ReadFloat();
+        var m21 = ReadFloat();
+        var m22 = ReadFloat();
+        var m23 = ReadFloat();
+        var m24 = ReadFloat();
+        var m31 = ReadFloat();
+        var m32 = ReadFloat();
+        var m33 = ReadFloat();
+        var m34 = ReadFloat();
+        var m41 = ReadFloat();
+        var m42 = ReadFloat();
+        var m43 = ReadFloat();
+        var m44 = ReadFloat();
         return new Matrix4x4(m11, m12, m13, m14,
                              m21, m22, m23, m24,
                              m31, m32, m33, m34,
@@ -1523,7 +1532,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// </summary>
     internal void SkipBytes()
     {
-        int n = ReadSize();
+        var n = ReadSize();
         EnsureRead(n);
         ReaderIndex += n;
     }
@@ -1535,7 +1544,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// <param name="o">要写入的字节缓冲区</param>
     public void WriteByteBufWithSize(ByteBuf o)
     {
-        int n = o.Size;
+        var n = o.Size;
         if (n > 0)
         {
             WriteSize(n);
@@ -1553,7 +1562,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// <param name="o">要写入的字节缓冲区</param>
     public void WriteByteBufWithoutSize(ByteBuf o)
     {
-        int n = o.Size;
+        var n = o.Size;
         if (n > 0)
         {
             WriteBytesWithoutSize(o.Bytes, o.ReaderIndex, n);
@@ -1588,8 +1597,8 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     public EDeserializeError TryDeserializeInplaceByteBuf(int maxSize, ByteBuf inplaceTempBody)
     {
         //if (!CanRead(1)) { return EDeserializeError.NOT_ENOUGH; }
-        int oldReadIndex = ReaderIndex;
-        bool commit = false;
+        var oldReadIndex = ReaderIndex;
+        var commit = false;
         try
         {
             int n;
@@ -1644,7 +1653,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
                 return EDeserializeError.NOT_ENOUGH;
             }
 
-            int inplaceReadIndex = ReaderIndex;
+            var inplaceReadIndex = ReaderIndex;
             ReaderIndex += n;
 
             inplaceTempBody.Replace(Bytes, inplaceReadIndex, ReaderIndex);
@@ -1718,8 +1727,8 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// <param name="oldSize">旧大小</param>
     public void EndWriteSegment(int oldSize)
     {
-        int startPos = ReaderIndex + oldSize;
-        int segmentSize = WriterIndex - startPos - 1;
+        var startPos = ReaderIndex + oldSize;
+        var segmentSize = WriterIndex - startPos - 1;
 
         // 0 111 1111
         if (segmentSize < 0x80)
@@ -1789,7 +1798,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
         {
             EnsureRead(1);
             segmentSize = ((h & 0x3f) << 8) | Bytes[ReaderIndex];
-            int endPos = ReaderIndex + segmentSize;
+            var endPos = ReaderIndex + segmentSize;
             Bytes[ReaderIndex] = Bytes[endPos];
             ReaderIndex += segmentSize + 1;
         }
@@ -1797,7 +1806,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
         {
             EnsureRead(2);
             segmentSize = ((h & 0x1f) << 16) | ((int)Bytes[ReaderIndex] << 8) | Bytes[ReaderIndex + 1];
-            int endPos = ReaderIndex + segmentSize;
+            var endPos = ReaderIndex + segmentSize;
             Bytes[ReaderIndex] = Bytes[endPos];
             Bytes[ReaderIndex + 1] = Bytes[endPos + 1];
             ReaderIndex += segmentSize + 2;
@@ -1806,7 +1815,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
         {
             EnsureRead(3);
             segmentSize = ((h & 0x0f) << 24) | ((int)Bytes[ReaderIndex] << 16) | ((int)Bytes[ReaderIndex + 1] << 8) | Bytes[ReaderIndex + 2];
-            int endPos = ReaderIndex + segmentSize;
+            var endPos = ReaderIndex + segmentSize;
             Bytes[ReaderIndex] = Bytes[endPos];
             Bytes[ReaderIndex + 1] = Bytes[endPos + 1];
             Bytes[ReaderIndex + 2] = Bytes[endPos + 2];
@@ -1829,7 +1838,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// <param name="buf">要读取的段</param>
     public void ReadSegment(ByteBuf buf)
     {
-        ReadSegment(out int startPos, out var size);
+        ReadSegment(out var startPos, out var size);
         buf.Bytes = Bytes;
         buf.ReaderIndex = startPos;
         buf.WriterIndex = startPos + size;
@@ -1841,7 +1850,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// <param name="saveState">段保存状态</param>
     public void EnterSegment(out SegmentSaveState saveState)
     {
-        ReadSegment(out int startPos, out int size);
+        ReadSegment(out var startPos, out var size);
 
         saveState = new SegmentSaveState(ReaderIndex, WriterIndex);
         ReaderIndex = startPos;
@@ -1866,7 +1875,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// <returns>字符串</returns>
     public override string ToString()
     {
-        string[] datas = new string[WriterIndex - ReaderIndex];
+        var datas = new string[WriterIndex - ReaderIndex];
         for (var i = ReaderIndex; i < WriterIndex; i++)
         {
             datas[i - ReaderIndex] = Bytes[i].ToString("X2");
@@ -1882,7 +1891,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// <returns>是否相等</returns>
     public override bool Equals(object obj)
     {
-        return (obj is ByteBuf other) && Equals(other);
+        return obj is ByteBuf other && Equals(other);
     }
 
     /// <summary>
@@ -1931,8 +1940,8 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     public static ByteBuf FromString(string value)
     {
         var ss = value.Split(',');
-        byte[] data = new byte[ss.Length];
-        for (int i = 0; i < data.Length; i++)
+        var data = new byte[ss.Length];
+        for (var i = 0; i < data.Length; i++)
         {
             data[i] = byte.Parse(ss[i]);
         }
@@ -1946,8 +1955,8 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     /// <returns>哈希码</returns>
     public override int GetHashCode()
     {
-        int hash = 17;
-        for (int i = ReaderIndex; i < WriterIndex; i++)
+        var hash = 17;
+        for (var i = ReaderIndex; i < WriterIndex; i++)
         {
             hash = hash * 23 + Bytes[i];
         }

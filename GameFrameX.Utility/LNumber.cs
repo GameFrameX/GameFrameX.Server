@@ -147,7 +147,7 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
 #endif
 
         // 确定符号：如果整数部分为负，则结果为负；如果整数部分为0且小数部分为负，则结果为负
-        var sign = (i < 0 || (i == 0 && f < 0)) ? -1 : 1;
+        var sign = i < 0 || (i == 0 && f < 0) ? -1 : 1;
 
         if (i < 0)
         {
@@ -367,12 +367,12 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
             }
             else if ((lhs > 0 && rhs > 0) || (lhs < 0 && rhs < 0))
             {
-                LogHelper.Error("LNumber.DivisionOverflow {c}", LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
+                LogHelper.Error("LNumber.DivisionOverflow {c}", LocalizationService.GetString(Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
                 r.Raw = long.MaxValue;
             }
             else
             {
-                LogHelper.Error("LNumber.DivisionOverflow {c}", LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
+                LogHelper.Error("LNumber.DivisionOverflow {c}", LocalizationService.GetString(Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
                 r.Raw = long.MinValue;
             }
         }

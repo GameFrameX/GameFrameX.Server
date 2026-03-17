@@ -21,14 +21,14 @@ internal sealed partial class AppStartUpSocial : AppStartUpBase
         {
             var aopHandlerTypes = AssemblyHelper.GetRuntimeImplementTypeNamesInstance<IHttpAopHandler>();
             aopHandlerTypes.Sort((handlerX, handlerY) => handlerX.Priority.CompareTo(handlerY.Priority));
-            LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.DatabaseServiceStartBegin));
-            LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.ActorLimitConfigBegin));
+            LogHelper.Debug(LocalizationService.GetString(Localization.Keys.Launcher.DatabaseServiceStartBegin));
+            LogHelper.Debug(LocalizationService.GetString(Localization.Keys.Launcher.ActorLimitConfigBegin));
             ActorLimit.Init(ActorLimit.RuleType.None);
-            LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.ActorLimitConfigEnd));
+            LogHelper.Debug(LocalizationService.GetString(Localization.Keys.Launcher.ActorLimitConfigEnd));
             var initResult = await GameDb.Init<MongoDbService>(new DbOptions { ConnectionString = Setting.DataBaseUrl, Name = Setting.DataBaseName, });
             if (initResult == false)
             {
-                throw new InvalidOperationException(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.DatabaseServiceStartFailed));
+                throw new InvalidOperationException(LocalizationService.GetString(Localization.Keys.Launcher.DatabaseServiceStartFailed));
             }
 
             await ComponentRegister.Init(typeof(AppsHandler).Assembly);
@@ -39,7 +39,7 @@ internal sealed partial class AppStartUpSocial : AppStartUpBase
         }
         catch (Exception e)
         {
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Launcher.ServerExecutionException, e));
+            LogHelper.Info(LocalizationService.GetString(Localization.Keys.Launcher.ServerExecutionException, e));
             LogHelper.Fatal(e);
         }
 
@@ -82,7 +82,7 @@ internal sealed partial class AppStartUpSocial : AppStartUpBase
                 IsDebugReceiveHeartBeat = false,
                 IsDebugSendHeartBeat = false,
                 DataBaseUrl = "mongodb://gameframex:7bmEw5HS0otl_KNpnsGeMOq@175.178.65.215:27017/?authSource=admin",
-                DataBaseName = "gameframex"
+                DataBaseName = "gameframex",
             };
         }
 

@@ -3,8 +3,8 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-        <ApplicationIcon />
-        <StartupObject />
+        <ApplicationIcon/>
+        <StartupObject/>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -20,25 +20,25 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="*.bat">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\GameFrameX.Apps\GameFrameX.Apps.csproj" />
-        <ProjectReference Include="..\GameFrameX.Config\GameFrameX.Config.csproj" />
-        <ProjectReference Include="..\GameFrameX.Core\GameFrameX.Core.csproj" />
-        <ProjectReference Include="..\GameFrameX.DataBase\GameFrameX.DataBase.csproj" />
-        <ProjectReference Include="..\GameFrameX.Localization\GameFrameX.Localization.csproj" />
-        <ProjectReference Include="..\GameFrameX.Monitor\GameFrameX.Monitor.csproj" />
-        <ProjectReference Include="..\GameFrameX.NetWork.Message\GameFrameX.NetWork.Message.csproj" />
-        <ProjectReference Include="..\GameFrameX.Proto\GameFrameX.Proto.csproj" />
-        <ProjectReference Include="..\GameFrameX.DiscoveryCenterManager\GameFrameX.DiscoveryCenterManager.csproj" />
-        <ProjectReference Include="..\GameFrameX.StartUp\GameFrameX.StartUp.csproj" />
-        <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
+        <ProjectReference Include="..\GameFrameX.Apps\GameFrameX.Apps.csproj"/>
+        <ProjectReference Include="..\GameFrameX.Config\GameFrameX.Config.csproj"/>
+        <ProjectReference Include="..\GameFrameX.Core\GameFrameX.Core.csproj"/>
+        <ProjectReference Include="..\GameFrameX.DataBase\GameFrameX.DataBase.csproj"/>
+        <ProjectReference Include="..\GameFrameX.Localization\GameFrameX.Localization.csproj"/>
+        <ProjectReference Include="..\GameFrameX.Monitor\GameFrameX.Monitor.csproj"/>
+        <ProjectReference Include="..\GameFrameX.NetWork.Message\GameFrameX.NetWork.Message.csproj"/>
+        <ProjectReference Include="..\GameFrameX.Proto\GameFrameX.Proto.csproj"/>
+        <ProjectReference Include="..\GameFrameX.DiscoveryCenterManager\GameFrameX.DiscoveryCenterManager.csproj"/>
+        <ProjectReference Include="..\GameFrameX.StartUp\GameFrameX.StartUp.csproj"/>
+        <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.2.0" />
+        <PackageReference Include="GameFrameX.SuperSocket.ClientEngine" Version="1.2.0"/>
     </ItemGroup>
 </Project>

@@ -246,7 +246,10 @@ public static class AssemblyHelper
                 {
                     // 使用程序集限定名称查找类型
                     type = Type.GetType($"{name}, {assembly.FullName}");
-                    if (type != null) return type;
+                    if (type != null)
+                    {
+                        return type;
+                    }
                 }
                 catch (Exception)
                 {

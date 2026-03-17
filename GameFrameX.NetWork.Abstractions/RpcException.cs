@@ -34,7 +34,7 @@ namespace GameFrameX.NetWork.Abstractions;
 /// <summary>
 /// 表示远程过程调用（RPC）中的异常基类。
 /// </summary>
-public abstract class RpcException : System.Exception
+public abstract class RpcException : Exception
 {
     /// <summary>
     /// 初始化 <see cref="RpcException"/> 类的新实例。

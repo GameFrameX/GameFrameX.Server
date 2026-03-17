@@ -1,64 +1,64 @@
 <Project>
-  <PropertyGroup>
-    <!-- 支持多目标框架: .NET 8 -->
-    <TargetFrameworks>net10.0;</TargetFrameworks>
-    <!-- 禁用特定于版本或特定于发行版的运行时标识符警告 -->
-    <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
-    <!-- 或者使用更具体的警告抑制 -->
-    <NoWarn>$(NoWarn);NETSDK1206</NoWarn>
+    <PropertyGroup>
+        <!-- 支持多目标框架: .NET 8 -->
+        <TargetFrameworks>net10.0;</TargetFrameworks>
+        <!-- 禁用特定于版本或特定于发行版的运行时标识符警告 -->
+        <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
+        <!-- 或者使用更具体的警告抑制 -->
+        <NoWarn>$(NoWarn);NETSDK1206</NoWarn>
 
-    <!-- 通用编译属性 -->
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>12</LangVersion>
-    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <!-- 通用编译属性 -->
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>12</LangVersion>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 
-    <!-- NuGet包通用属性 (仅对非测试项目) -->
-    <PublicSign Condition="'$(IsTestProject)' != 'true'">true</PublicSign>
-    <SignAssembly Condition="'$(IsTestProject)' != 'true'">true</SignAssembly>
-    <GeneratePackageOnBuild Condition="'$(IsTestProject)' != 'true'">true</GeneratePackageOnBuild>
-    <Title>$(AssemblyName)</Title>
-    <Copyright>AlianBlank;GameFrameX;Blank</Copyright>
-    <PackageProjectUrl>https://github.com/GameFrameX/GameFrameX</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/GameFrameX/GameFrameX</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageReleaseNotes>https://gameframex.doc.alianblank.com/</PackageReleaseNotes>
-    <PackageIcon>logo.png</PackageIcon>
-    <Authors>AlianBlank;Blank</Authors>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <IsPackable Condition="'$(IsTestProject)' != 'true'">true</IsPackable>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <PackageId>$(AssemblyName)</PackageId>
-    <AssemblyOriginatorKeyFile Condition="'$(IsTestProject)' != 'true'">$(MSBuildProjectDirectory)/../gameframex.key.snk</AssemblyOriginatorKeyFile>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <!-- NuGet包通用属性 (仅对非测试项目) -->
+        <PublicSign Condition="'$(IsTestProject)' != 'true'">true</PublicSign>
+        <SignAssembly Condition="'$(IsTestProject)' != 'true'">true</SignAssembly>
+        <GeneratePackageOnBuild Condition="'$(IsTestProject)' != 'true'">true</GeneratePackageOnBuild>
+        <Title>$(AssemblyName)</Title>
+        <Copyright>AlianBlank;GameFrameX;Blank</Copyright>
+        <PackageProjectUrl>https://github.com/GameFrameX/GameFrameX</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/GameFrameX/GameFrameX</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <PackageReleaseNotes>https://gameframex.doc.alianblank.com/</PackageReleaseNotes>
+        <PackageIcon>logo.png</PackageIcon>
+        <Authors>AlianBlank;Blank</Authors>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <IsPackable Condition="'$(IsTestProject)' != 'true'">true</IsPackable>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <PackageId>$(AssemblyName)</PackageId>
+        <AssemblyOriginatorKeyFile Condition="'$(IsTestProject)' != 'true'">$(MSBuildProjectDirectory)/../gameframex.key.snk</AssemblyOriginatorKeyFile>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
-    <!-- 输出路径配置 -->
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
+        <!-- 输出路径配置 -->
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>$(MSBuildProjectDirectory)/../bin/app_debug</OutputPath>
-  </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <OutputPath>$(MSBuildProjectDirectory)/../bin/app_debug</OutputPath>
+    </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>$(MSBuildProjectDirectory)/../bin/app</OutputPath>
-  </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <OutputPath>$(MSBuildProjectDirectory)/../bin/app</OutputPath>
+    </PropertyGroup>
 
-  <!-- 通用文件项 (仅对非测试项目) -->
-  <ItemGroup Condition="'$(IsTestProject)' != 'true'">
-    <None Include="$(MSBuildProjectDirectory)/../logo.png" Condition="Exists('$(MSBuildProjectDirectory)/../logo.png')">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-      <Link>logo.png</Link>
-    </None>
-    <None Include="$(MSBuildProjectDirectory)/../README.md" Condition="Exists('$(MSBuildProjectDirectory)/../README.md')">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+    <!-- 通用文件项 (仅对非测试项目) -->
+    <ItemGroup Condition="'$(IsTestProject)' != 'true'">
+        <None Include="$(MSBuildProjectDirectory)/../logo.png" Condition="Exists('$(MSBuildProjectDirectory)/../logo.png')">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+            <Link>logo.png</Link>
+        </None>
+        <None Include="$(MSBuildProjectDirectory)/../README.md" Condition="Exists('$(MSBuildProjectDirectory)/../README.md')">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 </Project>

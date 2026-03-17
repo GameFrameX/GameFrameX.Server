@@ -132,7 +132,7 @@ public abstract partial class AppStartUpBase : IAppStartUp
     public virtual async Task StopAsync(string message = "")
     {
         GlobalSettings.IsAppRunning = false;
-        LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.ServerStopped, Setting.ServerType, message, Setting.ToFormatString()));
+        LogHelper.Error(LocalizationService.GetString(Localization.Keys.StartUp.ServerStopped, Setting.ServerType, message, Setting.ToFormatString()));
         await StopServerAsync();
         AppExitSource?.TrySetResult(message);
         LogHelper.FlushAndSave();

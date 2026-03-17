@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="../Version.props" Label="版本号定义" />
+    <Import Project="../Version.props" Label="版本号定义"/>
 
     <PropertyGroup>
         <Description>GameFrameX.Utility,GameFrameX 框架的基础设施框架库.框架文档主页: https://gameframex.doc.alianblank.com</Description>
@@ -15,16 +15,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="GameFrameX.Foundation.Logger" Version="2.2.5" />
-        <PackageReference Include="GameFrameX.Foundation.Utility" Version="2.2.5" />
-        <PackageReference Include="Lib.Harmony" Version="2.4.2" />
-        <PackageReference Include="SharpZipLib" Version="1.4.2" />
-        <PackageReference Include="Tedd.RandomUtils" Version="1.0.6" />
-        <PackageReference Include="Mapster" Version="7.4.0" />
+        <PackageReference Include="GameFrameX.Foundation.Logger" Version="2.2.5"/>
+        <PackageReference Include="GameFrameX.Foundation.Utility" Version="2.2.5"/>
+        <PackageReference Include="Lib.Harmony" Version="2.4.2"/>
+        <PackageReference Include="SharpZipLib" Version="1.4.2"/>
+        <PackageReference Include="Tedd.RandomUtils" Version="1.0.6"/>
+        <PackageReference Include="Mapster" Version="7.4.0"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="../GameFrameX.Localization/GameFrameX.Localization.csproj" />
+        <ProjectReference Include="../GameFrameX.Localization/GameFrameX.Localization.csproj"/>
     </ItemGroup>
 
 </Project>

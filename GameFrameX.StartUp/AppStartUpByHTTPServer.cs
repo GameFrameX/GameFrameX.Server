@@ -75,25 +75,25 @@ public abstract partial class AppStartUpBase
         // 检查是否启用HTTP服务
         if (!Setting.IsEnableHttp)
         {
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.ServiceDisabled));
+            LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.ServiceDisabled));
             return;
         }
 
         // 验证HTTP URL格式
         if (!Setting.HttpUrl.StartsWith('/'))
         {
-            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpExceptions.AddressMustStartWithSlash), nameof(Setting.HttpUrl));
+            throw new ArgumentException(LocalizationService.GetString(Localization.Keys.StartUp.HttpExceptions.AddressMustStartWithSlash), nameof(Setting.HttpUrl));
         }
 
         if (!Setting.HttpUrl.EndsWith('/'))
         {
-            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpExceptions.AddressMustEndWithSlash), nameof(Setting.HttpUrl));
+            throw new ArgumentException(LocalizationService.GetString(Localization.Keys.StartUp.HttpExceptions.AddressMustEndWithSlash), nameof(Setting.HttpUrl));
         }
 
-        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.StartingServer));
+        LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.StartingServer));
         if (!Setting.HttpPort.IsRange(5000, ushort.MaxValue - 1))
         {
-            LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.PortOutOfRange, Setting.HttpPort, 5000, ushort.MaxValue - 1));
+            LogHelper.Warning(LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.PortOutOfRange, Setting.HttpPort, 5000, ushort.MaxValue - 1));
             return;
         }
 
@@ -127,7 +127,7 @@ public abstract partial class AppStartUpBase
 
                 if (Setting.HttpsPort > 0 && NetHelper.PortIsAvailable(Setting.HttpsPort))
                 {
-                    throw new NotImplementedException(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpExceptions.HttpsNotImplemented));
+                    throw new NotImplementedException(LocalizationService.GetString(Localization.Keys.StartUp.HttpExceptions.HttpsNotImplemented));
                 }
             });
 
@@ -207,11 +207,11 @@ public abstract partial class AppStartUpBase
             }
 
             await app.StartAsync();
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.StartupComplete, Setting.HttpPort));
+            LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.StartupComplete, Setting.HttpPort));
         }
         else
         {
-            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.PortOccupied, Setting.HttpPort));
+            LogHelper.Error(LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.PortOccupied, Setting.HttpPort));
         }
     }
 
@@ -233,12 +233,12 @@ public abstract partial class AppStartUpBase
 
         var openApiInfo = new OpenApiInfo
         {
-            Title = LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.ApiTitle),
+            Title = LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.ApiTitle),
             Version = $"v{version.Major}.{version.Minor}",
             TermsOfService = new Uri("https://gameframex.doc.alianblank.com"),
-            Contact = new OpenApiContact() { Url = new Uri("https://gameframex.doc.alianblank.com"), Name = LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.ApiContactName), Email = "wangfj11@foxmail.com", },
-            License = new OpenApiLicense() { Name = LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.ApiLicenseName), Url = new Uri("https://github.com/GameFrameX/GameFrameX"), },
-            Description = LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.HttpServer.ApiDescription),
+            Contact = new OpenApiContact { Url = new Uri("https://gameframex.doc.alianblank.com"), Name = LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.ApiContactName), Email = "wangfj11@foxmail.com", },
+            License = new OpenApiLicense { Name = LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.ApiLicenseName), Url = new Uri("https://github.com/GameFrameX/GameFrameX"), },
+            Description = LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.ApiDescription),
         };
         return openApiInfo;
     }

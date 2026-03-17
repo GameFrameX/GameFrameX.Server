@@ -55,7 +55,7 @@ internal partial class AppStartUpSocial
         Send(reqRegisterServer);
     }
 
-    readonly ReqActorHeartBeat _reqActorHeartBeat = new ReqActorHeartBeat();
+    private readonly ReqActorHeartBeat _reqActorHeartBeat = new();
 
     protected override MessageObject GameAppClientOnHeartBeat(string id)
     {

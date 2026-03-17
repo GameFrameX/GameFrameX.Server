@@ -119,11 +119,11 @@ internal static class AppEnter
         }
 
         _exitCalled = true;
-        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.Application.ListeningExitMessage));
+        LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.Application.ListeningExitMessage));
         GlobalSettings.IsAppRunning = false;
         _appStartUp.StopAsync(message).Wait();
         AppExitHandler.Kill();
-        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.Application.ExecutingExitProcedure));
+        LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.Application.ExecutingExitProcedure));
         _gameLoopTask?.Wait();
         LogHelper.FlushAndSave();
     }

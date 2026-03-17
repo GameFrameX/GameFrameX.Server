@@ -7,6 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\GameFrameX.NetWork\GameFrameX.NetWork.csproj" />
+        <ProjectReference Include="..\GameFrameX.NetWork\GameFrameX.NetWork.csproj"/>
     </ItemGroup>
 </Project>

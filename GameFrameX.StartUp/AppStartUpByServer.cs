@@ -156,7 +156,7 @@ public abstract partial class AppStartUpBase
     /// </remarks>
     protected virtual ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
     {
-        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.TcpServer.ClientDisconnected, appSession.SessionID, appSession.RemoteEndPoint, disconnectEventArgs.Reason));
+        LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.TcpServer.ClientDisconnected, appSession.SessionID, appSession.RemoteEndPoint, disconnectEventArgs.Reason));
         return ValueTask.CompletedTask;
     }
 
@@ -170,7 +170,7 @@ public abstract partial class AppStartUpBase
     /// </remarks>
     protected virtual ValueTask OnConnected(IAppSession appSession)
     {
-        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.TcpServer.NewClientConnection, appSession.SessionID, appSession.RemoteEndPoint));
+        LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.TcpServer.NewClientConnection, appSession.SessionID, appSession.RemoteEndPoint));
         return ValueTask.CompletedTask;
     }
 
@@ -187,7 +187,7 @@ public abstract partial class AppStartUpBase
     {
         if (Setting.IsDebug && Setting.IsDebugReceive)
         {
-            LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.TcpServer.MessageReceived, ServerType, message.ToFormatMessageString()));
+            LogHelper.Debug(LocalizationService.GetString(Localization.Keys.StartUp.TcpServer.MessageReceived, ServerType, message.ToFormatMessageString()));
         }
 
         return ValueTask.CompletedTask;
@@ -209,7 +209,7 @@ public abstract partial class AppStartUpBase
     {
         async void InvokeAction()
         {
-            bool initSuccess = await handler.Init(message, netWorkChannel);
+            var initSuccess = await handler.Init(message, netWorkChannel);
             if (initSuccess == false)
             {
                 return;
@@ -253,7 +253,7 @@ public abstract partial class AppStartUpBase
             // 检查TCP端口是否可用
             if (Setting.InnerPort > 0 && NetHelper.PortIsAvailable(Setting.InnerPort))
             {
-                LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.TcpServer.StartingServer, ServerType, Setting.InnerHost, Setting.InnerPort));
+                LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.TcpServer.StartingServer, ServerType, Setting.InnerHost, Setting.InnerPort));
                 multipleServerHostBuilder.AddServer<IMessage, MessageObjectPipelineFilter>(builder =>
                 {
                     var serverBuilder = builder
@@ -272,7 +272,7 @@ public abstract partial class AppStartUpBase
                     {
                         serviceCollection.Configure<ServerOptions>(options =>
                         {
-                            var listenOptions = new ListenOptions()
+                            var listenOptions = new ListenOptions
                             {
                                 Ip = "Any",
                                 Port = Setting.InnerPort,
@@ -289,16 +289,16 @@ public abstract partial class AppStartUpBase
                         // }
                     });
                 });
-                LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.TcpServer.StartupComplete, ServerType, Setting.InnerHost, Setting.InnerPort));
+                LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.TcpServer.StartupComplete, ServerType, Setting.InnerHost, Setting.InnerPort));
             }
             else
             {
-                LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.TcpServer.StartupFailed, ServerType, Setting.InnerHost, Setting.InnerPort));
+                LogHelper.Warning(LocalizationService.GetString(Localization.Keys.StartUp.TcpServer.StartupFailed, ServerType, Setting.InnerHost, Setting.InnerPort));
             }
         }
         else
         {
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.TcpServer.ServerDisabled, ServerType, Setting.InnerHost, Setting.InnerPort));
+            LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.TcpServer.ServerDisabled, ServerType, Setting.InnerHost, Setting.InnerPort));
         }
 
         // 检查WebSocket端口是否可用
@@ -306,7 +306,7 @@ public abstract partial class AppStartUpBase
         {
             if (Setting.WsPort is > 0 and < ushort.MaxValue && NetHelper.PortIsAvailable(Setting.WsPort))
             {
-                LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.WebSocketServer.StartingServer, ServerType, Setting.WsPort));
+                LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.WebSocketServer.StartingServer, ServerType, Setting.WsPort));
 
                 // 配置并启动WebSocket服务器
                 multipleServerHostBuilder.AddWebSocketServer(builder =>
@@ -318,7 +318,7 @@ public abstract partial class AppStartUpBase
                         {
                             serviceCollection.Configure<ServerOptions>(options =>
                             {
-                                var listenOptions = new ListenOptions()
+                                var listenOptions = new ListenOptions
                                 {
                                     Ip = "Any",
                                     Port = Setting.WsPort,
@@ -327,16 +327,16 @@ public abstract partial class AppStartUpBase
                             });
                         });
                 });
-                LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.WebSocketServer.StartupComplete, ServerType, Setting.WsPort));
+                LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.WebSocketServer.StartupComplete, ServerType, Setting.WsPort));
             }
             else
             {
-                LogHelper.Warning(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.WebSocketServer.StartupFailed, ServerType, Setting.WsPort));
+                LogHelper.Warning(LocalizationService.GetString(Localization.Keys.StartUp.WebSocketServer.StartupFailed, ServerType, Setting.WsPort));
             }
         }
         else
         {
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.StartUp.WebSocketServer.ServiceNotEnabled, ServerType, Setting.WsPort));
+            LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.WebSocketServer.ServiceNotEnabled, ServerType, Setting.WsPort));
         }
 
         // await StartHttpServerAsync(hostBuilder,baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);

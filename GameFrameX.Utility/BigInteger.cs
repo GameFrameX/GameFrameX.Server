@@ -249,14 +249,14 @@ public sealed class BigInteger
         {
             if (value != 0 || (data[maxLength - 1] & 0x80000000) != 0)
             {
-                throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.ConstructorOverflow));
+                throw new ArithmeticException(LocalizationService.GetString(Localization.Keys.Utility.Exceptions.ConstructorOverflow));
             }
         }
         else if (tempVal < 0) // 负值下溢检查
         {
             if (value != -1 || (data[dataLength - 1] & 0x80000000) == 0)
             {
-                throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.ConstructorUnderflow));
+                throw new ArithmeticException(LocalizationService.GetString(Localization.Keys.Utility.Exceptions.ConstructorUnderflow));
             }
         }
 
@@ -290,7 +290,7 @@ public sealed class BigInteger
 
         if (value != 0 || (data[maxLength - 1] & 0x80000000) != 0)
         {
-            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ConstructorOverflow));
+            throw new ArithmeticException(LocalizationService.GetString(Localization.Keys.Utility.ConstructorOverflow));
         }
 
         if (dataLength == 0)
@@ -375,7 +375,7 @@ public sealed class BigInteger
 
             if (posVal >= radix)
             {
-                throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.ConstructorInvalidString));
+                throw new ArithmeticException(LocalizationService.GetString(Localization.Keys.Utility.Exceptions.ConstructorInvalidString));
             }
 
             if (value[0] == '-')
@@ -395,14 +395,14 @@ public sealed class BigInteger
         {
             if ((result.data[maxLength - 1] & 0x80000000) == 0)
             {
-                throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.ConstructorUnderflow));
+                throw new ArithmeticException(LocalizationService.GetString(Localization.Keys.Utility.Exceptions.ConstructorUnderflow));
             }
         }
         else // 处理正值
         {
             if ((result.data[maxLength - 1] & 0x80000000) != 0)
             {
-                throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.ConstructorOverflow));
+                throw new ArithmeticException(LocalizationService.GetString(Localization.Keys.Utility.Exceptions.ConstructorOverflow));
             }
         }
 
@@ -432,7 +432,7 @@ public sealed class BigInteger
 
         if (dataLength > maxLength)
         {
-            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Exceptions.BigInteger.ConstructorByteOverflow));
+            throw new ArithmeticException(LocalizationService.GetString(Localization.Keys.Exceptions.BigInteger.ConstructorByteOverflow));
         }
 
         data = new uint[maxLength];
@@ -482,7 +482,7 @@ public sealed class BigInteger
 
         if (dataLength > maxLength || inLen > inData.Length)
         {
-            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Exceptions.BigInteger.ConstructorByteOverflow));
+            throw new ArithmeticException(LocalizationService.GetString(Localization.Keys.Exceptions.BigInteger.ConstructorByteOverflow));
         }
 
         data = new uint[maxLength];
@@ -530,7 +530,7 @@ public sealed class BigInteger
 
         if (dataLength > maxLength)
         {
-            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Exceptions.BigInteger.ConstructorByteOverflow));
+            throw new ArithmeticException(LocalizationService.GetString(Localization.Keys.Exceptions.BigInteger.ConstructorByteOverflow));
         }
 
         data = new uint[maxLength];
@@ -678,7 +678,7 @@ public sealed class BigInteger
         if ((bi1.data[lastPos] & 0x80000000) == 0 &&
             (result.data[lastPos] & 0x80000000) != (bi1.data[lastPos] & 0x80000000))
         {
-            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.IncrementOverflow));
+            throw new ArithmeticException(LocalizationService.GetString(Localization.Keys.Utility.Exceptions.IncrementOverflow));
         }
 
         return result;
@@ -789,7 +789,7 @@ public sealed class BigInteger
         if ((bi1.data[lastPos] & 0x80000000) != 0 &&
             (result.data[lastPos] & 0x80000000) != (bi1.data[lastPos] & 0x80000000))
         {
-            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.DecrementUnderflow));
+            throw new ArithmeticException(LocalizationService.GetString(Localization.Keys.Utility.Exceptions.DecrementUnderflow));
         }
 
         return result;
@@ -857,7 +857,7 @@ public sealed class BigInteger
         }
         catch (Exception)
         {
-            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.MultiplicationOverflow));
+            throw new ArithmeticException(LocalizationService.GetString(Localization.Keys.Utility.Exceptions.MultiplicationOverflow));
         }
 
 
@@ -898,7 +898,7 @@ public sealed class BigInteger
                 }
             }
 
-            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.MultiplicationOverflow));
+            throw new ArithmeticException(LocalizationService.GetString(Localization.Keys.Utility.Exceptions.MultiplicationOverflow));
         }
 
         // 如果输入符号不同，则结果为负
@@ -1129,7 +1129,7 @@ public sealed class BigInteger
 
         if ((bi1.data[maxLength - 1] & 0x80000000) == (result.data[maxLength - 1] & 0x80000000))
         {
-            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.NegationOverflow));
+            throw new ArithmeticException(LocalizationService.GetString(Localization.Keys.Utility.Exceptions.NegationOverflow));
         }
 
         result.dataLength = maxLength;
@@ -1813,7 +1813,7 @@ public sealed class BigInteger
     {
         if (radix < 2 || radix > 36)
         {
-            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.RadixOutOfRange));
+            throw new ArgumentException(LocalizationService.GetString(Localization.Keys.Utility.Exceptions.RadixOutOfRange));
         }
 
         var charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -1912,7 +1912,7 @@ public sealed class BigInteger
     {
         if ((exp.data[maxLength - 1] & 0x80000000) != 0)
         {
-            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.PositiveExponentsOnly)); // 仅支持正指数
+            throw new ArithmeticException(LocalizationService.GetString(Localization.Keys.Utility.Exceptions.PositiveExponentsOnly)); // 仅支持正指数
         }
 
         BigInteger resultNum = 1;
@@ -2145,7 +2145,7 @@ public sealed class BigInteger
     /// <param name="bits">要生成的位数</param>
     /// <param name="rand">随机数生成器</param>
     /// <exception cref="ArithmeticException">当所需位数超过最大长度时抛出异常</exception>
-    public void GenRandomBits(int bits, System.Random rand)
+    public void GenRandomBits(int bits, Random rand)
     {
         var dwords = bits >> 5;
         var remBits = bits & 0x1F;
@@ -2157,7 +2157,7 @@ public sealed class BigInteger
 
         if (dwords > maxLength)
         {
-            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.RequiredBitsExceedMaxLength)); // 超过最大长度
+            throw new ArithmeticException(LocalizationService.GetString(Localization.Keys.Utility.Exceptions.RequiredBitsExceedMaxLength)); // 超过最大长度
         }
 
         for (var i = 0; i < dwords; i++)
@@ -2289,7 +2289,7 @@ public sealed class BigInteger
         var bits = thisVal.BitCount();
         var a = new BigInteger();
         var p_sub1 = thisVal - new BigInteger(1);
-        var rand = new System.Random();
+        var rand = new Random();
 
         for (var round = 0; round < confidence; round++)
         {
@@ -2421,7 +2421,7 @@ public sealed class BigInteger
 
         var bits = thisVal.BitCount();
         var a = new BigInteger();
-        var rand = new System.Random();
+        var rand = new Random();
 
         for (var round = 0; round < confidence; round++)
         {
@@ -2552,7 +2552,7 @@ public sealed class BigInteger
         var p_sub1 = thisVal - 1;
         var p_sub1_shift = p_sub1 >> 1;
 
-        var rand = new System.Random();
+        var rand = new Random();
 
         for (var round = 0; round < confidence; round++)
         {
@@ -3045,7 +3045,7 @@ LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utilit
         // 雅可比符号仅定义于奇数
         if ((b.data[0] & 0x1) == 0)
         {
-            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.JacobiSymbolDefinedForOddOnly));
+            throw new ArgumentException(LocalizationService.GetString(Localization.Keys.Utility.Exceptions.JacobiSymbolDefinedForOddOnly));
         }
 
         if (a >= b)
@@ -3119,7 +3119,7 @@ LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utilit
     /// <param name="confidence">置信度</param>
     /// <param name="rand">随机数生成器</param>
     /// <returns>生成的可能是素数的 BigInteger</returns>
-    public static BigInteger GenPseudoPrime(int bits, int confidence, System.Random rand)
+    public static BigInteger GenPseudoPrime(int bits, int confidence, Random rand)
     {
         var result = new BigInteger();
         var done = false;
@@ -3143,7 +3143,7 @@ LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utilit
     /// <param name="bits">位数</param>
     /// <param name="rand">随机数生成器</param>
     /// <returns>生成的互质的 BigInteger</returns>
-    public BigInteger GenCoPrime(int bits, System.Random rand)
+    public BigInteger GenCoPrime(int bits, Random rand)
     {
         var done = false;
         var result = new BigInteger();
@@ -3224,7 +3224,7 @@ LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utilit
 
         if (r[0].dataLength > 1 || (r[0].dataLength == 1 && r[0].data[0] != 1))
         {
-            throw new ArithmeticException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.NoInverse));
+            throw new ArithmeticException(LocalizationService.GetString(Localization.Keys.Utility.Exceptions.NoInverse));
         }
 
         var result = (p[0] - p[1] * q[0]) % modulus;
@@ -3509,7 +3509,7 @@ LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Utilit
 
         if ((k.data[0] & 0x00000001) == 0)
         {
-            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.Exceptions.ParameterKMustBeOdd));
+            throw new ArgumentException(LocalizationService.GetString(Localization.Keys.Utility.Exceptions.ParameterKMustBeOdd));
         }
 
         var numbits = k.BitCount();
