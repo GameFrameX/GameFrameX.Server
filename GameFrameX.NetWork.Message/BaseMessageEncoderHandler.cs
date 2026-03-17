@@ -77,7 +77,6 @@ public abstract class BaseMessageEncoderHandler : IMessageEncoderHandler
     /// <returns></returns>
     protected void BytesCompressHandler(ref byte[] bytes, ref byte zipFlag)
     {
-        ArgumentOutOfRangeException.ThrowIfNegative(zipFlag);
         if (CompressHandler != null && bytes.Length > LimitCompressLength)
         {
             zipFlag = 1;
