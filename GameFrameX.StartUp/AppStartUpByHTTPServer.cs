@@ -257,8 +257,11 @@ public abstract partial class AppStartUpBase
             // 获取异常信息
             var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
 
-            // 自定义返回Json信息；
-            await context.Response.WriteAsync(exceptionHandlerPathFeature.Error.Message);
+            // 记录详细错误日志
+            LogHelper.Error($"HTTP request error: {exceptionHandlerPathFeature?.Error}");
+
+            // 返回通用错误消息，避免泄露敏感信息
+            await context.Response.WriteAsync("An error occurred while processing your request.");
         });
     }
 }

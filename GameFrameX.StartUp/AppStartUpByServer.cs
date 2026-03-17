@@ -207,18 +207,23 @@ public abstract partial class AppStartUpBase
     /// </remarks>
     protected async Task InvokeMessageHandler(IMessageHandler handler, INetworkMessage message, INetWorkChannel netWorkChannel, int timeout = 30000, CancellationToken cancellationToken = default)
     {
-        async void InvokeAction()
+        try
         {
-            var initSuccess = await handler.Init(message, netWorkChannel);
-            if (initSuccess == false)
+            await Task.Run(async () =>
             {
-                return;
-            }
+                var initSuccess = await handler.Init(message, netWorkChannel);
+                if (!initSuccess)
+                {
+                    return;
+                }
 
-            await handler.InnerAction(timeout, cancellationToken);
+                await handler.InnerAction(timeout, cancellationToken);
+            }, cancellationToken);
         }
-
-        await Task.Run(InvokeAction, cancellationToken);
+        catch (Exception ex)
+        {
+            LogHelper.Error($"Message handler error: {ex}");
+        }
     }
 
     #region TCP Server

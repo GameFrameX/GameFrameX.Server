@@ -55,7 +55,7 @@ internal static class AppExitHandler
     /// <value>
     /// The action to be called when application exits / 应用程序退出时要调用的动作
     /// </value>
-    private static Action<string> _existCallBack;
+    private static Action<string> _exitCallBack;
 
     /// <summary>
     /// Application settings / 应用程序设置
@@ -87,39 +87,39 @@ internal static class AppExitHandler
     /// <value>
     /// Collection of handlers for fatal exceptions / 致命异常处理器集合
     /// </value>
-    private static readonly List<IFetalExceptionExitHandler> FetalExceptionExitHandlers = new();
+    private static readonly List<IFatalExceptionExitHandler> FatalExceptionExitHandlers = new();
 
     /// <summary>
     /// Initialize the exit handler / 初始化退出处理器
     /// </summary>
-    /// <param name="existCallBack">Exit callback action / 退出回调动作</param>
+    /// <param name="exitCallBack">Exit callback action / 退出回调动作</param>
     /// <param name="setting">Application settings / 应用程序设置</param>
     /// <remarks>
     /// 设置各种退出信号监听器和异常处理器，确保应用程序能够响应各种退出条件
     /// </remarks>
-    public static void Init(Action<string> existCallBack, AppSetting setting)
+    public static void Init(Action<string> exitCallBack, AppSetting setting)
     {
         _isKill = false;
         _setting = setting;
-        _existCallBack = existCallBack;
-        var fetalExceptionExitHandlers = AssemblyHelper.GetRuntimeImplementTypeNames<IFetalExceptionExitHandler>();
-        foreach (var exceptionExitHandler in fetalExceptionExitHandlers)
+        _exitCallBack = exitCallBack;
+        var fatalExceptionExitHandlers = AssemblyHelper.GetRuntimeImplementTypeNames<IFatalExceptionExitHandler>();
+        foreach (var exceptionExitHandler in fatalExceptionExitHandlers)
         {
-            var handler = (IFetalExceptionExitHandler)Activator.CreateInstance(exceptionExitHandler);
-            FetalExceptionExitHandlers.Add(handler);
+            var handler = (IFatalExceptionExitHandler)Activator.CreateInstance(exceptionExitHandler);
+            FatalExceptionExitHandlers.Add(handler);
         }
 
         _exitSignalRegistration = PosixSignalRegistration.Create(PosixSignal.SIGTERM, ExitSignalRegistrationHandler);
         //退出监听
-        AppDomain.CurrentDomain.ProcessExit += (s, e) => { _existCallBack?.Invoke("process exit"); };
+        AppDomain.CurrentDomain.ProcessExit += (s, e) => { _exitCallBack?.Invoke("process exit"); };
         //卸载监听
         AssemblyLoadContext.Default.Unloading += DefaultOnUnloading;
-        //Fetal异常监听
-        AppDomain.CurrentDomain.UnhandledException += (s, e) => { HandleFetalException("AppDomain.CurrentDomain.UnhandledException", e.ExceptionObject); };
+        //Fatal异常监听
+        AppDomain.CurrentDomain.UnhandledException += (s, e) => { HandleFatalException("AppDomain.CurrentDomain.UnhandledException", e.ExceptionObject); };
         //Task异常监听
-        TaskScheduler.UnobservedTaskException += (s, e) => { HandleFetalException("TaskScheduler.UnobservedTaskException", e.Exception); };
+        TaskScheduler.UnobservedTaskException += (s, e) => { HandleFatalException("TaskScheduler.UnobservedTaskException", e.Exception); };
         //ctrl+c
-        Console.CancelKeyPress += (s, e) => { _existCallBack?.Invoke("ctrl+c exit"); };
+        Console.CancelKeyPress += (s, e) => { _exitCallBack?.Invoke("ctrl+c exit"); };
     }
 
     /// <summary>
@@ -132,7 +132,7 @@ internal static class AppExitHandler
     private static void ExitSignalRegistrationHandler(PosixSignalContext posixSignalContext)
     {
         LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.Application.SigtermSignalReceived));
-        _existCallBack?.Invoke("SIGTERM exit");
+        _exitCallBack?.Invoke("SIGTERM exit");
     }
 
     /// <summary>
@@ -144,7 +144,7 @@ internal static class AppExitHandler
     /// </remarks>
     private static void DefaultOnUnloading(AssemblyLoadContext obj)
     {
-        HandleFetalException("AssemblyLoadContext.Default.Unloading", obj.ToString());
+        HandleFatalException("AssemblyLoadContext.Default.Unloading", obj.ToString());
     }
 
     /// <summary>
@@ -166,18 +166,18 @@ internal static class AppExitHandler
     /// <remarks>
     /// 处理未处理的异常，记录日志并通知相关处理器，然后触发应用程序退出
     /// </remarks>
-    private static void HandleFetalException(string tag, object e)
+    private static void HandleFatalException(string tag, object e)
     {
         if (_isKill)
         {
             return;
         }
 
-        if (FetalExceptionExitHandlers?.Count > 0)
+        if (FatalExceptionExitHandlers?.Count > 0)
         {
-            foreach (var fetalExceptionExitHandler in FetalExceptionExitHandlers)
+            foreach (var fatalExceptionExitHandler in FatalExceptionExitHandlers)
             {
-                fetalExceptionExitHandler.Run(tag, _setting, e?.ToString());
+                fatalExceptionExitHandler.Run(tag, _setting, e?.ToString());
             }
         }
 
@@ -192,12 +192,12 @@ internal static class AppExitHandler
             }
 
             LogHelper.Error(LocalizationService.GetString(Localization.Keys.StartUp.Application.AllUnhandledExceptions, sb.ToString()));
-            _existCallBack?.Invoke(LocalizationService.GetString(Localization.Keys.StartUp.Application.AllUnhandledExceptions, sb.ToString()));
+            _exitCallBack?.Invoke(LocalizationService.GetString(Localization.Keys.StartUp.Application.AllUnhandledExceptions, sb.ToString()));
         }
         else
         {
             LogHelper.Error(LocalizationService.GetString(Localization.Keys.StartUp.Application.UnhandledException, e?.ToString() ?? "Unknown exception"));
-            _existCallBack?.Invoke(LocalizationService.GetString(Localization.Keys.StartUp.Application.UnhandledExceptionCallback, e?.ToString() ?? "Unknown exception"));
+            _exitCallBack?.Invoke(LocalizationService.GetString(Localization.Keys.StartUp.Application.UnhandledExceptionCallback, e?.ToString() ?? "Unknown exception"));
         }
     }
 }

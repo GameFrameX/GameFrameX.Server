@@ -76,6 +76,12 @@ public static class GameApp
     /// </remarks>
     private static readonly Dictionary<Type, StartUpTagAttribute> StartUpTypes = new();
 
+    /// <summary>
+    /// The launch task for the current server instance / 当前服务器实例的启动任务
+    /// </summary>
+    /// <remarks>
+    /// 用于跟踪服务器启动任务的执行状态
+    /// </remarks>
     private static Task _launchTask;
 
     /// <summary>
@@ -198,7 +204,10 @@ public static class GameApp
                 LogOptions.Default.LogTagName = launcherOptions.Description;
             }
 
-            LogOptions.Default.LogTagName = logTypeParts.Count > 0 ? string.Join("_", logTypeParts) : null;
+            if (LogOptions.Default.LogTagName.IsNullOrEmpty() && logTypeParts.Count > 0)
+            {
+                LogOptions.Default.LogTagName = string.Join("_", logTypeParts);
+            }
         }
 
         logConfiguration?.Invoke(LogOptions.Default);

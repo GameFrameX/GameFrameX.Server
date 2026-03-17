@@ -104,10 +104,10 @@ public abstract partial class AppStartUpBase : IAppStartUp
     /// </remarks>
     public bool Init(string serverType, AppSetting setting, string[] args = null)
     {
+        ArgumentNullException.ThrowIfNull(setting, nameof(setting));
         ServerType = serverType;
         Setting = setting;
         Init();
-        ArgumentNullException.ThrowIfNull(Setting, nameof(Setting));
         GlobalSettings.SetCurrentSetting(Setting);
         return true;
     }
@@ -136,7 +136,6 @@ public abstract partial class AppStartUpBase : IAppStartUp
         await StopServerAsync();
         AppExitSource?.TrySetResult(message);
         LogHelper.FlushAndSave();
-        await Task.CompletedTask;
     }
 
     /// <summary>

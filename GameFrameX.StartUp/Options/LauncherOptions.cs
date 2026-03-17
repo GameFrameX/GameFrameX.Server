@@ -328,7 +328,7 @@ public sealed class LauncherOptions
     /// <remarks>
     /// 保存数据间隔，单位毫秒，默认30000毫秒（30秒），最小值为5秒（5000毫秒）
     /// </remarks>
-    [Option(nameof(SaveDataInterval), DefaultValue = 30_000, Description = "保存数据间隔,单位毫秒,默认300秒(5分钟),最小值为5秒(5000毫秒)")]
+    [Option(nameof(SaveDataInterval), DefaultValue = 30_000, Description = "保存数据间隔,单位毫秒,默认30000毫秒(30秒),最小值为5秒(5000毫秒)")]
     public int SaveDataInterval { get; set; }
 
     /// <summary>
