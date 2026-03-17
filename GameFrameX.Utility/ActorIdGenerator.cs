@@ -71,36 +71,6 @@ public static class ActorIdGenerator
         return (int)(actorId >> GlobalConst.ServerIdOrModuleIdMask);
     }
 
-    /*/// <summary>
-    /// 根据ActorId获取生成时间
-    /// </summary>
-    /// <param name="actorId">ActorId</param>
-    /// <param name="isUtc">是否使用UTC</param>
-    /// <returns></returns>
-    /// <exception cref="ArgumentException"></exception>
-    public static DateTime GetGenerateTime(long actorId, bool isUtc = false)
-    {
-        if (actorId < GlobalConst.MaxGlobalId)
-        {
-            throw new ArgumentException(LocalizationService.GetString(GameFrameX.Localization.Keys.Utility.ActorIdGenerator.InputIsGlobalId, actorId));
-        }
-
-        var  serverId = GetServerId(actorId);
-        long seconds;
-        if (serverId < GlobalConst.MinServerId)
-        {
-            // IDModule unique_id
-            seconds = (actorId >> GlobalConst.ModuleIdTimestampMask) & GlobalConst.SecondMask;
-        }
-        else
-        {
-            seconds = (actorId >> GlobalConst.TimestampMask) & GlobalConst.SecondMask;
-        }
-
-        var date = IdGenerator.UtcTimeStart.AddSeconds(seconds);
-        return isUtc ? date : date.ToLocalTime();
-    }*/
-
     /// <summary>
     /// 根据ActorId获取ActorType
     /// </summary>
