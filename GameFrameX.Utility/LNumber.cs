@@ -66,27 +66,22 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
     public static readonly LNumber MinValue = Create_Row(-Max);
 
     /// <summary>
-    /// 0
+    /// 最小非零正值 (1)
     /// </summary>
-    public static readonly LNumber zero = Create_Row(0);
+    public static readonly LNumber Epsilon = Create_Row(1);
 
     /// <summary>
-    /// 1
+    /// 单位值 (1)
     /// </summary>
-    public static readonly LNumber one = 1;
+    public static readonly LNumber One = 1;
 
     /// <summary>
-    /// -1
+    /// 负单位值 (-1)
     /// </summary>
-    public static readonly LNumber minus_one = -one;
+    public static readonly LNumber MinusOne = -One;
 
     /// <summary>
-    /// 1
-    /// </summary>
-    public static readonly LNumber epsilon = Create_Row(1);
-
-    /// <summary>
-    /// 0
+    /// 零值 (0)
     /// </summary>
     public static readonly LNumber Zero = new();
 
