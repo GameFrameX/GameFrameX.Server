@@ -58,7 +58,7 @@ public sealed class ReqPlayerSendItemHttpHandler : BaseHttpHandler
         {
             foreach (var item in request.Items)
             {
-                if (tbItemConfig.Get(item.Key).IsNull())
+                if (!tbItemConfig.TryGet(item.Key, out var tbItemConfigItem))
                 {
                     continue;
                 }
