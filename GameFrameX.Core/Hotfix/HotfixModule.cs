@@ -547,12 +547,12 @@ internal sealed class HotfixModule
     /// <param name="component">组件实例。</param>
     /// <typeparam name="T">代理类型。</typeparam>
     /// <returns>代理实例。</returns>
-    internal T GetAgent<T>(BaseComponent component) where T : IComponentAgent
+    internal T GetAgent<T>(BaseComponent component) where T : class, IComponentAgent
     {
         var type = component.GetType();
         if (_compAgentMap.TryGetValue(type, out var agentType))
         {
-            T agent = default;
+            T agent = null;
             if (_useAgentWrapper)
             {
                 if (_agentAgentWrapperMap.TryGetValue(agentType, out var warpType))
