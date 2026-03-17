@@ -60,7 +60,7 @@ public class StartUpTagAttribute : Attribute
     /// 启动优先级决定了类的初始化顺序，数值越小的类会越早被初始化。
     /// 默认优先级为1000。
     /// </remarks>
-    public readonly int Priority;
+    public int Priority { get; }
 
     /// <summary>
     /// Gets the server type identifier / 获取服务器类型标识符
@@ -72,7 +72,7 @@ public class StartUpTagAttribute : Attribute
     /// 服务器类型用于标识当前启动类适用于哪种类型的服务器，
     /// 系统会根据此标识符来决定是否启动对应的类。
     /// </remarks>
-    public readonly string ServerType;
+    public string ServerType { get; }
 
     /// <summary>
     /// Initializes a new instance of the StartUpTagAttribute class / 初始化StartUpTagAttribute类的新实例
