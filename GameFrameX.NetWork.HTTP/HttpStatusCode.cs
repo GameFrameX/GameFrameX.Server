@@ -34,7 +34,7 @@ namespace GameFrameX.NetWork.HTTP;
 /// <summary>
 /// HTTP状态码
 /// </summary>
-public static class HttpStatusCode
+public static class GameHttpStatusCode
 {
     /// <summary>
     /// 未定义的命令
