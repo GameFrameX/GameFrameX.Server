@@ -146,7 +146,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
 
                     if (serverList.Count > 0)
                     {
-                        var serverInfo = (ServiceInfo)serverList.Random();
+                        var serverInfo = (ServiceInfo)serverList.RandomElement();
 
 
                         var respConnectServer = MessageObjectPoolHelper.Get<RespConnectServer>();
@@ -218,7 +218,7 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
 
                     if (serverList.Count > 0)
                     {
-                        var serverInfo = (ServiceInfo)serverList.Random();
+                        var serverInfo = (ServiceInfo)serverList.RandomElement();
                         respConnectServer.ServerInstanceId = serverInfo.ServerInstanceId;
                         respConnectServer.ServerType = serverInfo.Type;
                         respConnectServer.ServerName = serverInfo.Name;
