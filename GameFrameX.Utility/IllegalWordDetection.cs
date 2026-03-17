@@ -62,6 +62,7 @@ public sealed class IllegalWordDetection
     /// </summary>
     private static readonly byte[] StartCache = new byte[char.MaxValue];
 
+    [ThreadStatic]
     private static char[] _dectectedBuffer;
 
     /// <summary>
