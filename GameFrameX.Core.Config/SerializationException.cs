@@ -36,7 +36,7 @@ namespace GameFrameX.Core.Config;
 
 /// <summary>
 /// </summary>
-public class SerializationException : Exception
+public sealed class SerializationException : Exception
 {
     /// <summary>
     /// </summary>
