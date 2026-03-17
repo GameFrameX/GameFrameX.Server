@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 
+using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Reflection;
 using Microsoft.OpenApi.Any;
@@ -47,6 +48,26 @@ public sealed class SwaggerOperationFilter : IOperationFilter
     /// HTTP 处理器字典,key为命令ID,value为处理器类型
     /// </summary>
     private readonly List<BaseHttpHandler> _handlers;
+
+    /// <summary>
+    /// 处理器类型到 HttpMessageMappingAttribute 的缓存
+    /// </summary>
+    private static readonly ConcurrentDictionary<Type, HttpMessageMappingAttribute> MappingAttributeCache = new();
+
+    /// <summary>
+    /// 处理器类型到 HttpMessageRequestAttribute 的缓存
+    /// </summary>
+    private static readonly ConcurrentDictionary<Type, HttpMessageRequestAttribute> RequestAttributeCache = new();
+
+    /// <summary>
+    /// 处理器类型到 HttpMessageResponseAttribute 的缓存
+    /// </summary>
+    private static readonly ConcurrentDictionary<Type, HttpMessageResponseAttribute> ResponseAttributeCache = new();
+
+    /// <summary>
+    /// 处理器类型到 DescriptionAttribute 的缓存
+    /// </summary>
+    private static readonly ConcurrentDictionary<Type, DescriptionAttribute> DescriptionAttributeCache = new();
 
     /// <summary>
     /// 构造函数
@@ -72,8 +93,13 @@ public sealed class SwaggerOperationFilter : IOperationFilter
 
         operation.Parameters.Clear();
 
-        // 找到匹配的处理器
-        var handler = _handlers.FirstOrDefault(h => routeTemplate.EndsWith(h.GetType().GetCustomAttribute<HttpMessageMappingAttribute>()?.StandardCmd ?? "", StringComparison.OrdinalIgnoreCase));
+        // 找到匹配的处理器（使用缓存的特性）
+        var handler = _handlers.FirstOrDefault(h =>
+        {
+            var handlerType = h.GetType();
+            var mappingAttr = MappingAttributeCache.GetOrAdd(handlerType, t => t.GetCustomAttribute<HttpMessageMappingAttribute>());
+            return routeTemplate.EndsWith(mappingAttr?.StandardCmd ?? "", StringComparison.OrdinalIgnoreCase);
+        });
 
         if (handler == null)
         {
@@ -82,9 +108,9 @@ public sealed class SwaggerOperationFilter : IOperationFilter
 
         var handlerType = handler.GetType();
 
-        // 获取请求和响应的消息类型
-        var requestAttr = handlerType.GetCustomAttribute<HttpMessageRequestAttribute>();
-        var responseAttr = handlerType.GetCustomAttribute<HttpMessageResponseAttribute>();
+        // 获取请求和响应的消息类型（使用缓存）
+        var requestAttr = RequestAttributeCache.GetOrAdd(handlerType, t => t.GetCustomAttribute<HttpMessageRequestAttribute>());
+        var responseAttr = ResponseAttributeCache.GetOrAdd(handlerType, t => t.GetCustomAttribute<HttpMessageResponseAttribute>());
 
         // 设置请求体
         if (requestAttr?.MessageType != null)
@@ -187,15 +213,15 @@ public sealed class SwaggerOperationFilter : IOperationFilter
                 },
             },
         };
-        // 添加操作描述
-        var descriptionAttr = handlerType.GetCustomAttribute<DescriptionAttribute>();
+        // 添加操作描述（使用缓存）
+        var descriptionAttr = DescriptionAttributeCache.GetOrAdd(handlerType, t => t.GetCustomAttribute<DescriptionAttribute>());
         operation.Summary = descriptionAttr?.Description ?? handlerType.Name;
         operation.Description = GetTypeDescription(handlerType);
     }
 
     private string GetTypeDescription(Type type)
     {
-        var summaryAttr = type.GetCustomAttribute<DescriptionAttribute>();
+        var summaryAttr = DescriptionAttributeCache.GetOrAdd(type, t => t.GetCustomAttribute<DescriptionAttribute>());
         return summaryAttr?.Description ?? type.Name;
     }
 }
