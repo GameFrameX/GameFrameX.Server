@@ -50,7 +50,7 @@ public sealed class MessageObjectPipelineFilter : PipelineFilterBase<IMessage>
     {
         var pack = reader.Sequence;
         reader.TryPeekBigEndianValue(out uint totalLength);
-        if (totalLength <= 0)
+        if (totalLength == 0)
         {
             reader.AdvanceToEnd();
             return default;
