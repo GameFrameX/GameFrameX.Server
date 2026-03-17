@@ -60,10 +60,7 @@ public abstract class BaseHttpHandler : IHttpHandler
     /// <summary>
     /// 是否需要校验签名，默认为不需要校验。
     /// </summary>
-    public virtual bool IsCheckSign
-    {
-        get { return false; }
-    }
+    public virtual bool IsCheckSign => false;
 
 
     /// <summary>

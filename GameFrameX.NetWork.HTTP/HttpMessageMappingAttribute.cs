@@ -65,11 +65,6 @@ public sealed class HttpMessageMappingAttribute : Attribute
             throw new InvalidOperationException(LocalizationService.GetString(Localization.Keys.NetWorkHttp.ClassMustBeSealed, className));
         }
 
-        // if (!className.StartsWith(HTTPprefix, StringComparison.Ordinal))
-        // {
-        //     throw new InvalidOperationException($"{className} 必须以{HTTPprefix}开头");
-        // }
-
         if (!className.EndsWith(HTTPsuffix, StringComparison.Ordinal))
         {
             throw new InvalidOperationException(LocalizationService.GetString(Localization.Keys.NetWorkHttp.ClassMustEndWithSuffix, className, HTTPsuffix));

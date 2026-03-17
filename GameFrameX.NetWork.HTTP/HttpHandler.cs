@@ -79,9 +79,6 @@ public static class HttpHandler
 
             context.Response.Headers.ContentType = JsonContentType;
             MessageObject message = null;
-            // 处理POST请求
-            // if (string.Equals(context.Request.Method, HttpMethod.Post.Method, StringComparison.OrdinalIgnoreCase))
-            // {
             var headContentType = context.Request.ContentType;
             if (headContentType.IsNullOrWhiteSpace())
             {
@@ -110,7 +107,7 @@ public static class HttpHandler
 
                 if (isJson)
                 {
-                    var streamReader = new StreamReader(context.Request.Body);
+                    using var streamReader = new StreamReader(context.Request.Body);
                     var jsonBody = await streamReader.ReadToEndAsync();
                     var jsonKv = JsonHelper.Deserialize<Dictionary<string, object>>(jsonBody);
                     foreach (var keyValuePair in jsonKv)
@@ -118,18 +115,17 @@ public static class HttpHandler
                         if (!paramMap.TryAdd(keyValuePair.Key, keyValuePair.Value))
                         {
                             // 参数Key发生重复
-                            await context.Response.WriteAsync(HttpJsonResult.ErrorString(HttpStatusCode.ParamErr, LocalizationService.GetString(Localization.Keys.NetWorkHttp.ParameterDuplicate, keyValuePair.Key)));
+                            await context.Response.WriteAsync(HttpJsonResult.ErrorString(GameHttpStatusCode.ParamErr, LocalizationService.GetString(Localization.Keys.NetWorkHttp.ParameterDuplicate, keyValuePair.Key)));
                             return;
                         }
                     }
                 }
                 else
                 {
-                    await context.Response.WriteAsync(HttpJsonResult.ErrorString(HttpStatusCode.ParamErr, LocalizationService.GetString(Localization.Keys.NetWorkHttp.UnsupportedContentType, headContentType)));
+                    await context.Response.WriteAsync(HttpJsonResult.ErrorString(GameHttpStatusCode.ParamErr, LocalizationService.GetString(Localization.Keys.NetWorkHttp.UnsupportedContentType, headContentType)));
                     return;
                 }
             }
-            // }
 
             // 记录请求参数
             if (paramMap.Count > 0)
@@ -140,13 +136,13 @@ public static class HttpHandler
             // 检查指令是否有效
             if (command.IsNullOrEmptyOrWhiteSpace())
             {
-                await context.Response.WriteAsync(HttpJsonResult.ErrorString(HttpStatusCode.Undefined, HttpStatusMessage.UndefinedCommand));
+                await context.Response.WriteAsync(HttpJsonResult.ErrorString(GameHttpStatusCode.Undefined, HttpStatusMessage.UndefinedCommand));
                 return;
             }
 
             if (!GlobalSettings.IsAppRunning)
             {
-                await context.Response.WriteAsync(HttpJsonResult.ErrorString(HttpStatusCode.ActionFailed, LocalizationService.GetString(Localization.Keys.NetWorkHttp.ServerStatusError)));
+                await context.Response.WriteAsync(HttpJsonResult.ErrorString(GameHttpStatusCode.ActionFailed, LocalizationService.GetString(Localization.Keys.NetWorkHttp.ServerStatusError)));
                 return;
             }
 
@@ -213,7 +209,6 @@ public static class HttpHandler
                 var httpRequestAttr = handler.GetType().GetCustomAttribute<HttpMessageRequestAttribute>();
                 if (httpRequestAttr != null)
                 {
-                    ArgumentNullException.ThrowIfNull(httpRequestAttr.MessageType, nameof(httpRequestAttr.MessageType));
                     var httpMessageRequestBase = (HttpMessageRequestBase)JsonHelper.Deserialize(JsonHelper.Serialize(paramMap), httpRequestAttr.MessageType);
                     var validationResults = new List<ValidationResult>();
 
