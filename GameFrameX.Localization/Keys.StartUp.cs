@@ -233,6 +233,60 @@ public static partial class Keys
             public const string HandleGameClientPostRequest = "StartUp.HttpServer.HandleGameClientPostRequest";
 
             /// <summary>
+            /// 处理GET请求的描述
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpServer.HandleGetRequest
+            /// 用途: HTTP API文档中使用
+            /// </remarks>
+            public const string HandleGetRequest = "StartUp.HttpServer.HandleGetRequest";
+
+            /// <summary>
+            /// 处理游戏客户端GET请求的描述
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpServer.HandleGameClientGetRequest
+            /// 用途: HTTP API文档中使用
+            /// </remarks>
+            public const string HandleGameClientGetRequest = "StartUp.HttpServer.HandleGameClientGetRequest";
+
+            /// <summary>
+            /// 处理PUT请求的描述
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpServer.HandlePutRequest
+            /// 用途: HTTP API文档中使用
+            /// </remarks>
+            public const string HandlePutRequest = "StartUp.HttpServer.HandlePutRequest";
+
+            /// <summary>
+            /// 处理游戏客户端PUT请求的描述
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpServer.HandleGameClientPutRequest
+            /// 用途: HTTP API文档中使用
+            /// </remarks>
+            public const string HandleGameClientPutRequest = "StartUp.HttpServer.HandleGameClientPutRequest";
+
+            /// <summary>
+            /// 处理DELETE请求的描述
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpServer.HandleDeleteRequest
+            /// 用途: HTTP API文档中使用
+            /// </remarks>
+            public const string HandleDeleteRequest = "StartUp.HttpServer.HandleDeleteRequest";
+
+            /// <summary>
+            /// 处理游戏客户端DELETE请求的描述
+            /// </summary>
+            /// <remarks>
+            /// 键名: StartUp.HttpServer.HandleGameClientDeleteRequest
+            /// 用途: HTTP API文档中使用
+            /// </remarks>
+            public const string HandleGameClientDeleteRequest = "StartUp.HttpServer.HandleGameClientDeleteRequest";
+
+            /// <summary>
             /// HTTP服务已禁用，启动已忽略
             /// </summary>
             /// <remarks>

@@ -83,15 +83,23 @@ public static class HttpHandler
             MessageObject message = null;
             var headContentType = context.Request.ContentType;
             string jsonBody = null;
-            if (headContentType.IsNullOrWhiteSpace())
+            var isGetRequest = HttpMethods.IsGet(context.Request.Method);
+
+            // GET 请求允许没有 ContentType
+            if (headContentType.IsNullOrWhiteSpace() && !isGetRequest)
             {
                 await context.Response.WriteAsync(LocalizationService.GetString(Localization.Keys.NetWorkHttp.HttpHeaderContentTypeNull));
                 return;
             }
 
-            var isProtoBuf = headContentType.Equals(ProtoBufContentType, StringComparison.OrdinalIgnoreCase);
+            var isProtoBuf = !isGetRequest && headContentType.Equals(ProtoBufContentType, StringComparison.OrdinalIgnoreCase);
 
-            if (isProtoBuf)
+            // GET 请求只使用 Query String 参数，不需要处理 Body
+            if (isGetRequest)
+            {
+                // GET 请求跳过 Body 处理，参数已在 Query String 中提取
+            }
+            else if (isProtoBuf)
             {
                 using (var memoryStream = new MemoryStream())
                 {

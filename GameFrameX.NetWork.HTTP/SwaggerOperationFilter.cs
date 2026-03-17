@@ -109,11 +109,35 @@ public sealed class SwaggerOperationFilter : IOperationFilter
         var handlerType = handler.GetType();
 
         // 获取请求和响应的消息类型（使用缓存）
+        var mappingAttr = MappingAttributeCache.GetOrAdd(handlerType, t => t.GetCustomAttribute<HttpMessageMappingAttribute>());
         var requestAttr = RequestAttributeCache.GetOrAdd(handlerType, t => t.GetCustomAttribute<HttpMessageRequestAttribute>());
         var responseAttr = ResponseAttributeCache.GetOrAdd(handlerType, t => t.GetCustomAttribute<HttpMessageResponseAttribute>());
 
-        // 设置请求体
-        if (requestAttr?.MessageType != null)
+        // 判断是否为 GET 请求
+        var isGetRequest = mappingAttr?.HttpMethod == HttpMethodType.GET;
+
+        // 设置请求参数（GET 使用 Query 参数，其他使用 RequestBody）
+        if (isGetRequest && requestAttr?.MessageType != null)
+        {
+            // GET 请求：生成 Query 参数
+            var properties = requestAttr.MessageType.GetProperties();
+            foreach (var property in properties)
+            {
+                var paramSchema = GetSchemaForType(property.PropertyType);
+                var propDescriptionAttr = property.GetCustomAttribute<System.ComponentModel.DescriptionAttribute>();
+
+                operation.Parameters.Add(new OpenApiParameter
+                {
+                    Name = property.Name,
+                    In = ParameterLocation.Query,
+                    Required = false, // 可根据 RequiredAttribute 判断
+                    Description = propDescriptionAttr?.Description ?? property.Name,
+                    Schema = paramSchema,
+                });
+            }
+        }
+        // 设置请求体（非 GET 请求）
+        else if (requestAttr?.MessageType != null)
         {
             var requestSchema = context.SchemaGenerator.GenerateSchema(requestAttr.MessageType, context.SchemaRepository);
 
@@ -152,7 +176,7 @@ public sealed class SwaggerOperationFilter : IOperationFilter
                 },
             };
         }
-        else
+        else if (!isGetRequest)
         {
             operation.RequestBody = new OpenApiRequestBody
             {
@@ -223,5 +247,70 @@ public sealed class SwaggerOperationFilter : IOperationFilter
     {
         var summaryAttr = DescriptionAttributeCache.GetOrAdd(type, t => t.GetCustomAttribute<DescriptionAttribute>());
         return summaryAttr?.Description ?? type.Name;
+    }
+
+    /// <summary>
+    /// 根据类型获取对应的 OpenAPI Schema
+    /// </summary>
+    /// <param name="type">属性类型</param>
+    /// <returns>OpenAPI Schema</returns>
+    private static OpenApiSchema GetSchemaForType(Type type)
+    {
+        if (type == typeof(string))
+        {
+            return new OpenApiSchema { Type = "string" };
+        }
+
+        if (type == typeof(int) || type == typeof(int?))
+        {
+            return new OpenApiSchema { Type = "integer", Format = "int32" };
+        }
+
+        if (type == typeof(long) || type == typeof(long?))
+        {
+            return new OpenApiSchema { Type = "integer", Format = "int64" };
+        }
+
+        if (type == typeof(float) || type == typeof(float?))
+        {
+            return new OpenApiSchema { Type = "number", Format = "float" };
+        }
+
+        if (type == typeof(double) || type == typeof(double?))
+        {
+            return new OpenApiSchema { Type = "number", Format = "double" };
+        }
+
+        if (type == typeof(decimal) || type == typeof(decimal?))
+        {
+            return new OpenApiSchema { Type = "number", Format = "decimal" };
+        }
+
+        if (type == typeof(bool) || type == typeof(bool?))
+        {
+            return new OpenApiSchema { Type = "boolean" };
+        }
+
+        if (type == typeof(DateTime) || type == typeof(DateTime?))
+        {
+            return new OpenApiSchema { Type = "string", Format = "date-time" };
+        }
+
+        if (type == typeof(Guid) || type == typeof(Guid?))
+        {
+            return new OpenApiSchema { Type = "string", Format = "uuid" };
+        }
+
+        if (type == typeof(byte[]))
+        {
+            return new OpenApiSchema { Type = "string", Format = "byte" };
+        }
+
+        if (type.IsArray || (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>)))
+        {
+            return new OpenApiSchema { Type = "array" };
+        }
+
+        return new OpenApiSchema { Type = "object" };
     }
 }

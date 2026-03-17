@@ -510,6 +510,24 @@
     <data name="StartUp.HttpServer.HandleGameClientPostRequest" xml:space="preserve">
     <value>处理来自游戏客户端的 POST 请求</value>
   </data>
+    <data name="StartUp.HttpServer.HandleGetRequest" xml:space="preserve">
+    <value>处理 GET 请求</value>
+  </data>
+    <data name="StartUp.HttpServer.HandleGameClientGetRequest" xml:space="preserve">
+    <value>处理来自游戏客户端的 GET 请求</value>
+  </data>
+    <data name="StartUp.HttpServer.HandlePutRequest" xml:space="preserve">
+    <value>处理 PUT 请求</value>
+  </data>
+    <data name="StartUp.HttpServer.HandleGameClientPutRequest" xml:space="preserve">
+    <value>处理来自游戏客户端的 PUT 请求</value>
+  </data>
+    <data name="StartUp.HttpServer.HandleDeleteRequest" xml:space="preserve">
+    <value>处理 DELETE 请求</value>
+  </data>
+    <data name="StartUp.HttpServer.HandleGameClientDeleteRequest" xml:space="preserve">
+    <value>处理来自游戏客户端的 DELETE 请求</value>
+  </data>
     <data name="StartUp.HttpServer.ServiceDisabled" xml:space="preserve">
     <value>HTTP服务已禁用，启动已忽略</value>
   </data>

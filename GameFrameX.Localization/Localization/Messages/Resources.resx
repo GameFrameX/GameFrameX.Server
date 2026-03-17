@@ -478,6 +478,24 @@
     <data name="StartUp.HttpServer.HandleGameClientPostRequest" xml:space="preserve">
     <value>Handle POST request from game client</value>
   </data>
+    <data name="StartUp.HttpServer.HandleGetRequest" xml:space="preserve">
+    <value>Handle GET request</value>
+  </data>
+    <data name="StartUp.HttpServer.HandleGameClientGetRequest" xml:space="preserve">
+    <value>Handle GET request from game client</value>
+  </data>
+    <data name="StartUp.HttpServer.HandlePutRequest" xml:space="preserve">
+    <value>Handle PUT request</value>
+  </data>
+    <data name="StartUp.HttpServer.HandleGameClientPutRequest" xml:space="preserve">
+    <value>Handle PUT request from game client</value>
+  </data>
+    <data name="StartUp.HttpServer.HandleDeleteRequest" xml:space="preserve">
+    <value>Handle DELETE request</value>
+  </data>
+    <data name="StartUp.HttpServer.HandleGameClientDeleteRequest" xml:space="preserve">
+    <value>Handle DELETE request from game client</value>
+  </data>
     <data name="StartUp.HttpServer.ServiceDisabled" xml:space="preserve">
     <value>HTTP service is disabled, startup ignored</value>
   </data>

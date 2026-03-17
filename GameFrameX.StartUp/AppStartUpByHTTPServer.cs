@@ -189,18 +189,25 @@ public abstract partial class AppStartUpBase
                     continue;
                 }
 
-                // 注册POST路由
+                // 注册路由 - 根据 HttpMethod 选择不同的 Map 方法
                 var apiPath = $"{GlobalSettings.CurrentSetting.HttpUrl}{mappingAttribute.StandardCmd}";
-                var route = app.MapPost(apiPath, async (HttpContext context, string _) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
+                var httpMethod = mappingAttribute.HttpMethod;
+
+                IEndpointConventionBuilder route = httpMethod switch
+                {
+                    HttpMethodType.GET => app.MapGet(apiPath, async (HttpContext context) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); }),
+                    HttpMethodType.PUT => app.MapPut(apiPath, async (HttpContext context, string _) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); }),
+                    HttpMethodType.DELETE => app.MapDelete(apiPath, async (HttpContext context, string _) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); }),
+                    _ => app.MapPost(apiPath, async (HttpContext context, string _) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); }),
+                };
 
                 // 开发环境下配置API文档
                 if (development)
                 {
-                    // 开发模式，启用 Swagger
                     route.WithOpenApi(operation =>
                     {
-                        operation.Summary = LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandlePostRequest);
-                        operation.Description = LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGameClientPostRequest);
+                        operation.Summary = GetHttpMethodSummary(httpMethod);
+                        operation.Description = GetHttpMethodDescription(httpMethod);
                         return operation;
                     });
                 }
@@ -264,4 +271,30 @@ public abstract partial class AppStartUpBase
             await context.Response.WriteAsync("An error occurred while processing your request.");
         });
     }
+
+    /// <summary>
+    /// 获取 HTTP 方法的摘要描述
+    /// </summary>
+    /// <param name="httpMethod">HTTP 方法类型</param>
+    /// <returns>摘要描述</returns>
+    private static string GetHttpMethodSummary(HttpMethodType httpMethod) => httpMethod switch
+    {
+        HttpMethodType.GET => LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGetRequest),
+        HttpMethodType.PUT => LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandlePutRequest),
+        HttpMethodType.DELETE => LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleDeleteRequest),
+        _ => LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandlePostRequest),
+    };
+
+    /// <summary>
+    /// 获取 HTTP 方法的详细描述
+    /// </summary>
+    /// <param name="httpMethod">HTTP 方法类型</param>
+    /// <returns>详细描述</returns>
+    private static string GetHttpMethodDescription(HttpMethodType httpMethod) => httpMethod switch
+    {
+        HttpMethodType.GET => LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGameClientGetRequest),
+        HttpMethodType.PUT => LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGameClientPutRequest),
+        HttpMethodType.DELETE => LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGameClientDeleteRequest),
+        _ => LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGameClientPostRequest),
+    };
 }
