@@ -1,0 +1,101 @@
+name: Publish Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    if: "!startsWith(github.event.head_commit.message, 'chore(release)')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            10.0.x
+
+      - name: Get latest tag
+        id: tag
+        run: |
+          latest=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+          echo "tag=$latest" >> $GITHUB_OUTPUT
+
+      - name: Analyze commits and calculate version
+        id: version
+        uses: paulhatch/semantic-version@v5.4.0
+        with:
+          tag_prefix: ""
+          major_pattern: "BREAKING CHANGE:"
+          minor_pattern: "feat:"
+          format: "${major}.${minor}.${patch}"
+
+      - name: Check if release needed
+        id: check
+        run: |
+          if [ "${{ steps.version.outputs.version }}" != "${{ steps.tag.outputs.tag }}" ]; then
+            echo "need_release=true" >> $GITHUB_OUTPUT
+          else
+            echo "need_release=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Update Version.props
+        if: steps.check.outputs.need_release == 'true'
+        run: |
+          sed -i "s|<Version>.*</Version>|<Version>${{ steps.version.outputs.version }}</Version>|" Version.props
+
+      - name: Generate CHANGELOG
+        if: steps.check.outputs.need_release == 'true'
+        uses: orhun/git-cliff-action@v4
+        id: git-cliff
+        with:
+          config: cliff.toml
+          args: --tag ${{ steps.version.outputs.version }} --strip header
+        env:
+          OUTPUT: CHANGELOG.md
+          GITHUB_REPO: ${{ github.repository }}
+
+      - name: Commit changes
+        if: steps.check.outputs.need_release == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Version.props CHANGELOG.md
+          git commit -m "chore(release): ${{ steps.version.outputs.version }}"
+
+      - name: Build
+        if: steps.check.outputs.need_release == 'true'
+        run: dotnet build --configuration Release
+
+      - name: Pack NuGet packages
+        if: steps.check.outputs.need_release == 'true'
+        run: dotnet pack --configuration Release --no-build --output ./artifacts
+
+      - name: Publish to NuGet
+        if: steps.check.outputs.need_release == 'true'
+        run: dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+
+      - name: Push changes
+        if: steps.check.outputs.need_release == 'true'
+        run: |
+          git push origin main
+          git tag ${{ steps.version.outputs.version }}
+          git push origin ${{ steps.version.outputs.version }}
+
+      - name: Create GitHub Release
+        if: steps.check.outputs.need_release == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          body_path: CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
