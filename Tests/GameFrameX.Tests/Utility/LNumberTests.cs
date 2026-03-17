@@ -61,10 +61,9 @@ namespace GameFrameX.Tests.Utility
         public void StaticFields_ShouldHaveCorrectValues()
         {
             // Assert
-            Assert.Equal(0, (long)LNumber.zero);
-            Assert.Equal(1, (long)LNumber.one);
-            Assert.Equal(-1, (long)LNumber.minus_one);
             Assert.Equal(0, (long)LNumber.Zero);
+            Assert.Equal(1, (long)LNumber.One);
+            Assert.Equal(-1, (long)LNumber.MinusOne);
         }
 
         #endregion
@@ -267,7 +266,7 @@ namespace GameFrameX.Tests.Utility
         {
             // Arrange
             var a = LNumber.Create(10, 0);
-            var b = LNumber.zero;
+            var b = LNumber.Zero;
 
             // Act
             var result = a / b;
@@ -606,8 +605,8 @@ namespace GameFrameX.Tests.Utility
         public void MaxAndMinValues_ShouldBeHandledCorrectly()
         {
             // Act & Assert
-            Assert.True(LNumber.MaxValue > LNumber.zero);
-            Assert.True(LNumber.MinValue < LNumber.zero);
+            Assert.True(LNumber.MaxValue > LNumber.Zero);
+            Assert.True(LNumber.MinValue < LNumber.Zero);
             Assert.True(LNumber.MaxValue > LNumber.MinValue);
         }
 
@@ -618,8 +617,8 @@ namespace GameFrameX.Tests.Utility
         public void Epsilon_ShouldBeVerySmall()
         {
             // Act & Assert
-            Assert.True(LNumber.epsilon > LNumber.zero);
-            Assert.True(LNumber.epsilon < LNumber.one);
+            Assert.True(LNumber.Epsilon > LNumber.Zero);
+            Assert.True(LNumber.Epsilon < LNumber.One);
         }
 
         /// <summary>
@@ -630,7 +629,7 @@ namespace GameFrameX.Tests.Utility
         {
             // Arrange
             var a = LNumber.Create(1, 0);
-            var b = LNumber.epsilon;
+            var b = LNumber.Epsilon;
 
             // Act
             var sum = a + b;
