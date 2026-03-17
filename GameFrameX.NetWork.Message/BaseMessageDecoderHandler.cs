@@ -45,9 +45,10 @@ public abstract class BaseMessageDecoderHandler : IMessageDecoderHandler
     protected IMessageDecompressHandler DecompressHandler { get; private set; }
 
     /// <summary>
-    /// 消息头长度
+    /// 消息头长度（默认值，可被子类重写）
+    /// <para>默认结构: totalLength(4) + operationType(1) + zipFlag(1) + uniqueId(4) + messageId(4) = 14 字节</para>
     /// </summary>
-    public virtual ushort PackageHeaderLength { get; } = 6;
+    public virtual ushort PackageHeaderLength { get; } = sizeof(uint) + sizeof(byte) + sizeof(byte) + sizeof(int) + sizeof(int);
 
     /// <summary>
     /// 和客户端之间的消息 数据长度(2)+消息唯一ID(4)+消息ID(4)+消息内容
