@@ -370,7 +370,7 @@ public sealed class GameAppServiceClient : IDisposable
     /// <param name="e">Data event arguments containing received data / 包含接收数据的数据事件参数</param>
     private void OnClientOnDataReceived(object client, DataEventArgs e)
     {
-        var message = MessageHelper.DecoderHandler.Handler(e.Data.ReadBytesValue(e.Offset, e.Length));
+        var message = MessageHelper.DecoderHandler.Handler(e.Data.ReadBytesBigEndianValue(e.Offset, e.Length));
         // 只处理内部消息
         if (message is NetworkMessagePackage innerNetworkMessage && innerNetworkMessage.Header.MessageId < 0)
         {

@@ -69,17 +69,17 @@ public sealed class DefaultMessageEncoderHandler : BaseMessageEncoderHandler
                 var buffer = ArrayPool<byte>.Shared.Rent(totalLength);
                 var offset = 0;
                 // 总长度
-                buffer.WriteUIntValue((uint)totalLength, ref offset);
+                buffer.WriteUIntBigEndianValue((uint)totalLength, ref offset);
                 // operationType 操作类型
                 buffer.WriteByteValue(messageObject.OperationType, ref offset);
                 // zipFlag 压缩标记
                 buffer.WriteByteValue(zipFlag, ref offset);
                 // uniqueId 唯一ID
-                buffer.WriteIntValue(messageObject.UniqueId, ref offset);
+                buffer.WriteIntBigEndianValue(messageObject.UniqueId, ref offset);
                 // MessageId 消息ID
-                buffer.WriteIntValue(messageObject.MessageId, ref offset);
+                buffer.WriteIntBigEndianValue(messageObject.MessageId, ref offset);
                 // 消息内容
-                buffer.WriteBytesWithoutLength(messageBodyData, ref offset);
+                buffer.WriteBytesWithoutLengthBigEndian(messageBodyData, ref offset);
                 var result = buffer.AsSpan(0, totalLength).ToArray();
                 ArrayPool<byte>.Shared.Return(buffer);
                 return result;

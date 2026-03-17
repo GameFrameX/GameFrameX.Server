@@ -203,7 +203,7 @@ public sealed class BotTcpClient
     /// </summary>
     private void OnMTcpClientOnDataReceived(object client, DataEventArgs e)
     {
-        DecodeMessage(e.Data.ReadBytesValue(e.Offset, e.Length));
+        DecodeMessage(e.Data.ReadBytesBigEndianValue(e.Offset, e.Length));
     }
 
     /// <summary>
@@ -215,13 +215,13 @@ public sealed class BotTcpClient
         var offset = 0;
 
         // 消息总长度
-        var totalLength = data.ReadIntValue(ref offset);
+        var totalLength = data.ReadIntBigEndianValue(ref offset);
         // 消息头长度
         var operationType = data.ReadByteValue(ref offset);
         var zipFlag = data.ReadByteValue(ref offset);
-        var uniqueId = data.ReadIntValue(ref offset);
-        var messageId = data.ReadIntValue(ref offset);
-        var messageData = data.ReadBytesValue(ref offset, totalLength - InnerPackageHeaderLength);
+        var uniqueId = data.ReadIntBigEndianValue(ref offset);
+        var messageId = data.ReadIntBigEndianValue(ref offset);
+        var messageData = data.ReadBytesBigEndianValue(ref offset, totalLength - InnerPackageHeaderLength);
         var messageType = MessageProtoHelper.GetMessageTypeById(messageId);
         if (messageType != null)
         {
@@ -260,12 +260,12 @@ public sealed class BotTcpClient
         var totalLength = messageData.Length + InnerPackageHeaderLength;
         var buffer = new byte[totalLength];
         var offset = 0;
-        buffer.WriteIntValue(totalLength, ref offset);
+        buffer.WriteIntBigEndianValue(totalLength, ref offset);
         buffer.WriteByteValue((byte)message.OperationType, ref offset);
         buffer.WriteByteValue(zipFlag, ref offset);
-        buffer.WriteIntValue(message.UniqueId, ref offset);
-        buffer.WriteIntValue(message.MessageId, ref offset);
-        buffer.WriteBytesWithoutLength(messageData, ref offset);
+        buffer.WriteIntBigEndianValue(message.UniqueId, ref offset);
+        buffer.WriteIntBigEndianValue(message.MessageId, ref offset);
+        buffer.WriteBytesWithoutLengthBigEndian(messageData, ref offset);
         return buffer;
     }
 }

@@ -155,7 +155,7 @@ public sealed class IllegalWordDetection
 
         var startTime = DateTime.Now;
         var offset = 0;
-        var fieldNum = data.ReadIntValue(ref offset);
+        var fieldNum = data.ReadIntBigEndianValue(ref offset);
         var typeList = new List<byte>();
         for (var i = 0; i < fieldNum; ++i)
         {
@@ -165,7 +165,7 @@ public sealed class IllegalWordDetection
         var nameList = new List<string>();
         for (var i = 0; i < fieldNum; ++i)
         {
-            nameList.Add(data.ReadStringValue(ref offset));
+            nameList.Add(data.ReadStringBigEndianValue(ref offset));
         }
 
         var sizeInt = sizeof(int);
@@ -191,11 +191,11 @@ public sealed class IllegalWordDetection
                     case 2: //string
                         if (badIdx == i)
                         {
-                            word = data.ReadStringValue(ref offset);
+                            word = data.ReadStringBigEndianValue(ref offset);
                         }
                         else
                         {
-                            var len = data.ReadShortValue(ref offset);
+                            var len = data.ReadShortBigEndianValue(ref offset);
                             offset += len;
                         }
 
