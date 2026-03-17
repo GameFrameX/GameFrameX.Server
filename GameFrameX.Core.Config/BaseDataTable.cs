@@ -39,25 +39,20 @@ namespace GameFrameX.Core.Config;
 /// <typeparam name="T">数据表中的数据类型</typeparam>
 public abstract class BaseDataTable<T> : IDataTable<T> where T : class
 {
+    protected readonly SortedDictionary<long, T> LongDataMaps = new SortedDictionary<long, T>();
+    protected readonly SortedDictionary<string, T> StringDataMaps = new SortedDictionary<string, T>();
+
+    protected readonly List<T> DataList = new List<T>();
+    private bool _cacheInitialized;
+    private T _firstOrDefaultCache;
+    private T _lastOrDefaultCache;
+    private bool _countCacheInitialized;
+    private int _countCache;
+
     /// <summary>
     /// 异步加载器
     /// </summary>
     protected readonly Func<Task<JsonElement>> _loadFunc;
-
-    /// <summary>
-    /// 数据列表
-    /// </summary>
-    protected readonly List<T> DataList = new();
-
-    /// <summary>
-    /// 长整型键的数据表
-    /// </summary>
-    protected readonly SortedDictionary<long, T> LongDataMaps = new();
-
-    /// <summary>
-    /// 字符串键的数据表
-    /// </summary>
-    protected readonly SortedDictionary<string, T> StringDataMaps = new();
 
     /// <summary>
     /// 初始化基础数据表
@@ -69,53 +64,10 @@ public abstract class BaseDataTable<T> : IDataTable<T> where T : class
     }
 
     /// <summary>
-    /// 默认构造函数
+    /// 异步加载数据表。
     /// </summary>
-    public BaseDataTable()
-    {
-    }
-
-    /// <summary>
-    /// 异步加载数据
-    /// </summary>
-    /// <returns>一个表示异步操作的任务</returns>
+    /// <returns>一个任务表示异步操作。</returns>
     public abstract Task LoadAsync();
-
-    /// <summary>
-    /// 根据整型ID获取对象
-    /// </summary>
-    /// <param name="id">对象的ID</param>
-    /// <returns>找到的对象，如果未找到则返回默认值</returns>
-    [Obsolete("Please use the TryGet method instead / 请使用 TryGet 方法替代")]
-    public T Get(int id)
-    {
-        LongDataMaps.TryGetValue(id, out var value);
-        return value;
-    }
-
-    /// <summary>
-    /// 根据长整型ID获取对象
-    /// </summary>
-    /// <param name="id">对象的ID</param>
-    /// <returns>找到的对象，如果未找到则返回默认值</returns>
-    [Obsolete("Please use the TryGet method instead / 请使用 TryGet 方法替代")]
-    public T Get(long id)
-    {
-        LongDataMaps.TryGetValue(id, out var value);
-        return value;
-    }
-
-    /// <summary>
-    /// 根据字符串ID获取对象
-    /// </summary>
-    /// <param name="id">对象的ID</param>
-    /// <returns>找到的对象，如果未找到则返回默认值</returns>
-    [Obsolete("Please use the TryGet method instead / 请使用 TryGet 方法替代")]
-    public T Get(string id)
-    {
-        StringDataMaps.TryGetValue(id, out var value);
-        return value;
-    }
 
     /// <summary>
     /// 尝试根据整数ID获取对象
@@ -150,86 +102,88 @@ public abstract class BaseDataTable<T> : IDataTable<T> where T : class
         return StringDataMaps.TryGetValue(id, out value);
     }
 
+    /// <summary>
+    /// 根据整数主键获取数据表中的对象
+    /// </summary>
+    /// <param name="id">要获取的对象的整数主键</param>
+    /// <returns>与指定主键关联的数据对象；如果找不到则返回 null</returns>
+    public T this[int id]
+    {
+        get { return TryGet(id, out var value) ? value : null; }
+    }
 
     /// <summary>
-    /// 根据整数索引获取数据表中的对象
+    /// 根据长整数主键获取数据表中的对象
     /// </summary>
-    /// <param name="index">要获取的对象在数据表中的从零开始的整数索引</param>
-    /// <returns>位于指定索引位置的数据对象</returns>
-    /// <exception cref="ArgumentOutOfRangeException">当索引超出数据表范围时抛出</exception>
-    public T this[int index]
+    /// <param name="id">要获取的对象的长整数主键</param>
+    /// <returns>与指定主键关联的数据对象；如果找不到则返回 null</returns>
+    public T this[long id]
+    {
+        get { return TryGet(id, out var value) ? value : null; }
+    }
+
+    /// <summary>
+    /// 根据字符串键获取数据表中的对象
+    /// </summary>
+    /// <param name="id">要获取的对象在数据表中的字符串键</param>
+    /// <returns>与指定键关联的数据对象；如果找不到则返回 null</returns>
+    public T this[string id]
+    {
+        get { return TryGet(id, out var value) ? value : null; }
+    }
+
+    /// <summary>
+    /// 获取数据表中对象的数量。
+    /// </summary>
+    /// <returns>数据表中对象的数量。</returns>
+    public int Count
     {
         get
         {
-            if (index >= Count || index < 0)
-            {
-                throw new IndexOutOfRangeException(nameof(index));
-            }
-
-            return DataList[index];
+            EnsureCountCache();
+            return _countCache;
         }
     }
 
     /// <summary>
-    /// 根据长整型ID获取对象
+    /// 获取数据表中的第一个对象，如果数据表为空则返回默认值。
     /// </summary>
-    /// <param name="id">对象的ID</param>
-    /// <returns>找到的对象，如果未找到则返回默认值</returns>
-    public T this[long id]
-    {
-        get { return Get(id); }
-    }
-
-    /// <summary>
-    /// 根据字符串ID获取对象
-    /// </summary>
-    /// <param name="id">对象的ID</param>
-    /// <returns>找到的对象，如果未找到则返回默认值</returns>
-    public T this[string id]
-    {
-        get { return Get(id); }
-    }
-
-    /// <summary>
-    /// 获取数据表中对象的数量
-    /// </summary>
-    /// <returns>数据表中对象的数量</returns>
-    public int Count
-    {
-        get { return Math.Max(LongDataMaps.Count, StringDataMaps.Count); }
-    }
-
-    /// <summary>
-    /// 获取数据表中第一个对象
-    /// </summary>
-    /// <returns>数据表中的第一个对象，如果数据表为空则返回默认值</returns>
+    /// <returns>数据表中的第一个对象，如果数据表为空则返回 null。</returns>
     public T FirstOrDefault
     {
-        get { return DataList.FirstOrDefault(m => m != null); }
+        get
+        {
+            EnsureFirstLastCache();
+            return _firstOrDefaultCache;
+        }
     }
 
     /// <summary>
-    /// 获取数据表中最后一个对象
+    /// 获取数据表中的最后一个对象，如果数据表为空则返回默认值。
     /// </summary>
-    /// <returns>数据表中的最后一个对象，如果数据表为空则返回默认值</returns>
+    /// <returns>数据表中的最后一个对象，如果数据表为空则返回 null。</returns>
     public T LastOrDefault
     {
-        get { return DataList.LastOrDefault(m => m != null); }
+        get
+        {
+            EnsureFirstLastCache();
+            return _lastOrDefaultCache;
+        }
     }
 
     /// <summary>
-    /// 获取数据表中所有对象
+    /// 获取数据表中所有对象的数组副本。
     /// </summary>
-    /// <returns>数据表中的所有对象数组</returns>
+    /// <returns>包含数据表中所有对象的数组。</returns>
     public T[] All
     {
         get { return DataList.ToArray(); }
     }
 
     /// <summary>
-    /// 获取数据表中所有对象
+    /// 获取数据表中所有对象的数组副本。
     /// </summary>
-    /// <returns>数据表中的所有对象数组</returns>
+    /// <returns>包含数据表中所有对象的数组。</returns>
     public T[] ToArray()
     {
         return DataList.ToArray();
@@ -245,10 +199,10 @@ public abstract class BaseDataTable<T> : IDataTable<T> where T : class
     }
 
     /// <summary>
-    /// 根据条件查找对象
+    /// 根据指定条件查找第一个匹配的对象。
     /// </summary>
-    /// <param name="func">查找条件</param>
-    /// <returns>满足条件的第一个对象，如果未找到则返回默认值</returns>
+    /// <param name="func">用于测试每个对象是否满足条件的函数。</param>
+    /// <returns>第一个满足条件的对象，如果没有找到则返回 null。</returns>
     public T Find(Func<T, bool> func)
     {
         return DataList.FirstOrDefault(func);
@@ -265,10 +219,10 @@ public abstract class BaseDataTable<T> : IDataTable<T> where T : class
     }
 
     /// <summary>
-    /// 根据条件查找多个对象
+    /// 根据指定条件查找所有匹配的对象并返回列表。
     /// </summary>
-    /// <param name="func">查找条件</param>
-    /// <returns>满足条件的所有对象数组</returns>
+    /// <param name="func">用于测试每个对象是否满足条件的函数。</param>
+    /// <returns>包含所有满足条件的对象的列表。</returns>
     public List<T> FindList(Func<T, bool> func)
     {
         return DataList.Where(func).ToList();
@@ -353,5 +307,67 @@ public abstract class BaseDataTable<T> : IDataTable<T> where T : class
     public decimal Sum(Func<T, decimal> func)
     {
         return DataList.Sum(func);
+    }
+
+    /// <summary>
+    /// 确保首尾非空元素缓存已初始化
+    /// </summary>
+    private void EnsureFirstLastCache()
+    {
+        if (_cacheInitialized)
+        {
+            return;
+        }
+
+        _firstOrDefaultCache = null;
+        _lastOrDefaultCache = null;
+
+        if (DataList.Count == 0)
+        {
+            return;
+        }
+
+        _cacheInitialized = true;
+
+        for (var i = 0; i < DataList.Count; i++)
+        {
+            var value = DataList[i];
+            if (value != null)
+            {
+                _firstOrDefaultCache = value;
+                break;
+            }
+        }
+
+        for (var i = DataList.Count - 1; i >= 0; i--)
+        {
+            var value = DataList[i];
+            if (value != null)
+            {
+                _lastOrDefaultCache = value;
+                break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 确保数量缓存已初始化
+    /// </summary>
+    private void EnsureCountCache()
+    {
+        if (_countCacheInitialized)
+        {
+            return;
+        }
+
+        var count = Math.Max(LongDataMaps.Count, StringDataMaps.Count);
+        if (count == 0)
+        {
+            _countCache = 0;
+            return;
+        }
+
+        _countCache = count;
+        _countCacheInitialized = true;
     }
 }

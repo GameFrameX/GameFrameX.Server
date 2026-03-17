@@ -56,30 +56,6 @@ public interface IDataTable
 public interface IDataTable<T> : IDataTable
 {
     /// <summary>
-    /// 根据指定的整数 ID 获取数据表中的对象。
-    /// </summary>
-    /// <param name="id">要获取的对象的唯一整数标识符。</param>
-    /// <returns>与指定 ID 关联的数据对象；如果未找到匹配项，则可能返回 null 或抛出异常（取决于实现）。</returns>
-    [Obsolete("Please use the TryGet method instead / 请使用 TryGet 方法替代")]
-    T Get(int id);
-
-    /// <summary>
-    /// 根据指定的长整数 ID 获取数据表中的对象。
-    /// </summary>
-    /// <param name="id">要获取的对象的唯一长整数标识符。</param>
-    /// <returns>与指定 ID 关联的数据对象；如果未找到匹配项，则可能返回 null 或抛出异常（取决于实现）。</returns>
-    [Obsolete("Please use the TryGet method instead / 请使用 TryGet 方法替代")]
-    T Get(long id);
-
-    /// <summary>
-    /// 根据指定的字符串 ID 获取数据表中的对象。
-    /// </summary>
-    /// <param name="id">要获取的对象的唯一字符串标识符。</param>
-    /// <returns>与指定 ID 关联的数据对象；如果未找到匹配项，则可能返回 null 或抛出异常（取决于实现）。</returns>
-    [Obsolete("Please use the TryGet method instead / 请使用 TryGet 方法替代")]
-    T Get(string id);
-
-    /// <summary>
     /// 尝试根据整数ID获取对象
     /// </summary>
     /// <param name="id">要获取的对象的整数ID</param>
@@ -104,27 +80,27 @@ public interface IDataTable<T> : IDataTable
     bool TryGet(string id, out T value);
 
     /// <summary>
-    /// 根据整数索引获取数据表中的对象
+    /// 根据整数主键获取数据表中的对象
     /// </summary>
-    /// <param name="index">要获取的对象在数据表中的从零开始的整数索引</param>
-    /// <returns>位于指定索引位置的数据对象</returns>
-    /// <exception cref="ArgumentOutOfRangeException">当索引超出数据表范围时抛出</exception>
-    T this[int index] { get; }
+    /// <param name="id">要获取的对象的整数主键</param>
+    /// <returns>与指定主键关联的数据对象；如果找不到则返回 null</returns>
+
+    T this[int id] { get; }
 
     /// <summary>
-    /// 根据长整数索引获取数据表中的对象
+    /// 根据长整数主键获取数据表中的对象
     /// </summary>
-    /// <param name="id">要获取的对象在数据表中的长整数ID</param>
-    /// <returns>与指定ID关联的数据对象</returns>
-    /// <exception cref="ArgumentOutOfRangeException">当ID超出数据表范围时抛出</exception>
+    /// <param name="id">要获取的对象的长整数主键</param>
+    /// <returns>与指定主键关联的数据对象；如果找不到则返回 null</returns>
+
     T this[long id] { get; }
 
     /// <summary>
     /// 根据字符串键获取数据表中的对象
     /// </summary>
     /// <param name="id">要获取的对象在数据表中的字符串键</param>
-    /// <returns>与指定键关联的数据对象</returns>
-    /// <exception cref="KeyNotFoundException">当不存在具有指定键的对象时抛出</exception>
+    /// <returns>与指定键关联的数据对象；如果找不到则返回 null</returns>
+
     T this[string id] { get; }
 
     /// <summary>
