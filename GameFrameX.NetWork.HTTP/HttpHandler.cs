@@ -70,16 +70,19 @@ public static class HttpHandler
         try
         {
             var paramMap = new Dictionary<string, object>();
+            var queryStringParamCount = 0;
 
             // 从查询字符串中提取参数
             foreach (var keyValuePair in context.Request.Query)
             {
                 paramMap.Add(keyValuePair.Key, keyValuePair.Value.ToString());
+                queryStringParamCount++;
             }
 
             context.Response.Headers.ContentType = JsonContentType;
             MessageObject message = null;
             var headContentType = context.Request.ContentType;
+            string jsonBody = null;
             if (headContentType.IsNullOrWhiteSpace())
             {
                 await context.Response.WriteAsync(LocalizationService.GetString(Localization.Keys.NetWorkHttp.HttpHeaderContentTypeNull));
@@ -108,7 +111,7 @@ public static class HttpHandler
                 if (isJson)
                 {
                     using var streamReader = new StreamReader(context.Request.Body);
-                    var jsonBody = await streamReader.ReadToEndAsync();
+                    jsonBody = await streamReader.ReadToEndAsync();
                     var jsonKv = JsonHelper.Deserialize<Dictionary<string, object>>(jsonBody);
                     foreach (var keyValuePair in jsonKv)
                     {
@@ -209,7 +212,18 @@ public static class HttpHandler
                 var httpRequestAttr = handler.GetType().GetCustomAttribute<HttpMessageRequestAttribute>();
                 if (httpRequestAttr != null)
                 {
-                    var httpMessageRequestBase = (HttpMessageRequestBase)JsonHelper.Deserialize(JsonHelper.Serialize(paramMap), httpRequestAttr.MessageType);
+                    // 优化：如果没有 Query String 参数，直接使用原始 JSON 字符串反序列化，避免重复序列化
+                    HttpMessageRequestBase httpMessageRequestBase;
+                    if (queryStringParamCount == 0 && !string.IsNullOrEmpty(jsonBody))
+                    {
+                        // 直接使用原始 JSON 字符串反序列化
+                        httpMessageRequestBase = (HttpMessageRequestBase)JsonHelper.Deserialize(jsonBody, httpRequestAttr.MessageType);
+                    }
+                    else
+                    {
+                        // 有 Query String 参数时，需要合并参数
+                        httpMessageRequestBase = (HttpMessageRequestBase)JsonHelper.Deserialize(JsonHelper.Serialize(paramMap), httpRequestAttr.MessageType);
+                    }
                     var validationResults = new List<ValidationResult>();
 
                     var validationContext = new ValidationContext(httpMessageRequestBase, null, null);
