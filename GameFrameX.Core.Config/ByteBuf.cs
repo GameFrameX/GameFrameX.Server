@@ -459,13 +459,13 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
         EnsureRead(2);
         short x;
 #if CPU_SUPPORT_MEMORY_NOT_ALIGN
-            unsafe
-            {
-                fixed (byte* b = &Bytes[ReaderIndex])
+                unsafe
                 {
-                    x = *(short*)b;
+                    fixed (byte* b = &Bytes[ReaderIndex])
+                    {
+                        x = *(short*)b;
+                    }
                 }
-            }
 #else
         x = (short)((Bytes[ReaderIndex + 1] << 8) | Bytes[ReaderIndex]);
 
@@ -482,13 +482,13 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     {
         EnsureWrite(2);
 #if CPU_SUPPORT_MEMORY_NOT_ALIGN
-            unsafe
-            {
-                fixed (byte* b = &Bytes[WriterIndex])
+                unsafe
                 {
-                    *(short*)b = x;
+                    fixed (byte* b = &Bytes[WriterIndex])
+                    {
+                        *(short*)b = x;
+                    }
                 }
-            }
 #else
         Bytes[WriterIndex] = (byte)x;
         Bytes[WriterIndex + 1] = (byte)(x >> 8);
@@ -726,13 +726,13 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
         EnsureRead(4);
         int x;
 #if CPU_SUPPORT_MEMORY_NOT_ALIGN
-            unsafe
-            {
-                fixed (byte* b = &Bytes[ReaderIndex])
+                unsafe
                 {
-                    x = *(int*)b;
+                    fixed (byte* b = &Bytes[ReaderIndex])
+                    {
+                        x = *(int*)b;
+                    }
                 }
-            }
 #else
         x = (Bytes[ReaderIndex + 3] << 24) | (Bytes[ReaderIndex + 2] << 16) | (Bytes[ReaderIndex + 1] << 8) | Bytes[ReaderIndex];
 
@@ -749,13 +749,13 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     {
         EnsureWrite(4);
 #if CPU_SUPPORT_MEMORY_NOT_ALIGN
-            unsafe
-            {
-                fixed (byte* b = &Bytes[WriterIndex])
+                unsafe
                 {
-                    *(int*)b = x;
+                    fixed (byte* b = &Bytes[WriterIndex])
+                    {
+                        *(int*)b = x;
+                    }
                 }
-            }
 #else
         Bytes[WriterIndex] = (byte)x;
         Bytes[WriterIndex + 1] = (byte)(x >> 8);
@@ -1008,13 +1008,13 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     {
         EnsureWrite(8);
 #if CPU_SUPPORT_MEMORY_NOT_ALIGN
-            unsafe
-            {
-                fixed (byte* b = &Bytes[WriterIndex])
+                unsafe
                 {
-                    *(long*)b = x;
+                    fixed (byte* b = &Bytes[WriterIndex])
+                    {
+                        *(long*)b = x;
+                    }
                 }
-            }
 #else
 
         Bytes[WriterIndex] = (byte)x;
@@ -1038,13 +1038,13 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
         EnsureRead(8);
         long x;
 #if CPU_SUPPORT_MEMORY_NOT_ALIGN
-            unsafe
-            {
-                fixed (byte* b = &Bytes[ReaderIndex])
+                unsafe
                 {
-                    x = *(long*)b;
+                    fixed (byte* b = &Bytes[ReaderIndex])
+                    {
+                        x = *(long*)b;
+                    }
                 }
-            }
 #else
         var xl = (Bytes[ReaderIndex + 3] << 24) | (Bytes[ReaderIndex + 2] << 16) | (Bytes[ReaderIndex + 1] << 8) | Bytes[ReaderIndex];
         var xh = (Bytes[ReaderIndex + 7] << 24) | (Bytes[ReaderIndex + 6] << 16) | (Bytes[ReaderIndex + 5] << 8) | Bytes[ReaderIndex + 4];
@@ -1095,7 +1095,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
                     Copy4(b, (byte*)&x);
                 }
 #else
-                    *(float*)b = x;
+                        *(float*)b = x;
 #endif
             }
         }
@@ -1133,7 +1133,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
                     *(int*)&x = b[0] | (b[1] << 8) | (b[2] << 16) | (b[3] << 24);
                 }
 #else
-                    x = *(float*)b;
+                        x = *(float*)b;
 #endif
             }
         }
@@ -1163,7 +1163,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
                     Copy8(b, (byte*)&x);
                 }
 #else
-                    *(double*)b = x;
+                        *(double*)b = x;
 #endif
             }
             //if (!BitConverter.IsLittleEndian)
@@ -1203,7 +1203,7 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
                     *(long*)&x = ((long)high << 32) | (uint)low;
                 }
 #else
-                    x = *(double*)b;
+                        x = *(double*)b;
 #endif
             }
         }
@@ -1973,23 +1973,23 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
 #if SUPPORT_PUERTS_ARRAYBUF
-    // -- add for puerts
-    /// <summary>
-    /// 读取数组缓冲区
-    /// </summary>
-    /// <returns>数组缓冲区</returns>
-    public Puerts.ArrayBuffer ReadArrayBuffer()
-    {
-        return new Puerts.ArrayBuffer(ReadBytes());
-    }
+        // -- add for puerts
+        /// <summary>
+        /// 读取数组缓冲区
+        /// </summary>
+        /// <returns>数组缓冲区</returns>
+        public Puerts.ArrayBuffer ReadArrayBuffer()
+        {
+            return new Puerts.ArrayBuffer(ReadBytes());
+        }
 
-    /// <summary>
-    /// 写入数组缓冲区
-    /// </summary>
-    /// <param name="bytes">要写入的数组缓冲区</param>
-    public void WriteArrayBuffer(Puerts.ArrayBuffer bytes)
-    {
-        WriteBytes(bytes.Bytes);
-    }
+        /// <summary>
+        /// 写入数组缓冲区
+        /// </summary>
+        /// <param name="bytes">要写入的数组缓冲区</param>
+        public void WriteArrayBuffer(Puerts.ArrayBuffer bytes)
+        {
+            WriteBytes(bytes.Bytes);
+        }
 #endif
 }
