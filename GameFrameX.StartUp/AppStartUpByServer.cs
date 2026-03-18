@@ -101,9 +101,13 @@ public abstract partial class AppStartUpBase
         await StartServer(baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
         if (Setting.ServerType != GlobalConst.DiscoveryCenterServiceName)
         {
-            if (IsRegisterToDiscoveryCenter)
+            if (IsRegisterToDiscoveryCenter && Setting.IsEnableDiscoveryCenter)
             {
                 StartGameAppClient();
+            }
+            else if (IsRegisterToDiscoveryCenter && !Setting.IsEnableDiscoveryCenter)
+            {
+                LogHelper.Info(LocalizationService.GetString(Localization.Keys.Launcher.DiscoveryCenterDisabledSkipConnect));
             }
         }
 

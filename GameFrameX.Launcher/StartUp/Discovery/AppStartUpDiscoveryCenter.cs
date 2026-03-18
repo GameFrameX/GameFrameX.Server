@@ -271,6 +271,13 @@ internal partial class AppStartUpDiscoveryCenter : AppStartUpBase
             };
         }
 
+        // 检查发现中心是否被禁用
+        if (!Setting.IsEnableDiscoveryCenter)
+        {
+            throw new InvalidOperationException(
+                LocalizationService.GetString(Localization.Keys.Launcher.DiscoveryCenterDisabledCannotStart));
+        }
+
         base.Init();
     }
 }

@@ -298,5 +298,23 @@ public static partial class Keys
         /// 参数: {0} - 服务信息
         /// </remarks>
         public const string ServiceOnlineCallback = "Launcher.ServiceOnlineCallback";
+
+        /// <summary>
+        /// 发现中心功能已禁用，无法启动发现中心服务
+        /// </summary>
+        /// <remarks>
+        /// 键名: Launcher.DiscoveryCenterDisabledCannotStart
+        /// 用途: 当发现中心被禁用时尝试启动发现中心服务抛出异常
+        /// </remarks>
+        public const string DiscoveryCenterDisabledCannotStart = "Launcher.DiscoveryCenterDisabledCannotStart";
+
+        /// <summary>
+        /// 发现中心功能已禁用，跳过连接发现中心
+        /// </summary>
+        /// <remarks>
+        /// 键名: Launcher.DiscoveryCenterDisabledSkipConnect
+        /// 用途: 当发现中心被禁用时跳过连接发现中心的日志
+        /// </remarks>
+        public const string DiscoveryCenterDisabledSkipConnect = "Launcher.DiscoveryCenterDisabledSkipConnect";
     }
 }

@@ -678,6 +678,16 @@ public sealed class LauncherOptions
     public ushort DiscoveryCenterPort { get; set; }
 
     /// <summary>
+    /// Gets or sets whether the discovery center functionality is enabled
+    /// </summary>
+    /// <value>True if discovery center functionality is enabled; otherwise, false. Default is false</value>
+    /// <remarks>
+    /// 是否启用发现中心功能，默认值为false。启用后支持集群模式运行
+    /// </remarks>
+    [Option(nameof(IsEnableDiscoveryCenter), DefaultValue = false, Description = "是否启用发现中心功能，默认值为false。启用后支持集群模式运行")]
+    public bool IsEnableDiscoveryCenter { get; set; } = false;
+
+    /// <summary>
     /// Gets or sets the tag name for environment differentiation
     /// </summary>
     /// <value>The tag name used to distinguish servers in different environments. Default is empty string</value>

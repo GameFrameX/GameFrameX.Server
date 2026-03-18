@@ -411,6 +411,14 @@ public sealed class AppSetting
     public ushort DiscoveryCenterPort { get; set; }
 
     /// <summary>
+    /// 是否启用发现中心功能
+    /// <para>当设置为false时，服务不会尝试连接发现中心，支持单机独立模式运行</para>
+    /// <para>当设置为true时，服务会尝试连接发现中心，支持集群模式运行</para>
+    /// <para>默认值为false</para>
+    /// </summary>
+    public bool IsEnableDiscoveryCenter { get; set; } = false;
+
+    /// <summary>
     /// 最大客户端数量
     /// </summary>
     public int MaxClientCount { get; set; } = 3000;

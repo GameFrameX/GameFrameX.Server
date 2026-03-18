@@ -1164,4 +1164,13 @@
     <data name="StartUp.HttpServer.StartupComplete" xml:space="preserve">
     <value>HTTP服务器启动完成 - 端口: {0}</value>
   </data>
+
+    <!-- Launcher.DiscoveryCenter 相关消息 -->
+    <data name="Launcher.DiscoveryCenterDisabledCannotStart" xml:space="preserve">
+    <value>发现中心功能已禁用，无法启动发现中心服务。如需启动，请将 IsEnableDiscoveryCenter 设置为 true</value>
+  </data>
+
+    <data name="Launcher.DiscoveryCenterDisabledSkipConnect" xml:space="preserve">
+    <value>发现中心功能已禁用，跳过连接发现中心</value>
+  </data>
 </root>

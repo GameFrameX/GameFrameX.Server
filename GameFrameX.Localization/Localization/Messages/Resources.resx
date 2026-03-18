@@ -1053,4 +1053,13 @@
     <value>Exception details: {0}</value>
   </data>
 
+    <!-- Launcher.DiscoveryCenter related messages -->
+    <data name="Launcher.DiscoveryCenterDisabledCannotStart" xml:space="preserve">
+    <value>Discovery center functionality is disabled, cannot start discovery center service. To start, set IsEnableDiscoveryCenter to true</value>
+  </data>
+
+    <data name="Launcher.DiscoveryCenterDisabledSkipConnect" xml:space="preserve">
+    <value>Discovery center functionality is disabled, skipping connection to discovery center</value>
+  </data>
+
 </root>
