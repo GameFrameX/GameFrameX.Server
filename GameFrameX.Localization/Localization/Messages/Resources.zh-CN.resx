@@ -1173,4 +1173,244 @@
     <data name="Launcher.DiscoveryCenterDisabledSkipConnect" xml:space="preserve">
     <value>发现中心功能已禁用，跳过连接发现中心</value>
   </data>
+  <data name="DiscoveryCenterManager.Startup.ServiceOfflineCallback" xml:space="preserve">
+    <value>服务下线回调已执行。服务类型：{0}，服务器ID：{1}。</value>
+  </data>
+
+  <data name="DiscoveryCenterManager.Startup.ServiceOnlineCallback" xml:space="preserve">
+    <value>服务上线回调已执行。服务类型：{0}，服务器ID：{1}。</value>
+  </data>
+
+  <data name="Exceptions.BigInteger.ConstructorByteOverflow" xml:space="preserve">
+    <value>BigInteger构造函数字节溢出。</value>
+  </data>
+
+  <data name="Exceptions.BigInteger.ConstructorOverflow" xml:space="preserve">
+    <value>BigInteger构造函数溢出。值：{0}。</value>
+  </data>
+
+  <data name="Exceptions.BigInteger.ConstructorUnderflow" xml:space="preserve">
+    <value>BigInteger构造函数下溢。值：{0}。</value>
+  </data>
+
+  <data name="Exceptions.BigInteger.InvalidString" xml:space="preserve">
+    <value>BigInteger无效字符串。字符串：{0}。</value>
+  </data>
+
+  <data name="Exceptions.Database.StartFailed" xml:space="preserve">
+    <value>数据库启动失败。数据库类型：{0}，错误：{1}。</value>
+  </data>
+
+  <data name="Exceptions.Handler.NotInitialized" xml:space="preserve">
+    <value>处理器未初始化。处理器类型：{0}。</value>
+  </data>
+
+  <data name="Exceptions.Network.InvalidIpFormat" xml:space="preserve">
+    <value>无效的IP地址格式。IP：{0}。</value>
+  </data>
+
+  <data name="Exceptions.Timer.CodeInHotfix" xml:space="preserve">
+    <value>计时器代码不能在热更新程序集中使用。</value>
+  </data>
+
+  <data name="Exceptions.Timer.InvalidParameters" xml:space="preserve">
+    <value>计时器参数无效。参数：{0}，值：{1}。</value>
+  </data>
+
+  <data name="Exceptions.Timer.Weekly.EmptyDays" xml:space="preserve">
+    <value>每周计时器执行日期不能为空。</value>
+  </data>
+
+  <data name="Logs.Client.Connected.Success" xml:space="preserve">
+    <value>客户端连接成功。服务器：{0}。</value>
+  </data>
+
+  <data name="Logs.Client.Connecting" xml:space="preserve">
+    <value>正在连接服务器。服务器：{0}。</value>
+  </data>
+
+  <data name="Logs.Client.Disconnected" xml:space="preserve">
+    <value>客户端已断开连接。服务器：{0}。</value>
+  </data>
+
+  <data name="Logs.Client.ErrorOccurred" xml:space="preserve">
+    <value>客户端发生错误。错误：{0}。</value>
+  </data>
+
+  <data name="Logs.Client.MaxRetryReached" xml:space="preserve">
+    <value>已达到最大重试次数。最大重试次数：{0}。</value>
+  </data>
+
+  <data name="Logs.Client.RetryConnect" xml:space="preserve">
+    <value>正在重试连接。尝试次数：{0}，最大：{1}。</value>
+  </data>
+
+  <data name="Logs.Database.Init.Success" xml:space="preserve">
+    <value>数据库初始化成功。连接字符串：{0}，数据库名称：{1}。</value>
+  </data>
+
+  <data name="Logs.Discovery.ExternalService.Connect" xml:space="preserve">
+    <value>外部服务已连接。服务：{0}。</value>
+  </data>
+
+  <data name="Logs.Discovery.ExternalService.Disconnect" xml:space="preserve">
+    <value>外部服务已断开连接。服务：{0}。</value>
+  </data>
+
+  <data name="Logs.Discovery.Player.Register.Success" xml:space="preserve">
+    <value>玩家注册成功。玩家ID：{0}。</value>
+  </data>
+
+  <data name="Logs.Discovery.Player.Unregister.Success" xml:space="preserve">
+    <value>玩家注销成功。玩家ID：{0}。</value>
+  </data>
+
+  <data name="Logs.Discovery.Server.Exception" xml:space="preserve">
+    <value>发现服务器异常。错误：{0}。</value>
+  </data>
+
+  <data name="Logs.Discovery.Service.Register.Success" xml:space="preserve">
+    <value>服务注册成功。服务：{0}。</value>
+  </data>
+
+  <data name="Logs.Discovery.Service.Unregister.Success" xml:space="preserve">
+    <value>服务注销成功。服务：{0}。</value>
+  </data>
+
+  <data name="Logs.Game.Server.ConfigActor.End" xml:space="preserve">
+    <value>游戏服务器配置Actor初始化完成。</value>
+  </data>
+
+  <data name="Logs.Game.Server.Database.End" xml:space="preserve">
+    <value>游戏服务器数据库初始化完成。</value>
+  </data>
+
+  <data name="Logs.Game.Server.Exit.Start" xml:space="preserve">
+    <value>游戏服务器开始关闭流程。</value>
+  </data>
+
+  <data name="Logs.Game.Server.Exit.Success" xml:space="preserve">
+    <value>游戏服务器关闭完成。</value>
+  </data>
+
+  <data name="Logs.Game.Server.Hotfix.End" xml:space="preserve">
+    <value>游戏服务器热更新初始化完成。</value>
+  </data>
+
+  <data name="Logs.Game.Server.MainLoop" xml:space="preserve">
+    <value>游戏服务器主循环已启动。</value>
+  </data>
+
+  <data name="Logs.Game.Server.RegisterComponents.Start" xml:space="preserve">
+    <value>游戏服务器开始注册组件。</value>
+  </data>
+
+  <data name="Logs.Game.Server.Start" xml:space="preserve">
+    <value>游戏服务器启动中。服务器ID：{0}。</value>
+  </data>
+
+  <data name="Logs.Game.Server.Start.Complete" xml:space="preserve">
+    <value>游戏服务器启动完成。服务器ID：{0}。</value>
+  </data>
+
+  <data name="Logs.Network.Client.Connect" xml:space="preserve">
+    <value>网络客户端已连接。远程端点：{0}。</value>
+  </data>
+
+  <data name="Logs.Network.Client.Disconnect" xml:space="preserve">
+    <value>网络客户端已断开连接。远程端点：{0}。</value>
+  </data>
+
+  <data name="Logs.Server.Start.DefaultConfig" xml:space="preserve">
+    <value>使用默认配置启动服务器。</value>
+  </data>
+
+  <data name="Logs.Server.Start.FindConfig" xml:space="preserve">
+    <value>正在查找服务器类型配置：{0}。</value>
+  </data>
+
+  <data name="Logs.Server.Starting" xml:space="preserve">
+    <value>服务器启动中。服务器类型：{0}。</value>
+  </data>
+
+  <data name="Logs.Server.Stopped.NoTasks" xml:space="preserve">
+    <value>服务器已停止。没有运行中的任务。</value>
+  </data>
+
+  <data name="Logs.Warning.ConsoleMessage" xml:space="preserve">
+    <value>警告：{0}。</value>
+  </data>
+
+  <data name="StartUp.DiscoveryCenter.HostNotConfigured" xml:space="preserve">
+    <value>发现中心主机地址未配置。</value>
+  </data>
+
+  <data name="StartUp.DiscoveryCenter.InvalidHostAddress" xml:space="preserve">
+    <value>无效的发现中心主机地址：{0}。</value>
+  </data>
+
+  <data name="StartUp.DiscoveryCenter.PortNotConfigured" xml:space="preserve">
+    <value>发现中心端口未配置。</value>
+  </data>
+
+  <data name="StartUp.FindingConfigurationForServerType" xml:space="preserve">
+    <value>正在查找服务器类型配置：{0}。</value>
+  </data>
+
+  <data name="StartUp.GrafanaLokiLabelExists" xml:space="preserve">
+    <value>Grafana Loki标签已存在。标签：{0}。</value>
+  </data>
+
+  <data name="StartUp.HttpExceptions.AddressMustEndWithSlash" xml:space="preserve">
+    <value>地址必须以斜杠结尾。地址：{0}。</value>
+  </data>
+
+  <data name="StartUp.HttpExceptions.AddressMustStartWithSlash" xml:space="preserve">
+    <value>地址必须以斜杠开头。地址：{0}。</value>
+  </data>
+
+  <data name="StartUp.HttpExceptions.HttpsNotImplemented" xml:space="preserve">
+    <value>HTTPS尚未实现。</value>
+  </data>
+
+  <data name="StartUp.HttpServer.PortOccupied" xml:space="preserve">
+    <value>HTTP服务器端口被占用。端口：{0}。</value>
+  </data>
+
+  <data name="StartUp.LaunchServerType" xml:space="preserve">
+    <value>启动服务器类型：{0}。</value>
+  </data>
+
+  <data name="StartUp.NoConfigurationUseDefault" xml:space="preserve">
+    <value>未找到配置，使用默认值。</value>
+  </data>
+
+  <data name="StartUp.PrometheusMetricsEndpointEnabledInline" xml:space="preserve">
+    <value>Prometheus指标端点已内联启用。</value>
+  </data>
+
+  <data name="StartUp.PrometheusMetricsServiceOnStandalonePort" xml:space="preserve">
+    <value>Prometheus指标服务运行在独立端口：{0}。</value>
+  </data>
+
+  <data name="StartUp.StartingServerWithConfiguration" xml:space="preserve">
+    <value>使用配置启动服务器：{0}。</value>
+  </data>
+
+  <data name="StartUp.StartupOver" xml:space="preserve">
+    <value>服务器启动完成。</value>
+  </data>
+
+  <data name="Utility.CompressionHelper.ExceptionError" xml:space="preserve">
+    <value>压缩辅助类异常。错误：{0}。</value>
+  </data>
+
+  <data name="Utility.GlobalSettings.LoadGlobalSettings" xml:space="preserve">
+    <value>从配置加载全局设置。</value>
+  </data>
+
+  <data name="Utility.GlobalSettings.LoadGlobalSettingsFailed" xml:space="preserve">
+    <value>加载全局设置失败。错误：{0}。</value>
+  </data>
+
 </root>

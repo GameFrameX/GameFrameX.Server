@@ -1062,4 +1062,360 @@
     <value>Discovery center functionality is disabled, skipping connection to discovery center</value>
   </data>
 
+  <data name="DiscoveryCenterManager.Startup.ServiceOfflineCallback" xml:space="preserve">
+    <value>Service offline callback executed. Service type: {0}, server ID: {1}.</value>
+  </data>
+
+  <data name="DiscoveryCenterManager.Startup.ServiceOnlineCallback" xml:space="preserve">
+    <value>Service online callback executed. Service type: {0}, server ID: {1}.</value>
+  </data>
+
+  <data name="Exceptions.BigInteger.ConstructorByteOverflow" xml:space="preserve">
+    <value>BigInteger constructor byte overflow.</value>
+  </data>
+
+  <data name="Exceptions.BigInteger.ConstructorOverflow" xml:space="preserve">
+    <value>BigInteger constructor overflow. Value: {0}.</value>
+  </data>
+
+  <data name="Exceptions.BigInteger.ConstructorUnderflow" xml:space="preserve">
+    <value>BigInteger constructor underflow. Value: {0}.</value>
+  </data>
+
+  <data name="Exceptions.BigInteger.InvalidString" xml:space="preserve">
+    <value>BigInteger invalid string. String: {0}.</value>
+  </data>
+
+  <data name="Exceptions.Database.StartFailed" xml:space="preserve">
+    <value>Database start failed. Database type: {0}, error: {1}.</value>
+  </data>
+
+  <data name="Exceptions.Handler.NotInitialized" xml:space="preserve">
+    <value>Handler not initialized. Handler type: {0}.</value>
+  </data>
+
+  <data name="Exceptions.Network.InvalidIpFormat" xml:space="preserve">
+    <value>Invalid IP address format. IP: {0}.</value>
+  </data>
+
+  <data name="Exceptions.Timer.CodeInHotfix" xml:space="preserve">
+    <value>Timer code cannot be used in hotfix assembly.</value>
+  </data>
+
+  <data name="Exceptions.Timer.InvalidParameters" xml:space="preserve">
+    <value>Timer invalid parameters. Parameter: {0}, value: {1}.</value>
+  </data>
+
+  <data name="Exceptions.Timer.Weekly.EmptyDays" xml:space="preserve">
+    <value>Weekly timer execution days cannot be empty.</value>
+  </data>
+
+  <data name="Logs.Client.Connected.Success" xml:space="preserve">
+    <value>Client connected successfully. Server: {0}.</value>
+  </data>
+
+  <data name="Logs.Client.Connecting" xml:space="preserve">
+    <value>Connecting to server. Server: {0}.</value>
+  </data>
+
+  <data name="Logs.Client.Disconnected" xml:space="preserve">
+    <value>Client disconnected. Server: {0}.</value>
+  </data>
+
+  <data name="Logs.Client.ErrorOccurred" xml:space="preserve">
+    <value>Client error occurred. Error: {0}.</value>
+  </data>
+
+  <data name="Logs.Client.MaxRetryReached" xml:space="preserve">
+    <value>Maximum retry count reached. Max retries: {0}.</value>
+  </data>
+
+  <data name="Logs.Client.RetryConnect" xml:space="preserve">
+    <value>Retrying connection. Attempt: {0}, max: {1}.</value>
+  </data>
+
+  <data name="Logs.Database.Init.Success" xml:space="preserve">
+    <value>Database initialized successfully. Connection string: {0}, database name: {1}.</value>
+  </data>
+
+  <data name="Logs.Discovery.ExternalService.Connect" xml:space="preserve">
+    <value>External service connected. Service: {0}.</value>
+  </data>
+
+  <data name="Logs.Discovery.ExternalService.Disconnect" xml:space="preserve">
+    <value>External service disconnected. Service: {0}.</value>
+  </data>
+
+  <data name="Logs.Discovery.Player.Register.Success" xml:space="preserve">
+    <value>Player registered successfully. Player ID: {0}.</value>
+  </data>
+
+  <data name="Logs.Discovery.Player.Unregister.Success" xml:space="preserve">
+    <value>Player unregistered successfully. Player ID: {0}.</value>
+  </data>
+
+  <data name="Logs.Discovery.Server.Exception" xml:space="preserve">
+    <value>Discovery server exception. Error: {0}.</value>
+  </data>
+
+  <data name="Logs.Discovery.Service.Register.Success" xml:space="preserve">
+    <value>Service registered successfully. Service: {0}.</value>
+  </data>
+
+  <data name="Logs.Discovery.Service.Unregister.Success" xml:space="preserve">
+    <value>Service unregistered successfully. Service: {0}.</value>
+  </data>
+
+  <data name="Logs.Game.Server.ConfigActor.End" xml:space="preserve">
+    <value>Game server config actor initialization completed.</value>
+  </data>
+
+  <data name="Logs.Game.Server.Database.End" xml:space="preserve">
+    <value>Game server database initialization completed.</value>
+  </data>
+
+  <data name="Logs.Game.Server.Exit.Start" xml:space="preserve">
+    <value>Game server starting shutdown process.</value>
+  </data>
+
+  <data name="Logs.Game.Server.Exit.Success" xml:space="preserve">
+    <value>Game server shutdown completed.</value>
+  </data>
+
+  <data name="Logs.Game.Server.Hotfix.End" xml:space="preserve">
+    <value>Game server hotfix initialization completed.</value>
+  </data>
+
+  <data name="Logs.Game.Server.MainLoop" xml:space="preserve">
+    <value>Game server main loop started.</value>
+  </data>
+
+  <data name="Logs.Game.Server.RegisterComponents.Start" xml:space="preserve">
+    <value>Game server starting component registration.</value>
+  </data>
+
+  <data name="Logs.Game.Server.Start" xml:space="preserve">
+    <value>Game server starting. Server ID: {0}.</value>
+  </data>
+
+  <data name="Logs.Game.Server.Start.Complete" xml:space="preserve">
+    <value>Game server startup completed. Server ID: {0}.</value>
+  </data>
+
+  <data name="Logs.Network.Client.Connect" xml:space="preserve">
+    <value>Network client connected. Remote endpoint: {0}.</value>
+  </data>
+
+  <data name="Logs.Network.Client.Disconnect" xml:space="preserve">
+    <value>Network client disconnected. Remote endpoint: {0}.</value>
+  </data>
+
+  <data name="Logs.Server.Start.DefaultConfig" xml:space="preserve">
+    <value>Using default configuration for server startup.</value>
+  </data>
+
+  <data name="Logs.Server.Start.FindConfig" xml:space="preserve">
+    <value>Finding configuration for server type: {0}.</value>
+  </data>
+
+  <data name="Logs.Server.Starting" xml:space="preserve">
+    <value>Server starting. Server type: {0}.</value>
+  </data>
+
+  <data name="Logs.Server.Stopped.NoTasks" xml:space="preserve">
+    <value>Server stopped. No running tasks.</value>
+  </data>
+
+  <data name="Logs.Warning.ConsoleMessage" xml:space="preserve">
+    <value>Warning: {0}.</value>
+  </data>
+
+  <data name="StartUp.ApplicationSettings.ConfigFilePath" xml:space="preserve">
+    <value>Configuration file path: {0}.</value>
+  </data>
+
+  <data name="StartUp.ApplicationSettings.LogTypeSeparator" xml:space="preserve">
+    <value>Log type separator: {0}.</value>
+  </data>
+
+  <data name="StartUp.ApplicationSettings.WarningMessage" xml:space="preserve">
+    <value>Warning: {0}.</value>
+  </data>
+
+  <data name="StartUp.DiscoveryCenter.HostNotConfigured" xml:space="preserve">
+    <value>Discovery center host not configured.</value>
+  </data>
+
+  <data name="StartUp.DiscoveryCenter.InvalidHostAddress" xml:space="preserve">
+    <value>Invalid discovery center host address: {0}.</value>
+  </data>
+
+  <data name="StartUp.DiscoveryCenter.PortNotConfigured" xml:space="preserve">
+    <value>Discovery center port not configured.</value>
+  </data>
+
+  <data name="StartUp.FindingConfigurationForServerType" xml:space="preserve">
+    <value>Finding configuration for server type: {0}.</value>
+  </data>
+
+  <data name="StartUp.GrafanaLokiLabelExists" xml:space="preserve">
+    <value>Grafana Loki label already exists. Label: {0}.</value>
+  </data>
+
+  <data name="StartUp.HealthCheck.ApplicationWorkingFine" xml:space="preserve">
+    <value>Application is working fine.</value>
+  </data>
+
+  <data name="StartUp.HealthCheck.DetailedEndpointUrl" xml:space="preserve">
+    <value>Detailed health check endpoint: {0}.</value>
+  </data>
+
+  <data name="StartUp.HealthCheck.EndpointEnabled" xml:space="preserve">
+    <value>Health check endpoint enabled at: {0}.</value>
+  </data>
+
+  <data name="StartUp.HealthCheck.Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+
+  <data name="StartUp.HealthCheck.OpenTelemetryConfigurationNormal" xml:space="preserve">
+    <value>OpenTelemetry configuration is normal.</value>
+  </data>
+
+  <data name="StartUp.HealthCheck.OpenTelemetryConfiguredNormally" xml:space="preserve">
+    <value>OpenTelemetry configured normally. Endpoint: {0}.</value>
+  </data>
+
+  <data name="StartUp.HealthCheck.OpenTelemetryEndpointUrl" xml:space="preserve">
+    <value>OpenTelemetry endpoint URL: {0}.</value>
+  </data>
+
+  <data name="StartUp.HealthCheck.SimpleEndpointUrl" xml:space="preserve">
+    <value>Simple health check endpoint: {0}.</value>
+  </data>
+
+  <data name="StartUp.HttpExceptions.AddressMustEndWithSlash" xml:space="preserve">
+    <value>Address must end with slash. Address: {0}.</value>
+  </data>
+
+  <data name="StartUp.HttpExceptions.AddressMustStartWithSlash" xml:space="preserve">
+    <value>Address must start with slash. Address: {0}.</value>
+  </data>
+
+  <data name="StartUp.HttpExceptions.HttpsNotImplemented" xml:space="preserve">
+    <value>HTTPS is not implemented yet.</value>
+  </data>
+
+  <data name="StartUp.HttpServer.ApiContactName" xml:space="preserve">
+    <value>API contact name: {0}.</value>
+  </data>
+
+  <data name="StartUp.HttpServer.ApiDescription" xml:space="preserve">
+    <value>API description: {0}.</value>
+  </data>
+
+  <data name="StartUp.HttpServer.ApiLicenseName" xml:space="preserve">
+    <value>API license name: {0}.</value>
+  </data>
+
+  <data name="StartUp.HttpServer.ApiTitle" xml:space="preserve">
+    <value>API title: {0}.</value>
+  </data>
+
+  <data name="StartUp.HttpServer.OpenTelemetryServiceType" xml:space="preserve">
+    <value>OpenTelemetry service type: {0}.</value>
+  </data>
+
+  <data name="StartUp.HttpServer.PortOccupied" xml:space="preserve">
+    <value>HTTP server port is occupied. Port: {0}.</value>
+  </data>
+
+  <data name="StartUp.HttpServer.StartupComplete" xml:space="preserve">
+    <value>HTTP server startup complete. Listening on: {0}.</value>
+  </data>
+
+  <data name="StartUp.HttpServer.SwaggerEndpointFormat" xml:space="preserve">
+    <value>Swagger endpoint format: {0}.</value>
+  </data>
+
+  <data name="StartUp.HttpServer.SwaggerRoutePrefix" xml:space="preserve">
+    <value>Swagger route prefix: {0}.</value>
+  </data>
+
+  <data name="StartUp.LaunchServerType" xml:space="preserve">
+    <value>Launching server type: {0}.</value>
+  </data>
+
+  <data name="StartUp.NoConfigurationUseDefault" xml:space="preserve">
+    <value>No configuration found, using default values.</value>
+  </data>
+
+  <data name="StartUp.PrometheusMetricsEndpointEnabledInline" xml:space="preserve">
+    <value>Prometheus metrics endpoint enabled inline.</value>
+  </data>
+
+  <data name="StartUp.PrometheusMetricsServiceOnStandalonePort" xml:space="preserve">
+    <value>Prometheus metrics service running on standalone port: {0}.</value>
+  </data>
+
+  <data name="StartUp.StartingServerWithConfiguration" xml:space="preserve">
+    <value>Starting server with configuration: {0}.</value>
+  </data>
+
+  <data name="StartUp.StartupOver" xml:space="preserve">
+    <value>Server startup completed.</value>
+  </data>
+
+  <data name="Utility.CompressionHelper.ExceptionError" xml:space="preserve">
+    <value>Compression helper exception. Error: {0}.</value>
+  </data>
+
+  <data name="Utility.Exceptions.ClockMovedBackwards" xml:space="preserve">
+    <value>System clock moved backwards. Refusing to generate id for {0} milliseconds.</value>
+  </data>
+
+  <data name="Utility.Exceptions.ConstructorByteOverflow" xml:space="preserve">
+    <value>BigInteger constructor byte overflow.</value>
+  </data>
+
+  <data name="Utility.Exceptions.DatacenterIdOutOfRange" xml:space="preserve">
+    <value>Datacenter ID out of range. Must be between 0 and {0}.</value>
+  </data>
+
+  <data name="Utility.Exceptions.InputIsGlobalId" xml:space="preserve">
+    <value>Input is a global ID, cannot extract server ID.</value>
+  </data>
+
+  <data name="Utility.Exceptions.LnValueNonPositive" xml:space="preserve">
+    <value>Cannot calculate natural logarithm of non-positive value.</value>
+  </data>
+
+  <data name="Utility.Exceptions.SqrtValueNegative" xml:space="preserve">
+    <value>Cannot calculate square root of negative value.</value>
+  </data>
+
+  <data name="Utility.Exceptions.TimestampOutOfRange" xml:space="preserve">
+    <value>Timestamp out of range. Cannot generate ID.</value>
+  </data>
+
+  <data name="Utility.Exceptions.ValueOutOfRange" xml:space="preserve">
+    <value>Value out of range. Value: {0}, min: {1}, max: {2}.</value>
+  </data>
+
+  <data name="Utility.Exceptions.WorkerIdOutOfRange" xml:space="preserve">
+    <value>Worker ID out of range. Must be between 0 and {0}.</value>
+  </data>
+
+  <data name="Utility.GlobalSettings.LoadGlobalSettings" xml:space="preserve">
+    <value>Loading global settings from configuration.</value>
+  </data>
+
+  <data name="Utility.GlobalSettings.LoadGlobalSettingsFailed" xml:space="preserve">
+    <value>Failed to load global settings. Error: {0}.</value>
+  </data>
+
+  <data name="Utility.Settings.LoadConfigurationFailed" xml:space="preserve">
+    <value>Failed to load configuration. Configuration file: {0}.</value>
+  </data>
+
 </root>
