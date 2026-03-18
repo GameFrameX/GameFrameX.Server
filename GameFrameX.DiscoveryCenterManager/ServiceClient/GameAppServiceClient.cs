@@ -150,7 +150,7 @@ public sealed class GameAppServiceClient : IDisposable
 
     private async Task Handler()
     {
-        DateTime lastTickTime = DateTime.UtcNow;
+        var lastTickTime = DateTime.UtcNow;
         while (_isDisposed == false)
         {
             await Task.Delay(1);

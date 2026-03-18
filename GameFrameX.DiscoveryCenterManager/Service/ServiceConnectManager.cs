@@ -65,7 +65,7 @@ public sealed class ServiceConnectManager : Singleton<ServiceConnectManager>
     /// </see>
     /// 。
     /// </remarks>
-    readonly ConcurrentDictionary<long, ServiceConnect> _serviceConnects = new();
+    private readonly ConcurrentDictionary<long, ServiceConnect> _serviceConnects = new();
 
 
     /// <summary>

@@ -87,7 +87,7 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
             return false;
         }
 
-        bool removed = false;
+        var removed = false;
         var keysToRemove = new List<long>();
 
         foreach (var keyValuePair in _serverMap)
@@ -254,7 +254,7 @@ public sealed class NamingServiceManager : Singleton<NamingServiceManager>
         }
 
         SelfServiceInfo = new ServiceInfo(setting.ServerType, null, string.Empty, setting.ServerName, setting.ServerId, setting.ServerInstanceId, setting.InnerHost, setting.InnerPort, setting.OuterHost, setting.OuterPort);
-        _serverMap[SelfServiceInfo.ServerId] = new List<IServiceInfo> { SelfServiceInfo };
+        _serverMap[SelfServiceInfo.ServerId] = new List<IServiceInfo> { SelfServiceInfo, };
     }
 
     /// <summary>
