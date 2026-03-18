@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -124,7 +124,7 @@ public sealed class SwaggerOperationFilter : IOperationFilter
             foreach (var property in properties)
             {
                 var paramSchema = GetSchemaForType(property.PropertyType);
-                var propDescriptionAttr = property.GetCustomAttribute<System.ComponentModel.DescriptionAttribute>();
+                var propDescriptionAttr = property.GetCustomAttribute<DescriptionAttribute>();
 
                 operation.Parameters.Add(new OpenApiParameter
                 {
@@ -258,59 +258,59 @@ public sealed class SwaggerOperationFilter : IOperationFilter
     {
         if (type == typeof(string))
         {
-            return new OpenApiSchema { Type = "string" };
+            return new OpenApiSchema { Type = "string", };
         }
 
         if (type == typeof(int) || type == typeof(int?))
         {
-            return new OpenApiSchema { Type = "integer", Format = "int32" };
+            return new OpenApiSchema { Type = "integer", Format = "int32", };
         }
 
         if (type == typeof(long) || type == typeof(long?))
         {
-            return new OpenApiSchema { Type = "integer", Format = "int64" };
+            return new OpenApiSchema { Type = "integer", Format = "int64", };
         }
 
         if (type == typeof(float) || type == typeof(float?))
         {
-            return new OpenApiSchema { Type = "number", Format = "float" };
+            return new OpenApiSchema { Type = "number", Format = "float", };
         }
 
         if (type == typeof(double) || type == typeof(double?))
         {
-            return new OpenApiSchema { Type = "number", Format = "double" };
+            return new OpenApiSchema { Type = "number", Format = "double", };
         }
 
         if (type == typeof(decimal) || type == typeof(decimal?))
         {
-            return new OpenApiSchema { Type = "number", Format = "decimal" };
+            return new OpenApiSchema { Type = "number", Format = "decimal", };
         }
 
         if (type == typeof(bool) || type == typeof(bool?))
         {
-            return new OpenApiSchema { Type = "boolean" };
+            return new OpenApiSchema { Type = "boolean", };
         }
 
         if (type == typeof(DateTime) || type == typeof(DateTime?))
         {
-            return new OpenApiSchema { Type = "string", Format = "date-time" };
+            return new OpenApiSchema { Type = "string", Format = "date-time", };
         }
 
         if (type == typeof(Guid) || type == typeof(Guid?))
         {
-            return new OpenApiSchema { Type = "string", Format = "uuid" };
+            return new OpenApiSchema { Type = "string", Format = "uuid", };
         }
 
         if (type == typeof(byte[]))
         {
-            return new OpenApiSchema { Type = "string", Format = "byte" };
+            return new OpenApiSchema { Type = "string", Format = "byte", };
         }
 
         if (type.IsArray || (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>)))
         {
-            return new OpenApiSchema { Type = "array" };
+            return new OpenApiSchema { Type = "array", };
         }
 
-        return new OpenApiSchema { Type = "object" };
+        return new OpenApiSchema { Type = "object", };
     }
 }

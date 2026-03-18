@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -209,6 +209,7 @@ public static class HttpHandler
                 {
                     LogHelper.Debug("HTTP ProtoBuf ExecutionTime {logHeader} {elapsedMilliseconds}", logHeader, stopwatch.ElapsedMilliseconds);
                 }
+
                 if (result.IsNotNull())
                 {
                     try
@@ -242,6 +243,7 @@ public static class HttpHandler
                         // 有 Query String 参数时，需要合并参数
                         httpMessageRequestBase = (HttpMessageRequestBase)JsonHelper.Deserialize(JsonHelper.Serialize(paramMap), httpRequestAttr.MessageType);
                     }
+
                     var validationResults = new List<ValidationResult>();
 
                     var validationContext = new ValidationContext(httpMessageRequestBase, null, null);
@@ -261,6 +263,7 @@ public static class HttpHandler
                         {
                             LogHelper.Debug("HTTP JSON ExecutionTime {logHeader} {elapsedMilliseconds}", logHeader, stopwatch.ElapsedMilliseconds);
                         }
+
                         await context.Response.WriteAsync(result);
                     }
                     else
@@ -289,6 +292,7 @@ public static class HttpHandler
                     {
                         LogHelper.Debug("HTTP JSON ExecutionTime {logHeader} {elapsedMilliseconds}", logHeader, stopwatch.ElapsedMilliseconds);
                     }
+
                     await context.Response.WriteAsync(result);
                 }
             }

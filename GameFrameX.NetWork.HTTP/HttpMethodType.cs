@@ -69,12 +69,20 @@ public static class HttpMethodTypeExtensions
     /// </summary>
     /// <param name="httpMethodType">HTTP 方法类型</param>
     /// <returns>标准的 HTTP 方法字符串（使用系统常量）</returns>
-    public static string ToHttpMethodString(this HttpMethodType httpMethodType) => httpMethodType switch
+    public static string ToHttpMethodString(this HttpMethodType httpMethodType)
     {
-        HttpMethodType.GET => HttpMethods.Get,
-        HttpMethodType.POST => HttpMethods.Post,
-        HttpMethodType.PUT => HttpMethods.Put,
-        HttpMethodType.DELETE => HttpMethods.Delete,
-        _ => HttpMethods.Post,
-    };
+        switch (httpMethodType)
+        {
+            case HttpMethodType.GET:
+                return HttpMethods.Get;
+            case HttpMethodType.POST:
+                return HttpMethods.Post;
+            case HttpMethodType.PUT:
+                return HttpMethods.Put;
+            case HttpMethodType.DELETE:
+                return HttpMethods.Delete;
+            default:
+                return HttpMethods.Post;
+        }
+    }
 }
