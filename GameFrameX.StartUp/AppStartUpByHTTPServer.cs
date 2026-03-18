@@ -193,13 +193,22 @@ public abstract partial class AppStartUpBase
                 var apiPath = $"{GlobalSettings.CurrentSetting.HttpUrl}{mappingAttribute.StandardCmd}";
                 var httpMethod = mappingAttribute.HttpMethod;
 
-                IEndpointConventionBuilder route = httpMethod switch
+                IEndpointConventionBuilder route;
+                switch (httpMethod)
                 {
-                    HttpMethodType.GET => app.MapGet(apiPath, async (HttpContext context) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); }),
-                    HttpMethodType.PUT => app.MapPut(apiPath, async (HttpContext context, string _) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); }),
-                    HttpMethodType.DELETE => app.MapDelete(apiPath, async (HttpContext context, string _) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); }),
-                    _ => app.MapPost(apiPath, async (HttpContext context, string _) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); }),
-                };
+                    case HttpMethodType.GET:
+                        route = app.MapGet(apiPath, async (HttpContext context) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
+                        break;
+                    case HttpMethodType.PUT:
+                        route = app.MapPut(apiPath, async (HttpContext context, string _) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
+                        break;
+                    case HttpMethodType.DELETE:
+                        route = app.MapDelete(apiPath, async (HttpContext context, string _) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
+                        break;
+                    default:
+                        route = app.MapPost(apiPath, async (HttpContext context, string _) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
+                        break;
+                }
 
                 // 开发环境下配置API文档
                 if (development)
@@ -277,24 +286,38 @@ public abstract partial class AppStartUpBase
     /// </summary>
     /// <param name="httpMethod">HTTP 方法类型</param>
     /// <returns>摘要描述</returns>
-    private static string GetHttpMethodSummary(HttpMethodType httpMethod) => httpMethod switch
+    private static string GetHttpMethodSummary(HttpMethodType httpMethod)
     {
-        HttpMethodType.GET => LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGetRequest),
-        HttpMethodType.PUT => LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandlePutRequest),
-        HttpMethodType.DELETE => LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleDeleteRequest),
-        _ => LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandlePostRequest),
-    };
+        switch (httpMethod)
+        {
+            case HttpMethodType.GET:
+                return LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGetRequest);
+            case HttpMethodType.PUT:
+                return LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandlePutRequest);
+            case HttpMethodType.DELETE:
+                return LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleDeleteRequest);
+            default:
+                return LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandlePostRequest);
+        }
+    }
 
     /// <summary>
     /// 获取 HTTP 方法的详细描述
     /// </summary>
     /// <param name="httpMethod">HTTP 方法类型</param>
     /// <returns>详细描述</returns>
-    private static string GetHttpMethodDescription(HttpMethodType httpMethod) => httpMethod switch
+    private static string GetHttpMethodDescription(HttpMethodType httpMethod)
     {
-        HttpMethodType.GET => LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGameClientGetRequest),
-        HttpMethodType.PUT => LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGameClientPutRequest),
-        HttpMethodType.DELETE => LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGameClientDeleteRequest),
-        _ => LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGameClientPostRequest),
-    };
+        switch (httpMethod)
+        {
+            case HttpMethodType.GET:
+                return LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGameClientGetRequest);
+            case HttpMethodType.PUT:
+                return LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGameClientPutRequest);
+            case HttpMethodType.DELETE:
+                return LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGameClientDeleteRequest);
+            default:
+                return LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGameClientPostRequest);
+        }
+    }
 }
