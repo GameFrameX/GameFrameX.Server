@@ -305,10 +305,10 @@
     <value>消息对象编码异常,请检查错误日志</value>
   </data>
     <data name="NetWork.Http.HttpHeaderContentTypeNull" xml:space="preserve">
-    <value>http header content type is null</value>
+    <value>HTTP头部Content-Type为空</value>
   </data>
     <data name="NetWork.Http.DataVerificationFailed" xml:space="preserve">
-    <value>data verification failed</value>
+    <value>数据验证失败</value>
   </data>
     <data name="NetWork.Http.SwaggerRequestParameters" xml:space="preserve">
     <value>请求参数</value>
@@ -817,32 +817,32 @@
   </data>
 
     <data name="Core.ComponentRegister.ActivateGlobalComponentCheckComplete" xml:space="preserve">
-    <value>Activate the global component and check if the components all contain the Agent implementation completion</value>
+    <value>激活全局组件并检查所有组件是否都包含Agent实现完成</value>
   </data>
 
     <data name="Core.ComponentRegister.ActivateGlobalComponentCheckFailed" xml:space="preserve">
-    <value>Activate the global component and detect if the components all contain the agent implementation failed</value>
+    <value>激活全局组件并检测所有组件是否包含Agent实现失败</value>
   </data>
 
     <data name="Core.ComponentRegister.ActorNotBelongToThis" xml:space="preserve">
-    <value>get an actor that doesn't belong to this actor: [{0}] components</value>
+    <value>获取了一个不属于此Actor的Actor: [{0}] 组件</value>
   </data>
 
     <!-- 状态组件相关消息 -->
     <data name="Core.StateComponent.SaveAllStateTime" xml:space="preserve">
-    <value>save all state, use: {0}ms</value>
+    <value>保存所有状态，耗时: {0}毫秒</value>
   </data>
 
     <data name="Core.StateComponent.SaveAllStateError" xml:space="preserve">
-    <value>save all state error\n{0}</value>
+    <value>保存所有状态错误\n{0}</value>
   </data>
 
     <data name="Core.StateComponent.TimerSaveStateError" xml:space="preserve">
-    <value>timer save state error</value>
+    <value>定时保存状态错误</value>
   </data>
 
     <data name="Core.StateComponent.SaveStateFailed" xml:space="preserve">
-    <value>StateComp.SaveState.Failed.StateId:{0},{1}</value>
+    <value>状态组件保存状态失败。状态ID:{0},{1}</value>
   </data>
 
     <data name="Core.StateComponent.StateSaveBack" xml:space="preserve">
@@ -871,28 +871,28 @@
   </data>
 
     <data name="Core.MessageHandler.ActorIdIsZero" xml:space="preserve">
-    <value>ActorId is 0, can not get component，{0}, close channel</value>
+    <value>ActorId为0，无法获取组件，{0}，关闭通道</value>
   </data>
 
     <data name="Core.MessageHandler.CacheComponentIsNull" xml:space="preserve">
-    <value>CacheComponent is null, can not get component, close channel</value>
+    <value>缓存组件为空，无法获取组件，关闭通道</value>
   </data>
 
     <data name="Core.MessageHandler.InnerActionError" xml:space="preserve">
-    <value>InnerAction error: {0} {1}</value>
+    <value>内部操作错误: {0} {1}</value>
   </data>
 
     <!-- 热更新相关消息 -->
     <data name="Core.Hotfix.DllInitializationSuccess" xml:space="preserve">
-    <value>the hot change dll initialization succeeds: {0}</value>
+    <value>热更DLL初始化成功: {0}</value>
   </data>
 
     <data name="Core.Hotfix.DllInitializationFailed" xml:space="preserve">
-    <value>the hot change dll initialization failed...\n{0}</value>
+    <value>热更DLL初始化失败...\n{0}</value>
   </data>
 
     <data name="Core.Hotfix.DllUninstall" xml:space="preserve">
-    <value>hot dll uninstall{0}</value>
+    <value>热更DLL卸载{0}</value>
   </data>
 
     <!-- Core 模块异常消息 -->
@@ -911,11 +911,11 @@
 
     <!-- 组件相关异常 -->
     <data name="CoreExceptions.Component.ActorTypeNotBound" xml:space="preserve">
-    <value>component:[{0}] the actor type is not bound</value>
+    <value>组件:[{0}] Actor类型未绑定</value>
   </data>
 
     <data name="CoreExceptions.Component.ActorNotBelongToThis" xml:space="preserve">
-    <value>get an actor that doesn't belong to this actor: [{0}] component:[{1}]</value>
+    <value>获取了一个不属于此Actor的Actor: [{0}] 组件:[{1}]</value>
   </data>
 
     <!-- 消息相关异常 -->
@@ -929,35 +929,35 @@
 
     <!-- 热更新相关异常 -->
     <data name="CoreExceptions.Hotfix.HttpProcessorRepeatedlyRegistered" xml:space="preserve">
-    <value>HTTP processor command repeatedly registers, command:{0}</value>
+    <value>HTTP处理器命令重复注册，命令:{0}</value>
   </data>
 
     <data name="CoreExceptions.Hotfix.WrongTcpProcessorType" xml:space="preserve">
-    <value>wrong tcp processor type:{0}</value>
+    <value>错误的TCP处理器类型:{0}</value>
   </data>
 
     <data name="CoreExceptions.Hotfix.ClassMustBeSealed" xml:space="preserve">
-    <value>{0} must be a class marked as sealed</value>
+    <value>{0} 必须是标记为sealed的类</value>
   </data>
 
     <data name="CoreExceptions.Hotfix.MessageProcessorWrongSuffix" xml:space="preserve">
-    <value>the message processor must be in the[{0}]ending，{1}</value>
+    <value>消息处理器必须以[{0}]结尾，{1}</value>
   </data>
 
     <data name="CoreExceptions.Hotfix.EventHandlerWrongSuffix" xml:space="preserve">
-    <value>the event handler must be based on [{0}] ending，{1}</value>
+    <value>事件处理器必须以[{0}]结尾，{1}</value>
   </data>
 
     <data name="CoreExceptions.Hotfix.NoEventsToListen" xml:space="preserve">
-    <value>IEventListener:{0} There are no events that are specified to listen to</value>
+    <value>IEventListener:{0} 没有指定要监听的事件</value>
   </data>
 
     <data name="CoreExceptions.Hotfix.ComponentAgentWrongSuffix" xml:space="preserve">
-    <value>the component agent must be based on [{0}] ending，{1}</value>
+    <value>组件代理必须以[{0}]结尾，{1}</value>
   </data>
 
     <data name="CoreExceptions.Hotfix.MultipleAgents" xml:space="preserve">
-    <value>component:[{0}] there are multiple agents</value>
+    <value>组件:[{0}] 存在多个代理</value>
   </data>
 
     <!-- 属性相关异常 -->
@@ -1087,19 +1087,19 @@
 
     <!-- StartUp.HealthCheck 相关消息 -->
     <data name="StartUp.HealthCheck.EndpointEnabled" xml:space="preserve">
-    <value>the health check endpoint is enabled:</value>
+    <value>健康检查端点已启用:</value>
   </data>
 
     <data name="StartUp.HealthCheck.DetailedEndpointUrl" xml:space="preserve">
-    <value>- detailed health checks: http://{0}:{1}{2}</value>
+    <value>- 详细健康检查: http://{0}:{1}{2}</value>
   </data>
 
     <data name="StartUp.HealthCheck.SimpleEndpointUrl" xml:space="preserve">
-    <value>- simple health check: http://{0}:{1}{2}</value>
+    <value>- 简单健康检查: http://{0}:{1}{2}</value>
   </data>
 
     <data name="StartUp.HealthCheck.OpenTelemetryEndpointUrl" xml:space="preserve">
-    <value>- OpenTelemetry check: http://{0}:{1}{2}</value>
+    <value>- OpenTelemetry检查: http://{0}:{1}{2}</value>
   </data>
 
     <data name="StartUp.HealthCheck.ApplicationWorkingFine" xml:space="preserve">
@@ -1107,15 +1107,15 @@
   </data>
 
     <data name="StartUp.HealthCheck.OpenTelemetryConfigurationNormal" xml:space="preserve">
-    <value>OpenTelemetry the configuration is normal</value>
+    <value>OpenTelemetry配置正常</value>
   </data>
 
     <data name="StartUp.HealthCheck.OpenTelemetryConfiguredNormally" xml:space="preserve">
-    <value>OpenTelemetry is configured normally</value>
+    <value>OpenTelemetry已正常配置</value>
   </data>
 
     <data name="StartUp.HealthCheck.Ok" xml:space="preserve">
-    <value>OK</value>
+    <value>正常</value>
   </data>
 
     <!-- StartUp.HttpServer 相关消息 - 新增 -->
@@ -1132,7 +1132,7 @@
   </data>
 
     <data name="StartUp.HttpServer.ApiDescription" xml:space="preserve">
-    <value>GameFrameX HTTP API documentation</value>
+    <value>GameFrameX HTTP API 文档</value>
   </data>
 
     <data name="StartUp.HttpServer.ApiLicenseName" xml:space="preserve">
