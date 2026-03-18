@@ -238,7 +238,7 @@ public static class GameApp
         var serverType = launcherOptions?.ServerType;
         if (!serverType.IsNullOrEmpty())
         {
-            LogHelper.Info(LocalizationService.GetString(Keys.StartUp.LaunchServerType, serverType));
+            // LogHelper.Info(LocalizationService.GetString(Keys.StartUp.LaunchServerType, serverType));
         }
 
         // 3. 配置日志
@@ -262,7 +262,6 @@ public static class GameApp
         if (_launchTask == null)
         {
             var message = LocalizationService.GetString(Keys.StartUp.NoStartupTaskFound);
-            Console.WriteLine(LocalizationService.GetString(Keys.StartUp.ApplicationSettings.WarningMessage, message));
             LogHelper.Warning(message);
             return;
         }
@@ -326,8 +325,8 @@ public static class GameApp
         }
 
         LogHelper.ShowOption(LocalizationService.GetString(Keys.StartUp.StartingServerWithConfiguration, serverType), startUp.Setting.ToFormatString());
-        LogHelper.Info(LocalizationService.GetString(Keys.StartUp.StartingServerWithConfiguration, serverType));
-        LogHelper.Info(startUp.Setting.ToFormatString());
+        // LogHelper.Info(LocalizationService.GetString(Keys.StartUp.StartingServerWithConfiguration, serverType));
+        // LogHelper.Info(startUp.Setting.ToFormatString());
         var task = AppEnter.Entry(startUp);
         return task;
     }
@@ -372,11 +371,11 @@ public static class GameApp
         var appSetting = appSettings.FirstOrDefault(m => m.ServerType == serverType);
         if (appSetting != null)
         {
-            LogHelper.Info(LocalizationService.GetString(Keys.StartUp.FindingConfigurationForServerType, startKv.Value.ServerType));
+            // LogHelper.Info(LocalizationService.GetString(Keys.StartUp.FindingConfigurationForServerType, startKv.Value.ServerType));
         }
         else
         {
-            LogHelper.Warning(LocalizationService.GetString(Keys.StartUp.NoConfigurationUseDefault, startKv.Value.ServerType));
+            // LogHelper.Warning(LocalizationService.GetString(Keys.StartUp.NoConfigurationUseDefault, startKv.Value.ServerType));
             appSetting = launcherOptions.Adapt<AppSetting>();
         }
 
