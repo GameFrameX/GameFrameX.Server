@@ -236,7 +236,7 @@ public sealed class Actor : IActor, IDisposable
     /// <param name="openServerDay">开服天数</param>
     public async Task CrossDay(int openServerDay)
     {
-        LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Actor.CrossDay, Id, Type));
+        LogHelper.Debug(LocalizationService.GetString(Localization.Keys.Core.Actor.CrossDay, Id, Type));
         foreach (var comp in _componentsMap.Values)
         {
             var agent = comp.GetAgent();

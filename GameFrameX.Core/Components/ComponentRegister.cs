@@ -138,7 +138,7 @@ public static class ComponentRegister
             }
         }
 
-        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.ComponentRegister.InitializationComplete));
+        LogHelper.Info(LocalizationService.GetString(Localization.Keys.Core.ComponentRegister.InitializationComplete));
         return Task.CompletedTask;
     }
 

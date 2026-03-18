@@ -286,8 +286,8 @@ public static class ActorManager
                             {
                                 await actor.Inactive();
                                 await actor.OnRecycle();
-                                ActorMap.TryRemove(actor.Id, out var _);
-                                LogHelper.Debug("ActorManager.CheckIdle, Actor recycled, actorId: {actorId}, actorType: {actorType}, message: {message}", actor.Id, actor.Type, LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Actor.Recycled, actor.Id, actor.Type));
+                                ActorMap.TryRemove(actor.Id, out _);
+                                LogHelper.Debug("ActorManager.CheckIdle, Actor recycled, actorId: {actorId}, actorType: {actorType}, message: {message}", actor.Id, actor.Type, LocalizationService.GetString(Localization.Keys.Core.Actor.Recycled, actor.Id, actor.Type));
                             }
                             else
                             {

@@ -63,7 +63,7 @@ public static class EventDispatcher
                 var listeners = HotfixManager.FindListeners(actor.Type, eventId);
                 if (listeners.IsNullOrEmpty())
                 {
-                    LogHelper.Warning("EventDispatcher.Dispatch Actor {actorId} {eventId} {message}", actorId, eventId, LocalizationService.GetString(GameFrameX.Localization.Keys.Events.NoListenersFound, eventId));
+                    LogHelper.Warning("EventDispatcher.Dispatch Actor {actorId} {eventId} {message}", actorId, eventId, LocalizationService.GetString(Localization.Keys.Events.NoListenersFound, eventId));
                     return;
                 }
 
@@ -98,7 +98,7 @@ public static class EventDispatcher
                 var listeners = HotfixManager.FindListeners(eventId);
                 if (listeners.IsNullOrEmpty())
                 {
-                    LogHelper.Warning("EventDispatcher.Dispatch Actor {actorId} {eventId} {message}", actorId, eventId, LocalizationService.GetString(GameFrameX.Localization.Keys.Events.NoListenersFound, eventId));
+                    LogHelper.Warning("EventDispatcher.Dispatch Actor {actorId} {eventId} {message}", actorId, eventId, LocalizationService.GetString(Localization.Keys.Events.NoListenersFound, eventId));
                     return;
                 }
 

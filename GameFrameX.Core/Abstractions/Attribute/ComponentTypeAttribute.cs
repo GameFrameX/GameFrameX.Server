@@ -48,7 +48,7 @@ public class ComponentTypeAttribute : System.Attribute
     {
         if (type is 0 or GlobalConst.ActorTypeSeparator || type >= GlobalConst.ActorTypeMax)
         {
-            throw new InvalidDataException(LocalizationService.GetString(GameFrameX.Localization.Keys.CoreExceptions.Attribute.InvalidComponentType, type, GlobalConst.ActorTypeNone, GlobalConst.ActorTypeMax, GlobalConst.ActorTypeSeparator));
+            throw new InvalidDataException(LocalizationService.GetString(Localization.Keys.CoreExceptions.Attribute.InvalidComponentType, type, GlobalConst.ActorTypeNone, GlobalConst.ActorTypeMax, GlobalConst.ActorTypeSeparator));
         }
 
         Type = type;
