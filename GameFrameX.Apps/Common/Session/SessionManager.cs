@@ -208,7 +208,7 @@ public static class SessionManager
             var msg = new RespPrompt
             {
                 Type = 5,
-                Content = LocalizationService.GetString(GameFrameX.Localization.Keys.Apps.SessionManager.AccountAlreadyLoggedIn),
+                Content = LocalizationService.GetString(Localization.Keys.Apps.SessionManager.AccountAlreadyLoggedIn),
             };
             // 发送消息给旧会话
             await oldSession.WriteAsync(msg);
