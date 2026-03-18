@@ -121,7 +121,7 @@ internal sealed class ServiceConnect : IDisposable
         var connectEndPoint = NetHelper.ParseEndPoint(Host, Port);
         if (connectEndPoint == default)
         {
-            LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.DiscoveryCenterManager.InvalidIpAddress, Host));
+            LogHelper.Error(LocalizationService.GetString(Keys.DiscoveryCenterManager.InvalidIpAddress, Host));
             return;
         }
 
