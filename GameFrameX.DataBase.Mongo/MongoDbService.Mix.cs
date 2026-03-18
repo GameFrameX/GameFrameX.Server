@@ -44,6 +44,15 @@ namespace GameFrameX.DataBase.Mongo;
 public sealed partial class MongoDbService
 {
     /// <summary>
+    /// 替换选项，用于替换文档。设置
+    /// <see>
+    ///     <cref>IsUpsert</cref>
+    /// </see>
+    /// 属性为 true 可以在文档不存在时插入新文档。
+    /// </summary>
+    public static readonly ReplaceOptions ReplaceOptions = new ReplaceOptions { IsUpsert = true };
+
+    /// <summary>
     /// 增加或更新数据（使用 Upsert 优化，单次数据库操作）
     /// </summary>
     /// <param name="state">数据对象</param>
@@ -66,11 +75,7 @@ public sealed partial class MongoDbService
 
         // 使用 ReplaceOne with Upsert - 单次数据库操作
         var filter = Builders<TState>.Filter.Eq(m => m.Id, state.Id);
-        var options = new ReplaceOptions { IsUpsert = true };
-
-        await CurrentDatabase.GetCollection<TState>(typeof(TState).Name)
-            .ReplaceOneAsync(filter, state, options)
-            .ConfigureAwait(false);
+        await CurrentDatabase.GetCollection<TState>(typeof(TState).Name).ReplaceOneAsync(filter, state, ReplaceOptions).ConfigureAwait(false);
 
         state.SaveToDbPostHandler();
         return state;
