@@ -256,7 +256,7 @@ public static class Extensions
         // 添加健康检查服务并配置默认存活性检查
         builder.AddHealthChecks()
                // 添加一个默认的存活性检查以确保应用程序响应正常
-               .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
+               .AddCheck("self", () => HealthCheckResult.Healthy(), new[] { "live", });
 
         return builder;
     }
@@ -272,7 +272,7 @@ public static class Extensions
         // 添加健康检查服务并配置默认存活性检查
         builder.Services.AddHealthChecks()
                // 添加一个默认的存活性检查以确保应用程序响应正常
-               .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
+               .AddCheck("self", () => HealthCheckResult.Healthy(), new[] { "live", });
 
         return builder;
     }
@@ -295,7 +295,7 @@ public static class Extensions
             app.MapHealthChecks(AlivenessEndpointPath, new HealthCheckOptions
             {
                 // 仅对带有"live"标签的健康检查执行检查
-                Predicate = r => r.Tags.Contains("live")
+                Predicate = r => r.Tags.Contains("live"),
             });
         }
 
