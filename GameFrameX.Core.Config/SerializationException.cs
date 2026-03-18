@@ -29,32 +29,33 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
-#define CPU_SUPPORT_MEMORY_NOT_ALIGN //CPU 是否支持读取非对齐内存
-
-
 namespace GameFrameX.Core.Config;
 
 /// <summary>
+/// 序列化操作失败时抛出的异常
 /// </summary>
 public sealed class SerializationException : Exception
 {
     /// <summary>
+    /// 初始化 SerializationException 类的新实例
     /// </summary>
     public SerializationException()
     {
     }
 
     /// <summary>
+    /// 使用指定的错误消息初始化 SerializationException 类的新实例
     /// </summary>
-    /// <param name="msg"></param>
+    /// <param name="msg">描述错误的消息</param>
     public SerializationException(string msg) : base(msg)
     {
     }
 
     /// <summary>
+    /// 使用指定的错误消息和对导致此异常的内部异常的引用初始化 SerializationException 类的新实例
     /// </summary>
-    /// <param name="message"></param>
-    /// <param name="innerException"></param>
+    /// <param name="message">描述错误的消息</param>
+    /// <param name="innerException">导致当前异常的异常</param>
     public SerializationException(string message, Exception innerException) : base(message, innerException)
     {
     }

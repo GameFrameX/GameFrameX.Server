@@ -29,6 +29,8 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+#define CPU_SUPPORT_MEMORY_NOT_ALIGN //CPU 是否支持读取非对齐内存
+
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
