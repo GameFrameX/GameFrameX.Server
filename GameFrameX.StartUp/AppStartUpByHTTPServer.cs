@@ -179,7 +179,7 @@ public abstract partial class AppStartUpBase
                 }
             }
 
-            // 注册HTTP处理器路由
+            // 注册HTTP处理器路由（同时支持驼峰和下划线格式）
             foreach (var handler in baseHandler)
             {
                 var handlerType = handler.GetType();
@@ -189,36 +189,13 @@ public abstract partial class AppStartUpBase
                     continue;
                 }
 
-                // 注册路由 - 根据 HttpMethod 选择不同的 Map 方法
-                var apiPath = $"{GlobalSettings.CurrentSetting.HttpUrl}{mappingAttribute.StandardCmd}";
-                var httpMethod = mappingAttribute.HttpMethod;
+                // 注册驼峰格式路由
+                RegisterHandlerRoute(app, mappingAttribute, mappingAttribute.OriginalCmd, httpFactory, aopHandlerTypes, development);
 
-                IEndpointConventionBuilder route;
-                switch (httpMethod)
+                // 注册下划线格式路由（如果与驼峰格式不同）
+                if (mappingAttribute.OriginalCmd != mappingAttribute.StandardCmd)
                 {
-                    case HttpMethodType.GET:
-                        route = app.MapGet(apiPath, async (HttpContext context) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
-                        break;
-                    case HttpMethodType.PUT:
-                        route = app.MapPut(apiPath, async (HttpContext context, string _) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
-                        break;
-                    case HttpMethodType.DELETE:
-                        route = app.MapDelete(apiPath, async (HttpContext context, string _) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
-                        break;
-                    default:
-                        route = app.MapPost(apiPath, async (HttpContext context, string _) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
-                        break;
-                }
-
-                // 开发环境下配置API文档
-                if (development)
-                {
-                    route.WithOpenApi(operation =>
-                    {
-                        operation.Summary = GetHttpMethodSummary(httpMethod);
-                        operation.Description = GetHttpMethodDescription(httpMethod);
-                        return operation;
-                    });
+                    RegisterHandlerRoute(app, mappingAttribute, mappingAttribute.StandardCmd, httpFactory, aopHandlerTypes, development);
                 }
             }
 
@@ -318,6 +295,50 @@ public abstract partial class AppStartUpBase
                 return LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGameClientDeleteRequest);
             default:
                 return LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.HandleGameClientPostRequest);
+        }
+    }
+
+    /// <summary>
+    /// 注册单个 HTTP 处理器路由
+    /// </summary>
+    /// <param name="app">Web 应用程序实例</param>
+    /// <param name="mappingAttribute">HTTP 消息映射特性</param>
+    /// <param name="cmd">命令标识符（用于构建 API 路径）</param>
+    /// <param name="httpFactory">HTTP 处理器工厂</param>
+    /// <param name="aopHandlerTypes">AOP 处理器列表</param>
+    /// <param name="development">是否为开发环境</param>
+    private static void RegisterHandlerRoute(WebApplication app, HttpMessageMappingAttribute mappingAttribute, string cmd, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes, bool development)
+    {
+        // 注册路由 - 根据 HttpMethod 选择不同的 Map 方法
+        var apiPath = $"{GlobalSettings.CurrentSetting.HttpUrl}{cmd}";
+        var httpMethod = mappingAttribute.HttpMethod;
+
+        IEndpointConventionBuilder route;
+        switch (httpMethod)
+        {
+            case HttpMethodType.GET:
+                route = app.MapGet(apiPath, async (HttpContext context) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
+                break;
+            case HttpMethodType.PUT:
+                route = app.MapPut(apiPath, async (HttpContext context, string _) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
+                break;
+            case HttpMethodType.DELETE:
+                route = app.MapDelete(apiPath, async (HttpContext context, string _) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
+                break;
+            default:
+                route = app.MapPost(apiPath, async (HttpContext context, string _) => { await HttpHandler.HandleRequest(context, httpFactory, aopHandlerTypes); });
+                break;
+        }
+
+        // 开发环境下配置API文档
+        if (development)
+        {
+            route.WithOpenApi(operation =>
+            {
+                operation.Summary = GetHttpMethodSummary(httpMethod);
+                operation.Description = GetHttpMethodDescription(httpMethod);
+                return operation;
+            });
         }
     }
 }
