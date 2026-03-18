@@ -139,7 +139,11 @@ public static class GameApp
             return;
         }
 
-        TimerHelper.SetTimeZone(launcherOptions.TimeZone);
+        // 只有显式启用时区设置时才调用 SetTimeZone
+        if (launcherOptions.IsUseTimeZone)
+        {
+            TimerHelper.SetTimeZone(launcherOptions.TimeZone);
+        }
 
         // 设置日志配置信息
         LogOptions.Default.IsConsole = launcherOptions.LogIsConsole;

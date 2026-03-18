@@ -218,6 +218,17 @@ public sealed class LauncherOptions
     public string TimeZone { get; set; } = "Asia/Shanghai";
 
     /// <summary>
+    /// 获取或设置是否启用自定义时区
+    /// </summary>
+    /// <value>如果启用自定义时区，则为 true；否则为 false。默认值为 false</value>
+    /// <remarks>
+    /// 是否启用自定义时区设置，默认为 false。启用后将使用 TimeZone 属性指定的时区，
+    /// 禁用时使用系统默认时区。
+    /// </remarks>
+    [Option(nameof(IsUseTimeZone), DefaultValue = false, Description = "是否启用自定义时区设置，默认为 false，禁用时使用系统默认时区")]
+    public bool IsUseTimeZone { get; set; } = false;
+
+    /// <summary>
     /// Gets or sets whether console logging is enabled
     /// </summary>
     /// <value>True if console logging is enabled; otherwise, false. Default is false</value>
