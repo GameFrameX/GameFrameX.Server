@@ -76,6 +76,122 @@ public static class GameApp
     private static Task _launchTask;
 
     /// <summary>
+    /// 解析启动器选项 / Parse launcher options
+    /// </summary>
+    /// <param name="args">命令行参数 / Command line arguments</param>
+    /// <returns>解析后的启动器选项 / Parsed launcher options</returns>
+    private static LauncherOptions ParseLauncherOptions(string[] args)
+    {
+        try
+        {
+            return OptionsBuilder.CreateWithDebug<LauncherOptions>(args);
+        }
+        catch (Exception e)
+        {
+            LogHelper.Error(e.Message);
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// 配置 Grafana Loki 标签 / Configure Grafana Loki labels
+    /// </summary>
+    /// <param name="launcherOptions">启动器选项 / Launcher options</param>
+    private static void ConfigureGrafanaLokiLabels(LauncherOptions launcherOptions)
+    {
+        LogOptions.Default.GrafanaLokiLabels = new Dictionary<string, string>();
+
+        if (launcherOptions == null)
+        {
+            return;
+        }
+
+        var properties = typeof(LauncherOptions).GetProperties();
+        foreach (var property in properties)
+        {
+            var grafanaLokiLabelTagAttribute = property.GetCustomAttribute<GrafanaLokiLabelTagAttribute>();
+            if (grafanaLokiLabelTagAttribute == null)
+            {
+                continue;
+            }
+
+            var value = property.GetValue(launcherOptions)?.ToString();
+            if (string.IsNullOrEmpty(value))
+            {
+                continue;
+            }
+
+            if (!LogOptions.Default.GrafanaLokiLabels.TryAdd(property.Name, value))
+            {
+                LogHelper.Warning(LocalizationService.GetString(Keys.StartUp.GrafanaLokiLabelExists, property.Name));
+            }
+        }
+    }
+
+    /// <summary>
+    /// 配置日志选项 / Configure log options
+    /// </summary>
+    /// <param name="launcherOptions">启动器选项 / Launcher options</param>
+    private static void ConfigureLogOptions(LauncherOptions launcherOptions)
+    {
+        if (launcherOptions == null)
+        {
+            return;
+        }
+
+        TimerHelper.SetTimeZone(launcherOptions.TimeZone);
+
+        // 设置日志配置信息
+        LogOptions.Default.IsConsole = launcherOptions.LogIsConsole;
+        LogOptions.Default.IsWriteToFile = launcherOptions.LogIsWriteToFile;
+        LogOptions.Default.IsGrafanaLoki = launcherOptions.LogIsGrafanaLoki;
+        LogOptions.Default.GrafanaLokiUrl = launcherOptions.LogGrafanaLokiUrl;
+        LogOptions.Default.GrafanaLokiUserName = launcherOptions.LogGrafanaLokiUserName;
+        LogOptions.Default.GrafanaLokiPassword = launcherOptions.LogGrafanaLokiPassword;
+        LogOptions.Default.RetainedFileCountLimit = launcherOptions.LogRetainedFileCountLimit;
+        LogOptions.Default.IsFileSizeLimit = launcherOptions.LogIsFileSizeLimit;
+        LogOptions.Default.FileSizeLimitBytes = launcherOptions.LogFileSizeLimitBytes;
+        LogOptions.Default.LogEventLevel = launcherOptions.LogEventLevel;
+        LogOptions.Default.RollingInterval = launcherOptions.LogRollingInterval;
+
+        // 构建LogType，当值为空或默认值时不拼接
+        var logTypeParts = new List<string>();
+
+        if (launcherOptions.ServerId > 0)
+        {
+            logTypeParts.Add(launcherOptions.ServerId.ToString());
+        }
+
+        if (launcherOptions.ServerInstanceId > 0)
+        {
+            logTypeParts.Add(launcherOptions.ServerInstanceId.ToString());
+        }
+
+        // 设置 LogTagName（按优先级：TagName > Note > Label > Description）
+        if (launcherOptions.TagName.IsNotNullOrWhiteSpace())
+        {
+            LogOptions.Default.LogTagName = launcherOptions.TagName;
+        }
+        else if (launcherOptions.Note.IsNotNullOrWhiteSpace())
+        {
+            LogOptions.Default.LogTagName = launcherOptions.Note;
+        }
+        else if (launcherOptions.Label.IsNotNullOrWhiteSpace())
+        {
+            LogOptions.Default.LogTagName = launcherOptions.Label;
+        }
+        else if (launcherOptions.Description.IsNotNullOrWhiteSpace())
+        {
+            LogOptions.Default.LogTagName = launcherOptions.Description;
+        }
+
+        if (LogOptions.Default.LogTagName.IsNullOrEmpty() && logTypeParts.Count > 0)
+        {
+            LogOptions.Default.LogTagName = string.Join("_", logTypeParts);
+        }
+    }
+
+    /// <summary>
     /// Main entry point for starting the game application / 启动游戏应用程序的主入口点
     /// </summary>
     /// <param name="args">Command line arguments / 命令行参数</param>
@@ -110,114 +226,35 @@ public static class GameApp
     public static async Task Entry(string[] args, Action initAction, Action<LogOptions> logConfiguration = null)
     {
         LocalizationService.Instance.RegisterProvider(new AssemblyResourceProvider(typeof(Keys).Assembly));
-        LauncherOptions launcherOptions = null;
-        try
-        {
-            launcherOptions = OptionsBuilder.CreateWithDebug<LauncherOptions>(args);
-        }
-        catch (Exception e)
-        {
-            LogHelper.Error(e.Message);
-        }
 
+        // 1. 解析启动参数
+        var launcherOptions = ParseLauncherOptions(args);
+
+        // 2. 输出服务器类型日志
         var serverType = launcherOptions?.ServerType;
         if (!serverType.IsNullOrEmpty())
         {
             LogHelper.Info(LocalizationService.GetString(Keys.StartUp.LaunchServerType, serverType));
         }
 
-        LogOptions.Default.GrafanaLokiLabels = new Dictionary<string, string>();
-
-        if (launcherOptions != null)
-        {
-            TimerHelper.SetTimeZone(launcherOptions.TimeZone);
-            // 将LauncherOptions的所有属性添加到标签中
-            var properties = typeof(LauncherOptions).GetProperties();
-            foreach (var property in properties)
-            {
-                var grafanaLokiLabelTagAttribute = property.GetCustomAttribute<GrafanaLokiLabelTagAttribute>();
-                if (grafanaLokiLabelTagAttribute == null)
-                {
-                    continue;
-                }
-
-                var value = property.GetValue(launcherOptions)?.ToString();
-                if (string.IsNullOrEmpty(value))
-                {
-                    continue;
-                }
-
-                if (!LogOptions.Default.GrafanaLokiLabels.TryAdd(property.Name, value))
-                {
-                    LogHelper.Warning(LocalizationService.GetString(Keys.StartUp.GrafanaLokiLabelExists, property.Name));
-                }
-            }
-
-            // 设置日志配置信息
-            LogOptions.Default.IsConsole = launcherOptions.LogIsConsole;
-            LogOptions.Default.IsWriteToFile = launcherOptions.LogIsWriteToFile;
-            LogOptions.Default.IsGrafanaLoki = launcherOptions.LogIsGrafanaLoki;
-            LogOptions.Default.GrafanaLokiUrl = launcherOptions.LogGrafanaLokiUrl;
-            LogOptions.Default.GrafanaLokiUserName = launcherOptions.LogGrafanaLokiUserName;
-            LogOptions.Default.GrafanaLokiPassword = launcherOptions.LogGrafanaLokiPassword;
-            LogOptions.Default.RetainedFileCountLimit = launcherOptions.LogRetainedFileCountLimit;
-            LogOptions.Default.IsFileSizeLimit = launcherOptions.LogIsFileSizeLimit;
-            LogOptions.Default.FileSizeLimitBytes = launcherOptions.LogFileSizeLimitBytes;
-            LogOptions.Default.LogEventLevel = launcherOptions.LogEventLevel;
-            LogOptions.Default.RollingInterval = launcherOptions.LogRollingInterval;
-            // 构建LogType，当值为空或默认值时不拼接
-            var logTypeParts = new List<string>();
-
-            if (launcherOptions.ServerId > 0)
-            {
-                logTypeParts.Add(launcherOptions.ServerId.ToString());
-            }
-
-            if (launcherOptions.ServerInstanceId > 0)
-            {
-                logTypeParts.Add(launcherOptions.ServerInstanceId.ToString());
-            }
-
-            if (launcherOptions.TagName.IsNotNullOrWhiteSpace())
-            {
-                LogOptions.Default.LogTagName = launcherOptions.TagName;
-            }
-            else if (launcherOptions.Note.IsNotNullOrWhiteSpace())
-            {
-                LogOptions.Default.LogTagName = launcherOptions.Note;
-            }
-            else if (launcherOptions.Label.IsNotNullOrWhiteSpace())
-            {
-                LogOptions.Default.LogTagName = launcherOptions.Label;
-            }
-            else if (launcherOptions.Description.IsNotNullOrWhiteSpace())
-            {
-                LogOptions.Default.LogTagName = launcherOptions.Description;
-            }
-
-            if (LogOptions.Default.LogTagName.IsNullOrEmpty() && logTypeParts.Count > 0)
-            {
-                LogOptions.Default.LogTagName = string.Join("_", logTypeParts);
-            }
-        }
-
+        // 3. 配置日志
+        ConfigureGrafanaLokiLabels(launcherOptions);
+        ConfigureLogOptions(launcherOptions);
         logConfiguration?.Invoke(LogOptions.Default);
 
+        // 4. 初始化
         GlobalSettings.Load("Configs/app_config.json");
         initAction?.Invoke();
 
-        // 发现启动类型
+        // 5. 发现并启动服务器
         StartUpTypeRegistry.Instance.DiscoverAndRegister();
-
         var sortedStartUpTypes = StartUpTypeRegistry.Instance.GetSortedByPriority();
-
-        // 匹配并启动服务器
         TryLaunchServer(args, serverType, sortedStartUpTypes, launcherOptions);
 
         LogHelper.Info(LocalizationService.GetString(Keys.StartUp.StartupOver));
-
         ConsoleHelper.ConsoleLogo();
 
+        // 6. 等待启动任务完成
         if (_launchTask == null)
         {
             var message = LocalizationService.GetString(Keys.StartUp.NoStartupTaskFound);
