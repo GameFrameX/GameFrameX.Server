@@ -68,7 +68,7 @@ public sealed partial class MongoDbService
         EnsureInitialized();
         state.CreatedTime = TimerHelper.UnixTimeMilliseconds();
         state.UpdateTime = state.CreatedTime;
-        await _mongoDbContext.SaveAsync(state);
+        await _mongoDbContext.SaveAsync(state).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -86,7 +86,7 @@ public sealed partial class MongoDbService
             cacheState.UpdateTime = cacheState.CreatedTime;
         }
 
-        await _mongoDbContext.SaveAsync(cacheStates);
+        await _mongoDbContext.SaveAsync(cacheStates).ConfigureAwait(false);
     }
 
 

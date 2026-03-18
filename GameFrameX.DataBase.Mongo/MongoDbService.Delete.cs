@@ -52,7 +52,7 @@ public sealed partial class MongoDbService
     public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         EnsureInitialized();
-        var state = await FindAsync(filter);
+        var state = await FindAsync(filter).ConfigureAwait(false);
         state.DeleteTime = TimerHelper.UnixTimeMilliseconds();
         state.IsDeleted = true;
         var result = await _mongoDbContext.Update<TState>().Match(m => m.Id == state.Id).Modify(x => x.IsDeleted, state.IsDeleted).Modify(x => x.DeleteTime, state.DeleteTime).ExecuteAsync();
@@ -69,7 +69,7 @@ public sealed partial class MongoDbService
     {
         EnsureInitialized();
         var bulkUpdate = _mongoDbContext.Update<TState>();
-        var list = await FindListAsync(filter);
+        var list = await FindListAsync(filter).ConfigureAwait(false);
         var deleteTime = TimerHelper.UnixTimeMilliseconds();
         foreach (var state in list)
         {
@@ -78,7 +78,7 @@ public sealed partial class MongoDbService
             bulkUpdate.MatchID(state.Id).Modify(x => x.IsDeleted, state.IsDeleted).Modify(x => x.DeleteTime, state.DeleteTime).AddToQueue();
         }
 
-        var result = await bulkUpdate.ExecuteAsync();
+        var result = await bulkUpdate.ExecuteAsync().ConfigureAwait(false);
         return result.ModifiedCount;
     }
 
@@ -98,7 +98,7 @@ public sealed partial class MongoDbService
             bulkUpdate.MatchID(id).Modify(x => x.IsDeleted, true).Modify(x => x.DeleteTime, deleteTime).AddToQueue();
         }
 
-        var result = await bulkUpdate.ExecuteAsync();
+        var result = await bulkUpdate.ExecuteAsync().ConfigureAwait(false);
         return result.ModifiedCount;
     }
 

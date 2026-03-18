@@ -61,7 +61,7 @@ public sealed partial class MongoDbService
     {
         EnsureInitialized();
         var findExpression = GetDefaultFindExpression(filter);
-        var state = await _mongoDbContext.Find<TState>().Match(findExpression).OneAsync(id);
+        var state = await _mongoDbContext.Find<TState>().Match(findExpression).OneAsync(id).ConfigureAwait(false);
         if (!isCreateIfNotExists)
         {
             return state;
@@ -93,7 +93,7 @@ public sealed partial class MongoDbService
     {
         EnsureInitialized();
         var findExpression = GetDefaultFindExpression(filter);
-        var state = await _mongoDbContext.Queryable<TState>().Where(findExpression).FirstOrDefaultAsync();
+        var state = await _mongoDbContext.Queryable<TState>().Where(findExpression).FirstOrDefaultAsync().ConfigureAwait(false);
 
         if (!isCreateIfNotExists)
         {
@@ -126,7 +126,7 @@ public sealed partial class MongoDbService
     private async Task<TState> InnerFindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null) where TState : BaseCacheState, new()
     {
         var findExpression = GetDefaultFindExpression(filter);
-        var state = await _mongoDbContext.Find<TState>().Match(findExpression).OneAsync(id);
+        var state = await _mongoDbContext.Find<TState>().Match(findExpression).OneAsync(id).ConfigureAwait(false);
         return state;
     }
 
@@ -141,7 +141,7 @@ public sealed partial class MongoDbService
     {
         EnsureInitialized();
         var findExpression = GetDefaultFindExpression(filter);
-        var result = await _mongoDbContext.Queryable<TState>().Where(findExpression).ToListAsync();
+        var result = await _mongoDbContext.Queryable<TState>().Where(findExpression).ToListAsync().ConfigureAwait(false);
         foreach (var state in result)
         {
             state?.LoadFromDbPostHandler();
@@ -161,7 +161,7 @@ public sealed partial class MongoDbService
     {
         EnsureInitialized();
         var findExpression = GetDefaultFindExpression(filter);
-        var state = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Ascending).Limit(1).ExecuteSingleAsync();
+        var state = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Ascending).Limit(1).ExecuteSingleAsync().ConfigureAwait(false);
         state?.LoadFromDbPostHandler();
         return state;
     }
@@ -177,7 +177,7 @@ public sealed partial class MongoDbService
     {
         EnsureInitialized();
         var findExpression = GetDefaultFindExpression(filter);
-        var state = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Descending).Limit(1).ExecuteSingleAsync();
+        var state = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Descending).Limit(1).ExecuteSingleAsync().ConfigureAwait(false);
         state?.LoadFromDbPostHandler();
         return state;
     }
@@ -205,7 +205,7 @@ public sealed partial class MongoDbService
         }
 
         var findExpression = GetDefaultFindExpression(filter);
-        var result = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Descending).Skip(pageIndex * pageSize).Limit(pageSize).ExecuteAsync();
+        var result = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Descending).Skip(pageIndex * pageSize).Limit(pageSize).ExecuteAsync().ConfigureAwait(false);
         foreach (var state in result)
         {
             state?.LoadFromDbPostHandler();
@@ -237,7 +237,7 @@ public sealed partial class MongoDbService
         }
 
         var findExpression = GetDefaultFindExpression(filter);
-        var result = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Ascending).Skip(pageIndex * pageSize).Limit(pageSize).ExecuteAsync();
+        var result = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Ascending).Skip(pageIndex * pageSize).Limit(pageSize).ExecuteAsync().ConfigureAwait(false);
         foreach (var state in result)
         {
             state?.LoadFromDbPostHandler();
@@ -256,7 +256,7 @@ public sealed partial class MongoDbService
     {
         EnsureInitialized();
         var newFilter = GetDefaultFindExpression(filter);
-        var count = await _mongoDbContext.CountAsync(newFilter);
+        var count = await _mongoDbContext.CountAsync(newFilter).ConfigureAwait(false);
         return count;
     }
 
@@ -432,7 +432,7 @@ public sealed partial class MongoDbService
     {
         EnsureInitialized();
         filter = GetDefaultFindExpression(filter);
-        var result = await _mongoDbContext.Queryable<TState>().AnyAsync(filter);
+        var result = await _mongoDbContext.Queryable<TState>().AnyAsync(filter).ConfigureAwait(false);
         return result;
     }
 

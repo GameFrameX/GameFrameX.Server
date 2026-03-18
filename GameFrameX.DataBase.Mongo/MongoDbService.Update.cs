@@ -56,7 +56,7 @@ public sealed partial class MongoDbService
         {
             state.UpdateTime = TimerHelper.UnixTimeMilliseconds();
             state.UpdateCount++;
-            var result = await _mongoDbContext.Update<TState>().MatchID(state.Id).ModifyExcept(m => new { m.CreatedTime, m.CreatedId, m.Id, m.IsDeleted, m.DeleteTime, }, state).ExecuteAsync();
+            var result = await _mongoDbContext.Update<TState>().MatchID(state.Id).ModifyExcept(m => new { m.CreatedTime, m.CreatedId, m.Id, m.IsDeleted, m.DeleteTime, }, state).ExecuteAsync().ConfigureAwait(false);
             if (result.IsAcknowledged)
             {
                 state.SaveToDbPostHandler();
@@ -89,7 +89,7 @@ public sealed partial class MongoDbService
             }
         }
 
-        var result = await bulkUpdate.ExecuteAsync();
+        var result = await bulkUpdate.ExecuteAsync().ConfigureAwait(false);
         if (result.IsAcknowledged)
         {
             foreach (var state in cacheStates)

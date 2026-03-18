@@ -84,7 +84,7 @@ public sealed partial class MongoDbService : IDatabaseService
         try
         {
             var settings = MongoClientSettings.FromConnectionString(Options.ConnectionString);
-            var db = await DB.InitAsync(Options.Name, settings);
+            var db = await DB.InitAsync(Options.Name, settings).ConfigureAwait(false);
             _mongoDbContext = new MongoDbContext(Options.Name);
             CurrentDatabase = db.Database();
             LogHelper.Info("MongoDbService.Open {dbName} {ConnectionString} {mongoDbInitializedSuccessfully}", dbOptions.Name, dbOptions.ConnectionString, LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializedSuccessfully, dbOptions.ConnectionString, dbOptions.Name));

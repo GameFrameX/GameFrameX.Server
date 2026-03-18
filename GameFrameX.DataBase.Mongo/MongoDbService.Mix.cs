@@ -29,6 +29,9 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using GameFrameX.Foundation.Utility;
+using MongoDB.Driver;
+
 namespace GameFrameX.DataBase.Mongo;
 
 /// <summary>
@@ -41,24 +44,35 @@ namespace GameFrameX.DataBase.Mongo;
 public sealed partial class MongoDbService
 {
     /// <summary>
-    /// 增加或更新数据
+    /// 增加或更新数据（使用 Upsert 优化，单次数据库操作）
     /// </summary>
     /// <param name="state">数据对象</param>
     /// <typeparam name="TState">数据类型</typeparam>
-    /// <returns>返回增加或更新的条数</returns>
+    /// <returns>返回增加或更新后的数据对象</returns>
     public async Task<TState> AddOrUpdateAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
         EnsureInitialized();
-        var resultState = await InnerFindAsync<TState>(state.Id);
 
-        if (resultState == null)
+        var currentTime = TimerHelper.UnixTimeMilliseconds();
+
+        // 如果是新对象（没有创建时间），设置创建时间
+        if (state.CreatedTime == 0)
         {
-            // Add
-            await AddAsync(state);
-            return state;
+            state.CreatedTime = currentTime;
         }
 
-        // Update
-        return await UpdateAsync(state);
+        state.UpdateTime = currentTime;
+        state.UpdateCount++;
+
+        // 使用 ReplaceOne with Upsert - 单次数据库操作
+        var filter = Builders<TState>.Filter.Eq(m => m.Id, state.Id);
+        var options = new ReplaceOptions { IsUpsert = true };
+
+        await CurrentDatabase.GetCollection<TState>(typeof(TState).Name)
+            .ReplaceOneAsync(filter, state, options)
+            .ConfigureAwait(false);
+
+        state.SaveToDbPostHandler();
+        return state;
     }
 }
