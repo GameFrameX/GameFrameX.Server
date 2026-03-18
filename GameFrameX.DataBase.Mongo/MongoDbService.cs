@@ -52,8 +52,23 @@ public sealed partial class MongoDbService : IDatabaseService
     /// </summary>
     public IMongoDatabase CurrentDatabase { get; private set; }
 
-    private DbOptions _dbOptions;
+    /// <summary>
+    /// 获取或设置当前使用的MongoDB数据库配置选项。
+    /// </summary>
+    public DbOptions Options{ get; private set; }
     private MongoDbContext _mongoDbContext;
+
+    /// <summary>
+    /// 确保数据库服务已初始化。
+    /// </summary>
+    /// <exception cref="InvalidOperationException">当服务未初始化时抛出。</exception>
+    private void EnsureInitialized()
+    {
+        if (_mongoDbContext == null)
+        {
+            throw new InvalidOperationException("MongoDbService has not been initialized. Call Open() first.");
+        }
+    }
 
     /// <summary>
     /// 链接数据库
@@ -65,12 +80,12 @@ public sealed partial class MongoDbService : IDatabaseService
         ArgumentNullException.ThrowIfNull(dbOptions, nameof(dbOptions));
         ArgumentNullException.ThrowIfNull(dbOptions.ConnectionString, nameof(dbOptions.ConnectionString));
         ArgumentNullException.ThrowIfNull(dbOptions.Name, nameof(dbOptions.Name));
-        _dbOptions = dbOptions;
+        Options = dbOptions;
         try
         {
-            var settings = MongoClientSettings.FromConnectionString(dbOptions.ConnectionString);
-            var db = await DB.InitAsync(dbOptions.Name, settings);
-            _mongoDbContext = new MongoDbContext(dbOptions.Name);
+            var settings = MongoClientSettings.FromConnectionString(Options.ConnectionString);
+            var db = await DB.InitAsync(Options.Name, settings);
+            _mongoDbContext = new MongoDbContext(Options.Name);
             CurrentDatabase = db.Database();
             LogHelper.Info("MongoDbService.Open {dbName} {ConnectionString} {mongoDbInitializedSuccessfully}", dbOptions.Name, dbOptions.ConnectionString, LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializedSuccessfully, dbOptions.ConnectionString, dbOptions.Name));
             return true;

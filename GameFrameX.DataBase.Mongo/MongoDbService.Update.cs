@@ -50,6 +50,7 @@ public sealed partial class MongoDbService
     /// <returns></returns>
     public async Task<TState> UpdateAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
+        EnsureInitialized();
         var isChanged = state.IsModify();
         if (isChanged)
         {
@@ -72,6 +73,7 @@ public sealed partial class MongoDbService
     /// <returns>返回更新成功的数量</returns>
     public async Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList) where TState : BaseCacheState, new()
     {
+        EnsureInitialized();
         long resultCount = 0;
         var bulkUpdate = _mongoDbContext.Update<TState>();
         var cacheStates = stateList as TState[] ?? stateList.ToArray();

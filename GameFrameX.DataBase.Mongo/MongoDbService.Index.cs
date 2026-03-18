@@ -82,8 +82,8 @@ public sealed partial class MongoDbService
             //     }
             // }
 
-            var uniqueAttribute = indexInfo.Options.Unique;
-            var createdIndexUnique = correspondingCreatedIndex["unique"].AsBoolean;
+            var uniqueAttribute = indexInfo.Options.Unique ?? false;
+            var createdIndexUnique = correspondingCreatedIndex.Contains("unique") && correspondingCreatedIndex["unique"].AsBoolean;
             if (uniqueAttribute != createdIndexUnique)
             {
                 return false;

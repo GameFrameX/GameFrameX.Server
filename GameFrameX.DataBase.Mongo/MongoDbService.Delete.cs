@@ -51,6 +51,7 @@ public sealed partial class MongoDbService
     /// <returns>返回修改的记录数</returns>
     public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
+        EnsureInitialized();
         var state = await FindAsync(filter);
         state.DeleteTime = TimerHelper.UnixTimeMilliseconds();
         state.IsDeleted = true;
@@ -66,6 +67,7 @@ public sealed partial class MongoDbService
     /// <returns>返回修改的记录数</returns>
     public async Task<long> DeleteListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
+        EnsureInitialized();
         var bulkUpdate = _mongoDbContext.Update<TState>();
         var list = await FindListAsync(filter);
         var deleteTime = TimerHelper.UnixTimeMilliseconds();
@@ -88,6 +90,7 @@ public sealed partial class MongoDbService
     /// <returns>返回修改的记录数</returns>
     public async Task<long> DeleteListIdAsync<TState>(IEnumerable<long> ids) where TState : BaseCacheState, new()
     {
+        EnsureInitialized();
         var bulkUpdate = _mongoDbContext.Update<TState>();
         var deleteTime = TimerHelper.UnixTimeMilliseconds();
         foreach (var id in ids)
@@ -107,6 +110,7 @@ public sealed partial class MongoDbService
     /// <returns>返回修改的记录数</returns>
     public async Task<long> DeleteAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
+        EnsureInitialized();
         state.DeleteTime = TimerHelper.UnixTimeMilliseconds();
         state.IsDeleted = true;
         var result = await _mongoDbContext.Update<TState>().Match(m => m.Id == state.Id).Modify(x => x.IsDeleted, state.IsDeleted).Modify(x => x.DeleteTime, state.DeleteTime).ExecuteAsync();

@@ -59,6 +59,7 @@ public sealed partial class MongoDbService
     /// <returns>加载的缓存状态，如果未找到则返回新创建的状态。</returns>
     public async Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null, bool isCreateIfNotExists = true) where TState : BaseCacheState, new()
     {
+        EnsureInitialized();
         var findExpression = GetDefaultFindExpression(filter);
         var state = await _mongoDbContext.Find<TState>().Match(findExpression).OneAsync(id);
         if (!isCreateIfNotExists)
@@ -90,6 +91,7 @@ public sealed partial class MongoDbService
     /// <returns>满足条件的缓存状态，如果未找到则返回新创建的状态。</returns>
     public async Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter, bool isCreateIfNotExists = true) where TState : BaseCacheState, new()
     {
+        EnsureInitialized();
         var findExpression = GetDefaultFindExpression(filter);
         var state = await _mongoDbContext.Queryable<TState>().Where(findExpression).FirstOrDefaultAsync();
 
@@ -137,6 +139,7 @@ public sealed partial class MongoDbService
     /// <returns>满足条件的缓存状态列表。</returns>
     public async Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
+        EnsureInitialized();
         var findExpression = GetDefaultFindExpression(filter);
         var result = await _mongoDbContext.Queryable<TState>().Where(findExpression).ToListAsync();
         foreach (var state in result)
@@ -156,6 +159,7 @@ public sealed partial class MongoDbService
     /// <returns>符合条件的第一个元素。</returns>
     public async Task<TState> FindSortAscendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : BaseCacheState, new()
     {
+        EnsureInitialized();
         var findExpression = GetDefaultFindExpression(filter);
         var state = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Ascending).Limit(1).ExecuteSingleAsync();
         state?.LoadFromDbPostHandler();
@@ -171,6 +175,7 @@ public sealed partial class MongoDbService
     /// <returns>符合条件的第一个元素。</returns>
     public async Task<TState> FindSortDescendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : BaseCacheState, new()
     {
+        EnsureInitialized();
         var findExpression = GetDefaultFindExpression(filter);
         var state = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Descending).Limit(1).ExecuteSingleAsync();
         state?.LoadFromDbPostHandler();
@@ -188,6 +193,7 @@ public sealed partial class MongoDbService
     /// <returns>符合条件的元素列表。</returns>
     public async Task<List<TState>> FindSortDescendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : BaseCacheState, new()
     {
+        EnsureInitialized();
         if (pageIndex < 0)
         {
             pageIndex = 0;
@@ -219,6 +225,7 @@ public sealed partial class MongoDbService
     /// <returns>符合条件的元素列表。</returns>
     public async Task<List<TState>> FindSortAscendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : BaseCacheState, new()
     {
+        EnsureInitialized();
         if (pageIndex < 0)
         {
             pageIndex = 0;
@@ -247,6 +254,7 @@ public sealed partial class MongoDbService
     /// <returns></returns>
     public async Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
+        EnsureInitialized();
         var newFilter = GetDefaultFindExpression(filter);
         var count = await _mongoDbContext.CountAsync(newFilter);
         return count;
@@ -422,6 +430,7 @@ public sealed partial class MongoDbService
     /// <returns></returns>
     public async Task<bool> AnyAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
+        EnsureInitialized();
         filter = GetDefaultFindExpression(filter);
         var result = await _mongoDbContext.Queryable<TState>().AnyAsync(filter);
         return result;
