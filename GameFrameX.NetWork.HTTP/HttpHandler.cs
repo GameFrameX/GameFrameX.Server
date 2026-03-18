@@ -65,7 +65,10 @@ public static class HttpHandler
         string url = context.Request.PathBase + context.Request.Path;
         var command = context.Request.Path.ToString().Substring(GlobalSettings.CurrentSetting.HttpUrl.Length);
         var logHeader = LocalizationService.GetString(Localization.Keys.NetWorkHttp.RequestLogHeader, context.TraceIdentifier, ip, url);
-        LogHelper.Debug("HTTP RequestMethod {logHeader} {method}", logHeader, context.Request.Method);
+        if (GlobalSettings.CurrentSetting.IsDebug && GlobalSettings.CurrentSetting.IsDebugHttp && GlobalSettings.CurrentSetting.IsDebugHttpRequest)
+        {
+            LogHelper.Debug("HTTP RequestMethod {logHeader} {method}", logHeader, context.Request.Method);
+        }
 
         try
         {
@@ -139,7 +142,7 @@ public static class HttpHandler
             }
 
             // 记录请求参数
-            if (paramMap.Count > 0)
+            if (GlobalSettings.CurrentSetting.IsDebug && GlobalSettings.CurrentSetting.IsDebugHttp && GlobalSettings.CurrentSetting.IsDebugHttpRequest && paramMap.Count > 0)
             {
                 LogHelper.Debug("HTTP RequestParameters {parameters}", JsonHelper.Serialize(paramMap));
             }
@@ -198,7 +201,14 @@ public static class HttpHandler
                 stopwatch.Start();
                 var result = await handler.Action(ip, url, paramMap, message);
                 stopwatch.Stop();
-                LogHelper.Debug("HTTP ProtoBuf ExecutionTime {logHeader} {elapsedMilliseconds} {result}", logHeader, stopwatch.ElapsedMilliseconds, result);
+                if (GlobalSettings.CurrentSetting.IsDebug && GlobalSettings.CurrentSetting.IsDebugHttp && GlobalSettings.CurrentSetting.IsDebugHttpResponse)
+                {
+                    LogHelper.Debug("HTTP ProtoBuf ExecutionTime {logHeader} {elapsedMilliseconds} {result}", logHeader, stopwatch.ElapsedMilliseconds, result);
+                }
+                else if (GlobalSettings.CurrentSetting.IsDebug && GlobalSettings.CurrentSetting.IsDebugHttp)
+                {
+                    LogHelper.Debug("HTTP ProtoBuf ExecutionTime {logHeader} {elapsedMilliseconds}", logHeader, stopwatch.ElapsedMilliseconds);
+                }
                 if (result.IsNotNull())
                 {
                     try
@@ -243,7 +253,14 @@ public static class HttpHandler
                         stopwatch.Start();
                         var result = await handler.Action(ip, url, httpMessageRequestBase);
                         stopwatch.Stop();
-                        LogHelper.Debug("HTTP JSON ExecutionTime {logHeader} {elapsedMilliseconds} {result}", logHeader, stopwatch.ElapsedMilliseconds, result);
+                        if (GlobalSettings.CurrentSetting.IsDebug && GlobalSettings.CurrentSetting.IsDebugHttp && GlobalSettings.CurrentSetting.IsDebugHttpResponse)
+                        {
+                            LogHelper.Debug("HTTP JSON ExecutionTime {logHeader} {elapsedMilliseconds} {result}", logHeader, stopwatch.ElapsedMilliseconds, result);
+                        }
+                        else if (GlobalSettings.CurrentSetting.IsDebug && GlobalSettings.CurrentSetting.IsDebugHttp)
+                        {
+                            LogHelper.Debug("HTTP JSON ExecutionTime {logHeader} {elapsedMilliseconds}", logHeader, stopwatch.ElapsedMilliseconds);
+                        }
                         await context.Response.WriteAsync(result);
                     }
                     else
@@ -264,7 +281,14 @@ public static class HttpHandler
                     stopwatch.Start();
                     var result = await handler.Action(ip, url, paramMap);
                     stopwatch.Stop();
-                    LogHelper.Debug("HTTP JSON ExecutionTime {logHeader} {elapsedMilliseconds} {result}", logHeader, stopwatch.ElapsedMilliseconds, result);
+                    if (GlobalSettings.CurrentSetting.IsDebug && GlobalSettings.CurrentSetting.IsDebugHttp && GlobalSettings.CurrentSetting.IsDebugHttpResponse)
+                    {
+                        LogHelper.Debug("HTTP JSON ExecutionTime {logHeader} {elapsedMilliseconds} {result}", logHeader, stopwatch.ElapsedMilliseconds, result);
+                    }
+                    else if (GlobalSettings.CurrentSetting.IsDebug && GlobalSettings.CurrentSetting.IsDebugHttp)
+                    {
+                        LogHelper.Debug("HTTP JSON ExecutionTime {logHeader} {elapsedMilliseconds}", logHeader, stopwatch.ElapsedMilliseconds);
+                    }
                     await context.Response.WriteAsync(result);
                 }
             }

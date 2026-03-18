@@ -175,6 +175,36 @@ public sealed class LauncherOptions
     public bool IsDebugReceiveHeartBeat { get; set; }
 
     /// <summary>
+    /// Gets or sets whether HTTP debug logging is enabled
+    /// </summary>
+    /// <value>True if HTTP debug logging is enabled; otherwise, false. Default is false</value>
+    /// <remarks>
+    /// 是否启用HTTP调试日志总开关，默认值为false。启用后可通过IsDebugHttpRequest和IsDebugHttpResponse分别控制请求和响应日志
+    /// </remarks>
+    [Option(nameof(IsDebugHttp), DefaultValue = true, Description = "是否启用HTTP调试日志总开关,只有在IsDebug为true时有效,默认值为true")]
+    public bool IsDebugHttp { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets whether HTTP request parameter logging is enabled
+    /// </summary>
+    /// <value>True if HTTP request parameter logging is enabled; otherwise, false. Default is true</value>
+    /// <remarks>
+    /// 是否打印HTTP请求参数日志，包括请求方法和参数内容，只有在IsDebugHttp为true时有效，默认值为true
+    /// </remarks>
+    [Option(nameof(IsDebugHttpRequest), DefaultValue = true, Description = "是否打印HTTP请求参数日志,只有在IsDebugHttp为true时有效,默认值为true")]
+    public bool IsDebugHttpRequest { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets whether HTTP response result logging is enabled
+    /// </summary>
+    /// <value>True if HTTP response result logging is enabled; otherwise, false. Default is true</value>
+    /// <remarks>
+    /// 是否打印HTTP响应结果日志，在执行时间日志中包含结果内容，只有在IsDebugHttp为true时有效，默认值为true
+    /// </remarks>
+    [Option(nameof(IsDebugHttpResponse), DefaultValue = true, Description = "是否打印HTTP响应结果日志,只有在IsDebugHttp为true时有效,默认值为true")]
+    public bool IsDebugHttpResponse { get; set; } = true;
+
+    /// <summary>
     /// 获取或设置服务器时区
     /// </summary>
     /// <value>服务器使用的时区标识符，默认值为 "Asia/Shanghai"</value>

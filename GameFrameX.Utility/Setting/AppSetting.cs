@@ -216,6 +216,29 @@ public sealed class AppSetting
     public bool IsDebugReceiveHeartBeat { get; set; }
 
     /// <summary>
+    /// 是否启用HTTP调试日志总开关
+    /// <para>只有在IsDebug为true时有效</para>
+    /// <para>默认值为true</para>
+    /// </summary>
+    public bool IsDebugHttp { get; set; } = true;
+
+    /// <summary>
+    /// 是否打印HTTP请求参数日志
+    /// <para>包括请求方法和参数内容</para>
+    /// <para>只有在IsDebugHttp为true时有效</para>
+    /// <para>默认值为true</para>
+    /// </summary>
+    public bool IsDebugHttpRequest { get; set; } = true;
+
+    /// <summary>
+    /// 是否打印HTTP响应结果日志
+    /// <para>在执行时间日志中包含结果内容</para>
+    /// <para>只有在IsDebugHttp为true时有效</para>
+    /// <para>默认值为true</para>
+    /// </summary>
+    public bool IsDebugHttpResponse { get; set; } = true;
+
+    /// <summary>
     /// 服务器ID
     /// </summary>
     public int ServerId { get; set; }
