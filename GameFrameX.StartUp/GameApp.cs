@@ -68,15 +68,6 @@ namespace GameFrameX.StartUp;
 public static class GameApp
 {
     /// <summary>
-    /// Dictionary containing startup types and their associated attributes / 包含启动类型及其关联属性的字典
-    /// </summary>
-    /// <remarks>
-    /// 此字典存储了所有实现IAppStartUp接口并标记了StartUpTagAttribute的类型，
-    /// 键为类型，值为对应的启动标签属性。
-    /// </remarks>
-    private static readonly Dictionary<Type, StartUpTagAttribute> StartUpTypes = new();
-
-    /// <summary>
     /// The launch task for the current server instance / 当前服务器实例的启动任务
     /// </summary>
     /// <remarks>
@@ -215,64 +206,19 @@ public static class GameApp
         GlobalSettings.Load("Configs/app_config.json");
         initAction?.Invoke();
 
-        var types = AssemblyHelper.GetTypes();
-        if (types != null)
-        {
-            foreach (var type in types)
-            {
-                if (type.IsClass && type.IsImplWithInterface(typeof(IAppStartUp)) && type.GetCustomAttribute<StartUpTagAttribute>() != null)
-                {
-                    var startUpTag = type.GetCustomAttribute<StartUpTagAttribute>();
-                    StartUpTypes.Add(type, startUpTag);
-                }
-            }
-        }
+        // 发现启动类型
+        StartUpTypeRegistry.Instance.DiscoverAndRegister();
 
-        var sortedStartUpTypes = StartUpTypes.OrderBy(m => m.Value.Priority);
+        var sortedStartUpTypes = StartUpTypeRegistry.Instance.GetSortedByPriority();
 
-
-        var appSettings = GlobalSettings.GetSettings();
-        if (serverType.IsNotNullOrWhiteSpace())
-        {
-            var startKv = sortedStartUpTypes.FirstOrDefault(m => m.Value.ServerType == serverType);
-            if (startKv.Value != null)
-            {
-                var appSetting = appSettings.FirstOrDefault(m => m.ServerType == serverType);
-                if (appSetting != null)
-                {
-                    LogHelper.Info(LocalizationService.GetString(Keys.StartUp.FindingConfigurationForServerType, startKv.Value.ServerType));
-                }
-                else
-                {
-                    LogHelper.Warning(LocalizationService.GetString(Keys.StartUp.NoConfigurationUseDefault, startKv.Value.ServerType));
-                    appSetting = launcherOptions.Adapt<AppSetting>();
-                }
-
-                Launcher(args, startKv, appSetting);
-            }
-        }
-        else
-        {
-            foreach (var keyValuePair in sortedStartUpTypes)
-            {
-                var appSetting = appSettings.FirstOrDefault(appSetting => keyValuePair.Value.ServerType == appSetting.ServerType);
-                if (appSetting != null)
-                {
-                    Launcher(args, keyValuePair, appSetting);
-                    break;
-                }
-
-                LogHelper.Warning(LocalizationService.GetString(Keys.StartUp.NoConfigurationUseDefault, keyValuePair.Value.ServerType));
-                Launcher(args, keyValuePair);
-                break;
-            }
-        }
+        // 匹配并启动服务器
+        TryLaunchServer(args, serverType, sortedStartUpTypes, launcherOptions);
 
         LogHelper.Info(LocalizationService.GetString(Keys.StartUp.StartupOver));
 
         ConsoleHelper.ConsoleLogo();
 
-        if (_launchTask == default)
+        if (_launchTask == null)
         {
             var message = LocalizationService.GetString(Keys.StartUp.NoStartupTaskFound);
             Console.WriteLine(LocalizationService.GetString(Keys.StartUp.ApplicationSettings.WarningMessage, message));
@@ -343,5 +289,79 @@ public static class GameApp
         LogHelper.Info(startUp.Setting.ToFormatString());
         var task = AppEnter.Entry(startUp);
         return task;
+    }
+
+    /// <summary>
+    /// Attempts to launch a server based on the specified server type / 尝试根据指定的服务器类型启动服务器
+    /// </summary>
+    /// <param name="args">Command line arguments / 命令行参数</param>
+    /// <param name="serverType">The server type to launch, or null to launch the first available / 要启动的服务器类型，或为null以启动第一个可用的服务器</param>
+    /// <param name="sortedStartUpTypes">Collection of startup types sorted by priority / 按优先级排序的启动类型集合</param>
+    /// <param name="launcherOptions">Launcher options containing default configuration / 包含默认配置的启动器选项</param>
+    private static void TryLaunchServer(string[] args, string serverType, IEnumerable<KeyValuePair<Type, StartUpTagAttribute>> sortedStartUpTypes, LauncherOptions launcherOptions)
+    {
+        var appSettings = GlobalSettings.GetSettings();
+
+        if (serverType.IsNotNullOrWhiteSpace())
+        {
+            TryLaunchByServerType(args, serverType, sortedStartUpTypes, appSettings, launcherOptions);
+        }
+        else
+        {
+            TryLaunchFirstAvailable(args, sortedStartUpTypes, appSettings);
+        }
+    }
+
+    /// <summary>
+    /// Attempts to launch a server by the specified server type / 尝试按指定的服务器类型启动服务器
+    /// </summary>
+    /// <param name="args">Command line arguments / 命令行参数</param>
+    /// <param name="serverType">The server type identifier / 服务器类型标识符</param>
+    /// <param name="sortedStartUpTypes">Collection of startup types sorted by priority / 按优先级排序的启动类型集合</param>
+    /// <param name="appSettings">Collection of application settings from configuration / 配置中的应用程序设置集合</param>
+    /// <param name="launcherOptions">Launcher options for default configuration / 用于默认配置的启动器选项</param>
+    private static void TryLaunchByServerType(string[] args, string serverType, IEnumerable<KeyValuePair<Type, StartUpTagAttribute>> sortedStartUpTypes, IEnumerable<AppSetting> appSettings, LauncherOptions launcherOptions)
+    {
+        var startKv = sortedStartUpTypes.FirstOrDefault(m => m.Value.ServerType == serverType);
+        if (startKv.Value == null)
+        {
+            return;
+        }
+
+        var appSetting = appSettings.FirstOrDefault(m => m.ServerType == serverType);
+        if (appSetting != null)
+        {
+            LogHelper.Info(LocalizationService.GetString(Keys.StartUp.FindingConfigurationForServerType, startKv.Value.ServerType));
+        }
+        else
+        {
+            LogHelper.Warning(LocalizationService.GetString(Keys.StartUp.NoConfigurationUseDefault, startKv.Value.ServerType));
+            appSetting = launcherOptions.Adapt<AppSetting>();
+        }
+
+        Launcher(args, startKv, appSetting);
+    }
+
+    /// <summary>
+    /// Attempts to launch the first available server / 尝试启动第一个可用的服务器
+    /// </summary>
+    /// <param name="args">Command line arguments / 命令行参数</param>
+    /// <param name="sortedStartUpTypes">Collection of startup types sorted by priority / 按优先级排序的启动类型集合</param>
+    /// <param name="appSettings">Collection of application settings from configuration / 配置中的应用程序设置集合</param>
+    private static void TryLaunchFirstAvailable(string[] args, IEnumerable<KeyValuePair<Type, StartUpTagAttribute>> sortedStartUpTypes, IEnumerable<AppSetting> appSettings)
+    {
+        foreach (var keyValuePair in sortedStartUpTypes)
+        {
+            var appSetting = appSettings.FirstOrDefault(setting => keyValuePair.Value.ServerType == setting.ServerType);
+            if (appSetting != null)
+            {
+                Launcher(args, keyValuePair, appSetting);
+                return;
+            }
+
+            LogHelper.Warning(LocalizationService.GetString(Keys.StartUp.NoConfigurationUseDefault, keyValuePair.Value.ServerType));
+            Launcher(args, keyValuePair);
+            return;
+        }
     }
 }
