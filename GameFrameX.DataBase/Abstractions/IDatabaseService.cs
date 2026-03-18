@@ -73,7 +73,7 @@ public interface IDatabaseService
     /// 查询数据
     /// </summary>
     /// <param name="filter">查询条件</param>
-    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>1
+    /// <typeparam name="TState">实现ICacheState接口的类型。</typeparam>
     /// <returns>返回符合条件的数据列表</returns>
     Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new();
 

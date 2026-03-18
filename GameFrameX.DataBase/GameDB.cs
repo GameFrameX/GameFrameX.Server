@@ -292,10 +292,10 @@ public static class GameDb
     /// <param name="filter">查询条件表达式</param>
     /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
     /// <returns>返回修改的记录数</returns>
-    public static async Task<long> DeleteListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
+    public static Task<long> DeleteListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
-        return await _dbServiceImplementation.DeleteListAsync<TState>(filter);
+        return _dbServiceImplementation.DeleteListAsync<TState>(filter);
     }
 
     /// <summary>
@@ -304,9 +304,9 @@ public static class GameDb
     /// <param name="ids">要删除的ID列表</param>
     /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
     /// <returns>返回修改的记录数</returns>
-    public static async Task<long> DeleteListIdAsync<TState>(IEnumerable<long> ids) where TState : BaseCacheState, new()
+    public static Task<long> DeleteListIdAsync<TState>(IEnumerable<long> ids) where TState : BaseCacheState, new()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
-        return await _dbServiceImplementation.DeleteListIdAsync<TState>(ids);
+        return _dbServiceImplementation.DeleteListIdAsync<TState>(ids);
     }
 }

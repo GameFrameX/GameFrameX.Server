@@ -88,7 +88,7 @@ public abstract class BaseCacheState : ICacheState, IEntity
     /// <summary>
     /// 创建人的名称
     /// </summary>
-    public string CreatedName { get; set; }
+    public string CreatedName { get; set; } = "";
 
     /// <summary>
     /// 更新次数
@@ -100,8 +100,15 @@ public abstract class BaseCacheState : ICacheState, IEntity
     /// </summary>
     public virtual long? UpdateTime { get; set; }
 
+    /// <summary>
+    /// 更新人ID
+    /// </summary>
     public long? UpdatedId { get; set; }
-    public string UpdatedName { get; set; }
+
+    /// <summary>
+    /// 更新人名称
+    /// </summary>
+    public string UpdatedName { get; set; } = "";
 
     /// <summary>
     /// 转换为字符串, 包含所有属性
