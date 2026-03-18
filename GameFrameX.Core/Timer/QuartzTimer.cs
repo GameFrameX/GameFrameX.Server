@@ -554,7 +554,7 @@ public static class QuartzTimer
                     }
                 }
 
-                LogHelper.Error(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.InvalidHandlerType, handlerType));
+                LogHelper.Error(LocalizationService.GetString(Localization.Keys.Core.Timer.InvalidHandlerType, handlerType));
             }
             catch (Exception e)
             {

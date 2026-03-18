@@ -61,10 +61,10 @@ public static class GlobalTimer
     /// </summary>
     public static void Start()
     {
-        LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.GlobalTimerInitializationStart));
+        LogHelper.Debug(LocalizationService.GetString(Localization.Keys.Core.Timer.GlobalTimerInitializationStart));
         IsWorking = true;
         _loopTask = Task.Run(Loop);
-        LogHelper.Debug(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.GlobalTimerInitializationComplete));
+        LogHelper.Debug(LocalizationService.GetString(Localization.Keys.Core.Timer.GlobalTimerInitializationComplete));
     }
 
     /// <summary>
@@ -77,7 +77,7 @@ public static class GlobalTimer
 
         while (IsWorking)
         {
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.NextSaveTime, nextSaveTime));
+            LogHelper.Info(LocalizationService.GetString(Localization.Keys.Core.Timer.NextSaveTime, nextSaveTime));
             var currentTime = TimerHelper.UnixTimeMilliseconds();
             while (currentTime < nextSaveTime && IsWorking)
             {
@@ -91,15 +91,15 @@ public static class GlobalTimer
             }
 
             var startTime = TimerHelper.UnixTimeMilliseconds();
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.SaveStart, startTime));
+            LogHelper.Info(LocalizationService.GetString(Localization.Keys.Core.Timer.SaveStart, startTime));
             await StateComponent.TimerSave();
             var endTime = TimerHelper.UnixTimeMilliseconds();
             var cost = endTime - startTime;
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.SaveEnd, endTime, cost));
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.ActorRecycleStart, startTime));
+            LogHelper.Info(LocalizationService.GetString(Localization.Keys.Core.Timer.SaveEnd, endTime, cost));
+            LogHelper.Info(LocalizationService.GetString(Localization.Keys.Core.Timer.ActorRecycleStart, startTime));
             await ActorManager.CheckIdle();
             currentTime = TimerHelper.UnixTimeMilliseconds();
-            LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.ActorRecycleEnd, currentTime));
+            LogHelper.Info(LocalizationService.GetString(Localization.Keys.Core.Timer.ActorRecycleEnd, currentTime));
             do
             {
                 nextSaveTime = NextSaveTime();
@@ -121,7 +121,7 @@ public static class GlobalTimer
     /// </summary>
     public static async Task Stop()
     {
-        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.GlobalTimerStopStart));
+        LogHelper.Info(LocalizationService.GetString(Localization.Keys.Core.Timer.GlobalTimerStopStart));
         IsWorking = false;
         if (_loopTask != null)
         {
@@ -130,6 +130,6 @@ public static class GlobalTimer
 
         await StateComponent.SaveAll(true);
         GameDb.Close();
-        LogHelper.Info(LocalizationService.GetString(GameFrameX.Localization.Keys.Core.Timer.GlobalTimerStopComplete));
+        LogHelper.Info(LocalizationService.GetString(Localization.Keys.Core.Timer.GlobalTimerStopComplete));
     }
 }
