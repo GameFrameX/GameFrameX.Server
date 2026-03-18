@@ -52,7 +52,7 @@ internal static class Program
     {
         // 发布之后控制台不输出
 #if !DEBUG
-        options.IsConsole = false;
+            options.IsConsole = false;
 #endif
     }
 }
