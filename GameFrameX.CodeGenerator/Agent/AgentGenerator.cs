@@ -187,7 +187,7 @@ public class AgentGenerator : ISourceGenerator
 
                         if (!mth.IsApi && !mth.Discard && mth.HasTimeout)
                         {
-                            context.LogError(LocalizationService.GetString(GameFrameX.Localization.Keys.CodeGenerator.AgentGenerator.TimeoutAttributeMustBeUsedWithApiOrDiscard, fullName, method.Identifier.Text, timeOutAttributeName, serviceAttributeName, discardAttributeName));
+                            context.LogError(LocalizationService.GetString(Localization.Keys.CodeGenerator.AgentGenerator.TimeoutAttributeMustBeUsedWithApiOrDiscard, fullName, method.Identifier.Text, timeOutAttributeName, serviceAttributeName, discardAttributeName));
                         }
 
                         //跳过没有标记任何注解的函数
@@ -204,12 +204,12 @@ public class AgentGenerator : ISourceGenerator
 
                         if (mth.IsApi && !mth.IsThreadSafe && !mth.ReturnType.Contains("Task"))
                         {
-                            context.LogError(LocalizationService.GetString(GameFrameX.Localization.Keys.CodeGenerator.AgentGenerator.NonThreadSafeApiMustBeAsync, fullName, method.Identifier.Text, threadSafeAttributeName, serviceAttributeName));
+                            context.LogError(LocalizationService.GetString(Localization.Keys.CodeGenerator.AgentGenerator.NonThreadSafeApiMustBeAsync, fullName, method.Identifier.Text, threadSafeAttributeName, serviceAttributeName));
                         }
 
                         if ((mth.IsApi || mth.Discard || mth.IsThreadSafe) && !mth.IsVirtual)
                         {
-                            context.LogError(LocalizationService.GetString(GameFrameX.Localization.Keys.CodeGenerator.AgentGenerator.MarkedFunctionMustBeVirtual, fullName, method.Identifier.Text, serviceAttributeName, threadSafeAttributeName, discardAttributeName));
+                            context.LogError(LocalizationService.GetString(Localization.Keys.CodeGenerator.AgentGenerator.MarkedFunctionMustBeVirtual, fullName, method.Identifier.Text, serviceAttributeName, threadSafeAttributeName, discardAttributeName));
                         }
 
                         if (mth.IsVirtual)
@@ -220,7 +220,7 @@ public class AgentGenerator : ISourceGenerator
                             // mth.ReturnType = method.ReturnType.ToString();   //Task<T>
                             if (mth.Discard && !mth.ReturnType.Equals(nameof(Task)) && !mth.ReturnType.Equals(nameof(ValueTask)))
                             {
-                                context.LogError(LocalizationService.GetString(GameFrameX.Localization.Keys.CodeGenerator.AgentGenerator.DiscardAttributeRequiresTaskOrValueTask, fullName, method.Identifier.Text, discardAttributeName));
+                                context.LogError(LocalizationService.GetString(Localization.Keys.CodeGenerator.AgentGenerator.DiscardAttributeRequiresTaskOrValueTask, fullName, method.Identifier.Text, discardAttributeName));
                             }
 
                             mth.Constraint = method.ConstraintClauses.ToString(); //where T : class, new() where K : BagState
