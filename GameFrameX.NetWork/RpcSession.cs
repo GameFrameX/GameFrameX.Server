@@ -36,28 +36,43 @@ using GameFrameX.NetWork.Abstractions;
 namespace GameFrameX.NetWork;
 
 /// <summary>
-/// RPC会话
+/// RPC会话。
 /// </summary>
+/// <remarks>
+/// RPC session for managing request-response communication patterns.
+/// </remarks>
 public sealed class RpcSession : IRpcSession, IDisposable
 {
     /// <summary>
-    /// 删除列表
+    /// 删除列表。
     /// </summary>
+    /// <remarks>
+    /// List of unique IDs to be removed from the handling queue.
+    /// </remarks>
     private readonly HashSet<long> _removeUniqueIds = new();
 
     /// <summary>
-    /// RPC处理队列
+    /// RPC处理队列。
     /// </summary>
+    /// <remarks>
+    /// Dictionary containing RPC data currently being processed, keyed by unique ID.
+    /// </remarks>
     private readonly ConcurrentDictionary<long, IRpcSessionData> _rpcHandlingObjects = new();
 
     /// <summary>
-    /// 等待队列
+    /// 等待队列。
     /// </summary>
+    /// <remarks>
+    /// Queue of RPC data waiting to be processed.
+    /// </remarks>
     private readonly ConcurrentQueue<IRpcSessionData> _waitingObjects = new();
 
     /// <summary>
-    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// 释放资源。
     /// </summary>
+    /// <remarks>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </remarks>
     public void Dispose()
     {
         Stop();
@@ -66,11 +81,15 @@ public sealed class RpcSession : IRpcSession, IDisposable
 
 
     /// <summary>
-    /// 异步调用,且等待返回
+    /// 异步调用，并等待返回。
     /// </summary>
-    /// <param name="message">调用消息对象</param>
-    /// <param name="timeOutMillisecond">调用超时,单位毫秒,默认10秒</param>
-    /// <returns>返回消息对象</returns>
+    /// <remarks>
+    /// Asynchronously invokes the RPC call and waits for the response.
+    /// </remarks>
+    /// <typeparam name="T">响应消息类型 / The type of the response message</typeparam>
+    /// <param name="message">调用消息对象 / The request message object</param>
+    /// <param name="timeOutMillisecond">调用超时，单位毫秒，默认10秒 / Timeout in milliseconds, defaults to 10 seconds</param>
+    /// <returns>返回消息对象 / The response message object</returns>
     public Task<IRpcResult> Call<T>(IRequestMessage message, int timeOutMillisecond = 10000) where T : IResponseMessage, new()
     {
         var rpcData = RpcSessionData.Create(message, true, timeOutMillisecond);
@@ -79,9 +98,12 @@ public sealed class RpcSession : IRpcSession, IDisposable
     }
 
     /// <summary>
-    /// 异步发送,不等待结果
+    /// 异步发送，不等待结果。
     /// </summary>
-    /// <param name="message">调用消息对象</param>
+    /// <remarks>
+    /// Asynchronously sends the message without waiting for a response.
+    /// </remarks>
+    /// <param name="message">调用消息对象 / The request message object</param>
     public void Send(IRequestMessage message)
     {
         var actorObject = RpcSessionData.Create(message, false);
@@ -89,9 +111,12 @@ public sealed class RpcSession : IRpcSession, IDisposable
     }
 
     /// <summary>
-    /// 处理消息队列
+    /// 尝试查看消息队列头部元素但不移除。
     /// </summary>
-    /// <returns>等待处理的消息对象</returns>
+    /// <remarks>
+    /// Peeks at the first message in the queue without removing it.
+    /// </remarks>
+    /// <returns>等待处理的消息对象 / The message object waiting to be processed, or null if the queue is empty</returns>
     public IRpcSessionData TryPeek()
     {
         if (_waitingObjects.TryPeek(out var message))
@@ -103,9 +128,12 @@ public sealed class RpcSession : IRpcSession, IDisposable
     }
 
     /// <summary>
-    /// 处理消息队列
+    /// 处理消息队列，取出并返回队列头部的消息。
     /// </summary>
-    /// <returns>处理的消息对象</returns>
+    /// <remarks>
+    /// Dequeues and returns the first message from the waiting queue.
+    /// </remarks>
+    /// <returns>处理的消息对象 / The message object to be processed, or null if the queue is empty</returns>
     public IRpcSessionData Handler()
     {
         if (_waitingObjects.TryDequeue(out var message))
@@ -122,10 +150,13 @@ public sealed class RpcSession : IRpcSession, IDisposable
     }
 
     /// <summary>
-    /// 回复消息
+    /// 回复消息。
     /// </summary>
-    /// <param name="message">回复消息对象</param>
-    /// <returns>是否成功回复</returns>
+    /// <remarks>
+    /// Replies to a pending RPC request with the specified response message.
+    /// </remarks>
+    /// <param name="message">回复消息对象 / The response message object</param>
+    /// <returns>是否成功回复 / <c>true</c> if the reply was successful; otherwise <c>false</c></returns>
     public bool Reply(IResponseMessage message)
     {
         if (_rpcHandlingObjects == default || message == default)
@@ -145,9 +176,12 @@ public sealed class RpcSession : IRpcSession, IDisposable
     }
 
     /// <summary>
-    /// 计时器
+    /// 计时器更新，检查超时的RPC请求。
     /// </summary>
-    /// <param name="elapseMillisecondsTime">流逝时间,单位毫秒</param>
+    /// <remarks>
+    /// Updates the timer and checks for timed-out RPC requests.
+    /// </remarks>
+    /// <param name="elapseMillisecondsTime">流逝时间，单位毫秒 / Elapsed time in milliseconds</param>
     public void Tick(int elapseMillisecondsTime)
     {
         if (_rpcHandlingObjects.Count > 0)
@@ -176,8 +210,11 @@ public sealed class RpcSession : IRpcSession, IDisposable
     }
 
     /// <summary>
-    /// 停止
+    /// 停止会话，清除所有队列。
     /// </summary>
+    /// <remarks>
+    /// Stops the session and clears all internal queues.
+    /// </remarks>
     public void Stop()
     {
         _removeUniqueIds?.Clear();
@@ -186,8 +223,11 @@ public sealed class RpcSession : IRpcSession, IDisposable
     }
 
     /// <summary>
-    /// 析构函数
+    /// 析构函数。
     /// </summary>
+    /// <remarks>
+    /// Finalizer to ensure resources are released.
+    /// </remarks>
     ~RpcSession()
     {
         Dispose();

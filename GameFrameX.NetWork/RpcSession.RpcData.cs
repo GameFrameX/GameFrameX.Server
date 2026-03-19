@@ -37,18 +37,24 @@ using GameFrameX.Foundation.Localization.Core;
 namespace GameFrameX.NetWork;
 
 /// <summary>
-/// RPC 数据
+/// RPC会话数据。
 /// </summary>
+/// <remarks>
+/// Represents the data associated with an RPC session, including request/response handling and timeout management.
+/// </remarks>
 public sealed class RpcSessionData : IRpcSessionData, IDisposable
 {
     private readonly TaskCompletionSource<IRpcResult> _tcs;
 
     /// <summary>
-    /// 创建
+    /// 创建RPC会话数据。
     /// </summary>
-    /// <param name="requestMessage">请求消息</param>
-    /// <param name="isReply">是否需要回复</param>
-    /// <param name="timeout">超时时间,单位毫秒,默认10秒</param>
+    /// <remarks>
+    /// Initializes a new RPC session data instance.
+    /// </remarks>
+    /// <param name="requestMessage">请求消息 / The request message</param>
+    /// <param name="isReply">是否需要回复 / Whether a reply is expected</param>
+    /// <param name="timeout">超时时间，单位毫秒，默认10秒 / Timeout in milliseconds, defaults to 10 seconds</param>
     private RpcSessionData(IRequestMessage requestMessage, bool isReply = true, int timeout = 10000)
     {
         CreatedTime = TimerHelper.UnixTimeMilliseconds();
@@ -59,60 +65,97 @@ public sealed class RpcSessionData : IRpcSessionData, IDisposable
     }
 
     /// <summary>
-    /// 消息的唯一ID
-    /// 从RequestMessage中获得
+    /// 获取消息的唯一ID，从RequestMessage中获得。
     /// </summary>
+    /// <remarks>
+    /// Gets the unique identifier from the request message.
+    /// </remarks>
+    /// <value>消息的唯一ID / The unique identifier</value>
     public long UniqueId
     {
         get { return RequestMessage.UniqueId; }
     }
 
     /// <summary>
-    /// 是否需要回复
+    /// 获取是否需要回复。
     /// </summary>
+    /// <remarks>
+    /// Gets whether a reply is expected for this RPC call.
+    /// </remarks>
+    /// <value>是否需要回复 / Whether a reply is expected</value>
     public bool IsReply { get; }
 
     /// <summary>
-    /// 创建时间
+    /// 获取创建时间。
     /// </summary>
+    /// <remarks>
+    /// Gets the creation timestamp in Unix milliseconds.
+    /// </remarks>
+    /// <value>创建时间 / The creation timestamp</value>
     public long CreatedTime { get; }
 
     /// <summary>
-    /// 计时器消耗的时间
+    /// 获取或设置计时器消耗的时间。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the elapsed time for timeout tracking.
+    /// </remarks>
     private long ElapseTime { get; set; }
 
     /// <summary>
-    /// 超时时间。单位毫秒
+    /// 获取超时时间，单位毫秒。
     /// </summary>
+    /// <remarks>
+    /// Gets the timeout duration in milliseconds.
+    /// </remarks>
+    /// <value>超时时间 / The timeout duration</value>
     public int Timeout { get; }
 
     /// <summary>
-    /// 请求消息
+    /// 获取请求消息。
     /// </summary>
+    /// <remarks>
+    /// Gets the request message.
+    /// </remarks>
+    /// <value>请求消息 / The request message</value>
     public INetworkMessage RequestMessage { get; private set; }
 
     /// <summary>
-    /// 响应消息
+    /// 获取响应消息。
     /// </summary>
+    /// <remarks>
+    /// Gets the response message.
+    /// </remarks>
+    /// <value>响应消息 / The response message</value>
     public INetworkMessage ResponseMessage { get; private set; }
 
     /// <summary>
-    /// RPC 耗时时间.单位毫秒
-    /// 从创建到回复的时间差
+    /// 获取RPC耗时时间，单位毫秒，从创建到回复的时间差。
     /// </summary>
+    /// <remarks>
+    /// Gets the time elapsed from creation to response in milliseconds.
+    /// </remarks>
+    /// <value>RPC耗时时间 / The RPC duration</value>
     public long Time { get; private set; }
 
     /// <summary>
-    /// RPC 回复任务
+    /// 获取RPC回复任务。
     /// </summary>
+    /// <remarks>
+    /// Gets the task that will complete when the RPC response is received.
+    /// </remarks>
+    /// <value>RPC回复任务 / The RPC response task</value>
     public Task<IRpcResult> Task
     {
         get { return _tcs.Task; }
     }
 
     /// <summary>
+    /// 释放资源。
     /// </summary>
+    /// <remarks>
+    /// Releases all resources used by this instance.
+    /// </remarks>
     public void Dispose()
     {
         ElapseTime = 0;
@@ -124,9 +167,13 @@ public sealed class RpcSessionData : IRpcSessionData, IDisposable
     }
 
     /// <summary>
-    /// RPC 回复
+    /// RPC回复。
     /// </summary>
-    /// <param name="responseMessage"></param>
+    /// <remarks>
+    /// Completes the RPC call with the specified response message.
+    /// </remarks>
+    /// <param name="responseMessage">响应消息 / The response message</param>
+    /// <returns>是否成功回复 / <c>true</c> if the reply was successful; otherwise <c>false</c></returns>
     public bool Reply(IResponseMessage responseMessage)
     {
         ResponseMessage = responseMessage;
@@ -137,12 +184,15 @@ public sealed class RpcSessionData : IRpcSessionData, IDisposable
     }
 
     /// <summary>
-    /// 创建
+    /// 创建RPC会话数据。
     /// </summary>
-    /// <param name="requestMessage">请求消息</param>
-    /// <param name="isReply">是否需要回复</param>
-    /// <param name="timeout">超时时间,单位毫秒</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Creates a new RPC session data instance.
+    /// </remarks>
+    /// <param name="requestMessage">请求消息 / The request message</param>
+    /// <param name="isReply">是否需要回复 / Whether a reply is expected</param>
+    /// <param name="timeout">超时时间，单位毫秒 / Timeout in milliseconds</param>
+    /// <returns>RPC会话数据 / The RPC session data instance</returns>
     public static IRpcSessionData Create(IRequestMessage requestMessage, bool isReply = true, int timeout = 10000)
     {
         var rpcData = new RpcSessionData(requestMessage, isReply, timeout);
@@ -150,10 +200,13 @@ public sealed class RpcSessionData : IRpcSessionData, IDisposable
     }
 
     /// <summary>
-    /// 增加时间。如果超时返回true
+    /// 增加时间，如果超时返回true。
     /// </summary>
-    /// <param name="millisecondsTime">流逝时间.单位毫秒</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Increments the elapsed time and checks for timeout.
+    /// </remarks>
+    /// <param name="millisecondsTime">流逝时间，单位毫秒 / Elapsed time in milliseconds</param>
+    /// <returns>如果超时则为 <c>true</c>；否则为 <c>false</c> / <c>true</c> if timed out; otherwise <c>false</c></returns>
     public bool IncrementalElapseTime(long millisecondsTime)
     {
         ElapseTime += millisecondsTime;
@@ -170,8 +223,11 @@ public sealed class RpcSessionData : IRpcSessionData, IDisposable
     }
 
     /// <summary>
-    /// 析构函数
+    /// 析构函数。
     /// </summary>
+    /// <remarks>
+    /// Finalizer to ensure resources are released.
+    /// </remarks>
     ~RpcSessionData()
     {
         Dispose();

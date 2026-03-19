@@ -40,45 +40,45 @@ using GameFrameX.Foundation.Localization.Core;
 namespace GameFrameX.NetWork;
 
 /// <summary>
-/// Defines the interface for a network message package, including message data, header, and related operations.
+/// 网络消息包。
 /// </summary>
 /// <remarks>
-/// 表示网络消息包的接口，包含消息数据、消息头及相关操作方法。
+/// Represents a network message package, including message data, header, and related operations.
 /// </remarks>
 public sealed class NetworkMessagePackage : INetworkMessagePackage
 {
     /// <summary>
-    /// The type of the message contained in the package.
+    /// 获取包含在消息包中的消息类型。
     /// </summary>
     /// <remarks>
-    /// 包含在消息包中的消息类型。
+    /// The type of the message contained in the package.
     /// </remarks>
     [JsonIgnore]
     public Type MessageType { get; private set; }
 
     /// <summary>
-    /// The message data, usually serialized as a byte array.
+    /// 获取消息数据，通常为序列化后的二进制内容。
     /// </summary>
     /// <remarks>
-    /// 消息数据，通常为序列化后的二进制内容。
+    /// The message data, usually serialized as a byte array.
     /// </remarks>
     public byte[] MessageData { get; private set; }
 
     /// <summary>
-    /// The message header object, containing metadata such as message ID, length, and type.
+    /// 获取消息头对象，包含消息标识、长度、类型等元数据。
     /// </summary>
     /// <remarks>
-    /// 消息头对象，包含消息标识、长度、类型等元数据。
+    /// The message header object, containing metadata such as message ID, length, and type.
     /// </remarks>
     public INetworkMessageHeader Header { get; private set; }
 
     /// <summary>
-    /// Deserializes the message data into a message object.
-    /// </summary>
-    /// <returns>The deserialized message object. / 反序列化后的消息对象。</returns>
-    /// <remarks>
     /// 将消息数据反序列化为消息对象。
+    /// </summary>
+    /// <remarks>
+    /// Deserializes the message data into a message object.
     /// </remarks>
+    /// <returns>反序列化后的消息对象 / The deserialized message object</returns>
     public INetworkMessage DeserializeMessageObject()
     {
         var message = (INetworkMessage)ProtoBufSerializerHelper.Deserialize(MessageData, MessageType);
@@ -93,30 +93,36 @@ public sealed class NetworkMessagePackage : INetworkMessagePackage
     }
 
     /// <summary>
-    /// Sets the message data, typically used when receiving or constructing a message package.
+    /// 设置消息数据，通常用于接收或构建消息包时赋值。
     /// </summary>
     /// <remarks>
-    /// 设置消息数据，通常用于接收或构建消息包时赋值。
+    /// Sets the message data, typically used when receiving or constructing a message package.
     /// </remarks>
-    /// <param name="messageData">The byte array of message data to set./ 要设置的消息数据字节数组。</param>
+    /// <param name="messageData">要设置的消息数据字节数组 / The byte array of message data to set</param>
     public void SetMessageData(byte[] messageData)
     {
         MessageData = messageData;
     }
 
     /// <summary>
-    /// 获取格式化后的消息字符串
+    /// 获取格式化后的消息字符串。
     /// </summary>
-    /// <param name="actorId">ActorId，用于标识消息所属的角色或实体，默认值为0</param>
-    /// <returns>格式化后的消息字符串，包含消息ID、操作类型、唯一ID、消息对象及ActorId</returns>
+    /// <remarks>
+    /// Gets a formatted string representation of the message for logging purposes.
+    /// </remarks>
+    /// <param name="actorId">ActorId，用于标识消息所属的角色或实体，默认值为0 / The actor ID, defaults to 0</param>
+    /// <returns>格式化后的消息字符串，包含消息ID、操作类型、唯一ID、消息对象及ActorId / The formatted message string</returns>
     public string ToFormatMessageString(long actorId = default)
     {
         return MessageObjectLoggerHelper.FormatMessage(Header.MessageId, Header.OperationType, Header.UniqueId, DeserializeMessageObject(), actorId);
     }
 
     /// <summary>
-    /// 清除消息内容
+    /// 清除消息内容。
     /// </summary>
+    /// <remarks>
+    /// Clears all message content and resets properties to default values.
+    /// </remarks>
     public void Clear()
     {
         MessageType = default;
@@ -125,29 +131,38 @@ public sealed class NetworkMessagePackage : INetworkMessagePackage
     }
 
     /// <summary>
-    /// 设置消息头
+    /// 设置消息头。
     /// </summary>
-    /// <param name="header">要设置的网络消息头对象，不能为空</param>
+    /// <remarks>
+    /// Sets the message header.
+    /// </remarks>
+    /// <param name="header">要设置的网络消息头对象 / The network message header to set</param>
     private void SetMessageHeader(INetworkMessageHeader header)
     {
         Header = header;
     }
 
     /// <summary>
-    /// 设置消息类型
+    /// 设置消息类型。
     /// </summary>
-    /// <param name="messageType">要设置的消息类型，不能为空</param>
+    /// <remarks>
+    /// Sets the message type.
+    /// </remarks>
+    /// <param name="messageType">要设置的消息类型 / The message type to set</param>
     private void SetMessageType(Type messageType)
     {
         MessageType = messageType;
     }
 
     /// <summary>
-    /// 根据消息对象和消息头创建网络消息包
+    /// 根据消息对象和消息头创建网络消息包。
     /// </summary>
-    /// <param name="message">要封装的网络消息对象，不能为空</param>
-    /// <param name="messageObjectHeader">消息头对象，不能为空</param>
-    /// <returns>新创建并初始化完成的 NetworkMessagePackage 实例</returns>
+    /// <remarks>
+    /// Creates a network message package from the specified message and header.
+    /// </remarks>
+    /// <param name="message">要封装的网络消息对象 / The network message to encapsulate</param>
+    /// <param name="messageObjectHeader">消息头对象 / The message header object</param>
+    /// <returns>新创建并初始化完成的 NetworkMessagePackage 实例 / The created network message package</returns>
     public static NetworkMessagePackage Create(INetworkMessage message, INetworkMessageHeader messageObjectHeader)
     {
         ArgumentNullException.ThrowIfNull(messageObjectHeader, nameof(messageObjectHeader));
@@ -172,12 +187,15 @@ public sealed class NetworkMessagePackage : INetworkMessagePackage
     }
 
     /// <summary>
-    /// 根据消息头、消息数据及消息类型创建网络消息包
+    /// 根据消息头、消息数据及消息类型创建网络消息包。
     /// </summary>
-    /// <param name="messageObjectHeader">消息头对象，不能为空</param>
-    /// <param name="messageData">已序列化的消息数据字节数组，不能为空</param>
-    /// <param name="messageType">消息数据对应的类型，不能为空</param>
-    /// <returns>新创建并初始化完成的 NetworkMessagePackage 实例</returns>
+    /// <remarks>
+    /// Creates a network message package from the specified header, data, and type.
+    /// </remarks>
+    /// <param name="messageObjectHeader">消息头对象 / The message header object</param>
+    /// <param name="messageData">已序列化的消息数据字节数组 / The serialized message data</param>
+    /// <param name="messageType">消息数据对应的类型 / The type of the message data</param>
+    /// <returns>新创建并初始化完成的 NetworkMessagePackage 实例 / The created network message package</returns>
     public static NetworkMessagePackage Create(INetworkMessageHeader messageObjectHeader, byte[] messageData, Type messageType)
     {
         ArgumentNullException.ThrowIfNull(messageObjectHeader, nameof(messageObjectHeader));

@@ -35,14 +35,20 @@ using GameFrameX.NetWork.Abstractions;
 namespace GameFrameX.NetWork;
 
 /// <summary>
-/// RPC请求结果
+/// RPC请求结果。
 /// </summary>
+/// <remarks>
+/// Represents the result of an RPC request, containing either a success response or an error message.
+/// </remarks>
 public sealed class RpcResult : IRpcResult, IDisposable
 {
     /// <summary>
-    /// 创建消息结果对象
+    /// 创建消息结果对象。
     /// </summary>
-    /// <param name="message"></param>
+    /// <remarks>
+    /// Creates a result object with the specified response message.
+    /// </remarks>
+    /// <param name="message">响应消息对象 / The response message object</param>
     internal RpcResult(IResponseMessage message)
     {
         Message = message;
@@ -50,17 +56,23 @@ public sealed class RpcResult : IRpcResult, IDisposable
     }
 
     /// <summary>
-    /// 创建消息结果对象
+    /// 创建消息结果对象。
     /// </summary>
-    /// <param name="error">错误信息</param>
+    /// <remarks>
+    /// Creates a result object with the specified error message.
+    /// </remarks>
+    /// <param name="error">错误信息 / The error message</param>
     internal RpcResult(string error)
     {
         Error = error;
     }
 
     /// <summary>
-    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// 释放资源。
     /// </summary>
+    /// <remarks>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </remarks>
     public void Dispose()
     {
         if (Message != null)
@@ -74,26 +86,41 @@ public sealed class RpcResult : IRpcResult, IDisposable
     }
 
     /// <summary>
-    /// 是否成功
+    /// 获取请求是否成功。
     /// </summary>
+    /// <remarks>
+    /// Gets whether the RPC request was successful.
+    /// </remarks>
+    /// <value>如果成功则为 <c>true</c>；否则为 <c>false</c> / <c>true</c> if successful; otherwise <c>false</c></value>
     public bool IsSuccess
     {
         get { return Error == string.Empty; }
     }
 
     /// <summary>
-    /// 错误信息
+    /// 获取错误信息。
     /// </summary>
+    /// <remarks>
+    /// Gets the error message if the request failed.
+    /// </remarks>
+    /// <value>错误信息 / The error message</value>
     public string Error { get; private set; }
 
     /// <summary>
-    /// 返回消息
+    /// 获取返回消息。
     /// </summary>
+    /// <remarks>
+    /// Gets the response message if the request was successful.
+    /// </remarks>
+    /// <value>返回消息 / The response message</value>
     public IResponseMessage Message { get; private set; }
 
     /// <summary>
-    /// 析构函数
+    /// 析构函数。
     /// </summary>
+    /// <remarks>
+    /// Finalizer to ensure resources are released.
+    /// </remarks>
     ~RpcResult()
     {
         Dispose();

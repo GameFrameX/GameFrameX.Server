@@ -35,14 +35,20 @@ using GameFrameX.NetWork.Abstractions;
 namespace GameFrameX.NetWork.Messages;
 
 /// <summary>
-/// 指令信息
+/// 指令信息。
 /// </summary>
+/// <remarks>
+/// Represents command information containing message identifiers.
+/// </remarks>
 public sealed class CommandInfo : ICommandInfo
 {
     /// <summary>
-    /// 创建指令对象
+    /// 创建指令对象。
     /// </summary>
-    /// <param name="messageId"></param>
+    /// <remarks>
+    /// Creates a command info instance from a combined message ID.
+    /// </remarks>
+    /// <param name="messageId">合并后的消息ID / The combined message identifier</param>
     public CommandInfo(int messageId)
     {
         MessageId = messageId;
@@ -51,10 +57,13 @@ public sealed class CommandInfo : ICommandInfo
     }
 
     /// <summary>
-    /// 创建指令对象
+    /// 创建指令对象。
     /// </summary>
-    /// <param name="mainId"></param>
-    /// <param name="subId"></param>
+    /// <remarks>
+    /// Creates a command info instance from main and sub message IDs.
+    /// </remarks>
+    /// <param name="mainId">主消息ID / The main message identifier</param>
+    /// <param name="subId">次消息ID / The sub message identifier</param>
     public CommandInfo(int mainId, int subId)
     {
         MessageId = MessageIdUtility.GetMessageId(mainId, subId);
@@ -63,36 +72,54 @@ public sealed class CommandInfo : ICommandInfo
     }
 
     /// <summary>
-    /// 合并后的消息ID
+    /// 获取合并后的消息ID。
     /// </summary>
+    /// <remarks>
+    /// Gets the combined message identifier.
+    /// </remarks>
+    /// <value>合并后的消息ID / The combined message identifier</value>
     public int MessageId { get; }
 
     /// <summary>
-    /// 主消息ID
+    /// 获取主消息ID。
     /// </summary>
+    /// <remarks>
+    /// Gets the main message identifier.
+    /// </remarks>
+    /// <value>主消息ID / The main message identifier</value>
     public int MainId { get; }
 
     /// <summary>
-    /// 次消息ID
+    /// 获取次消息ID。
     /// </summary>
+    /// <remarks>
+    /// Gets the sub message identifier.
+    /// </remarks>
+    /// <value>次消息ID / The sub message identifier</value>
     public int SubId { get; }
 
     /// <summary>
-    /// 创建指令对象
+    /// 创建指令对象。
     /// </summary>
-    /// <param name="messageId"></param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Creates a command info instance from a combined message ID.
+    /// </remarks>
+    /// <param name="messageId">合并后的消息ID / The combined message identifier</param>
+    /// <returns>指令对象 / The command info instance</returns>
     public static CommandInfo Create(int messageId)
     {
         return new CommandInfo(messageId);
     }
 
     /// <summary>
-    /// 创建指令对象
+    /// 创建指令对象。
     /// </summary>
-    /// <param name="mainId"></param>
-    /// <param name="subId"></param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Creates a command info instance from main and sub message IDs.
+    /// </remarks>
+    /// <param name="mainId">主消息ID / The main message identifier</param>
+    /// <param name="subId">次消息ID / The sub message identifier</param>
+    /// <returns>指令对象 / The command info instance</returns>
     public static CommandInfo Create(int mainId, int subId)
     {
         return new CommandInfo(mainId, subId);

@@ -40,19 +40,25 @@ using GameFrameX.Foundation.Extensions;
 namespace GameFrameX.NetWork;
 
 /// <summary>
-/// 消息对象日志帮助类
+/// 消息对象日志帮助类。
 /// </summary>
+/// <remarks>
+/// Helper class for formatting network messages into readable log strings.
+/// </remarks>
 public static class MessageObjectLoggerHelper
 {
     /// <summary>
-    /// 格式化网络消息为可读的字符串格式
+    /// 格式化网络消息为可读的字符串格式。
     /// </summary>
-    /// <param name="messageId">消息ID</param>
-    /// <param name="operationType">操作类型</param>
-    /// <param name="uniqueId">唯一标识ID</param>
-    /// <param name="messageObject">网络消息对象</param>
-    /// <param name="actorId"></param>
-    /// <returns>格式化后的消息字符串</returns>
+    /// <remarks>
+    /// Formats a network message into a human-readable string for logging purposes.
+    /// </remarks>
+    /// <param name="messageId">消息ID / The message identifier</param>
+    /// <param name="operationType">操作类型 / The operation type</param>
+    /// <param name="uniqueId">唯一标识ID / The unique identifier</param>
+    /// <param name="messageObject">网络消息对象 / The network message object</param>
+    /// <param name="actorId">ActorId，用于标识消息所属的角色 / The actor ID associated with the message</param>
+    /// <returns>格式化后的消息字符串 / The formatted message string</returns>
     public static string FormatMessage(int messageId, byte operationType, int uniqueId, INetworkMessage messageObject, long actorId)
     {
         try

@@ -35,19 +35,25 @@ using GameFrameX.NetWork.Abstractions;
 namespace GameFrameX.NetWork.Messages;
 
 /// <summary>
-/// 消息对象日志
+/// 消息对象日志。
 /// </summary>
+/// <remarks>
+/// Represents a log object for serializing network message information.
+/// </remarks>
 public sealed class MessageObjectLogObject
 {
     /// <summary>
-    /// 消息日志对象
+    /// 初始化消息日志对象。
     /// </summary>
-    /// <param name="name"></param>
-    /// <param name="messageId"></param>
-    /// <param name="operationType"></param>
-    /// <param name="uniqueId"></param>
-    /// <param name="messageObject"></param>
-    /// <param name="actorId"></param>
+    /// <remarks>
+    /// Creates a new message log object with the specified parameters.
+    /// </remarks>
+    /// <param name="name">消息类型名称 / The message type name</param>
+    /// <param name="messageId">消息ID / The message identifier</param>
+    /// <param name="operationType">操作类型 / The operation type</param>
+    /// <param name="uniqueId">唯一ID / The unique identifier</param>
+    /// <param name="messageObject">消息对象 / The message object</param>
+    /// <param name="actorId">ActorId / The actor identifier</param>
     public MessageObjectLogObject(string name, int messageId, int operationType, int uniqueId, INetworkMessage messageObject, long actorId)
     {
         MessageType = name;
@@ -59,32 +65,56 @@ public sealed class MessageObjectLogObject
     }
 
     /// <summary>
-    /// 消息类型
+    /// 获取或设置消息类型。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the message type name.
+    /// </remarks>
+    /// <value>消息类型 / The message type name</value>
     public string MessageType { get; set; }
 
     /// <summary>
-    /// ActorId
+    /// 获取或设置ActorId。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the actor identifier.
+    /// </remarks>
+    /// <value>ActorId / The actor identifier</value>
     public long ActorId { get; set; }
 
     /// <summary>
-    /// 消息ID
+    /// 获取或设置消息ID。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the message identifier.
+    /// </remarks>
+    /// <value>消息ID / The message identifier</value>
     public int MessageId { get; set; }
 
     /// <summary>
-    /// 操作类型
+    /// 获取或设置操作类型。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the operation type.
+    /// </remarks>
+    /// <value>操作类型 / The operation type</value>
     public int OpType { get; set; }
 
     /// <summary>
-    /// 唯一ID
+    /// 获取或设置唯一ID。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the unique identifier.
+    /// </remarks>
+    /// <value>唯一ID / The unique identifier</value>
     public int UniqueId { get; set; }
 
     /// <summary>
-    /// 消息对象
+    /// 获取或设置消息对象。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the message data object.
+    /// </remarks>
+    /// <value>消息对象 / The message data object</value>
     public object Data { get; set; }
 }

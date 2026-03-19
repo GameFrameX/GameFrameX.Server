@@ -42,32 +42,47 @@ using GameFrameX.Foundation.Localization.Core;
 namespace GameFrameX.NetWork;
 
 /// <summary>
-/// 基础网络通道
+/// 基础网络通道。
 /// </summary>
+/// <remarks>
+/// Base class for network channels, providing common functionality for client-server communication.
+/// </remarks>
 public abstract class BaseNetWorkChannel : INetWorkChannel
 {
     /// <summary>
-    /// WebSocket会话
+    /// WebSocket会话。
     /// </summary>
+    /// <remarks>
+    /// The WebSocket session for WebSocket connections.
+    /// </remarks>
     private readonly WebSocketSession _webSocketSession;
 
     /// <summary>
-    /// 关闭源
+    /// 关闭源。
     /// </summary>
+    /// <remarks>
+    /// Cancellation token source for managing connection closure.
+    /// </remarks>
     protected readonly CancellationTokenSource CancellationTokenSource = new();
 
     /// <summary>
-    /// 网络发送超时时间,单位秒
+    /// 网络发送超时时间，单位秒。
     /// </summary>
+    /// <remarks>
+    /// Timeout duration for network send operations.
+    /// </remarks>
     protected readonly TimeSpan NetWorkSendTimeOutSecondsTimeSpan;
 
     /// <summary>
-    /// 初始化
+    /// 初始化基础网络通道。
     /// </summary>
-    /// <param name="session"></param>
-    /// <param name="setting"></param>
-    /// <param name="rpcSession"></param>
-    /// <param name="isWebSocket"></param>
+    /// <remarks>
+    /// Initializes a new instance of the base network channel.
+    /// </remarks>
+    /// <param name="session">游戏应用会话对象 / The game application session object</param>
+    /// <param name="setting">应用配置 / The application settings</param>
+    /// <param name="rpcSession">RPC会话对象 / The RPC session object</param>
+    /// <param name="isWebSocket">是否为WebSocket连接 / Whether the connection is WebSocket</param>
     public BaseNetWorkChannel(IGameAppSession session, AppSetting setting, IRpcSession rpcSession, bool isWebSocket)
     {
         ArgumentNullException.ThrowIfNull(setting, nameof(setting));
@@ -87,39 +102,66 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
     }
 
     /// <summary>
-    /// 是否是WebSocket
+    /// 获取是否为WebSocket连接。
     /// </summary>
+    /// <remarks>
+    /// Gets whether this channel uses WebSocket protocol.
+    /// </remarks>
+    /// <value>如果是WebSocket连接则为 <c>true</c>；否则为 <c>false</c> / <c>true</c> if WebSocket; otherwise <c>false</c></value>
     public bool IsWebSocket { get; }
 
     /// <summary>
-    /// 设置
+    /// 获取应用配置。
     /// </summary>
+    /// <remarks>
+    /// Gets the application settings for this channel.
+    /// </remarks>
+    /// <value>应用配置 / The application settings</value>
     public AppSetting Setting { get; }
 
     /// <summary>
-    /// 发送字节长度 - 记录通过此通道发送的总字节数
+    /// 获取发送字节长度，记录通过此通道发送的总字节数。
     /// </summary>
+    /// <remarks>
+    /// Gets the total number of bytes sent through this channel.
+    /// </remarks>
+    /// <value>发送字节长度 / Total bytes sent</value>
     public ulong SendBytesLength { get; private set; }
 
     /// <summary>
-    /// 发送数据包长度 - 记录通过此通道发送的数据包总数
+    /// 获取发送数据包长度，记录通过此通道发送的数据包总数。
     /// </summary>
+    /// <remarks>
+    /// Gets the total number of packets sent through this channel.
+    /// </remarks>
+    /// <value>发送数据包总数 / Total packets sent</value>
     public ulong SendPacketLength { get; private set; }
 
     /// <summary>
-    /// 接收字节长度 - 记录通过此通道接收的总字节数
+    /// 获取接收字节长度，记录通过此通道接收的总字节数。
     /// </summary>
+    /// <remarks>
+    /// Gets the total number of bytes received through this channel.
+    /// </remarks>
+    /// <value>接收字节长度 / Total bytes received</value>
     public ulong ReceiveBytesLength { get; private set; }
 
     /// <summary>
-    /// 接收数据包长度 - 记录通过此通道接收的数据包总数
+    /// 获取接收数据包长度，记录通过此通道接收的数据包总数。
     /// </summary>
+    /// <remarks>
+    /// Gets the total number of packets received through this channel.
+    /// </remarks>
+    /// <value>接收数据包总数 / Total packets received</value>
     public ulong ReceivePacketLength { get; private set; }
 
     /// <summary>
-    /// 更新接收数据包字节长度
+    /// 更新接收数据包字节长度。
     /// </summary>
-    /// <param name="bufferLength">接收数据包字节长度</param>
+    /// <remarks>
+    /// Updates the received packet and byte counters.
+    /// </remarks>
+    /// <param name="bufferLength">接收数据包字节长度 / The length of the received buffer in bytes</param>
     public void UpdateReceivePacketBytesLength(ulong bufferLength)
     {
         ReceivePacketLength++;
@@ -127,21 +169,32 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
     }
 
     /// <summary>
-    /// 会话
+    /// 获取游戏应用会话。
     /// </summary>
+    /// <remarks>
+    /// Gets the game application session associated with this channel.
+    /// </remarks>
+    /// <value>游戏应用会话 / The game application session</value>
     public IGameAppSession GameAppSession { get; }
 
     /// <summary>
-    /// Rpc会话
+    /// 获取RPC会话。
     /// </summary>
+    /// <remarks>
+    /// Gets the RPC session for managing request-response communication.
+    /// </remarks>
+    /// <value>RPC会话 / The RPC session</value>
     public IRpcSession RpcSession { get; }
 
     /// <summary>
-    /// 异步写入消息
+    /// 异步写入消息。
     /// </summary>
-    /// <param name="messageObject">消息对象</param>
-    /// <param name="errorCode">错误码</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Asynchronously writes a network message to the channel.
+    /// </remarks>
+    /// <param name="messageObject">消息对象 / The network message object to send</param>
+    /// <param name="errorCode">错误码 / The error code to include in response messages</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public virtual async Task WriteAsync(INetworkMessage messageObject, int errorCode = 0)
     {
         ArgumentNullException.ThrowIfNull(messageObject, nameof(messageObject));
@@ -210,8 +263,11 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
     }
 
     /// <summary>
-    /// 关闭
+    /// 关闭通道。
     /// </summary>
+    /// <remarks>
+    /// Closes the network channel and releases associated resources.
+    /// </remarks>
     public virtual void Close()
     {
         ClearData();
@@ -219,9 +275,12 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
     }
 
     /// <summary>
-    /// 是否关闭
+    /// 检查通道是否已关闭。
     /// </summary>
-    /// <returns></returns>
+    /// <remarks>
+    /// Checks whether the channel has been closed.
+    /// </remarks>
+    /// <returns>如果已关闭则为 <c>true</c>；否则为 <c>false</c> / <c>true</c> if closed; otherwise <c>false</c></returns>
     public virtual bool IsClosed()
     {
         return CancellationTokenSource.IsCancellationRequested;
@@ -232,13 +291,14 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
     private readonly ConcurrentDictionary<string, object> _userDataKv = new();
 
     /// <summary>
-    /// 获取用户数据对象.
-    /// 可能会发生转换失败的异常。
-    /// 如果数据不存在则返回null
+    /// 获取用户数据对象。
     /// </summary>
-    /// <param name="key">数据Key</param>
-    /// <typeparam name="T">将要获取的数据类型。</typeparam>
-    /// <returns>用户数据对象</returns>
+    /// <remarks>
+    /// Gets user data by key. May throw conversion exceptions. Returns default value if key does not exist.
+    /// </remarks>
+    /// <typeparam name="T">将要获取的数据类型 / The type of data to retrieve</typeparam>
+    /// <param name="key">数据键 / The data key</param>
+    /// <returns>用户数据对象 / The user data object, or default value if not found</returns>
     public T GetData<T>(string key)
     {
         if (_userDataKv.TryGetValue(key, out var v))
@@ -250,8 +310,11 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
     }
 
     /// <summary>
-    /// 清除自定义数据
+    /// 清除自定义数据。
     /// </summary>
+    /// <remarks>
+    /// Clears all custom data and resets packet/byte counters.
+    /// </remarks>
     public void ClearData()
     {
         _userDataKv.Clear();
@@ -262,19 +325,25 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
     }
 
     /// <summary>
-    /// 删除自定义数据
+    /// 删除自定义数据。
     /// </summary>
-    /// <param name="key"></param>
+    /// <remarks>
+    /// Removes custom data by key.
+    /// </remarks>
+    /// <param name="key">数据键 / The data key to remove</param>
     public void RemoveData(string key)
     {
         _userDataKv.Remove(key, out _);
     }
 
     /// <summary>
-    /// 设置自定义数据
+    /// 设置自定义数据。
     /// </summary>
-    /// <param name="key"></param>
-    /// <param name="value"></param>
+    /// <remarks>
+    /// Sets custom data by key.
+    /// </remarks>
+    /// <param name="key">数据键 / The data key</param>
+    /// <param name="value">数据值 / The data value</param>
     public void SetData(string key, object value)
     {
         _userDataKv[key] = value;
@@ -287,19 +356,25 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
     private long _lastReceiveMessageTime;
 
     /// <summary>
-    /// 更新接收消息的时间
+    /// 更新接收消息的时间。
     /// </summary>
-    /// <param name="offsetTicks"></param>
+    /// <remarks>
+    /// Updates the timestamp of the last received message.
+    /// </remarks>
+    /// <param name="offsetTicks">时间偏移量（ticks） / Time offset in ticks</param>
     public void UpdateReceiveMessageTime(long offsetTicks = 0)
     {
         _lastReceiveMessageTime = DateTime.UtcNow.Ticks + offsetTicks;
     }
 
     /// <summary>
-    /// 获取最后接收消息到现在的时间。单位秒
+    /// 获取最后接收消息到现在的时间，单位秒。
     /// </summary>
-    /// <param name="utcTime"></param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Gets the elapsed time since the last received message in seconds.
+    /// </remarks>
+    /// <param name="utcTime">当前UTC时间 / The current UTC time</param>
+    /// <returns>距离上次接收消息的秒数 / The number of seconds since the last received message</returns>
     public long GetLastMessageTimeSecond(in DateTime utcTime)
     {
         return (utcTime.Ticks - _lastReceiveMessageTime) / 10000_000;

@@ -36,38 +36,60 @@ using ProtoBuf;
 namespace GameFrameX.NetWork.Messages;
 
 /// <summary>
-/// 消息对象头
+/// 消息对象头。
 /// </summary>
+/// <remarks>
+/// Represents the header of a network message, containing metadata such as message ID and operation type.
+/// </remarks>
 [ProtoContract]
 public class MessageObjectHeader : INetworkMessageHeader
 {
     /// <summary>
-    /// 消息ID
+    /// 获取或设置消息ID。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the message identifier.
+    /// </remarks>
+    /// <value>消息ID / The message identifier</value>
     [ProtoMember(1)]
     public int MessageId { get; set; }
 
     /// <summary>
-    /// 操作类型
+    /// 获取或设置操作类型。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the operation type of the message.
+    /// </remarks>
+    /// <value>操作类型 / The operation type</value>
     [ProtoMember(2)]
     public byte OperationType { get; set; }
 
     /// <summary>
-    /// 压缩标记
+    /// 获取或设置压缩标记。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the compression flag indicating whether the message body is compressed.
+    /// </remarks>
+    /// <value>压缩标记 / The compression flag</value>
     [ProtoMember(3)]
     public byte ZipFlag { get; set; }
 
     /// <summary>
-    /// 唯一消息序列ID
+    /// 获取或设置唯一消息序列ID。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the unique sequence identifier for this message.
+    /// </remarks>
+    /// <value>唯一消息序列ID / The unique sequence identifier</value>
     [ProtoMember(4)]
     public int UniqueId { get; set; }
 
     /// <summary>
-    /// 清除消息内容
+    /// 清除消息内容。
     /// </summary>
+    /// <remarks>
+    /// Resets all header properties to their default values.
+    /// </remarks>
     public void Clear()
     {
         MessageId = default;

@@ -37,17 +37,23 @@ using GameFrameX.Utility.Setting;
 namespace GameFrameX.NetWork;
 
 /// <summary>
-/// 默认网络通道
+/// 默认网络通道。
 /// </summary>
+/// <remarks>
+/// Default implementation of the network channel for handling client-server communication.
+/// </remarks>
 public sealed class DefaultNetWorkChannel : BaseNetWorkChannel
 {
     /// <summary>
-    /// 初始化
+    /// 初始化默认网络通道。
     /// </summary>
-    /// <param name="session"></param>
-    /// <param name="setting"></param>
-    /// <param name="rpcSession"></param>
-    /// <param name="isWebSocket"></param>
+    /// <remarks>
+    /// Initializes a new instance of the default network channel.
+    /// </remarks>
+    /// <param name="session">游戏应用会话对象 / The game application session object</param>
+    /// <param name="setting">应用配置 / The application settings</param>
+    /// <param name="rpcSession">RPC会话对象 / The RPC session object</param>
+    /// <param name="isWebSocket">是否为WebSocket连接 / Whether the connection is WebSocket</param>
     public DefaultNetWorkChannel(IGameAppSession session, AppSetting setting, IRpcSession rpcSession = null, bool isWebSocket = false) : base(session, setting, rpcSession, isWebSocket)
     {
     }
