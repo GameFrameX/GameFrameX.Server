@@ -34,32 +34,45 @@ using GameFrameX.NetWork.Messages;
 namespace GameFrameX.NetWork.HTTP;
 
 /// <summary>
-/// HTTP处理器
+/// HTTP 处理器接口。
 /// </summary>
+/// <remarks>
+/// HTTP handler interface for processing HTTP requests.
+/// </remarks>
 public interface IHttpHandler
 {
     /// <summary>
-    /// 是否校验签名
+    /// 获取是否需要校验签名。
     /// </summary>
+    /// <remarks>
+    /// Gets whether signature validation is required.
+    /// </remarks>
+    /// <value>如果需要校验签名则为 <c>true</c>；否则为 <c>false</c> / <c>true</c> if signature validation is required; otherwise <c>false</c></value>
     bool IsCheckSign { get; }
 
     /// <summary>
-    /// 处理HTTP请求的异步操作，返回字符串结果。
+    /// 处理 HTTP 请求的异步操作，返回字符串结果。
     /// </summary>
-    /// <param name="ip">客户端IP地址。</param>
-    /// <param name="url">请求的URL。</param>
-    /// <param name="paramMap">请求参数字典，键为参数名，值为参数值。</param>
-    /// <returns>返回处理结果的字符串。</returns>
+    /// <remarks>
+    /// Asynchronously processes HTTP request and returns string result.
+    /// </remarks>
+    /// <param name="ip">客户端 IP 地址 / Client IP address</param>
+    /// <param name="url">请求的 URL / Request URL</param>
+    /// <param name="paramMap">请求参数字典，键为参数名，值为参数值 / Request parameter dictionary with parameter names as keys and values as parameter values</param>
+    /// <returns>处理结果的字符串 / String result of the processing</returns>
     Task<string> Action(string ip, string url, Dictionary<string, object> paramMap);
 
 
     /// <summary>
-    /// 处理HTTP请求的异步操作，返回MessageObject对象。
+    /// 处理 HTTP 请求的异步操作，返回 <see cref="MessageObject"/> 对象。
     /// </summary>
-    /// <param name="ip">客户端IP地址。</param>
-    /// <param name="url">请求的URL。</param>
-    /// <param name="paramMap">请求参数字典，键为参数名，值为参数值。</param>
-    /// <param name="messageObject">消息对象，包含更多信息。</param>
-    /// <returns>返回处理结果的MessageObject对象。</returns>
+    /// <remarks>
+    /// Asynchronously processes HTTP request and returns <see cref="MessageObject"/> result.
+    /// </remarks>
+    /// <param name="ip">客户端 IP 地址 / Client IP address</param>
+    /// <param name="url">请求的 URL / Request URL</param>
+    /// <param name="paramMap">请求参数字典，键为参数名，值为参数值 / Request parameter dictionary with parameter names as keys and values as parameter values</param>
+    /// <param name="messageObject">消息对象，包含更多信息 / Message object containing additional information</param>
+    /// <returns>处理结果的 <see cref="MessageObject"/> 对象 / <see cref="MessageObject"/> result of the processing</returns>
     Task<MessageObject> Action(string ip, string url, Dictionary<string, object> paramMap, MessageObject messageObject);
 }

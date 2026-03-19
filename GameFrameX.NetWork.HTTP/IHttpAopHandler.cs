@@ -34,22 +34,32 @@ using Microsoft.AspNetCore.Http;
 namespace GameFrameX.NetWork.HTTP;
 
 /// <summary>
-/// HTTP 拦截处理器
+/// HTTP 拦截处理器接口。
 /// </summary>
+/// <remarks>
+/// HTTP interception handler interface for cross-cutting concerns.
+/// </remarks>
 public interface IHttpAopHandler
 {
     /// <summary>
-    /// 优先级
+    /// 获取处理器的优先级。
     /// </summary>
+    /// <remarks>
+    /// Gets the priority of the handler.
+    /// </remarks>
+    /// <value>优先级值，数值越小优先级越高 / Priority value, lower values indicate higher priority</value>
     int Priority { get; }
 
     /// <summary>
-    /// 执行处理
+    /// 执行拦截处理。
     /// </summary>
-    /// <param name="context">上下文</param>
-    /// <param name="ip">请求IP</param>
-    /// <param name="url">请求地址</param>
-    /// <param name="paramMap">参数列表</param>
-    /// <returns>需要继续执行返回TRUE,否则返回FALSE</returns>
+    /// <remarks>
+    /// Executes the interception processing logic.
+    /// </remarks>
+    /// <param name="context">HTTP 上下文 / HTTP context</param>
+    /// <param name="ip">请求的客户端 IP 地址 / Client IP address of the request</param>
+    /// <param name="url">请求的 URL 地址 / Request URL</param>
+    /// <param name="paramMap">请求参数字典 / Request parameter dictionary</param>
+    /// <returns>如果需要继续执行后续处理则返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> to continue execution; otherwise <c>false</c></returns>
     bool Run(HttpContext context, string ip, string url, Dictionary<string, object> paramMap);
 }

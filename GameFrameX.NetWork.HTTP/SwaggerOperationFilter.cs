@@ -40,49 +40,74 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 namespace GameFrameX.NetWork.HTTP;
 
 /// <summary>
-/// 自定义 Swagger 操作过滤器,用于处理动态路由和请求/响应文档
+/// 自定义 Swagger 操作过滤器，用于处理动态路由和请求/响应文档。
 /// </summary>
+/// <remarks>
+/// Custom Swagger operation filter for handling dynamic routing and request/response documentation.
+/// Automatically generates OpenAPI documentation based on HTTP handler attributes.
+/// </remarks>
 public sealed class SwaggerOperationFilter : IOperationFilter
 {
     /// <summary>
-    /// HTTP 处理器字典,key为命令ID,value为处理器类型
+    /// HTTP 处理器列表。
     /// </summary>
+    /// <remarks>
+    /// List of HTTP handlers for generating documentation.
+    /// </remarks>
     private readonly List<BaseHttpHandler> _handlers;
 
     /// <summary>
-    /// 处理器类型到 HttpMessageMappingAttribute 的缓存
+    /// 处理器类型到 <see cref="HttpMessageMappingAttribute"/> 的缓存。
     /// </summary>
+    /// <remarks>
+    /// Cache for mapping handler types to <see cref="HttpMessageMappingAttribute"/>.
+    /// </remarks>
     private static readonly ConcurrentDictionary<Type, HttpMessageMappingAttribute> MappingAttributeCache = new();
 
     /// <summary>
-    /// 处理器类型到 HttpMessageRequestAttribute 的缓存
+    /// 处理器类型到 <see cref="HttpMessageRequestAttribute"/> 的缓存。
     /// </summary>
+    /// <remarks>
+    /// Cache for mapping handler types to <see cref="HttpMessageRequestAttribute"/>.
+    /// </remarks>
     private static readonly ConcurrentDictionary<Type, HttpMessageRequestAttribute> RequestAttributeCache = new();
 
     /// <summary>
-    /// 处理器类型到 HttpMessageResponseAttribute 的缓存
+    /// 处理器类型到 <see cref="HttpMessageResponseAttribute"/> 的缓存。
     /// </summary>
+    /// <remarks>
+    /// Cache for mapping handler types to <see cref="HttpMessageResponseAttribute"/>.
+    /// </remarks>
     private static readonly ConcurrentDictionary<Type, HttpMessageResponseAttribute> ResponseAttributeCache = new();
 
     /// <summary>
-    /// 处理器类型到 DescriptionAttribute 的缓存
+    /// 处理器类型到 <see cref="DescriptionAttribute"/> 的缓存。
     /// </summary>
+    /// <remarks>
+    /// Cache for mapping handler types to <see cref="DescriptionAttribute"/>.
+    /// </remarks>
     private static readonly ConcurrentDictionary<Type, DescriptionAttribute> DescriptionAttributeCache = new();
 
     /// <summary>
-    /// 构造函数
+    /// 初始化 <see cref="SwaggerOperationFilter"/> 的新实例。
     /// </summary>
-    /// <param name="handlers">HTTP处理器字典</param>
+    /// <remarks>
+    /// Initializes a new instance of <see cref="SwaggerOperationFilter"/>.
+    /// </remarks>
+    /// <param name="handlers">HTTP 处理器列表 / HTTP handler list</param>
     public SwaggerOperationFilter(List<BaseHttpHandler> handlers)
     {
         _handlers = handlers;
     }
 
     /// <summary>
-    /// 应用过滤器配置
+    /// 应用过滤器配置，生成 OpenAPI 操作文档。
     /// </summary>
-    /// <param name="operation">OpenAPI操作对象</param>
-    /// <param name="context">操作过滤器上下文</param>
+    /// <remarks>
+    /// Applies the filter configuration to generate OpenAPI operation documentation.
+    /// </remarks>
+    /// <param name="operation">OpenAPI 操作对象 / OpenAPI operation object</param>
+    /// <param name="context">操作过滤器上下文 / Operation filter context</param>
     public void Apply(OpenApiOperation operation, OperationFilterContext context)
     {
         var routeTemplate = context.ApiDescription.RelativePath;
@@ -243,6 +268,14 @@ public sealed class SwaggerOperationFilter : IOperationFilter
         operation.Description = GetTypeDescription(handlerType);
     }
 
+    /// <summary>
+    /// 获取类型的描述信息。
+    /// </summary>
+    /// <remarks>
+    /// Gets the description information of the type.
+    /// </remarks>
+    /// <param name="type">要获取描述的类型 / Type to get description for</param>
+    /// <returns>类型的描述信息，如果没有描述特性则返回类型名称 / Type description, returns type name if no description attribute is present</returns>
     private string GetTypeDescription(Type type)
     {
         var summaryAttr = DescriptionAttributeCache.GetOrAdd(type, t => t.GetCustomAttribute<DescriptionAttribute>());
@@ -250,10 +283,13 @@ public sealed class SwaggerOperationFilter : IOperationFilter
     }
 
     /// <summary>
-    /// 根据类型获取对应的 OpenAPI Schema
+    /// 根据类型获取对应的 OpenAPI Schema。
     /// </summary>
-    /// <param name="type">属性类型</param>
-    /// <returns>OpenAPI Schema</returns>
+    /// <remarks>
+    /// Gets the corresponding OpenAPI Schema based on the type.
+    /// </remarks>
+    /// <param name="type">属性类型 / Property type</param>
+    /// <returns>对应的 OpenAPI Schema / Corresponding OpenAPI Schema</returns>
     private static OpenApiSchema GetSchemaForType(Type type)
     {
         if (type == typeof(string))

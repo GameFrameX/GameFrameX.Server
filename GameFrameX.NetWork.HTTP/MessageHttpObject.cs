@@ -37,34 +37,52 @@ using ProtoBuf;
 namespace GameFrameX.NetWork.HTTP;
 
 /// <summary>
-/// HTTP消息包装基类
+/// HTTP 消息包装类，用于 ProtoBuf 序列化的 HTTP 消息传输。
 /// </summary>
+/// <remarks>
+/// HTTP message wrapper class for ProtoBuf-serialized HTTP message transmission.
+/// </remarks>
 [ProtoContract]
 public sealed class MessageHttpObject
 {
     /// <summary>
-    /// 消息ID
+    /// 获取或设置消息 ID。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the message ID.
+    /// </remarks>
+    /// <value>消息 ID / Message ID</value>
     [ProtoMember(1)]
     public int Id { get; set; }
 
     /// <summary>
-    /// 消息序列号
+    /// 获取或设置消息序列号。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the message unique ID (sequence number).
+    /// </remarks>
+    /// <value>消息序列号 / Message unique ID</value>
     [ProtoMember(2)]
     public int UniqueId { get; set; }
 
     /// <summary>
-    /// 消息体
+    /// 获取或设置消息体字节数组。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the message body as byte array.
+    /// </remarks>
+    /// <value>消息体字节数组 / Message body byte array</value>
     [JsonIgnore]
     [ProtoMember(3)]
     public byte[] Body { get; set; }
 
     /// <summary>
-    /// 转换为字符串
+    /// 返回当前对象的 JSON 字符串表示。
     /// </summary>
-    /// <returns></returns>
+    /// <remarks>
+    /// Returns a JSON string representation of the current object.
+    /// </remarks>
+    /// <returns>当前对象的 JSON 字符串表示 / JSON string representation of the current object</returns>
     public override string ToString()
     {
         return JsonHelper.Serialize(this);

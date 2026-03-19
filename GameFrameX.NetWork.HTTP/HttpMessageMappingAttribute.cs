@@ -35,27 +35,41 @@ using GameFrameX.Foundation.Localization.Core;
 namespace GameFrameX.NetWork.HTTP;
 
 /// <summary>
-/// HTTP消息处理器属性，用于标记HTTP消息处理器类
+/// HTTP 消息处理器特性，用于标记 HTTP 消息处理器类。
 /// </summary>
+/// <remarks>
+/// HTTP message handler attribute for marking HTTP message handler classes.
+/// </remarks>
 [AttributeUsage(AttributeTargets.Class)]
 public sealed class HttpMessageMappingAttribute : Attribute
 {
     /// <summary>
-    /// 处理器命名前缀
+    /// 处理器命名前缀常量。
     /// </summary>
+    /// <remarks>
+    /// Handler naming prefix constant.
+    /// </remarks>
+    /// <value>处理器命名前缀 / Handler naming prefix</value>
     public const string HTTPprefix = "";
 
     /// <summary>
-    /// 处理器命名后缀
+    /// 处理器命名后缀常量。
     /// </summary>
+    /// <remarks>
+    /// Handler naming suffix constant.
+    /// </remarks>
+    /// <value>处理器命名后缀 / Handler naming suffix</value>
     public const string HTTPsuffix = "HttpHandler";
 
     /// <summary>
-    /// 构造函数
+    /// 初始化 <see cref="HttpMessageMappingAttribute"/> 的新实例。
     /// </summary>
-    /// <param name="classType">处理器类的类型</param>
-    /// <exception cref="ArgumentNullException">当classType为null时抛出</exception>
-    /// <exception cref="InvalidOperationException">当classType不是密封类或不以HTTPsuffix结尾时抛出</exception>
+    /// <remarks>
+    /// Initializes a new instance of <see cref="HttpMessageMappingAttribute"/>.
+    /// </remarks>
+    /// <param name="classType">处理器类的类型 / Handler class type</param>
+    /// <exception cref="ArgumentNullException">当 <paramref name="classType"/> 为 <c>null</c> 时抛出 / Thrown when <paramref name="classType"/> is <c>null</c></exception>
+    /// <exception cref="InvalidOperationException">当 <paramref name="classType"/> 不是密封类或不以 <see cref="HTTPsuffix"/> 结尾时抛出 / Thrown when <paramref name="classType"/> is not sealed or does not end with <see cref="HTTPsuffix"/></exception>
     public HttpMessageMappingAttribute(Type classType)
     {
         ArgumentNullException.ThrowIfNull(classType, nameof(classType));
@@ -75,17 +89,29 @@ public sealed class HttpMessageMappingAttribute : Attribute
     }
 
     /// <summary>
-    /// 原始命令名称
+    /// 获取原始命令名称。
     /// </summary>
+    /// <remarks>
+    /// Gets the original command name extracted from the handler class name.
+    /// </remarks>
+    /// <value>原始命令名称 / Original command name</value>
     public string OriginalCmd { get; }
 
     /// <summary>
-    /// 标准化后的命令名称
+    /// 获取标准化后的命令名称（蛇形命名）。
     /// </summary>
+    /// <remarks>
+    /// Gets the standardized command name (snake case).
+    /// </remarks>
+    /// <value>标准化后的命令名称 / Standardized command name</value>
     public string StandardCmd { get; }
 
     /// <summary>
-    /// HTTP 请求方法类型，默认为 POST
+    /// 获取或设置 HTTP 请求方法类型，默认为 POST。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the HTTP request method type, defaults to POST.
+    /// </remarks>
+    /// <value>HTTP 请求方法类型 / HTTP request method type</value>
     public HttpMethodType HttpMethod { get; init; } = HttpMethodType.POST;
 }

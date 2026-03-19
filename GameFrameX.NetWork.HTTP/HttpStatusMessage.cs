@@ -35,50 +35,77 @@ using GameFrameX.Foundation.Localization.Core;
 namespace GameFrameX.NetWork.HTTP;
 
 /// <summary>
-/// HTTP状态消息
+/// HTTP 状态消息常量和本地化消息。
 /// </summary>
+/// <remarks>
+/// HTTP status message constants and localized messages.
+/// </remarks>
 public static class HttpStatusMessage
 {
     /// <summary>
-    /// 成功
+    /// 成功状态消息常量。
     /// </summary>
+    /// <remarks>
+    /// Success status message constant.
+    /// </remarks>
+    /// <value>成功消息字符串 / Success message string</value>
     public const string Success = "ok";
 
     /// <summary>
-    /// 未定义的命令
+    /// 获取未定义命令的错误消息。
     /// </summary>
+    /// <remarks>
+    /// Gets the error message for undefined commands.
+    /// </remarks>
+    /// <value>未定义命令的本地化错误消息 / Localized error message for undefined commands</value>
     public static string UndefinedCommand
     {
         get { return LocalizationService.GetString(Localization.Keys.NetWorkHttp.UndefinedCommand); }
     }
 
     /// <summary>
-    /// 未找到的命令
+    /// 获取未找到命令的错误消息。
     /// </summary>
+    /// <remarks>
+    /// Gets the error message for not found commands.
+    /// </remarks>
+    /// <value>未找到命令的本地化错误消息 / Localized error message for not found commands</value>
     public static string NotFoundCommand
     {
         get { return LocalizationService.GetString(Localization.Keys.NetWorkHttp.NotFoundCommand); }
     }
 
     /// <summary>
-    /// 验证失败的命令
+    /// 获取验证失败的错误消息。
     /// </summary>
+    /// <remarks>
+    /// Gets the error message for validation failures.
+    /// </remarks>
+    /// <value>验证失败的本地化错误消息 / Localized error message for validation failures</value>
     public static string CheckFailedCommand
     {
         get { return LocalizationService.GetString(Localization.Keys.NetWorkHttp.CheckFailedCommand); }
     }
 
     /// <summary>
-    /// 服务器错误
+    /// 获取服务器错误的错误消息。
     /// </summary>
+    /// <remarks>
+    /// Gets the error message for server errors.
+    /// </remarks>
+    /// <value>服务器错误的本地化错误消息 / Localized error message for server errors</value>
     public static string ServerError
     {
         get { return LocalizationService.GetString(Localization.Keys.NetWorkHttp.ServerError); }
     }
 
     /// <summary>
-    /// 参数错误
+    /// 获取参数错误的错误消息。
     /// </summary>
+    /// <remarks>
+    /// Gets the error message for parameter errors, including missing sign and timestamp parameters.
+    /// </remarks>
+    /// <value>参数错误的本地化错误消息 / Localized error message for parameter errors</value>
     public static string ParamErrorMessage
     {
         get { return LocalizationService.GetString(Localization.Keys.NetWorkHttp.HttpCommandMissingValidationParameters, GlobalConst.HttpSignKey, GlobalConst.HttpTimestampKey); }

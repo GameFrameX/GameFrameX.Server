@@ -34,41 +34,62 @@ using Microsoft.AspNetCore.Http;
 namespace GameFrameX.NetWork.HTTP;
 
 /// <summary>
-/// HTTP 请求方法类型
+/// HTTP 请求方法类型枚举。
 /// </summary>
+/// <remarks>
+/// HTTP request method type enumeration.
+/// </remarks>
 public enum HttpMethodType
 {
     /// <summary>
-    /// POST 请求方法
+    /// POST 请求方法。
     /// </summary>
+    /// <remarks>
+    /// POST request method.
+    /// </remarks>
     POST = 1,
 
     /// <summary>
-    /// GET 请求方法
+    /// GET 请求方法。
     /// </summary>
+    /// <remarks>
+    /// GET request method.
+    /// </remarks>
     GET = 2,
 
     /// <summary>
-    /// PUT 请求方法
+    /// PUT 请求方法。
     /// </summary>
+    /// <remarks>
+    /// PUT request method.
+    /// </remarks>
     PUT = 3,
 
     /// <summary>
-    /// DELETE 请求方法
+    /// DELETE 请求方法。
     /// </summary>
+    /// <remarks>
+    /// DELETE request method.
+    /// </remarks>
     DELETE = 4,
 }
 
 /// <summary>
-/// HttpMethodType 扩展方法
+/// <see cref="HttpMethodType"/> 的扩展方法类。
 /// </summary>
+/// <remarks>
+/// Extension methods for <see cref="HttpMethodType"/>.
+/// </remarks>
 public static class HttpMethodTypeExtensions
 {
     /// <summary>
-    /// 将 HttpMethodType 转换为标准的 HTTP 方法字符串
+    /// 将 <see cref="HttpMethodType"/> 转换为标准的 HTTP 方法字符串。
     /// </summary>
-    /// <param name="httpMethodType">HTTP 方法类型</param>
-    /// <returns>标准的 HTTP 方法字符串（使用系统常量）</returns>
+    /// <remarks>
+    /// Converts <see cref="HttpMethodType"/> to standard HTTP method string.
+    /// </remarks>
+    /// <param name="httpMethodType">要转换的 HTTP 方法类型 / HTTP method type to convert</param>
+    /// <returns>标准的 HTTP 方法字符串（使用系统常量） / Standard HTTP method string (using system constants)</returns>
     public static string ToHttpMethodString(this HttpMethodType httpMethodType)
     {
         switch (httpMethodType)

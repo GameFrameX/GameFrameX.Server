@@ -32,27 +32,46 @@
 namespace GameFrameX.NetWork.HTTP;
 
 /// <summary>
-/// HTTP状态码
+/// 游戏 HTTP 状态码常量。
 /// </summary>
+/// <remarks>
+/// Game HTTP status code constants.
+/// </remarks>
 public static class GameHttpStatusCode
 {
     /// <summary>
-    /// 未定义的命令
+    /// 未定义的命令状态码。
     /// </summary>
+    /// <remarks>
+    /// Undefined command status code.
+    /// </remarks>
+    /// <value>未定义命令的状态码值 / Undefined command status code value</value>
     public const int Undefined = 11;
 
     /// <summary>
-    /// 非法
+    /// 非法请求状态码。
     /// </summary>
+    /// <remarks>
+    /// Illegal request status code.
+    /// </remarks>
+    /// <value>非法请求的状态码值 / Illegal request status code value</value>
     public const int Illegal = 12;
 
     /// <summary>
-    /// 参数错误
+    /// 参数错误状态码。
     /// </summary>
+    /// <remarks>
+    /// Parameter error status code.
+    /// </remarks>
+    /// <value>参数错误的状态码值 / Parameter error status code value</value>
     public const int ParamErr = 13;
 
     /// <summary>
-    /// 操作失败
+    /// 操作失败状态码。
     /// </summary>
+    /// <remarks>
+    /// Action failed status code.
+    /// </remarks>
+    /// <value>操作失败的状态码值 / Action failed status code value</value>
     public const int ActionFailed = 15;
 }

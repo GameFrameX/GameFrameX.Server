@@ -33,10 +33,11 @@
 namespace GameFrameX.NetWork.HTTP;
 
 /// <summary>
-/// HTTP响应消息基类，所有HTTP响应消息类都应该继承此类
+/// HTTP响应消息基类，所有HTTP响应消息类都应该继承此类。
 /// </summary>
 /// <remarks>
-/// 提供HTTP响应消息的基本功能和属性
+/// Base class for HTTP response messages. All HTTP response message classes should inherit from this class.
+/// Provides basic functionality and properties for HTTP response messages.
 /// </remarks>
 public abstract class HttpMessageResponseBase
 {

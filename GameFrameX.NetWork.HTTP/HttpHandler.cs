@@ -46,19 +46,27 @@ using GameFrameX.Foundation.Localization.Core;
 namespace GameFrameX.NetWork.HTTP;
 
 /// <summary>
-/// HTTP处理器，用于处理HTTP请求
+/// HTTP 处理器静态类，用于处理 HTTP 请求。
 /// </summary>
+/// <remarks>
+/// HTTP handler static class for processing HTTP requests.
+/// Provides unified request handling for JSON and ProtoBuf content types.
+/// </remarks>
 public static class HttpHandler
 {
     private const string JsonContentType = "application/json; charset=utf-8";
     private const string ProtoBufContentType = "application/x-protobuf";
 
     /// <summary>
-    /// 处理HTTP请求
+    /// 处理 HTTP 请求。
     /// </summary>
-    /// <param name="context">HTTP上下文</param>
-    /// <param name="baseHandler">基础HTTP处理器工厂方法</param>
-    /// <param name="aopHandlerTypes">AOP处理器列表，可选</param>
+    /// <remarks>
+    /// Handles HTTP requests with support for JSON and ProtoBuf content types.
+    /// </remarks>
+    /// <param name="context">HTTP 上下文 / HTTP context</param>
+    /// <param name="baseHandler">基础 HTTP 处理器工厂方法，根据命令名称返回对应的处理器 / Base HTTP handler factory method that returns the corresponding handler based on command name</param>
+    /// <param name="aopHandlerTypes">AOP 处理器列表，可选 / AOP handler list, optional</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public static async Task HandleRequest(HttpContext context, Func<string, BaseHttpHandler> baseHandler, List<IHttpAopHandler> aopHandlerTypes = null)
     {
         var ip = context.Connection.RemoteIpAddress?.ToString();

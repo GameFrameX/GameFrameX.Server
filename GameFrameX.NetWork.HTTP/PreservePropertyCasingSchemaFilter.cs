@@ -35,16 +35,22 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 namespace GameFrameX.NetWork.HTTP;
 
 /// <summary>
-/// 保持属性名称大小写的 Schema 过滤器
-/// 用于在生成 Swagger/OpenAPI 文档时保持属性名称的原始大小写形式
+/// 保持属性名称大小写的 Schema 过滤器。
 /// </summary>
+/// <remarks>
+/// Schema filter that preserves property name casing in Swagger/OpenAPI documentation.
+/// Used to maintain the original casing of property names when generating Swagger/OpenAPI documentation.
+/// </remarks>
 public sealed class PreservePropertyCasingSchemaFilter : ISchemaFilter
 {
     /// <summary>
-    /// 应用 Schema 过滤器，处理属性名称的大小写
+    /// 应用 Schema 过滤器，处理属性名称的大小写。
     /// </summary>
-    /// <param name="schema">要修改的 OpenAPI Schema</param>
-    /// <param name="context">Schema 过滤器上下文，包含类型信息</param>
+    /// <remarks>
+    /// Applies the schema filter to process property name casing.
+    /// </remarks>
+    /// <param name="schema">要修改的 OpenAPI Schema / OpenAPI Schema to modify</param>
+    /// <param name="context">Schema 过滤器上下文，包含类型信息 / Schema filter context containing type information</param>
     public void Apply(OpenApiSchema schema, SchemaFilterContext context)
     {
         // 如果 schema 为空或没有属性，则直接返回

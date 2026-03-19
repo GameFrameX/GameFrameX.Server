@@ -38,28 +38,48 @@ using GameFrameX.Utility.Setting;
 namespace GameFrameX.NetWork.HTTP;
 
 /// <summary>
-/// 基础HTTP处理器，用于处理HTTP请求的基础逻辑。
+/// 基础 HTTP 处理器，用于处理 HTTP 请求的基础逻辑。
 /// </summary>
+/// <remarks>
+/// Base HTTP handler for processing HTTP requests.
+/// Provides signature validation and common request handling functionality.
+/// </remarks>
 public abstract class BaseHttpHandler : IHttpHandler
 {
     /// <summary>
-    /// 校验时间差，用于生成签名时的时间偏移量。
+    /// 获取校验时间差，用于生成签名时的时间偏移量。
     /// </summary>
+    /// <remarks>
+    /// Gets the check code time offset used for signature generation.
+    /// </remarks>
+    /// <value>校验时间差值 / Check code time offset</value>
     protected virtual int CheckCodeTime { get; } = 38848;
 
     /// <summary>
-    /// 头校验码，用于生成签名时的头部校验码。
+    /// 获取头校验码，用于生成签名时的头部校验码。
     /// </summary>
+    /// <remarks>
+    /// Gets the header check code used for signature generation.
+    /// </remarks>
+    /// <value>头校验码 / Header check code</value>
     protected virtual ushort CheckCodeStart { get; } = 88;
 
     /// <summary>
-    /// 尾校验码，用于生成签名时的尾部校验码。
+    /// 获取尾校验码，用于生成签名时的尾部校验码。
     /// </summary>
+    /// <remarks>
+    /// Gets the tail check code used for signature generation.
+    /// </remarks>
+    /// <value>尾校验码 / Tail check code</value>
     protected virtual ushort CheckCodeEnd { get; } = 66;
 
     /// <summary>
-    /// 是否需要校验签名，默认为不需要校验。
+    /// 获取是否需要校验签名，默认为不需要校验。
     /// </summary>
+    /// <remarks>
+    /// Gets whether signature validation is required, defaults to no validation.
+    /// </remarks>
+    /// <value>如果需要校验签名则为 <c>true</c>；否则为 <c>false</c> / <c>true</c> if signature validation is required; otherwise <c>false</c></value>
     public virtual bool IsCheckSign
     {
         get { return false; }
@@ -67,12 +87,15 @@ public abstract class BaseHttpHandler : IHttpHandler
 
 
     /// <summary>
-    /// 处理HTTP请求的异步操作，返回字符串结果。
+    /// 处理 HTTP 请求的异步操作，返回字符串结果。
     /// </summary>
-    /// <param name="ip">客户端IP地址。</param>
-    /// <param name="url">请求的URL。</param>
-    /// <param name="paramMap">请求参数字典，键为参数名，值为参数值。</param>
-    /// <returns>返回处理结果的字符串。</returns>
+    /// <remarks>
+    /// Asynchronously processes HTTP request and returns string result.
+    /// </remarks>
+    /// <param name="ip">客户端 IP 地址 / Client IP address</param>
+    /// <param name="url">请求的 URL / Request URL</param>
+    /// <param name="paramMap">请求参数字典，键为参数名，值为参数值 / Request parameter dictionary with parameter names as keys and values as parameter values</param>
+    /// <returns>处理结果的字符串 / String result of the processing</returns>
     public virtual Task<string> Action(string ip, string url, Dictionary<string, object> paramMap)
     {
         throw new NotImplementedException();
@@ -80,25 +103,31 @@ public abstract class BaseHttpHandler : IHttpHandler
 
 
     /// <summary>
-    /// 处理HTTP请求的异步操作，返回MessageObject对象。
+    /// 处理 HTTP 请求的异步操作，返回 <see cref="MessageObject"/> 对象。
     /// </summary>
-    /// <param name="ip">客户端IP地址。</param>
-    /// <param name="url">请求的URL。</param>
-    /// <param name="paramMap">请求参数字典，键为参数名，值为参数值。</param>
-    /// <param name="messageObject">消息对象，包含更多信息。</param>
-    /// <returns>返回处理结果的MessageObject对象。</returns>
+    /// <remarks>
+    /// Asynchronously processes HTTP request and returns <see cref="MessageObject"/> result.
+    /// </remarks>
+    /// <param name="ip">客户端 IP 地址 / Client IP address</param>
+    /// <param name="url">请求的 URL / Request URL</param>
+    /// <param name="paramMap">请求参数字典，键为参数名，值为参数值 / Request parameter dictionary with parameter names as keys and values as parameter values</param>
+    /// <param name="messageObject">消息对象，包含更多信息 / Message object containing additional information</param>
+    /// <returns>处理结果的 <see cref="MessageObject"/> 对象 / <see cref="MessageObject"/> result of the processing</returns>
     public virtual Task<MessageObject> Action(string ip, string url, Dictionary<string, object> paramMap, MessageObject messageObject)
     {
         throw new NotImplementedException();
     }
 
     /// <summary>
-    /// 处理HTTP请求的异步操作，返回MessageObject对象。
+    /// 处理 HTTP 请求的异步操作，返回字符串结果。
     /// </summary>
-    /// <param name="ip">客户端IP地址。</param>
-    /// <param name="url">请求的URL。</param>
-    /// <param name="request">请求参数对象。</param>
-    /// <returns>返回处理结果的MessageObject对象。</returns>
+    /// <remarks>
+    /// Asynchronously processes HTTP request and returns string result.
+    /// </remarks>
+    /// <param name="ip">客户端 IP 地址 / Client IP address</param>
+    /// <param name="url">请求的 URL / Request URL</param>
+    /// <param name="request">请求参数对象 / Request parameter object</param>
+    /// <returns>处理结果的字符串 / String result of the processing</returns>
     public virtual Task<string> Action(string ip, string url, HttpMessageRequestBase request)
     {
         throw new NotImplementedException();
@@ -107,8 +136,11 @@ public abstract class BaseHttpHandler : IHttpHandler
     /// <summary>
     /// 获取签名字符串。
     /// </summary>
-    /// <param name="str">待签名的字符串。</param>
-    /// <returns>签名后的字符串。</returns>
+    /// <remarks>
+    /// Generates signature string from the input.
+    /// </remarks>
+    /// <param name="str">待签名的字符串 / String to be signed</param>
+    /// <returns>签名后的字符串 / Signed string</returns>
     public string GetStringSign(string str)
     {
         // 计算MD5哈希值
@@ -136,9 +168,12 @@ public abstract class BaseHttpHandler : IHttpHandler
     /// <summary>
     /// 校验签名是否有效。
     /// </summary>
-    /// <param name="paramMap">请求参数字典。</param>
-    /// <param name="error">错误消息，如果校验失败则返回具体的错误信息。</param>
-    /// <returns>校验结果，true表示校验成功，false表示校验失败。</returns>
+    /// <remarks>
+    /// Validates whether the signature is valid.
+    /// </remarks>
+    /// <param name="paramMap">请求参数字典 / Request parameter dictionary</param>
+    /// <param name="error">错误消息，如果校验失败则返回具体的错误信息 / Error message, returns specific error information if validation fails</param>
+    /// <returns>如果校验成功则返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if validation succeeds; otherwise <c>false</c></returns>
     public bool CheckSign(Dictionary<string, object> paramMap, out string error)
     {
         error = string.Empty;

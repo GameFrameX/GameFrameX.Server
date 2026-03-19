@@ -35,25 +35,36 @@ using GameFrameX.Foundation.Localization.Core;
 namespace GameFrameX.NetWork.HTTP;
 
 /// <summary>
-/// HTTP请求消息特性，用于标记HTTP请求消息类型
-/// 此特性用于标记HTTP处理器的请求消息类型，确保请求消息类型继承自HttpMessageRequestBase
+/// HTTP 请求消息特性，用于标记 HTTP 请求消息类型。
 /// </summary>
+/// <remarks>
+/// HTTP request message attribute for marking HTTP request message types.
+/// This attribute is used to mark the request message type of HTTP handlers,
+/// ensuring that the request message type inherits from <see cref="HttpMessageRequestBase"/>.
+/// </remarks>
 [AttributeUsage(AttributeTargets.Class)]
 public sealed class HttpMessageRequestAttribute : Attribute
 {
     /// <summary>
-    /// 获取请求消息的类型
-    /// 该属性存储HTTP请求消息的具体类型，用于运行时的消息处理和序列化
+    /// 获取请求消息的类型。
     /// </summary>
+    /// <remarks>
+    /// Gets the type of the request message.
+    /// This property stores the specific type of HTTP request message for runtime message processing and serialization.
+    /// </remarks>
+    /// <value>请求消息的类型 / Type of the request message</value>
     public Type MessageType { get; }
 
     /// <summary>
-    /// 初始化 <see cref="HttpMessageRequestAttribute"/> 的新实例
-    /// 构造函数会验证传入的类型是否为有效的HTTP请求消息类型
+    /// 初始化 <see cref="HttpMessageRequestAttribute"/> 的新实例。
     /// </summary>
-    /// <param name="classType">请求消息的类型，必须继承自HttpMessageRequestBase</param>
-    /// <exception cref="ArgumentNullException">当 classType 为 null 时抛出此异常</exception>
-    /// <exception cref="InvalidCastException">当 classType 未继承自HttpMessageRequestBase时抛出此异常</exception>
+    /// <remarks>
+    /// Initializes a new instance of <see cref="HttpMessageRequestAttribute"/>.
+    /// The constructor validates that the provided type is a valid HTTP request message type.
+    /// </remarks>
+    /// <param name="classType">请求消息的类型，必须继承自 <see cref="HttpMessageRequestBase"/> / Request message type, must inherit from <see cref="HttpMessageRequestBase"/></param>
+    /// <exception cref="ArgumentNullException">当 <paramref name="classType"/> 为 <c>null</c> 时抛出 / Thrown when <paramref name="classType"/> is <c>null</c></exception>
+    /// <exception cref="InvalidCastException">当 <paramref name="classType"/> 未继承自 <see cref="HttpMessageRequestBase"/> 时抛出 / Thrown when <paramref name="classType"/> does not inherit from <see cref="HttpMessageRequestBase"/></exception>
     public HttpMessageRequestAttribute(Type classType)
     {
         ArgumentNullException.ThrowIfNull(classType, nameof(classType));
