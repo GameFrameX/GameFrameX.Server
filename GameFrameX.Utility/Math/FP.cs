@@ -38,6 +38,9 @@ namespace GameFrameX.Utility.Math;
 /// <summary>
 /// 表示 Q31.32 固定点数。
 /// </summary>
+/// <remarks>
+/// Represents a Q31.32 fixed-point number.
+/// </remarks>
 [Serializable]
 public partial struct FP : IEquatable<FP>, IComparable<FP>
 {
