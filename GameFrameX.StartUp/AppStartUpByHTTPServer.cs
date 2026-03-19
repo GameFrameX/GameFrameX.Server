@@ -50,26 +50,28 @@ using Serilog;
 namespace GameFrameX.StartUp;
 
 /// <summary>
-/// Application startup base class - provides TCP and WebSocket server basic functionality implementation / 程序启动器基类 - 提供TCP和WebSocket服务器的基础功能实现
+/// 程序启动器基类 - 提供服务器的基础功能实现。
 /// </summary>
 /// <remarks>
-/// 此部分类专门处理HTTP服务器的启动和配置功能
+/// Application startup base class - provides server basic functionality implementation.
+/// This partial class specifically handles HTTP server startup and configuration functionality.
 /// </remarks>
 public abstract partial class AppStartUpBase
 {
     /// <summary>
-    /// Start HTTP server synchronously / 启动 HTTP 服务器的同步方法
+    /// 启动 HTTP 服务器。
     /// </summary>
-    /// <param name="baseHandler">HTTP handler list for processing different HTTP requests / HTTP处理器列表,用于处理不同的HTTP请求</param>
-    /// <param name="httpFactory">HTTP handler factory that creates corresponding handler instances based on command identifiers / HTTP处理器工厂,根据命令标识符创建对应的处理器实例</param>
-    /// <param name="aopHandlerTypes">AOP handler list for executing additional logic before and after HTTP request processing / AOP处理器列表,用于在HTTP请求处理前后执行额外的逻辑</param>
-    /// <param name="minimumLevelLogLevel">Minimum level for logging to control log output / 日志记录的最小级别,用于控制日志输出</param>
-    /// <returns>A task representing the asynchronous operation / 表示异步操作的任务</returns>
-    /// <exception cref="ArgumentException">Thrown when HTTP URL format is incorrect / 当HTTP URL格式不正确时抛出</exception>
-    /// <exception cref="NotImplementedException">Thrown when HTTPS is enabled but not implemented / 当启用HTTPS但未实现时抛出</exception>
     /// <remarks>
-    /// 此方法负责配置和启动HTTP服务器，包括Swagger文档、健康检查、异常处理等功能
+    /// Start HTTP server.
+    /// This method is responsible for configuring and starting the HTTP server, including Swagger documentation, health checks, exception handling, and other features.
     /// </remarks>
+    /// <param name="baseHandler">HTTP 处理器列表，用于处理不同的 HTTP 请求 / HTTP handler list for processing different HTTP requests</param>
+    /// <param name="httpFactory">HTTP 处理器工厂，根据命令标识符创建对应的处理器实例 / HTTP handler factory that creates corresponding handler instances based on command identifiers</param>
+    /// <param name="aopHandlerTypes">AOP 处理器列表，用于在 HTTP 请求处理前后执行额外的逻辑 / AOP handler list for executing additional logic before and after HTTP request processing</param>
+    /// <param name="minimumLevelLogLevel">日志记录的最小级别，用于控制日志输出 / Minimum level for logging to control log output</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
+    /// <exception cref="ArgumentException">当 HTTP URL 格式不正确时抛出 / Thrown when HTTP URL format is incorrect</exception>
+    /// <exception cref="NotImplementedException">当启用 HTTPS 但未实现时抛出 / Thrown when HTTPS is enabled but not implemented</exception>
     private async Task StartHttpServer(List<BaseHttpHandler> baseHandler, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes = null, LogLevel minimumLevelLogLevel = LogLevel.Debug)
     {
         // 检查是否启用HTTP服务
@@ -209,12 +211,13 @@ public abstract partial class AppStartUpBase
     }
 
     /// <summary>
-    /// Get or create Swagger information / 获取或创建 Swagger信息
+    /// 获取或创建 Swagger 信息。
     /// </summary>
-    /// <returns>OpenAPI information object containing API documentation details / 包含API文档详细信息的OpenAPI信息对象</returns>
     /// <remarks>
-    /// 用于配置Swagger文档的基本信息，包括标题、版本、联系方式等
+    /// Get or create Swagger information.
+    /// Used to configure basic information for Swagger documentation, including title, version, contact information, etc.
     /// </remarks>
+    /// <returns>包含 API 文档详细信息的 OpenAPI 信息对象 / OpenAPI information object containing API documentation details</returns>
     private OpenApiInfo GetOpenApiInfo()
     {
         // 添加 Swagger 服务
@@ -237,12 +240,13 @@ public abstract partial class AppStartUpBase
     }
 
     /// <summary>
-    /// Exception handler for processing unhandled exceptions in HTTP requests / 异常处理器，用于处理HTTP请求中的未处理异常
+    /// 异常处理器，用于处理 HTTP 请求中的未处理异常。
     /// </summary>
-    /// <param name="errorContext">Application builder for configuring error handling pipeline / 用于配置错误处理管道的应用程序构建器</param>
     /// <remarks>
-    /// 提供全局异常处理机制，确保所有未处理的异常都能被适当处理并返回给客户端
+    /// Exception handler for processing unhandled exceptions in HTTP requests.
+    /// Provides a global exception handling mechanism to ensure all unhandled exceptions are properly handled and returned to the client.
     /// </remarks>
+    /// <param name="errorContext">用于配置错误处理管道的应用程序构建器 / Application builder for configuring error handling pipeline</param>
     private static void ExceptionHandler(IApplicationBuilder errorContext)
     {
         errorContext.Run(async context =>
@@ -259,10 +263,13 @@ public abstract partial class AppStartUpBase
     }
 
     /// <summary>
-    /// 获取 HTTP 方法的摘要描述
+    /// 获取 HTTP 方法的摘要描述。
     /// </summary>
-    /// <param name="httpMethod">HTTP 方法类型</param>
-    /// <returns>摘要描述</returns>
+    /// <remarks>
+    /// Gets the summary description for the HTTP method.
+    /// </remarks>
+    /// <param name="httpMethod">HTTP 方法类型 / HTTP method type</param>
+    /// <returns>摘要描述 / Summary description</returns>
     private static string GetHttpMethodSummary(HttpMethodType httpMethod)
     {
         switch (httpMethod)
@@ -279,10 +286,13 @@ public abstract partial class AppStartUpBase
     }
 
     /// <summary>
-    /// 获取 HTTP 方法的详细描述
+    /// 获取 HTTP 方法的详细描述。
     /// </summary>
-    /// <param name="httpMethod">HTTP 方法类型</param>
-    /// <returns>详细描述</returns>
+    /// <remarks>
+    /// Gets the detailed description for the HTTP method.
+    /// </remarks>
+    /// <param name="httpMethod">HTTP 方法类型 / HTTP method type</param>
+    /// <returns>详细描述 / Detailed description</returns>
     private static string GetHttpMethodDescription(HttpMethodType httpMethod)
     {
         switch (httpMethod)
@@ -299,14 +309,19 @@ public abstract partial class AppStartUpBase
     }
 
     /// <summary>
-    /// 注册单个 HTTP 处理器路由
+    /// 注册单个 HTTP 处理器路由。
     /// </summary>
-    /// <param name="app">Web 应用程序实例</param>
-    /// <param name="mappingAttribute">HTTP 消息映射特性</param>
-    /// <param name="cmd">命令标识符（用于构建 API 路径）</param>
-    /// <param name="httpFactory">HTTP 处理器工厂</param>
-    /// <param name="aopHandlerTypes">AOP 处理器列表</param>
-    /// <param name="development">是否为开发环境</param>
+    /// <remarks>
+    /// Registers a single HTTP handler route.
+    /// Registers the route based on the HTTP method - using different Map methods according to HttpMethod.
+    /// In development environment, configures API documentation.
+    /// </remarks>
+    /// <param name="app">Web 应用程序实例 / Web application instance</param>
+    /// <param name="mappingAttribute">HTTP 消息映射特性 / HTTP message mapping attribute</param>
+    /// <param name="cmd">命令标识符（用于构建 API 路径）/ Command identifier (used to build API path)</param>
+    /// <param name="httpFactory">HTTP 处理器工厂 / HTTP handler factory</param>
+    /// <param name="aopHandlerTypes">AOP 处理器列表 / AOP handler list</param>
+    /// <param name="development">是否为开发环境 / Whether it is development environment</param>
     private static void RegisterHandlerRoute(WebApplication app, HttpMessageMappingAttribute mappingAttribute, string cmd, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes, bool development)
     {
         // 注册路由 - 根据 HttpMethod 选择不同的 Map 方法

@@ -37,25 +37,30 @@ using GameFrameX.Utility;
 namespace GameFrameX.StartUp;
 
 /// <summary>
-/// 启动类型注册表 / Startup type registry
+/// 启动类型注册表。
 /// </summary>
 /// <remarks>
-/// 此类负责管理所有实现 IAppStartUp 接口并标记了 StartUpTagAttribute 的启动类型。
-/// 提供类型发现、注册、排序和查询功能。
+/// Startup type registry.
+/// This class is responsible for managing all startup types that implement the IAppStartUp interface and are marked with StartUpTagAttribute.
+/// Provides type discovery, registration, sorting, and query functionality.
 /// </remarks>
 public sealed class StartUpTypeRegistry : Singleton<StartUpTypeRegistry>
 {
     /// <summary>
-    /// 启动类型字典 / Dictionary of startup types
+    /// 启动类型字典。
     /// </summary>
+    /// <remarks>
+    /// Dictionary of startup types.
+    /// </remarks>
     private readonly Dictionary<Type, StartUpTagAttribute> _startUpTypes = new();
 
     /// <summary>
-    /// 发现并注册所有启动类型 / Discover and register all startup types
+    /// 发现并注册所有启动类型。
     /// </summary>
     /// <remarks>
-    /// 此方法扫描所有已加载的程序集，查找实现了 IAppStartUp 接口并标记了 StartUpTagAttribute 的类，
-    /// 将它们注册到内部字典中以供后续启动使用。
+    /// Discover and register all startup types.
+    /// This method scans all loaded assemblies for classes that implement the IAppStartUp interface
+    /// and are marked with StartUpTagAttribute, registering them to an internal dictionary for subsequent startup use.
     /// </remarks>
     public void DiscoverAndRegister()
     {
@@ -81,8 +86,11 @@ public sealed class StartUpTypeRegistry : Singleton<StartUpTypeRegistry>
     }
 
     /// <summary>
-    /// 按优先级排序获取所有启动类型 / Get all startup types sorted by priority
+    /// 按优先级排序获取所有启动类型。
     /// </summary>
+    /// <remarks>
+    /// Get all startup types sorted by priority.
+    /// </remarks>
     /// <returns>按优先级排序的启动类型集合 / Collection of startup types sorted by priority</returns>
     public IEnumerable<KeyValuePair<Type, StartUpTagAttribute>> GetSortedByPriority()
     {
@@ -90,10 +98,13 @@ public sealed class StartUpTypeRegistry : Singleton<StartUpTypeRegistry>
     }
 
     /// <summary>
-    /// 按服务器类型查找启动类型 / Find startup type by server type
+    /// 按服务器类型查找启动类型。
     /// </summary>
+    /// <remarks>
+    /// Find startup type by server type.
+    /// </remarks>
     /// <param name="serverType">服务器类型标识符 / Server type identifier</param>
-    /// <returns>匹配的键值对，如果未找到则返回 null / Matching key-value pair, or null if not found</returns>
+    /// <returns>匹配的键值对；如果未找到则返回 null / Matching key-value pair, or null if not found</returns>
     public KeyValuePair<Type, StartUpTagAttribute>? FindByServerType(string serverType)
     {
         var result = _startUpTypes.FirstOrDefault(m => m.Value.ServerType == serverType);
@@ -106,8 +117,11 @@ public sealed class StartUpTypeRegistry : Singleton<StartUpTypeRegistry>
     }
 
     /// <summary>
-    /// 获取所有启动类型 / Get all startup types
+    /// 获取所有启动类型。
     /// </summary>
+    /// <remarks>
+    /// Get all startup types.
+    /// </remarks>
     /// <returns>启动类型的只读字典 / Read-only dictionary of startup types</returns>
     public IReadOnlyDictionary<Type, StartUpTagAttribute> GetAll()
     {
@@ -115,8 +129,11 @@ public sealed class StartUpTypeRegistry : Singleton<StartUpTypeRegistry>
     }
 
     /// <summary>
-    /// 清空注册表（主要用于测试） / Clear the registry (mainly for testing)
+    /// 清空注册表（主要用于测试）。
     /// </summary>
+    /// <remarks>
+    /// Clear the registry (mainly for testing).
+    /// </remarks>
     public void Clear()
     {
         _startUpTypes.Clear();

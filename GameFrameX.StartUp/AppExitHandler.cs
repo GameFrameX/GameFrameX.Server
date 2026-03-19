@@ -42,61 +42,68 @@ using GameFrameX.Utility.Setting;
 namespace GameFrameX.StartUp;
 
 /// <summary>
-/// Application exit handler / 应用程序退出处理器
+/// 应用程序退出处理器。
 /// </summary>
 /// <remarks>
-/// 负责处理应用程序的各种退出信号和异常情况，确保程序能够优雅地关闭
+/// Application exit handler.
+/// Responsible for handling various exit signals and exceptions of the application, ensuring the program can shut down gracefully.
 /// </remarks>
 internal static class AppExitHandler
 {
     /// <summary>
-    /// Exit callback action / 退出回调动作
+    /// 退出回调动作。
     /// </summary>
-    /// <value>
-    /// The action to be called when application exits / 应用程序退出时要调用的动作
-    /// </value>
+    /// <remarks>
+    /// Exit callback action.
+    /// </remarks>
+    /// <value>应用程序退出时要调用的动作 / The action to be called when application exits</value>
     private static Action<string> _exitCallBack;
 
     /// <summary>
-    /// Application settings / 应用程序设置
+    /// 应用程序设置。
     /// </summary>
-    /// <value>
-    /// The current application settings / 当前应用程序设置
-    /// </value>
+    /// <remarks>
+    /// Application settings.
+    /// </remarks>
+    /// <value>当前应用程序设置 / The current application settings</value>
     private static AppSetting _setting;
 
     /// <summary>
-    /// POSIX signal registration for handling SIGTERM / 用于处理SIGTERM的POSIX信号注册
+    /// 用于处理 SIGTERM 的 POSIX 信号注册。
     /// </summary>
-    /// <value>
-    /// The registration for POSIX signal handling / POSIX信号处理的注册
-    /// </value>
+    /// <remarks>
+    /// POSIX signal registration for handling SIGTERM.
+    /// </remarks>
+    /// <value>POSIX 信号处理的注册 / The registration for POSIX signal handling</value>
     private static PosixSignalRegistration _exitSignalRegistration;
 
     /// <summary>
-    /// Indicates whether the application is being killed / 指示应用程序是否正在被终止
+    /// 指示应用程序是否正在被终止。
     /// </summary>
-    /// <value>
-    /// true if the application is being killed; otherwise, false / 如果应用程序正在被终止则为true，否则为false
-    /// </value>
+    /// <remarks>
+    /// Indicates whether the application is being killed.
+    /// </remarks>
+    /// <value>如果应用程序正在被终止则为 <c>true</c>；否则为 <c>false</c> / <c>true</c> if the application is being killed; otherwise <c>false</c></value>
     private static bool _isKill;
 
     /// <summary>
-    /// List of fatal exception exit handlers / 致命异常退出处理器列表
+    /// 致命异常退出处理器列表。
     /// </summary>
-    /// <value>
-    /// Collection of handlers for fatal exceptions / 致命异常处理器集合
-    /// </value>
+    /// <remarks>
+    /// List of fatal exception exit handlers.
+    /// </remarks>
+    /// <value>致命异常处理器集合 / Collection of handlers for fatal exceptions</value>
     private static readonly List<IFatalExceptionExitHandler> FatalExceptionExitHandlers = new();
 
     /// <summary>
-    /// Initialize the exit handler / 初始化退出处理器
+    /// 初始化退出处理器。
     /// </summary>
-    /// <param name="exitCallBack">Exit callback action / 退出回调动作</param>
-    /// <param name="setting">Application settings / 应用程序设置</param>
     /// <remarks>
-    /// 设置各种退出信号监听器和异常处理器，确保应用程序能够响应各种退出条件
+    /// Initialize the exit handler.
+    /// Sets up various exit signal listeners and exception handlers to ensure the application can respond to various exit conditions.
     /// </remarks>
+    /// <param name="exitCallBack">退出回调动作 / Exit callback action</param>
+    /// <param name="setting">应用程序设置 / Application settings</param>
     public static void Init(Action<string> exitCallBack, AppSetting setting)
     {
         _isKill = false;
@@ -123,12 +130,13 @@ internal static class AppExitHandler
     }
 
     /// <summary>
-    /// Handles POSIX signal registration / 处理POSIX信号注册
+    /// 处理 POSIX 信号注册。
     /// </summary>
-    /// <param name="posixSignalContext">POSIX signal context / POSIX信号上下文</param>
     /// <remarks>
-    /// 响应SIGTERM信号，触发应用程序退出流程
+    /// Handles POSIX signal registration.
+    /// Responds to SIGTERM signal and triggers the application exit flow.
     /// </remarks>
+    /// <param name="posixSignalContext">POSIX 信号上下文 / POSIX signal context</param>
     private static void ExitSignalRegistrationHandler(PosixSignalContext posixSignalContext)
     {
         LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.Application.SigtermSignalReceived));
@@ -136,22 +144,24 @@ internal static class AppExitHandler
     }
 
     /// <summary>
-    /// Handles assembly load context unloading / 处理程序集加载上下文卸载
+    /// 处理程序集加载上下文卸载。
     /// </summary>
-    /// <param name="obj">Assembly load context / 程序集加载上下文</param>
     /// <remarks>
-    /// 当程序集加载上下文卸载时触发，作为致命异常处理
+    /// Handles assembly load context unloading.
+    /// Triggered when the assembly load context is unloaded, treated as a fatal exception.
     /// </remarks>
+    /// <param name="obj">程序集加载上下文 / Assembly load context</param>
     private static void DefaultOnUnloading(AssemblyLoadContext obj)
     {
         HandleFatalException("AssemblyLoadContext.Default.Unloading", obj.ToString());
     }
 
     /// <summary>
-    /// Kill the application / 终止应用程序
+    /// 终止应用程序。
     /// </summary>
     /// <remarks>
-    /// 设置终止标志，防止进一步的异常处理
+    /// Kill the application.
+    /// Sets the termination flag to prevent further exception handling.
     /// </remarks>
     public static void Kill()
     {
@@ -159,13 +169,14 @@ internal static class AppExitHandler
     }
 
     /// <summary>
-    /// Handle fatal exceptions that cause application termination / 处理导致应用程序终止的致命异常
+    /// 处理导致应用程序终止的致命异常。
     /// </summary>
-    /// <param name="tag">Exception tag / 异常标签</param>
-    /// <param name="e">Exception object / 异常对象</param>
     /// <remarks>
-    /// 处理未处理的异常，记录日志并通知相关处理器，然后触发应用程序退出
+    /// Handle fatal exceptions that cause application termination.
+    /// Handles unhandled exceptions, logs them, notifies relevant handlers, and triggers application exit.
     /// </remarks>
+    /// <param name="tag">异常标签 / Exception tag</param>
+    /// <param name="e">异常对象 / Exception object</param>
     private static void HandleFatalException(string tag, object e)
     {
         if (_isKill)

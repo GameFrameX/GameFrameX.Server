@@ -47,12 +47,13 @@ using Mapster;
 namespace GameFrameX.StartUp;
 
 /// <summary>
-/// Game application entry point class / 游戏应用程序入口类
+/// 游戏应用程序入口类。
 /// </summary>
 /// <remarks>
-/// 此类提供了游戏服务器的启动入口点，负责初始化各种服务器组件，
-/// 包括日志系统、配置管理、启动类型发现和服务器启动流程。
-/// 支持多种服务器类型的启动和管理。
+/// Game application entry point class.
+/// This class provides the startup entry point for game servers, responsible for initializing various server components,
+/// including logging system, configuration management, startup type discovery, and server startup flow.
+/// Supports startup and management of multiple server types.
 /// </remarks>
 /// <example>
 /// <code>
@@ -68,16 +69,20 @@ namespace GameFrameX.StartUp;
 public static class GameApp
 {
     /// <summary>
-    /// The launch task for the current server instance / 当前服务器实例的启动任务
+    /// 当前服务器实例的启动任务。
     /// </summary>
     /// <remarks>
-    /// 用于跟踪服务器启动任务的执行状态
+    /// The launch task for the current server instance.
+    /// Used to track the execution status of the server startup task.
     /// </remarks>
     private static Task _launchTask;
 
     /// <summary>
-    /// 解析启动器选项 / Parse launcher options
+    /// 解析启动器选项。
     /// </summary>
+    /// <remarks>
+    /// Parse launcher options.
+    /// </remarks>
     /// <param name="args">命令行参数 / Command line arguments</param>
     /// <returns>解析后的启动器选项 / Parsed launcher options</returns>
     private static LauncherOptions ParseLauncherOptions(string[] args)
@@ -94,8 +99,11 @@ public static class GameApp
     }
 
     /// <summary>
-    /// 配置 Grafana Loki 标签 / Configure Grafana Loki labels
+    /// 配置 Grafana Loki 标签。
     /// </summary>
+    /// <remarks>
+    /// Configure Grafana Loki labels.
+    /// </remarks>
     /// <param name="launcherOptions">启动器选项 / Launcher options</param>
     private static void ConfigureGrafanaLokiLabels(LauncherOptions launcherOptions)
     {
@@ -129,8 +137,11 @@ public static class GameApp
     }
 
     /// <summary>
-    /// 配置日志选项 / Configure log options
+    /// 配置日志选项。
     /// </summary>
+    /// <remarks>
+    /// Configure log options.
+    /// </remarks>
     /// <param name="launcherOptions">启动器选项 / Launcher options</param>
     private static void ConfigureLogOptions(LauncherOptions launcherOptions)
     {
@@ -196,30 +207,31 @@ public static class GameApp
     }
 
     /// <summary>
-    /// Main entry point for starting the game application / 启动游戏应用程序的主入口点
+    /// 启动游戏应用程序的主入口点。
     /// </summary>
-    /// <param name="args">Command line arguments / 命令行参数</param>
-    /// <param name="initAction">Initialization action executed before starting the server, used for external protocol registration / 在启动服务器之前执行的初始化操作，用于外部协议注册</param>
-    /// <param name="logConfiguration">Callback for log system initialization, allows overriding parameters / 日志系统初始化回调，可以重写参数</param>
-    /// <returns>A task representing the asynchronous operation / 表示异步操作的任务</returns>
-    /// <exception cref="ArgumentNullException">Thrown when args is null / 当args为null时抛出</exception>
-    /// <exception cref="InvalidOperationException">Thrown when startup configuration is invalid / 当启动配置无效时抛出</exception>
     /// <remarks>
-    /// 此方法是整个游戏服务器的启动入口点，执行以下主要步骤：
-    /// 1. 解析启动参数
-    /// 2. 配置日志系统
-    /// 3. 加载全局设置
-    /// 4. 发现并注册启动类型
-    /// 5. 根据服务器类型启动相应的服务
-    /// 6. 等待所有启动任务完成
+    /// Main entry point for starting the game application.
+    /// This method is the startup entry point for the entire game server, performing the following main steps:
+    /// 1. Parse startup arguments
+    /// 2. Configure logging system
+    /// 3. Load global settings
+    /// 4. Discover and register startup types
+    /// 5. Start corresponding services based on server type
+    /// 6. Wait for all startup tasks to complete
     /// </remarks>
+    /// <param name="args">命令行参数 / Command line arguments</param>
+    /// <param name="initAction">在启动服务器之前执行的初始化操作，用于外部协议注册 / Initialization action executed before starting the server, used for external protocol registration</param>
+    /// <param name="logConfiguration">日志系统初始化回调，可以重写参数 / Callback for log system initialization, allows overriding parameters</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
+    /// <exception cref="ArgumentNullException">当 <paramref name="args"/> 为 null 时抛出 / Thrown when <paramref name="args"/> is null</exception>
+    /// <exception cref="InvalidOperationException">当启动配置无效时抛出 / Thrown when startup configuration is invalid</exception>
     /// <example>
     /// <code>
     /// // 基本启动
     /// await GameApp.Entry(args, null);
-    /// 
+    ///
     /// // 带初始化和日志配置的启动
-    /// await GameApp.Entry(args, 
+    /// await GameApp.Entry(args,
     ///     () => ProtocolManager.RegisterAll(),
     ///     logOptions => {
     ///         logOptions.IsConsole = true;
@@ -270,38 +282,40 @@ public static class GameApp
     }
 
     /// <summary>
-    /// Launches a startup task for the specified server type / 为指定的服务器类型启动一个启动任务
+    /// 为指定的服务器类型启动一个启动任务。
     /// </summary>
-    /// <param name="args">Command line arguments / 命令行参数</param>
-    /// <param name="keyValuePair">Key-value pair containing the startup type and its attribute / 包含启动类型及其属性的键值对</param>
-    /// <param name="appSetting">Application settings for the server / 服务器的应用程序设置</param>
     /// <remarks>
-    /// 此方法创建并启动一个新的服务器实例任务，将任务添加到AppStartUpTasks列表中
-    /// 以便后续并发执行和等待。
+    /// Launches a startup task for the specified server type.
+    /// This method creates and starts a new server instance task, adding the task to the AppStartUpTasks list
+    /// for subsequent concurrent execution and waiting.
     /// </remarks>
+    /// <param name="args">命令行参数 / Command line arguments</param>
+    /// <param name="keyValuePair">包含启动类型及其属性的键值对 / Key-value pair containing the startup type and its attribute</param>
+    /// <param name="appSetting">服务器的应用程序设置 / Application settings for the server</param>
     private static void Launcher(string[] args, KeyValuePair<Type, StartUpTagAttribute> keyValuePair, AppSetting appSetting = null)
     {
         _launchTask = Start(args, keyValuePair.Key, keyValuePair.Value.ServerType, appSetting);
     }
 
     /// <summary>
-    /// Starts a specific server instance / 启动特定的服务器实例
+    /// 启动特定的服务器实例。
     /// </summary>
-    /// <param name="args">Command line arguments / 命令行参数</param>
-    /// <param name="appStartUpType">The type of the startup class / 启动类的类型</param>
-    /// <param name="serverType">The server type identifier / 服务器类型标识符</param>
-    /// <param name="setting">Application settings for the server / 服务器的应用程序设置</param>
-    /// <returns>A task representing the server startup operation / 表示服务器启动操作的任务</returns>
-    /// <exception cref="InvalidOperationException">Thrown when startup class cannot be instantiated / 当启动类无法实例化时抛出</exception>
-    /// <exception cref="ArgumentNullException">Thrown when appStartUpType is null / 当appStartUpType为null时抛出</exception>
     /// <remarks>
-    /// 此方法执行以下步骤：
-    /// 1. 创建启动类实例
-    /// 2. 初始化启动类
-    /// 3. 记录配置信息
-    /// 4. 调用AppEnter.Entry启动服务器
-    /// 如果初始化失败，返回已完成的任务。
+    /// Starts a specific server instance.
+    /// This method performs the following steps:
+    /// 1. Create startup class instance
+    /// 2. Initialize startup class
+    /// 3. Log configuration information
+    /// 4. Call AppEnter.Entry to start the server
+    /// If initialization fails, returns a completed task.
     /// </remarks>
+    /// <param name="args">命令行参数 / Command line arguments</param>
+    /// <param name="appStartUpType">启动类的类型 / The type of the startup class</param>
+    /// <param name="serverType">服务器类型标识符 / The server type identifier</param>
+    /// <param name="setting">服务器的应用程序设置 / Application settings for the server</param>
+    /// <returns>表示服务器启动操作的任务 / A task representing the server startup operation</returns>
+    /// <exception cref="InvalidOperationException">当启动类无法实例化时抛出 / Thrown when startup class cannot be instantiated</exception>
+    /// <exception cref="ArgumentNullException">当 <paramref name="appStartUpType"/> 为 null 时抛出 / Thrown when <paramref name="appStartUpType"/> is null</exception>
     /// <example>
     /// <code>
     /// var task = Start(args, typeof(GameServerStartUp), "GameServer", appSetting);
@@ -332,12 +346,15 @@ public static class GameApp
     }
 
     /// <summary>
-    /// Attempts to launch a server based on the specified server type / 尝试根据指定的服务器类型启动服务器
+    /// 尝试根据指定的服务器类型启动服务器。
     /// </summary>
-    /// <param name="args">Command line arguments / 命令行参数</param>
-    /// <param name="serverType">The server type to launch, or null to launch the first available / 要启动的服务器类型，或为null以启动第一个可用的服务器</param>
-    /// <param name="sortedStartUpTypes">Collection of startup types sorted by priority / 按优先级排序的启动类型集合</param>
-    /// <param name="launcherOptions">Launcher options containing default configuration / 包含默认配置的启动器选项</param>
+    /// <remarks>
+    /// Attempts to launch a server based on the specified server type.
+    /// </remarks>
+    /// <param name="args">命令行参数 / Command line arguments</param>
+    /// <param name="serverType">要启动的服务器类型，或为 null 以启动第一个可用的服务器 / The server type to launch, or null to launch the first available</param>
+    /// <param name="sortedStartUpTypes">按优先级排序的启动类型集合 / Collection of startup types sorted by priority</param>
+    /// <param name="launcherOptions">包含默认配置的启动器选项 / Launcher options containing default configuration</param>
     private static void TryLaunchServer(string[] args, string serverType, IEnumerable<KeyValuePair<Type, StartUpTagAttribute>> sortedStartUpTypes, LauncherOptions launcherOptions)
     {
         var appSettings = GlobalSettings.GetSettings();
@@ -353,13 +370,16 @@ public static class GameApp
     }
 
     /// <summary>
-    /// Attempts to launch a server by the specified server type / 尝试按指定的服务器类型启动服务器
+    /// 尝试按指定的服务器类型启动服务器。
     /// </summary>
-    /// <param name="args">Command line arguments / 命令行参数</param>
-    /// <param name="serverType">The server type identifier / 服务器类型标识符</param>
-    /// <param name="sortedStartUpTypes">Collection of startup types sorted by priority / 按优先级排序的启动类型集合</param>
-    /// <param name="appSettings">Collection of application settings from configuration / 配置中的应用程序设置集合</param>
-    /// <param name="launcherOptions">Launcher options for default configuration / 用于默认配置的启动器选项</param>
+    /// <remarks>
+    /// Attempts to launch a server by the specified server type.
+    /// </remarks>
+    /// <param name="args">命令行参数 / Command line arguments</param>
+    /// <param name="serverType">服务器类型标识符 / The server type identifier</param>
+    /// <param name="sortedStartUpTypes">按优先级排序的启动类型集合 / Collection of startup types sorted by priority</param>
+    /// <param name="appSettings">配置中的应用程序设置集合 / Collection of application settings from configuration</param>
+    /// <param name="launcherOptions">用于默认配置的启动器选项 / Launcher options for default configuration</param>
     private static void TryLaunchByServerType(string[] args, string serverType, IEnumerable<KeyValuePair<Type, StartUpTagAttribute>> sortedStartUpTypes, IEnumerable<AppSetting> appSettings, LauncherOptions launcherOptions)
     {
         var startKv = sortedStartUpTypes.FirstOrDefault(m => m.Value.ServerType == serverType);
@@ -383,11 +403,14 @@ public static class GameApp
     }
 
     /// <summary>
-    /// Attempts to launch the first available server / 尝试启动第一个可用的服务器
+    /// 尝试启动第一个可用的服务器。
     /// </summary>
-    /// <param name="args">Command line arguments / 命令行参数</param>
-    /// <param name="sortedStartUpTypes">Collection of startup types sorted by priority / 按优先级排序的启动类型集合</param>
-    /// <param name="appSettings">Collection of application settings from configuration / 配置中的应用程序设置集合</param>
+    /// <remarks>
+    /// Attempts to launch the first available server.
+    /// </remarks>
+    /// <param name="args">命令行参数 / Command line arguments</param>
+    /// <param name="sortedStartUpTypes">按优先级排序的启动类型集合 / Collection of startup types sorted by priority</param>
+    /// <param name="appSettings">配置中的应用程序设置集合 / Collection of application settings from configuration</param>
     private static void TryLaunchFirstAvailable(string[] args, IEnumerable<KeyValuePair<Type, StartUpTagAttribute>> sortedStartUpTypes, IEnumerable<AppSetting> appSettings)
     {
         foreach (var keyValuePair in sortedStartUpTypes)

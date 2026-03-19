@@ -34,22 +34,24 @@ using GameFrameX.Utility.Setting;
 namespace GameFrameX.StartUp.Abstractions;
 
 /// <summary>
-/// Fatal exception exit handler interface definition
+/// 致命异常退出处理器接口定义。
 /// </summary>
 /// <remarks>
-/// 程序异常退出的执行器接口定义，用于处理应用程序遇到致命异常时的退出逻辑
+/// Fatal exception exit handler interface definition.
+/// Executor interface definition for program exception exit, used to handle exit logic when the application encounters a fatal exception.
 /// </remarks>
 public interface IFatalExceptionExitHandler
 {
     /// <summary>
-    /// Executes the fatal exception exit handling logic
+    /// 执行致命异常退出处理逻辑。
     /// </summary>
-    /// <param name="tag">The tag identifier / 标签</param>
-    /// <param name="setting">The application settings / 服务器设置</param>
-    /// <param name="message">The exit reason message / 退出原因</param>
     /// <remarks>
-    /// 执行致命异常退出处理逻辑，包括日志记录、资源清理和优雅关闭等操作
+    /// Executes the fatal exception exit handling logic.
+    /// Performs fatal exception exit handling logic, including logging, resource cleanup, and graceful shutdown operations.
     /// </remarks>
-    /// <exception cref="ArgumentNullException">Thrown when any parameter is null / 当任何参数为null时抛出</exception>
+    /// <param name="tag">标签标识符 / The tag identifier</param>
+    /// <param name="setting">服务器设置 / The application settings</param>
+    /// <param name="message">退出原因 / The exit reason message</param>
+    /// <exception cref="ArgumentNullException">当任何参数为 null 时抛出 / Thrown when any parameter is null</exception>
     void Run(string tag, AppSetting setting, string message);
 }

@@ -55,39 +55,43 @@ using CloseReason = GameFrameX.SuperSocket.WebSocket.CloseReason;
 namespace GameFrameX.StartUp;
 
 /// <summary>
-/// Application startup base class - provides TCP and WebSocket server basic functionality implementation / 程序启动器基类 - 提供TCP和WebSocket服务器的基础功能实现
+/// 程序启动器基类 - 提供服务器的基础功能实现。
 /// </summary>
 /// <remarks>
-/// 此部分类专门处理TCP和WebSocket服务器的启动和配置功能
+/// Application startup base class - provides server basic functionality implementation.
+/// This partial class specifically handles TCP and WebSocket server startup and configuration functionality.
 /// </remarks>
 public abstract partial class AppStartUpBase
 {
     /// <summary>
-    /// Whether to register the current service to the service center / 是否将当前服务注册到服务中心
+    /// 获取或设置是否将当前服务注册到服务中心。
     /// </summary>
-    /// <value>
-    /// Default false: do not auto-register; subclasses can override to true to enable registration logic / 默认 false：不自动注册；子类可重写为 true 以开启注册逻辑
-    /// </value>
     /// <remarks>
-    /// 控制当前服务是否自动向发现中心注册
+    /// Gets or sets whether to register the current service to the discovery center.
+    /// Controls whether the current service automatically registers with the discovery center.
     /// </remarks>
+    /// <value>
+    /// 默认 <c>false</c>：不自动注册；子类可重写为 <c>true</c> 以开启注册逻辑 /
+    /// Default <c>false</c>: do not auto-register; subclasses can override to <c>true</c> to enable registration logic
+    /// </value>
     protected virtual bool IsRegisterToDiscoveryCenter { get; set; } = false;
 
     /// <summary>
-    /// Start server - simultaneously start TCP and WebSocket services / 启动服务器 - 同时启动TCP和WebSocket服务
+    /// 启动服务器 - 同时启动 TCP 和 WebSocket 服务。
     /// </summary>
-    /// <typeparam name="TMessageDecoderHandler">Message decoder handler type, must implement IMessageDecoderHandler and IPackageDecoder interfaces / 消息解码处理器类型，必须实现IMessageDecoderHandler和IPackageDecoder接口</typeparam>
-    /// <typeparam name="TMessageEncoderHandler">Message encoder handler type, must implement IMessageEncoderHandler and IPackageEncoder interfaces / 消息编码处理器类型，必须实现IMessageEncoderHandler和IPackageEncoder接口</typeparam>
-    /// <param name="messageCompressHandler">Compression handler used when encoding messages, no compression processing if null / 消息编码的时候使用的压缩处理器，如果为空则不处理压缩消息</param>
-    /// <param name="messageDecompressHandler">Decompression handler used when decoding messages, no decompression processing if null / 消息解码的时候使用的解压处理器,如果为空则不处理压缩消息</param>
-    /// <param name="baseHandler">HTTP handler list for processing different HTTP requests / HTTP处理器列表,用于处理不同的HTTP请求</param>
-    /// <param name="httpFactory">HTTP handler factory that creates corresponding handler instances based on command identifiers / HTTP处理器工厂,根据命令标识符创建对应的处理器实例</param>
-    /// <param name="aopHandlerTypes">AOP handler list for executing additional logic before and after HTTP request processing / AOP处理器列表,用于在HTTP请求处理前后执行额外的逻辑</param>
-    /// <param name="minimumLevelLogLevel">Minimum level for logging to control log output / 日志记录的最小级别,用于控制日志输出</param>
-    /// <returns>A task representing the asynchronous operation / 表示异步操作的任务</returns>
     /// <remarks>
-    /// 此方法负责初始化消息编解码器，启动各种网络服务，并设置全局启动状态
+    /// Start server - simultaneously start TCP and WebSocket services.
+    /// This method is responsible for initializing message encoders/decoders, starting various network services, and setting the global startup status.
     /// </remarks>
+    /// <typeparam name="TMessageDecoderHandler">消息解码处理器类型，必须实现 <see cref="IMessageDecoderHandler"/> 和 <see cref="IPackageDecoder"/> 接口 / Message decoder handler type, must implement IMessageDecoderHandler and IPackageDecoder interfaces</typeparam>
+    /// <typeparam name="TMessageEncoderHandler">消息编码处理器类型，必须实现 <see cref="IMessageEncoderHandler"/> 和 <see cref="IPackageEncoder"/> 接口 / Message encoder handler type, must implement IMessageEncoderHandler and IPackageEncoder interfaces</typeparam>
+    /// <param name="messageCompressHandler">消息编码时使用的压缩处理器；如果为空则不处理压缩消息 / Compression handler used when encoding messages; no compression processing if null</param>
+    /// <param name="messageDecompressHandler">消息解码时使用的解压处理器；如果为空则不处理压缩消息 / Decompression handler used when decoding messages; no decompression processing if null</param>
+    /// <param name="baseHandler">HTTP 处理器列表，用于处理不同的 HTTP 请求 / HTTP handler list for processing different HTTP requests</param>
+    /// <param name="httpFactory">HTTP 处理器工厂，根据命令标识符创建对应的处理器实例 / HTTP handler factory that creates corresponding handler instances based on command identifiers</param>
+    /// <param name="aopHandlerTypes">AOP 处理器列表，用于在 HTTP 请求处理前后执行额外的逻辑 / AOP handler list for executing additional logic before and after HTTP request processing</param>
+    /// <param name="minimumLevelLogLevel">日志记录的最小级别，用于控制日志输出 / Minimum level for logging to control log output</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     protected async Task StartServerAsync<TMessageDecoderHandler, TMessageEncoderHandler>(
         IMessageCompressHandler messageCompressHandler,
         IMessageDecompressHandler messageDecompressHandler,
@@ -117,12 +121,13 @@ public abstract partial class AppStartUpBase
     }
 
     /// <summary>
-    /// Stop server - close all network services / 停止服务器 - 关闭所有网络服务
+    /// 停止服务器 - 关闭所有网络服务。
     /// </summary>
-    /// <returns>A task representing the asynchronous operation / 表示异步操作的任务</returns>
     /// <remarks>
-    /// 此方法负责优雅地关闭所有网络服务和连接
+    /// Stop server - close all network services.
+    /// This method is responsible for gracefully closing all network services and connections.
     /// </remarks>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     protected async Task StopServerAsync()
     {
         GlobalSettings.IsAppRunning = false;
@@ -136,28 +141,30 @@ public abstract partial class AppStartUpBase
     }
 
     /// <summary>
-    /// Message processing exception handler / 消息处理异常处理方法
+    /// 消息处理异常处理方法。
     /// </summary>
-    /// <param name="appSession">Session object / 会话对象</param>
-    /// <param name="exception">Exception information / 异常信息</param>
-    /// <returns>Returns true to continue processing, returns false to terminate processing / 返回true表示继续处理，返回false表示终止处理</returns>
     /// <remarks>
-    /// 处理消息处理过程中发生的异常
+    /// Message processing exception handler.
+    /// Handles exceptions that occur during message processing.
     /// </remarks>
+    /// <param name="appSession">会话对象 / Session object</param>
+    /// <param name="exception">异常信息 / Exception information</param>
+    /// <returns>返回 <c>true</c> 表示继续处理；返回 <c>false</c> 表示终止处理 / Returns <c>true</c> to continue processing; returns <c>false</c> to terminate processing</returns>
     protected virtual ValueTask<bool> PackageErrorHandler(IAppSession appSession, PackageHandlingException<IMessage> exception)
     {
         return ValueTask.FromResult(true);
     }
 
     /// <summary>
-    /// Handler when client disconnects / 客户端断开连接时的处理方法
+    /// 客户端断开连接时的处理方法。
     /// </summary>
-    /// <param name="appSession">Session object that disconnected / 断开连接的会话对象</param>
-    /// <param name="disconnectEventArgs">Parameters related to disconnection / 断开连接的相关参数</param>
-    /// <returns>A task representing the asynchronous operation / 表示异步操作的任务</returns>
     /// <remarks>
-    /// 处理客户端断开连接的情况，记录相关信息
+    /// Handler when client disconnects.
+    /// Handles the situation when a client disconnects, recording relevant information.
     /// </remarks>
+    /// <param name="appSession">断开连接的会话对象 / Session object that disconnected</param>
+    /// <param name="disconnectEventArgs">断开连接的相关参数 / Parameters related to disconnection</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     protected virtual ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
     {
         LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.TcpServer.ClientDisconnected, appSession.SessionID, appSession.RemoteEndPoint, disconnectEventArgs.Reason));
@@ -165,13 +172,14 @@ public abstract partial class AppStartUpBase
     }
 
     /// <summary>
-    /// Handler when client connects successfully / 客户端连接成功时的处理方法
+    /// 客户端连接成功时的处理方法。
     /// </summary>
-    /// <param name="appSession">Newly established session object / 新建立的会话对象</param>
-    /// <returns>A task representing the asynchronous operation / 表示异步操作的任务</returns>
     /// <remarks>
-    /// 处理新客户端连接的情况，记录相关信息
+    /// Handler when client connects successfully.
+    /// Handles the situation when a new client connects, recording relevant information.
     /// </remarks>
+    /// <param name="appSession">新建立的会话对象 / Newly established session object</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     protected virtual ValueTask OnConnected(IAppSession appSession)
     {
         LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.TcpServer.NewClientConnection, appSession.SessionID, appSession.RemoteEndPoint));
@@ -179,14 +187,15 @@ public abstract partial class AppStartUpBase
     }
 
     /// <summary>
-    /// Handler for received message packages / 收到消息包的处理方法
+    /// 收到消息包的处理方法。
     /// </summary>
-    /// <param name="session">Session object / 会话对象</param>
-    /// <param name="message">Received message / 接收到的消息</param>
-    /// <returns>A task representing the asynchronous operation / 表示异步操作的任务</returns>
     /// <remarks>
-    /// 处理接收到的消息包，在调试模式下会记录消息内容
+    /// Handler for received message packages.
+    /// Handles received message packages; in debug mode, message content will be logged.
     /// </remarks>
+    /// <param name="session">会话对象 / Session object</param>
+    /// <param name="message">接收到的消息 / Received message</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     protected virtual ValueTask PackageHandler(IAppSession session, IMessage message)
     {
         if (Setting.IsDebug && Setting.IsDebugReceive)
@@ -198,17 +207,18 @@ public abstract partial class AppStartUpBase
     }
 
     /// <summary>
-    /// Asynchronous message processing method / 异步消息处理方法
+    /// 异步消息处理方法。
     /// </summary>
-    /// <param name="handler">Message handler / 消息处理器</param>
-    /// <param name="message">Network message / 网络消息</param>
-    /// <param name="netWorkChannel">Network channel / 网络通道</param>
-    /// <param name="timeout">Timeout (milliseconds) / 超时时间(毫秒)</param>
-    /// <param name="cancellationToken">Cancellation token / 取消令牌</param>
-    /// <returns>A task representing the asynchronous operation / 表示异步操作的任务</returns>
     /// <remarks>
-    /// 异步调用消息处理器，包含初始化和执行逻辑
+    /// Asynchronous message processing method.
+    /// Asynchronously invokes the message handler, including initialization and execution logic.
     /// </remarks>
+    /// <param name="handler">消息处理器 / Message handler</param>
+    /// <param name="message">网络消息 / Network message</param>
+    /// <param name="netWorkChannel">网络通道 / Network channel</param>
+    /// <param name="timeout">超时时间（毫秒）/ Timeout (milliseconds)</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     protected async Task InvokeMessageHandler(IMessageHandler handler, INetworkMessage message, INetWorkChannel netWorkChannel, int timeout = 30000, CancellationToken cancellationToken = default)
     {
         try
@@ -233,27 +243,27 @@ public abstract partial class AppStartUpBase
     #region TCP Server
 
     /// <summary>
-    /// Game server host instance / 游戏服务器主机实例
+    /// 游戏服务器主机实例。
     /// </summary>
-    /// <value>
-    /// Host instance for managing the game server lifecycle / 用于管理游戏服务器生命周期的主机实例
-    /// </value>
     /// <remarks>
-    /// 用于管理TCP和WebSocket服务器的生命周期
+    /// Game server host instance.
+    /// Used to manage the lifecycle of TCP and WebSocket servers.
     /// </remarks>
+    /// <value>用于管理游戏服务器生命周期的主机实例 / Host instance for managing the game server lifecycle</value>
     private IHost _gameServer;
 
     /// <summary>
-    /// Start TCP server / 启动TCP服务器
+    /// 启动 TCP 服务器。
     /// </summary>
-    /// <param name="baseHandler">HTTP handler list for processing different HTTP requests / HTTP处理器列表,用于处理不同的HTTP请求</param>
-    /// <param name="httpFactory">HTTP handler factory that creates corresponding handler instances based on command identifiers / HTTP处理器工厂,根据命令标识符创建对应的处理器实例</param>
-    /// <param name="aopHandlerTypes">AOP handler list for executing additional logic before and after HTTP request processing / AOP处理器列表,用于在HTTP请求处理前后执行额外的逻辑</param>
-    /// <param name="minimumLevelLogLevel">Minimum level for logging to control log output / 日志记录的最小级别,用于控制日志输出</param>
-    /// <returns>A task representing the asynchronous operation / 表示异步操作的任务</returns>
     /// <remarks>
-    /// 此方法负责配置和启动TCP、WebSocket和HTTP服务器，以及相关的监控和日志功能
+    /// Start TCP server.
+    /// This method is responsible for configuring and starting TCP, WebSocket, and HTTP servers, as well as related monitoring and logging functionality.
     /// </remarks>
+    /// <param name="baseHandler">HTTP 处理器列表，用于处理不同的 HTTP 请求 / HTTP handler list for processing different HTTP requests</param>
+    /// <param name="httpFactory">HTTP 处理器工厂，根据命令标识符创建对应的处理器实例 / HTTP handler factory that creates corresponding handler instances based on command identifiers</param>
+    /// <param name="aopHandlerTypes">AOP 处理器列表，用于在 HTTP 请求处理前后执行额外的逻辑 / AOP handler list for executing additional logic before and after HTTP request processing</param>
+    /// <param name="minimumLevelLogLevel">日志记录的最小级别，用于控制日志输出 / Minimum level for logging to control log output</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     private async Task StartServer(List<BaseHttpHandler> baseHandler, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes = null, LogLevel minimumLevelLogLevel = LogLevel.Debug)
     {
         var multipleServerHostBuilder = MultipleServerHostBuilder.Create();
@@ -373,14 +383,15 @@ public abstract partial class AppStartUpBase
     #region WebSocket
 
     /// <summary>
-    /// WebSocket message processing method / WebSocket消息处理方法
+    /// WebSocket 消息处理方法。
     /// </summary>
-    /// <param name="session">WebSocket session object / WebSocket会话对象</param>
-    /// <param name="messagePackage">Received message package / 接收到的消息包</param>
-    /// <returns>A task representing the asynchronous operation / 表示异步操作的任务</returns>
     /// <remarks>
-    /// 处理WebSocket消息，只处理二进制消息类型
+    /// WebSocket message processing method.
+    /// Handles WebSocket messages; only processes binary message types.
     /// </remarks>
+    /// <param name="session">WebSocket 会话对象 / WebSocket session object</param>
+    /// <param name="messagePackage">接收到的消息包 / Received message package</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     private async ValueTask WebSocketMessageHandler(WebSocketSession session, WebSocketPackage messagePackage)
     {
         // 只处理二进制消息
