@@ -35,15 +35,21 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace GameFrameX.DataBase.Mongo;
 
 /// <summary>
-/// 缓存数据对象
+/// 缓存数据对象。
 /// </summary>
+/// <remarks>
+/// Cache data object.
+/// </remarks>
 [BsonIgnoreExtraElements(true, Inherited = true)]
 public class CacheState : BaseCacheState
 {
     /// <summary>
-    /// 将对象序列化转换为字节数组
+    /// 将对象序列化转换为字节数组。
     /// </summary>
-    /// <returns></returns>
+    /// <remarks>
+    /// Serializes the object to a byte array.
+    /// </remarks>
+    /// <returns>序列化后的字节数组 / Serialized byte array</returns>
     public override byte[] ToBytes()
     {
         return this.ToBson();

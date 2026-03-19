@@ -35,27 +35,36 @@ using MongoDB.Driver;
 namespace GameFrameX.DataBase.Mongo.HealthChecks;
 
 /// <summary>
-/// MongoDB 健康检查类
+/// MongoDB 健康检查类。
 /// </summary>
+/// <remarks>
+/// MongoDB health check class.
+/// </remarks>
 public sealed class MongoDbHealthCheck : IHealthCheck
 {
     private readonly IMongoClient _mongoClient;
 
     /// <summary>
-    /// 初始化 MongoDbHealthCheck 的新实例
+    /// 初始化 MongoDbHealthCheck 的新实例。
     /// </summary>
-    /// <param name="mongoClient">MongoDB 客户端</param>
+    /// <remarks>
+    /// Initializes a new instance of MongoDbHealthCheck.
+    /// </remarks>
+    /// <param name="mongoClient">MongoDB 客户端 / MongoDB client</param>
     public MongoDbHealthCheck(IMongoClient mongoClient)
     {
         _mongoClient = mongoClient;
     }
 
     /// <summary>
-    /// 执行健康检查
+    /// 执行健康检查。
     /// </summary>
-    /// <param name="context">健康检查上下文</param>
-    /// <param name="cancellationToken">取消令牌</param>
-    /// <returns>健康检查结果</returns>
+    /// <remarks>
+    /// Performs the health check.
+    /// </remarks>
+    /// <param name="context">健康检查上下文 / Health check context</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>健康检查结果 / Health check result</returns>
     public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
     {
         try

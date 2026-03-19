@@ -41,14 +41,24 @@ namespace GameFrameX.DataBase.Mongo;
 /// </see>
 /// 接口。
 /// </summary>
+/// <remarks>
+/// MongoDB service connection class that implements the
+/// <see>
+///     <cref>IDatabaseService</cref>
+/// </see>
+/// interface.
+/// </remarks>
 public sealed partial class MongoDbService
 {
     /// <summary>
-    /// 根据条件删除单条数据(软删除)
+    /// 根据条件删除单条数据（软删除）。
     /// </summary>
-    /// <param name="filter">查询条件表达式</param>
-    /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
-    /// <returns>返回修改的记录数</returns>
+    /// <remarks>
+    /// Deletes a single data record by condition (soft delete).
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="filter">查询条件表达式 / Query condition expression</param>
+    /// <returns>返回修改的记录数 / The number of modified records</returns>
     public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         EnsureInitialized();
@@ -60,11 +70,14 @@ public sealed partial class MongoDbService
     }
 
     /// <summary>
-    /// 根据条件批量删除数据(软删除)
+    /// 根据条件批量删除数据（软删除）。
     /// </summary>
-    /// <param name="filter">查询条件表达式</param>
-    /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
-    /// <returns>返回修改的记录数</returns>
+    /// <remarks>
+    /// Batch deletes data by condition (soft delete).
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="filter">查询条件表达式 / Query condition expression</param>
+    /// <returns>返回修改的记录数 / The number of modified records</returns>
     public async Task<long> DeleteListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         EnsureInitialized();
@@ -83,11 +96,14 @@ public sealed partial class MongoDbService
     }
 
     /// <summary>
-    /// 根据ID列表批量删除数据(软删除)
+    /// 根据ID列表批量删除数据（软删除）。
     /// </summary>
-    /// <param name="ids">要删除的ID列表</param>
-    /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
-    /// <returns>返回修改的记录数</returns>
+    /// <remarks>
+    /// Batch deletes data by ID list (soft delete).
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="ids">要删除的ID列表 / List of IDs to delete</param>
+    /// <returns>返回修改的记录数 / The number of modified records</returns>
     public async Task<long> DeleteListIdAsync<TState>(IEnumerable<long> ids) where TState : BaseCacheState, new()
     {
         EnsureInitialized();
@@ -103,11 +119,14 @@ public sealed partial class MongoDbService
     }
 
     /// <summary>
-    /// 删除指定对象(软删除)
+    /// 删除指定对象（软删除）。
     /// </summary>
-    /// <param name="state">要删除的对象</param>
-    /// <typeparam name="TState">数据类型,必须继承自BaseCacheState</typeparam>
-    /// <returns>返回修改的记录数</returns>
+    /// <remarks>
+    /// Deletes the specified object (soft delete).
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="state">要删除的对象 / Object to delete</param>
+    /// <returns>返回修改的记录数 / The number of modified records</returns>
     public async Task<long> DeleteAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
         EnsureInitialized();

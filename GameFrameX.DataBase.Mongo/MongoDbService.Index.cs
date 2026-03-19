@@ -46,10 +46,27 @@ namespace GameFrameX.DataBase.Mongo;
 /// </see>
 /// 接口。
 /// </summary>
+/// <remarks>
+/// MongoDB service connection class that implements the
+/// <see>
+///     <cref>IDatabaseService</cref>
+/// </see>
+/// interface.
+/// </remarks>
 public sealed partial class MongoDbService
 {
     private readonly ConcurrentDictionary<string, List<MongoIndexModel>> _indexCache = new();
 
+    /// <summary>
+    /// 检查待创建的索引与已创建的索引是否一致。
+    /// </summary>
+    /// <remarks>
+    /// Checks whether the indexes to be created are consistent with the existing indexes.
+    /// </remarks>
+    /// <typeparam name="T">文档类型 / Document type</typeparam>
+    /// <param name="toBeCreatedIndexes">待创建的索引列表 / List of indexes to be created</param>
+    /// <param name="createdIndexes">已创建的索引列表 / List of existing indexes</param>
+    /// <returns>如果索引一致则返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if indexes are consistent; otherwise <c>false</c></returns>
     private static bool AreIndexesConsistent<T>(List<CreateIndexModel<T>> toBeCreatedIndexes, List<BsonDocument> createdIndexes)
     {
         var toBeCreatedIndexNames = toBeCreatedIndexes.Select(i => i.Options.Name).ToList();
@@ -93,6 +110,14 @@ public sealed partial class MongoDbService
         return true;
     }
 
+    /// <summary>
+    /// 为指定集合创建索引。
+    /// </summary>
+    /// <remarks>
+    /// Creates indexes for the specified collection.
+    /// </remarks>
+    /// <typeparam name="T">文档类型 / Document type</typeparam>
+    /// <param name="collection">MongoDB集合 / MongoDB collection</param>
     private void CreateIndexes<T>(IMongoCollection<T> collection)
     {
         var entityType = typeof(T);
@@ -132,27 +157,57 @@ public sealed partial class MongoDbService
         }
     }
 
+    /// <summary>
+    /// MongoDB索引模型。
+    /// </summary>
+    /// <remarks>
+    /// MongoDB index model.
+    /// </remarks>
     private sealed class MongoIndexModel
     {
+        /// <summary>
+        /// 初始化 MongoIndexModel 的新实例。
+        /// </summary>
+        /// <remarks>
+        /// Initializes a new instance of MongoIndexModel.
+        /// </remarks>
+        /// <param name="unique">是否为唯一索引 / Whether the index is unique</param>
+        /// <param name="name">索引名称 / Index name</param>
         internal MongoIndexModel(bool unique, string name)
         {
             Unique = unique;
             Name = name;
         }
 
+        /// <summary>
+        /// 获取或设置索引名称。
+        /// </summary>
+        /// <remarks>
+        /// Gets or sets the index name.
+        /// </remarks>
         public string Name { get; set; }
+
+        /// <summary>
+        /// 获取或设置是否为唯一索引。
+        /// </summary>
+        /// <remarks>
+        /// Gets or sets whether the index is unique.
+        /// </remarks>
         public bool Unique { get; set; }
     }
 
     #region 索引
 
     /// <summary>
-    /// 创建索引
+    /// 创建索引。
     /// </summary>
-    /// <param name="collectionName">集合名</param>
-    /// <param name="index">索引键</param>
-    /// <param name="asc"></param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Creates an index.
+    /// </remarks>
+    /// <param name="collectionName">集合名称 / Collection name</param>
+    /// <param name="index">索引键 / Index key</param>
+    /// <param name="asc">是否升序，默认为 true / Whether ascending, defaults to true</param>
+    /// <returns>创建的索引名称，如果索引已存在则返回空字符串 / The created index name, or empty string if index already exists</returns>
     public string CreateIndex(string collectionName, string index, bool asc = true)
     {
         var mgr = GetCollection(collectionName).Indexes;
@@ -169,12 +224,15 @@ public sealed partial class MongoDbService
     }
 
     /// <summary>
-    /// 创建索引
+    /// 异步创建索引。
     /// </summary>
-    /// <param name="collectionName">集合名</param>
-    /// <param name="index">索引键</param>
-    /// <param name="asc"></param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Asynchronously creates an index.
+    /// </remarks>
+    /// <param name="collectionName">集合名称 / Collection name</param>
+    /// <param name="index">索引键 / Index key</param>
+    /// <param name="asc">是否升序，默认为 true / Whether ascending, defaults to true</param>
+    /// <returns>创建的索引名称，如果索引已存在则返回空字符串 / The created index name, or empty string if index already exists</returns>
     public async Task<string> CreateIndexAsync(string collectionName, string index, bool asc = true)
     {
         var mgr = GetCollection(collectionName).Indexes;
@@ -191,12 +249,15 @@ public sealed partial class MongoDbService
     }
 
     /// <summary>
-    /// 更新索引
+    /// 更新索引。
     /// </summary>
-    /// <param name="collectionName">集合名</param>
-    /// <param name="index">索引键</param>
-    /// <param name="asc"></param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Updates an index.
+    /// </remarks>
+    /// <param name="collectionName">集合名称 / Collection name</param>
+    /// <param name="index">索引键 / Index key</param>
+    /// <param name="asc">是否升序，默认为 true / Whether ascending, defaults to true</param>
+    /// <returns>创建的索引名称 / The created index name</returns>
     public string UpdateIndex(string collectionName, string index, bool asc = true)
     {
         var mgr = GetCollection(collectionName).Indexes;
@@ -204,12 +265,15 @@ public sealed partial class MongoDbService
     }
 
     /// <summary>
-    /// 更新索引
+    /// 异步更新索引。
     /// </summary>
-    /// <param name="collectionName">集合名</param>
-    /// <param name="index">索引键</param>
-    /// <param name="asc"></param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Asynchronously updates an index.
+    /// </remarks>
+    /// <param name="collectionName">集合名称 / Collection name</param>
+    /// <param name="index">索引键 / Index key</param>
+    /// <param name="asc">是否升序，默认为 true / Whether ascending, defaults to true</param>
+    /// <returns>创建的索引名称 / The created index name</returns>
     public async Task<string> UpdateIndexAsync(string collectionName, string index, bool asc = true)
     {
         var mgr = GetCollection(collectionName).Indexes;
@@ -217,34 +281,43 @@ public sealed partial class MongoDbService
     }
 
     /// <summary>
-    /// 删除索引
+    /// 删除索引。
     /// </summary>
-    /// <param name="collectionName">集合名</param>
-    /// <param name="index">索引键</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Drops an index.
+    /// </remarks>
+    /// <param name="collectionName">集合名称 / Collection name</param>
+    /// <param name="index">索引名称 / Index name</param>
     public void DropIndex(string collectionName, string index)
     {
         GetCollection(collectionName).Indexes.DropOne(index);
     }
 
     /// <summary>
-    /// 删除索引
+    /// 异步删除索引。
     /// </summary>
-    /// <param name="collectionName">集合名</param>
-    /// <param name="index">索引键</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Asynchronously drops an index.
+    /// </remarks>
+    /// <param name="collectionName">集合名称 / Collection name</param>
+    /// <param name="index">索引名称 / Index name</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public Task DropIndexAsync(string collectionName, string index)
     {
         return GetCollection(collectionName).Indexes.DropOneAsync(index);
     }
 
     /// <summary>
-    /// 创建索引
+    /// 创建泛型索引。
     /// </summary>
-    /// <param name="index">索引键</param>
-    /// <param name="key"></param>
-    /// <param name="asc"></param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Creates a generic index.
+    /// </remarks>
+    /// <typeparam name="TState">文档类型，必须实现 ICacheState 接口 / Document type, must implement ICacheState interface</typeparam>
+    /// <param name="index">索引名称 / Index name</param>
+    /// <param name="key">索引键表达式 / Index key expression</param>
+    /// <param name="asc">是否升序，默认为 true / Whether ascending, defaults to true</param>
+    /// <returns>创建的索引名称，如果索引已存在则返回空字符串 / The created index name, or empty string if index already exists</returns>
     public string CreateIndex<TState>(string index, Expression<Func<TState, object>> key, bool asc = true) where TState : class, ICacheState, new()
     {
         var mgr = GetCollection<TState>().Indexes;
@@ -261,12 +334,16 @@ public sealed partial class MongoDbService
     }
 
     /// <summary>
-    /// 创建索引
+    /// 异步创建泛型索引。
     /// </summary>
-    /// <param name="index">索引键</param>
-    /// <param name="key"></param>
-    /// <param name="asc"></param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Asynchronously creates a generic index.
+    /// </remarks>
+    /// <typeparam name="TState">文档类型，必须实现 ICacheState 接口 / Document type, must implement ICacheState interface</typeparam>
+    /// <param name="index">索引名称 / Index name</param>
+    /// <param name="key">索引键表达式 / Index key expression</param>
+    /// <param name="asc">是否升序，默认为 true / Whether ascending, defaults to true</param>
+    /// <returns>创建的索引名称，如果索引已存在则返回空字符串 / The created index name, or empty string if index already exists</returns>
     public async Task<string> CreateIndexAsync<TState>(string index, Expression<Func<TState, object>> key, bool asc = true) where TState : class, ICacheState, new()
     {
         var mgr = GetCollection<TState>().Indexes;
@@ -283,11 +360,15 @@ public sealed partial class MongoDbService
     }
 
     /// <summary>
-    /// 更新索引
+    /// 更新泛型索引。
     /// </summary>
-    /// <param name="key"></param>
-    /// <param name="asc"></param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Updates a generic index.
+    /// </remarks>
+    /// <typeparam name="TState">文档类型，必须实现 ICacheState 接口 / Document type, must implement ICacheState interface</typeparam>
+    /// <param name="key">索引键表达式 / Index key expression</param>
+    /// <param name="asc">是否升序，默认为 true / Whether ascending, defaults to true</param>
+    /// <returns>创建的索引名称 / The created index name</returns>
     public string UpdateIndex<TState>(Expression<Func<TState, object>> key, bool asc = true) where TState : class, ICacheState, new()
     {
         var mgr = GetCollection<TState>().Indexes;
@@ -295,11 +376,15 @@ public sealed partial class MongoDbService
     }
 
     /// <summary>
-    /// 更新索引
+    /// 异步更新泛型索引。
     /// </summary>
-    /// <param name="key"></param>
-    /// <param name="asc"></param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Asynchronously updates a generic index.
+    /// </remarks>
+    /// <typeparam name="TState">文档类型，必须实现 ICacheState 接口 / Document type, must implement ICacheState interface</typeparam>
+    /// <param name="key">索引键表达式 / Index key expression</param>
+    /// <param name="asc">是否升序，默认为 true / Whether ascending, defaults to true</param>
+    /// <returns>创建的索引名称 / The created index name</returns>
     public async Task<string> UpdateIndexAsync<TState>(Expression<Func<TState, object>> key, bool asc = true) where TState : class, ICacheState, new()
     {
         var mgr = GetCollection<TState>().Indexes;

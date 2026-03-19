@@ -45,23 +45,39 @@ namespace GameFrameX.DataBase.Mongo;
 /// </see>
 /// 接口。
 /// </summary>
+/// <remarks>
+/// MongoDB service connection class that implements the
+/// <see>
+///     <cref>IDatabaseService</cref>
+/// </see>
+/// interface.
+/// </remarks>
 public sealed partial class MongoDbService : IDatabaseService
 {
     /// <summary>
     /// 获取或设置当前使用的MongoDB数据库。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the currently used MongoDB database.
+    /// </remarks>
     public IMongoDatabase CurrentDatabase { get; private set; }
 
     /// <summary>
     /// 获取或设置当前使用的MongoDB数据库配置选项。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the currently used MongoDB database configuration options.
+    /// </remarks>
     public DbOptions Options{ get; private set; }
     private MongoDbContext _mongoDbContext;
 
     /// <summary>
     /// 确保数据库服务已初始化。
     /// </summary>
-    /// <exception cref="InvalidOperationException">当服务未初始化时抛出。</exception>
+    /// <remarks>
+    /// Ensures that the database service has been initialized.
+    /// </remarks>
+    /// <exception cref="InvalidOperationException">当服务未初始化时抛出 / Thrown when the service is not initialized</exception>
     private void EnsureInitialized()
     {
         if (_mongoDbContext == null)
@@ -71,10 +87,13 @@ public sealed partial class MongoDbService : IDatabaseService
     }
 
     /// <summary>
-    /// 链接数据库
+    /// 连接数据库。
     /// </summary>
-    /// <param name="dbOptions">数据库配置选项</param>
-    /// <returns>返回数据库是否初始化成功</returns>
+    /// <remarks>
+    /// Connects to the database.
+    /// </remarks>
+    /// <param name="dbOptions">数据库配置选项 / Database configuration options</param>
+    /// <returns>返回数据库是否初始化成功 / Returns whether the database was initialized successfully</returns>
     public async Task<bool> Open(DbOptions dbOptions)
     {
         ArgumentNullException.ThrowIfNull(dbOptions, nameof(dbOptions));
@@ -105,6 +124,9 @@ public sealed partial class MongoDbService : IDatabaseService
     /// <summary>
     /// 关闭MongoDB连接。
     /// </summary>
+    /// <remarks>
+    /// Closes the MongoDB connection.
+    /// </remarks>
     public Task Close()
     {
         _mongoDbContext?.Database().Client?.Dispose();
@@ -114,9 +136,12 @@ public sealed partial class MongoDbService : IDatabaseService
     /// <summary>
     /// 获取指定类型的MongoDB集合。
     /// </summary>
-    /// <typeparam name="TState">文档的类型。</typeparam>
-    /// <param name="settings">集合的设置。</param>
-    /// <returns>指定类型的MongoDB集合。</returns>
+    /// <remarks>
+    /// Gets the MongoDB collection of the specified type.
+    /// </remarks>
+    /// <typeparam name="TState">文档的类型 / The type of the document</typeparam>
+    /// <param name="settings">集合的设置 / Collection settings</param>
+    /// <returns>指定类型的MongoDB集合 / MongoDB collection of the specified type</returns>
     private IMongoCollection<TState> GetCollection<TState>(MongoCollectionSettings settings = null) where TState : class, ICacheState, new()
     {
         var collectionName = typeof(TState).Name;
@@ -126,11 +151,14 @@ public sealed partial class MongoDbService : IDatabaseService
     }
 
     /// <summary>
-    /// 获取指定类型的MongoDB集合。
+    /// 获取指定名称的MongoDB集合。
     /// </summary>
-    /// <param name="collectionName">集合名称。</param>
-    /// <param name="settings">集合的设置。</param>
-    /// <returns>指定类型的MongoDB集合。</returns>
+    /// <remarks>
+    /// Gets the MongoDB collection with the specified name.
+    /// </remarks>
+    /// <param name="collectionName">集合名称 / Collection name</param>
+    /// <param name="settings">集合的设置 / Collection settings</param>
+    /// <returns>指定名称的MongoDB集合 / MongoDB collection with the specified name</returns>
     private IMongoCollection<BsonDocument> GetCollection(string collectionName, MongoCollectionSettings settings = null)
     {
         var collection = CurrentDatabase.GetCollection<BsonDocument>(collectionName, settings);

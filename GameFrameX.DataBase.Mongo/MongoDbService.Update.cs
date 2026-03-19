@@ -40,14 +40,24 @@ namespace GameFrameX.DataBase.Mongo;
 /// </see>
 /// 接口。
 /// </summary>
+/// <remarks>
+/// MongoDB service connection class that implements the
+/// <see>
+///     <cref>IDatabaseService</cref>
+/// </see>
+/// interface.
+/// </remarks>
 public sealed partial class MongoDbService
 {
     /// <summary>
-    /// 保存数据
+    /// 保存数据。
     /// </summary>
-    /// <param name="state"></param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns></returns>
+    /// <remarks>
+    /// Saves data.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="state">要保存的数据对象 / Data object to save</param>
+    /// <returns>保存后的数据对象 / The saved data object</returns>
     public async Task<TState> UpdateAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
         EnsureInitialized();
@@ -67,10 +77,14 @@ public sealed partial class MongoDbService
     }
 
     /// <summary>
-    /// 保存多条数据
+    /// 保存多条数据。
     /// </summary>
-    /// <param name="stateList">数据列表对象</param>
-    /// <returns>返回更新成功的数量</returns>
+    /// <remarks>
+    /// Saves multiple data records.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="stateList">数据列表对象 / List of data objects</param>
+    /// <returns>返回更新成功的数量 / The number of successfully updated records</returns>
     public async Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList) where TState : BaseCacheState, new()
     {
         EnsureInitialized();

@@ -41,6 +41,13 @@ namespace GameFrameX.DataBase.Mongo;
 /// </see>
 /// 接口。
 /// </summary>
+/// <remarks>
+/// MongoDB service connection class that implements the
+/// <see>
+///     <cref>IDatabaseService</cref>
+/// </see>
+/// interface.
+/// </remarks>
 public sealed partial class MongoDbService
 {
     /// <summary>
@@ -50,14 +57,24 @@ public sealed partial class MongoDbService
     /// </see>
     /// 属性为 true 可以在文档不存在时插入新文档。
     /// </summary>
+    /// <remarks>
+    /// Replace options for replacing documents. Setting the
+    /// <see>
+    ///     <cref>IsUpsert</cref>
+    /// </see>
+    /// property to true enables inserting a new document if it doesn't exist.
+    /// </remarks>
     public static readonly ReplaceOptions ReplaceOptions = new ReplaceOptions { IsUpsert = true };
 
     /// <summary>
-    /// 增加或更新数据（使用 Upsert 优化，单次数据库操作）
+    /// 增加或更新数据（使用 Upsert 优化，单次数据库操作）。
     /// </summary>
-    /// <param name="state">数据对象</param>
-    /// <typeparam name="TState">数据类型</typeparam>
-    /// <returns>返回增加或更新后的数据对象</returns>
+    /// <remarks>
+    /// Adds or updates data (using Upsert optimization, single database operation).
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="state">数据对象 / Data object</param>
+    /// <returns>返回增加或更新后的数据对象 / The added or updated data object</returns>
     public async Task<TState> AddOrUpdateAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
         EnsureInitialized();

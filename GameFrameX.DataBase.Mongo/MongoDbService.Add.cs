@@ -44,6 +44,13 @@ namespace GameFrameX.DataBase.Mongo;
 /// </see>
 /// 接口。
 /// </summary>
+/// <remarks>
+/// MongoDB service connection class that implements the
+/// <see>
+///     <cref>IDatabaseService</cref>
+/// </see>
+/// interface.
+/// </remarks>
 public sealed partial class MongoDbService
 {
     /// <summary>
@@ -53,16 +60,26 @@ public sealed partial class MongoDbService
     /// </see>
     /// 属性为 false 可以并行执行写入操作。
     /// </summary>
+    /// <remarks>
+    /// Bulk write options for batch document writing. Setting the
+    /// <see>
+    ///     <cref>IsOrdered</cref>
+    /// </see>
+    /// property to false enables parallel write operations.
+    /// </remarks>
     public static readonly BulkWriteOptions BulkWriteOptions = new() { IsOrdered = false, };
 
     #region 插入
 
     /// <summary>
-    /// 增加一条数据
+    /// 增加一条数据。
     /// </summary>
-    /// <param name="state"></param>
-    /// <typeparam name="TState"></typeparam>
-    /// <returns>返回修改的条数</returns>
+    /// <remarks>
+    /// Adds a single data record.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="state">要添加的数据对象 / Data object to add</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public async Task AddAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
         EnsureInitialized();
@@ -72,10 +89,14 @@ public sealed partial class MongoDbService
     }
 
     /// <summary>
-    /// 增加一个列表数据
+    /// 增加一个列表数据。
     /// </summary>
-    /// <param name="states"></param>
-    /// <typeparam name="TState"></typeparam>
+    /// <remarks>
+    /// Adds a list of data records.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="states">要添加的数据列表 / List of data objects to add</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public async Task AddListAsync<TState>(IEnumerable<TState> states) where TState : BaseCacheState, new()
     {
         EnsureInitialized();

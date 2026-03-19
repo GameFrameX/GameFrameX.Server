@@ -34,8 +34,21 @@ using MongoDB.Entities;
 
 namespace GameFrameX.DataBase.Mongo;
 
+/// <summary>
+/// MongoDB 数据库上下文。
+/// </summary>
+/// <remarks>
+/// MongoDB database context.
+/// </remarks>
 internal sealed class MongoDbContext : DB
 {
+    /// <summary>
+    /// 初始化 MongoDB 数据库上下文的新实例。
+    /// </summary>
+    /// <remarks>
+    /// Initializes a new instance of the MongoDB database context.
+    /// </remarks>
+    /// <param name="dbName">数据库名称 / Database name</param>
     public MongoDbContext(string dbName) : base(Instance(dbName))
     {
         SetGlobalFilterForBaseClass<BaseCacheState>(m => m.IsDeleted == null || m.IsDeleted == false);
