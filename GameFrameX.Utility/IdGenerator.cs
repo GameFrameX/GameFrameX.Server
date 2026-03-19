@@ -34,27 +34,43 @@ using GameFrameX.Foundation.Utility.DistributedSystem.Snowflake;
 namespace GameFrameX.Utility;
 
 /// <summary>
-/// ID生成器，提供多种生成唯一标识符的方法，包括整数ID、长整数ID和字符串ID
+/// ID生成器，提供多种生成唯一标识符的方法，包括整数ID、长整数ID和字符串ID。
 /// </summary>
+/// <remarks>
+/// ID generator that provides multiple methods for generating unique identifiers,
+/// including integer IDs, long integer IDs, and string IDs.
+/// </remarks>
 public static class IdGenerator
 {
     /// <summary>
-    /// 全局UTC起始时间，用作计数器的基准时间点
-    /// 设置为2020年1月1日0时0分0秒(UTC)
+    /// 全局UTC起始时间，用作计数器的基准时间点。
+    /// 设置为2020年1月1日0时0分0秒(UTC)。
     /// </summary>
+    /// <remarks>
+    /// Global UTC start time used as the baseline for the counter.
+    /// Set to January 1, 2020, 00:00:00 (UTC).
+    /// </remarks>
     public static readonly DateTime UtcTimeStart = new(2020, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
     /// <summary>
-    /// 共享计数器，初始值为当前UTC时间与起始时间的秒数差值
-    /// 用于生成递增的整数ID
+    /// 共享计数器，初始值为当前UTC时间与起始时间的秒数差值。
+    /// 用于生成递增的整数ID。
     /// </summary>
+    /// <remarks>
+    /// Shared counter with initial value set to the seconds difference between
+    /// current UTC time and the start time. Used for generating incremental integer IDs.
+    /// </remarks>
     private static int _intCounter = (int)(DateTime.UtcNow - UtcTimeStart).TotalSeconds;
 
     /// <summary>
-    /// 使用Interlocked.Increment生成唯一的整数ID
-    /// 通过原子操作确保线程安全
+    /// 使用Interlocked.Increment生成唯一的整数ID。
+    /// 通过原子操作确保线程安全。
     /// </summary>
-    /// <returns>返回下一个唯一的整数ID，保证递增且不重复</returns>
+    /// <remarks>
+    /// Generates a unique integer ID using Interlocked.Increment.
+    /// Ensures thread safety through atomic operations.
+    /// </remarks>
+    /// <returns>返回下一个唯一的整数ID，保证递增且不重复 / The next unique integer ID, guaranteed to be incremental and unique</returns>
     public static int GetNextUniqueIntId()
     {
         // 原子性地递增值，确保线程安全
@@ -62,9 +78,12 @@ public static class IdGenerator
     }
 
     /// <summary>
-    /// 使用雪花算法生成唯一的长整数ID
+    /// 使用雪花算法生成唯一的长整数ID。
     /// </summary>
-    /// <returns>返回下一个唯一的长整数ID，保证全局唯一性</returns>
+    /// <remarks>
+    /// Generates a unique long integer ID using the Snowflake algorithm.
+    /// </remarks>
+    /// <returns>返回下一个唯一的长整数ID，保证全局唯一性 / The next unique long integer ID, guaranteed to be globally unique</returns>
     public static long GetNextUniqueId()
     {
         // 使用雪花算法生成ID
@@ -72,10 +91,14 @@ public static class IdGenerator
     }
 
     /// <summary>
-    /// 生成一个全局唯一的GUID字符串
-    /// 移除了GUID中的连字符，返回32位的十六进制字符串
+    /// 生成一个全局唯一的GUID字符串。
+    /// 移除了GUID中的连字符，返回32位的十六进制字符串。
     /// </summary>
-    /// <returns>返回一个32位的十六进制字符串格式的GUID，不包含连字符</returns>
+    /// <remarks>
+    /// Generates a globally unique GUID string.
+    /// Removes hyphens from the GUID and returns a 32-character hexadecimal string.
+    /// </remarks>
+    /// <returns>返回一个32位的十六进制字符串格式的GUID，不包含连字符 / A 32-character hexadecimal string GUID without hyphens</returns>
     public static string GetUniqueIdString()
     {
         return Guid.NewGuid().ToString("N");

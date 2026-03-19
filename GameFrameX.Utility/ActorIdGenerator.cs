@@ -35,14 +35,15 @@ using GameFrameX.Utility.Setting;
 namespace GameFrameX.Utility;
 
 /// <summary>
-/// ActorId 生成器
-/// 14   +   7  + 30 +  12   = 63
-/// 服务器id 类型 时间戳 自增
-/// 玩家
-/// 公会
-/// 服务器id * 100000 + 全局功能id
-/// 全局玩法
+/// ActorId 生成器。
+/// ID结构：14位(服务器ID) + 7位(类型) + 30位(时间戳) + 12位(自增) = 63位。
 /// </summary>
+/// <remarks>
+/// ActorId Generator.
+/// ID structure: 14 bits (Server ID) + 7 bits (Type) + 30 bits (Timestamp) + 12 bits (Auto-increment) = 63 bits.
+/// Supports player actors, guild actors, and global actors.
+/// Global actors use format: serverId * 100000 + globalFunctionId.
+/// </remarks>
 public static class ActorIdGenerator
 {
     private static long _genSecond;
@@ -52,10 +53,14 @@ public static class ActorIdGenerator
     private static readonly object LockObj = new();
 
     /// <summary>
-    /// 根据ActorId获取服务器id
+    /// 根据ActorId获取服务器ID。
     /// </summary>
-    /// <param name="actorId">ActorId</param>
-    /// <returns>服务器id</returns>
+    /// <remarks>
+    /// Gets the server ID from the ActorId.
+    /// </remarks>
+    /// <param name="actorId">ActorId / The Actor identifier</param>
+    /// <returns>服务器ID / The server ID</returns>
+    /// <exception cref="ArgumentOutOfRangeException">当 actorId 小于最小服务器ID时抛出 / Thrown when actorId is less than minimum server ID</exception>
     public static int GetServerId(long actorId)
     {
         if (actorId < GlobalConst.MinServerId)
@@ -72,11 +77,14 @@ public static class ActorIdGenerator
     }
 
     /// <summary>
-    /// 根据ActorId获取ActorType
+    /// 根据ActorId获取ActorType。
     /// </summary>
-    /// <param name="actorId"></param>
-    /// <returns></returns>
-    /// <exception cref="ArgumentException"></exception>
+    /// <remarks>
+    /// Gets the actor type from the ActorId.
+    /// </remarks>
+    /// <param name="actorId">ActorId / The Actor identifier</param>
+    /// <returns>Actor类型 / The actor type</returns>
+    /// <exception cref="ArgumentOutOfRangeException">当 actorId 无效时抛出 / Thrown when actorId is invalid</exception>
     public static ushort GetActorType(long actorId)
     {
         if (actorId < GlobalConst.MinServerId)
@@ -95,12 +103,15 @@ public static class ActorIdGenerator
 
 
     /// <summary>
-    /// 根据ActorType获取ActorId
+    /// 根据ActorType获取ActorId。
     /// </summary>
-    /// <param name="type"></param>
-    /// <param name="serverId"></param>
-    /// <returns></returns>
-    /// <exception cref="ArgumentException"></exception>
+    /// <remarks>
+    /// Gets the ActorId based on the actor type and server ID.
+    /// </remarks>
+    /// <param name="type">Actor类型 / The actor type</param>
+    /// <param name="serverId">服务器ID，默认为0时使用当前服务器ID / The server ID, defaults to 0 which uses current server ID</param>
+    /// <returns>生成的ActorId / The generated ActorId</returns>
+    /// <exception cref="ArgumentException">当类型或服务器ID无效时抛出 / Thrown when type or serverId is invalid</exception>
     public static long GetActorId(ushort type, int serverId = 0)
     {
         if (type == GlobalConst.ActorTypeSeparator)
@@ -127,11 +138,15 @@ public static class ActorIdGenerator
     }
 
     /// <summary>
-    /// 根据ActorType类型和服务器id获取ActorId
+    /// 根据ActorType类型和服务器ID获取全局ActorId。
     /// </summary>
-    /// <param name="actorType"></param>
-    /// <param name="serverId">服务器ID</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Gets the global ActorId based on actor type and server ID.
+    /// Uses format: serverId * 1000 + actorType.
+    /// </remarks>
+    /// <param name="actorType">Actor类型 / The actor type</param>
+    /// <param name="serverId">服务器ID / The server ID</param>
+    /// <returns>生成的全局ActorId / The generated global ActorId</returns>
     private static long GetGlobalActorId(ushort actorType, int serverId)
     {
         if (serverId <= 0)
@@ -176,20 +191,28 @@ public static class ActorIdGenerator
     }
 
     /// <summary>
-    /// 根据模块获取唯一ID
+    /// 根据模块获取唯一ID。
     /// </summary>
-    /// <param name="module">默认最大值.</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Gets a unique ID based on the module.
+    /// </remarks>
+    /// <param name="module">模块ID，默认为最大值 / The module ID, defaults to maximum value</param>
+    /// <returns>生成的唯一ID / The generated unique ID</returns>
     public static long GetUniqueId(ushort module = GlobalConst.IdModuleMax)
     {
         return GetUniqueIdByModule(module);
     }
 
     /// <summary>
-    /// 根据模块获取唯一ID
+    /// 根据模块获取唯一ID。
     /// </summary>
-    /// <param name="module">默认最大值. 最大值不能超过999</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Gets a unique ID based on the module. Maximum module value is 999.
+    /// ID structure: 14 bits (module) + 30 bits (timestamp) + 19 bits (auto-increment).
+    /// </remarks>
+    /// <param name="module">模块ID，默认为999，最大值不能超过999 / The module ID, defaults to 999, maximum is 999</param>
+    /// <returns>生成的唯一ID / The generated unique ID</returns>
+    /// <exception cref="ArgumentOutOfRangeException">当模块值超过999时抛出 / Thrown when module exceeds 999</exception>
     public static long GetUniqueIdByModule(ushort module = 999)
     {
         if (module > 999)

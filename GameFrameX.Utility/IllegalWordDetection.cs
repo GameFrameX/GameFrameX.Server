@@ -38,52 +38,83 @@ using GameFrameX.Foundation.Localization.Core;
 namespace GameFrameX.Utility;
 
 /// <summary>
-/// 此算法思想来源于“http://www.cnblogs.com/sumtec/archive/2008/02/01/1061742.html”,经测试，检测"屄defg东正教dsa SofU  ckd臺灣青年獨"这个字符串并替换掉敏感词平均花费2.7ms
+/// 敏感词检测类，用于检测和过滤文本中的敏感词汇。
+/// 此算法思想来源于”http://www.cnblogs.com/sumtec/archive/2008/02/01/1061742.html”。
 /// </summary>
+/// <remarks>
+/// Sensitive word detection class for detecting and filtering sensitive words in text.
+/// The algorithm idea comes from “http://www.cnblogs.com/sumtec/archive/2008/02/01/1061742.html”.
+/// Performance: Average 2.7ms to detect and replace sensitive words in the test string.
+/// </remarks>
 public sealed class IllegalWordDetection
 {
     /// <summary>
-    /// 存了所有的长度大于1的敏感词汇
+    /// 存储所有长度大于1的敏感词汇。
     /// </summary>
+    /// <remarks>
+    /// Stores all sensitive words with length greater than 1.
+    /// </remarks>
     private static readonly HashSet<string> WordsSet = new();
 
     /// <summary>
-    /// 存了某一个词在所有敏感词中的位置，（超出8个的截断为第8个位置）
+    /// 存储某一个词在所有敏感词中的位置（超出8个的截断为第8个位置）。
     /// </summary>
+    /// <remarks>
+    /// Stores the position of a character in all sensitive words (truncated to position 8 if exceeds).
+    /// </remarks>
     private static readonly byte[] FastCheck = new byte[char.MaxValue];
 
     /// <summary>
-    /// 存了所有敏感词的长度信息，“Key”值为所有敏感词的第一个词，敏感词的长度会截断为8
+    /// 存储所有敏感词的长度信息，”Key”值为所有敏感词的第一个词，敏感词的长度会截断为8。
     /// </summary>
+    /// <remarks>
+    /// Stores length information of all sensitive words. The “Key” is the first character of each sensitive word, length is truncated to 8.
+    /// </remarks>
     private static readonly byte[] FastLength = new byte[char.MaxValue];
 
     /// <summary>
-    /// 保有所有敏感词汇的第一个词的记录，可用来判断是否一个词是一个或者多个敏感词汇的“第一个词”，且可判断以某一个词作为第一个词的一系列的敏感词的最大的长度
+    /// 保存所有敏感词汇的第一个词的记录，可用来判断是否一个词是一个或多个敏感词汇的”第一个词”，
+    /// 且可判断以某一个词作为第一个词的一系列敏感词的最大长度。
     /// </summary>
+    /// <remarks>
+    /// Records the first character of all sensitive words. Used to determine if a character is
+    /// the “first word” of one or more sensitive words, and to determine the maximum length
+    /// of sensitive words starting with a specific character.
+    /// </remarks>
     private static readonly byte[] StartCache = new byte[char.MaxValue];
 
     [ThreadStatic]
     private static char[] _dectectedBuffer;
 
     /// <summary>
-    /// 忽略的敏感词
+    /// 忽略的敏感词字符列表，这些字符在检测时会被跳过。
     /// </summary>
+    /// <remarks>
+    /// List of characters to be ignored during sensitive word detection.
+    /// </remarks>
     private static readonly string SkipList =
         " \t\r\n~!@#$%^&*()_+-=【】、{}|;':\"，。、《》？αβγδεζηθικλμνξοπρστυφχψωΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ。，、；：？！…—·ˉ¨‘’“”々～‖∶＂＇｀｜〃〔〕〈〉《》「」『』．〖〗【】（）［］｛｝ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ⒈⒉⒊⒋⒌⒍⒎⒏⒐⒑⒒⒓⒔⒕⒖⒗⒘⒙⒚⒛㈠㈡㈢㈣㈤㈥㈦㈧㈨㈩①②③④⑤⑥⑦⑧⑨⑩⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇≈≡≠＝≤≥＜＞≮≯∷±＋－×÷／∫∮∝∞∧∨∑∏∪∩∈∵∴⊥∥∠⌒⊙≌∽√§№☆★○●◎◇◆□℃‰€■△▲※→←↑↓〓¤°＃＆＠＼︿＿￣―♂♀┌┍┎┐┑┒┓─┄┈├┝┞┟┠┡┢┣│┆┊┬┭┮┯┰┱┲┳┼┽┾┿╀╁╂╃└┕┖┗┘┙┚┛━┅┉┤┥┦┧┨┩┪┫┃┇┋┴┵┶┷┸┹┺┻╋╊╉╈╇╆╅╄";
 
     private static readonly BitArray SkipBitArray = new(char.MaxValue);
 
     /// <summary>
-    /// 保有所有敏感词汇的最后一个词的记录，仅用来判断是否一个词是一个或者多个敏感词汇的“最后一个词”
+    /// 保存所有敏感词汇的最后一个词的记录，仅用来判断是否一个词是一个或多个敏感词汇的”最后一个词”。
     /// </summary>
+    /// <remarks>
+    /// Records the last character of all sensitive words. Used only to determine if a character
+    /// is the “last word” of one or more sensitive words.
+    /// </remarks>
     private static readonly BitArray EndCache = new(char.MaxValue);
 
     /// <summary>
-    /// 通过配置表初始化
+    /// 通过配置表数据初始化敏感词检测器。
     /// </summary>
-    /// <param name="badData">配置表数据</param>
-    /// <param name="badIdx">字段idx，字段类型必须是string（从0开始）</param>
-    /// <param name="backThread">是否新开线程执行</param>
+    /// <remarks>
+    /// Initializes the sensitive word detector with configuration table data.
+    /// </remarks>
+    /// <param name="badData">配置表数据 / Configuration table data</param>
+    /// <param name="badIdx">字段索引，字段类型必须是string（从0开始） / Field index, field type must be string (starting from 0)</param>
+    /// <param name="backThread">是否在新线程中执行 / Whether to execute in a background thread</param>
     public static void Init(byte[] badData, int badIdx = 1, bool backThread = true)
     {
         if (backThread)
@@ -114,10 +145,13 @@ public sealed class IllegalWordDetection
     }
 
     /// <summary>
-    /// 初始化敏感词
+    /// 初始化敏感词检测器。
     /// </summary>
-    /// <param name="badWords">敏感词列表</param>
-    /// <param name="backThread">是否新开线程执行</param>
+    /// <remarks>
+    /// Initializes the sensitive word detector with a list of sensitive words.
+    /// </remarks>
+    /// <param name="badWords">敏感词列表 / List of sensitive words</param>
+    /// <param name="backThread">是否在新线程中执行 / Whether to execute in a background thread</param>
     public static void Init(string[] badWords, bool backThread = true)
     {
         if (backThread)
@@ -390,11 +424,14 @@ public sealed class IllegalWordDetection
     }
 
     /// <summary>
-    /// 过滤字符串,默认遇到敏感词汇就以'*'代替
+    /// 过滤字符串，默认遇到敏感词汇就以'*'代替。
     /// </summary>
-    /// <param name="text">要查询的明感词文本</param>
-    /// <param name="mask">替换目标字符</param>
-    /// <returns>返回过滤后的文本</returns>
+    /// <remarks>
+    /// Filters the string, replacing sensitive words with the specified mask character (default '*').
+    /// </remarks>
+    /// <param name="text">要过滤的文本 / The text to filter</param>
+    /// <param name="mask">替换目标字符 / The character to replace sensitive words with</param>
+    /// <returns>返回过滤后的文本 / The filtered text</returns>
     public static string Filter(string text, char mask = '*')
     {
         DetectIllegalWords(text, false, out var dic);
@@ -493,22 +530,29 @@ public sealed class IllegalWordDetection
     //}
 
     /// <summary>
-    /// 判断text是否有敏感词汇
+    /// 判断文本是否包含敏感词汇。
     /// </summary>
-    /// <param name="text"></param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Determines whether the text contains any sensitive words.
+    /// </remarks>
+    /// <param name="text">要检查的文本 / The text to check</param>
+    /// <returns>如果包含敏感词汇返回 true，否则返回 false / True if the text contains sensitive words, false otherwise</returns>
     public static bool HasBlockWords(string text)
     {
         return DetectIllegalWords(text, true, out var dic);
     }
 
     /// <summary>
-    /// 判断text是否有敏感词汇,如果有返回敏感的词汇的位置,利用指针操作来加快运算速度
+    /// 判断文本是否有敏感词汇，如果有则返回敏感词汇的位置。利用指针操作来加快运算速度。
     /// </summary>
-    /// <param name="text">敏感词查询文本</param>
-    /// <param name="returnWhenFindFirst">是否返回找到的第一个</param>
-    /// <param name="findResult">查找到的敏感词结果</param>
-    /// <returns>是否有敏感词汇</returns>
+    /// <remarks>
+    /// Determines whether the text contains sensitive words and returns their positions.
+    /// Uses pointer operations for faster processing.
+    /// </remarks>
+    /// <param name="text">敏感词查询文本 / The text to check for sensitive words</param>
+    /// <param name="returnWhenFindFirst">是否找到第一个就返回 / Whether to return when the first match is found</param>
+    /// <param name="findResult">查找到的敏感词结果（键为起始位置，值为长度） / The found sensitive words (key is start position, value is length)</param>
+    /// <returns>是否有敏感词汇 / Whether the text contains sensitive words</returns>
     public static unsafe bool DetectIllegalWords(string text, bool returnWhenFindFirst, out Dictionary<int, int> findResult)
     {
         findResult = new Dictionary<int, int>();

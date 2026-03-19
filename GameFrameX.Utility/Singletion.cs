@@ -32,17 +32,24 @@
 namespace GameFrameX.Utility;
 
 /// <summary>
-/// 单例类
+/// 单例类。
 /// </summary>
-/// <typeparam name="T"></typeparam>
+/// <remarks>
+/// Singleton class that provides thread-safe lazy initialization.
+/// </remarks>
+/// <typeparam name="T">派生类型，必须继承自 Singleton{T} 并具有无参构造函数 / The derived type, must inherit from Singleton{T} and have a parameterless constructor</typeparam>
 public abstract class Singleton<T> where T : Singleton<T>, new()
 {
     private static T _instance;
     private static readonly object LockObject = new();
 
     /// <summary>
-    /// 单例对象
+    /// 获取单例实例。
     /// </summary>
+    /// <remarks>
+    /// Gets the singleton instance. Uses double-checked locking pattern for thread safety.
+    /// </remarks>
+    /// <value>单例实例 / The singleton instance</value>
     public static T Instance
     {
         get
