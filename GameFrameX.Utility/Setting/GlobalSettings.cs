@@ -40,38 +40,54 @@ namespace GameFrameX.Utility.Setting;
 /// <summary>
 /// 全局设置
 /// </summary>
+/// <remarks>
+/// Global settings class that manages application configuration.
+/// </remarks>
 public static class GlobalSettings
 {
     /// <summary>
     /// 存储应用设置的列表
     /// </summary>
+    /// <remarks>
+    /// List storing application settings.
+    /// </remarks>
     private static readonly List<AppSetting> Settings = new(16);
 
     /// <summary>
     /// 获取当前应用程序设置
     /// </summary>
     /// <remarks>
-    /// 只能通过SetCurrentSetting方法设置，确保配置的安全性。
-    /// 存储当前正在使用的应用程序配置信息。
+    /// Gets the current application settings.
+    /// Can only be set through SetCurrentSetting method to ensure configuration security.
+    /// Stores the currently active application configuration information.
     /// </remarks>
     public static AppSetting CurrentSetting { get; private set; }
 
     /// <summary>
     /// 是否运行中
     /// </summary>
+    /// <remarks>
+    /// Gets or sets whether the application is running.
+    /// </remarks>
     public static bool IsAppRunning { get; set; }
 
     /// <summary>
     /// 启动时间
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the application launch time.
+    /// </remarks>
     public static DateTime LaunchTime { get; set; }
 
     /// <summary>
     /// 加载启动配置
     /// </summary>
-    /// <param name="path">配置文件路径</param>
-    /// <exception cref="InvalidOperationException">当配置文件解析失败时抛出</exception>
-    /// <exception cref="Exception">当服务器ID不在合法范围内时抛出</exception>
+    /// <remarks>
+    /// Loads startup configuration from the specified file path.
+    /// </remarks>
+    /// <param name="path">配置文件路径 / Configuration file path</param>
+    /// <exception cref="InvalidOperationException">当配置文件解析失败时抛出 / Thrown when configuration file parsing fails</exception>
+    /// <exception cref="Exception">当服务器ID不在合法范围内时抛出 / Thrown when server ID is not within valid range</exception>
     public static void Load(string path)
     {
         Settings.Clear();
@@ -101,16 +117,17 @@ public static class GlobalSettings
     /// <summary>
     /// 设置当前应用程序设置
     /// </summary>
-    /// <param name="setting">要设置的应用程序配置对象</param>
     /// <remarks>
-    /// 此方法用于更新全局的当前设置。
-    /// 通常在应用程序启动时或需要切换配置时调用。
-    /// 该方法具有以下特点:
-    /// 1. 只能设置一次，重复设置会抛出异常
-    /// 2. 不允许传入null值
-    /// 3. 会自动校正SaveDataInterval的值，如果小于5000毫秒则使用默认值
+    /// Sets the current application settings.
+    /// This method is used to update the global current settings.
+    /// Typically called during application startup or when switching configurations.
+    /// Features:
+    /// 1. Can only be set once; repeated settings will log a warning
+    /// 2. Null values are not allowed
+    /// 3. Automatically corrects SaveDataInterval if less than 5000ms
     /// </remarks>
-    /// <exception cref="ArgumentNullException">当传入的setting参数为null时抛出此异常</exception>
+    /// <param name="setting">要设置的应用程序配置对象 / Application configuration object to set</param>
+    /// <exception cref="ArgumentNullException">当传入的setting参数为null时抛出此异常 / Thrown when the setting parameter is null</exception>
     public static void SetCurrentSetting(AppSetting setting)
     {
         if (CurrentSetting.IsNotNull())
@@ -162,7 +179,10 @@ public static class GlobalSettings
     /// <summary>
     /// 获取所有设置
     /// </summary>
-    /// <returns>返回所有设置的列表</returns>
+    /// <remarks>
+    /// Gets all application settings.
+    /// </remarks>
+    /// <returns>返回所有设置的列表 / List of all settings</returns>
     public static List<AppSetting> GetSettings()
     {
         return Settings.ToList();
@@ -171,8 +191,11 @@ public static class GlobalSettings
     /// <summary>
     /// 根据服务器类型获取设置
     /// </summary>
-    /// <param name="serverType">服务器类型</param>
-    /// <returns>返回匹配的设置列表</returns>
+    /// <remarks>
+    /// Gets settings by server type.
+    /// </remarks>
+    /// <param name="serverType">服务器类型 / Server type</param>
+    /// <returns>返回匹配的设置列表 / List of matching settings</returns>
     public static List<AppSetting> GetSettings(string serverType)
     {
         var result = new List<AppSetting>();
@@ -190,10 +213,13 @@ public static class GlobalSettings
     /// <summary>
     /// 根据服务器名称获取特定类型的设置
     /// </summary>
-    /// <param name="serverName">服务器名称，用于匹配AppSetting中的ServerName属性</param>
-    /// <typeparam name="T">设置类型，用于类型安全检查，确保返回正确的设置类型</typeparam>
-    /// <returns>返回匹配的设置，如果没有找到则返回null。返回的设置可以被转换为类型T</returns>
-    /// <exception cref="ArgumentNullException">当serverName为null时抛出此异常</exception>
+    /// <remarks>
+    /// Gets settings by server name.
+    /// </remarks>
+    /// <param name="serverName">服务器名称，用于匹配AppSetting中的ServerName属性 / Server name to match against AppSetting's ServerName property</param>
+    /// <typeparam name="T">设置类型，用于类型安全检查，确保返回正确的设置类型 / Setting type for type safety, ensuring correct setting type is returned</typeparam>
+    /// <returns>返回匹配的设置，如果没有找到则返回null / The matching setting, or null if not found</returns>
+    /// <exception cref="ArgumentNullException">当serverName为null时抛出此异常 / Thrown when serverName is null</exception>
     public static AppSetting GetSettingByServerName<T>(string serverName)
     {
         ArgumentNullException.ThrowIfNull(serverName, nameof(serverName));
@@ -211,10 +237,13 @@ public static class GlobalSettings
     /// <summary>
     /// 根据服务器Id获取特定类型的设置
     /// </summary>
-    /// <param name="tagName">服务器Id，用于匹配AppSetting中的ServerId属性</param>
-    /// <typeparam name="T">设置类型，用于类型安全检查，确保返回正确的设置类型</typeparam>
-    /// <returns>返回匹配的设置，如果没有找到则返回null。返回的设置可以被转换为类型T</returns>
-    /// <remarks>此方法不会对传入的serverId进行有效性验证，请确保传入的值在有效范围内</remarks>
+    /// <remarks>
+    /// Gets settings by server ID.
+    /// This method does not validate the serverId; ensure the value is within valid range.
+    /// </remarks>
+    /// <param name="tagName">服务器Id，用于匹配AppSetting中的ServerId属性 / Server ID to match against AppSetting's ServerId property</param>
+    /// <typeparam name="T">设置类型，用于类型安全检查，确保返回正确的设置类型 / Setting type for type safety, ensuring correct setting type is returned</typeparam>
+    /// <returns>返回匹配的设置，如果没有找到则返回null / The matching setting, or null if not found</returns>
     public static AppSetting GetSettingByServerId<T>(int tagName)
     {
         foreach (var setting in Settings)
@@ -231,10 +260,13 @@ public static class GlobalSettings
     /// <summary>
     /// 根据服务器标签名称获取特定类型的设置
     /// </summary>
-    /// <param name="tagName">服务器标签名称，用于匹配AppSetting中的TagName属性</param>
-    /// <typeparam name="T">设置类型，用于类型安全检查，确保返回正确的设置类型</typeparam>
-    /// <returns>返回匹配的设置，如果没有找到则返回null。返回的设置可以被转换为类型T</returns>
-    /// <exception cref="ArgumentNullException">当tagName为null时抛出此异常</exception>
+    /// <remarks>
+    /// Gets settings by tag name.
+    /// </remarks>
+    /// <param name="tagName">服务器标签名称，用于匹配AppSetting中的TagName属性 / Tag name to match against AppSetting's TagName property</param>
+    /// <typeparam name="T">设置类型，用于类型安全检查，确保返回正确的设置类型 / Setting type for type safety, ensuring correct setting type is returned</typeparam>
+    /// <returns>返回匹配的设置，如果没有找到则返回null / The matching setting, or null if not found</returns>
+    /// <exception cref="ArgumentNullException">当tagName为null时抛出此异常 / Thrown when tagName is null</exception>
     public static AppSetting GetSettingByTagName<T>(string tagName)
     {
         ArgumentNullException.ThrowIfNull(tagName, nameof(tagName));
@@ -252,9 +284,12 @@ public static class GlobalSettings
     /// <summary>
     /// 根据服务器类型获取特定类型的设置
     /// </summary>
-    /// <param name="serverType">服务器类型</param>
-    /// <typeparam name="T">设置类型</typeparam>
-    /// <returns>返回匹配的设置，如果没有找到则返回null</returns>
+    /// <remarks>
+    /// Gets the first setting matching the specified server type.
+    /// </remarks>
+    /// <param name="serverType">服务器类型 / Server type</param>
+    /// <typeparam name="T">设置类型 / Setting type</typeparam>
+    /// <returns>返回匹配的设置，如果没有找到则返回null / The matching setting, or null if not found</returns>
     public static AppSetting GetSetting<T>(string serverType)
     {
         foreach (var setting in Settings)
