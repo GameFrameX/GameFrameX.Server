@@ -32,36 +32,48 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 消息ID工具类
+/// 消息ID工具类。
 /// </summary>
+/// <remarks>
+/// Message ID utility class for message ID operations.
+/// </remarks>
 public static class MessageIdUtility
 {
     /// <summary>
-    /// 获取主消息ID
+    /// 获取主消息ID。
     /// </summary>
-    /// <param name="messageId">消息码</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Gets the main message identifier from the combined message ID.
+    /// </remarks>
+    /// <param name="messageId">消息码 / Message code</param>
+    /// <returns>主消息ID / Main message identifier</returns>
     public static int GetMainId(int messageId)
     {
         return (messageId >> 16) & 0xFFFF;
     }
 
     /// <summary>
-    /// 获取子消息ID
+    /// 获取子消息ID。
     /// </summary>
-    /// <param name="messageId">消息码</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Gets the sub message identifier from the combined message ID.
+    /// </remarks>
+    /// <param name="messageId">消息码 / Message code</param>
+    /// <returns>子消息ID / Sub message identifier</returns>
     public static int GetSubId(int messageId)
     {
         return messageId & 0xFFFF;
     }
 
     /// <summary>
-    /// 获取消息ID
+    /// 获取消息ID。
     /// </summary>
-    /// <param name="mainId">主消息码</param>
-    /// <param name="subId">子消息码</param>
-    /// <returns>返回组合之后的完整消息码</returns>
+    /// <remarks>
+    /// Gets the combined message identifier from main and sub IDs.
+    /// </remarks>
+    /// <param name="mainId">主消息码 / Main message code</param>
+    /// <param name="subId">子消息码 / Sub message code</param>
+    /// <returns>返回组合之后的完整消息码 / The combined message code</returns>
     public static int GetMessageId(int mainId, int subId)
     {
         return (mainId << 16) + subId;

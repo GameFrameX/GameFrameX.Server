@@ -32,22 +32,37 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 消息指令信息
+/// 消息指令信息接口。
 /// </summary>
+/// <remarks>
+/// Message command information interface.
+/// </remarks>
 public interface ICommandInfo
 {
     /// <summary>
-    /// 合并后的消息ID
+    /// 获取合并后的消息ID。
     /// </summary>
+    /// <remarks>
+    /// Gets the combined message identifier.
+    /// </remarks>
+    /// <value>合并后的消息ID / Combined message identifier</value>
     int MessageId { get; }
 
     /// <summary>
-    /// 主消息ID
+    /// 获取主消息ID。
     /// </summary>
+    /// <remarks>
+    /// Gets the main message identifier.
+    /// </remarks>
+    /// <value>主消息ID / Main message identifier</value>
     int MainId { get; }
 
     /// <summary>
-    /// 次消息ID
+    /// 获取次消息ID。
     /// </summary>
+    /// <remarks>
+    /// Gets the sub message identifier.
+    /// </remarks>
+    /// <value>次消息ID / Sub message identifier</value>
     int SubId { get; }
 }

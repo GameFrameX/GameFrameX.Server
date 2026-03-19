@@ -32,46 +32,67 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// RPC会话接口
+/// RPC会话接口。
 /// </summary>
+/// <remarks>
+/// RPC session interface for managing remote procedure calls.
+/// </remarks>
 public interface IRpcSession
 {
     /// <summary>
-    /// 异步调用,且等待返回
+    /// 异步调用，且等待返回。
     /// </summary>
-    /// <param name="message">调用消息对象</param>
-    /// <param name="timeOutMillisecond">调用超时,单位毫秒,默认10秒</param>
-    /// <returns>返回消息对象</returns>
-    /// <typeparam name="T">返回消息对象类型</typeparam>
+    /// <remarks>
+    /// Asynchronously calls and waits for the response.
+    /// </remarks>
+    /// <typeparam name="T">返回消息对象类型 / Response message type</typeparam>
+    /// <param name="message">调用消息对象 / Request message object</param>
+    /// <param name="timeOutMillisecond">调用超时，单位毫秒，默认10秒 / Call timeout in milliseconds, default is 10 seconds</param>
+    /// <returns>返回消息对象 / Response message object</returns>
     Task<IRpcResult> Call<T>(IRequestMessage message, int timeOutMillisecond = 10000) where T : IResponseMessage, new();
 
     /// <summary>
-    /// 异步发送,不等待结果
+    /// 异步发送，不等待结果。
     /// </summary>
-    /// <param name="message">调用消息对象</param>
+    /// <remarks>
+    /// Asynchronously sends without waiting for the result.
+    /// </remarks>
+    /// <param name="message">调用消息对象 / Request message object</param>
     void Send(IRequestMessage message);
 
     /// <summary>
-    /// 处理消息队列
+    /// 处理消息队列。
     /// </summary>
-    /// <returns>处理结果</returns>
+    /// <remarks>
+    /// Processes the message queue.
+    /// </remarks>
+    /// <returns>处理结果 / Processing result</returns>
     IRpcSessionData Handler();
 
     /// <summary>
-    /// 回复消息
+    /// 回复消息。
     /// </summary>
-    /// <param name="message">回复消息对象</param>
-    /// <returns>是否成功回复</returns>
+    /// <remarks>
+    /// Replies with a message.
+    /// </remarks>
+    /// <param name="message">回复消息对象 / Response message object</param>
+    /// <returns>是否成功回复 / <c>true</c> if reply is successful; otherwise <c>false</c></returns>
     bool Reply(IResponseMessage message);
 
     /// <summary>
-    /// 处理消息队列
+    /// 处理消息队列。
     /// </summary>
-    /// <param name="elapseMillisecondsTime">时间间隔,单位毫秒</param>
+    /// <remarks>
+    /// Processes the message queue with elapsed time.
+    /// </remarks>
+    /// <param name="elapseMillisecondsTime">时间间隔，单位毫秒 / Time interval in milliseconds</param>
     void Tick(int elapseMillisecondsTime);
 
     /// <summary>
-    /// 停止会话
+    /// 停止会话。
     /// </summary>
+    /// <remarks>
+    /// Stops the session.
+    /// </remarks>
     void Stop();
 }

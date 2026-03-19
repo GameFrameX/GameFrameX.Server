@@ -32,8 +32,11 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 心跳消息接口
+/// 心跳消息接口。
 /// </summary>
+/// <remarks>
+/// Heartbeat message interface.
+/// </remarks>
 public interface IHeartBeatMessage : INetworkMessage
 {
 }

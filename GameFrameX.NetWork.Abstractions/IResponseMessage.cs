@@ -32,12 +32,19 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 响应消息
+/// 响应消息接口。
 /// </summary>
+/// <remarks>
+/// Response message interface.
+/// </remarks>
 public interface IResponseMessage : INetworkMessage
 {
     /// <summary>
-    /// 错误码，非 0 表示错误
+    /// 获取或设置错误码，非 0 表示错误。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the error code. Non-zero value indicates an error.
+    /// </remarks>
+    /// <value>错误码，非 0 表示错误 / Error code, non-zero indicates an error</value>
     int ErrorCode { get; set; }
 }

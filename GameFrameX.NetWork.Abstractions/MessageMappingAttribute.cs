@@ -32,22 +32,32 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 消息类型对应的消息映射处理器
+/// 消息类型对应的消息映射处理器特性。
 /// </summary>
+/// <remarks>
+/// Attribute for message type to handler mapping.
+/// </remarks>
 [AttributeUsage(AttributeTargets.Class)]
 public sealed class MessageMappingAttribute : Attribute
 {
     /// <summary>
-    /// 构造消息类型对应的消息映射处理器
+    /// 构造消息类型对应的消息映射处理器。
     /// </summary>
-    /// <param name="messageType">消息处理类型</param>
+    /// <remarks>
+    /// Constructs the message type mapping attribute.
+    /// </remarks>
+    /// <param name="messageType">消息处理类型 / Message handler type</param>
     public MessageMappingAttribute(Type messageType)
     {
         MessageType = messageType;
     }
 
     /// <summary>
-    /// 处理类型
+    /// 获取处理类型。
     /// </summary>
+    /// <remarks>
+    /// Gets the handler type.
+    /// </remarks>
+    /// <value>处理类型 / Handler type</value>
     public Type MessageType { get; }
 }

@@ -32,12 +32,18 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 消息内容对象
+/// 消息内容对象。
 /// </summary>
+/// <remarks>
+/// Message content object interface.
+/// </remarks>
 public interface IMessageObject
 {
     /// <summary>
-    /// 清除消息内容
+    /// 清除消息内容。
     /// </summary>
+    /// <remarks>
+    /// Clears the message content.
+    /// </remarks>
     void Clear();
 }

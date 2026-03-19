@@ -34,25 +34,40 @@ namespace GameFrameX.NetWork.Abstractions;
 /// <summary>
 /// 表示远程过程调用（RPC）中的异常基类。
 /// </summary>
+/// <remarks>
+/// Base class for Remote Procedure Call (RPC) exceptions.
+/// </remarks>
 public abstract class RpcException : Exception
 {
     /// <summary>
     /// 初始化 <see cref="RpcException"/> 类的新实例。
     /// </summary>
-    /// <param name="errorCode">错误码，用于标识异常类型。</param>
-    /// <param name="message">异常的详细描述信息。</param>
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="RpcException"/> class.
+    /// </remarks>
+    /// <param name="errorCode">错误码，用于标识异常类型 / Error code used to identify the exception type</param>
+    /// <param name="message">异常的详细描述信息 / Detailed description of the exception</param>
     protected RpcException(int errorCode, string message) : base(message)
     {
         ErrorCode = errorCode;
     }
 
     /// <summary>
-    /// 错误码
+    /// 获取错误码。
     /// </summary>
+    /// <remarks>
+    /// Gets the error code.
+    /// </remarks>
+    /// <value>错误码 / Error code</value>
     public int ErrorCode { get; private set; }
 
-    /// <summary>Creates and returns a string representation of the current exception.</summary>
-    /// <returns>A string representation of the current exception.</returns>
+    /// <summary>
+    /// 创建并返回当前异常的字符串表示形式。
+    /// </summary>
+    /// <remarks>
+    /// Creates and returns a string representation of the current exception.
+    /// </remarks>
+    /// <returns>当前异常的字符串表示形式 / A string representation of the current exception</returns>
     public override string ToString()
     {
         return $"ErrorCode:{ErrorCode}\n{base.ToString()}";

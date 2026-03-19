@@ -32,35 +32,54 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 网络消息接口
+/// 网络消息接口。
 /// </summary>
+/// <remarks>
+/// Network message interface that extends the base message interface.
+/// </remarks>
 public interface INetworkMessage : IMessage
 {
     /// <summary>
-    /// 消息的唯一ID
+    /// 获取消息的唯一ID。
     /// </summary>
+    /// <remarks>
+    /// Gets the unique identifier of the message.
+    /// </remarks>
+    /// <value>消息的唯一ID / The unique identifier of the message</value>
     int UniqueId { get; }
 
     /// <summary>
-    /// 设置消息ID
+    /// 设置消息ID。
     /// </summary>
-    /// <param name="messageId"></param>
+    /// <remarks>
+    /// Sets the message identifier.
+    /// </remarks>
+    /// <param name="messageId">消息ID / Message identifier</param>
     void SetMessageId(int messageId);
 
     /// <summary>
-    /// 更新唯一消息ID
+    /// 更新唯一消息ID。
     /// </summary>
+    /// <remarks>
+    /// Updates the unique message identifier.
+    /// </remarks>
     void UpdateUniqueId();
 
     /// <summary>
-    /// 设置唯一消息ID
+    /// 设置唯一消息ID。
     /// </summary>
-    /// <param name="uniqueId"></param>
+    /// <remarks>
+    /// Sets the unique message identifier.
+    /// </remarks>
+    /// <param name="uniqueId">唯一消息ID / Unique message identifier</param>
     void SetUniqueId(int uniqueId);
 
     /// <summary>
-    /// 获取JSON格式化后的消息字符串
+    /// 获取JSON格式化后的消息字符串。
     /// </summary>
-    /// <returns></returns>
+    /// <remarks>
+    /// Gets the JSON formatted message string.
+    /// </remarks>
+    /// <returns>JSON格式化后的消息字符串 / The JSON formatted message string</returns>
     string ToJsonString();
 }

@@ -32,16 +32,22 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// RPC 消息属性标记
+/// RPC 消息属性标记。
 /// </summary>
+/// <remarks>
+/// RPC message attribute marker.
+/// </remarks>
 [AttributeUsage(AttributeTargets.Class)]
 public class MessageRpcMappingAttribute : Attribute
 {
     /// <summary>
-    /// 构建RPC 消息
+    /// 构建 RPC 消息。
     /// </summary>
-    /// <param name="requestMessage">请求消息类型</param>
-    /// <param name="responseMessage">返回消息类型</param>
+    /// <remarks>
+    /// Constructs the RPC message mapping attribute.
+    /// </remarks>
+    /// <param name="requestMessage">请求消息类型 / Request message type</param>
+    /// <param name="responseMessage">返回消息类型 / Response message type</param>
     public MessageRpcMappingAttribute(IRequestMessage requestMessage, IResponseMessage responseMessage)
     {
         ArgumentNullException.ThrowIfNull(requestMessage, nameof(requestMessage));
@@ -51,12 +57,20 @@ public class MessageRpcMappingAttribute : Attribute
     }
 
     /// <summary>
-    /// 请求消息
+    /// 获取请求消息。
     /// </summary>
+    /// <remarks>
+    /// Gets the request message.
+    /// </remarks>
+    /// <value>请求消息 / Request message</value>
     public IRequestMessage RequestMessage { get; }
 
     /// <summary>
-    /// 响应消息
+    /// 获取响应消息。
     /// </summary>
+    /// <remarks>
+    /// Gets the response message.
+    /// </remarks>
+    /// <value>响应消息 / Response message</value>
     public IResponseMessage ResponseMessage { get; }
 }

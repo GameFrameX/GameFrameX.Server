@@ -32,41 +32,66 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// RPC会话数据接口
+/// RPC会话数据接口。
 /// </summary>
+/// <remarks>
+/// RPC session data interface for managing session state.
+/// </remarks>
 public interface IRpcSessionData
 {
     /// <summary>
-    /// 任务
+    /// 获取任务。
     /// </summary>
+    /// <remarks>
+    /// Gets the task for the RPC call.
+    /// </remarks>
+    /// <value>任务 / The task</value>
     Task<IRpcResult> Task { get; }
 
     /// <summary>
-    /// 是否回复消息
+    /// 获取是否回复消息。
     /// </summary>
+    /// <remarks>
+    /// Gets whether the message has been replied.
+    /// </remarks>
+    /// <value>是否回复消息 / Whether the message has been replied</value>
     bool IsReply { get; }
 
     /// <summary>
-    /// 唯一ID,用于标识RPC会话
+    /// 获取唯一ID，用于标识RPC会话。
     /// </summary>
+    /// <remarks>
+    /// Gets the unique identifier for the RPC session.
+    /// </remarks>
+    /// <value>唯一ID / Unique identifier</value>
     long UniqueId { get; }
 
     /// <summary>
-    /// 请求消息
+    /// 获取请求消息。
     /// </summary>
+    /// <remarks>
+    /// Gets the request message.
+    /// </remarks>
+    /// <value>请求消息 / Request message</value>
     INetworkMessage RequestMessage { get; }
 
     /// <summary>
-    /// 回复消息
+    /// 回复消息。
     /// </summary>
-    /// <param name="message">回复消息对象</param>
-    /// <returns>是否成功回复</returns>
+    /// <remarks>
+    /// Replies with a message.
+    /// </remarks>
+    /// <param name="message">回复消息对象 / Response message object</param>
+    /// <returns>是否成功回复 / <c>true</c> if reply is successful; otherwise <c>false</c></returns>
     bool Reply(IResponseMessage message);
 
     /// <summary>
-    /// 增加时间。如果超时返回true
+    /// 增加时间。如果超时返回 <c>true</c>。
     /// </summary>
-    /// <param name="millisecondsTime">流逝时间.单位毫秒</param>
-    /// <returns>是否超时</returns>
+    /// <remarks>
+    /// Increments the elapsed time. Returns <c>true</c> if timeout occurs.
+    /// </remarks>
+    /// <param name="millisecondsTime">流逝时间，单位毫秒 / Elapsed time in milliseconds</param>
+    /// <returns>是否超时 / <c>true</c> if timeout; otherwise <c>false</c></returns>
     bool IncrementalElapseTime(long millisecondsTime);
 }

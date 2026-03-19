@@ -32,21 +32,32 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 基础消息处理器接口
+/// 基础消息处理器接口。
 /// </summary>
+/// <remarks>
+/// Base message handler interface.
+/// </remarks>
 public interface IBaseMessageHandler
 {
     /// <summary>
     /// 获取当前消息处理器所处理的消息类型。
     /// 通常用于反射或泛型约束，便于框架自动识别和分发消息。
     /// </summary>
-    /// <returns>消息类型的 <see cref="Type"/> 实例。</returns>
+    /// <remarks>
+    /// Gets the message type handled by the current message handler.
+    /// Typically used for reflection or generic constraints to facilitate automatic message recognition and dispatch by the framework.
+    /// </remarks>
+    /// <returns>消息类型的 <see cref="Type"/> 实例 / The <see cref="Type"/> instance of the message type</returns>
     Type GetMessageType();
 
     /// <summary>
     /// 获取当前消息处理器返回的响应类型。
     /// 用于确定消息处理完成后返回的数据类型，便于类型安全和自动化处理。
     /// </summary>
-    /// <returns>响应类型的 <see cref="Type"/> 实例。</returns>
+    /// <remarks>
+    /// Gets the response type returned by the current message handler.
+    /// Used to determine the data type returned after message processing, facilitating type safety and automated processing.
+    /// </remarks>
+    /// <returns>响应类型的 <see cref="Type"/> 实例 / The <see cref="Type"/> instance of the response type</returns>
     Type GetResponseType();
 }

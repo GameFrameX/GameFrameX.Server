@@ -32,27 +32,46 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 网络消息头
+/// 网络消息头接口。
 /// </summary>
+/// <remarks>
+/// Network message header interface.
+/// </remarks>
 public interface INetworkMessageHeader : IMessageObject
 {
     /// <summary>
-    /// 消息ID
+    /// 获取或设置消息ID。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the message identifier.
+    /// </remarks>
+    /// <value>消息ID / Message identifier</value>
     int MessageId { get; set; }
 
     /// <summary>
-    /// 唯一消息序列ID
+    /// 获取或设置唯一消息序列ID。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the unique message sequence identifier.
+    /// </remarks>
+    /// <value>唯一消息序列ID / Unique message sequence identifier</value>
     int UniqueId { get; set; }
 
     /// <summary>
-    /// 操作类型
+    /// 获取或设置操作类型。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the operation type.
+    /// </remarks>
+    /// <value>操作类型 / Operation type</value>
     byte OperationType { get; set; }
 
     /// <summary>
-    /// 压缩标记
+    /// 获取或设置压缩标记。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the compression flag.
+    /// </remarks>
+    /// <value>压缩标记 / Compression flag</value>
     byte ZipFlag { get; set; }
 }

@@ -33,24 +33,32 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 消息处理器
+/// 消息处理器接口。
 /// </summary>
+/// <remarks>
+/// Message handler interface.
+/// </remarks>
 public interface IMessageHandler : IBaseMessageHandler
 {
     /// <summary>
-    /// 初始化
-    /// 子类实现必须调用
+    /// 初始化。子类实现必须调用。
     /// </summary>
-    /// <param name="message">消息对象</param>
-    /// <param name="netWorkChannel">网络渠道</param>
-    /// <returns>返回是否初始化成功,true:成功,false:失败</returns>
+    /// <remarks>
+    /// Initializes the handler. Subclass implementations must call this method.
+    /// </remarks>
+    /// <param name="message">消息对象 / Message object</param>
+    /// <param name="netWorkChannel">网络渠道 / Network channel</param>
+    /// <returns>返回是否初始化成功，<c>true</c> 表示成功，<c>false</c> 表示失败 / Returns <c>true</c> if initialization succeeds, <c>false</c> otherwise</returns>
     Task<bool> Init(INetworkMessage message, INetWorkChannel netWorkChannel);
 
     /// <summary>
-    /// 内部执行
+    /// 内部执行。
     /// </summary>
-    /// <param name="timeout">执行超时时间，单位毫秒，默认30秒</param>
-    /// <param name="cancellationToken">取消令牌</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Internal execution method.
+    /// </remarks>
+    /// <param name="timeout">执行超时时间，单位毫秒，默认30秒 / Execution timeout in milliseconds, default is 30 seconds</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     Task InnerAction(int timeout = 30000, CancellationToken cancellationToken = default);
 }

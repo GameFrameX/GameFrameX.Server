@@ -32,8 +32,11 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 通知消息
+/// 通知消息接口。
 /// </summary>
+/// <remarks>
+/// Notify message interface.
+/// </remarks>
 public interface INotifyMessage : INetworkMessage
 {
 }

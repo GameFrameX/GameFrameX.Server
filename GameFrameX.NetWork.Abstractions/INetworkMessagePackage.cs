@@ -32,52 +32,55 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// Defines the interface for a network message package, including message data, header, and related operations.
+/// 网络消息包接口，包含消息数据、消息头及相关操作方法。
 /// </summary>
 /// <remarks>
-/// 表示网络消息包的接口，包含消息数据、消息头及相关操作方法。
+/// Defines the interface for a network message package, including message data, header, and related operations.
 /// </remarks>
 public interface INetworkMessagePackage : IMessage
 {
     /// <summary>
-    /// The type of the message contained in the package.
+    /// 获取包含在消息包中的消息类型。
     /// </summary>
     /// <remarks>
-    /// 包含在消息包中的消息类型。
+    /// The type of the message contained in the package.
     /// </remarks>
+    /// <value>消息类型 / Message type</value>
     Type MessageType { get; }
 
     /// <summary>
-    /// The message data, usually serialized as a byte array.
+    /// 获取消息数据，通常为序列化后的二进制内容。
     /// </summary>
     /// <remarks>
-    /// 消息数据，通常为序列化后的二进制内容。
+    /// The message data, usually serialized as a byte array.
     /// </remarks>
+    /// <value>消息数据 / Message data</value>
     byte[] MessageData { get; }
 
     /// <summary>
-    /// The message header object, containing metadata such as message ID, length, and type.
+    /// 获取消息头对象，包含消息标识、长度、类型等元数据。
     /// </summary>
     /// <remarks>
-    /// 消息头对象，包含消息标识、长度、类型等元数据。
+    /// The message header object, containing metadata such as message ID, length, and type.
     /// </remarks>
+    /// <value>消息头对象 / Message header object</value>
     INetworkMessageHeader Header { get; }
 
     /// <summary>
-    /// Deserializes the message data into a message object.
-    /// </summary>
-    /// <returns>The deserialized message object. / 反序列化后的消息对象。</returns>
-    /// <remarks>
     /// 将消息数据反序列化为消息对象。
+    /// </summary>
+    /// <remarks>
+    /// Deserializes the message data into a message object.
     /// </remarks>
+    /// <returns>反序列化后的消息对象 / The deserialized message object</returns>
     INetworkMessage DeserializeMessageObject();
 
     /// <summary>
-    /// Sets the message data, typically used when receiving or constructing a message package.
+    /// 设置消息数据，通常用于接收或构建消息包时赋值。
     /// </summary>
     /// <remarks>
-    /// 设置消息数据，通常用于接收或构建消息包时赋值。
+    /// Sets the message data, typically used when receiving or constructing a message package.
     /// </remarks>
-    /// <param name="messageData">The byte array of message data to set./ 要设置的消息数据字节数组。</param>
+    /// <param name="messageData">要设置的消息数据字节数组 / The byte array of message data to set</param>
     void SetMessageData(byte[] messageData);
 }

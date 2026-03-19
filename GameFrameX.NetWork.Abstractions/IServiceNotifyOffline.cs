@@ -36,35 +36,62 @@ namespace GameFrameX.NetWork.Abstractions;
 /// <summary>
 /// 服务下线通知接口，用于在节点退出集群时广播自身信息。
 /// </summary>
+/// <remarks>
+/// Service offline notification interface for broadcasting node information when leaving a cluster.
+/// </remarks>
 public interface IServiceNotifyOffline
 {
     /// <summary>
-    /// 服务器类型，标识该节点承担的业务角色（如 Gateway、Game、DB 等）。
+    /// 获取或设置服务器类型，标识该节点承担的业务角色（如 Gateway、Game、DB 等）。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the server type, identifying the business role of this node (e.g., Gateway, Game, DB, etc.).
+    /// </remarks>
+    /// <value>服务器类型 / Server type</value>
     public string Type { get; set; }
 
     /// <summary>
-    /// 服务器名称，便于运维与监控时快速识别，通常保持全局唯一。
+    /// 获取或设置服务器名称，便于运维与监控时快速识别，通常保持全局唯一。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the server name for easy identification in operations and monitoring, typically globally unique.
+    /// </remarks>
+    /// <value>服务器名称 / Server name</value>
     public string Name { get; set; }
 
     /// <summary>
-    /// 外部访问 IP 地址，客户端或其他服务器通过该地址与本节点通信。
+    /// 获取或设置外部访问 IP 地址，客户端或其他服务器通过该地址与本节点通信。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the external access IP address, through which clients or other servers communicate with this node.
+    /// </remarks>
+    /// <value>外部访问 IP 地址 / External access IP address</value>
     public string Host { get; set; }
 
     /// <summary>
-    /// 外部访问端口，与 <see cref="Host"/> 组合成完整的外部访问地址。
+    /// 获取或设置外部访问端口，与 <see cref="Host"/> 组合成完整的外部访问地址。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the external access port, combined with <see cref="Host"/> to form the complete external access address.
+    /// </remarks>
+    /// <value>外部访问端口 / External access port</value>
     public ushort Port { get; set; }
 
     /// <summary>
-    /// 服务器唯一编号，整个集群生命周期内保持不变，用于路由、日志、监控等场景。
+    /// 获取或设置服务器唯一编号，整个集群生命周期内保持不变，用于路由、日志、监控等场景。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the unique server identifier, remains unchanged throughout the cluster lifecycle, used for routing, logging, monitoring, etc.
+    /// </remarks>
+    /// <value>服务器唯一编号 / Unique server identifier</value>
     public long ServerId { get; set; }
 
     /// <summary>
-    /// 服务器实例 ID，每次进程启动时重新生成，用于区分同一 ServerId 的不同运行实例。
+    /// 获取或设置服务器实例 ID，每次进程启动时重新生成，用于区分同一 ServerId 的不同运行实例。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the server instance identifier, regenerated on each process startup, used to distinguish different running instances with the same ServerId.
+    /// </remarks>
+    /// <value>服务器实例 ID / Server instance identifier</value>
     public long ServerInstanceId { get; set; }
 }

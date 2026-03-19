@@ -32,14 +32,20 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 网络消息
+/// 网络消息接口。
 /// </summary>
+/// <remarks>
+/// Network message interface.
+/// </remarks>
 public interface IMessage : IMessageObject
 {
     /// <summary>
-    /// 获取格式化后的消息字符串
+    /// 获取格式化后的消息字符串。
     /// </summary>
-    /// <param name="actorId">ActorId</param>
-    /// <returns>格式化后的消息字符串</returns>
+    /// <remarks>
+    /// Gets the formatted message string.
+    /// </remarks>
+    /// <param name="actorId">ActorId / Actor identifier</param>
+    /// <returns>格式化后的消息字符串 / The formatted message string</returns>
     string ToFormatMessageString(long actorId = default);
 }

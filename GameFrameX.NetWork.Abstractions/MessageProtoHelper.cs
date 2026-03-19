@@ -38,8 +38,11 @@ using GameFrameX.Foundation.Localization.Core;
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 协议消息处理器
+/// 协议消息处理器。
 /// </summary>
+/// <remarks>
+/// Protocol message processor for managing message type mappings and operations.
+/// </remarks>
 public static class MessageProtoHelper
 {
     private static readonly BidirectionalDictionary<int, Type> RequestDictionary = new();
@@ -49,10 +52,13 @@ public static class MessageProtoHelper
     private static readonly HashSet<Type> HeartBeatList = new();
 
     /// <summary>
-    /// 获取消息ID,如果没有找到则返回 -1
+    /// 获取消息ID。如果没有找到则返回 -1。
     /// </summary>
-    /// <param name="message">消息对象</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Gets the message identifier by message object. Returns -1 if not found.
+    /// </remarks>
+    /// <param name="message">消息对象 / Message object</param>
+    /// <returns>消息ID，如果未找到返回 -1 / Message identifier, returns -1 if not found</returns>
     public static int GetMessageIdByType(INetworkMessage message)
     {
         ArgumentNullException.ThrowIfNull(message, nameof(message));
@@ -61,10 +67,13 @@ public static class MessageProtoHelper
     }
 
     /// <summary>
-    /// 获取消息ID,如果没有找到则返回 -1
+    /// 获取消息ID。如果没有找到则返回 -1。
     /// </summary>
-    /// <param name="type">消息类型</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Gets the message identifier by message type. Returns -1 if not found.
+    /// </remarks>
+    /// <param name="type">消息类型 / Message type</param>
+    /// <returns>消息ID，如果未找到返回 -1 / Message identifier, returns -1 if not found</returns>
     public static int GetMessageIdByType(Type type)
     {
         if (AllMessageDictionary.TryGetKey(type, out var value))
@@ -76,10 +85,13 @@ public static class MessageProtoHelper
     }
 
     /// <summary>
-    /// 获取消息类型，如果没有则返回null
+    /// 获取消息类型。如果没有则返回 null。
     /// </summary>
-    /// <param name="messageId">消息ID</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Gets the message type by message identifier. Returns null if not found.
+    /// </remarks>
+    /// <param name="messageId">消息ID / Message identifier</param>
+    /// <returns>消息类型，如果未找到返回 null / Message type, returns null if not found</returns>
     public static Type GetMessageTypeById(int messageId)
     {
         AllMessageDictionary.TryGetValue(messageId, out var value);
@@ -87,10 +99,13 @@ public static class MessageProtoHelper
     }
 
     /// <summary>
-    /// 获取消息操作类型
+    /// 获取消息操作类型。
     /// </summary>
-    /// <param name="message">消息对象</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Gets the message operation type by message object.
+    /// </remarks>
+    /// <param name="message">消息对象 / Message object</param>
+    /// <returns>消息操作类型 / Message operation type</returns>
     public static byte GetMessageOperationType(INetworkMessage message)
     {
         ArgumentNullException.ThrowIfNull(message, nameof(message));
@@ -99,10 +114,13 @@ public static class MessageProtoHelper
     }
 
     /// <summary>
-    /// 获取消息操作类型
+    /// 获取消息操作类型。
     /// </summary>
-    /// <param name="type">消息类型</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Gets the message operation type by message type.
+    /// </remarks>
+    /// <param name="type">消息类型 / Message type</param>
+    /// <returns>消息操作类型 / Message operation type</returns>
     public static byte GetMessageOperationType(Type type)
     {
         if (IsHeartbeat(type))
@@ -119,9 +137,12 @@ public static class MessageProtoHelper
     }
 
     /// <summary>
-    /// 设置消息ID和操作类型
+    /// 设置消息ID和操作类型。
     /// </summary>
-    /// <param name="message">消息对象</param>
+    /// <remarks>
+    /// Sets the message identifier and operation type.
+    /// </remarks>
+    /// <param name="message">消息对象 / Message object</param>
     public static void SetMessageId(INetworkMessage message)
     {
         ArgumentNullException.ThrowIfNull(message, nameof(message));
@@ -130,10 +151,13 @@ public static class MessageProtoHelper
     }
 
     /// <summary>
-    /// 获取消息类型是否是心跳类型
+    /// 获取消息类型是否是心跳类型。
     /// </summary>
-    /// <param name="message">消息对象</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Determines whether the message object is a heartbeat type.
+    /// </remarks>
+    /// <param name="message">消息对象 / Message object</param>
+    /// <returns>如果是心跳类型返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if heartbeat type; otherwise <c>false</c></returns>
     public static bool IsHeartbeat(INetworkMessage message)
     {
         ArgumentNullException.ThrowIfNull(message, nameof(message));
@@ -142,20 +166,26 @@ public static class MessageProtoHelper
     }
 
     /// <summary>
-    /// 获取消息类型是否是心跳类型
+    /// 获取消息类型是否是心跳类型。
     /// </summary>
-    /// <param name="type">消息类型</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Determines whether the message type is a heartbeat type.
+    /// </remarks>
+    /// <param name="type">消息类型 / Message type</param>
+    /// <returns>如果是心跳类型返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if heartbeat type; otherwise <c>false</c></returns>
     public static bool IsHeartbeat(Type type)
     {
         return HeartBeatList.Contains(type);
     }
 
     /// <summary>
-    /// 初始化所有协议对象
+    /// 初始化所有协议对象。
     /// </summary>
-    /// <param name="assemblies">协议所在程序集集合.将在集合中查找所有的类型进行识别</param>
-    /// <exception cref="Exception">如果ID重复将会触发异常</exception>
+    /// <remarks>
+    /// Initializes all protocol objects from the specified assemblies. Will search for all types in the assemblies for identification.
+    /// </remarks>
+    /// <param name="assemblies">协议所在程序集集合，将在集合中查找所有的类型进行识别 / Collection of assemblies containing protocols, will search all types in the collection for identification</param>
+    /// <exception cref="ArgumentAlreadyException">如果 ID 重复将会触发异常 / Thrown when duplicate ID is found</exception>
     public static void Init(params Assembly[] assemblies)
     {
         ArgumentNullException.ThrowIfNull(assemblies, nameof(assemblies));

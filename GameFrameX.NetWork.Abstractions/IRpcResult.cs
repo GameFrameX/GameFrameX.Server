@@ -32,22 +32,37 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// RPC请求结果
+/// RPC请求结果接口。
 /// </summary>
+/// <remarks>
+/// RPC request result interface.
+/// </remarks>
 public interface IRpcResult
 {
     /// <summary>
-    /// 是否成功
+    /// 获取是否成功。
     /// </summary>
+    /// <remarks>
+    /// Gets whether the RPC call was successful.
+    /// </remarks>
+    /// <value>是否成功 / Whether the call was successful</value>
     bool IsSuccess { get; }
 
     /// <summary>
-    /// 错误信息
+    /// 获取错误信息。
     /// </summary>
+    /// <remarks>
+    /// Gets the error message if the call failed.
+    /// </remarks>
+    /// <value>错误信息 / Error message</value>
     string Error { get; }
 
     /// <summary>
-    /// 返回消息
+    /// 获取返回消息。
     /// </summary>
+    /// <remarks>
+    /// Gets the response message.
+    /// </remarks>
+    /// <value>返回消息 / Response message</value>
     IResponseMessage Message { get; }
 }

@@ -32,14 +32,20 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 消息解压器接口定义，用于解压压缩后的消息
+/// 消息解压器接口定义，用于解压压缩后的消息。
 /// </summary>
+/// <remarks>
+/// Message decompressor interface definition, used for decompressing compressed messages.
+/// </remarks>
 public interface IMessageDecompressHandler
 {
     /// <summary>
-    /// 解压处理
+    /// 解压处理。
     /// </summary>
-    /// <param name="message">消息压缩内容</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Decompresses the message data.
+    /// </remarks>
+    /// <param name="message">消息压缩内容 / Compressed message content</param>
+    /// <returns>解压后的字节数组 / Decompressed byte array</returns>
     byte[] Handler(byte[] message);
 }

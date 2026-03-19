@@ -34,108 +34,161 @@ using GameFrameX.SuperSocket.Server.Abstractions.Session;
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 网络通道
+/// 网络通道接口。
 /// </summary>
+/// <remarks>
+/// Network channel interface for managing network communication.
+/// </remarks>
 public interface INetWorkChannel
 {
     /// <summary>
-    /// 发送字节长度 - 记录通过此通道发送的总字节数
+    /// 获取发送字节长度。记录通过此通道发送的总字节数。
     /// </summary>
+    /// <remarks>
+    /// Gets the total bytes sent through this channel.
+    /// </remarks>
+    /// <value>发送字节长度 / Total sent bytes length</value>
     ulong SendBytesLength { get; }
 
     /// <summary>
-    /// 发送数据包长度 - 记录通过此通道发送的数据包总数
+    /// 获取发送数据包长度。记录通过此通道发送的数据包总数。
     /// </summary>
+    /// <remarks>
+    /// Gets the total packets sent through this channel.
+    /// </remarks>
+    /// <value>发送数据包长度 / Total sent packets length</value>
     ulong SendPacketLength { get; }
 
     /// <summary>
-    /// 接收字节长度 - 记录通过此通道接收的总字节数
+    /// 获取接收字节长度。记录通过此通道接收的总字节数。
     /// </summary>
+    /// <remarks>
+    /// Gets the total bytes received through this channel.
+    /// </remarks>
+    /// <value>接收字节长度 / Total received bytes length</value>
     ulong ReceiveBytesLength { get; }
 
     /// <summary>
-    /// 接收数据包长度 - 记录通过此通道接收的数据包总数
+    /// 获取接收数据包长度。记录通过此通道接收的数据包总数。
     /// </summary>
+    /// <remarks>
+    /// Gets the total packets received through this channel.
+    /// </remarks>
+    /// <value>接收数据包长度 / Total received packets length</value>
     ulong ReceivePacketLength { get; }
 
     /// <summary>
-    /// 更新接收数据包字节长度
+    /// 更新接收数据包字节长度。
     /// </summary>
-    /// <param name="bufferLength">接收数据包字节长度</param>
+    /// <remarks>
+    /// Updates the received packet bytes length.
+    /// </remarks>
+    /// <param name="bufferLength">接收数据包字节长度 / Received packet bytes length</param>
     void UpdateReceivePacketBytesLength(ulong bufferLength);
 
     /// <summary>
-    /// 应用会话对象
+    /// 获取应用会话对象。
     /// </summary>
+    /// <remarks>
+    /// Gets the application session object.
+    /// </remarks>
+    /// <value>应用会话对象 / Application session object</value>
     IGameAppSession GameAppSession { get; }
 
     /// <summary>
-    /// RPC 会话
+    /// 获取 RPC 会话。
     /// </summary>
+    /// <remarks>
+    /// Gets the RPC session.
+    /// </remarks>
+    /// <value>RPC 会话 / RPC session</value>
     IRpcSession RpcSession { get; }
 
     /// <summary>
-    /// 异步写入消息到网络通道
+    /// 异步写入消息到网络通道。
     /// </summary>
-    /// <param name="msg">要发送的网络消息对象,包含消息内容和相关元数据</param>
-    /// <param name="errorCode">错误码,默认为0表示无错误。当发生错误时,可以通过此参数传递错误码</param>
-    /// <returns>表示异步操作的Task对象。当消息成功写入时完成,如果发生错误则抛出异常</returns>
     /// <remarks>
-    /// 此方法用于将消息异步发送到网络通道。
-    /// 如果errorCode不为0,接收方可以根据错误码进行相应的错误处理。
-    /// 调用此方法时需要确保网络通道处于打开状态。
+    /// Asynchronously writes a message to the network channel.
+    /// This method is used to send messages asynchronously to the network channel.
+    /// If errorCode is not 0, the receiver can handle errors based on the error code.
+    /// Ensure the network channel is open when calling this method.
     /// </remarks>
+    /// <param name="msg">要发送的网络消息对象，包含消息内容和相关元数据 / The network message object to send, containing message content and related metadata</param>
+    /// <param name="errorCode">错误码，默认为0表示无错误。当发生错误时，可以通过此参数传递错误码 / Error code, default is 0 for no error. When an error occurs, this parameter can pass the error code</param>
+    /// <returns>表示异步操作的Task对象。当消息成功写入时完成，如果发生错误则抛出异常 / A Task representing the asynchronous operation. Completes when the message is successfully written, throws an exception if an error occurs</returns>
     Task WriteAsync(INetworkMessage msg, int errorCode = 0);
 
     /// <summary>
-    /// 关闭网络
+    /// 关闭网络通道。
     /// </summary>
+    /// <remarks>
+    /// Closes the network channel.
+    /// </remarks>
     void Close();
 
     /// <summary>
-    /// 获取用户数据对象.
-    /// 可能会发生转换失败的异常。
-    /// 如果数据不存在则返回null
+    /// 获取用户数据对象。
     /// </summary>
-    /// <param name="key">数据Key</param>
-    /// <typeparam name="T">将要获取的数据类型。</typeparam>
-    /// <returns>用户数据对象</returns>
+    /// <remarks>
+    /// Gets the user data object. May throw an exception if conversion fails. Returns null if the data does not exist.
+    /// </remarks>
+    /// <param name="key">数据Key / Data key</param>
+    /// <typeparam name="T">将要获取的数据类型 / The type of data to retrieve</typeparam>
+    /// <returns>用户数据对象 / User data object</returns>
     T GetData<T>(string key);
 
     /// <summary>
-    /// 清除自定义数据
+    /// 清除自定义数据。
     /// </summary>
+    /// <remarks>
+    /// Clears all custom data.
+    /// </remarks>
     void ClearData();
 
     /// <summary>
-    /// 移除用户数据
+    /// 移除用户数据。
     /// </summary>
-    /// <param name="key">数据Key</param>
+    /// <remarks>
+    /// Removes user data by key.
+    /// </remarks>
+    /// <param name="key">数据Key / Data key</param>
     void RemoveData(string key);
 
     /// <summary>
-    /// 设置用户数据
+    /// 设置用户数据。
     /// </summary>
-    /// <param name="key">数据Key</param>
-    /// <param name="value">数据值</param>
+    /// <remarks>
+    /// Sets user data by key.
+    /// </remarks>
+    /// <param name="key">数据Key / Data key</param>
+    /// <param name="value">数据值 / Data value</param>
     void SetData(string key, object value);
 
     /// <summary>
-    /// 更新接收消息时间
+    /// 更新接收消息时间。
     /// </summary>
-    /// <param name="offsetTicks"></param>
+    /// <remarks>
+    /// Updates the last received message time.
+    /// </remarks>
+    /// <param name="offsetTicks">偏移刻度数 / Offset ticks</param>
     void UpdateReceiveMessageTime(long offsetTicks = 0);
 
     /// <summary>
-    /// 获取最后一次消息的时间
+    /// 获取最后一次消息的时间。
     /// </summary>
-    /// <param name="utcTime">UTC时间</param>
-    /// <returns></returns>
+    /// <remarks>
+    /// Gets the time of the last message in seconds.
+    /// </remarks>
+    /// <param name="utcTime">UTC时间 / UTC time</param>
+    /// <returns>最后一次消息的时间（秒） / The time of the last message in seconds</returns>
     long GetLastMessageTimeSecond(in DateTime utcTime);
 
     /// <summary>
-    /// 网络是否已经关闭
+    /// 检查网络是否已经关闭。
     /// </summary>
-    /// <returns>是否已经关闭</returns>
+    /// <remarks>
+    /// Checks whether the network channel is closed.
+    /// </remarks>
+    /// <returns>是否已经关闭 / <c>true</c> if closed; otherwise <c>false</c></returns>
     bool IsClosed();
 }

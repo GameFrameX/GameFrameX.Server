@@ -33,26 +33,40 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 消息处理帮助类，用于管理消息的编码和解码处理器
+/// 消息处理帮助类，用于管理消息的编码和解码处理器。
 /// </summary>
+/// <remarks>
+/// Message processing helper class for managing message encoder and decoder handlers.
+/// </remarks>
 public sealed class MessageHelper
 {
     /// <summary>
-    /// 消息编码处理器 - 用于将消息编码成二进制格式
+    /// 获取消息编码处理器。用于将消息编码成二进制格式。
     /// </summary>
+    /// <remarks>
+    /// Gets the message encoder handler. Used for encoding messages into binary format.
+    /// </remarks>
+    /// <value>消息编码处理器 / Message encoder handler</value>
     public static IMessageEncoderHandler EncoderHandler { get; private set; }
 
     /// <summary>
-    /// 消息解码处理器 - 用于将二进制数据解码成消息对象
+    /// 获取消息解码处理器。用于将二进制数据解码成消息对象。
     /// </summary>
+    /// <remarks>
+    /// Gets the message decoder handler. Used for decoding binary data into message objects.
+    /// </remarks>
+    /// <value>消息解码处理器 / Message decoder handler</value>
     public static IMessageDecoderHandler DecoderHandler { get; private set; }
 
     /// <summary>
-    /// 设置消息解码处理器和解压缩处理器
+    /// 设置消息解码处理器和解压缩处理器。
     /// </summary>
-    /// <param name="decoderHandler">消息解码处理器实例</param>
-    /// <param name="decompressHandler">消息解压缩处理器实例</param>
-    /// <exception cref="ArgumentNullException">当decoderHandler为null时抛出</exception>
+    /// <remarks>
+    /// Sets the message decoder handler and decompression handler.
+    /// </remarks>
+    /// <param name="decoderHandler">消息解码处理器实例 / Message decoder handler instance</param>
+    /// <param name="decompressHandler">消息解压缩处理器实例 / Message decompression handler instance</param>
+    /// <exception cref="ArgumentNullException">当 <paramref name="decoderHandler"/> 为 null 时抛出 / Thrown when <paramref name="decoderHandler"/> is null</exception>
     public static void SetMessageDecoderHandler(IMessageDecoderHandler decoderHandler, IMessageDecompressHandler decompressHandler)
     {
         ArgumentNullException.ThrowIfNull(decoderHandler, nameof(decoderHandler));
@@ -61,11 +75,14 @@ public sealed class MessageHelper
     }
 
     /// <summary>
-    /// 设置消息编码处理器和压缩处理器
+    /// 设置消息编码处理器和压缩处理器。
     /// </summary>
-    /// <param name="encoderHandler">消息编码处理器实例</param>
-    /// <param name="compressHandler">消息压缩处理器实例</param>
-    /// <exception cref="ArgumentNullException">当encoderHandler为null时抛出</exception>
+    /// <remarks>
+    /// Sets the message encoder handler and compression handler.
+    /// </remarks>
+    /// <param name="encoderHandler">消息编码处理器实例 / Message encoder handler instance</param>
+    /// <param name="compressHandler">消息压缩处理器实例 / Message compression handler instance</param>
+    /// <exception cref="ArgumentNullException">当 <paramref name="encoderHandler"/> 为 null 时抛出 / Thrown when <paramref name="encoderHandler"/> is null</exception>
     public static void SetMessageEncoderHandler(IMessageEncoderHandler encoderHandler, IMessageCompressHandler compressHandler)
     {
         ArgumentNullException.ThrowIfNull(encoderHandler, nameof(encoderHandler));

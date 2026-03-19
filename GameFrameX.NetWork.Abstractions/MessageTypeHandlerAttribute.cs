@@ -32,16 +32,22 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 消息类型处理器标记
+/// 消息类型处理器标记特性。
 /// </summary>
+/// <remarks>
+/// Message type handler attribute marker.
+/// </remarks>
 [AttributeUsage(AttributeTargets.Class)]
 public class MessageTypeHandlerAttribute : Attribute
 {
     /// <summary>
-    /// 构造消息类型处理器
+    /// 构造消息类型处理器。
     /// </summary>
-    /// <param name="messageId">消息ID</param>
-    /// <param name="operationType">消息类型</param>
+    /// <remarks>
+    /// Constructs the message type handler attribute.
+    /// </remarks>
+    /// <param name="messageId">消息ID / Message identifier</param>
+    /// <param name="operationType">消息类型 / Message operation type</param>
     public MessageTypeHandlerAttribute(int messageId, byte operationType = default)
     {
         OperationType = operationType;
@@ -51,22 +57,38 @@ public class MessageTypeHandlerAttribute : Attribute
     }
 
     /// <summary>
-    /// 消息ID
+    /// 获取消息ID。
     /// </summary>
+    /// <remarks>
+    /// Gets the message identifier.
+    /// </remarks>
+    /// <value>消息ID / Message identifier</value>
     public int MessageId { get; }
 
     /// <summary>
-    /// 主消息ID
+    /// 获取主消息ID。
     /// </summary>
+    /// <remarks>
+    /// Gets the main message identifier.
+    /// </remarks>
+    /// <value>主消息ID / Main message identifier</value>
     public int MainId { get; }
 
     /// <summary>
-    /// 子消息ID
+    /// 获取子消息ID。
     /// </summary>
+    /// <remarks>
+    /// Gets the sub message identifier.
+    /// </remarks>
+    /// <value>子消息ID / Sub message identifier</value>
     public int SubId { get; }
 
     /// <summary>
-    /// 消息操作类型
+    /// 获取消息操作类型。
     /// </summary>
+    /// <remarks>
+    /// Gets the message operation type.
+    /// </remarks>
+    /// <value>消息操作类型 / Message operation type</value>
     public byte OperationType { get; }
 }

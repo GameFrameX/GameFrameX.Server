@@ -32,12 +32,19 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 心跳接口，用于标识具备心跳时间戳的Actor
+/// 心跳接口，用于标识具备心跳时间戳的Actor。
 /// </summary>
+/// <remarks>
+/// Heartbeat interface for identifying Actors with heartbeat timestamps.
+/// </remarks>
 public interface IActorHeartBeat : INetworkMessage
 {
     /// <summary>
-    /// 时间戳，单位毫秒，表示该Actor最后一次心跳的时间
+    /// 获取或设置时间戳，单位毫秒，表示该Actor最后一次心跳的时间。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the timestamp in milliseconds, representing the last heartbeat time of this Actor.
+    /// </remarks>
+    /// <value>时间戳，单位毫秒 / Timestamp in milliseconds</value>
     long Timestamp { get; set; }
 }

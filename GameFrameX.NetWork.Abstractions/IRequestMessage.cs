@@ -32,8 +32,11 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 请求消息
+/// 请求消息接口。
 /// </summary>
+/// <remarks>
+/// Request message interface.
+/// </remarks>
 public interface IRequestMessage : INetworkMessage
 {
 }

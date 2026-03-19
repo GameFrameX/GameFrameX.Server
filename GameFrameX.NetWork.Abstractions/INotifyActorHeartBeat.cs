@@ -32,12 +32,19 @@
 namespace GameFrameX.NetWork.Abstractions;
 
 /// <summary>
-/// 服务器通知心跳结果，因为有些业务需要对心跳结果做处理所以不做成RPC的方式处理
+/// 服务器通知心跳结果接口，因为有些业务需要对心跳结果做处理所以不做成RPC的方式处理。
 /// </summary>
+/// <remarks>
+/// Server notification heartbeat result interface. Some business logic requires processing of heartbeat results, so it is not implemented as RPC.
+/// </remarks>
 public interface INotifyActorHeartBeat
 {
     /// <summary>
-    /// 时间戳，单位毫秒，表示该Actor最后一次心跳的时间
+    /// 获取或设置时间戳，单位毫秒，表示该Actor最后一次心跳的时间。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the timestamp in milliseconds, representing the last heartbeat time of this Actor.
+    /// </remarks>
+    /// <value>时间戳，单位毫秒 / Timestamp in milliseconds</value>
     long Timestamp { get; set; }
 }
