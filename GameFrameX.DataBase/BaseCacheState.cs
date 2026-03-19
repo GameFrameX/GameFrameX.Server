@@ -38,82 +38,140 @@ using MongoDB.Entities;
 namespace GameFrameX.DataBase;
 
 /// <summary>
-/// 缓存数据对象
+/// 缓存数据对象。
 /// </summary>
+/// <remarks>
+/// Cache data object base class.
+/// </remarks>
 public abstract class BaseCacheState : ICacheState, IEntity
 {
     /// <summary>
-    /// 唯一ID
+    /// 唯一ID。
     /// </summary>
+    /// <remarks>
+    /// Unique identifier.
+    /// </remarks>
+    /// <value>唯一ID / Unique ID</value>
     public virtual long Id { get; set; }
 
     /// <summary>
-    /// 获取数据对象是否修改
+    /// 获取数据对象是否修改。
     /// </summary>
+    /// <remarks>
+    /// Get whether the data object has been modified.
+    /// </remarks>
+    /// <returns>如果已修改则返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if modified; otherwise <c>false</c></returns>
     public virtual bool IsModify()
     {
         return IsChanged().isChanged;
     }
 
     /// <summary>
-    /// 是否删除
+    /// 是否删除。
     /// </summary>
+    /// <remarks>
+    /// Whether the record is deleted.
+    /// </remarks>
+    /// <value>是否删除 / Whether deleted</value>
     public virtual bool? IsDeleted { get; set; }
 
     /// <summary>
-    /// 删除时间
+    /// 删除时间。
     /// </summary>
+    /// <remarks>
+    /// Deletion time.
+    /// </remarks>
+    /// <value>删除时间, Unix时间戳毫秒 / Deletion time, Unix timestamp in milliseconds</value>
     public virtual long? DeleteTime { get; set; }
 
     /// <summary>
-    /// 删除人ID
+    /// 删除人ID。
     /// </summary>
+    /// <remarks>
+    /// ID of the user who deleted the record.
+    /// </remarks>
+    /// <value>删除人ID / Deleter ID</value>
     public long? DeletedId { get; set; }
 
     /// <summary>
-    /// 删除人的用户名
+    /// 删除人的用户名。
     /// </summary>
+    /// <remarks>
+    /// Username of the user who deleted the record.
+    /// </remarks>
+    /// <value>删除人的用户名 / Deleter username</value>
     public string DeletedName { get; set; } = "";
 
     /// <summary>
-    /// 创建人, 通常是用户ID，用于记录创建该数据对象的用户，默认值为0
+    /// 创建人ID, 通常是用户ID，用于记录创建该数据对象的用户，默认值为0。
     /// </summary>
+    /// <remarks>
+    /// Creator ID, typically the user ID, used to record the user who created this data object, default value is 0.
+    /// </remarks>
+    /// <value>创建人ID / Creator ID</value>
     public virtual long? CreatedId { get; set; }
 
     /// <summary>
-    /// 创建时间, Unix时间戳毫秒
+    /// 创建时间, Unix时间戳毫秒。
     /// </summary>
+    /// <remarks>
+    /// Creation time, Unix timestamp in milliseconds.
+    /// </remarks>
+    /// <value>创建时间 / Creation time</value>
     public virtual long CreatedTime { get; set; }
 
     /// <summary>
-    /// 创建人的名称
+    /// 创建人的名称。
     /// </summary>
+    /// <remarks>
+    /// Name of the creator.
+    /// </remarks>
+    /// <value>创建人的名称 / Creator name</value>
     public string CreatedName { get; set; } = "";
 
     /// <summary>
-    /// 更新次数
+    /// 更新次数。
     /// </summary>
+    /// <remarks>
+    /// Number of updates.
+    /// </remarks>
+    /// <value>更新次数 / Update count</value>
     public virtual int? UpdateCount { get; set; }
 
     /// <summary>
-    /// 更新时间, Unix时间戳毫秒
+    /// 更新时间, Unix时间戳毫秒。
     /// </summary>
+    /// <remarks>
+    /// Update time, Unix timestamp in milliseconds.
+    /// </remarks>
+    /// <value>更新时间 / Update time</value>
     public virtual long? UpdateTime { get; set; }
 
     /// <summary>
-    /// 更新人ID
+    /// 更新人ID。
     /// </summary>
+    /// <remarks>
+    /// ID of the user who last updated the record.
+    /// </remarks>
+    /// <value>更新人ID / Updater ID</value>
     public long? UpdatedId { get; set; }
 
     /// <summary>
-    /// 更新人名称
+    /// 更新人名称。
     /// </summary>
+    /// <remarks>
+    /// Name of the user who last updated the record.
+    /// </remarks>
+    /// <value>更新人名称 / Updater name</value>
     public string UpdatedName { get; set; } = "";
 
     /// <summary>
-    /// 转换为字符串, 包含所有属性
+    /// 转换为字符串, 包含所有属性。
     /// </summary>
-    /// <returns></returns>
+    /// <remarks>
+    /// Convert to string, including all properties.
+    /// </remarks>
+    /// <returns>对象的JSON字符串表示 / JSON string representation of the object</returns>
     public override string ToString()
     {
         return JsonHelper.Serialize(this);
@@ -127,16 +185,22 @@ public abstract class BaseCacheState : ICacheState, IEntity
     /// <summary>
     /// 用于在对象从数据库加载后进行一些特定的处理，如初始化数据或设置状态。
     /// </summary>
-    /// <param name="isNew">是否是新创建的实例，true表示是新创建的实例，false表示不是</param>
+    /// <remarks>
+    /// Used to perform specific processing after the object is loaded from the database, such as initializing data or setting state.
+    /// </remarks>
+    /// <param name="isNew">是否是新创建的实例，true表示是新创建的实例，false表示不是 / Whether it is a newly created instance, true means it is new, false means it is not</param>
     public virtual void LoadFromDbPostHandler(bool isNew = false)
     {
         _stateHash = new StateHash(this, isNew);
     }
 
     /// <summary>
-    /// 是否修改
+    /// 是否修改。
     /// </summary>
-    /// <returns></returns>
+    /// <remarks>
+    /// Check if the object has been modified.
+    /// </remarks>
+    /// <returns>包含是否修改和字节数据的元组 / Tuple containing whether modified and byte data</returns>
     public virtual (bool isChanged, byte[] data) IsChanged()
     {
         CheckStateHash();
@@ -144,9 +208,12 @@ public abstract class BaseCacheState : ICacheState, IEntity
     }
 
     /// <summary>
-    /// 是否由ID引起的变化
+    /// 是否由ID引起的变化。
     /// </summary>
-    /// <returns></returns>
+    /// <remarks>
+    /// Check if the change was caused by ID.
+    /// </remarks>
+    /// <returns>包含是否修改、状态ID和字节数据的元组 / Tuple containing whether modified, state ID, and byte data</returns>
     public virtual (bool isChanged, long stateId, byte[] data) IsChangedWithId()
     {
         CheckStateHash();
@@ -155,8 +222,11 @@ public abstract class BaseCacheState : ICacheState, IEntity
     }
 
     /// <summary>
-    /// 仅DBModel.Mongodb时调用
+    /// 仅DBModel.Mongodb时调用。
     /// </summary>
+    /// <remarks>
+    /// Called only when using DBModel.Mongodb.
+    /// </remarks>
     public virtual void BeforeSaveToDb()
     {
         // var db = GameDb.As<RocksDBConnection>().CurDataBase;
@@ -175,6 +245,9 @@ public abstract class BaseCacheState : ICacheState, IEntity
     /// <summary>
     /// 在对象保存到数据库后调用的方法，可以进行一些后续处理。
     /// </summary>
+    /// <remarks>
+    /// Method called after the object is saved to the database, can perform some post-processing.
+    /// </remarks>
     public void SaveToDbPostHandler()
     {
         CheckStateHash();
@@ -182,8 +255,11 @@ public abstract class BaseCacheState : ICacheState, IEntity
     }
 
     /// <summary>
-    /// 检查StateHash对象是否存在
+    /// 检查StateHash对象是否存在。
     /// </summary>
+    /// <remarks>
+    /// Check if the StateHash object exists.
+    /// </remarks>
     private void CheckStateHash()
     {
         if (_stateHash.IsNotNull())
@@ -195,9 +271,12 @@ public abstract class BaseCacheState : ICacheState, IEntity
     }
 
     /// <summary>
-    /// 将对象序列化转换为字节数组
+    /// 将对象序列化转换为字节数组。
     /// </summary>
-    /// <returns></returns>
+    /// <remarks>
+    /// Serialize the object to a byte array.
+    /// </remarks>
+    /// <returns>序列化后的字节数组 / Serialized byte array</returns>
     public abstract byte[] ToBytes();
 
     #endregion

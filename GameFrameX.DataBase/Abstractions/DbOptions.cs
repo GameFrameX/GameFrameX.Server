@@ -33,27 +33,46 @@
 namespace GameFrameX.DataBase.Abstractions;
 
 /// <summary>
-/// 数据库选项
+/// 数据库选项。
 /// </summary>
+/// <remarks>
+/// Database configuration options.
+/// </remarks>
 public sealed record DbOptions
 {
     /// <summary>
-    /// 数据库类型
+    /// 数据库类型。
     /// </summary>
+    /// <remarks>
+    /// Database type.
+    /// </remarks>
+    /// <value>数据库类型 / Database type</value>
     public string Type { get; init; }
 
     /// <summary>
-    /// 连接字符串
+    /// 连接字符串。
     /// </summary>
+    /// <remarks>
+    /// Connection string.
+    /// </remarks>
+    /// <value>连接字符串 / Connection string</value>
     public string ConnectionString { get; init; }
 
     /// <summary>
-    /// 数据库名称
+    /// 数据库名称。
     /// </summary>
+    /// <remarks>
+    /// Database name.
+    /// </remarks>
+    /// <value>数据库名称 / Database name</value>
     public string Name { get; init; }
 
     /// <summary>
-    /// 是否使用时区时间记录
+    /// 是否使用时区时间记录。
     /// </summary>
+    /// <remarks>
+    /// Whether to use time zone for time recording.
+    /// </remarks>
+    /// <value>是否使用时区时间记录 / Whether to use time zone for time recording</value>
     public bool IsUseTimeZone { get; init; } = true;
 }

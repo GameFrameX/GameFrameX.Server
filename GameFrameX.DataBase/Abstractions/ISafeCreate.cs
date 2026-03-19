@@ -32,17 +32,28 @@
 namespace GameFrameX.DataBase.Abstractions;
 
 /// <summary>
-/// 创建标记
+/// 创建标记接口。
 /// </summary>
+/// <remarks>
+/// Creation marker interface.
+/// </remarks>
 public interface ISafeCreate
 {
     /// <summary>
-    /// 创建人
+    /// 创建人ID。
     /// </summary>
+    /// <remarks>
+    /// Creator ID.
+    /// </remarks>
+    /// <value>创建人ID / Creator ID</value>
     public long CreateId { get; set; }
 
     /// <summary>
-    /// 创建时间
+    /// 创建时间。
     /// </summary>
+    /// <remarks>
+    /// Creation time.
+    /// </remarks>
+    /// <value>创建时间 / Creation time</value>
     public long CreateTime { get; set; }
 }

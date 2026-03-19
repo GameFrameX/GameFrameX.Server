@@ -34,34 +34,54 @@ using GameFrameX.Foundation.Orm.Entity.Filter;
 namespace GameFrameX.DataBase.Abstractions;
 
 /// <summary>
-/// 缓存数据对象接口
+/// 缓存数据对象接口。
 /// </summary>
+/// <remarks>
+/// Cache data object interface.
+/// </remarks>
 public interface ICacheState : ISafeDeletedFilter, ISafeCreatedFilter, ISafeUpdateFilter
 {
     /// <summary>
-    /// 唯一ID
+    /// 唯一ID。
     /// </summary>
+    /// <remarks>
+    /// Unique identifier.
+    /// </remarks>
+    /// <value>唯一ID / Unique ID</value>
     long Id { get; set; }
 
     /// <summary>
-    /// 是否修改
+    /// 是否修改。
     /// </summary>
+    /// <remarks>
+    /// Whether the object has been modified.
+    /// </remarks>
+    /// <returns>如果已修改则返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if modified; otherwise <c>false</c></returns>
     bool IsModify();
 
     /// <summary>
     /// 用于在对象从数据库加载后进行一些特定的处理，如初始化数据或设置状态。
     /// </summary>
-    /// <param name="isNew">是否是新对象</param>
+    /// <remarks>
+    /// Used to perform specific processing after the object is loaded from the database, such as initializing data or setting state.
+    /// </remarks>
+    /// <param name="isNew">是否是新对象 / Whether it is a new object</param>
     void LoadFromDbPostHandler(bool isNew);
 
     /// <summary>
     /// 在对象保存到数据库后调用的方法，可以进行一些后续处理。
     /// </summary>
+    /// <remarks>
+    /// Method called after the object is saved to the database, can perform some post-processing.
+    /// </remarks>
     void SaveToDbPostHandler();
 
     /// <summary>
-    /// 将对象序列化转换为字节数组
+    /// 将对象序列化转换为字节数组。
     /// </summary>
-    /// <returns></returns>
+    /// <remarks>
+    /// Serialize the object to a byte array.
+    /// </remarks>
+    /// <returns>序列化后的字节数组 / Serialized byte array</returns>
     byte[] ToBytes();
 }

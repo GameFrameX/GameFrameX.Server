@@ -37,10 +37,21 @@ using Standart.Hash.xxHash;
 namespace GameFrameX.DataBase.Storage;
 
 /// <summary>
-/// 数据状态Hash计算处理器
+/// 数据状态Hash计算处理器。
 /// </summary>
+/// <remarks>
+/// Data state hash calculation processor.
+/// </remarks>
 internal sealed class StateHash
 {
+    /// <summary>
+    /// 初始化 <see cref="StateHash"/> 类的新实例。
+    /// </summary>
+    /// <remarks>
+    /// Initialize a new instance of the <see cref="StateHash"/> class.
+    /// </remarks>
+    /// <param name="state">缓存状态对象 / Cache state object</param>
+    /// <param name="isNew">是否是新创建的实例 / Whether it is a newly created instance</param>
     public StateHash(BaseCacheState state, bool isNew = false)
     {
         State = state;
@@ -50,22 +61,37 @@ internal sealed class StateHash
         }
     }
 
+    /// <summary>
+    /// 缓存状态对象。
+    /// </summary>
+    /// <remarks>
+    /// Cache state object.
+    /// </remarks>
     private BaseCacheState State { get; }
 
     /// <summary>
-    /// 缓存的Hash
+    /// 缓存的Hash值。
     /// </summary>
+    /// <remarks>
+    /// Cached hash value.
+    /// </remarks>
     private uint128 CacheHash { get; set; }
 
     /// <summary>
-    /// 保存的Hash
+    /// 待保存的Hash值。
     /// </summary>
+    /// <remarks>
+    /// Hash value to save.
+    /// </remarks>
     private uint128 ToSaveHash { get; set; }
 
     /// <summary>
-    /// 判断是否需要保存
+    /// 判断是否需要保存。
     /// </summary>
-    /// <returns></returns>
+    /// <remarks>
+    /// Determine if save is needed.
+    /// </remarks>
+    /// <returns>包含是否需要保存和字节数据的元组 / Tuple containing whether save is needed and byte data</returns>
     public (bool, byte[]) IsChanged()
     {
         var (toSaveHash, data) = GetHashAndData(State);
@@ -74,8 +100,11 @@ internal sealed class StateHash
     }
 
     /// <summary>
-    /// 保存到数据库之后的操作
+    /// 保存到数据库之后的操作。
     /// </summary>
+    /// <remarks>
+    /// Operation after saving to database.
+    /// </remarks>
     public void SaveToDbPostHandler()
     {
         if (CacheHash.high64 == ToSaveHash.high64 && CacheHash.low64 == ToSaveHash.low64)
@@ -87,6 +116,14 @@ internal sealed class StateHash
         CacheHash = ToSaveHash;
     }
 
+    /// <summary>
+    /// 获取状态对象的Hash值和字节数据。
+    /// </summary>
+    /// <remarks>
+    /// Get the hash value and byte data of the state object.
+    /// </remarks>
+    /// <param name="state">缓存状态对象 / Cache state object</param>
+    /// <returns>包含Hash值和字节数据的元组 / Tuple containing hash value and byte data</returns>
     private static (uint128 md5, byte[] data) GetHashAndData(BaseCacheState state)
     {
         var data = state.ToBytes();
