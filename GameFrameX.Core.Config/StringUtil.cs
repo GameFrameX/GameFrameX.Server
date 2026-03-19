@@ -36,13 +36,19 @@ namespace GameFrameX.Core.Config;
 /// <summary>
 /// 提供字符串处理的静态方法。
 /// </summary>
+/// <remarks>
+/// Provides static methods for string processing.
+/// </remarks>
 public static class StringUtil
 {
     /// <summary>
     /// 将对象转换为字符串表示形式。
     /// </summary>
-    /// <param name="o">要转换的对象。</param>
-    /// <returns>对象的字符串表示形式。</returns>
+    /// <remarks>
+    /// Converts an object to its string representation.
+    /// </remarks>
+    /// <param name="o">要转换的对象 / The object to convert</param>
+    /// <returns>对象的字符串表示形式 / The string representation of the object</returns>
     public static string ToStr(object o)
     {
         return ToStr(o, new StringBuilder());
@@ -51,9 +57,12 @@ public static class StringUtil
     /// <summary>
     /// 将对象转换为字符串表示形式，并使用提供的StringBuilder进行构建。
     /// </summary>
-    /// <param name="o">要转换的对象。</param>
-    /// <param name="sb">用于构建字符串的StringBuilder。</param>
-    /// <returns>对象的字符串表示形式。</returns>
+    /// <remarks>
+    /// Converts an object to its string representation using the provided StringBuilder.
+    /// </remarks>
+    /// <param name="o">要转换的对象 / The object to convert</param>
+    /// <param name="sb">用于构建字符串的StringBuilder / The StringBuilder used to build the string</param>
+    /// <returns>对象的字符串表示形式 / The string representation of the object</returns>
     public static string ToStr(object o, StringBuilder sb)
     {
         foreach (var p in o.GetType().GetFields())
@@ -72,9 +81,12 @@ public static class StringUtil
     /// <summary>
     /// 将数组转换为字符串表示形式。
     /// </summary>
-    /// <param name="arr">要转换的数组。</param>
-    /// <typeparam name="T">数组元素的类型。</typeparam>
-    /// <returns>数组的字符串表示形式。</returns>
+    /// <remarks>
+    /// Converts an array to its string representation.
+    /// </remarks>
+    /// <param name="arr">要转换的数组 / The array to convert</param>
+    /// <typeparam name="T">数组元素的类型 / The type of elements in the array</typeparam>
+    /// <returns>数组的字符串表示形式 / The string representation of the array</returns>
     public static string ArrayToString<T>(T[] arr)
     {
         return "[" + string.Join(",", arr) + "]";
@@ -83,9 +95,12 @@ public static class StringUtil
     /// <summary>
     /// 将集合转换为字符串表示形式。
     /// </summary>
-    /// <param name="arr">要转换的集合。</param>
-    /// <typeparam name="T">集合元素的类型。</typeparam>
-    /// <returns>集合的字符串表示形式。</returns>
+    /// <remarks>
+    /// Converts a collection to its string representation.
+    /// </remarks>
+    /// <param name="arr">要转换的集合 / The collection to convert</param>
+    /// <typeparam name="T">集合元素的类型 / The type of elements in the collection</typeparam>
+    /// <returns>集合的字符串表示形式 / The string representation of the collection</returns>
     public static string CollectionToString<T>(IEnumerable<T> arr)
     {
         return "[" + string.Join(",", arr) + "]";
@@ -94,10 +109,13 @@ public static class StringUtil
     /// <summary>
     /// 将字典转换为字符串表示形式。
     /// </summary>
-    /// <param name="dic">要转换的字典。</param>
-    /// <typeparam name="TK">字典键的类型。</typeparam>
-    /// <typeparam name="TV">字典值的类型。</typeparam>
-    /// <returns>字典的字符串表示形式。</returns>
+    /// <remarks>
+    /// Converts a dictionary to its string representation.
+    /// </remarks>
+    /// <param name="dic">要转换的字典 / The dictionary to convert</param>
+    /// <typeparam name="TK">字典键的类型 / The type of keys in the dictionary</typeparam>
+    /// <typeparam name="TV">字典值的类型 / The type of values in the dictionary</typeparam>
+    /// <returns>字典的字符串表示形式 / The string representation of the dictionary</returns>
     public static string CollectionToString<TK, TV>(IDictionary<TK, TV> dic)
     {
         var sb = new StringBuilder('{');

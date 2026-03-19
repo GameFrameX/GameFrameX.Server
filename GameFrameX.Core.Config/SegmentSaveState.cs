@@ -33,15 +33,21 @@
 namespace GameFrameX.Core.Config;
 
 /// <summary>
-/// 分段保存状态结构
+/// 分段保存状态结构，用于保存和恢复字节缓冲区的读写位置。
 /// </summary>
+/// <remarks>
+/// Segment save state structure, used to save and restore the read/write positions of a byte buffer.
+/// </remarks>
 public readonly struct SegmentSaveState
 {
     /// <summary>
-    /// 构造函数
+    /// 初始化分段保存状态的新实例。
     /// </summary>
-    /// <param name="readerIndex">读取位置</param>
-    /// <param name="writerIndex">写入位置</param>
+    /// <remarks>
+    /// Initializes a new instance of the segment save state.
+    /// </remarks>
+    /// <param name="readerIndex">读取位置 / The reader index position</param>
+    /// <param name="writerIndex">写入位置 / The writer index position</param>
     public SegmentSaveState(int readerIndex, int writerIndex)
     {
         ReaderIndex = readerIndex;
@@ -49,12 +55,20 @@ public readonly struct SegmentSaveState
     }
 
     /// <summary>
-    /// 读取位置
+    /// 获取读取位置。
     /// </summary>
+    /// <remarks>
+    /// Gets the reader index position.
+    /// </remarks>
+    /// <value>读取位置 / The reader index position</value>
     public int ReaderIndex { get; }
 
     /// <summary>
-    /// 写入位置
+    /// 获取写入位置。
     /// </summary>
+    /// <remarks>
+    /// Gets the writer index position.
+    /// </remarks>
+    /// <value>写入位置 / The writer index position</value>
     public int WriterIndex { get; }
 }

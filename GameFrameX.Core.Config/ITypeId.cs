@@ -32,13 +32,19 @@
 namespace GameFrameX.Core.Config;
 
 /// <summary>
-/// 类型ID接口
+/// 类型ID接口，定义获取类型ID的契约。
 /// </summary>
+/// <remarks>
+/// Type ID interface, defining the contract for getting type IDs.
+/// </remarks>
 public interface ITypeId
 {
     /// <summary>
-    /// 获取类型ID
+    /// 获取类型ID。
     /// </summary>
-    /// <returns></returns>
+    /// <remarks>
+    /// Gets the type ID.
+    /// </remarks>
+    /// <returns>类型ID / The type ID</returns>
     int GetTypeId();
 }

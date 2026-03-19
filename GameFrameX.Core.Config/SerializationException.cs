@@ -32,30 +32,43 @@
 namespace GameFrameX.Core.Config;
 
 /// <summary>
-/// 序列化操作失败时抛出的异常
+/// 序列化操作失败时抛出的异常。
 /// </summary>
+/// <remarks>
+/// Exception thrown when serialization operations fail.
+/// </remarks>
 public sealed class SerializationException : Exception
 {
     /// <summary>
-    /// 初始化 SerializationException 类的新实例
+    /// 初始化 <see cref="SerializationException"/> 类的新实例。
     /// </summary>
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="SerializationException"/> class.
+    /// </remarks>
     public SerializationException()
     {
     }
 
     /// <summary>
-    /// 使用指定的错误消息初始化 SerializationException 类的新实例
+    /// 使用指定的错误消息初始化 <see cref="SerializationException"/> 类的新实例。
     /// </summary>
-    /// <param name="msg">描述错误的消息</param>
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="SerializationException"/> class with a specified error message.
+    /// </remarks>
+    /// <param name="msg">描述错误的消息 / The message that describes the error</param>
     public SerializationException(string msg) : base(msg)
     {
     }
 
     /// <summary>
-    /// 使用指定的错误消息和对导致此异常的内部异常的引用初始化 SerializationException 类的新实例
+    /// 使用指定的错误消息和对导致此异常的内部异常的引用初始化 <see cref="SerializationException"/> 类的新实例。
     /// </summary>
-    /// <param name="message">描述错误的消息</param>
-    /// <param name="innerException">导致当前异常的异常</param>
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="SerializationException"/> class with a specified error message
+    /// and a reference to the inner exception that is the cause of this exception.
+    /// </remarks>
+    /// <param name="message">描述错误的消息 / The message that describes the error</param>
+    /// <param name="innerException">导致当前异常的异常 / The exception that is the cause of the current exception</param>
     public SerializationException(string message, Exception innerException) : base(message, innerException)
     {
     }

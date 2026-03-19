@@ -38,13 +38,19 @@ using System.Text;
 namespace GameFrameX.Core.Config;
 
 /// <summary>
-/// 字节缓冲区类,用于二进制数据的读写操作
+/// 字节缓冲区类，用于二进制数据的读写操作。
 /// </summary>
+/// <remarks>
+/// Byte buffer class for reading and writing binary data.
+/// </remarks>
 public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
 {
     /// <summary>
-    /// 默认构造函数,创建一个空的字节缓冲区
+    /// 默认构造函数，创建一个空的字节缓冲区。
     /// </summary>
+    /// <remarks>
+    /// Default constructor, creates an empty byte buffer.
+    /// </remarks>
     public ByteBuf()
     {
         Bytes = Array.Empty<byte>();
@@ -52,9 +58,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 使用指定容量创建字节缓冲区
+    /// 使用指定容量创建字节缓冲区。
     /// </summary>
-    /// <param name="capacity">初始容量</param>
+    /// <remarks>
+    /// Creates a byte buffer with the specified capacity.
+    /// </remarks>
+    /// <param name="capacity">初始容量 / Initial capacity</param>
     public ByteBuf(int capacity)
     {
         Bytes = capacity > 0 ? new byte[capacity] : Array.Empty<byte>();
@@ -63,9 +72,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 使用指定字节数组创建字节缓冲区
+    /// 使用指定字节数组创建字节缓冲区。
     /// </summary>
-    /// <param name="bytes">字节数组</param>
+    /// <remarks>
+    /// Creates a byte buffer with the specified byte array.
+    /// </remarks>
+    /// <param name="bytes">字节数组 / Byte array</param>
     public ByteBuf(byte[] bytes)
     {
         Bytes = bytes;
@@ -74,11 +86,14 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 使用指定字节数组和读写位置创建字节缓冲区
+    /// 使用指定字节数组和读写位置创建字节缓冲区。
     /// </summary>
-    /// <param name="bytes">字节数组</param>
-    /// <param name="readIndex">读取位置</param>
-    /// <param name="writeIndex">写入位置</param>
+    /// <remarks>
+    /// Creates a byte buffer with the specified byte array and read/write positions.
+    /// </remarks>
+    /// <param name="bytes">字节数组 / Byte array</param>
+    /// <param name="readIndex">读取位置 / Read position</param>
+    /// <param name="writeIndex">写入位置 / Write position</param>
     public ByteBuf(byte[] bytes, int readIndex, int writeIndex)
     {
         Bytes = bytes;
@@ -87,29 +102,38 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 使用指定容量和释放器创建字节缓冲区
+    /// 使用指定容量和释放器创建字节缓冲区。
     /// </summary>
-    /// <param name="capacity">初始容量</param>
-    /// <param name="releaser">释放器委托</param>
+    /// <remarks>
+    /// Creates a byte buffer with the specified capacity and releaser.
+    /// </remarks>
+    /// <param name="capacity">初始容量 / Initial capacity</param>
+    /// <param name="releaser">释放器委托 / Releaser delegate</param>
     public ByteBuf(int capacity, Action<ByteBuf> releaser) : this(capacity)
     {
         _releaser = releaser;
     }
 
     /// <summary>
-    /// 包装字节数组为ByteBuf
+    /// 包装字节数组为ByteBuf。
     /// </summary>
-    /// <param name="bytes">要包装的字节数组</param>
-    /// <returns>包装后的ByteBuf对象</returns>
+    /// <remarks>
+    /// Wraps a byte array as a ByteBuf.
+    /// </remarks>
+    /// <param name="bytes">要包装的字节数组 / The byte array to wrap</param>
+    /// <returns>包装后的ByteBuf对象 / The wrapped ByteBuf object</returns>
     public static ByteBuf Wrap(byte[] bytes)
     {
         return new ByteBuf(bytes, 0, bytes.Length);
     }
 
     /// <summary>
-    /// 替换内部字节数组
+    /// 替换内部字节数组。
     /// </summary>
-    /// <param name="bytes">新的字节数组</param>
+    /// <remarks>
+    /// Replaces the internal byte array.
+    /// </remarks>
+    /// <param name="bytes">新的字节数组 / The new byte array</param>
     public void Replace(byte[] bytes)
     {
         Bytes = bytes;
@@ -118,11 +142,14 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 替换内部字节数组并指定读写位置
+    /// 替换内部字节数组并指定读写位置。
     /// </summary>
-    /// <param name="bytes">新的字节数组</param>
-    /// <param name="beginPos">起始位置</param>
-    /// <param name="endPos">结束位置</param>
+    /// <remarks>
+    /// Replaces the internal byte array with specified read/write positions.
+    /// </remarks>
+    /// <param name="bytes">新的字节数组 / The new byte array</param>
+    /// <param name="beginPos">起始位置 / Begin position</param>
+    /// <param name="endPos">结束位置 / End position</param>
     public void Replace(byte[] bytes, int beginPos, int endPos)
     {
         Bytes = bytes;
@@ -131,62 +158,92 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 当前读取位置
+    /// 获取或设置当前读取位置。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the current read position.
+    /// </remarks>
+    /// <value>当前读取位置 / The current read position</value>
     public int ReaderIndex { get; set; }
 
     /// <summary>
-    /// 当前写入位置
+    /// 获取或设置当前写入位置。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the current write position.
+    /// </remarks>
+    /// <value>当前写入位置 / The current write position</value>
     public int WriterIndex { get; set; }
 
     private readonly Action<ByteBuf> _releaser;
 
     /// <summary>
-    /// 缓冲区容量
+    /// 获取缓冲区容量。
     /// </summary>
+    /// <remarks>
+    /// Gets the buffer capacity.
+    /// </remarks>
+    /// <value>缓冲区容量 / The buffer capacity</value>
     public int Capacity
     {
         get { return Bytes.Length; }
     }
 
     /// <summary>
-    /// 当前数据大小
+    /// 获取当前数据大小。
     /// </summary>
+    /// <remarks>
+    /// Gets the current data size.
+    /// </remarks>
+    /// <value>当前数据大小 / The current data size</value>
     public int Size
     {
         get { return WriterIndex - ReaderIndex; }
     }
 
     /// <summary>
-    /// 缓冲区是否为空
+    /// 获取缓冲区是否为空。
     /// </summary>
+    /// <remarks>
+    /// Gets whether the buffer is empty.
+    /// </remarks>
+    /// <value>如果缓冲区为空则为 <c>true</c>；否则为 <c>false</c> / <c>true</c> if the buffer is empty; otherwise <c>false</c></value>
     public bool Empty
     {
         get { return WriterIndex <= ReaderIndex; }
     }
 
     /// <summary>
-    /// 缓冲区是否非空
+    /// 获取缓冲区是否非空。
     /// </summary>
+    /// <remarks>
+    /// Gets whether the buffer is not empty.
+    /// </remarks>
+    /// <value>如果缓冲区非空则为 <c>true</c>；否则为 <c>false</c> / <c>true</c> if the buffer is not empty; otherwise <c>false</c></value>
     public bool NotEmpty
     {
         get { return WriterIndex > ReaderIndex; }
     }
 
     /// <summary>
-    /// 增加写入位置
+    /// 增加写入位置。
     /// </summary>
-    /// <param name="add">增加的值</param>
+    /// <remarks>
+    /// Increases the write position.
+    /// </remarks>
+    /// <param name="add">增加的值 / The value to add</param>
     public void AddWriteIndex(int add)
     {
         WriterIndex += add;
     }
 
     /// <summary>
-    /// 增加读取位置
+    /// 增加读取位置。
     /// </summary>
-    /// <param name="add">增加的值</param>
+    /// <remarks>
+    /// Increases the read position.
+    /// </remarks>
+    /// <param name="add">增加的值 / The value to add</param>
     public void AddReadIndex(int add)
     {
         ReaderIndex += add;
@@ -194,15 +251,22 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
 
 #pragma warning disable CA1819 // 属性不应返回数组
     /// <summary>
-    /// 内部字节数组
+    /// 获取内部字节数组。
     /// </summary>
+    /// <remarks>
+    /// Gets the internal byte array.
+    /// </remarks>
+    /// <value>内部字节数组 / The internal byte array</value>
     public byte[] Bytes { get; private set; }
 #pragma warning restore CA1819 // 属性不应返回数组
 
     /// <summary>
-    /// 复制当前数据
+    /// 复制当前数据。
     /// </summary>
-    /// <returns>复制的字节数组</returns>
+    /// <remarks>
+    /// Copies the current data.
+    /// </remarks>
+    /// <returns>复制的字节数组 / The copied byte array</returns>
     public byte[] CopyData()
     {
         var n = Remaining;
@@ -219,16 +283,23 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 剩余可读取的字节数
+    /// 获取剩余可读取的字节数。
     /// </summary>
+    /// <remarks>
+    /// Gets the number of remaining bytes that can be read.
+    /// </remarks>
+    /// <value>剩余可读取的字节数 / The number of remaining bytes that can be read</value>
     public int Remaining
     {
         get { return WriterIndex - ReaderIndex; }
     }
 
     /// <summary>
-    /// 丢弃已读取的字节
+    /// 丢弃已读取的字节。
     /// </summary>
+    /// <remarks>
+    /// Discards the bytes that have been read.
+    /// </remarks>
     public void DiscardReadBytes()
     {
         WriterIndex -= ReaderIndex;
@@ -237,28 +308,38 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 未压缩的可写入字节数
+    /// 获取未压缩的可写入字节数。
     /// </summary>
+    /// <remarks>
+    /// Gets the number of bytes that can be written without compaction.
+    /// </remarks>
+    /// <value>未压缩的可写入字节数 / The number of bytes that can be written without compaction</value>
     public int NotCompactWritable
     {
         get { return Capacity - WriterIndex; }
     }
 
     /// <summary>
-    /// 写入字节数组(不写入大小)
+    /// 写入字节数组（不写入大小）。
     /// </summary>
-    /// <param name="bs">要写入的字节数组</param>
+    /// <remarks>
+    /// Writes a byte array without writing the size.
+    /// </remarks>
+    /// <param name="bs">要写入的字节数组 / The byte array to write</param>
     public void WriteBytesWithoutSize(byte[] bs)
     {
         WriteBytesWithoutSize(bs, 0, bs.Length);
     }
 
     /// <summary>
-    /// 写入字节数组的指定部分(不写入大小)
+    /// 写入字节数组的指定部分（不写入大小）。
     /// </summary>
-    /// <param name="bs">要写入的字节数组</param>
-    /// <param name="offset">起始偏移</param>
-    /// <param name="len">长度</param>
+    /// <remarks>
+    /// Writes a portion of the byte array without writing the size.
+    /// </remarks>
+    /// <param name="bs">要写入的字节数组 / The byte array to write</param>
+    /// <param name="offset">起始偏移 / The starting offset</param>
+    /// <param name="len">长度 / The length</param>
     public void WriteBytesWithoutSize(byte[] bs, int offset, int len)
     {
         EnsureWrite(len);
@@ -267,8 +348,11 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 清空缓冲区
+    /// 清空缓冲区。
     /// </summary>
+    /// <remarks>
+    /// Clears the buffer.
+    /// </remarks>
     public void Clear()
     {
         ReaderIndex = WriterIndex = 0;
@@ -311,9 +395,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 确保有足够的写入空间
+    /// 确保有足够的写入空间。
     /// </summary>
-    /// <param name="size">需要的空间大小</param>
+    /// <remarks>
+    /// Ensures there is enough space to write.
+    /// </remarks>
+    /// <param name="size">需要的空间大小 / The required space size</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void EnsureWrite(int size)
     {
@@ -339,9 +426,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 追加一个字节
+    /// 追加一个字节。
     /// </summary>
-    /// <param name="x">要追加的字节</param>
+    /// <remarks>
+    /// Appends a single byte.
+    /// </remarks>
+    /// <param name="x">要追加的字节 / The byte to append</param>
     public void Append(byte x)
     {
         EnsureWrite(1);
@@ -349,9 +439,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入布尔值
+    /// 写入布尔值。
     /// </summary>
-    /// <param name="b">要写入的布尔值</param>
+    /// <remarks>
+    /// Writes a boolean value.
+    /// </remarks>
+    /// <param name="b">要写入的布尔值 / The boolean value to write</param>
     public void WriteBool(bool b)
     {
         EnsureWrite(1);
@@ -359,9 +452,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取布尔值
+    /// 读取布尔值。
     /// </summary>
-    /// <returns>读取的布尔值</returns>
+    /// <remarks>
+    /// Reads a boolean value.
+    /// </remarks>
+    /// <returns>读取的布尔值 / The read boolean value</returns>
     public bool ReadBool()
     {
         EnsureRead(1);
@@ -369,9 +465,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入字节
+    /// 写入字节。
     /// </summary>
-    /// <param name="x">要写入的字节</param>
+    /// <remarks>
+    /// Writes a byte.
+    /// </remarks>
+    /// <param name="x">要写入的字节 / The byte to write</param>
     public void WriteByte(byte x)
     {
         EnsureWrite(1);
@@ -379,9 +478,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取字节
+    /// 读取字节。
     /// </summary>
-    /// <returns>读取的字节</returns>
+    /// <remarks>
+    /// Reads a byte.
+    /// </remarks>
+    /// <returns>读取的字节 / The read byte</returns>
     public byte ReadByte()
     {
         EnsureRead(1);
@@ -389,9 +491,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入短整型
+    /// 写入短整型。
     /// </summary>
-    /// <param name="x">要写入的短整型值</param>
+    /// <remarks>
+    /// Writes a short integer.
+    /// </remarks>
+    /// <param name="x">要写入的短整型值 / The short integer value to write</param>
     public void WriteShort(short x)
     {
         if (x >= 0)
@@ -420,9 +525,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取短整型
+    /// 读取短整型。
     /// </summary>
-    /// <returns>读取的短整型值</returns>
+    /// <remarks>
+    /// Reads a short integer.
+    /// </remarks>
+    /// <returns>读取的短整型值 / The read short integer value</returns>
     public short ReadShort()
     {
         EnsureRead(1);
@@ -453,9 +561,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取固定长度的短整型
+    /// 读取固定长度的短整型。
     /// </summary>
-    /// <returns>读取的短整型值</returns>
+    /// <remarks>
+    /// Reads a fixed-length short integer.
+    /// </remarks>
+    /// <returns>读取的短整型值 / The read short integer value</returns>
     public short ReadFshort()
     {
         EnsureRead(2);
@@ -477,9 +588,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入固定长度的短整型
+    /// 写入固定长度的短整型。
     /// </summary>
-    /// <param name="x">要写入的短整型值</param>
+    /// <remarks>
+    /// Writes a fixed-length short integer.
+    /// </remarks>
+    /// <param name="x">要写入的短整型值 / The short integer value to write</param>
     public void WriteFshort(short x)
     {
         EnsureWrite(2);
@@ -499,9 +613,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入整型
+    /// 写入整型。
     /// </summary>
-    /// <param name="x">要写入的整型值</param>
+    /// <remarks>
+    /// Writes an integer.
+    /// </remarks>
+    /// <param name="x">要写入的整型值 / The integer value to write</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void WriteInt(int x)
     {
@@ -509,9 +626,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取整型
+    /// 读取整型。
     /// </summary>
-    /// <returns>读取的整型值</returns>
+    /// <remarks>
+    /// Reads an integer.
+    /// </remarks>
+    /// <returns>读取的整型值 / The read integer value</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int ReadInt()
     {
@@ -519,9 +639,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入无符号整型
+    /// 写入无符号整型。
     /// </summary>
-    /// <param name="x">要写入的无符号整型值</param>
+    /// <remarks>
+    /// Writes an unsigned integer.
+    /// </remarks>
+    /// <param name="x">要写入的无符号整型值 / The unsigned integer value to write</param>
     public void WriteUint(uint x)
     {
         // 如果有修改，记得也把 EndWriteSegment改了
@@ -568,9 +691,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取无符号整型
+    /// 读取无符号整型。
     /// </summary>
-    /// <returns>读取的无符号整型值</returns>
+    /// <remarks>
+    /// Reads an unsigned integer.
+    /// </remarks>
+    /// <returns>读取的无符号整型值 / The read unsigned integer value</returns>
     public uint ReadUint()
     {
         // 警告！ 如有修改，记得调整 TryDeserializeInplaceOctets
@@ -612,9 +738,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 使用不安全代码写入无符号整型
+    /// 使用不安全代码写入无符号整型。
     /// </summary>
-    /// <param name="x">要写入的无符号整型值</param>
+    /// <remarks>
+    /// Writes an unsigned integer using unsafe code.
+    /// </remarks>
+    /// <param name="x">要写入的无符号整型值 / The unsigned integer value to write</param>
     public unsafe void WriteUint_Unsafe(uint x)
     {
         // 0 111 1111
@@ -668,9 +797,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 使用不安全代码读取无符号整型
+    /// 使用不安全代码读取无符号整型。
     /// </summary>
-    /// <returns>读取的无符号整型值</returns>
+    /// <remarks>
+    /// Reads an unsigned integer using unsafe code.
+    /// </remarks>
+    /// <returns>读取的无符号整型值 / The read unsigned integer value</returns>
     public unsafe uint ReadUint_Unsafe()
     {
         // 警告！ 如有修改，记得调整 TryDeserializeInplaceOctets
@@ -720,9 +852,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取固定长度的整型
+    /// 读取固定长度的整型。
     /// </summary>
-    /// <returns>读取的整型值</returns>
+    /// <remarks>
+    /// Reads a fixed-length integer.
+    /// </remarks>
+    /// <returns>读取的整型值 / The read integer value</returns>
     public int ReadFint()
     {
         EnsureRead(4);
@@ -744,9 +879,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入固定长度的整型
+    /// 写入固定长度的整型。
     /// </summary>
-    /// <param name="x">要写入的整型值</param>
+    /// <remarks>
+    /// Writes a fixed-length integer.
+    /// </remarks>
+    /// <param name="x">要写入的整型值 / The integer value to write</param>
     public void WriteFint(int x)
     {
         EnsureWrite(4);
@@ -768,9 +906,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 安全地读取固定长度的整型
+    /// 安全地读取固定长度的整型。
     /// </summary>
-    /// <returns>读取的整型值</returns>
+    /// <remarks>
+    /// Safely reads a fixed-length integer.
+    /// </remarks>
+    /// <returns>读取的整型值 / The read integer value</returns>
     public int ReadFint_Safe()
     {
         EnsureRead(4);
@@ -783,9 +924,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 安全地写入固定长度的整型
+    /// 安全地写入固定长度的整型。
     /// </summary>
-    /// <param name="x">要写入的整型值</param>
+    /// <remarks>
+    /// Safely writes a fixed-length integer.
+    /// </remarks>
+    /// <param name="x">要写入的整型值 / The integer value to write</param>
     public void WriteFint_Safe(int x)
     {
         EnsureWrite(4);
@@ -797,36 +941,48 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入长整型
+    /// 写入长整型。
     /// </summary>
-    /// <param name="x">要写入的长整型值</param>
+    /// <remarks>
+    /// Writes a long integer.
+    /// </remarks>
+    /// <param name="x">要写入的长整型值 / The long integer value to write</param>
     public void WriteLong(long x)
     {
         WriteUlong((ulong)x);
     }
 
     /// <summary>
-    /// 读取长整型
+    /// 读取长整型。
     /// </summary>
-    /// <returns>读取的长整型值</returns>
+    /// <remarks>
+    /// Reads a long integer.
+    /// </remarks>
+    /// <returns>读取的长整型值 / The read long integer value</returns>
     public long ReadLong()
     {
         return (long)ReadUlong();
     }
 
     /// <summary>
-    /// 将浮点数作为长整型写入
+    /// 将浮点数作为长整型写入。
     /// </summary>
-    /// <param name="x">要写入的浮点数</param>
+    /// <remarks>
+    /// Writes a floating-point number as a long integer.
+    /// </remarks>
+    /// <param name="x">要写入的浮点数 / The floating-point number to write</param>
     public void WriteNumberAsLong(double x)
     {
         WriteLong((long)x);
     }
 
     /// <summary>
-    /// 读取长整型并转换为浮点数
+    /// 读取长整型并转换为浮点数。
     /// </summary>
-    /// <returns>读取的浮点数</returns>
+    /// <remarks>
+    /// Reads a long integer and converts it to a floating-point number.
+    /// </remarks>
+    /// <returns>读取的浮点数 / The read floating-point number</returns>
     public double ReadLongAsNumber()
     {
         return ReadLong();
@@ -927,9 +1083,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取无符号长整型
+    /// 读取无符号长整型。
     /// </summary>
-    /// <returns>读取的无符号长整型值</returns>
+    /// <remarks>
+    /// Reads an unsigned long integer.
+    /// </remarks>
+    /// <returns>读取的无符号长整型值 / The read unsigned long integer value</returns>
     public ulong ReadUlong()
     {
         EnsureRead(1);
@@ -1003,9 +1162,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入长整型
+    /// 写入固定长度的长整型。
     /// </summary>
-    /// <param name="x">要写入的长整型值</param>
+    /// <remarks>
+    /// Writes a fixed-length long integer.
+    /// </remarks>
+    /// <param name="x">要写入的长整型值 / The long integer value to write</param>
     public void WriteFlong(long x)
     {
         EnsureWrite(8);
@@ -1032,9 +1194,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取长整型
+    /// 读取固定长度的长整型。
     /// </summary>
-    /// <returns>读取的长整型值</returns>   
+    /// <remarks>
+    /// Reads a fixed-length long integer.
+    /// </remarks>
+    /// <returns>读取的长整型值 / The read long integer value</returns>
     public long ReadFlong()
     {
         EnsureRead(8);
@@ -1077,9 +1242,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入浮点数
+    /// 写入浮点数。
     /// </summary>
-    /// <param name="x">要写入的浮点数</param>
+    /// <remarks>
+    /// Writes a floating-point number.
+    /// </remarks>
+    /// <param name="x">要写入的浮点数 / The floating-point number to write</param>
     public void WriteFloat(float x)
     {
         EnsureWrite(4);
@@ -1110,9 +1278,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取浮点数
+    /// 读取浮点数。
     /// </summary>
-    /// <returns>读取的浮点数</returns>
+    /// <remarks>
+    /// Reads a floating-point number.
+    /// </remarks>
+    /// <returns>读取的浮点数 / The read floating-point number</returns>
     public float ReadFloat()
     {
         EnsureRead(4);
@@ -1145,9 +1316,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入双精度浮点数
+    /// 写入双精度浮点数。
     /// </summary>
-    /// <param name="x">要写入的双精度浮点数</param>
+    /// <remarks>
+    /// Writes a double-precision floating-point number.
+    /// </remarks>
+    /// <param name="x">要写入的双精度浮点数 / The double-precision floating-point number to write</param>
     public void WriteDouble(double x)
     {
         EnsureWrite(8);
@@ -1178,9 +1352,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取双精度浮点数
+    /// 读取双精度浮点数。
     /// </summary>
-    /// <returns>读取的双精度浮点数</returns>
+    /// <remarks>
+    /// Reads a double-precision floating-point number.
+    /// </remarks>
+    /// <returns>读取的双精度浮点数 / The read double-precision floating-point number</returns>
     public double ReadDouble()
     {
         EnsureRead(8);
@@ -1215,36 +1392,48 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入大小
+    /// 写入大小。
     /// </summary>
-    /// <param name="n">要写入的大小</param>    
+    /// <remarks>
+    /// Writes a size value.
+    /// </remarks>
+    /// <param name="n">要写入的大小 / The size to write</param>
     public void WriteSize(int n)
     {
         WriteUint((uint)n);
     }
 
     /// <summary>
-    /// 读取大小
+    /// 读取大小。
     /// </summary>
-    /// <returns>读取的大小</returns>
+    /// <remarks>
+    /// Reads a size value.
+    /// </remarks>
+    /// <returns>读取的大小 / The read size value</returns>
     public int ReadSize()
     {
         return (int)ReadUint();
     }
 
     /// <summary>
-    /// 写入有符号整型
+    /// 写入有符号整型。
     /// </summary>
-    /// <param name="x">要写入的有符号整型值</param>
+    /// <remarks>
+    /// Writes a signed integer.
+    /// </remarks>
+    /// <param name="x">要写入的有符号整型值 / The signed integer value to write</param>
     public void WriteSint(int x)
     {
         WriteUint(((uint)x << 1) ^ ((uint)x >> 31));
     }
 
     /// <summary>
-    /// 读取有符号整型
+    /// 读取有符号整型。
     /// </summary>
-    /// <returns>读取的有符号整型值</returns>
+    /// <remarks>
+    /// Reads a signed integer.
+    /// </remarks>
+    /// <returns>读取的有符号整型值 / The read signed integer value</returns>
     public int ReadSint()
     {
         var x = ReadUint();
@@ -1253,18 +1442,24 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
 
 
     /// <summary>
-    /// 写入长整型
+    /// 写入有符号长整型。
     /// </summary>
-    /// <param name="x">要写入的长整型值</param>
+    /// <remarks>
+    /// Writes a signed long integer.
+    /// </remarks>
+    /// <param name="x">要写入的长整型值 / The long integer value to write</param>
     public void WriteSlong(long x)
     {
         WriteUlong(((ulong)x << 1) ^ ((ulong)x >> 63));
     }
 
     /// <summary>
-    /// 读取长整型
+    /// 读取有符号长整型。
     /// </summary>
-    /// <returns>读取的长整型值</returns>
+    /// <remarks>
+    /// Reads a signed long integer.
+    /// </remarks>
+    /// <returns>读取的长整型值 / The read long integer value</returns>
     public long ReadSlong()
     {
         var x = ReadLong();
@@ -1272,9 +1467,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入字符串
+    /// 写入字符串。
     /// </summary>
-    /// <param name="x">要写入的字符串</param>
+    /// <remarks>
+    /// Writes a string.
+    /// </remarks>
+    /// <param name="x">要写入的字符串 / The string to write</param>
     public void WriteString(string x)
     {
         var n = x != null ? Encoding.UTF8.GetByteCount(x) : 0;
@@ -1288,14 +1486,21 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 字符串缓存查找器
+    /// 获取或设置字符串缓存查找器。
     /// </summary>
+    /// <remarks>
+    /// Gets or sets the string cache finder.
+    /// </remarks>
+    /// <value>字符串缓存查找器委托 / The string cache finder delegate</value>
     public static Func<byte[], int, int, string> StringCacheFinder { get; set; }
 
     /// <summary>
-    /// 读取字符串
+    /// 读取字符串。
     /// </summary>
-    /// <returns>读取的字符串</returns> 
+    /// <remarks>
+    /// Reads a string.
+    /// </remarks>
+    /// <returns>读取的字符串 / The read string</returns>
     public string ReadString()
     {
         var n = ReadSize();
@@ -1324,9 +1529,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入字节数组
+    /// 写入字节数组。
     /// </summary>
-    /// <param name="x">要写入的字节数组</param>
+    /// <remarks>
+    /// Writes a byte array.
+    /// </remarks>
+    /// <param name="x">要写入的字节数组 / The byte array to write</param>
     public void WriteBytes(byte[] x)
     {
         var n = x != null ? x.Length : 0;
@@ -1340,9 +1548,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取字节数组
+    /// 读取字节数组。
     /// </summary>
-    /// <returns>读取的字节数组</returns>
+    /// <remarks>
+    /// Reads a byte array.
+    /// </remarks>
+    /// <returns>读取的字节数组 / The read byte array</returns>
     public byte[] ReadBytes()
     {
         var n = ReadSize();
@@ -1361,9 +1572,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入复数
+    /// 写入复数。
     /// </summary>
-    /// <param name="x">要写入的复数</param>
+    /// <remarks>
+    /// Writes a complex number.
+    /// </remarks>
+    /// <param name="x">要写入的复数 / The complex number to write</param>
     public void WriteComplex(Complex x)
     {
         WriteDouble(x.Real);
@@ -1371,9 +1585,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取复数
+    /// 读取复数。
     /// </summary>
-    /// <returns>读取的复数</returns>
+    /// <remarks>
+    /// Reads a complex number.
+    /// </remarks>
+    /// <returns>读取的复数 / The read complex number</returns>
     public Complex ReadComplex()
     {
         var x = ReadDouble();
@@ -1382,9 +1599,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入二维向量
+    /// 写入二维向量。
     /// </summary>
-    /// <param name="x">要写入的二维向量</param>
+    /// <remarks>
+    /// Writes a 2D vector.
+    /// </remarks>
+    /// <param name="x">要写入的二维向量 / The 2D vector to write</param>
     public void WriteVector2(Vector2 x)
     {
         WriteFloat(x.X);
@@ -1392,9 +1612,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取二维向量
+    /// 读取二维向量。
     /// </summary>
-    /// <returns>读取的二维向量</returns>
+    /// <remarks>
+    /// Reads a 2D vector.
+    /// </remarks>
+    /// <returns>读取的二维向量 / The read 2D vector</returns>
     public Vector2 ReadVector2()
     {
         var x = ReadFloat();
@@ -1403,9 +1626,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入三维向量
+    /// 写入三维向量。
     /// </summary>
-    /// <param name="x">要写入的三维向量</param>
+    /// <remarks>
+    /// Writes a 3D vector.
+    /// </remarks>
+    /// <param name="x">要写入的三维向量 / The 3D vector to write</param>
     public void WriteVector3(Vector3 x)
     {
         WriteFloat(x.X);
@@ -1414,9 +1640,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取三维向量
+    /// 读取三维向量。
     /// </summary>
-    /// <returns>读取的三维向量</returns>
+    /// <remarks>
+    /// Reads a 3D vector.
+    /// </remarks>
+    /// <returns>读取的三维向量 / The read 3D vector</returns>
     public Vector3 ReadVector3()
     {
         var x = ReadFloat();
@@ -1426,9 +1655,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入四维向量
+    /// 写入四维向量。
     /// </summary>
-    /// <param name="x">要写入的四维向量</param>
+    /// <remarks>
+    /// Writes a 4D vector.
+    /// </remarks>
+    /// <param name="x">要写入的四维向量 / The 4D vector to write</param>
     public void WriteVector4(Vector4 x)
     {
         WriteFloat(x.X);
@@ -1438,9 +1670,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取四维向量
+    /// 读取四维向量。
     /// </summary>
-    /// <returns>读取的四维向量</returns>
+    /// <remarks>
+    /// Reads a 4D vector.
+    /// </remarks>
+    /// <returns>读取的四维向量 / The read 4D vector</returns>
     public Vector4 ReadVector4()
     {
         var x = ReadFloat();
@@ -1452,9 +1687,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
 
 
     /// <summary>
-    /// 写入四元数
+    /// 写入四元数。
     /// </summary>
-    /// <param name="x">要写入的四元数</param>
+    /// <remarks>
+    /// Writes a quaternion.
+    /// </remarks>
+    /// <param name="x">要写入的四元数 / The quaternion to write</param>
     public void WriteQuaternion(Quaternion x)
     {
         WriteFloat(x.X);
@@ -1464,9 +1702,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取四元数
+    /// 读取四元数。
     /// </summary>
-    /// <returns>读取的四元数</returns>
+    /// <remarks>
+    /// Reads a quaternion.
+    /// </remarks>
+    /// <returns>读取的四元数 / The read quaternion</returns>
     public Quaternion ReadQuaternion()
     {
         var x = ReadFloat();
@@ -1478,9 +1719,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
 
 
     /// <summary>
-    /// 写入4x4矩阵
+    /// 写入4x4矩阵。
     /// </summary>
-    /// <param name="x">要写入的4x4矩阵</param>
+    /// <remarks>
+    /// Writes a 4x4 matrix.
+    /// </remarks>
+    /// <param name="x">要写入的4x4矩阵 / The 4x4 matrix to write</param>
     public void WriteMatrix4x4(Matrix4x4 x)
     {
         WriteFloat(x.M11);
@@ -1502,9 +1746,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取4x4矩阵
+    /// 读取4x4矩阵。
     /// </summary>
-    /// <returns>读取的4x4矩阵</returns>
+    /// <remarks>
+    /// Reads a 4x4 matrix.
+    /// </remarks>
+    /// <returns>读取的4x4矩阵 / The read 4x4 matrix</returns>
     public Matrix4x4 ReadMatrix4x4()
     {
         var m11 = ReadFloat();
@@ -1530,8 +1777,11 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 跳过字节
+    /// 跳过字节。
     /// </summary>
+    /// <remarks>
+    /// Skips bytes.
+    /// </remarks>
     internal void SkipBytes()
     {
         var n = ReadSize();
@@ -1541,9 +1791,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
 
 
     /// <summary>
-    /// 写入字节缓冲区
+    /// 写入字节缓冲区（包含大小）。
     /// </summary>
-    /// <param name="o">要写入的字节缓冲区</param>
+    /// <remarks>
+    /// Writes a byte buffer with size.
+    /// </remarks>
+    /// <param name="o">要写入的字节缓冲区 / The byte buffer to write</param>
     public void WriteByteBufWithSize(ByteBuf o)
     {
         var n = o.Size;
@@ -1559,9 +1812,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入字节缓冲区
+    /// 写入字节缓冲区（不包含大小）。
     /// </summary>
-    /// <param name="o">要写入的字节缓冲区</param>
+    /// <remarks>
+    /// Writes a byte buffer without size.
+    /// </remarks>
+    /// <param name="o">要写入的字节缓冲区 / The byte buffer to write</param>
     public void WriteByteBufWithoutSize(ByteBuf o)
     {
         var n = o.Size;
@@ -1572,10 +1828,13 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 尝试读取字节
+    /// 尝试读取字节。
     /// </summary>
-    /// <param name="x">要读取的字节</param>
-    /// <returns>是否成功读取</returns>
+    /// <remarks>
+    /// Tries to read a byte.
+    /// </remarks>
+    /// <param name="x">要读取的字节 / The byte to read</param>
+    /// <returns>是否成功读取 / Whether the read was successful</returns>
     public bool TryReadByte(out byte x)
     {
         if (CanRead(1))
@@ -1591,11 +1850,14 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 尝试反序列化字节缓冲区
+    /// 尝试反序列化字节缓冲区。
     /// </summary>
-    /// <param name="maxSize">最大大小</param>
-    /// <param name="inplaceTempBody">临时字节缓冲区</param>
-    /// <returns>反序列化错误</returns>
+    /// <remarks>
+    /// Tries to deserialize a byte buffer in place.
+    /// </remarks>
+    /// <param name="maxSize">最大大小 / The maximum size</param>
+    /// <param name="inplaceTempBody">临时字节缓冲区 / The temporary byte buffer</param>
+    /// <returns>反序列化错误 / The deserialization error</returns>
     public EDeserializeError TryDeserializeInplaceByteBuf(int maxSize, ByteBuf inplaceTempBody)
     {
         //if (!CanRead(1)) { return EDeserializeError.NOT_ENOUGH; }
@@ -1673,9 +1935,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入原始标签
+    /// 写入原始标签（单字节）。
     /// </summary>
-    /// <param name="b1">要写入的标签</param>
+    /// <remarks>
+    /// Writes a raw tag (single byte).
+    /// </remarks>
+    /// <param name="b1">要写入的标签 / The tag to write</param>
     public void WriteRawTag(byte b1)
     {
         EnsureWrite(1);
@@ -1683,10 +1948,13 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入原始标签
+    /// 写入原始标签（双字节）。
     /// </summary>
-    /// <param name="b1">要写入的标签</param>
-    /// <param name="b2">要写入的标签</param>
+    /// <remarks>
+    /// Writes a raw tag (two bytes).
+    /// </remarks>
+    /// <param name="b1">要写入的第一个标签 / The first tag to write</param>
+    /// <param name="b2">要写入的第二个标签 / The second tag to write</param>
     public void WriteRawTag(byte b1, byte b2)
     {
         EnsureWrite(2);
@@ -1696,11 +1964,14 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 写入原始标签
+    /// 写入原始标签（三字节）。
     /// </summary>
-    /// <param name="b1">要写入的标签</param>
-    /// <param name="b2">要写入的标签</param>
-    /// <param name="b3">要写入的标签</param>
+    /// <remarks>
+    /// Writes a raw tag (three bytes).
+    /// </remarks>
+    /// <param name="b1">要写入的第一个标签 / The first tag to write</param>
+    /// <param name="b2">要写入的第二个标签 / The second tag to write</param>
+    /// <param name="b3">要写入的第三个标签 / The third tag to write</param>
     public void WriteRawTag(byte b1, byte b2, byte b3)
     {
         EnsureWrite(3);
@@ -1713,9 +1984,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     #region segment
 
     /// <summary>
-    /// 开始写入段
+    /// 开始写入段。
     /// </summary>
-    /// <param name="oldSize">旧大小</param>
+    /// <remarks>
+    /// Begins writing a segment.
+    /// </remarks>
+    /// <param name="oldSize">旧大小 / The old size</param>
     public void BeginWriteSegment(out int oldSize)
     {
         oldSize = Size;
@@ -1724,9 +1998,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 结束写入段
+    /// 结束写入段。
     /// </summary>
-    /// <param name="oldSize">旧大小</param>
+    /// <remarks>
+    /// Ends writing a segment.
+    /// </remarks>
+    /// <param name="oldSize">旧大小 / The old size</param>
     public void EndWriteSegment(int oldSize)
     {
         var startPos = ReaderIndex + oldSize;
@@ -1780,10 +2057,13 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取段
+    /// 读取段。
     /// </summary>
-    /// <param name="startIndex">开始索引</param>
-    /// <param name="segmentSize">段大小</param>
+    /// <remarks>
+    /// Reads a segment.
+    /// </remarks>
+    /// <param name="startIndex">开始索引 / The start index</param>
+    /// <param name="segmentSize">段大小 / The segment size</param>
     public void ReadSegment(out int startIndex, out int segmentSize)
     {
         EnsureRead(1);
@@ -1835,9 +2115,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 读取段
+    /// 读取段到指定的字节缓冲区。
     /// </summary>
-    /// <param name="buf">要读取的段</param>
+    /// <remarks>
+    /// Reads a segment into the specified byte buffer.
+    /// </remarks>
+    /// <param name="buf">要读取的段 / The segment to read</param>
     public void ReadSegment(ByteBuf buf)
     {
         ReadSegment(out var startPos, out var size);
@@ -1847,9 +2130,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 进入段
+    /// 进入段。
     /// </summary>
-    /// <param name="saveState">段保存状态</param>
+    /// <remarks>
+    /// Enters a segment.
+    /// </remarks>
+    /// <param name="saveState">段保存状态 / The segment save state</param>
     public void EnterSegment(out SegmentSaveState saveState)
     {
         ReadSegment(out var startPos, out var size);
@@ -1860,9 +2146,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 离开段
+    /// 离开段。
     /// </summary>
-    /// <param name="saveState">段保存状态</param>
+    /// <remarks>
+    /// Leaves a segment.
+    /// </remarks>
+    /// <param name="saveState">段保存状态 / The segment save state</param>
     public void LeaveSegment(SegmentSaveState saveState)
     {
         ReaderIndex = saveState.ReaderIndex;
@@ -1872,9 +2161,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     #endregion
 
     /// <summary>
-    /// 转换为字符串
+    /// 转换为字符串。
     /// </summary>
-    /// <returns>字符串</returns>
+    /// <remarks>
+    /// Converts to a string.
+    /// </remarks>
+    /// <returns>字符串 / The string</returns>
     public override string ToString()
     {
         var datas = new string[WriterIndex - ReaderIndex];
@@ -1887,20 +2179,26 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 比较是否相等
+    /// 比较是否相等。
     /// </summary>
-    /// <param name="obj">要比较的对象</param>
-    /// <returns>是否相等</returns>
+    /// <remarks>
+    /// Compares for equality.
+    /// </remarks>
+    /// <param name="obj">要比较的对象 / The object to compare</param>
+    /// <returns>是否相等 / Whether equal</returns>
     public override bool Equals(object obj)
     {
         return obj is ByteBuf other && Equals(other);
     }
 
     /// <summary>
-    /// 比较是否相等
+    /// 比较是否相等。
     /// </summary>
-    /// <param name="other">要比较的对象</param>
-    /// <returns>是否相等</returns> 
+    /// <remarks>
+    /// Compares for equality with another ByteBuf.
+    /// </remarks>
+    /// <param name="other">要比较的对象 / The object to compare</param>
+    /// <returns>是否相等 / Whether equal</returns>
     public bool Equals(ByteBuf other)
     {
         if (other == null)
@@ -1925,9 +2223,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 克隆
+    /// 克隆。
     /// </summary>
-    /// <returns>克隆的对象</returns>
+    /// <remarks>
+    /// Clones the buffer.
+    /// </remarks>
+    /// <returns>克隆的对象 / The cloned object</returns>
     public object Clone()
     {
         return new ByteBuf(CopyData());
@@ -1935,10 +2236,13 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
 
 
     /// <summary>
-    /// 从字符串创建字节缓冲区
+    /// 从字符串创建字节缓冲区。
     /// </summary>
-    /// <param name="value">要创建的字符串</param>
-    /// <returns>字节缓冲区</returns>
+    /// <remarks>
+    /// Creates a byte buffer from a string.
+    /// </remarks>
+    /// <param name="value">要创建的字符串 / The string to create from</param>
+    /// <returns>字节缓冲区 / The byte buffer</returns>
     public static ByteBuf FromString(string value)
     {
         var ss = value.Split(',');
@@ -1952,9 +2256,12 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 获取哈希码
+    /// 获取哈希码。
     /// </summary>
-    /// <returns>哈希码</returns>
+    /// <remarks>
+    /// Gets the hash code.
+    /// </remarks>
+    /// <returns>哈希码 / The hash code</returns>
     public override int GetHashCode()
     {
         var hash = 17;
@@ -1967,8 +2274,11 @@ public sealed class ByteBuf : ICloneable, IEquatable<ByteBuf>
     }
 
     /// <summary>
-    /// 释放
+    /// 释放缓冲区。
     /// </summary>
+    /// <remarks>
+    /// Releases the buffer.
+    /// </remarks>
     public void Release()
     {
         _releaser?.Invoke(this);

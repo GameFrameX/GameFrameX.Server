@@ -32,12 +32,19 @@
 namespace GameFrameX.Core.Config;
 
 /// <summary>
+/// Bean基类，提供类型ID功能的抽象基类。
 /// </summary>
+/// <remarks>
+/// Abstract base class for Bean, providing type ID functionality.
+/// </remarks>
 public abstract class BeanBase : ITypeId
 {
     /// <summary>
-    /// 获取类型ID
+    /// 获取类型ID。
     /// </summary>
-    /// <returns></returns>
+    /// <remarks>
+    /// Gets the type ID.
+    /// </remarks>
+    /// <returns>类型ID / The type ID</returns>
     public abstract int GetTypeId();
 }

@@ -33,23 +33,35 @@
 namespace GameFrameX.Core.Config;
 
 /// <summary>
-/// 反序列化错误枚举
+/// 反序列化错误枚举，定义反序列化过程中可能发生的错误类型。
 /// </summary>
+/// <remarks>
+/// Deserialize error enumeration, defining possible error types during deserialization.
+/// </remarks>
 public enum EDeserializeError
 {
     /// <summary>
-    /// 成功
+    /// 成功，无错误。
     /// </summary>
+    /// <remarks>
+    /// Success, no error.
+    /// </remarks>
     OK,
 
     /// <summary>
-    /// 数据不足
+    /// 数据不足，可读取的数据量不够。
     /// </summary>
+    /// <remarks>
+    /// Not enough data, insufficient readable data.
+    /// </remarks>
     NOT_ENOUGH,
 
     /// <summary>
-    /// 超出大小限制
+    /// 超出大小限制，数据大小超过最大允许值。
     /// </summary>
+    /// <remarks>
+    /// Exceed size limit, data size exceeds the maximum allowed value.
+    /// </remarks>
     EXCEED_SIZE,
     // UNMARSHAL_ERR,
 }
