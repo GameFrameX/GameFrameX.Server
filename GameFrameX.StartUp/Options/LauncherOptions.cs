@@ -39,9 +39,9 @@ namespace GameFrameX.StartUp.Options;
 /// GameFrameX 服务器启动配置选项
 /// </summary>
 /// <remarks>
-/// Launcher configuration options for GameFrameX server startup, containing various configuration options required for server startup.
+/// Startup configuration options for GameFrameX server startup, containing various configuration options required for host and server startup.
 /// </remarks>
-public sealed class LauncherOptions
+public class StartupOptions
 {
     /// <summary>
     /// 服务器类型
@@ -50,9 +50,15 @@ public sealed class LauncherOptions
     /// <remarks>
     /// Server type. When this value is invalid, all subsequent parameters are considered invalid by default.
     /// </remarks>
-    [Option(nameof(ServerType), Required = true, Description = "服务器类型,当该值无效时,默认为后续所有参数无效")]
+    [Option(nameof(ServerType), Description = "服务器类型,当该值无效时,默认为后续所有参数无效")]
     [GrafanaLokiLabelTag]
     public string ServerType { get; set; }
+
+    [Option(nameof(IsSingleMode), DefaultValue = false, Description = "是否单进程模式,默认值为false(多进程)")]
+    public bool IsSingleMode { get; set; }
+
+    [Option(nameof(TopologyProfile), DefaultValue = "default", Description = "多进程模式拓扑模板名称")]
+    public string TopologyProfile { get; set; } = "default";
 
     /// <summary>
     /// 指标收集服务端口号

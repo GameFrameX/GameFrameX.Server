@@ -85,11 +85,11 @@ public static class GameApp
     /// </remarks>
     /// <param name="args">命令行参数 / Command line arguments</param>
     /// <returns>解析后的启动器选项 / Parsed launcher options</returns>
-    private static LauncherOptions ParseLauncherOptions(string[] args)
+    private static StartupOptions ParseLauncherOptions(string[] args)
     {
         try
         {
-            return OptionsBuilder.CreateWithDebug<LauncherOptions>(args);
+            return OptionsBuilder.CreateWithDebug<StartupOptions>(args);
         }
         catch (Exception e)
         {
@@ -105,7 +105,7 @@ public static class GameApp
     /// Configure Grafana Loki labels.
     /// </remarks>
     /// <param name="launcherOptions">启动器选项 / Launcher options</param>
-    private static void ConfigureGrafanaLokiLabels(LauncherOptions launcherOptions)
+    private static void ConfigureGrafanaLokiLabels(StartupOptions launcherOptions)
     {
         LogOptions.Default.GrafanaLokiLabels = new Dictionary<string, string>();
 
@@ -114,7 +114,7 @@ public static class GameApp
             return;
         }
 
-        var properties = typeof(LauncherOptions).GetProperties();
+        var properties = typeof(StartupOptions).GetProperties();
         foreach (var property in properties)
         {
             var grafanaLokiLabelTagAttribute = property.GetCustomAttribute<GrafanaLokiLabelTagAttribute>();
@@ -143,7 +143,7 @@ public static class GameApp
     /// Configure log options.
     /// </remarks>
     /// <param name="launcherOptions">启动器选项 / Launcher options</param>
-    private static void ConfigureLogOptions(LauncherOptions launcherOptions)
+    private static void ConfigureLogOptions(StartupOptions launcherOptions)
     {
         if (launcherOptions == null)
         {
@@ -355,18 +355,17 @@ public static class GameApp
     /// <param name="serverType">要启动的服务器类型，或为 null 以启动第一个可用的服务器 / The server type to launch, or null to launch the first available</param>
     /// <param name="sortedStartUpTypes">按优先级排序的启动类型集合 / Collection of startup types sorted by priority</param>
     /// <param name="launcherOptions">包含默认配置的启动器选项 / Launcher options containing default configuration</param>
-    private static void TryLaunchServer(string[] args, string serverType, IEnumerable<KeyValuePair<Type, StartUpTagAttribute>> sortedStartUpTypes, LauncherOptions launcherOptions)
+    private static void TryLaunchServer(string[] args, string serverType, IEnumerable<KeyValuePair<Type, StartUpTagAttribute>> sortedStartUpTypes, StartupOptions launcherOptions)
     {
         var appSettings = GlobalSettings.GetSettings();
 
-        if (serverType.IsNotNullOrWhiteSpace())
+        if (serverType.IsNullOrWhiteSpace())
         {
-            TryLaunchByServerType(args, serverType, sortedStartUpTypes, appSettings, launcherOptions);
+            LogHelper.Error("ServerType 参数不能为空，请通过 --ServerType=xxx 指定服务类型。");
+            return;
         }
-        else
-        {
-            TryLaunchFirstAvailable(args, sortedStartUpTypes, appSettings);
-        }
+
+        TryLaunchByServerType(args, serverType, sortedStartUpTypes, appSettings, launcherOptions);
     }
 
     /// <summary>
@@ -380,7 +379,7 @@ public static class GameApp
     /// <param name="sortedStartUpTypes">按优先级排序的启动类型集合 / Collection of startup types sorted by priority</param>
     /// <param name="appSettings">配置中的应用程序设置集合 / Collection of application settings from configuration</param>
     /// <param name="launcherOptions">用于默认配置的启动器选项 / Launcher options for default configuration</param>
-    private static void TryLaunchByServerType(string[] args, string serverType, IEnumerable<KeyValuePair<Type, StartUpTagAttribute>> sortedStartUpTypes, IEnumerable<AppSetting> appSettings, LauncherOptions launcherOptions)
+    private static void TryLaunchByServerType(string[] args, string serverType, IEnumerable<KeyValuePair<Type, StartUpTagAttribute>> sortedStartUpTypes, IEnumerable<AppSetting> appSettings, StartupOptions launcherOptions)
     {
         var startKv = sortedStartUpTypes.FirstOrDefault(m => m.Value.ServerType == serverType);
         if (startKv.Value == null)
