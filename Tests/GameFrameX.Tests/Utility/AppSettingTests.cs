@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -315,7 +315,7 @@ public class AppSettingTests
     }
 
     /// <summary>
-    /// 测试数据库和服务相关属性
+    /// 测试数据库相关属性
     /// </summary>
     [Fact]
     public void DatabaseAndServiceProperties_CanBeSet_ShouldUpdateValues()
@@ -328,8 +328,6 @@ public class AppSettingTests
         appSetting.DataBaseName = "GameDB";
         appSetting.Language = "zh-CN";
         appSetting.DataCenter = "Beijing";
-        appSetting.DiscoveryCenterHost = "192.168.1.200";
-        appSetting.DiscoveryCenterPort = 8500;
 
 
         // Assert
@@ -337,8 +335,6 @@ public class AppSettingTests
         Assert.Equal("GameDB", appSetting.DataBaseName);
         Assert.Equal("zh-CN", appSetting.Language);
         Assert.Equal("Beijing", appSetting.DataCenter);
-        Assert.Equal("192.168.1.200", appSetting.DiscoveryCenterHost);
-        Assert.Equal((ushort)8500, appSetting.DiscoveryCenterPort);
     }
 
     /// <summary>

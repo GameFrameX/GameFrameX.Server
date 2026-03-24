@@ -52,46 +52,6 @@ public static partial class Keys
         public const string ServerStopped = "StartUp.ServerStopped";
 
         /// <summary>
-        /// 服务器{0}与发现中心通信发生错误 ，id:{1}，e:{2}
-        /// </summary>
-        /// <remarks>
-        /// 键名: StartUp.DiscoveryCenterCommunicationError
-        /// 用途: 当与发现中心通信发生错误时记录
-        /// 参数: {0} - 服务器类型, {1} - 连接ID, {2} - 异常信息
-        /// </remarks>
-        public const string DiscoveryCenterCommunicationError = "StartUp.DiscoveryCenterCommunicationError";
-
-        /// <summary>
-        /// 服务器{0}接收到发现中心消息 ,id:{1},{2}
-        /// </summary>
-        /// <remarks>
-        /// 键名: StartUp.DiscoveryCenterMessageReceived
-        /// 用途: 当接收到发现中心消息时记录
-        /// 参数: {0} - 服务器类型, {1} - 连接ID, {2} - 消息内容
-        /// </remarks>
-        public const string DiscoveryCenterMessageReceived = "StartUp.DiscoveryCenterMessageReceived";
-
-        /// <summary>
-        /// 服务器{0}与发现中心断开连接 ,id:{1}...
-        /// </summary>
-        /// <remarks>
-        /// 键名: StartUp.DiscoveryCenterDisconnected
-        /// 用途: 当与发现中心断开连接时记录
-        /// 参数: {0} - 服务器类型, {1} - 连接ID
-        /// </remarks>
-        public const string DiscoveryCenterDisconnected = "StartUp.DiscoveryCenterDisconnected";
-
-        /// <summary>
-        /// 服务器{0}连接到发现中心成功 ,id:{1}...
-        /// </summary>
-        /// <remarks>
-        /// 键名: StartUp.DiscoveryCenterConnected
-        /// 用途: 当成功连接到发现中心时记录
-        /// 参数: {0} - 服务器类型, {1} - 连接ID
-        /// </remarks>
-        public const string DiscoveryCenterConnected = "StartUp.DiscoveryCenterConnected";
-
-        /// <summary>
         /// The type of server that is launched: {0}
         /// </summary>
         /// <remarks>
@@ -629,40 +589,6 @@ public static partial class Keys
             /// 参数: {0} - 服务器类型, {1} - 地址, {2} - 端口
             /// </remarks>
             public const string ServerDisabled = "StartUp.KcpServer.ServerDisabled";
-        }
-
-        /// <summary>
-        /// 发现中心相关消息
-        /// </summary>
-        public static class DiscoveryCenter
-        {
-            /// <summary>
-            /// DiscoveryCenterHost is not configured; unable to start connection to DiscoveryCenter. Please check the configuration item DiscoveryCenterHost
-            /// </summary>
-            /// <remarks>
-            /// 键名: StartUp.DiscoveryCenter.HostNotConfigured
-            /// 用途: 当发现中心主机地址未配置时记录错误
-            /// </remarks>
-            public const string HostNotConfigured = "StartUp.DiscoveryCenter.HostNotConfigured";
-
-            /// <summary>
-            /// DiscoveryCenterPort is not configured; unable to start connection to DiscoveryCenter. Please check the configuration item DiscoveryCenterPort
-            /// </summary>
-            /// <remarks>
-            /// 键名: StartUp.DiscoveryCenter.PortNotConfigured
-            /// 用途: 当发现中心端口未配置时记录错误
-            /// </remarks>
-            public const string PortNotConfigured = "StartUp.DiscoveryCenter.PortNotConfigured";
-
-            /// <summary>
-            /// DiscoveryCenterHost: {0} is not a valid IP address; unable to start connection to DiscoveryCenter. Please check the configuration item DiscoveryCenterHost
-            /// </summary>
-            /// <remarks>
-            /// 键名: StartUp.DiscoveryCenter.InvalidHostAddress
-            /// 用途: 当发现中心主机地址无效时记录错误
-            /// 参数: {0} - 无效的主机地址
-            /// </remarks>
-            public const string InvalidHostAddress = "StartUp.DiscoveryCenter.InvalidHostAddress";
         }
 
         /// <summary>

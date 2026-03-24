@@ -66,19 +66,6 @@ namespace GameFrameX.StartUp;
 public abstract partial class AppStartUpBase
 {
     /// <summary>
-    /// 获取或设置是否将当前服务注册到服务中心。
-    /// </summary>
-    /// <remarks>
-    /// Gets or sets whether to register the current service to the discovery center.
-    /// Controls whether the current service automatically registers with the discovery center.
-    /// </remarks>
-    /// <value>
-    /// 默认 <c>false</c>：不自动注册；子类可重写为 <c>true</c> 以开启注册逻辑 /
-    /// Default <c>false</c>: do not auto-register; subclasses can override to <c>true</c> to enable registration logic
-    /// </value>
-    protected virtual bool IsRegisterToDiscoveryCenter { get; set; } = false;
-
-    /// <summary>
     /// 启动服务器 - 同时启动 TCP 和 WebSocket 服务。
     /// </summary>
     /// <remarks>
@@ -105,18 +92,6 @@ public abstract partial class AppStartUpBase
         MessageHelper.SetMessageEncoderHandler(Activator.CreateInstance<TMessageEncoderHandler>(), messageCompressHandler);
         // 启动服务器
         await StartServer(baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
-        if (Setting.ServerType != GlobalConst.DiscoveryCenterServiceName)
-        {
-            if (IsRegisterToDiscoveryCenter && Setting.IsEnableDiscoveryCenter)
-            {
-                StartGameAppClient();
-            }
-            else if (IsRegisterToDiscoveryCenter && !Setting.IsEnableDiscoveryCenter)
-            {
-                LogHelper.Info(LocalizationService.GetString(Localization.Keys.Launcher.DiscoveryCenterDisabledSkipConnect));
-            }
-        }
-
         // 设置全局启动状态
         GlobalSettings.LaunchTime = DateTime.UtcNow;
         GlobalSettings.IsAppRunning = true;
@@ -133,7 +108,6 @@ public abstract partial class AppStartUpBase
     protected async Task StopServerAsync()
     {
         GlobalSettings.IsAppRunning = false;
-        _gameAppServiceClient?.Stop();
 
         if (_gameServer != null)
         {

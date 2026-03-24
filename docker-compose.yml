@@ -1,4 +1,4 @@
-﻿services:
+services:
   gameframex:
     image: gameframex/server.launcher:1.0.0
     container_name: gameframex
@@ -22,8 +22,6 @@
       - MaxModuleId=9999
       - WsPort=29110
       - HttpPort=28080
-      - DiscoveryCenterIp=127.0.0.1
-      - DiscoveryCenterPort=10001
       - HttpCode=inner_httpcode
       - DataBaseUrl=mongodb://gameframex:f9v42aU9DVeFNfAF@47.121.197.120:27017/?authSource=admin
       - DataBaseName=gameframex

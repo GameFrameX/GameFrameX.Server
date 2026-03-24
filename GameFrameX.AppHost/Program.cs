@@ -105,10 +105,19 @@ internal static class Program
 
         var mongoDb = builder.AddMongoDB("mongo").WithLifetime(ContainerLifetime.Persistent);
         mongoDb.AddDatabase("mongodb");
-        // mongoDb.AddDatabase(launcherOptions.DataBaseName, launcherOptions.DataBasePassword);
-        // var myService = builder.AddProject<DataBaseProject>()
-        //                        .WithReference(mongoDb)
-        //                        .WaitFor(mongoDb);
+        var gameService = builder
+                          .AddProject<Projects.GameFrameX_Launcher>("game-service")
+                          .WithArgs($"--{nameof(LauncherOptions.ServerType)}=Game")
+                          .WithReference(mongoDb)
+                          .WaitFor(mongoDb);
+
+        var socialService = builder
+                            .AddProject<Projects.GameFrameX_Launcher>("social-service")
+                            .WithArgs($"--{nameof(LauncherOptions.ServerType)}=Social")
+                            .WithReference(mongoDb)
+                            .WaitFor(mongoDb);
+
+        gameService.WaitFor(socialService);
         await builder.Build().RunAsync();
     }
 }

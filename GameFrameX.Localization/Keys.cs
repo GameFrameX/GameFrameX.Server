@@ -39,7 +39,6 @@ namespace GameFrameX.Localization;
 /// This file is the main partial class file for the Keys class, other nested classes have been split into the following independent files:
 ///
 /// - Keys.Client.cs - 客户端相关消息常量 / Client related message constants
-/// - Keys.DiscoveryCenterManager.cs - 发现中心管理器相关消息常量 / Discovery Center Manager related message constants
 /// - Keys.Events.cs - 事件相关消息常量 / Events related message constants
 /// - Keys.Storage.cs - 存储相关消息常量 / Storage related message constants
 /// - Keys.Database.cs - 数据库相关消息常量 / Database related message constants

@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -41,8 +41,6 @@ namespace GameFrameX.Launcher.StartUp;
 [StartUpTag(GlobalConst.GameServiceName)]
 internal sealed class AppStartUpGame : AppStartUpBase
 {
-    protected override bool IsRegisterToDiscoveryCenter { get; set; } = false;
-
     public override async Task StartAsync()
     {
         string exitMessage = null;
@@ -108,9 +106,7 @@ internal sealed class AppStartUpGame : AppStartUpBase
                 MinModuleId = 10,
                 HttpIsDevelopment = true,
                 MaxModuleId = 9999,
-                DiscoveryCenterHost = "127.0.0.1",
                 TagName = "GameFrameX",
-                DiscoveryCenterPort = 21001,
                 DataBaseUrl = "mongodb+srv://gameframex:f9v42aU9DVeFNfAF@gameframex.8taphic.mongodb.net/?retryWrites=true&w=majority",
                 DataBaseName = "gameframex",
             };

@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -29,15 +29,15 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
-using GameFrameX.Hotfix.Logic.DiscoveryCenter;
 using GameFrameX.StartUp;
+using GameFrameX.Apps.Common.Event;
+using GameFrameX.Apps.Common.EventData;
+using GameFrameX.Core.Events;
 
 namespace GameFrameX.Hotfix.StartUp;
 
 internal partial class AppStartUpHotfixGame : AppStartUpBase, IHotfixBridge
 {
-    protected override bool IsRegisterToDiscoveryCenter { get; set; } = true;
-
     public async Task<bool> OnLoadSuccess(AppSetting setting, bool reload)
     {
         if (reload)
@@ -51,12 +51,7 @@ internal partial class AppStartUpHotfixGame : AppStartUpBase, IHotfixBridge
         // 启动定时器
         GlobalTimer.Start();
         await ComponentRegister.ActiveGlobalComponents();
-        var discoveryCenterComponentAgent = await ActorManager.GetComponentAgent<DiscoveryCenterComponentAgent>();
-        if (discoveryCenterComponentAgent.IsNotNull())
-        {
-            discoveryCenterComponentAgent.SetAppStartUp(this);
-        }
-
+        EventDispatcher.Dispatch(0, (int)EventId.ServiceOnline, new ServiceOnlineEventArgs(setting.ServerType, setting.ServerInstanceId, DateTime.UtcNow));
         return true;
     }
 

@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -266,22 +266,6 @@ public static class GlobalConst
     /// Game service server ID (1000).
     /// </remarks>
     public const int GameServiceServerId = 1000;
-
-    /// <summary>
-    /// 服务发现中心 服务名称
-    /// </summary>
-    /// <remarks>
-    /// Discovery center service name.
-    /// </remarks>
-    public const string DiscoveryCenterServiceName = "DiscoveryCenter";
-
-    /// <summary>
-    /// 服务发现中心 服务器ID
-    /// </summary>
-    /// <remarks>
-    /// Discovery center service server ID (9000).
-    /// </remarks>
-    public const int DiscoveryCenterServiceServerId = 9000;
 
     /// <summary>
     /// 网关 服务名称

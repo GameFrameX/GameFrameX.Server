@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -30,6 +30,9 @@
 // ==========================================================================================
 
 using GameFrameX.Apps.Common.Session;
+using GameFrameX.Apps.Common.Event;
+using GameFrameX.Apps.Common.EventData;
+using GameFrameX.Core.Events;
 using GameFrameX.SuperSocket.Connection;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
 using GameFrameX.SuperSocket.WebSocket.Server;
@@ -143,6 +146,7 @@ internal partial class AppStartUpHotfixGame
 
     public override async Task StopAsync(string message = "")
     {
+        EventDispatcher.Dispatch(0, (int)EventId.ServiceOffline, new ServiceOfflineEventArgs(Setting.ServerType, Setting.ServerInstanceId, "Stopped", DateTime.UtcNow));
         await base.StopAsync(message);
         // 断开所有连接
         await SessionManager.RemoveAll();

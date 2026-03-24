@@ -480,18 +480,6 @@
     <data name="StartUp.ServerStopped" xml:space="preserve">
     <value>服务器类型:{0} 停止! 终止原因：{1} 配置信息: {2}</value>
   </data>
-    <data name="StartUp.DiscoveryCenterCommunicationError" xml:space="preserve">
-    <value>服务器{0}与发现中心通信发生错误 ，id:{1}，e:{2}</value>
-  </data>
-    <data name="StartUp.DiscoveryCenterMessageReceived" xml:space="preserve">
-    <value>服务器{0}接收到发现中心消息 ,id:{1},{2}</value>
-  </data>
-    <data name="StartUp.DiscoveryCenterDisconnected" xml:space="preserve">
-    <value>服务器{0}与发现中心断开连接 ,id:{1}...</value>
-  </data>
-    <data name="StartUp.DiscoveryCenterConnected" xml:space="preserve">
-    <value>服务器{0}连接到发现中心成功 ,id:{1}...</value>
-  </data>
     <data name="StartUp.NoStartupTaskFound" xml:space="preserve">
     <value>服务器已停止，详情请查看日志。因为启动任务为空，没有找到启动任务。</value>
   </data>
@@ -596,98 +584,6 @@
   </data>
     <data name="StartUp.Application.SigtermSignalReceived" xml:space="preserve">
     <value>接收到SIGTERM信号并注册退出处理程序</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.TryConnectToServer" xml:space="preserve">
-    <value>尝试连接到目标服务器...{0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.ReconnectAttempt" xml:space="preserve">
-    <value>第{0}次重连,断开连接,原因:{1}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.ErrorOccurred" xml:space="preserve">
-    <value>发生错误:{0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.InvalidIpAddress" xml:space="preserve">
-    <value>无效的IP地址格式: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Server.CannotAddSelfNode" xml:space="preserve">
-    <value>不能添加自己节点,{0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Server.NodeJoined" xml:space="preserve">
-    <value>节点加入,{0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Server.NodeRemoved" xml:space="preserve">
-    <value>节点移除,{0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.NamingService.ErrorOccurred" xml:space="preserve">
-    <value>发生错误:{0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.NamingService.InvalidUrlFormat" xml:space="preserve">
-    <value>无效的URL格式: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.NamingService.ServiceConnectionAttempt" xml:space="preserve">
-    <value>尝试连接服务: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Server.NetworkNodeCount" xml:space="preserve">
-    <value>当前网络节点总数: {0}，新节点信息: {1}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.ConnectedToServer" xml:space="preserve">
-    <value>客户端成功连接到服务器: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.DisconnectedFromServer" xml:space="preserve">
-    <value>客户端与服务器断开连接: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.ReconnectLimitReached" xml:space="preserve">
-    <value>重连次数已达上限: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Server.DuplicateNodeAddition" xml:space="preserve">
-    <value>尝试添加重复节点，已忽略: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Service.InvalidIpAddress" xml:space="preserve">
-    <value>无效的IP地址格式: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Exception.MessageIdMustBeLessThanZero" xml:space="preserve">
-    <value>messageObject.MessageId必须小于0</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.ReconnectLimitReachedMessage" xml:space="preserve">
-    <value>重连尝试已达上限({0})，将不再进行重连。</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.DisconnectedMessage" xml:space="preserve">
-    <value>客户端与服务器断开连接: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.ConnectedMessage" xml:space="preserve">
-    <value>客户端成功连接到服务器: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Server.DuplicateNodeWarning" xml:space="preserve">
-    <value>重复节点添加，已忽略: {0}</value>
-  </data>
-
-    <!-- ServiceConnect 相关消息 -->
-    <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceAlreadyRegistered" xml:space="preserve">
-    <value>ServiceConnectManager 注册 服务器实例ID:{0} 已被注册</value>
-  </data>
-
-    <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceUnregistered" xml:space="preserve">
-    <value>ServiceConnectManager 注销 服务器实例ID:{0}</value>
-  </data>
-
-    <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceNotFound" xml:space="preserve">
-    <value>ServiceConnectManager 注销 服务器实例ID:{0} 未找到</value>
-  </data>
-
-    <data name="DiscoveryCenterManager.ServiceConnect.SendServerInstanceNotFound" xml:space="preserve">
-    <value>ServiceConnectManager 发送 服务器实例ID:{0} 未找到</value>
-  </data>
-
-    <data name="DiscoveryCenterManager.ServiceConnect.CallServerInstanceNotFound" xml:space="preserve">
-    <value>ServiceConnectManager 调用 服务器实例ID:{0} 未找到</value>
-  </data>
-
-    <data name="DiscoveryCenterManager.ServiceConnect.ServiceAlreadyInitialized" xml:space="preserve">
-    <value>ServiceConnectManager 初始化 {0} 已初始化</value>
-  </data>
-
-    <data name="DiscoveryCenterManager.ServiceConnect.ClientError" xml:space="preserve">
-    <value>ServiceConnectManager 错误 {0}</value>
   </data>
 
     <!-- Core 模块日志消息 -->
@@ -1165,21 +1061,6 @@
     <value>HTTP服务器启动完成 - 端口: {0}</value>
   </data>
 
-    <!-- Launcher.DiscoveryCenter 相关消息 -->
-    <data name="Launcher.DiscoveryCenterDisabledCannotStart" xml:space="preserve">
-    <value>发现中心功能已禁用，无法启动发现中心服务。如需启动，请将 IsEnableDiscoveryCenter 设置为 true</value>
-  </data>
-
-    <data name="Launcher.DiscoveryCenterDisabledSkipConnect" xml:space="preserve">
-    <value>发现中心功能已禁用，跳过连接发现中心</value>
-  </data>
-  <data name="DiscoveryCenterManager.Startup.ServiceOfflineCallback" xml:space="preserve">
-    <value>服务下线回调已执行。服务类型：{0}，服务器ID：{1}。</value>
-  </data>
-
-  <data name="DiscoveryCenterManager.Startup.ServiceOnlineCallback" xml:space="preserve">
-    <value>服务上线回调已执行。服务类型：{0}，服务器ID：{1}。</value>
-  </data>
 
   <data name="Exceptions.BigInteger.ConstructorByteOverflow" xml:space="preserve">
     <value>BigInteger构造函数字节溢出。</value>
@@ -1341,17 +1222,6 @@
     <value>警告：{0}。</value>
   </data>
 
-  <data name="StartUp.DiscoveryCenter.HostNotConfigured" xml:space="preserve">
-    <value>发现中心主机地址未配置。</value>
-  </data>
-
-  <data name="StartUp.DiscoveryCenter.InvalidHostAddress" xml:space="preserve">
-    <value>无效的发现中心主机地址：{0}。</value>
-  </data>
-
-  <data name="StartUp.DiscoveryCenter.PortNotConfigured" xml:space="preserve">
-    <value>发现中心端口未配置。</value>
-  </data>
 
   <data name="StartUp.FindingConfigurationForServerType" xml:space="preserve">
     <value>正在查找服务器类型配置：{0}。</value>

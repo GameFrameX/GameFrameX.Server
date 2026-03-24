@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -599,36 +599,6 @@ public sealed class AppSetting
     public string DataCenter { get; set; }
 
     /// <summary>
-    /// 发现中心地址
-    /// </summary>
-    /// <remarks>
-    /// Discovery center host address.
-    /// </remarks>
-    public string DiscoveryCenterHost { get; set; }
-
-    /// <summary>
-    /// 发现中心端口
-    /// </summary>
-    /// <remarks>
-    /// Discovery center port.
-    /// </remarks>
-    public ushort DiscoveryCenterPort { get; set; }
-
-    /// <summary>
-    /// 是否启用发现中心功能
-    /// <para>当设置为false时，服务不会尝试连接发现中心，支持单机独立模式运行</para>
-    /// <para>当设置为true时，服务会尝试连接发现中心，支持集群模式运行</para>
-    /// <para>默认值为false</para>
-    /// </summary>
-    /// <remarks>
-    /// Whether to enable discovery center.
-    /// When false, the service runs in standalone mode.
-    /// When true, the service connects to discovery center for cluster mode.
-    /// Default value is false.
-    /// </remarks>
-    public bool IsEnableDiscoveryCenter { get; set; } = false;
-
-    /// <summary>
     /// 最大客户端数量
     /// </summary>
     /// <remarks>
@@ -691,38 +661,6 @@ public sealed class AppSetting
     /// Hub API host.
     /// </remarks>
     public string HubApiHost { get; set; }
-
-    /// <summary>
-    /// 心跳间隔（毫秒），默认 5000 毫秒
-    /// </summary>
-    /// <remarks>
-    /// Heartbeat interval in milliseconds. Default is 5000.
-    /// </remarks>
-    public int GameAppClientHeartBeatInterval { get; set; }
-
-    /// <summary>
-    /// 连接延迟（毫秒），默认 5000 毫秒
-    /// </summary>
-    /// <remarks>
-    /// Connection delay in milliseconds. Default is 5000.
-    /// </remarks>
-    public int GameAppClientConnectDelay { get; set; }
-
-    /// <summary>
-    /// 重试延迟（毫秒），默认 5000 毫秒
-    /// </summary>
-    /// <remarks>
-    /// Retry delay in milliseconds. Default is 5000.
-    /// </remarks>
-    public int GameAppClientRetryDelay { get; set; }
-
-    /// <summary>
-    /// 最大重试次数，默认 -1 表示无限重试
-    /// </summary>
-    /// <remarks>
-    /// Maximum retry count. Default is -1 for infinite retries.
-    /// </remarks>
-    public int GameAppClientMaxRetryCount { get; set; }
 
     #endregion
 }

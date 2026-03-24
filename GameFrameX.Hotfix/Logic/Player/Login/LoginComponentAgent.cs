@@ -32,7 +32,6 @@
 using GameFrameX.Apps.Account.Login.Component;
 using GameFrameX.Apps.Account.Login.Entity;
 using GameFrameX.Apps.Common.Session;
-using GameFrameX.Hotfix.Logic.DiscoveryCenter;
 using GameFrameX.Hotfix.Logic.Server;
 using GameFrameX.Proto.BuiltIn;
 

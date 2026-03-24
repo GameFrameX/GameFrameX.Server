@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -31,10 +31,11 @@
 
 
 using GameFrameX.Apps.Common.Session;
+using GameFrameX.Apps.Common.Event;
 using GameFrameX.Apps.Player.Player.Component;
 using GameFrameX.Apps.Player.Player.Entity;
-using GameFrameX.Hotfix.Logic.DiscoveryCenter;
 using GameFrameX.Hotfix.Logic.Server;
+using GameFrameX.Core.Events;
 using GameFrameX.Proto.BuiltIn;
 
 namespace GameFrameX.Hotfix.Logic.Player.Login;
@@ -46,15 +47,7 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         //移除在线玩家
         var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
         await serverComp.RemoveOnlineRole(ActorId);
-
-        var reqRegisterPlayer = new NotifyPlayerOffLine
-        {
-            PlayerId = ActorId,
-            ServerId = GlobalSettings.CurrentSetting.ServerId,
-            ServerInstanceId = GlobalSettings.CurrentSetting.ServerInstanceId,
-        };
-        var discoveryCenterComponentAgent = await ActorManager.GetComponentAgent<DiscoveryCenterComponentAgent>();
-        discoveryCenterComponentAgent.SendToDiscoveryCenter(reqRegisterPlayer);
+        EventDispatcher.Dispatch(ActorId, (int)EventId.OnRoleOffline);
         //下线后会被自动回收
         SetAutoRecycle(true);
         QuartzTimer.Remove(ScheduleIdSet);
@@ -85,14 +78,6 @@ public class PlayerComponentAgent : StateComponentAgent<PlayerComponent, PlayerS
         //加入在线玩家
         var serverComp = await ActorManager.GetComponentAgent<ServerComponentAgent>();
         await serverComp.AddOnlineRole(ActorId);
-
-        var reqRegisterPlayer = new NotifyPlayerOnLine()
-        {
-            PlayerId = ActorId,
-            ServerId = GlobalSettings.CurrentSetting.ServerId,
-            ServerInstanceId = GlobalSettings.CurrentSetting.ServerInstanceId,
-        };
-        var discoveryCenterComponentAgent = await ActorManager.GetComponentAgent<DiscoveryCenterComponentAgent>();
-        discoveryCenterComponentAgent.SendToDiscoveryCenter(reqRegisterPlayer);
+        EventDispatcher.Dispatch(ActorId, (int)EventId.OnRoleOnline);
     }
 }

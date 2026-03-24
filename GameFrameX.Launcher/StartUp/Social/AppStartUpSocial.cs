@@ -1,9 +1,12 @@
-﻿using GameFrameX.Core.Components;
+using GameFrameX.Core.Components;
 using GameFrameX.DataBase.Abstractions;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
 using GameFrameX.NetWork.Message;
 using GameFrameX.Foundation.Localization.Core;
+using GameFrameX.Apps.Common.Event;
+using GameFrameX.Apps.Common.EventData;
+using GameFrameX.Core.Events;
 
 namespace GameFrameX.Launcher.StartUp.Social;
 
@@ -13,8 +16,6 @@ namespace GameFrameX.Launcher.StartUp.Social;
 [StartUpTag(GlobalConst.SocialServiceName)]
 internal sealed partial class AppStartUpSocial : AppStartUpBase
 {
-    protected override bool IsRegisterToDiscoveryCenter { get; set; } = true;
-
     public override async Task StartAsync()
     {
         try
@@ -34,6 +35,7 @@ internal sealed partial class AppStartUpSocial : AppStartUpBase
             await ComponentRegister.Init(typeof(AppsHandler).Assembly);
             HotfixManager.LoadHotfix(Setting);
             await StartServerAsync<DefaultMessageDecoderHandler, DefaultMessageEncoderHandler>(new DefaultMessageCompressHandler(), new DefaultMessageDecompressHandler(), HotfixManager.GetListHttpHandler(), HotfixManager.GetHttpHandler, aopHandlerTypes);
+            EventDispatcher.Dispatch(0, (int)EventId.ServiceOnline, new ServiceOnlineEventArgs(Setting.ServerType, Setting.ServerInstanceId, DateTime.UtcNow));
 
             await AppExitToken;
         }
@@ -64,6 +66,12 @@ internal sealed partial class AppStartUpSocial : AppStartUpBase
             var handler = HotfixManager.GetTcpHandler(messageObject.Header.MessageId);
             await InvokeMessageHandler(handler, messageObject.DeserializeMessageObject(), new DefaultNetWorkChannel(session, Setting));
         }
+    }
+
+    public override async Task StopAsync(string message = "")
+    {
+        EventDispatcher.Dispatch(0, (int)EventId.ServiceOffline, new ServiceOfflineEventArgs(Setting.ServerType, Setting.ServerInstanceId, "Stopped", DateTime.UtcNow));
+        await base.StopAsync(message);
     }
 
     protected override void Init()

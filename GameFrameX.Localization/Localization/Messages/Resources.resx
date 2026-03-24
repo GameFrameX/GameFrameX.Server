@@ -448,18 +448,6 @@
     <data name="StartUp.ServerStopped" xml:space="preserve">
     <value>Server type: {0} stopped! Termination reason: {1} Configuration: {2}</value>
   </data>
-    <data name="StartUp.DiscoveryCenterCommunicationError" xml:space="preserve">
-    <value>Server {0} communication error with discovery center, id: {1}, error: {2}</value>
-  </data>
-    <data name="StartUp.DiscoveryCenterMessageReceived" xml:space="preserve">
-    <value>Server {0} received message from discovery center, id: {1}, {2}</value>
-  </data>
-    <data name="StartUp.DiscoveryCenterDisconnected" xml:space="preserve">
-    <value>Server {0} disconnected from discovery center, id: {1}...</value>
-  </data>
-    <data name="StartUp.DiscoveryCenterConnected" xml:space="preserve">
-    <value>Server {0} connected to discovery center successfully, id: {1}...</value>
-  </data>
     <data name="StartUp.NoStartupTaskFound" xml:space="preserve">
     <value>The server has been stopped, please check the log for details. (服务器已停止，详情请查看日志.因为启动任务为空。没有找到启动任务。)</value>
   </data>
@@ -564,98 +552,6 @@
   </data>
     <data name="StartUp.Application.SigtermSignalReceived" xml:space="preserve">
     <value>SIGTERM signal received and exit handler registered</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.TryConnectToServer" xml:space="preserve">
-    <value>Trying to connect to target server...{0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.ReconnectAttempt" xml:space="preserve">
-    <value>Reconnection attempt {0}, disconnected, reason: {1}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.ErrorOccurred" xml:space="preserve">
-    <value>Error occurred: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.InvalidIpAddress" xml:space="preserve">
-    <value>Invalid IP address format: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Server.CannotAddSelfNode" xml:space="preserve">
-    <value>Cannot add self node: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Server.NodeJoined" xml:space="preserve">
-    <value>Node joined: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Server.NodeRemoved" xml:space="preserve">
-    <value>Node removed: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.NamingService.ErrorOccurred" xml:space="preserve">
-    <value>Error occurred: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.NamingService.InvalidUrlFormat" xml:space="preserve">
-    <value>Invalid URL format: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.NamingService.ServiceConnectionAttempt" xml:space="preserve">
-    <value>Attempting to connect to service: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Server.NetworkNodeCount" xml:space="preserve">
-    <value>Current total network node count: {0}, new node info: {1}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.ConnectedToServer" xml:space="preserve">
-    <value>Client successfully connected to server: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.DisconnectedFromServer" xml:space="preserve">
-    <value>Client disconnected from server: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.ReconnectLimitReached" xml:space="preserve">
-    <value>Reconnection limit reached: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Server.DuplicateNodeAddition" xml:space="preserve">
-    <value>Attempted to add duplicate node, ignored: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Service.InvalidIpAddress" xml:space="preserve">
-    <value>Invalid IP address format: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Exception.MessageIdMustBeLessThanZero" xml:space="preserve">
-    <value>messageObject.MessageId must be less than 0</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.ReconnectLimitReachedMessage" xml:space="preserve">
-    <value>Reconnect attempts have reached the upper limit ({0}), and no more attempts will be made.</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.DisconnectedMessage" xml:space="preserve">
-    <value>Client disconnected from the server: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Client.ConnectedMessage" xml:space="preserve">
-    <value>Client successfully connected to the server: {0}</value>
-  </data>
-    <data name="DiscoveryCenterManager.Server.DuplicateNodeWarning" xml:space="preserve">
-    <value>Duplicate node addition...Ignored: {0}</value>
-  </data>
-
-    <!-- ServiceConnect related messages -->
-    <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceAlreadyRegistered" xml:space="preserve">
-    <value>ServiceConnectManager Register ServerInstanceId:{0} already registered</value>
-  </data>
-
-    <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceUnregistered" xml:space="preserve">
-    <value>ServiceConnectManager UnRegister ServerInstanceId:{0}</value>
-  </data>
-
-    <data name="DiscoveryCenterManager.ServiceConnect.ServerInstanceNotFound" xml:space="preserve">
-    <value>ServiceConnectManager UnRegister ServerInstanceId:{0} not found</value>
-  </data>
-
-    <data name="DiscoveryCenterManager.ServiceConnect.SendServerInstanceNotFound" xml:space="preserve">
-    <value>ServiceConnectManager Send ServerInstanceId:{0} not found</value>
-  </data>
-
-    <data name="DiscoveryCenterManager.ServiceConnect.CallServerInstanceNotFound" xml:space="preserve">
-    <value>ServiceConnectManager Call ServerInstanceId:{0} not found</value>
-  </data>
-
-    <data name="DiscoveryCenterManager.ServiceConnect.ServiceAlreadyInitialized" xml:space="preserve">
-    <value>ServiceConnectManager Init {0} already initialized</value>
-  </data>
-
-    <data name="DiscoveryCenterManager.ServiceConnect.ClientError" xml:space="preserve">
-    <value>ServiceConnectManager OnError {0}</value>
   </data>
 
     <!-- Core module log messages -->
@@ -1053,22 +949,6 @@
     <value>Exception details: {0}</value>
   </data>
 
-    <!-- Launcher.DiscoveryCenter related messages -->
-    <data name="Launcher.DiscoveryCenterDisabledCannotStart" xml:space="preserve">
-    <value>Discovery center functionality is disabled, cannot start discovery center service. To start, set IsEnableDiscoveryCenter to true</value>
-  </data>
-
-    <data name="Launcher.DiscoveryCenterDisabledSkipConnect" xml:space="preserve">
-    <value>Discovery center functionality is disabled, skipping connection to discovery center</value>
-  </data>
-
-  <data name="DiscoveryCenterManager.Startup.ServiceOfflineCallback" xml:space="preserve">
-    <value>Service offline callback executed. Service type: {0}, server ID: {1}.</value>
-  </data>
-
-  <data name="DiscoveryCenterManager.Startup.ServiceOnlineCallback" xml:space="preserve">
-    <value>Service online callback executed. Service type: {0}, server ID: {1}.</value>
-  </data>
 
   <data name="Exceptions.BigInteger.ConstructorByteOverflow" xml:space="preserve">
     <value>BigInteger constructor byte overflow.</value>
@@ -1242,17 +1122,6 @@
     <value>Warning: {0}.</value>
   </data>
 
-  <data name="StartUp.DiscoveryCenter.HostNotConfigured" xml:space="preserve">
-    <value>Discovery center host not configured.</value>
-  </data>
-
-  <data name="StartUp.DiscoveryCenter.InvalidHostAddress" xml:space="preserve">
-    <value>Invalid discovery center host address: {0}.</value>
-  </data>
-
-  <data name="StartUp.DiscoveryCenter.PortNotConfigured" xml:space="preserve">
-    <value>Discovery center port not configured.</value>
-  </data>
 
   <data name="StartUp.FindingConfigurationForServerType" xml:space="preserve">
     <value>Finding configuration for server type: {0}.</value>

@@ -673,36 +673,6 @@ public sealed class LauncherOptions
     public string DataCenter { get; set; }
 
     /// <summary>
-    /// 服务发现中心主机地址
-    /// </summary>
-    /// <value>服务发现中心的主机地址 / The host address of the service discovery center</value>
-    /// <remarks>
-    /// Host address of the service discovery center, used for service registration and discovery.
-    /// </remarks>
-    [Option(nameof(DiscoveryCenterHost), Description = "发现中心地址")]
-    public string DiscoveryCenterHost { get; set; }
-
-    /// <summary>
-    /// 服务发现中心端口号
-    /// </summary>
-    /// <value>服务发现中心的端口号 / The port number of the service discovery center</value>
-    /// <remarks>
-    /// Port number of the service discovery center, used for service registration and discovery.
-    /// </remarks>
-    [Option(nameof(DiscoveryCenterPort), Description = "发现中心端口")]
-    public ushort DiscoveryCenterPort { get; set; }
-
-    /// <summary>
-    /// 是否启用发现中心功能
-    /// </summary>
-    /// <value>如果启用发现中心功能则为 <c>true</c>；否则为 <c>false</c>。默认值为 <c>false</c> / <c>true</c> if discovery center functionality is enabled; otherwise, <c>false</c>. Default is <c>false</c></value>
-    /// <remarks>
-    /// Whether to enable discovery center functionality. Default value is <c>false</c>. When enabled, cluster mode operation is supported.
-    /// </remarks>
-    [Option(nameof(IsEnableDiscoveryCenter), DefaultValue = false, Description = "是否启用发现中心功能，默认值为false。启用后支持集群模式运行")]
-    public bool IsEnableDiscoveryCenter { get; set; } = false;
-
-    /// <summary>
     /// 标签名称
     /// </summary>
     /// <value>用于区分不同环境服务器的标签名称。默认值为空字符串 / The tag name used to distinguish servers in different environments. Default is empty string</value>
@@ -766,43 +736,4 @@ public sealed class LauncherOptions
     [Option(nameof(HubApiHost), DefaultValue = "", Description = "HubAPI地址")]
     public string HubApiHost { get; set; }
 
-    /// <summary>
-    /// GameApp 客户端心跳间隔（毫秒）
-    /// </summary>
-    /// <value>心跳消息之间的间隔（毫秒）。默认值为 5000 / The interval between heartbeat messages in milliseconds. Default is 5000</value>
-    /// <remarks>
-    /// GameApp client heartbeat interval in milliseconds. Default is 5000 milliseconds.
-    /// </remarks>
-    [Option(nameof(GameAppClientHeartBeatInterval), DefaultValue = 5000, Description = "心跳间隔（毫秒），默认 5000 毫秒")]
-    public int GameAppClientHeartBeatInterval { get; set; } = 5000;
-
-    /// <summary>
-    /// GameApp 客户端连接延迟（毫秒）
-    /// </summary>
-    /// <value>尝试连接前的延迟（毫秒）。默认值为 5000 / The delay before attempting connection in milliseconds. Default is 5000</value>
-    /// <remarks>
-    /// GameApp client connection delay in milliseconds. Default is 5000 milliseconds.
-    /// </remarks>
-    [Option(nameof(GameAppClientConnectDelay), DefaultValue = 5000, Description = "连接延迟（毫秒），默认 5000 毫秒")]
-    public int GameAppClientConnectDelay { get; set; } = 5000;
-
-    /// <summary>
-    /// GameApp 客户端重试延迟（毫秒）
-    /// </summary>
-    /// <value>重试尝试之间的延迟（毫秒）。默认值为 5000 / The delay between retry attempts in milliseconds. Default is 5000</value>
-    /// <remarks>
-    /// GameApp client retry delay in milliseconds. Default is 5000 milliseconds.
-    /// </remarks>
-    [Option(nameof(GameAppClientRetryDelay), DefaultValue = 5000, Description = "重试延迟（毫秒），默认 5000 毫秒")]
-    public int GameAppClientRetryDelay { get; set; } = 5000;
-
-    /// <summary>
-    /// GameApp 客户端最大重试次数
-    /// </summary>
-    /// <value>最大重试尝试次数。默认值为 -1 表示无限重试 / The maximum number of retry attempts. Default is -1 for unlimited retries</value>
-    /// <remarks>
-    /// GameApp client maximum retry count. Default is -1 for unlimited retries.
-    /// </remarks>
-    [Option(nameof(GameAppClientMaxRetryCount), DefaultValue = -1, Description = "最大重试次数，默认 -1 表示无限重试")]
-    public int GameAppClientMaxRetryCount { get; set; } = -1;
 }
