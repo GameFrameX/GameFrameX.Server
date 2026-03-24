@@ -9,8 +9,22 @@ using GameFrameX.StartUp.Options;
 
 namespace GameFrameX.AppHost;
 
+/// <summary>
+/// 应用程序主机入口类，负责配置和启动分布式应用。
+/// </summary>
+/// <remarks>
+/// Application host entry class, responsible for configuring and starting distributed applications.
+/// </remarks>
 internal static class Program
 {
+    /// <summary>
+    /// 应用程序主入口点，初始化并运行分布式应用。
+    /// </summary>
+    /// <remarks>
+    /// Main entry point of the application, initializes and runs the distributed application.
+    /// </remarks>
+    /// <param name="args">命令行参数数组 / Command line arguments array</param>
+    /// <returns>表示异步操作的任务 / Task representing the asynchronous operation</returns>
     private static async Task Main(string[] args)
     {
         LocalizationService.Instance.RegisterProvider(new AssemblyResourceProvider(typeof(Keys).Assembly));
@@ -75,6 +89,13 @@ internal static class Program
         await builder.Build().RunAsync();
     }
 
+    /// <summary>
+    /// 根据启动选项配置日志选项。
+    /// </summary>
+    /// <remarks>
+    /// Configures log options based on startup options.
+    /// </remarks>
+    /// <param name="startupOptions">启动选项实例 / Startup options instance</param>
     private static void ConfigureLogOptions(StartupOptions startupOptions)
     {
         var properties = typeof(StartupOptions).GetProperties();
@@ -140,6 +161,14 @@ internal static class Program
         LogOptions.Default.LogTagName = logTypeParts.Count > 0 ? string.Join("_", logTypeParts) : null;
     }
 
+    /// <summary>
+    /// 解析服务器类型，如果未指定则返回默认值"Game"。
+    /// </summary>
+    /// <remarks>
+    /// Resolves the server type, returns default value "Game" if not specified.
+    /// </remarks>
+    /// <param name="startupOptions">启动选项实例 / Startup options instance</param>
+    /// <returns>解析后的服务器类型 / Resolved server type</returns>
     private static string ResolveServerType(StartupOptions startupOptions)
     {
         if (startupOptions.ServerType.IsNotNullOrWhiteSpace())
@@ -150,6 +179,14 @@ internal static class Program
         return "Game";
     }
 
+    /// <summary>
+    /// 根据拓扑配置文件解析多个服务器类型。
+    /// </summary>
+    /// <remarks>
+    /// Resolves multiple server types based on topology profile configuration.
+    /// </remarks>
+    /// <param name="startupOptions">启动选项实例 / Startup options instance</param>
+    /// <returns>服务器类型列表 / List of server types</returns>
     private static List<string> ResolveMultiServerTypes(StartupOptions startupOptions)
     {
         if (startupOptions.TopologyProfile.IsNullOrWhiteSpace())
@@ -175,6 +212,15 @@ internal static class Program
         };
     }
 
+    /// <summary>
+    /// 构建启动器参数列表，过滤掉AppHost专属参数并添加服务器类型参数。
+    /// </summary>
+    /// <remarks>
+    /// Builds launcher arguments list, filters out AppHost-specific parameters and adds server type argument.
+    /// </remarks>
+    /// <param name="args">原始命令行参数数组 / Original command line arguments array</param>
+    /// <param name="serverType">服务器类型 / Server type</param>
+    /// <returns>构建后的启动器参数列表 / Built launcher arguments list</returns>
     private static List<string> BuildLauncherArgs(string[] args, string serverType)
     {
         var launcherArgs = new List<string>();
@@ -206,6 +252,14 @@ internal static class Program
         return launcherArgs;
     }
 
+    /// <summary>
+    /// 从命令行参数中解析选项名称。
+    /// </summary>
+    /// <remarks>
+    /// Parses option name from command line argument.
+    /// </remarks>
+    /// <param name="arg">命令行参数字符串 / Command line argument string</param>
+    /// <returns>选项名称；如果格式不正确则返回空字符串 / Option name; empty string if format is invalid</returns>
     private static string ParseOptionName(string arg)
     {
         var optionText = arg.Trim();
