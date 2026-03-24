@@ -57,7 +57,17 @@ internal static class Program
 
         if (startupOptions.IsSingleMode)
         {
-            var singleModeServerType = ResolveServerType(startupOptions);
+            if (startupOptions.ServerType.IsNullOrWhiteSpace())
+            {
+                throw new InvalidOperationException("单进程模式必须通过 --ServerType 指定服务类型，例如 --ServerType=Game");
+            }
+
+            var singleModeServerType = startupOptions.ServerType.Trim();
+            if (singleModeServerType.Contains(',', StringComparison.Ordinal))
+            {
+                throw new InvalidOperationException("单进程模式不支持多个服务类型，请仅传一个 --ServerType 值，例如 --ServerType=Game");
+            }
+
             var launcherArgs = BuildLauncherArgs(args, singleModeServerType);
             builder
                 .AddProject<Projects.GameFrameX_Launcher>("single-service")
@@ -162,45 +172,27 @@ internal static class Program
     }
 
     /// <summary>
-    /// 解析服务器类型，如果未指定则返回默认值"Game"。
+    /// 根据服务器类型参数解析多个服务器类型。
     /// </summary>
     /// <remarks>
-    /// Resolves the server type, returns default value "Game" if not specified.
-    /// </remarks>
-    /// <param name="startupOptions">启动选项实例 / Startup options instance</param>
-    /// <returns>解析后的服务器类型 / Resolved server type</returns>
-    private static string ResolveServerType(StartupOptions startupOptions)
-    {
-        if (startupOptions.ServerType.IsNotNullOrWhiteSpace())
-        {
-            return startupOptions.ServerType;
-        }
-
-        return "Game";
-    }
-
-    /// <summary>
-    /// 根据拓扑配置文件解析多个服务器类型。
-    /// </summary>
-    /// <remarks>
-    /// Resolves multiple server types based on topology profile configuration.
+    /// Resolves multiple server types based on server type argument.
     /// </remarks>
     /// <param name="startupOptions">启动选项实例 / Startup options instance</param>
     /// <returns>服务器类型列表 / List of server types</returns>
     private static List<string> ResolveMultiServerTypes(StartupOptions startupOptions)
     {
-        if (startupOptions.TopologyProfile.IsNullOrWhiteSpace())
+        if (startupOptions.ServerType.IsNullOrWhiteSpace())
         {
-            throw new InvalidOperationException("多进程模式必须通过 --TopologyProfile 指定服务列表，例如 --TopologyProfile=Game,Social");
+            throw new InvalidOperationException("多进程模式必须通过 --ServerType 指定服务列表，例如 --ServerType=Game,Social");
         }
 
-        var profileText = startupOptions.TopologyProfile.Trim();
-        var serverTypes = profileText.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+        var serverTypeText = startupOptions.ServerType.Trim();
+        var serverTypes = serverTypeText.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
                                      .Distinct(StringComparer.OrdinalIgnoreCase)
                                      .ToList();
         if (serverTypes.Count == 0)
         {
-            throw new InvalidOperationException("TopologyProfile 未解析到有效服务类型，请使用逗号分隔列表，例如 --TopologyProfile=Game,Social");
+            throw new InvalidOperationException("ServerType 未解析到有效服务类型，请使用逗号分隔列表，例如 --ServerType=Game,Social");
         }
 
         return serverTypes;
@@ -233,7 +225,6 @@ internal static class Program
             }
 
             if (optionName.Equals(nameof(StartupOptions.IsSingleMode), StringComparison.OrdinalIgnoreCase) ||
-                optionName.Equals(nameof(StartupOptions.TopologyProfile), StringComparison.OrdinalIgnoreCase) ||
                 optionName.Equals(nameof(StartupOptions.ServerType), StringComparison.OrdinalIgnoreCase))
             {
                 continue;
