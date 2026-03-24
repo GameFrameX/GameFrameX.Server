@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="../Version.props" Label="版本号定义"/>
+
+    <PropertyGroup>
+        <Description>GameFrameX.NetWork.Kcp,GameFrameX 框架的 KCP 网络模块.框架文档主页: https://gameframex.doc.alianblank.com</Description>
+        <PackageTags>GameFrameX,Lib,NetWork,Kcp,Server,GameServer</PackageTags>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- 框架依赖 -->
+        <ProjectReference Include="..\GameFrameX.NetWork.Abstractions\GameFrameX.NetWork.Abstractions.csproj"/>
+        <ProjectReference Include="..\GameFrameX.NetWork.Message\GameFrameX.NetWork.Message.csproj"/>
+        <ProjectReference Include="..\GameFrameX.NetWork\GameFrameX.NetWork.csproj"/>
+        <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- SuperSocket UDP 扩展 -->
+        <PackageReference Include="GameFrameX.SuperSocket.Udp" Version="1.2.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- KCP 库 (KumoKyaku/KCP) -->
+        <PackageReference Include="Kcp" Version="2.7.0"/>
+    </ItemGroup>
+
+</Project>

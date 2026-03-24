@@ -34,6 +34,7 @@
       <ProjectReference Include="..\..\GameFrameX.Core\GameFrameX.Core.csproj" />
       <ProjectReference Include="..\..\GameFrameX.ProtoBuf.Net\GameFrameX.ProtoBuf.Net.csproj" />
       <ProjectReference Include="..\..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
+      <ProjectReference Include="..\..\GameFrameX.NetWork.Kcp\GameFrameX.NetWork.Kcp.csproj" />
     </ItemGroup>
 
 </Project>

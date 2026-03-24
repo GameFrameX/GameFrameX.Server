@@ -64,6 +64,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.AppHost", "GameF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.AppHost.ServiceDefaults", "GameFrameX.AppHost.ServiceDefaults\GameFrameX.AppHost.ServiceDefaults.csproj", "{C07F3854-2F1B-45C1-B9ED-D0B8A03B64ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameFrameX.NetWork.Kcp", "GameFrameX.NetWork.Kcp\GameFrameX.NetWork.Kcp.csproj", "{D9E98210-9F91-4D7A-B795-E50236FFC8F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -186,14 +188,26 @@ Global
 		{C07F3854-2F1B-45C1-B9ED-D0B8A03B64ED}.Release|x64.Build.0 = Release|Any CPU
 		{C07F3854-2F1B-45C1-B9ED-D0B8A03B64ED}.Release|x86.ActiveCfg = Release|Any CPU
 		{C07F3854-2F1B-45C1-B9ED-D0B8A03B64ED}.Release|x86.Build.0 = Release|Any CPU
+		{D9E98210-9F91-4D7A-B795-E50236FFC8F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9E98210-9F91-4D7A-B795-E50236FFC8F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9E98210-9F91-4D7A-B795-E50236FFC8F1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D9E98210-9F91-4D7A-B795-E50236FFC8F1}.Debug|x64.Build.0 = Debug|Any CPU
+		{D9E98210-9F91-4D7A-B795-E50236FFC8F1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D9E98210-9F91-4D7A-B795-E50236FFC8F1}.Debug|x86.Build.0 = Debug|Any CPU
+		{D9E98210-9F91-4D7A-B795-E50236FFC8F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9E98210-9F91-4D7A-B795-E50236FFC8F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9E98210-9F91-4D7A-B795-E50236FFC8F1}.Release|x64.ActiveCfg = Release|Any CPU
+		{D9E98210-9F91-4D7A-B795-E50236FFC8F1}.Release|x64.Build.0 = Release|Any CPU
+		{D9E98210-9F91-4D7A-B795-E50236FFC8F1}.Release|x86.ActiveCfg = Release|Any CPU
+		{D9E98210-9F91-4D7A-B795-E50236FFC8F1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {7DFBA9A0-D615-4A16-B856-216DEA0DD25D}
-	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{762F0E9F-813B-40BD-B488-A7A6919A534E} = {B2F95E64-146A-4FDE-BB8D-DE49972FA4B0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7DFBA9A0-D615-4A16-B856-216DEA0DD25D}
 	EndGlobalSection
 EndGlobal
