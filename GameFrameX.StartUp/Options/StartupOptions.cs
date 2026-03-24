@@ -46,11 +46,13 @@ public class StartupOptions
     /// <summary>
     /// 服务器类型
     /// </summary>
-    /// <value>要启动的服务器类型 / The type of server to be started</value>
+    /// <value>要启动的服务器类型列表。单进程传单值，多进程传逗号分隔值（例如 Game,Social,Chat） / The server type list to start. Use a single value in single-process mode, and comma-separated values in multi-process mode (e.g. Game,Social,Chat)</value>
     /// <remarks>
-    /// Server type. When this value is invalid, all subsequent parameters are considered invalid by default.
+    /// Server type list.
+    /// In single-process mode, this must be a single server type such as "Game".
+    /// In multi-process mode, this should be a comma-separated list such as "Game,Social,Chat".
     /// </remarks>
-    [Option(nameof(ServerType), Description = "服务器类型,当该值无效时,默认为后续所有参数无效")]
+    [Option(nameof(ServerType), Description = "服务器类型。单进程传单值(如 Game)，多进程传逗号分隔值(如 Game,Social,Chat)")]
     [GrafanaLokiLabelTag]
     public string ServerType { get; set; }
 
