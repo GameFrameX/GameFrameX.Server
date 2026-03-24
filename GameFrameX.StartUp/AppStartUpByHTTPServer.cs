@@ -195,7 +195,7 @@ public abstract partial class AppStartUpBase
                 }
             }
 
-            // 注册HTTP处理器路由（同时支持驼峰和下划线格式）
+            var registeredRouteKeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             foreach (var handler in baseHandler)
             {
                 var handlerType = handler.GetType();
@@ -206,12 +206,12 @@ public abstract partial class AppStartUpBase
                 }
 
                 // 注册驼峰格式路由
-                RegisterHandlerRoute(app, mappingAttribute, mappingAttribute.OriginalCmd, httpFactory, aopHandlerTypes, development);
+                RegisterHandlerRoute(app, mappingAttribute, mappingAttribute.OriginalCmd, httpFactory, aopHandlerTypes, development, registeredRouteKeys);
 
                 // 注册下划线格式路由（如果与驼峰格式不同）
                 if (mappingAttribute.OriginalCmd != mappingAttribute.StandardCmd)
                 {
-                    RegisterHandlerRoute(app, mappingAttribute, mappingAttribute.StandardCmd, httpFactory, aopHandlerTypes, development);
+                    RegisterHandlerRoute(app, mappingAttribute, mappingAttribute.StandardCmd, httpFactory, aopHandlerTypes, development, registeredRouteKeys);
                 }
             }
 
@@ -336,11 +336,14 @@ public abstract partial class AppStartUpBase
     /// <param name="httpFactory">HTTP 处理器工厂 / HTTP handler factory</param>
     /// <param name="aopHandlerTypes">AOP 处理器列表 / AOP handler list</param>
     /// <param name="development">是否为开发环境 / Whether it is development environment</param>
-    private static void RegisterHandlerRoute(WebApplication app, HttpMessageMappingAttribute mappingAttribute, string cmd, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes, bool development)
+    private static void RegisterHandlerRoute(WebApplication app, HttpMessageMappingAttribute mappingAttribute, string cmd, Func<string, BaseHttpHandler> httpFactory, List<IHttpAopHandler> aopHandlerTypes, bool development, ISet<string> registeredRouteKeys)
     {
-        // 注册路由 - 根据 HttpMethod 选择不同的 Map 方法
         var apiPath = $"{GlobalSettings.CurrentSetting.HttpUrl}{cmd}";
         var httpMethod = mappingAttribute.HttpMethod;
+        if (!TryAddRouteKey(httpMethod, apiPath, registeredRouteKeys))
+        {
+            return;
+        }
 
         IEndpointConventionBuilder route;
         switch (httpMethod)
@@ -369,5 +372,18 @@ public abstract partial class AppStartUpBase
                 return operation;
             });
         }
+    }
+
+    /// <summary>
+    /// 尝试添加路由唯一键，避免大小写差异导致重复注册。
+    /// </summary>
+    /// <param name="httpMethod">HTTP方法</param>
+    /// <param name="apiPath">API路径</param>
+    /// <param name="registeredRouteKeys">已注册路由键集合</param>
+    /// <returns>添加成功返回 true，已存在返回 false</returns>
+    private static bool TryAddRouteKey(HttpMethodType httpMethod, string apiPath, ISet<string> registeredRouteKeys)
+    {
+        var routeKey = $"{httpMethod}:{apiPath}";
+        return registeredRouteKeys.Add(routeKey);
     }
 }
