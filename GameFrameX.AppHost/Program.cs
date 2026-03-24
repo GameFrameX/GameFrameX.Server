@@ -191,25 +191,19 @@ internal static class Program
     {
         if (startupOptions.TopologyProfile.IsNullOrWhiteSpace())
         {
-            return new List<string> { "Game", "Social", };
+            throw new InvalidOperationException("多进程模式必须通过 --TopologyProfile 指定服务列表，例如 --TopologyProfile=Game,Social");
         }
 
         var profileText = startupOptions.TopologyProfile.Trim();
-        if (profileText.Contains(',', StringComparison.Ordinal))
+        var serverTypes = profileText.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                                     .Distinct(StringComparer.OrdinalIgnoreCase)
+                                     .ToList();
+        if (serverTypes.Count == 0)
         {
-            var serverTypes = profileText.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-                                         .Distinct(StringComparer.OrdinalIgnoreCase)
-                                         .ToList();
-            return serverTypes.Count > 0 ? serverTypes : new List<string> { "Game", "Social", };
+            throw new InvalidOperationException("TopologyProfile 未解析到有效服务类型，请使用逗号分隔列表，例如 --TopologyProfile=Game,Social");
         }
 
-        return profileText.ToLowerInvariant() switch
-        {
-            "default" => new List<string> { "Game", "Social", },
-            "game" => new List<string> { "Game", },
-            "social" => new List<string> { "Social", },
-            _ => new List<string> { "Game", "Social", },
-        };
+        return serverTypes;
     }
 
     /// <summary>

@@ -69,15 +69,14 @@ public class StartupOptions
     /// <summary>
     /// 多进程模式的拓扑配置名称。
     /// </summary>
-    /// <value>拓扑模板名称。默认值为 "default" / The topology profile name. Default is "default"</value>
+    /// <value>拓扑服务列表，使用逗号分隔，例如 "Game,Social,Chat" / Topology service list, comma-separated, e.g. "Game,Social,Chat"</value>
     /// <remarks>
-    /// Topology profile name for multi-process mode. Default is "default".
-    /// Supported values: "default" (Game + Social), "game" (Game only), "social" (Social only),
-    /// or comma-separated list like "Game,Social,Gateway".
+    /// Topology service list for multi-process mode.
+    /// Use comma-separated service types like "Game,Social,Gateway".
     /// Only effective when IsSingleMode is <c>false</c>.
     /// </remarks>
-    [Option(nameof(TopologyProfile), DefaultValue = "default", Description = "多进程模式拓扑模板名称")]
-    public string TopologyProfile { get; set; } = "default";
+    [Option(nameof(TopologyProfile), Description = "多进程模式拓扑服务列表(逗号分隔),例如: Game,Social,Chat")]
+    public string TopologyProfile { get; set; }
 
     /// <summary>
     /// 指标收集服务端口号
