@@ -87,7 +87,7 @@ jobs:
       - name: Push changes
         if: steps.check.outputs.need_release == 'true'
         run: |
-          git push origin main
+          git push origin src
           git tag ${{ steps.version.outputs.version }}
           git push origin ${{ steps.version.outputs.version }}
 
