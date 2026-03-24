@@ -5,6 +5,7 @@
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <ApplicationIcon/>
         <StartupObject/>
+        <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

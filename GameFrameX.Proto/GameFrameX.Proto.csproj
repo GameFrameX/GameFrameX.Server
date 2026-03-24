@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <LangVersion>10</LangVersion>
+        <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
