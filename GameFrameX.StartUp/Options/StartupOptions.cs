@@ -61,22 +61,10 @@ public class StartupOptions
     /// <remarks>
     /// Whether to enable single-process mode. Default is <c>false</c> (multi-process mode).
     /// When <c>true</c>, only one service type will be started in the current process.
-    /// When <c>false</c>, multiple service types will be orchestrated based on TopologyProfile.
+    /// When <c>false</c>, multiple service types will be orchestrated based on ServerType comma-separated list.
     /// </remarks>
     [Option(nameof(IsSingleMode), DefaultValue = false, Description = "是否单进程模式,默认值为false(多进程)")]
     public bool IsSingleMode { get; set; }
-
-    /// <summary>
-    /// 多进程模式的拓扑配置名称。
-    /// </summary>
-    /// <value>拓扑服务列表，使用逗号分隔，例如 "Game,Social,Chat" / Topology service list, comma-separated, e.g. "Game,Social,Chat"</value>
-    /// <remarks>
-    /// Topology service list for multi-process mode.
-    /// Use comma-separated service types like "Game,Social,Gateway".
-    /// Only effective when IsSingleMode is <c>false</c>.
-    /// </remarks>
-    [Option(nameof(TopologyProfile), Description = "多进程模式拓扑服务列表(逗号分隔),例如: Game,Social,Chat")]
-    public string TopologyProfile { get; set; }
 
     /// <summary>
     /// 指标收集服务端口号
