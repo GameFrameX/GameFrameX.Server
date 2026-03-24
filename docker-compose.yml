@@ -1,41 +1,80 @@
 services:
-  gameframex:
-    image: gameframex/server.launcher:1.0.0
-    container_name: gameframex
+  mongo:
+    image: mongo:8.2
+    container_name: gfx-mongo
+    restart: unless-stopped
     ports:
-      # APM 端口
-      - "29090:29090"
-      # TCP 端口
-      - "29100:29100"
-      # WebSocket 端口
-      - "29110:29110"
-      - "29110:29110"
-    environment:
-      - ServerType=Game
-      - ServerId=1000
-      - APMPort=29090
-      - InnerIp=127.0.0.1
-      - InnerPort=29100
-      - OuterIp=127.0.0.1
-      - OuterPort=29100
-      - MinModuleId=10
-      - MaxModuleId=9999
-      - WsPort=29110
-      - HttpPort=28080
-      - HttpCode=inner_httpcode
-      - DataBaseUrl=mongodb://gameframex:f9v42aU9DVeFNfAF@47.121.197.120:27017/?authSource=admin
-      - DataBaseName=gameframex
+      - "37017:27017"
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.runCommand({ ping: 1 }).ok"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
     networks:
-      - frontend
-      - backend
+      - gameframex
+
+  game:
+    build:
+      context: .
+    image: gameframex/server.launcher:local
+    container_name: gfx-game
+    depends_on:
+      mongo:
+        condition: service_healthy
+      social:
+        condition: service_started
+    command:
+      - "--ServerType=Game"
+      - "--ServerId=1001"
+      - "--ServerInstanceId=1"
+      - "--InnerHost=0.0.0.0"
+      - "--InnerPort=29100"
+      - "--OuterHost=0.0.0.0"
+      - "--OuterPort=29100"
+      - "--HttpPort=28080"
+      - "--IsEnableHttp=true"
+      - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
+      - "--DataBaseName=gameframex"
+    environment:
+      services__social__tcp__0: "tcp://social:29400"
+      services__social__http__0: "http://social:28081"
+    ports:
+      - "39100:29100"
+      - "38080:28080"
     volumes:
-      - "./running/hotfix:/app/hotfix"
-      - "./running/json:/app/json"
-      - "./running/logs:/app/logs"
+      - "./running/game/logs:/app/data/logs"
+    networks:
+      - gameframex
+
+  social:
+    image: gameframex/server.launcher:local
+    container_name: gfx-social
+    depends_on:
+      mongo:
+        condition: service_healthy
+    command:
+      - "--ServerType=Social"
+      - "--ServerId=1002"
+      - "--ServerInstanceId=2"
+      - "--InnerHost=0.0.0.0"
+      - "--InnerPort=29400"
+      - "--OuterHost=0.0.0.0"
+      - "--OuterPort=29400"
+      - "--HttpPort=28081"
+      - "--IsEnableHttp=true"
+      - "--DataBaseUrl=mongodb://mongo:27017/?authSource=admin"
+      - "--DataBaseName=gameframex"
+    environment:
+      services__game__tcp__0: "tcp://game:29100"
+      services__game__http__0: "http://game:28080"
+    ports:
+      - "39400:29400"
+      - "38081:28081"
+    volumes:
+      - "./running/social/logs:/app/data/logs"
+    networks:
+      - gameframex
+
 networks:
-  frontend:
-    name: gameframex-frontend
-    driver: bridge
-  backend:
-    name: gameframex-backend
+  gameframex:
     driver: bridge
