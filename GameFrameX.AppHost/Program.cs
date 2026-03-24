@@ -117,6 +117,11 @@ internal static class Program
                 continue;
             }
 
+            if (property.Name.Equals(nameof(StartupOptions.ServerType), StringComparison.Ordinal))
+            {
+                continue;
+            }
+
             var value = property.GetValue(startupOptions)?.ToString();
             if (string.IsNullOrEmpty(value))
             {
