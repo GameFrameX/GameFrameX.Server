@@ -109,6 +109,17 @@ public abstract partial class AppStartUpBase
 
             var openApiInfo = GetOpenApiInfo();
 
+            // 配置 CORS（跨域资源共享）- 允许所有来源
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
+            });
+
             // 在开发环境下配置Swagger
             if (development)
             {
@@ -159,6 +170,9 @@ public abstract partial class AppStartUpBase
                     LogHelper.Debug(LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.SwaggerUiAccess, ip, Setting.HttpPort));
                 }
             }
+
+            // 启用 CORS 中间件
+            app.UseCors();
 
             // 配置全局异常处理
             app.UseExceptionHandler(ExceptionHandler);
