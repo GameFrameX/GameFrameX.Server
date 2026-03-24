@@ -419,6 +419,22 @@ public sealed class AppSetting
     public bool IsEnableUdp { get; set; } = false;
 
     /// <summary>
+    /// 是否启用KCP
+    /// </summary>
+    /// <remarks>
+    /// Whether to enable KCP. Default is false.
+    /// </remarks>
+    public bool IsEnableKcp { get; set; } = false;
+
+    /// <summary>
+    /// KCP端口
+    /// </summary>
+    /// <remarks>
+    /// KCP server port. Default is 0 (uses same port as TCP).
+    /// </remarks>
+    public int KcpPort { get; set; } = 0;
+
+    /// <summary>
     /// 内部主机地址
     /// </summary>
     /// <remarks>

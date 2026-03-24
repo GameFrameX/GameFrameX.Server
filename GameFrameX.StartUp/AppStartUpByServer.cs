@@ -29,11 +29,13 @@
 //  Official Documentation: https://gameframex.doc.alianblank.com/
 // ==========================================================================================
 
+using System.Net;
 using GameFrameX.AppHost.ServiceDefaults;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.NetWork.HTTP;
+using GameFrameX.NetWork.Kcp;
 using GameFrameX.NetWork.Message;
 using GameFrameX.SuperSocket.Connection;
 using GameFrameX.SuperSocket.Primitives;
@@ -168,6 +170,41 @@ public abstract partial class AppStartUpBase
     protected virtual ValueTask OnDisconnected(IAppSession appSession, CloseEventArgs disconnectEventArgs)
     {
         LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.TcpServer.ClientDisconnected, appSession.SessionID, appSession.RemoteEndPoint, disconnectEventArgs.Reason));
+        return ValueTask.CompletedTask;
+    }
+
+    /// <summary>
+    /// KCP客户端连接成功处理
+    /// </summary>
+    /// <param name="remoteEndPoint">远程端点</param>
+    /// <returns></returns>
+    protected virtual ValueTask OnKcpConnected(EndPoint remoteEndPoint)
+    {
+        LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.NewClientConnection, remoteEndPoint));
+        return ValueTask.CompletedTask;
+    }
+
+    /// <summary>
+    /// KCP消息处理方法
+    /// </summary>
+    /// <param name="session">游戏应用会话</param>
+    /// <param name="message">接收到的消息</param>
+    protected virtual void KcpPackageHandler(IGameAppSession session, IMessage message)
+    {
+        if (Setting.IsDebug && Setting.IsDebugReceive)
+        {
+            LogHelper.Debug(LocalizationService.GetString(Localization.Keys.StartUp.TcpServer.MessageReceived, ServerType, message.ToFormatMessageString()));
+        }
+    }
+
+    /// <summary>
+    /// KCP客户端断开连接处理
+    /// </summary>
+    /// <param name="remoteEndPoint">远程端点</param>
+    /// <returns></returns>
+    protected virtual ValueTask OnKcpDisconnected(EndPoint remoteEndPoint)
+    {
+        LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.ClientDisconnected, remoteEndPoint));
         return ValueTask.CompletedTask;
     }
 
@@ -356,6 +393,34 @@ public abstract partial class AppStartUpBase
         else
         {
             LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.WebSocketServer.ServiceNotEnabled, ServerType, Setting.WsPort));
+        }
+
+        // 启动KCP服务器
+        if (Setting.IsEnableKcp)
+        {
+            var kcpPort = Setting.KcpPort > 0 ? Setting.KcpPort : Setting.InnerPort;
+            if (kcpPort > 0 && NetHelper.PortIsAvailable(kcpPort))
+            {
+                LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.StartingServer, ServerType, Setting.InnerHost, kcpPort));
+                var kcpServer = new KcpServer(
+                    kcpPort,
+                    new KcpOptions { Enable = true },
+                    Setting,
+                    KcpPackageHandler,
+                    OnKcpConnected,
+                    OnKcpDisconnected
+                );
+                _ = kcpServer.StartAsync();
+                LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.StartupComplete, ServerType, Setting.InnerHost, kcpPort));
+            }
+            else
+            {
+                LogHelper.Warning(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.StartupFailed, ServerType, Setting.InnerHost, kcpPort));
+            }
+        }
+        else
+        {
+            LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.KcpServer.ServerDisabled, ServerType, Setting.InnerHost, Setting.KcpPort));
         }
 
         // await StartHttpServerAsync(hostBuilder,baseHandler, httpFactory, aopHandlerTypes, minimumLevelLogLevel);
