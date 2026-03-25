@@ -121,15 +121,15 @@ public static class GlobalTimer
     /// </summary>
     public static async Task Stop()
     {
-        LogHelper.Info(LocalizationService.GetString(Localization.Keys.Core.Timer.GlobalTimerStopStart));
+        Console.WriteLine(LocalizationService.GetString(Localization.Keys.Core.Timer.GlobalTimerStopStart));
         IsWorking = false;
         if (_loopTask != null)
         {
             await _loopTask;
         }
 
-        await StateComponent.SaveAll(true);
+        StateComponent.SaveAll(true).Wait();
         GameDb.Close();
-        LogHelper.Info(LocalizationService.GetString(Localization.Keys.Core.Timer.GlobalTimerStopComplete));
+        Console.WriteLine(LocalizationService.GetString(Localization.Keys.Core.Timer.GlobalTimerStopComplete));
     }
 }

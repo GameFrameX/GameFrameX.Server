@@ -124,13 +124,13 @@ internal static class AppEnter
             return;
         }
 
+        LogHelper.FlushAndSave();
         _exitCalled = true;
-        LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.Application.ListeningExitMessage));
+        Console.WriteLine(LocalizationService.GetString(Localization.Keys.StartUp.Application.ListeningExitMessage));
         GlobalSettings.IsAppRunning = false;
         _appStartUp.StopAsync(message).Wait();
         AppExitHandler.Kill();
-        LogHelper.Info(LocalizationService.GetString(Localization.Keys.StartUp.Application.ExecutingExitProcedure));
+        Console.WriteLine(LocalizationService.GetString(Localization.Keys.StartUp.Application.ExecutingExitProcedure));
         _gameLoopTask?.Wait();
-        LogHelper.FlushAndSave();
     }
 }
