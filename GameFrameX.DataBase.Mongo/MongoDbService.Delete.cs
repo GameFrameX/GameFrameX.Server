@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using System.Linq.Expressions;
+using System.Threading;
 using GameFrameX.Foundation.Utility;
 using MongoDB.Driver;
 
@@ -62,8 +63,14 @@ public sealed partial class MongoDbService
     /// <returns>返回修改的记录数 / The number of modified records</returns>
     public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
+        return await DeleteAsync(filter, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
-        var state = await FindAsync(filter, false).ConfigureAwait(false);
+        var state = await FindAsync(filter, false).WaitAsync(cancellationToken).ConfigureAwait(false);
         if (state == null)
         {
             return 0;
@@ -78,7 +85,7 @@ public sealed partial class MongoDbService
             .Set(x => x.IsDeleted, state.IsDeleted)
             .Set(x => x.DeleteTime, state.DeleteTime);
 
-        var result = await collection.UpdateOneAsync(mongoFilter, update).ConfigureAwait(false);
+        var result = await collection.UpdateOneAsync(mongoFilter, update, cancellationToken: cancellationToken).ConfigureAwait(false);
         return result.ModifiedCount;
     }
 
@@ -93,8 +100,14 @@ public sealed partial class MongoDbService
     /// <returns>返回修改的记录数 / The number of modified records</returns>
     public async Task<long> DeleteListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
+        return await DeleteListAsync(filter, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<long> DeleteListAsync<TState>(Expression<Func<TState, bool>> filter, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
-        var list = await FindListAsync(filter).ConfigureAwait(false);
+        var list = await FindListAsync(filter, cancellationToken).ConfigureAwait(false);
         if (list == null || list.Count == 0)
         {
             return 0;
@@ -116,7 +129,7 @@ public sealed partial class MongoDbService
             writeModels.Add(new UpdateOneModel<TState>(mongoFilter, update));
         }
 
-        var result = await collection.BulkWriteAsync(writeModels, BulkWriteOptions).ConfigureAwait(false);
+        var result = await collection.BulkWriteAsync(writeModels, BulkWriteOptions, cancellationToken).ConfigureAwait(false);
         return result.ModifiedCount;
     }
 
@@ -131,6 +144,12 @@ public sealed partial class MongoDbService
     /// <returns>返回修改的记录数 / The number of modified records</returns>
     public async Task<long> DeleteListIdAsync<TState>(IEnumerable<long> ids) where TState : BaseCacheState, new()
     {
+        return await DeleteListIdAsync<TState>(ids, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<long> DeleteListIdAsync<TState>(IEnumerable<long> ids, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
         var idArray = ids as long[] ?? ids?.ToArray();
         if (idArray == null || idArray.Length == 0)
@@ -151,7 +170,7 @@ public sealed partial class MongoDbService
             writeModels.Add(new UpdateOneModel<TState>(mongoFilter, update));
         }
 
-        var result = await collection.BulkWriteAsync(writeModels, BulkWriteOptions).ConfigureAwait(false);
+        var result = await collection.BulkWriteAsync(writeModels, BulkWriteOptions, cancellationToken).ConfigureAwait(false);
         return result.ModifiedCount;
     }
 
@@ -166,6 +185,12 @@ public sealed partial class MongoDbService
     /// <returns>返回修改的记录数 / The number of modified records</returns>
     public async Task<long> DeleteAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
+        return await DeleteAsync(state, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<long> DeleteAsync<TState>(TState state, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
         state.DeleteTime = TimerHelper.UnixTimeMilliseconds();
         state.IsDeleted = true;
@@ -176,7 +201,59 @@ public sealed partial class MongoDbService
             .Set(x => x.IsDeleted, state.IsDeleted)
             .Set(x => x.DeleteTime, state.DeleteTime);
 
-        var result = await collection.UpdateOneAsync(filter, update).ConfigureAwait(false);
+        var result = await collection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken).ConfigureAwait(false);
+        return result.ModifiedCount;
+    }
+
+    /// <summary>
+    /// 根据条件物理删除数据。
+    /// </summary>
+    /// <remarks>
+    /// Physically delete data by condition.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="filter">查询条件表达式 / Query condition expression</param>
+    /// <returns>返回删除的记录数 / The number of deleted records</returns>
+    public async Task<long> HardDeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
+    {
+        return await HardDeleteAsync<TState>(filter, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<long> HardDeleteAsync<TState>(Expression<Func<TState, bool>> filter, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        EnsureInitialized();
+        var collection = _mongoDbContext.GetCollection<TState>();
+        var deleteFilter = filter ?? (_ => true);
+        var result = await collection.DeleteManyAsync(deleteFilter, cancellationToken).ConfigureAwait(false);
+        return result.DeletedCount;
+    }
+
+    /// <summary>
+    /// 根据条件恢复软删除数据。
+    /// </summary>
+    /// <remarks>
+    /// Restore soft deleted data by condition.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="filter">查询条件表达式 / Query condition expression</param>
+    /// <returns>返回恢复的记录数 / The number of restored records</returns>
+    public async Task<long> RestoreAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
+    {
+        return await RestoreAsync<TState>(filter, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<long> RestoreAsync<TState>(Expression<Func<TState, bool>> filter, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        EnsureInitialized();
+        var collection = _mongoDbContext.GetCollection<TState>();
+        var expression = filter ?? (_ => true);
+        var mongoFilter = Builders<TState>.Filter.Where(expression) & Builders<TState>.Filter.Eq(m => m.IsDeleted, true);
+        var update = Builders<TState>.Update
+            .Set(x => x.IsDeleted, false)
+            .Unset(x => x.DeleteTime);
+        var result = await collection.UpdateManyAsync(mongoFilter, update, cancellationToken: cancellationToken).ConfigureAwait(false);
         return result.ModifiedCount;
     }
 }

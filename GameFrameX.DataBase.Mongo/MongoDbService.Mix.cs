@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -31,6 +31,7 @@
 
 using GameFrameX.Foundation.Utility;
 using MongoDB.Driver;
+using System.Threading;
 
 namespace GameFrameX.DataBase.Mongo;
 
@@ -77,6 +78,12 @@ public sealed partial class MongoDbService
     /// <returns>返回增加或更新后的数据对象 / The added or updated data object</returns>
     public async Task<TState> AddOrUpdateAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
+        return await AddOrUpdateAsync(state, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<TState> AddOrUpdateAsync<TState>(TState state, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
 
         var currentTime = TimerHelper.UnixTimeMilliseconds();
@@ -92,9 +99,114 @@ public sealed partial class MongoDbService
 
         // 使用 ReplaceOne with Upsert - 单次数据库操作
         var filter = Builders<TState>.Filter.Eq(m => m.Id, state.Id);
-        await CurrentDatabase.GetCollection<TState>(typeof(TState).Name).ReplaceOneAsync(filter, state, ReplaceOptions).ConfigureAwait(false);
+        await CurrentDatabase.GetCollection<TState>(typeof(TState).Name).ReplaceOneAsync(filter, state, ReplaceOptions, cancellationToken).ConfigureAwait(false);
 
         state.SaveToDbPostHandler();
         return state;
+    }
+
+    /// <summary>
+    /// 批量增加或更新数据（使用 Upsert 优化，批量数据库操作）。
+    /// </summary>
+    /// <remarks>
+    /// Batch add or update data (using Upsert optimization, bulk database operation).
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="states">数据对象集合 / Collection of data objects</param>
+    /// <returns>返回处理的记录数 / Number of processed records</returns>
+    public async Task<long> AddOrUpdateListAsync<TState>(IEnumerable<TState> states) where TState : BaseCacheState, new()
+    {
+        return await AddOrUpdateListAsync(states, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 批量增加或更新数据（使用 Upsert 优化，批量数据库操作）。
+    /// </summary>
+    /// <remarks>
+    /// Batch add or update data (using Upsert optimization, bulk database operation).
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="states">数据对象集合 / Collection of data objects</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>返回处理的记录数 / Number of processed records</returns>
+    public async Task<long> AddOrUpdateListAsync<TState>(IEnumerable<TState> states, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        EnsureInitialized();
+        var stateArray = states as TState[] ?? states?.ToArray();
+        if (stateArray == null || stateArray.Length == 0)
+        {
+            return 0;
+        }
+
+        var currentTime = TimerHelper.UnixTimeMilliseconds();
+        var collection = CurrentDatabase.GetCollection<TState>(typeof(TState).Name);
+        var writeModels = new List<WriteModel<TState>>(stateArray.Length);
+        foreach (var state in stateArray)
+        {
+            if (state.CreatedTime == 0)
+            {
+                state.CreatedTime = currentTime;
+            }
+
+            state.UpdateTime = currentTime;
+            state.UpdateCount++;
+            var filter = Builders<TState>.Filter.Eq(m => m.Id, state.Id);
+            writeModels.Add(new ReplaceOneModel<TState>(filter, state) { IsUpsert = true, });
+        }
+
+        var result = await collection.BulkWriteAsync(writeModels, BulkWriteOptions, cancellationToken).ConfigureAwait(false);
+        if (result.IsAcknowledged)
+        {
+            foreach (var state in stateArray)
+            {
+                state.SaveToDbPostHandler();
+            }
+        }
+
+        return stateArray.Length;
+    }
+
+    /// <summary>
+    /// 在事务中执行操作。
+    /// </summary>
+    /// <remarks>
+    /// Execute operation in a transaction.
+    /// </remarks>
+    /// <param name="action">事务内执行逻辑 / Action to execute within transaction</param>
+    /// <returns>表示异步操作的任务 / Task representing asynchronous operation</returns>
+    public async Task ExecuteInTransactionAsync(Func<Task> action)
+    {
+        await ExecuteInTransactionAsync(action, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 在事务中执行操作。
+    /// </summary>
+    /// <remarks>
+    /// Execute operation in a transaction.
+    /// </remarks>
+    /// <param name="action">事务内执行逻辑 / Action to execute within transaction</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>表示异步操作的任务 / Task representing asynchronous operation</returns>
+    public async Task ExecuteInTransactionAsync(Func<Task> action, CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        EnsureInitialized();
+        ArgumentNullException.ThrowIfNull(action, nameof(action));
+
+        try
+        {
+            using var session = await _mongoClient.StartSessionAsync(cancellationToken: cancellationToken).ConfigureAwait(false);
+            session.StartTransaction();
+            cancellationToken.ThrowIfCancellationRequested();
+            await action().ConfigureAwait(false);
+            await session.CommitTransactionAsync(cancellationToken).ConfigureAwait(false);
+        }
+        catch (MongoCommandException exception) when (exception.Message.Contains("Transaction numbers are only allowed on a replica set member or mongos"))
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            await action().ConfigureAwait(false);
+        }
     }
 }

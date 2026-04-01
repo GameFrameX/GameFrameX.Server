@@ -32,6 +32,7 @@
 using GameFrameX.Foundation.Utility;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Threading;
 
 namespace GameFrameX.DataBase.Mongo;
 
@@ -62,6 +63,12 @@ public sealed partial class MongoDbService
     /// <returns>保存后的数据对象 / The saved data object</returns>
     public async Task<TState> UpdateAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
+        return await UpdateAsync(state, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<TState> UpdateAsync<TState>(TState state, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
         var isChanged = state.IsModify();
         if (isChanged)
@@ -75,7 +82,7 @@ public sealed partial class MongoDbService
             // 构建更新定义，排除 CreatedTime, CreatedId, Id, IsDeleted, DeleteTime 字段
             var updateDefinition = BuildUpdateDefinition(state);
 
-            var result = await collection.UpdateOneAsync(filter, updateDefinition).ConfigureAwait(false);
+            var result = await collection.UpdateOneAsync(filter, updateDefinition, cancellationToken: cancellationToken).ConfigureAwait(false);
             if (result.IsAcknowledged)
             {
                 state.SaveToDbPostHandler();
@@ -96,6 +103,12 @@ public sealed partial class MongoDbService
     /// <returns>返回更新成功的数量 / The number of successfully updated records</returns>
     public async Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList) where TState : BaseCacheState, new()
     {
+        return await UpdateAsync(stateList, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
         var cacheStates = stateList as TState[] ?? stateList?.ToArray();
         if (cacheStates == null || cacheStates.Length == 0)
@@ -123,7 +136,7 @@ public sealed partial class MongoDbService
         if (writeModels.Count > 0)
         {
             var collection = _mongoDbContext.GetCollection<TState>();
-            var result = await collection.BulkWriteAsync(writeModels, BulkWriteOptions).ConfigureAwait(false);
+            var result = await collection.BulkWriteAsync(writeModels, BulkWriteOptions, cancellationToken).ConfigureAwait(false);
             if (result.IsAcknowledged)
             {
                 foreach (var state in cacheStates)
@@ -136,6 +149,79 @@ public sealed partial class MongoDbService
         }
 
         return 0;
+    }
+
+    /// <summary>
+    /// 根据ID部分更新数据。
+    /// </summary>
+    /// <remarks>
+    /// Partially update data by ID.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="id">数据ID / Data ID</param>
+    /// <param name="updateFields">更新字段集合 / Update field dictionary</param>
+    /// <returns>返回更新成功的数量 / The number of successfully updated records</returns>
+    public async Task<long> UpdatePartialAsync<TState>(long id, IReadOnlyDictionary<string, object> updateFields) where TState : BaseCacheState, new()
+    {
+        return await UpdatePartialAsync<TState>(id, updateFields, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 根据ID部分更新数据。
+    /// </summary>
+    /// <remarks>
+    /// Partially update data by ID.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="id">数据ID / Data ID</param>
+    /// <param name="updateFields">更新字段集合 / Update field dictionary</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>返回更新成功的数量 / The number of successfully updated records</returns>
+    public async Task<long> UpdatePartialAsync<TState>(long id, IReadOnlyDictionary<string, object> updateFields, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        EnsureInitialized();
+        if (updateFields == null || updateFields.Count == 0)
+        {
+            return 0;
+        }
+
+        var updates = new List<UpdateDefinition<TState>>();
+        foreach (var item in updateFields)
+        {
+            if (string.IsNullOrWhiteSpace(item.Key))
+            {
+                continue;
+            }
+
+            if (item.Key == nameof(BaseCacheState.Id) || item.Key == nameof(BaseCacheState.CreatedTime) || item.Key == nameof(BaseCacheState.CreatedId))
+            {
+                continue;
+            }
+
+            if (item.Value == null)
+            {
+                updates.Add(Builders<TState>.Update.Unset(item.Key));
+                continue;
+            }
+
+            updates.Add(Builders<TState>.Update.Set(item.Key, BsonValue.Create(item.Value)));
+        }
+
+        if (updates.Count == 0)
+        {
+            return 0;
+        }
+
+        var currentTime = TimerHelper.UnixTimeMilliseconds();
+        updates.Add(Builders<TState>.Update.Set(m => m.UpdateTime, currentTime));
+        updates.Add(Builders<TState>.Update.Inc(m => m.UpdateCount, 1));
+
+        var collection = _mongoDbContext.GetCollection<TState>();
+        var update = Builders<TState>.Update.Combine(updates);
+        var filter = Builders<TState>.Filter.Eq(m => m.Id, id) & Builders<TState>.Filter.Where(GetDefaultFindExpression<TState>(null));
+        var result = await collection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken).ConfigureAwait(false);
+        return result.ModifiedCount;
     }
 
     /// <summary>

@@ -33,6 +33,7 @@ using GameFrameX.DataBase.Abstractions;
 using GameFrameX.Foundation.Utility;
 using GameFrameX.Utility;
 using MongoDB.Driver;
+using System.Threading;
 
 namespace GameFrameX.DataBase.Mongo;
 
@@ -81,11 +82,17 @@ public sealed partial class MongoDbService
     /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public async Task AddAsync<TState>(TState state) where TState : BaseCacheState, new()
     {
+        await AddAsync(state, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task AddAsync<TState>(TState state, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
         state.CreatedTime = TimerHelper.UnixTimeMilliseconds();
         state.UpdateTime = state.CreatedTime;
         var collection = _mongoDbContext.GetCollection<TState>();
-        await collection.InsertOneAsync(state).ConfigureAwait(false);
+        await collection.InsertOneAsync(state, cancellationToken: cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -99,6 +106,12 @@ public sealed partial class MongoDbService
     /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public async Task AddListAsync<TState>(IEnumerable<TState> states) where TState : BaseCacheState, new()
     {
+        await AddListAsync(states, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task AddListAsync<TState>(IEnumerable<TState> states, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
         var cacheStates = states?.ToList();
         if (cacheStates == null || cacheStates.Count == 0)
@@ -114,7 +127,7 @@ public sealed partial class MongoDbService
         }
 
         var collection = _mongoDbContext.GetCollection<TState>();
-        await collection.InsertManyAsync(cacheStates).ConfigureAwait(false);
+        await collection.InsertManyAsync(cacheStates, cancellationToken: cancellationToken).ConfigureAwait(false);
     }
 
     #endregion 插入

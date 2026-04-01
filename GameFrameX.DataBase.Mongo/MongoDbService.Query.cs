@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using System.Linq.Expressions;
+using System.Threading;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Utility;
 using GameFrameX.Utility;
@@ -71,11 +72,29 @@ public sealed partial class MongoDbService
     /// <returns>加载的缓存状态，如果未找到则返回新创建的状态 / The loaded cache state, or a new state if not found</returns>
     public async Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null, bool isCreateIfNotExists = true) where TState : BaseCacheState, new()
     {
+        return await FindAsync(id, filter, isCreateIfNotExists, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 异步加载指定ID的缓存状态。
+    /// </summary>
+    /// <remarks>
+    /// Asynchronously loads the cache state with the specified ID.
+    /// </remarks>
+    /// <typeparam name="TState">缓存状态的类型，必须是BaseCacheState的子类，并具有无参数构造函数 / The type of cache state, must be a subclass of BaseCacheState with a parameterless constructor</typeparam>
+    /// <param name="id">要加载的缓存状态的ID / The ID of the cache state to load</param>
+    /// <param name="filter">可选的过滤器，用于进一步限制查询结果的条件 / Optional filter to further restrict query results</param>
+    /// <param name="isCreateIfNotExists">是否创建不存在的文档 / Whether to create document if it doesn't exist</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>加载的缓存状态，如果未找到则返回新创建的状态 / The loaded cache state, or a new state if not found</returns>
+    public async Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> filter, bool isCreateIfNotExists, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
         var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
         var mongoFilter = Builders<TState>.Filter.Eq(m => m.Id, id) & Builders<TState>.Filter.Where(findExpression);
-        var state = await collection.Find(mongoFilter).FirstOrDefaultAsync().ConfigureAwait(false);
+        var state = await collection.Find(mongoFilter).FirstOrDefaultAsync(cancellationToken).ConfigureAwait(false);
 
         if (!isCreateIfNotExists)
         {
@@ -110,10 +129,16 @@ public sealed partial class MongoDbService
     /// <returns>满足条件的缓存状态，如果未找到则返回新创建的状态 / The cache state that satisfies the condition, or a new state if not found</returns>
     public async Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter, bool isCreateIfNotExists = true) where TState : BaseCacheState, new()
     {
+        return await FindAsync(filter, isCreateIfNotExists, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter, bool isCreateIfNotExists, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
         var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
-        var state = await collection.AsQueryable().Where(findExpression).FirstOrDefaultAsync().ConfigureAwait(false);
+        var state = await collection.AsQueryable().Where(findExpression).FirstOrDefaultAsync(cancellationToken).ConfigureAwait(false);
 
         if (!isCreateIfNotExists)
         {
@@ -145,16 +170,113 @@ public sealed partial class MongoDbService
     /// <returns>满足条件的缓存状态列表 / List of cache states that satisfy the condition</returns>
     public async Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
+        return await FindListAsync(filter, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 异步查找满足指定条件的缓存状态列表。
+    /// </summary>
+    /// <remarks>
+    /// Asynchronously finds a list of cache states that satisfy the specified condition.
+    /// </remarks>
+    /// <typeparam name="TState">缓存状态的类型 / The type of cache state</typeparam>
+    /// <param name="filter">查询条件 / Query condition</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>满足条件的缓存状态列表 / List of cache states that satisfy the condition</returns>
+    public async Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
         var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
-        var result = await collection.AsQueryable().Where(findExpression).ToListAsync().ConfigureAwait(false);
+        var result = await collection.AsQueryable().Where(findExpression).ToListAsync(cancellationToken).ConfigureAwait(false);
         foreach (var state in result)
         {
             state?.LoadFromDbPostHandler();
         }
 
         return result;
+    }
+
+    /// <summary>
+    /// 根据ID列表查询数据列表。
+    /// </summary>
+    /// <remarks>
+    /// Query data list by ID list.
+    /// </remarks>
+    /// <typeparam name="TState">缓存状态的类型 / The type of cache state</typeparam>
+    /// <param name="ids">ID列表 / ID list</param>
+    /// <returns>满足条件的缓存状态列表 / List of cache states that satisfy the condition</returns>
+    public async Task<List<TState>> FindByIdsAsync<TState>(IEnumerable<long> ids) where TState : BaseCacheState, new()
+    {
+        return await FindByIdsAsync<TState>(ids, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<List<TState>> FindByIdsAsync<TState>(IEnumerable<long> ids, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        EnsureInitialized();
+        var idArray = ids?.Distinct().ToArray();
+        if (idArray == null || idArray.Length == 0)
+        {
+            return new List<TState>();
+        }
+
+        var collection = _mongoDbContext.GetCollection<TState>();
+        var defaultFilter = Builders<TState>.Filter.Where(GetDefaultFindExpression<TState>(null));
+        var idFilter = Builders<TState>.Filter.In(m => m.Id, idArray);
+        var result = await collection.Find(defaultFilter & idFilter).ToListAsync(cancellationToken).ConfigureAwait(false);
+        foreach (var state in result)
+        {
+            state?.LoadFromDbPostHandler();
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// 查询分页数据，并返回总数。
+    /// </summary>
+    /// <remarks>
+    /// Query paginated data and return total count.
+    /// </remarks>
+    /// <typeparam name="TState">缓存状态的类型 / The type of cache state</typeparam>
+    /// <param name="filter">过滤表达式 / Filter expression</param>
+    /// <param name="sortExpression">排序字段表达式 / Sort field expression</param>
+    /// <param name="descending">是否降序 / Whether descending</param>
+    /// <param name="pageIndex">页码，从0开始 / Page index, starting from 0</param>
+    /// <param name="pageSize">每页数量 / Page size</param>
+    /// <returns>分页数据和总数 / Paged items and total count</returns>
+    public async Task<(List<TState> Items, long Total)> FindPageAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, bool descending, int pageIndex, int pageSize) where TState : BaseCacheState, new()
+    {
+        return await FindPageAsync<TState>(filter, sortExpression, descending, pageIndex, pageSize, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<(List<TState> Items, long Total)> FindPageAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, bool descending, int pageIndex, int pageSize, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        EnsureInitialized();
+        if (pageIndex < 0)
+        {
+            pageIndex = 0;
+        }
+
+        if (pageSize <= 0)
+        {
+            pageSize = 10;
+        }
+
+        var collection = _mongoDbContext.GetCollection<TState>();
+        var findExpression = GetDefaultFindExpression(filter);
+        var sortDefinition = descending ? Builders<TState>.Sort.Descending(sortExpression) : Builders<TState>.Sort.Ascending(sortExpression);
+        var total = await collection.CountDocumentsAsync(findExpression, cancellationToken: cancellationToken).ConfigureAwait(false);
+        var items = await collection.Find(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false);
+        foreach (var state in items)
+        {
+            state?.LoadFromDbPostHandler();
+        }
+
+        return (items, total);
     }
 
     /// <summary>
@@ -169,11 +291,17 @@ public sealed partial class MongoDbService
     /// <returns>符合条件的第一个元素 / The first element that matches the condition</returns>
     public async Task<TState> FindSortAscendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : BaseCacheState, new()
     {
+        return await FindSortAscendingFirstOneAsync(filter, sortExpression, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<TState> FindSortAscendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
         var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
         var sortDefinition = Builders<TState>.Sort.Ascending(sortExpression);
-        var state = await collection.Find(findExpression).Sort(sortDefinition).Limit(1).FirstOrDefaultAsync().ConfigureAwait(false);
+        var state = await collection.Find(findExpression).Sort(sortDefinition).Limit(1).FirstOrDefaultAsync(cancellationToken).ConfigureAwait(false);
         state?.LoadFromDbPostHandler();
         return state;
     }
@@ -190,11 +318,17 @@ public sealed partial class MongoDbService
     /// <returns>符合条件的第一个元素 / The first element that matches the condition</returns>
     public async Task<TState> FindSortDescendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : BaseCacheState, new()
     {
+        return await FindSortDescendingFirstOneAsync(filter, sortExpression, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<TState> FindSortDescendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
         var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
         var sortDefinition = Builders<TState>.Sort.Descending(sortExpression);
-        var state = await collection.Find(findExpression).Sort(sortDefinition).Limit(1).FirstOrDefaultAsync().ConfigureAwait(false);
+        var state = await collection.Find(findExpression).Sort(sortDefinition).Limit(1).FirstOrDefaultAsync(cancellationToken).ConfigureAwait(false);
         state?.LoadFromDbPostHandler();
         return state;
     }
@@ -213,6 +347,12 @@ public sealed partial class MongoDbService
     /// <returns>符合条件的元素列表 / List of elements that match the condition</returns>
     public async Task<List<TState>> FindSortDescendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : BaseCacheState, new()
     {
+        return await FindSortDescendingAsync(filter, sortExpression, pageIndex, pageSize, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<List<TState>> FindSortDescendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex, int pageSize, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
         if (pageIndex < 0)
         {
@@ -227,7 +367,7 @@ public sealed partial class MongoDbService
         var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
         var sortDefinition = Builders<TState>.Sort.Descending(sortExpression);
-        var result = await collection.Find(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToListAsync().ConfigureAwait(false);
+        var result = await collection.Find(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false);
         foreach (var state in result)
         {
             state?.LoadFromDbPostHandler();
@@ -250,6 +390,12 @@ public sealed partial class MongoDbService
     /// <returns>符合条件的元素列表 / List of elements that match the condition</returns>
     public async Task<List<TState>> FindSortAscendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex = 0, int pageSize = 10) where TState : BaseCacheState, new()
     {
+        return await FindSortAscendingAsync(filter, sortExpression, pageIndex, pageSize, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<List<TState>> FindSortAscendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex, int pageSize, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
         if (pageIndex < 0)
         {
@@ -264,7 +410,7 @@ public sealed partial class MongoDbService
         var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
         var sortDefinition = Builders<TState>.Sort.Ascending(sortExpression);
-        var result = await collection.Find(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToListAsync().ConfigureAwait(false);
+        var result = await collection.Find(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false);
         foreach (var state in result)
         {
             state?.LoadFromDbPostHandler();
@@ -284,11 +430,68 @@ public sealed partial class MongoDbService
     /// <returns>符合条件的数据数量 / The count of data that matches the condition</returns>
     public async Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
+        return await CountAsync(filter, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
         var collection = _mongoDbContext.GetCollection<TState>();
         var newFilter = GetDefaultFindExpression(filter);
-        var count = await collection.CountDocumentsAsync(newFilter).ConfigureAwait(false);
+        var count = await collection.CountDocumentsAsync(newFilter, cancellationToken: cancellationToken).ConfigureAwait(false);
         return count;
+    }
+
+    /// <summary>
+    /// 查询数据数量。
+    /// </summary>
+    /// <remarks>
+    /// Queries the count of data.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="filter">查询条件 / Query condition</param>
+    /// <param name="includeDeleted">是否包含已删除数据 / Whether to include deleted data</param>
+    /// <returns>符合条件的数据数量 / The count of data that matches the condition</returns>
+    public async Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter, bool includeDeleted) where TState : BaseCacheState, new()
+    {
+        return await CountAsync(filter, includeDeleted, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter, bool includeDeleted, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        EnsureInitialized();
+        var collection = _mongoDbContext.GetCollection<TState>();
+        Expression<Func<TState, bool>> newFilter = includeDeleted ? filter ?? (_ => true) : GetDefaultFindExpression(filter);
+        var count = await collection.CountDocumentsAsync(newFilter, cancellationToken: cancellationToken).ConfigureAwait(false);
+        return count;
+    }
+
+    /// <summary>
+    /// 投影查询数据列表。
+    /// </summary>
+    /// <remarks>
+    /// Query projected data list.
+    /// </remarks>
+    /// <typeparam name="TState">源数据类型 / Source data type</typeparam>
+    /// <typeparam name="TResult">结果数据类型 / Result data type</typeparam>
+    /// <param name="filter">过滤表达式 / Filter expression</param>
+    /// <param name="selector">投影表达式 / Projection expression</param>
+    /// <returns>投影后的数据列表 / Projected data list</returns>
+    public async Task<List<TResult>> FindProjectedAsync<TState, TResult>(Expression<Func<TState, bool>> filter, Expression<Func<TState, TResult>> selector) where TState : BaseCacheState, new()
+    {
+        return await FindProjectedAsync(filter, selector, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<List<TResult>> FindProjectedAsync<TState, TResult>(Expression<Func<TState, bool>> filter, Expression<Func<TState, TResult>> selector, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        EnsureInitialized();
+        var collection = _mongoDbContext.GetCollection<TState>();
+        var findExpression = GetDefaultFindExpression(filter);
+        var result = await collection.AsQueryable().Where(findExpression).Select(selector).ToListAsync(cancellationToken).ConfigureAwait(false);
+        return result;
     }
 
     /// <summary>
@@ -322,10 +525,49 @@ public sealed partial class MongoDbService
     /// <returns>如果存在符合条件的数据则返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if data exists that matches the condition; otherwise <c>false</c></returns>
     public async Task<bool> AnyAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
+        return await AnyAsync(filter, CancellationToken.None).ConfigureAwait(false);
+    }
+
+    public async Task<bool> AnyAsync<TState>(Expression<Func<TState, bool>> filter, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
         var collection = _mongoDbContext.GetCollection<TState>();
         filter = GetDefaultFindExpression(filter);
-        var result = await collection.AsQueryable().AnyAsync(filter).ConfigureAwait(false);
+        var result = await collection.AsQueryable().AnyAsync(filter, cancellationToken).ConfigureAwait(false);
         return result;
+    }
+
+    /// <summary>
+    /// 根据ID判断数据是否存在。
+    /// </summary>
+    /// <remarks>
+    /// Determines whether data exists by ID.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="id">数据ID / Data ID</param>
+    /// <returns>如果存在符合条件的数据则返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if data exists; otherwise <c>false</c></returns>
+    public Task<bool> ExistsByIdAsync<TState>(long id) where TState : BaseCacheState, new()
+    {
+        return ExistsByIdAsync<TState>(id, CancellationToken.None);
+    }
+
+    /// <summary>
+    /// 根据ID判断数据是否存在。
+    /// </summary>
+    /// <remarks>
+    /// Determines whether data exists by ID.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="id">数据ID / Data ID</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>如果存在符合条件的数据则返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if data exists; otherwise <c>false</c></returns>
+    public async Task<bool> ExistsByIdAsync<TState>(long id, CancellationToken cancellationToken) where TState : BaseCacheState, new()
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        EnsureInitialized();
+        var collection = _mongoDbContext.GetCollection<TState>();
+        var filter = Builders<TState>.Filter.Eq(m => m.Id, id) & Builders<TState>.Filter.Where(GetDefaultFindExpression<TState>(null));
+        return await collection.Find(filter).Limit(1).AnyAsync(cancellationToken).ConfigureAwait(false);
     }
 }
