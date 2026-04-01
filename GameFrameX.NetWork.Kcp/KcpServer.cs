@@ -158,7 +158,7 @@ public sealed class KcpServer : IDisposable
             }
             catch (Exception ex)
             {
-                LogHelper.Error("KCP receive error: {message}", ex.Message);
+                LogHelper.Error<string>("KCP receive error: {message}", ex.Message);
             }
         }
     }
@@ -229,7 +229,7 @@ public sealed class KcpServer : IDisposable
         }
         catch (Exception ex)
         {
-            LogHelper.Error("KCP send error: {message}", ex.Message);
+            LogHelper.Error<string>("KCP send error: {message}", ex.Message);
         }
     }
 
