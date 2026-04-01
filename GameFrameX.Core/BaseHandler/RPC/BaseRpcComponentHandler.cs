@@ -94,7 +94,7 @@ public abstract class BaseRpcComponentHandler<TRequest, TResponse> : BaseRpcMess
         {
             if (ActorId == default)
             {
-                LogHelper.Fatal("BaseRpcComponentHandler.Init, ActorId is zero, message type: {messageType}", message.GetType().FullName);
+                LogHelper.Fatal<string>("BaseRpcComponentHandler.Init, ActorId is zero, message type: {messageType}", message.GetType().FullName);
                 NetWorkChannel.Close();
                 return false;
             }
@@ -124,7 +124,7 @@ public abstract class BaseRpcComponentHandler<TRequest, TResponse> : BaseRpcMess
     {
         if (CacheComponent == null)
         {
-            LogHelper.Fatal("BaseRpcComponentHandler.InnerAction, CacheComponent is null, message type: {messageType}", RequestMessage.GetType().FullName);
+            LogHelper.Fatal<string>("BaseRpcComponentHandler.InnerAction, CacheComponent is null, message type: {messageType}", RequestMessage.GetType().FullName);
             NetWorkChannel.Close();
             return Task.CompletedTask;
         }
@@ -176,7 +176,7 @@ public abstract class BaseRpcComponentHandler<TRequest, TResponse> : BaseRpcMess
     {
         if (CacheComponent == null)
         {
-            LogHelper.Fatal("BaseRpcComponentHandler.GetComponentAgent, CacheComponent is null, message type: {messageType}", RequestMessage.GetType().FullName);
+            LogHelper.Fatal<string>("BaseRpcComponentHandler.GetComponentAgent, CacheComponent is null, message type: {messageType}", RequestMessage.GetType().FullName);
             NetWorkChannel.Close();
             return default;
         }

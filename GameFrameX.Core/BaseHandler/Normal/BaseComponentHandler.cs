@@ -89,7 +89,7 @@ public abstract class BaseComponentHandler<TRequest> : BaseMessageHandler<TReque
         {
             if (ActorId == default)
             {
-                LogHelper.Fatal("BaseComponentHandler.Init, ActorId is zero, message type: {messageType}", message.GetType().FullName);
+                LogHelper.Fatal<string>("BaseComponentHandler.Init, ActorId is zero, message type: {messageType}", message.GetType().FullName);
                 NetWorkChannel.Close();
                 return false;
             }
@@ -119,7 +119,7 @@ public abstract class BaseComponentHandler<TRequest> : BaseMessageHandler<TReque
     {
         if (CacheComponent == null)
         {
-            LogHelper.Fatal("BaseComponentHandler.InnerAction, CacheComponent is null, message type: {messageType}", Message.GetType().FullName);
+            LogHelper.Fatal<string>("BaseComponentHandler.InnerAction, CacheComponent is null, message type: {messageType}", Message.GetType().FullName);
             NetWorkChannel.Close();
             return Task.CompletedTask;
         }
@@ -137,7 +137,7 @@ public abstract class BaseComponentHandler<TRequest> : BaseMessageHandler<TReque
     {
         if (CacheComponent == null)
         {
-            LogHelper.Fatal("BaseComponentHandler.GetComponentAgent, CacheComponent is null, message type: {messageType}", Message.GetType().FullName);
+            LogHelper.Fatal<string>("BaseComponentHandler.GetComponentAgent, CacheComponent is null, message type: {messageType}", Message.GetType().FullName);
             NetWorkChannel.Close();
             return default;
         }

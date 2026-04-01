@@ -83,11 +83,11 @@ public sealed class StateComponent
             }
 
             await Task.WhenAll(tasks);
-            LogHelper.Info("StateComponent.SaveAll StateTime {time}", LocalizationService.GetString(Localization.Keys.Core.StateComponent.SaveAllStateTime, (DateTime.Now - begin).TotalMilliseconds));
+            LogHelper.Info<string>("StateComponent.SaveAll StateTime {time}", LocalizationService.GetString(Localization.Keys.Core.StateComponent.SaveAllStateTime, (DateTime.Now - begin).TotalMilliseconds));
         }
         catch (Exception e)
         {
-            LogHelper.Error("StateComponent.SaveAll StateError {error}", LocalizationService.GetString(Localization.Keys.Core.StateComponent.SaveAllStateError, e));
+            LogHelper.Error<string>("StateComponent.SaveAll StateError {error}", LocalizationService.GetString(Localization.Keys.Core.StateComponent.SaveAllStateError, e));
         }
     }
 
@@ -109,7 +109,7 @@ public sealed class StateComponent
         }
         catch (Exception e)
         {
-            LogHelper.Info("StateComponent.TimerSave StateError {error}", LocalizationService.GetString(Localization.Keys.Core.StateComponent.TimerSaveStateError, e));
+            LogHelper.Info<string>("StateComponent.TimerSave StateError {error}", LocalizationService.GetString(Localization.Keys.Core.StateComponent.TimerSaveStateError, e));
         }
     }
 }

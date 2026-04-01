@@ -112,7 +112,7 @@ internal partial class AppStartUpHotfixGame
             {
                 if (Setting.IsDebug && Setting.IsDebugReceive && Setting.IsDebugReceiveHeartBeat)
                 {
-                    LogHelper.Debug("Data Package Receive HeartBeat: {message}", messagePackage.ToFormatMessageString(actorId));
+                    LogHelper.Debug<string>("Data Package Receive HeartBeat: {message}", messagePackage.ToFormatMessageString(actorId));
                 }
 
                 // 心跳消息回复

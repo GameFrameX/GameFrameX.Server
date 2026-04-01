@@ -174,7 +174,7 @@ public static class ComponentRegister
                 }
             }
 
-            LogHelper.Debug("ComponentRegister.ActiveGlobalComponents Message: {message}", LocalizationService.GetString(Localization.Keys.Core.ComponentRegister.ActivateGlobalComponentCheckComplete));
+            LogHelper.Debug<string>("ComponentRegister.ActiveGlobalComponents Message: {message}", LocalizationService.GetString(Localization.Keys.Core.ComponentRegister.ActivateGlobalComponentCheckComplete));
         }
         catch (Exception exception)
         {
