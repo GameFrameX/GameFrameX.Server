@@ -134,7 +134,6 @@ public abstract partial class AppStartUpBase : IAppStartUp
         LogHelper.Error(LocalizationService.GetString(Localization.Keys.StartUp.ServerStopped, Setting.ServerType, message, Setting.ToFormatString()));
         await StopServerAsync();
         AppExitSource?.TrySetResult(message);
-        LogHelper.FlushAndSave();
     }
 
     /// <summary>
