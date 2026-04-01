@@ -32,6 +32,8 @@
     <ItemGroup>
       <ProjectReference Include="..\..\GameFrameX.Apps\GameFrameX.Apps.csproj" />
       <ProjectReference Include="..\..\GameFrameX.Core\GameFrameX.Core.csproj" />
+      <ProjectReference Include="..\..\GameFrameX.DataBase\GameFrameX.DataBase.csproj" />
+      <ProjectReference Include="..\..\GameFrameX.DataBase.Mongo\GameFrameX.DataBase.Mongo.csproj" />
       <ProjectReference Include="..\..\GameFrameX.ProtoBuf.Net\GameFrameX.ProtoBuf.Net.csproj" />
       <ProjectReference Include="..\..\GameFrameX.StartUp\GameFrameX.StartUp.csproj" />
       <ProjectReference Include="..\..\GameFrameX.Utility\GameFrameX.Utility.csproj" />
