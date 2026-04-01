@@ -247,7 +247,7 @@ public abstract partial class AppStartUpBase
         }
         catch (Exception ex)
         {
-            LogHelper.Error($"Message handler error: {ex}");
+            LogHelper.Error<string>("Message handler error: {exception}", ex.ToString());
         }
     }
 

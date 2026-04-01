@@ -269,7 +269,7 @@ public abstract partial class AppStartUpBase
             var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
 
             // 记录详细错误日志
-            LogHelper.Error($"HTTP request error: {exceptionHandlerPathFeature?.Error}");
+            LogHelper.Error<string>("HTTP request error: {exception}", exceptionHandlerPathFeature?.Error.ToString() ?? "No exception available");
 
             // 返回通用错误消息，避免泄露敏感信息
             await context.Response.WriteAsync("An error occurred while processing your request.");
