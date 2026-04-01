@@ -91,7 +91,7 @@ public sealed class DefaultMessageEncoderHandler : BaseMessageEncoderHandler
             }
         }
 
-        LogHelper.Error("MessageObjectNullEncodeException {message} ", LocalizationService.GetString(Localization.Keys.NetWorkMessage.MessageObjectNullEncodeException));
+        LogHelper.Error<string>("MessageObjectNullEncodeException {message} ", LocalizationService.GetString(Localization.Keys.NetWorkMessage.MessageObjectNullEncodeException));
         return null;
     }
 }
