@@ -13,7 +13,6 @@
     <ItemGroup>
         <PackageReference Include="GameFrameX.Foundation.Orm.Attribute" Version="2.2.5"/>
         <PackageReference Include="GameFrameX.Foundation.Orm.Entity" Version="2.2.5"/>
-        <PackageReference Include="MongoDB.Entities" Version="25.0.0"/>
         <PackageReference Include="GameFrameX.Foundation.Hash" Version="2.2.5"/>
     </ItemGroup>
 

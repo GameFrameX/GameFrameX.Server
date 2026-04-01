@@ -1,17 +1,17 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
 //  are protected by the laws of the People's Republic of China and relevant international regulations.
-//  
+//
 //  使用本项目须严格遵守相应法律法规及开源许可证之规定。
 //  Usage of this project must strictly comply with applicable laws, regulations, and open-source licenses.
-//  
+//
 //  本项目采用 MIT 许可证与 Apache License 2.0 双许可证分发，
 //  This project is dual-licensed under the MIT License and Apache License 2.0,
 //  完整许可证文本请参见源代码根目录下的 LICENSE 文件。
 //  please refer to the LICENSE file in the root directory of the source code for the full license text.
-//  
+//
 //  禁止利用本项目实施任何危害国家安全、破坏社会秩序、
 //  It is prohibited to use this project to engage in any activities that endanger national security, disrupt social order,
 //  侵犯他人合法权益等法律法规所禁止的行为！
@@ -20,7 +20,7 @@
 //  Any legal disputes and liabilities arising from secondary development based on this project
 //  本项目组织与贡献者概不承担。
 //  shall be borne solely by the developer; the project organization and contributors assume no responsibility.
-//  
+//
 //  GitHub 仓库：https://github.com/GameFrameX
 //  GitHub Repository: https://github.com/GameFrameX
 //  Gitee  仓库：https://gitee.com/GameFrameX
@@ -33,8 +33,8 @@ using System.Linq.Expressions;
 using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Utility;
 using GameFrameX.Utility;
+using MongoDB.Driver;
 using MongoDB.Driver.Linq;
-using MongoDB.Entities;
 
 namespace GameFrameX.DataBase.Mongo;
 
@@ -72,8 +72,11 @@ public sealed partial class MongoDbService
     public async Task<TState> FindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null, bool isCreateIfNotExists = true) where TState : BaseCacheState, new()
     {
         EnsureInitialized();
+        var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
-        var state = await _mongoDbContext.Find<TState>().Match(findExpression).OneAsync(id).ConfigureAwait(false);
+        var mongoFilter = Builders<TState>.Filter.Eq(m => m.Id, id) & Builders<TState>.Filter.Where(findExpression);
+        var state = await collection.Find(mongoFilter).FirstOrDefaultAsync().ConfigureAwait(false);
+
         if (!isCreateIfNotExists)
         {
             return state;
@@ -108,8 +111,9 @@ public sealed partial class MongoDbService
     public async Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter, bool isCreateIfNotExists = true) where TState : BaseCacheState, new()
     {
         EnsureInitialized();
+        var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
-        var state = await _mongoDbContext.Queryable<TState>().Where(findExpression).FirstOrDefaultAsync().ConfigureAwait(false);
+        var state = await collection.AsQueryable().Where(findExpression).FirstOrDefaultAsync().ConfigureAwait(false);
 
         if (!isCreateIfNotExists)
         {
@@ -131,28 +135,6 @@ public sealed partial class MongoDbService
     }
 
     /// <summary>
-    /// 异步加载指定ID的缓存状态。
-    /// 此方法尝试从MongoDB中查找与给定ID匹配的缓存状态。
-    /// 如果未找到状态，将返回null。
-    /// </summary>
-    /// <remarks>
-    /// Asynchronously loads the cache state with the specified ID.
-    /// This method attempts to find a cache state matching the given ID from MongoDB.
-    /// If not found, returns null.
-    /// </remarks>
-    /// <typeparam name="TState">缓存状态的类型，必须是BaseCacheState的子类，并具有无参数构造函数 / The type of cache state, must be a subclass of BaseCacheState with a parameterless constructor</typeparam>
-    /// <param name="id">要加载的缓存状态的唯一标识符 / The unique identifier of the cache state to load</param>
-    /// <param name="filter">可选的过滤器，用于进一步限制查询结果的条件 / Optional filter to further restrict query results</param>
-    /// <returns>加载的缓存状态，如果未找到则返回null / The loaded cache state, or null if not found</returns>
-    private async Task<TState> InnerFindAsync<TState>(long id, Expression<Func<TState, bool>> filter = null) where TState : BaseCacheState, new()
-    {
-        var findExpression = GetDefaultFindExpression(filter);
-        var state = await _mongoDbContext.Find<TState>().Match(findExpression).OneAsync(id).ConfigureAwait(false);
-        return state;
-    }
-
-
-    /// <summary>
     /// 异步查找满足指定条件的缓存状态列表。
     /// </summary>
     /// <remarks>
@@ -164,8 +146,9 @@ public sealed partial class MongoDbService
     public async Task<List<TState>> FindListAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         EnsureInitialized();
+        var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
-        var result = await _mongoDbContext.Queryable<TState>().Where(findExpression).ToListAsync().ConfigureAwait(false);
+        var result = await collection.AsQueryable().Where(findExpression).ToListAsync().ConfigureAwait(false);
         foreach (var state in result)
         {
             state?.LoadFromDbPostHandler();
@@ -187,8 +170,10 @@ public sealed partial class MongoDbService
     public async Task<TState> FindSortAscendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : BaseCacheState, new()
     {
         EnsureInitialized();
+        var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
-        var state = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Ascending).Limit(1).ExecuteSingleAsync().ConfigureAwait(false);
+        var sortDefinition = Builders<TState>.Sort.Ascending(sortExpression);
+        var state = await collection.Find(findExpression).Sort(sortDefinition).Limit(1).FirstOrDefaultAsync().ConfigureAwait(false);
         state?.LoadFromDbPostHandler();
         return state;
     }
@@ -206,8 +191,10 @@ public sealed partial class MongoDbService
     public async Task<TState> FindSortDescendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression) where TState : BaseCacheState, new()
     {
         EnsureInitialized();
+        var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
-        var state = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Descending).Limit(1).ExecuteSingleAsync().ConfigureAwait(false);
+        var sortDefinition = Builders<TState>.Sort.Descending(sortExpression);
+        var state = await collection.Find(findExpression).Sort(sortDefinition).Limit(1).FirstOrDefaultAsync().ConfigureAwait(false);
         state?.LoadFromDbPostHandler();
         return state;
     }
@@ -237,8 +224,10 @@ public sealed partial class MongoDbService
             pageSize = 10;
         }
 
+        var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
-        var result = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Descending).Skip(pageIndex * pageSize).Limit(pageSize).ExecuteAsync().ConfigureAwait(false);
+        var sortDefinition = Builders<TState>.Sort.Descending(sortExpression);
+        var result = await collection.Find(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToListAsync().ConfigureAwait(false);
         foreach (var state in result)
         {
             state?.LoadFromDbPostHandler();
@@ -272,8 +261,10 @@ public sealed partial class MongoDbService
             pageSize = 10;
         }
 
+        var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
-        var result = await _mongoDbContext.Find<TState>().Match(findExpression).Sort(sortExpression, Order.Ascending).Skip(pageIndex * pageSize).Limit(pageSize).ExecuteAsync().ConfigureAwait(false);
+        var sortDefinition = Builders<TState>.Sort.Ascending(sortExpression);
+        var result = await collection.Find(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToListAsync().ConfigureAwait(false);
         foreach (var state in result)
         {
             state?.LoadFromDbPostHandler();
@@ -294,8 +285,9 @@ public sealed partial class MongoDbService
     public async Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         EnsureInitialized();
+        var collection = _mongoDbContext.GetCollection<TState>();
         var newFilter = GetDefaultFindExpression(filter);
-        var count = await _mongoDbContext.CountAsync(newFilter).ConfigureAwait(false);
+        var count = await collection.CountDocumentsAsync(newFilter).ConfigureAwait(false);
         return count;
     }
 
@@ -319,152 +311,6 @@ public sealed partial class MongoDbService
         return expression;
     }
 
-    #region 查询
-
-    /*/// <summary>
-    /// 查询，复杂查询直接用Linq处理
-    /// </summary>
-    /// <param name="collName">集合名称</param>
-    /// <returns>要查询的对象</returns>
-    public IMongoQueryable<TState> GetQueryable<TState>(string collName)
-    {
-        return CurrentDatabase.GetCollection<TState>(collName).AsQueryable();
-    }*/
-
-    /*
-    /// <summary>
-    /// 查询，复杂查询直接用Linq处理
-    /// </summary>
-    /// <param name="collName">集合名称</param>
-    /// <returns>要查询的对象</returns>
-    public IMongoQueryable<BsonDocument> GetQueryable(string collName)
-    {
-        return GetCollection(collName).AsQueryable();
-    }*/
-
-    /*
-    /// <summary>
-    /// 获取一条数据
-    /// </summary>
-    /// <typeparam name="TState"></typeparam>
-    /// <param name="filter">条件</param>
-    /// <returns></returns>
-    public TState Get<TState>(FilterDefinition<TState> filter) where TState : ICacheState, new()
-    {
-        var find = GetCollection<TState>().Find(filter);
-        return find.FirstOrDefault();
-    }*/
-
-    /*/// <summary>
-    /// 获取一条数据
-    /// </summary>
-    /// <param name="collName">表名</param>
-    /// <param name="filter">条件</param>
-    /// <returns></returns>
-    public BsonDocument Get(string collName, FilterDefinition<BsonDocument> filter)
-    {
-        var find = GetCollection(collName).Find(filter);
-        return find.FirstOrDefault();
-    }*/
-
-    /*/// <summary>
-    /// 获取一条数据
-    /// </summary>
-    /// <typeparam name="TState"></typeparam>
-    /// <param name="collName">表名</param>
-    /// <param name="filter">条件</param>
-    /// <returns></returns>
-    public async Task<TState> GetAsync<TState>(string collName, FilterDefinition<TState> filter) where TState : ICacheState, new()
-    {
-        var find = await GetCollection<TState>().FindAsync(filter);
-        return await find.FirstOrDefaultAsync();
-    }*/
-
-    /*
-    /// <summary>
-    /// 获取一条数据
-    /// </summary>
-    /// <param name="collName">表名</param>
-    /// <param name="filter">条件</param>
-    /// <returns></returns>
-    public async Task<BsonDocument> GetAsync(string collName, FilterDefinition<BsonDocument> filter)
-    {
-        var find = await GetCollection(collName).FindAsync(filter);
-        return await find.FirstOrDefaultAsync();
-    }
-    */
-
-    /*
-    /// <summary>
-    /// 获取多条数据
-    /// </summary>
-    /// <typeparam name="TState"></typeparam>
-    /// <param name="collName">表名</param>
-    /// <param name="filter">条件</param>
-    /// <returns></returns>
-    public IEnumerable<TState> GetMany<TState>(string collName, FilterDefinition<TState> filter) where TState : ICacheState, new()
-    {
-        var find = GetCollection<TState>().Find(filter);
-        return find.ToEnumerable();
-    }*/
-
-    /*
-    /// <summary>
-    /// 获取多条数据
-    /// </summary>
-    /// <param name="collName">表名</param>
-    /// <param name="filter">条件</param>
-    /// <returns></returns>
-    public IEnumerable<BsonDocument> GetMany(string collName, FilterDefinition<BsonDocument> filter)
-    {
-        var find = GetCollection(collName).Find(filter);
-        return find.ToEnumerable();
-    }
-    */
-
-    /*
-    /// <summary>
-    /// 获取多条数据
-    /// </summary>
-    /// <typeparam name="TState"></typeparam>
-    /// <param name="collName">表名</param>
-    /// <param name="filter">条件</param>
-    /// <returns></returns>
-    public async Task<IEnumerable<TState>> GetManyAsync<TState>(string collName, FilterDefinition<TState> filter) where TState : ICacheState, new()
-    {
-        var find = await GetCollection<TState>().FindAsync(filter);
-        return find.ToEnumerable();
-    }
-    */
-
-    /*
-    /// <summary>
-    /// 获取多条数据
-    /// </summary>
-    /// <param name="collName">表名</param>
-    /// <param name="filter">条件</param>
-    /// <returns></returns>
-    public async Task<IEnumerable<BsonDocument>> GetManyAsync(string collName, FilterDefinition<BsonDocument> filter)
-    {
-        var find = await GetCollection(collName).FindAsync(filter);
-        return find.ToEnumerable();
-    }
-    */
-
-    /*
-    /// <summary>
-    /// 判断是否存在符合条件的数据
-    /// </summary>
-    /// <param name="collName">表名</param>
-    /// <param name="filter">条件</param>
-    /// <returns></returns>
-    public bool Any(string collName, FilterDefinition<BsonDocument> filter)
-    {
-        var find = GetCollection(collName).Find(filter);
-        return find.Any();
-    }
-    */
-
     /// <summary>
     /// 判断是否存在符合条件的数据。
     /// </summary>
@@ -477,24 +323,9 @@ public sealed partial class MongoDbService
     public async Task<bool> AnyAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         EnsureInitialized();
+        var collection = _mongoDbContext.GetCollection<TState>();
         filter = GetDefaultFindExpression(filter);
-        var result = await _mongoDbContext.Queryable<TState>().AnyAsync(filter).ConfigureAwait(false);
+        var result = await collection.AsQueryable().AnyAsync(filter).ConfigureAwait(false);
         return result;
     }
-
-    /*
-    /// <summary>
-    /// 判断是否存在符合条件的数据
-    /// </summary>
-    /// <param name="collName">表名</param>
-    /// <param name="filter">条件</param>
-    /// <returns></returns>
-    public async Task<bool> AnyAsync(string collName, FilterDefinition<BsonDocument> filter)
-    {
-        var find = await GetCollection(collName).FindAsync(filter);
-        return await find.AnyAsync();
-    }
-    */
-
-    #endregion 查询
 }

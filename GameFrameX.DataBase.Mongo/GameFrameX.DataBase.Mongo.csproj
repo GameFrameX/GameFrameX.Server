@@ -11,4 +11,8 @@
         <ProjectReference Include="..\GameFrameX.Utility\GameFrameX.Utility.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <PackageReference Include="MongoDB.Driver" Version="3.7.1" />
+    </ItemGroup>
+
 </Project>
