@@ -152,7 +152,7 @@ public static class HttpHandler
             // 记录请求参数
             if (GlobalSettings.CurrentSetting.IsDebug && GlobalSettings.CurrentSetting.IsDebugHttp && GlobalSettings.CurrentSetting.IsDebugHttpRequest && paramMap.Count > 0)
             {
-                LogHelper.Debug("HTTP RequestParameters {parameters}", JsonHelper.Serialize(paramMap));
+                LogHelper.Debug<string>("HTTP RequestParameters {parameters}", JsonHelper.Serialize(paramMap));
             }
 
             // 检查指令是否有效
@@ -188,7 +188,7 @@ public static class HttpHandler
             var handler = baseHandler(command);
             if (handler == null)
             {
-                LogHelper.Warning("HTTP CommandHandlerNotFound {command}", LocalizationService.GetString(Localization.Keys.NetWorkHttp.CommandHandlerNotFound, command));
+                LogHelper.Warning<string>("HTTP CommandHandlerNotFound {command}", LocalizationService.GetString(Localization.Keys.NetWorkHttp.CommandHandlerNotFound, command));
                 await context.Response.WriteAsync(HttpJsonResult.NotFoundString());
                 return;
             }
@@ -230,7 +230,7 @@ public static class HttpHandler
                     }
                     catch (Exception e)
                     {
-                        LogHelper.Error("HTTP ProtoBuf MessageEncodingException {exception}", e);
+                        LogHelper.Error<string>("HTTP ProtoBuf MessageEncodingException {exception}", e.ToString());
                     }
                 }
             }
