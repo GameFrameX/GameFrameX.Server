@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -69,35 +69,25 @@ public sealed partial class MongoDbService
     /// <returns>如果索引一致则返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if indexes are consistent; otherwise <c>false</c></returns>
     private static bool AreIndexesConsistent<T>(List<CreateIndexModel<T>> toBeCreatedIndexes, List<BsonDocument> createdIndexes)
     {
-        var toBeCreatedIndexNames = toBeCreatedIndexes.Select(i => i.Options.Name).ToList();
-        var createdIndexNames = createdIndexes.Select(i => i["name"].AsString).ToList();
-        if (toBeCreatedIndexNames.Count != createdIndexNames.Count)
-        {
-            return false;
-        }
-
-
+        var targetIndexNames = toBeCreatedIndexes
+            .Select(i => i.Options.Name)
+            .Where(name => !string.IsNullOrWhiteSpace(name))
+            .ToHashSet();
+        var createdIndexMap = createdIndexes
+            .Where(i => i.Contains("name"))
+            .ToDictionary(i => i["name"].AsString, i => i);
         foreach (var indexInfo in toBeCreatedIndexes)
         {
-            var correspondingCreatedIndex = createdIndexes.FirstOrDefault(i => i["name"].AsString == indexInfo.Options.Name);
-            if (correspondingCreatedIndex == null)
+            var indexName = indexInfo.Options.Name;
+            if (string.IsNullOrWhiteSpace(indexName))
             {
                 return false;
             }
 
-            // var createdIndexKeys = ((BsonDocument)correspondingCreatedIndex["key"]);
-            // if (indexInfo.Keys != createdIndexKeys)
-            // {
-            //     return false;
-            // }
-            //
-            // foreach (var key in indexInfo.Keys)
-            // {
-            //     if (!createdIndexKeys.Contains(key))
-            //     {
-            //         return false;
-            //     }
-            // }
+            if (!createdIndexMap.TryGetValue(indexName, out var correspondingCreatedIndex))
+            {
+                return false;
+            }
 
             var uniqueAttribute = indexInfo.Options.Unique ?? false;
             var createdIndexUnique = correspondingCreatedIndex.Contains("unique") && correspondingCreatedIndex["unique"].AsBoolean;
@@ -107,7 +97,7 @@ public sealed partial class MongoDbService
             }
         }
 
-        return true;
+        return targetIndexNames.All(createdIndexMap.ContainsKey);
     }
 
     /// <summary>

@@ -63,7 +63,7 @@ public sealed partial class MongoDbService
     public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter) where TState : BaseCacheState, new()
     {
         EnsureInitialized();
-        var state = await FindAsync(filter).ConfigureAwait(false);
+        var state = await FindAsync(filter, false).ConfigureAwait(false);
         if (state == null)
         {
             return 0;

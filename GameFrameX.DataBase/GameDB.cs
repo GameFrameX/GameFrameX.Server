@@ -1,4 +1,4 @@
-﻿// ==========================================================================================
+// ==========================================================================================
 //  GameFrameX 组织及其衍生项目的版权、商标、专利及其他相关权利
 //  GameFrameX organization and its derivative projects' copyrights, trademarks, patents, and related rights
 //  均受中华人民共和国及相关国际法律法规保护。
@@ -93,7 +93,20 @@ public static class GameDb
     public static void Close()
     {
         ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
-        _dbServiceImplementation.Close();
+        CloseAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// 异步关闭数据库连接。
+    /// </summary>
+    /// <remarks>
+    /// Asynchronously closes the database connection.
+    /// </remarks>
+    /// <returns>表示异步关闭操作的任务 / Task representing the asynchronous close operation</returns>
+    public static Task CloseAsync()
+    {
+        ArgumentNullException.ThrowIfNull(_dbServiceImplementation, nameof(_dbServiceImplementation));
+        return _dbServiceImplementation.Close();
     }
 
     /// <summary>
