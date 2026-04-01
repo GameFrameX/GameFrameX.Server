@@ -122,7 +122,7 @@ internal partial class AppStartUpHotfixGame
 
             if (Setting.IsDebug && Setting.IsDebugReceive)
             {
-                LogHelper.Debug("Data Package Receive: {message}", messagePackage.ToFormatMessageString(actorId));
+                LogHelper.Debug<string>("Data Package Receive: {message}", messagePackage.ToFormatMessageString(actorId));
             }
 
             var handler = HotfixManager.GetTcpHandler(messagePackage.Header.MessageId);
