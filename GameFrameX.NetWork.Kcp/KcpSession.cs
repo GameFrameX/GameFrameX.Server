@@ -39,26 +39,49 @@ public sealed class KcpSession : IKcpSession, System.Net.Sockets.Kcp.IKcpCallbac
 
     public ValueTask SendAsync(byte[] data, CancellationToken cancellationToken = new CancellationToken())
     {
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(data);
+        if (cancellationToken.IsCancellationRequested)
+        {
+            return ValueTask.FromCanceled(cancellationToken);
+        }
+
+        return SendAsync((ReadOnlyMemory<byte>)data, cancellationToken);
     }
 
     public ValueTask SendAsync(ReadOnlyMemory<byte> data, CancellationToken cancellationToken = new CancellationToken())
     {
+        if (cancellationToken.IsCancellationRequested)
+        {
+            return ValueTask.FromCanceled(cancellationToken);
+        }
+
+        Send(data.Span);
+        return ValueTask.CompletedTask;
+    }
+
+    public int Send(byte[] data)
+    {
+        ArgumentNullException.ThrowIfNull(data);
+        return Send((ReadOnlySpan<byte>)data);
+    }
+
+    public int Send(ReadOnlySpan<byte> data)
+    {
         if (_disposed || !_isConnected)
         {
-            return ValueTask.CompletedTask;
+            return -1;
         }
 
         lock (_updateLock)
         {
-            ReadOnlySpan<byte> span = data.Span;
-            var sendResult = _kcp.Send(span, null);
+            var sendResult = _kcp.Send(data, null);
             if (sendResult > 0)
             {
-                _sendOutput?.Invoke(data, _remoteEndPoint);
+                _sendOutput?.Invoke(data.ToArray(), _remoteEndPoint);
             }
+
+            return sendResult;
         }
-        return ValueTask.CompletedTask;
     }
 
     public string SessionID { get; }
