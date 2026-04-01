@@ -238,14 +238,12 @@ public sealed class KcpServer : IDisposable
     /// </summary>
     /// <param name="conversationId">Conversation ID / 会话 ID</param>
     /// <param name="data">Data to send / 要发送的数据</param>
-    public int Send(uint conversationId, ReadOnlySpan<byte> data)
+    public async ValueTask SendAsync(uint conversationId, ReadOnlyMemory<byte> data)
     {
         if (_sessionManager.TryGetSession(conversationId, out var session))
         {
-            return session.Send(data);
+            await session.SendAsync(data, CancellationToken.None);
         }
-
-        return -1;
     }
 
     /// <summary>
@@ -253,14 +251,12 @@ public sealed class KcpServer : IDisposable
     /// </summary>
     /// <param name="endPoint">Remote endpoint / 远程端点</param>
     /// <param name="data">Data to send / 要发送的数据</param>
-    public int Send(EndPoint endPoint, ReadOnlySpan<byte> data)
+    public async ValueTask SendAsync(EndPoint endPoint, ReadOnlyMemory<byte> data)
     {
         if (_sessionManager.TryGetSession(endPoint, out var session))
         {
-            return session.Send(data);
+            await session.SendAsync(data, CancellationToken.None);
         }
-
-        return -1;
     }
 
     /// <summary>

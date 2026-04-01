@@ -1,11 +1,9 @@
 using System.Collections.Concurrent;
-using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Foundation.Localization.Core;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
 using GameFrameX.Utility.Setting;
-using GameFrameX.NetWork;
 
 namespace GameFrameX.NetWork.Kcp;
 
@@ -149,7 +147,7 @@ public sealed class KcpNetWorkChannel : INetWorkChannel
         {
             try
             {
-                _kcpSession.Send(messageData);
+                await _kcpSession.SendAsync(messageData, cts.Token);
             }
             catch (Exception ex)
             {

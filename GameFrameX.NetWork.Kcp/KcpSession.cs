@@ -1,5 +1,6 @@
 using System.Buffers;
 using System.Net;
+using GameFrameX.SuperSocket.Server.Abstractions.Session;
 
 namespace GameFrameX.NetWork.Kcp;
 
@@ -27,6 +28,7 @@ public sealed class KcpSession : IKcpSession, System.Net.Sockets.Kcp.IKcpCallbac
         get { return _conversationId; }
     }
 
+
     /// <summary>
     /// Remote endpoint / 远程端点
     /// </summary>
@@ -34,6 +36,32 @@ public sealed class KcpSession : IKcpSession, System.Net.Sockets.Kcp.IKcpCallbac
     {
         get { return _remoteEndPoint; }
     }
+
+    public ValueTask SendAsync(byte[] data, CancellationToken cancellationToken = new CancellationToken())
+    {
+        throw new NotImplementedException();
+    }
+
+    public ValueTask SendAsync(ReadOnlyMemory<byte> data, CancellationToken cancellationToken = new CancellationToken())
+    {
+        if (_disposed || !_isConnected)
+        {
+            return ValueTask.CompletedTask;
+        }
+
+        lock (_updateLock)
+        {
+            ReadOnlySpan<byte> span = data.Span;
+            var sendResult = _kcp.Send(span, null);
+            if (sendResult > 0)
+            {
+                _sendOutput?.Invoke(data, _remoteEndPoint);
+            }
+        }
+        return ValueTask.CompletedTask;
+    }
+
+    public string SessionID { get; }
 
     /// <summary>
     /// Is connection active / 连接是否活跃
@@ -147,22 +175,6 @@ public sealed class KcpSession : IKcpSession, System.Net.Sockets.Kcp.IKcpCallbac
         lock (_updateLock)
         {
             _kcp.Input(data);
-        }
-    }
-
-    /// <summary>
-    /// Send data through KCP / 通过 KCP 发送数据
-    /// </summary>
-    public int Send(ReadOnlySpan<byte> data)
-    {
-        if (_disposed || !_isConnected)
-        {
-            return -1;
-        }
-
-        lock (_updateLock)
-        {
-            return _kcp.Send(data, null);
         }
     }
 

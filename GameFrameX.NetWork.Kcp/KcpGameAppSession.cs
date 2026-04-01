@@ -65,8 +65,7 @@ public sealed class KcpGameAppSession : IGameAppSession
             return;
         }
 
-        _kcpSession.Send(data);
-        await ValueTask.CompletedTask;
+        await _kcpSession.SendAsync(data, cancellationToken);
     }
 
     /// <summary>
@@ -81,8 +80,7 @@ public sealed class KcpGameAppSession : IGameAppSession
             return;
         }
 
-        _kcpSession.Send(data.Span);
-        await ValueTask.CompletedTask;
+        await _kcpSession.SendAsync(data, cancellationToken);
     }
 
     /// <summary>
