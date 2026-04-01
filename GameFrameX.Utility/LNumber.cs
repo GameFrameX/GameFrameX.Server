@@ -306,12 +306,12 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
             }
             else if ((lhs > 0 && rhs > 0) || (lhs < 0 && rhs < 0))
             {
-                LogHelper.Error("LNumber.MultiplicationOverflow {c}", LocalizationService.GetString(Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
+                LogHelper.Error<string>("LNumber.MultiplicationOverflow {message}", LocalizationService.GetString(Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
                 r.Raw = long.MaxValue;
             }
             else
             {
-                LogHelper.Error("LNumber.MultiplicationOverflow {c}", LocalizationService.GetString(Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
+                LogHelper.Error<string>("LNumber.MultiplicationOverflow {message}", LocalizationService.GetString(Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
                 r.Raw = long.MinValue;
             }
         }
@@ -362,12 +362,12 @@ public struct LNumber : IComparable<LNumber>, IEquatable<LNumber>
             }
             else if ((lhs > 0 && rhs > 0) || (lhs < 0 && rhs < 0))
             {
-                LogHelper.Error("LNumber.DivisionOverflow {c}", LocalizationService.GetString(Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
+                LogHelper.Error<string>("LNumber.DivisionOverflow {message}", LocalizationService.GetString(Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
                 r.Raw = long.MaxValue;
             }
             else
             {
-                LogHelper.Error("LNumber.DivisionOverflow {c}", LocalizationService.GetString(Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
+                LogHelper.Error<string>("LNumber.DivisionOverflow {message}", LocalizationService.GetString(Localization.Keys.Utility.LNumber.MultiplicationOverflow, c));
                 r.Raw = long.MinValue;
             }
         }

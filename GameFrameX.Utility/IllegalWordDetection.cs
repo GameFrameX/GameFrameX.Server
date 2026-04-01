@@ -127,7 +127,7 @@ public sealed class IllegalWordDetection
                 }
                 catch (Exception e)
                 {
-                    LogHelper.Error("IllegalWordDetection.Init {error}", LocalizationService.GetString(Localization.Keys.Utility.ExceptionLogs.ExceptionDetails, e.ToString()));
+                    LogHelper.Error<string>("IllegalWordDetection.Init {error}", LocalizationService.GetString(Localization.Keys.Utility.ExceptionLogs.ExceptionDetails, e.ToString()));
                 }
             });
         }
@@ -139,7 +139,7 @@ public sealed class IllegalWordDetection
             }
             catch (Exception e)
             {
-                LogHelper.Error("IllegalWordDetection.Init {error}", LocalizationService.GetString(Localization.Keys.Utility.ExceptionLogs.ExceptionDetails, e.ToString()));
+                LogHelper.Error<string>("IllegalWordDetection.Init {error}", LocalizationService.GetString(Localization.Keys.Utility.ExceptionLogs.ExceptionDetails, e.ToString()));
             }
         }
     }
@@ -164,7 +164,7 @@ public sealed class IllegalWordDetection
                 }
                 catch (Exception e)
                 {
-                    LogHelper.Error("IllegalWordDetection.Init {error}", LocalizationService.GetString(Localization.Keys.Utility.ExceptionLogs.ExceptionDetails, e.ToString()));
+                    LogHelper.Error<string>("IllegalWordDetection.Init {error}", LocalizationService.GetString(Localization.Keys.Utility.ExceptionLogs.ExceptionDetails, e.ToString()));
                 }
             });
         }
@@ -176,7 +176,7 @@ public sealed class IllegalWordDetection
             }
             catch (Exception e)
             {
-                LogHelper.Error("IllegalWordDetection.Init {error}", LocalizationService.GetString(Localization.Keys.Utility.ExceptionLogs.ExceptionDetails, e.ToString()));
+                LogHelper.Error<string>("IllegalWordDetection.Init {error}", LocalizationService.GetString(Localization.Keys.Utility.ExceptionLogs.ExceptionDetails, e.ToString()));
             }
         }
     }
