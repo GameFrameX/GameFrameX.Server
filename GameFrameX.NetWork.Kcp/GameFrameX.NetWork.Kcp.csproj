@@ -5,6 +5,7 @@
         <Description>GameFrameX.NetWork.Kcp,GameFrameX 框架的 KCP 网络模块.框架文档主页: https://gameframex.doc.alianblank.com</Description>
         <PackageTags>GameFrameX,Lib,NetWork,Kcp,Server,GameServer</PackageTags>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
