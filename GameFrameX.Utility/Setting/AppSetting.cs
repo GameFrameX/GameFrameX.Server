@@ -111,7 +111,7 @@ public sealed class AppSetting
                 {
                     if (value)
                     {
-                        LogHelper.Error("AppSetting.AppRunning {value}", LocalizationService.GetString(Localization.Keys.Utility.Settings.AppAlreadyExited));
+                        LogHelper.Error<string>("AppSetting.AppRunning {value}", LocalizationService.GetString(Localization.Keys.Utility.Settings.AppAlreadyExited));
                     }
 
                     _appRunning = false;
@@ -121,7 +121,7 @@ public sealed class AppSetting
                 _appRunning = value;
                 if (!value && !AppExitSource.Task.IsCompleted)
                 {
-                    LogHelper.Info("AppSetting.AppRunning {value}", LocalizationService.GetString(Localization.Keys.Utility.AppSettings.SetAppRunningFalse));
+                    LogHelper.Info<string>("AppSetting.AppRunning {value}", LocalizationService.GetString(Localization.Keys.Utility.AppSettings.SetAppRunningFalse));
                     AppExitSource.TrySetCanceled();
                 }
             }

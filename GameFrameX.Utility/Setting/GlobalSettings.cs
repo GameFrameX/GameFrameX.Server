@@ -132,32 +132,32 @@ public static class GlobalSettings
     {
         if (CurrentSetting.IsNotNull())
         {
-            LogHelper.Warning("GlobalSettings.SetCurrentSetting {setting}", LocalizationService.GetString(Localization.Keys.Utility.GlobalSettings.SettingAlreadyExists));
+            LogHelper.Warning<string>("GlobalSettings.SetCurrentSetting {setting}", LocalizationService.GetString(Localization.Keys.Utility.GlobalSettings.SettingAlreadyExists));
             return;
         }
 
         ArgumentNullException.ThrowIfNull(setting, nameof(setting));
         if (setting.SaveDataInterval < 5000)
         {
-            LogHelper.Warning("GlobalSettings.SetCurrentSetting {setting}", LocalizationService.GetString(Localization.Keys.Utility.Settings.SaveDataIntervalTooSmall, GlobalConst.SaveIntervalInMilliSeconds));
+            LogHelper.Warning<string>("GlobalSettings.SetCurrentSetting {setting}", LocalizationService.GetString(Localization.Keys.Utility.Settings.SaveDataIntervalTooSmall, GlobalConst.SaveIntervalInMilliSeconds));
             setting.SaveDataInterval = GlobalConst.SaveIntervalInMilliSeconds;
         }
 
         if (setting.HttpUrl.IsNullOrEmptyOrWhiteSpace())
         {
-            LogHelper.Warning("GlobalSettings.SetCurrentSetting {setting}", LocalizationService.GetString(Localization.Keys.Utility.GlobalSettings.HttpUrlEmptyUseDefault, "/game/api/"));
+            LogHelper.Warning<string>("GlobalSettings.SetCurrentSetting {setting}", LocalizationService.GetString(Localization.Keys.Utility.GlobalSettings.HttpUrlEmptyUseDefault, "/game/api/"));
             setting.HttpUrl = "/game/api/";
         }
 
         if (setting.NetWorkSendTimeOutSeconds < 1)
         {
-            LogHelper.Warning("GlobalSettings.SetCurrentSetting {setting}", LocalizationService.GetString(Localization.Keys.Utility.GlobalSettings.NetworkTimeoutTooShort, 5));
+            LogHelper.Warning<string>("GlobalSettings.SetCurrentSetting {setting}", LocalizationService.GetString(Localization.Keys.Utility.GlobalSettings.NetworkTimeoutTooShort, 5));
             setting.NetWorkSendTimeOutSeconds = 5;
         }
 
         if (setting.ActorRecycleTime < 1)
         {
-            LogHelper.Warning("GlobalSettings.SetCurrentSetting {setting}", LocalizationService.GetString(Localization.Keys.Utility.GlobalSettings.ActorRecycleTimeTooShort, 5));
+            LogHelper.Warning<string>("GlobalSettings.SetCurrentSetting {setting}", LocalizationService.GetString(Localization.Keys.Utility.GlobalSettings.ActorRecycleTimeTooShort, 5));
             setting.ActorRecycleTime = 5;
         }
 
