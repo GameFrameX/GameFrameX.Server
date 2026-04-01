@@ -81,6 +81,16 @@ public sealed partial class MongoDbService
         return await AddOrUpdateAsync(state, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 增加或更新数据（使用 Upsert 优化，单次数据库操作）。
+    /// </summary>
+    /// <remarks>
+    /// Adds or updates data (using Upsert optimization, single database operation).
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="state">数据对象 / Data object</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>返回增加或更新后的数据对象 / The added or updated data object</returns>
     public async Task<TState> AddOrUpdateAsync<TState>(TState state, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();

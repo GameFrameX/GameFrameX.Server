@@ -32,6 +32,7 @@
 using System.Linq.Expressions;
 using System.Threading;
 using GameFrameX.Foundation.Utility;
+using GameFrameX.Utility;
 using MongoDB.Driver;
 
 namespace GameFrameX.DataBase.Mongo;
@@ -66,6 +67,16 @@ public sealed partial class MongoDbService
         return await DeleteAsync(filter, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 根据条件删除单条数据（软删除）。
+    /// </summary>
+    /// <remarks>
+    /// Deletes a single data record by condition (soft delete).
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="filter">查询条件表达式 / Query condition expression</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>返回修改的记录数 / The number of modified records</returns>
     public async Task<long> DeleteAsync<TState>(Expression<Func<TState, bool>> filter, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -103,6 +114,16 @@ public sealed partial class MongoDbService
         return await DeleteListAsync(filter, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 根据条件批量删除数据（软删除）。
+    /// </summary>
+    /// <remarks>
+    /// Batch deletes data by condition (soft delete).
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="filter">查询条件表达式 / Query condition expression</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>返回修改的记录数 / The number of modified records</returns>
     public async Task<long> DeleteListAsync<TState>(Expression<Func<TState, bool>> filter, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -147,6 +168,16 @@ public sealed partial class MongoDbService
         return await DeleteListIdAsync<TState>(ids, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 根据ID列表批量删除数据（软删除）。
+    /// </summary>
+    /// <remarks>
+    /// Batch deletes data by ID list (soft delete).
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="ids">要删除的ID列表 / List of IDs to delete</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>返回修改的记录数 / The number of modified records</returns>
     public async Task<long> DeleteListIdAsync<TState>(IEnumerable<long> ids, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -188,6 +219,16 @@ public sealed partial class MongoDbService
         return await DeleteAsync(state, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 删除指定对象（软删除）。
+    /// </summary>
+    /// <remarks>
+    /// Deletes the specified object (soft delete).
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="state">要删除的对象 / Object to delete</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>返回修改的记录数 / The number of modified records</returns>
     public async Task<long> DeleteAsync<TState>(TState state, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -219,6 +260,16 @@ public sealed partial class MongoDbService
         return await HardDeleteAsync<TState>(filter, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 根据条件物理删除数据。
+    /// </summary>
+    /// <remarks>
+    /// Physically delete data by condition.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="filter">查询条件表达式 / Query condition expression</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>返回删除的记录数 / The number of deleted records</returns>
     public async Task<long> HardDeleteAsync<TState>(Expression<Func<TState, bool>> filter, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -243,6 +294,16 @@ public sealed partial class MongoDbService
         return await RestoreAsync<TState>(filter, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 根据条件恢复软删除数据。
+    /// </summary>
+    /// <remarks>
+    /// Restore soft deleted data by condition.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="filter">查询条件表达式 / Query condition expression</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>返回恢复的记录数 / The number of restored records</returns>
     public async Task<long> RestoreAsync<TState>(Expression<Func<TState, bool>> filter, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();

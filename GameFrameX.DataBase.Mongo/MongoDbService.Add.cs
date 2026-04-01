@@ -31,7 +31,6 @@
 
 using GameFrameX.DataBase.Abstractions;
 using GameFrameX.Foundation.Utility;
-using GameFrameX.Utility;
 using MongoDB.Driver;
 using System.Threading;
 
@@ -85,6 +84,16 @@ public sealed partial class MongoDbService
         await AddAsync(state, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 增加一条数据。
+    /// </summary>
+    /// <remarks>
+    /// Adds a single data record.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="state">要添加的数据对象 / Data object to add</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public async Task AddAsync<TState>(TState state, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -109,6 +118,16 @@ public sealed partial class MongoDbService
         await AddListAsync(states, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 增加一个列表数据。
+    /// </summary>
+    /// <remarks>
+    /// Adds a list of data records.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="states">要添加的数据列表 / List of data objects to add</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>表示异步操作的任务 / A task representing the asynchronous operation</returns>
     public async Task AddListAsync<TState>(IEnumerable<TState> states, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();

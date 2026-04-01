@@ -132,6 +132,17 @@ public sealed partial class MongoDbService
         return await FindAsync(filter, isCreateIfNotExists, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 异步查找满足指定条件的缓存状态。
+    /// </summary>
+    /// <remarks>
+    /// Asynchronously finds the cache state that satisfies the specified condition.
+    /// </remarks>
+    /// <typeparam name="TState">缓存状态的类型，必须是BaseCacheState的子类，并具有无参数构造函数 / The type of cache state, must be a subclass of BaseCacheState with a parameterless constructor</typeparam>
+    /// <param name="filter">查询条件，用于限制查找的结果 / Query condition to restrict search results</param>
+    /// <param name="isCreateIfNotExists">是否创建不存在的文档 / Whether to create document if it doesn't exist</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>满足条件的缓存状态，如果未找到则返回新创建的状态 / The cache state that satisfies the condition, or a new state if not found</returns>
     public async Task<TState> FindAsync<TState>(Expression<Func<TState, bool>> filter, bool isCreateIfNotExists, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -212,6 +223,16 @@ public sealed partial class MongoDbService
         return await FindByIdsAsync<TState>(ids, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 根据ID列表查询数据列表。
+    /// </summary>
+    /// <remarks>
+    /// Query data list by ID list.
+    /// </remarks>
+    /// <typeparam name="TState">缓存状态的类型 / The type of cache state</typeparam>
+    /// <param name="ids">ID列表 / ID list</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>满足条件的缓存状态列表 / List of cache states that satisfy the condition</returns>
     public async Task<List<TState>> FindByIdsAsync<TState>(IEnumerable<long> ids, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -252,6 +273,20 @@ public sealed partial class MongoDbService
         return await FindPageAsync<TState>(filter, sortExpression, descending, pageIndex, pageSize, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 查询分页数据，并返回总数。
+    /// </summary>
+    /// <remarks>
+    /// Query paginated data and return total count.
+    /// </remarks>
+    /// <typeparam name="TState">缓存状态的类型 / The type of cache state</typeparam>
+    /// <param name="filter">过滤表达式 / Filter expression</param>
+    /// <param name="sortExpression">排序字段表达式 / Sort field expression</param>
+    /// <param name="descending">是否降序 / Whether descending</param>
+    /// <param name="pageIndex">页码，从0开始 / Page index, starting from 0</param>
+    /// <param name="pageSize">每页数量 / Page size</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>分页数据和总数 / Paged items and total count</returns>
     public async Task<(List<TState> Items, long Total)> FindPageAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, bool descending, int pageIndex, int pageSize, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -294,6 +329,17 @@ public sealed partial class MongoDbService
         return await FindSortAscendingFirstOneAsync(filter, sortExpression, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 以升序方式查找符合条件的第一个元素。
+    /// </summary>
+    /// <remarks>
+    /// Finds the first element that matches the condition in ascending order.
+    /// </remarks>
+    /// <typeparam name="TState">实现ICacheState接口的类型 / Type that implements ICacheState interface</typeparam>
+    /// <param name="filter">过滤表达式 / Filter expression</param>
+    /// <param name="sortExpression">排序字段表达式 / Sort field expression</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>符合条件的第一个元素 / The first element that matches the condition</returns>
     public async Task<TState> FindSortAscendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -321,6 +367,17 @@ public sealed partial class MongoDbService
         return await FindSortDescendingFirstOneAsync(filter, sortExpression, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 以降序方式查找符合条件的第一个元素。
+    /// </summary>
+    /// <remarks>
+    /// Finds the first element that matches the condition in descending order.
+    /// </remarks>
+    /// <typeparam name="TState">实现ICacheState接口的类型 / Type that implements ICacheState interface</typeparam>
+    /// <param name="filter">过滤表达式 / Filter expression</param>
+    /// <param name="sortExpression">排序字段表达式 / Sort field expression</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>符合条件的第一个元素 / The first element that matches the condition</returns>
     public async Task<TState> FindSortDescendingFirstOneAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -350,6 +407,19 @@ public sealed partial class MongoDbService
         return await FindSortDescendingAsync(filter, sortExpression, pageIndex, pageSize, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 以降序方式查找符合条件的元素并进行分页。
+    /// </summary>
+    /// <remarks>
+    /// Finds elements that match the condition in descending order with pagination.
+    /// </remarks>
+    /// <typeparam name="TState">实现ICacheState接口的类型 / Type that implements ICacheState interface</typeparam>
+    /// <param name="filter">过滤表达式 / Filter expression</param>
+    /// <param name="sortExpression">排序字段表达式 / Sort field expression</param>
+    /// <param name="pageIndex">页码，从0开始 / Page index, starting from 0</param>
+    /// <param name="pageSize">每页数量，默认为10 / Page size, defaults to 10</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>符合条件的元素列表 / List of elements that match the condition</returns>
     public async Task<List<TState>> FindSortDescendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex, int pageSize, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -393,6 +463,19 @@ public sealed partial class MongoDbService
         return await FindSortAscendingAsync(filter, sortExpression, pageIndex, pageSize, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 以升序方式查找符合条件的元素并进行分页。
+    /// </summary>
+    /// <remarks>
+    /// Finds elements that match the condition in ascending order with pagination.
+    /// </remarks>
+    /// <typeparam name="TState">实现ICacheState接口的类型 / Type that implements ICacheState interface</typeparam>
+    /// <param name="filter">过滤表达式 / Filter expression</param>
+    /// <param name="sortExpression">排序字段表达式 / Sort field expression</param>
+    /// <param name="pageIndex">页码，从0开始 / Page index, starting from 0</param>
+    /// <param name="pageSize">每页数量，默认为10 / Page size, defaults to 10</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>符合条件的元素列表 / List of elements that match the condition</returns>
     public async Task<List<TState>> FindSortAscendingAsync<TState>(Expression<Func<TState, bool>> filter, Expression<Func<TState, object>> sortExpression, int pageIndex, int pageSize, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -433,6 +516,16 @@ public sealed partial class MongoDbService
         return await CountAsync(filter, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 查询数据数量。
+    /// </summary>
+    /// <remarks>
+    /// Queries the count of data.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="filter">查询条件 / Query condition</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>符合条件的数据数量 / The count of data that matches the condition</returns>
     public async Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -458,6 +551,17 @@ public sealed partial class MongoDbService
         return await CountAsync(filter, includeDeleted, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 查询数据数量。
+    /// </summary>
+    /// <remarks>
+    /// Queries the count of data.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="filter">查询条件 / Query condition</param>
+    /// <param name="includeDeleted">是否包含已删除数据 / Whether to include deleted data</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>符合条件的数据数量 / The count of data that matches the condition</returns>
     public async Task<long> CountAsync<TState>(Expression<Func<TState, bool>> filter, bool includeDeleted, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -484,6 +588,18 @@ public sealed partial class MongoDbService
         return await FindProjectedAsync(filter, selector, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 投影查询数据列表。
+    /// </summary>
+    /// <remarks>
+    /// Query projected data list.
+    /// </remarks>
+    /// <typeparam name="TState">源数据类型 / Source data type</typeparam>
+    /// <typeparam name="TResult">结果数据类型 / Result data type</typeparam>
+    /// <param name="filter">过滤表达式 / Filter expression</param>
+    /// <param name="selector">投影表达式 / Projection expression</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>投影后的数据列表 / Projected data list</returns>
     public async Task<List<TResult>> FindProjectedAsync<TState, TResult>(Expression<Func<TState, bool>> filter, Expression<Func<TState, TResult>> selector, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -528,6 +644,16 @@ public sealed partial class MongoDbService
         return await AnyAsync(filter, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 判断是否存在符合条件的数据。
+    /// </summary>
+    /// <remarks>
+    /// Determines whether any data exists that matches the condition.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="filter">查询条件 / Query condition</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>如果存在符合条件的数据则返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if data exists that matches the condition; otherwise <c>false</c></returns>
     public async Task<bool> AnyAsync<TState>(Expression<Func<TState, bool>> filter, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();

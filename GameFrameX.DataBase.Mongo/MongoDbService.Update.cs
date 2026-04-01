@@ -33,6 +33,7 @@ using GameFrameX.Foundation.Utility;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Threading;
+using GameFrameX.Utility;
 
 namespace GameFrameX.DataBase.Mongo;
 
@@ -66,6 +67,16 @@ public sealed partial class MongoDbService
         return await UpdateAsync(state, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 保存数据。
+    /// </summary>
+    /// <remarks>
+    /// Saves data.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="state">要保存的数据对象 / Data object to save</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>保存后的数据对象 / The saved data object</returns>
     public async Task<TState> UpdateAsync<TState>(TState state, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -106,6 +117,16 @@ public sealed partial class MongoDbService
         return await UpdateAsync(stateList, CancellationToken.None).ConfigureAwait(false);
     }
 
+    /// <summary>
+    /// 保存多条数据。
+    /// </summary>
+    /// <remarks>
+    /// Saves multiple data records.
+    /// </remarks>
+    /// <typeparam name="TState">数据类型，必须继承自 BaseCacheState / Data type, must inherit from BaseCacheState</typeparam>
+    /// <param name="stateList">数据列表对象 / List of data objects</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>返回更新成功的数量 / The number of successfully updated records</returns>
     public async Task<long> UpdateAsync<TState>(IEnumerable<TState> stateList, CancellationToken cancellationToken) where TState : BaseCacheState, new()
     {
         cancellationToken.ThrowIfCancellationRequested();
