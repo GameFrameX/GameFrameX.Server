@@ -30,6 +30,7 @@
 // ==========================================================================================
 
 using GameFrameX.Foundation.Utility;
+using GameFrameX.Foundation.Logger;
 using MongoDB.Driver;
 using System.Threading;
 
@@ -109,7 +110,7 @@ public sealed partial class MongoDbService
 
         // 使用 ReplaceOne with Upsert - 单次数据库操作
         var filter = Builders<TState>.Filter.Eq(m => m.Id, state.Id);
-        await CurrentDatabase.GetCollection<TState>(typeof(TState).Name).ReplaceOneAsync(filter, state, ReplaceOptions, cancellationToken).ConfigureAwait(false);
+        await ExecuteWriteWithRetryAsync(token => CurrentDatabase.GetCollection<TState>(typeof(TState).Name).ReplaceOneAsync(filter, state, ReplaceOptions, token), cancellationToken, nameof(AddOrUpdateAsync), true).ConfigureAwait(false);
 
         state.SaveToDbPostHandler();
         return state;
@@ -165,7 +166,7 @@ public sealed partial class MongoDbService
             writeModels.Add(new ReplaceOneModel<TState>(filter, state) { IsUpsert = true, });
         }
 
-        var result = await collection.BulkWriteAsync(writeModels, BulkWriteOptions, cancellationToken).ConfigureAwait(false);
+        var result = await ExecuteWriteWithRetryAsync(token => collection.BulkWriteAsync(writeModels, BulkWriteOptions, token), cancellationToken, nameof(AddOrUpdateListAsync), true).ConfigureAwait(false);
         if (result.IsAcknowledged)
         {
             foreach (var state in stateArray)
@@ -204,19 +205,77 @@ public sealed partial class MongoDbService
         cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
         ArgumentNullException.ThrowIfNull(action, nameof(action));
+        Exception lastException = null;
+        for (var attempt = 0; attempt <= TransactionRetryDelaysMilliseconds.Length; attempt++)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            try
+            {
+                using var session = await _mongoClient.StartSessionAsync(cancellationToken: cancellationToken).ConfigureAwait(false);
+                session.StartTransaction();
+                cancellationToken.ThrowIfCancellationRequested();
+                await action().ConfigureAwait(false);
+                await CommitTransactionWithRetryAsync(session, cancellationToken).ConfigureAwait(false);
+                return;
+            }
+            catch (MongoCommandException exception) when (exception.Message.Contains("Transaction numbers are only allowed on a replica set member or mongos"))
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                await action().ConfigureAwait(false);
+                return;
+            }
+            catch (Exception exception) when (ShouldRetryTransactionException(exception) && attempt < TransactionRetryDelaysMilliseconds.Length)
+            {
+                lastException = exception;
+                var delay = TransactionRetryDelaysMilliseconds[attempt] + Random.Shared.Next(0, 120);
+                LogHelper.Warning("MongoDbService.ExecuteInTransactionAsync transient error, retry {attempt}/{maxRetry}. error={error}", attempt + 1, TransactionRetryDelaysMilliseconds.Length, exception.Message);
+                await Task.Delay(delay, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception exception)
+            {
+                lastException = exception;
+                break;
+            }
+        }
 
-        try
+        throw lastException ?? new InvalidOperationException("MongoDbService.ExecuteInTransactionAsync failed with unknown retry exception.");
+    }
+
+    /// <summary>
+    /// 带重试机制的事务提交方法。
+    /// </summary>
+    /// <remarks>
+    /// Commits a transaction with automatic retry mechanism on transient failures.
+    /// Uses exponential backoff with jitter for retry delays.
+    /// </remarks>
+    /// <param name="session">MongoDB 客户端会话句柄 / MongoDB client session handle</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>表示异步操作的任务 / Task representing asynchronous operation</returns>
+    /// <exception cref="InvalidOperationException">当所有重试都失败后抛出 / Thrown when all retry attempts fail</exception>
+    private static async Task CommitTransactionWithRetryAsync(IClientSessionHandle session, CancellationToken cancellationToken)
+    {
+        Exception lastException = null;
+        for (var attempt = 0; attempt <= TransactionRetryDelaysMilliseconds.Length; attempt++)
         {
-            using var session = await _mongoClient.StartSessionAsync(cancellationToken: cancellationToken).ConfigureAwait(false);
-            session.StartTransaction();
             cancellationToken.ThrowIfCancellationRequested();
-            await action().ConfigureAwait(false);
-            await session.CommitTransactionAsync(cancellationToken).ConfigureAwait(false);
+            try
+            {
+                await session.CommitTransactionAsync(cancellationToken).ConfigureAwait(false);
+                return;
+            }
+            catch (Exception exception) when (ShouldRetryTransactionCommit(exception) && attempt < TransactionRetryDelaysMilliseconds.Length)
+            {
+                lastException = exception;
+                var delay = TransactionRetryDelaysMilliseconds[attempt] + Random.Shared.Next(0, 120);
+                await Task.Delay(delay, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception exception)
+            {
+                lastException = exception;
+                break;
+            }
         }
-        catch (MongoCommandException exception) when (exception.Message.Contains("Transaction numbers are only allowed on a replica set member or mongos"))
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-            await action().ConfigureAwait(false);
-        }
+
+        throw lastException ?? new InvalidOperationException("MongoDbService.CommitTransaction failed with unknown retry exception.");
     }
 }

@@ -102,7 +102,7 @@ public sealed partial class MongoDbService
         state.CreatedTime = currentTime;
         state.UpdateTime = currentTime;
         var collection = _mongoDbContext.GetCollection<TState>();
-        await collection.InsertOneAsync(state, cancellationToken: cancellationToken).ConfigureAwait(false);
+        await ExecuteWriteWithRetryAsync(token => collection.InsertOneAsync(state, cancellationToken: token), cancellationToken, nameof(AddAsync), false).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -147,7 +147,7 @@ public sealed partial class MongoDbService
         }
 
         var collection = _mongoDbContext.GetCollection<TState>();
-        await collection.InsertManyAsync(cacheStates, cancellationToken: cancellationToken).ConfigureAwait(false);
+        await ExecuteWriteWithRetryAsync(token => collection.InsertManyAsync(cacheStates, cancellationToken: token), cancellationToken, nameof(AddListAsync), false).ConfigureAwait(false);
     }
 
     #endregion 插入

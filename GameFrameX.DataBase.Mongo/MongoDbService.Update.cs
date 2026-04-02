@@ -93,7 +93,7 @@ public sealed partial class MongoDbService
             // 构建更新定义，排除 CreatedTime, CreatedId, Id, IsDeleted, DeleteTime 字段
             var updateDefinition = BuildUpdateDefinition(state);
 
-            var result = await collection.UpdateOneAsync(filter, updateDefinition, cancellationToken: cancellationToken).ConfigureAwait(false);
+            var result = await ExecuteWriteWithRetryAsync(token => collection.UpdateOneAsync(filter, updateDefinition, cancellationToken: token), cancellationToken, nameof(UpdateAsync), true).ConfigureAwait(false);
             if (result.IsAcknowledged)
             {
                 state.SaveToDbPostHandler();
@@ -157,7 +157,7 @@ public sealed partial class MongoDbService
         if (writeModels.Count > 0)
         {
             var collection = _mongoDbContext.GetCollection<TState>();
-            var result = await collection.BulkWriteAsync(writeModels, BulkWriteOptions, cancellationToken).ConfigureAwait(false);
+            var result = await ExecuteWriteWithRetryAsync(token => collection.BulkWriteAsync(writeModels, BulkWriteOptions, token), cancellationToken, nameof(UpdateAsync), true).ConfigureAwait(false);
             if (result.IsAcknowledged)
             {
                 foreach (var state in cacheStates)
@@ -241,7 +241,7 @@ public sealed partial class MongoDbService
         var collection = _mongoDbContext.GetCollection<TState>();
         var update = Builders<TState>.Update.Combine(updates);
         var filter = Builders<TState>.Filter.Eq(m => m.Id, id) & Builders<TState>.Filter.Where(GetDefaultFindExpression<TState>(null));
-        var result = await collection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken).ConfigureAwait(false);
+        var result = await ExecuteWriteWithRetryAsync(token => collection.UpdateOneAsync(filter, update, cancellationToken: token), cancellationToken, nameof(UpdatePartialAsync), false).ConfigureAwait(false);
         return result.ModifiedCount;
     }
 

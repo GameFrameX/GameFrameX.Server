@@ -96,7 +96,7 @@ public sealed partial class MongoDbService
             .Set(x => x.IsDeleted, state.IsDeleted)
             .Set(x => x.DeleteTime, state.DeleteTime);
 
-        var result = await collection.UpdateOneAsync(mongoFilter, update, cancellationToken: cancellationToken).ConfigureAwait(false);
+        var result = await ExecuteWriteWithRetryAsync(token => collection.UpdateOneAsync(mongoFilter, update, cancellationToken: token), cancellationToken, nameof(DeleteAsync), true).ConfigureAwait(false);
         return result.ModifiedCount;
     }
 
@@ -150,7 +150,7 @@ public sealed partial class MongoDbService
             writeModels.Add(new UpdateOneModel<TState>(mongoFilter, update));
         }
 
-        var result = await collection.BulkWriteAsync(writeModels, BulkWriteOptions, cancellationToken).ConfigureAwait(false);
+        var result = await ExecuteWriteWithRetryAsync(token => collection.BulkWriteAsync(writeModels, BulkWriteOptions, token), cancellationToken, nameof(DeleteListAsync), true).ConfigureAwait(false);
         return result.ModifiedCount;
     }
 
@@ -201,7 +201,7 @@ public sealed partial class MongoDbService
             writeModels.Add(new UpdateOneModel<TState>(mongoFilter, update));
         }
 
-        var result = await collection.BulkWriteAsync(writeModels, BulkWriteOptions, cancellationToken).ConfigureAwait(false);
+        var result = await ExecuteWriteWithRetryAsync(token => collection.BulkWriteAsync(writeModels, BulkWriteOptions, token), cancellationToken, nameof(DeleteListIdAsync), true).ConfigureAwait(false);
         return result.ModifiedCount;
     }
 
@@ -242,7 +242,7 @@ public sealed partial class MongoDbService
             .Set(x => x.IsDeleted, state.IsDeleted)
             .Set(x => x.DeleteTime, state.DeleteTime);
 
-        var result = await collection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken).ConfigureAwait(false);
+        var result = await ExecuteWriteWithRetryAsync(token => collection.UpdateOneAsync(filter, update, cancellationToken: token), cancellationToken, nameof(DeleteAsync), true).ConfigureAwait(false);
         return result.ModifiedCount;
     }
 
@@ -276,7 +276,7 @@ public sealed partial class MongoDbService
         EnsureInitialized();
         var collection = _mongoDbContext.GetCollection<TState>();
         var deleteFilter = filter ?? (_ => true);
-        var result = await collection.DeleteManyAsync(deleteFilter, cancellationToken).ConfigureAwait(false);
+        var result = await ExecuteWriteWithRetryAsync(token => collection.DeleteManyAsync(deleteFilter, token), cancellationToken, nameof(HardDeleteAsync), true).ConfigureAwait(false);
         return result.DeletedCount;
     }
 
@@ -314,7 +314,7 @@ public sealed partial class MongoDbService
         var update = Builders<TState>.Update
             .Set(x => x.IsDeleted, false)
             .Unset(x => x.DeleteTime);
-        var result = await collection.UpdateManyAsync(mongoFilter, update, cancellationToken: cancellationToken).ConfigureAwait(false);
+        var result = await ExecuteWriteWithRetryAsync(token => collection.UpdateManyAsync(mongoFilter, update, cancellationToken: token), cancellationToken, nameof(RestoreAsync), true).ConfigureAwait(false);
         return result.ModifiedCount;
     }
 }

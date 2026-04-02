@@ -57,6 +57,9 @@ public sealed partial class MongoDbService : IDatabaseService
     private static readonly TimeSpan ServerSelectionTimeout = TimeSpan.FromSeconds(5);
     private static readonly TimeSpan ConnectTimeout = TimeSpan.FromSeconds(5);
     private static readonly TimeSpan SocketTimeout = TimeSpan.FromSeconds(10);
+    private static readonly int[] ReadRetryDelaysMilliseconds = { 120, 300, 700 };
+    private static readonly int[] IdempotentWriteRetryDelaysMilliseconds = { 150, 400, 900 };
+    private static readonly int[] TransactionRetryDelaysMilliseconds = { 200, 500, 1000 };
 
     /// <summary>
     /// 获取或设置当前使用的MongoDB数据库。
@@ -161,6 +164,8 @@ public sealed partial class MongoDbService : IDatabaseService
                 settings.ServerSelectionTimeout = ServerSelectionTimeout;
                 settings.ConnectTimeout = ConnectTimeout;
                 settings.SocketTimeout = SocketTimeout;
+                settings.RetryReads = true;
+                settings.RetryWrites = true;
 
                 _mongoClient = new MongoClient(settings);
                 CurrentDatabase = _mongoClient.GetDatabase(Options.Name);
@@ -204,12 +209,190 @@ public sealed partial class MongoDbService : IDatabaseService
         return Task.CompletedTask;
     }
 
+    /// <summary>
+    /// 重置连接状态并释放相关资源。
+    /// </summary>
+    /// <remarks>
+    /// Resets the connection state and releases related resources.
+    /// </remarks>
     private void ResetConnectionState()
     {
         _mongoClient?.Dispose();
         _mongoClient = null;
         _mongoDbContext = null;
         CurrentDatabase = null;
+    }
+
+    /// <summary>
+    /// 执行带有自动重试机制的读取操作。
+    /// </summary>
+    /// <remarks>
+    /// Executes a read operation with automatic retry mechanism on transient failures.
+    /// </remarks>
+    /// <typeparam name="T">操作返回值类型 / The type of the operation result</typeparam>
+    /// <param name="operation">要执行的读取操作 / The read operation to execute</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <param name="operationName">操作名称，用于日志记录 / Operation name for logging</param>
+    /// <returns>操作结果 / The operation result</returns>
+    private async Task<T> ExecuteReadWithRetryAsync<T>(Func<CancellationToken, Task<T>> operation, CancellationToken cancellationToken, string operationName)
+    {
+        return await ExecuteWithRetryAsync(operation, cancellationToken, ReadRetryDelaysMilliseconds, operationName).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 执行带有自动重试机制的读取操作（无返回值）。
+    /// </summary>
+    /// <remarks>
+    /// Executes a read operation with automatic retry mechanism on transient failures (no return value).
+    /// </remarks>
+    /// <param name="operation">要执行的读取操作 / The read operation to execute</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <param name="operationName">操作名称，用于日志记录 / Operation name for logging</param>
+    private async Task ExecuteReadWithRetryAsync(Func<CancellationToken, Task> operation, CancellationToken cancellationToken, string operationName)
+    {
+        await ExecuteWithRetryAsync(async token =>
+        {
+            await operation(token).ConfigureAwait(false);
+            return true;
+        }, cancellationToken, ReadRetryDelaysMilliseconds, operationName).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 执行带有自动重试机制的写入操作。
+    /// </summary>
+    /// <remarks>
+    /// Executes a write operation with automatic retry mechanism on transient failures.
+    /// Only idempotent operations will be retried to avoid duplicate writes.
+    /// </remarks>
+    /// <typeparam name="T">操作返回值类型 / The type of the operation result</typeparam>
+    /// <param name="operation">要执行的写入操作 / The write operation to execute</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <param name="operationName">操作名称，用于日志记录 / Operation name for logging</param>
+    /// <param name="isIdempotent">操作是否为幂等操作 / Whether the operation is idempotent</param>
+    /// <returns>操作结果 / The operation result</returns>
+    private async Task<T> ExecuteWriteWithRetryAsync<T>(Func<CancellationToken, Task<T>> operation, CancellationToken cancellationToken, string operationName, bool isIdempotent)
+    {
+        if (!isIdempotent)
+        {
+            return await operation(cancellationToken).ConfigureAwait(false);
+        }
+
+        return await ExecuteWithRetryAsync(operation, cancellationToken, IdempotentWriteRetryDelaysMilliseconds, operationName).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 执行带有自动重试机制的写入操作（无返回值）。
+    /// </summary>
+    /// <remarks>
+    /// Executes a write operation with automatic retry mechanism on transient failures (no return value).
+    /// Only idempotent operations will be retried to avoid duplicate writes.
+    /// </remarks>
+    /// <param name="operation">要执行的写入操作 / The write operation to execute</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <param name="operationName">操作名称，用于日志记录 / Operation name for logging</param>
+    /// <param name="isIdempotent">操作是否为幂等操作 / Whether the operation is idempotent</param>
+    private async Task ExecuteWriteWithRetryAsync(Func<CancellationToken, Task> operation, CancellationToken cancellationToken, string operationName, bool isIdempotent)
+    {
+        if (!isIdempotent)
+        {
+            await operation(cancellationToken).ConfigureAwait(false);
+            return;
+        }
+
+        await ExecuteWithRetryAsync(async token =>
+        {
+            await operation(token).ConfigureAwait(false);
+            return true;
+        }, cancellationToken, IdempotentWriteRetryDelaysMilliseconds, operationName).ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 判断异常是否为可重试的事务异常。
+    /// </summary>
+    /// <remarks>
+    /// Determines whether the exception is a transient transaction error that can be retried.
+    /// </remarks>
+    /// <param name="exception">要检查的异常 / The exception to check</param>
+    /// <returns>如果是可重试的事务异常则返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if the exception is retryable; otherwise <c>false</c></returns>
+    private static bool ShouldRetryTransactionException(Exception exception)
+    {
+        return exception is MongoException mongoException && mongoException.HasErrorLabel("TransientTransactionError");
+    }
+
+    /// <summary>
+    /// 判断异常是否为可重试的事务提交异常。
+    /// </summary>
+    /// <remarks>
+    /// Determines whether the exception indicates an unknown transaction commit result that can be retried.
+    /// </remarks>
+    /// <param name="exception">要检查的异常 / The exception to check</param>
+    /// <returns>如果是可重试的事务提交异常则返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if the commit is retryable; otherwise <c>false</c></returns>
+    private static bool ShouldRetryTransactionCommit(Exception exception)
+    {
+        return exception is MongoException mongoException && mongoException.HasErrorLabel("UnknownTransactionCommitResult");
+    }
+
+    /// <summary>
+    /// 判断异常是否为可重试的 MongoDB 异常。
+    /// </summary>
+    /// <remarks>
+    /// Determines whether the exception is a retryable MongoDB exception such as connection error, timeout, or transient error.
+    /// </remarks>
+    /// <param name="exception">要检查的异常 / The exception to check</param>
+    /// <returns>如果是可重试的异常则返回 <c>true</c>；否则返回 <c>false</c> / <c>true</c> if the exception is retryable; otherwise <c>false</c></returns>
+    private static bool IsRetryableMongoException(Exception exception)
+    {
+        if (exception is MongoConnectionException or TimeoutException or MongoExecutionTimeoutException)
+        {
+            return true;
+        }
+
+        if (exception is MongoException mongoException)
+        {
+            if (mongoException.HasErrorLabel("RetryableWriteError") || mongoException.HasErrorLabel("RetryableReadError"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// 执行带有自定义重试延迟的通用重试机制。
+    /// </summary>
+    /// <remarks>
+    /// Executes an operation with custom retry delays and exponential backoff with jitter.
+    /// </remarks>
+    /// <typeparam name="T">操作返回值类型 / The type of the operation result</typeparam>
+    /// <param name="operation">要执行的操作 / The operation to execute</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <param name="retryDelaysMilliseconds">每次重试的延迟毫秒数列表 / List of retry delays in milliseconds</param>
+    /// <param name="operationName">操作名称，用于日志记录 / Operation name for logging</param>
+    /// <returns>操作结果 / The operation result</returns>
+    /// <exception cref="InvalidOperationException">当所有重试都失败后抛出 / Thrown when all retry attempts fail</exception>
+    private async Task<T> ExecuteWithRetryAsync<T>(Func<CancellationToken, Task<T>> operation, CancellationToken cancellationToken, IReadOnlyList<int> retryDelaysMilliseconds, string operationName)
+    {
+        ArgumentNullException.ThrowIfNull(operation, nameof(operation));
+        cancellationToken.ThrowIfCancellationRequested();
+        Exception lastException = null;
+        for (var attempt = 0; attempt <= retryDelaysMilliseconds.Count; attempt++)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            try
+            {
+                return await operation(cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception exception) when (IsRetryableMongoException(exception) && attempt < retryDelaysMilliseconds.Count)
+            {
+                lastException = exception;
+                var delay = retryDelaysMilliseconds[attempt] + Random.Shared.Next(0, 100);
+                LogHelper.Warning("MongoDbService.{operationName} transient error, retry {attempt}/{maxRetry}. error={error}", operationName, attempt + 1, retryDelaysMilliseconds.Count, exception.Message);
+                await Task.Delay(delay, cancellationToken).ConfigureAwait(false);
+            }
+        }
+
+        throw lastException ?? new InvalidOperationException($"MongoDbService.{operationName} failed with unknown retry exception.");
     }
 
     /// <summary>

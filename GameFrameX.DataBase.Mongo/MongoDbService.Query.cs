@@ -94,7 +94,7 @@ public sealed partial class MongoDbService
         var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
         var mongoFilter = Builders<TState>.Filter.Eq(m => m.Id, id) & Builders<TState>.Filter.Where(findExpression);
-        var state = await collection.Find(mongoFilter).FirstOrDefaultAsync(cancellationToken).ConfigureAwait(false);
+        var state = await ExecuteReadWithRetryAsync(token => collection.Find(mongoFilter).FirstOrDefaultAsync(token), cancellationToken, nameof(FindAsync)).ConfigureAwait(false);
 
         if (!isCreateIfNotExists)
         {
@@ -149,7 +149,7 @@ public sealed partial class MongoDbService
         EnsureInitialized();
         var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
-        var state = await collection.AsQueryable().Where(findExpression).FirstOrDefaultAsync(cancellationToken).ConfigureAwait(false);
+        var state = await ExecuteReadWithRetryAsync(token => collection.AsQueryable().Where(findExpression).FirstOrDefaultAsync(token), cancellationToken, nameof(FindAsync)).ConfigureAwait(false);
 
         if (!isCreateIfNotExists)
         {
@@ -200,7 +200,7 @@ public sealed partial class MongoDbService
         EnsureInitialized();
         var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
-        var result = await collection.AsQueryable().Where(findExpression).ToListAsync(cancellationToken).ConfigureAwait(false);
+        var result = await ExecuteReadWithRetryAsync(token => collection.AsQueryable().Where(findExpression).ToListAsync(token), cancellationToken, nameof(FindListAsync)).ConfigureAwait(false);
         foreach (var state in result)
         {
             state?.LoadFromDbPostHandler();
@@ -246,7 +246,7 @@ public sealed partial class MongoDbService
         var collection = _mongoDbContext.GetCollection<TState>();
         var defaultFilter = Builders<TState>.Filter.Where(GetDefaultFindExpression<TState>(null));
         var idFilter = Builders<TState>.Filter.In(m => m.Id, idArray);
-        var result = await collection.Find(defaultFilter & idFilter).ToListAsync(cancellationToken).ConfigureAwait(false);
+        var result = await ExecuteReadWithRetryAsync(token => collection.Find(defaultFilter & idFilter).ToListAsync(token), cancellationToken, nameof(FindByIdsAsync)).ConfigureAwait(false);
         foreach (var state in result)
         {
             state?.LoadFromDbPostHandler();
@@ -304,8 +304,8 @@ public sealed partial class MongoDbService
         var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
         var sortDefinition = descending ? Builders<TState>.Sort.Descending(sortExpression) : Builders<TState>.Sort.Ascending(sortExpression);
-        var total = await collection.CountDocumentsAsync(findExpression, cancellationToken: cancellationToken).ConfigureAwait(false);
-        var items = await collection.Find(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false);
+        var total = await ExecuteReadWithRetryAsync(token => collection.CountDocumentsAsync(findExpression, cancellationToken: token), cancellationToken, nameof(FindPageAsync)).ConfigureAwait(false);
+        var items = await ExecuteReadWithRetryAsync(token => collection.Find(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToListAsync(token), cancellationToken, nameof(FindPageAsync)).ConfigureAwait(false);
         foreach (var state in items)
         {
             state?.LoadFromDbPostHandler();
@@ -347,7 +347,7 @@ public sealed partial class MongoDbService
         var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
         var sortDefinition = Builders<TState>.Sort.Ascending(sortExpression);
-        var state = await collection.Find(findExpression).Sort(sortDefinition).Limit(1).FirstOrDefaultAsync(cancellationToken).ConfigureAwait(false);
+        var state = await ExecuteReadWithRetryAsync(token => collection.Find(findExpression).Sort(sortDefinition).Limit(1).FirstOrDefaultAsync(token), cancellationToken, nameof(FindSortAscendingFirstOneAsync)).ConfigureAwait(false);
         state?.LoadFromDbPostHandler();
         return state;
     }
@@ -385,7 +385,7 @@ public sealed partial class MongoDbService
         var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
         var sortDefinition = Builders<TState>.Sort.Descending(sortExpression);
-        var state = await collection.Find(findExpression).Sort(sortDefinition).Limit(1).FirstOrDefaultAsync(cancellationToken).ConfigureAwait(false);
+        var state = await ExecuteReadWithRetryAsync(token => collection.Find(findExpression).Sort(sortDefinition).Limit(1).FirstOrDefaultAsync(token), cancellationToken, nameof(FindSortDescendingFirstOneAsync)).ConfigureAwait(false);
         state?.LoadFromDbPostHandler();
         return state;
     }
@@ -437,7 +437,7 @@ public sealed partial class MongoDbService
         var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
         var sortDefinition = Builders<TState>.Sort.Descending(sortExpression);
-        var result = await collection.Find(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false);
+        var result = await ExecuteReadWithRetryAsync(token => collection.Find(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToListAsync(token), cancellationToken, nameof(FindSortDescendingAsync)).ConfigureAwait(false);
         foreach (var state in result)
         {
             state?.LoadFromDbPostHandler();
@@ -493,7 +493,7 @@ public sealed partial class MongoDbService
         var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
         var sortDefinition = Builders<TState>.Sort.Ascending(sortExpression);
-        var result = await collection.Find(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false);
+        var result = await ExecuteReadWithRetryAsync(token => collection.Find(findExpression).Sort(sortDefinition).Skip(pageIndex * pageSize).Limit(pageSize).ToListAsync(token), cancellationToken, nameof(FindSortAscendingAsync)).ConfigureAwait(false);
         foreach (var state in result)
         {
             state?.LoadFromDbPostHandler();
@@ -532,7 +532,7 @@ public sealed partial class MongoDbService
         EnsureInitialized();
         var collection = _mongoDbContext.GetCollection<TState>();
         var newFilter = GetDefaultFindExpression(filter);
-        var count = await collection.CountDocumentsAsync(newFilter, cancellationToken: cancellationToken).ConfigureAwait(false);
+        var count = await ExecuteReadWithRetryAsync(token => collection.CountDocumentsAsync(newFilter, cancellationToken: token), cancellationToken, nameof(CountAsync)).ConfigureAwait(false);
         return count;
     }
 
@@ -568,7 +568,7 @@ public sealed partial class MongoDbService
         EnsureInitialized();
         var collection = _mongoDbContext.GetCollection<TState>();
         Expression<Func<TState, bool>> newFilter = includeDeleted ? filter ?? (_ => true) : GetDefaultFindExpression(filter);
-        var count = await collection.CountDocumentsAsync(newFilter, cancellationToken: cancellationToken).ConfigureAwait(false);
+        var count = await ExecuteReadWithRetryAsync(token => collection.CountDocumentsAsync(newFilter, cancellationToken: token), cancellationToken, nameof(CountAsync)).ConfigureAwait(false);
         return count;
     }
 
@@ -606,7 +606,7 @@ public sealed partial class MongoDbService
         EnsureInitialized();
         var collection = _mongoDbContext.GetCollection<TState>();
         var findExpression = GetDefaultFindExpression(filter);
-        var result = await collection.AsQueryable().Where(findExpression).Select(selector).ToListAsync(cancellationToken).ConfigureAwait(false);
+        var result = await ExecuteReadWithRetryAsync(token => collection.AsQueryable().Where(findExpression).Select(selector).ToListAsync(token), cancellationToken, nameof(FindProjectedAsync)).ConfigureAwait(false);
         return result;
     }
 
@@ -660,7 +660,7 @@ public sealed partial class MongoDbService
         EnsureInitialized();
         var collection = _mongoDbContext.GetCollection<TState>();
         filter = GetDefaultFindExpression(filter);
-        var result = await collection.AsQueryable().AnyAsync(filter, cancellationToken).ConfigureAwait(false);
+        var result = await ExecuteReadWithRetryAsync(token => collection.AsQueryable().AnyAsync(filter, token), cancellationToken, nameof(AnyAsync)).ConfigureAwait(false);
         return result;
     }
 
@@ -694,6 +694,6 @@ public sealed partial class MongoDbService
         EnsureInitialized();
         var collection = _mongoDbContext.GetCollection<TState>();
         var filter = Builders<TState>.Filter.Eq(m => m.Id, id) & Builders<TState>.Filter.Where(GetDefaultFindExpression<TState>(null));
-        return await collection.Find(filter).Limit(1).AnyAsync(cancellationToken).ConfigureAwait(false);
+        return await ExecuteReadWithRetryAsync(token => collection.Find(filter).Limit(1).AnyAsync(token), cancellationToken, nameof(ExistsByIdAsync)).ConfigureAwait(false);
     }
 }
