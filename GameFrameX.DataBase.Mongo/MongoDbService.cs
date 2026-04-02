@@ -79,12 +79,12 @@ public sealed partial class MongoDbService : IDatabaseService
     /// <remarks>
     /// Ensures that the database service has been initialized.
     /// </remarks>
-    /// <exception cref="InvalidOperationException">当服务未初始化时抛出 / Thrown when the service is not initialized</exception>
+    /// <exception cref="DatabaseUnavailableException">当服务未初始化时抛出 / Thrown when the service is not initialized</exception>
     private void EnsureInitialized()
     {
         if (_mongoDbContext == null)
         {
-            throw new InvalidOperationException("MongoDbService has not been initialized. Call Open() first.");
+            throw new DatabaseUnavailableException("MongoDbService is unavailable. Open() has not completed successfully.");
         }
     }
 
@@ -123,29 +123,48 @@ public sealed partial class MongoDbService : IDatabaseService
         ArgumentNullException.ThrowIfNull(dbOptions.ConnectionString, nameof(dbOptions.ConnectionString));
         ArgumentNullException.ThrowIfNull(dbOptions.Name, nameof(dbOptions.Name));
         Options = dbOptions;
-        try
+        Exception lastException = null;
+        var retryDelays = new[] { 300, 700, 1500 };
+        for (var attempt = 0; attempt < retryDelays.Length; attempt++)
         {
-            var settings = MongoClientSettings.FromConnectionString(Options.ConnectionString);
-            _mongoClient = new MongoClient(settings);
-            CurrentDatabase = _mongoClient.GetDatabase(Options.Name);
-            _mongoDbContext = new MongoDbContext(CurrentDatabase);
+            try
+            {
+                var settings = MongoClientSettings.FromConnectionString(Options.ConnectionString);
+                settings.ServerSelectionTimeout = TimeSpan.FromSeconds(5);
+                settings.ConnectTimeout = TimeSpan.FromSeconds(5);
+                settings.SocketTimeout = TimeSpan.FromSeconds(10);
 
-            // 测试连接
-            await CurrentDatabase.RunCommandAsync((Command<BsonDocument>)"{ping:1}").ConfigureAwait(false);
+                _mongoClient = new MongoClient(settings);
+                CurrentDatabase = _mongoClient.GetDatabase(Options.Name);
+                _mongoDbContext = new MongoDbContext(CurrentDatabase);
+                await CurrentDatabase.RunCommandAsync((Command<BsonDocument>)"{ping:1}").ConfigureAwait(false);
 
-            LogHelper.Info("MongoDbService.Open {dbName} {ConnectionString} {mongoDbInitializedSuccessfully}", dbOptions.Name, dbOptions.ConnectionString, LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializedSuccessfully, dbOptions.ConnectionString, dbOptions.Name));
-            return true;
+                LogHelper.Info("MongoDbService.Open {dbName} {ConnectionString} {mongoDbInitializedSuccessfully}", dbOptions.Name, dbOptions.ConnectionString, LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializedSuccessfully, dbOptions.ConnectionString, dbOptions.Name));
+                return true;
+            }
+            catch (Exception exception)
+            {
+                lastException = exception;
+                _mongoClient?.Dispose();
+                _mongoClient = null;
+                _mongoDbContext = null;
+                CurrentDatabase = null;
+                if (attempt < retryDelays.Length - 1)
+                {
+                    LogHelper.Warning("MongoDbService.Open Retry {attempt}/{maxRetry} {dbName} {ConnectionString} {exception}", attempt + 1, retryDelays.Length, dbOptions.Name, dbOptions.ConnectionString, exception.Message);
+                    var delay = retryDelays[attempt] + Random.Shared.Next(0, 200);
+                    await Task.Delay(delay).ConfigureAwait(false);
+                }
+            }
         }
-        catch (Exception exception)
-        {
-            LogHelper.Fatal("MongoDbService.Open Exception {dbName} {ConnectionString} {exception}", dbOptions.Name, dbOptions.ConnectionString, exception);
-            var message = LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializationFailed, dbOptions.ConnectionString, dbOptions.Name);
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(message);
-            Console.ResetColor();
-            LogHelper.Error("MongoDbService.Open Exception {dbName} {ConnectionString} {message}", dbOptions.Name, dbOptions.ConnectionString, message);
-            return false;
-        }
+
+        LogHelper.Fatal("MongoDbService.Open Exception {dbName} {ConnectionString} {exception}", dbOptions.Name, dbOptions.ConnectionString, lastException);
+        var message = LocalizationService.GetString(Localization.Keys.Database.MongoDbInitializationFailed, dbOptions.ConnectionString, dbOptions.Name);
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(message);
+        Console.ResetColor();
+        LogHelper.Error("MongoDbService.Open Exception {dbName} {ConnectionString} {message}", dbOptions.Name, dbOptions.ConnectionString, message);
+        return false;
     }
 
     /// <summary>
