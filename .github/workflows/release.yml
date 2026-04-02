@@ -36,7 +36,7 @@ jobs:
         with:
           tag_prefix: ""
           major_pattern: "BREAKING CHANGE:"
-          minor_pattern: "feat:"
+          minor_pattern: "feat"
           format: "${major}.${minor}.${patch}"
 
       - name: Check if release needed
