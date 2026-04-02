@@ -54,6 +54,10 @@ namespace GameFrameX.DataBase.Mongo;
 /// </remarks>
 public sealed partial class MongoDbService : IDatabaseService
 {
+    private static readonly TimeSpan ServerSelectionTimeout = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan ConnectTimeout = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan SocketTimeout = TimeSpan.FromSeconds(10);
+
     /// <summary>
     /// 获取或设置当前使用的MongoDB数据库。
     /// </summary>
@@ -122,6 +126,30 @@ public sealed partial class MongoDbService : IDatabaseService
         ArgumentNullException.ThrowIfNull(dbOptions, nameof(dbOptions));
         ArgumentNullException.ThrowIfNull(dbOptions.ConnectionString, nameof(dbOptions.ConnectionString));
         ArgumentNullException.ThrowIfNull(dbOptions.Name, nameof(dbOptions.Name));
+
+        if (_mongoClient != null && CurrentDatabase != null && _mongoDbContext != null)
+        {
+            var isSameTarget = string.Equals(Options?.ConnectionString, dbOptions.ConnectionString, StringComparison.Ordinal) &&
+                               string.Equals(Options?.Name, dbOptions.Name, StringComparison.Ordinal);
+            if (isSameTarget)
+            {
+                try
+                {
+                    await CurrentDatabase.RunCommandAsync((Command<BsonDocument>)"{ping:1}").ConfigureAwait(false);
+                    Options = dbOptions;
+                    return true;
+                }
+                catch
+                {
+                    ResetConnectionState();
+                }
+            }
+            else
+            {
+                ResetConnectionState();
+            }
+        }
+
         Options = dbOptions;
         Exception lastException = null;
         var retryDelays = new[] { 300, 700, 1500 };
@@ -130,9 +158,9 @@ public sealed partial class MongoDbService : IDatabaseService
             try
             {
                 var settings = MongoClientSettings.FromConnectionString(Options.ConnectionString);
-                settings.ServerSelectionTimeout = TimeSpan.FromSeconds(5);
-                settings.ConnectTimeout = TimeSpan.FromSeconds(5);
-                settings.SocketTimeout = TimeSpan.FromSeconds(10);
+                settings.ServerSelectionTimeout = ServerSelectionTimeout;
+                settings.ConnectTimeout = ConnectTimeout;
+                settings.SocketTimeout = SocketTimeout;
 
                 _mongoClient = new MongoClient(settings);
                 CurrentDatabase = _mongoClient.GetDatabase(Options.Name);
@@ -145,10 +173,7 @@ public sealed partial class MongoDbService : IDatabaseService
             catch (Exception exception)
             {
                 lastException = exception;
-                _mongoClient?.Dispose();
-                _mongoClient = null;
-                _mongoDbContext = null;
-                CurrentDatabase = null;
+                ResetConnectionState();
                 if (attempt < retryDelays.Length - 1)
                 {
                     LogHelper.Warning("MongoDbService.Open Retry {attempt}/{maxRetry} {dbName} {ConnectionString} {exception}", attempt + 1, retryDelays.Length, dbOptions.Name, dbOptions.ConnectionString, exception.Message);
@@ -175,8 +200,16 @@ public sealed partial class MongoDbService : IDatabaseService
     /// </remarks>
     public Task Close()
     {
-        _mongoClient?.Dispose();
+        ResetConnectionState();
         return Task.CompletedTask;
+    }
+
+    private void ResetConnectionState()
+    {
+        _mongoClient?.Dispose();
+        _mongoClient = null;
+        _mongoDbContext = null;
+        CurrentDatabase = null;
     }
 
     /// <summary>
