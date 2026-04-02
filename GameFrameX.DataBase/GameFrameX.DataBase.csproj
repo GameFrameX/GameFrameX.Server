@@ -11,9 +11,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="GameFrameX.Foundation.Orm.Attribute" Version="2.2.8"/>
-        <PackageReference Include="GameFrameX.Foundation.Orm.Entity" Version="2.2.8"/>
-        <PackageReference Include="GameFrameX.Foundation.Hash" Version="2.2.8"/>
+        <PackageReference Include="GameFrameX.Foundation.Orm.Attribute" Version="2.2.10"/>
+        <PackageReference Include="GameFrameX.Foundation.Orm.Entity" Version="2.2.10"/>
+        <PackageReference Include="GameFrameX.Foundation.Hash" Version="2.2.10"/>
     </ItemGroup>
 
 </Project>
