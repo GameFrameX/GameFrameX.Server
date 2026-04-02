@@ -583,6 +583,18 @@ public sealed class AppSetting
     public string DataBaseName { get; set; }
 
     /// <summary>
+    /// 是否使用时区时间记录
+    /// <para>启用后数据库时间戳将包含时区偏移量</para>
+    /// <para>默认值为 false</para>
+    /// </summary>
+    /// <remarks>
+    /// Whether to use time zone for time recording.
+    /// When enabled, database timestamps will include time zone offset.
+    /// Default value is false.
+    /// </remarks>
+    public bool IsUseTimeZone { get; set; } = false;
+
+    /// <summary>
     /// 语言
     /// </summary>
     /// <remarks>
