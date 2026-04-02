@@ -64,8 +64,15 @@ public static partial class GameDb
         ArgumentNullException.ThrowIfNull(dbOptions, nameof(dbOptions));
         ArgumentNullException.ThrowIfNull(dbOptions.ConnectionString, nameof(dbOptions.ConnectionString));
         ArgumentNullException.ThrowIfNull(dbOptions.Name, nameof(dbOptions.Name));
-        _dbServiceImplementation = new T();
-        return await _dbServiceImplementation.Open(dbOptions);
+        var service = new T();
+        var isOpened = await service.Open(dbOptions);
+        if (!isOpened)
+        {
+            return false;
+        }
+
+        _dbServiceImplementation = service;
+        return true;
     }
 
     /// <summary>
