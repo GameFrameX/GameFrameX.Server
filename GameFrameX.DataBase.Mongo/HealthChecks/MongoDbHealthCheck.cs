@@ -42,7 +42,9 @@ namespace GameFrameX.DataBase.Mongo.HealthChecks;
 /// </remarks>
 public sealed class MongoDbHealthCheck : IHealthCheck
 {
+    private const int ConsecutiveFailureThreshold = 5;
     private readonly IMongoClient _mongoClient;
+    private int _consecutiveFailures;
 
     /// <summary>
     /// 初始化 MongoDbHealthCheck 的新实例。
@@ -69,19 +71,31 @@ public sealed class MongoDbHealthCheck : IHealthCheck
     {
         try
         {
-            // 尝试列出数据库以验证连接
             var databases = await _mongoClient.ListDatabaseNamesAsync(cancellationToken);
 
             if (databases != null && await databases.AnyAsync(cancellationToken))
             {
+                Interlocked.Exchange(ref _consecutiveFailures, 0);
                 return HealthCheckResult.Healthy("MongoDB connection is healthy");
             }
 
-            return HealthCheckResult.Degraded("MongoDB connection is degraded: no databases found");
+            var currentFailures = Interlocked.Increment(ref _consecutiveFailures);
+            if (currentFailures >= ConsecutiveFailureThreshold)
+            {
+                return HealthCheckResult.Unhealthy($"MongoDB connection is unhealthy after {currentFailures} consecutive failures");
+            }
+
+            return HealthCheckResult.Degraded($"MongoDB connection is degraded: no databases found. consecutiveFailures={currentFailures}");
         }
         catch (Exception ex)
         {
-            return HealthCheckResult.Unhealthy("MongoDB connection is unhealthy", ex);
+            var currentFailures = Interlocked.Increment(ref _consecutiveFailures);
+            if (currentFailures >= ConsecutiveFailureThreshold)
+            {
+                return HealthCheckResult.Unhealthy($"MongoDB connection is unhealthy after {currentFailures} consecutive failures", ex);
+            }
+
+            return HealthCheckResult.Degraded($"MongoDB connection is temporarily unavailable. consecutiveFailures={currentFailures}", ex);
         }
     }
 }
