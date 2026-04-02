@@ -96,7 +96,7 @@ public sealed partial class MongoDbService
         cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
 
-        var currentTime = TimerHelper.UnixTimeMilliseconds();
+        var currentTime = GetCurrentTimestamp();
 
         // 如果是新对象（没有创建时间），设置创建时间
         if (state.CreatedTime == 0)
@@ -149,7 +149,7 @@ public sealed partial class MongoDbService
             return 0;
         }
 
-        var currentTime = TimerHelper.UnixTimeMilliseconds();
+        var currentTime = GetCurrentTimestamp();
         var collection = CurrentDatabase.GetCollection<TState>(typeof(TState).Name);
         var writeModels = new List<WriteModel<TState>>(stateArray.Length);
         foreach (var state in stateArray)

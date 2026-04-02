@@ -84,7 +84,7 @@ public sealed partial class MongoDbService
         var isChanged = state.IsModify();
         if (isChanged)
         {
-            state.UpdateTime = TimerHelper.UnixTimeMilliseconds();
+            state.UpdateTime = GetCurrentTimestamp();
             state.UpdateCount++;
 
             var collection = _mongoDbContext.GetCollection<TState>();
@@ -138,7 +138,7 @@ public sealed partial class MongoDbService
         }
 
         var writeModels = new List<WriteModel<TState>>();
-        var currentTime = TimerHelper.UnixTimeMilliseconds();
+        var currentTime = GetCurrentTimestamp();
 
         foreach (var state in cacheStates)
         {
@@ -234,7 +234,7 @@ public sealed partial class MongoDbService
             return 0;
         }
 
-        var currentTime = TimerHelper.UnixTimeMilliseconds();
+        var currentTime = GetCurrentTimestamp();
         updates.Add(Builders<TState>.Update.Set(m => m.UpdateTime, currentTime));
         updates.Add(Builders<TState>.Update.Inc(m => m.UpdateCount, 1));
 

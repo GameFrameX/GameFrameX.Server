@@ -87,7 +87,7 @@ public sealed partial class MongoDbService
             return 0;
         }
 
-        state.DeleteTime = TimerHelper.UnixTimeMilliseconds();
+        state.DeleteTime = GetCurrentTimestamp();
         state.IsDeleted = true;
 
         var collection = _mongoDbContext.GetCollection<TState>();
@@ -135,7 +135,7 @@ public sealed partial class MongoDbService
         }
 
         var collection = _mongoDbContext.GetCollection<TState>();
-        var deleteTime = TimerHelper.UnixTimeMilliseconds();
+        var deleteTime = GetCurrentTimestamp();
         var writeModels = new List<WriteModel<TState>>();
 
         foreach (var state in list)
@@ -189,7 +189,7 @@ public sealed partial class MongoDbService
         }
 
         var collection = _mongoDbContext.GetCollection<TState>();
-        var deleteTime = TimerHelper.UnixTimeMilliseconds();
+        var deleteTime = GetCurrentTimestamp();
         var writeModels = new List<WriteModel<TState>>();
 
         foreach (var id in idArray)
@@ -233,7 +233,7 @@ public sealed partial class MongoDbService
     {
         cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
-        state.DeleteTime = TimerHelper.UnixTimeMilliseconds();
+        state.DeleteTime = GetCurrentTimestamp();
         state.IsDeleted = true;
 
         var collection = _mongoDbContext.GetCollection<TState>();

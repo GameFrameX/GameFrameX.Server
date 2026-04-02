@@ -98,8 +98,9 @@ public sealed partial class MongoDbService
     {
         cancellationToken.ThrowIfCancellationRequested();
         EnsureInitialized();
-        state.CreatedTime = TimerHelper.UnixTimeMilliseconds();
-        state.UpdateTime = state.CreatedTime;
+        var currentTime = GetCurrentTimestamp();
+        state.CreatedTime = currentTime;
+        state.UpdateTime = currentTime;
         var collection = _mongoDbContext.GetCollection<TState>();
         await collection.InsertOneAsync(state, cancellationToken: cancellationToken).ConfigureAwait(false);
     }
@@ -138,11 +139,11 @@ public sealed partial class MongoDbService
             return;
         }
 
-        var currentTime = TimerHelper.UnixTimeMilliseconds();
+        var currentTime = GetCurrentTimestamp();
         foreach (var cacheState in cacheStates)
         {
             cacheState.CreatedTime = currentTime;
-            cacheState.UpdateTime = cacheState.CreatedTime;
+            cacheState.UpdateTime = currentTime;
         }
 
         var collection = _mongoDbContext.GetCollection<TState>();

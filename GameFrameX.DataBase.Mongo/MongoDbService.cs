@@ -32,6 +32,7 @@
 using GameFrameX.DataBase.Abstractions;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Foundation.Localization.Core;
+using GameFrameX.Foundation.Utility;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -85,6 +86,27 @@ public sealed partial class MongoDbService : IDatabaseService
         {
             throw new InvalidOperationException("MongoDbService has not been initialized. Call Open() first.");
         }
+    }
+
+    /// <summary>
+    /// 获取当前时间戳（毫秒）。
+    /// </summary>
+    /// <remarks>
+    /// Gets the current timestamp in milliseconds.
+    /// If <see cref="DbOptions.IsUseTimeZone"/> is <c>true</c>, returns the timestamp with time zone offset;
+    /// otherwise, returns the standard UTC timestamp.
+    /// </remarks>
+    /// <returns>
+    /// 返回当前时间的 Unix 时间戳（毫秒） / Returns the current Unix timestamp in milliseconds
+    /// </returns>
+    private long GetCurrentTimestamp()
+    {
+        if (Options.IsUseTimeZone)
+        {
+            return TimerHelper.UnixTimeMillisecondsWithTimeZoneOffset();
+        }
+
+        return TimerHelper.UnixTimeMilliseconds();
     }
 
     /// <summary>

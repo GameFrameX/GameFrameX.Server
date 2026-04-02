@@ -106,7 +106,7 @@ public sealed partial class MongoDbService
         if (state == null)
         {
             // 如果未找到状态，则创建一个新的状态实例，并设置其ID和创建时间
-            state = new TState { Id = id, CreatedTime = TimerHelper.UnixTimeMilliseconds(), };
+            state = new TState { Id = id, CreatedTime = GetCurrentTimestamp(), };
         }
 
         // 调用后处理方法以加载状态的其他数据
@@ -161,7 +161,7 @@ public sealed partial class MongoDbService
         if (state == null)
         {
             // 如果未找到状态，则创建一个新的状态实例，并设置其ID和创建时间
-            state = new TState { Id = IdGenerator.GetNextUniqueId(), CreatedTime = TimerHelper.UnixTimeMilliseconds(), };
+            state = new TState { Id = IdGenerator.GetNextUniqueId(), CreatedTime = GetCurrentTimestamp(), };
         }
 
         // 调用后处理方法以加载状态的其他数据
