@@ -74,5 +74,5 @@ public sealed record DbOptions
     /// Whether to use time zone for time recording.
     /// </remarks>
     /// <value>是否使用时区时间记录 / Whether to use time zone for time recording</value>
-    public bool IsUseTimeZone { get; init; } = true;
+    public bool IsUseTimeZone { get; init; } = false;
 }
