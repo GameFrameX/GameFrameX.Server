@@ -69,7 +69,10 @@ public sealed class PooledBuffer : IDisposable
     /// <remarks>
     /// Returns the valid data view of the buffer.
     /// </remarks>
-    public ReadOnlyMemory<byte> Memory => _buffer?.AsMemory(0, Length) ?? ReadOnlyMemory<byte>.Empty;
+    public ReadOnlyMemory<byte> Memory
+    {
+        get { return _buffer?.AsMemory(0, Length) ?? ReadOnlyMemory<byte>.Empty; }
+    }
 
     /// <summary>
     /// 释放缓冲区。
