@@ -31,8 +31,6 @@
 using System.Collections.Concurrent;
 using GameFrameX.NetWork.Abstractions;
 using GameFrameX.SuperSocket.Server.Abstractions.Session;
-using GameFrameX.SuperSocket.WebSocket.Server;
-using GameFrameX.Foundation.Extensions;
 using GameFrameX.Foundation.Logger;
 using GameFrameX.Utility.Setting;
 using GameFrameX.Foundation.Localization.Core;
@@ -47,13 +45,7 @@ namespace GameFrameX.NetWork;
 /// </remarks>
 public abstract class BaseNetWorkChannel : INetWorkChannel
 {
-    /// <summary>
-    /// WebSocket会话。
-    /// </summary>
-    /// <remarks>
-    /// The WebSocket session for WebSocket connections.
-    /// </remarks>
-    private readonly WebSocketSession _webSocketSession;
+    private readonly INetWorkSender _sender;
 
     /// <summary>
     /// 关闭源。
@@ -79,32 +71,21 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
     /// </remarks>
     /// <param name="session">游戏应用会话对象 / The game application session object</param>
     /// <param name="setting">应用配置 / The application settings</param>
-    /// <param name="isWebSocket">是否为WebSocket连接 / Whether the connection is WebSocket</param>
-    public BaseNetWorkChannel(IGameAppSession session, AppSetting setting, bool isWebSocket)
+    /// <param name="sender">网络发送器 / Network sender</param>
+    public BaseNetWorkChannel(IGameAppSession session, AppSetting setting, INetWorkSender sender)
     {
+        ArgumentNullException.ThrowIfNull(session, nameof(session));
         ArgumentNullException.ThrowIfNull(setting, nameof(setting));
+        ArgumentNullException.ThrowIfNull(sender, nameof(sender));
         GameAppSession = session;
-        IsWebSocket = isWebSocket;
+        _sender = sender;
         Setting = setting;
         SendPacketLength = default;
         SendBytesLength = default;
         ReceivePacketLength = default;
         ReceiveBytesLength = default;
         NetWorkSendTimeOutSecondsTimeSpan = TimeSpan.FromSeconds(Setting.NetWorkSendTimeOutSeconds);
-        if (isWebSocket)
-        {
-            _webSocketSession = (WebSocketSession)session;
-        }
     }
-
-    /// <summary>
-    /// 获取是否为WebSocket连接。
-    /// </summary>
-    /// <remarks>
-    /// Gets whether this channel uses WebSocket protocol.
-    /// </remarks>
-    /// <value>如果是WebSocket连接则为 <c>true</c>；否则为 <c>false</c> / <c>true</c> if WebSocket; otherwise <c>false</c></value>
-    public bool IsWebSocket { get; }
 
     /// <summary>
     /// 获取应用配置。
@@ -229,14 +210,7 @@ public abstract class BaseNetWorkChannel : INetWorkChannel
         {
             try
             {
-                if (IsWebSocket)
-                {
-                    await _webSocketSession.SendAsync(messageData, cancellationTokenSource.Token);
-                }
-                else
-                {
-                    await GameAppSession.SendAsync(messageData, cancellationTokenSource.Token);
-                }
+                await _sender.SendAsync(messageData, cancellationTokenSource.Token);
             }
             catch (OperationCanceledException exception)
             {

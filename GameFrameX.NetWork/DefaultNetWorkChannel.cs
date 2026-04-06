@@ -49,8 +49,20 @@ public sealed class DefaultNetWorkChannel : BaseNetWorkChannel
     /// </remarks>
     /// <param name="session">游戏应用会话对象 / The game application session object</param>
     /// <param name="setting">应用配置 / The application settings</param>
-    /// <param name="isWebSocket">是否为WebSocket连接 / Whether the connection is WebSocket</param>
-    public DefaultNetWorkChannel(IGameAppSession session, AppSetting setting, bool isWebSocket = false) : base(session, setting, isWebSocket)
+    /// <param name="sender">网络发送器 / Network sender</param>
+    public DefaultNetWorkChannel(IGameAppSession session, AppSetting setting, INetWorkSender sender) : base(session, setting, sender)
+    {
+    }
+
+    /// <summary>
+    /// 初始化默认网络通道。
+    /// </summary>
+    /// <remarks>
+    /// Initializes a new instance of the default network channel.
+    /// </remarks>
+    /// <param name="session">游戏应用会话对象 / The game application session object</param>
+    /// <param name="setting">应用配置 / The application settings</param>
+    public DefaultNetWorkChannel(IGameAppSession session, AppSetting setting) : this(session, setting, NetWorkSenderFactory.Create(session))
     {
     }
 }
