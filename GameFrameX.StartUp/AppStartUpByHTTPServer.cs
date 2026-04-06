@@ -221,6 +221,15 @@ public abstract partial class AppStartUpBase
         else
         {
             LogHelper.Error(LocalizationService.GetString(Localization.Keys.StartUp.HttpServer.PortOccupied, Setting.HttpPort));
+            var occupiedProcesses = NetHelper.GetPortOccupyingProcesses(Setting.HttpPort);
+            if (occupiedProcesses.Count > 0)
+            {
+                LogHelper.Error($"HTTP端口[{Setting.HttpPort}]占用详情: {string.Join(" | ", occupiedProcesses)}");
+            }
+            else
+            {
+                LogHelper.Warning($"HTTP端口[{Setting.HttpPort}]已被占用，但未能获取占用进程详情。");
+            }
         }
     }
 
