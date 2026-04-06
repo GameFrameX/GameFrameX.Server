@@ -18,7 +18,6 @@ namespace GameFrameX.NetWork.RemoteMessaging;
 
 /// <summary>
 /// 远程消息通信配置选项。通过环境变量或代码配置控制行为。
-///
 /// 环境变量前缀: RemoteMessaging__
 /// </summary>
 public sealed class RemoteMessagingOptions
@@ -66,7 +65,7 @@ public sealed class RemoteMessagingOptions
     /// <summary>
     /// 是否启用故障注入（默认 false）。仅开发环境使用。
     /// </summary>
-    public bool EnableFaultInjection { get; set; } = false;
+    public bool EnableFaultInjection { get; set; }
 
     /// <summary>
     /// 故障注入类型。
@@ -76,7 +75,7 @@ public sealed class RemoteMessagingOptions
     /// <summary>
     /// 故障注入延迟毫秒数。
     /// </summary>
-    public int FaultInjectionDelayMs { get; set; } = 0;
+    public int FaultInjectionDelayMs { get; set; }
 
     /// <summary>
     /// 从环境变量加载配置。
@@ -107,6 +106,7 @@ public sealed class RemoteMessagingOptions
         {
             return defaultValue;
         }
+
         return string.Equals(value, "true", StringComparison.OrdinalIgnoreCase) ||
                string.Equals(value, "1", StringComparison.OrdinalIgnoreCase);
     }
@@ -118,6 +118,7 @@ public sealed class RemoteMessagingOptions
         {
             return defaultValue;
         }
+
         return result;
     }
 }

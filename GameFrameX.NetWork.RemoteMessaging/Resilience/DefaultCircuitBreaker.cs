@@ -15,7 +15,6 @@
 //  ==========================================================================================
 
 using System.Collections.Concurrent;
-using GameFrameX.NetWork.RemoteMessaging.Contracts;
 
 namespace GameFrameX.NetWork.RemoteMessaging.Resilience;
 
@@ -26,8 +25,8 @@ namespace GameFrameX.NetWork.RemoteMessaging.Resilience;
 internal sealed class DefaultCircuitBreaker : ICircuitBreaker
 {
     private readonly int _failureThreshold;
-    private readonly int _openDurationMs;
     private readonly int _halfOpenMaxAttempts;
+    private readonly int _openDurationMs;
     private readonly ConcurrentDictionary<string, CircuitStateTracker> _trackers = new();
 
     /// <summary>
@@ -61,6 +60,7 @@ internal sealed class DefaultCircuitBreaker : ICircuitBreaker
                         tracker.FailureCount = 0;
                         return true;
                     }
+
                     return false;
                 case CircuitState.HalfOpen:
                     return tracker.HalfOpenAttempts < _halfOpenMaxAttempts;
@@ -102,6 +102,7 @@ internal sealed class DefaultCircuitBreaker : ICircuitBreaker
                         tracker.OpenedAtTick = Environment.TickCount;
                         LogHelper.Warning("CircuitBreaker 触发熔断(半开→打开), Service: {serviceName}, Failures: {failureCount}", serviceName, tracker.FailureCount);
                     }
+
                     break;
                 case CircuitState.Closed:
                     if (tracker.FailureCount >= _failureThreshold)
@@ -110,6 +111,7 @@ internal sealed class DefaultCircuitBreaker : ICircuitBreaker
                         tracker.OpenedAtTick = Environment.TickCount;
                         LogHelper.Info("CircuitBreaker 触发熔断(关闭→打开), Service: {serviceName}, Failures: {failureCount}", serviceName, tracker.FailureCount);
                     }
+
                     break;
             }
         }
@@ -125,14 +127,15 @@ internal sealed class DefaultCircuitBreaker : ICircuitBreaker
                 return tracker.State;
             }
         }
+
         return CircuitState.Closed;
     }
 
     private sealed class CircuitStateTracker
     {
-        public CircuitState State = CircuitState.Closed;
         public int FailureCount;
-        public int OpenedAtTick;
         public int HalfOpenAttempts;
+        public int OpenedAtTick;
+        public CircuitState State = CircuitState.Closed;
     }
 }

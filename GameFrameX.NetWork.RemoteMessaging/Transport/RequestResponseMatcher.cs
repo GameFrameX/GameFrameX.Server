@@ -15,7 +15,6 @@
 //  ==========================================================================================
 
 using System.Collections.Concurrent;
-using GameFrameX.NetWork.RemoteMessaging.Contracts;
 
 namespace GameFrameX.NetWork.RemoteMessaging.Transport;
 
@@ -24,8 +23,8 @@ namespace GameFrameX.NetWork.RemoteMessaging.Transport;
 /// </summary>
 internal sealed class RequestResponseMatcher : IRequestResponseMatcher
 {
-    private int _uniqueId;
     private readonly ConcurrentDictionary<int, PendingEntry> _pendingRequests = new();
+    private int _uniqueId;
 
     /// <inheritdoc />
     public int RegisterPendingRequest(int timeoutMs)

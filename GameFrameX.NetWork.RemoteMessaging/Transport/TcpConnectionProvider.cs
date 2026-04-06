@@ -15,7 +15,6 @@
 //  ==========================================================================================
 
 using System.Net.Sockets;
-using GameFrameX.NetWork.RemoteMessaging.Contracts;
 
 namespace GameFrameX.NetWork.RemoteMessaging.Transport;
 
@@ -27,10 +26,10 @@ internal sealed class TcpConnectionProvider : IConnectionProvider
     private const int DefaultTimeoutMs = 5000;
 
     private readonly SemaphoreSlim _semaphore = new(1, 1);
-    private TcpClient _tcpClient;
-    private NetworkStream _networkStream;
     private string _connectedEndpoint = string.Empty;
     private bool _disposed;
+    private NetworkStream _networkStream;
+    private TcpClient _tcpClient;
 
     /// <inheritdoc />
     public async Task<Stream> GetOrCreateStreamAsync(string host, int port, CancellationToken cancellationToken = default)

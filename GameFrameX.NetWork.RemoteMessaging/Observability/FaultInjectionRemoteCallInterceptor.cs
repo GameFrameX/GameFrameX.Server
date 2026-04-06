@@ -14,8 +14,6 @@
 //   官方文档：https://gameframex.doc.alianblank.com/
 //  ==========================================================================================
 
-using GameFrameX.NetWork.RemoteMessaging.Contracts;
-
 namespace GameFrameX.NetWork.RemoteMessaging.Observability;
 
 /// <summary>
@@ -25,15 +23,15 @@ namespace GameFrameX.NetWork.RemoteMessaging.Observability;
 /// </summary>
 internal sealed class FaultInjectionRemoteCallInterceptor : IRemoteCallInterceptor
 {
-    private readonly FaultInjectionType _injectionType;
     private readonly int _delayMs;
+    private readonly FaultInjectionType _injectionType;
 
     public FaultInjectionRemoteCallInterceptor()
     {
         var typeStr = Environment.GetEnvironmentVariable("RemoteMessaging__FaultInjection__Type");
         var delayStr = Environment.GetEnvironmentVariable("RemoteMessaging__FaultInjection__DelayMs");
 
-        _injectionType = Enum.TryParse<FaultInjectionType>(typeStr, ignoreCase: true, out var type) ? type : FaultInjectionType.None;
+        _injectionType = Enum.TryParse<FaultInjectionType>(typeStr, true, out var type) ? type : FaultInjectionType.None;
         _delayMs = int.TryParse(delayStr, out var delay) ? delay : 0;
     }
 

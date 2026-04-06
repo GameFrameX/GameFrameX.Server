@@ -14,8 +14,6 @@
 //   官方文档：https://gameframex.doc.alianblank.com/
 //  ==========================================================================================
 
-using GameFrameX.NetWork.RemoteMessaging.Contracts;
-
 namespace GameFrameX.NetWork.RemoteMessaging.Resilience;
 
 /// <summary>
@@ -23,8 +21,8 @@ namespace GameFrameX.NetWork.RemoteMessaging.Resilience;
 /// </summary>
 internal sealed class DefaultRetryPolicy : IRetryPolicy
 {
-    private readonly int _maxRetryCount;
     private readonly int _baseDelayMs;
+    private readonly int _maxRetryCount;
 
     /// <summary>
     /// 初始化默认重试策略。

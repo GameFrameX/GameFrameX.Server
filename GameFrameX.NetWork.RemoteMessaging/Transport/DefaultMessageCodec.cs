@@ -15,7 +15,6 @@
 //  ==========================================================================================
 
 using System.Buffers.Binary;
-using GameFrameX.NetWork.RemoteMessaging.Contracts;
 using GameFrameX.ProtoBuf.Net;
 
 namespace GameFrameX.NetWork.RemoteMessaging.Transport;
@@ -49,7 +48,7 @@ internal sealed class DefaultMessageCodec : IMessageCodec
         var totalLength = messageData.Length + InnerPackageHeaderLength;
         var buffer = new byte[totalLength];
         BinaryPrimitives.WriteInt32BigEndian(buffer.AsSpan(0, 4), totalLength);
-        buffer[4] = (byte)message.OperationType;
+        buffer[4] = message.OperationType;
         buffer[5] = zipFlag;
         BinaryPrimitives.WriteInt32BigEndian(buffer.AsSpan(6, 4), message.UniqueId);
         BinaryPrimitives.WriteInt32BigEndian(buffer.AsSpan(10, 4), message.MessageId);

@@ -14,14 +14,11 @@
 //   官方文档：https://gameframex.doc.alianblank.com/
 //  ==========================================================================================
 
-using GameFrameX.NetWork.RemoteMessaging.Contracts;
-using GameFrameX.NetWork.RemoteMessaging.Composition;
-
 namespace GameFrameX.NetWork.RemoteMessaging;
 
 /// <summary>
 /// 远程消息客户端持有者。提供全局静态访问入口，供业务层（如 ComponentAgent）使用。
-/// 在启动时初始化一次，后续通过 <see cref="Client"/> 属性访问。
+/// 在启动时初始化一次，后续通过 <see cref="Client" /> 属性访问。
 /// </summary>
 public static class RemoteMessageClientHolder
 {

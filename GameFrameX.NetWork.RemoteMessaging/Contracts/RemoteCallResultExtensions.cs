@@ -18,7 +18,6 @@ namespace GameFrameX.NetWork.RemoteMessaging.Contracts;
 
 /// <summary>
 /// 远程调用错误语义目录。定义技术错误、业务错误和重试语义的统一映射规则。
-///
 /// 重试语义：
 /// - 可重试（Retryable）：超时、连接失败、熔断半开探测 → 允许有限重试
 /// - 不可重试（NonRetryable）：端点未找到、取消、响应不匹配、熔断已打开 → 立即失败

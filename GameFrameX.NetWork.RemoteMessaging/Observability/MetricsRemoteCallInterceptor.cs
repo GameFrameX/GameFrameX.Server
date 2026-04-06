@@ -14,8 +14,6 @@
 //   官方文档：https://gameframex.doc.alianblank.com/
 //  ==========================================================================================
 
-using GameFrameX.NetWork.RemoteMessaging.Contracts;
-
 namespace GameFrameX.NetWork.RemoteMessaging.Observability;
 
 /// <summary>

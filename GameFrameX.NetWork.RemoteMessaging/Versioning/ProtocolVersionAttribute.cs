@@ -18,7 +18,6 @@ namespace GameFrameX.NetWork.RemoteMessaging.Versioning;
 
 /// <summary>
 /// 协议版本特性。标注在消息类型上，用于协议演进时的版本协商和兼容性检查。
-///
 /// 演进规则：
 /// 1. 新增字段：使用新的 ProtoMember 编号，不修改已有编号。
 /// 2. 废弃字段：保留编号但不使用，不得删除或复用编号。
@@ -27,6 +26,17 @@ namespace GameFrameX.NetWork.RemoteMessaging.Versioning;
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
 public sealed class ProtocolVersionAttribute : Attribute
 {
+    /// <summary>
+    /// 初始化协议版本特性。
+    /// </summary>
+    /// <param name="major">主版本号</param>
+    /// <param name="minor">次版本号</param>
+    public ProtocolVersionAttribute(int major, int minor)
+    {
+        Major = major;
+        Minor = minor;
+    }
+
     /// <summary>
     /// 主版本号。不兼容变更时递增。
     /// </summary>
@@ -43,18 +53,10 @@ public sealed class ProtocolVersionAttribute : Attribute
     public string Description { get; set; }
 
     /// <summary>
-    /// 初始化协议版本特性。
-    /// </summary>
-    /// <param name="major">主版本号</param>
-    /// <param name="minor">次版本号</param>
-    public ProtocolVersionAttribute(int major, int minor)
-    {
-        Major = major;
-        Minor = minor;
-    }
-
-    /// <summary>
     /// 版本字符串。
     /// </summary>
-    public string VersionString => $"{Major}.{Minor}";
+    public string VersionString
+    {
+        get { return $"{Major}.{Minor}"; }
+    }
 }

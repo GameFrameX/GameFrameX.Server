@@ -14,19 +14,16 @@
 //   官方文档：https://gameframex.doc.alianblank.com/
 //  ==========================================================================================
 
-using GameFrameX.NetWork.RemoteMessaging.Contracts;
-using GameFrameX.NetWork.RemoteMessaging.Composition;
-
 namespace GameFrameX.NetWork.RemoteMessaging;
 
 /// <summary>
 /// 远程消息通信 SDK 构建器。业务侧只需调用 <c>RemoteMessagingBuilder.Build()</c> 即可获得完整功能的客户端。
 /// </summary>
 /// <example>
-/// <code>
+///     <code>
 /// // 最简用法
 /// var client = RemoteMessagingBuilder.Build();
-///
+/// 
 /// // 自定义配置
 /// var client = new RemoteMessagingBuilder()
 ///     .WithTimeoutMs(10000)
@@ -129,8 +126,8 @@ public sealed class RemoteMessagingBuilder
         }
 
         var retryPolicy = _options.EnableUnifiedClient && _options.EnableRetry
-            ? new DefaultRetryPolicy(_options.MaxRetryCount, _options.RetryBaseDelayMs)
-            : null;
+                              ? new DefaultRetryPolicy(_options.MaxRetryCount, _options.RetryBaseDelayMs)
+                              : null;
 
         return new RemoteMessageClient(
             endpointResolver,

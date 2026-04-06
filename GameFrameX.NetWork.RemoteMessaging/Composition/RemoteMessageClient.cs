@@ -16,7 +16,6 @@
 
 using System.Diagnostics;
 using System.Net.Sockets;
-using GameFrameX.NetWork.RemoteMessaging.Contracts;
 
 namespace GameFrameX.NetWork.RemoteMessaging.Composition;
 
@@ -25,16 +24,16 @@ namespace GameFrameX.NetWork.RemoteMessaging.Composition;
 /// </summary>
 internal sealed class RemoteMessageClient : IRemoteMessageClient
 {
-    private readonly IServiceEndpointResolver _endpointResolver;
-    private readonly IConnectionProvider _connectionProvider;
-    private readonly IMessageCodec _messageCodec;
-    private readonly IRequestResponseMatcher _requestResponseMatcher;
-    private readonly IProtocolVersionNegotiator _protocolVersionNegotiator;
-    private readonly IRemoteCallInterceptor[] _interceptors;
-    private readonly IRetryPolicy _retryPolicy;
-    private readonly ICircuitBreaker _circuitBreaker;
-    private readonly IEndpointHealthEvaluator _healthEvaluator;
     private readonly SemaphoreSlim _callSemaphore = new(1, 1);
+    private readonly ICircuitBreaker _circuitBreaker;
+    private readonly IConnectionProvider _connectionProvider;
+    private readonly IServiceEndpointResolver _endpointResolver;
+    private readonly IEndpointHealthEvaluator _healthEvaluator;
+    private readonly IRemoteCallInterceptor[] _interceptors;
+    private readonly IMessageCodec _messageCodec;
+    private readonly IProtocolVersionNegotiator _protocolVersionNegotiator;
+    private readonly IRequestResponseMatcher _requestResponseMatcher;
+    private readonly IRetryPolicy _retryPolicy;
 
     public RemoteMessageClient(
         IServiceEndpointResolver endpointResolver,

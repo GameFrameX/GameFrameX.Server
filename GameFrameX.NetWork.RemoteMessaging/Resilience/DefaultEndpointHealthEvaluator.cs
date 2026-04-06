@@ -15,7 +15,6 @@
 //  ==========================================================================================
 
 using System.Collections.Concurrent;
-using GameFrameX.NetWork.RemoteMessaging.Contracts;
 
 namespace GameFrameX.NetWork.RemoteMessaging.Resilience;
 
@@ -81,8 +80,8 @@ internal sealed class DefaultEndpointHealthEvaluator : IEndpointHealthEvaluator
     private sealed class HealthTracker
     {
         public int ConsecutiveFailures;
+        public string LastFailureReason;
         public int LastFailureTick;
         public int LastSuccessTick;
-        public string LastFailureReason;
     }
 }

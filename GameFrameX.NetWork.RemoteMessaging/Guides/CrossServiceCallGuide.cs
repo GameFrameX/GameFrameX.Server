@@ -129,7 +129,7 @@
 // | ServiceUnavailable | -11 | 服务不可用 |
 // | UnknownError | -99 | 未知错误 |
 
-namespace GameFrameX.NetWork.RemoteMessaging;
+namespace GameFrameX.NetWork.RemoteMessaging.Guides;
 
 /// <summary>
 /// 跨服务调用代码准入规则标记。在 Code Review 时检查此规则的遵守情况。

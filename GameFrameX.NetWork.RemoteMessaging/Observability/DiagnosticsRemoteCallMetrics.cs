@@ -16,7 +16,6 @@
 
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
-using GameFrameX.NetWork.RemoteMessaging.Contracts;
 
 namespace GameFrameX.NetWork.RemoteMessaging.Observability;
 
@@ -28,14 +27,14 @@ internal sealed class DiagnosticsRemoteCallMetrics : IRemoteCallMetrics
 {
     private const string MeterName = "GameFrameX.RemoteMessaging";
     private const string MeterVersion = "1.0.0";
+    private readonly Histogram<double> _callDurationHistogram;
+    private readonly Counter<long> _callFailureCounter;
+    private readonly Counter<long> _callRetryCounter;
+    private readonly Counter<long> _callSuccessCounter;
+    private readonly Counter<long> _callTimeoutCounter;
+    private readonly Counter<long> _callTotalCounter;
 
     private readonly Meter _meter;
-    private readonly Counter<long> _callTotalCounter;
-    private readonly Counter<long> _callSuccessCounter;
-    private readonly Counter<long> _callFailureCounter;
-    private readonly Counter<long> _callTimeoutCounter;
-    private readonly Counter<long> _callRetryCounter;
-    private readonly Histogram<double> _callDurationHistogram;
 
     public DiagnosticsRemoteCallMetrics()
     {
@@ -63,8 +62,8 @@ internal sealed class DiagnosticsRemoteCallMetrics : IRemoteCallMetrics
 
         _callDurationHistogram = _meter.CreateHistogram<double>(
             "remotemessaging.calls.duration",
-            unit: "ms",
-            description: "Duration of remote messaging calls in milliseconds");
+            "ms",
+            "Duration of remote messaging calls in milliseconds");
     }
 
     /// <inheritdoc />
