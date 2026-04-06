@@ -27,6 +27,7 @@
 //   Official Documentation: https://gameframex.doc.alianblank.com/
 //  ==========================================================================================
 
+
 namespace GameFrameX.DataBase.Abstractions;
 
 /// <summary>
