@@ -32,20 +32,20 @@ internal sealed class MetricsRemoteCallInterceptor : IRemoteCallInterceptor
         _metrics = metrics;
     }
 
-    /// <inheritdoc />
+    
     public Task OnBeforeCallAsync(RemoteCallContext context, MessageObject request)
     {
         return Task.CompletedTask;
     }
 
-    /// <inheritdoc />
+    
     public Task OnAfterCallAsync(RemoteCallContext context, MessageObject request, MessageObject response, long elapsedMs)
     {
         _metrics.RecordSuccess(context.ServiceName, request.GetType().Name, elapsedMs);
         return Task.CompletedTask;
     }
 
-    /// <inheritdoc />
+    
     public Task OnExceptionAsync(RemoteCallContext context, MessageObject request, Exception exception, long elapsedMs)
     {
         var statusCode = IsTimeoutException(exception) ? RemoteStatusCode.Timeout : RemoteStatusCode.ConnectionFailed;

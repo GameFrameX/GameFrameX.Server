@@ -71,7 +71,7 @@ internal sealed class DiagnosticsRemoteCallMetrics : IRemoteCallMetrics
             "Duration of remote messaging calls in milliseconds");
     }
 
-    /// <inheritdoc />
+    
     public void RecordSuccess(string serviceName, string messageType, long elapsedMs, int retryCount = 0)
     {
         var tags = new TagList
@@ -90,7 +90,7 @@ internal sealed class DiagnosticsRemoteCallMetrics : IRemoteCallMetrics
         }
     }
 
-    /// <inheritdoc />
+    
     public void RecordFailure(string serviceName, string messageType, RemoteStatusCode statusCode, long elapsedMs)
     {
         var tags = new TagList
@@ -110,7 +110,7 @@ internal sealed class DiagnosticsRemoteCallMetrics : IRemoteCallMetrics
         }
     }
 
-    /// <inheritdoc />
+    
     public void RecordRetry(string serviceName, string messageType, int attemptCount)
     {
         var tags = new TagList

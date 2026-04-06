@@ -25,23 +25,23 @@ namespace GameFrameX.NetWork.RemoteMessaging.Resilience;
 /// </remarks>
 internal sealed class PassThroughCircuitBreaker : ICircuitBreaker
 {
-    /// <inheritdoc />
+    
     public bool IsAllowed(string serviceName)
     {
         return true;
     }
 
-    /// <inheritdoc />
+    
     public void RecordSuccess(string serviceName)
     {
     }
 
-    /// <inheritdoc />
+    
     public void RecordFailure(string serviceName)
     {
     }
 
-    /// <inheritdoc />
+    
     public CircuitState GetState(string serviceName)
     {
         return CircuitState.Closed;

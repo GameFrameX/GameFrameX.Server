@@ -41,7 +41,7 @@ internal sealed class DefaultRetryPolicy : IRetryPolicy
         _baseDelayMs = baseDelayMs;
     }
 
-    /// <inheritdoc />
+    
     public bool ShouldRetry(RemoteCallContext context, RemoteStatusCode statusCode, int attemptCount)
     {
         if (!context.AllowRetry)
@@ -57,7 +57,7 @@ internal sealed class DefaultRetryPolicy : IRetryPolicy
         return statusCode == RemoteStatusCode.Timeout || statusCode == RemoteStatusCode.ConnectionFailed;
     }
 
-    /// <inheritdoc />
+    
     public int GetRetryDelayMs(int attemptCount)
     {
         return _baseDelayMs * (1 << Math.Min(attemptCount, 4));

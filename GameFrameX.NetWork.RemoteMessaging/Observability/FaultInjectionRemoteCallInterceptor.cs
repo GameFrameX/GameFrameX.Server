@@ -41,7 +41,7 @@ internal sealed class FaultInjectionRemoteCallInterceptor : IRemoteCallIntercept
         _delayMs = int.TryParse(delayStr, out var delay) ? delay : 0;
     }
 
-    /// <inheritdoc />
+    
     public async Task OnBeforeCallAsync(RemoteCallContext context, MessageObject request)
     {
         switch (_injectionType)
@@ -63,13 +63,13 @@ internal sealed class FaultInjectionRemoteCallInterceptor : IRemoteCallIntercept
         }
     }
 
-    /// <inheritdoc />
+    
     public Task OnAfterCallAsync(RemoteCallContext context, MessageObject request, MessageObject response, long elapsedMs)
     {
         return Task.CompletedTask;
     }
 
-    /// <inheritdoc />
+    
     public Task OnExceptionAsync(RemoteCallContext context, MessageObject request, Exception exception, long elapsedMs)
     {
         return Task.CompletedTask;

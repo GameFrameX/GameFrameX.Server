@@ -49,7 +49,7 @@ internal sealed class DefaultCircuitBreaker : ICircuitBreaker
         _halfOpenMaxAttempts = halfOpenMaxAttempts;
     }
 
-    /// <inheritdoc />
+    
     public bool IsAllowed(string serviceName)
     {
         var tracker = _trackers.GetOrAdd(serviceName, _ => new CircuitStateTracker());
@@ -77,7 +77,7 @@ internal sealed class DefaultCircuitBreaker : ICircuitBreaker
         }
     }
 
-    /// <inheritdoc />
+    
     public void RecordSuccess(string serviceName)
     {
         var tracker = _trackers.GetOrAdd(serviceName, _ => new CircuitStateTracker());
@@ -92,7 +92,7 @@ internal sealed class DefaultCircuitBreaker : ICircuitBreaker
         }
     }
 
-    /// <inheritdoc />
+    
     public void RecordFailure(string serviceName)
     {
         var tracker = _trackers.GetOrAdd(serviceName, _ => new CircuitStateTracker());
@@ -124,7 +124,7 @@ internal sealed class DefaultCircuitBreaker : ICircuitBreaker
         }
     }
 
-    /// <inheritdoc />
+    
     public CircuitState GetState(string serviceName)
     {
         if (_trackers.TryGetValue(serviceName, out var tracker))

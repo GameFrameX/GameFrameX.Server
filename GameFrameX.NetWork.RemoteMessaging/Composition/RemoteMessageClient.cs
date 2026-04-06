@@ -60,7 +60,7 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
         _healthEvaluator = healthEvaluator;
     }
 
-    /// <inheritdoc />
+    
     public async Task<TResponse> CallAsync<TResponse>(
         string serviceName,
         MessageObject requestMessage,
@@ -73,7 +73,7 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
         return result.Response;
     }
 
-    /// <inheritdoc />
+    
     public async Task<RemoteCallResult<TResponse>> CallWithResultAsync<TResponse>(
         RemoteCallContext context,
         MessageObject requestMessage)

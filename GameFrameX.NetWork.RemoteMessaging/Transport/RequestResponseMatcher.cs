@@ -29,7 +29,7 @@ internal sealed class RequestResponseMatcher : IRequestResponseMatcher
     private readonly ConcurrentDictionary<int, PendingEntry> _pendingRequests = new();
     private int _uniqueId;
 
-    /// <inheritdoc />
+    
     public int RegisterPendingRequest(int timeoutMs)
     {
         var uniqueId = Interlocked.Increment(ref _uniqueId);
@@ -41,7 +41,7 @@ internal sealed class RequestResponseMatcher : IRequestResponseMatcher
         return uniqueId;
     }
 
-    /// <inheritdoc />
+    
     public Task<MessageObject> WaitResponseAsync(int uniqueId, CancellationToken cancellationToken)
     {
         if (_pendingRequests.TryGetValue(uniqueId, out var entry))
@@ -57,7 +57,7 @@ internal sealed class RequestResponseMatcher : IRequestResponseMatcher
         return Task.FromResult<MessageObject>(null);
     }
 
-    /// <inheritdoc />
+    
     public bool TryComplete(int uniqueId, MessageObject response)
     {
         if (!_pendingRequests.TryRemove(uniqueId, out var entry))
@@ -69,7 +69,7 @@ internal sealed class RequestResponseMatcher : IRequestResponseMatcher
         return true;
     }
 
-    /// <inheritdoc />
+    
     public void CleanupExpired()
     {
         var now = Environment.TickCount;

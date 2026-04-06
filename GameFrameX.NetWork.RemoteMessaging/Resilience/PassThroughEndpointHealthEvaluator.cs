@@ -25,18 +25,18 @@ namespace GameFrameX.NetWork.RemoteMessaging.Resilience;
 /// </remarks>
 internal sealed class PassThroughEndpointHealthEvaluator : IEndpointHealthEvaluator
 {
-    /// <inheritdoc />
+    
     public int GetHealthScore(string serviceName)
     {
         return 100;
     }
 
-    /// <inheritdoc />
+    
     public void MarkUnavailable(string serviceName, string reason)
     {
     }
 
-    /// <inheritdoc />
+    
     public void MarkHealthy(string serviceName)
     {
     }

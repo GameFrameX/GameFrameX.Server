@@ -26,7 +26,7 @@ namespace GameFrameX.NetWork.RemoteMessaging.Discovery;
 /// </remarks>
 internal sealed class AspireEndpointResolver : IServiceEndpointResolver
 {
-    /// <inheritdoc />
+    
     public string ResolveTcpEndpoint(string serviceName)
     {
         var variables = Environment.GetEnvironmentVariables();

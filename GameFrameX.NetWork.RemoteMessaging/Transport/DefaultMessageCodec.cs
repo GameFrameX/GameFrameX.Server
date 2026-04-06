@@ -37,7 +37,7 @@ internal sealed class DefaultMessageCodec : IMessageCodec
     private static readonly DefaultMessageCompressHandler CompressHandler = new();
     private static readonly DefaultMessageDecompressHandler DecompressHandler = new();
 
-    /// <inheritdoc />
+    
     public byte[] Encode(MessageObject message)
     {
         var messageData = ProtoBufSerializerHelper.Serialize(message);
@@ -59,7 +59,7 @@ internal sealed class DefaultMessageCodec : IMessageCodec
         return buffer;
     }
 
-    /// <inheritdoc />
+    
     public async Task<MessageObject> DecodeAsync(Stream stream, CancellationToken cancellationToken)
     {
         var lengthBuffer = new byte[4];
