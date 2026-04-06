@@ -3,9 +3,7 @@ using GameFrameX.DataBase.Mongo;
 using GameFrameX.DataBase.Mongo.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using MongoDB.Driver;
-using System.Linq;
 using System.Reflection;
-using Xunit;
 
 namespace GameFrameX.Tests.DataBase;
 
@@ -179,6 +177,86 @@ public sealed class MongoDbServiceConnectionTests
         Assert.DoesNotContain("user_name", target, StringComparison.Ordinal);
         Assert.DoesNotContain("pass_word", target, StringComparison.Ordinal);
         Assert.Contains("host=127.0.0.1", target, StringComparison.Ordinal);
+    }
+
+    /// <summary>
+    /// 测试状态机在连续可重试失败后从 Healthy 进入 Degraded 再进入 Unhealthy。
+    /// </summary>
+    [Fact]
+    public void AvailabilityState_WhenConsecutiveRetryableFailures_ShouldTransitToUnhealthy()
+    {
+        var service = new MongoDbService();
+        var recordFailureMethod = typeof(MongoDbService).GetMethod("RecordRetryableFailure", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.NotNull(recordFailureMethod);
+
+        for (var i = 0; i < 5; i++)
+        {
+            recordFailureMethod.Invoke(service, new object[] { "UnitTestRead", "read", new TimeoutException("state-machine-test"), });
+        }
+
+        Assert.Equal(DatabaseAvailabilityState.Unhealthy, service.AvailabilityState);
+    }
+
+    /// <summary>
+    /// 测试 Recovering 状态下连续成功达到阈值后回切 Healthy。
+    /// </summary>
+    [Fact]
+    public void AvailabilityState_WhenRecoveringGetsConsecutiveSuccesses_ShouldTransitToHealthy()
+    {
+        var service = new MongoDbService();
+        var availabilityStateField = typeof(MongoDbService).GetField("_availabilityState", BindingFlags.NonPublic | BindingFlags.Instance);
+        var recordSuccessMethod = typeof(MongoDbService).GetMethod("RecordOperationSuccess", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.NotNull(availabilityStateField);
+        Assert.NotNull(recordSuccessMethod);
+
+        availabilityStateField.SetValue(service, (int)DatabaseAvailabilityState.Recovering);
+        for (var i = 0; i < 3; i++)
+        {
+            recordSuccessMethod.Invoke(service, new object[] { "UnitTestRead", "read", });
+        }
+
+        Assert.Equal(DatabaseAvailabilityState.Healthy, service.AvailabilityState);
+    }
+
+    /// <summary>
+    /// 测试 Unhealthy 状态下白名单读接口会触发降级返回。
+    /// </summary>
+    [Fact]
+    public void DegradeReadFallback_WhenUnhealthyAndWhitelistedRead_ShouldReturnFallback()
+    {
+        var service = new MongoDbService();
+        var availabilityStateField = typeof(MongoDbService).GetField("_availabilityState", BindingFlags.NonPublic | BindingFlags.Instance);
+        var method = typeof(MongoDbService).GetMethod("TryReturnDegradedReadFallback", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.NotNull(availabilityStateField);
+        Assert.NotNull(method);
+
+        availabilityStateField.SetValue(service, (int)DatabaseAvailabilityState.Unhealthy);
+        var genericMethod = method.MakeGenericMethod(typeof(long));
+        var args = new object[] { "CountAsync", new Func<long>(() => 42L), null, };
+        var handled = genericMethod.Invoke(service, args);
+
+        Assert.IsType<bool>(handled);
+        Assert.True((bool)handled);
+        Assert.Equal(42L, Assert.IsType<long>(args[2]));
+    }
+
+    /// <summary>
+    /// 测试 Unhealthy 状态下核心写接口会被快速失败策略拒绝。
+    /// </summary>
+    [Fact]
+    public void CoreWriteAllowed_WhenUnhealthyAndCoreWrite_ShouldReturnFalse()
+    {
+        var service = new MongoDbService();
+        var availabilityStateField = typeof(MongoDbService).GetField("_availabilityState", BindingFlags.NonPublic | BindingFlags.Instance);
+        var method = typeof(MongoDbService).GetMethod("IsCoreWriteAllowed", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.NotNull(availabilityStateField);
+        Assert.NotNull(method);
+
+        availabilityStateField.SetValue(service, (int)DatabaseAvailabilityState.Unhealthy);
+        var allowed = method.Invoke(service, new object[] { "AddAsync", });
+
+        Assert.IsType<bool>(allowed);
+        Assert.False((bool)allowed);
     }
 
     /// <summary>
