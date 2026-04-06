@@ -34,7 +34,16 @@ internal sealed class TcpConnectionProvider : IConnectionProvider
     private NetworkStream _networkStream;
     private TcpClient _tcpClient;
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 获取或创建到指定目标的可用网络流。
+    /// </summary>
+    /// <remarks>
+    /// Gets an existing or creates a new usable network stream to the specified target.
+    /// </remarks>
+    /// <param name="host">目标主机 / Target host</param>
+    /// <param name="port">目标端口 / Target port</param>
+    /// <param name="cancellationToken">取消令牌 / Cancellation token</param>
+    /// <returns>可用的网络流 / An available network stream</returns>
     public async Task<Stream> GetOrCreateStreamAsync(string host, int port, CancellationToken cancellationToken = default)
     {
         await _semaphore.WaitAsync(cancellationToken);
@@ -70,13 +79,23 @@ internal sealed class TcpConnectionProvider : IConnectionProvider
         }
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 标记当前连接为失效，下次调用时重建。
+    /// </summary>
+    /// <remarks>
+    /// Marks the current connection as invalid so it will be re-established on the next call.
+    /// </remarks>
     public void Invalidate()
     {
         DisposeCore();
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 释放 TCP 连接和关联资源。
+    /// </summary>
+    /// <remarks>
+    /// Releases the TCP connection and associated resources.
+    /// </remarks>
     public void Dispose()
     {
         if (_disposed)

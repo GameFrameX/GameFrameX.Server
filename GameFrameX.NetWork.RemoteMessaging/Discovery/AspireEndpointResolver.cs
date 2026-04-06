@@ -26,7 +26,14 @@ namespace GameFrameX.NetWork.RemoteMessaging.Discovery;
 /// </remarks>
 internal sealed class AspireEndpointResolver : IServiceEndpointResolver
 {
-    /// <inheritdoc />
+    /// <summary>
+    /// 解析指定服务的 TCP 端点地址。
+    /// </summary>
+    /// <remarks>
+    /// Resolves the TCP endpoint address for the specified service.
+    /// </remarks>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <returns>端点地址字符串（如 "tcp://host:port"）；未找到时返回空字符串 / The endpoint address string (e.g. "tcp://host:port"); returns an empty string when not found</returns>
     public string ResolveTcpEndpoint(string serviceName)
     {
         var variables = Environment.GetEnvironmentVariables();

@@ -75,7 +75,17 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
         _healthEvaluator = healthEvaluator;
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 发送请求并等待响应（简化版本）。
+    /// </summary>
+    /// <remarks>
+    /// Sends a request and waits for a response (simplified overload).
+    /// </remarks>
+    /// <param name="serviceName">目标服务名 / The target service name</param>
+    /// <param name="requestMessage">请求消息对象 / The request message object</param>
+    /// <param name="timeoutMs">超时毫秒数 / The timeout duration in milliseconds</param>
+    /// <param name="cancellationToken">取消令牌 / The cancellation token</param>
+    /// <returns>响应消息对象；超时或失败时返回 null / The response message object; returns null on timeout or failure</returns>
     public async Task<TResponse> CallAsync<TResponse>(
         string serviceName,
         MessageObject requestMessage,
@@ -88,7 +98,15 @@ internal sealed class RemoteMessageClient : IRemoteMessageClient
         return result.Response;
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 发送请求并返回结构化结果（包含状态码、耗时、重试信息）。
+    /// </summary>
+    /// <remarks>
+    /// Sends a request and returns a structured result containing status code, elapsed time, and retry information.
+    /// </remarks>
+    /// <param name="context">调用上下文（含超时、重试策略、追踪信息） / The call context (including timeout, retry strategy, and tracing info)</param>
+    /// <param name="requestMessage">请求消息对象 / The request message object</param>
+    /// <returns>结构化调用结果 / The structured call result</returns>
     public async Task<RemoteCallResult<TResponse>> CallWithResultAsync<TResponse>(
         RemoteCallContext context,
         MessageObject requestMessage)

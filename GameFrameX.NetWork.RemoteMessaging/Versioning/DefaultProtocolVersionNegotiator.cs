@@ -26,7 +26,14 @@ namespace GameFrameX.NetWork.RemoteMessaging.Versioning;
 /// </remarks>
 internal sealed class DefaultProtocolVersionNegotiator : IProtocolVersionNegotiator
 {
-    /// <inheritdoc />
+    /// <summary>
+    /// 检查指定消息类型的本地版本是否与远端兼容。
+    /// </summary>
+    /// <remarks>
+    /// Checks whether the local version of the specified message type is compatible with the remote side.
+    /// </remarks>
+    /// <param name="messageType">消息类型 / The message type to check</param>
+    /// <returns>true 兼容；false 不兼容 / true if compatible; false if incompatible</returns>
     public bool IsCompatible(Type messageType)
     {
         // 无 ProtocolVersionAttribute 标注的消息默认为兼容
@@ -41,7 +48,14 @@ internal sealed class DefaultProtocolVersionNegotiator : IProtocolVersionNegotia
         return true;
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// 获取指定消息类型的协议版本信息。
+    /// </summary>
+    /// <remarks>
+    /// Gets the protocol version information for the specified message type.
+    /// </remarks>
+    /// <param name="messageType">消息类型 / The message type to query</param>
+    /// <returns>版本字符串；未标注特性时返回 "0.0" / The version string; returns "0.0" when no attribute is present</returns>
     public string GetVersion(Type messageType)
     {
         var attr = (ProtocolVersionAttribute?)messageType.GetCustomAttributes(typeof(ProtocolVersionAttribute), false).FirstOrDefault();
