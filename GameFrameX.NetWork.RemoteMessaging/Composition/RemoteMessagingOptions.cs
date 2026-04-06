@@ -14,6 +14,8 @@
 //   官方文档：https://gameframex.doc.alianblank.com/
 //  ==========================================================================================
 
+using GameFrameX.NetWork.RemoteMessaging.Transport;
+
 namespace GameFrameX.NetWork.RemoteMessaging;
 
 /// <summary>
@@ -77,6 +79,24 @@ public sealed class RemoteMessagingOptions
     public int CircuitBreakerOpenDurationMs { get; set; } = 30000;
 
     /// <summary>
+    /// 默认压缩算法 ID（默认 Deflate=1，0 表示不压缩）。
+    /// </summary>
+    /// <value>默认压缩算法 ID / Default compression algorithm ID</value>
+    public byte DefaultCompressionAlgorithmId { get; set; } = DeflateMessageCompressionAlgorithm.Id;
+
+    /// <summary>
+    /// 压缩阈值（字节）。仅超过该值才尝试压缩，默认 512。
+    /// </summary>
+    /// <value>压缩阈值 / Compression threshold in bytes</value>
+    public int CompressionThreshold { get; set; } = 512;
+
+    /// <summary>
+    /// 压缩算法注册表。为空时将使用默认注册表。
+    /// </summary>
+    /// <value>压缩算法注册表 / Compression algorithm registry</value>
+    public IMessageCompressionRegistry CompressionRegistry { get; set; }
+
+    /// <summary>
     /// 是否启用故障注入（默认 false）。仅开发环境使用。
     /// </summary>
     /// <value>是否启用故障注入 / Whether fault injection is enabled</value>
@@ -112,6 +132,8 @@ public sealed class RemoteMessagingOptions
             RetryBaseDelayMs = GetEnvInt("RetryBaseDelayMs", 200),
             CircuitBreakerFailureThreshold = GetEnvInt("CircuitBreakerFailureThreshold", 5),
             CircuitBreakerOpenDurationMs = GetEnvInt("CircuitBreakerOpenDurationMs", 30000),
+            DefaultCompressionAlgorithmId = GetEnvByte("DefaultCompressionAlgorithmId", DeflateMessageCompressionAlgorithm.Id),
+            CompressionThreshold = GetEnvInt("CompressionThreshold", 512),
             EnableFaultInjection = GetEnvBool("EnableFaultInjection", false),
             FaultInjectionType = Environment.GetEnvironmentVariable("RemoteMessaging__FaultInjection__Type") ?? "None",
             FaultInjectionDelayMs = GetEnvInt("FaultInjectionDelayMs", 0),
@@ -135,6 +157,17 @@ public sealed class RemoteMessagingOptions
     {
         var value = Environment.GetEnvironmentVariable($"RemoteMessaging__{key}");
         if (value == null || !int.TryParse(value, out var result))
+        {
+            return defaultValue;
+        }
+
+        return result;
+    }
+
+    private static byte GetEnvByte(string key, byte defaultValue)
+    {
+        var value = Environment.GetEnvironmentVariable($"RemoteMessaging__{key}");
+        if (value == null || !byte.TryParse(value, out var result))
         {
             return defaultValue;
         }

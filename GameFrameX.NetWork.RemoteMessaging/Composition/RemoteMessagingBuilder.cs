@@ -14,6 +14,8 @@
 //   官方文档：https://gameframex.doc.alianblank.com/
 //  ==========================================================================================
 
+using GameFrameX.NetWork.RemoteMessaging.Transport;
+
 namespace GameFrameX.NetWork.RemoteMessaging;
 
 /// <summary>
@@ -86,6 +88,30 @@ public sealed class RemoteMessagingBuilder
     }
 
     /// <summary>
+    /// 配置默认压缩算法与压缩阈值。
+    /// </summary>
+    /// <param name="defaultAlgorithmId">默认压缩算法 ID（0 表示禁用压缩）</param>
+    /// <param name="threshold">压缩阈值（字节）</param>
+    /// <returns>构建器实例</returns>
+    public RemoteMessagingBuilder WithCompression(byte defaultAlgorithmId, int threshold = 512)
+    {
+        _options.DefaultCompressionAlgorithmId = defaultAlgorithmId;
+        _options.CompressionThreshold = threshold;
+        return this;
+    }
+
+    /// <summary>
+    /// 配置压缩算法注册表。
+    /// </summary>
+    /// <param name="registry">压缩算法注册表</param>
+    /// <returns>构建器实例</returns>
+    public RemoteMessagingBuilder WithCompressionRegistry(IMessageCompressionRegistry registry)
+    {
+        _options.CompressionRegistry = registry;
+        return this;
+    }
+
+    /// <summary>
     /// 从环境变量加载配置（覆盖之前的设置）。
     /// </summary>
     /// <remarks>
@@ -109,7 +135,11 @@ public sealed class RemoteMessagingBuilder
     {
         var endpointResolver = new AspireEndpointResolver();
         var connectionProvider = new TcpConnectionProvider();
-        var messageCodec = new DefaultMessageCodec();
+        var compressionRegistry = _options.CompressionRegistry ?? new DefaultMessageCompressionRegistry();
+        var messageCodec = new DefaultMessageCodec(
+            compressionRegistry,
+            _options.DefaultCompressionAlgorithmId,
+            _options.CompressionThreshold);
         var requestResponseMatcher = new RequestResponseMatcher();
         var protocolVersionNegotiator = new DefaultProtocolVersionNegotiator();
 
